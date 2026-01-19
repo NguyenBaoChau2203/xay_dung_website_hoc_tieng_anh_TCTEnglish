@@ -8,7 +8,7 @@ Dự án được xây dựng nhằm hỗ trợ nhân viên công ty TCT học v
 ---
 
 ## 👥 Thành viên nhóm
-- Nguyễn Bảo Châu (Leader)
+- Nguyễn Bảo Châu
 - Huỳnh Phú Trọng
 - Trần Quốc Tiến
 
