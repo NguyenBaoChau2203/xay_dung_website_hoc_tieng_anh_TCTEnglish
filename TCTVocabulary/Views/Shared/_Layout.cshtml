@@ -1,50 +1,79 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TCTVocabulary</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TCTVocabulary.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - QuizletClone</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <script src="~/js/layout.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TCTVocabulary</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <partial name="_Loader" />
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-bars menu-icon"></i>
+            <a asp-controller="Home" asp-action="Index" class="logo">TCT</a>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for study guides">
             </div>
-        </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-circle"><i class="fas fa-plus"></i></button>
+            <button class="btn-upgrade">Upgrade: free 7-day trial</button>
+            <div class="avatar"></div>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav>
+                <a class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a class="nav-item">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Your library</span>
+                </a>
+                <a class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+            </nav>
+            <hr>
+            <div class="workspace">
+                <p class="workspace-title">Workspace</p>
+                <button class="workspace-btn">
+                    <span class="icon-circle">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    New folder
+                </button>
+                <button class="workspace-btn">
+                    <span class="icon-circle">
+                        <i class="fas fa-clone"></i>
+                    </span>
+                    Add flashcard
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                Tận dụng Flashcards để ghi nhớ kiến thức nhanh hơn 3 lần.
+            </div>
+        </aside>
+        <!-- MAIN -->
+        <main class="main">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - TCTVocabulary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
