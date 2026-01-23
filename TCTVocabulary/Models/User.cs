@@ -26,9 +26,4 @@ public partial class User
     public virtual ICollection<Set> Sets { get; set; } = new List<Set>();
 
     public virtual ICollection<Class> ClassesNavigation { get; set; } = new List<Class>();
-﻿namespace TCTVocabulary.Models
-{
-    public class User
-    {
-    }
 }
