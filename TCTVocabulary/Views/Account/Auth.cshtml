@@ -439,8 +439,8 @@
 
                 <!-- TABS header -->
                 <div class="auth-tabs">
-                    <button class="tab-btn active" onclick="switchTab('register')" id="tab-register">Đăng ký</button>
-                    <button class="tab-btn" onclick="switchTab('login')" id="tab-login">Đăng nhập</button>
+                    <h3 class="tab-btn active" onclick="switchTab('register')" id="tab-register">Đăng ký</h3>
+                    <h3 class="tab-btn" onclick="switchTab('login')" id="tab-login">Đăng nhập</h3>
                 </div>
 
                 <!-- SOCIAL LOGIN (Shared) -->
@@ -508,7 +508,7 @@
                     <div class="form-group">
                         <label class="form-label">Mật khẩu</label>
                         <input type="password" class="form-input" placeholder="••••••••" required>
-                        <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+                        <a href="@Url.Action("ForgotPassword", "Account")" class="forgot-pass">Quên mật khẩu?</a>
                     </div>
 
                     <button type="submit" class="btn-submit">Đăng nhập</button>
@@ -546,7 +546,16 @@
 
     <!-- SCRIPT -->
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lấy giá trị từ Controller (login hoặc register)
+            const activeTab = '@ViewData["ActiveTab"]';
+            if (activeTab) {
+                switchTab(activeTab);
+            }
+        });
+
         function switchTab(tabName) {
+            console.log("Đã chuyển tab"); // Debug
             const btnReg = document.getElementById('tab-register');
             const btnLog = document.getElementById('tab-login');
             const formReg = document.getElementById('form-register');
