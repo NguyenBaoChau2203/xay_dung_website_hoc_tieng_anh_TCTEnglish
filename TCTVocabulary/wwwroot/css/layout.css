@@ -1,4 +1,5 @@
-﻿* {
+﻿/* ================= RESET ================= */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,20 +12,24 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 .header {
-    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 64px; /* FIX: không cố định height */
+    height: auto;
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 8px 24px; /* padding quyết định chiều cao */
+    z-index: 1000;
 }
 
+/* Header left */
 .header-left {
     display: flex;
     align-items: center;
@@ -41,11 +46,14 @@ body {
     font-weight: 900;
     color: #4255ff;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 /* Search */
 .search-box {
     position: relative;
+    flex: 1;
+    max-width: 420px;
 }
 
     .search-box i {
@@ -58,12 +66,13 @@ body {
     }
 
     .search-box input {
-        width: 400px;
+        width: 100%;
         padding: 10px 16px 10px 40px;
         border-radius: 999px;
         border: none;
         background: #f6f7fb;
         font-size: 14px;
+        line-height: 1.4; /* FIX input bị cắt */
     }
 
         .search-box input:focus {
@@ -75,6 +84,7 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-shrink: 0;
 }
 
 .btn-circle {
@@ -108,32 +118,26 @@ body {
     border-radius: 50%;
 }
 
-/* ===== LAYOUT ===== */
-.layout {
-    display: flex;
-    min-height: calc(100vh - 64px);
-}
-
-/* ===== SIDEBAR ===== */
+/* ================= SIDEBAR ================= */
 .sidebar {
+    position: fixed;
+    top: 64px;
+    left: 0;
     width: 240px;
+    height: calc(100vh - 64px);
     background: #fff;
     border-right: 1px solid #e5e7eb;
     padding: 16px;
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: 64px;
-    height: calc(100vh - 64px);
-    transition: all 0.3s ease;
-    z-index: 200;
+    z-index: 900;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
 }
 
     /* Desktop collapse */
     .sidebar.collapsed {
-        width: 0;
-        padding: 0;
-        overflow: hidden;
+        transform: translateX(-100%);
     }
 
 /* Navigation */
@@ -213,24 +217,25 @@ body {
     color: #6b7280;
 }
 
-/* ===== MAIN ===== */
+/* ================= MAIN ================= */
 .main {
-    flex: 1;
+    margin-top: 64px;
+    margin-left: 240px;
     padding: 32px;
-    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 64px);
 }
 
-/* Desktop when sidebar collapsed */
+/* Sidebar collapsed */
 .layout.sidebar-collapsed .main {
     margin-left: 0;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ================= RESPONSIVE ================= */
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .search-box input {
-        width: 240px;
+    .search-box {
+        max-width: 280px;
     }
 
     .btn-upgrade {
@@ -240,59 +245,27 @@ body {
 
 /* Mobile */
 @media (max-width: 768px) {
-    /* Header */
+
     .header {
-        padding: 0 12px;
-        gap: 8px;
+        padding: 8px 12px;
     }
 
-    .header-left {
-        gap: 12px;
-    }
-
-    .logo {
-        font-size: 22px;
-    }
-
-    /* Search full width */
     .search-box {
-        flex: 1;
+        max-width: none;
     }
 
-        .search-box input {
-            width: 100%;
-        }
-
-    /* Header right */
-    .header-right {
-        gap: 8px;
-    }
-
-    .btn-circle,
-    .avatar {
-        width: 36px;
-        height: 36px;
-    }
-
-    /* Sidebar off-canvas */
-    .sidebar {
-        position: fixed;
-        top: 64px;
-        left: 0;
-        height: calc(100vh - 64px);
-        transform: translateX(-100%);
-        width: 240px;
+    .main {
+        margin-left: 0;
         padding: 16px;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
     }
 
         .sidebar.active {
             transform: translateX(0);
         }
-
-    /* Main */
-    .main {
-        padding: 16px;
-    }
 }
 
 /* Small mobile */
