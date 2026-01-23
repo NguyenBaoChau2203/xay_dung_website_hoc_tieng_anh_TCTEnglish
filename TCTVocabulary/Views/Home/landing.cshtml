@@ -1,0 +1,694 @@
+﻿@{
+    Layout = null; // Chạy độc lập hoàn toàn
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCT - Nền tảng học tập thông minh</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #4255ff;
+            --text-dark: #282e3e;
+            --bg-light: #f6f7fb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navbar & Dropdown */
+        .navbar {
+            background: white;
+            border-bottom: 2px solid #edeff4;
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            font-size: 26px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-dark) !important;
+            padding: 10px 15px !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 10px;
+            min-width: 250px;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+            .dropdown-item i {
+                width: 25px;
+                color: var(--primary-color);
+                margin-right: 10px;
+            }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: 48px;
+                font-weight: 800;
+                margin-bottom: 20px;
+            }
+
+        .btn-signup-main {
+            background: var(--primary-color);
+            color: white !important;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 15px 40px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+            .btn-signup-main:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(66, 85, 255, 0.3);
+            }
+
+        /* Cards */
+        .quizlet-card {
+            border-radius: 24px;
+            height: 300px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: 0.4s;
+            text-decoration: none;
+            color: var(--text-dark);
+            border: none;
+        }
+
+            .quizlet-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                color: var(--text-dark);
+            }
+
+        .card-study {
+            background-color: #a8dfff;
+        }
+
+        .card-flashcard {
+            background-color: #4255ff;
+            color: white;
+        }
+
+        .card-test {
+            background-color: #ffcd1f;
+        }
+
+        .card-match {
+            background-color: #ffaba4;
+        }
+
+        .card-expert-item {
+            background-color: #98f5e1;
+        }
+
+        /* Slider Controls */
+        .custom-nav {
+            width: 50px !important;
+            height: 50px !important;
+            background: white !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            opacity: 1 !important;
+            z-index: 10;
+        }
+
+        .carousel-control-prev.custom-nav {
+            left: -25px;
+        }
+
+        .carousel-control-next.custom-nav {
+            right: -25px;
+        }
+
+        .carousel-inner {
+            overflow: visible;
+            padding: 30px 0;
+        }
+
+        /* Solution Section */
+        .solution-card {
+            border-radius: 24px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+            height: 100%;
+        }
+        /* Tinh chỉnh tiêu đề */
+        .promo-title-refined {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #282e3e;
+        }
+
+        /* Tinh chỉnh đoạn văn */
+        .promo-text-refined {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #586380;
+            max-width: 500px;
+        }
+
+        /* Làm đẹp ảnh */
+        .promo-img-refined {
+            max-width: 100%;
+            height: auto;
+            /* Loại bỏ khung viền cứng, tạo cảm giác ảnh nổi trên nền trắng */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+            transition: transform 0.5s ease;
+        }
+
+        .promo-img-wrapper:hover .promo-img-refined {
+            transform: scale(1.02);
+        }
+
+        /* Nút bấm phong cách Quizlet */
+        .btn-quizlet-primary {
+            background-color: #4255ff;
+            color: white !important;
+            padding: 16px 48px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease-in-out;
+            border: none;
+        }
+
+            .btn-quizlet-primary:hover {
+                background-color: #3544cc;
+                box-shadow: 0 8px 16px rgba(66, 85, 255, 0.2);
+                transform: translateY(-2px);
+            }
+        }
+        /* Thiết kế nút Bắt đầu hoàn chỉnh */
+        .btn-start {
+            background-color: #4255ff; /* Màu xanh thương hiệu chính */
+            color: white !important;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 8px; /* Bo góc hiện đại */
+            padding: 14px 45px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng mượt mà */
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(66, 85, 255, 0.15); /* Đổ bóng nhẹ */
+        }
+
+            /* Hiệu ứng khi di chuột vào (Hover) */
+            .btn-start:hover {
+                background-color: #3544cc; /* Màu đậm hơn một chút khi hover */
+                transform: translateY(-3px); /* Nút bay lên nhẹ */
+                box-shadow: 0 10px 20px rgba(66, 85, 255, 0.3); /* Đổ bóng đậm hơn */
+                color: white !important;
+            }
+
+            /* Hiệu ứng khi nhấn giữ (Active) */
+            .btn-start:active {
+                transform: translateY(-1px);
+                box-shadow: 0 5px 10px rgba(66, 85, 255, 0.2);
+            }
+        /* Thiết kế nút Bắt đầu chuyên nghiệp */
+        .btn-start {
+            background-color: #4255ff; /* Màu xanh thương hiệu chủ đạo */
+            color: white !important;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 8px; /* Bo góc hiện đại */
+            padding: 12px 32px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            box-shadow: 0 4px 6px rgba(66, 85, 255, 0.1); /* Đổ bóng nhẹ */
+        }
+
+            /* Hiệu ứng khi di chuột vào (Hover) */
+            .btn-start:hover {
+                background-color: #3544cc; /* Màu xanh đậm hơn */
+                transform: translateY(-2px); /* Nút nhấc lên nhẹ */
+                box-shadow: 0 8px 15px rgba(66, 85, 255, 0.2); /* Đổ bóng rõ hơn */
+                color: white !important;
+            }
+
+            /* Hiệu ứng khi nhấn (Active) */
+            .btn-start:active {
+                transform: translateY(0);
+                box-shadow: 0 4px 6px rgba(66, 85, 255, 0.1);
+            }
+        /* Nhãn xác minh từ chuyên gia */
+        .expert-badge {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #4255ff;
+            background: #f0f2ff;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* Thẻ giải pháp */
+        .solution-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 24px;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+            .solution-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.08) !important;
+            }
+
+        /* Nút Xem chi tiết gọn đẹp */
+        .btn-start-small {
+            background-color: transparent;
+            color: #4255ff !important;
+            font-weight: 700;
+            border: 2px solid #4255ff;
+            border-radius: 8px;
+            padding: 8px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+            .btn-start-small:hover {
+                background-color: #4255ff;
+                color: white !important;
+            }
+        /* Stats Section Styles */
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-10px);
+                border-color: #edeff4;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #282e3e;
+            margin-bottom: 5px;
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: #f0f2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        /* Footer Styles */
+        .footer-section h6 {
+            letter-spacing: 0.5px;
+            color: #282e3e;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .footer-section .list-unstyled li {
+            transition: transform 0.2s ease;
+        }
+
+            .footer-section .list-unstyled li:hover {
+                color: var(--primary-color);
+                transform: translateX(5px);
+                cursor: pointer;
+            }
+
+        .social-links a {
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+            .social-links a:hover {
+                color: var(--primary-color) !important;
+            }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">TCT</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Công cụ học tập</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-clone"></i> Thẻ ghi nhớ</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-book-open"></i> Học</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i> Kiểm tra</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-puzzle-piece"></i> Ghép thẻ</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-graduate"></i> Lời giải chuyên gia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#expert-section">Lời khuyên từ chuyên gia</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="/Account/Login" class="btn fw-bold me-3">Đăng nhập</a>
+                    <a href="/Account/Login" class="btn-signup-main" style="padding: 10px 20px;">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Bạn muốn học như thế nào?</h1>
+            <p class="text-secondary">Nắm vững từ vựng với flashcard, kiểm tra và các chế độ học thông minh.</p>
+            <div class="d-flex justify-content-center gap-4 mt-4">
+                <a href="/Account/Login" class="btn-signup-main shadow-lg">Đăng ký miễn phí</a>
+               
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-container py-4">
+        <div class="container position-relative">
+            <div id="featureCarousel" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4 px-3">
+                            <div class="col-md-3"><a href="/Account/Login" class="quizlet-card card-study shadow-sm"><i class="fas fa-book-open fa-3x mb-3"></i><h3>Học</h3><p class="small">Nhập đáp án và ghi nhớ</p></a></div>
+                            <div class="col-md-3"><a href="/Account/Login" class="quizlet-card card-flashcard shadow-sm"><i class="fas fa-clone fa-3x mb-3"></i><h3>Thẻ ghi nhớ</h3><p class="small">Lật thẻ để học nhanh</p></a></div>
+                            <div class="col-md-3"><a href="/Account/Login" class="quizlet-card card-test shadow-sm"><i class="fas fa-pen-alt fa-3x mb-3"></i><h3>Kiểm tra</h3><p class="small">Đánh giá mức độ ghi nhớ</p></a></div>
+                            <div class="col-md-3"><a href="/Account/Login" class="quizlet-card card-match shadow-sm"><i class="fas fa-puzzle-piece fa-3x mb-3"></i><h3>Ghép thẻ</h3><p class="small">Ghép từ với nghĩa</p></a></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 px-3">
+                            <div class="col-md-3">
+                                <a href="/Account/Login" class="quizlet-card card-expert-item shadow-sm">
+                                    <i class="fas fa-user-graduate fa-3x mb-3"></i>
+                                    <h3>Lời giải chuyên gia</h3>
+                                    <p class="small">Hướng dẫn từ giáo viên</p>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quizlet-card bg-light border text-muted opacity-50">
+                                    <i class="fas fa-plus fa-3x mb-3"></i>
+                                    <h3>Sắp ra mắt</h3>
+                                    <p class="small">Nhiều tính năng mới</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev custom-nav" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev"><i class="fas fa-chevron-left text-dark"></i></button>
+                <button class="carousel-control-next custom-nav" type="button" data-bs-target="#featureCarousel" data-bs-slide="next"><i class="fas fa-chevron-right text-dark"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="expert-section" class="expert-solutions py-5 bg-light mt-5">
+        <div class="container position-relative">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Lời giải từ chuyên gia</h2>
+                <p class="text-muted">Học hỏi từ những giải thích chi tiết và các mẹo học tập hiệu quả nhất</p>
+            </div>
+
+            <div id="expertCarousel" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4 px-5">
+                            <div class="col-md-6">
+                                <div class="solution-card p-5 bg-white shadow-sm text-center h-100">
+                            
+                                    <h4 class="fw-bold">Ngữ pháp trọng tâm</h4>
+                                    <p class="text-secondary">Tổng hợp 25 cấu trúc ngữ pháp thường gặp nhất trong các kỳ thi chuyển cấp và chứng chỉ quốc tế.</p>
+                                    <div class="mt-auto pt-3">
+                                        <a href="https://flyer.vn/25-chuyen-de-ngu-phap-tieng-anh/" class="btn-start-small">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="solution-card p-5 bg-white shadow-sm text-center h-100">
+                                    
+                                    <h4 class="fw-bold">Kỹ năng Nghe IELTS</h4>
+                                    <p class="text-secondary">Mẹo bắt từ khóa (keywords) và phương pháp xử lý các bẫy thường gặp trong đề thi nghe.</p>
+                                    <div class="mt-auto pt-3">
+                                        <a href="https://study4.com/posts/360/nhung-bay-de-gap-trong-ielts-listening/" class="btn-start-small">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-4 px-5">
+                            <div class="col-md-6">
+                                <div class="solution-card p-5 bg-white shadow-sm text-center h-100">
+                                  
+                                    <h4 class="fw-bold">Từ vựng theo chủ đề</h4>
+                                    <p class="text-secondary">Học từ vựng qua ngữ cảnh thực tế với bộ 3000 từ thông dụng của Oxford.</p>
+                                    <div class="mt-auto pt-3">
+                                        <a href="https://zim.vn/3000-tu-vung-tieng-anh-thong-dung-oxford" class="btn-start-small">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="solution-card p-5 bg-white shadow-sm text-center h-100">
+                            
+                                    <h4 class="fw-bold">Bí quyết Viết luận</h4>
+                                    <p class="text-secondary">Cách triển khai ý tưởng logic và sử dụng từ nối để bài viết mạch lạc, thuyết phục hơn.</p>
+                                    <div class="mt-auto pt-3">
+                                        <a href="https://study4.com/posts/1937/dinh-nghia-vai-tro-va-cach-trien-khai-luan-diem-trong-ielts-writing-task-2/" class="btn-start-small">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev custom-nav" type="button" data-bs-target="#expertCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left text-dark"></i>
+                </button>
+                <button class="carousel-control-next custom-nav" type="button" data-bs-target="#expertCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right text-dark"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="promo-section py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-6 order-md-1 text-md-start text-center">
+                    <h2 class="fw-bold mb-4" style="font-size: 2.5rem;">Học tập mọi lúc, mọi nơi</h2>
+                    <p class="text-secondary mb-5" style="font-size: 1.15rem; line-height: 1.6;">
+                        Đừng để việc học bị gián đoạn. Với TCT, bạn có thể ôn tập thẻ ghi nhớ ngay trên xe buýt,
+                        trong phòng chờ hoặc bất cứ nơi nào bạn có vài phút rảnh rỗi.
+                        Đồng bộ hóa dữ liệu tức thì trên tất cả thiết bị của bạn.
+                    </p>
+                    <a href="/Account/Login" class="btn-start">Bắt đầu</a>
+                </div>
+                <div class="col-md-6 order-md-2 text-center">
+                    <div class="promo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500"
+                             alt="Học tập mọi nơi" class="img-fluid rounded-4 shadow-sm" style="max-height: 350px; width: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="promo-section py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-6 text-center">
+                    <div class="promo-img-wrapper">
+                        <img src="https://images.prismic.io/quizlet-web/ZuODIbVsGrYSvUXM_VI-VN2Learn.png?auto=format,compress"
+                             alt="Học tập" class="img-fluid rounded-4 shadow-sm" style="max-height: 350px;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-4" style="font-size: 2.5rem;">Chọn cách học mà bạn muốn</h2>
+                    <p class="text-secondary mb-5" style="font-size: 1.15rem; line-height: 1.6;">
+                        Biến thẻ ghi nhớ thành câu hỏi trắc nghiệm và nhiều nội dung khác với chế độ Học.
+                        Củng cố kiến thức của bạn bằng các trò chơi học tập như Ghép thẻ.
+                    </p>
+                    <a href="/Account/Login" class="btn-start">Bắt đầu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="promo-section py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center g-5 flex-row-reverse">
+                <div class="col-md-6 text-center">
+                    <div class="promo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=500"
+                             alt="Ôn thi" class="img-fluid rounded-4 shadow-sm" style="max-height: 350px;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-4" style="font-size: 2.5rem;">Chuẩn bị ôn thi cho bất kỳ môn học nào</h2>
+                    <p class="text-secondary mb-5" style="font-size: 1.15rem; line-height: 1.6;">
+                        Ghi nhớ mọi thứ với các bài kiểm tra thử và phiên học được cá nhân hóa.
+                        98% học sinh cho biết TCT đã giúp họ hiểu bài hơn.
+                    </p>
+                    <a href="/Account/Login" class="btn-start">Bắt đầu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="stat-card p-4">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <h2 class="fw-bold stat-number" data-target="500000">500,000+</h2>
+                        <p class="text-secondary fw-semibold">Người học tích cực</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card p-4">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-layer-group fa-2x text-primary"></i>
+                        </div>
+                        <h2 class="fw-bold stat-number" data-target="1000000">1,000,000+</h2>
+                        <p class="text-secondary fw-semibold">Học phần đã được tạo</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card p-4">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-smile fa-2x text-primary"></i>
+                        </div>
+                        <h2 class="fw-bold stat-number" data-target="98">98%</h2>
+                        <p class="text-secondary fw-semibold">Học sinh đạt kết quả tốt hơn</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="text-secondary mb-4">Sẵn sàng gia nhập cộng đồng học tập thông minh lớn nhất?</p>
+                <a href="/Account/Login" class="btn-start px-5">Tham gia ngay</a>
+            </div>
+        </div>
+    </section>
+ 
+
+
+
+    <footer class="footer-section py-5 border-top bg-white">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="navbar-brand mb-3 d-block" href="#">TCT</a>
+                    <p class="text-secondary small">
+                        Nền tảng học tập thông minh giúp hàng triệu học sinh chinh phục kiến thức thông qua phương pháp lặp lại ngắt quãng và thẻ ghi nhớ hiện đại.
+                    </p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-secondary"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3 text-secondary"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="me-3 text-secondary"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-4">Cách học Flashcard</h6>
+                    <ul class="list-unstyled text-secondary small">
+                        <li class="mb-2">Ghi nhớ chủ động qua các câu hỏi gợi nhớ.</li>
+                        <li class="mb-2">Tối ưu hóa thời gian với thuật toán lặp lại.</li>
+                        <li class="mb-2">Học mọi lúc mọi nơi trên mọi thiết bị.</li>
+                        <li class="mb-2">Trực quan hóa từ vựng bằng hình ảnh sinh động.</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-4">Dành cho ai?</h6>
+                    <ul class="list-unstyled text-secondary small">
+                        <li class="mb-2">Học sinh, sinh viên ôn thi chứng chỉ (IELTS, TOEIC).</li>
+                        <li class="mb-2">Người đi làm muốn nâng cao trình độ ngoại ngữ.</li>
+                        <li class="mb-2">Giáo viên muốn tạo bộ thẻ học tập cho học sinh.</li>
+                        <li class="mb-2">Bất kỳ ai đam mê khám phá kiến thức mới mỗi ngày.</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-4">Dành cho Doanh nghiệp</h6>
+                    <ul class="list-unstyled text-secondary small">
+                        <li class="mb-2">Trung tâm ngoại ngữ cần số hóa giáo trình.</li>
+                        <li class="mb-2">Doanh nghiệp đào tạo nhân sự nội bộ.</li>
+                        <li class="mb-2">Trường học xây dựng kho học liệu điện tử.</li>
+                        <li class="mb-2">Các nhà xuất bản sách giáo khoa hiện đại.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-5 text-muted">
+
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-muted small mb-0">&copy; 2026 TCT Vocabulary - Nâng tầm trí thức Việt</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="text-muted small text-decoration-none me-3">Quyền riêng tư</a>
+                    <a href="#" class="text-muted small text-decoration-none me-3">Điều khoản</a>
+                    <a href="#" class="text-muted small text-decoration-none">Hỗ trợ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
