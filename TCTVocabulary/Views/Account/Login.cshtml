@@ -267,6 +267,30 @@
                 background-color: var(--brand-blue-hover);
             }
 
+        .btn-demo-trigger {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            background-color: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-input);
+            color: var(--text-sub);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+            .btn-demo-trigger:hover {
+                border-color: var(--brand-blue);
+                color: var(--brand-blue);
+                background-color: #f6f7fb;
+            }
+
         .form-footer {
             margin-top: 24px;
             text-align: center;
@@ -489,6 +513,11 @@
 
                     <button type="submit" class="btn-submit">Đăng nhập</button>
 
+                    <!-- DEMO BUTTON ADDED -->
+                    <button type="button" class="btn-demo-trigger" onclick="runDemoLogin()">
+                        ⚡ Chạy thử Demo (Test Loader)
+                    </button>
+
                     <div class="form-footer">
                         Mới sử dụng TCT English? <span class="link-text" onclick="switchTab('register')">Tạo tài khoản</span>
                     </div>
@@ -565,6 +594,32 @@
         function handleRegister(e) {
             e.preventDefault();
             alert('Chức năng đăng ký demo!');
+        }
+
+        function runDemoLogin() {
+            // 1. Skip validation: Simply don't check inputs.
+
+            // 2. Show Loader
+            const overlay = document.getElementById('loader-overlay');
+            const bar = document.getElementById('loading-fill');
+
+            // Reset for fresh run
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+
+            overlay.classList.add('active');
+
+            // 3. Run Progress Bar (3 seconds)
+            setTimeout(() => {
+                bar.style.transition = 'width 3s linear';
+                bar.style.width = '100%';
+            }, 50);
+
+            // 4. Finish after 3s
+            setTimeout(() => {
+                // Redirect immediately to Home/Index
+                window.location.href = '@Url.Action("Index", "Home")';
+            }, 3100);
         }
     </script>
 
