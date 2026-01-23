@@ -5,14 +5,22 @@ namespace TCTVocabulary.Controllers
 {
     public class AccountController : Controller
     {
+        // GET: /Account/Login
+        public IActionResult Login()
+        {
+            ViewData["ActiveTab"] = "login";
+            return View("Auth");
+        }
+
         // GET: /Account/Register
         public IActionResult Register()
         {
-            return View();
+            ViewData["ActiveTab"] = "register";
+            return View("Auth");
         }
 
-        // GET: /Account/Login
-        public IActionResult Login()
+        // GET: /Account/ForgotPassword
+        public IActionResult ForgotPassword()
         {
             return View();
         }
