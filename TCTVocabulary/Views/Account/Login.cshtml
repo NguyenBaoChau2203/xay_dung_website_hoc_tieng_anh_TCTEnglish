@@ -1,5 +1,572 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model dynamic
+
 @{
+    ViewData["Title"] = "Đăng nhập / Đăng ký | TCT English";
+    Layout = null;
 }
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Google Fonts: Inter/Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Quizlet-inspired Palette */
+            --brand-blue: #4255ff; /* Quizlet Blue */
+            --brand-blue-hover: #3142d6;
+            --lavender-bg: #f2f0fc; /* Light Purple/Lavender Background */
+            --lavender-gradient: linear-gradient(135deg, #e6e2ff 0%, #dbd6ff 100%);
+            --text-main: #282e3e;
+            --text-sub: #586380;
+            --input-bg: #f6f7fb;
+            --input-focus-border: #4255ff;
+            --white: #ffffff;
+            --radius-lg: 20px;
+            --radius-input: 8px;
+            --transition: 0.2s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- LAYOUT: SPLIT SCREEN --- */
+        .split-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Left Column: Branding */
+        .col-left {
+            width: 50%;
+            background: var(--lavender-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px;
+            position: relative;
+            background-color: var(--lavender-bg);
+            /* Optional: Add pattern/image here */
+            background-image: radial-gradient(#d0c9fa 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .brand-slogan {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.2;
+            color: #2e3856;
+            max-width: 400px;
+        }
+
+        .brand-illustration {
+            /* Placeholder for Illustration */
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 150px;
+            color: rgba(66, 85, 255, 0.1);
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: var(--brand-blue);
+        }
+
+        /* Right Column: form */
+        .col-right {
+            width: 50%;
+            background: var(--white);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 24px;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            .close-btn:hover {
+                color: var(--text-main);
+            }
+
+        .form-wrapper {
+            max-width: 480px;
+            width: 100%;
+            margin: auto; /* Vertically center */
+        }
+
+        /* --- TABS --- */
+        .auth-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-sub);
+            cursor: pointer;
+            padding-bottom: 4px;
+            position: relative;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+            .tab-btn.active {
+                color: var(--text-main);
+            }
+
+                .tab-btn.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 100%;
+                    height: 4px;
+                    background-color: #ffcd1f; /* Quizlet yellow underline style */
+                    border-radius: 2px;
+                }
+
+        /* --- SOCIAL LOGIN --- */
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-social {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #edeff4;
+            border-radius: var(--radius-input);
+            background: #fff;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+            .btn-social:hover {
+                background-color: #f6f7fb;
+                border-color: #d9dde8;
+            }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 24px 0;
+        }
+
+            .separator::before, .separator::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #edeff4;
+            }
+
+            .separator::before {
+                margin-right: 16px;
+            }
+
+            .separator::after {
+                margin-left: 16px;
+            }
+
+        /* --- FORM STYLES --- */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: var(--input-bg);
+            border: 2px solid transparent; /* No visible border initially */
+            border-radius: var(--radius-input);
+            font-size: 16px;
+            color: var(--text-main);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+            .form-input:focus {
+                background-color: #fff;
+                border-color: var(--input-focus-border); /* Blue border on focus */
+                outline: none;
+            }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--brand-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-input);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 16px;
+        }
+
+            .btn-submit:hover {
+                background-color: var(--brand-blue-hover);
+            }
+
+        .form-footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .link-text {
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+            .link-text:hover {
+                text-decoration: underline;
+            }
+
+        .forgot-pass {
+            text-align: right;
+            display: block;
+            font-size: 13px;
+            color: var(--brand-blue);
+            font-weight: 600;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+
+        /* --- RESPONSIVE --- */
+        @@media (max-width: 900px) {
+            .col-left {
+                display: none;
+            }
+
+            .col-right {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .close-btn {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* --- LOADER STYLES --- */
+        #loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+            #loader-overlay.active {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        .loader-brand {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--brand-blue);
+            margin-bottom: 30px;
+        }
+
+        .tip-card {
+            background: #fff;
+            padding: 24px;
+            text-align: center;
+            max-width: 320px;
+        }
+
+        .tip-icon {
+            font-size: 40px;
+            color: #ffcd1f; /* Yellow */
+            margin-bottom: 16px;
+        }
+
+        .tip-title {
+            color: #ffcd1f;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tip-content {
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: #edeff4;
+            border-radius: 2px;
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-fill {
+            height: 100%;
+            background: var(--brand-blue);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="split-container">
+
+        <!-- LEFT COLUMN: BRANDING -->
+        <div class="col-left">
+            <div class="brand-slogan">
+                Học hiệu quả mà thật thoải mái.
+            </div>
+
+            <div class="brand-illustration">
+                <!-- Illustrated via FontAwesome for now, can be an <img> -->
+                <i class="fa-solid fa-shapes fa-spin-pulse" style="--fa-animation-duration: 30s;"></i>
+            </div>
+
+            <div class="brand-logo">TCT ENGLISH</div>
+        </div>
+
+        <!-- RIGHT COLUMN: FORMS -->
+        <div class="col-right">
+            <div class="close-btn" onclick="window.history.back()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <div class="form-wrapper">
+
+                <!-- TABS header -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('register')" id="tab-register">Đăng ký</button>
+                    <button class="tab-btn" onclick="switchTab('login')" id="tab-login">Đăng nhập</button>
+                </div>
+
+                <!-- SOCIAL LOGIN (Shared) -->
+                <div class="social-buttons">
+                    <button class="btn-social">
+                        <i class="fa-brands fa-google" style="color: #DB4437;"></i>
+                        Tiếp tục với Google
+                    </button>
+                    <button class="btn-social">
+                        <i class="fa-brands fa-facebook" style="color: #4267B2;"></i>
+                        Tiếp tục với Facebook
+                    </button>
+                </div>
+
+                <div class="separator">hoặc email</div>
+
+                <!-- REGISTER FORM -->
+                <form id="form-register" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label class="form-label">Ngày sinh (Không bắt buộc)</label>
+                        <!-- Quizlet style often asks for birthday/simple inputs -->
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" class="form-input" placeholder="Ngày" style="width: 30%">
+                            <input type="text" class="form-input" placeholder="Tháng" style="width: 30%">
+                            <input type="text" class="form-input" placeholder="Năm" style="width: 40%">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="nhapemail@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-input" placeholder="andrew123" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+
+                    <div style="margin-bottom: 24px; font-size: 13px; color: var(--text-sub); display: flex; align-items: flex-start; gap: 8px;">
+                        <input type="checkbox" id="terms" style="margin-top: 2px;">
+                        <label for="terms" style="cursor: pointer">
+                            Tôi chấp nhận Điều khoản dịch vụ và Chính sách quyền riêng tư của TCT English.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Đăng ký</button>
+
+                    <div class="form-footer">
+                        Bạn đã có tài khoản rồi? <span class="link-text" onclick="switchTab('login')">Đăng nhập</span>
+                    </div>
+                </form>
+
+                <!-- LOGIN FORM (Hidden by default) -->
+                <form id="form-login" style="display: none;" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Email hoặc Tên người dùng</label>
+                        <input type="text" class="form-input" placeholder="Nhập email..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-input" placeholder="••••••••" required>
+                        <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Đăng nhập</button>
+
+                    <div class="form-footer">
+                        Mới sử dụng TCT English? <span class="link-text" onclick="switchTab('register')">Tạo tài khoản</span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADER OVERLAY -->
+    <div id="loader-overlay">
+        <div class="loader-brand">TCT ENGLISH</div>
+
+        <div class="tip-card">
+            <div class="tip-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="tip-title">MẸO GHI NHỚ:</div>
+            <div class="tip-content">
+                Sử dụng hình ảnh và âm thanh để kích thích não bộ ghi nhớ.
+            </div>
+        </div>
+
+        <div class="loading-bar">
+            <div class="loading-fill" id="loading-fill"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        function switchTab(tabName) {
+            const btnReg = document.getElementById('tab-register');
+            const btnLog = document.getElementById('tab-login');
+            const formReg = document.getElementById('form-register');
+            const formLog = document.getElementById('form-login');
+
+            if (tabName === 'register') {
+                // Show Register
+                btnReg.classList.add('active');
+                btnLog.classList.remove('active');
+                formReg.style.display = 'block';
+                formLog.style.display = 'none';
+            } else {
+                // Show Login
+                btnLog.classList.add('active');
+                btnReg.classList.remove('active');
+                formLog.style.display = 'block';
+                formReg.style.display = 'none';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+
+            // Show Loader
+            const overlay = document.getElementById('loader-overlay');
+            const bar = document.getElementById('loading-fill');
+
+            overlay.classList.add('active');
+
+            // Animate Bar (3s)
+            bar.style.transition = 'width 3s linear';
+
+            // Force redraw/delay slightly to ensure transition happens
+            setTimeout(() => {
+                bar.style.width = '100%';
+            }, 50);
+
+            // Finish
+            setTimeout(() => {
+                alert('Đăng nhập thành công!');
+                window.location.reload();
+            }, 3100);
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            alert('Chức năng đăng ký demo!');
+        }
+    </script>
+
+</body>
+</html>
