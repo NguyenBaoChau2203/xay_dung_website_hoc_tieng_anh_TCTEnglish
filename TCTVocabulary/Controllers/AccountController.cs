@@ -24,5 +24,20 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO: Implement password reset logic here (send email)
+
+                // For now, just return to the view with a success message
+                ViewBag.Message = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
+                return View("ForgotPasswordConfirmation"); // Or return View(model) with message
+            }
+            return View(model);
+        }
     }
 }
