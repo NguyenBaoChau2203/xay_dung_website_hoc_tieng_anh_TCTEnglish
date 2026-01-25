@@ -11,6 +11,12 @@ public partial class User
 
     public string PasswordHash { get; set; } = null!;
 
+    // Bổ sung các property mới khớp với SQL
+    public string? FullName { get; set; }
+    public string? Role { get; set; }
+    public string? ResetPasswordToken { get; set; }
+    public DateTime? ResetPasswordTokenExpiry { get; set; }
+
     public int? Streak { get; set; }
 
     public int? Goal { get; set; }
