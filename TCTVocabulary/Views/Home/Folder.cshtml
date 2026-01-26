@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "Folders";
+}
+
+<div class="folder-page">
+
+    <!-- ================= YOUR FOLDERS ================= -->
+    <section class="folder-section">
+        <div class="folder-section-header">
+            <h2>Your folders</h2>
+
+            <button class="btn-create-folder" id="newFolderBtnPage">
+                <i class="fas fa-plus"></i>
+                New folder
+            </button>
+        </div>
+
+        <div class="folder-grid">
+            <!-- Folder item -->
+            <div class="folder-card">
+                <i class="fas fa-folder folder-icon"></i>
+                <p class="folder-name">English Vocabulary</p>
+            </div>
+
+            <div class="folder-card">
+                <i class="fas fa-folder folder-icon"></i>
+                <p class="folder-name">Math Revision</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SAVED FOLDERS ================= -->
+    <section class="folder-section">
+        <div class="folder-section-header">
+            <h2>Saved folders</h2>
+        </div>
+
+        <div class="folder-grid">
+            <div class="folder-card saved">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p class="folder-name">IELTS Materials</p>
+            </div>
+
+            <div class="folder-card saved">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p class="folder-name">Web Dev Roadmap</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ================= CREATE FOLDER MODAL (REUSE) ================= -->
+<div id="folderModal" class="modal-overlay">
+    <div class="modal">
+        <h3 class="modal-title">Create new folder</h3>
+
+        <input type="text"
+               id="folderNameInput"
+               class="modal-input"
+               placeholder="Folder name" />
+
+        <div class="modal-actions">
+            <button type="button"
+                    class="btn-decline"
+                    id="cancelFolderBtn">
+                Decline
+            </button>
+
+            <button type="button"
+                    class="btn-confirm"
+                    id="confirmFolderBtn">
+                Confirm
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const openBtn = document.getElementById("newFolderBtnPage");
+            const modal = document.getElementById("folderModal");
+            const cancelBtn = document.getElementById("cancelFolderBtn");
+            const confirmBtn = document.getElementById("confirmFolderBtn");
+            const input = document.getElementById("folderNameInput");
+
+            openBtn.addEventListener("click", () => {
+                modal.classList.add("active");
+                input.value = "";
+                input.focus();
+            });
+
+            function closeModal() {
+                modal.classList.remove("active");
+            }
+
+            cancelBtn.addEventListener("click", closeModal);
+
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            confirmBtn.addEventListener("click", () => {
+                const name = input.value.trim();
+                if (!name) {
+                    alert("Folder name is required");
+                    return;
+                }
+
+                console.log("Create folder:", name);
+                closeModal();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeModal();
+                if (e.key === "Enter" && modal.classList.contains("active")) {
+                    confirmBtn.click();
+                }
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .folder-page {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .folder-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .folder-section-header h2 {
+                font-size: 22px;
+                font-weight: 800;
+            }
+
+        .btn-create-folder {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #4255ff;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+            .btn-create-folder:hover {
+                background: #2f3fe0;
+            }
+
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .folder-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s ease;
+        }
+
+            .folder-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            }
+
+            .folder-card.saved {
+                background: #f8fafc;
+            }
+
+        .folder-icon {
+            font-size: 36px;
+            color: #4255ff;
+        }
+
+        .folder-name {
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+}

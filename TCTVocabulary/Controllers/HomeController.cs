@@ -10,7 +10,10 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-
+        public IActionResult Folder()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

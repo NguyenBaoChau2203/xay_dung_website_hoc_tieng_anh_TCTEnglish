@@ -1,54 +1,70 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QuizletClone</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
+
     <script src="~/js/layout.js"></script>
+
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
+
     <partial name="_Loader" />
-    <!-- HEADER -->
+
+    <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="header-left">
             <i class="fas fa-bars menu-icon"></i>
             <a asp-controller="Home" asp-action="Index" class="logo">TCT</a>
         </div>
+
         <div class="search-box">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search for study guides">
         </div>
+
         <div class="header-right">
-            <button class="btn-circle"><i class="fas fa-plus"></i></button>
-            <button class="btn-upgrade">Upgrade: free 7-day trial</button>
+            <button class="btn-circle">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <button class="btn-upgrade">
+                Upgrade: free 7-day trial
+            </button>
+
             <div class="avatar"></div>
         </div>
     </header>
+
     <div class="layout">
-        <!-- SIDEBAR -->
+        <!-- ================= SIDEBAR ================= -->
         <aside class="sidebar">
             <nav>
                 <a class="nav-item" asp-controller="Home" asp-action="Index">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
+
                 <a class="nav-item">
                     <i class="fas fa-layer-group"></i>
                     <span>Your library</span>
                 </a>
+
                 <a class="nav-item">
                     <i class="fas fa-bell"></i>
                     <span>Notifications</span>
                 </a>
+
                 <a class="nav-item" asp-controller="Goals" asp-action="Index">
                     <i class="fas fa-bullseye"></i>
                     <span>Goals</span>
@@ -58,30 +74,39 @@
                     <i class="fas fa-trophy"></i>
                     <span>Ranking</span>
                 </a>
-                <a class="nav-item" asp-controller="" asp-action="">
+
+                <a class="nav-item">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Class</span>
                 </a>
-                <a class="nav-item" asp-controller="" asp-action="">
+
+                <a class="nav-item" asp-controller="Home" asp-action="Folder">
                     <i class="fas fa-folder"></i>
                     <span>Folder</span>
                 </a>
             </nav>
-            <hr>
+
+            <hr />
+
+            <!-- ================= WORKSPACE ================= -->
             <div class="workspace">
                 <p class="workspace-title">Workspace</p>
-                <button class="workspace-btn">
+
+                <!-- New Folder -->
+                <button class="workspace-btn" id="newFolderBtn">
                     <span class="icon-circle">
                         <i class="fas fa-plus"></i>
                     </span>
                     New folder
                 </button>
+
                 <button class="workspace-btn">
                     <span class="icon-circle">
                         <i class="fas fa-plus"></i>
                     </span>
                     New class
                 </button>
+
                 <button class="workspace-btn">
                     <span class="icon-circle">
                         <i class="fas fa-clone"></i>
@@ -89,15 +114,44 @@
                     Add flashcard
                 </button>
             </div>
+
             <div class="sidebar-footer">
                 Tận dụng Flashcards để ghi nhớ kiến thức nhanh hơn 3 lần.
             </div>
         </aside>
-        <!-- MAIN -->
+
+        <!-- ================= MAIN ================= -->
         <main class="main">
             @RenderBody()
         </main>
     </div>
+
+    <!-- ================= CREATE FOLDER MODAL ================= -->
+    <div id="folderModal" class="modal-overlay">
+        <div class="modal">
+            <h3 class="modal-title">Create new folder</h3>
+
+            <input type="text"
+                   id="folderNameInput"
+                   class="modal-input"
+                   placeholder="Folder name" />
+
+            <div class="modal-actions">
+                <button type="button"
+                        class="btn-decline"
+                        id="cancelFolderBtn">
+                    Decline
+                </button>
+
+                <button type="button"
+                        class="btn-confirm"
+                        id="confirmFolderBtn">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

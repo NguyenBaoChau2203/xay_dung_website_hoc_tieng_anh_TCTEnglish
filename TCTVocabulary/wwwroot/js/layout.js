@@ -29,3 +29,47 @@
         }
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const newFolderBtn = document.querySelector(".workspace-btn");
+    const modal = document.getElementById("folderModal");
+    const cancelBtn = document.getElementById("cancelFolderBtn");
+    const confirmBtn = document.getElementById("confirmFolderBtn");
+    const input = document.getElementById("folderNameInput");
+
+    // Open modal
+    newFolderBtn.addEventListener("click", () => {
+        modal.classList.add("active");
+        input.value = "";
+        input.focus();
+    });
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove("active");
+    }
+
+    cancelBtn.addEventListener("click", closeModal);
+
+    // Click outside modal to close
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Confirm
+    confirmBtn.addEventListener("click", () => {
+        const folderName = input.value.trim();
+
+        if (!folderName) {
+            alert("Folder name is required!");
+            return;
+        }
+
+        console.log("New folder:", folderName);
+        // TODO: call API / submit form / append UI
+
+        closeModal();
+    });
+});
