@@ -6,37 +6,37 @@ namespace TCTVocabulary.Models;
 
 public partial class DbflashcardContext : DbContext
 {
+    // Constructor mặc định
     public DbflashcardContext()
     {
     }
 
+    // Constructor nhận options từ Program.cs (Quan trọng để DI hoạt động)
     public DbflashcardContext(DbContextOptions<DbflashcardContext> options)
         : base(options)
     {
     }
 
+    // Khai báo các bảng trong Database
     public virtual DbSet<Card> Cards { get; set; }
-
     public virtual DbSet<Class> Classes { get; set; }
-
     public virtual DbSet<Folder> Folders { get; set; }
-
     public virtual DbSet<LearningProgress> LearningProgresses { get; set; }
-
     public virtual DbSet<Set> Sets { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
+    // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-ICC4J1H\\SQLEXPRESS;Initial Catalog=DBFlashcard;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;Command Timeout=30");
+    {
+        // Không code gì ở đây cả
+    }
 
+    // Cấu hình chi tiết các bảng (Mapping)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Card>(entity =>
         {
             entity.HasKey(e => e.CardId).HasName("PK__Cards__55FECD8E2103FA66");
-
             entity.Property(e => e.CardId).HasColumnName("CardID");
             entity.Property(e => e.SetId).HasColumnName("SetID");
             entity.Property(e => e.Term).HasMaxLength(255);
@@ -50,7 +50,6 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<Class>(entity =>
         {
             entity.HasKey(e => e.ClassId).HasName("PK__Classes__CB1927A0B52422EC");
-
             entity.Property(e => e.ClassId).HasColumnName("ClassID");
             entity.Property(e => e.ClassName).HasMaxLength(255);
             entity.Property(e => e.OwnerId).HasColumnName("OwnerID");
@@ -83,7 +82,6 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__Folders__ACD7109F2ECFF2AF");
-
             entity.Property(e => e.FolderId).HasColumnName("FolderID");
             entity.Property(e => e.FolderName).HasMaxLength(255);
             entity.Property(e => e.ParentFolderId).HasColumnName("ParentFolderID");
@@ -102,11 +100,8 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<LearningProgress>(entity =>
         {
             entity.HasKey(e => e.ProgressId).HasName("PK__Learning__BAE29C8531677C23");
-
             entity.ToTable("LearningProgress");
-
             entity.HasIndex(e => new { e.UserId, e.CardId }, "UQ__Learning__E2D72075740E222A").IsUnique();
-
             entity.Property(e => e.ProgressId).HasColumnName("ProgressID");
             entity.Property(e => e.CardId).HasColumnName("CardID");
             entity.Property(e => e.LastReviewedDate)
@@ -132,7 +127,6 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<Set>(entity =>
         {
             entity.HasKey(e => e.SetId).HasName("PK__Sets__7E08473D47BDA11E");
-
             entity.Property(e => e.SetId).HasColumnName("SetID");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -154,9 +148,7 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC46CDCFCA");
-
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534362A84D8").IsUnique();
-
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
