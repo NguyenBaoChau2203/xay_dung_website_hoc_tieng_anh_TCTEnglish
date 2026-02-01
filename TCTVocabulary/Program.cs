@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,32 @@ builder.Services.AddControllersWithViews();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Cấu hình Authentication (Cookie + Social)
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    // Nếu muốn mặc định khi challenge là Google thì set DefaultChallengeScheme, 
+    // nhưng ở đây ta dùng link explicit nên để Cookie là default scheme.
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+})
+.AddGoogle(options =>
+{
+    // Lấy từ appsettings.json hoặc User Secrets
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? "dummy-client-id";
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "dummy-client-secret";
+})
+.AddFacebook(options =>
+{
+    options.AppId = builder.Configuration["Authentication:Facebook:AppId"] ?? "dummy-app-id";
+    options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"] ?? "dummy-app-secret";
+});
 
 var app = builder.Build();
 
@@ -26,6 +55,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Authentication phải trước Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 // 3. Cấu hình trang chủ mặc định

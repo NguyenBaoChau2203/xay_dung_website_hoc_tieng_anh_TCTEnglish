@@ -437,19 +437,28 @@
 
             <div class="form-wrapper">
 
+
                 <!-- TABS header -->
                 <div class="auth-tabs">
                     <h3 class="tab-btn active" onclick="switchTab('register')" id="tab-register">Đăng ký</h3>
                     <h3 class="tab-btn" onclick="switchTab('login')" id="tab-login">Đăng nhập</h3>
                 </div>
 
+                <!-- Error Message Display -->
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div style="color: red; margin-bottom: 15px; font-size: 14px; text-align: center;">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
                 <!-- SOCIAL LOGIN (Shared) -->
                 <div class="social-buttons">
-                    <button class="btn-social">
+                    <button class="btn-social" type="button" onclick="location.href='@Url.Action("ExternalLogin", "Account", new { provider = "Google" })'">
                         <i class="fa-brands fa-google" style="color: #DB4437;"></i>
                         Tiếp tục với Google
                     </button>
-                    <button class="btn-social">
+                    <button class="btn-social" type="button" onclick="location.href='@Url.Action("ExternalLogin", "Account", new { provider = "Facebook" })'">
                         <i class="fa-brands fa-facebook" style="color: #4267B2;"></i>
                         Tiếp tục với Facebook
                     </button>
@@ -458,7 +467,8 @@
                 <div class="separator">hoặc email</div>
 
                 <!-- REGISTER FORM -->
-                <form id="form-register" onsubmit="handleRegister(event)">
+                <form id="form-register" action="@Url.Action("Register", "Account")" method="post" onsubmit="handleRegister(event)">
+                    @Html.AntiForgeryToken()
                     <div class="form-group">
                         <label class="form-label">Ngày sinh (Không bắt buộc)</label>
                         <!-- Quizlet style often asks for birthday/simple inputs -->
@@ -471,17 +481,17 @@
 
                     <div class="form-group">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-input" placeholder="nhapemail@example.com" required>
+                        <input type="email" name="email" class="form-input" placeholder="nhapemail@example.com" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Tên đăng nhập</label>
-                        <input type="text" class="form-input" placeholder="andrew123" required>
+                        <label class="form-label">Tên đăng nhập (Tên hiển thị)</label>
+                        <input type="text" name="fullName" class="form-input" placeholder="andrew123" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Mật khẩu</label>
-                        <input type="password" class="form-input" placeholder="••••••••" required>
+                        <input type="password" name="password" class="form-input" placeholder="••••••••" required>
                     </div>
 
                     <div style="margin-bottom: 24px; font-size: 13px; color: var(--text-sub); display: flex; align-items: flex-start; gap: 8px;">
@@ -499,15 +509,16 @@
                 </form>
 
                 <!-- LOGIN FORM (Hidden by default) -->
-                <form id="form-login" style="display: none;" onsubmit="handleLogin(event)">
+                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" style="display: none;">
+                    @Html.AntiForgeryToken()
                     <div class="form-group">
-                        <label class="form-label">Email hoặc Tên người dùng</label>
-                        <input type="text" class="form-input" placeholder="Nhập email..." required>
+                        <label class="form-label">Email</label>
+                        <input type="text" name="email" class="form-input" placeholder="Nhập email..." required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Mật khẩu</label>
-                        <input type="password" class="form-input" placeholder="••••••••" required>
+                        <input type="password" name="password" class="form-input" placeholder="••••••••" required>
                         <a href="@Url.Action("ForgotPassword", "Account")" class="forgot-pass">Quên mật khẩu?</a>
                     </div>
 
@@ -576,33 +587,21 @@
             }
         }
 
-        function handleLogin(e) {
-            e.preventDefault();
-
-            // Show Loader
-            const overlay = document.getElementById('loader-overlay');
-            const bar = document.getElementById('loading-fill');
-
-            overlay.classList.add('active');
-
-            // Animate Bar (3s)
-            bar.style.transition = 'width 3s linear';
-
-            // Force redraw/delay slightly to ensure transition happens
-            setTimeout(() => {
-                bar.style.width = '100%';
-            }, 50);
-
-            // Finish
-            setTimeout(() => {
-                alert('Đăng nhập thành công!');
-                window.location.reload();
-            }, 3100);
-        }
+        // Handle Login is now standard form submission (auto browser), 
+        // unless we want to intercept for Loader. The requirement said Demo button uses Loader.
+        // Standard Login can just POST properly. 
+        // If we want loader for standard login, we can add simple onsubmit to show it.
+        // But for now, let's stick to core requirements first.
 
         function handleRegister(e) {
-            e.preventDefault();
-            alert('Chức năng đăng ký demo!');
+            // Validate Terms
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                e.preventDefault();
+                alert('Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.');
+                return;
+            }
+            // If checked, allow default submission (POST to server)
         }
 
         function runDemoLogin() {
@@ -631,6 +630,5 @@
             }, 3100);
         }
     </script>
-
 </body>
 </html>
