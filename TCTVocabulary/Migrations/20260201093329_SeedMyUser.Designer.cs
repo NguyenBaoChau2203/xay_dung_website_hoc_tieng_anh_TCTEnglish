@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCTVocabulary.Models;
 
@@ -11,9 +12,11 @@ using TCTVocabulary.Models;
 namespace TCTVocabulary.Migrations
 {
     [DbContext(typeof(DbflashcardContext))]
-    partial class DbflashcardContextModelSnapshot : ModelSnapshot
+    [Migration("20260201093329_SeedMyUser")]
+    partial class SeedMyUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,7 +271,7 @@ namespace TCTVocabulary.Migrations
                         new
                         {
                             UserId = 1,
-                            CreatedAt = new DateTime(2026, 2, 1, 16, 20, 51, 117, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2026, 2, 1, 16, 33, 28, 913, DateTimeKind.Local).AddTicks(3678),
                             Email = "baochau1512v@gmail.com",
                             FullName = "chau2203",
                             Goal = 0,
