@@ -16,16 +16,18 @@
         </div>
 
         <div class="folder-grid">
-            <!-- Folder item -->
-            <div class="folder-card">
-                <i class="fas fa-folder folder-icon"></i>
-                <p class="folder-name">English Vocabulary</p>
-            </div>
+            @foreach (var folder in Model)
+            {
+                <a asp-action="FolderDetail"
+                   asp-controller="Home"
+                   asp-route-id="@folder.FolderId"
+                   class="folder-card">
 
-            <div class="folder-card">
-                <i class="fas fa-folder folder-icon"></i>
-                <p class="folder-name">Math Revision</p>
-            </div>
+                    <i class="fas fa-folder folder-icon"></i>
+                    <p class="folder-name">@folder.FolderName</p>
+
+                </a>
+            }
         </div>
     </section>
 
@@ -55,24 +57,29 @@
     <div class="modal">
         <h3 class="modal-title">Create new folder</h3>
 
-        <input type="text"
-               id="folderNameInput"
-               class="modal-input"
-               placeholder="Folder name" />
+        <form asp-controller="Home"
+              asp-action="CreateFolder"
+              method="post">
 
-        <div class="modal-actions">
-            <button type="button"
-                    class="btn-decline"
-                    id="cancelFolderBtn">
-                Decline
-            </button>
+            <input type="text"
+                   name="folderName"
+                   class="modal-input"
+                   placeholder="Folder name"
+                   required />
 
-            <button type="button"
-                    class="btn-confirm"
-                    id="confirmFolderBtn">
-                Confirm
-            </button>
-        </div>
+            <div class="modal-actions">
+                <button type="button"
+                        class="btn-decline"
+                        id="cancelFolderBtn">
+                    Decline
+                </button>
+
+                <button type="submit"
+                        class="btn-confirm">
+                    Confirm
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -168,6 +175,11 @@
         }
 
         .folder-card {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .folder-card {
             background: #fff;
             border-radius: 16px;
             padding: 24px;
@@ -201,3 +213,4 @@
         }
     </style>
 }
+
