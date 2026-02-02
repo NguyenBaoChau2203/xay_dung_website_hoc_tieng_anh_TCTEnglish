@@ -18,9 +18,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-
     <partial name="_Loader" />
-
     <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="header-left">
@@ -70,7 +68,7 @@
                     <span>Goals</span>
                 </a>
 
-                <a class="nav-item" asp-controller="Ranking" asp-action="Index">
+                <a class="nav-item " asp-controller="Ranking" asp-action="Index">
                     <i class="fas fa-trophy"></i>
                     <span>Ranking</span>
                 </a>
@@ -131,27 +129,31 @@
         <div class="modal">
             <h3 class="modal-title">Create new folder</h3>
 
-            <input type="text"
-                   id="folderNameInput"
-                   class="modal-input"
-                   placeholder="Folder name" />
+            <form asp-controller="Home"
+                  asp-action="CreateFolder"
+                  method="post">
 
-            <div class="modal-actions">
-                <button type="button"
-                        class="btn-decline"
-                        id="cancelFolderBtn">
-                    Decline
-                </button>
+                <input type="text"
+                       name="folderName"
+                       class="modal-input"
+                       placeholder="Folder name"
+                       required />
 
-                <button type="button"
-                        class="btn-confirm"
-                        id="confirmFolderBtn">
-                    Confirm
-                </button>
-            </div>
+                <div class="modal-actions">
+                    <button type="button"
+                            class="btn-decline"
+                            id="cancelFolderBtn">
+                        Decline
+                    </button>
+
+                    <button type="submit"
+                            class="btn-confirm">
+                        Confirm
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
