@@ -14,6 +14,7 @@ public partial class Set
     public int? FolderId { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+    public string? Description { get; set; }
 
     public virtual ICollection<Card> Cards { get; set; } = new List<Card>();
 

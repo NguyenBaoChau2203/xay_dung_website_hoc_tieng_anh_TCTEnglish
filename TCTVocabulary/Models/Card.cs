@@ -14,6 +14,6 @@ public partial class Card
     public string Definition { get; set; } = null!;
 
     public virtual ICollection<LearningProgress> LearningProgresses { get; set; } = new List<LearningProgress>();
-
+    public string? ImageUrl { get; set; } // Thêm
     public virtual Set Set { get; set; } = null!;
 }
