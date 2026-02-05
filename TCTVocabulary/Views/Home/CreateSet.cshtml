@@ -1,0 +1,463 @@
+﻿@model TCTVocabulary.Models.Set
+@{
+    ViewData["Title"] = "Tạo học phần mới";
+}
+
+<div class="create-set-wrapper">
+    <form asp-action="CreateSet" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="folderId" value="@ViewBag.FolderId" />
+
+        <div class="sticky-header">
+            <div class="header-container">
+                <h1 class="page-title">Tạo học phần mới</h1>
+                <div class="header-actions">
+                    <button type="submit" class="btn-submit-main">Tạo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-main">
+            <div class="info-section card-shadow">
+                <div class="input-floating">
+                    <input type="text" name="SetName" id="setName" placeholder=" " required />
+                    <label for="setName">Tiêu đề (ví dụ: "Tiếng Anh chuyên ngành")</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="input-floating" style="margin-top: 40px;">
+                    <textarea name="Description" id="setDescription" placeholder=" " rows="1"></textarea>
+                    <label for="setDescription">Thêm mô tả về học phần này...</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="toolbar-minimal">
+                    <button type="button" class="btn-tool"><i class="fas fa-plus-circle"></i> Nhập dữ liệu</button>
+                    <button type="button" class="btn-tool"><i class="fas fa-project-diagram"></i> Thêm sơ đồ</button>
+                </div>
+            </div>
+
+            <div id="terms-container">
+                <div class="term-card card-shadow">
+                    <div class="term-card-header">
+                        <span class="index-badge">1</span>
+                        <div class="header-controls">
+                            <button type="button" class="btn-control drag-handle"><i class="fas fa-grip-lines"></i></button>
+                            <button type="button" class="btn-control btn-delete" onclick="removeTerm(this)"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="term-card-content">
+                        <div class="input-group">
+                            <div class="input-minimal">
+                                <input type="text" name="Terms" placeholder="Thuật ngữ" required />
+                                <label>THUẬT NGỮ</label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-minimal">
+                                <input type="text" name="Definitions" placeholder="Định nghĩa" required />
+                                <label>ĐỊNH NGHĨA</label>
+                            </div>
+                        </div>
+                        <div class="image-upload-area">
+                            <label class="image-upload-box">
+                                <i class="fas fa-image"></i>
+                                <span>Thêm ảnh</span>
+                                <input type="file" name="ImageFiles" accept="image/*" style="display:none" onchange="previewImage(this)" />
+                                <img src="" class="img-preview" style="display:none; width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-add-card-large card-shadow" id="btnAddCard">
+                <div class="add-content">
+                    <div class="plus-icon"><i class="fas fa-plus"></i></div>
+                    <span>THÊM THẺ MỚI</span>
+                </div>
+            </button>
+
+            <div class="bottom-submit-area">
+                <button type="submit" class="btn-submit-main btn-large">Tạo học phần</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    :root {
+        --primary: #4255ff;
+        --primary-hover: #2e3fe0;
+        --bg: #f6f7fb;
+        --text-main: #1a1d23;
+        --text-sub: #6b7280;
+        --border: #d9dde8;
+        --white: #ffffff;
+        --card-radius: 12px;
+        --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text-main);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* HEADER TỐI ƯU */
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+        margin-bottom: 30px;
+    }
+
+    .header-container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .btn-submit-main {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 12px rgba(66, 85, 255, 0.2);
+    }
+
+        .btn-submit-main:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66, 85, 255, 0.3);
+        }
+
+    /* CONTAINER */
+    .container-main {
+        max-width: 1000px;
+        margin: auto;
+        padding-bottom: 100px;
+    }
+
+    .card-shadow {
+        background: var(--white);
+        border-radius: var(--card-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        border: 1px solid var(--border);
+        margin-bottom: 24px;
+    }
+
+    /* INFO SECTION */
+    .info-section {
+        padding: 32px;
+    }
+
+    .input-floating {
+        position: relative;
+    }
+
+        .input-floating input, .input-floating textarea {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid var(--border);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 8px 0;
+            outline: none;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .input-floating label {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            color: var(--text-sub);
+            pointer-events: none;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .input-floating input:focus ~ label,
+        .input-floating input:not(:placeholder-shown) ~ label,
+        .input-floating textarea:focus ~ label,
+        .input-floating textarea:not(:placeholder-shown) ~ label {
+            top: -20px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .input-floating input:focus, .input-floating textarea:focus {
+            border-bottom-color: var(--primary);
+        }
+
+    /* TERM CARDS */
+    .term-card {
+        transition: var(--transition);
+    }
+
+        .term-card:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+    .term-card-header {
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fcfcfd;
+        border-bottom: 1px solid #f1f1f4;
+        border-radius: var(--card-radius) var(--card-radius) 0 0;
+    }
+
+    .index-badge {
+        font-weight: 800;
+        color: var(--text-sub);
+    }
+
+    .term-card-content {
+        padding: 24px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 140px;
+        gap: 30px;
+    }
+
+    .input-minimal {
+        position: relative;
+    }
+
+        .input-minimal input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid var(--text-main);
+            padding: 8px 0;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-minimal label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+        }
+
+        .input-minimal input:focus {
+            border-color: var(--primary);
+        }
+
+    /* IMAGE UPLOAD */
+    .image-upload-box {
+        height: 100%;
+        min-height: 80px;
+        border: 2px dashed var(--border);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--text-sub);
+    }
+
+        .image-upload-box:hover {
+            border-color: var(--primary);
+            background: #f4f6ff;
+            color: var(--primary);
+        }
+
+        .image-upload-box i {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .image-upload-box span {
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+    /* ADD CARD BUTTON */
+    .btn-add-card-large {
+        width: 100%;
+        padding: 24px;
+        border: 2px dashed var(--primary);
+        background: white;
+        color: var(--primary);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+        .btn-add-card-large:hover {
+            background: #eff1ff;
+            transform: scale(1.01);
+        }
+
+    .plus-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+    }
+
+    .add-content span {
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .bottom-submit-area {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 40px;
+    }
+
+    .btn-large {
+        padding: 16px 48px;
+        font-size: 1.1rem;
+    }
+    .image-upload-box {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    height: 100px;
+}
+.image-upload-box:hover { border-color: var(--primary); }
+    
+</style>
+
+@section Scripts {
+    <script>
+        const container = document.getElementById('terms-container');
+
+        // Hàm tạo card mới với cấu trúc chuẩn
+        document.getElementById('btnAddCard').onclick = () => {
+            const index = container.children.length + 1;
+            const div = document.createElement('div');
+            div.className = 'term-card card-shadow';
+            div.style.opacity = '0';
+            div.style.transform = 'translateY(20px)';
+
+            div.innerHTML = `
+                <div class="term-card-header">
+                    <span class="index-badge">${index}</span>
+                    <div class="header-controls">
+                        <button type="button" class="btn-control drag-handle"><i class="fas fa-grip-lines"></i></button>
+                        <button type="button" class="btn-control btn-delete" onclick="removeTerm(this)"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+                <div class="term-card-content">
+                    <div class="input-group">
+                        <div class="input-minimal">
+                            <input type="text" name="Terms" placeholder="Thuật ngữ" required />
+                            <label>THUẬT NGỮ</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-minimal">
+                            <input type="text" name="Definitions" placeholder="Định nghĩa" required />
+                            <label>ĐỊNH NGHĨA</label>
+                        </div>
+                    </div>
+                    <div class="image-upload-area">
+                        <div class="image-upload-box">
+                            <i class="fas fa-image"></i>
+                            <span>Hình ảnh</span>
+                        </div>
+                    </div>
+                </div>`;
+
+            container.appendChild(div);
+
+            // Hiệu ứng xuất hiện mượt
+            setTimeout(() => {
+                div.style.transition = 'all 0.4s ease';
+                div.style.opacity = '1';
+                div.style.transform = 'translateY(0)';
+            }, 10);
+
+            div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+              function removeTerm(btn) {
+            // Kiểm tra nếu số lượng thẻ hiện có lớn hơn 1
+            if (container.children.length > 1) {
+                const card = btn.closest('.term-card');
+
+                // Thêm hiệu ứng thu nhỏ trước khi xóa
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9)';
+
+                setTimeout(() => {
+                    card.remove();
+                    updateIndex(); // Cập nhật lại số thứ tự (1, 2, 3...)
+                }, 300);
+            } else {
+                // Thông báo cho người dùng thay vì im lặng
+                alert('Bạn cần có ít nhất một thẻ để tạo học phần!');
+            }
+        }
+
+        function updateIndex() {
+            [...container.children].forEach((c, i) => {
+                c.querySelector('.index-badge').innerText = i + 1;
+            });
+        }
+
+        // Tự động giãn nở textarea
+        document.getElementById('setDescription').addEventListener('input', e => {
+            e.target.style.height = 'auto';
+            e.target.style.height = e.target.scrollHeight + 'px';
+        });
+                function previewImage(input) {
+            const box = input.parentElement;
+            const img = box.querySelector('.img-preview');
+            const span = box.querySelector('span');
+            const icon = box.querySelector('i');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    span.style.display = 'none';
+                    icon.style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

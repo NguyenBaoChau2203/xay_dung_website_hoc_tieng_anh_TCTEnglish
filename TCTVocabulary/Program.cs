@@ -1,14 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Facebook;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddRazorPages()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 // 1. Cấu hình dịch vụ (Phải nằm TRƯỚC builder.Build)
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -21,6 +27,7 @@ builder.Services.AddAuthentication(options =>
     // nhưng ở đây ta dùng link explicit nên để Cookie là default scheme.
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
+
 .AddCookie(options =>
 {
     options.LoginPath = "/Account/Login";

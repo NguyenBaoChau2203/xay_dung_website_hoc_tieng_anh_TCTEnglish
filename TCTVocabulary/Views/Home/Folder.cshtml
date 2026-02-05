@@ -57,24 +57,22 @@
     <div class="modal">
         <h3 class="modal-title">Create new folder</h3>
 
-        <form asp-controller="Home"
-              asp-action="CreateFolder"
-              method="post">
+        <form asp-controller="Home" asp-action="CreateFolder" method="post">
 
             <input type="text"
+                   id="folderNameInput"
                    name="folderName"
                    class="modal-input"
                    placeholder="Folder name"
                    required />
 
             <div class="modal-actions">
-                <button type="button"
-                        class="btn-decline"
-                        id="cancelFolderBtn">
+                <button type="button" class="btn-decline" id="cancelFolderBtn">
                     Decline
                 </button>
 
                 <button type="submit"
+                        id="confirmFolderBtn"
                         class="btn-confirm">
                     Confirm
                 </button>

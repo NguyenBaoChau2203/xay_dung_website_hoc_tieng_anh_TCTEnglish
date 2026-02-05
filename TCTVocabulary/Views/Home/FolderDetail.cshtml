@@ -4,224 +4,514 @@
     ViewData["Title"] = Model.Folder.FolderName;
 }
 
-<div class="folder-detail">
-
-    <div class="folder-header">
-        <div class="folder-header-left">
-            <div class="folder-icon">
+<div class="folder-detail-container">
+    <div class="folder-header-section">
+        <div class="header-main-info">
+            <div class="brand-icon-large">
                 <i class="fas fa-folder"></i>
             </div>
-            <h1>@Model.Folder.FolderName</h1>
+            <div class="title-column">
+                <span class="sub-label">Thư mục</span>
+                <h1 class="main-title">@Model.Folder.FolderName</h1>
+            </div>
         </div>
 
-        <button class="folder-menu-btn">
-            <i class="fas fa-ellipsis-h"></i>
+        <div class="header-actions">
+            <div class="custom-dropdown">
+                <button class="btn-circle-action" onclick="toggleMenu(event, 'folderMenu')">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+                <div id="folderMenu" class="dropdown-pane">
+                    <a href="javascript:void(0)" onclick="openRenameModal()"><i class="fas fa-pen"></i> Sửa tên</a>
+
+                    <a href="javascript:void(0)" class="text-danger" onclick="executeDeleteFolder()">
+                        <i class="fas fa-trash"></i> Xóa thư mục
+                    </a>
+
+                    <form id="deleteFolderForm" asp-action="DeleteFolder" method="post" style="display:none;">
+                        <input type="hidden" name="id" value="@Model.Folder.FolderId" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="folder-tabs-centered">
+        <button class="tab-link active">Tất cả</button>
+        <button class="tab-link">Học phần</button>
+        <button class="tab-link">Thành viên</button>
+    </div>
+    <div class="action-bar-centered">
+        <button class="btn-add-new" onclick="location.href='@Url.Action("CreateSet", "Home", new { folderId = Model.Folder.FolderId })'">
+            <div class="btn-content">
+                <i class="fas fa-plus-circle"></i>
+                <span>Thêm học phần mới</span>
+            </div>
         </button>
     </div>
-    <div class="folder-tabs">
-        <button class="tab active">All</button>
-        <button class="tab">Sets</button>
-        <button class="tab">Flashcards</button>
-    </div>
 
-    @if (!Model.Sets.Any())
-    {
-
-        <div class="folder-empty">
-            <div class="empty-illustration">
-                <i class="fas fa-layer-group"></i>
+    <div class="set-list-modern">
+        @if (!Model.Sets.Any())
+        {
+            <div class="empty-placeholder">
+                <i class="fas fa-clone"></i>
+                <h3>Thư mục trống</h3>
+                <p>Bắt đầu thêm các học phần để ôn tập ngay hôm nay.</p>
             </div>
+        }
 
-            <h3>Let’s start building your folder</h3>
-            <p>Add sets or flashcards to organize your study materials.</p>
-
-            <button class="btn-primary">
-                Add study materials
-            </button>
-        </div>
-    }
-    else
-    {
-
-        <div class="set-list">
-
+        else
+        {
             @foreach (var set in Model.Sets)
             {
-                <div class="set-item">
-                    <div class="set-icon">
-                        <i class="fas fa-clone"></i>
+                <div class="set-row-card">
+                    <div class="set-card-body" onclick="location.href='@Url.Action("Study", "Home", new { id = set.SetId })'">
+                        <div class="set-meta-info">
+                            <span class="pill-count">@(set.Cards.Count) thuật ngữ</span>
+                        </div>
+                        <h4 class="set-name-text">@set.SetName</h4>
                     </div>
 
-                    <div class="set-info">
-                        <h4 class="set-name">@set.SetName</h4>
-                        <span class="set-meta">
-                            @(set.Cards.Any() ? $"{set.Cards.Count} cards" : "No cards yet")
-                        </span>
+                    <div class="set-card-menu">
+                        <div class="custom-dropdown">
+                            <button class="btn-icon-more" onclick="toggleMenu(event, 'setMenu-@set.SetId')">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+
+                            <div id="setMenu-@set.SetId" class="dropdown-pane align-right">
+                                <form asp-action="DeleteSet" method="post" id="deleteSetForm-@set.SetId">
+                                    <input type="hidden" name="setId" value="@set.SetId" />
+                                    <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+                                    <a href="@Url.Action("EditSet", "Home", new { id = set.SetId })">
+                                        <i class="fas fa-pen"></i> Chỉnh sửa học phần
+                                    </a>
+                                    <a href="javascript:void(0)" class="text-danger" onclick="confirmDeleteSet(@set.SetId)">
+                                        <i class="fas fa-minus-circle"></i> Xóa khỏi thư mục
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }
+        }
+    </div>
+</div>
 
+<div id="renameModal" class="modal-blur-overlay">
+    <div class="modal-card">
+        <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="margin:0;">Đổi tên thư mục</h3>
+            <button class="close-x" onclick="closeRenameModal()">&times;</button>
         </div>
-    }
-
+        <form asp-action="UpdateFolderName" method="post" class="modal-form">
+            <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+            <div style="margin: 20px 0;">
+                <label style="display:block; margin-bottom:8px; font-weight:700; color:#6b7280;">Tên thư mục mới</label>
+                <input type="text" name="newName" id="folderNameInput" class="form-input-large" value="@Model.Folder.FolderName" required />
+            </div>
+            <div class="modal-footer-btns">
+                <button type="button" class="btn-flat" onclick="closeRenameModal()">Hủy</button>
+                <button type="submit" class="btn-solid-blue">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <style>
-    .folder-detail {
+    /* 1. Layout */
+    .folder-detail-container {
         max-width: 1100px;
-        margin: 0 auto;
-        padding: 24px;
+        margin: 40px auto;
+        padding: 0 20px;
     }
 
-    /* HEADER */
-    .folder-header {
+    .folder-header-section {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        margin-bottom: 28px;
+        align-items: center;
+        margin-bottom: 40px;
     }
 
-    .folder-header-left {
+    .header-main-info {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 24px;
     }
 
-    .folder-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 14px;
+    .brand-icon-large {
+        width: 70px;
+        height: 70px;
         background: #eef2ff;
         color: #4255ff;
+        border-radius: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 26px;
+        font-size: 32px;
     }
 
-    .folder-header h1 {
-        font-size: 28px;
+    .sub-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #6b7280;
+        text-transform: uppercase;
+    }
+
+    .main-title {
+        font-size: 38px;
+        font-weight: 800;
+        color: #1a1d23;
+        margin: 0;
+    }
+
+    /* 2. Menu Dropdown */
+    .custom-dropdown {
+        position: relative;
+    }
+
+    .btn-circle-action {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #edeff4;
+        background: white;
+        cursor: pointer;
+        color: #6b7280;
+    }
+
+    .dropdown-pane {
+        display: none;
+        position: absolute;
+        top: 120%;
+        right: 0;
+        background: white;
+        min-width: 200px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        z-index: 1000;
+        padding: 10px;
+        border: 1px solid #edeff4;
+    }
+
+        .dropdown-pane.show {
+            display: block;
+        }
+
+        .dropdown-pane a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+            .dropdown-pane a:hover {
+                background: #f3f4f6;
+            }
+
+    .text-danger {
+        color: #ef4444 !important;
+    }
+
+    /* 3. Modal */
+    .modal-blur-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .modal-blur-overlay.active {
+            display: flex;
+        }
+
+    .modal-card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .form-input-large {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #edeff4;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+    }
+
+        .form-input-large:focus {
+            border-color: #4255ff;
+        }
+
+    .close-x {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #6b7280;
+        cursor: pointer;
+    }
+
+    /* 4. Buttons */
+    .btn-solid-blue {
+        background: #4255ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .btn-flat {
+        background: #f3f4f6;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    /* 5. Tabs & Cards */
+    .folder-tabs-centered {
+        display: flex;
+        gap: 35px;
+        border-bottom: 2px solid #edeff4;
+        margin-bottom: 30px;
+    }
+
+    .tab-link {
+        background: none;
+        border: none;
+        padding: 15px 0;
+        font-weight: 700;
+        color: #6b7280;
+        cursor: pointer;
+        position: relative;
+        font-size: 17px;
+    }
+
+        .tab-link.active {
+            color: #4255ff;
+        }
+
+            .tab-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: #4255ff;
+                border-radius: 4px;
+            }
+
+    .set-row-card {
+        display: flex;
+        align-items: center;
+        background: white;
+        border: 2px solid #edeff4;
+        border-radius: 16px;
+        margin-bottom: 16px;
+    }
+
+    .set-card-body {
+        flex: 1;
+        padding: 25px;
+        cursor: pointer;
+    }
+
+    .pill-count {
+        background: #f0f2ff;
+        color: #4255ff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 13px;
         font-weight: 800;
     }
 
-    .folder-menu-btn {
+    .set-name-text {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 10px 0 0;
+    }
+    /* Container cho nút bấm */
+    .action-bar-centered {
+        margin-bottom: 35px;
+        display: flex;
+        justify-content: flex-start; /* Căn lề trái theo thiết kế chung hoặc 'center' nếu muốn giữa hẳn */
+    }
+
+    .btn-add-new {
+        background: linear-gradient(135deg, #4255ff 0%, #2f3fe0 100%); /* Hiệu ứng chuyển màu */
+        color: white;
         border: none;
-        background: #f3f4f6;
-        width: 44px;
-        height: 44px;
+        padding: 12px 28px;
+        border-radius: 14px; /* Bo góc hiện đại */
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 14px rgba(66, 85, 255, 0.3); /* Đổ bóng nhẹ */
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .btn-add-new i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Hiệu ứng khi di chuột vào */
+    .btn-add-new:hover {
+        transform: translateY(-3px); /* Nổi lên nhẹ */
+        box-shadow: 0 6px 20px rgba(66, 85, 255, 0.4);
+        background: linear-gradient(135deg, #4d5fff 0%, #3546e5 100%);
+    }
+
+        .btn-add-new:hover i {
+            transform: rotate(90deg); /* Xoay nhẹ dấu cộng tạo cảm giác linh hoạt */
+        }
+
+    /* Hiệu ứng khi nhấn giữ */
+    .btn-add-new:active {
+        transform: translateY(-1px);
+    }
+    /* Dropdown chung */
+    .dropdown-pane {
+        min-width: 180px;
+        padding: 6px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    /* Item trong dropdown */
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    /* Nút xóa */
+    .dropdown-delete {
+        color: #e53935;
+    }
+
+        .dropdown-delete i {
+            font-size: 15px;
+        }
+
+        /* Hover effect */
+        .dropdown-delete:hover {
+            background: rgba(229, 57, 53, 0.1);
+            color: #c62828;
+        }
+
+        /* Active (khi click) */
+        .dropdown-delete:active {
+            transform: scale(0.97);
+        }
+
+    .btn-icon-more {
+        background: transparent;
+        border: none;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         cursor: pointer;
-        font-size: 18px;
+        transition: background 0.2s ease;
     }
 
-        .folder-menu-btn:hover {
-            background: #e5e7eb;
+        .btn-icon-more:hover {
+            background: #f1f3f5;
         }
 
-    /* TABS */
-    .folder-tabs {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 36px;
-    }
-
-    .tab {
-        padding: 8px 16px;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
-        background: #fff;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-        .tab.active {
-            background: #eef2ff;
-            color: #4255ff;
-            border-color: #c7d2fe;
+        .btn-icon-more i {
+            color: #555;
         }
 
-    /* EMPTY */
-    .folder-empty {
-        background: #f9fafb;
-        border-radius: 20px;
-        padding: 64px 24px;
-        text-align: center;
-    }
-
-    .empty-illustration {
-        font-size: 48px;
-        color: #6366f1;
-        margin-bottom: 20px;
-    }
-
-    .folder-empty h3 {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 8px;
-    }
-
-    .folder-empty p {
-        color: #6b7280;
-        margin-bottom: 24px;
-    }
-
-    .btn-primary {
-        background: #4255ff;
-        color: #fff;
-        border: none;
-        padding: 12px 22px;
-        border-radius: 999px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-        .btn-primary:hover {
-            background: #2f3fe0;
-        }
-
-    /* SET LIST */
-    .set-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 16px;
-    }
-
-    .set-item {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 18px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        cursor: pointer;
-        transition: box-shadow 0.2s ease;
-    }
-
-        .set-item:hover {
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        }
-
-    .set-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        background: #eef2ff;
-        color: #4255ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-    }
-
-    .set-name {
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 4px;
-    }
-
-    .set-meta {
-        font-size: 13px;
-        color: #6b7280;
-    }
 </style>
+
+<script>
+    // Xử lý đóng mở Menu dấu 3 chấm
+    function toggleMenu(e, id) {
+        e.stopPropagation();
+        document.querySelectorAll('.dropdown-pane').forEach(p => {
+            if (p.id !== id) p.classList.remove('show');
+        });
+        const menu = document.getElementById(id);
+        if (menu) menu.classList.toggle('show');
+    }
+
+    // Đóng menu khi click ra ngoài
+    window.onclick = function(event) {
+        if (!event.target.closest('.custom-dropdown')) {
+            document.querySelectorAll('.dropdown-pane').forEach(p => p.classList.remove('show'));
+        }
+    }
+
+    // Xử lý Modal Sửa tên
+    function openRenameModal() {
+        const modal = document.getElementById('renameModal');
+        const input = document.getElementById('folderNameInput');
+        if (modal && input) {
+            modal.classList.add('active');
+            input.focus();
+            input.select();
+        }
+    }
+
+    function closeRenameModal() {
+        const modal = document.getElementById('renameModal');
+        if (modal) modal.classList.remove('active');
+    }
+
+    // Xử lý Xóa thư mục
+    function executeDeleteFolder() {
+        if (confirm("Bạn có chắc chắn muốn xóa thư mục này không? Tất cả dữ liệu bên trong sẽ bị mất.")) {
+            document.getElementById('deleteFolderForm').submit();
+        }
+    }
+
+    // Xử lý Xóa học phần khỏi thư mục
+        function confirmDeleteSet(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa học phần này và toàn bộ từ vựng bên trong? Thao tác này không thể hoàn tác.")) {
+            // Thực hiện gửi form lên server thay vì chỉ hiện alert
+            document.getElementById('deleteSetForm-' + id).submit();
+        }
+    }
+
+
+    // Đóng modal khi nhấn ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") closeRenameModal();
+    });
+
+</script>
