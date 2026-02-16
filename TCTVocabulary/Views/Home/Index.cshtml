@@ -1,8 +1,70 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Trang chủ | TCT English";
+    // Layout = "~/Views/Shared/_Layout.cshtml"; // Ensure layout is used if not default
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to TCT English</h1>
+    <p>Học từ vựng hiệu quả mỗi ngày.</p>
+</div>
+
+<!-- TOPIC SELECTION MODAL -->
+<div class="modal-overlay" id="topicModal">
+    <div class="modal" style="width: 600px; max-width: 90%;">
+        <div class="modal-header" style="text-align: center; margin-bottom: 24px;">
+            <h2 class="modal-title" style="margin-bottom: 8px;">Bạn muốn học gì hôm nay?</h2>
+            <p style="color: #6b7280; font-size: 15px;">Chọn một chủ đề có sẵn hoặc tạo mới.</p>
+        </div>
+
+        <div class="topic-grid">
+            <!-- Card 1 -->
+            <div class="topic-card">
+                <div class="topic-icon" style="background: #e0e7ff; color: #4255ff;">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div class="topic-info">
+                    <div class="topic-name">Tiếng Anh giao tiếp</div>
+                    <div class="topic-desc">300 từ vựng thông dụng</div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="topic-card">
+                <div class="topic-icon" style="background: #fce7f3; color: #db2777;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="topic-info">
+                    <div class="topic-name">IELTS Academic</div>
+                    <div class="topic-desc">Từ vựng học thuật</div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="topic-card">
+                <div class="topic-icon" style="background: #dcfce7; color: #16a34a;">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div class="topic-info">
+                    <div class="topic-name">TOEIC</div>
+                    <div class="topic-desc">Tiếng Anh văn phòng</div>
+                </div>
+            </div>
+
+            <!-- Create New -->
+            <div class="topic-card create-new" onclick="location.href='@Url.Action("CreateSet", "Home")'">
+                <div class="topic-icon" style="background: #f3f4f6; color: #4b5563;">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="topic-info">
+                    <div class="topic-name">Tự tạo chủ đề</div>
+                    <div class="topic-desc">Của riêng bạn</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-actions" style="justify-content: center; margin-top: 24px;">
+            <button class="btn-decline" id="closeTopicModal" style="width: 100%;">Để sau</button>
+        </div>
+    </div>
 </div>

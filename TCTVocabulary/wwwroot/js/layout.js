@@ -54,4 +54,55 @@ document.addEventListener("DOMContentLoaded", function () {
             modal.classList.remove("active");
         }
     });
+
+    // --- TOPIC MODAL LOGIC (AUTO SHOW) ---
+    const topicModal = document.getElementById("topicModal");
+    const closeTopicBtn = document.getElementById("closeTopicModal");
+
+    if (topicModal) {
+        // Check local storage
+        const hasSeenTopicModal = localStorage.getItem("TCT_TopicModal_Seen");
+
+        if (!hasSeenTopicModal) {
+            // Show after short delay for effect
+            setTimeout(() => {
+                topicModal.classList.add("active");
+            }, 600);
+        }
+
+        // Close logic
+        if (closeTopicBtn) {
+            closeTopicBtn.addEventListener("click", () => {
+                topicModal.classList.remove("active");
+                // Mark as seen
+                localStorage.setItem("TCT_TopicModal_Seen", "true");
+            });
+        }
+
+        // Also mark as seen if clicked outside? 
+        // Or keep it stricter? Let's allow closing by clicking outside too.
+        topicModal.addEventListener("click", (e) => {
+            if (e.target === topicModal) {
+                topicModal.classList.remove("active");
+                localStorage.setItem("TCT_TopicModal_Seen", "true");
+            }
+        });
+    }
+
+    // --- USER DROPDOWN TOGGLE ---
+    const userProfileBtn = document.getElementById("userProfileBtn");
+    const userDropdown = document.getElementById("userDropdown");
+
+    if (userProfileBtn && userDropdown) {
+        userProfileBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle("active");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!userDropdown.contains(e.target) && !userProfileBtn.contains(e.target)) {
+                userDropdown.classList.remove("active");
+            }
+        });
+    }
 });

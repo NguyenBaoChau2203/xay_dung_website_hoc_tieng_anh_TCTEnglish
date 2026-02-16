@@ -509,7 +509,7 @@
                 </form>
 
                 <!-- LOGIN FORM (Hidden by default) -->
-                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" style="display: none;">
+                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" onsubmit="handleLogin(event)" style="display: none;">
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         <label class="form-label">Email</label>
@@ -594,14 +594,114 @@
         // But for now, let's stick to core requirements first.
 
         function handleRegister(e) {
+            e.preventDefault(); // Prevent immediate submission
+
             // Validate Terms
             const terms = document.getElementById('terms');
             if (!terms.checked) {
-                e.preventDefault();
                 alert('Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.');
                 return;
             }
-            // If checked, allow default submission (POST to server)
+
+            // Show Loader and run animation
+            runLoaderAndSubmit('form-register');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault(); // Prevent default submission
+            
+            const form = document.getElementById('form-login');
+            const formData = new FormData(form);
+
+            // Simple client validation or just send
+            // AJAX Fetch
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    // 'RequestVerificationToken': ... (If not using FormData automatically)
+                    // FormData handles Multipart, but Controller expects FormUrlEncoded usually unless [FromForm]
+                    // ASP.NET Core often handles FormData fine. Let's try FormData.
+                    // If issues, we can use URLSearchParams.
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Success: Show Loader -> Redirect
+                    showLoaderAndRedirect();
+                } else {
+                    // Fail: Show error message
+                    showLoginError(data.message || "Đã có lỗi xảy ra");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showLoginError("Lỗi kết nối server.");
+            });
+        }
+
+        function showLoginError(msg) {
+            // Check if error box exists
+            let errorBox = document.getElementById('login-error-msg');
+            if (!errorBox) {
+                // Create it inside the form, before btn-submit
+                const form = document.getElementById('form-login');
+                const btn = form.querySelector('.btn-submit');
+                errorBox = document.createElement('div');
+                errorBox.id = 'login-error-msg';
+                errorBox.style.color = 'red';
+                errorBox.style.marginBottom = '15px';
+                errorBox.style.fontSize = '14px';
+                errorBox.style.textAlign = 'center';
+                form.insertBefore(errorBox, btn);
+            }
+            errorBox.innerText = msg;
+            errorBox.style.display = 'block';
+        }
+
+        function runLoaderAndSubmit(formId) {
+            // Still used for Register (non-AJAX for now as per task scope)
+            const overlay = document.getElementById('loader-overlay');
+            const bar = document.getElementById('loading-fill');
+            const form = document.getElementById(formId);
+
+            // Reset
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            overlay.classList.add('active');
+
+            setTimeout(() => {
+                bar.style.transition = 'width 1.5s linear';
+                bar.style.width = '100%';
+            }, 50);
+
+            setTimeout(() => {
+                form.submit();
+            }, 1550);
+        }
+
+        function showLoaderAndRedirect() {
+            // For AJAX success
+            const overlay = document.getElementById('loader-overlay');
+            const bar = document.getElementById('loading-fill');
+            
+            // Hide any error
+            const errorBox = document.getElementById('login-error-msg');
+            if(errorBox) errorBox.style.display = 'none';
+
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            overlay.classList.add('active');
+
+            setTimeout(() => {
+                bar.style.transition = 'width 1.5s linear';
+                bar.style.width = '100%';
+            }, 50);
+
+            setTimeout(() => {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }, 1550);
         }
 
         function runDemoLogin() {
