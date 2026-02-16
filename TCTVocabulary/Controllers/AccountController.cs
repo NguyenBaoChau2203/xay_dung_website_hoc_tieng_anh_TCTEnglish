@@ -86,28 +86,31 @@ namespace TCTVocabulary.Controllers
         }
 
         // POST: /Account/Login
+        // POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string email, string password)
         {
-            ViewData["ActiveTab"] = "login";
+            // Removed ViewData["ActiveTab"] as we are using AJAX now
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
-                ViewBag.ErrorMessage = "Email hoặc mật khẩu không đúng.";
-                return View("Auth");
+                // Return JSON error
+                return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
             }
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
             if (!isPasswordValid)
             {
-                ViewBag.ErrorMessage = "Email hoặc mật khẩu không đúng.";
-                return View("Auth");
+                // Return JSON error
+                return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
             }
 
             await SignInUserAsync(user);
-            return RedirectToAction("Index", "Home");
+            
+            // Return JSON success
+            return Json(new { success = true });
         }
 
         // GET: /Account/Logout
@@ -173,8 +176,18 @@ namespace TCTVocabulary.Controllers
             }
 
             // Extract info
-            var emailClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-            var nameClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            var emailClaim = result.Principal.FindFirst(ClaimTypes.Email)?.Value 
+                             ?? result.Principal.FindFirst("email")?.Value
+                             ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+    
+            var nameClaim = result.Principal.FindFirst(ClaimTypes.Name)?.Value 
+                            ?? result.Principal.FindFirst("name")?.Value
+                            ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            // Get Picture from Google (Standard claim 'picture')
+            var pictureClaim = result.Principal.FindFirst("picture")?.Value 
+                               ?? result.Principal.FindFirst("urn:google:picture")?.Value
+                               ?? result.Principal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/picture")?.Value;
 
             if (string.IsNullOrEmpty(emailClaim))
             {
@@ -193,10 +206,20 @@ namespace TCTVocabulary.Controllers
                     FullName = nameClaim ?? "Social User",
                     PasswordHash = "SOCIAL_LOGIN_" + Guid.NewGuid().ToString(), // Dummy password
                     CreatedAt = DateTime.Now,
-                    Role = "User"
+                    Role = "User",
+                    AvatarUrl = pictureClaim // Save Avatar
                 };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+            }
+            else
+            {
+                // Optional: Update Avatar if changed?
+                if (!string.IsNullOrEmpty(pictureClaim) && user.AvatarUrl != pictureClaim)
+                {
+                    user.AvatarUrl = pictureClaim;
+                    await _context.SaveChangesAsync();
+                }
             }
 
             // Sign In with our App's Claims (consistency)
@@ -214,6 +237,12 @@ namespace TCTVocabulary.Controllers
                 new Claim(ClaimTypes.Name, user.FullName ?? user.Email),
                 new Claim(ClaimTypes.Role, user.Role ?? "User")
             };
+
+            // Add AvatarUrl Claim if exists
+            if (!string.IsNullOrEmpty(user.AvatarUrl))
+            {
+                claims.Add(new Claim("AvatarUrl", user.AvatarUrl));
+            }
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
