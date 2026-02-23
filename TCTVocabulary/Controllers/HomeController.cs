@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
+using TCTVocabulary.ViewModel;
 
 namespace TCTVocabulary.Controllers
 {
@@ -76,7 +77,10 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-
+        public IActionResult CreateClass()
+        {
+            return View();
+        }
         public IActionResult Register()
         {
             return View();
@@ -296,5 +300,105 @@ public IActionResult EditSet(int SetId, string SetName, string Description, stri
 
     return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
 }
+        [HttpPost]
+        public async Task<IActionResult> CreateClass(CreateClassViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var newClass = new Class
+            {
+                ClassName = model.ClassName,
+                Description = model.Description,
+                OwnerId = 1 // ⚠️ tạm thời, sau này lấy từ User.Identity
+            };
+
+            // Hash password (nếu có)
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                newClass.PasswordHash =
+                    BCrypt.Net.BCrypt.HashPassword(model.Password);
+            }
+
+            // Upload avatar (nếu có)
+            if (model.Avatar != null)
+            {
+                var folderPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot/images/classes"
+                );
+
+                // 👉 DÒNG QUAN TRỌNG NHẤT (SỬA LỖI)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                var fileName = Guid.NewGuid() + Path.GetExtension(model.Avatar.FileName);
+                var filePath = Path.Combine(folderPath, fileName);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await model.Avatar.CopyToAsync(stream);
+
+                newClass.ImageUrl = "/images/classes/" + fileName;
+            }
+
+            _context.Classes.Add(newClass);
+            await _context.SaveChangesAsync();
+
+            // 👉 Chuyển sang ClassDetail
+            return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
+        }
+        public IActionResult ClassDetail(int id)
+        {
+            var classEntity = _context.Classes
+                .Include(c => c.Users)
+                .Include(c => c.ClassMessages)
+                    .ThenInclude(m => m.User)
+                .FirstOrDefault(c => c.ClassId == id);
+
+            if (classEntity == null)
+                return NotFound();
+
+            var viewModel = new ClassDetailViewModel
+            {
+                Class = classEntity,
+                Members = classEntity.Users.ToList(),
+                Messages = classEntity.ClassMessages
+                    .OrderBy(m => m.CreatedAt)
+                    .ToList()
+            };
+
+            return View(viewModel); // ✅ ĐÚNG KIỂU
+        }
+        [HttpPost]
+        public IActionResult SendClassMessage(int classId, string content)
+        {
+            var message = new ClassMessage
+            {
+                ClassId = classId,
+                UserId = 1, // tạm thời
+                Content = content,
+                CreatedAt = DateTime.Now
+            };
+
+            _context.ClassMessages.Add(message);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        public IActionResult Class()
+        {
+            int userId = 1; // tạm thời hardcode
+
+            var classes = _context.Classes
+                .Where(c =>
+                    c.OwnerId == userId ||
+                    c.Users.Any(u => u.UserId == userId))
+                .Include(c => c.Owner)
+                .ToList();
+
+            return View(classes);
+        }
     }
 }

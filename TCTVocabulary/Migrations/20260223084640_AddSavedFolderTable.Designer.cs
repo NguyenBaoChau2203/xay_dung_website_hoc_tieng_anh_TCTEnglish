@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCTVocabulary.Models;
 
@@ -11,9 +12,11 @@ using TCTVocabulary.Models;
 namespace TCTVocabulary.Migrations
 {
     [DbContext(typeof(DbflashcardContext))]
-    partial class DbflashcardContextModelSnapshot : ModelSnapshot
+    [Migration("20260223084640_AddSavedFolderTable")]
+    partial class AddSavedFolderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +35,8 @@ namespace TCTVocabulary.Migrations
                         .HasColumnType("int")
                         .HasColumnName("UserID");
 
-                    b.HasKey("ClassId", "UserId");
+                    b.HasKey("ClassId", "UserId")
+                        .HasName("PK__ClassMem__1A61AB6A6D3064A5");
 
                     b.HasIndex("UserId");
 
@@ -86,32 +90,9 @@ namespace TCTVocabulary.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<bool>("HasPassword")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<int>("OwnerId")
                         .HasColumnType("int")
                         .HasColumnName("OwnerID");
-
-                    b.Property<string>("PasswordHash")
-                        .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
 
                     b.HasKey("ClassId")
                         .HasName("PK__Classes__CB1927A0B52422EC");
@@ -119,36 +100,6 @@ namespace TCTVocabulary.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Classes");
-                });
-
-            modelBuilder.Entity("TCTVocabulary.Models.ClassMessage", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
-
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MessageId");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ClassMessages");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
@@ -371,12 +322,14 @@ namespace TCTVocabulary.Migrations
                     b.HasOne("TCTVocabulary.Models.Class", null)
                         .WithMany()
                         .HasForeignKey("ClassId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK__ClassMemb__Class__440B1D61");
 
                     b.HasOne("TCTVocabulary.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK__ClassMemb__UserI__44FF419A");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
@@ -399,25 +352,6 @@ namespace TCTVocabulary.Migrations
                         .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
 
                     b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("TCTVocabulary.Models.ClassMessage", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Class", "Class")
-                        .WithMany("ClassMessages")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("ClassMessages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
@@ -499,11 +433,6 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("LearningProgresses");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.Class", b =>
-                {
-                    b.Navigation("ClassMessages");
-                });
-
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
                 {
                     b.Navigation("InverseParentFolder");
@@ -520,8 +449,6 @@ namespace TCTVocabulary.Migrations
 
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
                 {
-                    b.Navigation("ClassMessages");
-
                     b.Navigation("Classes");
 
                     b.Navigation("Folders");

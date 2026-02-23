@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TCTVocabulary.Models.TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
 
@@ -20,4 +21,5 @@ public partial class Folder
     public virtual ICollection<Set> Sets { get; set; } = new List<Set>();
 
     public virtual User User { get; set; } = null!;
+    public virtual ICollection<SavedFolder> SavedFolders { get; set; } = new List<SavedFolder>();
 }

@@ -1,7 +1,10 @@
 ﻿@model TCTVocabulary.Models.ViewModels.FolderDetailViewModel
+@using System.Security.Claims
 
 @{
     ViewData["Title"] = Model.Folder.FolderName;
+
+    var isOwner = Model.Folder.UserId == 1;
 }
 
 <div class="folder-detail-container">
@@ -21,16 +24,34 @@
                 <button class="btn-circle-action" onclick="toggleMenu(event, 'folderMenu')">
                     <i class="fas fa-ellipsis-h"></i>
                 </button>
+
                 <div id="folderMenu" class="dropdown-pane">
-                    <a href="javascript:void(0)" onclick="openRenameModal()"><i class="fas fa-pen"></i> Sửa tên</a>
 
-                    <a href="javascript:void(0)" class="text-danger" onclick="executeDeleteFolder()">
-                        <i class="fas fa-trash"></i> Xóa thư mục
-                    </a>
+                    @* ===== FOLDER CỦA MÌNH ===== *@
+                    @if (isOwner)
+                    {
+                        <a href="javascript:void(0)" onclick="openRenameModal()">
+                            <i class="fas fa-pen"></i> Sửa tên
+                        </a>
 
-                    <form id="deleteFolderForm" asp-action="DeleteFolder" method="post" style="display:none;">
-                        <input type="hidden" name="id" value="@Model.Folder.FolderId" />
-                    </form>
+                        <a href="javascript:void(0)" class="text-danger" onclick="executeDeleteFolder()">
+                            <i class="fas fa-trash"></i> Xóa thư mục
+                        </a>
+
+                        <form id="deleteFolderForm" asp-action="DeleteFolder" method="post" style="display:none;">
+                            <input type="hidden" name="id" value="@Model.Folder.FolderId" />
+                        </form>
+                    }
+                    else
+                    {
+                        @* ===== FOLDER CỦA NGƯỜI KHÁC ===== *@
+                        <form asp-action="SaveFolder" method="post">
+                            <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-bookmark"></i> Lưu thư mục
+                            </button>
+                        </form>
+                    }
                 </div>
             </div>
         </div>
@@ -41,14 +62,20 @@
         <button class="tab-link">Học phần</button>
         <button class="tab-link">Thành viên</button>
     </div>
-    <div class="action-bar-centered">
-        <button class="btn-add-new" onclick="location.href='@Url.Action("CreateSet", "Home", new { folderId = Model.Folder.FolderId })'">
-            <div class="btn-content">
-                <i class="fas fa-plus-circle"></i>
-                <span>Thêm học phần mới</span>
-            </div>
-        </button>
-    </div>
+
+    @* ===== CHỈ OWNER MỚI ĐƯỢC THÊM HỌC PHẦN ===== *@
+    @if (isOwner)
+    {
+        <div class="action-bar-centered">
+            <button class="btn-add-new"
+                    onclick="location.href='@Url.Action("CreateSet", "Home", new { folderId = Model.Folder.FolderId })'">
+                <div class="btn-content">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Thêm học phần mới</span>
+                </div>
+            </button>
+        </div>
+    }
 
     <div class="set-list-modern">
         @if (!Model.Sets.Any())
@@ -59,64 +86,84 @@
                 <p>Bắt đầu thêm các học phần để ôn tập ngay hôm nay.</p>
             </div>
         }
-
         else
         {
             @foreach (var set in Model.Sets)
             {
                 <div class="set-row-card">
-                    <div class="set-card-body" onclick="location.href='@Url.Action("Study", "Home", new { id = set.SetId })'">
+                    <div class="set-card-body"
+                         onclick="location.href='@Url.Action("Study", "Home", new { id = set.SetId })'">
                         <div class="set-meta-info">
                             <span class="pill-count">@(set.Cards.Count) thuật ngữ</span>
                         </div>
                         <h4 class="set-name-text">@set.SetName</h4>
                     </div>
 
-                    <div class="set-card-menu">
-                        <div class="custom-dropdown">
-                            <button class="btn-icon-more" onclick="toggleMenu(event, 'setMenu-@set.SetId')">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
+                    @* ===== MENU SET CHỈ HIỆN KHI LÀ OWNER ===== *@
+                    @if (isOwner)
+                    {
+                        <div class="set-card-menu">
+                            <div class="custom-dropdown">
+                                <button class="btn-icon-more"
+                                        onclick="toggleMenu(event, 'setMenu-@set.SetId')">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
 
-                            <div id="setMenu-@set.SetId" class="dropdown-pane align-right">
-                                <form asp-action="DeleteSet" method="post" id="deleteSetForm-@set.SetId">
-                                    <input type="hidden" name="setId" value="@set.SetId" />
-                                    <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
-                                    <a href="@Url.Action("EditSet", "Home", new { id = set.SetId })">
-                                        <i class="fas fa-pen"></i> Chỉnh sửa học phần
-                                    </a>
-                                    <a href="javascript:void(0)" class="text-danger" onclick="confirmDeleteSet(@set.SetId)">
-                                        <i class="fas fa-minus-circle"></i> Xóa khỏi thư mục
-                                    </a>
-                                </form>
+                                <div id="setMenu-@set.SetId"
+                                     class="dropdown-pane align-right">
+                                    <form asp-action="DeleteSet"
+                                          method="post"
+                                          id="deleteSetForm-@set.SetId">
+                                        <input type="hidden" name="setId" value="@set.SetId" />
+                                        <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+
+                                        <a href="@Url.Action("EditSet", "Home", new { id = set.SetId })">
+                                            <i class="fas fa-pen"></i> Chỉnh sửa học phần
+                                        </a>
+
+                                        <a href="javascript:void(0)"
+                                           class="text-danger"
+                                           onclick="confirmDeleteSet(@set.SetId)">
+                                            <i class="fas fa-minus-circle"></i> Xóa khỏi thư mục
+                                        </a>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
             }
         }
     </div>
 </div>
 
-<div id="renameModal" class="modal-blur-overlay">
-    <div class="modal-card">
-        <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="margin:0;">Đổi tên thư mục</h3>
-            <button class="close-x" onclick="closeRenameModal()">&times;</button>
+@* ===== MODAL ĐỔI TÊN – CHỈ OWNER ===== *@
+@if (isOwner)
+{
+    <div id="renameModal" class="modal-blur-overlay">
+        <div class="modal-card">
+            <div class="modal-header" style="display:flex; justify-content:space-between;">
+                <h3>Đổi tên thư mục</h3>
+                <button class="close-x" onclick="closeRenameModal()">&times;</button>
+            </div>
+
+            <form asp-action="UpdateFolderName" method="post">
+                <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+                <input type="text"
+                       name="newName"
+                       id="folderNameInput"
+                       class="form-input-large"
+                       value="@Model.Folder.FolderName"
+                       required />
+
+                <div class="modal-footer-btns">
+                    <button type="button" class="btn-flat" onclick="closeRenameModal()">Hủy</button>
+                    <button type="submit" class="btn-solid-blue">Lưu</button>
+                </div>
+            </form>
         </div>
-        <form asp-action="UpdateFolderName" method="post" class="modal-form">
-            <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
-            <div style="margin: 20px 0;">
-                <label style="display:block; margin-bottom:8px; font-weight:700; color:#6b7280;">Tên thư mục mới</label>
-                <input type="text" name="newName" id="folderNameInput" class="form-input-large" value="@Model.Folder.FolderName" required />
-            </div>
-            <div class="modal-footer-btns">
-                <button type="button" class="btn-flat" onclick="closeRenameModal()">Hủy</button>
-                <button type="submit" class="btn-solid-blue">Lưu thay đổi</button>
-            </div>
-        </form>
     </div>
-</div>
+}
 
 <style>
     /* 1. Layout */
