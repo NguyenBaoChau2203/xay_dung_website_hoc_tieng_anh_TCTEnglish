@@ -1,0 +1,266 @@
+﻿@model TCTVocabulary.ViewModel.ClassDetailViewModel
+@{
+    ViewData["Title"] = Model.Class.ClassName;
+}
+
+<div class="class-detail-container">
+
+    <!-- HEADER -->
+    <div class="class-header">
+        <img class="class-avatar"
+             src="@(string.IsNullOrEmpty(Model.Class.ImageUrl)
+                                 ? "/images/class-default.png"
+                                 : Model.Class.ImageUrl)" />
+
+        <div class="class-info">
+            <h1>@Model.Class.ClassName</h1>
+            <p class="class-desc">
+                @(string.IsNullOrEmpty(Model.Class.Description)
+                                ? "Chưa có mô tả cho lớp học này."
+                                : Model.Class.Description)
+            </p>
+        </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="class-tabs">
+        <button class="tab-btn active" onclick="showTab('chat')">
+            <i class="fas fa-comments"></i> Chat
+        </button>
+        <button class="tab-btn" onclick="showTab('about')">
+            <i class="fas fa-circle-info"></i> Giới thiệu
+        </button>
+        <button class="tab-btn" onclick="showTab('members')">
+            <i class="fas fa-user-group"></i> Thành viên
+        </button>
+    </div>
+
+    <!-- TAB CONTENT -->
+    <!-- CHAT -->
+    <div id="tab-chat" class="tab-content active">
+
+        <div id="chatMessages" class="chat-box">
+            @foreach (var msg in Model.Messages)
+            {
+                <div class="chat-message">
+                    <strong>@msg.User.Email</strong>
+                    <span>@msg.Content</span>
+                </div>
+            }
+        </div>
+
+        <div class="chat-input-bar">
+            <input type="text"
+                   id="chatInput"
+                   placeholder="Nhập tin nhắn..."
+                   onkeydown="if(event.key==='Enter') sendMessage()" />
+
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- MEMBERS -->
+    <div id="tab-members" class="tab-content">
+        @if (!Model.Members.Any())
+        {
+            <p class="empty-text">Chưa có thành viên.</p>
+        }
+        else
+        {
+            <ul class="member-list">
+                @foreach (var user in Model.Members)
+                {
+                    <li>
+                        <i class="fas fa-user"></i>
+                        @user.Email
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+    <!-- ABOUT -->
+    <div id="tab-about" class="tab-content">
+        <h3>Thông tin lớp học</h3>
+        <p>@Model.Class.Description</p>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+    function showTab(tab) {
+        document.querySelectorAll('.tab-btn')
+            .forEach(b => b.classList.remove('active'));
+
+        document.querySelectorAll('.tab-content')
+            .forEach(c => c.classList.remove('active'));
+
+        document.querySelector(`[onclick="showTab('${tab}')"]`)
+            .classList.add('active');
+
+        document.getElementById(`tab-${tab}`)
+            .classList.add('active');
+    }
+</script>
+
+<!-- CSS -->
+<style>
+    .class-detail-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    .class-header {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .class-avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 18px;
+        object-fit: cover;
+        border: 2px solid #eee;
+    }
+
+    .class-info h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .class-desc {
+        color: #6b7280;
+        margin-top: 6px;
+    }
+
+    /* Tabs */
+    .class-tabs {
+        display: flex;
+        gap: 30px;
+        border-bottom: 2px solid #eee;
+        margin-bottom: 25px;
+    }
+
+    .tab-btn {
+        background: none;
+        border: none;
+        padding: 12px 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: #6b7280;
+        cursor: pointer;
+    }
+
+        .tab-btn.active {
+            color: #4255ff;
+            border-bottom: 4px solid #4255ff;
+        }
+
+    /* Content */
+    .tab-content {
+        display: none;
+    }
+
+        .tab-content.active {
+            display: block;
+        }
+
+    /* Chat */
+    .chat-box {
+        height: 350px;
+        overflow-y: auto;
+        background: #f9fafb;
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .chat-message {
+        margin-bottom: 10px;
+    }
+
+    .chat-input-bar {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+        .chat-input-bar input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .chat-input-bar button {
+            background: #4255ff;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    /* Members */
+    .member-list {
+        list-style: none;
+        padding: 0;
+    }
+
+        .member-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+    /* Empty */
+    .empty-text {
+        color: #9ca3af;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
+<script>
+    const classId = '@Model.Class.ClassId';
+    const userName = 'User 1'; // tạm
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/classChatHub")
+        .build();
+
+    connection.on("ReceiveMessage", function (user, message) {
+        const box = document.getElementById("chatMessages");
+        box.innerHTML += `
+            <div class="chat-message">
+                <strong>${user}</strong>
+                <span>${message}</span>
+            </div>`;
+        box.scrollTop = box.scrollHeight;
+    });
+
+    connection.start().then(() => {
+        connection.invoke("JoinClass", classId);
+    });
+
+    function sendMessage() {
+        const input = document.getElementById("chatInput");
+        if (!input.value.trim()) return;
+
+        fetch('/Home/SendClassMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `classId=${classId}&content=${encodeURIComponent(input.value)}`
+        });
+
+        connection.invoke("SendMessage", classId, userName, input.value);
+        input.value = '';
+    }
+</script>

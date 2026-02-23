@@ -113,7 +113,7 @@
                     <span>Ranking</span>
                 </a>
 
-                <a class="nav-item">
+                <a class="nav-item" asp-controller="Home" asp-action="Class">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Class</span>
                 </a>
@@ -138,7 +138,8 @@
                     New folder
                 </button>
 
-                <button class="workspace-btn">
+                <button class="workspace-btn"
+                        onclick="location.href='@Url.Action("CreateClass", "Home")'">
                     <span class="icon-circle">
                         <i class="fas fa-plus"></i>
                     </span>

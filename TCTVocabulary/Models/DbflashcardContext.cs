@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using TCTVocabulary.Models.TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
 
@@ -24,6 +25,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<LearningProgress> LearningProgresses { get; set; }
     public virtual DbSet<Set> Sets { get; set; }
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<SavedFolder> SavedFolders { get; set; }
+    public virtual DbSet<ClassMessage> ClassMessages { get; set; }
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -49,34 +52,61 @@ public partial class DbflashcardContext : DbContext
 
         modelBuilder.Entity<Class>(entity =>
         {
-            entity.HasKey(e => e.ClassId).HasName("PK__Classes__CB1927A0B52422EC");
-            entity.Property(e => e.ClassId).HasColumnName("ClassID");
-            entity.Property(e => e.ClassName).HasMaxLength(255);
-            entity.Property(e => e.OwnerId).HasColumnName("OwnerID");
+            entity.HasKey(e => e.ClassId)
+                  .HasName("PK__Classes__CB1927A0B52422EC");
 
-            entity.HasOne(d => d.Owner).WithMany(p => p.Classes)
-                .HasForeignKey(d => d.OwnerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
+            entity.Property(e => e.ClassId)
+                  .HasColumnName("ClassID");
 
-            entity.HasMany(d => d.Users).WithMany(p => p.ClassesNavigation)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ClassMember",
-                    r => r.HasOne<User>().WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__ClassMemb__UserI__44FF419A"),
-                    l => l.HasOne<Class>().WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__ClassMemb__Class__440B1D61"),
-                    j =>
-                    {
-                        j.HasKey("ClassId", "UserId").HasName("PK__ClassMem__1A61AB6A6D3064A5");
-                        j.ToTable("ClassMembers");
-                        j.IndexerProperty<int>("ClassId").HasColumnName("ClassID");
-                        j.IndexerProperty<int>("UserId").HasColumnName("UserID");
-                    });
+            entity.Property(e => e.ClassName)
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.Property(e => e.OwnerId)
+                  .HasColumnName("OwnerID");
+
+            entity.Property(e => e.PasswordHash)
+                  .HasMaxLength(255)
+                  .IsUnicode(false);
+
+            entity.Property(e => e.HasPassword)
+                  .HasDefaultValue(false);
+
+            entity.Property(e => e.ImageUrl)
+                  .HasMaxLength(500);
+
+            entity.Property(e => e.Description)
+                  .HasMaxLength(1000);
+
+            entity.Property(e => e.CreatedAt)
+                  .HasDefaultValueSql("(getdate())")
+                  .HasColumnType("datetime");
+
+            entity.HasOne(d => d.Owner)
+                  .WithMany(p => p.Classes)
+                  .HasForeignKey(d => d.OwnerId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
+
+            entity.HasMany(d => d.Users)
+                  .WithMany(p => p.ClassesNavigation)
+                  .UsingEntity<Dictionary<string, object>>(
+                      "ClassMember",
+                      r => r.HasOne<User>()
+                            .WithMany()
+                            .HasForeignKey("UserId")
+                            .OnDelete(DeleteBehavior.ClientSetNull),
+                      l => l.HasOne<Class>()
+                            .WithMany()
+                            .HasForeignKey("ClassId")
+                            .OnDelete(DeleteBehavior.ClientSetNull),
+                      j =>
+                      {
+                          j.HasKey("ClassId", "UserId");
+                          j.ToTable("ClassMembers");
+                          j.IndexerProperty<int>("ClassId").HasColumnName("ClassID");
+                          j.IndexerProperty<int>("UserId").HasColumnName("UserID");
+                      });
         });
 
         modelBuilder.Entity<Folder>(entity =>
@@ -144,6 +174,36 @@ public partial class DbflashcardContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Sets__OwnerID__48CFD27E");
         });
+        modelBuilder.Entity<SavedFolder>(entity =>
+        {
+            entity.HasKey(e => e.SavedFolderId);
+
+            entity.HasIndex(e => new { e.UserId, e.FolderId })
+                  .IsUnique(); // tránh save trùng
+
+            entity.HasOne(e => e.User)
+                  .WithMany(u => u.SavedFolders)
+                  .HasForeignKey(e => e.UserId);
+
+            entity.HasOne(e => e.Folder)
+                  .WithMany(f => f.SavedFolders)
+                  .HasForeignKey(e => e.FolderId);
+        });
+        modelBuilder.Entity<ClassMessage>(entity =>
+ {
+     entity.HasKey(e => e.MessageId);
+
+     entity.Property(e => e.Content)
+           .IsRequired();
+
+     entity.HasOne(e => e.Class)
+           .WithMany(c => c.ClassMessages)
+           .HasForeignKey(e => e.ClassId);
+
+     entity.HasOne(e => e.User)
+           .WithMany(u => u.ClassMessages)
+           .HasForeignKey(e => e.UserId);
+ });
 
         modelBuilder.Entity<User>(entity =>
         {

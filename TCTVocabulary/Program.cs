@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TCTVocabulary.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using Microsoft.AspNetCore.Authentication.Google;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using Microsoft.EntityFrameworkCore;
+using TCTVocabulary.Hubs;
+using TCTVocabulary.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSignalR();
 builder.Services.AddRazorPages()
     .AddJsonOptions(options =>
     {
@@ -65,7 +67,7 @@ app.UseRouting();
 // Authentication phải trước Authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapHub<ClassChatHub>("/classChatHub");
 // 3. Cấu hình trang chủ mặc định
 app.MapControllerRoute(
     name: "default",

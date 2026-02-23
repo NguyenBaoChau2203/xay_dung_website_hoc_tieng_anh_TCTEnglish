@@ -1,0 +1,102 @@
+﻿@model List<TCTVocabulary.Models.Class>
+
+<div class="my-classes-container">
+
+    <div class="page-header">
+        <h1>Lớp học của tôi</h1>
+        <p>Danh sách các lớp bạn đang tham gia</p>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <p>Bạn chưa tham gia lớp học nào</p>
+        </div>
+    }
+    else
+    {
+        <div class="class-list">
+            @foreach (var c in Model)
+            {
+                <a href="@Url.Action("ClassDetail", "Home", new { id = c.ClassId })"
+                   class="class-card">
+
+                    <div class="class-avatar">
+                        <img src="@(string.IsNullOrEmpty(c.ImageUrl)
+                                                                 ? "/images/class-default.png"
+                                                                                              : c.ImageUrl)" />
+                    </div>
+
+                    <div class="class-info">
+                        <h3>@c.ClassName</h3>
+                        <p class="creator">
+                            <i class="fas fa-user"></i>
+                            @c.Owner.FullName
+                        </p>
+                    </div>
+
+                    <div class="class-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</div>
+<style>
+    .my-classes-container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .class-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .class-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px;
+        border-radius: 12px;
+        background: #fff;
+        text-decoration: none;
+        color: #222;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        transition: all 0.2s ease;
+    }
+
+        .class-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+
+    .class-avatar img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .class-info h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .creator {
+        margin-top: 6px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .class-arrow {
+        margin-left: auto;
+        color: #aaa;
+    }
+</style>

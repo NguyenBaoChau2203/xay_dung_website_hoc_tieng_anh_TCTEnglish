@@ -1,17 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TCTVocabulary.Models;
-
-public partial class Class
+﻿namespace TCTVocabulary.Models
 {
-    public int ClassId { get; set; }
+    public partial class Class
+    {
+        public int ClassId { get; set; }
 
-    public string ClassName { get; set; } = null!;
+        public string ClassName { get; set; } = null!;
 
-    public int OwnerId { get; set; }
+        public int OwnerId { get; set; }
 
-    public virtual User Owner { get; set; } = null!;
+        // Mật khẩu lớp (hash)
+        public string? PasswordHash { get; set; }
 
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public bool HasPassword { get; set; }
+
+        // Avatar lớp
+        public string? ImageUrl { get; set; }
+
+        // Mô tả lớp
+        public string? Description { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        // ===== Navigation =====
+        public virtual User Owner { get; set; } = null!;
+
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+        public virtual ICollection<ClassMessage> ClassMessages { get; set; } = new List<ClassMessage>();
+    }
 }
