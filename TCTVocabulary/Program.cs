@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Facebook;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages()
     .AddJsonOptions(options =>
@@ -39,6 +40,20 @@ builder.Services.AddAuthentication(options =>
     // Lấy từ appsettings.json hoặc User Secrets
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? "dummy-client-id";
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "dummy-client-secret";
+
+    // Request 'profile' scope so Google returns the picture field in UserInfo
+    options.Scope.Add("profile");
+
+    // Extract 'picture' from Google's UserInfo JSON and add it as a claim
+    options.Events.OnCreatingTicket = ctx =>
+    {
+        var pictureUrl = ctx.User.GetProperty("picture").GetString();
+        if (!string.IsNullOrEmpty(pictureUrl))
+        {
+            ctx.Identity?.AddClaim(new System.Security.Claims.Claim("picture", pictureUrl));
+        }
+        return System.Threading.Tasks.Task.CompletedTask;
+    };
 })
 .AddFacebook(options =>
 {

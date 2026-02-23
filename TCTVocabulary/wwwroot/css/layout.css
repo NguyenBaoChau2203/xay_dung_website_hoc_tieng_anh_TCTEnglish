@@ -115,7 +115,11 @@ body {
 .avatar {
     width: 44px;
     height: 44px;
-    background: #bfdbfe;
+    background-color: #bfdbfe;
+    /* fallback when no image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 50%;
 }
 
@@ -530,6 +534,8 @@ body {
 .avatar.small {
     width: 40px;
     height: 40px;
+    background-size: cover;
+    background-position: center;
 }
 
 .user-info-text .name {
