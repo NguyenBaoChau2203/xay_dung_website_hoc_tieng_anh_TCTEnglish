@@ -43,7 +43,9 @@
             @if (User.Identity!.IsAuthenticated)
             {
                 var avatarUrl = User.Claims.FirstOrDefault(c => c.Type == "AvatarUrl")?.Value;
-                var avatarStyle = !string.IsNullOrEmpty(avatarUrl) ? $"background-image: url('{avatarUrl}'); background-size: cover;" : "";
+                var avatarStyle = !string.IsNullOrEmpty(avatarUrl)
+                    ? $"background-image: url('{avatarUrl}'); background-size: cover; background-position: center; background-color: transparent;"
+                    : "";
 
                 <div class="user-menu-container">
                     <div class="user-profile" id="userProfileBtn">

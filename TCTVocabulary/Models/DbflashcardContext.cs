@@ -161,6 +161,9 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Streak).HasDefaultValue(0);
+            entity.Property(e => e.AvatarUrl)
+                .HasColumnType("nvarchar(max)")
+                .IsRequired(false);
         });
 
         modelBuilder.Entity<User>().HasData(
