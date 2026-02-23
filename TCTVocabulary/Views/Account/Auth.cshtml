@@ -18,6 +18,9 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         :root {
             /* Quizlet-inspired Palette */
@@ -452,13 +455,28 @@
                     </div>
                 }
 
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công!',
+                                text: '@TempData["SuccessMessage"]',
+                                confirmButtonColor: '#4255ff',
+                                confirmButtonText: 'Đăng nhập ngay'
+                            });
+                        });
+                    </script>
+                }
+
                 <!-- SOCIAL LOGIN (Shared) -->
                 <div class="social-buttons">
-                    <button class="btn-social" type="button" onclick="location.href='@Url.Action("ExternalLogin", "Account", new { provider = "Google" })'">
+                    <button class="btn-social" type="button" id="btn-google" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Google" })')">
                         <i class="fa-brands fa-google" style="color: #DB4437;"></i>
                         Tiếp tục với Google
                     </button>
-                    <button class="btn-social" type="button" onclick="location.href='@Url.Action("ExternalLogin", "Account", new { provider = "Facebook" })'">
+                    <button class="btn-social" type="button" id="btn-facebook" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Facebook" })')">
                         <i class="fa-brands fa-facebook" style="color: #4267B2;"></i>
                         Tiếp tục với Facebook
                     </button>
@@ -565,6 +583,30 @@
             }
         });
 
+        // Show loader overlay then redirect for external login (Google/Facebook)
+        function handleExternalLogin(url) {
+            const overlay = document.getElementById('loader-overlay');
+            const bar = document.getElementById('loading-fill');
+
+            // Reset progress bar
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+
+            // Show overlay immediately
+            overlay.classList.add('active');
+
+            // Animate progress bar (indeterminate feel)
+            setTimeout(() => {
+                bar.style.transition = 'width 3s ease-out';
+                bar.style.width = '80%';
+            }, 50);
+
+            // Redirect to external provider
+            setTimeout(() => {
+                window.location.href = url;
+            }, 150);
+        }
+
         function switchTab(tabName) {
             console.log("Đã chuyển tab"); // Debug
             const btnReg = document.getElementById('tab-register');
@@ -599,12 +641,19 @@
             // Validate Terms
             const terms = document.getElementById('terms');
             if (!terms.checked) {
-                alert('Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Điều khoản dịch vụ',
+                    text: 'Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.',
+                    confirmButtonColor: '#4255ff',
+                    confirmButtonText: 'Đã hiểu'
+                });
                 return;
             }
 
             // Show Loader and run animation
-            runLoaderAndSubmit('form-register');
+            // Submit form directly (no loader — user will be redirected to Login tab)
+            document.getElementById('form-register').submit();
         }
 
         function handleLogin(e) {
