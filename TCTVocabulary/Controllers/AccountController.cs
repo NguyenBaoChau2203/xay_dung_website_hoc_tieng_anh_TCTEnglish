@@ -79,10 +79,9 @@ namespace TCTVocabulary.Controllers
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            // 5. Auto login
-            await SignInUserAsync(newUser);
-
-            return RedirectToAction("Index", "Home");
+            // 5. Redirect to Login tab with success message
+            TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập bằng tài khoản vừa tạo.";
+            return RedirectToAction("Login");
         }
 
         // POST: /Account/Login
@@ -117,6 +116,17 @@ namespace TCTVocabulary.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Clear any external authentication cookies to prevent auto-reuse
+            // Delete common external cookie names
+            foreach (var cookie in HttpContext.Request.Cookies.Keys)
+            {
+                if (cookie.Contains("External") || cookie.Contains("Correlation"))
+                {
+                    Response.Cookies.Delete(cookie);
+                }
+            }
+
             return RedirectToAction("Login");
         }
 
@@ -128,66 +138,40 @@ namespace TCTVocabulary.Controllers
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account");
             var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+
+            // Force Google/Facebook to always show the account picker screen
+            properties.Items["prompt"] = "select_account";
+            properties.Items["login_hint"] = "";
+
             return Challenge(properties, provider);
         }
 
         // GET: /Account/ExternalLoginCallback
         public async Task<IActionResult> ExternalLoginCallback()
         {
+            // 1. Authenticate and retrieve the external login result
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            
-            // If checking cookie fail, try reading external info
-            // Note: Usually Challenge redirects back and signs in to an external cookie schema, 
-            // then we read it. But with minimal setup, let's see what info we get.
-            // Actually, we usually AuthenticateAsync with the external scheme or default if set.
-            
-            // However, simpler pattern:
-            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
-            // Wait, we probably haven't signed into Cookie yet. We need to read from the provider.
-            // When using AddGoogle, the default callback handles the exchange and signs in 'External' persistence if configured,
-            // or we manually handle it.
-            
-            // Simplest way: Check ClaimsPrincipal from HttpContext.User if default scheme handled it?
-            // No, strictly we should use:
-            // var info = await HttpContext.AuthenticateAsync("Google"); // But we don't know which one.
-            
-            // Better approach:
-            // The default callback path for Google is /signin-google. The middleware handles it.
-            // BUT we used Challenge with a RedirectUri to THIS method.
-            // So we need to retrieve the user info here.
-            
-            // Actually, the Challenge sets the return URL. The External Provider calls /signin-google, which does the handshake,
-            // then the GoogleHandler redirects to our `RedirectUri` (ExternalLoginCallback).
-            // At this point, the user IS authenticated in the *ExternalCookie* usually, OR we have the claims in context if we set it up right.
-            
-            // A helper to get external login info:
-            // We usually can just call HttpContext.AuthenticateAsync() if we don't know the scheme,
-            // but standard is to use a temporary scheme or just check User.Identity.
-            
-            // The issue: AddGoogle by default uses "Cookies" if DefaultSignInScheme is Cookies.
-            // So `User` should already be populated with Google claims!
-            
-            if (!User.Identity!.IsAuthenticated)
+
+            // If authentication failed or no principal, redirect back to login
+            if (result?.Succeeded != true || result.Principal == null)
             {
-                 // Check if we have specific provider info?
-                 // Sometimes it needs: await HttpContext.AuthenticateAsync("Google");
-                 // Let's assume standard behavior: User is authenticated via Cookie (transiently) or we need to extract claims.
-                 return RedirectToAction("Login");
+                return RedirectToAction("Login");
             }
 
-            // Extract info
-            var emailClaim = result.Principal.FindFirst(ClaimTypes.Email)?.Value 
-                             ?? result.Principal.FindFirst("email")?.Value
-                             ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-    
-            var nameClaim = result.Principal.FindFirst(ClaimTypes.Name)?.Value 
-                            ?? result.Principal.FindFirst("name")?.Value
-                            ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            // 2. Extract claims from the authenticated principal
+            var principal = result.Principal;
 
-            // Get Picture from Google (Standard claim 'picture')
-            var pictureClaim = result.Principal.FindFirst("picture")?.Value 
-                               ?? result.Principal.FindFirst("urn:google:picture")?.Value
-                               ?? result.Principal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/picture")?.Value;
+            var emailClaim = principal.FindFirst(ClaimTypes.Email)?.Value
+                             ?? principal.FindFirst("email")?.Value;
+
+            var nameClaim = principal.FindFirst(ClaimTypes.Name)?.Value
+                            ?? principal.FindFirst("name")?.Value;
+
+            // 3. Extract Google profile picture URL (handles multiple claim types gracefully)
+            var pictureClaim = principal.FindFirst("picture")?.Value
+                               ?? principal.FindFirst("urn:google:picture")?.Value
+                               ?? principal.FindFirst("image")?.Value
+                               ?? principal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/picture")?.Value;
 
             if (string.IsNullOrEmpty(emailClaim))
             {
@@ -195,26 +179,27 @@ namespace TCTVocabulary.Controllers
                 return View("Auth");
             }
 
-            // Check database
+            // 4. Check if user already exists in database
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailClaim);
+
             if (user == null)
             {
-                // Auto Register
+                // New user → auto-register with Google avatar as default
                 user = new User
                 {
                     Email = emailClaim,
                     FullName = nameClaim ?? "Social User",
-                    PasswordHash = "SOCIAL_LOGIN_" + Guid.NewGuid().ToString(), // Dummy password
+                    PasswordHash = "SOCIAL_LOGIN_" + Guid.NewGuid().ToString(),
                     CreatedAt = DateTime.Now,
                     Role = "User",
-                    AvatarUrl = pictureClaim // Save Avatar
+                    AvatarUrl = pictureClaim // Save Google profile picture as default avatar
                 };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                // Optional: Update Avatar if changed?
+                // Existing user → update AvatarUrl if Google picture has changed
                 if (!string.IsNullOrEmpty(pictureClaim) && user.AvatarUrl != pictureClaim)
                 {
                     user.AvatarUrl = pictureClaim;
@@ -222,7 +207,7 @@ namespace TCTVocabulary.Controllers
                 }
             }
 
-            // Sign In with our App's Claims (consistency)
+            // 5. Sign in with our app's cookie claims
             await SignInUserAsync(user);
 
             return RedirectToAction("Index", "Home");
