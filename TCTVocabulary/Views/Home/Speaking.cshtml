@@ -1,0 +1,759 @@
+@model TCTVocabulary.Models.ViewModels.StudyViewModel
+@{
+    ViewData["Title"] = "Luyện nói: " + (Model?.Set?.SetName ?? "Học phần");
+}
+
+<div class="study-wrapper">
+    <!-- NAV -->
+    <div class="study-nav">
+        <div class="nav-left">
+            <a asp-action="FolderDetail"
+               asp-route-id="@(Model?.Set?.FolderId ?? 0)"
+               class="btn-exit" title="Thoát">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <h3 class="set-title">Luyện nói: @(Model?.Set?.SetName ?? "Học phần")</h3>
+            <div class="progress-wrapper">
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="current-index">1</span> /
+                    <strong>@(Model?.Cards?.Count ?? 0)</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="tool-btn" id="studyModeBtn" title="Chuyển sang Học thẻ" onclick="location.href='@Url.Action("Study", "Home", new { id = Model?.Set?.SetId })'">
+                <i class="fas fa-layer-group"></i>
+            </button>
+            <button class="tool-btn" id="fullscreenBtn" title="Toàn màn hình">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- SPEAKING CONTAINER -->
+    <div class="speaking-container">
+        <!-- TERM DISPLAY -->
+        <div class="term-display-card">
+            <div class="card-tag">ĐỌC TO THUẬT NGỮ NÀY</div>
+            
+            <button class="btn-speak-icon"
+                    onclick="playAudio(currentTerm())"
+                    title="Nghe mẫu">
+                <i class="fas fa-volume-up"></i>
+            </button>
+
+            <div class="term-text" id="term-text">
+                @(Model?.Cards?.Any() == true ? Model.Cards[0].Term : "Chưa có dữ liệu")
+            </div>
+            
+            <div class="definition-hint" id="definition-text">
+                @(Model?.Cards?.Any() == true ? Model.Cards[0].Definition : "")
+            </div>
+
+            <!-- FEEDBACK AREA -->
+            <div class="feedback-area" id="feedback-area">
+                <div class="transcript-display" id="transcript-display"></div>
+                <div class="result-message" id="result-message"></div>
+                <div class="similarity-score" id="similarity-score" style="display: none;">Độ chính xác: <span>0%</span></div>
+            </div>
+        </div>
+
+        <!-- MIRCROPHONE CONTROL -->
+        <div class="microphone-control">
+            <div class="mic-ripple-container" id="mic-container">
+                <div class="mic-ripple"></div>
+                <div class="mic-ripple"></div>
+                <button class="btn-mic" id="btn-mic">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            <div class="mic-instruction">
+                Nhấn giữ <kbd>Space</kbd> hoặc nút Mic để nói
+            </div>
+        </div>
+
+        <!-- ARROW NAVIGATION -->
+        <div class="control-group arrows-only">
+            <button class="btn-arrow" id="prevBtn" title="Thẻ trước">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="btn-arrow" id="nextBtn" title="Thẻ sau">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL THỐNG KÊ (Reuse from Study) -->
+    <div class="stats-modal" id="statsModal" style="display:none" onclick="closeStats()">
+        <div class="stats-content" onclick="event.stopPropagation()">
+            <h2>Hoàn thành Luyện nói 🎉</h2>
+            <p>Bạn đã hoàn thành tất cả các thẻ trong học phần này.</p>
+
+            <div class="stats-actions" style="margin-top: 25px;">
+                <a href="javascript:void(0)"
+                   class="btn-solid-blue"
+                   onclick="location.reload()"
+                   style="text-decoration:none; display:inline-block; margin-bottom: 10px; width: 100%;">
+                    <i class="fas fa-redo"></i> Luyện nói lại
+                </a>
+
+                <a asp-action="FolderDetail"
+                   asp-route-id="@(Model?.Set?.FolderId ?? 0)"
+                   class="btn-flat"
+                   style="text-decoration:none; display:inline-block; width: 100%; box-sizing:border-box;">
+                    Quay về thư mục
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+<style>
+:root {
+    --primary: #4255ff;
+    --primary-hover: #2e3ed1;
+    --secondary: #10b981; /* Green for success */
+    --danger: #ef4444; /* Red for failure */
+    --bg-body: #f6f7fb;
+    --text-dark: #1a1d23;
+    --text-muted: #94a3b8;
+    --card-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+body {
+    background: var(--bg-body);
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.study-wrapper {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+    min-height: 85vh;
+}
+
+/* NAV */
+.study-nav {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.btn-exit, .tool-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+.btn-exit:hover { color: var(--danger); }
+.tool-btn:hover { background: var(--primary); color: white; }
+
+.nav-right {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.set-title {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.progress-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-bar-container {
+    width: 240px;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width .3s;
+}
+
+/* SPEAKING CONTAINER */
+.speaking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* TERM DISPLAY */
+.term-display-card {
+    width: 100%;
+    max-width: 750px;
+    min-height: 300px;
+    background: white;
+    border-radius: 28px;
+    box-shadow: var(--card-shadow);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.card-tag {
+    position: absolute;
+    top: 30px;
+    font-size: .75rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 2px;
+}
+
+.btn-speak-icon {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-speak-icon:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.term-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 20px 0 10px;
+    word-break: break-word;
+}
+
+.definition-hint {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* FEEDBACK AREA */
+.feedback-area {
+    margin-top: 20px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.transcript-display {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    font-style: italic;
+    min-height: 36px;
+    margin-bottom: 5px;
+}
+
+.result-message {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.result-message.success {
+    background: #dcfce7;
+    color: #16a34a;
+    opacity: 1;
+}
+
+.result-message.error {
+    background: #fee2e2;
+    color: #ef4444;
+    opacity: 1;
+}
+
+.similarity-score {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+.similarity-score span {
+    font-weight: 700;
+}
+
+/* MICROPHONE CONTROL */
+.microphone-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.mic-ripple-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-mic {
+    position: relative;
+    z-index: 2;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #4255ff, #5b6cff);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(66,85,255,0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-mic:hover {
+    transform: scale(1.05);
+}
+
+.btn-mic:active, .btn-mic.recording {
+    transform: scale(0.95);
+    background: #ef4444;
+    box-shadow: 0 10px 25px rgba(239,68,68,0.4);
+}
+
+/* RIPPLE ANIMATION */
+.mic-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(66,85,255,0.3);
+    z-index: 1;
+    opacity: 0;
+}
+
+.mic-ripple-container.recording .mic-ripple {
+    animation: ripple 1.5s infinite ease-out;
+    background: rgba(239,68,68,0.3);
+}
+
+.mic-ripple-container.recording .mic-ripple:nth-child(2) {
+    animation-delay: 0.75s;
+}
+
+@@keyframes ripple {
+    0% {
+        width: 90px;
+        height: 90px;
+        opacity: 1;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+.mic-instruction {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+kbd {
+    background: #e2e8f0;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: .8rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ARROWS */
+.control-group {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.btn-arrow {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-arrow:hover:not(:disabled) {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* MODAL / BUTTON STYLES OVERRIDE */
+.btn-solid-blue {
+    background: #4255ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+.btn-solid-blue:hover { background: #2e3ed1; }
+
+.btn-flat {
+    background: #f3f4f6;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text-dark);
+}
+.btn-flat:hover { background: #e5e7eb; }
+
+.stats-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+.stats-content {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+</style>
+}
+
+@section Scripts {
+<script>
+    // DATA INITIALIZATION
+    const cards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Cards));
+    let currentIndex = 0;
+    
+    // UI ELEMENTS
+    const termText = document.getElementById('term-text');
+    const definitionText = document.getElementById('definition-text');
+    const currentIndexSpan = document.getElementById('current-index');
+    const progressFill = document.getElementById('progress-fill');
+    
+    const btnMic = document.getElementById('btn-mic');
+    const micContainer = document.getElementById('mic-container');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    const transcriptDisplay = document.getElementById('transcript-display');
+    const resultMessage = document.getElementById('result-message');
+    const similarityScore = document.getElementById('similarity-score');
+    
+    // SPEECH RECOGNITION SETUP
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    let isRecording = false;
+
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = true;
+        recognition.continuous = false;
+
+        recognition.onstart = function() {
+            isRecording = true;
+            btnMic.classList.add('recording');
+            micContainer.classList.add('recording');
+            
+            // Reset feedback
+            transcriptDisplay.textContent = 'Đang nghe...';
+            transcriptDisplay.style.color = '#94a3b8';
+            resultMessage.className = 'result-message';
+            resultMessage.innerHTML = '';
+            similarityScore.style.display = 'none';
+        };
+
+        recognition.onresult = function(event) {
+            let finalTranscript = '';
+            let interimTranscript = '';
+            
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
+            }
+            
+            // Hiển thị text theo thời gian thực
+            transcriptDisplay.style.color = 'var(--text-dark)';
+            transcriptDisplay.textContent = finalTranscript || interimTranscript;
+
+            // Xử lý khi có kết quả hoàn chỉnh
+            if (finalTranscript) {
+                checkPronunciation(finalTranscript);
+            }
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error', event.error);
+            if(event.error === 'no-speech') {
+                 transcriptDisplay.textContent = 'Không nhận diện được giọng nói.';
+            } else {
+                 transcriptDisplay.textContent = `Lỗi: ${event.error}`;
+            }
+            stopRecording();
+        };
+
+        recognition.onend = function() {
+            stopRecording();
+        };
+    } else {
+        alert("Trình duyệt của bạn không hỗ trợ Web Speech API. Vui lòng sử dụng Chrome hoặc Edge để dùng tính năng này.");
+        btnMic.disabled = true;
+    }
+
+    // INITIAL RENDER
+    updateDisplay();
+
+    // NAVIGATION FUNCTIONS
+    function updateDisplay(animateDirection = null) {
+        const card = cards[currentIndex];
+        
+        // Term update
+        termText.textContent = card.Term;
+        definitionText.textContent = card.Definition;
+        
+        // Update stats
+        currentIndexSpan.textContent = currentIndex + 1;
+        progressFill.style.width = ((currentIndex + 1) / cards.length) * 100 + '%';
+        
+        // Update Buttons
+        prevBtn.disabled = currentIndex === 0;
+        
+        // Reset feedback
+        transcriptDisplay.textContent = '';
+        resultMessage.className = 'result-message';
+        similarityScore.style.display = 'none';
+    }
+
+    function goNext() {
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            updateDisplay();
+        } else {
+            // Hiển thị modal hoàn thành
+            document.getElementById('statsModal').style.display = 'flex';
+        }
+    }
+
+    function goPrev() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateDisplay();
+        }
+    }
+
+    // EVENT LISTENERS
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
+
+    // FULLSCREEN HANDLER
+    document.getElementById('fullscreenBtn')?.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+            this.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+                this.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    });
+
+    // PLAY AUDIO
+    function currentTerm() {
+        return cards[currentIndex].Term;
+    }
+
+    function playAudio(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Đọc chậm một xíu cho dễ nghe
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    // RECORDING HANDLERS
+    function startRecording() {
+        if (!recognition || isRecording) return;
+        try {
+            recognition.start();
+        } catch (e) {
+            // Xử lý ném lỗi khi recognition đang start rồi
+        }
+    }
+    
+    function stopRecording() {
+        if (!recognition || !isRecording) return;
+        isRecording = false;
+        recognition.stop();
+        btnMic.classList.remove('recording');
+        micContainer.classList.remove('recording');
+    }
+
+    // Mouse / Touch Events for Mic Button
+    btnMic.addEventListener('mousedown', startRecording);
+    btnMic.addEventListener('mouseup', stopRecording);
+    btnMic.addEventListener('mouseleave', stopRecording);
+    
+    btnMic.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(); });
+    btnMic.addEventListener('touchend', (e) => { e.preventDefault(); stopRecording(); });
+    btnMic.addEventListener('touchcancel', (e) => { e.preventDefault(); stopRecording(); });
+
+    // Keyboard Events (Spacebar)
+    window.addEventListener('keydown', (e) => {
+        // Tránh kích hoạt nếu đang trong input
+        if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') return;
+        
+        if (e.code === 'Space') {
+            e.preventDefault(); // Tránh scroll trang
+            startRecording();
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        if (e.code === 'Space') {
+            e.preventDefault();
+            stopRecording();
+        }
+    });
+
+    // SIMILARITY AND CHECKING LOGIC
+    function checkPronunciation(spokenText) {
+        const expectedTerm = cards[currentIndex].Term;
+        const similarity = calculateSimilarity(spokenText, expectedTerm);
+        
+        similarityScore.querySelector('span').textContent = Math.round(similarity * 100) + '%';
+        similarityScore.style.display = 'block';
+
+        if (similarity >= 0.8) { // Mức độ chấp nhận là 80%
+            resultMessage.textContent = 'Chính xác! 🎉';
+            resultMessage.className = 'result-message success';
+            
+            // Tự động chuyển thẻ sau 1.5s nếu đúng
+            setTimeout(() => {
+                goNext();
+            }, 1500);
+        } else {
+            resultMessage.textContent = 'Chưa đúng, thử lại nhé!';
+            resultMessage.className = 'result-message error';
+        }
+    }
+
+    function prepareText(text) {
+        // Loại bỏ dấu câu và khoảng trắng thừa, chuyển thành chữ thường
+        return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g,"").replace(/\s{2,}/g," ").trim();
+    }
+
+    function calculateSimilarity(str1, str2) {
+        str1 = prepareText(str1);
+        str2 = prepareText(str2);
+        
+        if (str1 === str2) return 1.0;
+        
+        // Đếm số từ trùng khớp căn bản
+        const words1 = str1.split(' ');
+        const words2 = str2.split(' ');
+        
+        let matches = 0;
+        for (let word of words1) {
+            if (words2.includes(word)) {
+                matches++;
+                // Xóa từ đã khớp để không đếm hai lần
+                words2.splice(words2.indexOf(word), 1);
+            }
+        }
+        
+        // Tính điểm dựa trên số từ khớp chia cho số từ dài hơn
+        const maxWords = Math.max(words1.length, str2.split(' ').length);
+        if (maxWords === 0) return 0;
+        
+        return matches / maxWords;
+    }
+    
+    function closeStats() {
+        document.getElementById('statsModal').style.display = 'none';
+    }
+</script>
+}

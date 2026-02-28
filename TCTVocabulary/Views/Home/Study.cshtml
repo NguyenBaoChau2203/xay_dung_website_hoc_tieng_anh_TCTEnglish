@@ -34,9 +34,13 @@
         </div>
         <div class="nav-right">
             <button id="darkToggle">🌙</button>
+            <button class="tool-btn" id="speakingModeBtn" title="Chuyển sang Luyện nói" onclick="location.href='@Url.Action("Speaking", "Home", new { id = Model?.Set?.SetId })'">
+                <i class="fas fa-microphone"></i>
+            </button>
             <button class="tool-btn" id="fullscreenBtn" title="Toàn màn hình">
                 <i class="fas fa-expand"></i>
             </button>
+        </div>
         </div>
     </div>
 
@@ -151,6 +155,12 @@
             <h3>Danh sách từ trong học phần</h3>
             <a asp-action="EditSet" asp-route-id="@Model.Set.SetId" class="btn-edit-list">
                 <i class="fas fa-pen"></i> <span>Chỉnh sửa</span>
+
+            <a asp-action="EditSet"
+               asp-route-id="@(Model?.Set?.SetId ?? 0)"
+               class="btn-edit-list">
+                <i class="fas fa-pen"></i>
+                <span>Chỉnh sửa</span>
             </a>
         </div>
         <div class="wordlist">

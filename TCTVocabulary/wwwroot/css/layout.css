@@ -174,6 +174,88 @@ body {
     color: #4255ff;
 }
 
+/* Sidebar Dropdown Menu */
+.nav-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-radius: 14px;
+    color: #374151;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.nav-dropdown-item:hover {
+    background: #f3f4f6;
+}
+
+.nav-dropdown-item.active {
+    color: #4255ff;
+}
+
+.nav-dropdown-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-dropdown-title i {
+    font-size: 20px;
+    min-width: 26px;
+}
+
+.dropdown-arrow {
+    font-size: 14px;
+    color: #6b7280;
+    transition: transform 0.3s;
+}
+
+.nav-dropdown.expanded .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease-in-out;
+}
+
+.nav-dropdown-menu.show {
+    max-height: 400px;
+}
+
+.nav-sub-item {
+    padding: 12px 18px 12px 64px; /* thụt lề vào trong */
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-sub-item:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.nav-sub-item.active {
+    background: #eef2ff;
+    color: #4255ff;
+}
+
 /* Divider */
 .sidebar hr {
     border: none;
