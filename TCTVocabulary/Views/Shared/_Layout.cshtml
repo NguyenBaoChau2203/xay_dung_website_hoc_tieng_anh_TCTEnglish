@@ -90,10 +90,35 @@
         <!-- ================= SIDEBAR ================= -->
         <aside class="sidebar">
             <nav>
-                <a class="nav-item" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
+                <div class="nav-dropdown" id="coursesDropdown">
+                    <div class="nav-dropdown-item" id="coursesDropdownBtn">
+                        <div class="nav-dropdown-title">
+                            <i class="fas fa-book-open"></i>
+                            <span>Courses</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+                    
+                    <div class="nav-dropdown-menu" id="coursesDropdownMenu">
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Grammar">
+                            <span>Grammar</span>
+                        </a>
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Listening">
+                            <span>Listening</span>
+                        </a>
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Reading">
+                            <span>Reading</span>
+                        </a>
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Writing">
+                            <span>Writing <i class="fas fa-fire" style="color:#f97316; font-size:14px; margin-left:6px;"></i></span>
+                        </a>
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Speaking">
+                            <span>Speaking</span>
+                        </a>
+                    </div>
+                </div>
+
+                <hr style="margin: 10px 0;" />
 
                 <a class="nav-item">
                     <i class="fas fa-layer-group"></i>

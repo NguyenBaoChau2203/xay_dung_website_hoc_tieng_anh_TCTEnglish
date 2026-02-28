@@ -105,4 +105,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // --- SIDEBAR DROPDOWN LOGIC ---
+    const coursesDropdownBtn = document.getElementById("coursesDropdownBtn");
+    const coursesDropdown = document.getElementById("coursesDropdown");
+    const coursesDropdownMenu = document.getElementById("coursesDropdownMenu");
+
+    if (coursesDropdownBtn && coursesDropdown && coursesDropdownMenu) {
+        // Expand the dropdown by default if one of the links is active
+        const hasActiveSub = coursesDropdownMenu.querySelector('.active');
+        if (hasActiveSub) {
+            coursesDropdown.classList.add("expanded");
+            coursesDropdownMenu.classList.add("show");
+        }
+
+        coursesDropdownBtn.addEventListener("click", () => {
+            coursesDropdown.classList.toggle("expanded");
+            coursesDropdownMenu.classList.toggle("show");
+        });
+    }
 });

@@ -252,6 +252,59 @@ namespace TCTVocabulary.Controllers
 
             return View(vm);
         }
+
+        public IActionResult Speaking(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                // Nếu click từ Sidebar thì chưa có id cụ thể của Học phần (Set).
+                // Chuyển hướng người dùng về trang Thư mục để họ chọn một Học phần.
+                return RedirectToAction("Folder");
+            }
+
+            var set = _context.Sets
+                .Include(s => s.Cards)
+                .FirstOrDefault(s => s.SetId == id);
+
+            if (set == null)
+            {
+                return NotFound();
+            }
+
+            if (!set.Cards.Any())
+            {
+                return RedirectToAction("FolderDetail", new { id = set.FolderId });
+            }
+
+            var vm = new StudyViewModel
+            {
+                Set = set,
+                Cards = set.Cards.ToList()
+            };
+
+            return View(vm);
+        }
+
+        public IActionResult Listening()
+        {
+            return View();
+        }
+
+        public IActionResult Grammar()
+        {
+            return View();
+        }
+
+        public IActionResult Reading()
+        {
+            return View();
+        }
+
+        public IActionResult Writing()
+        {
+            return View();
+        }
+
         // GET: Home/EditSet/5
 public IActionResult EditSet(int id)
 {
