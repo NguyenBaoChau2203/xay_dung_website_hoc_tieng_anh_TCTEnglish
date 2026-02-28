@@ -453,5 +453,32 @@ public IActionResult EditSet(int SetId, string SetName, string Description, stri
 
             return View(classes);
         }
+
+        // Action cho Write Mode
+        public IActionResult WriteMode(int id)
+        {
+            var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
+            if (set == null) return NotFound();
+            var vm = new StudyViewModel { Set = set, Cards = set.Cards.ToList() };
+            return View(vm);
+        }
+
+        // Action cho Quiz Mode
+        public IActionResult QuizMode(int id)
+        {
+            var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
+            if (set == null) return NotFound();
+            var vm = new StudyViewModel { Set = set, Cards = set.Cards.ToList() };
+            return View(vm);
+        }
+        public IActionResult MatchingMode(int id)
+        {
+            var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
+            if (set == null) return NotFound();
+            var vm = new StudyViewModel { Set = set, Cards = set.Cards.ToList() };
+            return View(vm);
+        }
+
+      
     }
 }
