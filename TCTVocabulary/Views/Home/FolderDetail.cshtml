@@ -97,6 +97,11 @@
                             <span class="pill-count">@(set.Cards.Count) thuật ngữ</span>
                         </div>
                         <h4 class="set-name-text">@set.SetName</h4>
+                        <div class="set-quick-actions" style="margin-top: 15px; display: flex; gap: 10px;">
+                             <button class="btn-flat" style="padding: 6px 14px; font-size: 0.85rem;" onclick="event.stopPropagation(); location.href='@Url.Action("Speaking", "Home", new { id = set.SetId })'">
+                                 <i class="fas fa-microphone"></i> Luyện nói
+                             </button>
+                        </div>
                     </div>
 
                     @* ===== MENU SET CHỈ HIỆN KHI LÀ OWNER ===== *@
