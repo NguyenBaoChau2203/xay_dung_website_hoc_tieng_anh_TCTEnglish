@@ -27,6 +27,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<SavedFolder> SavedFolders { get; set; }
     public virtual DbSet<ClassMessage> ClassMessages { get; set; }
+    public virtual DbSet<SpeakingVideo> SpeakingVideos { get; set; }
+    public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -224,6 +226,28 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasColumnType("nvarchar(max)")
                 .IsRequired(false);
+        });
+
+        modelBuilder.Entity<SpeakingVideo>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Title).IsRequired().HasMaxLength(255);
+            entity.Property(e => e.YoutubeId).IsRequired().HasMaxLength(50);
+            entity.Property(e => e.ThumbnailUrl).HasMaxLength(500);
+            entity.Property(e => e.Level).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<SpeakingSentence>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Text).IsRequired();
+            entity.Property(e => e.VietnameseMeaning).IsRequired();
+
+            entity.HasOne(d => d.SpeakingVideo)
+                .WithMany(p => p.SpeakingSentences)
+                .HasForeignKey(d => d.VideoId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_SpeakingSentences_SpeakingVideos");
         });
 
         modelBuilder.Entity<User>().HasData(
