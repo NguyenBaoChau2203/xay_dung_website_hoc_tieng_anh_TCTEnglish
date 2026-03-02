@@ -18,19 +18,32 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var videos = await _context.SpeakingVideos
-                .Select(v => new SpeakingVideoViewModel
-                {
-                    Id = v.Id,
-                    Title = v.Title,
-                    YoutubeId = v.YoutubeId,
-                    Level = v.Level,
-                    ThumbnailUrl = v.ThumbnailUrl,
-                    SentenceCount = v.SpeakingSentences.Count
-                })
+            var playlists = await _context.SpeakingPlaylists
+                .Include(p => p.SpeakingVideos)
                 .ToListAsync();
 
-            return View(videos);
+            var viewModel = new SpeakingIndexViewModel
+            {
+                Playlists = playlists.Select(p => new SpeakingPlaylistViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    ThumbnailUrl = p.ThumbnailUrl,
+                    Videos = p.SpeakingVideos.Select(v => new SpeakingVideoViewModel
+                    {
+                        Id = v.Id,
+                        Title = v.Title,
+                        YoutubeId = v.YoutubeId,
+                        Level = v.Level,
+                        Duration = v.Duration,
+                        ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
+                        SentenceCount = v.SpeakingSentences?.Count ?? 0
+                    }).ToList()
+                }).ToList()
+            };
+
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Practice(int id)
