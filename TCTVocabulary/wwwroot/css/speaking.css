@@ -1,0 +1,100 @@
+/* General Layout */
+.speaking-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.speaking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.speaking-card .card-img-top {
+    object-fit: cover;
+    height: 180px;
+    width: 100%;
+}
+
+/* Practice Container Layout */
+.speaking-practice-container {
+    height: calc(100vh - 100px); /* Adjust based on your header's height */
+}
+
+/* Video Wrapper for 16:9 Aspect Ratio */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Transcript Container */
+.transcript-container {
+    max-height: calc(100vh - 150px);
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* Sentence Item styling */
+.sentence-item {
+    transition: background-color 0.2s, transform 0.1s;
+    border-left: 4px solid transparent !important;
+}
+
+.sentence-item:hover {
+    background-color: #f1f3f5 !important;
+}
+
+.sentence-item.active {
+    border-left-color: #4255ff !important; /* using original layout primary color */
+    background-color: #e0e7ff !important;
+}
+
+.english-text {
+    color: #111827; /* dark text */
+}
+
+.vietnamese-text {
+    font-size: 0.95rem;
+    color: #6b7280; /* secondary gray */
+}
+
+/* Controls */
+.video-controls {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+/* Custom Scrollbar for Transcript */
+.transcript-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.transcript-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+ 
+.transcript-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+}
+
+.transcript-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
