@@ -1,43 +1,120 @@
-@model IEnumerable<TCTVocabulary.ViewModel.SpeakingVideoViewModel>
+@model TCTVocabulary.ViewModel.SpeakingIndexViewModel
 @{
-    ViewData["Title"] = "Speaking";
+    ViewData["Title"] = "Speaking Practice";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/speaking.css" />
-    <style>
-        .speaking-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
 }
 
-<div class="container mt-4">
-    <div class="speaking-header">
-        <h1 class="fw-bold fs-2"><i class="fas fa-microphone-alt text-primary me-2"></i> Speaking Library</h1>
+<div class="speaking-container px-3 px-lg-4 mt-4">
+
+    @* ===== PAGE HEADER ===== *@
+    <div class="speaking-page-header mb-4">
+        <div>
+            <h1 class="speaking-page-title">
+                <i class="fas fa-headphones-alt me-2"></i>Learning Speaking through Playlists
+            </h1>
+            <p class="speaking-page-subtitle">Shadow real conversations. Train your ear and your mouth.</p>
+        </div>
+        <div class="speaking-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="videoSearchInput" placeholder="Search videos..." autocomplete="off" />
+        </div>
     </div>
-    
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var video in Model)
-        {
-            <div class="col">
-                <div class="card h-100 speaking-card">
-                    <img src="@video.ThumbnailUrl" class="card-img-top" alt="@video.Title">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark">@video.Title</h5>
-                        <div class="mb-3 mt-2">
-                            <span class="badge bg-primary me-1">@video.Level</span>
-                            <span class="badge bg-secondary"><i class="fas fa-list-ul me-1"></i> @video.SentenceCount sentences</span>
-                        </div>
-                        <a asp-controller="Speaking" asp-action="Practice" asp-route-id="@video.Id" class="btn btn-primary mt-auto w-100 fw-bold">Start Practice</a>
-                    </div>
+
+    @* ===== PLAYLIST SECTIONS ===== *@
+    @foreach (var playlist in Model.Playlists)
+    {
+        <section class="playlist-section mb-5">
+            @* Playlist Header *@
+            <div class="playlist-header mb-3">
+                <div class="playlist-header-left">
+                    <h2 class="playlist-name">@playlist.Name</h2>
+                    @if (!string.IsNullOrEmpty(playlist.Description))
+                    {
+                        <p class="playlist-description">@playlist.Description</p>
+                    }
                 </div>
+                <a href="#" class="view-all-link">
+                    View All <i class="fas fa-arrow-right ms-1"></i>
+                </a>
             </div>
-        }
-    </div>
+
+            @* Video Grid *@
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3 video-grid">
+                @foreach (var video in playlist.Videos)
+                {
+                    var levelClass = video.Level?.ToLower() switch {
+                        "easy" => "level-easy",
+                        "hard" => "level-hard",
+                        _ => "level-medium"
+                    };
+
+                    <div class="col video-col">
+                        <a href="@Url.Action("Practice", "Speaking", new { id = video.Id })" class="video-card-anchor">
+                            <div class="video-card">
+
+                                @* Thumbnail *@
+                                <div class="video-thumbnail">
+                                    <img src="@video.ThumbnailUrl" alt="@video.Title" loading="lazy" />
+                                    <span class="video-level-badge @levelClass">@video.Level</span>
+                                    <div class="play-overlay">
+                                        <div class="play-btn-circle">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @* Info *@
+                                <div class="video-info">
+                                    <h3 class="video-title" title="@video.Title">@video.Title</h3>
+                                    <div class="video-meta">
+                                        @if (!string.IsNullOrEmpty(video.Duration))
+                                        {
+                                            <span class="meta-chip">
+                                                <i class="far fa-clock"></i> @video.Duration
+                                            </span>
+                                        }
+                                        @if (video.SentenceCount > 0)
+                                        {
+                                            <span class="meta-chip">
+                                                <i class="fas fa-align-left"></i> @video.SentenceCount sentences
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    @if (!Model.Playlists.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-video fa-3x text-muted mb-3"></i>
+            <p class="text-muted fs-5">No playlists yet. Check back soon!</p>
+        </div>
+    }
+
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Live search: filter video cards by title
+        document.getElementById('videoSearchInput').addEventListener('input', function () {
+            const term = this.value.toLowerCase().trim();
+            document.querySelectorAll('.video-col').forEach(col => {
+                const title = col.querySelector('.video-title')?.textContent.toLowerCase() ?? '';
+                col.style.display = title.includes(term) ? '' : 'none';
+            });
+        });
+    </script>
+}

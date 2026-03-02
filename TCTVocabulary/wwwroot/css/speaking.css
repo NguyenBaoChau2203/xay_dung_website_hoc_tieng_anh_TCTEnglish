@@ -1,36 +1,299 @@
-/* General Layout */
-.speaking-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    overflow: hidden;
+/* ==============================================
+   Speaking Module — speaking.css
+   All styles isolated to this module
+   ============================================== */
+
+/* ---- Container ---- */
+.speaking-container {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.speaking-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* ---- Page Header ---- */
+.speaking-page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
 }
 
-.speaking-card .card-img-top {
-    object-fit: cover;
-    height: 180px;
+.speaking-page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 4px;
+    line-height: 1.25;
+}
+
+.speaking-page-subtitle {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ---- Search Bar ---- */
+.speaking-search {
+    position: relative;
+    min-width: 260px;
+}
+
+.speaking-search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.speaking-search input {
     width: 100%;
+    padding: 10px 16px 10px 40px;
+    border-radius: 999px;
+    border: 1.5px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 0.9rem;
+    color: #111827;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
-/* Practice Container Layout */
+.speaking-search input:focus {
+    outline: none;
+    border-color: #4255ff;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(66, 85, 255, 0.12);
+}
+
+/* ---- Playlist Section ---- */
+.playlist-section {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 32px;
+}
+
+.playlist-section:last-child {
+    border-bottom: none;
+}
+
+/* ---- Playlist Header ---- */
+.playlist-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.playlist-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.playlist-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 4px 0 0;
+}
+
+.view-all-link {
+    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4255ff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.15s;
+}
+
+.view-all-link:hover {
+    opacity: 0.75;
+    color: #4255ff;
+    text-decoration: none;
+}
+
+/* ---- Video Card Anchor ---- */
+.video-card-anchor {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.video-card-anchor:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---- Video Card ---- */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ---- Thumbnail ---- */
+.video-thumbnail {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    overflow: hidden;
+    background: #1a1a2e;
+    border-radius: 16px;
+    flex-shrink: 0;
+}
+
+.video-thumbnail img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+    transform: scale(1.06);
+}
+
+/* ---- Play Overlay ---- */
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-btn-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #111827;
+    padding-left: 4px;
+    /* optical centering of play icon */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transform: scale(0.85);
+    transition: transform 0.25s ease;
+}
+
+.video-card:hover .play-btn-circle {
+    transform: scale(1);
+}
+
+/* ---- Level Badge ---- */
+.video-level-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+    z-index: 2;
+}
+
+.level-easy {
+    background-color: rgba(16, 185, 129, 0.88);
+}
+
+.level-medium {
+    background-color: rgba(245, 158, 11, 0.88);
+}
+
+.level-hard {
+    background-color: rgba(239, 68, 68, 0.88);
+}
+
+/* ---- Video Info ---- */
+.video-info {
+    padding: 14px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.video-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.45;
+    margin: 0 0 10px;
+
+    /* 2-line clamp */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #f3f4f6;
+    color: #6b7280;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   Practice Page — Split Screen Layout
+   ============================================ */
 .speaking-practice-container {
-    height: calc(100vh - 100px); /* Adjust based on your header's height */
+    height: calc(100vh - 100px);
 }
 
-/* Video Wrapper for 16:9 Aspect Ratio */
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     background: #000;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .video-wrapper iframe {
@@ -42,7 +305,7 @@
     border: none;
 }
 
-/* Transcript Container */
+/* Transcript */
 .transcript-container {
     max-height: calc(100vh - 150px);
     background-color: #f8f9fa;
@@ -50,10 +313,10 @@
     border-radius: 12px;
 }
 
-/* Sentence Item styling */
 .sentence-item {
-    transition: background-color 0.2s, transform 0.1s;
+    transition: background-color 0.2s, border-left-color 0.2s;
     border-left: 4px solid transparent !important;
+    cursor: pointer;
 }
 
 .sentence-item:hover {
@@ -61,40 +324,55 @@
 }
 
 .sentence-item.active {
-    border-left-color: #4255ff !important; /* using original layout primary color */
+    border-left-color: #4255ff !important;
     background-color: #e0e7ff !important;
 }
 
 .english-text {
-    color: #111827; /* dark text */
+    color: #111827;
 }
 
 .vietnamese-text {
     font-size: 0.95rem;
-    color: #6b7280; /* secondary gray */
+    color: #6b7280;
 }
 
-/* Controls */
 .video-controls {
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #dee2e6;
 }
 
-/* Custom Scrollbar for Transcript */
+/* Transcript scrollbar */
 .transcript-container::-webkit-scrollbar {
     width: 8px;
 }
 
 .transcript-container::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
     border-radius: 4px;
 }
- 
+
 .transcript-container::-webkit-scrollbar-thumb {
-    background: #c1c1c1; 
+    background: #c1c1c1;
     border-radius: 4px;
 }
 
 .transcript-container::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8; 
+    background: #a8a8a8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .speaking-page-title {
+        font-size: 1.3rem;
+    }
+
+    .speaking-page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .speaking-search {
+        min-width: auto;
+    }
 }
