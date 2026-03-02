@@ -1,282 +1,476 @@
-// wwwroot/js/speaking.js
+/**
+ * speaking.js — TCT Speaking Practice Module
+ * Encapsulates: YouTube IFrame API bridge, sentence sync,
+ *               slow-motion, repeat/loop, Web Speech AI feedback, toast.
+ * Constraint: no global pollution; safe to co-exist with other pages.
+ */
+(function (global) {
+    'use strict';
 
-(function () {
-    // DOM Elements
-    const playerWrapper = document.getElementById('youtube-player');
-    const playPauseBtn = document.getElementById('btn-play-pause');
-    const playPauseIcon = document.getElementById('icon-play-pause');
-    const replayBtn = document.getElementById('btn-replay');
-    const sentenceItems = document.querySelectorAll('.sentence-item');
+    // ── Guard: only run on the Practice page ────────────────────────
+    if (!global.SPK_VIDEO_ID) return;
 
-    // State
-    let player;
-    let currentSentenceIndex = -1;
+    // ── Data from Razor ─────────────────────────────────────────────
+    const VIDEO_ID = global.SPK_VIDEO_ID;
+    const SENTENCES = global.SPK_SENTENCES || [];   // [{id,start,end,text,vi}]
+
+    // ── DOM refs ─────────────────────────────────────────────────────
+    const $ = id => document.getElementById(id);
+    const $$ = sel => document.querySelectorAll(sel);
+
+    const btnPlayPause = $('btn-play-pause');
+    const iconPlayPause = $('icon-play-pause');
+    const btnRepeat = $('btn-repeat');
+    const btnSlow = $('btn-slow');
+    const btnPrev = $('btn-prev-sentence');
+    const btnNext = $('btn-next-sentence');
+    const btnToggleViAll = $('btn-toggle-vi-all');
+    const sentenceList = $('prac-sentence-list');
+    const progressFill = $('prac-progress-fill');
+    const currentTimeEl = $('prac-current-time');
+    const totalTimeEl = $('prac-total-time');
+    const sentIdxEl = $('prac-sent-idx');
+    const modeChipEl = $('prac-mode-chip');
+    const toast = $('spk-toast');
+
+    // ── State ────────────────────────────────────────────────────────
+    let player = null;
+    let activeSentIdx = -1;
     let isLooping = false;
-    let loopStart = 0;
-    let loopEnd = 0;
-    let checkInterval;
+    let isSlowMotion = false;
+    let viAllVisible = false;
+    let pollTimer = null;
+    let toastTimer = null;
+    const viVisible = {};  // per-sentence VI toggle state
 
-    // Load YouTube API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // ────────────────────────────────────────────────────────────────
+    //  YOUTUBE IFRAME API
+    // ────────────────────────────────────────────────────────────────
+    function loadYouTubeAPI() {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+    }
 
-    window.onYouTubeIframeAPIReady = function () {
-        if (!typeof youtubeVideoId !== 'undefined' && youtubeVideoId) {
-            player = new YT.Player('youtube-player', {
-                videoId: youtubeVideoId,
-                playerVars: {
-                    'controls': 0, // Hide YouTube controls for custom UI
-                    'rel': 0,
-                    'modestbranding': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-    };
-
-    function onPlayerReady(event) {
-        // Init controls
-        playPauseBtn.addEventListener('click', togglePlayPause);
-        replayBtn.addEventListener('click', toggleReplay);
-
-        // Bind clicks on sentence items
-        sentenceItems.forEach((item, index) => {
-            const btnListen = item.querySelector('.btn-listen');
-            const btnRecord = item.querySelector('.btn-record');
-
-            // Allow clicking the entire item to seek
-            item.addEventListener('click', (e) => {
-                // Ignore if clicked on the action buttons
-                if (e.target.closest('.btn-listen') || e.target.closest('.btn-record')) {
-                    return;
-                }
-                const start = parseFloat(item.getAttribute('data-start'));
-                seekTo(start);
-            });
-
-            // Listen button also seeks
-            if (btnListen) {
-                btnListen.addEventListener('click', (e) => {
-                    const start = parseFloat(item.getAttribute('data-start'));
-                    seekTo(start);
-                });
-            }
-
-            // Record Button
-            if (btnRecord) {
-                btnRecord.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const textToMatch = item.querySelector('.english-text').innerText;
-                    startRecording(item, textToMatch);
-                });
+    global.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('youtube-player', {
+            videoId: VIDEO_ID,
+            playerVars: {
+                rel: 0,
+                modestbranding: 1,
+                controls: 1,    // keep native controls visible
+                iv_load_policy: 3,
+                cc_load_policy: 0
+            },
+            events: {
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange
             }
         });
+    };
 
-        // Start tracking time
-        checkInterval = setInterval(trackTime, 100);
+    function onPlayerReady() {
+        // Kick off polling
+        pollTimer = setInterval(onTick, 150);
+
+        // Set total duration label once it's available
+        setTimeout(() => {
+            const dur = player.getDuration();
+            if (dur) totalTimeEl.textContent = fmtTime(dur);
+        }, 1500);
     }
 
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.PLAYING) {
-            playPauseIcon.classList.remove('fa-play');
-            playPauseIcon.classList.add('fa-pause');
-        } else {
-            playPauseIcon.classList.remove('fa-pause');
-            playPauseIcon.classList.add('fa-play');
+    function onPlayerStateChange(evt) {
+        const playing = evt.data === YT.PlayerState.PLAYING;
+        iconPlayPause.className = playing ? 'fas fa-pause' : 'fas fa-play';
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  TICK — sync sentence highlight + progress bar
+    // ────────────────────────────────────────────────────────────────
+    function onTick() {
+        if (!player || typeof player.getCurrentTime !== 'function') return;
+        const state = player.getPlayerState();
+        if (state !== YT.PlayerState.PLAYING) return;
+
+        const t = player.getCurrentTime();
+        const dur = player.getDuration() || 1;
+
+        // Progress bar
+        progressFill.style.width = ((t / dur) * 100).toFixed(2) + '%';
+        currentTimeEl.textContent = fmtTime(t);
+
+        // Loop: if active sentence ended, seek back
+        if (isLooping && activeSentIdx >= 0) {
+            const s = SENTENCES[activeSentIdx];
+            if (t >= s.end) {
+                player.seekTo(s.start, true);
+                return;
+            }
+        }
+
+        // Find active sentence
+        const idx = SENTENCES.findIndex(s => t >= s.start && t < s.end);
+        if (idx !== -1 && idx !== activeSentIdx) {
+            setActiveSentence(idx, false);
         }
     }
 
+    function setActiveSentence(idx, scrollOnly = false) {
+        // Remove old highlight
+        if (activeSentIdx >= 0) {
+            const prev = sentenceList.querySelector(`[data-index="${activeSentIdx}"]`);
+            if (prev) prev.classList.remove('prac-active');
+        }
+
+        activeSentIdx = idx;
+        sentIdxEl.textContent = idx + 1;
+
+        const el = sentenceList.querySelector(`[data-index="${idx}"]`);
+        if (!el) return;
+
+        el.classList.add('prac-active');
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Update loop boundaries
+        if (isLooping) {
+            // Loop already handles via activeSentIdx
+        }
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  CONTROL HANDLERS
+    // ────────────────────────────────────────────────────────────────
     function togglePlayPause() {
         if (!player) return;
-        const state = player.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
+        if (player.getPlayerState() === YT.PlayerState.PLAYING) {
             player.pauseVideo();
         } else {
             player.playVideo();
         }
     }
 
-    function seekTo(time) {
-        if (!player) return;
-        player.seekTo(time, true);
-        player.playVideo();
-    }
-
-    function toggleReplay() {
+    function toggleRepeat() {
         isLooping = !isLooping;
-        if (isLooping) {
-            replayBtn.classList.remove('btn-outline-secondary');
-            replayBtn.classList.add('btn-primary'); // Highlight state
-
-            // Set loop boundaries based on the currently active sentence
-            if (currentSentenceIndex >= 0 && currentSentenceIndex < sentenceItems.length) {
-                const item = sentenceItems[currentSentenceIndex];
-                loopStart = parseFloat(item.getAttribute('data-start'));
-                loopEnd = parseFloat(item.getAttribute('data-end'));
-            }
-        } else {
-            replayBtn.classList.add('btn-outline-secondary');
-            replayBtn.classList.remove('btn-primary');
-        }
+        btnRepeat.classList.toggle('prac-ctrl-active', isLooping);
+        modeChipEl.textContent = isLooping ? '🔁 Looping' : '';
+        showToast(isLooping ? 'Loop ON — repeating current sentence' : 'Loop OFF');
     }
 
-    // --- Time Tracking & Highlighting ---
-    function trackTime() {
-        if (!player || player.getPlayerState() !== YT.PlayerState.PLAYING) return;
-
-        const currentTime = player.getCurrentTime();
-
-        // Handle Looping
-        if (isLooping && loopEnd > 0) {
-            if (currentTime >= loopEnd) {
-                player.seekTo(loopStart, true);
-            }
+    function toggleSlow() {
+        isSlowMotion = !isSlowMotion;
+        btnSlow.classList.toggle('prac-ctrl-active', isSlowMotion);
+        if (player && typeof player.setPlaybackRate === 'function') {
+            player.setPlaybackRate(isSlowMotion ? 0.75 : 1);
         }
-
-        // Highlight matching sentence
-        let foundIndex = -1;
-        for (let i = 0; i < sentenceItems.length; i++) {
-            const start = parseFloat(sentenceItems[i].getAttribute('data-start'));
-            const end = parseFloat(sentenceItems[i].getAttribute('data-end'));
-
-            if (currentTime >= start && currentTime < end) {
-                foundIndex = i;
-                break;
-            }
-        }
-
-        if (foundIndex !== -1 && foundIndex !== currentSentenceIndex) {
-            // Remove active from previous
-            if (currentSentenceIndex !== -1) {
-                sentenceItems[currentSentenceIndex].classList.remove('active');
-            }
-            // Set active to new
-            sentenceItems[foundIndex].classList.add('active');
-
-            // Auto-scroll logic if needed
-            sentenceItems[foundIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            currentSentenceIndex = foundIndex;
-
-            // If we're looping, auto-update the loop points if we naturally flowed into the next sentence before looping was enabled
-            if (isLooping) {
-                const newActiveItem = sentenceItems[currentSentenceIndex];
-                loopStart = parseFloat(newActiveItem.getAttribute('data-start'));
-                loopEnd = parseFloat(newActiveItem.getAttribute('data-end'));
-            }
-        }
+        showToast(isSlowMotion ? 'Slow Motion: 0.75×' : 'Normal Speed: 1×');
     }
 
-    // --- Web Speech API (Shadowing) ---
-    // Make sure we resolve prefix issues
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    function seekToSentence(idx) {
+        if (!SENTENCES[idx]) return;
+        if (player && typeof player.seekTo === 'function') {
+            player.seekTo(SENTENCES[idx].start, true);
+            player.playVideo();
+        }
+        setActiveSentence(idx);
+    }
 
-    function startRecording(itemElement, expectedText) {
-        if (!SpeechRecognition) {
-            alert('Your browser does not support Speech Recognition. Please use Chrome.');
+    function goPrev() {
+        const target = Math.max(0, activeSentIdx > 0 ? activeSentIdx - 1 : 0);
+        seekToSentence(target);
+    }
+
+    function goNext() {
+        const target = Math.min(SENTENCES.length - 1, activeSentIdx + 1);
+        seekToSentence(target);
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  VIETNAMESE TOGGLE
+    // ────────────────────────────────────────────────────────────────
+    function toggleViSingle(idx) {
+        viVisible[idx] = !viVisible[idx];
+        const el = $(`sent-vi-${idx}`);
+        if (el) el.classList.toggle('prac-vi-visible', viVisible[idx]);
+    }
+
+    function toggleViAll() {
+        viAllVisible = !viAllVisible;
+        btnToggleViAll.classList.toggle('prac-ctrl-active', viAllVisible);
+        SENTENCES.forEach((_, i) => {
+            viVisible[i] = viAllVisible;
+            const el = $(`sent-vi-${i}`);
+            if (el) el.classList.toggle('prac-vi-visible', viAllVisible);
+        });
+        showToast(viAllVisible ? 'Vietnamese shown' : 'Vietnamese hidden');
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  WEB SPEECH API — Record & Compare
+    // ────────────────────────────────────────────────────────────────
+    const SpeechRecog = global.SpeechRecognition || global.webkitSpeechRecognition;
+    let activeRecognition = null;
+
+    function startRecording(idx, micBtn) {
+        if (!SpeechRecog) {
+            showToast('⚠️ Speech recognition requires Chrome or Edge', 'error');
             return;
         }
 
-        // Auto-pause video when speaking
+        // Prevent double-click start
+        if (activeRecognition) {
+            activeRecognition.stop();
+            activeRecognition = null;
+            return;
+        }
+
+        // Pause video while listening
         if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
             player.pauseVideo();
         }
 
-        const btnRecord = itemElement.querySelector('.btn-record');
-        const icon = btnRecord.querySelector('i');
-        const textElement = itemElement.querySelector('.english-text');
+        const sentEl = sentenceList.querySelector(`[data-index="${idx}"]`);
+        const enEl = $(`sent-en-${idx}`);
+        const expected = SENTENCES[idx]?.text || '';
 
-        // Setup visual recording state
-        btnRecord.classList.remove('btn-outline-danger');
-        btnRecord.classList.add('btn-danger'); // Solid red
-        icon.classList.add('fa-beat-fade'); // Add animation
+        // Recording visual state
+        micBtn.classList.add('prac-mic-recording');
+        micBtn.innerHTML = '<i class="fas fa-stop-circle"></i>';
 
-        const recognition = new SpeechRecognition();
-        recognition.lang = 'en-US';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
+        const rec = new SpeechRecog();
+        rec.lang = 'en-US';
+        rec.interimResults = true;
+        rec.maxAlternatives = 3;
+        activeRecognition = rec;
 
-        recognition.onresult = function (event) {
-            const transcript = event.results[0][0].transcript;
+        let interimShown = false;
 
-            // Compare text
-            const similarity = calculateSimilarity(expectedText.toLowerCase(), transcript.toLowerCase());
-
-            // Reset existing feedback classes
-            textElement.classList.remove('text-success', 'text-danger');
-
-            // Threshold for success
-            if (similarity > 0.8) {
-                textElement.classList.add('text-success'); // Green
-            } else {
-                textElement.classList.add('text-danger'); // Red
+        rec.onresult = function (event) {
+            let interim = '';
+            let final = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const t = event.results[i][0].transcript;
+                if (event.results[i].isFinal) final += t;
+                else interim += t;
             }
 
-            // Optionally, show what they said to help debug
-            console.log("Expected: ", expectedText);
-            console.log("Heard: ", transcript);
-            console.log("Accuracy: ", (similarity * 100).toFixed(2) + "%");
-        };
-
-        recognition.onerror = function (event) {
-            console.error('Speech recognition error: ', event.error);
-            alert('Error detecting speech: ' + event.error);
-        };
-
-        recognition.onend = function () {
-            // Revert button visual state
-            btnRecord.classList.add('btn-outline-danger');
-            btnRecord.classList.remove('btn-danger');
-            icon.classList.remove('fa-beat-fade');
-        };
-
-        recognition.start();
-    }
-
-    // --- Similarity Calculator Helper ---
-    function calculateSimilarity(s1, s2) {
-        // Clean punctuation for better matching
-        s1 = s1.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").trim();
-        s2 = s2.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").trim();
-
-        if (s1 === s2) return 1.0;
-
-        // Levenshtein distance
-        const longer = s1.length > s2.length ? s1 : s2;
-        const shorter = s1.length > s2.length ? s2 : s1;
-        const maxLen = longer.length;
-
-        if (maxLen === 0) return 1.0;
-
-        return (maxLen - editDistance(longer, shorter)) / maxLen;
-    }
-
-    function editDistance(s1, s2) {
-        let costs = new Array();
-        for (let i = 0; i <= s1.length; i++) {
-            let lastValue = i;
-            for (let j = 0; j <= s2.length; j++) {
-                if (i == 0)
-                    costs[j] = j;
-                else {
-                    if (j > 0) {
-                        let newValue = costs[j - 1];
-                        if (s1.charAt(i - 1) != s2.charAt(j - 1))
-                            newValue = Math.min(Math.min(newValue, lastValue),
-                                costs[j]) + 1;
-                        costs[j - 1] = lastValue;
-                        lastValue = newValue;
-                    }
-                }
+            // Show interim in a subtle style
+            if (!final && interim && !interimShown) {
+                enEl.dataset.original = enEl.textContent;
+                interimShown = true;
             }
-            if (i > 0)
-                costs[s2.length] = lastValue;
+
+            if (final) {
+                const sim = levenshteinSimilarity(
+                    normalizeText(final),
+                    normalizeText(expected)
+                );
+                applyFeedback(idx, sim, final);
+            }
+        };
+
+        rec.onerror = function (evt) {
+            const msgs = {
+                'no-speech': 'No speech detected — try again',
+                'not-allowed': 'Microphone access denied',
+                'network': 'Network error during recognition',
+                'audio-capture': 'No microphone found'
+            };
+            showToast('⚠️ ' + (msgs[evt.error] || evt.error), 'error');
+        };
+
+        rec.onend = function () {
+            activeRecognition = null;
+            micBtn.classList.remove('prac-mic-recording');
+            micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+        };
+
+        rec.start();
+    }
+
+    function applyFeedback(idx, similarity, heard) {
+        const pct = Math.round(similarity * 100);
+        const enEl = $(`sent-en-${idx}`);
+        const barEl = $(`acc-bar-${idx}`);
+        const fillEl = $(`acc-fill-${idx}`);
+        const pctEl = $(`acc-pct-${idx}`);
+        const sentEl = sentenceList.querySelector(`[data-index="${idx}"]`);
+
+        // Remove previous result classes
+        sentEl.classList.remove('prac-result-ok', 'prac-result-fail');
+        enEl.classList.remove('prac-text-ok', 'prac-text-fail');
+
+        if (similarity >= 0.8) {
+            sentEl.classList.add('prac-result-ok');
+            enEl.classList.add('prac-text-ok');
+            showToast(`✅ Great! Accuracy: ${pct}%`, 'success');
+        } else {
+            sentEl.classList.add('prac-result-fail');
+            enEl.classList.add('prac-text-fail');
+            showToast(`🔁 Try again! You said: "${heard}" (${pct}%)`, 'retry');
         }
-        return costs[s2.length];
+
+        // Accuracy bar
+        if (barEl && fillEl && pctEl) {
+            barEl.style.display = 'flex';
+            fillEl.style.width = pct + '%';
+            fillEl.style.background = similarity >= 0.8 ? '#10b981' : '#ef4444';
+            pctEl.textContent = pct + '%';
+            pctEl.style.color = similarity >= 0.8 ? '#10b981' : '#ef4444';
+        }
     }
-})();
+
+    // ────────────────────────────────────────────────────────────────
+    //  HELPERS
+    // ────────────────────────────────────────────────────────────────
+    function normalizeText(s) {
+        return s.toLowerCase()
+            .replace(/[^\w\s]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function levenshteinSimilarity(s1, s2) {
+        if (s1 === s2) return 1.0;
+        const a = s1.length > s2.length ? s1 : s2;
+        const b = s1.length > s2.length ? s2 : s1;
+        const maxLen = a.length;
+        if (maxLen === 0) return 1.0;
+        return (maxLen - editDist(a, b)) / maxLen;
+    }
+
+    function editDist(a, b) {
+        const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+        for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+        for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+                dp[i][j] = a[i - 1] === b[j - 1]
+                    ? dp[i - 1][j - 1]
+                    : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+            }
+        }
+        return dp[a.length][b.length];
+    }
+
+    function fmtTime(secs) {
+        const m = Math.floor(secs / 60);
+        const s = Math.floor(secs % 60);
+        return m + ':' + String(s).padStart(2, '0');
+    }
+
+    // ── Toast notification ───────────────────────────────────────────
+    function showToast(msg, type = 'info') {
+        if (!toast) return;
+        clearTimeout(toastTimer);
+        toast.textContent = msg;
+        toast.className = `spk-toast spk-toast-${type} spk-toast-show`;
+        toastTimer = setTimeout(() => {
+            toast.className = 'spk-toast';
+        }, 3000);
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  EVENT WIRING
+    // ────────────────────────────────────────────────────────────────
+    function bindEvents() {
+        btnPlayPause?.addEventListener('click', togglePlayPause);
+        btnRepeat?.addEventListener('click', toggleRepeat);
+        btnSlow?.addEventListener('click', toggleSlow);
+        btnPrev?.addEventListener('click', goPrev);
+        btnNext?.addEventListener('click', goNext);
+        btnToggleViAll?.addEventListener('click', toggleViAll);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', onKeyDown);
+
+        // Sentence-row clicks
+        $$('.prac-sentence').forEach(row => {
+            const idx = parseInt(row.dataset.index, 10);
+
+            // Click row → seek
+            row.addEventListener('click', e => {
+                if (e.target.closest('.prac-sent-actions')) return;
+                seekToSentence(idx);
+            });
+        });
+
+        // Listen buttons
+        $$('.prac-listen-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const start = parseFloat(btn.dataset.start);
+                if (player && !isNaN(start)) {
+                    player.seekTo(start, true);
+                    player.playVideo();
+                }
+            });
+        });
+
+        // Record buttons
+        $$('.prac-mic-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const idx = parseInt(btn.dataset.index, 10);
+                startRecording(idx, btn);
+            });
+        });
+
+        // Per-sentence VI toggle
+        $$('.prac-vi-toggle').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const idx = parseInt(btn.dataset.index, 10);
+                toggleViSingle(idx);
+            });
+        });
+    }
+
+    function onKeyDown(e) {
+        // Ignore if typing in an input/textarea
+        if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+        switch (e.code) {
+            case 'Space':
+                e.preventDefault();
+                togglePlayPause();
+                break;
+            case 'ArrowLeft':
+                e.preventDefault();
+                goPrev();
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                goNext();
+                break;
+            case 'KeyR':
+                toggleRepeat();
+                break;
+            case 'KeyS':
+                toggleSlow();
+                break;
+        }
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  INIT
+    // ────────────────────────────────────────────────────────────────
+    function init() {
+        bindEvents();
+        loadYouTubeAPI();
+
+        // Pre-hide all VI translations
+        SENTENCES.forEach((_, i) => {
+            const el = $(`sent-vi-${i}`);
+            if (el) el.classList.remove('prac-vi-visible');
+        });
+
+        showToast('⌨️  Space=Play  ←→=Jump  R=Loop  S=Slow', 'info');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})(window);

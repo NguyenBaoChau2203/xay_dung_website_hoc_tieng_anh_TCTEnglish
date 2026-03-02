@@ -36,6 +36,7 @@ namespace TCTVocabulary.Controllers
                         Title = v.Title,
                         YoutubeId = v.YoutubeId,
                         Level = v.Level,
+                        Duration = v.Duration,
                         ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
                         SentenceCount = v.SpeakingSentences?.Count ?? 0
                     }).ToList()
