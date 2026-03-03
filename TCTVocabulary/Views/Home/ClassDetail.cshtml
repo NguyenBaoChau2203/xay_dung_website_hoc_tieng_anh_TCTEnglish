@@ -1,20 +1,23 @@
 ﻿@model TCTVocabulary.ViewModel.ClassDetailViewModel
+@using System.Security.Claims
+
 @{
     ViewData["Title"] = Model.Class.ClassName;
+    var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 }
 
 <div class="class-detail-container">
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <div class="class-header">
         <img class="class-avatar"
              src="@(string.IsNullOrEmpty(Model.Class.ImageUrl)
-                                 ? "/images/class-default.png"
-                                 : Model.Class.ImageUrl)" />
+                                           ? "/images/class-default.png"
+                                           : Model.Class.ImageUrl)" />
 
         <div class="class-info">
             <h1>@Model.Class.ClassName</h1>
-            <p class="class-desc">
+            <p>
                 @(string.IsNullOrEmpty(Model.Class.Description)
                                 ? "Chưa có mô tả cho lớp học này."
                                 : Model.Class.Description)
@@ -22,36 +25,38 @@
         </div>
     </div>
 
-    <!-- TABS -->
+    <!-- ===== TABS ===== -->
     <div class="class-tabs">
         <button class="tab-btn active" onclick="showTab('chat')">
             <i class="fas fa-comments"></i> Chat
         </button>
-        <button class="tab-btn" onclick="showTab('about')">
-            <i class="fas fa-circle-info"></i> Giới thiệu
+        <button class="tab-btn" onclick="showTab('folders')">
+            <i class="fas fa-folder"></i> Folder
         </button>
         <button class="tab-btn" onclick="showTab('members')">
             <i class="fas fa-user-group"></i> Thành viên
         </button>
+        <button class="tab-btn" onclick="showTab('about')">
+            <i class="fas fa-circle-info"></i> Giới thiệu
+        </button>
     </div>
 
-    <!-- TAB CONTENT -->
-    <!-- CHAT -->
+    <!-- ===== CHAT ===== -->
     <div id="tab-chat" class="tab-content active">
-
         <div id="chatMessages" class="chat-box">
             @foreach (var msg in Model.Messages)
             {
-                <div class="chat-message">
-                    <strong>@msg.User.Email</strong>
-                    <span>@msg.Content</span>
+                <div class="chat-message @(msg.IsMine ? "mine" : "other")">
+                    <div class="chat-bubble">
+                        <div class="chat-name">@msg.FullName</div>
+                        <div class="chat-content">@msg.Content</div>
+                    </div>
                 </div>
             }
         </div>
 
         <div class="chat-input-bar">
-            <input type="text"
-                   id="chatInput"
+            <input id="chatInput"
                    placeholder="Nhập tin nhắn..."
                    onkeydown="if(event.key==='Enter') sendMessage()" />
 
@@ -59,10 +64,59 @@
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
-
     </div>
 
-    <!-- MEMBERS -->
+    <!-- ===== FOLDERS ===== -->
+    <div id="tab-folders" class="tab-content">
+
+        <div class="folder-header">
+            <h3>Folder của lớp</h3>
+
+            @if (Model.ClassFolders.Any())
+            {
+                <button class="btn-add-folder" onclick="openAddFolderModal()">
+                    <i class="fas fa-plus"></i> Thêm folder
+                </button>
+            }
+        </div>
+
+        @if (!Model.ClassFolders.Any())
+        {
+            <div class="empty-box">
+                <i class="fas fa-folder-open"></i>
+                <p>Chưa có folder nào trong lớp</p>
+
+                <button class="btn-primary" onclick="openAddFolderModal()">
+                    Thêm folder vào lớp
+                </button>
+            </div>
+        }
+        else
+        {
+           
+            <div class="folder-grid">
+                @foreach (var f in Model.ClassFolders)
+                {
+                     <a asp-action="FolderDetail"
+                   asp-controller="Home"
+                   asp-route-id="@f.FolderId" class="f-link">
+                    <div class="class-folder-row">
+            <div class="folder-left">
+                <i class="fas fa-folder"></i>
+                <span class="folder-name">@f.Folder.FolderName</span>
+            </div>
+
+            <div class="folder-right">
+                            Thêm bởi <strong>@f.AddedByUser.FullName</strong>
+            </div>
+        </div>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- ===== MEMBERS ===== -->
     <div id="tab-members" class="tab-content">
         @if (!Model.Members.Any())
         {
@@ -71,44 +125,135 @@
         else
         {
             <ul class="member-list">
-                @foreach (var user in Model.Members)
+                @foreach (var u in Model.Members)
                 {
                     <li>
                         <i class="fas fa-user"></i>
-                        @user.Email
+                        @u.FullName
                     </li>
                 }
             </ul>
         }
     </div>
 
-    <!-- ABOUT -->
+    <!-- ===== ABOUT ===== -->
     <div id="tab-about" class="tab-content">
         <h3>Thông tin lớp học</h3>
         <p>@Model.Class.Description</p>
     </div>
-
 </div>
 
-<!-- JS -->
+<!-- ===== ADD FOLDER MODAL ===== -->
+<div id="addFolderModal" class="modal-overlay">
+    <div class="modal-container">
+
+        <div class="modal-header">
+            <h3>Thêm folder vào lớp</h3>
+            <button class="close-btn" onclick="closeAddFolderModal()">×</button>
+        </div>
+
+        <div class="modal-section">
+            <h4>Folder của tôi</h4>
+            <div class="modal-folder-list">
+                @foreach (var f in Model.MyFolders)
+                {
+                    <div class="modal-folder-item"
+                         onclick="addFolder(@f.FolderId)">
+                        <i class="fas fa-folder"></i>
+                        <span>@f.FolderName</span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="modal-section">
+            <h4>Folder đã lưu</h4>
+            <div class="modal-folder-list">
+                @foreach (var f in Model.SavedFolders)
+                {
+                    <div class="modal-folder-item"
+                         onclick="addFolder(@f.FolderId)">
+                        <i class="fas fa-bookmark"></i>
+                        <span>@f.FolderName</span>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== JS ===== -->
 <script>
+    /* ================= TAB ================= */
     function showTab(tab) {
+        // nút tab
         document.querySelectorAll('.tab-btn')
             .forEach(b => b.classList.remove('active'));
 
+        // nội dung tab
         document.querySelectorAll('.tab-content')
             .forEach(c => c.classList.remove('active'));
 
-        document.querySelector(`[onclick="showTab('${tab}')"]`)
+        // active tab
+        document
+            .querySelector(`.tab-btn[onclick="showTab('${tab}')"]`)
             .classList.add('active');
 
-        document.getElementById(`tab-${tab}`)
+        document
+            .getElementById(`tab-${tab}`)
             .classList.add('active');
+    }
+
+    /* ================= MODAL ================= */
+    function openAddFolderModal() {
+        document
+            .getElementById('addFolderModal')
+            .classList.add('active');
+    }
+
+    function closeAddFolderModal() {
+        document
+            .getElementById('addFolderModal')
+            .classList.remove('active');
+    }
+
+    // click nền mờ để đóng modal
+    document
+        .getElementById('addFolderModal')
+        .addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeAddFolderModal();
+            }
+        });
+
+    /* ================= ADD FOLDER ================= */
+        function addFolder(folderId) {
+        fetch('/Home/AddFolderToClass', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `classId=@Model.Class.ClassId&folderId=${folderId}`
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.text().then(t => { throw new Error(t); });
+            }
+            location.reload();
+        })
+        .catch(err => {
+            console.error("AddFolder error:", err);
+            alert(err.message || 'Không thể thêm folder vào lớp');
+        });
     }
 </script>
 
 <!-- CSS -->
 <style>
+    .f-link{
+        text-decoration: none;
+    }
     .class-detail-container {
         max-width: 1100px;
         margin: 40px auto;
@@ -225,42 +370,329 @@
     .empty-text {
         color: #9ca3af;
     }
+
+    .chat-message {
+        display: flex;
+        margin-bottom: 8px;
+    }
+
+        .chat-message.mine {
+            justify-content: flex-end;
+        }
+
+        .chat-message.other {
+            justify-content: flex-start;
+        }
+
+    .chat-bubble {
+        max-width: 60%;
+        padding: 10px 14px;
+        border-radius: 16px;
+    }
+
+    .chat-message.mine .chat-bubble {
+        background: #007bff;
+        color: #fff;
+        border-bottom-right-radius: 4px;
+    }
+
+    .chat-message.other .chat-bubble {
+        background: #f1f1f1;
+        color: #222;
+        border-bottom-left-radius: 4px;
+    }
+
+    .chat-name {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    /* ================= FOLDER TAB ================= */
+
+    /* ===== FOLDER LIST ===== */
+    .folder-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 16px;
+    }
+
+    /* Folder row */
+    .class-folder-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-radius: 14px;
+        background: #ffffff;
+        border: 1px solid #e4e8ff;
+        box-shadow: 0 4px 10px rgba(79, 108, 255, 0.05);
+        transition: all 0.25s ease;
+    }
+
+        .class-folder-row:hover {
+            background: #f6f8ff;
+            border-color: #4f6cff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 108, 255, 0.12);
+        }
+
+    /* Left */
+    .folder-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+        .folder-left i {
+            font-size: 24px;
+            color: #4f6cff;
+        }
+
+    .folder-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    /* Right */
+    .folder-right {
+        font-size: 13px;
+        color: #6b7280;
+        white-space: nowrap;
+    }
+    /* ===== MODAL OVERLAY ===== */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(4px);
+    }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+    /* ===== MODAL CONTAINER ===== */
+    .modal-container {
+        width: 520px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 22px 26px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        animation: modalFadeUp 0.25s ease;
+    }
+
+    /* ===== MODAL HEADER ===== */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+    .close-btn {
+        background: #f3f4f6;
+        border: none;
+        border-radius: 8px;
+        font-size: 22px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .close-btn:hover {
+            background: #e5e7eb;
+        }
+
+    /* ===== MODAL SECTION ===== */
+    .modal-section {
+        margin-bottom: 20px;
+    }
+
+        .modal-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+    /* ===== MODAL FOLDER LIST ===== */
+    .modal-folder-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-folder-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: #f5f7ff;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .modal-folder-item i {
+            color: #4f6cff;
+            font-size: 18px;
+        }
+
+        .modal-folder-item span {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .modal-folder-item:hover {
+            background: #eef1ff;
+            border-color: #4f6cff;
+            transform: translateX(4px);
+        }
+    /* ===== FOLDER HEADER ===== */
+    .folder-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+    }
+
+        .folder-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+    /* Add folder button (header) */
+    .btn-add-folder {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: #4f6cff;
+        color: #ffffff;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .btn-add-folder i {
+            font-size: 14px;
+        }
+
+        .btn-add-folder:hover {
+            background: #3f5be0;
+            transform: translateY(-1px);
+        }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-box {
+        margin-top: 40px;
+        padding: 40px 20px;
+        border-radius: 16px;
+        background: #f6f8ff;
+        border: 2px dashed #c7d2fe;
+        text-align: center;
+    }
+
+        .empty-box i {
+            font-size: 42px;
+            color: #4f6cff;
+            margin-bottom: 12px;
+        }
+
+        .empty-box p {
+            font-size: 15px;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 18px;
+        }
+
+    /* Primary button (empty state) */
+    .btn-primary {
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: #4f6cff;
+        color: #ffffff;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background: #3f5be0;
+            transform: translateY(-1px);
+        }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 
-<script>
-    const classId = '@Model.Class.ClassId';
-    const userName = 'User 1'; // tạm
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/classChatHub")
-        .build();
+    <script>
+        const classId = @Model.Class.ClassId;
+        const currentUserId = @int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
 
-    connection.on("ReceiveMessage", function (user, message) {
-        const box = document.getElementById("chatMessages");
-        box.innerHTML += `
-            <div class="chat-message">
-                <strong>${user}</strong>
-                <span>${message}</span>
-            </div>`;
-        box.scrollTop = box.scrollHeight;
-    });
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/classChatHub")
+            .build();
 
-    connection.start().then(() => {
-        connection.invoke("JoinClass", classId);
-    });
+        // 📥 Nhận message realtime
+        connection.on("ReceiveMessage", function (msg) {
+            const box = document.getElementById("chatMessages");
+            const isMine = msg.userId === currentUserId;
 
-    function sendMessage() {
-        const input = document.getElementById("chatInput");
-        if (!input.value.trim()) return;
+            box.insertAdjacentHTML("beforeend", `
+                <div class="chat-message ${isMine ? 'mine' : 'other'}">
+                    <div class="chat-bubble">
+                        ${!isMine ? `<div class="chat-name">${msg.fullName}</div>` : ''}
+                        <div class="chat-content">${msg.content}</div>
+                    </div>
+                </div>
+            `);
 
-        fetch('/Home/SendClassMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `classId=${classId}&content=${encodeURIComponent(input.value)}`
+            box.scrollTop = box.scrollHeight;
         });
 
-        connection.invoke("SendMessage", classId, userName, input.value);
-        input.value = '';
-    }
-</script>
+        // 🔌 Kết nối hub
+        connection.start().then(() => {
+            connection.invoke("JoinClass", classId);
+        });
+
+        // 📤 Gửi tin nhắn
+        function sendMessage() {
+            const input = document.getElementById("chatInput");
+            if (!input.value.trim()) return;
+
+            fetch('/Home/SendClassMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `classId=${classId}&content=${encodeURIComponent(input.value)}`
+            });
+
+            connection.invoke("SendMessage", classId, input.value);
+            input.value = '';
+        }
+    </script>
+}

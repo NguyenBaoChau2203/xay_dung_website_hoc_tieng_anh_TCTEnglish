@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 using TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
 using TCTVocabulary.ViewModel;
@@ -21,34 +23,53 @@ namespace TCTVocabulary.Controllers
         }
         public IActionResult Folder()
         {
+            // 1. Lấy UserId từ Claims (nơi lưu trữ sau khi SignInUserAsync chạy)
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // 2. Kiểm tra xem người dùng đã đăng nhập chưa
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                // Nếu chưa đăng nhập, điều hướng về trang Login
+                return RedirectToAction("Login", "Account");
+            }
+
+            // 3. Chuyển đổi ID từ chuỗi sang số nguyên (int)
+            int currentUserId = int.Parse(userIdClaim);
+
+            // 4. Truy vấn dữ liệu dựa trên UserId động
             var myFolders = _context.Folders
-                                    .Where(f => f.UserId == 1 && f.ParentFolderId == null)
+                                    .Where(f => f.UserId == currentUserId && f.ParentFolderId == null)
                                     .ToList();
 
             return View(myFolders);
         }
         [HttpPost]
-        public IActionResult CreateFolder(string folderName)
+        public async Task<IActionResult> CreateFolder(string folderName)
         {
+            // 1. Kiểm tra dữ liệu đầu vào
             if (string.IsNullOrWhiteSpace(folderName))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Folder");
             }
 
+            // 2. Lấy UserId của người dùng hiện tại từ Claims
+            // Ép kiểu sang int vì Model Folder yêu cầu UserId là kiểu int
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            // 3. Khởi tạo đối tượng Folder mới
             var folder = new Folder
             {
                 FolderName = folderName,
-                UserId = 1,
+                UserId = userId, // Sử dụng ID động thay vì số 1 cố định
                 ParentFolderId = null
             };
 
+            // 4. Lưu vào Database (Sử dụng Async để tối ưu hiệu năng)
             _context.Folders.Add(folder);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return RedirectToAction(
-     "FolderDetail",
-     "Home",
-     new { id = folder.FolderId });
+            // 5. Điều hướng đến trang chi tiết của Folder vừa tạo
+            return RedirectToAction("FolderDetail", "Home", new { id = folder.FolderId });
         }
         public IActionResult FolderDetail(int id)
         {
@@ -85,7 +106,7 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-        public IActionResult Landing() 
+        public IActionResult Landing()
         {
             return View();
         }
@@ -306,82 +327,80 @@ namespace TCTVocabulary.Controllers
         }
 
         // GET: Home/EditSet/5
-public IActionResult EditSet(int id)
-{
-    // Lấy thông tin Set cùng với danh sách Cards của nó
-    var set = _context.Sets
-        .Include(s => s.Cards)
-        .FirstOrDefault(s => s.SetId == id);
-
-    if (set == null) return NotFound();
-
-    return View(set); // Trả về View EditSet.cshtml
-}
-
-[HttpPost]
-public IActionResult EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions)
-{
-    var existingSet = _context.Sets
-        .Include(s => s.Cards)
-        .FirstOrDefault(s => s.SetId == SetId);
-
-    if (existingSet == null) return NotFound();
-
-    // Cập nhật thông tin cơ bản
-    existingSet.SetName = SetName;
-    existingSet.Description = Description;
-
-    // Xóa toàn bộ Cards cũ và thêm lại Cards mới (cách đơn giản nhất)
-    _context.Cards.RemoveRange(existingSet.Cards);
-    
-    if (Terms != null)
-    {
-        for (int i = 0; i < Terms.Length; i++)
+        public IActionResult EditSet(int id)
         {
-            if (!string.IsNullOrWhiteSpace(Terms[i]))
-            {
-                existingSet.Cards.Add(new Card
-                {
-                    Term = Terms[i],
-                    Definition = Definitions[i]
-                });
-            }
+            // Lấy thông tin Set cùng với danh sách Cards của nó
+            var set = _context.Sets
+                .Include(s => s.Cards)
+                .FirstOrDefault(s => s.SetId == id);
+
+            if (set == null) return NotFound();
+
+            return View(set); // Trả về View EditSet.cshtml
         }
-    }
 
-    _context.SaveChanges();
+        [HttpPost]
+        public IActionResult EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions)
+        {
+            var existingSet = _context.Sets
+                .Include(s => s.Cards)
+                .FirstOrDefault(s => s.SetId == SetId);
 
-    return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
-}
+            if (existingSet == null) return NotFound();
+
+            // Cập nhật thông tin cơ bản
+            existingSet.SetName = SetName;
+            existingSet.Description = Description;
+
+            // Xóa toàn bộ Cards cũ và thêm lại Cards mới (cách đơn giản nhất)
+            _context.Cards.RemoveRange(existingSet.Cards);
+
+            if (Terms != null)
+            {
+                for (int i = 0; i < Terms.Length; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(Terms[i]))
+                    {
+                        existingSet.Cards.Add(new Card
+                        {
+                            Term = Terms[i],
+                            Definition = Definitions[i]
+                        });
+                    }
+                }
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
+        }
         [HttpPost]
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
+            // 1. Lấy UserId từ Claims của người dùng hiện tại
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
             var newClass = new Class
             {
                 ClassName = model.ClassName,
                 Description = model.Description,
-                OwnerId = 1 // ⚠️ tạm thời, sau này lấy từ User.Identity
+                OwnerId = userId // ✅ Đã thay số 1 bằng userId động
             };
 
-            // Hash password (nếu có)
+            // 2. Hash password (giữ nguyên logic của bạn - rất tốt)
             if (!string.IsNullOrWhiteSpace(model.Password))
             {
-                newClass.PasswordHash =
-                    BCrypt.Net.BCrypt.HashPassword(model.Password);
+                newClass.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
             }
 
-            // Upload avatar (nếu có)
+            // 3. Xử lý Upload avatar
             if (model.Avatar != null)
             {
-                var folderPath = Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    "wwwroot/images/classes"
-                );
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/classes");
 
-                // 👉 DÒNG QUAN TRỌNG NHẤT (SỬA LỖI)
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -390,66 +409,177 @@ public IActionResult EditSet(int SetId, string SetName, string Description, stri
                 var fileName = Guid.NewGuid() + Path.GetExtension(model.Avatar.FileName);
                 var filePath = Path.Combine(folderPath, fileName);
 
-                using var stream = new FileStream(filePath, FileMode.Create);
-                await model.Avatar.CopyToAsync(stream);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Avatar.CopyToAsync(stream);
+                }
 
                 newClass.ImageUrl = "/images/classes/" + fileName;
             }
 
+            // 4. Lưu vào Database
             _context.Classes.Add(newClass);
             await _context.SaveChangesAsync();
 
-            // 👉 Chuyển sang ClassDetail
+            // 5. Điều hướng sang trang chi tiết lớp học
             return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
         }
         public IActionResult ClassDetail(int id)
         {
-            var classEntity = _context.Classes
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            // 1. Class + members + messages
+            var cls = _context.Classes
                 .Include(c => c.Users)
                 .Include(c => c.ClassMessages)
                     .ThenInclude(m => m.User)
                 .FirstOrDefault(c => c.ClassId == id);
 
-            if (classEntity == null)
+            if (cls == null)
                 return NotFound();
 
-            var viewModel = new ClassDetailViewModel
+            // 2. Messages
+            var messages = cls.ClassMessages
+                .OrderBy(m => m.CreatedAt)
+                .Select(m => new ClassMessageViewModel
+                {
+                    MessageId = m.MessageId,
+                    UserId = m.UserId,
+                    Content = m.Content,
+                    CreatedAt = m.CreatedAt,
+                    FullName = m.User.FullName,
+                    IsMine = m.UserId == userId
+                })
+                .ToList();
+
+            // =======================
+            // 3. MY FOLDERS (folder do user tạo)
+            // =======================
+            var myFolders = _context.Folders
+                .Where(f => f.UserId == userId)
+                .ToList();
+
+            // =======================
+            // 4. SAVED FOLDERS
+            // =======================
+            var savedFolders = _context.SavedFolders
+                .Where(sf => sf.UserId == userId)
+                .Select(sf => sf.Folder)
+                .ToList();
+
+            // =======================
+            // 5. FOLDER TRONG CLASS
+            // =======================
+            var classFolders = _context.ClassFolders
+                .Include(cf => cf.Folder)          // để lấy tên folder
+                .Include(cf => cf.AddedByUser)     // để lấy người thêm
+                .Where(cf => cf.ClassId == id)
+                .ToList();
+
+            // 6. ViewModel
+            var vm = new ClassDetailViewModel
             {
-                Class = classEntity,
-                Members = classEntity.Users.ToList(),
-                Messages = classEntity.ClassMessages
-                    .OrderBy(m => m.CreatedAt)
-                    .ToList()
+                Class = cls,
+                Members = cls.Users.ToList(),
+                Messages = messages,
+
+                MyFolders = myFolders,
+                SavedFolders = savedFolders,
+
+                // ✅ đúng kiểu
+                ClassFolders = classFolders
             };
 
-            return View(viewModel); // ✅ ĐÚNG KIỂU
+            return View(vm);
         }
         [HttpPost]
-        public IActionResult SendClassMessage(int classId, string content)
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var exists = await _context.ClassFolders
+                .AnyAsync(cf => cf.ClassId == classId && cf.FolderId == folderId);
+
+            if (exists)
+                return BadRequest("Folder đã tồn tại trong lớp");
+
+            _context.ClassFolders.Add(new ClassFolder
+            {
+                ClassId = classId,
+                FolderId = folderId,
+                AddedByUserId = userId
+            });
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+        [HttpGet]
+        public async Task<IActionResult> SearchClass(string keyword)
+        {
+            var userId = int.Parse(
+                User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value
+            );
+
+            if (string.IsNullOrWhiteSpace(keyword))
+                return Ok(new List<object>());
+
+            var classes = await _context.Classes
+                .Where(c =>
+                    c.ClassName.Contains(keyword) &&
+                    c.OwnerId != userId &&                      // ❌ không phải lớp mình tạo
+                    !c.Users.Any(u => u.UserId == userId)       // ❌ chưa tham gia
+                )
+                .Select(c => new
+                {
+                    c.ClassId,
+                    c.ClassName,
+                    OwnerName = c.Owner.FullName,
+                    c.ImageUrl
+                })
+                .Take(10)
+                .ToListAsync();
+
+            return Ok(classes);
+        }
+        [HttpPost]
+        public async Task<IActionResult> SendClassMessage(int classId, string content)
+        {
+            if (string.IsNullOrWhiteSpace(content))
+                return BadRequest("Nội dung tin nhắn không được để trống.");
+
+            // 1. Lấy UserId từ Claims
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            // 2. Khởi tạo tin nhắn với UserId động
             var message = new ClassMessage
             {
                 ClassId = classId,
-                UserId = 1, // tạm thời
+                UserId = userId, // ✅ Thay số 1 bằng userId
                 Content = content,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.UtcNow // Khuyên dùng UtcNow để đồng bộ múi giờ
             };
 
             _context.ClassMessages.Add(message);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok();
         }
-        public IActionResult Class()
-        {
-            int userId = 1; // tạm thời hardcode
 
-            var classes = _context.Classes
+        [Authorize]
+        public async Task<IActionResult> Class()
+        {
+            // 1. Lấy UserId từ Claims
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            // 2. Truy vấn danh sách lớp mà User là chủ sở hữu HOẶC là thành viên
+            var classes = await _context.Classes
                 .Where(c =>
                     c.OwnerId == userId ||
                     c.Users.Any(u => u.UserId == userId))
-                .Include(c => c.Owner)
-                .ToList();
+                .Include(c => c.Owner) // Lấy thông tin chủ lớp để hiển thị (nếu cần)
+                .OrderByDescending(c => c.ClassId) // Sắp xếp lớp mới nhất lên đầu
+                .ToListAsync();
 
             return View(classes);
         }
@@ -479,6 +609,7 @@ public IActionResult EditSet(int SetId, string SetName, string Description, stri
             return View(vm);
         }
 
-      
+
     }
 }
+

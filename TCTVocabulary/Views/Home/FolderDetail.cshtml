@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = Model.Folder.FolderName;
 
-    var isOwner = Model.Folder.UserId == 1;
+    var isOwner = Model.Folder.UserId ==int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
 }
 
 <div class="folder-detail-container">
