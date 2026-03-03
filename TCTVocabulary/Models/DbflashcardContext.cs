@@ -30,6 +30,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingPlaylist> SpeakingPlaylists { get; set; }
     public virtual DbSet<SpeakingVideo> SpeakingVideos { get; set; }
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
+    public virtual DbSet<ClassFolder> ClassFolders { get; set; }
+   
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -252,7 +254,51 @@ public partial class DbflashcardContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_SpeakingVideos_SpeakingPlaylists");
         });
+        modelBuilder.Entity<ClassFolder>(entity =>
+        {
+            entity.ToTable("ClassFolders");
 
+            entity.HasKey(e => e.ClassFolderId);
+
+            entity.Property(e => e.ClassFolderId)
+                  .HasColumnName("ClassFolderID");
+
+            entity.Property(e => e.ClassId)
+                  .HasColumnName("ClassID")
+                  .IsRequired();
+
+            entity.Property(e => e.FolderId)
+                  .HasColumnName("FolderID")
+                  .IsRequired();
+
+            entity.Property(e => e.AddedByUserId)
+                  .HasColumnName("AddedByUserID")
+                  .IsRequired();
+
+            entity.Property(e => e.AddedAt)
+                  .HasDefaultValueSql("GETDATE()");
+
+            // ===== RELATIONS =====
+
+            entity.HasOne(e => e.Class)
+                  .WithMany(c => c.ClassFolders) // ⭐ BẮT BUỘC
+                  .HasForeignKey(e => e.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.Folder)
+                  .WithMany()
+                  .HasForeignKey(e => e.FolderId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.AddedByUser)
+                  .WithMany()
+                  .HasForeignKey(e => e.AddedByUserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            // ===== UNIQUE =====
+            entity.HasIndex(e => new { e.ClassId, e.FolderId })
+                  .IsUnique();
+        });
         modelBuilder.Entity<SpeakingSentence>(entity =>
         {
             entity.HasKey(e => e.Id);
