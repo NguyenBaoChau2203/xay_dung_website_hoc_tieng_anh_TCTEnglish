@@ -1,0 +1,185 @@
+@model TCTVocabulary.Models.Set
+@{
+    ViewData["Title"] = Model.SetName;
+    var tags = (Model.Description ?? "")
+                   .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                   .Where(t => t.StartsWith("#"))
+                   .ToList();
+    
+    // Stats inspired by image 1
+    var totalCards = Model.Cards.Count;
+    var learnedCards = 4; // Sample data
+    var remainingCards = totalCards - learnedCards;
+    var accuracy = 25; // Sample percentage
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+}
+
+<div class="vsys-page">
+    <!-- Header with stats -->
+    <div class="vsys-detail-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 24px; padding: 32px; margin-bottom: 32px; color: white;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 30px; width: fit-content; margin-bottom: 16px; backdrop-filter: blur(10px);">
+                    <i class="fas fa-folder"></i>
+                    <span>@(Model.Folder?.FolderName ?? "Từ vựng Hệ thống")</span>
+                </div>
+                <h1 style="font-size: 40px; font-weight: 700; margin-bottom: 12px;">@Model.SetName</h1>
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="display: flex; align-items: center; gap: 6px;"><i class="fas fa-layer-group"></i> @totalCards từ vựng</span>
+                    @foreach (var tag in tags)
+                    {
+                        <span style="background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; font-size: 12px; backdrop-filter: blur(10px);">@tag</span>
+                    }
+                </div>
+            </div>
+            <a asp-controller="Vocabulary" asp-action="Index" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: white; color: var(--primary); text-decoration: none; border-radius: 30px; font-weight: 500;">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </a>
+        </div>
+        
+        <!-- Progress stats -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; backdrop-filter: blur(10px);">
+            <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700;">@totalCards</div>
+                <div style="font-size: 14px; opacity: 0.9;">Tổng số Thẻ</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700;">@learnedCards</div>
+                <div style="font-size: 14px; opacity: 0.9;">Đã học</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700;">@remainingCards</div>
+                <div style="font-size: 14px; opacity: 0.9;">Còn lại</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700;">@accuracy%</div>
+                <div style="font-size: 14px; opacity: 0.9;">Độ chính xác</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Continue learning section -->
+    <div style="background: white; border-radius: 20px; padding: 24px; margin-bottom: 32px; border: 1px solid var(--gray-200);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h2 style="font-size: 20px; font-weight: 600; color: var(--gray-800);">📊 Tiến độ học tập</h2>
+            <span style="background: var(--danger); color: white; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">@remainingCards từ cần ôn tập</span>
+        </div>
+        
+        <div style="background: var(--primary-bg); border-radius: 16px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="background: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 30px;">📚</span>
+                </div>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; margin-bottom: 8px;">@Model.SetName</div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden;">
+                            <div style="width: @((learnedCards * 100) / totalCards)%; height: 100%; background: var(--primary);"></div>
+                        </div>
+                        <span style="color: var(--gray-600); font-size: 14px;">@learnedCards/@totalCards từ</span>
+                    </div>
+                </div>
+                <a href="#" style="background: var(--primary); color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 500;">Tiếp tục Học →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Word list -->
+    <div class="vsys-word-header">
+        <h2 class="vsys-word-header-title">Danh sách từ vựng</h2>
+        <span class="vsys-count-badge">@Model.Cards.Count từ</span>
+    </div>
+
+    @if (!Model.Cards.Any())
+    {
+        <div class="vsys-empty">
+            <div class="vsys-empty-icon">🃏</div>
+            <p>Bộ từ này chưa có thẻ nào.</p>
+        </div>
+    }
+    else
+    {
+        <table class="vsys-word-table">
+            <thead>
+                <tr style="background: var(--primary-bg);">
+                    <th style="padding: 16px 24px; text-align: left; color: var(--primary); font-weight: 600;">Từ vựng</th>
+                    <th style="padding: 16px 24px; text-align: left; color: var(--primary); font-weight: 600;">Định nghĩa</th>
+                    <th style="padding: 16px 24px; text-align: center; color: var(--primary); font-weight: 600;">Hình ảnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int i = 1; }
+                @foreach (var card in Model.Cards)
+                {
+                    <tr class="vsys-word-row">
+                        <td>
+                            <span class="vsys-num">@i</span>
+                            @card.Term
+                        </td>
+                        <td>@card.Definition</td>
+                        <td style="text-align: center;">
+                            @if (!string.IsNullOrEmpty(card.ImageUrl))
+                            {
+                                <img src="@card.ImageUrl" alt="@card.Term" class="vsys-word-img" />
+                            }
+                            else
+                            {
+                                <span style="font-size: 32px; opacity: 0.3;">🖼️</span>
+                            }
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    }
+
+    <!-- Related sets from image 2 -->
+    <div style="margin-top: 48px;">
+        <h2 style="font-size: 24px; font-weight: 600; color: var(--gray-800); margin-bottom: 24px; padding-left: 16px; position: relative;">
+            <span style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: var(--primary); border-radius: 4px;"></span>
+            Bộ từ vựng liên quan
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
+                <div style="font-size: 24px; margin-bottom: 12px;">📘</div>
+                <h3 style="font-weight: 600; margin-bottom: 8px;">3000 Oxford Vocabulary A1</h3>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 759 từ</span>
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 15.6k học viên</span>
+                </div>
+                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
+            </div>
+            
+            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
+                <div style="font-size: 24px; margin-bottom: 12px;">🗣️</div>
+                <h3 style="font-weight: 600; margin-bottom: 8px;">Từ vựng tiếng Anh giao tiếp</h3>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 326 từ</span>
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 22.1k học viên</span>
+                </div>
+                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
+            </div>
+            
+            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
+                <div style="font-size: 24px; margin-bottom: 12px;">🌍</div>
+                <h3 style="font-weight: 600; margin-bottom: 8px;">3000 từ vựng Oxford B1</h3>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 739 từ</span>
+                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 560 học viên</span>
+                </div>
+                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center;">
+        <a asp-controller="Vocabulary" asp-action="Index" class="vsys-back-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px;">
+            <i class="fas fa-th"></i> Xem tất cả bộ từ vựng
+        </a>
+    </div>
+</div>

@@ -1,0 +1,223 @@
+@model List<TCTVocabulary.Models.Folder>
+@{
+    ViewData["Title"] = "Từ vựng Hệ thống";
+
+    var allTags = Model
+        .SelectMany(f => f.Sets)
+        .SelectMany(s => (s.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        .Where(t => t.StartsWith("#"))
+        .Distinct()
+        .OrderBy(t => t)
+        .ToList();
+
+    string[] grads   = { "vsys-thumb-g1","vsys-thumb-g2","vsys-thumb-g3","vsys-thumb-g4","vsys-thumb-g5" };
+    string[] icons   = { "📚", "💬", "🌍", "✏️", "🎯" };
+    int ci = 0;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+}
+
+<div class="vsys-page">
+    <!-- Header with stats inspired by image 1 -->
+    <div class="vsys-page-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 24px; padding: 32px; margin-bottom: 32px; color: white;">
+        <h1 style="font-size: 36px; font-weight: 700; margin-bottom: 8px;">📚 Học Từ Vựng Tiếng Anh</h1>
+        <p style="font-size: 18px; opacity: 0.9; margin-bottom: 24px;">Thành thạo từ vựng tiếng Anh với hệ thống lập lại ngắt quãng thông minh</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; backdrop-filter: blur(10px);">
+            <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700;">4</div>
+                <div style="font-size: 14px; opacity: 0.9;">Tổng số Thẻ</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700;">4</div>
+                <div style="font-size: 14px; opacity: 0.9;">Tổng số Lần Ôn tập</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700;">3</div>
+                <div style="font-size: 14px; opacity: 0.9;">Đến Hạn</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700;">25%</div>
+                <div style="font-size: 14px; opacity: 0.9;">Độ Chính xác</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Due now section -->
+    <div style="background: white; border-radius: 20px; padding: 24px; margin-bottom: 32px; border: 1px solid var(--gray-200);">
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+            <span style="background: var(--danger); color: white; padding: 8px 16px; border-radius: 30px; font-weight: 600;">Đến Tập Ngay</span>
+            <span style="font-size: 28px; font-weight: 700; color: var(--danger);">3</span>
+        </div>
+        
+        <div style="background: var(--primary-bg); border-radius: 16px; padding: 16px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <span style="font-weight: 600; color: var(--gray-700);">Tiếp tục Học:</span>
+                    <span style="color: var(--primary); font-weight: 600; margin-left: 8px;">1000 từ tiếng Anh thông dụng</span>
+                </div>
+                <span style="color: var(--danger); font-weight: 600;">3 từ cần ôn tập hôm nay</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status section -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;">
+        <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--gray-200); text-align: center;">
+            <div style="font-size: 24px; color: var(--primary); margin-bottom: 8px;">📖</div>
+            <div style="font-weight: 600;">Đang Học</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--primary);">3</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--gray-200); text-align: center;">
+            <div style="font-size: 24px; color: var(--warning); margin-bottom: 8px;">🔄</div>
+            <div style="font-weight: 600;">Đang Ôn tập</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--warning);">1</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--gray-200); text-align: center;">
+            <div style="font-size: 24px; color: var(--success); margin-bottom: 8px;">✅</div>
+            <div style="font-weight: 600;">Đã Thành thạo</div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--success);">0</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--gray-200); text-align: center;">
+            <div style="font-size: 24px; color: var(--gray-500); margin-bottom: 8px;">📋</div>
+            <div style="font-weight: 600;">Tổng số Thẻ</div>
+            <div style="font-size: 20px; font-weight: 700;">4</div>
+        </div>
+    </div>
+
+    <!-- Tag filter bar -->
+    <div class="vsys-tag-bar">
+        <span class="vsys-tag-label">🏷️ Lọc theo Tags</span>
+        <a href="#" class="vsys-tag vsys-active" data-tag="all">Tất cả</a>
+        @foreach (var tag in allTags)
+        {
+            <a href="#" class="vsys-tag" data-tag="@tag">@tag</a>
+        }
+    </div>
+
+    <!-- Folders -->
+    @if (!Model.Any())
+    {
+        <div class="vsys-empty">
+            <div class="vsys-empty-icon">📂</div>
+            <p>Chưa có dữ liệu. Vui lòng khởi động lại ứng dụng để seed dữ liệu.</p>
+        </div>
+    }
+
+    @foreach (var folder in Model)
+    {
+        <div class="vsys-section" data-folder="@folder.FolderName">
+            <div class="vsys-section-head">
+                <h2 class="vsys-section-title">@folder.FolderName</h2>
+                <span class="vsys-section-count">@folder.Sets.Count bộ thẻ</span>
+            </div>
+
+            <div class="vsys-grid">
+                @foreach (var set in folder.Sets)
+                {
+                    var g    = grads[ci % grads.Length];
+                    var icon = icons[ci % icons.Length];
+                    var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                   .Where(t => t.StartsWith("#")).ToList();
+                    ci++;
+
+                    <div class="vsys-card" data-tags="@string.Join(" ", tags)">
+                        <!-- Thumbnail -->
+                        <div class="vsys-thumb @g">
+                            <span class="vsys-thumb-icon">@icon</span>
+                            <div class="vsys-thumb-label">@set.SetName</div>
+                            <div class="vsys-thumb-tags">
+                                @foreach (var t in tags.Take(3))
+                                {
+                                    <span class="vsys-thumb-tag">@t</span>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="vsys-card-body">
+                            <h3 class="vsys-card-name">@set.SetName</h3>
+                            <div class="vsys-card-meta">
+                                <span><i class="fas fa-layer-group"></i> @set.Cards.Count thẻ</span>
+                                <span><i class="fas fa-shield-alt"></i> TCT System</span>
+                                <span><i class="fas fa-users"></i> @(new Random().Next(500, 5000)) học viên</span>
+                            </div>
+                            <a href="@Url.Action("Detail","Vocabulary", new { setId = set.SetId })"
+                               class="vsys-btn-learn">
+                                Tiếp tục Học →
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Leaderboard from image 1 -->
+    <div style="background: white; border-radius: 20px; padding: 24px; margin-top: 48px; border: 1px solid var(--gray-200);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h3 style="font-size: 20px; font-weight: 600; color: var(--gray-800);">🏆 Bảng Xếp Hạng</h3>
+            <span style="color: var(--gray-500); font-size: 14px;">Cập nhật: 04/03/2026 10:03</span>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); border-radius: 12px; color: white;">
+                <span style="font-size: 24px;">🥇</span>
+                <span style="font-weight: 600; flex: 1;">Nguyên Nhì (p)</span>
+                <span style="font-weight: 700;">2922</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(90deg, #94a3b8 0%, #64748b 100%); border-radius: 12px; color: white;">
+                <span style="font-size: 24px;">🥈</span>
+                <span style="font-weight: 600; flex: 1;">TRAN XUAN DUONG (p)</span>
+                <span style="font-weight: 700;">2142</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(90deg, #b45309 0%, #92400e 100%); border-radius: 12px; color: white;">
+                <span style="font-size: 24px;">🥉</span>
+                <span style="font-weight: 600; flex: 1;">hd (p)</span>
+                <span style="font-weight: 700;">2134</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-100); border-radius: 12px;">
+                <span style="width: 24px; font-weight: 600; color: var(--gray-600);">4</span>
+                <span style="font-weight: 500; flex: 1;">Jen (p)</span>
+                <span style="font-weight: 600;">1901</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-100); border-radius: 12px;">
+                <span style="width: 24px; font-weight: 600; color: var(--gray-600);">5</span>
+                <span style="font-weight: 500; flex: 1;">Người dùng ẩn danh (p)</span>
+                <span style="font-weight: 600;">1867</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-100); border-radius: 12px;">
+                <span style="width: 24px; font-weight: 600; color: var(--gray-600);">#2527</span>
+                <span style="font-weight: 500; flex: 1;">Trong Huỳnh (p)</span>
+                <span style="font-weight: 600;">4</span>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Xem tất cả →</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    document.querySelectorAll('.vsys-tag').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tag = this.dataset.tag;
+            document.querySelectorAll('.vsys-tag').forEach(t => t.classList.remove('vsys-active'));
+            this.classList.add('vsys-active');
+
+            document.querySelectorAll('.vsys-card').forEach(c => {
+                c.style.display = (tag === 'all' || (c.dataset.tags||'').includes(tag)) ? '' : 'none';
+            });
+            document.querySelectorAll('.vsys-section').forEach(s => {
+                const vis = s.querySelectorAll('.vsys-card:not([style*="none"])').length;
+                s.style.display = vis > 0 ? '' : 'none';
+            });
+        });
+    });
+</script>
+}
