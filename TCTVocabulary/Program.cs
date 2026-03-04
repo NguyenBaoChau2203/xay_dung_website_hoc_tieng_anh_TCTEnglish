@@ -95,6 +95,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         await TCTVocabulary.Models.SpeakingDataSeeder.SeedAsync(services);
+        await TCTVocabulary.Models.SystemVocabularySeeder.SeedAsync(services);
     }
     catch (Exception ex)
     {
