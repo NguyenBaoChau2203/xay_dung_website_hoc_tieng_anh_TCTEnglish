@@ -48,64 +48,65 @@ namespace TCTVocabulary.Models
 
             // ── 2. Seed 12 Videos from the real YouTube playlist ─────────────
             // Source: https://www.youtube.com/playlist?list=PLhNRdHEdUQewzYZ0X6gt3x9_CVen_HldI
+            // NEW: Added Topic property and changed Level from "Easy" to "A1" for all videos
             var videos = new List<SpeakingVideo>
             {
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "3:43",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Conversation", Duration = "3:43", // NEW: Level="A1", Topic="Daily Conversation"
                     Title = "A1 English Listening Practice - Language Learning",
                     YoutubeId = "erjMgola4fQ",
                     ThumbnailUrl = "https://img.youtube.com/vi/erjMgola4fQ/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "5:59",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "5:59", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Cooking",
                     YoutubeId = "uVGV8LG3HHM",
                     ThumbnailUrl = "https://img.youtube.com/vi/uVGV8LG3HHM/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "5:04",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "5:04", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Weather",
                     YoutubeId = "eYAaLWdx_h0",
                     ThumbnailUrl = "https://img.youtube.com/vi/eYAaLWdx_h0/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:28",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "4:28", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Pets",
                     YoutubeId = "2XRnB4wy4yA",
                     ThumbnailUrl = "https://img.youtube.com/vi/2XRnB4wy4yA/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:11",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Lifestyle & Culture", Duration = "4:11", // NEW: Level="A1", Topic="Lifestyle & Culture"
                     Title = "A1 English Listening Practice - New Year's Resolutions",
                     YoutubeId = "98pYyFdHw38",
                     ThumbnailUrl = "https://img.youtube.com/vi/98pYyFdHw38/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:46",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "4:46", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Daily Routine",
                     YoutubeId = "aQ0w2I0Eb9I",
                     ThumbnailUrl = "https://img.youtube.com/vi/aQ0w2I0Eb9I/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:31",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Conversation", Duration = "4:31", // NEW: Level="A1", Topic="Daily Conversation"
                     Title = "A1 English Listening Practice - Social Media Apps",
                     YoutubeId = "Y6CERK3AXCw",
                     ThumbnailUrl = "https://img.youtube.com/vi/Y6CERK3AXCw/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:47",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Lifestyle & Culture", Duration = "4:47", // NEW: Level="A1", Topic="Lifestyle & Culture"
                     Title = "A1 English Listening Practice - Exercise",
                     YoutubeId = "uxbG_tFS0Jw",
                     ThumbnailUrl = "https://img.youtube.com/vi/uxbG_tFS0Jw/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:30",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "4:30", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Homes",
                     YoutubeId = "ApzkloKc3Lc",
                     ThumbnailUrl = "https://img.youtube.com/vi/ApzkloKc3Lc/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:42",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Lifestyle & Culture", Duration = "4:42", // NEW: Level="A1", Topic="Lifestyle & Culture"
                     Title = "A1 English Listening Practice - Soccer",
                     YoutubeId = "jbdoyphEcsc",
                     ThumbnailUrl = "https://img.youtube.com/vi/jbdoyphEcsc/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:37",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Daily Life", Duration = "4:37", // NEW: Level="A1", Topic="Daily Life"
                     Title = "A1 English Listening Practice - Jobs",
                     YoutubeId = "v95eemWZ-4s",
                     ThumbnailUrl = "https://img.youtube.com/vi/v95eemWZ-4s/hqdefault.jpg" },
 
-                new() { PlaylistId = playlist.Id, Level = "Easy", Duration = "4:25",
+                new() { PlaylistId = playlist.Id, Level = "A1", Topic = "Lifestyle & Culture", Duration = "4:25", // NEW: Level="A1", Topic="Lifestyle & Culture"
                     Title = "A1 English Listening Practice - Transportation",
                     YoutubeId = "Wlehc1l50bk",
                     ThumbnailUrl = "https://img.youtube.com/vi/Wlehc1l50bk/hqdefault.jpg" },

@@ -1,4 +1,193 @@
 /**
+ * speaking.js — TCT Speaking Module
+ * Part 1: Index Page — topic filtering, search, slider navigation
+ * Part 2: Practice Page — YouTube IFrame API, sentence sync, speech AI
+ */
+
+// ════════════════════════════════════════════════════════════════════
+//  PART 1 — INDEX PAGE: Topic Filter, Search & Slider
+// ════════════════════════════════════════════════════════════════════
+(function () {
+    'use strict';
+
+    // Guard: only run on the Index page (has filter buttons)
+    const filterBtns = document.querySelectorAll('.topic-filter-btn');
+    if (!filterBtns.length) return;
+
+    // ── DOM refs ─────────────────────────────────────────────────
+    const searchInput = document.getElementById('vi-search');
+    const videoCounter = document.getElementById('vi-video-count');
+    const allCards = document.querySelectorAll('.vi-video-col');
+    const levelSections = document.querySelectorAll('.vi-level-section');
+
+    // ── State ────────────────────────────────────────────────────
+    let activeTopic = 'all';
+
+    // ── TOPIC FILTER ─────────────────────────────────────────────
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            activeTopic = btn.dataset.topic;
+
+            // Clear search when switching topics
+            if (searchInput) {
+                searchInput.value = '';
+            }
+
+            applyFilters();
+        });
+    });
+
+    // ── SEARCH ───────────────────────────────────────────────────
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            applyFilters();
+        });
+
+        // Ctrl+K / Cmd+K → focus search
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.select();
+            }
+        });
+    }
+
+    // ── CORE FILTER & PAGINATION LOGIC ─────────────────────────────
+    const ITEMS_PER_PAGE = 6;
+
+    function applyFilters() {
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        let totalVisibleCount = 0;
+
+        levelSections.forEach(section => {
+            const level = section.dataset.level;
+            const cardsInLevel = section.querySelectorAll('.vi-video-col');
+            let visibleCards = [];
+
+            // 1. Determine which cards match the current filters
+            cardsInLevel.forEach(card => {
+                const cardTopic = (card.dataset.topic || '').trim();
+                const cardTitle = (card.dataset.title || '').trim();
+
+                const topicMatch = activeTopic === 'all' || cardTopic === activeTopic;
+                const searchMatch = !query || cardTitle.includes(query);
+
+                if (topicMatch && searchMatch) {
+                    visibleCards.push(card);
+                    totalVisibleCount++;
+                } else {
+                    // Hide non-matching right away
+                    card.classList.add('vi-card-hidden');
+                }
+            });
+
+            // 2. Hide section if empty, else paginate it
+            if (visibleCards.length === 0) {
+                section.classList.add('vi-section-hidden');
+            } else {
+                section.classList.remove('vi-section-hidden');
+                renderPagination(level, visibleCards);
+            }
+        });
+
+        // Update total counter
+        if (videoCounter) {
+            videoCounter.textContent = query || activeTopic !== 'all'
+                ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
+                : `${totalVisibleCount} videos`;
+        }
+    }
+
+    function renderPagination(level, visibleCards) {
+        const container = document.querySelector(`.numbered-pagination-container[data-level="${level}"]`);
+        const track = document.getElementById(`track-${level}`);
+        if (!container || !track) return;
+
+        // Reset all visible cards to be shown (in case they were hidden by the old grid logic)
+        visibleCards.forEach(card => card.classList.remove('vi-card-hidden'));
+
+        const totalItems = visibleCards.length;
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+        // Clear existing buttons
+        container.innerHTML = '';
+
+        // If 1 page or less, hide pagination
+        if (totalPages <= 1) {
+            return;
+        }
+
+        // Build pagination buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'page-btn';
+            btn.textContent = i;
+            if (i === 1) btn.classList.add('active');
+
+            btn.addEventListener('click', () => {
+                // Update active button state
+                container.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Calculate scroll position based on 6 cards per page
+                // We use the first visible card to estimate card width including gaps
+                const firstCard = visibleCards[0];
+                if (firstCard) {
+                    const cardWidthWithGap = firstCard.offsetWidth + 16; // 16px is the gap from CSS
+                    const scrollAmount = (i - 1) * ITEMS_PER_PAGE * cardWidthWithGap;
+                    track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+                }
+            });
+
+            container.appendChild(btn);
+        }
+
+        // Reset scroll to left when filters change
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+
+    // Optional: Update active pagination pill based on manual scrolling
+    levelSections.forEach(section => {
+        const level = section.dataset.level;
+        const track = document.getElementById(`track-${level}`);
+        if (track) {
+            track.addEventListener('scroll', () => {
+                const container = document.querySelector(`.numbered-pagination-container[data-level="${level}"]`);
+                if (!container) return;
+
+                const visibleCards = Array.from(track.querySelectorAll('.vi-video-col:not(.vi-card-hidden)'));
+                if (visibleCards.length === 0) return;
+
+                const cardWidthWithGap = visibleCards[0].offsetWidth + 16;
+                const scrollLeft = track.scrollLeft;
+
+                // Determine current page based on scroll position
+                const currentPage = Math.floor(scrollLeft / (cardWidthWithGap * ITEMS_PER_PAGE)) + 1;
+
+                const buttons = container.querySelectorAll('.page-btn');
+                buttons.forEach(b => b.classList.remove('active'));
+
+                const activeBtn = buttons[currentPage - 1];
+                if (activeBtn) activeBtn.classList.add('active');
+            });
+        }
+    });
+
+    // ── INIT ─────────────────────────────────────────────────────
+    applyFilters(); // ensure correct state on page load
+
+})();
+
+
+// ════════════════════════════════════════════════════════════════════
+//  PART 2 — PRACTICE PAGE
+// ════════════════════════════════════════════════════════════════════
+/**
  * speaking.js — TCT Speaking Practice Module
  * Encapsulates: YouTube IFrame API bridge, sentence sync,
  *               slow-motion, repeat/loop, Web Speech AI feedback, toast.
