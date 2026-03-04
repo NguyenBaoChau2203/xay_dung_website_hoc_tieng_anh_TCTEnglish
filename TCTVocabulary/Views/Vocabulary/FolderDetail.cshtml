@@ -1,0 +1,342 @@
+@model IEnumerable<TCTVocabulary.Models.Set>
+
+@{
+    ViewData["Title"] = ViewBag.FolderName ?? "Chi Tiết Danh Mục";
+    string[] folderColors = { "#667eea", "#f093fb", "#4facfe", "#43e97b", "#fa709a", "#fcb045" };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+}
+
+<div class="folder-detail-modern">
+    <!-- Header với hiệu ứng Parallax -->
+    <div class="folder-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <a href="@Url.Action("Index", "Vocabulary")" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span>Quay lại</span>
+            </a>
+
+            <div class="folder-info">
+                <div class="folder-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h1 class="folder-name">@ViewBag.FolderName</h1>
+                <div class="folder-stats">
+                    <div class="stat">
+                        <span class="stat-value">@Model?.Count()</span>
+                        <span class="stat-label">Bộ từ</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">@(Model?.Sum(s => s.Cards?.Count ?? 0) ?? 0)</span>
+                        <span class="stat-label">Từ vựng</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">1.2k</span>
+                        <span class="stat-label">Học viên</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Decoration -->
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+    </div>
+
+    <!-- Filter và Search Bar -->
+    <div class="folder-toolbar">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Tìm kiếm bộ từ..." id="searchSets">
+        </div>
+
+        <div class="filter-options">
+            <select class="filter-select" id="sortSelect">
+                <option value="popular">Phổ biến nhất</option>
+                <option value="newest">Mới nhất</option>
+                <option value="name-asc">Tên A-Z</option>
+                <option value="name-desc">Tên Z-A</option>
+                <option value="cards">Nhiều từ nhất</option>
+            </select>
+
+            <button class="filter-btn" id="gridView">
+                <i class="fas fa-grid-2"></i>
+            </button>
+            <button class="filter-btn active" id="listView">
+                <i class="fas fa-list"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sets Grid -->
+    <div class="sets-container">
+        @if (Model != null && Model.Any())
+        {
+            <div class="sets-grid" id="setsGrid">
+                @{
+                    int colorIndex = 0;
+                }
+                @foreach (var set in Model)
+                {
+                    var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(t => t.StartsWith("#")).ToList();
+                    var bgColor = folderColors[colorIndex % folderColors.Length];
+                    var randomIcon = new[] { "📚", "💬", "🌍", "✏️", "🎯", "🎨" }[colorIndex % 6];
+                    colorIndex++;
+
+                    <div class="set-grid-item" data-name="@set.SetName" data-cards="@(set.Cards?.Count ?? 0)">
+                        <div class="set-card">
+                            <div class="set-card-header" style="background: @bgColor">
+                                <span class="set-icon">@randomIcon</span>
+                                @if (tags.Any())
+                                {
+                                    <span class="set-tag">@tags.First()</span>
+                                }
+                            </div>
+
+                            <div class="set-card-body">
+                                <h3 class="set-name">@set.SetName</h3>
+                                <p class="set-description">@(set.Description?.Replace("#", "").Trim() ?? "Không có mô tả")</p>
+
+                                <div class="set-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-layer-group"></i>
+                                        @(set.Cards?.Count ?? 0) từ
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        @(new Random().Next(10, 60)) phút
+                                    </span>
+                                </div>
+
+                                <div class="set-progress">
+                                    <div class="progress-text">
+                                        <span>Tiến độ</span>
+                                        <span class="progress-percent">@(new Random().Next(0, 100))%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: @(new Random().Next(0, 100))%; background: @bgColor"></div>
+                                    </div>
+                                </div>
+
+                                <div class="set-actions">
+                                    <a href="@Url.Action("Detail", "Vocabulary", new { setId = set.SetId })"
+                                       class="btn-learn" style="background: @bgColor">
+                                        <span>Học ngay</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                    <button class="btn-more">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- List View (Hidden by default) -->
+            <div class="sets-list" id="setsList" style="display: none;">
+                <table class="list-table">
+                    <thead>
+                        <tr>
+                            <th>Tên bộ từ</th>
+                            <th>Số từ</th>
+                            <th>Tags</th>
+                            <th>Tiến độ</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var set in Model)
+                        {
+                            var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                            .Where(t => t.StartsWith("#")).ToList();
+                            var progress = new Random().Next(0, 100);
+
+                            <tr class="list-row">
+                                <td>
+                                    <div class="list-name">
+                                        <span class="list-icon">📚</span>
+                                        <span>@set.SetName</span>
+                                    </div>
+                                </td>
+                                <td>@(set.Cards?.Count ?? 0) từ</td>
+                                <td>
+                                    <div class="list-tags">
+                                        @foreach (var tag in tags.Take(2))
+                                        {
+                                            <span class="tag">@tag</span>
+                                        }
+                                        @if (tags.Count > 2)
+                                        {
+                                            <span class="tag-more">+@(tags.Count - 2)</span>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="list-progress">
+                                        <div class="progress-bar-small">
+                                            <div class="progress-fill-small" style="width: @progress%"></div>
+                                        </div>
+                                        <span class="progress-text">@progress%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="list-actions">
+                                        <a href="@Url.Action("Detail", "Vocabulary", new { setId = set.SetId })"
+                                           class="action-btn view">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <button class="action-btn fav">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="empty-folder">
+                <div class="empty-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>Danh mục chưa có bộ từ nào</h3>
+                <p>Hãy tạo bộ từ vựng đầu tiên để bắt đầu học nhé!</p>
+                <a href="#" class="btn-create">
+                    <i class="fas fa-plus"></i>
+                    Tạo bộ từ mới
+                </a>
+            </div>
+        }
+    </div>
+
+    <!-- Recommended Sets -->
+    <div class="recommended-section">
+        <div class="section-header">
+            <h2>Bộ từ được đề xuất cho bạn</h2>
+            <a href="#" class="view-all">Xem tất cả <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="recommended-grid">
+            <div class="rec-card">
+                <div class="rec-badge">🔥 Phổ biến</div>
+                <div class="rec-content">
+                    <h4>1000 từ tiếng Anh thông dụng</h4>
+                    <p>Bộ từ vựng cơ bản nhất cho người mới bắt đầu</p>
+                    <div class="rec-meta">
+                        <span><i class="fas fa-users"></i> 5.2k học viên</span>
+                        <span><i class="fas fa-star" style="color: #fbbf24"></i> 4.8 (120 đánh giá)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rec-card">
+                <div class="rec-badge">📝 Mới</div>
+                <div class="rec-content">
+                    <h4>IELTS Vocabulary Booster</h4>
+                    <p>Từ vựng học thuật cho kỳ thi IELTS</p>
+                    <div class="rec-meta">
+                        <span><i class="fas fa-users"></i> 1.2k học viên</span>
+                        <span><i class="fas fa-star" style="color: #fbbf24"></i> 4.9 (230 đánh giá)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rec-card">
+                <div class="rec-badge">💼 Kinh doanh</div>
+                <div class="rec-content">
+                    <h4>Business English Essentials</h4>
+                    <p>Từ vựng tiếng Anh thương mại và công sở</p>
+                    <div class="rec-meta">
+                        <span><i class="fas fa-users"></i> 3.1k học viên</span>
+                        <span><i class="fas fa-star" style="color: #fbbf24"></i> 4.7 (89 đánh giá)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Toggle between grid and list view
+        document.getElementById('gridView').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('listView').classList.remove('active');
+            document.getElementById('setsGrid').style.display = 'grid';
+            document.getElementById('setsList').style.display = 'none';
+        });
+
+        document.getElementById('listView').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('gridView').classList.remove('active');
+            document.getElementById('setsGrid').style.display = 'none';
+            document.getElementById('setsList').style.display = 'block';
+        });
+
+        // Search functionality
+        document.getElementById('searchSets').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+
+            if (document.getElementById('setsGrid').style.display !== 'none') {
+                // Grid view search
+                document.querySelectorAll('.set-grid-item').forEach(item => {
+                    const name = item.dataset.name.toLowerCase();
+                    item.style.display = name.includes(searchTerm) ? 'block' : 'none';
+                });
+            } else {
+                // List view search
+                document.querySelectorAll('.list-row').forEach(row => {
+                    const name = row.querySelector('.list-name span:last-child').textContent.toLowerCase();
+                    row.style.display = name.includes(searchTerm) ? '' : 'none';
+                });
+            }
+        });
+
+        // Sort functionality
+        document.getElementById('sortSelect').addEventListener('change', function(e) {
+            const sortBy = e.target.value;
+            const grid = document.getElementById('setsGrid');
+            const items = Array.from(document.querySelectorAll('.set-grid-item'));
+
+            items.sort((a, b) => {
+                switch(sortBy) {
+                    case 'popular':
+                        return parseInt(b.dataset.cards) - parseInt(a.dataset.cards);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    case 'cards':
+                        return parseInt(b.dataset.cards) - parseInt(a.dataset.cards);
+                    default:
+                        return 0;
+                }
+            });
+
+            grid.innerHTML = '';
+            items.forEach(item => grid.appendChild(item));
+        });
+
+        // Animate cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        });
+
+        document.querySelectorAll('.set-grid-item, .rec-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+}

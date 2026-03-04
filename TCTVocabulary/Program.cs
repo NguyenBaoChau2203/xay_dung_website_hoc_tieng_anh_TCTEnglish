@@ -95,13 +95,23 @@ using (var scope = app.Services.CreateScope())
     try
     {
         await TCTVocabulary.Models.SpeakingDataSeeder.SeedAsync(services);
-        await TCTVocabulary.Models.SystemVocabularySeeder.SeedAsync(services);
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred seeding the DB.");
     }
+}
+
+// Seed từ vựng hệ thống từ file JSON (có try-catch riêng, web không sập nếu file JSON lỗi)
+try
+{
+    await TCTVocabulary.Models.JsonVocabularySeeder.SeedFromJsonAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "JsonVocabularySeeder: Lỗi không mong đợi khi seed từ JSON.");
 }
 
 app.Run();

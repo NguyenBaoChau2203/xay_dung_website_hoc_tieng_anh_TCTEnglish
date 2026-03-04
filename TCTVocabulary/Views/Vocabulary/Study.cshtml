@@ -1,0 +1,621 @@
+@model TCTVocabulary.Models.Set
+@{
+    ViewData["Title"] = "Học từ vựng";
+
+    var setId = Model.SetId;
+    var set = Model;
+    var cards = Model.Cards?.ToList() ?? new List<TCTVocabulary.Models.Card>();
+    var totalCards = cards.Count;
+    var currentIndex = ViewBag.CurrentIndex ?? 1;
+
+    TCTVocabulary.Models.Card currentCard = null;
+    if (cards != null && cards.Count > 0 && currentIndex <= cards.Count)
+    {
+        currentCard = cards[currentIndex - 1];
+    }
+
+    // Tính toán thống kê
+    var learnedCount = cards.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true);
+    var progress = totalCards > 0 ? (learnedCount * 100) / totalCards : 0;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+}
+
+<div class="study-advanced">
+    <!-- Header với navigation và thống kê -->
+    <div class="study-header-modern">
+        <div class="header-left">
+            <a href="@Url.Action("Detail", "Vocabulary", new { setId = setId })" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="set-info-compact">
+                <h2>@(set?.SetName ?? "3000 từ vựng Oxford")</h2>
+                <span class="set-category">@(set?.Folder?.FolderName ?? "Animal")</span>
+            </div>
+        </div>
+
+        <div class="header-stats-modern">
+            <div class="stat-item-compact">
+                <i class="fas fa-layer-group"></i>
+                <span>@totalCards từ</span>
+            </div>
+            <div class="stat-item-compact">
+                <i class="fas fa-fire" style="color: #f97316;"></i>
+                <span>7 ngày</span>
+            </div>
+            <div class="stat-item-compact">
+                <i class="fas fa-star" style="color: #fbbf24;"></i>
+                <span>@progress%</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <button class="icon-btn" onclick="toggleSettings()">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button class="icon-btn" onclick="toggleFullscreen()">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
+    @if (totalCards > 0 && currentCard != null)
+    {
+        <!-- Main Study Area -->
+        <div class="study-area">
+            <!-- Progress Timeline -->
+            <div class="progress-timeline">
+                @for (int i = 1; i <= totalCards; i++)
+                {
+                    <div class="timeline-dot @(i < currentIndex ? "completed" : "") @(i == currentIndex ? "active" : "")"
+                         onclick="jumpToCard(@i)">
+                        <span class="dot-tooltip">Thẻ @i</span>
+                    </div>
+                }
+            </div>
+
+            <!-- Flashcard với hiệu ứng 3D -->
+            <div class="flashcard-3d" id="flashcard3d">
+                <div class="flashcard-inner">
+                    <!-- Mặt trước - Term -->
+                    <div class="flashcard-front">
+                        <div class="card-header">
+                            <span class="card-number">#@currentIndex</span>
+                            <div class="card-actions">
+                                <button class="card-action" onclick="markAsImportant()">
+                                    <i class="far fa-star"></i>
+                                </button>
+                                <button class="card-action" onclick="shareWord()">
+                                    <i class="far fa-share-square"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="word-display">
+                                <h1>@currentCard.Term</h1>
+                                <div class="word-phonetic">
+                                    <span>/ˈæp.əl/</span>
+                                    <button class="play-sound" onclick="playPronunciation('@currentCard.Term')">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="word-info">
+                                <span class="pos-tag">noun</span>
+                                <span class="frequency-tag">🔥 Phổ biến</span>
+                            </div>
+
+                            <div class="word-examples">
+                                <div class="example-item">
+                                    <i class="fas fa-quote-left"></i>
+                                    <p>An apple a day keeps the doctor away</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="flip-hint" onclick="flipCard3D()">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Nhấn để xem định nghĩa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mặt sau - Definition -->
+                    <div class="flashcard-back">
+                        <div class="card-header">
+                            <span class="card-number">Định nghĩa</span>
+                            <button class="card-action" onclick="flipCard3D()">
+                                <i class="fas fa-undo-alt"></i>
+                            </button>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="definition-main">
+                                <h2>@(currentCard.Definition ?? "Chưa có định nghĩa")</h2>
+                            </div>
+
+                           
+
+                            <div class="definition-synonyms">
+                                <h4>Từ đồng nghĩa:</h4>
+                                <div class="synonym-tags">
+                                    <span class="synonym-tag">fruit</span>
+                                    <span class="synonym-tag">pome</span>
+                                    <span class="synonym-tag">orchard</span>
+                                </div>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(currentCard.ImageUrl))
+                            {
+                                <div class="definition-image">
+                                    <img src="@currentCard.ImageUrl" alt="@currentCard.Term">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Controls -->
+            <div class="study-controls">
+                <div class="control-left">
+                    <button class="control-btn" onclick="previousCard()" @(currentIndex <= 1 ? "disabled" : "")>
+                        <i class="fas fa-chevron-left"></i>
+                        <span>Trước</span>
+                    </button>
+                </div>
+
+                <div class="control-center">
+                    <div class="progress-ring">
+                        <svg width="60" height="60">
+                            <circle class="progress-ring-bg" cx="30" cy="30" r="26"></circle>
+                            <circle class="progress-ring-fill"
+                                    cx="30" cy="30" r="26"
+                                    stroke-dasharray="163.36"
+                                    stroke-dashoffset="@(163.36 - (163.36 * currentIndex / totalCards))"></circle>
+                        </svg>
+                        <span class="progress-text">@currentIndex/@totalCards</span>
+                    </div>
+                </div>
+
+                <div class="control-right">
+                    <button class="control-btn" onclick="nextCard()" @(currentIndex >= totalCards ? "disabled" : "")>
+                        <span>Sau</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mastery Buttons -->
+            <div class="mastery-section" id="masterySection" style="display: none;">
+                <div class="mastery-title">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Bạn nhớ từ này thế nào?</span>
+                </div>
+                <div class="mastery-buttons">
+                    <button class="mastery-btn hard" onclick="recordMastery('hard')">
+                        <i class="fas fa-frown"></i>
+                        <div class="btn-content">
+                            <span class="btn-label">Khó</span>
+                            <span class="btn-desc">Cần ôn lại sớm</span>
+                        </div>
+                        <span class="btn-shortcut">1</span>
+                    </button>
+
+                    <button class="mastery-btn good" onclick="recordMastery('good')">
+                        <i class="fas fa-meh"></i>
+                        <div class="btn-content">
+                            <span class="btn-label">Tạm được</span>
+                            <span class="btn-desc">Ôn lại bình thường</span>
+                        </div>
+                        <span class="btn-shortcut">2</span>
+                    </button>
+
+                    <button class="mastery-btn easy" onclick="recordMastery('easy')">
+                        <i class="fas fa-smile"></i>
+                        <div class="btn-content">
+                            <span class="btn-label">Dễ</span>
+                            <span class="btn-desc">Ôn lại sau 4 ngày</span>
+                        </div>
+                        <span class="btn-shortcut">3</span>
+                    </button>
+
+                    <button class="mastery-btn perfect" onclick="recordMastery('perfect')">
+                        <i class="fas fa-grin-stars"></i>
+                        <div class="btn-content">
+                            <span class="btn-label">Thành thạo</span>
+                            <span class="btn-desc">Ôn lại sau 1 tuần</span>
+                        </div>
+                        <span class="btn-shortcut">4</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mini Dictionary -->
+            <div class="mini-dictionary" id="miniDictionary" style="display: none;">
+                <div class="dict-header">
+                    <h4>Từ điển mini</h4>
+                    <button onclick="closeDictionary()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="dict-content">
+                    <div class="dict-item">
+                        <span class="dict-word">@currentCard.Term</span>
+                        <span class="dict-pronunciation">/ˈæp.əl/</span>
+                    </div>
+                    <div class="dict-definition">
+                        @(currentCard.Definition ?? "Chưa có định nghĩa")
+                    </div>
+                    <div class="dict-examples">
+                        <p>• An apple a day keeps the doctor away</p>
+                        <p>• Apple pie is delicious</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (totalCards == 0)
+    {
+        <div class="empty-state-advanced">
+            <div class="empty-icon-wrapper">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h3>Bộ từ vựng trống</h3>
+            <p>Hãy thêm từ vựng đầu tiên để bắt đầu học nhé!</p>
+            <div class="empty-actions">
+                <a href="@Url.Action("Create", "Card", new { setId = setId })" class="btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Thêm từ vựng
+                </a>
+                <a href="@Url.Action("Detail", "Vocabulary", new { setId = setId })" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    }
+
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h3>Cài đặt học tập</h3>
+            <button onclick="toggleSettings()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="settings-body">
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="autoPlayAudio" checked>
+                    Tự động phát âm
+                </label>
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="showExamples" checked>
+                    Hiển thị ví dụ
+                </label>
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="darkMode">
+                    Chế độ tối
+                </label>
+            </div>
+            <div class="setting-group">
+                <label>Tốc độ phát âm</label>
+                <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="0.9">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+         
+        console.log('=== Study Page Debug Info ===');
+        console.log('Set ID: @setId');
+        console.log('Set Name: @(set?.SetName)');
+        console.log('Total Cards: @totalCards');
+        console.log('Current Index: @currentIndex');
+        console.log('Current Card: @(currentCard?.Term ?? "null")');
+        console.log('Cards List:');
+        @foreach (var card in cards)
+        {
+                <text>console.log('  - @card.Term');</text>
+        }
+        console.log('=============================');
+  
+        // State management
+        let isFlipped = false;
+        let currentIndex = @currentIndex;
+        let totalCards = @totalCards;
+        let autoPlayAudio = true;
+        let speechRate = 0.9;
+
+        // Settings
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            panel.classList.toggle('active');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Flashcard 3D
+        function flipCard3D() {
+            const card = document.getElementById('flashcard3d');
+            const masterySection = document.getElementById('masterySection');
+
+            if (card) {
+                isFlipped = !isFlipped;
+                if (isFlipped) {
+                    card.classList.add('flipped');
+                    masterySection.style.display = 'block';
+                    masterySection.classList.add('fade-in');
+                } else {
+                    card.classList.remove('flipped');
+                    masterySection.style.display = 'none';
+                }
+            }
+        }
+
+        // Navigation
+        function previousCard() {
+            if (currentIndex > 1) {
+                currentIndex--;
+                navigateToCard(currentIndex);
+            }
+        }
+
+        function nextCard() {
+            if (currentIndex < totalCards) {
+                currentIndex++;
+                navigateToCard(currentIndex);
+            } else if (currentIndex === totalCards) {
+                showCompletionScreen();
+            }
+        }
+
+        function jumpToCard(index) {
+            if (index >= 1 && index <= totalCards) {
+                navigateToCard(index);
+            }
+        }
+
+        function navigateToCard(index) {
+            const setId = '@setId';
+            window.location.href = '@Url.Action("Study", "Vocabulary")?setId=' + setId + '&index=' + index;
+        }
+
+        // Mastery recording
+        function recordMastery(level) {
+            console.log('Mastery level:', level);
+
+            // Animation feedback
+            const btn = event.currentTarget;
+            btn.classList.add('pulse');
+            setTimeout(() => btn.classList.remove('pulse'), 300);
+
+            // Gọi API để ghi nhận kết quả
+            fetch('/api/learning/record', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cardId: '@(currentCard?.CardId)',
+                    masteryLevel: level,
+                    timestamp: new Date().toISOString()
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                nextCard();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                nextCard();
+            });
+        }
+
+        // Pronunciation
+        function playPronunciation(text) {
+            if (!text || !('speechSynthesis' in window)) return;
+
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = speechRate;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+
+            // Get available voices
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(voice => voice.lang.includes('en-US'));
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Auto play
+        document.addEventListener('DOMContentLoaded', function() {
+            const autoPlay = document.getElementById('autoPlayAudio');
+            if (autoPlay && autoPlay.checked) {
+                const term = '@(currentCard?.Term ?? "")';
+                if (term) {
+                    setTimeout(() => playPronunciation(term), 500);
+                }
+            }
+
+            // Settings listeners
+            document.getElementById('autoPlayAudio')?.addEventListener('change', function(e) {
+                autoPlayAudio = e.target.checked;
+            });
+
+            document.getElementById('speechRate')?.addEventListener('input', function(e) {
+                speechRate = parseFloat(e.target.value);
+            });
+
+            document.getElementById('darkMode')?.addEventListener('change', function(e) {
+                if (e.target.checked) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                switch(e.key) {
+                    case '1':
+                        recordMastery('hard');
+                        break;
+                    case '2':
+                        recordMastery('good');
+                        break;
+                    case '3':
+                        recordMastery('easy');
+                        break;
+                    case '4':
+                        recordMastery('perfect');
+                        break;
+                    case 'ArrowLeft':
+                        previousCard();
+                        break;
+                    case 'ArrowRight':
+                    case ' ':
+                        e.preventDefault();
+                        if (!isFlipped) {
+                            flipCard3D();
+                        } else {
+                            nextCard();
+                        }
+                        break;
+                    case 'Escape':
+                        if (isFlipped) {
+                            flipCard3D();
+                        }
+                        break;
+                }
+            });
+        });
+
+        // Mini dictionary
+        function showDictionary() {
+            const dict = document.getElementById('miniDictionary');
+            dict.style.display = 'block';
+        }
+
+        function closeDictionary() {
+            const dict = document.getElementById('miniDictionary');
+            dict.style.display = 'none';
+        }
+
+        // Important words
+        function markAsImportant() {
+            const btn = event.currentTarget;
+            btn.innerHTML = '<i class="fas fa-star" style="color: #fbbf24;"></i>';
+
+            // Gọi API để đánh dấu từ quan trọng
+            fetch('/api/learning/important', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cardId: '@(currentCard?.CardId)'
+                })
+            });
+        }
+
+        // Share
+        function shareWord() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '@(currentCard?.Term)',
+                    text: '@(currentCard?.Definition)',
+                    url: window.location.href,
+                });
+            } else {
+                // Fallback copy to clipboard
+                navigator.clipboard.writeText('@(currentCard?.Term): @(currentCard?.Definition)');
+                alert('Đã copy vào clipboard!');
+            }
+        }
+
+        // Completion screen
+        function showCompletionScreen() {
+            const completionHtml = `
+                <div class="completion-screen-advanced">
+                    <div class="completion-animation">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2>Chúc mừng! 🎉</h2>
+                    <p>Bạn đã hoàn thành bộ từ vựng</p>
+
+                    <div class="completion-stats-detailed">
+                        <div class="completion-stat-card">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="stat-value">${totalCards * 2}</span>
+                                <span class="stat-label">phút học</span>
+                            </div>
+                        </div>
+                        <div class="completion-stat-card">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <span class="stat-value">${totalCards}</span>
+                                <span class="stat-label">từ đã học</span>
+                            </div>
+                        </div>
+                        <div class="completion-stat-card">
+                            <i class="fas fa-fire"></i>
+                            <div>
+                                <span class="stat-value">7</span>
+                                <span class="stat-label">ngày streak</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="completion-actions-advanced">
+                        <a href="@Url.Action("Study", "Vocabulary", new { setId = setId, index = 1 })" class="btn-study-again">
+                            <i class="fas fa-redo-alt"></i>
+                            Học lại
+                        </a>
+                        <a href="@Url.Action("Detail", "Vocabulary", new { setId = setId })" class="btn-view-details">
+                            <i class="fas fa-chart-bar"></i>
+                            Xem thống kê
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.querySelector('.study-area').innerHTML = completionHtml;
+        }
+
+        // Fade in animation
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.animation = 'fadeIn 0.5s ease';
+        });
+    </script>
+}

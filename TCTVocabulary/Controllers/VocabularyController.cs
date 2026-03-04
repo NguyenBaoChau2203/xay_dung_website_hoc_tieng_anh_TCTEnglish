@@ -13,7 +13,7 @@ namespace TCTVocabulary.Controllers
             _context = context;
         }
 
-        // GET: /Vocabulary/Index
+        // Bước 1: Trang chủ - Danh sách Folder (Index)
         public async Task<IActionResult> Index()
         {
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
@@ -27,19 +27,34 @@ namespace TCTVocabulary.Controllers
             return View(folders);
         }
 
-        // GET: /Vocabulary/Detail/5
+        // Bước 2: Detail trang từ vựng của User
         public async Task<IActionResult> Detail(int setId)
         {
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var set = await _context.Sets
-                .Where(s => s.SetId == setId && s.OwnerId == sysId)
-                .Include(s => s.Cards)
                 .Include(s => s.Folder)
-                .FirstOrDefaultAsync();
+                    .ThenInclude(f => f.Sets)
+                        .ThenInclude(rs => rs.Cards)
+                .Include(s => s.Cards)
+                    .ThenInclude(c => c.LearningProgresses)
+                .FirstOrDefaultAsync(s => s.SetId == setId && s.OwnerId == sysId);
 
-            if (set == null)
-                return NotFound();
+            if (set == null) return NotFound();
+
+            return View(set);
+        }
+
+        // Giữ lại Study phòng hờ User có chỗ nào còn link tới (Mặc định giờ UI trỏ đi Study/Index)
+        public async Task<IActionResult> Study(int id)
+        {
+            int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
+
+            var set = await _context.Sets
+                .Include(s => s.Cards)
+                .FirstOrDefaultAsync(s => s.SetId == id && s.OwnerId == sysId);
+
+            if (set == null) return NotFound();
 
             return View(set);
         }
