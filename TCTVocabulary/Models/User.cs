@@ -25,7 +25,6 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
-    public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
 
     public virtual ICollection<Folder> Folders { get; set; } = new List<Folder>();
 
@@ -33,9 +32,13 @@ public partial class User
 
     public virtual ICollection<Set> Sets { get; set; } = new List<Set>();
 
-    public virtual ICollection<Class> ClassesNavigation { get; set; } = new List<Class>();
 
     public virtual ICollection<SavedFolder> SavedFolders { get; set; } = new List<SavedFolder>();
 
     public virtual ICollection<ClassMessage> ClassMessages { get; set; } = new List<ClassMessage>();
+
+    public virtual ICollection<ClassMember> ClassMembers { get; set; }
+    = new List<ClassMember>();
+    public virtual ICollection<Class> Classes { get; set; }
+    = new List<Class>();
 }

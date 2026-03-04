@@ -12,7 +12,8 @@ namespace TCTVocabulary.ViewModel
         public List<Folder> SavedFolders { get; set; } = new();
         public List<ClassFolder> ClassFolders { get; set; } = new();
 
-
+        public bool IsOwner { get; set; }
+        public bool IsMember { get; set; }
 
 
     }
