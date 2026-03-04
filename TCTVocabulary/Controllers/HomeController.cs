@@ -394,6 +394,12 @@ namespace TCTVocabulary.Controllers
             if (!string.IsNullOrWhiteSpace(model.Password))
             {
                 newClass.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                newClass.HasPassword = true;          // ⭐ BẮT BUỘC
+            }
+            else
+            {
+                newClass.PasswordHash = null;
+                newClass.HasPassword = false;
             }
 
             // 3. Xử lý Upload avatar
@@ -424,21 +430,61 @@ namespace TCTVocabulary.Controllers
             // 5. Điều hướng sang trang chi tiết lớp học
             return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
         }
+        [HttpPost]
+        public IActionResult EditClass(int classId, string className, string? description)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var cls = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
+
+            if (cls == null || cls.OwnerId != userId)
+                return Forbid();
+
+            cls.ClassName = className;
+            cls.Description = description;
+
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteClass(int classId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var cls = _context.Classes
+                .Include(c => c.ClassMembers)
+                .Include(c => c.ClassMessages)
+                .Include(c => c.ClassFolders)
+                .FirstOrDefault(c => c.ClassId == classId);
+
+            if (cls == null || cls.OwnerId != userId)
+                return Forbid();
+
+            _context.Classes.Remove(cls);
+            _context.SaveChanges();
+
+            return Ok();
+        }
         public IActionResult ClassDetail(int id)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-            // 1. Class + members + messages
             var cls = _context.Classes
-                .Include(c => c.Users)
+                .Include(c => c.Owner)
+                .Include(c => c.ClassMembers)
+                    .ThenInclude(cm => cm.User)
                 .Include(c => c.ClassMessages)
                     .ThenInclude(m => m.User)
+                .Include(c => c.ClassFolders)
+                    .ThenInclude(cf => cf.Folder)
+                .Include(c => c.ClassFolders)
+                    .ThenInclude(cf => cf.AddedByUser)
                 .FirstOrDefault(c => c.ClassId == id);
 
             if (cls == null)
                 return NotFound();
 
-            // 2. Messages
             var messages = cls.ClassMessages
                 .OrderBy(m => m.CreatedAt)
                 .Select(m => new ClassMessageViewModel
@@ -447,47 +493,30 @@ namespace TCTVocabulary.Controllers
                     UserId = m.UserId,
                     Content = m.Content,
                     CreatedAt = m.CreatedAt,
-                    FullName = m.User.FullName,
+                    FullName = m.User.FullName!,
                     IsMine = m.UserId == userId
                 })
                 .ToList();
 
-            // =======================
-            // 3. MY FOLDERS (folder do user tạo)
-            // =======================
-            var myFolders = _context.Folders
-                .Where(f => f.UserId == userId)
-                .ToList();
-
-            // =======================
-            // 4. SAVED FOLDERS
-            // =======================
-            var savedFolders = _context.SavedFolders
-                .Where(sf => sf.UserId == userId)
-                .Select(sf => sf.Folder)
-                .ToList();
-
-            // =======================
-            // 5. FOLDER TRONG CLASS
-            // =======================
-            var classFolders = _context.ClassFolders
-                .Include(cf => cf.Folder)          // để lấy tên folder
-                .Include(cf => cf.AddedByUser)     // để lấy người thêm
-                .Where(cf => cf.ClassId == id)
-                .ToList();
-
-            // 6. ViewModel
             var vm = new ClassDetailViewModel
             {
                 Class = cls,
-                Members = cls.Users.ToList(),
+
+                Members = cls.ClassMembers.Select(cm => cm.User).ToList(),
+
                 Messages = messages,
 
-                MyFolders = myFolders,
-                SavedFolders = savedFolders,
+                MyFolders = _context.Folders.Where(f => f.UserId == userId).ToList(),
 
-                // ✅ đúng kiểu
-                ClassFolders = classFolders
+                SavedFolders = _context.SavedFolders
+                    .Where(sf => sf.UserId == userId)
+                    .Select(sf => sf.Folder)
+                    .ToList(),
+
+                ClassFolders = cls.ClassFolders.ToList(),
+
+                IsOwner = cls.OwnerId == userId,
+                IsMember = cls.ClassMembers.Any(cm => cm.UserId == userId)
             };
 
             return View(vm);
@@ -517,27 +546,21 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> SearchClass(string keyword)
         {
-            var userId = int.Parse(
-                User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value
-            );
-
-            if (string.IsNullOrWhiteSpace(keyword))
-                return Ok(new List<object>());
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
             var classes = await _context.Classes
                 .Where(c =>
                     c.ClassName.Contains(keyword) &&
-                    c.OwnerId != userId &&                      // ❌ không phải lớp mình tạo
-                    !c.Users.Any(u => u.UserId == userId)       // ❌ chưa tham gia
+                    c.OwnerId != userId &&
+                    !c.ClassMembers.Any(cm => cm.UserId == userId)
                 )
                 .Select(c => new
                 {
-                    c.ClassId,
-                    c.ClassName,
-                    OwnerName = c.Owner.FullName,
-                    c.ImageUrl
+                    classId = c.ClassId,
+                    className = c.ClassName,
+                    ownerName = c.Owner.FullName,
+                    hasPassword = c.HasPassword   // ⭐ BẮT BUỘC
                 })
-                .Take(10)
                 .ToListAsync();
 
             return Ok(classes);
@@ -565,20 +588,57 @@ namespace TCTVocabulary.Controllers
 
             return Ok();
         }
+        [HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> JoinClass(int classId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
+            var exists = await _context.ClassMembers
+                .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
+
+            if (!exists)
+            {
+                _context.ClassMembers.Add(new ClassMember
+                {
+                    ClassId = classId,
+                    UserId = userId
+                });
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LeaveClass(int classId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var cm = await _context.ClassMembers
+                .FirstOrDefaultAsync(x => x.ClassId == classId && x.UserId == userId);
+
+            if (cm != null)
+            {
+                _context.ClassMembers.Remove(cm);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
         [Authorize]
+
         public async Task<IActionResult> Class()
         {
-            // 1. Lấy UserId từ Claims
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-            // 2. Truy vấn danh sách lớp mà User là chủ sở hữu HOẶC là thành viên
             var classes = await _context.Classes
+                .Include(c => c.Owner)
+                .Include(c => c.ClassMembers)
                 .Where(c =>
                     c.OwnerId == userId ||
-                    c.Users.Any(u => u.UserId == userId))
-                .Include(c => c.Owner) // Lấy thông tin chủ lớp để hiển thị (nếu cần)
-                .OrderByDescending(c => c.ClassId) // Sắp xếp lớp mới nhất lên đầu
+                    c.ClassMembers.Any(cm => cm.UserId == userId))
+                .OrderByDescending(c => c.ClassId)
                 .ToListAsync();
 
             return View(classes);
@@ -612,4 +672,3 @@ namespace TCTVocabulary.Controllers
 
     }
 }
-

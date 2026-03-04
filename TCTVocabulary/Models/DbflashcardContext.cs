@@ -31,7 +31,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingVideo> SpeakingVideos { get; set; }
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
-   
+    public virtual DbSet<ClassMember> ClassMembers { get; set; }
+
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -87,32 +88,39 @@ public partial class DbflashcardContext : DbContext
                   .HasDefaultValueSql("(getdate())")
                   .HasColumnType("datetime");
 
+            // ===== OWNER =====
             entity.HasOne(d => d.Owner)
                   .WithMany(p => p.Classes)
                   .HasForeignKey(d => d.OwnerId)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
 
-            entity.HasMany(d => d.Users)
-                  .WithMany(p => p.ClassesNavigation)
-                  .UsingEntity<Dictionary<string, object>>(
-                      "ClassMember",
-                      r => r.HasOne<User>()
-                            .WithMany()
-                            .HasForeignKey("UserId")
-                            .OnDelete(DeleteBehavior.ClientSetNull),
-                      l => l.HasOne<Class>()
-                            .WithMany()
-                            .HasForeignKey("ClassId")
-                            .OnDelete(DeleteBehavior.ClientSetNull),
-                      j =>
-                      {
-                          j.HasKey("ClassId", "UserId");
-                          j.ToTable("ClassMembers");
-                          j.IndexerProperty<int>("ClassId").HasColumnName("ClassID");
-                          j.IndexerProperty<int>("UserId").HasColumnName("UserID");
-                      });
+            // ===== CLASS MEMBERS (QUA ENTITY ClassMember) =====
+            entity.HasMany(d => d.ClassMembers)
+                  .WithOne(cm => cm.Class)
+                  .HasForeignKey(cm => cm.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<ClassMember>(entity =>
+        {
+            entity.ToTable("ClassMembers");
+
+            entity.HasKey(e => new { e.ClassId, e.UserId });
+
+            entity.Property(e => e.ClassId).HasColumnName("ClassID");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(e => e.Class)
+                  .WithMany(c => c.ClassMembers)
+                  .HasForeignKey(e => e.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.User)
+                  .WithMany(u => u.ClassMembers)
+                  .HasForeignKey(e => e.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
+
 
         modelBuilder.Entity<Folder>(entity =>
         {

@@ -29,5 +29,7 @@
         public virtual ICollection<ClassMessage> ClassMessages { get; set; } = new List<ClassMessage>();
         public virtual ICollection<ClassFolder> ClassFolders { get; set; }
             = new List<ClassFolder>();
+        public virtual ICollection<ClassMember> ClassMembers { get; set; }
+    = new List<ClassMember>();
     }
 }
