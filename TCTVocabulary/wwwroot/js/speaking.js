@@ -12,7 +12,8 @@
 
     // Guard: only run on the Index page (has filter buttons)
     const filterBtns = document.querySelectorAll('.topic-filter-btn');
-    if (!filterBtns.length) return;
+    const levelBtns = document.querySelectorAll('.level-filter-btn');
+    if (!filterBtns.length && !levelBtns.length) return;
 
     // ── DOM refs ─────────────────────────────────────────────────
     const searchInput = document.getElementById('vi-search');
@@ -22,6 +23,7 @@
 
     // ── State ────────────────────────────────────────────────────
     let activeTopic = 'all';
+    let activeLevel = 'all';
 
     // ── TOPIC FILTER ─────────────────────────────────────────────
     filterBtns.forEach(btn => {
@@ -33,6 +35,22 @@
             activeTopic = btn.dataset.topic;
 
             // Clear search when switching topics
+            if (searchInput) {
+                searchInput.value = '';
+            }
+
+            applyFilters();
+        });
+    });
+
+    // ── LEVEL FILTER ─────────────────────────────────────────────
+    levelBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            levelBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            activeLevel = btn.dataset.level;
+
             if (searchInput) {
                 searchInput.value = '';
             }
@@ -73,11 +91,13 @@
             cardsInLevel.forEach(card => {
                 const cardTopic = (card.dataset.topic || '').trim();
                 const cardTitle = (card.dataset.title || '').trim();
+                const cardLevel = (card.dataset.level || '').trim();
 
                 const topicMatch = activeTopic === 'all' || cardTopic === activeTopic;
                 const searchMatch = !query || cardTitle.includes(query);
+                const levelMatch = activeLevel === 'all' || cardLevel === activeLevel;
 
-                if (topicMatch && searchMatch) {
+                if (topicMatch && searchMatch && levelMatch) {
                     visibleCards.push(card);
                     totalVisibleCount++;
                 } else {

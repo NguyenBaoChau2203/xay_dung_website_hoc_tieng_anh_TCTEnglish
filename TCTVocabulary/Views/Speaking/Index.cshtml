@@ -9,7 +9,9 @@
         ["A1"] = ("Beginner", "#10b981", "fas fa-seedling"),
         ["A2"] = ("Elementary", "#06b6d4", "fas fa-leaf"),
         ["B1"] = ("Intermediate", "#f59e0b", "fas fa-fire"),
-        ["B2"] = ("Upper-Intermediate", "#ef4444", "fas fa-bolt")
+        ["B2"] = ("Upper-Intermediate", "#ef4444", "fas fa-bolt"),
+        ["C1"] = ("Advanced", "#8b5cf6", "fas fa-rocket"),
+        ["C2"] = ("Proficient", "#3b82f6", "fas fa-gem")
     };
 }
 
@@ -60,6 +62,28 @@
                 {
                     <button class="topic-filter-btn" data-topic="@topic">
                         @topic
+                    </button>
+                }
+            </div>
+        </section>
+    }
+
+    @* ── LEVEL FILTER TABS ───────────────────────────────────── *@
+    @if (Model.VideosByLevel.Any())
+    {
+        <section class="vi-filter-section" style="margin-top: 15px;">
+            <div class="vi-filter-header">
+                <i class="fas fa-layer-group"></i>
+                <span>Filter by Level</span>
+            </div>
+            <div class="vi-filter-pills vi-level-tabs">
+                <button class="level-filter-btn active" data-level="all">
+                    <i class="fas fa-globe"></i> All Levels
+                </button>
+                @foreach (var level in Model.VideosByLevel.Keys)
+                {
+                    <button class="level-filter-btn" data-level="@level">
+                        Level @level
                     </button>
                 }
             </div>
