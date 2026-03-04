@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Watch Include="wwwroot\data\system-vocabulary.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.2" />

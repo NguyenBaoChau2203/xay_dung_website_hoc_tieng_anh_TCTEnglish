@@ -68,8 +68,6 @@ namespace TCTVocabulary.Models
                     new() { SetId = set1.SetId, Term = "Help",      Definition = "Giúp đỡ" },
                     new() { SetId = set1.SetId, Term = "Water",     Definition = "Nước" },
                     new() { SetId = set1.SetId, Term = "Food",      Definition = "Đồ ăn" }
-                    new() { SetId = set1.SetId, Term = "Food",      Definition = "Đồ ăn" }
-                    new() { SetId = set1.SetId, Term = "Food",      Definition = "Đồ ăn" }
                 });
 
                 // Set 1.2

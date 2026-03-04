@@ -5,181 +5,346 @@
                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                    .Where(t => t.StartsWith("#"))
                    .ToList();
-    
-    // Stats inspired by image 1
-    var totalCards = Model.Cards.Count;
-    var learnedCards = 4; // Sample data
+
+    var totalCards = Model.Cards?.Count ?? 0;
+    var learnedCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Learned" || c.LearningProgresses.FirstOrDefault()?.Status == "Mastered") ?? 0;
     var remainingCards = totalCards - learnedCards;
-    var accuracy = 25; // Sample percentage
+    var accuracy = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
+
+    var newCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault() == null || c.LearningProgresses.FirstOrDefault()?.Status == "New") ?? 0;
+    var reviewingCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Reviewing") ?? 0;
+    var masteredCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Mastered") ?? 0;
+    var dueToday = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.LastReviewedDate <= DateTime.Today.AddDays(-1)) ?? 0;
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/vocabulary-system.css" />
 }
 
-<div class="vsys-page">
-    <!-- Header with stats -->
-    <div class="vsys-detail-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 24px; padding: 32px; margin-bottom: 32px; color: white;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
-            <div>
-                <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 30px; width: fit-content; margin-bottom: 16px; backdrop-filter: blur(10px);">
-                    <i class="fas fa-folder"></i>
-                    <span>@(Model.Folder?.FolderName ?? "Từ vựng Hệ thống")</span>
-                </div>
-                <h1 style="font-size: 40px; font-weight: 700; margin-bottom: 12px;">@Model.SetName</h1>
-                <div style="display: flex; gap: 16px; align-items: center;">
-                    <span style="display: flex; align-items: center; gap: 6px;"><i class="fas fa-layer-group"></i> @totalCards từ vựng</span>
-                    @foreach (var tag in tags)
-                    {
-                        <span style="background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; font-size: 12px; backdrop-filter: blur(10px);">@tag</span>
-                    }
-                </div>
-            </div>
-            <a asp-controller="Vocabulary" asp-action="Index" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: white; color: var(--primary); text-decoration: none; border-radius: 30px; font-weight: 500;">
-                <i class="fas fa-arrow-left"></i> Quay lại
-            </a>
-        </div>
-        
-        <!-- Progress stats -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; backdrop-filter: blur(10px);">
-            <div style="text-align: center;">
-                <div style="font-size: 28px; font-weight: 700;">@totalCards</div>
-                <div style="font-size: 14px; opacity: 0.9;">Tổng số Thẻ</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 28px; font-weight: 700;">@learnedCards</div>
-                <div style="font-size: 14px; opacity: 0.9;">Đã học</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 28px; font-weight: 700;">@remainingCards</div>
-                <div style="font-size: 14px; opacity: 0.9;">Còn lại</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 28px; font-weight: 700;">@accuracy%</div>
-                <div style="font-size: 14px; opacity: 0.9;">Độ chính xác</div>
-            </div>
-        </div>
-    </div>
+<div class="set-detail-modern">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <a href="@Url.Action("Index", "Vocabulary")">
+            <i class="fas fa-home"></i> Trang chủ
+        </a>
+        <i class="fas fa-chevron-right separator"></i>
+        <a href="#">@(Model.Folder?.FolderName ?? "Từ vựng")</a>
+        <i class="fas fa-chevron-right separator"></i>
+        <span>@Model.SetName</span>
+    </nav>
 
-    <!-- Continue learning section -->
-    <div style="background: white; border-radius: 20px; padding: 24px; margin-bottom: 32px; border: 1px solid var(--gray-200);">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-            <h2 style="font-size: 20px; font-weight: 600; color: var(--gray-800);">📊 Tiến độ học tập</h2>
-            <span style="background: var(--danger); color: white; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">@remainingCards từ cần ôn tập</span>
-        </div>
-        
-        <div style="background: var(--primary-bg); border-radius: 16px; padding: 20px;">
-            <div style="display: flex; align-items: center; gap: 16px;">
-                <div style="background: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 30px;">📚</span>
-                </div>
-                <div style="flex: 1;">
-                    <div style="font-weight: 600; margin-bottom: 8px;">@Model.SetName</div>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden;">
-                            <div style="width: @((learnedCards * 100) / totalCards)%; height: 100%; background: var(--primary);"></div>
-                        </div>
-                        <span style="color: var(--gray-600); font-size: 14px;">@learnedCards/@totalCards từ</span>
+    <!-- Hero Section -->
+    <div class="set-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="set-badge">
+                <i class="fas fa-layer-group"></i>
+                <span>@totalCards từ vựng</span>
+            </div>
+            <h1 class="set-title">@Model.SetName</h1>
+            <div class="set-tags">
+                @foreach (var tag in tags)
+                {
+                    <span class="tag">@tag</span>
+                }
+            </div>
+
+            <!-- Study Stats -->
+            <div class="study-stats">
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <span class="stat-value">@learnedCards</span>
+                        <span class="stat-label">Đã học</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">@remainingCards</span>
+                        <span class="stat-label">Còn lại</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">@accuracy%</span>
+                        <span class="stat-label">Độ chính xác</span>
                     </div>
                 </div>
-                <a href="#" style="background: var(--primary); color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 500;">Tiếp tục Học →</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="hero-actions">
+                <a href="@Url.Action("Study", "Vocabulary", new { id = Model.SetId })" class="btn-study">
+                    <i class="fas fa-play"></i>
+                    <span>@(learnedCards > 0 ? "Tiếp tục học" : "Bắt đầu học")</span>
+                </a>
+                <button class="btn-bookmark">
+                    <i class="far fa-bookmark"></i>
+                </button>
+                <button class="btn-share">
+                    <i class="fas fa-share-alt"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Word list -->
-    <div class="vsys-word-header">
-        <h2 class="vsys-word-header-title">Danh sách từ vựng</h2>
-        <span class="vsys-count-badge">@Model.Cards.Count từ</span>
+    <!-- Quick Stats Cards -->
+    <div class="quick-stats">
+        <div class="stat-card new">
+            <div class="stat-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-detail">
+                <span class="stat-number">@newCards</span>
+                <span class="stat-label">Từ mới</span>
+            </div>
+        </div>
+        <div class="stat-card reviewing">
+            <div class="stat-icon">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <div class="stat-detail">
+                <span class="stat-number">@reviewingCards</span>
+                <span class="stat-label">Đang ôn</span>
+            </div>
+        </div>
+        <div class="stat-card mastered">
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-detail">
+                <span class="stat-number">@masteredCards</span>
+                <span class="stat-label">Thành thạo</span>
+            </div>
+        </div>
+        <div class="stat-card due">
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-detail">
+                <span class="stat-number">@dueToday</span>
+                <span class="stat-label">Đến hạn</span>
+            </div>
+        </div>
     </div>
 
-    @if (!Model.Cards.Any())
-    {
-        <div class="vsys-empty">
-            <div class="vsys-empty-icon">🃏</div>
-            <p>Bộ từ này chưa có thẻ nào.</p>
+    <!-- Study Progress Section -->
+    <div class="study-progress-section">
+        <div class="section-header">
+            <h2>Tiến độ học tập</h2>
+            <div class="progress-summary">
+                <span class="completed">@learnedCards hoàn thành</span>
+                <span class="total">/ @totalCards từ</span>
+            </div>
         </div>
-    }
-    else
-    {
-        <table class="vsys-word-table">
-            <thead>
-                <tr style="background: var(--primary-bg);">
-                    <th style="padding: 16px 24px; text-align: left; color: var(--primary); font-weight: 600;">Từ vựng</th>
-                    <th style="padding: 16px 24px; text-align: left; color: var(--primary); font-weight: 600;">Định nghĩa</th>
-                    <th style="padding: 16px 24px; text-align: center; color: var(--primary); font-weight: 600;">Hình ảnh</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ int i = 1; }
-                @foreach (var card in Model.Cards)
+
+        <div class="progress-visual">
+            <div class="progress-circle" data-progress="@accuracy">
+                <div class="progress-circle-inner">
+                    <span class="percentage">@accuracy%</span>
+                    <span class="label">Hoàn thành</span>
+                </div>
+            </div>
+            <div class="progress-bars">
+                <div class="progress-bar-item">
+                    <div class="bar-label">
+                        <span><i class="fas fa-circle" style="color: #4facfe"></i> Mới</span>
+                        <span>@newCards từ</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: @((newCards * 100) / (totalCards > 0 ? totalCards : 1))%"></div>
+                    </div>
+                </div>
+                <div class="progress-bar-item">
+                    <div class="bar-label">
+                        <span><i class="fas fa-circle" style="color: #fbbf24"></i> Đang học</span>
+                        <span>@reviewingCards từ</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: @((reviewingCards * 100) / (totalCards > 0 ? totalCards : 1))%; background: #fbbf24"></div>
+                    </div>
+                </div>
+                <div class="progress-bar-item">
+                    <div class="bar-label">
+                        <span><i class="fas fa-circle" style="color: #43e97b"></i> Thành thạo</span>
+                        <span>@masteredCards từ</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: @((masteredCards * 100) / (totalCards > 0 ? totalCards : 1))%; background: #43e97b"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vocabulary List -->
+    <div class="vocabulary-section">
+        <div class="section-header">
+            <div class="header-left">
+                <h2>Danh sách từ vựng</h2>
+                <span class="word-count">@Model.Cards.Count từ</span>
+            </div>
+            <div class="header-actions">
+                <a href="@Url.Action("Create", "Card", new { setId = Model.SetId })" class="btn-add">
+                    <i class="fas fa-plus"></i>
+                    <span>Thêm từ mới</span>
+                </a>
+                <a href="@Url.Action("Import", "Card", new { setId = Model.SetId })" class="btn-import">
+                    <i class="fas fa-upload"></i>
+                    <span>Import</span>
+                </a>
+            </div>
+        </div>
+
+        @if (!Model.Cards.Any())
+        {
+            <div class="empty-state">
+                <div class="empty-icon">📚</div>
+                <h3>Chưa có từ vựng nào</h3>
+                <p>Hãy thêm từ vựng đầu tiên để bắt đầu học!</p>
+                <a href="@Url.Action("Create", "Card", new { setId = Model.SetId })" class="btn-add-first">
+                    <i class="fas fa-plus"></i> Thêm từ vựng đầu tiên
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="word-list">
+                @foreach (var card in Model.Cards.OrderBy(c => c.Term))
                 {
-                    <tr class="vsys-word-row">
-                        <td>
-                            <span class="vsys-num">@i</span>
-                            @card.Term
-                        </td>
-                        <td>@card.Definition</td>
-                        <td style="text-align: center;">
-                            @if (!string.IsNullOrEmpty(card.ImageUrl))
-                            {
-                                <img src="@card.ImageUrl" alt="@card.Term" class="vsys-word-img" />
-                            }
-                            else
-                            {
-                                <span style="font-size: 32px; opacity: 0.3;">🖼️</span>
-                            }
-                        </td>
-                    </tr>
-                    i++;
+                    <div class="word-card">
+                        <div class="word-card-front">
+                            <div class="word-info">
+                                <span class="word-term">@card.Term</span>
+                                @if (!string.IsNullOrEmpty(card.ImageUrl))
+                                {
+                                    <img src="@card.ImageUrl" alt="@card.Term" class="word-image" />
+                                }
+                            </div>
+                            <button class="expand-btn">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="word-card-back">
+                            <div class="definition">
+                                <span class="label">Định nghĩa:</span>
+                                <p>@card.Definition</p>
+                            </div>
+                            
+                            <div class="word-meta">
+                                <span class="status-badge @(card.LearningProgresses.FirstOrDefault()?.Status?.ToLower() ?? "new")">
+                                    @(card.LearningProgresses.FirstOrDefault()?.Status ?? "Chưa học")
+                                </span>
+                                <div class="word-actions">
+                                    <a href="@Url.Action("Edit", "Card", new { id = card.CardId })" class="action-btn edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Card", new { id = card.CardId })"
+                                       class="action-btn delete"
+                                       onclick="return confirm('Bạn có chắc muốn xóa từ này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
-    }
+            </div>
 
-    <!-- Related sets from image 2 -->
-    <div style="margin-top: 48px;">
-        <h2 style="font-size: 24px; font-weight: 600; color: var(--gray-800); margin-bottom: 24px; padding-left: 16px; position: relative;">
-            <span style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: var(--primary); border-radius: 4px;"></span>
-            Bộ từ vựng liên quan
-        </h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
-                <div style="font-size: 24px; margin-bottom: 12px;">📘</div>
-                <h3 style="font-weight: 600; margin-bottom: 8px;">3000 Oxford Vocabulary A1</h3>
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 759 từ</span>
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 15.6k học viên</span>
+            <!-- Pagination -->
+            @if (Model.Cards.Count > 10)
+            {
+                <div class="pagination">
+                    <button class="page-btn prev" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="dots">...</span>
+                    <button class="page-btn">10</button>
+                    <button class="page-btn next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
-                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
-            </div>
-            
-            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
-                <div style="font-size: 24px; margin-bottom: 12px;">🗣️</div>
-                <h3 style="font-weight: 600; margin-bottom: 8px;">Từ vựng tiếng Anh giao tiếp</h3>
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 326 từ</span>
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 22.1k học viên</span>
-                </div>
-                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
-            </div>
-            
-            <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--gray-200);">
-                <div style="font-size: 24px; margin-bottom: 12px;">🌍</div>
-                <h3 style="font-weight: 600; margin-bottom: 8px;">3000 từ vựng Oxford B1</h3>
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-layer-group"></i> 739 từ</span>
-                    <span style="color: var(--gray-500); font-size: 14px;"><i class="fas fa-users"></i> 560 học viên</span>
-                </div>
-                <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Bắt đầu Học →</a>
+            }
+        }
+    </div>
+
+    <!-- Related Sets -->
+    @if (Model.Folder?.Sets != null && Model.Folder.Sets.Count > 1)
+    {
+        <div class="related-section">
+            <h2>Bộ từ cùng danh mục</h2>
+            <div class="related-grid">
+                @foreach (var relatedSet in Model.Folder.Sets.Where(s => s.SetId != Model.SetId).Take(3))
+                {
+                    var relatedTags = (relatedSet.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(t => t.StartsWith("#")).ToList();
+
+                    <div class="related-card">
+                        <div class="related-header">
+                            <span class="related-icon">📚</span>
+                        </div>
+                        <div class="related-body">
+                            <h3>@relatedSet.SetName</h3>
+                            <div class="related-meta">
+                                <span><i class="fas fa-layer-group"></i> @(relatedSet.Cards?.Count ?? 0) từ</span>
+                                @if (relatedTags.Any())
+                                {
+                                    <span class="related-tag">@relatedTags.First()</span>
+                                }
+                            </div>
+                            <a href="@Url.Action("Detail", "Vocabulary", new { setId = relatedSet.SetId })" class="related-link">
+                                Xem chi tiết <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    </div>
-
-    <div style="margin-top: 48px; text-align: center;">
-        <a asp-controller="Vocabulary" asp-action="Index" class="vsys-back-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px;">
-            <i class="fas fa-th"></i> Xem tất cả bộ từ vựng
-        </a>
-    </div>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        // Expand/collapse word cards
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const wordCard = this.closest('.word-card');
+                wordCard.classList.toggle('expanded');
+
+                const icon = this.querySelector('i');
+                if (wordCard.classList.contains('expanded')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+
+        // Animate progress circle
+        const circle = document.querySelector('.progress-circle');
+        if (circle) {
+            const progress = circle.dataset.progress;
+            const radius = 15.9155;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (progress / 100) * circumference;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 36 36');
+            svg.classList.add('progress-svg');
+
+            const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            bgCircle.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
+            bgCircle.classList.add('progress-bg');
+
+            const fillCircle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            fillCircle.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
+            fillCircle.classList.add('progress-fill');
+            fillCircle.setAttribute('stroke-dasharray', `${circumference}`);
+            fillCircle.setAttribute('stroke-dashoffset', offset);
+
+            svg.appendChild(bgCircle);
+            svg.appendChild(fillCircle);
+            circle.prepend(svg);
+        }
+    </script>
+}
