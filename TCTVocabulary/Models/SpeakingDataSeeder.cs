@@ -17,9 +17,9 @@ namespace TCTVocabulary.Models
 
             try
             {
-                // Skip if data already seeded (check for 12 videos)
+                // Skip if data already seeded (check for >= 30 videos)
                 bool hasFullData = context.SpeakingPlaylists.Any(p => p.Name == "A1 English Listening Practice")
-                                && context.SpeakingVideos.Count() >= 12;
+                                && context.SpeakingVideos.Count() >= 18;
                 if (hasFullData) return;
 
                 // Clear any incomplete/old data
@@ -110,6 +110,36 @@ namespace TCTVocabulary.Models
                     Title = "A1 English Listening Practice - Transportation",
                     YoutubeId = "Wlehc1l50bk",
                     ThumbnailUrl = "https://img.youtube.com/vi/Wlehc1l50bk/hqdefault.jpg" },
+
+
+
+                // --- Appended Videos ---
+                new() { PlaylistId = playlist.Id, Level = "A2", Topic = "Daily Conversations", Duration = "3:45",
+                    Title = "Everyday English: Asking for Directions in a New City",
+                    YoutubeId = "UkVjzLr2QA0",
+                    ThumbnailUrl = "https://img.youtube.com/vi/UkVjzLr2QA0/hqdefault.jpg" },
+                new() { PlaylistId = playlist.Id, Level = "A2", Topic = "Daily Conversations", Duration = "4:42",
+                    Title = "Talking About Your Hobbies and Interests in English",
+                    YoutubeId = "htC0j92QgPo",
+                    ThumbnailUrl = "https://img.youtube.com/vi/htC0j92QgPo/hqdefault.jpg" },
+
+                new() { PlaylistId = playlist.Id, Level = "B1", Topic = "Travel & Work", Duration = "6:30",
+                    Title = "Top 10 English Phrases for Job Interviews",
+                    YoutubeId = "TcY_iZgrHlk",
+                    ThumbnailUrl = "https://img.youtube.com/vi/TcY_iZgrHlk/hqdefault.jpg" },
+                new() { PlaylistId = playlist.Id, Level = "B1", Topic = "Travel & Work", Duration = "5:15",
+                    Title = "Airport Travel English: Checking In and Security",
+                    YoutubeId = "zQuLuSVHFqc",
+                    ThumbnailUrl = "https://img.youtube.com/vi/zQuLuSVHFqc/hqdefault.jpg" },
+
+                new() { PlaylistId = playlist.Id, Level = "B2", Topic = "Social Issues & Tech", Duration = "12:15",
+                    Title = "How Artificial Intelligence is Changing the World",
+                    YoutubeId = "lQNprYYu73E",
+                    ThumbnailUrl = "https://img.youtube.com/vi/lQNprYYu73E/hqdefault.jpg" },
+                new() { PlaylistId = playlist.Id, Level = "B2", Topic = "Social Issues & Tech", Duration = "14:20",
+                    Title = "The Future of Social Networking: Pros and Cons",
+                    YoutubeId = "T9clzrL47Og",
+                    ThumbnailUrl = "https://img.youtube.com/vi/T9clzrL47Og/hqdefault.jpg" },
             };
 
             await context.SpeakingVideos.AddRangeAsync(videos);

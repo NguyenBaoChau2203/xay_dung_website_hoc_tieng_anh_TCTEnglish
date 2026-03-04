@@ -21,19 +21,20 @@ namespace TCTVocabulary.Controllers
         {
             // 1. Fetch all videos (with sentences for count)
             var allVideos = await _context.SpeakingVideos
+                .AsNoTracking()
                 .Include(v => v.SpeakingSentences)
                 .ToListAsync();
 
-            // 2. Extract distinct topics for the filter UI
-            var topics = allVideos
+            // 2. Extract distinct topics directly from the database for optimization
+            var topics = await _context.SpeakingVideos
                 .Where(v => !string.IsNullOrEmpty(v.Topic))
                 .Select(v => v.Topic)
                 .Distinct()
                 .OrderBy(t => t)
-                .ToList();
+                .ToListAsync();
 
-            // 3. Group videos by Level (A1, A2, B1, B2) with consistent ordering
-            var levelOrder = new[] { "A1", "A2", "B1", "B2" };
+            // 3. Group videos by Level (A1, A2, B1, B2, C1, C2) with consistent ordering
+            var levelOrder = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
             var videosByLevel = new Dictionary<string, List<SpeakingVideoViewModel>>();
 
             foreach (var level in levelOrder)
@@ -61,6 +62,7 @@ namespace TCTVocabulary.Controllers
 
             // 4. Also keep the existing Playlists data for backward compatibility
             var playlists = await _context.SpeakingPlaylists
+                .AsNoTracking()
                 .Include(p => p.SpeakingVideos)
                     .ThenInclude(v => v.SpeakingSentences)
                 .ToListAsync();
