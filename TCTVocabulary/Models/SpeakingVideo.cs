@@ -9,6 +9,8 @@ public class SpeakingVideo
     public string Title { get; set; } = null!;
     public string YoutubeId { get; set; } = null!;
     public string Level { get; set; } = null!;
+    // NEW: Topic property for filtering videos by category
+    public string Topic { get; set; } = null!;
     public string? ThumbnailUrl { get; set; }
     public string? Duration { get; set; }
 

@@ -130,15 +130,80 @@
 }
 
 /* =================================================================
-   PLAYLIST SECTIONS
+   TOPIC FILTER SECTION
    ================================================================= */
-.vi-section {
-    margin-bottom: 52px;
+.vi-filter-section {
+    margin-bottom: 32px;
 }
 
-.vi-section-head {
+.vi-filter-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--sp-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+}
+
+.vi-filter-header i {
+    color: var(--sp-blue);
+    font-size: 0.78rem;
+}
+
+.vi-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.topic-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1.5px solid #e5e7eb;
+    background: var(--sp-white);
+    color: var(--sp-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+}
+
+.topic-filter-btn:hover {
+    border-color: var(--sp-blue);
+    color: var(--sp-blue);
+    background: var(--sp-blue-lt);
+    transform: translateY(-1px);
+}
+
+.topic-filter-btn.active {
+    background: var(--sp-blue);
+    border-color: var(--sp-blue);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(66, 85, 255, 0.3);
+}
+
+.topic-filter-btn.active:hover {
+    background: var(--sp-blue-dk);
+    border-color: var(--sp-blue-dk);
+}
+
+/* =================================================================
+   LEVEL SECTIONS
+   ================================================================= */
+.vi-level-section {
+    margin-bottom: 48px;
+}
+
+.vi-level-head {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
@@ -147,39 +212,48 @@
     border-bottom: 2px solid #f0f0f6;
 }
 
-.vi-section-info {
+.vi-level-info {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
 }
 
-.vi-section-bar {
-    display: block;
-    flex-shrink: 0;
-    width: 5px;
+.vi-level-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
     height: 44px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--sp-blue) 0%, #818cf8 100%);
-    margin-top: 2px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.vi-section-name {
-    font-size: 1.15rem;
+.vi-level-name {
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--sp-text);
-    margin: 0 0 4px;
+    margin: 0;
     line-height: 1.3;
 }
 
-.vi-section-desc {
-    font-size: 0.82rem;
+.vi-level-subtitle {
+    font-weight: 500;
+    font-size: 0.9rem;
     color: var(--sp-muted);
-    margin: 0;
-    max-width: 520px;
-    line-height: 1.55;
+    margin-left: 6px;
 }
 
-.vi-section-count {
+.vi-level-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.vi-level-count {
     display: inline-flex;
     align-items: center;
     padding: 5px 14px;
@@ -189,12 +263,128 @@
     font-size: 0.78rem;
     font-weight: 700;
     white-space: nowrap;
-    flex-shrink: 0;
+}
+
+/* Slider navigation arrows */
+.vi-slider-nav {
+    display: flex;
+    gap: 6px;
+}
+
+.vi-slider-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid #e5e7eb;
+    background: var(--sp-white);
+    color: var(--sp-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+
+.vi-slider-btn:hover {
+    background: var(--sp-blue);
+    border-color: var(--sp-blue);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.3);
 }
 
 /* =================================================================
-   VIDEO GRID — CSS Grid (auto-fill, always multi-column)
+   VIDEO TRACK — horizontal slider
    ================================================================= */
+.vi-video-track-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.vi-video-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+}
+
+.vi-video-track::-webkit-scrollbar {
+    display: none;
+}
+
+.vi-video-col {
+    flex: 0 0 calc((100% - 80px) / 6);
+    min-width: 200px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vi-video-col.vi-card-hidden {
+    opacity: 0;
+    transform: scale(0.92);
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pagination Container */
+.numbered-pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.numbered-pagination-container:empty {
+    display: none;
+}
+
+/* Pagination Buttons */
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: 12px;
+    background: #f4f6f8;
+    color: #111827;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background: #e2e8f0;
+}
+
+.page-btn.active {
+    background: #00d277;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 210, 119, 0.25);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+    background: #f4f6f8;
+    color: #9ca3af;
+}
+
+/* Also keep the legacy grid layout for backward compat / fallback */
 .vi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -202,12 +392,13 @@
 }
 
 .vi-col {
-    /* Let card stretch to full grid cell height */
     display: flex;
     flex-direction: column;
 }
 
-
+/* =================================================================
+   VIDEO CARDS
+   ================================================================= */
 .video-card-link {
     display: block;
     height: 100%;
@@ -282,16 +473,16 @@
 }
 
 .vc-play {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--sp-blue);
-    padding-left: 4px;
+    padding-left: 3px;
     /* optical center for play icon */
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
     transform: scale(0.8);
@@ -302,7 +493,9 @@
     transform: scale(1);
 }
 
-/* Level badge — bottom-left of thumbnail */
+/* =================================================================
+   CEFR LEVEL BADGES — bottom-left of thumbnail
+   ================================================================= */
 .vc-badge {
     position: absolute;
     bottom: 10px;
@@ -319,6 +512,23 @@
     -webkit-backdrop-filter: blur(6px);
 }
 
+.vc-badge-a1 {
+    background: rgba(16, 185, 129, 0.9);
+}
+
+.vc-badge-a2 {
+    background: rgba(6, 182, 212, 0.9);
+}
+
+.vc-badge-b1 {
+    background: rgba(245, 158, 11, 0.9);
+}
+
+.vc-badge-b2 {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+/* Legacy easy/medium/hard badges */
 .lv-easy {
     background: rgba(16, 185, 129, 0.9);
 }
@@ -352,7 +562,7 @@
 
 /* ── Card body ──────────────────────────────────────────────────── */
 .vc-body {
-    padding: 13px 14px 15px;
+    padding: 12px 13px 14px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -360,7 +570,7 @@
 }
 
 .vc-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--sp-text);
     line-height: 1.45;
@@ -385,20 +595,29 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     margin-top: auto;
 }
 
 .vc-meta-item {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.74rem;
+    gap: 4px;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--sp-muted);
     background: #f3f4f6;
-    padding: 3px 9px;
+    padding: 3px 8px;
     border-radius: 999px;
+}
+
+.vc-topic-chip {
+    background: #fdf4ff;
+    color: #9333ea;
+}
+
+.vc-topic-chip i {
+    font-size: 0.62rem;
 }
 
 .vc-start {
@@ -437,6 +656,38 @@
 
 .vi-empty p {
     font-size: 0.95rem;
+}
+
+/* =================================================================
+   FILTER TRANSITIONS — Smooth hide/show for JS filtering
+   ================================================================= */
+.vi-video-col {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vi-video-col.vi-card-hidden {
+    opacity: 0;
+    transform: scale(0.92);
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.vi-level-section {
+    transition: opacity 0.35s ease, max-height 0.4s ease;
+    overflow: hidden;
+}
+
+.vi-level-section.vi-section-hidden {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
 }
 
 /* =================================================================
@@ -952,6 +1203,14 @@
 /* =================================================================
    RESPONSIVE
    ================================================================= */
+@media (max-width: 1200px) {
+    .vi-video-col {
+        flex: 0 0 calc((100% - 48px) / 4);
+        /* 4 columns */
+        min-width: 190px;
+    }
+}
+
 @media (max-width: 960px) {
     .prac-shell {
         grid-template-columns: 1fr;
@@ -973,6 +1232,12 @@
     .prac-sentence-list {
         max-height: 55vh;
     }
+
+    .vi-video-col {
+        flex: 0 0 calc((100% - 32px) / 3);
+        /* 3 columns */
+        min-width: 180px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -989,8 +1254,23 @@
         width: 100%;
     }
 
-    .vi-section-head {
+    .vi-level-head {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .vi-filter-pills {
+        gap: 6px;
+    }
+
+    .topic-filter-btn {
+        padding: 6px 14px;
+        font-size: 0.78rem;
+    }
+
+    .vi-video-col {
+        flex: 0 0 calc((100% - 16px) / 2);
+        /* 2 columns */
+        min-width: 160px;
     }
 }

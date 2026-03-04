@@ -2,7 +2,15 @@
 @{
     ViewData["Title"] = "Learn English with Videos — TCT";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int totalVideos = Model.Playlists.Sum(p => p.Videos.Count);
+    int totalVideos = Model.VideosByLevel.Sum(kv => kv.Value.Count);
+    // CEFR level display info
+    var levelMeta = new Dictionary<string, (string Label, string Color, string Icon)>
+    {
+        ["A1"] = ("Beginner", "#10b981", "fas fa-seedling"),
+        ["A2"] = ("Elementary", "#06b6d4", "fas fa-leaf"),
+        ["B1"] = ("Intermediate", "#f59e0b", "fas fa-fire"),
+        ["B2"] = ("Upper-Intermediate", "#ef4444", "fas fa-bolt")
+    };
 }
 
 @section Styles {
@@ -31,108 +39,144 @@
     @* ── STATS ROW ────────────────────────────────────────────── *@
     <div class="vi-meta-row">
         <span class="vi-meta-chip"><i class="fas fa-film"></i> <span id="vi-video-count">@totalVideos videos</span></span>
-        <span class="vi-meta-chip"><i class="fas fa-list-ul"></i> @Model.Playlists.Count playlist@(Model.Playlists.Count != 1 ? "s" : "")</span>
+        <span class="vi-meta-chip"><i class="fas fa-layer-group"></i> @Model.VideosByLevel.Count levels</span>
+        <span class="vi-meta-chip"><i class="fas fa-tags"></i> @Model.Topics.Count topics</span>
         <span class="vi-meta-chip vi-chip-green"><i class="fas fa-infinity"></i> Free forever</span>
     </div>
 
-    @* ── PLAYLIST SECTIONS ────────────────────────────────────── *@
-    @if (!Model.Playlists.Any())
+    @* ── TOPIC FILTER PILLS ──────────────────────────────────── *@
+    @if (Model.Topics.Any())
+    {
+        <section class="vi-filter-section">
+            <div class="vi-filter-header">
+                <i class="fas fa-filter"></i>
+                <span>Filter by Topic</span>
+            </div>
+            <div class="vi-filter-pills">
+                <button class="topic-filter-btn active" data-topic="all">
+                    <i class="fas fa-globe"></i> All Topics
+                </button>
+                @foreach (var topic in Model.Topics)
+                {
+                    <button class="topic-filter-btn" data-topic="@topic">
+                        @topic
+                    </button>
+                }
+            </div>
+        </section>
+    }
+
+    @* ── LEVEL SECTIONS ──────────────────────────────────────── *@
+    @if (!Model.VideosByLevel.Any())
     {
         <div class="vi-empty">
             <i class="fas fa-satellite-dish"></i>
             <h3>No content yet</h3>
-            <p>Playlists are coming soon. Check back later!</p>
+            <p>Videos are coming soon. Check back later!</p>
         </div>
     }
     else
     {
-        foreach (var playlist in Model.Playlists)
+        foreach (var kvp in Model.VideosByLevel)
         {
-            <section class="vi-section" data-playlist="@playlist.Id">
+            var level = kvp.Key;
+            var videos = kvp.Value;
+            var meta = levelMeta.ContainsKey(level) ? levelMeta[level] : (Label: "Level " + level, Color: "#6b7280", Icon: "fas fa-book");
 
-                @* Section header *@
-                <div class="vi-section-head">
-                    <div class="vi-section-info">
-                        <span class="vi-section-bar"></span>
+            <section class="vi-level-section" data-level="@level">
+
+                @* Level section header *@
+                <div class="vi-level-head">
+                    <div class="vi-level-info">
+                        <span class="vi-level-icon" style="background: @meta.Item2;">
+                            <i class="@meta.Item3"></i>
+                        </span>
                         <div>
-                            <h2 class="vi-section-name">@playlist.Name</h2>
-                            @if (!string.IsNullOrEmpty(playlist.Description))
-                            {
-                                <p class="vi-section-desc">@playlist.Description</p>
-                            }
+                            <h2 class="vi-level-name">
+                                Level @level
+                                <span class="vi-level-subtitle">— @meta.Item1</span>
+                            </h2>
                         </div>
                     </div>
-                    <span class="vi-section-count">@playlist.Videos.Count videos</span>
+                    <div class="vi-level-actions">
+                        <span class="vi-level-count">@videos.Count video@(videos.Count != 1 ? "s" : "")</span>
+                    </div>
                 </div>
 
-                @* Video grid *@
-                <div class="vi-grid">
+                @* Video grid / slider track *@
+                <div class="vi-video-track-wrapper">
+                    <div class="vi-video-track" id="track-@level">
+                        @foreach (var item in videos)
+                        {
+                            var thumb = string.IsNullOrEmpty(item.ThumbnailUrl)
+                                ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg"
+                                : item.ThumbnailUrl;
 
-                    @foreach (var item in playlist.Videos)
-                    {
-                        var lvl     = (item.Level ?? "").Trim().ToLower();
-                        var lvlCls  = lvl == "easy"   ? "lv-easy"
-                                    : lvl == "hard"   ? "lv-hard"
-                                    : "lv-medium";
-                        var lvlText = lvl == "easy"   ? "Easy"
-                                    : lvl == "hard"   ? "Hard"
-                                    : "Medium";
-                        var thumb   = string.IsNullOrEmpty(item.ThumbnailUrl)
-                                    ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg"
-                                    : item.ThumbnailUrl;
+                            <div class="vi-video-col"
+                                 data-title="@item.Title.ToLower()"
+                                 data-topic="@item.Topic"
+                                 data-level="@item.Level">
+                                <a href="@Url.Action("Practice", "Speaking", new { id = item.Id })"
+                                   class="video-card-link">
+                                    <article class="video-card">
 
-                        <div class="vi-col" data-title="@item.Title.ToLower()">
-                            <a href="@Url.Action("Practice", "Speaking", new { id = item.Id })"
-                               class="video-card-link">
-                                <article class="video-card">
+                                        @* ── Thumbnail ── *@
+                                        <div class="vc-thumb">
+                                            <img src="@thumb"
+                                                 alt="@item.Title"
+                                                 class="vc-img"
+                                                 loading="lazy" />
 
-                                    @* ── Thumbnail ── *@
-                                    <div class="vc-thumb">
-                                        <img src="@thumb"
-                                             alt="@item.Title"
-                                             class="vc-img"
-                                             loading="lazy" />
+                                            @* Dark overlay + play button *@
+                                            <div class="vc-overlay">
+                                                <div class="vc-play"><i class="fas fa-play"></i></div>
+                                            </div>
 
-                                        @* Dark overlay + play button *@
-                                        <div class="vc-overlay">
-                                            <div class="vc-play"><i class="fas fa-play"></i></div>
-                                        </div>
+                                            @* Level badge bottom-left *@
+                                            <span class="vc-badge vc-badge-@level.ToLower()">@level</span>
 
-                                        @* Level badge bottom-left *@
-                                        <span class="vc-badge @lvlCls">@lvlText</span>
-
-                                        @* Duration chip bottom-right *@
-                                        @if (!string.IsNullOrEmpty(item.Duration))
-                                        {
-                                            <span class="vc-duration">
-                                                <i class="far fa-clock"></i> @item.Duration
-                                            </span>
-                                        }
-                                    </div>
-
-                                    @* ── Card body ── *@
-                                    <div class="vc-body">
-                                        <h3 class="vc-title">@item.Title</h3>
-                                        <div class="vc-meta">
-                                            @if (item.SentenceCount > 0)
+                                            @* Duration chip bottom-right *@
+                                            @if (!string.IsNullOrEmpty(item.Duration))
                                             {
-                                                <span class="vc-meta-item">
-                                                    <i class="fas fa-align-left"></i>
-                                                    @item.SentenceCount sentences
+                                                <span class="vc-duration">
+                                                    <i class="far fa-clock"></i> @item.Duration
                                                 </span>
                                             }
-                                            <span class="vc-meta-item vc-start">
-                                                <i class="fas fa-headphones"></i> Practice
-                                            </span>
                                         </div>
-                                    </div>
 
-                                </article>
-                            </a>
-                        </div>
-                    }
+                                        @* ── Card body ── *@
+                                        <div class="vc-body">
+                                            <h3 class="vc-title">@item.Title</h3>
+                                            <div class="vc-meta">
+                                                @if (!string.IsNullOrEmpty(item.Topic))
+                                                {
+                                                    <span class="vc-meta-item vc-topic-chip">
+                                                        <i class="fas fa-tag"></i> @item.Topic
+                                                    </span>
+                                                }
+                                                @if (item.SentenceCount > 0)
+                                                {
+                                                    <span class="vc-meta-item">
+                                                        <i class="fas fa-align-left"></i>
+                                                        @item.SentenceCount sentences
+                                                    </span>
+                                                }
+                                                <span class="vc-meta-item vc-start">
+                                                    <i class="fas fa-headphones"></i> Practice
+                                                </span>
+                                            </div>
+                                        </div>
 
+                                    </article>
+                                </a>
+                            </div>
+                        }
+                    </div>
                 </div>
+
+                @* Numbered Pagination Container *@
+                <div class="numbered-pagination-container" data-level="@level"></div>
+
             </section>
         }
     }
@@ -140,38 +184,5 @@
 </div>
 
 @section Scripts {
-    <script>
-    (function () {
-        const input   = document.getElementById('vi-search');
-        const cols    = document.querySelectorAll('.vi-col');
-        const sects   = document.querySelectorAll('.vi-section');
-        const counter = document.getElementById('vi-video-count');
-        const total   = @totalVideos;
-
-        input.addEventListener('input', function () {
-            const q = this.value.toLowerCase().trim();
-
-            cols.forEach(c => {
-                c.style.display = (!q || c.dataset.title.includes(q)) ? '' : 'none';
-            });
-
-            sects.forEach(s => {
-                const any = [...s.querySelectorAll('.vi-col')].some(c => c.style.display !== 'none');
-                s.style.display = any ? '' : 'none';
-            });
-
-            const visible = [...cols].filter(c => c.style.display !== 'none').length;
-            counter.textContent = q ? `${visible} results` : `${total} videos`;
-        });
-
-        // Ctrl+K / Cmd+K → focus search
-        document.addEventListener('keydown', e => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                input.focus();
-                input.select();
-            }
-        });
-    })();
-    </script>
+    <script src="~/js/speaking.js" asp-append-version="true"></script>
 }
