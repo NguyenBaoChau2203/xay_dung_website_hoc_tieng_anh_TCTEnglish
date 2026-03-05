@@ -16,6 +16,7 @@ public partial class LearningProgress
     public int? WrongCount { get; set; }
 
     public DateTime? LastReviewedDate { get; set; }
+    public DateTime? NextReviewDate { get; set; }
 
     public virtual Card Card { get; set; } = null!;
 

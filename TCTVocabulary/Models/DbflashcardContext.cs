@@ -151,6 +151,8 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.LastReviewedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.NextReviewDate)
+                .HasColumnType("datetime");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
                 .IsUnicode(false);
