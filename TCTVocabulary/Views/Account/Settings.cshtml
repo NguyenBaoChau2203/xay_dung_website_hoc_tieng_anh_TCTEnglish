@@ -4,137 +4,155 @@
     ViewData["Title"] = "Cài đặt & Bảo mật";
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
+@section Styles {
+    <style>
+        .btn-primary {
+            background-color: #4255ff !important;
+            border-color: #4255ff !important;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #2f3fe0 !important;
+            border-color: #2f3fe0 !important;
+        }
+        .text-primary {
+            color: #4255ff !important;
+        }
+    </style>
+}
 
-            <!-- Thông báo -->
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                    <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
+<div class="bg-light min-vh-100 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-7">
 
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                    <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
-
-            <div class="text-center mb-4">
-                <h3 class="fw-bold text-dark">Cài đặt tài khoản</h3>
-                <p class="text-muted">Quản lý thông tin cá nhân và bảo mật của bạn</p>
-            </div>
-
-            <form asp-controller="Account" asp-action="ChangePassword" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-                <!-- Email Settings Card -->
-                <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-header bg-white border-bottom py-3">
-                        <h6 class="mb-0 fw-bold text-dark d-flex align-items-center">
-                            <i class="fas fa-envelope text-primary me-2"></i> Thông tin tài khoản
-                        </h6>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="mb-2">
-                            <label asp-for="Email" class="form-label fw-medium text-dark">Địa chỉ email</label>
-                            <input asp-for="Email" class="form-control" placeholder="name@example.com" />
-                            <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
-                        </div>
-                        <div class="form-text text-muted">
-                            <i class="fas fa-info-circle me-1"></i> Email dùng để đăng nhập và khôi phục tài khoản.
-                        </div>
-                    </div>
+                <!-- Header -->
+                <div class="mb-5 text-center">
+                    <h3 class="fw-semibold text-dark">Cài đặt & Bảo mật</h3>
+                    <p class="text-muted small">Cập nhật mật khẩu và quản lý quyền riêng tư tài khoản.</p>
                 </div>
 
-                <!-- Password Settings Card -->
-                <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-header bg-white border-bottom py-3">
-                        <h6 class="mb-0 fw-bold text-dark d-flex align-items-center">
-                            <i class="fas fa-shield-alt text-success me-2"></i> Bảo mật & Mật khẩu
-                        </h6>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="alert alert-light border small text-muted mb-4 d-flex align-items-center">
-                            <i class="fas fa-lock-open me-2 text-warning"></i> Bỏ trống nếu bạn không muốn thay đổi mật khẩu
+                <!-- Alert Notifications -->
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <div>@TempData["SuccessMessage"]</div>
                         </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
 
-                        <div class="mb-4">
-                            <label asp-for="CurrentPassword" class="form-label fw-medium text-dark">Mật khẩu hiện tại</label>
-                            <div class="input-group">
-                                <input asp-for="CurrentPassword" class="form-control" placeholder="Nhập mật khẩu hiện tại" />
-                                <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <div>@TempData["ErrorMessage"]</div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-controller="Account" asp-action="ChangePassword" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-4"></div>
+
+                    <!-- Email Settings Card -->
+                    <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h6 class="fw-semibold text-dark mb-4 d-flex align-items-center">
+                                <i class="fas fa-envelope-open text-muted me-2 small"></i> Liên hệ
+                            </h6>
+                            
+                            <div class="mb-2">
+                                <label asp-for="Email" class="form-label small fw-medium text-secondary">Địa chỉ email</label>
+                                <input asp-for="Email" class="form-control border-secondary-subtle py-2 px-3" placeholder="name@example.com" />
+                                <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
                             </div>
-                            <span asp-validation-for="CurrentPassword" class="text-danger small mt-1 d-block"></span>
+                            <p class="text-muted small mb-0">Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
                         </div>
+                    </div>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label asp-for="NewPassword" class="form-label fw-medium text-dark">Mật khẩu mới</label>
+                    <!-- Password Settings Card -->
+                    <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h6 class="fw-semibold text-dark mb-4 d-flex align-items-center">
+                                <i class="fas fa-shield-halved text-muted me-2 small"></i> Đổi mật khẩu
+                            </h6>
+
+                            <div class="alert bg-light border-0 small text-muted mb-4 p-3 d-flex align-items-start">
+                                <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
+                                <span>Mật khẩu của bạn nên dài ít nhất 8 ký tự. Chỉ nhập vào các ô bên dưới nếu bạn thực sự muốn thay đổi mật khẩu hiện tại.</span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label asp-for="CurrentPassword" class="form-label small fw-medium text-secondary">Mật khẩu hiện tại</label>
                                 <div class="input-group">
-                                    <input asp-for="NewPassword" class="form-control" placeholder="Mật khẩu mới" />
-                                    <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
+                                    <input asp-for="CurrentPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập mật khẩu hiện nay" />
+                                    <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
-                                <span asp-validation-for="NewPassword" class="text-danger small mt-1 d-block"></span>
+                                <span asp-validation-for="CurrentPassword" class="text-danger small mt-1 d-block"></span>
                             </div>
-                            <div class="col-md-6">
-                                <label asp-for="ConfirmPassword" class="form-label fw-medium text-dark">Xác nhận mật khẩu</label>
-                                <div class="input-group">
-                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Xác nhận" />
-                                    <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
+
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label asp-for="NewPassword" class="form-label small fw-medium text-secondary">Mật khẩu mới</label>
+                                    <div class="input-group">
+                                        <input asp-for="NewPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Tối thiểu 8 ký tự" />
+                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span asp-validation-for="NewPassword" class="text-danger small mt-1 d-block"></span>
                                 </div>
-                                <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
+                                <div class="col-md-6">
+                                    <label asp-for="ConfirmPassword" class="form-label small fw-medium text-secondary">Xác nhận mật khẩu</label>
+                                    <div class="input-group">
+                                        <input asp-for="ConfirmPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập lại mật khẩu mới" />
+                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-footer bg-light border-top border-secondary-subtle p-3 px-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary py-2 px-4 shadow-sm border-0 fw-medium">
+                                <i class="fas fa-save me-2"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Danger Zone -->
+                <div class="card bg-white border-danger-subtle rounded-3 shadow-sm mb-5">
+                    <div class="card-body p-4">
+                        <h6 class="fw-semibold text-danger mb-4 d-flex align-items-center">
+                            <i class="fas fa-triangle-exclamation me-2 small"></i> Vùng nguy hiểm
+                        </h6>
+                        
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-3 rounded-3 bg-danger-subtle border border-danger-subtle bg-opacity-10">
+                            <div class="mb-3 mb-md-0">
+                                <div class="fw-semibold text-danger">Xóa tài khoản vĩnh viễn</div>
+                                <div class="text-danger small">Hành động này không thể hoàn tác. Mọi dữ liệu học tập sẽ bị mất.</div>
+                            </div>
+                            <button type="button" class="btn btn-danger px-4 py-2 shadow-sm fw-medium border-0">
+                                <i class="fas fa-trash-can me-2"></i> Xóa ngay
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Nút lưu -->
-                <div class="d-flex justify-content-end mb-4">
-                    <button type="submit" class="btn btn-primary px-4 py-2 fw-medium">
-                        <i class="fas fa-save me-1"></i> Lưu cài đặt
-                    </button>
+                <div class="text-center">
+                    <a asp-action="Profile" class="btn btn-link text-decoration-none text-muted small fw-medium">
+                        <i class="fas fa-arrow-left me-1"></i> Quay lại trang Hồ sơ của tôi
+                    </a>
                 </div>
-            </form>
 
-            <!-- Danger Zone Card -->
-            <div class="card border-danger mb-5 shadow-sm">
-                <div class="card-header bg-white border-danger border-bottom py-3">
-                    <h6 class="mb-0 fw-bold text-danger d-flex align-items-center">
-                        <i class="fas fa-exclamation-triangle me-2"></i> Vùng nguy hiểm
-                    </h6>
-                </div>
-                <div class="card-body p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between">
-                    <div class="mb-3 mb-md-0 me-md-4">
-                        <p class="mb-1 fw-bold text-dark">Xóa tài khoản vĩnh viễn</p>
-                        <p class="mb-0 text-muted small">Mọi dữ liệu học tập (chuỗi ngày, từ vựng) sẽ bị xóa và không thể khôi phục.</p>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-outline-danger">
-                            Xóa tài khoản
-                        </button>
-                    </div>
-                </div>
             </div>
-
-            <!-- Link quay lại Profile -->
-            <div class="text-center pb-4">
-                <a asp-action="Profile" class="text-decoration-none text-muted hover-primary">
-                    <i class="fas fa-arrow-left me-1"></i> Quay lại Hồ sơ
-                </a>
-            </div>
-
         </div>
     </div>
 </div>
