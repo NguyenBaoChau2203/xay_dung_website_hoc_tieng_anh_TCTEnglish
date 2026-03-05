@@ -100,6 +100,7 @@ namespace TCTVocabulary.Controllers
         {
             var video = await _context.SpeakingVideos
                 .Include(v => v.SpeakingSentences)
+                    .ThenInclude(s => s.UserSpeakingProgresses) // Include progress to get the scores
                 .FirstOrDefaultAsync(v => v.Id == id);
 
             if (video == null)
@@ -107,6 +108,10 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
             }
 
+            // Optional: Filter progress by current user if authentication is implemented.
+            // Assuming for now we just take the latest progress or first if user isn't specific in this context
+            // If you have user identification, it should be: .Where(p => p.UserId == currentUserId)
+            
             var viewModel = new SpeakingPracticeViewModel
             {
                 VideoId = video.Id,
@@ -114,13 +119,24 @@ namespace TCTVocabulary.Controllers
                 YoutubeId = video.YoutubeId,
                 Sentences = video.SpeakingSentences
                     .OrderBy(s => s.StartTime)
-                    .Select(s => new SpeakingSentenceViewModel
+                    .Select(s => 
                     {
-                        Id = s.Id,
-                        StartTime = s.StartTime,
-                        EndTime = s.EndTime,
-                        Text = s.Text,
-                        VietnameseMeaning = s.VietnameseMeaning
+                        var latestProgress = s.UserSpeakingProgresses
+                            .OrderByDescending(p => p.PracticedAt)
+                            .FirstOrDefault();
+
+                        return new SpeakingSentenceViewModel
+                        {
+                            Id = s.Id,
+                            StartTime = s.StartTime,
+                            EndTime = s.EndTime,
+                            Text = s.Text,
+                            VietnameseMeaning = s.VietnameseMeaning,
+                            TotalScore = latestProgress?.TotalScore,
+                            AccuracyScore = latestProgress?.AccuracyScore,
+                            FluencyScore = latestProgress?.FluencyScore,
+                            CompletenessScore = latestProgress?.CompletenessScore
+                        };
                     }).ToList()
             };
 

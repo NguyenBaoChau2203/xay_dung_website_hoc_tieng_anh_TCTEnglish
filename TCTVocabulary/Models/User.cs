@@ -41,4 +41,6 @@ public partial class User
     = new List<ClassMember>();
     public virtual ICollection<Class> Classes { get; set; }
     = new List<Class>();
+
+    public virtual ICollection<UserSpeakingProgress> UserSpeakingProgresses { get; set; } = new List<UserSpeakingProgress>();
 }
