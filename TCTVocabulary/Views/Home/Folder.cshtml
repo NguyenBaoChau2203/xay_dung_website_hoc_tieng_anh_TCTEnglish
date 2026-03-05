@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TCTVocabulary.ViewModel.FolderPageViewModel
+@{
     ViewData["Title"] = "Folders";
 }
 
@@ -16,7 +17,7 @@
         </div>
 
         <div class="folder-grid">
-            @foreach (var folder in Model)
+            @foreach (var folder in Model.MyFolders)
             {
                 <a asp-action="FolderDetail"
                    asp-controller="Home"
@@ -38,15 +39,25 @@
         </div>
 
         <div class="folder-grid">
-            <div class="folder-card saved">
-                <i class="fas fa-folder-open folder-icon"></i>
-                <p class="folder-name">IELTS Materials</p>
-            </div>
+            @if (!Model.SavedFolders.Any())
+            {
+                <p class="empty-text">No saved folders yet.</p>
+            }
+            else
+            {
+                @foreach (var folder in Model.SavedFolders)
+                {
+                    <a asp-action="FolderDetail"
+                       asp-controller="Home"
+                       asp-route-id="@folder.FolderId"
+                       class="folder-card saved">
 
-            <div class="folder-card saved">
-                <i class="fas fa-folder-open folder-icon"></i>
-                <p class="folder-name">Web Dev Roadmap</p>
-            </div>
+                        <i class="fas fa-folder-open folder-icon"></i>
+                        <p class="folder-name">@folder.FolderName</p>
+
+                    </a>
+                }
+            }
         </div>
     </section>
 

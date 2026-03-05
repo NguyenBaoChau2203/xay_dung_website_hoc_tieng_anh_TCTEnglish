@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCTVocabulary.Models;
 
@@ -11,9 +12,11 @@ using TCTVocabulary.Models;
 namespace TCTVocabulary.Migrations
 {
     [DbContext(typeof(DbflashcardContext))]
-    partial class DbflashcardContextModelSnapshot : ModelSnapshot
+    [Migration("20260305091918_AddTopicToCards")]
+    partial class AddTopicToCards
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -524,46 +527,6 @@ namespace TCTVocabulary.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingProgress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("AccuracyScore")
-                        .HasColumnType("float");
-
-                    b.Property<double>("CompletenessScore")
-                        .HasColumnType("float");
-
-                    b.Property<double>("FluencyScore")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("PracticedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<int>("SentenceId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalScore")
-                        .HasColumnType("float");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SentenceId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserSpeakingProgresses");
-                });
-
             modelBuilder.Entity("ClassMember", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.Class", "Class")
@@ -756,27 +719,6 @@ namespace TCTVocabulary.Migrations
                         .HasForeignKey("ClassId");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.SpeakingSentence", "SpeakingSentence")
-                        .WithMany("UserSpeakingProgresses")
-                        .HasForeignKey("SentenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
-
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserSpeakingProgresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingProgress_Users");
-
-                    b.Navigation("SpeakingSentence");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
                 {
                     b.Navigation("LearningProgresses");
@@ -812,11 +754,6 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SpeakingVideos");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.SpeakingSentence", b =>
-                {
-                    b.Navigation("UserSpeakingProgresses");
-                });
-
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
                 {
                     b.Navigation("SpeakingSentences");
@@ -837,8 +774,6 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SavedFolders");
 
                     b.Navigation("Sets");
-
-                    b.Navigation("UserSpeakingProgresses");
                 });
 #pragma warning restore 612, 618
         }
