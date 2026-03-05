@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 using TCTVocabulary.Models;
+using TCTVocabulary.Models.TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
 using TCTVocabulary.ViewModel;
 
@@ -19,29 +20,218 @@ namespace TCTVocabulary.Controllers
         }
         public IActionResult Index()
         {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var user = _context.Users
+                .Include(u => u.Folders)
+                    .ThenInclude(f => f.Sets)
+                .Include(u => u.Sets)
+                .First(u => u.UserId == userId);
+
+            var cardCount = _context.Cards
+                .Count(c => user.Sets.Select(s => s.SetId).Contains(c.SetId));
+
+            // 🔥 3 folder ngẫu nhiên
+            var todayFolders = _context.Folders
+    .Include(f => f.Sets)
+    .Include(f => f.User)
+    .Where(f => f.UserId != userId)
+    .OrderBy(f => Guid.NewGuid())
+    .Take(3)
+    .ToList();
+
+            var model = new DashboardViewModel
+            {
+                FullName = user.FullName,
+                Streak = user.Streak ?? 0,
+                Goal = user.Goal ?? 0,
+                FolderCount = user.Folders.Count,
+                SetCount = user.Sets.Count,
+                CardCount = cardCount,
+                DailyChallenge = GetRandomChallenge(),
+                TodayFolders = todayFolders
+            };
+
+            return View(model);
+        }
+
+        // =========================
+        // DAILY CHALLENGE (AJAX)
+        // =========================
+        [HttpGet]
+        public IActionResult GetDailyChallenge()
+        {
+            var challenge = GetRandomChallenge();
+            return PartialView("_DailyChallenge", challenge);
+        }
+
+        // =========================
+        // CHECK ANSWER
+        // =========================
+        [HttpPost]
+        public IActionResult CheckAnswer(int selectedCardId, int correctCardId)
+        {
+            bool isCorrect = selectedCardId == correctCardId;
+
+            if (isCorrect)
+            {
+                UpdateStreak();
+            }
+
+            return Json(new
+            {
+                correct = isCorrect
+            });
+        }
+
+        // =========================
+        // RANDOM CHALLENGE LOGIC
+        // =========================
+        private DailyChallengeViewModel GetRandomChallenge()
+        {
+            var randomCard = _context.Cards
+                .OrderBy(c => Guid.NewGuid())
+                .First();
+
+            var wrongAnswers = _context.Cards
+                .Where(c => c.CardId != randomCard.CardId)
+                .OrderBy(c => Guid.NewGuid())
+                .Take(3)
+                .Select(c => new AnswerOption
+                {
+                    CardId = c.CardId,
+                    Definition = c.Definition
+                })
+                .ToList();
+
+            var options = wrongAnswers;
+
+            options.Add(new AnswerOption
+            {
+                CardId = randomCard.CardId,
+                Definition = randomCard.Definition
+            });
+
+            return new DailyChallengeViewModel
+            {
+                CardId = randomCard.CardId,
+                Term = randomCard.Term,
+                Options = options.OrderBy(o => Guid.NewGuid()).ToList()
+            };
+        }
+
+        // =========================
+        // STREAK UPDATE
+        // =========================
+        private void UpdateStreak()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var user = _context.Users.First(u => u.UserId == userId);
+
+            var today = DateTime.UtcNow.Date;
+
+            if (user.CreatedAt == null || user.CreatedAt.Value.Date < today)
+            {
+                user.Streak = (user.Streak ?? 0) + 1;
+                user.CreatedAt = today;
+
+                _context.SaveChanges();
+            }
+        }
+
+        // =========================
+        // LANDING (NO LOGIN)
+        // =========================
+        [AllowAnonymous]
+        public IActionResult Landing()
+        {
             return View();
+        }
+
+        // =========================
+        // PRIVACY
+        // =========================
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+        [HttpGet]
+        [HttpGet]
+        [HttpGet]
+        public IActionResult Search(string q)
+        {
+            var vm = new SearchViewModel
+            {
+                Query = q ?? ""
+            };
+
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                vm.Folders = _context.Folders
+                    .Include(f => f.User)
+                    .Where(f => f.FolderName.Contains(q))
+                    .ToList();
+
+                vm.Classes = _context.Classes
+                    .Include(c => c.Owner)
+                    .Where(c => c.ClassName.Contains(q))
+                    .ToList();
+
+                vm.Users = _context.Users
+                    .Where(u => u.FullName.Contains(q) || u.Email.Contains(q))
+                    .ToList();
+            }
+
+            return View(vm); // ✅ VIEW, KHÔNG partial
         }
         public IActionResult Folder()
         {
-            // 1. Lấy UserId từ Claims (nơi lưu trữ sau khi SignInUserAsync chạy)
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // 2. Kiểm tra xem người dùng đã đăng nhập chưa
             if (string.IsNullOrEmpty(userIdClaim))
-            {
-                // Nếu chưa đăng nhập, điều hướng về trang Login
                 return RedirectToAction("Login", "Account");
-            }
 
-            // 3. Chuyển đổi ID từ chuỗi sang số nguyên (int)
             int currentUserId = int.Parse(userIdClaim);
 
-            // 4. Truy vấn dữ liệu dựa trên UserId động
+            // 🔹 Folder của chính mình
             var myFolders = _context.Folders
-                                    .Where(f => f.UserId == currentUserId && f.ParentFolderId == null)
-                                    .ToList();
+                .Where(f => f.UserId == currentUserId && f.ParentFolderId == null)
+                .ToList();
 
-            return View(myFolders);
+            // 🔹 Folder đã lưu (SavedFolder)
+            var savedFolders = _context.SavedFolders
+                .Where(sf => sf.UserId == currentUserId)
+                .Include(sf => sf.Folder)
+                .Select(sf => sf.Folder)
+                .ToList();
+
+            var vm = new FolderPageViewModel
+            {
+                MyFolders = myFolders,
+                SavedFolders = savedFolders
+            };
+
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult UnsaveFolder(int folderId)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim))
+                return RedirectToAction("Login", "Account");
+
+            int userId = int.Parse(userIdClaim);
+
+            var saved = _context.SavedFolders
+                .FirstOrDefault(sf => sf.UserId == userId && sf.FolderId == folderId);
+
+            if (saved != null)
+            {
+                _context.SavedFolders.Remove(saved);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpPost]
         public async Task<IActionResult> CreateFolder(string folderName)
@@ -73,7 +263,12 @@ namespace TCTVocabulary.Controllers
         }
         public IActionResult FolderDetail(int id)
         {
+            var userId = int.Parse(
+                User.FindFirstValue(ClaimTypes.NameIdentifier)!
+            );
+
             var folder = _context.Folders
+                .Include(f => f.User)
                 .Include(f => f.Sets)
                     .ThenInclude(s => s.Cards)
                 .FirstOrDefault(f => f.FolderId == id);
@@ -81,17 +276,18 @@ namespace TCTVocabulary.Controllers
             if (folder == null)
                 return NotFound();
 
+            // ✅ KIỂM TRA ĐÃ LƯU CHƯA
+            var isSaved = _context.SavedFolders
+                .Any(sf => sf.UserId == userId && sf.FolderId == id);
+
             var vm = new FolderDetailViewModel
             {
                 Folder = folder,
-                Sets = folder.Sets.ToList()
+                Sets = folder.Sets.ToList(),
+                IsSaved = isSaved   // ✅ thêm đúng 1 dòng
             };
 
             return View(vm);
-        }
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         public IActionResult Login()
@@ -106,10 +302,7 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-        public IActionResult Landing()
-        {
-            return View();
-        }
+      
         // Sửa int thành int? để folderId có thể mang giá trị null
         public IActionResult CreateSet(int? folderId)
         {
@@ -542,6 +735,30 @@ namespace TCTVocabulary.Controllers
 
             await _context.SaveChangesAsync();
             return Ok();
+        }
+        [HttpPost]
+        public IActionResult SaveFolder(int folderId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            // 1. Kiểm tra đã lưu chưa
+            var existed = _context.SavedFolders
+                .Any(sf => sf.UserId == userId && sf.FolderId == folderId);
+
+            if (existed)
+                return RedirectToAction("FolderDetail", new { id = folderId });
+
+            // 2. Lưu mới
+            var saved = new SavedFolder
+            {
+                UserId = userId,
+                FolderId = folderId
+            };
+
+            _context.SavedFolders.Add(saved);
+            _context.SaveChanges();
+
+            return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpGet]
         public async Task<IActionResult> SearchClass(string keyword)

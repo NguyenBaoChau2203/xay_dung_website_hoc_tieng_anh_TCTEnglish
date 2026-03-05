@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,10 +27,19 @@
             <a asp-controller="Home" asp-action="Index" class="logo">TCT</a>
         </div>
 
-        <div class="search-box">
+        <form asp-controller="Home"
+              asp-action="Search"
+              method="get"
+              class="search-box">
+
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search for study guides">
-        </div>
+
+            <input type="text"
+                   name="q"
+                   value="@Context.Request.Query["q"]"
+                   placeholder="Search for folders, classes, users"
+                   autocomplete="off" />
+        </form>
 
         <div class="header-right">
             <button class="btn-circle">

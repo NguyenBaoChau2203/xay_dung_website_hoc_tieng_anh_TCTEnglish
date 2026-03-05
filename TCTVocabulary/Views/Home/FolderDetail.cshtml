@@ -16,6 +16,9 @@
             <div class="title-column">
                 <span class="sub-label">Thư mục</span>
                 <h1 class="main-title">@Model.Folder.FolderName</h1>
+                <p class="creator-text">
+                    Tạo bởi <strong>@Model.Folder.User.FullName</strong>
+                </p>
             </div>
         </div>
 
@@ -45,12 +48,30 @@
                     else
                     {
                         @* ===== FOLDER CỦA NGƯỜI KHÁC ===== *@
-                        <form asp-action="SaveFolder" method="post">
-                            <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
-                            <button type="submit" class="dropdown-item">
-                                <i class="fas fa-bookmark"></i> Lưu thư mục
-                            </button>
-                        </form>
+                        @if (!isOwner)
+                        {
+                            if (!Model.IsSaved)
+                            {
+                                <form asp-action="SaveFolder" method="post">
+                                    <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="fas fa-bookmark"></i> Lưu thư mục
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-action="UnsaveFolder"
+                                      method="post"
+                                      onsubmit="return confirm('Bạn có muốn bỏ lưu thư mục này không?')">
+                                    <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
+
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="fas fa-bookmark-slash"></i> Bỏ lưu thư mục
+                                    </button>
+                                </form>
+                            }
+                        }
                     }
                 </div>
             </div>

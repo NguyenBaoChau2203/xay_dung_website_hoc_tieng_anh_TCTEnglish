@@ -7,5 +7,6 @@ namespace TCTVocabulary.Models.ViewModels
     {
         public Folder Folder { get; set; } = null!;
         public List<Set> Sets { get; set; } = new();
+        public bool IsSaved { get; set; }
     }
 }
