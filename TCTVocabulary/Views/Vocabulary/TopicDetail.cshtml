@@ -1,0 +1,403 @@
+﻿@model TCTVocabulary.Models.Set
+@{
+    var topicName = ViewBag.TopicName as string;
+    ViewData["Title"] = topicName;
+
+    var cardsInTopic = Model.Cards?
+        .Where(c => (c.Topic ?? "Chưa phân loại") == topicName)
+        .ToList() ?? new List<TCTVocabulary.Models.Card>();
+
+    var totalCards = cardsInTopic.Count;
+    var learnedCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Mastered" || lp.Status == "Learned"));
+    var progress = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
+
+    // Đếm số lượng theo trạng thái
+    var newCards = cardsInTopic.Count(c => c.LearningProgresses == null || !c.LearningProgresses.Any() || c.LearningProgresses.FirstOrDefault()?.Status == "New");
+    var reviewingCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Reviewing"));
+    var masteredCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+    <style>
+        .topic-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .topic-header {
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+            .back-link:hover {
+                color: #0EA5E9;
+            }
+
+        .topic-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+            .topic-title h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #0f172a;
+                margin: 0;
+            }
+
+        .topic-badge {
+            background: #F0F9FF;
+            color: #0EA5E9;
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Stats cards */
+        .stats-grid-small {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card-small {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+            .stat-card-small .value {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #0f172a;
+                line-height: 1.2;
+            }
+
+            .stat-card-small .label {
+                font-size: 0.85rem;
+                color: #64748b;
+            }
+
+            .stat-card-small.new .value {
+                color: #4facfe;
+            }
+
+            .stat-card-small.reviewing .value {
+                color: #fbbf24;
+            }
+
+            .stat-card-small.mastered .value {
+                color: #43e97b;
+            }
+
+        /* Progress card */
+        .topic-progress-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-circle-small {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+            .progress-circle-small svg {
+                width: 100%;
+                height: 100%;
+                transform: rotate(-90deg);
+            }
+
+        .progress-number-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0EA5E9;
+        }
+
+        .progress-stats {
+            flex: 1;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .study-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-study-topic {
+            background: #0EA5E9;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+            .btn-study-topic:hover {
+                background: #0284C7;
+                transform: translateY(-2px);
+            }
+
+        .btn-review {
+            background: white;
+            color: #0EA5E9;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid #0EA5E9;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+            .btn-review:hover {
+                background: #F0F9FF;
+            }
+
+        /* Cards list */
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+            .card-item:hover {
+                border-color: #0EA5E9;
+                box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05);
+            }
+
+        .card-term-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .card-term {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .card-phonetic {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-family: monospace;
+        }
+
+        .card-status {
+            margin-left: auto;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            background: #F1F5F9;
+            color: #475569;
+        }
+
+            .card-status.learned {
+                background: #E0F2FE;
+                color: #0369a1;
+            }
+
+            .card-status.mastered {
+                background: #D1FAE5;
+                color: #047857;
+            }
+
+        .card-definition {
+            color: #334155;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .card-example {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-style: italic;
+            padding-left: 1rem;
+            border-left: 3px solid #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-image {
+            max-width: 100%;
+            max-height: 100px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .empty-topic {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 24px;
+            border: 1px dashed #cbd5e1;
+        }
+    </style>
+}
+
+<div class="topic-detail-container">
+    <!-- Back link -->
+    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        <span>Quay lại danh sách chủ đề</span>
+    </a>
+
+    <!-- Topic header -->
+    <div class="topic-header">
+        <div class="topic-title">
+            <h1>@topicName</h1>
+            <span class="topic-badge">@totalCards thẻ</span>
+        </div>
+    </div>
+
+    <!-- Mini stats -->
+    <div class="stats-grid-small">
+        <div class="stat-card-small new">
+            <div class="value">@newCards</div>
+            <div class="label">Từ mới</div>
+        </div>
+        <div class="stat-card-small reviewing">
+            <div class="value">@reviewingCards</div>
+            <div class="label">Đang ôn</div>
+        </div>
+        <div class="stat-card-small mastered">
+            <div class="value">@masteredCards</div>
+            <div class="label">Thành thạo</div>
+        </div>
+    </div>
+
+    <!-- Progress and actions -->
+    <div class="topic-progress-card">
+        <div class="progress-circle-small">
+            <svg viewBox="0 0 100 100">
+                <circle class="circle-bg" cx="50" cy="50" r="40" stroke="#e2e8f0" fill="none" stroke-width="8"></circle>
+                <circle class="circle-fill" cx="50" cy="50" r="40"
+                        stroke="#0EA5E9" fill="none" stroke-width="8" stroke-linecap="round"
+                        stroke-dasharray="251.2"
+                        stroke-dashoffset="@(251.2 - (251.2 * progress / 100))"></circle>
+            </svg>
+            <div class="progress-number-small">@progress%</div>
+        </div>
+
+        <div class="progress-stats">
+            <div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #0f172a;">@learnedCards</div>
+                <div style="color: #64748b;">Đã học</div>
+            </div>
+            <div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #0f172a;">@(totalCards - learnedCards)</div>
+                <div style="color: #64748b;">Chưa học</div>
+            </div>
+        </div>
+
+        <div class="study-actions">
+            <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName })" class="btn-study-topic">
+                <i class="fas fa-play"></i>
+                <span>Học ngay</span>
+            </a>
+            @if (learnedCards > 0)
+            {
+                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName, review = true })" class="btn-review">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Ôn tập</span>
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Cards list -->
+    @if (cardsInTopic.Any())
+    {
+        <div class="cards-list">
+            @foreach (var card in cardsInTopic)
+            {
+                var status = card.LearningProgresses?.FirstOrDefault()?.Status ?? "New";
+                var statusClass = status == "Mastered" ? "mastered" : (status == "Learned" || status == "Reviewing" ? "learned" : "");
+                var statusText = status == "Mastered" ? "Thành thạo" : (status == "Learned" ? "Đã học" : (status == "Reviewing" ? "Đang ôn" : "Chưa học"));
+
+                <div class="card-item">
+                    <div class="card-term-row">
+                        <span class="card-term">@card.Term</span>
+                        @if (!string.IsNullOrEmpty(card.Phonetic))
+                        {
+                            <span class="card-phonetic">@card.Phonetic</span>
+                        }
+                        <span class="card-status @statusClass">
+                            @statusText
+                        </span>
+                    </div>
+
+                    <div class="card-definition">@card.Definition</div>
+
+                    @if (!string.IsNullOrEmpty(card.Example))
+                    {
+                        <div class="card-example">"@card.Example"</div>
+                        @if (!string.IsNullOrEmpty(card.ExampleTranslation))
+                        {
+                            <div style="font-size: 0.85rem; color: #94a3b8; padding-left: 1rem; margin-bottom: 0.5rem;">
+                                → @card.ExampleTranslation
+                            </div>
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(card.ImageUrl))
+                    {
+                        <img src="@card.ImageUrl" alt="@card.Term" class="card-image" />
+                    }
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-topic">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📭</div>
+            <h3>Chưa có thẻ từ vựng</h3>
+            <p>Chủ đề này hiện chưa có thẻ từ vựng nào.</p>
+        </div>
+    }
+</div>

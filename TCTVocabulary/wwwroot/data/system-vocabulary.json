@@ -2,150 +2,286 @@
   {
     "FolderName": "Từ Vựng Tiếng Anh Thông Dụng",
     "Sets": [
-        {
-          "SetName": "1000 từ tiếng Anh thông dụng",
-          "Description": "#common #basic #a1",
-          "Cards": [
-            {
-              "Term": "Apple",
-              "Definition": "Quả táo",
-              "ImageUrl": "/images/system-vocab/apple.jpg"
-            },
-            {
-              "Term": "Book",
-              "Definition": "Quyển sách",
-              "ImageUrl": "/images/system-vocab/book.jpg"
-            },
-            {
-              "Term": "Car",
-              "Definition": "Xe ô tô",
-              "ImageUrl": "/images/system-vocab/car.jpg"
-            },
-            {
-              "Term": "Door",
-              "Definition": "Cánh cửa",
-              "ImageUrl": "/images/system-vocab/door.jpg"
-            },
-            {
-              "Term": "Egg",
-              "Definition": "Quả trứng",
-              "ImageUrl": "/images/system-vocab/egg.jpg"
-            },
-            {
-              "Term": "Fish",
-              "Definition": "Con cá",
-              "ImageUrl": "/images/system-vocab/fish.jpg"
-            },
-            {
-              "Term": "Garden",
-              "Definition": "Khu vườn",
-              "ImageUrl": null
-            },
-            {
-              "Term": "House",
-              "Definition": "Căn nhà",
-              "ImageUrl": "/images/system-vocab/house.jpg"
-            },
-            {
-              "Term": "Ice",
-              "Definition": "Nước đá / Băng",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Juice",
-              "Definition": "Nước ép",
-              "ImageUrl": "/images/system-vocab/juice.jpg"
-            },
-            {
-              "Term": "Key",
-              "Definition": "Chìa khóa",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Lamp",
-              "Definition": "Ngọn đèn",
-              "ImageUrl": "/images/system-vocab/lamp.jpg"
-            },
-            {
-              "Term": "Hello",
-              "Definition": "Xin chào",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Goodbye",
-              "Definition": "Tạm biệt",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Thank you",
-              "Definition": "Cảm ơn",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Sorry",
-              "Definition": "Xin lỗi",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Please",
-              "Definition": "Làm ơn",
-              "ImageUrl": null
-            },
-            {
-              "Term": "How are you?",
-              "Definition": "Bạn có khỏe không?",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Nice to meet you",
-              "Definition": "Rất vui được gặp bạn",
-              "ImageUrl": null
-            },
-            {
-              "Term": "What is your name?",
-              "Definition": "Tên bạn là gì?",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Where are you from?",
-              "Definition": "Bạn đến từ đâu?",
-              "ImageUrl": null
-            },
-            {
-              "Term": "I don't understand",
-              "Definition": "Tôi không hiểu",
-              "ImageUrl": null
-            },
-            {
-              "Term": "Can you repeat?",
-              "Definition": "Bạn có thể nhắc lại không?",
-              "ImageUrl": null
-            },
-            {
-              "Term": "See you later",
-              "Definition": "Hẹn gặp lại",
-              "ImageUrl": null
-            }
-
-          ]
-        },
+      {
+        "SetName": "1000 từ tiếng Anh thông dụng",
+        "Description": "#common #basic #a1",
+        "Cards": [
+          {
+            "Term": "Dog",
+            "Definition": "Con chó",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/dɒɡ/",
+            "Example": "My dog is very friendly.",
+            "ExampleTranslation": "Con chó của tôi rất thân thiện.",
+            "ImageUrl": "/images/animals/dog.jpg"
+          },
+          {
+            "Term": "Cat",
+            "Definition": "Con mèo",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/kæt/",
+            "Example": "The cat is sleeping on the sofa.",
+            "ExampleTranslation": "Con mèo đang ngủ trên ghế sofa.",
+            "ImageUrl": "/images/animals/cat.jpg"
+          },
+          {
+            "Term": "Bird",
+            "Definition": "Con chim",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/bɜːrd/",
+            "Example": "The bird is singing in the tree.",
+            "ExampleTranslation": "Con chim đang hót trên cây.",
+            "ImageUrl": "/images/animals/bird.jpg"
+          },
+          {
+            "Term": "Fish",
+            "Definition": "Con cá",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/fɪʃ/",
+            "Example": "I have two fish in my aquarium.",
+            "ExampleTranslation": "Tôi có hai con cá trong bể cá.",
+            "ImageUrl": "/images/animals/fish.jpg"
+          },
+          {
+            "Term": "Horse",
+            "Definition": "Con ngựa",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/hɔːrs/",
+            "Example": "She loves to ride horses.",
+            "ExampleTranslation": "Cô ấy thích cưỡi ngựa.",
+            "ImageUrl": "/images/animals/horse.jpg"
+          },
+          {
+            "Term": "Elephant",
+            "Definition": "Con voi",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/ˈel.ɪ.fənt/",
+            "Example": "The elephant has a long trunk.",
+            "ExampleTranslation": "Con voi có vòi dài.",
+            "ImageUrl": "/images/animals/elephant.jpg"
+          },
+          {
+            "Term": "Lion",
+            "Definition": "Con sư tử",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/ˈlaɪ.ən/",
+            "Example": "The lion is the king of the jungle.",
+            "ExampleTranslation": "Sư tử là chúa tể của rừng xanh.",
+            "ImageUrl": "/images/animals/lion.jpg"
+          },
+          {
+            "Term": "Tiger",
+            "Definition": "Con hổ",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/ˈtaɪ.ɡər/",
+            "Example": "Tigers are endangered animals.",
+            "ExampleTranslation": "Hổ là động vật có nguy cơ tuyệt chủng.",
+            "ImageUrl": "/images/animals/tiger.jpg"
+          },
+          {
+            "Term": "Monkey",
+            "Definition": "Con khỉ",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/ˈmʌŋ.ki/",
+            "Example": "Monkeys like to eat bananas.",
+            "ExampleTranslation": "Khỉ thích ăn chuối.",
+            "ImageUrl": "/images/animals/monkey.jpg"
+          },
+          {
+            "Term": "Bear",
+            "Definition": "Con gấu",
+            "Topic": "Animals (Động vật)",
+            "Phonetic": "/ber/",
+            "Example": "The bear is hibernating in winter.",
+            "ExampleTranslation": "Gấu ngủ đông vào mùa đông.",
+            "ImageUrl": "/images/animals/bear.jpg"
+          },
+          {
+            "Term": "Hello",
+            "Definition": "Xin chào",
+            "Topic": "Greetings (Chào hỏi)",
+            "Phonetic": "/həˈləʊ/",
+            "Example": "Hello, how are you today?",
+            "ExampleTranslation": "Xin chào, hôm nay bạn thế nào?",
+            "ImageUrl": "/images/greetings/hello.jpg"
+          },
+          {
+            "Term": "Goodbye",
+            "Definition": "Tạm biệt",
+            "Topic": "Greetings (Chào hỏi)",
+            "Phonetic": "/ɡʊdˈbaɪ/",
+            "Example": "Goodbye, see you tomorrow!",
+            "ExampleTranslation": "Tạm biệt, hẹn gặp lại ngày mai!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Good morning",
+            "Definition": "Chào buổi sáng",
+            "Topic": "Greetings (Chào hỏi)",
+            "Phonetic": "/ɡʊd ˈmɔːr.nɪŋ/",
+            "Example": "Good morning, everyone!",
+            "ExampleTranslation": "Chào buổi sáng mọi người!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Good night",
+            "Definition": "Chúc ngủ ngon",
+            "Topic": "Greetings (Chào hỏi)",
+            "Phonetic": "/ɡʊd naɪt/",
+            "Example": "Good night, sleep well!",
+            "ExampleTranslation": "Chúc ngủ ngon, ngủ ngon nhé!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "See you later",
+            "Definition": "Hẹn gặp lại",
+            "Topic": "Greetings (Chào hỏi)",
+            "Phonetic": "/siː juː ˈleɪ.tər/",
+            "Example": "I have to go now, see you later!",
+            "ExampleTranslation": "Tôi phải đi bây giờ, hẹn gặp lại!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Thank you",
+            "Definition": "Cảm ơn",
+            "Topic": "Politeness (Lịch sự)",
+            "Phonetic": "/θæŋk juː/",
+            "Example": "Thank you for your help.",
+            "ExampleTranslation": "Cảm ơn bạn đã giúp đỡ.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Please",
+            "Definition": "Làm ơn",
+            "Topic": "Politeness (Lịch sự)",
+            "Phonetic": "/pliːz/",
+            "Example": "Please pass me the salt.",
+            "ExampleTranslation": "Làm ơn đưa tôi lọ muối.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Sorry",
+            "Definition": "Xin lỗi",
+            "Topic": "Politeness (Lịch sự)",
+            "Phonetic": "/ˈsɒr.i/",
+            "Example": "I'm sorry I'm late.",
+            "ExampleTranslation": "Tôi xin lỗi tôi đến muộn.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Excuse me",
+            "Definition": "Xin lỗi (làm phiền)",
+            "Topic": "Politeness (Lịch sự)",
+            "Phonetic": "/ɪkˈskjuːz miː/",
+            "Example": "Excuse me, where is the bathroom?",
+            "ExampleTranslation": "Xin lỗi, nhà vệ sinh ở đâu?",
+            "ImageUrl": null
+          },
+          {
+            "Term": "You're welcome",
+            "Definition": "Không có gì",
+            "Topic": "Politeness (Lịch sự)",
+            "Phonetic": "/jɔːr ˈwel.kəm/",
+            "Example": "Thank you! - You're welcome!",
+            "ExampleTranslation": "Cảm ơn! - Không có gì!",
+            "ImageUrl": null
+          }
+        ]
+      },
       {
         "SetName": "Từ vựng tiếng Anh giao tiếp",
         "Description": "#communication #conversation #basic",
         "Cards": [
-          { "Term": "Hello",               "Definition": "Xin chào",                        "ImageUrl": null },
-          { "Term": "Goodbye",             "Definition": "Tạm biệt",                        "ImageUrl": null },
-          { "Term": "Thank you",           "Definition": "Cảm ơn",                          "ImageUrl": null },
-          { "Term": "Sorry",               "Definition": "Xin lỗi",                         "ImageUrl": null },
-          { "Term": "Please",              "Definition": "Làm ơn",                          "ImageUrl": null },
-          { "Term": "How are you?",        "Definition": "Bạn có khỏe không?",              "ImageUrl": null },
-          { "Term": "Nice to meet you",    "Definition": "Rất vui được gặp bạn",            "ImageUrl": null },
-          { "Term": "What is your name?",  "Definition": "Tên bạn là gì?",                  "ImageUrl": null },
-          { "Term": "Where are you from?", "Definition": "Bạn đến từ đâu?",                 "ImageUrl": null },
-          { "Term": "I don't understand",  "Definition": "Tôi không hiểu",                  "ImageUrl": null },
-          { "Term": "Can you repeat?",     "Definition": "Bạn có thể nhắc lại không?",      "ImageUrl": null },
-          { "Term": "See you later",       "Definition": "Hẹn gặp lại",                     "ImageUrl": null }
-    
+          {
+            "Term": "Hello",
+            "Definition": "Xin chào",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/həˈləʊ/",
+            "Example": "Hello, nice to meet you.",
+            "ExampleTranslation": "Xin chào, rất vui được gặp bạn.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "How are you?",
+            "Definition": "Bạn có khỏe không?",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/haʊ ɑːr juː/",
+            "Example": "How are you today?",
+            "ExampleTranslation": "Hôm nay bạn thế nào?",
+            "ImageUrl": null
+          },
+          {
+            "Term": "What's your name?",
+            "Definition": "Tên bạn là gì?",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/wɒts jɔːr neɪm/",
+            "Example": "Hi, what's your name?",
+            "ExampleTranslation": "Chào, tên bạn là gì?",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Where are you from?",
+            "Definition": "Bạn đến từ đâu?",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/wer ɑːr juː frɒm/",
+            "Example": "Where are you from? I'm from Vietnam.",
+            "ExampleTranslation": "Bạn đến từ đâu? Tôi đến từ Việt Nam.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "I don't understand",
+            "Definition": "Tôi không hiểu",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/aɪ doʊnt ˌʌn.dərˈstænd/",
+            "Example": "Sorry, I don't understand.",
+            "ExampleTranslation": "Xin lỗi, tôi không hiểu.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Can you repeat?",
+            "Definition": "Bạn có thể nhắc lại không?",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/kæn juː rɪˈpiːt/",
+            "Example": "Can you repeat that please?",
+            "ExampleTranslation": "Bạn có thể nhắc lại được không?",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Speak slowly",
+            "Definition": "Nói chậm thôi",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/spiːk ˈsloʊ.li/",
+            "Example": "Please speak slowly.",
+            "ExampleTranslation": "Làm ơn nói chậm thôi.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Nice to meet you",
+            "Definition": "Rất vui được gặp bạn",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/naɪs tə miːt juː/",
+            "Example": "Nice to meet you too!",
+            "ExampleTranslation": "Tôi cũng rất vui được gặp bạn!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "See you later",
+            "Definition": "Hẹn gặp lại",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/siː juː ˈleɪ.tər/",
+            "Example": "See you later, take care!",
+            "ExampleTranslation": "Hẹn gặp lại, bảo trọng nhé!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Have a nice day",
+            "Definition": "Chúc một ngày tốt lành",
+            "Topic": "Basic Conversation",
+            "Phonetic": "/hæv ə naɪs deɪ/",
+            "Example": "Goodbye! Have a nice day!",
+            "ExampleTranslation": "Tạm biệt! Chúc một ngày tốt lành!",
+            "ImageUrl": null
+          }
         ]
       }
     ]
@@ -157,33 +293,192 @@
         "SetName": "3000 từ vựng Oxford A1",
         "Description": "#oxford #a1 #essential",
         "Cards": [
-          { "Term": "Animal",   "Definition": "Con vật",           "ImageUrl": "/images/system-vocab/animal.jpg" },
-          { "Term": "Baby",     "Definition": "Em bé",             "ImageUrl": "/images/system-vocab/baby.jpg" },
-          { "Term": "Chair",    "Definition": "Cái ghế",           "ImageUrl": "/images/system-vocab/chair.jpg" },
-          { "Term": "Day",      "Definition": "Ngày",              "ImageUrl": null },
-          { "Term": "Earth",    "Definition": "Trái Đất / Đất",    "ImageUrl": "/images/system-vocab/earth.jpg" },
-          { "Term": "Family",   "Definition": "Gia đình",          "ImageUrl": "/images/system-vocab/family.jpg" },
-          { "Term": "Game",     "Definition": "Trò chơi",          "ImageUrl": null },
-          { "Term": "Hand",     "Definition": "Bàn tay",           "ImageUrl": "/images/system-vocab/hand.jpg" },
-          { "Term": "Island",   "Definition": "Hòn đảo",          "ImageUrl": null },
-          { "Term": "Job",      "Definition": "Công việc",         "ImageUrl": null },
-           { "Term": "Jobb",      "Definition": "Công việcb",         "ImageUrl": null }
+          {
+            "Term": "Family",
+            "Definition": "Gia đình",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈfæm.əl.i/",
+            "Example": "My family is very important to me.",
+            "ExampleTranslation": "Gia đình rất quan trọng với tôi.",
+            "ImageUrl": "/images/family/family.jpg"
+          },
+          {
+            "Term": "Mother",
+            "Definition": "Mẹ",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈmʌð.ər/",
+            "Example": "My mother is a teacher.",
+            "ExampleTranslation": "Mẹ tôi là giáo viên.",
+            "ImageUrl": "/images/family/mother.jpg"
+          },
+          {
+            "Term": "Father",
+            "Definition": "Bố",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈfɑː.ðər/",
+            "Example": "My father works in an office.",
+            "ExampleTranslation": "Bố tôi làm việc ở văn phòng.",
+            "ImageUrl": "/images/family/father.jpg"
+          },
+          {
+            "Term": "Brother",
+            "Definition": "Anh/em trai",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈbrʌð.ər/",
+            "Example": "I have one brother.",
+            "ExampleTranslation": "Tôi có một người anh trai.",
+            "ImageUrl": "/images/family/brother.jpg"
+          },
+          {
+            "Term": "Sister",
+            "Definition": "Chị/em gái",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈsɪs.tər/",
+            "Example": "My sister is younger than me.",
+            "ExampleTranslation": "Em gái tôi nhỏ hơn tôi.",
+            "ImageUrl": "/images/family/sister.jpg"
+          },
+          {
+            "Term": "Grandmother",
+            "Definition": "Bà",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈɡræn.mʌð.ər/",
+            "Example": "My grandmother tells me stories.",
+            "ExampleTranslation": "Bà tôi kể chuyện cho tôi nghe.",
+            "ImageUrl": "/images/family/grandmother.jpg"
+          },
+          {
+            "Term": "Grandfather",
+            "Definition": "Ông",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈɡræn.fɑː.ðər/",
+            "Example": "My grandfather likes gardening.",
+            "ExampleTranslation": "Ông tôi thích làm vườn.",
+            "ImageUrl": "/images/family/grandfather.jpg"
+          },
+          {
+            "Term": "Son",
+            "Definition": "Con trai",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/sʌn/",
+            "Example": "They have two sons.",
+            "ExampleTranslation": "Họ có hai con trai.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Daughter",
+            "Definition": "Con gái",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈdɔː.tər/",
+            "Example": "His daughter is a doctor.",
+            "ExampleTranslation": "Con gái ông ấy là bác sĩ.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Parents",
+            "Definition": "Bố mẹ",
+            "Topic": "Family (Gia đình)",
+            "Phonetic": "/ˈpeə.rənts/",
+            "Example": "My parents live in the countryside.",
+            "ExampleTranslation": "Bố mẹ tôi sống ở nông thôn.",
+            "ImageUrl": null
+          }
         ]
       },
       {
         "SetName": "3000 từ vựng Oxford A2",
         "Description": "#oxford #a2 #essential",
         "Cards": [
-          { "Term": "Achieve",     "Definition": "Đạt được",           "ImageUrl": null },
-          { "Term": "Benefit",     "Definition": "Lợi ích",            "ImageUrl": null },
-          { "Term": "Challenge",   "Definition": "Thử thách",          "ImageUrl": null },
-          { "Term": "Decision",    "Definition": "Quyết định",         "ImageUrl": null },
-          { "Term": "Environment", "Definition": "Môi trường",         "ImageUrl": "/images/system-vocab/environment.jpg" },
-          { "Term": "Flexible",    "Definition": "Linh hoạt",          "ImageUrl": null },
-          { "Term": "Growth",      "Definition": "Sự tăng trưởng",     "ImageUrl": null },
-          { "Term": "Honest",      "Definition": "Trung thực",         "ImageUrl": null },
-          { "Term": "Improve",     "Definition": "Cải thiện",          "ImageUrl": null },
-          { "Term": "Journey",     "Definition": "Hành trình",         "ImageUrl": "/images/system-vocab/journey.jpg" }
+          {
+            "Term": "Education",
+            "Definition": "Giáo dục",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ˌedʒ.uˈkeɪ.ʃən/",
+            "Example": "Education is very important.",
+            "ExampleTranslation": "Giáo dục rất quan trọng.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "School",
+            "Definition": "Trường học",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/skuːl/",
+            "Example": "I go to school by bus.",
+            "ExampleTranslation": "Tôi đến trường bằng xe buýt.",
+            "ImageUrl": "/images/education/school.jpg"
+          },
+          {
+            "Term": "Teacher",
+            "Definition": "Giáo viên",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ˈtiː.tʃər/",
+            "Example": "My English teacher is very kind.",
+            "ExampleTranslation": "Giáo viên tiếng Anh của tôi rất tốt bụng.",
+            "ImageUrl": "/images/education/teacher.jpg"
+          },
+          {
+            "Term": "Student",
+            "Definition": "Học sinh",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ˈstjuː.dənt/",
+            "Example": "There are 30 students in my class.",
+            "ExampleTranslation": "Có 30 học sinh trong lớp tôi.",
+            "ImageUrl": "/images/education/student.jpg"
+          },
+          {
+            "Term": "Book",
+            "Definition": "Sách",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/bʊk/",
+            "Example": "I read a book every week.",
+            "ExampleTranslation": "Tôi đọc một cuốn sách mỗi tuần.",
+            "ImageUrl": "/images/education/book.jpg"
+          },
+          {
+            "Term": "Pen",
+            "Definition": "Bút",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/pen/",
+            "Example": "Can I borrow your pen?",
+            "ExampleTranslation": "Tôi có thể mượn bút của bạn không?",
+            "ImageUrl": "/images/education/pen.jpg"
+          },
+          {
+            "Term": "Desk",
+            "Definition": "Bàn học",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/desk/",
+            "Example": "My desk is very tidy.",
+            "ExampleTranslation": "Bàn học của tôi rất gọn gàng.",
+            "ImageUrl": "/images/education/desk.jpg"
+          },
+          {
+            "Term": "Homework",
+            "Definition": "Bài tập về nhà",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ˈhəʊm.wɜːk/",
+            "Example": "I have a lot of homework today.",
+            "ExampleTranslation": "Hôm nay tôi có nhiều bài tập về nhà.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Exam",
+            "Definition": "Kỳ thi",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ɪɡˈzæm/",
+            "Example": "The exam is next week.",
+            "ExampleTranslation": "Kỳ thi vào tuần sau.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Lesson",
+            "Definition": "Bài học",
+            "Topic": "Education (Giáo dục)",
+            "Phonetic": "/ˈles.ən/",
+            "Example": "Today's lesson is about grammar.",
+            "ExampleTranslation": "Bài học hôm nay về ngữ pháp.",
+            "ImageUrl": null
+          }
         ]
       }
     ]
@@ -195,32 +490,402 @@
         "SetName": "Đồ ăn & Thức uống",
         "Description": "#food #drink #common #a1",
         "Cards": [
-          { "Term": "Rice",       "Definition": "Cơm / Gạo",       "ImageUrl": "/images/system-vocab/rice.jpg" },
-          { "Term": "Bread",      "Definition": "Bánh mì",         "ImageUrl": "/images/system-vocab/bread.jpg" },
-          { "Term": "Chicken",    "Definition": "Gà",              "ImageUrl": "/images/system-vocab/chicken.jpg" },
-          { "Term": "Beef",       "Definition": "Thịt bò",         "ImageUrl": "/images/system-vocab/beef.jpg" },
-          { "Term": "Milk",       "Definition": "Sữa",             "ImageUrl": "/images/system-vocab/milk.jpg" },
-          { "Term": "Water",      "Definition": "Nước",            "ImageUrl": "/images/system-vocab/water.jpg" },
-          { "Term": "Coffee",     "Definition": "Cà phê",          "ImageUrl": "/images/system-vocab/coffee.jpg" },
-          { "Term": "Tea",        "Definition": "Trà",             "ImageUrl": "/images/system-vocab/tea.jpg" },
-          { "Term": "Noodle",     "Definition": "Mì / Bún",        "ImageUrl": null },
-          { "Term": "Vegetable",  "Definition": "Rau củ",          "ImageUrl": "/images/system-vocab/vegetable.jpg" }
+          {
+            "Term": "Rice",
+            "Definition": "Cơm / Gạo",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/raɪs/",
+            "Example": "I eat rice every day.",
+            "ExampleTranslation": "Tôi ăn cơm mỗi ngày.",
+            "ImageUrl": "/images/food/rice.jpg"
+          },
+          {
+            "Term": "Bread",
+            "Definition": "Bánh mì",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/bred/",
+            "Example": "I have bread for breakfast.",
+            "ExampleTranslation": "Tôi ăn bánh mì vào bữa sáng.",
+            "ImageUrl": "/images/food/bread.jpg"
+          },
+          {
+            "Term": "Chicken",
+            "Definition": "Thịt gà",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/ˈtʃɪk.ɪn/",
+            "Example": "I like fried chicken.",
+            "ExampleTranslation": "Tôi thích gà rán.",
+            "ImageUrl": "/images/food/chicken.jpg"
+          },
+          {
+            "Term": "Beef",
+            "Definition": "Thịt bò",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/biːf/",
+            "Example": "Beef is expensive.",
+            "ExampleTranslation": "Thịt bò đắt.",
+            "ImageUrl": "/images/food/beef.jpg"
+          },
+          {
+            "Term": "Fish",
+            "Definition": "Cá",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/fɪʃ/",
+            "Example": "Fish is healthy.",
+            "ExampleTranslation": "Cá tốt cho sức khỏe.",
+            "ImageUrl": "/images/food/fish.jpg"
+          },
+          {
+            "Term": "Vegetable",
+            "Definition": "Rau củ",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/ˈvedʒ.tə.bəl/",
+            "Example": "You should eat more vegetables.",
+            "ExampleTranslation": "Bạn nên ăn nhiều rau hơn.",
+            "ImageUrl": "/images/food/vegetable.jpg"
+          },
+          {
+            "Term": "Fruit",
+            "Definition": "Trái cây",
+            "Topic": "Food (Đồ ăn)",
+            "Phonetic": "/fruːt/",
+            "Example": "I like all kinds of fruit.",
+            "ExampleTranslation": "Tôi thích tất cả các loại trái cây.",
+            "ImageUrl": "/images/food/fruit.jpg"
+          },
+          {
+            "Term": "Water",
+            "Definition": "Nước",
+            "Topic": "Drink (Đồ uống)",
+            "Phonetic": "/ˈwɔː.tər/",
+            "Example": "Drink more water.",
+            "ExampleTranslation": "Uống nhiều nước hơn.",
+            "ImageUrl": "/images/drink/water.jpg"
+          },
+          {
+            "Term": "Coffee",
+            "Definition": "Cà phê",
+            "Topic": "Drink (Đồ uống)",
+            "Phonetic": "/ˈkɒf.i/",
+            "Example": "I drink coffee every morning.",
+            "ExampleTranslation": "Tôi uống cà phê mỗi sáng.",
+            "ImageUrl": "/images/drink/coffee.jpg"
+          },
+          {
+            "Term": "Tea",
+            "Definition": "Trà",
+            "Topic": "Drink (Đồ uống)",
+            "Phonetic": "/tiː/",
+            "Example": "Would you like a cup of tea?",
+            "ExampleTranslation": "Bạn có muốn một tách trà không?",
+            "ImageUrl": "/images/drink/tea.jpg"
+          },
+          {
+            "Term": "Milk",
+            "Definition": "Sữa",
+            "Topic": "Drink (Đồ uống)",
+            "Phonetic": "/mɪlk/",
+            "Example": "Children should drink milk.",
+            "ExampleTranslation": "Trẻ em nên uống sữa.",
+            "ImageUrl": "/images/drink/milk.jpg"
+          },
+          {
+            "Term": "Juice",
+            "Definition": "Nước ép",
+            "Topic": "Drink (Đồ uống)",
+            "Phonetic": "/dʒuːs/",
+            "Example": "I like orange juice.",
+            "ExampleTranslation": "Tôi thích nước cam ép.",
+            "ImageUrl": "/images/drink/juice.jpg"
+          }
         ]
       },
       {
         "SetName": "Du lịch & Địa điểm",
         "Description": "#travel #places #conversation #b1",
         "Cards": [
-          { "Term": "Airport",    "Definition": "Sân bay",          "ImageUrl": "/images/system-vocab/airport.jpg" },
-          { "Term": "Hotel",      "Definition": "Khách sạn",        "ImageUrl": "/images/system-vocab/hotel.jpg" },
-          { "Term": "Museum",     "Definition": "Bảo tàng",         "ImageUrl": null },
-          { "Term": "Beach",      "Definition": "Bãi biển",         "ImageUrl": "/images/system-vocab/beach.jpg" },
-          { "Term": "Mountain",   "Definition": "Núi",              "ImageUrl": "/images/system-vocab/mountain.jpg" },
-          { "Term": "Passport",   "Definition": "Hộ chiếu",         "ImageUrl": null },
-          { "Term": "Ticket",     "Definition": "Vé",               "ImageUrl": null },
-          { "Term": "Map",        "Definition": "Bản đồ",           "ImageUrl": "/images/system-vocab/map.jpg" },
-          { "Term": "Bus",        "Definition": "Xe buýt",          "ImageUrl": "/images/system-vocab/bus.jpg" },
-          { "Term": "Train",      "Definition": "Tàu hỏa",          "ImageUrl": "/images/system-vocab/train.jpg" }
+          {
+            "Term": "Airport",
+            "Definition": "Sân bay",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈeə.pɔːt/",
+            "Example": "We arrived at the airport at 6am.",
+            "ExampleTranslation": "Chúng tôi đến sân bay lúc 6 giờ sáng.",
+            "ImageUrl": "/images/travel/airport.jpg"
+          },
+          {
+            "Term": "Hotel",
+            "Definition": "Khách sạn",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/həʊˈtel/",
+            "Example": "We stayed in a nice hotel.",
+            "ExampleTranslation": "Chúng tôi ở trong một khách sạn đẹp.",
+            "ImageUrl": "/images/travel/hotel.jpg"
+          },
+          {
+            "Term": "Beach",
+            "Definition": "Bãi biển",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/biːtʃ/",
+            "Example": "Let's go to the beach!",
+            "ExampleTranslation": "Đi biển thôi!",
+            "ImageUrl": "/images/travel/beach.jpg"
+          },
+          {
+            "Term": "Mountain",
+            "Definition": "Núi",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈmaʊn.tɪn/",
+            "Example": "We climbed the mountain.",
+            "ExampleTranslation": "Chúng tôi đã leo núi.",
+            "ImageUrl": "/images/travel/mountain.jpg"
+          },
+          {
+            "Term": "Restaurant",
+            "Definition": "Nhà hàng",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈres.trɒnt/",
+            "Example": "We ate at a local restaurant.",
+            "ExampleTranslation": "Chúng tôi ăn tại một nhà hàng địa phương.",
+            "ImageUrl": "/images/travel/restaurant.jpg"
+          },
+          {
+            "Term": "Museum",
+            "Definition": "Bảo tàng",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/mjuˈziː.əm/",
+            "Example": "The museum is closed on Mondays.",
+            "ExampleTranslation": "Bảo tàng đóng cửa vào thứ Hai.",
+            "ImageUrl": "/images/travel/museum.jpg"
+          },
+          {
+            "Term": "Passport",
+            "Definition": "Hộ chiếu",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈpɑːs.pɔːt/",
+            "Example": "Don't forget your passport!",
+            "ExampleTranslation": "Đừng quên hộ chiếu của bạn!",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Ticket",
+            "Definition": "Vé",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈtɪk.ɪt/",
+            "Example": "I bought a plane ticket.",
+            "ExampleTranslation": "Tôi đã mua vé máy bay.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Luggage",
+            "Definition": "Hành lý",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈlʌɡ.ɪdʒ/",
+            "Example": "My luggage is heavy.",
+            "ExampleTranslation": "Hành lý của tôi nặng.",
+            "ImageUrl": null
+          },
+          {
+            "Term": "Tourist",
+            "Definition": "Khách du lịch",
+            "Topic": "Travel (Du lịch)",
+            "Phonetic": "/ˈtʊə.rɪst/",
+            "Example": "There are many tourists here.",
+            "ExampleTranslation": "Có nhiều khách du lịch ở đây.",
+            "ImageUrl": null
+          }
+        ]
+      },
+      {
+        "SetName": "Nghề nghiệp",
+        "Description": "#jobs #profession #b1",
+        "Cards": [
+          {
+            "Term": "Doctor",
+            "Definition": "Bác sĩ",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˈdɒk.tər/",
+            "Example": "The doctor works at the hospital.",
+            "ExampleTranslation": "Bác sĩ làm việc ở bệnh viện.",
+            "ImageUrl": "/images/jobs/doctor.jpg"
+          },
+          {
+            "Term": "Teacher",
+            "Definition": "Giáo viên",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˈtiː.tʃər/",
+            "Example": "She is a math teacher.",
+            "ExampleTranslation": "Cô ấy là giáo viên toán.",
+            "ImageUrl": "/images/jobs/teacher.jpg"
+          },
+          {
+            "Term": "Engineer",
+            "Definition": "Kỹ sư",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˌen.dʒɪˈnɪər/",
+            "Example": "My brother is an engineer.",
+            "ExampleTranslation": "Anh trai tôi là kỹ sư.",
+            "ImageUrl": "/images/jobs/engineer.jpg"
+          },
+          {
+            "Term": "Nurse",
+            "Definition": "Y tá",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/nɜːs/",
+            "Example": "The nurse is very caring.",
+            "ExampleTranslation": "Y tá rất chu đáo.",
+            "ImageUrl": "/images/jobs/nurse.jpg"
+          },
+          {
+            "Term": "Police officer",
+            "Definition": "Cảnh sát",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/pəˈliːs ˈɒf.ɪ.sər/",
+            "Example": "The police officer helped us.",
+            "ExampleTranslation": "Cảnh sát đã giúp chúng tôi.",
+            "ImageUrl": "/images/jobs/police.jpg"
+          },
+          {
+            "Term": "Chef",
+            "Definition": "Đầu bếp",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ʃef/",
+            "Example": "The chef cooks delicious food.",
+            "ExampleTranslation": "Đầu bếp nấu ăn rất ngon.",
+            "ImageUrl": "/images/jobs/chef.jpg"
+          },
+          {
+            "Term": "Driver",
+            "Definition": "Tài xế",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˈdraɪ.vər/",
+            "Example": "He is a bus driver.",
+            "ExampleTranslation": "Anh ấy là tài xế xe buýt.",
+            "ImageUrl": "/images/jobs/driver.jpg"
+          },
+          {
+            "Term": "Farmer",
+            "Definition": "Nông dân",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˈfɑː.mər/",
+            "Example": "The farmer grows vegetables.",
+            "ExampleTranslation": "Người nông dân trồng rau.",
+            "ImageUrl": "/images/jobs/farmer.jpg"
+          },
+          {
+            "Term": "Artist",
+            "Definition": "Nghệ sĩ",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/ˈɑː.tɪst/",
+            "Example": "The artist paints beautiful pictures.",
+            "ExampleTranslation": "Nghệ sĩ vẽ những bức tranh đẹp.",
+            "ImageUrl": "/images/jobs/artist.jpg"
+          },
+          {
+            "Term": "Musician",
+            "Definition": "Nhạc sĩ",
+            "Topic": "Jobs (Nghề nghiệp)",
+            "Phonetic": "/mjuˈzɪʃ.ən/",
+            "Example": "She is a famous musician.",
+            "ExampleTranslation": "Cô ấy là một nhạc sĩ nổi tiếng.",
+            "ImageUrl": "/images/jobs/musician.jpg"
+          }
+        ]
+      },
+      {
+        "SetName": "Màu sắc",
+        "Description": "#colors #basic #a1",
+        "Cards": [
+          {
+            "Term": "Red",
+            "Definition": "Màu đỏ",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/red/",
+            "Example": "She is wearing a red dress.",
+            "ExampleTranslation": "Cô ấy mặc váy đỏ.",
+            "ImageUrl": "/images/colors/red.jpg"
+          },
+          {
+            "Term": "Blue",
+            "Definition": "Màu xanh dương",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/bluː/",
+            "Example": "The sky is blue.",
+            "ExampleTranslation": "Bầu trời màu xanh.",
+            "ImageUrl": "/images/colors/blue.jpg"
+          },
+          {
+            "Term": "Yellow",
+            "Definition": "Màu vàng",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/ˈjel.əʊ/",
+            "Example": "The sun is yellow.",
+            "ExampleTranslation": "Mặt trời màu vàng.",
+            "ImageUrl": "/images/colors/yellow.jpg"
+          },
+          {
+            "Term": "Green",
+            "Definition": "Màu xanh lá",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/ɡriːn/",
+            "Example": "The grass is green.",
+            "ExampleTranslation": "Cỏ màu xanh.",
+            "ImageUrl": "/images/colors/green.jpg"
+          },
+          {
+            "Term": "Black",
+            "Definition": "Màu đen",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/blæk/",
+            "Example": "I have a black cat.",
+            "ExampleTranslation": "Tôi có một con mèo đen.",
+            "ImageUrl": "/images/colors/black.jpg"
+          },
+          {
+            "Term": "White",
+            "Definition": "Màu trắng",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/waɪt/",
+            "Example": "She wore a white wedding dress.",
+            "ExampleTranslation": "Cô ấy mặc váy cưới màu trắng.",
+            "ImageUrl": "/images/colors/white.jpg"
+          },
+          {
+            "Term": "Orange",
+            "Definition": "Màu cam",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/ˈɒr.ɪndʒ/",
+            "Example": "Oranges are orange.",
+            "ExampleTranslation": "Quả cam có màu cam.",
+            "ImageUrl": "/images/colors/orange.jpg"
+          },
+          {
+            "Term": "Purple",
+            "Definition": "Màu tím",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/ˈpɜː.pəl/",
+            "Example": "I like purple flowers.",
+            "ExampleTranslation": "Tôi thích hoa màu tím.",
+            "ImageUrl": "/images/colors/purple.jpg"
+          },
+          {
+            "Term": "Pink",
+            "Definition": "Màu hồng",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/pɪŋk/",
+            "Example": "Her room is pink.",
+            "ExampleTranslation": "Phòng của cô ấy màu hồng.",
+            "ImageUrl": "/images/colors/pink.jpg"
+          },
+          {
+            "Term": "Brown",
+            "Definition": "Màu nâu",
+            "Topic": "Colors (Màu sắc)",
+            "Phonetic": "/braʊn/",
+            "Example": "The table is brown.",
+            "ExampleTranslation": "Cái bàn màu nâu.",
+            "ImageUrl": "/images/colors/brown.jpg"
+          }
         ]
       }
     ]

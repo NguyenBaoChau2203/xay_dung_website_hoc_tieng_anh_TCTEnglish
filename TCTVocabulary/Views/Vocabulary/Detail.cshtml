@@ -1,24 +1,301 @@
 @model TCTVocabulary.Models.Set
+@using System.Linq
+@using System.Collections.Generic
 @{
     ViewData["Title"] = Model.SetName;
-    var tags = (Model.Description ?? "")
-                   .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                   .Where(t => t.StartsWith("#"))
-                   .ToList();
 
-    var totalCards = Model.Cards?.Count ?? 0;
-    var learnedCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Learned" || c.LearningProgresses.FirstOrDefault()?.Status == "Mastered") ?? 0;
+    // Kiểm tra Model.Cards có null không
+    var cards = Model.Cards ?? new List<TCTVocabulary.Models.Card>();
+
+    // Tính toán Learning Progress
+    var learnedStatuses = new[] { "Mastered", "Learned" };
+
+    // Nhóm các thẻ theo Topic
+    var topics = cards
+        .GroupBy(c => string.IsNullOrEmpty(c.Topic) ? "Chưa phân loại" : c.Topic)
+        .Select(g =>
+        {
+            var learnedCount = g.Count(c => c.LearningProgresses != null
+                && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
+            var totalCount = g.Count();
+
+            return new
+            {
+                TopicName = g.Key,
+                Cards = g.ToList(),
+                TotalCards = totalCount,
+                LearnedCards = learnedCount,
+                Progress = totalCount > 0 ? (learnedCount * 100) / totalCount : 0
+            };
+        })
+        .OrderBy(t => t.TopicName)
+        .ToList();
+
+    var topicsCount = topics.Count;
+
+    // Các biến khác
+    var tags = (Model.Description ?? "")
+        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Where(t => t.StartsWith("#"))
+        .ToList();
+
+    var totalCards = cards.Count;
+    var learnedCards = cards.Count(c => c.LearningProgresses != null
+        && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
     var remainingCards = totalCards - learnedCards;
     var accuracy = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
 
-    var newCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault() == null || c.LearningProgresses.FirstOrDefault()?.Status == "New") ?? 0;
-    var reviewingCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Reviewing") ?? 0;
-    var masteredCards = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.Status == "Mastered") ?? 0;
-    var dueToday = Model.Cards?.Count(c => c.LearningProgresses.FirstOrDefault()?.LastReviewedDate <= DateTime.Today.AddDays(-1)) ?? 0;
+    var newCards = cards.Count(c => c.LearningProgresses == null
+        || !c.LearningProgresses.Any()
+        || c.LearningProgresses.FirstOrDefault()?.Status == "New");
+    var reviewingCards = cards.Count(c => c.LearningProgresses != null
+        && c.LearningProgresses.Any(lp => lp.Status == "Reviewing"));
+    var masteredCards = cards.Count(c => c.LearningProgresses != null
+        && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
+    var dueToday = cards.Count(c => c.LearningProgresses != null
+        && c.LearningProgresses.Any(lp => lp.LastReviewedDate <= DateTime.Today.AddDays(-1)));
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/vocabulary-system.css" />
+    <style>
+        /* Additional styles for phonetic and examples */
+        .word-phonetic {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-family: 'Courier New', monospace;
+            margin-left: 0.5rem;
+            font-weight: normal;
+        }
+
+        .example {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(14, 165, 233, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #0EA5E9;
+        }
+
+            .example .label {
+                font-weight: 600;
+                color: #0EA5E9;
+                font-size: 0.85rem;
+                display: block;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+        .example-text {
+            font-style: italic;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .example-translation {
+            color: #64748b;
+            font-size: 0.95rem;
+            padding-left: 1rem;
+            border-left: 2px solid #cbd5e1;
+            margin-top: 0.25rem;
+        }
+
+        .word-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .word-term {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Topics preview styles */
+        .topics-preview-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -2px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+            .section-header h2 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #0f172a;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin: 0;
+            }
+
+                .section-header h2 i {
+                    color: #0EA5E9;
+                    background: #F0F9FF;
+                    padding: 0.5rem;
+                    border-radius: 12px;
+                }
+
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0EA5E9;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            background: #F8FAFC;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+            .view-all-link:hover {
+                background: #F0F9FF;
+                border-color: #0EA5E9;
+                transform: translateY(-2px);
+            }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .topic-preview-card {
+            background: #F8FAFC;
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: block;
+        }
+
+            .topic-preview-card:hover {
+                border-color: #0EA5E9;
+                box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+                transform: translateY(-2px);
+                background: white;
+            }
+
+        .topic-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0EA5E9;
+            font-size: 1.2rem;
+        }
+
+        .topic-preview-name {
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+
+        .topic-preview-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-count {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+            .topic-count strong {
+                color: #0f172a;
+                font-weight: 600;
+            }
+
+        .topic-percent {
+            color: #0EA5E9;
+            font-weight: 600;
+            background: #F0F9FF;
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+        }
+
+        .progress-bar-mini {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-fill-mini {
+            height: 100%;
+            background: linear-gradient(90deg, #0EA5E9, #38BDF8);
+            border-radius: 100px;
+        }
+
+        .view-all-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #0EA5E9;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+
+            .btn-view-all:hover {
+                background: #F0F9FF;
+                border-color: #0EA5E9;
+                gap: 1rem;
+            }
+
+        /* Responsive */
+        @@media (max-width: 640px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
 }
 
 <div class="set-detail-modern">
@@ -28,7 +305,7 @@
             <i class="fas fa-home"></i> Trang chủ
         </a>
         <i class="fas fa-chevron-right separator"></i>
-        <a href="#">@(Model.Folder?.FolderName ?? "Từ vựng")</a>
+        <a href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.Folder?.FolderId })">@(Model.Folder?.FolderName ?? "Từ vựng")</a>
         <i class="fas fa-chevron-right separator"></i>
         <span>@Model.SetName</span>
     </nav>
@@ -69,7 +346,7 @@
 
             <!-- Action Buttons -->
             <div class="hero-actions">
-                <a href="@Url.Action("Study", "Vocabulary", new { id = Model.SetId })" class="btn-study">
+                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId })" class="btn-study">
                     <i class="fas fa-play"></i>
                     <span>@(learnedCards > 0 ? "Tiếp tục học" : "Bắt đầu học")</span>
                 </a>
@@ -172,99 +449,58 @@
         </div>
     </div>
 
-    <!-- Vocabulary List -->
-    <div class="vocabulary-section">
-        <div class="section-header">
-            <div class="header-left">
-                <h2>Danh sách từ vựng</h2>
-                <span class="word-count">@Model.Cards.Count từ</span>
-            </div>
-            <div class="header-actions">
-                <a href="@Url.Action("Create", "Card", new { setId = Model.SetId })" class="btn-add">
-                    <i class="fas fa-plus"></i>
-                    <span>Thêm từ mới</span>
-                </a>
-                <a href="@Url.Action("Import", "Card", new { setId = Model.SetId })" class="btn-import">
-                    <i class="fas fa-upload"></i>
-                    <span>Import</span>
+    <!-- Topics Preview Section -->
+    @if (topics.Any())
+    {
+        <div class="topics-preview-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-tags"></i>
+                    Danh sách chủ đề
+                </h2>
+                <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="view-all-link">
+                    <span>Xem tất cả @topicsCount chủ đề</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-        </div>
 
-        @if (!Model.Cards.Any())
-        {
-            <div class="empty-state">
-                <div class="empty-icon">📚</div>
-                <h3>Chưa có từ vựng nào</h3>
-                <p>Hãy thêm từ vựng đầu tiên để bắt đầu học!</p>
-                <a href="@Url.Action("Create", "Card", new { setId = Model.SetId })" class="btn-add-first">
-                    <i class="fas fa-plus"></i> Thêm từ vựng đầu tiên
-                </a>
-            </div>
-        }
-        else
-        {
-            <div class="word-list">
-                @foreach (var card in Model.Cards.OrderBy(c => c.Term))
+            <div class="topics-grid">
+                @foreach (var topic in topics.Take(4))
                 {
-                    <div class="word-card">
-                        <div class="word-card-front">
-                            <div class="word-info">
-                                <span class="word-term">@card.Term</span>
-                                @if (!string.IsNullOrEmpty(card.ImageUrl))
-                                {
-                                    <img src="@card.ImageUrl" alt="@card.Term" class="word-image" />
-                                }
+                    <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.SetId, topic = topic.TopicName })"
+                       class="topic-preview-card">
+                        <div class="topic-preview-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-folder"></i>
                             </div>
-                            <button class="expand-btn">
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
+                            <span class="topic-preview-name">@topic.TopicName</span>
                         </div>
-                        <div class="word-card-back">
-                            <div class="definition">
-                                <span class="label">Định nghĩa:</span>
-                                <p>@card.Definition</p>
-                            </div>
-                            
-                            <div class="word-meta">
-                                <span class="status-badge @(card.LearningProgresses.FirstOrDefault()?.Status?.ToLower() ?? "new")">
-                                    @(card.LearningProgresses.FirstOrDefault()?.Status ?? "Chưa học")
-                                </span>
-                                <div class="word-actions">
-                                    <a href="@Url.Action("Edit", "Card", new { id = card.CardId })" class="action-btn edit">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="@Url.Action("Delete", "Card", new { id = card.CardId })"
-                                       class="action-btn delete"
-                                       onclick="return confirm('Bạn có chắc muốn xóa từ này?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </div>
+
+                        <div class="topic-preview-stats">
+                            <span class="topic-count">
+                                <strong>@topic.LearnedCards</strong>/@topic.TotalCards
+                            </span>
+                            <span class="topic-percent">@topic.Progress%</span>
                         </div>
-                    </div>
+
+                        <div class="progress-bar-mini">
+                            <div class="progress-fill-mini" style="width: @topic.Progress%"></div>
+                        </div>
+                    </a>
                 }
             </div>
 
-            <!-- Pagination -->
-            @if (Model.Cards.Count > 10)
+            @if (topics.Count > 4)
             {
-                <div class="pagination">
-                    <button class="page-btn prev" disabled>
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <span class="dots">...</span>
-                    <button class="page-btn">10</button>
-                    <button class="page-btn next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <div class="view-all-container">
+                    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="btn-view-all">
+                        <span>Xem tất cả @topicsCount chủ đề</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             }
-        }
-    </div>
+        </div>
+    }
 
     <!-- Related Sets -->
     @if (Model.Folder?.Sets != null && Model.Folder.Sets.Count > 1)
@@ -303,23 +539,6 @@
 
 @section Scripts {
     <script>
-        // Expand/collapse word cards
-        document.querySelectorAll('.expand-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const wordCard = this.closest('.word-card');
-                wordCard.classList.toggle('expanded');
-
-                const icon = this.querySelector('i');
-                if (wordCard.classList.contains('expanded')) {
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                } else {
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                }
-            });
-        });
-
         // Animate progress circle
         const circle = document.querySelector('.progress-circle');
         if (circle) {
@@ -339,7 +558,7 @@
             const fillCircle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             fillCircle.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
             fillCircle.classList.add('progress-fill');
-            fillCircle.setAttribute('stroke-dasharray', `${circumference}`);
+            fillCircle.setAttribute('stroke-dasharray', circumference);
             fillCircle.setAttribute('stroke-dashoffset', offset);
 
             svg.appendChild(bgCircle);

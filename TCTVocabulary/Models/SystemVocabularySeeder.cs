@@ -58,16 +58,16 @@ namespace TCTVocabulary.Models
 
                 context.Cards.AddRange(new List<Card>
                 {
-                    new() { SetId = set1.SetId, Term = "Hello",     Definition = "Xin chào" },
-                    new() { SetId = set1.SetId, Term = "Goodbye",   Definition = "Tạm biệt" },
-                    new() { SetId = set1.SetId, Term = "Thank you", Definition = "Cảm ơn" },
-                    new() { SetId = set1.SetId, Term = "Please",    Definition = "Làm ơn" },
-                    new() { SetId = set1.SetId, Term = "Sorry",     Definition = "Xin lỗi" },
-                    new() { SetId = set1.SetId, Term = "Yes",       Definition = "Có / Vâng" },
-                    new() { SetId = set1.SetId, Term = "No",        Definition = "Không" },
-                    new() { SetId = set1.SetId, Term = "Help",      Definition = "Giúp đỡ" },
-                    new() { SetId = set1.SetId, Term = "Water",     Definition = "Nước" },
-                    new() { SetId = set1.SetId, Term = "Food",      Definition = "Đồ ăn" }
+                    new() { SetId = set1.SetId, Term = "Hello",     Definition = "Xin chào", Topic = "Greetings" },
+                    new() { SetId = set1.SetId, Term = "Goodbye",   Definition = "Tạm biệt", Topic = "Greetings" },
+                    new() { SetId = set1.SetId, Term = "Thank you", Definition = "Cảm ơn", Topic = "Politeness" },
+                    new() { SetId = set1.SetId, Term = "Please",    Definition = "Làm ơn", Topic = "Politeness" },
+                    new() { SetId = set1.SetId, Term = "Sorry",     Definition = "Xin lỗi", Topic = "Politeness" },
+                    new() { SetId = set1.SetId, Term = "Yes",       Definition = "Có / Vâng", Topic = "Basic" },
+                    new() { SetId = set1.SetId, Term = "No",        Definition = "Không", Topic = "Basic" },
+                    new() { SetId = set1.SetId, Term = "Help",      Definition = "Giúp đỡ", Topic = "Actions" },
+                    new() { SetId = set1.SetId, Term = "Water",     Definition = "Nước", Topic = "Items" },
+                    new() { SetId = set1.SetId, Term = "Food",      Definition = "Đồ ăn", Topic = "Items" }
                 });
 
                 // Set 1.2

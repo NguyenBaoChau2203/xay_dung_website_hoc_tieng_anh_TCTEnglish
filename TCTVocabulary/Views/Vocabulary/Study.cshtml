@@ -22,6 +22,47 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/vocabulary-system.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        /* Additional styles for study page */
+        .definition-example {
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(255,255,255,0.5) 100%);
+            border-radius: 16px;
+            border-left: 4px solid #0EA5E9;
+        }
+
+            .definition-example h4 {
+                font-size: 0.9rem;
+                color: #0EA5E9;
+                margin-bottom: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .definition-example p {
+                font-style: italic;
+                color: #1e293b;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
+
+            .definition-example .example-translation {
+                color: #64748b;
+                font-size: 0.95rem;
+                padding-left: 1rem;
+                border-left: 2px solid #cbd5e1;
+                margin-top: 0.5rem;
+            }
+
+        .word-phonetic {
+            font-size: 1rem;
+            color: #64748b;
+            font-family: 'Courier New', monospace;
+            margin-left: 0.5rem;
+        }
+    </style>
 }
 
 <div class="study-advanced">
@@ -97,12 +138,23 @@
                         <div class="card-content">
                             <div class="word-display">
                                 <h1>@currentCard.Term</h1>
-                                <div class="word-phonetic">
-                                    <span>/ˈæp.əl/</span>
-                                    <button class="play-sound" onclick="playPronunciation('@currentCard.Term')">
-                                        <i class="fas fa-volume-up"></i>
-                                    </button>
-                                </div>
+                                @if (!string.IsNullOrEmpty(currentCard.Phonetic))
+                                {
+                                    <div class="word-phonetic">
+                                        <span>@currentCard.Phonetic</span>
+                                        <button class="play-sound" onclick="playPronunciation('@currentCard.Term')">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="word-phonetic">
+                                        <button class="play-sound" onclick="playPronunciation('@currentCard.Term')">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
+                                    </div>
+                                }
                             </div>
 
                             <div class="word-info">
@@ -110,12 +162,19 @@
                                 <span class="frequency-tag">🔥 Phổ biến</span>
                             </div>
 
-                            <div class="word-examples">
-                                <div class="example-item">
-                                    <i class="fas fa-quote-left"></i>
-                                    <p>An apple a day keeps the doctor away</p>
+                            @if (!string.IsNullOrEmpty(currentCard.Example))
+                            {
+                                <div class="word-examples">
+                                    <div class="example-item">
+                                        <i class="fas fa-quote-left"></i>
+                                        <p>@currentCard.Example</p>
+                                        @if (!string.IsNullOrEmpty(currentCard.ExampleTranslation))
+                                        {
+                                            <span class="example-translation">@currentCard.ExampleTranslation</span>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
 
                         <div class="card-footer">
@@ -140,16 +199,18 @@
                                 <h2>@(currentCard.Definition ?? "Chưa có định nghĩa")</h2>
                             </div>
 
-                           
-
-                            <div class="definition-synonyms">
-                                <h4>Từ đồng nghĩa:</h4>
-                                <div class="synonym-tags">
-                                    <span class="synonym-tag">fruit</span>
-                                    <span class="synonym-tag">pome</span>
-                                    <span class="synonym-tag">orchard</span>
+                            <!-- Hiển thị ví dụ nếu có -->
+                            @if (!string.IsNullOrEmpty(currentCard.Example))
+                            {
+                                <div class="definition-example">
+                                    <h4>Ví dụ:</h4>
+                                    <p>"@currentCard.Example"</p>
+                                    @if (!string.IsNullOrEmpty(currentCard.ExampleTranslation))
+                                    {
+                                        <p class="example-translation">→ @currentCard.ExampleTranslation</p>
+                                    }
                                 </div>
-                            </div>
+                            }
 
                             @if (!string.IsNullOrEmpty(currentCard.ImageUrl))
                             {
@@ -248,15 +309,24 @@
                 <div class="dict-content">
                     <div class="dict-item">
                         <span class="dict-word">@currentCard.Term</span>
-                        <span class="dict-pronunciation">/ˈæp.əl/</span>
+                        @if (!string.IsNullOrEmpty(currentCard.Phonetic))
+                        {
+                            <span class="dict-pronunciation">@currentCard.Phonetic</span>
+                        }
                     </div>
                     <div class="dict-definition">
                         @(currentCard.Definition ?? "Chưa có định nghĩa")
                     </div>
-                    <div class="dict-examples">
-                        <p>• An apple a day keeps the doctor away</p>
-                        <p>• Apple pie is delicious</p>
-                    </div>
+                    @if (!string.IsNullOrEmpty(currentCard.Example))
+                    {
+                        <div class="dict-examples">
+                            <p>• @currentCard.Example</p>
+                            @if (!string.IsNullOrEmpty(currentCard.ExampleTranslation))
+                            {
+                                <p class="text-muted" style="font-size: 0.9em; padding-left: 10px;">→ @currentCard.ExampleTranslation</p>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -319,20 +389,17 @@
 
 @section Scripts {
     <script>
-         
         console.log('=== Study Page Debug Info ===');
         console.log('Set ID: @setId');
         console.log('Set Name: @(set?.SetName)');
         console.log('Total Cards: @totalCards');
         console.log('Current Index: @currentIndex');
         console.log('Current Card: @(currentCard?.Term ?? "null")');
-        console.log('Cards List:');
-        @foreach (var card in cards)
-        {
-                <text>console.log('  - @card.Term');</text>
-        }
+        console.log('Phonetic: @(currentCard?.Phonetic ?? "null")');
+        console.log('Example: @(currentCard?.Example ?? "null")');
+        console.log('ExampleTranslation: @(currentCard?.ExampleTranslation ?? "null")');
         console.log('=============================');
-  
+
         // State management
         let isFlipped = false;
         let currentIndex = @currentIndex;

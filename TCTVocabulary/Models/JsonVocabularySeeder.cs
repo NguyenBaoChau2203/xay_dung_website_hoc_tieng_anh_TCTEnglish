@@ -142,7 +142,11 @@ namespace TCTVocabulary.Models
                                     SetId = set.SetId,
                                     Term = cardDto.Term.Trim(),
                                     Definition = cardDto.Definition.Trim(),
-                                    ImageUrl = cardDto.ImageUrl
+                                    ImageUrl = cardDto.ImageUrl,
+                                    Phonetic = cardDto.Phonetic,
+                                    Example = cardDto.Example,
+                                    ExampleTranslation = cardDto.ExampleTranslation,
+                                    Topic = cardDto.Topic
                                 });
                             }
                             else
@@ -156,6 +160,26 @@ namespace TCTVocabulary.Models
                                 if (existingCard.ImageUrl != cardDto.ImageUrl)
                                 {
                                     existingCard.ImageUrl = cardDto.ImageUrl;
+                                }
+
+                                if (existingCard.Phonetic != cardDto.Phonetic)
+                                {
+                                    existingCard.Phonetic = cardDto.Phonetic;
+                                }
+
+                                if (existingCard.Example != cardDto.Example)
+                                {
+                                    existingCard.Example = cardDto.Example;
+                                }
+
+                                if (existingCard.ExampleTranslation != cardDto.ExampleTranslation)
+                                {
+                                    existingCard.ExampleTranslation = cardDto.ExampleTranslation;
+                                }
+
+                                if (existingCard.Topic != cardDto.Topic)
+                                {
+                                    existingCard.Topic = cardDto.Topic;
                                 }
                                 
                                 // Ghi chú: Vì objects (existingCard) đang được EF Core Track (theo dõi).
