@@ -1,7 +1,7 @@
 /**
  * speaking.js — TCT Speaking Module
  * Part 1: Index Page — topic filtering, search, slider navigation
- * Part 2: Practice Page — YouTube IFrame API, sentence sync, speech AI
+ * Part 2: Practice Page (v3) — YouTube IFrame API, sentence sync, speech AI
  */
 
 // ════════════════════════════════════════════════════════════════════
@@ -28,17 +28,10 @@
     // ── TOPIC FILTER ─────────────────────────────────────────────
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             activeTopic = btn.dataset.topic;
-
-            // Clear search when switching topics
-            if (searchInput) {
-                searchInput.value = '';
-            }
-
+            if (searchInput) searchInput.value = '';
             applyFilters();
         });
     });
@@ -48,24 +41,16 @@
         btn.addEventListener('click', () => {
             levelBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             activeLevel = btn.dataset.level;
-
-            if (searchInput) {
-                searchInput.value = '';
-            }
-
+            if (searchInput) searchInput.value = '';
             applyFilters();
         });
     });
 
     // ── SEARCH ───────────────────────────────────────────────────
     if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            applyFilters();
-        });
+        searchInput.addEventListener('input', () => { applyFilters(); });
 
-        // Ctrl+K / Cmd+K → focus search
         document.addEventListener('keydown', e => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -75,7 +60,7 @@
         });
     }
 
-    // ── CORE FILTER & PAGINATION LOGIC ─────────────────────────────
+    // ── CORE FILTER & PAGINATION LOGIC ───────────────────────────
     const ITEMS_PER_PAGE = 6;
 
     function applyFilters() {
@@ -87,7 +72,6 @@
             const cardsInLevel = section.querySelectorAll('.vi-video-col');
             let visibleCards = [];
 
-            // 1. Determine which cards match the current filters
             cardsInLevel.forEach(card => {
                 const cardTopic = (card.dataset.topic || '').trim();
                 const cardTitle = (card.dataset.title || '').trim();
@@ -101,12 +85,10 @@
                     visibleCards.push(card);
                     totalVisibleCount++;
                 } else {
-                    // Hide non-matching right away
                     card.classList.add('vi-card-hidden');
                 }
             });
 
-            // 2. Hide section if empty, else paginate it
             if (visibleCards.length === 0) {
                 section.classList.add('vi-section-hidden');
             } else {
@@ -115,7 +97,6 @@
             }
         });
 
-        // Update total counter
         if (videoCounter) {
             videoCounter.textContent = query || activeTopic !== 'all'
                 ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
@@ -128,21 +109,14 @@
         const track = document.getElementById(`track-${level}`);
         if (!container || !track) return;
 
-        // Reset all visible cards to be shown (in case they were hidden by the old grid logic)
         visibleCards.forEach(card => card.classList.remove('vi-card-hidden'));
 
         const totalItems = visibleCards.length;
         const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
-        // Clear existing buttons
         container.innerHTML = '';
 
-        // If 1 page or less, hide pagination
-        if (totalPages <= 1) {
-            return;
-        }
+        if (totalPages <= 1) return;
 
-        // Build pagination buttons
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
             btn.className = 'page-btn';
@@ -150,28 +124,21 @@
             if (i === 1) btn.classList.add('active');
 
             btn.addEventListener('click', () => {
-                // Update active button state
                 container.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                // Calculate scroll position based on 6 cards per page
-                // We use the first visible card to estimate card width including gaps
                 const firstCard = visibleCards[0];
                 if (firstCard) {
-                    const cardWidthWithGap = firstCard.offsetWidth + 16; // 16px is the gap from CSS
-                    const scrollAmount = (i - 1) * ITEMS_PER_PAGE * cardWidthWithGap;
-                    track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+                    const cardWidthWithGap = firstCard.offsetWidth + 16;
+                    track.scrollTo({ left: (i - 1) * ITEMS_PER_PAGE * cardWidthWithGap, behavior: 'smooth' });
                 }
             });
 
             container.appendChild(btn);
         }
 
-        // Reset scroll to left when filters change
         track.scrollTo({ left: 0, behavior: 'smooth' });
     }
 
-    // Optional: Update active pagination pill based on manual scrolling
     levelSections.forEach(section => {
         const level = section.dataset.level;
         const track = document.getElementById(`track-${level}`);
@@ -179,39 +146,31 @@
             track.addEventListener('scroll', () => {
                 const container = document.querySelector(`.numbered-pagination-container[data-level="${level}"]`);
                 if (!container) return;
-
                 const visibleCards = Array.from(track.querySelectorAll('.vi-video-col:not(.vi-card-hidden)'));
                 if (visibleCards.length === 0) return;
-
                 const cardWidthWithGap = visibleCards[0].offsetWidth + 16;
-                const scrollLeft = track.scrollLeft;
-
-                // Determine current page based on scroll position
-                const currentPage = Math.floor(scrollLeft / (cardWidthWithGap * ITEMS_PER_PAGE)) + 1;
-
+                const currentPage = Math.floor(track.scrollLeft / (cardWidthWithGap * ITEMS_PER_PAGE)) + 1;
                 const buttons = container.querySelectorAll('.page-btn');
                 buttons.forEach(b => b.classList.remove('active'));
-
                 const activeBtn = buttons[currentPage - 1];
                 if (activeBtn) activeBtn.classList.add('active');
             });
         }
     });
 
-    // ── INIT ─────────────────────────────────────────────────────
     applyFilters(); // ensure correct state on page load
 
 })();
 
 
 // ════════════════════════════════════════════════════════════════════
-//  PART 2 — PRACTICE PAGE
+//  PART 2 — PRACTICE PAGE (v3 — spk-* DOM)
 // ════════════════════════════════════════════════════════════════════
 /**
- * speaking.js — TCT Speaking Practice Module
- * Encapsulates: YouTube IFrame API bridge, sentence sync,
- *               slow-motion, repeat/loop, Web Speech AI feedback, toast.
- * Constraint: no global pollution; safe to co-exist with other pages.
+ * speaking.js — TCT Speaking Practice v3
+ * Matches Practice.cshtml v3 using spk-* class conventions.
+ * Features: YouTube IFrame API, sentence slider, replay, record (Web Speech API),
+ *           SVG circular ring scores, mini bar scores, keyboard shortcuts, tab switching.
  */
 (function (global) {
     'use strict';
@@ -221,36 +180,45 @@
 
     // ── Data from Razor ─────────────────────────────────────────────
     const VIDEO_ID = global.SPK_VIDEO_ID;
-    const SENTENCES = global.SPK_SENTENCES || [];   // [{id,start,end,text,vi}]
+    const SENTENCES = global.SPK_SENTENCES || [];
 
-    // ── DOM refs ─────────────────────────────────────────────────────
+    // ── DOM utilities ────────────────────────────────────────────────
     const $ = id => document.getElementById(id);
     const $$ = sel => document.querySelectorAll(sel);
 
-    const btnPlayPause = $('btn-play-pause');
-    const iconPlayPause = $('icon-play-pause');
-    const btnRepeat = $('btn-repeat');
-    const btnSlow = $('btn-slow');
-    const btnPrev = $('btn-prev-sentence');
-    const btnNext = $('btn-next-sentence');
-    const btnToggleViAll = $('btn-toggle-vi-all');
-    const sentenceList = $('prac-sentence-list');
-    const progressFill = $('prac-progress-fill');
-    const currentTimeEl = $('prac-current-time');
-    const totalTimeEl = $('prac-total-time');
-    const sentIdxEl = $('prac-sent-idx');
-    const modeChipEl = $('prac-mode-chip');
-    const toast = $('spk-toast');
+    // ── DOM refs ─────────────────────────────────────────────────────
+    const btnPrev = $('btn-prev');
+    const btnNext = $('btn-next');
+    const btnReplay = $('btn-replay');
+    const btnRecord = $('btn-record');
+    const recordIcon = $('record-icon');
+    const recordLabel = $('record-label');
+    const sentIndicator = $('sent-indicator');
+    const transcriptEn = $('current-transcript-en');
+    const transcriptVi = $('current-transcript-vi');
+    const sliderTrack = $('sentence-scroll-container');
+    const btnSliderPrev = $('btn-slider-prev');
+    const btnSliderNext = $('btn-slider-next');
+    const btnHideText = $('btn-hide-text');
+    const progBar = $('prog-bar');
+    const progText = $('prog-text');
+    const progPct = $('prog-pct');
+    const toastEl = $('spk-toast');
+    const tabPronunciation = $('tab-pronunciation');
+    const tabDictation = $('tab-dictation');
+    const panePronounciation = $('pronunciation-content');
+    const paneDictation = $('dictation-content');
+    const btnHideVideo = $('btn-hide-video');
+    const youtubeFrame = $('youtube-player');
 
     // ── State ────────────────────────────────────────────────────────
     let player = null;
     let activeSentIdx = -1;
-    let isLooping = false;
-    let isSlowMotion = false;
-    let viAllVisible = false;
-    let pollTimer = null;
+    let isRecording = false;
+    let isTextHidden = false;
+    let isVideoHidden = false;
+    let playbackTimer = null;
     let toastTimer = null;
-    const viVisible = {};  // per-sentence VI toggle state
 
     // ────────────────────────────────────────────────────────────────
     //  YOUTUBE IFRAME API
@@ -267,9 +235,10 @@
             playerVars: {
                 rel: 0,
                 modestbranding: 1,
-                controls: 1,    // keep native controls visible
+                controls: 1,
                 iv_load_policy: 3,
-                cc_load_policy: 0
+                cc_load_policy: 0,
+                enablejsapi: 1
             },
             events: {
                 onReady: onPlayerReady,
@@ -279,253 +248,229 @@
     };
 
     function onPlayerReady() {
-        // Kick off polling
-        pollTimer = setInterval(onTick, 150);
-
-        // Set total duration label once it's available
-        setTimeout(() => {
-            const dur = player.getDuration();
-            if (dur) totalTimeEl.textContent = fmtTime(dur);
-        }, 1500);
+        updateProgressUI();
+        if (SENTENCES.length > 0) selectSentence(0, false);
     }
 
     function onPlayerStateChange(evt) {
-        const playing = evt.data === YT.PlayerState.PLAYING;
-        iconPlayPause.className = playing ? 'fas fa-pause' : 'fas fa-play';
-    }
-
-    // ────────────────────────────────────────────────────────────────
-    //  TICK — sync sentence highlight + progress bar
-    // ────────────────────────────────────────────────────────────────
-    function onTick() {
-        if (!player || typeof player.getCurrentTime !== 'function') return;
-        const state = player.getPlayerState();
-        if (state !== YT.PlayerState.PLAYING) return;
-
-        const t = player.getCurrentTime();
-        const dur = player.getDuration() || 1;
-
-        // Progress bar
-        progressFill.style.width = ((t / dur) * 100).toFixed(2) + '%';
-        currentTimeEl.textContent = fmtTime(t);
-
-        // Loop: if active sentence ended, seek back
-        if (isLooping && activeSentIdx >= 0) {
-            const s = SENTENCES[activeSentIdx];
-            if (t >= s.end) {
-                player.seekTo(s.start, true);
-                return;
-            }
-        }
-
-        // Find active sentence
-        const idx = SENTENCES.findIndex(s => t >= s.start && t < s.end);
-        if (idx !== -1 && idx !== activeSentIdx) {
-            setActiveSentence(idx, false);
-        }
-    }
-
-    function setActiveSentence(idx, scrollOnly = false) {
-        // Remove old highlight
-        if (activeSentIdx >= 0) {
-            const prev = sentenceList.querySelector(`[data-index="${activeSentIdx}"]`);
-            if (prev) prev.classList.remove('prac-active');
-        }
-
-        activeSentIdx = idx;
-        sentIdxEl.textContent = idx + 1;
-
-        const el = sentenceList.querySelector(`[data-index="${idx}"]`);
-        if (!el) return;
-
-        el.classList.add('prac-active');
-        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-        // Update loop boundaries
-        if (isLooping) {
-            // Loop already handles via activeSentIdx
-        }
-    }
-
-    // ────────────────────────────────────────────────────────────────
-    //  CONTROL HANDLERS
-    // ────────────────────────────────────────────────────────────────
-    function togglePlayPause() {
-        if (!player) return;
-        if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
+        if (evt.data === YT.PlayerState.PLAYING) {
+            if (!playbackTimer) playbackTimer = setInterval(checkLoopBoundary, 120);
         } else {
-            player.playVideo();
+            if (playbackTimer) { clearInterval(playbackTimer); playbackTimer = null; }
         }
     }
 
-    function toggleRepeat() {
-        isLooping = !isLooping;
-        btnRepeat.classList.toggle('prac-ctrl-active', isLooping);
-        modeChipEl.textContent = isLooping ? '🔁 Looping' : '';
-        showToast(isLooping ? 'Loop ON — repeating current sentence' : 'Loop OFF');
+    function checkLoopBoundary() {
+        if (activeSentIdx < 0 || !player || typeof player.getCurrentTime !== 'function') return;
+        const s = SENTENCES[activeSentIdx];
+        if (player.getCurrentTime() >= s.end) player.pauseVideo();
     }
 
-    function toggleSlow() {
-        isSlowMotion = !isSlowMotion;
-        btnSlow.classList.toggle('prac-ctrl-active', isSlowMotion);
-        if (player && typeof player.setPlaybackRate === 'function') {
-            player.setPlaybackRate(isSlowMotion ? 0.75 : 1);
+    // ────────────────────────────────────────────────────────────────
+    //  SENTENCE SELECTION
+    // ────────────────────────────────────────────────────────────────
+    function selectSentence(idx, autoPlay = true) {
+        if (idx < 0 || idx >= SENTENCES.length) return;
+        activeSentIdx = idx;
+        const s = SENTENCES[idx];
+
+        // Update slider buttons
+        $$('.spk-sent-btn').forEach(btn => btn.classList.remove('spk-sent-btn--active'));
+        const activeBtn = document.querySelector(`.spk-sent-btn[data-index="${idx}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('spk-sent-btn--active');
+            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
-        showToast(isSlowMotion ? 'Slow Motion: 0.75×' : 'Normal Speed: 1×');
-    }
 
-    function seekToSentence(idx) {
-        if (!SENTENCES[idx]) return;
+        // Update transcript
+        if (transcriptEn) {
+            transcriptEn.textContent = isTextHidden ? '••••••••••••••••' : s.text;
+            transcriptEn.dataset.original = s.text;
+        }
+        if (transcriptVi) transcriptVi.textContent = s.vi || '';
+
+        // Update indicator
+        if (sentIndicator) sentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
+
+        // Update score board from stored data
+        updateScoreBoard(s);
+
+        // YouTube seek
         if (player && typeof player.seekTo === 'function') {
-            player.seekTo(SENTENCES[idx].start, true);
-            player.playVideo();
+            player.seekTo(s.start, true);
+            if (autoPlay) player.playVideo();
         }
-        setActiveSentence(idx);
-    }
-
-    function goPrev() {
-        const target = Math.max(0, activeSentIdx > 0 ? activeSentIdx - 1 : 0);
-        seekToSentence(target);
-    }
-
-    function goNext() {
-        const target = Math.min(SENTENCES.length - 1, activeSentIdx + 1);
-        seekToSentence(target);
     }
 
     // ────────────────────────────────────────────────────────────────
-    //  VIETNAMESE TOGGLE
+    //  SCORE BOARD — SVG rings + mini bars
     // ────────────────────────────────────────────────────────────────
-    function toggleViSingle(idx) {
-        viVisible[idx] = !viVisible[idx];
-        const el = $(`sent-vi-${idx}`);
-        if (el) el.classList.toggle('prac-vi-visible', viVisible[idx]);
-    }
+    const SCORE_METRICS = [
+        { val: 'totalScore', id: 'score-total', ringId: 'ring-total', barId: 'bar-total' },
+        { val: 'accuracyScore', id: 'score-accuracy', ringId: 'ring-accuracy', barId: 'bar-accuracy' },
+        { val: 'fluencyScore', id: 'score-fluency', ringId: 'ring-fluency', barId: 'bar-fluency' },
+        { val: 'completenessScore', id: 'score-complete', ringId: 'ring-complete', barId: 'bar-complete' },
+    ];
 
-    function toggleViAll() {
-        viAllVisible = !viAllVisible;
-        btnToggleViAll.classList.toggle('prac-ctrl-active', viAllVisible);
-        SENTENCES.forEach((_, i) => {
-            viVisible[i] = viAllVisible;
-            const el = $(`sent-vi-${i}`);
-            if (el) el.classList.toggle('prac-vi-visible', viAllVisible);
+    function updateScoreBoard(sentence) {
+        SCORE_METRICS.forEach(m => {
+            const raw = sentence[m.val];
+            const pct = (raw && raw > 0) ? Math.round(raw) : 0;
+
+            const valEl = $(m.id);
+            if (valEl) valEl.textContent = pct > 0 ? `${pct}` : '0';
+
+            // SVG ring: stroke-dasharray = "filled, 100"
+            const ringEl = $(m.ringId);
+            if (ringEl) ringEl.setAttribute('stroke-dasharray', `${pct}, 100`);
+
+            // Mini bar
+            const barEl = $(m.barId);
+            if (barEl) barEl.style.width = pct + '%';
         });
-        showToast(viAllVisible ? 'Vietnamese shown' : 'Vietnamese hidden');
     }
 
     // ────────────────────────────────────────────────────────────────
-    //  WEB SPEECH API — Record & Compare
+    //  PROGRESS BAR (overall completion)
+    // ────────────────────────────────────────────────────────────────
+    function updateProgressUI() {
+        const done = SENTENCES.filter(s => s.isPracticed).length;
+        const total = SENTENCES.length;
+        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+        if (progText) progText.textContent = `${done} / ${total}`;
+        if (progPct) progPct.textContent = `${pct}%`;
+        if (progBar) {
+            progBar.style.width = pct + '%';
+            progBar.setAttribute('aria-valuenow', pct);
+        }
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  RECORDING — Web Speech API
     // ────────────────────────────────────────────────────────────────
     const SpeechRecog = global.SpeechRecognition || global.webkitSpeechRecognition;
     let activeRecognition = null;
 
-    function startRecording(idx, micBtn) {
+    function startRecording() {
+        if (activeSentIdx === -1) {
+            showToast('⚠️ Hãy chọn một câu trước!', 'warning');
+            return;
+        }
+
         if (!SpeechRecog) {
-            showToast('⚠️ Speech recognition requires Chrome or Edge', 'error');
+            showToast('⚠️ Trình duyệt chưa hỗ trợ ghi âm — hiển thị demo', 'error');
+            simulateFeedback();
             return;
         }
 
-        // Prevent double-click start
-        if (activeRecognition) {
-            activeRecognition.stop();
-            activeRecognition = null;
+        if (isRecording) {
+            if (activeRecognition) activeRecognition.stop();
             return;
         }
 
-        // Pause video while listening
+        // Pause video during recording
         if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
             player.pauseVideo();
         }
 
-        const sentEl = sentenceList.querySelector(`[data-index="${idx}"]`);
-        const enEl = $(`sent-en-${idx}`);
-        const expected = SENTENCES[idx]?.text || '';
+        isRecording = true;
+        setRecordUIState(true);
 
-        // Recording visual state
-        micBtn.classList.add('prac-mic-recording');
-        micBtn.innerHTML = '<i class="fas fa-stop-circle"></i>';
-
+        const expected = SENTENCES[activeSentIdx]?.text || '';
         const rec = new SpeechRecog();
         rec.lang = 'en-US';
         rec.interimResults = true;
         rec.maxAlternatives = 3;
         activeRecognition = rec;
 
-        let interimShown = false;
-
         rec.onresult = function (event) {
-            let interim = '';
             let final = '';
             for (let i = event.resultIndex; i < event.results.length; i++) {
-                const t = event.results[i][0].transcript;
-                if (event.results[i].isFinal) final += t;
-                else interim += t;
+                if (event.results[i].isFinal) final += event.results[i][0].transcript;
             }
-
-            // Show interim in a subtle style
-            if (!final && interim && !interimShown) {
-                enEl.dataset.original = enEl.textContent;
-                interimShown = true;
-            }
-
             if (final) {
-                const sim = levenshteinSimilarity(
-                    normalizeText(final),
-                    normalizeText(expected)
-                );
-                applyFeedback(idx, sim, final);
+                const sim = levenshteinSimilarity(normalizeText(final), normalizeText(expected));
+                applyRecordingFeedback(sim, final);
             }
         };
 
         rec.onerror = function (evt) {
             const msgs = {
-                'no-speech': 'No speech detected — try again',
-                'not-allowed': 'Microphone access denied',
-                'network': 'Network error during recognition',
-                'audio-capture': 'No microphone found'
+                'no-speech': 'Không phát hiện giọng nói — thử lại',
+                'not-allowed': 'Truy cập mic bị từ chối',
+                'audio-capture': 'Không tìm thấy mic'
             };
             showToast('⚠️ ' + (msgs[evt.error] || evt.error), 'error');
         };
 
         rec.onend = function () {
             activeRecognition = null;
-            micBtn.classList.remove('prac-mic-recording');
-            micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+            isRecording = false;
+            setRecordUIState(false);
         };
 
         rec.start();
     }
 
-    function applyFeedback(idx, similarity, heard) {
-        const pct = Math.round(similarity * 100);
-        const enEl = $(`sent-en-${idx}`);
-        const barEl = $(`acc-bar-${idx}`);
-        const fillEl = $(`acc-fill-${idx}`);
-        const pctEl = $(`acc-pct-${idx}`);
-        const sentEl = sentenceList.querySelector(`[data-index="${idx}"]`);
-
-        // Remove previous result classes
-        sentEl.classList.remove('prac-result-ok', 'prac-result-fail');
-        enEl.classList.remove('prac-text-ok', 'prac-text-fail');
-
-        if (similarity >= 0.8) {
-            sentEl.classList.add('prac-result-ok');
-            enEl.classList.add('prac-text-ok');
-            showToast(`✅ Great! Accuracy: ${pct}%`, 'success');
+    function setRecordUIState(recording) {
+        if (!btnRecord) return;
+        if (recording) {
+            btnRecord.classList.add('is-recording');
+            if (recordIcon) recordIcon.className = 'fas fa-stop-circle';
+            if (recordLabel) recordLabel.textContent = 'Đang ghi âm...';
         } else {
-            sentEl.classList.add('prac-result-fail');
-            enEl.classList.add('prac-text-fail');
-            showToast(`🔁 Try again! You said: "${heard}" (${pct}%)`, 'retry');
+            btnRecord.classList.remove('is-recording');
+            if (recordIcon) recordIcon.className = 'fas fa-microphone';
+            if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
         }
+    }
 
-        // Accuracy bar
-        if (barEl && fillEl && pctEl) {
-            barEl.style.display = 'flex';
-            fillEl.style.width = pct + '%';
-            fillEl.style.background = similarity >= 0.8 ? '#10b981' : '#ef4444';
-            pctEl.textContent = pct + '%';
-            pctEl.style.color = similarity >= 0.8 ? '#10b981' : '#ef4444';
+    function applyRecordingFeedback(similarity, heard) {
+        const pct = Math.round(similarity * 100);
+        const s = SENTENCES[activeSentIdx];
+
+        s.totalScore = pct;
+        s.accuracyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
+        s.fluencyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
+        s.completenessScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
+        s.isPracticed = true;
+
+        updateScoreBoard(s);
+        updateProgressUI();
+        markSentenceDone(activeSentIdx);
+
+        if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
+        else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+    }
+
+    function simulateFeedback() {
+        isRecording = true;
+        setRecordUIState(true);
+        setTimeout(() => {
+            isRecording = false;
+            setRecordUIState(false);
+            const s = SENTENCES[activeSentIdx];
+            s.totalScore = Math.floor(Math.random() * 20) + 78;
+            s.accuracyScore = Math.floor(Math.random() * 20) + 78;
+            s.fluencyScore = Math.floor(Math.random() * 20) + 78;
+            s.completenessScore = Math.floor(Math.random() * 20) + 78;
+            s.isPracticed = true;
+            updateScoreBoard(s);
+            updateProgressUI();
+            markSentenceDone(activeSentIdx);
+            showToast(`✅ Demo: Điểm ${s.totalScore}%`, 'success');
+        }, 2500);
+    }
+
+    function markSentenceDone(idx) {
+        const btn = document.querySelector(`.spk-sent-btn[data-index="${idx}"]`);
+        if (!btn) return;
+        btn.classList.add('spk-sent-btn--done');
+        if (!btn.querySelector('.spk-done-check')) {
+            const check = document.createElement('i');
+            check.className = 'fas fa-check spk-done-check';
+            btn.appendChild(check);
         }
     }
 
@@ -533,10 +478,7 @@
     //  HELPERS
     // ────────────────────────────────────────────────────────────────
     function normalizeText(s) {
-        return s.toLowerCase()
-            .replace(/[^\w\s]/g, '')
-            .replace(/\s+/g, ' ')
-            .trim();
+        return s.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
     }
 
     function levenshteinSimilarity(s1, s2) {
@@ -561,101 +503,127 @@
         return dp[a.length][b.length];
     }
 
-    function fmtTime(secs) {
-        const m = Math.floor(secs / 60);
-        const s = Math.floor(secs % 60);
-        return m + ':' + String(s).padStart(2, '0');
-    }
-
     // ── Toast notification ───────────────────────────────────────────
     function showToast(msg, type = 'info') {
-        if (!toast) return;
+        if (!toastEl) return;
         clearTimeout(toastTimer);
-        toast.textContent = msg;
-        toast.className = `spk-toast spk-toast-${type} spk-toast-show`;
-        toastTimer = setTimeout(() => {
-            toast.className = 'spk-toast';
-        }, 3000);
+        toastEl.textContent = msg;
+        toastEl.className = `spk-toast is-visible${type !== 'info' ? ' is-' + type : ''}`;
+        toastTimer = setTimeout(() => { toastEl.className = 'spk-toast'; }, 3200);
     }
 
     // ────────────────────────────────────────────────────────────────
     //  EVENT WIRING
     // ────────────────────────────────────────────────────────────────
     function bindEvents() {
-        btnPlayPause?.addEventListener('click', togglePlayPause);
-        btnRepeat?.addEventListener('click', toggleRepeat);
-        btnSlow?.addEventListener('click', toggleSlow);
-        btnPrev?.addEventListener('click', goPrev);
-        btnNext?.addEventListener('click', goNext);
-        btnToggleViAll?.addEventListener('click', toggleViAll);
+
+        // Prev / Next sentence
+        btnPrev?.addEventListener('click', () => {
+            if (activeSentIdx > 0) selectSentence(activeSentIdx - 1);
+            else if (SENTENCES.length) selectSentence(0);
+        });
+
+        btnNext?.addEventListener('click', () => {
+            if (activeSentIdx < SENTENCES.length - 1) selectSentence(activeSentIdx + 1);
+            else if (activeSentIdx === -1 && SENTENCES.length) selectSentence(0);
+        });
+
+        // Replay
+        btnReplay?.addEventListener('click', () => {
+            if (activeSentIdx < 0) return;
+            const s = SENTENCES[activeSentIdx];
+            if (player && typeof player.seekTo === 'function') {
+                player.seekTo(s.start, true);
+                player.playVideo();
+            }
+        });
+
+        // Record
+        btnRecord?.addEventListener('click', startRecording);
+
+        // Slider arrows
+        btnSliderPrev?.addEventListener('click', () => {
+            sliderTrack?.scrollBy({ left: -160, behavior: 'smooth' });
+        });
+        btnSliderNext?.addEventListener('click', () => {
+            sliderTrack?.scrollBy({ left: 160, behavior: 'smooth' });
+        });
+
+        // Sentence buttons in slider
+        $$('.spk-sent-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                selectSentence(parseInt(this.dataset.index, 10));
+            });
+        });
+
+        // Hide text toggle
+        btnHideText?.addEventListener('click', () => {
+            isTextHidden = !isTextHidden;
+            if (btnHideText) btnHideText.textContent = isTextHidden ? 'Hiện' : 'Ẩn';
+            if (transcriptEn) {
+                transcriptEn.textContent = isTextHidden
+                    ? '••••••••••••••••'
+                    : (transcriptEn.dataset.original || '');
+            }
+        });
+
+        // Hide video toggle
+        btnHideVideo?.addEventListener('click', () => {
+            isVideoHidden = !isVideoHidden;
+            const frame = youtubeFrame?.closest('.spk-video-frame');
+            if (frame) frame.style.opacity = isVideoHidden ? '0' : '1';
+            if (btnHideVideo) {
+                btnHideVideo.innerHTML = isVideoHidden
+                    ? '<i class="far fa-eye"></i> Hiện video'
+                    : '<i class="far fa-eye-slash"></i> Ẩn video';
+            }
+        });
+
+        // Tab switching
+        tabPronunciation?.addEventListener('click', function () {
+            this.classList.add('spk-pill-active');
+            tabDictation?.classList.remove('spk-pill-active');
+            panePronounciation?.classList.remove('d-none');
+            panePronounciation?.classList.add('d-flex');
+            paneDictation?.classList.add('d-none');
+            paneDictation?.classList.remove('d-flex');
+        });
+
+        tabDictation?.addEventListener('click', function () {
+            this.classList.add('spk-pill-active');
+            tabPronunciation?.classList.remove('spk-pill-active');
+            paneDictation?.classList.remove('d-none');
+            paneDictation?.classList.add('d-flex');
+            panePronounciation?.classList.add('d-none');
+            panePronounciation?.classList.remove('d-flex');
+        });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', onKeyDown);
-
-        // Sentence-row clicks
-        $$('.prac-sentence').forEach(row => {
-            const idx = parseInt(row.dataset.index, 10);
-
-            // Click row → seek
-            row.addEventListener('click', e => {
-                if (e.target.closest('.prac-sent-actions')) return;
-                seekToSentence(idx);
-            });
-        });
-
-        // Listen buttons
-        $$('.prac-listen-btn').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                const start = parseFloat(btn.dataset.start);
-                if (player && !isNaN(start)) {
-                    player.seekTo(start, true);
-                    player.playVideo();
-                }
-            });
-        });
-
-        // Record buttons
-        $$('.prac-mic-btn').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                const idx = parseInt(btn.dataset.index, 10);
-                startRecording(idx, btn);
-            });
-        });
-
-        // Per-sentence VI toggle
-        $$('.prac-vi-toggle').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                const idx = parseInt(btn.dataset.index, 10);
-                toggleViSingle(idx);
-            });
-        });
     }
 
     function onKeyDown(e) {
-        // Ignore if typing in an input/textarea
         if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
 
         switch (e.code) {
             case 'Space':
                 e.preventDefault();
-                togglePlayPause();
+                if (player) {
+                    if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
+                    else player.playVideo();
+                }
+                break;
+            case 'Enter':
+                e.preventDefault();
+                startRecording();
                 break;
             case 'ArrowLeft':
-                e.preventDefault();
-                goPrev();
+                if (e.shiftKey) { e.preventDefault(); btnPrev?.click(); }
                 break;
             case 'ArrowRight':
-                e.preventDefault();
-                goNext();
-                break;
-            case 'KeyR':
-                toggleRepeat();
-                break;
-            case 'KeyS':
-                toggleSlow();
+            case 'Tab':
+                if (e.code === 'Tab') e.preventDefault();
+                btnNext?.click();
                 break;
         }
     }
@@ -666,14 +634,7 @@
     function init() {
         bindEvents();
         loadYouTubeAPI();
-
-        // Pre-hide all VI translations
-        SENTENCES.forEach((_, i) => {
-            const el = $(`sent-vi-${i}`);
-            if (el) el.classList.remove('prac-vi-visible');
-        });
-
-        showToast('⌨️  Space=Play  ←→=Jump  R=Loop  S=Slow', 'info');
+        showToast('⌨️  Space=Play  Shift+←/→=Câu  Enter=Ghi âm', 'info');
     }
 
     if (document.readyState === 'loading') {

@@ -32,6 +32,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
     public virtual DbSet<ClassMember> ClassMembers { get; set; }
+    public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
 
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
@@ -318,6 +319,26 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_SpeakingSentences_SpeakingVideos");
+        });
+
+        modelBuilder.Entity<UserSpeakingProgress>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            
+            entity.Property(e => e.PracticedAt)
+                .HasDefaultValueSql("GETDATE()");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserSpeakingProgresses)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingProgress_Users");
+
+            entity.HasOne(d => d.SpeakingSentence)
+                .WithMany(p => p.UserSpeakingProgresses)
+                .HasForeignKey(d => d.SentenceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
         });
 
         modelBuilder.Entity<User>().HasData(

@@ -10,4 +10,5 @@ public class SpeakingSentence
     public string VietnameseMeaning { get; set; } = null!;
 
     public SpeakingVideo SpeakingVideo { get; set; } = null!;
+    public ICollection<UserSpeakingProgress> UserSpeakingProgresses { get; set; } = new List<UserSpeakingProgress>();
 }
