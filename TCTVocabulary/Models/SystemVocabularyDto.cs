@@ -34,5 +34,17 @@ namespace TCTVocabulary.Models
 
         [JsonPropertyName("ImageUrl")]
         public string? ImageUrl { get; set; }
+
+        [JsonPropertyName("Phonetic")]
+        public string? Phonetic { get; set; }
+
+        [JsonPropertyName("Example")]
+        public string? Example { get; set; }
+
+        [JsonPropertyName("ExampleTranslation")]
+        public string? ExampleTranslation { get; set; }
+
+        [JsonPropertyName("Topic")]
+        public string? Topic { get; set; }
     }
 }
