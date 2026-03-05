@@ -46,14 +46,13 @@
     var accuracy = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
 
     var newCards = cards.Count(c => c.LearningProgresses == null
-        || !c.LearningProgresses.Any()
-        || c.LearningProgresses.FirstOrDefault()?.Status == "New");
+        || !c.LearningProgresses.Any());
     var reviewingCards = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => lp.Status == "Reviewing"));
+        && c.LearningProgresses.Any(lp => lp.Status == "Reviewing" || lp.Status == "Learning"));
     var masteredCards = cards.Count(c => c.LearningProgresses != null
         && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
     var dueToday = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => lp.LastReviewedDate <= DateTime.Today.AddDays(-1)));
+        && c.LearningProgresses.Any(lp => lp.NextReviewDate <= DateTime.Now));
 }
 
 @section Styles {

@@ -10,10 +10,10 @@
         .OrderBy(t => t)
         .ToList();
 
-    var totalCards = Model.Sum(f => f.Sets.Sum(s => s.Cards?.Count ?? 0));
+    var totalCards = ViewBag.TotalCards ?? 0;
     var totalSets = Model.Sum(f => f.Sets.Count);
-    var dueToday = new Random().Next(5, 20);
-    var masteredCards = new Random().Next(100, 500);
+    var dueToday = ViewBag.DueToday ?? 0;
+    var masteredCards = ViewBag.MasteredCards ?? 0;
 }
 
 @section Styles {
@@ -1114,7 +1114,7 @@
                 </div>
                 <span class="stat-trend">Kỷ lục: 15</span>
             </div>
-            <div class="stat-value">7</div>
+            <div class="stat-value">@(ViewBag.Streak ?? 0)</div>
             <span class="stat-label">Ngày học liên tiếp</span>
         </div>
     </div>
