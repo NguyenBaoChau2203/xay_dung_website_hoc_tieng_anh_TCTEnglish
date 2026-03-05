@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace TCTVocabulary.Controllers
 {
     public class AccountController : Controller
     {
         private readonly DbflashcardContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AccountController(DbflashcardContext context)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: /Account/Login
@@ -254,6 +258,207 @@ namespace TCTVocabulary.Controllers
                 return View("ForgotPasswordConfirmation");
             }
             return View(model);
+        }
+
+        // GET: /Account/Profile
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var model = new TCTVocabulary.ViewModels.UpdateProfileViewModel
+            {
+                FullName = user.FullName ?? string.Empty,
+                CurrentAvatarUrl = user.AvatarUrl
+            };
+
+            return View("~/Views/Account/Profile.cshtml", model);
+        }
+
+        // POST: /Account/UpdateProfile
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> UpdateProfile(TCTVocabulary.ViewModels.UpdateProfileViewModel model)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null) return RedirectToAction("Login");
+            
+            if (ModelState.IsValid)
+            {
+                // Upload Avatar
+                if (model.Avatar != null)
+                {
+                    // Validate file size (2MB max)
+                    if (model.Avatar.Length > 2 * 1024 * 1024)
+                    {
+                        TempData["ErrorMessage"] = "File ảnh không được vượt quá 2MB.";
+                        model.CurrentAvatarUrl = user.AvatarUrl;
+                        return View("~/Views/Account/Profile.cshtml", model);
+                    }
+
+                    // Validate extension
+                    var ext = Path.GetExtension(model.Avatar.FileName).ToLowerInvariant();
+                    if (ext != ".jpg" && ext != ".jpeg" && ext != ".png")
+                    {
+                        TempData["ErrorMessage"] = "Chỉ chấp nhận định dạng ảnh .jpg, .jpeg, .png";
+                        model.CurrentAvatarUrl = user.AvatarUrl;
+                        return View("~/Views/Account/Profile.cshtml", model);
+                    }
+
+                    // Ensure directory exists
+                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "avatars");
+                    Directory.CreateDirectory(uploadsFolder);
+
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Avatar.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.Avatar.CopyToAsync(fileStream);
+                    }
+
+                    // Delete old avatar if it's a local file
+                    if (!string.IsNullOrEmpty(user.AvatarUrl) && user.AvatarUrl.StartsWith("/images/avatars/"))
+                    {
+                        string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, user.AvatarUrl.TrimStart('/'));
+                        if (System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                    }
+
+                    user.AvatarUrl = "/images/avatars/" + uniqueFileName;
+                }
+
+                user.FullName = model.FullName;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                // Refresh cookies to update claims (like Name, AvatarUrl)
+                await SignInUserAsync(user);
+
+                TempData["SuccessMessage"] = "Cập nhật thông tin cá nhân thành công.";
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        // GET: /Account/Settings
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Settings()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var model = new TCTVocabulary.ViewModels.SecuritySettingsViewModel
+            {
+                Email = user.Email
+            };
+
+            return View("~/Views/Account/Settings.cshtml", model);
+        }
+
+        // POST: /Account/UpdateEmail
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> UpdateEmail(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null) return RedirectToAction("Login");
+
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                TempData["ErrorMessage"] = "Vui lòng nhập Email.";
+                return RedirectToAction("Settings");
+            }
+
+            if (model.Email != user.Email)
+            {
+                // Ensure new email doesn't exist
+                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                if (existingUser != null)
+                {
+                    TempData["ErrorMessage"] = "Email này đã được sử dụng bởi người dùng khác.";
+                    return RedirectToAction("Settings");
+                }
+                user.Email = model.Email;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                // Refresh cookies
+                await SignInUserAsync(user);
+
+                TempData["SuccessMessage"] = "Cập nhật Email thành công.";
+            }
+
+            return RedirectToAction("Settings");
+        }
+
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> ChangePassword(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null) return RedirectToAction("Login");
+
+            if (string.IsNullOrEmpty(model.NewPassword))
+            {
+                TempData["ErrorMessage"] = "Vui lòng nhập Mật khẩu mới.";
+                return RedirectToAction("Settings");
+            }
+
+            if (string.IsNullOrEmpty(model.CurrentPassword))
+            {
+                TempData["ErrorMessage"] = "Vui lòng nhập Mật khẩu hiện tại để đổi mật khẩu.";
+                return RedirectToAction("Settings");
+            }
+
+            if (!user.PasswordHash.StartsWith("SOCIAL_LOGIN_"))
+            {
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.PasswordHash);
+                if (!isPasswordValid)
+                {
+                    TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng.";
+                    return RedirectToAction("Settings");
+                }
+            }
+
+            if (model.NewPassword != model.ConfirmPassword)
+            {
+                TempData["ErrorMessage"] = "Mật khẩu xác nhận không khớp.";
+                return RedirectToAction("Settings");
+            }
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Cập nhật Mật khẩu thành công.";
+
+            return RedirectToAction("Settings");
         }
     }
 }
