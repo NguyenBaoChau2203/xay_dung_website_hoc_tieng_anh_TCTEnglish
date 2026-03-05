@@ -1,70 +1,507 @@
-﻿@model dynamic
+﻿@model TCTVocabulary.ViewModel.DashboardViewModel
 @{
-    ViewData["Title"] = "Trang chủ | TCT English";
-    // Layout = "~/Views/Shared/_Layout.cshtml"; // Ensure layout is used if not default
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to TCT English</h1>
-    <p>Học từ vựng hiệu quả mỗi ngày.</p>
-</div>
+<style>
+    :root {
+        --primary-blue: #2563eb;
+        --accent-purple: #7c3aed;
+        --text-dark: #1e293b;
+        --text-gray: #64748b;
+        --white: #ffffff;
+        --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 
-<!-- TOPIC SELECTION MODAL -->
-<div class="modal-overlay" id="topicModal">
-    <div class="modal" style="width: 600px; max-width: 90%;">
-        <div class="modal-header" style="text-align: center; margin-bottom: 24px;">
-            <h2 class="modal-title" style="margin-bottom: 8px;">Bạn muốn học gì hôm nay?</h2>
-            <p style="color: #6b7280; font-size: 15px;">Chọn một chủ đề có sẵn hoặc tạo mới.</p>
+    .dashboard {
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        background: #f6f7fb; /* Giữ nguyên màu nền */
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin-bottom: 32px;
+    }
+    /* ===== SECTION SPACING ===== */
+    .hero-section {
+        margin-bottom: 36px;
+    }
+
+    .features {
+        margin-bottom: 36px;
+    }
+
+    .today-learning {
+        margin-bottom: 36px;
+    }
+
+    .challenge {
+        margin-bottom: 36px;
+    }
+    /* =========================
+           WELCOME / HERO SECTION
+        ========================= */
+    .welcome-card {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        border-radius: 24px;
+        padding: 40px;
+        color: #fff;
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 36px;
+    }
+
+        /* Thêm một chút trang trí nền cho welcome card */
+        .welcome-card::after {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+    .welcome-title {
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+    }
+
+    .welcome-subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 32px;
+        font-weight: 400;
+    }
+
+    /* STATS tinh chỉnh Glassmorphism */
+    .welcome-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 20px;
+    }
+
+    .stat-item {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 18px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        backdrop-filter: blur(12px);
+        transition: transform 0.2s;
+    }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+        }
+
+    .stat-icon {
+        font-size: 24px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+        font-weight: 800;
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.8;
+    }
+
+    /* =========================
+           FEATURES (Thêm icon và hover)
+        ========================= */
+    .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .features {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+
+    .feature {
+        background: #f8fafc;
+        border: 1px solid #f1f5f9;
+        border-radius: 14px;
+        padding: 18px;
+        text-align: center;
+        font-weight: 700;
+        color: var(--primary-blue);
+        text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+        .feature:hover {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature.speaking {
+            color: var(--accent-purple);
+            border-color: #f5f3ff;
+        }
+
+            .feature.speaking:hover {
+                background: var(--accent-purple);
+                border-color: var(--accent-purple);
+            }
+
+    /* =========================
+           TODAY LEARNING (Grid mượt hơn)
+        ========================= */
+    .today-learning {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: var(--shadow-sm);
+    }
+    .today-learning h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 24px;
+        }
+    .today-folder-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .today-folder-card {
+        background: var(--white);
+        border-radius: 18px;
+        padding: 20px;
+        border: 1px solid #edf2f7;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .today-folder-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .today-folder-card h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .today-folder-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+    .learn-btn {
+        width: fit-content;
+        padding: 10px 20px;
+        background: var(--primary-blue);
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+
+    /* =========================
+           DAILY CHALLENGE (Giao diện Quiz)
+        ========================= */
+    .challenge {
+        background: linear-gradient(135deg, #fff9c4, #ffecb3);
+        border-radius: 24px;
+        padding: 32px;
+        border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    #challenge-term {
+        font-size: 32px;
+        text-align: center;
+        margin: 20px 0 32px;
+        color: #92400e;
+        text-transform: capitalize;
+    }
+
+    .answers {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .answer-btn {
+        padding: 18px;
+        border-radius: 16px;
+        border: 2px solid white;
+        background: rgba(255, 255, 255, 0.6);
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: all 0.2s;
+    }
+
+        .answer-btn:hover {
+            background: white;
+            border-color: var(--primary-blue);
+            transform: scale(1.02);
+        }
+        /* =========================
+       DAILY CHALLENGE STATES
+    ========================= */
+
+        .answer-btn.correct {
+            background: #dcfce7; /* xanh nhạt */
+            border-color: #22c55e;
+            color: #166534;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+        }
+
+        .answer-btn.wrong {
+            background: #fee2e2; /* đỏ nhạt */
+            border-color: #ef4444;
+            color: #7f1d1d;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
+        }
+
+            /* Disable hover sau khi chọn */
+            .answer-btn.correct:hover,
+            .answer-btn.wrong:hover {
+                transform: none;
+                cursor: default;
+            }
+
+        /* Optional: icon đổi màu theo trạng thái */
+        .answer-btn.correct i {
+            color: #16a34a;
+        }
+
+        .answer-btn.wrong i {
+            color: #dc2626;
+        }
+</style>
+
+<div class="dashboard">
+    <div class="hero-section">
+
+        <!-- ================= WELCOME CARD ================= -->
+        <section class="welcome-card">
+            <div class="welcome-content">
+                <h1 class="welcome-title">
+                    Welcome back, @User.Identity?.Name
+                    <i class="fa-solid fa-hand-wave"></i>
+                </h1>
+
+                <p class="welcome-subtitle">
+                    Học từ vựng hiệu quả mỗi ngày
+                </p>
+
+                <!-- ===== STATS (HORIZONTAL) ===== -->
+                <div class="welcome-stats">
+
+                    <div class="stat-item">
+                        <span class="stat-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </span>
+                        <div class="stat-info">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Streak</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-icon">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </span>
+                        <div class="stat-info">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Goal</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-icon">
+                            <i class="fa-solid fa-folder"></i>
+                        </span>
+                        <div class="stat-info">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Folders</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </span>
+                        <div class="stat-info">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Cards</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES ===== -->
+        <div class="features">
+            <h3>Top Features</h3>
+
+            <div class="feature-list">
+                <a asp-controller="Home" asp-action="Grammar" class="feature">
+                    <i class="fa-solid fa-spell-check"></i>
+                    Grammar
+                </a>
+
+                <a asp-controller="Home" asp-action="Listening" class="feature">
+                    <i class="fa-solid fa-headphones"></i>
+                    Listening
+                </a>
+
+                <a asp-controller="Home" asp-action="Reading" class="feature">
+                    <i class="fa-solid fa-book-open"></i>
+                    Reading
+                </a>
+
+                <a asp-controller="Home" asp-action="Writing" class="feature">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    Writing
+                </a>
+
+                <a asp-controller="Home" asp-action="Speaking" class="feature speaking">
+                    <i class="fa-solid fa-microphone"></i>
+                    Speaking
+                </a>
+            </div>
         </div>
 
-        <div class="topic-grid">
-            <!-- Card 1 -->
-            <div class="topic-card">
-                <div class="topic-icon" style="background: #e0e7ff; color: #4255ff;">
-                    <i class="fa-solid fa-comments"></i>
-                </div>
-                <div class="topic-info">
-                    <div class="topic-name">Tiếng Anh giao tiếp</div>
-                    <div class="topic-desc">300 từ vựng thông dụng</div>
-                </div>
-            </div>
+        <!-- ===== TODAY LEARNING ===== -->
+        <div class="today-learning">
+            <h3>
+                <i class="fa-solid fa-graduation-cap"></i>
+                Học gì hôm nay
+            </h3>
 
-            <!-- Card 2 -->
-            <div class="topic-card">
-                <div class="topic-icon" style="background: #fce7f3; color: #db2777;">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div class="topic-info">
-                    <div class="topic-name">IELTS Academic</div>
-                    <div class="topic-desc">Từ vựng học thuật</div>
-                </div>
-            </div>
+            @if (Model.TodayFolders.Any())
+            {
+                <div class="today-folder-list">
+                    @foreach (var folder in Model.TodayFolders)
+                    {
+                        <div class="today-folder-card">
+                            <h4>
+                                <i class="fa-solid fa-folder-open"></i>
+                                @folder.FolderName
+                            </h4>
 
-            <!-- Card 3 -->
-            <div class="topic-card">
-                <div class="topic-icon" style="background: #dcfce7; color: #16a34a;">
-                    <i class="fa-solid fa-briefcase"></i>
-                </div>
-                <div class="topic-info">
-                    <div class="topic-name">TOEIC</div>
-                    <div class="topic-desc">Tiếng Anh văn phòng</div>
-                </div>
-            </div>
+                            <p>
+                                <i class="fa-solid fa-layer-group"></i>
+                                @folder.Sets.Count set •
+                                <i class="fa-solid fa-user"></i>
+                                @folder.User.FullName
+                            </p>
 
-            <!-- Create New -->
-            <div class="topic-card create-new" onclick="location.href='@Url.Action("CreateSet", "Home")'">
-                <div class="topic-icon" style="background: #f3f4f6; color: #4b5563;">
-                    <i class="fa-solid fa-plus"></i>
+                            <a asp-action="FolderDetail"
+                               asp-controller="Home"
+                               asp-route-id="@folder.FolderId" class="learn-btn">
+                                Xem & học
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    }
                 </div>
-                <div class="topic-info">
-                    <div class="topic-name">Tự tạo chủ đề</div>
-                    <div class="topic-desc">Của riêng bạn</div>
-                </div>
+            }
+            else
+            {
+                <p class="empty-text">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    Bạn chưa có folder nào
+                </p>
+            }
+        </div>
+
+        <!-- ===== DAILY CHALLENGE ===== -->
+        <div class="challenge">
+            <h3>
+                <i class="fa-solid fa-bolt"></i>
+                Daily Challenge
+            </h3>
+
+            <h2 id="challenge-term">
+                @Model.DailyChallenge.Term
+            </h2>
+
+            <div class="answers">
+                @foreach (var opt in Model.DailyChallenge.Options)
+                {
+                    <button class="answer-btn"
+                            data-id="@opt.CardId"
+                            data-correct="@Model.DailyChallenge.CardId">
+                        <i class="fa-solid fa-circle-dot"></i>
+                        @opt.Definition
+                    </button>
+                }
             </div>
         </div>
 
-        <div class="modal-actions" style="justify-content: center; margin-top: 24px;">
-            <button class="btn-decline" id="closeTopicModal" style="width: 100%;">Để sau</button>
-        </div>
     </div>
 </div>
+<script>
+    document.querySelectorAll(".answer-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            if (this.classList.contains("correct") || this.classList.contains("wrong"))
+                return;
+
+            const selected = this.dataset.id;
+            const correct = this.dataset.correct;
+
+            if (selected === correct) {
+                this.classList.add("correct");
+            } else {
+                this.classList.add("wrong");
+            }
+                if (selected !== correct) {
+        document.querySelector(
+            `.answer-btn[data-id="${correct}"]`
+        )?.classList.add("correct");
+    }
+            setTimeout(() => {
+                fetch("/Home/GetDailyChallenge")
+                    .then(res => res.text())
+                    .then(html => {
+                        location.reload();
+                    });
+            }, 800);
+        });
+    });
+</script>
