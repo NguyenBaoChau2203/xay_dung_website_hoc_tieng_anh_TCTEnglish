@@ -20,7 +20,18 @@ namespace TCTVocabulary.Controllers
         }
         public IActionResult Index()
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!User.Identity!.IsAuthenticated)
+            {
+                return RedirectToAction("Landing");
+            }
+
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var userId = int.Parse(userIdClaim);
 
             var user = _context.Users
                 .Include(u => u.Folders)
@@ -69,6 +80,7 @@ namespace TCTVocabulary.Controllers
         // CHECK ANSWER
         // =========================
         [HttpPost]
+        [Authorize]
         public IActionResult CheckAnswer(int selectedCardId, int correctCardId)
         {
             bool isCorrect = selectedCardId == correctCardId;
@@ -234,6 +246,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateFolder(string folderName)
         {
             // 1. Kiểm tra dữ liệu đầu vào
@@ -261,6 +274,7 @@ namespace TCTVocabulary.Controllers
             // 5. Điều hướng đến trang chi tiết của Folder vừa tạo
             return RedirectToAction("FolderDetail", "Home", new { id = folder.FolderId });
         }
+        [Authorize]
         public IActionResult FolderDetail(int id)
         {
             var userId = int.Parse(
@@ -294,6 +308,7 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult CreateClass()
         {
             return View();
@@ -568,6 +583,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
             if (!ModelState.IsValid)
@@ -624,6 +640,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
         }
         [HttpPost]
+        [Authorize]
         public IActionResult EditClass(int classId, string className, string? description)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -641,6 +658,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult DeleteClass(int classId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -659,6 +677,7 @@ namespace TCTVocabulary.Controllers
 
             return Ok();
         }
+        [Authorize]
         public IActionResult ClassDetail(int id)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -716,6 +735,7 @@ namespace TCTVocabulary.Controllers
         }
         [HttpPost]
         [IgnoreAntiforgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -737,6 +757,7 @@ namespace TCTVocabulary.Controllers
             return Ok();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult SaveFolder(int folderId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -761,6 +782,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> SearchClass(string keyword)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -783,6 +805,7 @@ namespace TCTVocabulary.Controllers
             return Ok(classes);
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> SendClassMessage(int classId, string content)
         {
             if (string.IsNullOrWhiteSpace(content))
