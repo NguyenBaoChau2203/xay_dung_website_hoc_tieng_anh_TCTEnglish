@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace TCTVocabulary.Controllers
 {
@@ -16,11 +18,13 @@ namespace TCTVocabulary.Controllers
     {
         private readonly DbflashcardContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _configuration = configuration;
         }
 
         // GET: /Account/Login
@@ -250,14 +254,82 @@ namespace TCTVocabulary.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                ViewBag.Message = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
-                return View("ForgotPasswordConfirmation");
+                return View(model);
             }
-            return View(model);
+
+            // Generic message to prevent email enumeration
+            var genericMessage = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (user == null)
+            {
+                // Show error: email not found
+                ModelState.AddModelError("Email", "Email này không tồn tại trong hệ thống.");
+                return View(model);
+            }
+
+            // Generate secure token and set expiry (15 minutes)
+            var token = Guid.NewGuid().ToString();
+            user.ResetPasswordToken = token;
+            user.ResetPasswordTokenExpiry = DateTime.UtcNow.AddMinutes(15);
+            await _context.SaveChangesAsync();
+
+            // Build the reset link
+            var resetLink = Url.Action("ResetPassword", "Account",
+                new { token = token, email = user.Email }, Request.Scheme);
+
+            // --- Send reset email via Gmail SMTP ---
+            try
+            {
+                var smtpHost = _configuration["SmtpSettings:Host"];
+                var smtpPort = int.Parse(_configuration["SmtpSettings:Port"] ?? "587");
+                var senderEmail = _configuration["SmtpSettings:SenderEmail"];
+                var senderName = _configuration["SmtpSettings:SenderName"] ?? "TCT English";
+                var smtpPassword = _configuration["SmtpSettings:Password"];
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(senderEmail!, senderName),
+                    Subject = "Đặt lại mật khẩu - TCT English",
+                    IsBodyHtml = true,
+                    Body = $@"
+                        <div style='font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; background-color: #f9fafe;'>
+                            <div style='background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);'>
+                                <h2 style='font-family: Montserrat, sans-serif; color: #2e3856; font-size: 24px; margin-bottom: 16px;'>Đặt lại mật khẩu</h2>
+                                <p style='color: #586380; font-size: 16px; line-height: 1.6; margin-bottom: 24px;'>
+                                    Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn. 
+                                    Nhấp vào nút bên dưới để tạo mật khẩu mới. Liên kết có hiệu lực trong <strong>15 phút</strong>.
+                                </p>
+                                <a href='{resetLink}' style='display: inline-block; padding: 14px 32px; background-color: #4255ff; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px;'>Đặt lại mật khẩu</a>
+                                <p style='color: #939bb4; font-size: 13px; margin-top: 24px; line-height: 1.5;'>
+                                    Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.
+                                </p>
+                            </div>
+                        </div>"
+                };
+                mailMessage.To.Add(user.Email);
+
+                using var smtpClient = new SmtpClient(smtpHost, smtpPort)
+                {
+                    Credentials = new NetworkCredential(senderEmail, smtpPassword),
+                    EnableSsl = true
+                };
+                await smtpClient.SendMailAsync(mailMessage);
+
+                Console.WriteLine($"[Email] Reset password email sent to {user.Email}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Email Error]: {ex.Message}");
+                // Still show confirmation even if email fails
+            }
+
+            ViewBag.Message = genericMessage;
+            return View("ForgotPasswordConfirmation");
         }
 
         // GET: /Account/Profile
@@ -459,6 +531,59 @@ namespace TCTVocabulary.Controllers
             TempData["SuccessMessage"] = "Cập nhật Mật khẩu thành công.";
 
             return RedirectToAction("Settings");
+        }
+
+        // GET: /Account/ResetPassword
+        [HttpGet]
+        public IActionResult ResetPassword(string token, string email)
+        {
+            var model = new ResetPasswordViewModel
+            {
+                Token = token,
+                Email = email
+            };
+            return View(model);
+        }
+
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // Find user matching both email and token
+            var user = await _context.Users.FirstOrDefaultAsync(
+                u => u.Email == model.Email && u.ResetPasswordToken == model.Token);
+
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid token or email.");
+                return View(model);
+            }
+
+            // Check if token has expired
+            if (user.ResetPasswordTokenExpiry < DateTime.UtcNow)
+            {
+                ModelState.AddModelError(string.Empty, "Token has expired.");
+                return View(model);
+            }
+
+            // Hash the new password using BCrypt (same as Register action)
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+
+            // Invalidate the token to prevent reuse
+            user.ResetPasswordToken = null;
+            user.ResetPasswordTokenExpiry = null;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Password reset successfully. Please log in.";
+            return RedirectToAction("Login");
         }
     }
 }
