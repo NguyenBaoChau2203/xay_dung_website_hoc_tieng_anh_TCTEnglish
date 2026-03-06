@@ -18,7 +18,8 @@ namespace TCTVocabulary.Controllers
         [HttpPost("record")]
         public async Task<IActionResult> Record([FromBody] LearningRecordRequest request)
         {
-            int currentUserId = 1; // Tạm thời gán fix cứng
+            //TODO: Thay currentUserId = 1 bằng User.Identity thật khi có hệ thống Auth
+            int currentUserId = 1;
 
             var progress = await _context.LearningProgresses
                 .FirstOrDefaultAsync(lp => lp.CardId == request.CardId && lp.UserId == currentUserId);
@@ -29,7 +30,9 @@ namespace TCTVocabulary.Controllers
                 {
                     UserId = currentUserId,
                     CardId = request.CardId,
-                    WrongCount = 0
+                    Status = "Learning",
+                    WrongCount = 0,
+                    RepetitionCount = 0
                 };
                 _context.LearningProgresses.Add(progress);
             }
@@ -37,30 +40,70 @@ namespace TCTVocabulary.Controllers
             // Cập nhật ngày review cuối
             progress.LastReviewedDate = DateTime.Now;
 
-            // Logic SRS cơ bản
+            // Logic SRS – dùng RepetitionCount để tính khoảng cách ôn tập
+            int reps = progress.RepetitionCount;
             switch (request.MasteryLevel.ToLower())
             {
                 case "hard":
-                    progress.Status = "Reviewing";
+                    // Khó → ôn lại sớm, reset repetition
+                    progress.Status = "Learning";
                     progress.NextReviewDate = DateTime.Now.AddDays(1);
                     progress.WrongCount = (progress.WrongCount ?? 0) + 1;
+                    progress.RepetitionCount = 0;
                     break;
                 case "good":
+                    // Tốt → khoảng cách tăng dần: 1 → 3 → 7 ngày
                     progress.Status = "Reviewing";
-                    progress.NextReviewDate = DateTime.Now.AddDays(3);
+                    int goodDays = reps == 0 ? 1 : (reps == 1 ? 3 : 7);
+                    progress.NextReviewDate = DateTime.Now.AddDays(goodDays);
+                    progress.RepetitionCount = reps + 1;
                     break;
                 case "easy":
                 case "perfect":
+                    // Dễ → khoảng cách lớn hơn: 3 → 7 → 14 → 30 ngày
                     progress.Status = "Mastered";
-                    progress.NextReviewDate = DateTime.Now.AddDays(7);
+                    int easyDays = reps == 0 ? 3 : (reps == 1 ? 7 : (reps <= 3 ? 14 : 30));
+                    progress.NextReviewDate = DateTime.Now.AddDays(easyDays);
+                    progress.RepetitionCount = reps + 1;
                     break;
                 default:
                     return BadRequest("Invalid mastery level");
             }
 
+            // ============ STREAK UPDATE ============
+            var user = await _context.Users.FindAsync(currentUserId);
+            if (user != null)
+            {
+                var today = DateTime.Now.Date;
+                var lastStudy = user.LastStudyDate?.Date;
+
+                if (lastStudy == null || lastStudy < today)
+                {
+                    if (lastStudy == today.AddDays(-1))
+                    {
+                        // Hôm qua đã học → tăng streak
+                        user.Streak = (user.Streak ?? 0) + 1;
+                    }
+                    else if (lastStudy < today.AddDays(-1))
+                    {
+                        // Bỏ lỡ → reset streak về 1
+                        user.Streak = 1;
+                    }
+
+                    user.LastStudyDate = today;
+
+                    // Cập nhật kỷ lục
+                    if ((user.Streak ?? 0) > (user.LongestStreak ?? 0))
+                    {
+                        user.LongestStreak = user.Streak;
+                    }
+                }
+                // Nếu lastStudy == today → không thay đổi streak (đã tính rồi)
+            }
+
             await _context.SaveChangesAsync();
 
-            return Ok(new { success = true, nextReviewDate = progress.NextReviewDate });
+            return Ok(new { success = true, nextReviewDate = progress.NextReviewDate, streak = user?.Streak ?? 0 });
         }
     }
 

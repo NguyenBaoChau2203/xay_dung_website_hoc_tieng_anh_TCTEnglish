@@ -20,384 +20,721 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/vocabulary-system.css" />
     <style>
-        .topic-detail-container {
-            max-width: 800px;
+        /* Compact Topic Detail - Navy & White Theme */
+        :root {
+            --navy-dark: #0A2647;
+            --navy-medium: #1B3A5C;
+            --navy-light: #2C4E71;
+            --navy-mist: #E8F0FE;
+            --white: #FFFFFF;
+            --off-white: #F8FAFC;
+            --gray-light: #E2E8F0;
+            --gray: #94A3B8;
+            --gray-dark: #475569;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Container - Rộng hơn để hiển thị nhiều thẻ */
+        .topic-detail {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 1.5rem;
         }
 
-        .topic-header {
-            margin-bottom: 2rem;
-        }
-
+        /* Back Link - Nhỏ gọn */
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #64748b;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            color: var(--navy-dark);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 100px;
+            border: 1px solid var(--gray-light);
             margin-bottom: 1.5rem;
+            transition: all 0.2s ease;
         }
 
             .back-link:hover {
-                color: #0EA5E9;
+                border-color: var(--navy-dark);
+                background: var(--navy-dark);
+                color: var(--white);
+                transform: translateX(-4px);
             }
 
-        .topic-title {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        /* Header - Nhỏ gọn */
+        .topic-header {
+            margin-bottom: 1.5rem;
         }
 
-            .topic-title h1 {
-                font-size: 2rem;
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .title-main {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+            .title-main h1 {
+                font-size: 1.75rem;
                 font-weight: 700;
-                color: #0f172a;
+                color: var(--navy-dark);
                 margin: 0;
             }
 
-        .topic-badge {
-            background: #F0F9FF;
-            color: #0EA5E9;
-            padding: 0.25rem 1rem;
+        .topic-meta-badge {
+            background: var(--navy-mist);
+            color: var(--navy-dark);
+            padding: 0.25rem 0.75rem;
             border-radius: 100px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        /* Stats cards */
-        .stats-grid-small {
+        /* Status Cards - Nhỏ gọn hơn */
+        .status-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
         }
 
-        .stat-card-small {
-            background: white;
+        .status-card {
+            background: var(--white);
             border-radius: 16px;
             padding: 1rem;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-        }
-
-            .stat-card-small .value {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: #0f172a;
-                line-height: 1.2;
-            }
-
-            .stat-card-small .label {
-                font-size: 0.85rem;
-                color: #64748b;
-            }
-
-            .stat-card-small.new .value {
-                color: #4facfe;
-            }
-
-            .stat-card-small.reviewing .value {
-                color: #fbbf24;
-            }
-
-            .stat-card-small.mastered .value {
-                color: #43e97b;
-            }
-
-        /* Progress card */
-        .topic-progress-card {
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--gray-light);
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
         }
 
-        .progress-circle-small {
+            .status-card:hover {
+                border-color: var(--navy-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(10, 38, 71, 0.06);
+            }
+
+        .status-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .status-card.new .status-icon {
+            background: var(--navy-mist);
+            color: var(--navy-dark);
+        }
+
+        .status-card.reviewing .status-icon {
+            background: #FEF3C7;
+            color: var(--warning);
+        }
+
+        .status-card.mastered .status-icon {
+            background: #D1FAE5;
+            color: var(--success);
+        }
+
+        .status-info {
+            flex: 1;
+        }
+
+        .status-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            line-height: 1.2;
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Progress Action Card - Nhỏ gọn */
+        .progress-action-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.25rem;
+            border: 1px solid var(--gray-light);
+            box-shadow: 0 4px 12px rgba(10, 38, 71, 0.04);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Circular Progress - Nhỏ hơn */
+        .progress-circle {
             width: 80px;
             height: 80px;
             position: relative;
+            flex-shrink: 0;
         }
 
-            .progress-circle-small svg {
+            .progress-circle svg {
                 width: 100%;
                 height: 100%;
                 transform: rotate(-90deg);
             }
 
-        .progress-number-small {
+        .circle-bg {
+            stroke: var(--gray-light);
+            stroke-width: 5;
+            fill: none;
+        }
+
+        .circle-fill {
+            stroke: var(--navy-dark);
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-dasharray: 219.8;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0EA5E9;
+            text-align: center;
         }
 
+        .progress-percent {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            line-height: 1;
+        }
+
+        .progress-label {
+            font-size: 0.6rem;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* Progress Stats - Nhỏ gọn */
         .progress-stats {
             flex: 1;
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        .study-actions {
+        .stat-block {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
         }
 
-        .btn-study-topic {
-            background: #0EA5E9;
-            color: white;
-            padding: 0.75rem 2rem;
+            .stat-block .value {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: var(--navy-dark);
+                line-height: 1.2;
+            }
+
+            .stat-block .label {
+                font-size: 0.75rem;
+                color: var(--gray);
+            }
+
+        /* Action Buttons - Nhỏ gọn */
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.6rem 1.25rem;
             border-radius: 12px;
-            text-decoration: none;
+            font-size: 0.875rem;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.2s;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
-            .btn-study-topic:hover {
-                background: #0284C7;
+        .btn-primary {
+            background: var(--navy-dark);
+            color: var(--white);
+            border: 1px solid transparent;
+        }
+
+            .btn-primary:hover {
+                background: var(--navy-medium);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(10, 38, 71, 0.2);
+            }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy-dark);
+            border: 1px solid var(--navy-dark);
+        }
+
+            .btn-secondary:hover {
+                background: var(--navy-mist);
                 transform: translateY(-2px);
             }
 
-        .btn-review {
-            background: white;
-            color: #0EA5E9;
-            padding: 0.75rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 500;
-            border: 1px solid #0EA5E9;
-            display: inline-flex;
+        /* Section Title - Nhỏ gọn */
+        .section-title {
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
-            .btn-review:hover {
-                background: #F0F9FF;
+            .section-title h2 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--navy-dark);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
             }
 
-        /* Cards list */
-        .cards-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+                .section-title h2 i {
+                    font-size: 0.9rem;
+                    background: var(--navy-mist);
+                    padding: 0.4rem;
+                    border-radius: 10px;
+                }
+
+        .card-count {
+            background: var(--navy-mist);
+            color: var(--navy-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
 
+        /* Cards List - Grid layout để hiển thị nhiều thẻ */
+        .cards-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 0.75rem;
+        }
+
+        /* Card Item - Nhỏ gọn */
         .card-item {
-            background: white;
+            background: var(--white);
             border-radius: 16px;
-            padding: 1.25rem;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s;
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            transition: all 0.2s ease;
+            animation: fadeIn 0.3s ease-out forwards;
+            display: flex;
+            flex-direction: column;
         }
 
             .card-item:hover {
-                border-color: #0EA5E9;
-                box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05);
+                border-color: var(--navy-dark);
+                box-shadow: 0 4px 12px rgba(10, 38, 71, 0.06);
+                transform: translateY(-2px);
             }
 
-        .card-term-row {
+        /* Card Header - Nhỏ gọn */
+        .card-header {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .card-term {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        .card-phonetic {
-            font-size: 0.9rem;
-            color: #64748b;
-            font-family: monospace;
-        }
-
-        .card-status {
-            margin-left: auto;
-            font-size: 0.8rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            background: #F1F5F9;
-            color: #475569;
-        }
-
-            .card-status.learned {
-                background: #E0F2FE;
-                color: #0369a1;
-            }
-
-            .card-status.mastered {
-                background: #D1FAE5;
-                color: #047857;
-            }
-
-        .card-definition {
-            color: #334155;
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
-
-        .card-example {
-            font-size: 0.9rem;
-            color: #64748b;
-            font-style: italic;
-            padding-left: 1rem;
-            border-left: 3px solid #e2e8f0;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .card-image {
-            max-width: 100%;
-            max-height: 100px;
-            border-radius: 8px;
-            margin-top: 0.5rem;
+        .term-wrapper {
+            flex: 1;
+            min-width: 0; /* Tránh tràn chữ */
         }
 
-        .empty-topic {
+        .term {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy-dark);
+            display: block;
+            margin-bottom: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .phonetic {
+            font-size: 0.7rem;
+            color: var(--gray);
+            font-family: 'Monaco', 'Menlo', monospace;
+            display: inline-block;
+            background: var(--off-white);
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--gray-light);
+        }
+
+        /* Status Badge - Nhỏ gọn */
+        .status-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+            .status-badge.new {
+                background: var(--navy-mist);
+                color: var(--navy-dark);
+            }
+
+            .status-badge.reviewing {
+                background: #FEF3C7;
+                color: var(--warning);
+            }
+
+            .status-badge.mastered {
+                background: #D1FAE5;
+                color: var(--success);
+            }
+
+        /* Card Content - Nhỏ gọn */
+        .card-content {
+            font-size: 0.85rem;
+        }
+
+        .definition {
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .example {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-style: italic;
+            padding: 0.4rem 0.6rem;
+            background: var(--off-white);
+            border-radius: 8px;
+            margin-bottom: 0.3rem;
+            border-left: 2px solid var(--navy-dark);
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .example-translation {
+            font-size: 0.75rem;
+            color: var(--gray);
+            padding-left: 0.6rem;
+            margin-bottom: 0.3rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+            .example-translation i {
+                font-size: 0.6rem;
+                margin-right: 0.3rem;
+                color: var(--navy-dark);
+            }
+
+        .card-image {
+            max-width: 100%;
+            max-height: 60px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            object-fit: cover;
+            border: 1px solid var(--gray-light);
+        }
+
+        /* Empty State - Nhỏ gọn */
+        .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 24px;
-            border: 1px dashed #cbd5e1;
+            padding: 3rem 1rem;
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px dashed var(--gray-light);
+            grid-column: 1 / -1;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .empty-state p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .topic-detail {
+                padding: 1rem;
+            }
+
+            .progress-action-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .progress-stats {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .action-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cards-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .title-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 }
 
-<div class="topic-detail-container">
-    <!-- Back link -->
-    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="back-link">
+<div class="topic-detail">
+    <!-- Back Link -->
+    <a href="@Url.Action("Detail", "Vocabulary", new { setId = Model.SetId })" class="back-link">
         <i class="fas fa-arrow-left"></i>
-        <span>Quay lại danh sách chủ đề</span>
+        <span>Quay lại</span>
     </a>
 
-    <!-- Topic header -->
+    <!-- Header -->
     <div class="topic-header">
-        <div class="topic-title">
-            <h1>@topicName</h1>
-            <span class="topic-badge">@totalCards thẻ</span>
+        <div class="title-wrapper">
+            <div class="title-main">
+                <h1>@topicName</h1>
+                <span class="topic-meta-badge">
+                    <i class="fas fa-book"></i>
+                    @totalCards thẻ
+                </span>
+            </div>
         </div>
     </div>
 
-    <!-- Mini stats -->
-    <div class="stats-grid-small">
-        <div class="stat-card-small new">
-            <div class="value">@newCards</div>
-            <div class="label">Từ mới</div>
+    <!-- Status Cards - Dạng ngang, nhỏ gọn -->
+    <div class="status-grid">
+        <div class="status-card new">
+            <div class="status-icon">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="status-info">
+                <div class="status-value">@newCards</div>
+                <div class="status-label">Từ mới</div>
+            </div>
         </div>
-        <div class="stat-card-small reviewing">
-            <div class="value">@reviewingCards</div>
-            <div class="label">Đang ôn</div>
+        <div class="status-card reviewing">
+            <div class="status-icon">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <div class="status-info">
+                <div class="status-value">@reviewingCards</div>
+                <div class="status-label">Đang ôn</div>
+            </div>
         </div>
-        <div class="stat-card-small mastered">
-            <div class="value">@masteredCards</div>
-            <div class="label">Thành thạo</div>
+        <div class="status-card mastered">
+            <div class="status-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="status-info">
+                <div class="status-value">@masteredCards</div>
+                <div class="status-label">Thành thạo</div>
+            </div>
         </div>
     </div>
 
-    <!-- Progress and actions -->
-    <div class="topic-progress-card">
-        <div class="progress-circle-small">
-            <svg viewBox="0 0 100 100">
-                <circle class="circle-bg" cx="50" cy="50" r="40" stroke="#e2e8f0" fill="none" stroke-width="8"></circle>
-                <circle class="circle-fill" cx="50" cy="50" r="40"
-                        stroke="#0EA5E9" fill="none" stroke-width="8" stroke-linecap="round"
-                        stroke-dasharray="251.2"
-                        stroke-dashoffset="@(251.2 - (251.2 * progress / 100))"></circle>
+    <!-- Progress & Actions - Nhỏ gọn -->
+    <div class="progress-action-card">
+        <div class="progress-circle">
+            <svg viewBox="0 0 90 90">
+                <circle class="circle-bg" cx="45" cy="45" r="35" stroke-width="5"></circle>
+                <circle class="circle-fill" cx="45" cy="45" r="35" stroke-width="5"
+                        stroke-dashoffset="@(219.8 - (219.8 * progress / 100))"></circle>
             </svg>
-            <div class="progress-number-small">@progress%</div>
+            <div class="progress-text">
+                <div class="progress-percent">@progress%</div>
+                <div class="progress-label">Tiến độ</div>
+            </div>
         </div>
 
         <div class="progress-stats">
-            <div>
-                <div style="font-size: 1.5rem; font-weight: 700; color: #0f172a;">@learnedCards</div>
-                <div style="color: #64748b;">Đã học</div>
+            <div class="stat-block">
+                <span class="value">@learnedCards</span>
+                <span class="label">Đã học</span>
             </div>
-            <div>
-                <div style="font-size: 1.5rem; font-weight: 700; color: #0f172a;">@(totalCards - learnedCards)</div>
-                <div style="color: #64748b;">Chưa học</div>
+            <div class="stat-block">
+                <span class="value">@(totalCards - learnedCards)</span>
+                <span class="label">Chưa học</span>
             </div>
         </div>
 
-        <div class="study-actions">
-            <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName })" class="btn-study-topic">
+        <div class="action-buttons">
+            <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName })" class="btn-primary">
                 <i class="fas fa-play"></i>
-                <span>Học ngay</span>
+                <span>Học</span>
             </a>
-            @if (learnedCards > 0)
-            {
-                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName, review = true })" class="btn-review">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>Ôn tập</span>
-                </a>
-            }
         </div>
     </div>
 
-    <!-- Cards list -->
+    <!-- Cards List Section -->
+    <div class="section-title">
+        <h2>
+            <i class="fas fa-layer-group"></i>
+            Danh sách từ vựng
+        </h2>
+        <span class="card-count">@totalCards thẻ</span>
+    </div>
+
     @if (cardsInTopic.Any())
     {
         <div class="cards-list">
             @foreach (var card in cardsInTopic)
             {
                 var status = card.LearningProgresses?.FirstOrDefault()?.Status ?? "New";
-                var statusClass = status == "Mastered" ? "mastered" : (status == "Learned" || status == "Reviewing" ? "learned" : "");
-                var statusText = status == "Mastered" ? "Thành thạo" : (status == "Learned" ? "Đã học" : (status == "Reviewing" ? "Đang ôn" : "Chưa học"));
+                var statusClass = status == "Mastered" ? "mastered" : (status == "Reviewing" ? "reviewing" : "new");
+                var statusText = status == "Mastered" ? "Thành thạo" : (status == "Reviewing" ? "Đang ôn" : "Mới");
 
                 <div class="card-item">
-                    <div class="card-term-row">
-                        <span class="card-term">@card.Term</span>
-                        @if (!string.IsNullOrEmpty(card.Phonetic))
-                        {
-                            <span class="card-phonetic">@card.Phonetic</span>
-                        }
-                        <span class="card-status @statusClass">
+                    <div class="card-header">
+                        <div class="term-wrapper">
+                            <span class="term">@card.Term</span>
+                            @if (!string.IsNullOrEmpty(card.Phonetic))
+                            {
+                                <span class="phonetic">@card.Phonetic</span>
+                            }
+                        </div>
+                        <span class="status-badge @statusClass">
                             @statusText
                         </span>
                     </div>
 
-                    <div class="card-definition">@card.Definition</div>
+                    <div class="card-content">
+                        <div class="definition">@card.Definition</div>
 
-                    @if (!string.IsNullOrEmpty(card.Example))
-                    {
-                        <div class="card-example">"@card.Example"</div>
-                        @if (!string.IsNullOrEmpty(card.ExampleTranslation))
+                        @if (!string.IsNullOrEmpty(card.Example))
                         {
-                            <div style="font-size: 0.85rem; color: #94a3b8; padding-left: 1rem; margin-bottom: 0.5rem;">
-                                → @card.ExampleTranslation
-                            </div>
+                            <div class="example">"@card.Example"</div>
+                            @if (!string.IsNullOrEmpty(card.ExampleTranslation))
+                            {
+                                <div class="example-translation">
+                                    <i class="fas fa-arrow-right"></i>
+                                    @card.ExampleTranslation
+                                </div>
+                            }
                         }
-                    }
 
-                    @if (!string.IsNullOrEmpty(card.ImageUrl))
-                    {
-                        <img src="@card.ImageUrl" alt="@card.Term" class="card-image" />
-                    }
+                        @if (!string.IsNullOrEmpty(card.ImageUrl))
+                        {
+                            <img src="@card.ImageUrl" alt="@card.Term" class="card-image" />
+                        }
+                    </div>
                 </div>
             }
         </div>
     }
     else
     {
-        <div class="empty-topic">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">📭</div>
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
             <h3>Chưa có thẻ từ vựng</h3>
             <p>Chủ đề này hiện chưa có thẻ từ vựng nào.</p>
+            <button class="btn-primary" onclick="alert('Chức năng đang phát triển')">
+                <i class="fas fa-plus"></i>
+                <span>Thêm từ mới</span>
+            </button>
         </div>
     }
 </div>

@@ -51,8 +51,7 @@
         && c.LearningProgresses.Any(lp => lp.Status == "Reviewing" || lp.Status == "Learning"));
     var masteredCards = cards.Count(c => c.LearningProgresses != null
         && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
-    var dueToday = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => lp.NextReviewDate <= DateTime.Now));
+    var dueToday = ViewBag.DueToday ?? 0;
 }
 
 @section Styles {

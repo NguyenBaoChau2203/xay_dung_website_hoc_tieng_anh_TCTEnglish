@@ -15,6 +15,8 @@ public partial class LearningProgress
 
     public int? WrongCount { get; set; }
 
+    public int RepetitionCount { get; set; }
+
     public DateTime? LastReviewedDate { get; set; }
     public DateTime? NextReviewDate { get; set; }
 
