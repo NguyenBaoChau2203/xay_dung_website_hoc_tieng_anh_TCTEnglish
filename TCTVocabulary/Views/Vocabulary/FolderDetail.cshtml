@@ -34,8 +34,9 @@
                         <span class="stat-label">Từ vựng</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-value">1.2k</span>
-                        <span class="stat-label">Học viên</span>
+                        @* [Feature: View_Count] - Tổng lượt học từ tất cả set *@
+                        <span class="stat-value">@(Model?.Sum(s => s.ViewCount) ?? 0)</span>
+                        <span class="stat-label">Lượt học</span>
                     </div>
                 </div>
             </div>
@@ -108,17 +109,24 @@
                                     </span>
                                     <span class="meta-item">
                                         <i class="fas fa-clock"></i>
-                                        @(new Random().Next(10, 60)) phút
+                                        @* [Fix: Remove Fake Data] - Ước tính ~2 phút/từ thay vì Random *@
+                                        ~@(Math.Max(1, (set.Cards?.Count ?? 0) * 2)) phút
                                     </span>
                                 </div>
 
+                                @{
+                                    @* [Fix: Remove Fake Data] - Tính tiến độ thật từ LearningProgresses *@
+                                    var totalSetCards = set.Cards?.Count ?? 0;
+                                    var masteredSetCards = set.Cards?.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true) ?? 0;
+                                    var realProgress = totalSetCards > 0 ? (masteredSetCards * 100) / totalSetCards : 0;
+                                }
                                 <div class="set-progress">
                                     <div class="progress-text">
                                         <span>Tiến độ</span>
-                                        <span class="progress-percent">@(new Random().Next(0, 100))%</span>
+                                        <span class="progress-percent">@(realProgress)%</span>
                                     </div>
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: @(new Random().Next(0, 100))%; background: @bgColor"></div>
+                                        <div class="progress-fill" style="width: @(realProgress)%; background: @bgColor"></div>
                                     </div>
                                 </div>
 
@@ -155,7 +163,10 @@
                         {
                             var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
                             .Where(t => t.StartsWith("#")).ToList();
-                            var progress = new Random().Next(0, 100);
+                            @* [Fix: Remove Fake Data] - Tính tiến độ thật cho List View *@
+                            var listTotalCards = set.Cards?.Count ?? 0;
+                            var listMasteredCards = set.Cards?.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true) ?? 0;
+                            var progress = listTotalCards > 0 ? (listMasteredCards * 100) / listTotalCards : 0;
 
                             <tr class="list-row">
                                 <td>

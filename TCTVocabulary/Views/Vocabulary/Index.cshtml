@@ -1292,33 +1292,72 @@
             </div>
 
             <div class="continue-grid">
-                @if (Model.Any() && Model.First().Sets.Any())
+                @{
+                    // [Feature: Continue_Learning] - Hiển thị set học gần nhất từ ViewBag
+                    var lastStudiedSet = ViewBag.LastStudiedSet as TCTVocabulary.Models.Set;
+                }
+                @if (lastStudiedSet != null)
                 {
-                    var recentSet = Model.First().Sets.First();
+                    var lsTotalCards = lastStudiedSet.Cards?.Count ?? 0;
+                    var lsMasteredCards = lastStudiedSet.Cards?.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true) ?? 0;
+                    var lsRemaining = lsTotalCards - lsMasteredCards;
+                    var lsProgressPct = lsTotalCards > 0 ? (lsMasteredCards * 100) / lsTotalCards : 0;
+
                     <div class="continue-card">
                         <div class="set-icon">
                             <i class="fas fa-layer-group"></i>
                         </div>
                         <div class="continue-info">
-                            <div class="set-name">@recentSet.SetName</div>
+                            <div class="set-name">@lastStudiedSet.SetName</div>
                             <div class="progress-info">
                                 <div class="progress-stats">
                                     <span class="stat-item">
                                         <i class="fas fa-layer-group"></i>
-                                        @recentSet.Cards.Count từ
+                                        @lsTotalCards từ
                                     </span>
                                     <span class="stat-item">
                                         <i class="fas fa-hourglass-half"></i>
-                                        Còn 12 từ
+                                        Còn @lsRemaining từ
                                     </span>
                                 </div>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 45%"></div>
+                                    <div class="progress-bar" style="width: @(lsProgressPct)%"></div>
                                 </div>
                             </div>
                         </div>
-                        <a href="@Url.Action("Study", "Vocabulary", new { setId = recentSet.SetId })" class="continue-btn">
+                        <a href="@Url.Action("Study", "Vocabulary", new { setId = lastStudiedSet.SetId })" class="continue-btn">
                             <span>Tiếp tục</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                }
+                else if (Model.Any() && Model.First().Sets.Any())
+                {
+                    var firstSet = Model.First().Sets.First();
+                    <div class="continue-card">
+                        <div class="set-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="continue-info">
+                            <div class="set-name">@firstSet.SetName</div>
+                            <div class="progress-info">
+                                <div class="progress-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-layer-group"></i>
+                                        @firstSet.Cards.Count từ
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-hourglass-half"></i>
+                                        Chưa học
+                                    </span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Study", "Vocabulary", new { setId = firstSet.SetId })" class="continue-btn">
+                            <span>Bắt đầu</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1477,7 +1516,8 @@
                                 <div class="card-footer">
                                     <span class="learners">
                                         <i class="fas fa-users"></i>
-                                        1.2k học viên
+                                        @* [Feature: View_Count] - Hiển thị lượt truy cập thật *@
+                                        @set.ViewCount lượt học
                                     </span>
                                     <a href="@Url.Action("Detail", "Vocabulary", new { setId = set.SetId })" class="explore-link">
                                         Khám phá

@@ -66,20 +66,26 @@
         .study-advanced {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 0.5rem 1rem;
+            /* Flex column layout: compact 3-zone structure */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Header */
+        /* TOP ZONE: compact header */
         .study-header-modern {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--white);
-            border-radius: 20px;
-            padding: 0.75rem 1.25rem;
+            border-radius: 14px;
+            padding: 0.4rem 1rem;
             border: 1px solid var(--gray-light);
-            box-shadow: 0 4px 12px rgba(10, 38, 71, 0.04);
-            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(10, 38, 71, 0.04);
+            margin-bottom: 0.4rem;
+            flex-shrink: 0;
         }
 
         .header-left {
@@ -107,9 +113,10 @@
             }
 
         .set-info-compact h2 {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--navy-dark);
+            line-height: 1.2;
         }
 
         .set-info-compact .set-category {
@@ -185,13 +192,9 @@
             }
 
         /* Progress Timeline */
+        /* Hide timeline dots to save vertical space */
         .progress-timeline {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            padding: 0 1rem;
+            display: none;
         }
 
         .timeline-dot {
@@ -237,26 +240,28 @@
         }
 
         /* Study Area */
+        /* MAIN ZONE: study area fills remaining space */
         .study-area {
             background: var(--white);
-            border-radius: 32px;
+            border-radius: 16px;
             border: 1px solid var(--gray-light);
-            padding: 2rem;
-            box-shadow: 0 8px 24px rgba(10, 38, 71, 0.04);
-            margin-bottom: 1.5rem;
+            padding: 0.5rem 0.75rem;
+            box-shadow: 0 4px 16px rgba(10, 38, 71, 0.04);
+            margin-bottom: 0.5rem;
+            flex: 1;
         }
 
         /* Flashcard Mode */
         .flashcard-3d {
             background: transparent;
             perspective: 1500px;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .flashcard-inner {
             position: relative;
             width: 100%;
-            min-height: 400px;
+            min-height: 260px;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
@@ -271,12 +276,13 @@
             height: 100%;
             backface-visibility: hidden;
             background: linear-gradient(145deg, var(--white), var(--off-white));
-            border-radius: 28px;
+            border-radius: 16px;
             border: 1px solid var(--gray-light);
-            padding: 2rem;
+            padding: 0.75rem 1rem;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(10, 38, 71, 0.08);
+            box-shadow: 0 6px 20px rgba(10, 38, 71, 0.06);
+            overflow-y: auto;
         }
 
         .flashcard-back {
@@ -287,7 +293,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .card-number {
@@ -321,14 +327,14 @@
 
         .word-display {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
             .word-display h1 {
-                font-size: 3rem;
+                font-size: 2rem;
                 font-weight: 700;
                 color: var(--navy-dark);
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.25rem;
             }
 
         .word-phonetic {
@@ -352,7 +358,7 @@
             display: flex;
             gap: 0.5rem;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .pos-tag, .frequency-tag {
@@ -374,9 +380,9 @@
 
         .word-examples {
             background: var(--off-white);
-            border-radius: 16px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .example-item {
@@ -410,26 +416,31 @@
 
         /* Writing Mode */
         .writing-mode {
-            min-height: 400px;
+            min-height: 0;
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
 
         .definition-section {
             background: var(--off-white);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            border-radius: 12px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
             position: relative;
         }
 
+        /* Fixed image handling: contain, centered, no overflow */
         .word-image {
             max-width: 100%;
-            max-height: 150px;
-            border-radius: 16px;
-            margin-top: 1rem;
-            object-fit: cover;
+            max-height: 120px;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+            object-fit: contain;
             border: 1px solid var(--gray-light);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .def-english, .def-vietnamese {
@@ -473,7 +484,7 @@
             }
 
         .input-section {
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .input-label {
@@ -498,8 +509,8 @@
 
         .action-buttons-writing {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .btn-secondary {
@@ -535,10 +546,15 @@
             }
 
         /* Mastery Buttons (dùng chung cho cả 2 mode) */
+        /* ACTION ZONE: mastery buttons always visible via sticky */
         .mastery-section {
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
             border-top: 1px solid var(--gray-light);
-            padding-top: 1.5rem;
+            padding: 0.5rem 0;
+            position: sticky;
+            bottom: 0;
+            background: var(--white);
+            z-index: 10;
         }
 
         .mastery-title {
@@ -547,7 +563,8 @@
             gap: 0.5rem;
             color: var(--navy-dark);
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
         }
 
         .mastery-buttons {
@@ -558,10 +575,11 @@
 
         .mastery-btn {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            padding: 1rem 0.5rem;
-            border-radius: 16px;
+            gap: 0.4rem;
+            padding: 0.45rem 0.6rem;
+            border-radius: 10px;
             border: 1px solid var(--gray-light);
             background: var(--white);
             cursor: pointer;
@@ -575,8 +593,8 @@
             }
 
             .mastery-btn i {
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                margin-bottom: 0;
             }
 
         .btn-content {
@@ -585,12 +603,12 @@
 
         .btn-label {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--navy-dark);
         }
 
         .btn-desc {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--gray);
         }
 
@@ -704,76 +722,244 @@
             border: 1px solid var(--navy-dark);
         }
 
-        /* Settings Panel nâng cấp */
-        .settings-panel {
+        /* [Feature: Advanced Settings] - Modal 2 cột với Tabs */
+        .settings-overlay {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 38, 71, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInOverlay 0.2s ease;
+        }
+        .settings-overlay.active { display: flex; }
+
+        .settings-modal {
             background: var(--white);
-            padding: 2rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            z-index: 1000;
-            width: 90%;
-            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            width: 92%;
+            max-width: 640px;
+            max-height: 85vh;
+            display: flex;
+            overflow: hidden;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .settings-header {
+        .settings-sidebar {
+            width: 180px;
+            background: var(--off-white);
+            border-right: 1px solid var(--gray-light);
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .settings-sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding: 0 1.25rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .settings-tab {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1.25rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray-dark);
+            transition: all 0.2s;
+            text-align: left;
+            width: 100%;
+            border-left: 3px solid transparent;
+        }
+        .settings-tab:hover { background: var(--navy-mist); color: var(--navy-dark); }
+        .settings-tab.active {
+            background: var(--navy-mist);
+            color: var(--navy-dark);
+            border-left-color: var(--navy-dark);
+            font-weight: 600;
+        }
+        .settings-tab i { width: 18px; text-align: center; font-size: 0.95rem; }
+
+        .settings-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .settings-content-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-light);
         }
-
-            .settings-header h3 {
-                font-size: 1.25rem;
-                color: var(--navy-dark);
-            }
-
-            .settings-header button {
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--gray);
-            }
-
-        .settings-body {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
+        .settings-content-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy-dark);
         }
+        .settings-close-btn {
+            background: none; border: none; font-size: 1.4rem;
+            cursor: pointer; color: var(--gray); padding: 0.25rem;
+            border-radius: 8px; transition: all 0.2s;
+        }
+        .settings-close-btn:hover { background: var(--gray-light); color: var(--navy-dark); }
+
+        .settings-tab-content { display: none; flex-direction: column; gap: 1.25rem; }
+        .settings-tab-content.active { display: flex; }
 
         .setting-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        .setting-group-title {
+            font-size: 0.82rem; font-weight: 600; color: var(--navy-dark);
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .setting-group-desc {
+            font-size: 0.78rem; color: var(--gray); margin-top: -0.25rem;
         }
 
-            .setting-group label {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                color: var(--navy-dark);
-                font-weight: 500;
-            }
+        /* Theme selector buttons */
+        .theme-selector {
+            display: flex; gap: 0.5rem;
+        }
+        .theme-btn {
+            flex: 1; padding: 0.6rem; border-radius: 12px;
+            border: 2px solid var(--gray-light); background: var(--white);
+            cursor: pointer; text-align: center; transition: all 0.2s;
+            font-size: 0.82rem; font-weight: 500; color: var(--navy-dark);
+        }
+        .theme-btn:hover { border-color: var(--navy-dark); }
+        .theme-btn.active { border-color: var(--navy-dark); background: var(--navy-mist); }
+        .theme-btn i { display: block; font-size: 1.2rem; margin-bottom: 0.25rem; }
 
-            .setting-group input[type="range"] {
-                width: 100%;
-            }
+        /* Accent color swatches */
+        .accent-colors {
+            display: flex; gap: 0.75rem; flex-wrap: wrap;
+        }
+        .accent-swatch {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 3px solid transparent; cursor: pointer;
+            transition: all 0.2s; position: relative;
+        }
+        .accent-swatch:hover { transform: scale(1.15); }
+        .accent-swatch.active { border-color: var(--navy-dark); box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--navy-dark); }
 
-            .setting-group select {
-                padding: 0.5rem;
-                border-radius: 8px;
-                border: 1px solid var(--gray-light);
-            }
+        /* Toggle switch */
+        .setting-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light);
+        }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-row-label {
+            font-size: 0.9rem; font-weight: 500; color: var(--navy-dark);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .setting-row-label i { color: var(--gray); width: 18px; text-align: center; }
+
+        .toggle-switch {
+            position: relative; width: 44px; height: 24px;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--gray-light); border-radius: 24px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .toggle-slider::before {
+            content: ''; position: absolute;
+            width: 18px; height: 18px; border-radius: 50%;
+            left: 3px; bottom: 3px;
+            background: white; transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--navy-dark);
+        }
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        /* Voice / range controls */
+        .setting-select {
+            padding: 0.5rem 0.75rem; border-radius: 10px;
+            border: 1px solid var(--gray-light); background: var(--white);
+            font-size: 0.88rem; color: var(--navy-dark);
+            width: 100%; cursor: pointer;
+        }
+        .setting-range {
+            width: 100%; accent-color: var(--navy-dark);
+        }
+        .range-value {
+            font-size: 0.82rem; font-weight: 600; color: var(--navy-dark);
+            text-align: right; min-width: 32px;
+        }
+        .range-row {
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+
+        /* Focus mode */
+        body.focus-mode .study-header-modern,
+        body.focus-mode .session-progress-bar,
+        body.focus-mode .progress-timeline { display: none !important; }
+        body.focus-mode .study-area { border: none; box-shadow: none; }
+
+        /* [Feature: Advanced Settings] - Nút nổi thoát Focus Mode */
+        .focus-exit-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--navy-dark);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 4999;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+        }
+        .focus-exit-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+        }
+        body.focus-mode .focus-exit-btn { display: flex; }
+
+        /* Responsive: stack sidebar on mobile */
+        @@media (max-width: 600px) {
+            .settings-modal { flex-direction: column; max-height: 90vh; }
+            .settings-sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 0.5rem; border-right: none; border-bottom: 1px solid var(--gray-light); }
+            .settings-tab { padding: 0.5rem 0.75rem; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+            .settings-tab.active { border-left-color: transparent; border-bottom-color: var(--navy-dark); }
+            .settings-sidebar-title { display: none; }
+        }
 
         /* Responsive */
         @@media (max-width: 768px) {
             .study-header-modern {
                 flex-wrap: wrap;
-                gap: 1rem;
+                gap: 0.5rem;
             }
 
             .header-stats-modern {
@@ -789,6 +975,28 @@
             .action-buttons-writing {
                 flex-direction: column;
             }
+        }
+
+        /* Compact adjustments for shorter viewports */
+        @@media (max-height: 750px) {
+            .study-advanced { padding: 0.25rem 0.5rem; }
+            .study-header-modern { padding: 0.3rem 0.75rem; margin-bottom: 0.25rem; }
+            .session-progress-bar { padding: 0.25rem 0.5rem; margin-bottom: 0.2rem; }
+            .study-area { padding: 0.3rem 0.5rem; }
+            .flashcard-inner { min-height: 200px; }
+            .flashcard-front, .flashcard-back { padding: 0.5rem 0.75rem; }
+            .word-display h1 { font-size: 1.6rem; }
+            .definition-section { padding: 0.5rem; }
+            .mastery-btn { padding: 0.35rem 0.5rem; }
+            .word-image { max-height: 90px; }
+        }
+
+        @@media (max-height: 600px) {
+            .flashcard-inner { min-height: 160px; }
+            .word-display h1 { font-size: 1.3rem; }
+            .mastery-title { display: none; }
+            .word-info { display: none; }
+            .word-image { max-height: 60px; }
         }
 
         /* Toast Notification */
@@ -890,13 +1098,14 @@
         /* Session Progress Bar */
         .session-progress-bar {
             background: var(--white);
-            border-radius: 16px;
-            padding: 0.75rem 1.25rem;
-            margin-bottom: 1rem;
+            border-radius: 10px;
+            padding: 0.35rem 0.75rem;
+            margin-bottom: 0.3rem;
             border: 1px solid var(--gray-light);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            flex-shrink: 0;
         }
 
         .session-progress-bar .progress-info {
@@ -909,7 +1118,7 @@
 
         .session-progress-bar .progress-track {
             flex: 1;
-            height: 10px;
+            height: 6px;
             background: var(--gray-light);
             border-radius: 100px;
             overflow: hidden;
@@ -1158,6 +1367,127 @@
         </div>
     </div>
 
+    <!-- [Feature: Advanced Settings] - Settings Modal -->
+    <div class="settings-overlay" id="settingsOverlay" onclick="if(event.target===this)toggleSettings()">
+        <div class="settings-modal">
+            <div class="settings-sidebar">
+                <div class="settings-sidebar-title">Cài đặt</div>
+                <button class="settings-tab active" data-tab="appearance" onclick="switchSettingsTab('appearance')">
+                    <i class="fas fa-palette"></i> Giao diện
+                </button>
+                <button class="settings-tab" data-tab="sound" onclick="switchSettingsTab('sound')">
+                    <i class="fas fa-volume-up"></i> Âm thanh
+                </button>
+                <button class="settings-tab" data-tab="learning" onclick="switchSettingsTab('learning')">
+                    <i class="fas fa-graduation-cap"></i> Học tập
+                </button>
+                <button class="settings-tab" data-tab="advanced" onclick="switchSettingsTab('advanced')">
+                    <i class="fas fa-sliders-h"></i> Nâng cao
+                </button>
+            </div>
+            <div class="settings-content">
+                <div class="settings-content-header">
+                    <h3 id="settingsTabTitle">Giao diện</h3>
+                    <button class="settings-close-btn" onclick="toggleSettings()">&times;</button>
+                </div>
+
+                <!-- Tab: Giao diện -->
+                <div class="settings-tab-content active" id="tab-appearance">
+                    <div class="setting-group">
+                        <div class="setting-group-title">Chế độ hiển thị</div>
+                        <div class="theme-selector">
+                            <button class="theme-btn active" data-theme="light" onclick="setTheme('light')">
+                                <i class="fas fa-sun"></i> Sáng
+                            </button>
+                            <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">
+                                <i class="fas fa-moon"></i> Tối
+                            </button>
+                            <button class="theme-btn" data-theme="system" onclick="setTheme('system')">
+                                <i class="fas fa-desktop"></i> Hệ thống
+                            </button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <div class="setting-group-title">Màu chủ đạo</div>
+                        <div class="setting-group-desc">Chọn màu chính cho giao diện</div>
+                        <div class="accent-colors">
+                            <div class="accent-swatch active" style="background:#0A2647" data-color="#0A2647" onclick="setAccentColor(this)" title="Navy"></div>
+                            <div class="accent-swatch" style="background:#10B981" data-color="#10B981" onclick="setAccentColor(this)" title="Xanh lá"></div>
+                            <div class="accent-swatch" style="background:#F59E0B" data-color="#F59E0B" onclick="setAccentColor(this)" title="Cam"></div>
+                            <div class="accent-swatch" style="background:#8B5CF6" data-color="#8B5CF6" onclick="setAccentColor(this)" title="Tím"></div>
+                            <div class="accent-swatch" style="background:#EF4444" data-color="#EF4444" onclick="setAccentColor(this)" title="Đỏ"></div>
+                            <div class="accent-swatch" style="background:#3B82F6" data-color="#3B82F6" onclick="setAccentColor(this)" title="Xanh dương"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Âm thanh -->
+                <div class="settings-tab-content" id="tab-sound">
+                    <div class="setting-group">
+                        <div class="setting-group-title">Giọng đọc</div>
+                        <select class="setting-select" id="voiceSelect" onchange="saveSettingValue('voiceType', this.value)">
+                            <option value="US">🇺🇸 English (US)</option>
+                            <option value="UK">🇬🇧 English (UK)</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <div class="setting-group-title">Tốc độ phát âm</div>
+                        <div class="range-row">
+                            <input type="range" class="setting-range" id="speechRateRange" min="0.5" max="2" step="0.1" value="1" oninput="updateSpeechRate(this.value)">
+                            <span class="range-value" id="speechRateValue">1.0x</span>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-row-label"><i class="fas fa-bell"></i> Hiệu ứng âm thanh</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="sfxToggle" checked onchange="saveSettingValue('sfxEnabled', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tab: Học tập -->
+                <div class="settings-tab-content" id="tab-learning">
+                    <div class="setting-row">
+                        <span class="setting-row-label"><i class="fas fa-check-double"></i> Chấm điểm khắt khe</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="strictModeToggle" onchange="saveSettingValue('strictMode', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-group-desc" style="margin-top:-0.5rem">Phân biệt chữ hoa/thường và dấu câu khi chấm Writing</div>
+                    <div class="setting-row">
+                        <span class="setting-row-label"><i class="fas fa-language"></i> Mặc định hiện dịch nghĩa</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showViTransToggle" checked onchange="saveSettingValue('showViTrans', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tab: Nâng cao -->
+                <div class="settings-tab-content" id="tab-advanced">
+                    <div class="setting-row">
+                        <span class="setting-row-label"><i class="fas fa-eye-slash"></i> Chế độ tập trung</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="focusModeToggle" onchange="applyFocusMode(this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-group-desc" style="margin-top:-0.5rem">Ẩn Header và Timeline, chỉ giữ lại vùng học</div>
+                    <div class="setting-row">
+                        <span class="setting-row-label"><i class="fas fa-play-circle"></i> Tự động lật thẻ</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autoFlipToggle" onchange="applyAutoFlip(this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-group-desc" style="margin-top:-0.5rem">Tự động lật thẻ sau 5 giây trong chế độ Flashcard</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if (totalCards > 0 && currentCard != null)
     {
         <!-- Session Progress Bar -->
@@ -1168,6 +1498,11 @@
             </div>
             <span class="progress-percent" id="progressPercent">@((currentIndex * 100) / Math.Max(totalCards, 1))%</span>
         </div>
+
+    <!-- [Feature: Advanced Settings] - Nút nổi thoát Focus Mode -->
+    <button class="focus-exit-btn" id="focusExitBtn" onclick="toggleSettings()" title="Mở cài đặt (Esc)">
+        <i class="fas fa-cog"></i>
+    </button>
 
         <!-- Progress Timeline -->
         <div class="progress-timeline">
@@ -1816,7 +2151,47 @@
         document.head.appendChild(confettiStyle);
 
         // ============ SHUFFLE ============
+        // [Fix: Shuffle Logic] - Sử dụng mảng xáo trộn Fisher-Yates lưu trong sessionStorage
+        // Đảm bảo mỗi thẻ chỉ được học đúng 1 lần, không lặp, không sót
         let isShuffled = sessionStorage.getItem('shuffleMode_@setId') === 'true';
+        const SHUFFLE_ORDER_KEY = 'shuffleOrder_@setId';
+        const SHUFFLE_POINTER_KEY = 'shufflePointer_@setId';
+
+        // [Fix: Shuffle Logic] - Thuật toán Fisher-Yates tạo mảng xáo trộn
+        function generateShuffledOrder(total) {
+            const arr = [];
+            for (let i = 1; i <= total; i++) arr.push(i);
+            // Fisher-Yates shuffle
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // [Fix: Shuffle Logic] - Lưu/đọc mảng xáo trộn từ sessionStorage
+        function getShuffledOrder() {
+            const raw = sessionStorage.getItem(SHUFFLE_ORDER_KEY);
+            if (raw) return JSON.parse(raw);
+            return null;
+        }
+
+        function saveShuffledOrder(order) {
+            sessionStorage.setItem(SHUFFLE_ORDER_KEY, JSON.stringify(order));
+        }
+
+        function getShufflePointer() {
+            return parseInt(sessionStorage.getItem(SHUFFLE_POINTER_KEY) || '0', 10);
+        }
+
+        function saveShufflePointer(ptr) {
+            sessionStorage.setItem(SHUFFLE_POINTER_KEY, ptr.toString());
+        }
+
+        function clearShuffleData() {
+            sessionStorage.removeItem(SHUFFLE_ORDER_KEY);
+            sessionStorage.removeItem(SHUFFLE_POINTER_KEY);
+        }
 
         function toggleShuffle() {
             isShuffled = !isShuffled;
@@ -1825,8 +2200,14 @@
             btn.classList.toggle('active', isShuffled);
 
             if (isShuffled) {
+                // [Fix: Shuffle Logic] - Tạo mảng xáo trộn mới khi bật shuffle
+                const order = generateShuffledOrder(totalCards);
+                saveShuffledOrder(order);
+                saveShufflePointer(0);
                 showToast('🔀 Đã bật trộn ngẫu nhiên', 'success');
             } else {
+                // Xóa dữ liệu shuffle khi tắt
+                clearShuffleData();
                 showToast('Đã tắt trộn ngẫu nhiên', 'error');
             }
         }
@@ -1834,18 +2215,34 @@
         // Khởi tạo shuffle state
         if (isShuffled) {
             document.getElementById('shuffleBtn')?.classList.add('active');
+            // Đảm bảo có mảng xáo trộn (phòng trường hợp sessionStorage bị xóa)
+            if (!getShuffledOrder()) {
+                const order = generateShuffledOrder(totalCards);
+                saveShuffledOrder(order);
+                saveShufflePointer(0);
+            }
         }
 
-        // Override navigateToCard nếu shuffle
+        // [Fix: Shuffle Logic] - Override navigateToCard để dùng mảng xáo trộn
         const originalNavigateToCard = navigateToCard;
         navigateToCard = function(index) {
             if (isShuffled && totalCards > 1) {
-                // Chọn index ngẫu nhiên khác với current
-                let randomIndex;
-                do {
-                    randomIndex = Math.floor(Math.random() * totalCards) + 1;
-                } while (randomIndex === currentIndex && totalCards > 1);
-                originalNavigateToCard(randomIndex);
+                const order = getShuffledOrder();
+                if (order && order.length > 0) {
+                    let ptr = getShufflePointer();
+                    // Tìm vị trí tiếp theo trong mảng xáo trộn
+                    ptr++;
+                    if (ptr >= order.length) {
+                        // Đã hết mảng → hiện completion screen
+                        showCompletionScreen();
+                        return;
+                    }
+                    saveShufflePointer(ptr);
+                    originalNavigateToCard(order[ptr]);
+                } else {
+                    // Fallback nếu không có mảng
+                    originalNavigateToCard(index);
+                }
             } else {
                 originalNavigateToCard(index);
             }
@@ -1890,5 +2287,141 @@
                 }
             }
         });
+        // ============ [Feature: Advanced Settings] ============
+        // [Feature: Advanced Settings] - Mở/đóng modal cài đặt
+        function toggleSettings() {
+            const overlay = document.getElementById('settingsOverlay');
+            overlay.classList.toggle('active');
+        }
+
+        // [Feature: Advanced Settings] - Chuyển tab trong modal
+        function switchSettingsTab(tabName) {
+            document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelector(`.settings-tab[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+            const titles = { appearance: 'Giao diện', sound: 'Âm thanh', learning: 'Học tập', advanced: 'Nâng cao' };
+            document.getElementById('settingsTabTitle').textContent = titles[tabName] || tabName;
+        }
+
+        // [Feature: Advanced Settings] - Lưu/đọc cài đặt từ localStorage
+        function saveSettingValue(key, value) {
+            localStorage.setItem('study_' + key, JSON.stringify(value));
+        }
+        function getSettingValue(key, defaultVal) {
+            const raw = localStorage.getItem('study_' + key);
+            return raw !== null ? JSON.parse(raw) : defaultVal;
+        }
+
+        // [Feature: Advanced Settings] - Theme: Sáng / Tối / Hệ thống
+        function setTheme(theme) {
+            saveSettingValue('theme', theme);
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.theme-btn[data-theme="${theme}"]`)?.classList.add('active');
+            applyTheme(theme);
+        }
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else if (theme === 'light') {
+                document.body.classList.remove('dark-mode');
+            } else {
+                // Hệ thống
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            }
+        }
+
+        // [Feature: Advanced Settings] - Accent Color
+        function setAccentColor(el) {
+            const color = el.dataset.color;
+            saveSettingValue('accentColor', color);
+            document.querySelectorAll('.accent-swatch').forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+            document.documentElement.style.setProperty('--navy-dark', color);
+        }
+
+        // [Feature: Advanced Settings] - Tốc độ phát âm
+        function updateSpeechRate(val) {
+            document.getElementById('speechRateValue').textContent = parseFloat(val).toFixed(1) + 'x';
+            saveSettingValue('speechRate', parseFloat(val));
+        }
+
+        // [Feature: Advanced Settings] - Chế độ tập trung
+        function applyFocusMode(enabled) {
+            saveSettingValue('focusMode', enabled);
+            document.body.classList.toggle('focus-mode', enabled);
+            const focusToggle = document.getElementById('focusModeToggle');
+            if (focusToggle) focusToggle.checked = enabled;
+        }
+
+        // [Feature: Advanced Settings] - Tự động lật thẻ
+        let autoFlipTimer = null;
+        function applyAutoFlip(enabled) {
+            saveSettingValue('autoFlip', enabled);
+            clearInterval(autoFlipTimer);
+            if (enabled && currentMode === 'flashcard') {
+                autoFlipTimer = setInterval(() => {
+                    if (!isFlipped) flipCard3D();
+                }, 5000);
+            }
+        }
+
+        // [Feature: Advanced Settings] - Tải tất cả cài đặt khi mở trang
+        function loadSettings() {
+            // Theme
+            const theme = getSettingValue('theme', 'light');
+            applyTheme(theme);
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
+
+            // Accent color
+            const accent = getSettingValue('accentColor', '#0A2647');
+            document.documentElement.style.setProperty('--navy-dark', accent);
+            document.querySelectorAll('.accent-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === accent));
+
+            // Voice
+            const voice = getSettingValue('voiceType', 'US');
+            const voiceSelect = document.getElementById('voiceSelect');
+            if (voiceSelect) voiceSelect.value = voice;
+
+            // Speech rate
+            const rate = getSettingValue('speechRate', 1.0);
+            const rateRange = document.getElementById('speechRateRange');
+            if (rateRange) { rateRange.value = rate; document.getElementById('speechRateValue').textContent = parseFloat(rate).toFixed(1) + 'x'; }
+
+            // SFX
+            const sfx = getSettingValue('sfxEnabled', true);
+            const sfxToggle = document.getElementById('sfxToggle');
+            if (sfxToggle) sfxToggle.checked = sfx;
+
+            // Strict mode
+            const strict = getSettingValue('strictMode', false);
+            const strictToggle = document.getElementById('strictModeToggle');
+            if (strictToggle) strictToggle.checked = strict;
+
+            // Show Vietnamese translation
+            const showVi = getSettingValue('showViTrans', true);
+            const showViToggle = document.getElementById('showViTransToggle');
+            if (showViToggle) showViToggle.checked = showVi;
+
+            // Focus mode
+            const focus = getSettingValue('focusMode', false);
+            const focusToggle = document.getElementById('focusModeToggle');
+            if (focusToggle) focusToggle.checked = focus;
+            document.body.classList.toggle('focus-mode', focus);
+
+            // Auto flip
+            const autoFlip = getSettingValue('autoFlip', false);
+            const autoFlipToggleEl = document.getElementById('autoFlipToggle');
+            if (autoFlipToggleEl) autoFlipToggleEl.checked = autoFlip;
+            if (autoFlip) applyAutoFlip(true);
+        }
+
+        // Gọi loadSettings khi trang tải xong
+        loadSettings();
+
     </script>
 }
