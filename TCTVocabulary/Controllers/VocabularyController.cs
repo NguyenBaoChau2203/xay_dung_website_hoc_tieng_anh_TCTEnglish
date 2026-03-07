@@ -34,8 +34,8 @@ namespace TCTVocabulary.Controllers
             ViewBag.TotalCards = allCards.Count;
             ViewBag.MasteredCards = allCards.Count(c => c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
             ViewBag.DueToday = allCards.Count(c =>
-                !c.LearningProgresses.Any() ||
-                c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
+                c.LearningProgresses.Any() &&
+                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now));
             
             // Lấy streak từ bảng User
             var user = await _context.Users.FindAsync(currentUserId);
@@ -82,8 +82,8 @@ namespace TCTVocabulary.Controllers
             // Tính DueToday cho set này
             var detailCards = set.Cards?.ToList() ?? new List<Card>();
             ViewBag.DueToday = detailCards.Count(c =>
-                !c.LearningProgresses.Any() ||
-                c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
+                c.LearningProgresses.Any() &&
+                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now));
 
             // [Feature: View_Count] - Tăng lượt truy cập khi vào Detail
             // [FIX-AI-AUTH] Chống spam ViewCount bằng Cookie
@@ -156,12 +156,12 @@ namespace TCTVocabulary.Controllers
                     .ToList();
             }
 
-            // Nếu là review (SRS), chỉ lấy các thẻ đến hạn ôn tập hoặc chưa từng học
+            // Nếu là review (SRS), chỉ lấy các thẻ đã học mà đến hạn ôn tập
             if (isReview)
             {
                 filteredCards = filteredCards
-                    .Where(c => !c.LearningProgresses.Any() ||
-                               c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now))
+                    .Where(c => c.LearningProgresses.Any() &&
+                               c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now))
                     .ToList();
             }
 

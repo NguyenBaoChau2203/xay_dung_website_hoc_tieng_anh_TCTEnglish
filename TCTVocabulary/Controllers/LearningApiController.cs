@@ -47,24 +47,24 @@ namespace TCTVocabulary.Controllers
             switch (request.MasteryLevel.ToLower())
             {
                 case "hard":
-                    // Khó → ôn lại sớm, reset repetition
+                    // Khó → ôn lại sau 10 phút, reset repetition
                     progress.Status = "Learning";
-                    progress.NextReviewDate = DateTime.Now.AddDays(1);
+                    progress.NextReviewDate = DateTime.Now.AddMinutes(1);
                     progress.WrongCount = (progress.WrongCount ?? 0) + 1;
                     progress.RepetitionCount = 0;
                     break;
                 case "good":
-                    // Tốt → khoảng cách tăng dần: 1 → 3 → 7 ngày
+                    // Tốt → khoảng cách tăng dần: 1 giờ → 12 giờ → 24 giờ
                     progress.Status = "Reviewing";
-                    int goodDays = reps == 0 ? 1 : (reps == 1 ? 3 : 7);
-                    progress.NextReviewDate = DateTime.Now.AddDays(goodDays);
+                    int goodHours = reps == 0 ? 1 : (reps == 1 ? 12 : 24);
+                    progress.NextReviewDate = DateTime.Now.AddHours(goodHours);
                     progress.RepetitionCount = reps + 1;
                     break;
                 case "easy":
                 case "perfect":
-                    // Dễ → khoảng cách lớn hơn: 3 → 7 → 14 → 30 ngày
+                    // Dễ → khoảng cách lớn hơn: 1 → 3 → 7 ngày
                     progress.Status = "Mastered";
-                    int easyDays = reps == 0 ? 3 : (reps == 1 ? 7 : (reps <= 3 ? 14 : 30));
+                    int easyDays = reps == 0 ? 1 : (reps == 1 ? 3 : 7);
                     progress.NextReviewDate = DateTime.Now.AddDays(easyDays);
                     progress.RepetitionCount = reps + 1;
                     break;
