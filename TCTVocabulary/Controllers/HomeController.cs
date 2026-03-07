@@ -346,14 +346,18 @@ namespace TCTVocabulary.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateSet(int? folderId, string SetName, string Description, string[] Terms, string[] Definitions)
+        [Authorize] // [FIX-AI-AUTH] Bắt buộc đăng nhập
+        public async Task<IActionResult> CreateSet(int? folderId, string SetName, string Description, string[] Terms, string[] Definitions)
         {
+            // [FIX-AI-AUTH] Lấy UserId từ người dùng đang đăng nhập
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
             // 1. Khởi tạo đối tượng Set mới
             var newSet = new Set
             {
                 SetName = SetName,
                 FolderId = folderId, // Gán vào thư mục cha
-                OwnerId = 1, // Tạm thời gán ID người dùng cố định (cần sửa theo Login thực tế)
+                OwnerId = userId, // [FIX-AI-AUTH] Sử dụng ID người dùng thực tế
                 CreatedAt = DateTime.Now
             };
 
@@ -364,10 +368,30 @@ namespace TCTVocabulary.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(Terms[i]))
                     {
+                        string? imageUrl = null;
+
+                        // Xử lý upload ảnh cho card này (dùng tên indexed để tránh lệch vị trí)
+                        var imageFile = Request.Form.Files[$"ImageFile_{i}"];
+                        if (imageFile != null && imageFile.Length > 0)
+                        {
+                            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/cards");
+                            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                            var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+                            var filePath = Path.Combine(folderPath, fileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await imageFile.CopyToAsync(stream);
+                            }
+                            imageUrl = "/images/cards/" + fileName;
+                        }
+
                         newSet.Cards.Add(new Card
                         {
                             Term = Terms[i],
-                            Definition = Definitions[i]
+                            Definition = Definitions[i],
+                            ImageUrl = imageUrl
                         });
                     }
                 }
@@ -375,7 +399,7 @@ namespace TCTVocabulary.Controllers
 
             // 3. Lưu dữ liệu vào DbContext
             _context.Sets.Add(newSet);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // 4. Điều hướng về trang FolderDetail của thư mục cha nếu có
             if (folderId.HasValue)
@@ -601,7 +625,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions)
+        public async Task<IActionResult> EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions, string[] ExistingImageUrls)
         {
             var existingSet = _context.Sets
                 .Include(s => s.Cards)
@@ -622,16 +646,41 @@ namespace TCTVocabulary.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(Terms[i]))
                     {
+                        string? imageUrl = null;
+
+                        // Nếu có ảnh mới upload → lưu file mới (dùng tên indexed để tránh lệch vị trí)
+                        var imageFile = Request.Form.Files[$"ImageFile_{i}"];
+                        if (imageFile != null && imageFile.Length > 0)
+                        {
+                            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/cards");
+                            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                            var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+                            var filePath = Path.Combine(folderPath, fileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await imageFile.CopyToAsync(stream);
+                            }
+                            imageUrl = "/images/cards/" + fileName;
+                        }
+                        // Nếu không upload mới → giữ ảnh cũ
+                        else if (ExistingImageUrls != null && i < ExistingImageUrls.Length && !string.IsNullOrEmpty(ExistingImageUrls[i]))
+                        {
+                            imageUrl = ExistingImageUrls[i];
+                        }
+
                         existingSet.Cards.Add(new Card
                         {
                             Term = Terms[i],
-                            Definition = Definitions[i]
+                            Definition = Definitions[i],
+                            ImageUrl = imageUrl
                         });
                     }
                 }
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
         }

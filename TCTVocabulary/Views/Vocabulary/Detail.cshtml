@@ -294,6 +294,176 @@
             }
         }
     </style>
+
+    <style>
+        .due-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .due-modal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 36px;
+            max-width: 440px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.4s ease-out;
+            position: relative;
+        }
+        .due-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 1.3rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+        .due-modal-close:hover {
+            background: #F3F4F6;
+            color: #374151;
+        }
+        .due-modal-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #F97316, #EF4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: white;
+            animation: bellRing 1s ease-in-out 0.5s;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.35);
+        }
+        .due-modal-count {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F97316, #EF4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .due-modal-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+        .due-modal-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .due-modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .due-modal-btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #F97316, #EF4444);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+        }
+        .due-modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+            color: white;
+        }
+        .due-modal-btn-secondary {
+            background: none;
+            border: 1px solid #E5E7EB;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6B7280;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .due-modal-btn-secondary:hover {
+            background: #F9FAFB;
+            color: #374151;
+        }
+        @@keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @@keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @@keyframes bellRing {
+            0%, 100% { transform: rotate(0); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(-15deg); }
+            60% { transform: rotate(10deg); }
+            80% { transform: rotate(-10deg); }
+        }
+    </style>
+}
+
+@if (dueToday > 0)
+{
+    <div class="due-modal-overlay" id="dueModal">
+        <div class="due-modal-card">
+            <button class="due-modal-close" onclick="document.getElementById('dueModal').remove()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="due-modal-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="due-modal-count">@dueToday</div>
+            <div class="due-modal-title">từ đến hạn ôn tập!</div>
+            <div class="due-modal-desc">
+                Bạn có <strong>@dueToday từ vựng</strong> trong bộ <strong>@Model.SetName</strong> cần được ôn tập.<br>
+                Hãy ôn ngay để ghi nhớ lâu hơn nhé! 🧠
+            </div>
+            <div class="due-modal-actions">
+                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, mode = "review" })" class="due-modal-btn-primary">
+                    <i class="fas fa-play"></i> Ôn tập ngay
+                </a>
+                <button class="due-modal-btn-secondary" onclick="document.getElementById('dueModal').remove()">
+                    Để sau
+                </button>
+            </div>
+        </div>
+    </div>
 }
 
 <div class="set-detail-modern">
@@ -348,6 +518,13 @@
                     <i class="fas fa-play"></i>
                     <span>@(learnedCards > 0 ? "Tiếp tục học" : "Bắt đầu học")</span>
                 </a>
+                @if (dueToday > 0)
+                {
+                    <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, mode = "review" })" class="btn-study" style="background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);">
+                        <i class="fas fa-clock"></i>
+                        <span>Ôn tập @dueToday từ đến hạn</span>
+                    </a>
+                }
                 <button class="btn-bookmark">
                     <i class="far fa-bookmark"></i>
                 </button>

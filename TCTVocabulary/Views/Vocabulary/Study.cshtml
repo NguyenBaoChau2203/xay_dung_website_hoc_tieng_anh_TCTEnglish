@@ -1957,7 +1957,7 @@
 
             // Gọi API để ghi nhận
             try {
-                await fetch('/api/LearningApi/record', {
+                const response = await fetch('/api/LearningApi/record', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1966,6 +1966,19 @@
                         timestamp: new Date().toISOString()
                     })
                 });
+
+                if (!response.ok) {
+                    // Nếu bị redirect đến trang login hoặc lỗi auth
+                    if (response.redirected || response.status === 401 || response.status === 403) {
+                        alert('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!');
+                        window.location.href = '/Account/Login';
+                        return;
+                    }
+                    console.error('API Error:', response.status, await response.text());
+                } else {
+                    const data = await response.json();
+                    console.log('Progress saved:', data);
+                }
             } catch (err) {
                 console.error('Error recording mastery:', err);
             }

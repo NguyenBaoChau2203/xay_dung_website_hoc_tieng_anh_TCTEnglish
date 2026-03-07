@@ -4,7 +4,7 @@
 }
 
 <div class="create-set-wrapper">
-    <form asp-action="CreateSet" method="post" enctype="multipart/form-data">
+    <form asp-action="CreateSet" method="post" enctype="multipart/form-data" id="createSetForm">
         <input type="hidden" name="folderId" value="@ViewBag.FolderId" />
 
         <div class="sticky-header">
@@ -393,10 +393,12 @@
                         </div>
                     </div>
                     <div class="image-upload-area">
-                        <div class="image-upload-box">
+                        <label class="image-upload-box">
                             <i class="fas fa-image"></i>
-                            <span>Hình ảnh</span>
-                        </div>
+                            <span>Thêm ảnh</span>
+                            <input type="file" name="ImageFiles" accept="image/*" style="display:none" onchange="previewImage(this)" />
+                            <img src="" class="img-preview" style="display:none; width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
+                        </label>
                     </div>
                 </div>`;
 
@@ -453,11 +455,20 @@
                 reader.onload = function(e) {
                     img.src = e.target.result;
                     img.style.display = 'block';
-                    span.style.display = 'none';
-                    icon.style.display = 'none';
+                    if (span) span.style.display = 'none';
+                    if (icon) icon.style.display = 'none';
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        // Re-index file inputs trước khi submit để tránh lệch vị trí
+        document.getElementById('createSetForm').addEventListener('submit', function() {
+            const cards = container.querySelectorAll('.term-card');
+            cards.forEach((card, i) => {
+                const fileInput = card.querySelector('input[type="file"]');
+                if (fileInput) fileInput.name = 'ImageFile_' + i;
+            });
+        });
     </script>
 }
