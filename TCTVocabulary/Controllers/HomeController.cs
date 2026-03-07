@@ -329,7 +329,7 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public IActionResult CreateClass()
         {
             return View();
@@ -532,6 +532,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = folderId });
         }
 
+        [Authorize]
         public IActionResult Study(int id)
         {
             // Phải có .Include(s => s.Cards) để lấy danh sách từ vựng
@@ -612,6 +613,7 @@ namespace TCTVocabulary.Controllers
         }
 
         // GET: Home/EditSet/5
+        [Authorize]
         public IActionResult EditSet(int id)
         {
             // Lấy thông tin Set cùng với danh sách Cards của nó
@@ -625,6 +627,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions, string[] ExistingImageUrls)
         {
             var existingSet = _context.Sets
@@ -685,7 +688,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
 
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
@@ -743,7 +746,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [ValidateAntiForgeryToken]
         public IActionResult EditClass(int classId, string className, string? description)
         {
@@ -762,7 +765,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteClass(int classId)
         {
@@ -840,7 +843,7 @@ namespace TCTVocabulary.Controllers
         }
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        [Authorize]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -975,6 +978,7 @@ namespace TCTVocabulary.Controllers
         }
         
         // Action cho Write Mode
+        [Authorize]
         public IActionResult WriteMode(int id)
         {
             var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
@@ -984,6 +988,7 @@ namespace TCTVocabulary.Controllers
         }
 
         // Action cho Quiz Mode
+        [Authorize]
         public IActionResult QuizMode(int id)
         {
             var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
@@ -991,6 +996,7 @@ namespace TCTVocabulary.Controllers
             var vm = new StudyViewModel { Set = set, Cards = set.Cards.ToList() };
             return View(vm);
         }
+        [Authorize]
         public IActionResult MatchingMode(int id)
         {
             var set = _context.Sets.Include(s => s.Cards).FirstOrDefault(s => s.SetId == id);
@@ -1007,6 +1013,7 @@ namespace TCTVocabulary.Controllers
         public ChatController(IWebHostEnvironment env) => _env = env;
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UploadImage(IFormFile image, int classId)
         {
             if (image == null || image.Length == 0) return BadRequest();

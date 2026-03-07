@@ -353,20 +353,6 @@ public partial class DbflashcardContext : DbContext
                 .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
         });
 
-        modelBuilder.Entity<User>().HasData(
-            new User
-        {
-                UserId = 1, 
-                Email = "baochau1512v@gmail.com",
-                PasswordHash = "$2a$11$.ryXFi1l5E2Bomp0jygOMuPyhcqbpwpMuOHB79oBcAe9idsouoL6u",
-                FullName = "chau2203",
-                Role = "User", 
-                Streak = 0,
-                Goal = 0,
-                CreatedAt = new DateTime(2026, 2, 1, 16, 20, 51, 117)
-            }
-);
-
         OnModelCreatingPartial(modelBuilder);
     }
 

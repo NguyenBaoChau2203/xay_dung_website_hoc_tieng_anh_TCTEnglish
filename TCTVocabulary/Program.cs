@@ -82,6 +82,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ClassChatHub>("/classChatHub");
+
+// Area route (Admin Dashboard)
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
 // 3. Cấu hình trang chủ mặc định
 app.MapControllerRoute(
     name: "default",
