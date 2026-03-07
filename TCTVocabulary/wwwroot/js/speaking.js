@@ -199,6 +199,9 @@
     const sliderTrack = $('sentence-scroll-container');
     const btnSliderPrev = $('btn-slider-prev');
     const btnSliderNext = $('btn-slider-next');
+    const dicSliderTrack = $('dic-sentence-scroll-container');
+    const btnDicSliderPrev = $('btn-dic-slider-prev');
+    const btnDicSliderNext = $('btn-dic-slider-next');
     const btnHideText = $('btn-hide-text');
     const progBar = $('prog-bar');
     const progText = $('prog-text');
@@ -208,7 +211,8 @@
     const tabDictation = $('tab-dictation');
     const panePronounciation = $('pronunciation-content');
     const paneDictation = $('dictation-content');
-    const btnHideVideo = $('btn-hide-video');
+    const btnHideVideo = $('btn-dic-hide-video');
+    const videoOverlay = $('video-overlay');
     const youtubeFrame = $('youtube-player');
 
     // ── State ────────────────────────────────────────────────────────
@@ -280,6 +284,12 @@
         if (activeBtn) {
             activeBtn.classList.add('spk-sent-btn--active');
             activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        // Sync dictation slider
+        const activeDicBtn = document.querySelector(`.spk-sent-btn[data-dic-index="${idx}"]`);
+        if (activeDicBtn) {
+            activeDicBtn.classList.add('spk-sent-btn--active');
+            activeDicBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         // Update transcript
@@ -541,7 +551,7 @@
         // Record
         btnRecord?.addEventListener('click', startRecording);
 
-        // Slider arrows
+        // Pronunciation slider arrows
         btnSliderPrev?.addEventListener('click', () => {
             sliderTrack?.scrollBy({ left: -160, behavior: 'smooth' });
         });
@@ -549,10 +559,25 @@
             sliderTrack?.scrollBy({ left: 160, behavior: 'smooth' });
         });
 
-        // Sentence buttons in slider
-        $$('.spk-sent-btn').forEach(btn => {
+        // Dictation slider arrows
+        btnDicSliderPrev?.addEventListener('click', () => {
+            dicSliderTrack?.scrollBy({ left: -160, behavior: 'smooth' });
+        });
+        btnDicSliderNext?.addEventListener('click', () => {
+            dicSliderTrack?.scrollBy({ left: 160, behavior: 'smooth' });
+        });
+
+        // Pronunciation sentence buttons
+        $$('.spk-sent-btn[data-index]').forEach(btn => {
             btn.addEventListener('click', function () {
                 selectSentence(parseInt(this.dataset.index, 10));
+            });
+        });
+
+        // Dictation sentence buttons
+        $$('.spk-sent-btn[data-dic-index]').forEach(btn => {
+            btn.addEventListener('click', function () {
+                selectSentence(parseInt(this.dataset.dicIndex, 10));
             });
         });
 
@@ -567,15 +592,14 @@
             }
         });
 
-        // Hide video toggle
+        // Hide video toggle — shows black overlay over iframe to block subtitles
         btnHideVideo?.addEventListener('click', () => {
             isVideoHidden = !isVideoHidden;
-            const frame = youtubeFrame?.closest('.spk-video-frame');
-            if (frame) frame.style.opacity = isVideoHidden ? '0' : '1';
+            if (videoOverlay) videoOverlay.classList.toggle('d-none', !isVideoHidden);
             if (btnHideVideo) {
                 btnHideVideo.innerHTML = isVideoHidden
-                    ? '<i class="far fa-eye"></i> Hiện video'
-                    : '<i class="far fa-eye-slash"></i> Ẩn video';
+                    ? '<i class="fas fa-eye"></i> Hiện video'
+                    : '<i class="fas fa-eye-slash"></i> Ẩn video';
             }
         });
 
