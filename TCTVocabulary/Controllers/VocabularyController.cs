@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization; // [FIX-AI-AUTH]
+using System.Security.Claims; // [FIX-AI-AUTH]
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Controllers
 {
+    [Authorize] // [FIX-AI-AUTH]
     public class VocabularyController : Controller
     {
         private readonly DbflashcardContext _context;
@@ -16,7 +19,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/Index - Trang chủ danh sách Folder
         public async Task<IActionResult> Index()
         {
-            int currentUserId = 1; // Tạm thời gán fix cứng
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var folders = await _context.Folders
@@ -63,7 +66,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/Detail/5 - Chi tiết bộ từ vựng
         public async Task<IActionResult> Detail(int setId)
         {
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var set = await _context.Sets
@@ -83,8 +86,14 @@ namespace TCTVocabulary.Controllers
                 c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
 
             // [Feature: View_Count] - Tăng lượt truy cập khi vào Detail
-            set.ViewCount++;
-            await _context.SaveChangesAsync();
+            // [FIX-AI-AUTH] Chống spam ViewCount bằng Cookie
+            string viewedCookieName = $"ViewedSet_{setId}"; // [FIX-AI-AUTH]
+            if (!Request.Cookies.ContainsKey(viewedCookieName)) // [FIX-AI-AUTH]
+            { // [FIX-AI-AUTH]
+                set.ViewCount++; // [FIX-AI-AUTH]
+                await _context.SaveChangesAsync(); // [FIX-AI-AUTH]
+                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.Now.AddDays(1) }); // [FIX-AI-AUTH]
+            } // [FIX-AI-AUTH]
 
             return View(set);
         }
@@ -92,7 +101,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/Topics/5 - Danh sách các chủ đề trong bộ từ
         public async Task<IActionResult> Topics(int setId)
         {
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var set = await _context.Sets
@@ -108,7 +117,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/TopicDetail - Chi tiết một chủ đề
         public async Task<IActionResult> TopicDetail(int setId, string topic)
         {
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var set = await _context.Sets
@@ -125,7 +134,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/Study - Học từ vựng (có thể lọc theo topic)
         public async Task<IActionResult> Study(int setId, string topic = null, int index = 1, string mode = "all")
         {
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var set = await _context.Sets
@@ -171,8 +180,14 @@ namespace TCTVocabulary.Controllers
             ViewBag.StudyTotal = filteredCards.Count;
 
             // [Feature: View_Count] - Tăng lượt truy cập khi vào Study
-            set.ViewCount++;
-            await _context.SaveChangesAsync();
+            // [FIX-AI-AUTH] Chống spam ViewCount bằng Cookie
+            string viewedCookieName = $"ViewedSet_{setId}"; // [FIX-AI-AUTH]
+            if (!Request.Cookies.ContainsKey(viewedCookieName)) // [FIX-AI-AUTH]
+            { // [FIX-AI-AUTH]
+                set.ViewCount++; // [FIX-AI-AUTH]
+                await _context.SaveChangesAsync(); // [FIX-AI-AUTH]
+                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.Now.AddDays(1) }); // [FIX-AI-AUTH]
+            } // [FIX-AI-AUTH]
 
             return View("Study", resultSet);
         }
@@ -180,7 +195,7 @@ namespace TCTVocabulary.Controllers
         // GET: Vocabulary/FolderDetail/5 - Chi tiết Folder
         public async Task<IActionResult> FolderDetail(int folderId)
         {
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
 
             var folder = await _context.Folders
