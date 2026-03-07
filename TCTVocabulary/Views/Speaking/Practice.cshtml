@@ -50,6 +50,8 @@
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
+                <!-- Black overlay — hides subtitles while keeping audio (toggled by Ẩn video button) -->
+                <div class="spk-vid-overlay d-none" id="video-overlay"></div>
             </div>
 
             <!-- Overall Progress Bar -->
@@ -106,7 +108,7 @@
                                     data-start="@s.StartTime"
                                     data-end="@s.EndTime"
                                     title="Câu @(i + 1)">
-                                @(i + 1)
+                                <span>@(i + 1)</span>
                                 @if (s.IsPracticed)
                                 {
                                     <i class="fas fa-check spk-done-check"></i>
@@ -254,10 +256,104 @@
 
             </div><!-- /pronunciation-content -->
 
-            <!-- ─── DICTATION TAB (placeholder) ─── -->
-            <div id="dictation-content" class="spk-right-pane spk-hidden" style="justify-content:center;align-items:center;">
-                <i class="fas fa-headphones fa-3x mb-3" style="color:#dee2e6;"></i>
-                <p class="text-muted fw-semibold">Tính năng chép chính tả đang được phát triển...</p>
+            <!-- ─── DICTATION TAB ─── -->
+            <div id="dictation-content" class="spk-right-pane d-none">
+
+                <!-- Pane header -->
+                <div class="spk-pane-header">
+                    <span class="spk-pane-title">Chép chính tả</span>
+                    <span class="spk-pane-counter" id="dic-sent-indicator">(Câu hỏi 1/@totalCount)</span>
+                </div>
+
+                <!-- Ẩn video quick control -->
+                <div class="spk-dic-quick-row">
+                    <button class="spk-vid-ctrl-btn" id="btn-dic-hide-video">
+                        <i class="fas fa-eye-slash"></i> Ẩn video
+                    </button>
+                </div>
+
+                <!-- Sentence slider -->
+                <div class="spk-slider-wrapper">
+                    <button class="spk-slider-arrow" id="btn-dic-slider-prev" aria-label="Cuộn trái">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="spk-slider-track" id="dic-sentence-scroll-container">
+                        @for (int j = 0; j < Model.Sentences.Count; j++)
+                        {
+                            var dicSent = Model.Sentences[j];
+                            var dicActive = j == 0 ? "spk-sent-btn--active" : "";
+                            <button type="button"
+                                    class="spk-sent-btn spk-sent-btn--wide @dicActive"
+                                    data-dic-index="@j"
+                                    data-start="@dicSent.StartTime"
+                                    data-end="@dicSent.EndTime"
+                                    title="Câu @(j + 1)">
+                                Câu: @(j + 1)
+                            </button>
+                        }
+                    </div>
+                    <button class="spk-slider-arrow" id="btn-dic-slider-next" aria-label="Cuộn phải">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Typing area -->
+                <textarea class="spk-dic-input"
+                          id="dic-input"
+                          placeholder="Nhập những gì bạn nghe được..."
+                          autocomplete="off"
+                          autocorrect="off"
+                          autocapitalize="off"
+                          spellcheck="false"
+                          rows="3"></textarea>
+
+                <!-- Real-time masked feedback (JS will rebuild this dynamically) -->
+                <div class="spk-dic-feedback" id="dic-feedback">
+                    <!-- Mock spans for styling preview -->
+                    <span class="spk-dic-word spk-dic-word--done">
+                        <span class="char-correct">O</span><span class="char-correct">n</span><span class="char-correct">e</span>
+                    </span>
+                    <span class="spk-dic-word spk-dic-word--active">
+                        <span class="char-correct">t</span><span class="char-correct">w</span><span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span><span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-incorrect">t</span><span class="char-incorrect">r</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
+                    </span>
+                    <span class="spk-dic-word">
+                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
+                    </span>
+                </div>
+
+                <!-- Bottom action bar: [Hint] [Play/Pause] [Next] -->
+                <div class="spk-dic-action-bar">
+                    <button class="spk-dic-hint-btn" id="btn-dic-hint" title="Gợi ý (H)">
+                        <i class="fas fa-lightbulb"></i>
+                    </button>
+                    <button class="spk-dic-play-btn" id="btn-dic-play" title="Phát / Dừng (Space)">
+                        <i class="fas fa-play" id="dic-play-icon"></i>
+                        <span id="dic-play-label">Phát lại</span>
+                    </button>
+                    <button class="spk-btn spk-btn--nav spk-btn--nav-next spk-dic-next-btn" id="btn-dic-next" title="Câu tiếp (Tab)">
+                        <span>Tiếp</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
             </div>
 
         </div>
