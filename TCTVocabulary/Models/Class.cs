@@ -24,8 +24,6 @@
         // ===== Navigation =====
         public virtual User Owner { get; set; } = null!;
 
-        public virtual ICollection<User> Users { get; set; } = new List<User>();
-
         public virtual ICollection<ClassMessage> ClassMessages { get; set; } = new List<ClassMessage>();
         public virtual ICollection<ClassFolder> ClassFolders { get; set; }
             = new List<ClassFolder>();

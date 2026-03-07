@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 using TCTVocabulary.Models;
-using TCTVocabulary.Models.TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
 using TCTVocabulary.ViewModel;
 
@@ -37,7 +36,7 @@ namespace TCTVocabulary.Controllers
                 .Include(u => u.Folders)
                     .ThenInclude(f => f.Sets)
                 .Include(u => u.Sets)
-                .First(u => u.UserId == userId);
+                .FirstOrDefault(u => u.UserId == userId);
 
             var cardCount = _context.Cards
                 .Count(c => user.Sets.Select(s => s.SetId).Contains(c.SetId));
@@ -137,18 +136,40 @@ namespace TCTVocabulary.Controllers
         // =========================
         private void UpdateStreak()
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var claim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (claim == null) return;
+
+            var userId = int.Parse(claim);
             var user = _context.Users.First(u => u.UserId == userId);
 
             var today = DateTime.UtcNow.Date;
 
-            if (user.CreatedAt == null || user.CreatedAt.Value.Date < today)
+            if (user.LastStudyDate == null)
             {
-                user.Streak = (user.Streak ?? 0) + 1;
-                user.CreatedAt = today;
-
-                _context.SaveChanges();
+                user.Streak = 1;
             }
+            else
+            {
+                var lastStudy = user.LastStudyDate.Value.Date;
+
+                if (lastStudy == today)
+                {
+                    return; // đã học hôm nay rồi
+                }
+
+                if (lastStudy == today.AddDays(-1))
+                {
+                    user.Streak = (user.Streak ?? 0) + 1;
+                }
+                else
+                {
+                    user.Streak = 1; // reset streak
+                }
+            }
+
+            user.LastStudyDate = today;
+
+            _context.SaveChanges();
         }
 
         // =========================
@@ -168,8 +189,7 @@ namespace TCTVocabulary.Controllers
             return View();
         }
         [HttpGet]
-        [HttpGet]
-        [HttpGet]
+      
         public IActionResult Search(string q)
         {
             var vm = new SearchViewModel
@@ -226,6 +246,7 @@ namespace TCTVocabulary.Controllers
             return View(vm);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult UnsaveFolder(int folderId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -369,25 +390,40 @@ namespace TCTVocabulary.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteFolder(int id)
         {
-            var folder = _context.Folders
-                .Include(f => f.Sets)
-                .FirstOrDefault(f => f.FolderId == id);
+            // Lấy UserId của user đang đăng nhập
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (folder != null)
+            if (userIdClaim == null)
             {
-                // Lưu ý: Tùy vào thiết lập DB, bạn có thể cần xóa các Sets liên quan trước
-                // hoặc để DB tự động xóa (Cascade Delete).
-                _context.Folders.Remove(folder);
-                _context.SaveChanges();
+                return Unauthorized();
             }
 
-            // Sau khi xóa xong, quay về trang danh sách thư mục chính
+            int currentUserId = int.Parse(userIdClaim);
+
+            // Chỉ lấy folder thuộc về user hiện tại
+            var folder = _context.Folders
+                .Include(f => f.Sets)
+                .FirstOrDefault(f => f.FolderId == id && f.UserId == currentUserId);
+
+            if (folder == null)
+            {
+                return Unauthorized(); // hoặc NotFound()
+            }
+
+            _context.Folders.Remove(folder);
+            _context.SaveChanges();
+
             return RedirectToAction("Folder");
         }
+
+
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateFolderName(int folderId, string newName)
         {
             if (string.IsNullOrWhiteSpace(newName))
@@ -395,16 +431,32 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("FolderDetail", new { id = folderId });
             }
 
-            var folder = _context.Folders.FirstOrDefault(f => f.FolderId == folderId);
-            if (folder != null)
+            // Lấy UserId của user hiện tại
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
             {
-                folder.FolderName = newName;
-                _context.SaveChanges();
+                return Unauthorized();
             }
+
+            int currentUserId = int.Parse(userIdClaim);
+
+            // Chỉ cho phép sửa folder của chính user
+            var folder = _context.Folders
+                .FirstOrDefault(f => f.FolderId == folderId && f.UserId == currentUserId);
+
+            if (folder == null)
+            {
+                return Unauthorized(); // hoặc NotFound()
+            }
+
+            folder.FolderName = newName;
+            _context.SaveChanges();
 
             return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpPost]
+        [Authorize]
         public IActionResult DeleteSet(int setId, int folderId)
         {
             // Tìm Set kèm theo các Cards của nó
@@ -429,6 +481,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = folderId });
         }
         [HttpPost]
+        [Authorize]
         public IActionResult RemoveSetFromFolder(int setId, int folderId)
         {
             // Tìm học phần cần xóa
@@ -584,6 +637,7 @@ namespace TCTVocabulary.Controllers
         }
         [HttpPost]
         [Authorize]
+
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
             if (!ModelState.IsValid)
@@ -641,6 +695,7 @@ namespace TCTVocabulary.Controllers
         }
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult EditClass(int classId, string className, string? description)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -659,6 +714,7 @@ namespace TCTVocabulary.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteClass(int classId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -804,35 +860,18 @@ namespace TCTVocabulary.Controllers
 
             return Ok(classes);
         }
+        
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> SendClassMessage(int classId, string content)
-        {
-            if (string.IsNullOrWhiteSpace(content))
-                return BadRequest("Nội dung tin nhắn không được để trống.");
-
-            // 1. Lấy UserId từ Claims
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-            // 2. Khởi tạo tin nhắn với UserId động
-            var message = new ClassMessage
-            {
-                ClassId = classId,
-                UserId = userId, // ✅ Thay số 1 bằng userId
-                Content = content,
-                CreatedAt = DateTime.UtcNow // Khuyên dùng UtcNow để đồng bộ múi giờ
-            };
-
-            _context.ClassMessages.Add(message);
-            await _context.SaveChangesAsync();
-
-            return Ok();
-        }
-        [HttpPost]
-        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> JoinClass(int classId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var classExists = await _context.Classes
+                .AnyAsync(c => c.ClassId == classId);
+
+            if (!classExists)
+                return NotFound();
 
             var exists = await _context.ClassMembers
                 .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
@@ -844,6 +883,7 @@ namespace TCTVocabulary.Controllers
                     ClassId = classId,
                     UserId = userId
                 });
+
                 await _context.SaveChangesAsync();
             }
 
@@ -851,6 +891,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LeaveClass(int classId)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -883,7 +924,7 @@ namespace TCTVocabulary.Controllers
 
             return View(classes);
         }
-
+        
         // Action cho Write Mode
         public IActionResult WriteMode(int id)
         {
@@ -910,5 +951,32 @@ namespace TCTVocabulary.Controllers
         }
 
 
+    }
+    public class ChatController : Controller
+    {
+        private readonly IWebHostEnvironment _env;
+        public ChatController(IWebHostEnvironment env) => _env = env;
+
+        [HttpPost]
+        public async Task<IActionResult> UploadImage(IFormFile image, int classId)
+        {
+            if (image == null || image.Length == 0) return BadRequest();
+
+            // Tạo thư mục lưu trữ nếu chưa có
+            string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads/chat");
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+            // Tạo tên file duy nhất
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+            string filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            // Trả về đường dẫn để JS gọi Hub
+            return Json(new { imageUrl = "/uploads/chat/" + fileName });
+        }
     }
 }

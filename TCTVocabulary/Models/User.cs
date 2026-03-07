@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TCTVocabulary.Models.TCTVocabulary.Models;
+using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
 
