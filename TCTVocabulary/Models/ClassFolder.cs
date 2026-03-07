@@ -8,7 +8,7 @@
         public int FolderId { get; set; }
 
         public int AddedByUserId { get; set; }
-        public DateTime AddedAt { get; set; } = DateTime.Now;
+        public DateTime AddedAt { get; set; } = DateTime.UtcNow;
 
         // ===== Navigation =====
         public virtual Class Class { get; set; } = null!;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using TCTVocabulary.Models.TCTVocabulary.Models;
+using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
 
@@ -133,6 +133,7 @@ public partial class DbflashcardContext : DbContext
 
             entity.HasOne(d => d.ParentFolder).WithMany(p => p.InverseParentFolder)
                 .HasForeignKey(d => d.ParentFolderId)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("FK__Folders__ParentF__3E52440B");
 
             entity.HasOne(d => d.User).WithMany(p => p.Folders)
@@ -209,20 +210,22 @@ public partial class DbflashcardContext : DbContext
                   .HasForeignKey(e => e.FolderId);
         });
         modelBuilder.Entity<ClassMessage>(entity =>
- {
-     entity.HasKey(e => e.MessageId);
+        {
+            entity.HasKey(e => e.MessageId);
 
-     entity.Property(e => e.Content)
-           .IsRequired();
+            entity.Property(e => e.Content)
+                  .IsRequired();
 
-     entity.HasOne(e => e.Class)
-           .WithMany(c => c.ClassMessages)
-           .HasForeignKey(e => e.ClassId);
+            entity.HasOne(e => e.Class)
+                  .WithMany(c => c.ClassMessages)
+                  .HasForeignKey(e => e.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
 
-     entity.HasOne(e => e.User)
-           .WithMany(u => u.ClassMessages)
-           .HasForeignKey(e => e.UserId);
- });
+            entity.HasOne(e => e.User)
+                  .WithMany(u => u.ClassMessages)
+                  .HasForeignKey(e => e.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -294,7 +297,7 @@ public partial class DbflashcardContext : DbContext
                   .IsRequired();
 
             entity.Property(e => e.AddedAt)
-                  .HasDefaultValueSql("GETDATE()");
+                  .HasDefaultValueSql("getutcdate()");
 
             // ===== RELATIONS =====
 

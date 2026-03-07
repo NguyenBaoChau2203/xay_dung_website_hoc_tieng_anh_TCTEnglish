@@ -1,5 +1,4 @@
-﻿namespace TCTVocabulary.Models
-{
+﻿
     namespace TCTVocabulary.Models
     {
         public partial class SavedFolder
@@ -12,11 +11,11 @@
             // Folder được lưu
             public int FolderId { get; set; }
 
-            public DateTime SavedAt { get; set; } = DateTime.Now;
+            public DateTime SavedAt { get; set; } = DateTime.UtcNow;
 
             // Navigation
             public virtual User User { get; set; } = null!;
             public virtual Folder Folder { get; set; } = null!;
         }
     }
-}
+
