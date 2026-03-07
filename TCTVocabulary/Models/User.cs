@@ -21,6 +21,10 @@ public partial class User
 
     public int? Streak { get; set; }
 
+    public int? LongestStreak { get; set; }
+
+    public DateTime? LastStudyDate { get; set; }
+
     public int? Goal { get; set; }
 
     public DateTime? CreatedAt { get; set; }

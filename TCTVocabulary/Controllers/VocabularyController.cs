@@ -30,11 +30,14 @@ namespace TCTVocabulary.Controllers
             var allCards = folders.SelectMany(f => f.Sets).SelectMany(s => s.Cards).ToList();
             ViewBag.TotalCards = allCards.Count;
             ViewBag.MasteredCards = allCards.Count(c => c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
-            ViewBag.DueToday = allCards.Count(c => c.LearningProgresses.Any(lp => lp.NextReviewDate <= DateTime.Now));
+            ViewBag.DueToday = allCards.Count(c =>
+                !c.LearningProgresses.Any() ||
+                c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
             
             // Lấy streak từ bảng User
             var user = await _context.Users.FindAsync(currentUserId);
             ViewBag.Streak = user?.Streak ?? 0;
+            ViewBag.LongestStreak = user?.LongestStreak ?? 0;
 
             return View(folders);
         }
@@ -54,6 +57,12 @@ namespace TCTVocabulary.Controllers
                 .FirstOrDefaultAsync(s => s.SetId == setId && s.OwnerId == sysId);
 
             if (set == null) return NotFound();
+
+            // Tính DueToday cho set này
+            var detailCards = set.Cards?.ToList() ?? new List<Card>();
+            ViewBag.DueToday = detailCards.Count(c =>
+                !c.LearningProgresses.Any() ||
+                c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
 
             return View(set);
         }
@@ -92,7 +101,7 @@ namespace TCTVocabulary.Controllers
         }
 
         // GET: Vocabulary/Study - Học từ vựng (có thể lọc theo topic)
-        public async Task<IActionResult> Study(int setId, string topic = null, int index = 1, bool review = false)
+        public async Task<IActionResult> Study(int setId, string topic = null, int index = 1, string mode = "all")
         {
             int currentUserId = 1;
             int sysId = SystemVocabularySeeder.GetSystemUserId(_context);
@@ -104,37 +113,41 @@ namespace TCTVocabulary.Controllers
 
             if (set == null) return NotFound();
 
+            bool isReview = mode == "review";
+
             // Nếu có topic, lọc cards theo topic
+            var filteredCards = set.Cards?.ToList() ?? new List<Card>();
+
             if (!string.IsNullOrEmpty(topic))
             {
-                var cardsInTopic = set.Cards?
+                filteredCards = filteredCards
                     .Where(c => (c.Topic ?? "Chưa phân loại") == topic)
                     .ToList();
-
-                // Nếu là review, chỉ lấy các thẻ đã học
-                if (review && cardsInTopic != null)
-                {
-                    cardsInTopic = cardsInTopic
-                        .Where(c => c.LearningProgresses != null &&
-                                   c.LearningProgresses.Any(lp => lp.Status == "Learned" || lp.Status == "Reviewing" || lp.Status == "Mastered"))
-                        .ToList();
-                }
-
-                var topicSet = new Set
-                {
-                    SetId = set.SetId,
-                    SetName = $"{set.SetName} - {topic}",
-                    Cards = cardsInTopic
-                };
-
-                ViewBag.CurrentIndex = index;
-                ViewBag.TopicName = topic;
-                ViewBag.IsReview = review;
-                return View("Study", topicSet);
             }
 
+            // Nếu là review (SRS), chỉ lấy các thẻ đến hạn ôn tập hoặc chưa từng học
+            if (isReview)
+            {
+                filteredCards = filteredCards
+                    .Where(c => !c.LearningProgresses.Any() ||
+                               c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now))
+                    .ToList();
+            }
+
+            var resultSet = new Set
+            {
+                SetId = set.SetId,
+                SetName = !string.IsNullOrEmpty(topic) ? $"{set.SetName} - {topic}" : set.SetName,
+                Cards = filteredCards,
+                Folder = set.Folder
+            };
+
             ViewBag.CurrentIndex = index;
-            return View(set);
+            ViewBag.TopicName = topic;
+            ViewBag.IsReview = isReview;
+            ViewBag.StudyMode = mode;
+            ViewBag.StudyTotal = filteredCards.Count;
+            return View("Study", resultSet);
         }
 
         // GET: Vocabulary/FolderDetail/5 - Chi tiết Folder

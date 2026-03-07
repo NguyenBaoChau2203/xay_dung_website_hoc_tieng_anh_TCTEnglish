@@ -158,6 +158,7 @@ public partial class DbflashcardContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.WrongCount).HasDefaultValue(0);
+            entity.Property(e => e.RepetitionCount).HasDefaultValue(0);
 
             entity.HasOne(d => d.Card).WithMany(p => p.LearningProgresses)
                 .HasForeignKey(d => d.CardId)
@@ -237,6 +238,7 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Streak).HasDefaultValue(0);
+            entity.Property(e => e.LongestStreak).HasDefaultValue(0);
             entity.Property(e => e.AvatarUrl)
                 .HasColumnType("nvarchar(max)")
                 .IsRequired(false);
