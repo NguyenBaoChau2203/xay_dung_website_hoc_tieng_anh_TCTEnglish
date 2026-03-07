@@ -167,6 +167,15 @@
                     <i class="fas fa-book"></i>
                     <span>Từ vựng (Hệ thống)</span>
                 </a>
+
+                @if (User.IsInRole("Admin"))
+                {
+                <hr style="margin: 10px 0;" />
+                <a class="nav-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin Panel</span>
+                </a>
+                }
             </nav>
 
             <hr />
@@ -183,6 +192,8 @@
                     New folder
                 </button>
 
+                @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                {
                 <button class="workspace-btn"
                         onclick="location.href='@Url.Action("CreateClass", "Home")'">
                     <span class="icon-circle">
@@ -190,6 +201,7 @@
                     </span>
                     New class
                 </button>
+                }
 
                 <button class="workspace-btn">
                     <span class="icon-circle">

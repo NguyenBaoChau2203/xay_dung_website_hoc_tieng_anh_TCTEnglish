@@ -81,7 +81,7 @@ namespace TCTVocabulary.Controllers
                 PasswordHash = passwordHash,
                 FullName = fullName,
                 CreatedAt = DateTime.Now,
-                Role = "User" 
+                Role = Roles.Student
             };
 
             _context.Users.Add(newUser);
@@ -199,7 +199,7 @@ namespace TCTVocabulary.Controllers
                     FullName = nameClaim ?? "Social User",
                     PasswordHash = "SOCIAL_LOGIN_" + Guid.NewGuid().ToString(),
                     CreatedAt = DateTime.Now,
-                    Role = "User",
+                    Role = Roles.Student,
                     AvatarUrl = pictureClaim // Save Google profile picture as default avatar
                 };
                 _context.Users.Add(user);
@@ -228,7 +228,7 @@ namespace TCTVocabulary.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.FullName ?? user.Email),
-                new Claim(ClaimTypes.Role, user.Role ?? "User")
+                new Claim(ClaimTypes.Role, user.Role ?? Roles.Student)
             };
 
             // Add AvatarUrl Claim if exists

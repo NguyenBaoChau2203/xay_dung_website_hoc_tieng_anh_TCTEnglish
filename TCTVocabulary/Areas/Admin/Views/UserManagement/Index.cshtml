@@ -1,0 +1,372 @@
+@model UserManagementViewModel
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+}
+
+<!-- ===== Page Header ===== -->
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <h2 class="fw-bold mb-1"><i class="bi bi-people-fill me-2"></i>Quản lý người dùng</h2>
+        <p class="text-muted mb-0">Quản lý tài khoản, vai trò và trạng thái người dùng hệ thống.</p>
+    </div>
+</div>
+
+<!-- ===== KPI Mini Cards ===== -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+                    <i class="bi bi-people-fill fs-4 text-primary"></i>
+                </div>
+                <div>
+                    <p class="text-muted small mb-0">Tổng người dùng</p>
+                    <h4 class="fw-bold mb-0">@Model.TotalUsers</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+                    <i class="bi bi-check-circle-fill fs-4 text-success"></i>
+                </div>
+                <div>
+                    <p class="text-muted small mb-0">Đang hoạt động</p>
+                    <h4 class="fw-bold mb-0">@Model.ActiveUsers</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div class="bg-danger bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+                    <i class="bi bi-x-circle-fill fs-4 text-danger"></i>
+                </div>
+                <div>
+                    <p class="text-muted small mb-0">Đã vô hiệu hóa</p>
+                    <h4 class="fw-bold mb-0">@Model.DisabledUsers</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Filters ===== -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body py-3">
+        <form method="get" asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="row g-2 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold">Tìm kiếm</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text" name="q" value="@Model.SearchQuery" class="form-control"
+                           placeholder="Tên hoặc email..." />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold">Vai trò</label>
+                <select name="role" class="form-select">
+                    <option value="">Tất cả</option>
+                    <option value="Admin" selected="@(Model.RoleFilter == "Admin")">Admin</option>
+                    <option value="Teacher" selected="@(Model.RoleFilter == "Teacher")">Teacher</option>
+                    <option value="Student" selected="@(Model.RoleFilter == "Student")">Student</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold">Trạng thái</label>
+                <select name="status" class="form-select">
+                    <option value="">Tất cả</option>
+                    <option value="active" selected="@(Model.StatusFilter == "active")">Active</option>
+                    <option value="disabled" selected="@(Model.StatusFilter == "disabled")">Disabled</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    <i class="bi bi-funnel me-1"></i>Lọc
+                </button>
+                <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index"
+                   class="btn btn-outline-secondary" title="Xóa bộ lọc">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ===== Users Table ===== -->
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+        <h5 class="fw-semibold mb-0">
+            Danh sách người dùng
+            <span class="badge bg-secondary ms-2">@Model.Users.Count</span>
+        </h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="usersTable">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4" style="width:60px;">ID</th>
+                        <th>Người dùng</th>
+                        <th>Vai trò</th>
+                        <th class="text-center">Folders</th>
+                        <th class="text-center">Sets</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th class="text-end pe-4" style="width:140px;">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Users.Any())
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-5">
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                Không tìm thấy người dùng nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr id="user-row-@user.UserId">
+                            <td class="ps-4 fw-medium text-muted">#@user.UserId</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    @if (!string.IsNullOrEmpty(user.AvatarUrl))
+                                    {
+                                        <img src="@user.AvatarUrl" class="rounded-circle" width="36" height="36" alt="avatar" />
+                                    }
+                                    else
+                                    {
+                                        <div class="bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center"
+                                             style="width:36px;height:36px;">
+                                            <i class="bi bi-person-fill text-secondary"></i>
+                                        </div>
+                                    }
+                                    <div>
+                                        <div class="fw-medium">@user.FullName</div>
+                                        <small class="text-muted">@user.Email</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @{
+                                    var (badgeClass, iconClass) = user.Role switch
+                                    {
+                                        "Admin" => ("bg-danger", "bi-shield-lock-fill"),
+                                        "Teacher" => ("bg-primary", "bi-mortarboard-fill"),
+                                        _ => ("bg-secondary", "bi-person-fill")
+                                    };
+                                }
+                                <span class="badge @badgeClass">
+                                    <i class="bi @iconClass me-1"></i>@user.Role
+                                </span>
+                            </td>
+                            <td class="text-center">@user.FolderCount</td>
+                            <td class="text-center">@user.SetCount</td>
+                            <td>
+                                @if (user.IsActive)
+                                {
+                                    <span class="badge bg-success-subtle text-success-emphasis" id="status-badge-@user.UserId">
+                                        <i class="bi bi-check-circle-fill me-1"></i>Active
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger-subtle text-danger-emphasis" id="status-badge-@user.UserId">
+                                        <i class="bi bi-x-circle-fill me-1"></i>Disabled
+                                    </span>
+                                }
+                            </td>
+                            <td class="text-muted">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
+                            <td class="text-end pe-4">
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-primary btn-edit"
+                                            data-user-id="@user.UserId" title="Chỉnh sửa">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn btn-outline-warning btn-toggle-status"
+                                            data-user-id="@user.UserId"
+                                            data-is-active="@user.IsActive.ToString().ToLower()"
+                                            title="@(user.IsActive ? "Vô hiệu hóa" : "Kích hoạt")">
+                                        <i class="bi @(user.IsActive ? "bi-lock" : "bi-unlock")"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-delete"
+                                            data-user-id="@user.UserId"
+                                            data-user-name="@user.FullName" title="Xóa">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ===== EDIT USER MODAL ===== -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-bottom">
+                <h5 class="modal-title fw-semibold">
+                    <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa người dùng
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editUserId" />
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Họ tên</label>
+                    <input type="text" id="editFullName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Email</label>
+                    <input type="email" id="editEmail" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Vai trò</label>
+                    <select id="editRole" class="form-select">
+                        <option value="Admin">Admin</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="editIsActive" />
+                    <label class="form-check-label fw-medium" for="editIsActive">Tài khoản đang hoạt động</label>
+                </div>
+                <div id="editErrorAlert" class="alert alert-danger d-none small"></div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" id="btnSaveEdit">
+                    <i class="bi bi-check-lg me-1"></i>Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Anti-Forgery Token helper
+        function getToken() {
+            return document.querySelector('input[name="__RequestVerificationToken"]')?.value ?? '';
+        }
+
+        // ===== EDIT: Load user data into modal =====
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', async function () {
+                const userId = this.dataset.userId;
+                const res = await fetch(`/Admin/UserManagement/GetUser/${userId}`);
+                if (!res.ok) { alert('Lỗi tải dữ liệu.'); return; }
+                const data = await res.json();
+
+                document.getElementById('editUserId').value = data.userId;
+                document.getElementById('editFullName').value = data.fullName;
+                document.getElementById('editEmail').value = data.email;
+                document.getElementById('editRole').value = data.role;
+                document.getElementById('editIsActive').checked = data.isActive;
+                document.getElementById('editErrorAlert').classList.add('d-none');
+
+                new bootstrap.Modal(document.getElementById('editUserModal')).show();
+            });
+        });
+
+        // ===== EDIT: Save =====
+        document.getElementById('btnSaveEdit').addEventListener('click', async function () {
+            const errorEl = document.getElementById('editErrorAlert');
+            errorEl.classList.add('d-none');
+
+            const payload = {
+                userId: parseInt(document.getElementById('editUserId').value),
+                fullName: document.getElementById('editFullName').value.trim(),
+                email: document.getElementById('editEmail').value.trim(),
+                role: document.getElementById('editRole').value,
+                isActive: document.getElementById('editIsActive').checked
+            };
+
+            if (!payload.fullName || !payload.email) {
+                errorEl.textContent = 'Vui lòng nhập đầy đủ thông tin.';
+                errorEl.classList.remove('d-none');
+                return;
+            }
+
+            const res = await fetch('/Admin/UserManagement/Edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': getToken()
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+            if (res.ok && result.success) {
+                location.reload();
+            } else {
+                errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
+                errorEl.classList.remove('d-none');
+            }
+        });
+
+        // ===== TOGGLE STATUS =====
+        document.querySelectorAll('.btn-toggle-status').forEach(btn => {
+            btn.addEventListener('click', async function () {
+                const userId = this.dataset.userId;
+                const isActive = this.dataset.isActive === 'true';
+                const action = isActive ? 'vô hiệu hóa' : 'kích hoạt';
+
+                if (!confirm(`Bạn có chắc muốn ${action} tài khoản này?`)) return;
+
+                const res = await fetch('/Admin/UserManagement/ToggleStatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getToken()
+                    },
+                    body: JSON.stringify({ userId: parseInt(userId) })
+                });
+
+                const result = await res.json();
+                if (res.ok && result.success) {
+                    location.reload();
+                } else {
+                    alert(result.message || 'Đã xảy ra lỗi.');
+                }
+            });
+        });
+
+        // ===== DELETE =====
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', async function () {
+                const userId = this.dataset.userId;
+                const userName = this.dataset.userName;
+
+                if (!confirm(`⚠️ Xóa vĩnh viễn người dùng "${userName}"?\nHành động này không thể hoàn tác!`)) return;
+
+                const res = await fetch('/Admin/UserManagement/Delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getToken()
+                    },
+                    body: JSON.stringify({ userId: parseInt(userId) })
+                });
+
+                const result = await res.json();
+                if (res.ok && result.success) {
+                    document.getElementById(`user-row-${userId}`)?.remove();
+                } else {
+                    alert(result.message || 'Đã xảy ra lỗi.');
+                }
+            });
+        });
+    </script>
+}

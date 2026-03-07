@@ -1,13 +1,16 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TCTVocabulary.Models;
 using TCTVocabulary.ViewModel;
 
 namespace TCTVocabulary.Controllers
 {
+    [Authorize]
     public class SpeakingController : Controller
     {
         private readonly DbflashcardContext _context;
@@ -98,9 +101,13 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Practice(int id)
         {
+            // SECURE: Get current UserId for progress filtering
+            var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
             var video = await _context.SpeakingVideos
+                .AsNoTracking()
                 .Include(v => v.SpeakingSentences)
-                    .ThenInclude(s => s.UserSpeakingProgresses) // Include progress to get the scores
+                    .ThenInclude(s => s.UserSpeakingProgresses.Where(p => p.UserId == currentUserId)) // SECURE: Enforced UserId filter
                 .FirstOrDefaultAsync(v => v.Id == id);
 
             if (video == null)
@@ -108,10 +115,6 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
             }
 
-            // Optional: Filter progress by current user if authentication is implemented.
-            // Assuming for now we just take the latest progress or first if user isn't specific in this context
-            // If you have user identification, it should be: .Where(p => p.UserId == currentUserId)
-            
             var viewModel = new SpeakingPracticeViewModel
             {
                 VideoId = video.Id,
