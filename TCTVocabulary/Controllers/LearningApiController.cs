@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization; // [FIX-AI-AUTH]
+using System.Security.Claims; // [FIX-AI-AUTH]
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // [FIX-AI-AUTH]
     public class LearningApiController : ControllerBase
     {
         private readonly DbflashcardContext _context;
@@ -18,8 +21,7 @@ namespace TCTVocabulary.Controllers
         [HttpPost("record")]
         public async Task<IActionResult> Record([FromBody] LearningRecordRequest request)
         {
-            //TODO: Thay currentUserId = 1 bằng User.Identity thật khi có hệ thống Auth
-            int currentUserId = 1;
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
 
             var progress = await _context.LearningProgresses
                 .FirstOrDefaultAsync(lp => lp.CardId == request.CardId && lp.UserId == currentUserId);
