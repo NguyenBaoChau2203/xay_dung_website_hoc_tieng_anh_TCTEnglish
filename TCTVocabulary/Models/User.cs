@@ -15,6 +15,7 @@ public partial class User
     // Bổ sung các property mới khớp với SQL
     public string? FullName { get; set; }
     public string? Role { get; set; }
+    public bool IsActive { get; set; } = true; // Soft-disable: false = tài khoản bị khóa
     public string? AvatarUrl { get; set; } // Added for Google Profile Picture
     public string? ResetPasswordToken { get; set; }
     public DateTime? ResetPasswordTokenExpiry { get; set; }

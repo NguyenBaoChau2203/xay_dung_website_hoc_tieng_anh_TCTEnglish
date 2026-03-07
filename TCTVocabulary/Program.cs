@@ -16,7 +16,6 @@ builder.Services.AddRazorPages()
             System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 // 1. Cấu hình dịch vụ (Phải nằm TRƯỚC builder.Build)
-builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
