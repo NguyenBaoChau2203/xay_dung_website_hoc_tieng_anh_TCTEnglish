@@ -181,6 +181,8 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.FolderId).HasColumnName("FolderID");
             entity.Property(e => e.OwnerId).HasColumnName("OwnerID");
             entity.Property(e => e.SetName).HasMaxLength(255);
+            // [Feature: View_Count] - Cột đếm lượt truy cập
+            entity.Property(e => e.ViewCount).HasDefaultValue(0);
 
             entity.HasOne(d => d.Folder).WithMany(p => p.Sets)
                 .HasForeignKey(d => d.FolderId)

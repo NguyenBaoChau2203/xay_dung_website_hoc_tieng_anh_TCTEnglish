@@ -39,6 +39,24 @@ namespace TCTVocabulary.Controllers
             ViewBag.Streak = user?.Streak ?? 0;
             ViewBag.LongestStreak = user?.LongestStreak ?? 0;
 
+            // [Feature: Continue_Learning] - Lấy set học gần nhất từ LearningProgress
+            var lastProgress = await _context.LearningProgresses
+                .Where(lp => lp.UserId == currentUserId && lp.LastReviewedDate != null)
+                .OrderByDescending(lp => lp.LastReviewedDate)
+                .Include(lp => lp.Card)
+                    .ThenInclude(c => c.Set)
+                .FirstOrDefaultAsync();
+
+            if (lastProgress?.Card?.Set != null)
+            {
+                var lastSet = lastProgress.Card.Set;
+                var lastSetWithCards = await _context.Sets
+                    .Include(s => s.Cards)
+                        .ThenInclude(c => c.LearningProgresses.Where(lp => lp.UserId == currentUserId))
+                    .FirstOrDefaultAsync(s => s.SetId == lastSet.SetId);
+                ViewBag.LastStudiedSet = lastSetWithCards;
+            }
+
             return View(folders);
         }
 
@@ -63,6 +81,10 @@ namespace TCTVocabulary.Controllers
             ViewBag.DueToday = detailCards.Count(c =>
                 !c.LearningProgresses.Any() ||
                 c.LearningProgresses.Any(lp => lp.NextReviewDate == null || lp.NextReviewDate <= DateTime.Now));
+
+            // [Feature: View_Count] - Tăng lượt truy cập khi vào Detail
+            set.ViewCount++;
+            await _context.SaveChangesAsync();
 
             return View(set);
         }
@@ -147,6 +169,11 @@ namespace TCTVocabulary.Controllers
             ViewBag.IsReview = isReview;
             ViewBag.StudyMode = mode;
             ViewBag.StudyTotal = filteredCards.Count;
+
+            // [Feature: View_Count] - Tăng lượt truy cập khi vào Study
+            set.ViewCount++;
+            await _context.SaveChangesAsync();
+
             return View("Study", resultSet);
         }
 
