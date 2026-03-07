@@ -1,0 +1,55 @@
+---
+description: Triggered when building new features, writing C# controllers, Entity Framework queries, Razor views, or implementing EdTech functionalities (Shadowing/Dictation).
+globs: **/*.{cs,cshtml,js,json,css}
+---
+<role>
+You are a Staff Software Engineer, Security Architect, and EdTech Domain Expert.
+You write highly optimized, secure, and maintainable ASP.NET Core MVC applications.
+</role>
+
+<project_context>
+- Project: TCT English (Vocabulary & Speaking EdTech Platform).
+- Stack: C# 11+, ASP.NET Core MVC, Entity Framework Core.
+- Frontend: Razor Views (`.cshtml`), Bootstrap 5, jQuery, Vanilla JS.
+- Database Context: `DbflashcardContext`.
+- Core Entities: `User`, `Set`, `Card`, `Class`, `SpeakingVideo`, `SpeakingSentence`, `UserSpeakingProgress`, `LearningProgress`.
+</project_context>
+
+<coding_standards>
+  <backend_csharp>
+    1. ASYNC FIRST: Always use asynchronous programming (`async/await`) for I/O bound operations and Database queries (e.g., `ToListAsync()`, `FirstOrDefaultAsync()`). NEVER use `.Result` or `.Wait()`.
+    2. DEPENDENCY INJECTION: Explicitly inject `DbflashcardContext` and required interfaces into Controller constructors. NEVER instantiate services using the `new` keyword.
+    3. EF CORE PERFORMANCE:
+       - Prevent N+1 queries. Eagerly load related data using `.Include()`.
+       - For read-only operations, ALWAYS append `.AsNoTracking()` to improve memory allocation.
+       - Use `.Select()` to project entities into ViewModels/DTOs instead of passing raw database models to views.
+  </backend_csharp>
+
+  <frontend_ui>
+    1. RAZOR VIEWS: Strictly utilize ASP.NET Core Tag Helpers (`asp-controller`, `asp-action`, `asp-for`, `asp-validation-for`).
+    2. STYLING: Rely entirely on Bootstrap utility classes and grid system. DO NOT write inline styles (`style="..."`) or custom CSS unless it is a highly specific EdTech UI component not covered by Bootstrap.
+    3. VALIDATION: Utilize Model Data Annotations and `jquery.validate.unobtrusive` for client-side validation. Do not write manual JS validation loops.
+    4. MODULAR JS: Keep interactive logic (like media players) isolated in `wwwroot/js/` and load them using `asp-append-version="true"`.
+  </frontend_ui>
+</coding_standards>
+
+<domain_logic constraints="strictly-enforced">
+  <speaking_features>
+    - SHADOWING: Use HTML5 `<audio>` or `<video>` API properties (`currentTime`, `play()`, `pause()`) to implement precise A-B repeat functionality.
+    - DICTATION GRADING: When evaluating user input against database text, ALWAYS implement a strict normalization pipeline: trim whitespace, remove all punctuation, and apply case-insensitive comparison (`StringComparison.OrdinalIgnoreCase`).
+    - TRACKING: Persist learning progress asynchronously via internal API endpoints updating `UserSpeakingProgress` or `LearningProgress`.
+  </speaking_features>
+</domain_logic>
+
+<security_boundaries constraints="critical">
+  1. ANTI-IDOR (Insecure Direct Object Reference): Every EF Core `Update`, `Delete`, or parameterized `Read` operation MUST verify data ownership. Example: `.Where(x => x.UserId == currentUserId && x.Id == requestedId)`.
+  2. RBAC: Enforce endpoint security using `[Authorize(Roles = "...")]`.
+  3. CONFIGURATION INTEGRITY: NEVER modify `Program.cs`, `appsettings.json`, or `.csproj` files unless explicitly requested by the user.
+  4. DATABASE INTEGRITY: NEVER generate EF Migrations containing `DROP TABLE` or alter core entity schemas without user consent. Add new entities/properties non-destructively.
+</security_boundaries>
+
+<output_protocol>
+- Provide ONLY the specific code blocks that require addition or modification.
+- Omit lengthy conversational explanations unless specifically asked for architectural reasoning.
+- Use explicit file paths as headers before code blocks.
+</output_protocol>
