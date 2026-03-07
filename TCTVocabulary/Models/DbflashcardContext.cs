@@ -244,6 +244,8 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasColumnType("nvarchar(max)")
                 .IsRequired(false);
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true);
         });
 
         modelBuilder.Entity<SpeakingPlaylist>(entity =>
@@ -261,6 +263,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.YoutubeId).IsRequired().HasMaxLength(50);
             entity.Property(e => e.ThumbnailUrl).HasMaxLength(500);
             entity.Property(e => e.Level).HasMaxLength(50);
+            entity.Property(e => e.Topic).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Duration).HasMaxLength(20);
 
             entity.HasOne(d => d.SpeakingPlaylist)
