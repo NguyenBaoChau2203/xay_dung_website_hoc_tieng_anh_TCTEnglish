@@ -327,7 +327,10 @@
             btn.addEventListener('click', async function () {
                 const userId = this.dataset.userId;
                 const res = await fetch(`/Admin/UserManagement/GetUser/${userId}`);
-                if (!res.ok) { alert('Lỗi tải dữ liệu.'); return; }
+                if (!res.ok) {
+                    await Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Không thể tải dữ liệu người dùng.' });
+                    return;
+                }
                 const data = await res.json();
 
                 document.getElementById('editUserId').value = data.userId;
@@ -360,21 +363,46 @@
                 return;
             }
 
-            const res = await fetch('/Admin/UserManagement/Edit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': getToken()
-                },
-                body: JSON.stringify(payload)
-            });
+            const btn = this;
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang lưu...';
 
-            const result = await res.json();
-            if (res.ok && result.success) {
-                location.reload();
-            } else {
-                errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
-                errorEl.classList.remove('d-none');
+            try {
+                const res = await fetch('/Admin/UserManagement/Edit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getToken()
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await res.json();
+                if (res.ok && result.success) {
+                    bootstrap.Modal.getInstance(document.getElementById('editUserModal'))?.hide();
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã lưu!',
+                        text: 'Thông tin người dùng đã được cập nhật thành công.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    location.reload();
+                } else {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                    errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
+                    errorEl.classList.remove('d-none');
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi kết nối',
+                    text: 'Không thể kết nối đến máy chủ. Vui lòng thử lại.'
+                });
             }
         });
 
@@ -409,30 +437,50 @@
                 return;
             }
 
+            const btn = this;
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...';
+
             const payload = {
                 userId: parseInt(document.getElementById('blockUserId').value),
                 duration: document.getElementById('blockDuration').value,
                 reason: reason
             };
 
-            const res = await fetch('/Admin/UserManagement/BlockUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': getToken()
-                },
-                body: JSON.stringify(payload)
-            });
+            try {
+                const res = await fetch('/Admin/UserManagement/BlockUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getToken()
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-            const result = await res.json();
-            if (res.ok && result.success) {
-                const modalEl = document.getElementById('blockUserModal');
-                const modalInstance = bootstrap.Modal.getInstance(modalEl);
-                if (modalInstance) modalInstance.hide();
-                alert('Đã khóa tài khoản ' + blockUserEmail + ' thành công.');
-                location.reload();
-            } else {
-                errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
+                const result = await res.json();
+                if (res.ok && result.success) {
+                    const modalEl = document.getElementById('blockUserModal');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    if (modalInstance) modalInstance.hide();
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: 'Đã khóa tài khoản ' + blockUserEmail + ' thành công.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    location.reload();
+                } else {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                    errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
+                    errorEl.classList.remove('d-none');
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                errorEl.textContent = 'Lỗi kết nối. Vui lòng thử lại.';
                 errorEl.classList.remove('d-none');
             }
         });
@@ -443,22 +491,42 @@
                 const userId = parseInt(this.dataset.userId);
                 const userName = this.dataset.userName;
 
-                if (!confirm(`Bạn có chắc muốn mở khóa tài khoản "${userName}"?`)) return;
-
-                const res = await fetch('/Admin/UserManagement/UnlockUser', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': getToken()
+                const result = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Mở khóa tài khoản?',
+                    text: `Bạn có chắc muốn mở khóa tài khoản "${userName}"?`,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, unlock it!',
+                    cancelButtonText: 'Cancel',
+                    confirmButtonColor: '#f0ad4e',
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        const res = await fetch('/Admin/UserManagement/UnlockUser', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'RequestVerificationToken': getToken()
+                            },
+                            body: JSON.stringify({ userId })
+                        });
+                        const data = await res.json();
+                        if (!res.ok || !data.success) {
+                            Swal.showValidationMessage(data.message || 'Đã xảy ra lỗi.');
+                        }
+                        return data;
                     },
-                    body: JSON.stringify({ userId })
+                    allowOutsideClick: () => !Swal.isLoading()
                 });
 
-                const result = await res.json();
-                if (res.ok && result.success) {
+                if (result.isConfirmed) {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã mở khóa!',
+                        text: `Tài khoản "${userName}" đã được mở khóa thành công.`,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                     location.reload();
-                } else {
-                    alert(result.message || 'Đã xảy ra lỗi.');
                 }
             });
         });
