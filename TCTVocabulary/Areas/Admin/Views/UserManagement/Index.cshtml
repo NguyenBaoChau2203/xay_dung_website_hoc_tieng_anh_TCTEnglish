@@ -13,7 +13,7 @@
 
 <!-- ===== KPI Mini Cards ===== -->
 <div class="row g-3 mb-4">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex align-items-center gap-3 py-3">
                 <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
@@ -26,28 +26,41 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex align-items-center gap-3 py-3">
                 <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
                     <i class="bi bi-check-circle-fill fs-4 text-success"></i>
                 </div>
                 <div>
-                    <p class="text-muted small mb-0">Đang hoạt động</p>
-                    <h4 class="fw-bold mb-0">@Model.ActiveUsers</h4>
+                    <p class="text-muted small mb-0">Online</p>
+                    <h4 class="fw-bold mb-0">@Model.OnlineUsers</h4>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div class="bg-secondary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+                    <i class="bi bi-moon-fill fs-4 text-secondary"></i>
+                </div>
+                <div>
+                    <p class="text-muted small mb-0">Offline</p>
+                    <h4 class="fw-bold mb-0">@Model.OfflineUsers</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex align-items-center gap-3 py-3">
                 <div class="bg-danger bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
                     <i class="bi bi-x-circle-fill fs-4 text-danger"></i>
                 </div>
                 <div>
-                    <p class="text-muted small mb-0">Đã vô hiệu hóa</p>
-                    <h4 class="fw-bold mb-0">@Model.DisabledUsers</h4>
+                    <p class="text-muted small mb-0">Đã chặn</p>
+                    <h4 class="fw-bold mb-0">@Model.BlockedUsers</h4>
                 </div>
             </div>
         </div>
@@ -79,8 +92,9 @@
                 <label class="form-label small fw-semibold">Trạng thái</label>
                 <select name="status" class="form-select">
                     <option value="">Tất cả</option>
-                    <option value="active" selected="@(Model.StatusFilter == "active")">Active</option>
-                    <option value="disabled" selected="@(Model.StatusFilter == "disabled")">Disabled</option>
+                    <option value="Online" selected="@(Model.StatusFilter == "Online")">Online</option>
+                    <option value="Offline" selected="@(Model.StatusFilter == "Offline")">Offline</option>
+                    <option value="Blocked" selected="@(Model.StatusFilter == "Blocked")">Blocked</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex gap-2">
@@ -168,18 +182,17 @@
                             <td class="text-center">@user.FolderCount</td>
                             <td class="text-center">@user.SetCount</td>
                             <td>
-                                @if (user.IsActive)
-                                {
-                                    <span class="badge bg-success-subtle text-success-emphasis" id="status-badge-@user.UserId">
-                                        <i class="bi bi-check-circle-fill me-1"></i>Active
-                                    </span>
+                                @{
+                                    var (statusBadge, statusIcon, statusLabel) = user.Status switch
+                                    {
+                                        UserStatus.Online  => ("badge bg-success",   "bi-check-circle-fill", "Online"),
+                                        UserStatus.Blocked => ("badge bg-danger",    "bi-x-circle-fill",     "Blocked"),
+                                        _                  => ("badge bg-secondary", "bi-moon-fill",          "Offline")
+                                    };
                                 }
-                                else
-                                {
-                                    <span class="badge bg-danger-subtle text-danger-emphasis" id="status-badge-@user.UserId">
-                                        <i class="bi bi-x-circle-fill me-1"></i>Disabled
-                                    </span>
-                                }
+                                <span class="@statusBadge" id="status-badge-@user.UserId">
+                                    <i class="bi @statusIcon me-1"></i>@statusLabel
+                                </span>
                             </td>
                             <td class="text-muted">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
                             <td class="text-end pe-4">
@@ -188,16 +201,16 @@
                                             data-user-id="@user.UserId" title="Chỉnh sửa">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <button class="btn btn-outline-warning btn-toggle-status"
+                                    <button class="btn btn-outline-warning btn-unlock"
                                             data-user-id="@user.UserId"
-                                            data-is-active="@user.IsActive.ToString().ToLower()"
-                                            title="@(user.IsActive ? "Vô hiệu hóa" : "Kích hoạt")">
-                                        <i class="bi @(user.IsActive ? "bi-lock" : "bi-unlock")"></i>
+                                            data-user-name="@user.FullName" title="Mở khóa"
+                                            @(user.Status != UserStatus.Blocked ? "disabled" : "")>
+                                        <i class="bi bi-unlock-fill"></i>
                                     </button>
-                                    <button class="btn btn-outline-danger btn-delete"
+                                    <button class="btn btn-outline-danger btn-block-user"
                                             data-user-id="@user.UserId"
-                                            data-user-name="@user.FullName" title="Xóa">
-                                        <i class="bi bi-trash3"></i>
+                                            data-user-name="@user.FullName" title="Khóa tài khoản">
+                                        <i class="bi bi-lock-fill"></i>
                                     </button>
                                 </div>
                             </td>
@@ -237,9 +250,13 @@
                         <option value="Student">Student</option>
                     </select>
                 </div>
-                <div class="form-check form-switch mb-3">
-                    <input class="form-check-input" type="checkbox" id="editIsActive" />
-                    <label class="form-check-label fw-medium" for="editIsActive">Tài khoản đang hoạt động</label>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Trạng thái</label>
+                    <select id="editStatus" class="form-select">
+                        <option value="0">Offline</option>
+                        <option value="1">Online</option>
+                        <option value="2">Blocked</option>
+                    </select>
                 </div>
                 <div id="editErrorAlert" class="alert alert-danger d-none small"></div>
             </div>
@@ -252,6 +269,50 @@
         </div>
     </div>
 </div>
+
+<!-- ===== BLOCK USER MODAL ===== -->
+<div class="modal fade" id="blockUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-bottom bg-danger bg-opacity-10">
+                <h5 class="modal-title fw-semibold text-danger">
+                    <i class="bi bi-lock-fill me-2"></i>Khóa tài khoản
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="blockUserId" />
+                <p class="text-muted mb-3">Bạn đang khóa tài khoản: <strong id="blockUserName"></strong></p>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Thời hạn khóa <span class="text-danger">*</span></label>
+                    <select id="blockDuration" class="form-select">
+                        <option value="30s">30 giây (dùng để test)</option>
+                        <option value="1d">1 ngày</option>
+                        <option value="3d">3 ngày</option>
+                        <option value="7d" selected>7 ngày</option>
+                        <option value="permanent">Vĩnh viễn</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Lý do khóa <span class="text-danger">*</span></label>
+                    <textarea id="blockReason" class="form-control" rows="3"
+                              placeholder="Nhập lý do khóa tài khoản..." required></textarea>
+                </div>
+                <div id="blockErrorAlert" class="alert alert-danger d-none small"></div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmBlock">
+                    <i class="bi bi-lock-fill me-1"></i>Xác nhận khóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="d-none">
+    @Html.AntiForgeryToken()
+</form>
 
 @section Scripts {
     <script>
@@ -272,7 +333,7 @@
                 document.getElementById('editFullName').value = data.fullName;
                 document.getElementById('editEmail').value = data.email;
                 document.getElementById('editRole').value = data.role;
-                document.getElementById('editIsActive').checked = data.isActive;
+                document.getElementById('editStatus').value = data.status;
                 document.getElementById('editErrorAlert').classList.add('d-none');
 
                 new bootstrap.Modal(document.getElementById('editUserModal')).show();
@@ -289,7 +350,7 @@
                 fullName: document.getElementById('editFullName').value.trim(),
                 email: document.getElementById('editEmail').value.trim(),
                 role: document.getElementById('editRole').value,
-                isActive: document.getElementById('editIsActive').checked
+                status: parseInt(document.getElementById('editStatus').value)
             };
 
             if (!payload.fullName || !payload.email) {
@@ -316,22 +377,74 @@
             }
         });
 
-        // ===== TOGGLE STATUS =====
-        document.querySelectorAll('.btn-toggle-status').forEach(btn => {
-            btn.addEventListener('click', async function () {
+        // ===== UPDATE STATUS =====
+        // (Removed — status updates are now handled via Block/Unlock flows)
+
+        // ===== BLOCK USER: Open modal =====
+        document.querySelectorAll('.btn-block-user').forEach(btn => {
+            btn.addEventListener('click', function () {
                 const userId = this.dataset.userId;
-                const isActive = this.dataset.isActive === 'true';
-                const action = isActive ? 'vô hiệu hóa' : 'kích hoạt';
+                const userName = this.dataset.userName;
+                document.getElementById('blockUserId').value = userId;
+                document.getElementById('blockUserName').textContent = userName;
+                document.getElementById('blockReason').value = '';
+                document.getElementById('blockDuration').value = '7d';
+                document.getElementById('blockErrorAlert').classList.add('d-none');
+                new bootstrap.Modal(document.getElementById('blockUserModal')).show();
+            });
+        });
 
-                if (!confirm(`Bạn có chắc muốn ${action} tài khoản này?`)) return;
+        // ===== BLOCK USER: Confirm =====
+        document.getElementById('btnConfirmBlock').addEventListener('click', async function () {
+            const errorEl = document.getElementById('blockErrorAlert');
+            errorEl.classList.add('d-none');
 
-                const res = await fetch('/Admin/UserManagement/ToggleStatus', {
+            const reason = document.getElementById('blockReason').value.trim();
+            if (!reason) {
+                errorEl.textContent = 'Vui lòng nhập lý do khóa tài khoản.';
+                errorEl.classList.remove('d-none');
+                return;
+            }
+
+            const payload = {
+                userId: parseInt(document.getElementById('blockUserId').value),
+                duration: document.getElementById('blockDuration').value,
+                reason: reason
+            };
+
+            const res = await fetch('/Admin/UserManagement/BlockUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': getToken()
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+            if (res.ok && result.success) {
+                location.reload();
+            } else {
+                errorEl.textContent = result.message || 'Đã xảy ra lỗi.';
+                errorEl.classList.remove('d-none');
+            }
+        });
+
+        // ===== UNLOCK USER =====
+        document.querySelectorAll('.btn-unlock').forEach(btn => {
+            btn.addEventListener('click', async function () {
+                const userId = parseInt(this.dataset.userId);
+                const userName = this.dataset.userName;
+
+                if (!confirm(`Bạn có chắc muốn mở khóa tài khoản "${userName}"?`)) return;
+
+                const res = await fetch('/Admin/UserManagement/UnlockUser', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'RequestVerificationToken': getToken()
                     },
-                    body: JSON.stringify({ userId: parseInt(userId) })
+                    body: JSON.stringify({ userId })
                 });
 
                 const result = await res.json();
@@ -343,30 +456,5 @@
             });
         });
 
-        // ===== DELETE =====
-        document.querySelectorAll('.btn-delete').forEach(btn => {
-            btn.addEventListener('click', async function () {
-                const userId = this.dataset.userId;
-                const userName = this.dataset.userName;
-
-                if (!confirm(`⚠️ Xóa vĩnh viễn người dùng "${userName}"?\nHành động này không thể hoàn tác!`)) return;
-
-                const res = await fetch('/Admin/UserManagement/Delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': getToken()
-                    },
-                    body: JSON.stringify({ userId: parseInt(userId) })
-                });
-
-                const result = await res.json();
-                if (res.ok && result.success) {
-                    document.getElementById(`user-row-${userId}`)?.remove();
-                } else {
-                    alert(result.message || 'Đã xảy ra lỗi.');
-                }
-            });
-        });
-    </script>
+        </script>
 }

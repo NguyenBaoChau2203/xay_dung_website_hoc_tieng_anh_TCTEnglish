@@ -11,19 +11,23 @@ namespace TCTVocabulary.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Users",
-                keyColumn: "UserID",
-                keyValue: 1);
+            // Skip delete if user #1 has dependent data (Sets, Folders, etc.)
+            // This seed row is a real user now — safe to leave in place.
+            migrationBuilder.Sql(@"
+                IF NOT EXISTS (SELECT 1 FROM [Sets] WHERE [OwnerID] = 1)
+                   AND NOT EXISTS (SELECT 1 FROM [Folders] WHERE [UserID] = 1)
+                BEGIN
+                    DELETE FROM [Users] WHERE [UserID] = 1;
+                END");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserID", "AvatarUrl", "CreatedAt", "Email", "FullName", "Goal", "IsActive", "LastStudyDate", "LongestStreak", "PasswordHash", "ResetPasswordToken", "ResetPasswordTokenExpiry", "Role", "Streak" },
-                values: new object[] { 1, null, new DateTime(2026, 2, 1, 16, 20, 51, 117, DateTimeKind.Unspecified), "admin@tctenglish.com", "System Admin", 0, true, null, 0, "$2a$11$P/Ddyz.mGnpom9fEbTcXxuaOmUYMAaCZDKac8vCTJOY6GK4LzYR2y", null, null, "Admin", 0 });
+            migrationBuilder.Sql(@"
+                IF NOT EXISTS (SELECT 1 FROM [Users] WHERE [UserID] = 1)
+                    INSERT INTO [Users] ([UserID], [AvatarUrl], [CreatedAt], [Email], [FullName], [Goal], [IsActive], [LastStudyDate], [LongestStreak], [PasswordHash], [ResetPasswordToken], [ResetPasswordTokenExpiry], [Role], [Streak])
+                    VALUES (1, NULL, '2026-02-01T16:20:51.117', 'admin@tctenglish.com', 'System Admin', 0, 1, NULL, 0, '$2a$11$P/Ddyz.mGnpom9fEbTcXxuaOmUYMAaCZDKac8vCTJOY6GK4LzYR2y', NULL, NULL, 'Admin', 0);");
         }
     }
 }

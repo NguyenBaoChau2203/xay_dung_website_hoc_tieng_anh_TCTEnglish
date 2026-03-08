@@ -247,8 +247,14 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasColumnType("nvarchar(max)")
                 .IsRequired(false);
-            entity.Property(e => e.IsActive)
-                .HasDefaultValue(true);
+            entity.Property(e => e.Status)
+                .HasDefaultValue(UserStatus.Offline);
+            entity.Property(e => e.LockReason)
+                .HasMaxLength(1000)
+                .IsRequired(false);
+            entity.Property(e => e.LockExpiry)
+                .HasColumnType("datetime")
+                .IsRequired(false);
         });
 
         modelBuilder.Entity<SpeakingPlaylist>(entity =>

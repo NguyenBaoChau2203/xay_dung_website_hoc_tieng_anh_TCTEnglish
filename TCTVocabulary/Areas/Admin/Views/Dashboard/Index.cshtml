@@ -126,18 +126,17 @@
                                 <span class="badge @roleBadge">@user.Role</span>
                             </td>
                             <td>
-                                @if (user.IsActive)
-                                {
-                                    <span class="badge bg-success-subtle text-success-emphasis">
-                                        <i class="bi bi-check-circle-fill me-1"></i>Active
-                                    </span>
+                                @{
+                                    var (statusBadge, statusIcon, statusLabel) = user.Status switch
+                                    {
+                                        UserStatus.Online  => ("badge bg-success",   "bi-check-circle-fill", "Online"),
+                                        UserStatus.Blocked => ("badge bg-danger",    "bi-x-circle-fill",     "Blocked"),
+                                        _                  => ("badge bg-secondary", "bi-moon-fill",          "Offline")
+                                    };
                                 }
-                                else
-                                {
-                                    <span class="badge bg-danger-subtle text-danger-emphasis">
-                                        <i class="bi bi-x-circle-fill me-1"></i>Disabled
-                                    </span>
-                                }
+                                <span class="@statusBadge">
+                                    <i class="bi @statusIcon me-1"></i>@statusLabel
+                                </span>
                             </td>
                             <td class="text-muted">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
                         </tr>

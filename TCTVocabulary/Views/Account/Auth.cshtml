@@ -540,6 +540,20 @@
                         <a href="@Url.Action("ForgotPassword", "Account")" class="forgot-pass">Quên mật khẩu?</a>
                     </div>
 
+                    <!-- Blocked Account Alert (hidden by default) -->
+                    <div id="blocked-alert" style="display:none; background:#fff3cd; border:1px solid #ffc107; border-radius:8px; padding:16px; margin-bottom:16px;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                            <i class="fa-solid fa-lock" style="color:#dc3545; font-size:18px;"></i>
+                            <strong style="color:#dc3545;">Tài khoản đã bị khóa</strong>
+                        </div>
+                        <p style="color:#586380; font-size:14px; margin:0 0 4px 0;"><strong>Lý do:</strong> <span id="blocked-reason"></span></p>
+                        <p style="color:#586380; font-size:14px; margin:0 0 12px 0;"><strong>Mở khóa:</strong> <span id="blocked-expiry"></span></p>
+                        <a href="mailto:support@tctenglish.com?subject=Khiếu nại khóa tài khoản"
+                           style="display:inline-block; padding:8px 16px; background:#4255ff; color:#fff; text-decoration:none; border-radius:6px; font-weight:600; font-size:14px;">
+                            <i class="fa-solid fa-envelope me-1"></i> Gửi khiếu nại
+                        </a>
+                    </div>
+
                     <button type="submit" class="btn-submit">Đăng nhập</button>
 
 
@@ -576,6 +590,17 @@
             const activeTab = '@ViewData["ActiveTab"]';
             if (activeTab) {
                 switchTab(activeTab);
+            }
+
+            // Check if redirected due to blocked social login
+            @if (TempData["BlockedReason"] != null)
+            {
+                <text>
+                switchTab('login');
+                document.getElementById('blocked-reason').textContent = '@Html.Raw(TempData["BlockedReason"])';
+                document.getElementById('blocked-expiry').textContent = '@Html.Raw(TempData["BlockedExpiry"])';
+                document.getElementById('blocked-alert').style.display = 'block';
+                </text>
             }
         });
 
@@ -654,27 +679,31 @@
 
         function handleLogin(e) {
             e.preventDefault(); // Prevent default submission
-            
+
             const form = document.getElementById('form-login');
             const formData = new FormData(form);
 
-            // Simple client validation or just send
+            // Hide blocked alert on new attempt
+            document.getElementById('blocked-alert').style.display = 'none';
+
             // AJAX Fetch
             fetch(form.action, {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    // 'RequestVerificationToken': ... (If not using FormData automatically)
-                    // FormData handles Multipart, but Controller expects FormUrlEncoded usually unless [FromForm]
-                    // ASP.NET Core often handles FormData fine. Let's try FormData.
-                    // If issues, we can use URLSearchParams.
-                }
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     // Success: Show Loader -> Redirect
                     showLoaderAndRedirect();
+                } else if (data.blocked) {
+                    // Account is blocked — show blocked alert
+                    document.getElementById('blocked-reason').textContent = data.lockReason;
+                    document.getElementById('blocked-expiry').textContent = data.lockExpiry;
+                    document.getElementById('blocked-alert').style.display = 'block';
+                    // Hide generic error if visible
+                    const errorBox = document.getElementById('login-error-msg');
+                    if (errorBox) errorBox.style.display = 'none';
                 } else {
                     // Fail: Show error message
                     showLoginError(data.message || "Đã có lỗi xảy ra");

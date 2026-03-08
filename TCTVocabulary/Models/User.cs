@@ -4,6 +4,13 @@ using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
 
+public enum UserStatus
+{
+    Offline = 0,
+    Online = 1,
+    Blocked = 2
+}
+
 public static class Roles
 {
     public const string Admin = "Admin";
@@ -24,10 +31,13 @@ public partial class User
     // Bổ sung các property mới khớp với SQL
     public string? FullName { get; set; }
     public string? Role { get; set; }
-    public bool IsActive { get; set; } = true; // Soft-disable: false = tài khoản bị khóa
+    public UserStatus Status { get; set; } = UserStatus.Offline;
     public string? AvatarUrl { get; set; } // Added for Google Profile Picture
     public string? ResetPasswordToken { get; set; }
     public DateTime? ResetPasswordTokenExpiry { get; set; }
+
+    public string? LockReason { get; set; }
+    public DateTime? LockExpiry { get; set; }
 
     public int? Streak { get; set; }
 
