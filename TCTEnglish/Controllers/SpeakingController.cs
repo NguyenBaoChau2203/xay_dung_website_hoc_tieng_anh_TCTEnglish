@@ -22,10 +22,20 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // 1. Fetch all videos (with sentences for count)
+            // 1. Fetch all videos (Projected for optimization)
             var allVideos = await _context.SpeakingVideos
                 .AsNoTracking()
-                .Include(v => v.SpeakingSentences)
+                .Select(v => new SpeakingVideoViewModel
+                {
+                    Id = v.Id,
+                    Title = v.Title,
+                    YoutubeId = v.YoutubeId,
+                    Level = v.Level,
+                    Topic = v.Topic,
+                    Duration = v.Duration,
+                    ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
+                    SentenceCount = v.SpeakingSentences.Count
+                })
                 .ToListAsync();
 
             // 2. Extract distinct topics directly from the database for optimization
@@ -44,17 +54,6 @@ namespace TCTVocabulary.Controllers
             {
                 var videosInLevel = allVideos
                     .Where(v => v.Level == level)
-                    .Select(v => new SpeakingVideoViewModel
-                    {
-                        Id = v.Id,
-                        Title = v.Title,
-                        YoutubeId = v.YoutubeId,
-                        Level = v.Level,
-                        Topic = v.Topic,
-                        Duration = v.Duration,
-                        ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
-                        SentenceCount = v.SpeakingSentences?.Count ?? 0
-                    })
                     .ToList();
 
                 if (videosInLevel.Any())
