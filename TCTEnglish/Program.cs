@@ -31,17 +31,15 @@ builder.Services.AddHostedService<AutoUnlockWorker>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    // Nếu muốn mặc định khi challenge là Google thì set DefaultChallengeScheme, 
-    // nhưng ở đây ta dùng link explicit nên để Cookie là default scheme.
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = "ExternalCookie";
 })
-
 .AddCookie(options =>
 {
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 })
+.AddCookie("ExternalCookie")
 .AddGoogle(options =>
 {
     // Lấy từ appsettings.json hoặc User Secrets
@@ -61,11 +59,23 @@ builder.Services.AddAuthentication(options =>
         }
         return System.Threading.Tasks.Task.CompletedTask;
     };
+    options.Events.OnRemoteFailure = ctx =>
+    {
+        ctx.Response.Redirect("/Account/Login");
+        ctx.HandleResponse();
+        return System.Threading.Tasks.Task.CompletedTask;
+    };
 })
 .AddFacebook(options =>
 {
     options.AppId = builder.Configuration["Authentication:Facebook:AppId"] ?? "dummy-app-id";
     options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"] ?? "dummy-app-secret";
+    options.Events.OnRemoteFailure = ctx =>
+    {
+        ctx.Response.Redirect("/Account/Login");
+        ctx.HandleResponse();
+        return System.Threading.Tasks.Task.CompletedTask;
+    };
 });
 
 var app = builder.Build();

@@ -120,8 +120,8 @@ namespace TCTVocabulary.Controllers
             // --- Block / Auto-Unlock check ---
             if (user.Status == UserStatus.Blocked)
             {
-                // Auto-unlock: if lock has expired
-                if (user.LockExpiry.HasValue && user.LockExpiry.Value <= DateTime.UtcNow)
+                // Lazy Auto-Unlock: if lock has expired, reset and allow login
+                if (user.LockExpiry.HasValue && DateTime.UtcNow >= user.LockExpiry.Value)
                 {
                     user.Status = UserStatus.Offline;
                     user.LockReason = null;
@@ -129,20 +129,21 @@ namespace TCTVocabulary.Controllers
                     await _context.SaveChangesAsync();
 
                     await _emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: true);
+                    // Fall through to sign-in below
                 }
                 else
                 {
-                    // Still blocked
-                    var lockExpiryStr = user.LockExpiry.HasValue && user.LockExpiry.Value < DateTime.MaxValue
+                    // Active Block: populate TempData for the auto-popup modal
+                    TempData["IsBlocked"] = true;
+                    TempData["LockReason"] = user.LockReason ?? "Không rõ lý do.";
+                    TempData["LockExpiry"] = user.LockExpiry.HasValue && user.LockExpiry.Value < DateTime.MaxValue
                         ? user.LockExpiry.Value.ToString("dd/MM/yyyy HH:mm:ss (UTC)")
                         : "Vĩnh viễn";
 
                     return Json(new
                     {
                         success = false,
-                        blocked = true,
-                        lockReason = user.LockReason ?? "Không rõ lý do.",
-                        lockExpiry = lockExpiryStr
+                        blocked = true
                     });
                 }
             }
@@ -158,11 +159,13 @@ namespace TCTVocabulary.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
+            // Xóa external cookie scheme để tránh correlation lỗi khi đăng nhập lại
+            try { await HttpContext.SignOutAsync("ExternalCookie"); } catch { }
+
             // Clear any external authentication cookies to prevent auto-reuse
-            // Delete common external cookie names
             foreach (var cookie in HttpContext.Request.Cookies.Keys)
             {
-                if (cookie.Contains("External") || cookie.Contains("Correlation"))
+                if (cookie.Contains("External") || cookie.Contains("Correlation") || cookie.Contains(".Google") || cookie.Contains(".Facebook"))
                 {
                     Response.Cookies.Delete(cookie);
                 }
@@ -191,7 +194,7 @@ namespace TCTVocabulary.Controllers
         public async Task<IActionResult> ExternalLoginCallback()
         {
             // 1. Authenticate and retrieve the external login result
-            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var result = await HttpContext.AuthenticateAsync("ExternalCookie");
 
             // If authentication failed or no principal, redirect back to login
             if (result?.Succeeded != true || result.Principal == null)
@@ -265,6 +268,7 @@ namespace TCTVocabulary.Controllers
                             : "Vĩnh viễn";
                         TempData["BlockedReason"] = user.LockReason ?? "Không rõ lý do.";
                         TempData["BlockedExpiry"] = lockExpiryStr;
+                        await HttpContext.SignOutAsync("ExternalCookie");
                         return RedirectToAction("Login");
                     }
                 }
@@ -272,6 +276,9 @@ namespace TCTVocabulary.Controllers
 
             // 5. Sign in with our app's cookie claims
             await SignInUserAsync(user);
+
+            // 6. Clean up the temporary external cookie
+            await HttpContext.SignOutAsync("ExternalCookie");
 
             return RedirectToAction("Index", "Home");
         }
