@@ -209,7 +209,8 @@
                                     </button>
                                     <button class="btn btn-outline-danger btn-block-user"
                                             data-user-id="@user.UserId"
-                                            data-user-name="@user.FullName" title="Khóa tài khoản">
+                                            data-user-name="@user.FullName"
+                                            data-user-email="@user.Email" title="Khóa tài khoản">
                                         <i class="bi bi-lock-fill"></i>
                                     </button>
                                 </div>
@@ -381,10 +382,12 @@
         // (Removed — status updates are now handled via Block/Unlock flows)
 
         // ===== BLOCK USER: Open modal =====
+        let blockUserEmail = '';
         document.querySelectorAll('.btn-block-user').forEach(btn => {
             btn.addEventListener('click', function () {
                 const userId = this.dataset.userId;
                 const userName = this.dataset.userName;
+                blockUserEmail = this.dataset.userEmail;
                 document.getElementById('blockUserId').value = userId;
                 document.getElementById('blockUserName').textContent = userName;
                 document.getElementById('blockReason').value = '';
@@ -423,6 +426,10 @@
 
             const result = await res.json();
             if (res.ok && result.success) {
+                const modalEl = document.getElementById('blockUserModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) modalInstance.hide();
+                alert('Đã khóa tài khoản ' + blockUserEmail + ' thành công.');
                 location.reload();
             } else {
                 errorEl.textContent = result.message || 'Đã xảy ra lỗi.';

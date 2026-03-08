@@ -17,6 +17,37 @@ namespace TCTVocabulary.Controllers
         {
             _context = context;
         }
+
+        private bool TryGetCurrentUserId(out int userId)
+        {
+            userId = 0;
+
+            var idClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(idClaim, out userId))
+            {
+                return true;
+            }
+
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+
+            var dbUserId = _context.Users
+                .Where(u => u.Email == email)
+                .Select(u => (int?)u.UserId)
+                .FirstOrDefault();
+
+            if (!dbUserId.HasValue)
+            {
+                return false;
+            }
+
+            userId = dbUserId.Value;
+            return true;
+        }
+
         public IActionResult Index()
         {
             if (!User.Identity!.IsAuthenticated)
@@ -24,19 +55,21 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Landing");
             }
 
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim))
+            if (!TryGetCurrentUserId(out var userId))
             {
                 return RedirectToAction("Login", "Account");
             }
-
-            var userId = int.Parse(userIdClaim);
 
             var user = _context.Users
                 .Include(u => u.Folders)
                     .ThenInclude(f => f.Sets)
                 .Include(u => u.Sets)
                 .FirstOrDefault(u => u.UserId == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var cardCount = _context.Cards
                 .Count(c => user.Sets.Select(s => s.SetId).Contains(c.SetId));
@@ -136,11 +169,10 @@ namespace TCTVocabulary.Controllers
         // =========================
         private void UpdateStreak()
         {
-            var claim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (claim == null) return;
+            if (!TryGetCurrentUserId(out var userId)) return;
 
-            var userId = int.Parse(claim);
-            var user = _context.Users.First(u => u.UserId == userId);
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user == null) return;
 
             var today = DateTime.UtcNow.Date;
 
@@ -218,12 +250,8 @@ namespace TCTVocabulary.Controllers
         }
         public IActionResult Folder()
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(userIdClaim))
+            if (!TryGetCurrentUserId(out var currentUserId))
                 return RedirectToAction("Login", "Account");
-
-            int currentUserId = int.Parse(userIdClaim);
 
             // 🔹 Folder của chính mình
             var myFolders = _context.Folders
@@ -249,11 +277,8 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult UnsaveFolder(int folderId)
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim))
+            if (!TryGetCurrentUserId(out var userId))
                 return RedirectToAction("Login", "Account");
-
-            int userId = int.Parse(userIdClaim);
 
             var saved = _context.SavedFolders
                 .FirstOrDefault(sf => sf.UserId == userId && sf.FolderId == folderId);
@@ -276,9 +301,10 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Folder");
             }
 
-            // 2. Lấy UserId của người dùng hiện tại từ Claims
-            // Ép kiểu sang int vì Model Folder yêu cầu UserId là kiểu int
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             // 3. Khởi tạo đối tượng Folder mới
             var folder = new Folder
@@ -298,9 +324,10 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult FolderDetail(int id)
         {
-            var userId = int.Parse(
-                User.FindFirstValue(ClaimTypes.NameIdentifier)!
-            );
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var folder = _context.Folders
                 .Include(f => f.User)
@@ -349,8 +376,10 @@ namespace TCTVocabulary.Controllers
         [Authorize] // [FIX-AI-AUTH] Bắt buộc đăng nhập
         public async Task<IActionResult> CreateSet(int? folderId, string SetName, string Description, string[] Terms, string[] Definitions)
         {
-            // [FIX-AI-AUTH] Lấy UserId từ người dùng đang đăng nhập
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             // 1. Khởi tạo đối tượng Set mới
             var newSet = new Set
@@ -418,15 +447,10 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteFolder(int id)
         {
-            // Lấy UserId của user đang đăng nhập
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (userIdClaim == null)
+            if (!TryGetCurrentUserId(out var currentUserId))
             {
                 return Unauthorized();
             }
-
-            int currentUserId = int.Parse(userIdClaim);
 
             // Chỉ lấy folder thuộc về user hiện tại
             var folder = _context.Folders
@@ -455,15 +479,10 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("FolderDetail", new { id = folderId });
             }
 
-            // Lấy UserId của user hiện tại
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (userIdClaim == null)
+            if (!TryGetCurrentUserId(out var currentUserId))
             {
                 return Unauthorized();
             }
-
-            int currentUserId = int.Parse(userIdClaim);
 
             // Chỉ cho phép sửa folder của chính user
             var folder = _context.Folders
@@ -695,8 +714,10 @@ namespace TCTVocabulary.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // 1. Lấy UserId từ Claims của người dùng hiện tại
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var newClass = new Class
             {
@@ -750,7 +771,10 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditClass(int classId, string className, string? description)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var cls = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
 
@@ -769,7 +793,10 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteClass(int classId)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var cls = _context.Classes
                 .Include(c => c.ClassMembers)
@@ -788,7 +815,10 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult ClassDetail(int id)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var cls = _context.Classes
                 .Include(c => c.Owner)
@@ -846,7 +876,10 @@ namespace TCTVocabulary.Controllers
         [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var exists = await _context.ClassFolders
                 .AnyAsync(cf => cf.ClassId == classId && cf.FolderId == folderId);
@@ -868,7 +901,10 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult SaveFolder(int folderId)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             // 1. Kiểm tra đã lưu chưa
             var existed = _context.SavedFolders
@@ -893,7 +929,10 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public async Task<IActionResult> SearchClass(string keyword)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var classes = await _context.Classes
                 .Where(c =>
@@ -917,7 +956,10 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> JoinClass(int classId)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var classExists = await _context.Classes
                 .AnyAsync(c => c.ClassId == classId);
@@ -946,7 +988,10 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LeaveClass(int classId)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
 
             var cm = await _context.ClassMembers
                 .FirstOrDefaultAsync(x => x.ClassId == classId && x.UserId == userId);
@@ -963,7 +1008,10 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Class()
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var classes = await _context.Classes
                 .Include(c => c.Owner)
