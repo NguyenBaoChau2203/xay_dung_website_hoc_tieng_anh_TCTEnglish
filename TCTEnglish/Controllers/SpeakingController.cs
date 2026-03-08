@@ -100,8 +100,9 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Practice(int id)
         {
-            // SECURE: Get current UserId for progress filtering
-            var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            // FIX: Use TryParse instead of Parse to avoid InvalidOperationException if claim is missing
+            if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int currentUserId))
+                return RedirectToAction("Login", "Account");
 
             var video = await _context.SpeakingVideos
                 .AsNoTracking()
