@@ -392,8 +392,9 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -415,8 +416,9 @@ namespace TCTVocabulary.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<IActionResult> UpdateProfile(TCTVocabulary.ViewModels.UpdateProfileViewModel model)
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
             
@@ -442,16 +444,32 @@ namespace TCTVocabulary.Controllers
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
 
-                    // Ensure directory exists
-                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "avatars");
-                    Directory.CreateDirectory(uploadsFolder);
-
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Avatar.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    string filePath = "";
+                    using (var ms = new MemoryStream())
                     {
-                        await model.Avatar.CopyToAsync(fileStream);
+                        await model.Avatar.CopyToAsync(ms);
+                        var fileBytes = ms.ToArray();
+                        bool isImage = false;
+                        
+                        if (fileBytes.Length >= 3 && fileBytes[0] == 0xFF && fileBytes[1] == 0xD8 && fileBytes[2] == 0xFF)
+                            isImage = true;
+                        else if (fileBytes.Length >= 8 && fileBytes[0] == 0x89 && fileBytes[1] == 0x50 && fileBytes[2] == 0x4E && fileBytes[3] == 0x47 &&
+                                 fileBytes[4] == 0x0D && fileBytes[5] == 0x0A && fileBytes[6] == 0x1A && fileBytes[7] == 0x0A)
+                            isImage = true;
+
+                        if (!isImage)
+                        {
+                            TempData["ErrorMessage"] = "Tệp tải lên không phải là định dạng hình ảnh hợp lệ (Nguy cơ bảo mật).";
+                            model.CurrentAvatarUrl = user.AvatarUrl;
+                            return View("~/Views/Account/Profile.cshtml", model);
+                        }
+
+                        // Ensure directory exists
+                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "avatars");
+                        Directory.CreateDirectory(uploadsFolder);
+                        filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        await System.IO.File.WriteAllBytesAsync(filePath, fileBytes);
                     }
 
                     // Delete old avatar if it's a local file
@@ -485,8 +503,9 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> Settings()
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -507,8 +526,9 @@ namespace TCTVocabulary.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<IActionResult> UpdateEmail(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
 
@@ -546,8 +566,9 @@ namespace TCTVocabulary.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<IActionResult> ChangePassword(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
 
