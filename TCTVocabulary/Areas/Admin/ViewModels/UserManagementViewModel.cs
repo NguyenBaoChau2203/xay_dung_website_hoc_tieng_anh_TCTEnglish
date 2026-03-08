@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels
 {
@@ -14,8 +15,9 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
 
         // KPI summary
         public int TotalUsers { get; set; }
-        public int ActiveUsers { get; set; }
-        public int DisabledUsers { get; set; }
+        public int OnlineUsers { get; set; }
+        public int OfflineUsers { get; set; }
+        public int BlockedUsers { get; set; }
     }
 
     // Row-level projection — never expose raw User entity
@@ -26,10 +28,12 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string Email { get; set; } = string.Empty;
         public string? AvatarUrl { get; set; }
         public string Role { get; set; } = string.Empty;
-        public bool IsActive { get; set; }
+        public UserStatus Status { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int FolderCount { get; set; }
         public int SetCount { get; set; }
+        public string? LockReason { get; set; }
+        public DateTime? LockExpiry { get; set; }
     }
 
     // Edit modal ViewModel
@@ -48,6 +52,25 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         [Required(ErrorMessage = "Vai trò không được để trống.")]
         public string Role { get; set; } = string.Empty;
 
-        public bool IsActive { get; set; }
+        public UserStatus Status { get; set; }
+    }
+
+    // Block user request DTO
+    public class BlockUserRequest
+    {
+        public int UserId { get; set; }
+
+        [Required(ErrorMessage = "Lý do khóa không được để trống.")]
+        [StringLength(1000)]
+        public string Reason { get; set; } = string.Empty;
+
+        [Required]
+        public string Duration { get; set; } = string.Empty;
+    }
+
+    // Unlock user request DTO
+    public class UnlockUserRequest
+    {
+        public int UserId { get; set; }
     }
 }

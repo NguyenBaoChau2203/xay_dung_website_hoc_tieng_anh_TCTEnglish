@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Hubs;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
+using TCTVocabulary.Workers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,10 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register email sender and background worker
+builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
+builder.Services.AddHostedService<AutoUnlockWorker>();
 
 // Cấu hình Authentication (Cookie + Social)
 builder.Services.AddAuthentication(options =>

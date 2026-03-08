@@ -11,28 +11,33 @@ namespace TCTVocabulary.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK__Folders__ParentF__3E52440B",
-                table: "Folders");
+            // Idempotent: only drop FK if it still exists
+            migrationBuilder.Sql(@"
+                IF EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK_Users_Classes_ClassId')
+                    ALTER TABLE [Users] DROP CONSTRAINT [FK_Users_Classes_ClassId];");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Users_Classes_ClassId",
-                table: "Users");
+            // Idempotent: only drop index if it still exists
+            migrationBuilder.Sql(@"
+                IF EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_Users_ClassId' AND object_id = OBJECT_ID('Users'))
+                    DROP INDEX [IX_Users_ClassId] ON [Users];");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Users_ClassId",
-                table: "Users");
+            // Idempotent: only drop column if it still exists
+            migrationBuilder.Sql(@"
+                IF COL_LENGTH('Users', 'ClassId') IS NOT NULL
+                BEGIN
+                    DECLARE @df NVARCHAR(256);
+                    SELECT @df = QUOTENAME(d.name)
+                    FROM sys.default_constraints d
+                    JOIN sys.columns c ON d.parent_column_id = c.column_id AND d.parent_object_id = c.object_id
+                    WHERE d.parent_object_id = OBJECT_ID('Users') AND c.name = 'ClassId';
+                    IF @df IS NOT NULL EXEC('ALTER TABLE [Users] DROP CONSTRAINT ' + @df);
+                    ALTER TABLE [Users] DROP COLUMN [ClassId];
+                END");
 
-            migrationBuilder.DropColumn(
-                name: "ClassId",
-                table: "Users");
-
-            migrationBuilder.AddColumn<bool>(
-                name: "IsActive",
-                table: "Users",
-                type: "bit",
-                nullable: false,
-                defaultValue: true);
+            // Idempotent: only add IsActive if it doesn't already exist
+            migrationBuilder.Sql(@"
+                IF COL_LENGTH('Users', 'IsActive') IS NULL
+                    ALTER TABLE [Users] ADD [IsActive] BIT NOT NULL DEFAULT CAST(1 AS BIT);");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Topic",
@@ -53,20 +58,22 @@ namespace TCTVocabulary.Migrations
                 oldType: "datetime2",
                 oldDefaultValueSql: "GETDATE()");
 
-            migrationBuilder.UpdateData(
-                table: "Users",
-                keyColumn: "UserID",
-                keyValue: 1,
-                columns: new[] { "Email", "FullName", "IsActive", "PasswordHash", "Role" },
-                values: new object[] { "admin@tctenglish.com", "System Admin", true, "$2a$11$P/Ddyz.mGnpom9fEbTcXxuaOmUYMAaCZDKac8vCTJOY6GK4LzYR2y", "Admin" });
+            // Idempotent: update seed data only if row exists
+            migrationBuilder.Sql(@"
+                IF EXISTS (SELECT 1 FROM [Users] WHERE [UserID] = 1)
+                    UPDATE [Users]
+                    SET [Email] = 'admin@tctenglish.com',
+                        [FullName] = 'System Admin',
+                        [IsActive] = 1,
+                        [PasswordHash] = '$2a$11$P/Ddyz.mGnpom9fEbTcXxuaOmUYMAaCZDKac8vCTJOY6GK4LzYR2y',
+                        [Role] = 'Admin'
+                    WHERE [UserID] = 1;");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK__Folders__ParentF__3E52440B",
-                table: "Folders",
-                column: "ParentFolderID",
-                principalTable: "Folders",
-                principalColumn: "FolderID",
-                onDelete: ReferentialAction.Restrict);
+            // Re-add FK (Restrict) — idempotent via DROP + ADD
+            migrationBuilder.Sql(@"
+                IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK__Folders__ParentF__3E52440B')
+                    ALTER TABLE [Folders] ADD CONSTRAINT [FK__Folders__ParentF__3E52440B]
+                        FOREIGN KEY ([ParentFolderID]) REFERENCES [Folders]([FolderID]);");
         }
 
         /// <inheritdoc />

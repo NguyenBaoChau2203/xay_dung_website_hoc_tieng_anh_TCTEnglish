@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 
 namespace TCTVocabulary.Areas.Admin.Controllers
 {
@@ -11,10 +12,12 @@ namespace TCTVocabulary.Areas.Admin.Controllers
     public class UserManagementController : Controller
     {
         private readonly DbflashcardContext _context;
+        private readonly IAppEmailSender _emailSender;
 
-        public UserManagementController(DbflashcardContext context)
+        public UserManagementController(DbflashcardContext context, IAppEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
 
         // GET: /Admin/UserManagement
@@ -38,15 +41,16 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             }
 
             // Status filter
-            if (!string.IsNullOrWhiteSpace(status))
+            if (!string.IsNullOrWhiteSpace(status)
+                && Enum.TryParse<UserStatus>(status, ignoreCase: true, out var parsedStatus))
             {
-                var isActive = status == "active";
-                query = query.Where(u => u.IsActive == isActive);
+                query = query.Where(u => u.Status == parsedStatus);
             }
 
             // KPI counts (on full dataset, not filtered)
             var totalUsers = await _context.Users.AsNoTracking().CountAsync();
-            var activeUsers = await _context.Users.AsNoTracking().CountAsync(u => u.IsActive);
+            var onlineUsers = await _context.Users.AsNoTracking().CountAsync(u => u.Status == UserStatus.Online);
+            var blockedUsers = await _context.Users.AsNoTracking().CountAsync(u => u.Status == UserStatus.Blocked);
 
             // Project into ViewModel via .Select() — never pass raw entities
             var users = await query
@@ -58,10 +62,12 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     Email = u.Email,
                     AvatarUrl = u.AvatarUrl,
                     Role = u.Role ?? Roles.Student,
-                    IsActive = u.IsActive,
+                    Status = u.Status,
                     CreatedAt = u.CreatedAt,
                     FolderCount = u.Folders.Count,
-                    SetCount = u.Sets.Count
+                    SetCount = u.Sets.Count,
+                    LockReason = u.LockReason,
+                    LockExpiry = u.LockExpiry
                 })
                 .ToListAsync();
 
@@ -72,8 +78,9 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 RoleFilter = role,
                 StatusFilter = status,
                 TotalUsers = totalUsers,
-                ActiveUsers = activeUsers,
-                DisabledUsers = totalUsers - activeUsers
+                OnlineUsers = onlineUsers,
+                OfflineUsers = totalUsers - onlineUsers - blockedUsers,
+                BlockedUsers = blockedUsers
             };
 
             return View(viewModel);
@@ -91,7 +98,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     FullName = u.FullName ?? "",
                     Email = u.Email,
                     Role = u.Role ?? Roles.Student,
-                    IsActive = u.IsActive
+                    Status = u.Status
                 })
                 .FirstOrDefaultAsync();
 
@@ -123,6 +130,10 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             if (!allowedRoles.Contains(model.Role))
                 return BadRequest(new { message = "Vai trò không hợp lệ." });
 
+            // Validate status value
+            if (!Enum.IsDefined(model.Status))
+                return BadRequest(new { message = "Trạng thái không hợp lệ." });
+
             // Check email uniqueness (exclude self)
             var emailTaken = await _context.Users.AsNoTracking()
                 .AnyAsync(u => u.Email == model.Email && u.UserId != model.UserId);
@@ -132,85 +143,114 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             user.FullName = model.FullName;
             user.Email = model.Email;
             user.Role = model.Role;
-            user.IsActive = model.IsActive;
+            user.Status = model.Status;
 
             await _context.SaveChangesAsync();
 
             return Json(new { success = true, message = "Cập nhật thành công." });
         }
 
-        // POST: /Admin/UserManagement/ToggleStatus  (AJAX)
+        // POST: /Admin/UserManagement/UpdateStatus  (AJAX)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ToggleStatus([FromBody] ToggleStatusRequest request)
+        public async Task<IActionResult> UpdateStatus([FromBody] UpdateStatusRequest request)
         {
+            if (!Enum.IsDefined(request.Status))
+                return BadRequest(new { message = "Trạng thái không hợp lệ." });
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
             if (user == null)
                 return NotFound(new { message = "Không tìm thấy người dùng." });
 
-            user.IsActive = !user.IsActive;
+            user.Status = request.Status;
             await _context.SaveChangesAsync();
 
             return Json(new
             {
                 success = true,
-                isActive = user.IsActive,
-                message = user.IsActive ? "Đã kích hoạt tài khoản." : "Đã vô hiệu hóa tài khoản."
+                status = (int)user.Status,
+                message = user.Status switch
+                {
+                    UserStatus.Online => "Đã kích hoạt tài khoản.",
+                    UserStatus.Blocked => "Đã chặn tài khoản.",
+                    _ => "Tài khoản đã chuyển sang Offline."
+                }
             });
         }
 
-        // POST: /Admin/UserManagement/Delete  (AJAX)
+        // POST: /Admin/UserManagement/BlockUser  (AJAX)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete([FromBody] DeleteUserRequest request)
+        public async Task<IActionResult> BlockUser([FromBody] BlockUserRequest request)
         {
-            var user = await _context.Users
-                .Include(u => u.Sets).ThenInclude(s => s.Cards)
-                .Include(u => u.Folders)
-                .Include(u => u.ClassMembers)
-                .Include(u => u.ClassMessages)
-                .Include(u => u.LearningProgresses)
-                .Include(u => u.SavedFolders)
-                .Include(u => u.UserSpeakingProgresses)
-                .FirstOrDefaultAsync(u => u.UserId == request.UserId);
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage);
+                return BadRequest(new { message = string.Join(", ", errors) });
+            }
 
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
             if (user == null)
                 return NotFound(new { message = "Không tìm thấy người dùng." });
 
-            // Prevent self-deletion
+            // Prevent blocking self
             var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (currentUserId == user.UserId.ToString())
-                return BadRequest(new { message = "Không thể xóa chính tài khoản đang đăng nhập." });
+                return BadRequest(new { message = "Không thể khóa chính tài khoản đang đăng nhập." });
 
-            // Remove dependent entities first (they are already tracked via Include)
-            _context.LearningProgresses.RemoveRange(user.LearningProgresses);
-            _context.UserSpeakingProgresses.RemoveRange(user.UserSpeakingProgresses);
-            _context.SavedFolders.RemoveRange(user.SavedFolders);
-            _context.ClassMessages.RemoveRange(user.ClassMessages);
-            _context.ClassMembers.RemoveRange(user.ClassMembers);
-
-            foreach (var set in user.Sets)
+            // Calculate LockExpiry based on duration
+            DateTime? lockExpiry = request.Duration switch
             {
-                _context.Cards.RemoveRange(set.Cards);
-            }
-            _context.Sets.RemoveRange(user.Sets);
-            _context.Folders.RemoveRange(user.Folders);
+                "30s" => DateTime.UtcNow.AddSeconds(30),
+                "1d" => DateTime.UtcNow.AddDays(1),
+                "3d" => DateTime.UtcNow.AddDays(3),
+                "7d" => DateTime.UtcNow.AddDays(7),
+                "permanent" => DateTime.MaxValue,
+                _ => null
+            };
 
-            _context.Users.Remove(user);
+            if (lockExpiry == null)
+                return BadRequest(new { message = "Thời hạn khóa không hợp lệ." });
+
+            user.Status = UserStatus.Blocked;
+            user.LockReason = request.Reason;
+            user.LockExpiry = lockExpiry.Value;
             await _context.SaveChangesAsync();
 
-            return Json(new { success = true, message = "Đã xóa người dùng." });
+            await _emailSender.SendBlockedNotificationAsync(user.Email, request.Reason, lockExpiry.Value);
+
+            return Json(new { success = true, message = "Đã khóa tài khoản thành công." });
+        }
+
+        // POST: /Admin/UserManagement/UnlockUser  (AJAX)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnlockUser([FromBody] UnlockUserRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
+            if (user == null)
+                return NotFound(new { message = "Không tìm thấy người dùng." });
+
+            if (user.Status != UserStatus.Blocked)
+                return BadRequest(new { message = "Người dùng không ở trạng thái bị khóa." });
+
+            user.Status = UserStatus.Offline;
+            user.LockReason = null;
+            user.LockExpiry = null;
+            await _context.SaveChangesAsync();
+
+            await _emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: false);
+
+            return Json(new { success = true, message = "Đã mở khóa tài khoản thành công." });
         }
     }
 
     // Request DTOs for AJAX actions
-    public class ToggleStatusRequest
+    public class UpdateStatusRequest
     {
         public int UserId { get; set; }
-    }
-
-    public class DeleteUserRequest
-    {
-        public int UserId { get; set; }
+        public UserStatus Status { get; set; }
     }
 }

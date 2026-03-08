@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using TCTVocabulary.Services;
 
 namespace TCTVocabulary.Controllers
 {
@@ -19,12 +20,14 @@ namespace TCTVocabulary.Controllers
         private readonly DbflashcardContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
+        private readonly IAppEmailSender _emailSender;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IConfiguration configuration, IAppEmailSender emailSender)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
+            _emailSender = emailSender;
         }
 
         // GET: /Account/Login
@@ -114,8 +117,38 @@ namespace TCTVocabulary.Controllers
                 return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
             }
 
+            // --- Block / Auto-Unlock check ---
+            if (user.Status == UserStatus.Blocked)
+            {
+                // Auto-unlock: if lock has expired
+                if (user.LockExpiry.HasValue && user.LockExpiry.Value <= DateTime.UtcNow)
+                {
+                    user.Status = UserStatus.Offline;
+                    user.LockReason = null;
+                    user.LockExpiry = null;
+                    await _context.SaveChangesAsync();
+
+                    await _emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: true);
+                }
+                else
+                {
+                    // Still blocked
+                    var lockExpiryStr = user.LockExpiry.HasValue && user.LockExpiry.Value < DateTime.MaxValue
+                        ? user.LockExpiry.Value.ToString("dd/MM/yyyy HH:mm:ss (UTC)")
+                        : "Vĩnh viễn";
+
+                    return Json(new
+                    {
+                        success = false,
+                        blocked = true,
+                        lockReason = user.LockReason ?? "Không rõ lý do.",
+                        lockExpiry = lockExpiryStr
+                    });
+                }
+            }
+
             await SignInUserAsync(user);
-            
+
             // Return JSON success
             return Json(new { success = true });
         }
@@ -212,6 +245,28 @@ namespace TCTVocabulary.Controllers
                 {
                     user.AvatarUrl = pictureClaim;
                     await _context.SaveChangesAsync();
+                }
+
+                // --- Block / Auto-Unlock check for social login ---
+                if (user.Status == UserStatus.Blocked)
+                {
+                    if (user.LockExpiry.HasValue && user.LockExpiry.Value <= DateTime.UtcNow)
+                    {
+                        user.Status = UserStatus.Offline;
+                        user.LockReason = null;
+                        user.LockExpiry = null;
+                        await _context.SaveChangesAsync();
+                        await _emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: true);
+                    }
+                    else
+                    {
+                        var lockExpiryStr = user.LockExpiry.HasValue && user.LockExpiry.Value < DateTime.MaxValue
+                            ? user.LockExpiry.Value.ToString("dd/MM/yyyy HH:mm:ss (UTC)")
+                            : "Vĩnh viễn";
+                        TempData["BlockedReason"] = user.LockReason ?? "Không rõ lý do.";
+                        TempData["BlockedExpiry"] = lockExpiryStr;
+                        return RedirectToAction("Login");
+                    }
                 }
             }
 

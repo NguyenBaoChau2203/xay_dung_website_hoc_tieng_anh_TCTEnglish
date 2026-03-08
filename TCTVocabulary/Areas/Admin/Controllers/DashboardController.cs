@@ -43,7 +43,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     FullName = u.FullName ?? "N/A",
                     Email = u.Email,
                     Role = u.Role ?? Roles.Student,
-                    IsActive = u.IsActive,
+                    Status = u.Status,
                     CreatedAt = u.CreatedAt
                 })
                 .ToListAsync();
