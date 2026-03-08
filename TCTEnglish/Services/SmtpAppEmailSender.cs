@@ -63,6 +63,28 @@ namespace TCTVocabulary.Services
             await SendEmailAsync(toEmail, subject, body);
         }
 
+        // REFACTOR: Moved from AccountController.ForgotPassword — email logic belongs in the service layer
+        public async Task SendPasswordResetAsync(string toEmail, string resetLink)
+        {
+            var subject = "Đặt lại mật khẩu - TCT English";
+            var body = $@"
+                <div style='font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; background-color: #f9fafe;'>
+                    <div style='background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);'>
+                        <h2 style='font-family: Montserrat, sans-serif; color: #2e3856; font-size: 24px; margin-bottom: 16px;'>Đặt lại mật khẩu</h2>
+                        <p style='color: #586380; font-size: 16px; line-height: 1.6; margin-bottom: 24px;'>
+                            Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.
+                            Nhấp vào nút bên dưới để tạo mật khẩu mới. Liên kết có hiệu lực trong <strong>15 phút</strong>.
+                        </p>
+                        <a href='{resetLink}' style='display: inline-block; padding: 14px 32px; background-color: #4255ff; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px;'>Đặt lại mật khẩu</a>
+                        <p style='color: #939bb4; font-size: 13px; margin-top: 24px; line-height: 1.5;'>
+                            Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.
+                        </p>
+                    </div>
+                </div>";
+
+            await SendEmailAsync(toEmail, subject, body);
+        }
+
         private async Task SendEmailAsync(string toEmail, string subject, string htmlBody)
         {
             try

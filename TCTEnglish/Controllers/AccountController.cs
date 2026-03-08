@@ -9,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
 using TCTVocabulary.Services;
 
 namespace TCTVocabulary.Controllers
@@ -19,14 +17,12 @@ namespace TCTVocabulary.Controllers
     {
         private readonly DbflashcardContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IConfiguration _configuration;
         private readonly IAppEmailSender _emailSender;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IConfiguration configuration, IAppEmailSender emailSender)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-            _configuration = configuration;
             _emailSender = emailSender;
         }
 
@@ -323,15 +319,15 @@ namespace TCTVocabulary.Controllers
                 return View(model);
             }
 
-            // Generic message to prevent email enumeration
+            // SECURE: Generic message regardless of outcome to prevent email enumeration attacks
             var genericMessage = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (user == null)
             {
-                // Show error: email not found
-                ModelState.AddModelError("Email", "Email này không tồn tại trong hệ thống.");
-                return View(model);
+                // SECURE: Do NOT reveal whether the email exists — show the same generic message
+                ViewBag.Message = genericMessage;
+                return View("ForgotPasswordConfirmation");
             }
 
             // Generate secure token and set expiry (15 minutes)
@@ -344,51 +340,8 @@ namespace TCTVocabulary.Controllers
             var resetLink = Url.Action("ResetPassword", "Account",
                 new { token = token, email = user.Email }, Request.Scheme);
 
-            // --- Send reset email via Gmail SMTP ---
-            try
-            {
-                var smtpHost = _configuration["SmtpSettings:Host"];
-                var smtpPort = int.Parse(_configuration["SmtpSettings:Port"] ?? "587");
-                var senderEmail = _configuration["SmtpSettings:SenderEmail"];
-                var senderName = _configuration["SmtpSettings:SenderName"] ?? "TCT English";
-                var smtpPassword = _configuration["SmtpSettings:Password"];
-
-                var mailMessage = new MailMessage
-                {
-                    From = new MailAddress(senderEmail!, senderName),
-                    Subject = "Đặt lại mật khẩu - TCT English",
-                    IsBodyHtml = true,
-                    Body = $@"
-                        <div style='font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; background-color: #f9fafe;'>
-                            <div style='background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);'>
-                                <h2 style='font-family: Montserrat, sans-serif; color: #2e3856; font-size: 24px; margin-bottom: 16px;'>Đặt lại mật khẩu</h2>
-                                <p style='color: #586380; font-size: 16px; line-height: 1.6; margin-bottom: 24px;'>
-                                    Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn. 
-                                    Nhấp vào nút bên dưới để tạo mật khẩu mới. Liên kết có hiệu lực trong <strong>15 phút</strong>.
-                                </p>
-                                <a href='{resetLink}' style='display: inline-block; padding: 14px 32px; background-color: #4255ff; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px;'>Đặt lại mật khẩu</a>
-                                <p style='color: #939bb4; font-size: 13px; margin-top: 24px; line-height: 1.5;'>
-                                    Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.
-                                </p>
-                            </div>
-                        </div>"
-                };
-                mailMessage.To.Add(user.Email);
-
-                using var smtpClient = new SmtpClient(smtpHost, smtpPort)
-                {
-                    Credentials = new NetworkCredential(senderEmail, smtpPassword),
-                    EnableSsl = true
-                };
-                await smtpClient.SendMailAsync(mailMessage);
-
-                Console.WriteLine($"[Email] Reset password email sent to {user.Email}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[Email Error]: {ex.Message}");
-                // Still show confirmation even if email fails
-            }
+            // FIX: Delegate to injected IAppEmailSender instead of duplicating SMTP logic in controller
+            await _emailSender.SendPasswordResetAsync(user.Email, resetLink!);
 
             ViewBag.Message = genericMessage;
             return View("ForgotPasswordConfirmation");
@@ -401,7 +354,9 @@ namespace TCTVocabulary.Controllers
         {
             var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            // OPTIMIZE: AsNoTracking — read-only query for display
+            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -493,7 +448,7 @@ namespace TCTVocabulary.Controllers
                 }
 
                 user.FullName = model.FullName;
-                _context.Users.Update(user);
+                // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
                 await _context.SaveChangesAsync();
 
                 // Refresh cookies to update claims (like Name, AvatarUrl)
@@ -512,7 +467,9 @@ namespace TCTVocabulary.Controllers
         {
             var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            // OPTIMIZE: AsNoTracking — read-only query for display
+            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -555,7 +512,7 @@ namespace TCTVocabulary.Controllers
                     return RedirectToAction("Settings");
                 }
                 user.Email = model.Email;
-                _context.Users.Update(user);
+                // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
                 await _context.SaveChangesAsync();
 
                 // Refresh cookies
@@ -608,7 +565,7 @@ namespace TCTVocabulary.Controllers
             }
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
-            _context.Users.Update(user);
+            // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Cập nhật Mật khẩu thành công.";
