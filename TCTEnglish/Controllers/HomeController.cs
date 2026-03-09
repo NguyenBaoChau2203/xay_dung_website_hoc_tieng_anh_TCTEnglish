@@ -53,7 +53,7 @@ namespace TCTVocabulary.Controllers
             return User.IsInRole(Roles.Admin);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (!User.Identity!.IsAuthenticated)
             {
@@ -65,28 +65,34 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var user = _context.Users
+            var user = await _context.Users
+                .AsNoTracking()
+                .AsSplitQuery()
                 .Include(u => u.Folders)
                     .ThenInclude(f => f.Sets)
                 .Include(u => u.Sets)
-                .FirstOrDefault(u => u.UserId == userId);
+                .FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var cardCount = _context.Cards
-                .Count(c => user.Sets.Select(s => s.SetId).Contains(c.SetId));
+            var setIds = user.Sets.Select(s => s.SetId).ToList();
+
+            var cardCount = await _context.Cards
+                .AsNoTracking()
+                .CountAsync(c => setIds.Contains(c.SetId));
 
             // 🔥 3 folder ngẫu nhiên
-            var todayFolders = _context.Folders
-    .Include(f => f.Sets)
-    .Include(f => f.User)
-    .Where(f => f.UserId != userId)
-    .OrderBy(f => Guid.NewGuid())
-    .Take(3)
-    .ToList();
+            var todayFolders = await _context.Folders
+                .AsNoTracking()
+                .Include(f => f.Sets)
+                .Include(f => f.User)
+                .Where(f => f.UserId != userId)
+                .OrderBy(f => Guid.NewGuid())
+                .Take(3)
+                .ToListAsync();
 
             var model = new DashboardViewModel
             {
@@ -96,7 +102,7 @@ namespace TCTVocabulary.Controllers
                 FolderCount = user.Folders.Count,
                 SetCount = user.Sets.Count,
                 CardCount = cardCount,
-                DailyChallenge = GetRandomChallenge(),
+                DailyChallenge = await GetRandomChallengeAsync(),
                 TodayFolders = todayFolders
             };
 
@@ -107,9 +113,9 @@ namespace TCTVocabulary.Controllers
         // DAILY CHALLENGE (AJAX)
         // =========================
         [HttpGet]
-        public IActionResult GetDailyChallenge()
+        public async Task<IActionResult> GetDailyChallenge()
         {
-            var challenge = GetRandomChallenge();
+            var challenge = await GetRandomChallengeAsync();
             return PartialView("_DailyChallenge", challenge);
         }
 
@@ -136,13 +142,20 @@ namespace TCTVocabulary.Controllers
         // =========================
         // RANDOM CHALLENGE LOGIC
         // =========================
-        private DailyChallengeViewModel GetRandomChallenge()
+        private async Task<DailyChallengeViewModel> GetRandomChallengeAsync()
         {
-            var randomCard = _context.Cards
-                .OrderBy(c => Guid.NewGuid())
-                .First();
+            var totalCards = await _context.Cards.CountAsync();
+            if (totalCards == 0)
+                return new DailyChallengeViewModel();
 
-            var wrongAnswers = _context.Cards
+            var randomIndex = Random.Shared.Next(totalCards);
+            var randomCard = await _context.Cards
+                .AsNoTracking()
+                .Skip(randomIndex)
+                .FirstAsync();
+
+            var wrongAnswers = await _context.Cards
+                .AsNoTracking()
                 .Where(c => c.CardId != randomCard.CardId)
                 .OrderBy(c => Guid.NewGuid())
                 .Take(3)
@@ -151,11 +164,9 @@ namespace TCTVocabulary.Controllers
                     CardId = c.CardId,
                     Definition = c.Definition
                 })
-                .ToList();
+                .ToListAsync();
 
-            var options = wrongAnswers;
-
-            options.Add(new AnswerOption
+            wrongAnswers.Add(new AnswerOption
             {
                 CardId = randomCard.CardId,
                 Definition = randomCard.Definition
@@ -165,7 +176,7 @@ namespace TCTVocabulary.Controllers
             {
                 CardId = randomCard.CardId,
                 Term = randomCard.Term,
-                Options = options.OrderBy(o => Guid.NewGuid()).ToList()
+                Options = wrongAnswers.OrderBy(_ => Random.Shared.Next()).ToList()
             };
         }
 

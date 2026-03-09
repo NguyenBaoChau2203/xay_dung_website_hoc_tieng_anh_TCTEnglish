@@ -21,7 +21,13 @@ builder.Services.AddRazorPages()
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+            sqlOptions.CommandTimeout(60);
+        }));
 
 // Register email sender and background worker
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
@@ -101,6 +107,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ClassChatHub>("/classChatHub");
+
+// Legacy route compatibility for old admin speaking URL
+app.MapControllerRoute(
+    name: "admin-speaking-management-legacy",
+    pattern: "Admin/SpeakingManagement/{action=Index}/{id?}",
+    defaults: new { area = "Admin", controller = "SpeakingVideoManagement" });
 
 // Area route (Admin Dashboard)
 app.MapControllerRoute(

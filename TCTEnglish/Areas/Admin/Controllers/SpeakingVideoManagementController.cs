@@ -86,43 +86,83 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     return View();
                 }
 
-                using var transaction = await _context.Database.BeginTransactionAsync();
-                
-                try
+                // Validate playlist before entering the execution strategy
+                int targetPlaylistId;
+
+                if (playlistId > 0)
                 {
-                    // 1. Create the SpeakingVideo
-                    var video = new SpeakingVideo
-                    {
-                        Title = title,
-                        YoutubeId = youtubeId,
-                        Level = level,
-                        Topic = topic ?? "General",
-                        PlaylistId = playlistId,
-                        // Default thumbnail can be constructed via Youtube ID
-                        ThumbnailUrl = $"https://img.youtube.com/vi/{youtubeId}/hqdefault.jpg"
-                    };
+                    var playlistExists = await _context.SpeakingPlaylists
+                        .AsNoTracking()
+                        .AnyAsync(p => p.Id == playlistId);
 
-                    _context.SpeakingVideos.Add(video);
-                    await _context.SaveChangesAsync(); // Get the generated Video ID
-
-                    // 2. Assign VideoId to all derived sentences and add them
-                    foreach (var sentence in sentences)
+                    if (!playlistExists)
                     {
-                        sentence.VideoId = video.Id;
-                        _context.SpeakingSentences.Add(sentence);
+                        ModelState.AddModelError("playlistId", "Playlist đã chọn không tồn tại.");
+                        ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
+                        return View();
                     }
 
-                    await _context.SaveChangesAsync();
-                    
-                    // Commit the transaction
-                    await transaction.CommitAsync();
-                    
+                    targetPlaylistId = playlistId;
+                }
+                else
+                {
+                    var defaultPlaylist = await _context.SpeakingPlaylists
+                        .FirstOrDefaultAsync(p => p.Name == "General");
+
+                    if (defaultPlaylist == null)
+                    {
+                        defaultPlaylist = new SpeakingPlaylist
+                        {
+                            Name = "General",
+                            Description = "Default playlist for videos without selected playlist."
+                        };
+
+                        _context.SpeakingPlaylists.Add(defaultPlaylist);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    targetPlaylistId = defaultPlaylist.Id;
+                }
+
+                var strategy = _context.Database.CreateExecutionStrategy();
+
+                try
+                {
+                    await strategy.ExecuteAsync(async () =>
+                    {
+                        using var transaction = await _context.Database.BeginTransactionAsync();
+
+                        // 1. Create the SpeakingVideo
+                        var video = new SpeakingVideo
+                        {
+                            Title = title,
+                            YoutubeId = youtubeId,
+                            Level = level,
+                            Topic = topic ?? "General",
+                            PlaylistId = targetPlaylistId,
+                            ThumbnailUrl = $"https://img.youtube.com/vi/{youtubeId}/hqdefault.jpg"
+                        };
+
+                        _context.SpeakingVideos.Add(video);
+                        await _context.SaveChangesAsync();
+
+                        // 2. Assign VideoId to all derived sentences and add them
+                        foreach (var sentence in sentences)
+                        {
+                            sentence.VideoId = video.Id;
+                            _context.SpeakingSentences.Add(sentence);
+                        }
+
+                        await _context.SaveChangesAsync();
+
+                        await transaction.CommitAsync();
+                    });
+
                     TempData["SuccessMessage"] = $"Tạo video thành công và trích xuất được {sentences.Count} câu thoại.";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    await transaction.RollbackAsync();
                     _logger.LogError(ex, "Lỗi khi lưu video và phụ đề vào database.");
                     ModelState.AddModelError("", $"Lỗi hệ thống khi lưu: {ex.Message}");
                     ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();

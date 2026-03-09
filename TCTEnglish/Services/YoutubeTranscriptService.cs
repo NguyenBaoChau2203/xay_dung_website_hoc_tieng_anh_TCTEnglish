@@ -91,7 +91,7 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
 
         // 1. Download lowest quality audio to memory
         var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(youtubeId);
-        var audioStreamInfo = streamManifest.GetAudioOnlyStreams().GetWithLowestBitrate(); // Request lowest quality to optimize speed
+        var audioStreamInfo = streamManifest.GetAudioOnlyStreams().OrderBy(s => s.Bitrate).FirstOrDefault(); // Request lowest quality to optimize speed
         
         if (audioStreamInfo == null)
         {
