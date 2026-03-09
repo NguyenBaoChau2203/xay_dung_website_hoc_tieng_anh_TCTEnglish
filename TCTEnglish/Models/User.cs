@@ -14,10 +14,8 @@ public enum UserStatus
 public static class Roles
 {
     public const string Admin = "Admin";
-    public const string Teacher = "Teacher";
-    public const string Student = "Student";
-
-    public const string AdminOrTeacher = "Admin,Teacher";
+    public const string Premium = "Premium";
+    public const string Standard = "Standard";
 }
 
 public partial class User

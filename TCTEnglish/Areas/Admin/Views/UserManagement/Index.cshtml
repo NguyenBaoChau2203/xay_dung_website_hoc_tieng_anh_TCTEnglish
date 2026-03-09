@@ -84,8 +84,8 @@
                 <select name="role" class="form-select">
                     <option value="">Tất cả</option>
                     <option value="Admin" selected="@(Model.RoleFilter == "Admin")">Admin</option>
-                    <option value="Teacher" selected="@(Model.RoleFilter == "Teacher")">Teacher</option>
-                    <option value="Student" selected="@(Model.RoleFilter == "Student")">Student</option>
+                    <option value="Premium" selected="@(Model.RoleFilter == "Premium")">Premium</option>
+                    <option value="Standard" selected="@(Model.RoleFilter == "Standard")">Standard</option>
                 </select>
             </div>
             <div class="col-md-3">
@@ -171,7 +171,7 @@
                                     var (badgeClass, iconClass) = user.Role switch
                                     {
                                         "Admin" => ("bg-danger", "bi-shield-lock-fill"),
-                                        "Teacher" => ("bg-primary", "bi-mortarboard-fill"),
+                                        "Premium" => ("bg-primary", "bi-gem"),
                                         _ => ("bg-secondary", "bi-person-fill")
                                     };
                                 }
@@ -247,8 +247,8 @@
                     <label class="form-label fw-medium">Vai trò</label>
                     <select id="editRole" class="form-select">
                         <option value="Admin">Admin</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="Student">Student</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Standard">Standard</option>
                     </select>
                 </div>
                 <div class="mb-3">

@@ -48,6 +48,11 @@ namespace TCTVocabulary.Controllers
             return true;
         }
 
+        private bool IsAdminUser()
+        {
+            return User.IsInRole(Roles.Admin);
+        }
+
         public IActionResult Index()
         {
             if (!User.Identity!.IsAuthenticated)
@@ -356,7 +361,7 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
-        [Authorize(Roles = Roles.AdminOrTeacher)]
+        [Authorize]
         public IActionResult CreateClass()
         {
             return View();
@@ -367,6 +372,7 @@ namespace TCTVocabulary.Controllers
         }
       
         // Sửa int thành int? để folderId có thể mang giá trị null
+        [Authorize]
         public IActionResult CreateSet(int? folderId)
         {
             ViewBag.FolderId = folderId;
@@ -379,6 +385,20 @@ namespace TCTVocabulary.Controllers
             if (!TryGetCurrentUserId(out var userId))
             {
                 return RedirectToAction("Login", "Account");
+            }
+
+            if (folderId.HasValue)
+            {
+                var folder = await _context.Folders.FirstOrDefaultAsync(f => f.FolderId == folderId.Value);
+                if (folder == null)
+                {
+                    return NotFound();
+                }
+
+                if (!IsAdminUser() && folder.UserId != userId)
+                {
+                    return Forbid();
+                }
             }
 
             // 1. Khởi tạo đối tượng Set mới
@@ -452,14 +472,18 @@ namespace TCTVocabulary.Controllers
                 return Unauthorized();
             }
 
-            // Chỉ lấy folder thuộc về user hiện tại
             var folder = _context.Folders
                 .Include(f => f.Sets)
-                .FirstOrDefault(f => f.FolderId == id && f.UserId == currentUserId);
+                .FirstOrDefault(f => f.FolderId == id);
 
             if (folder == null)
             {
-                return Unauthorized(); // hoặc NotFound()
+                return NotFound();
+            }
+
+            if (!IsAdminUser() && folder.UserId != currentUserId)
+            {
+                return Forbid();
             }
 
             _context.Folders.Remove(folder);
@@ -484,13 +508,17 @@ namespace TCTVocabulary.Controllers
                 return Unauthorized();
             }
 
-            // Chỉ cho phép sửa folder của chính user
             var folder = _context.Folders
-                .FirstOrDefault(f => f.FolderId == folderId && f.UserId == currentUserId);
+                .FirstOrDefault(f => f.FolderId == folderId);
 
             if (folder == null)
             {
-                return Unauthorized(); // hoặc NotFound()
+                return NotFound();
+            }
+
+            if (!IsAdminUser() && folder.UserId != currentUserId)
+            {
+                return Forbid();
             }
 
             folder.FolderName = newName;
@@ -502,23 +530,32 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult DeleteSet(int setId, int folderId)
         {
-            // Tìm Set kèm theo các Cards của nó
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
             var set = _context.Sets
                 .Include(s => s.Cards)
                 .FirstOrDefault(s => s.SetId == setId);
 
-            if (set != null)
+            if (set == null)
             {
-                // Xóa Cards trước
-                if (set.Cards != null && set.Cards.Any())
-                {
-                    _context.Cards.RemoveRange(set.Cards);
-                }
-
-                // Xóa Set
-                _context.Sets.Remove(set);
-                _context.SaveChanges();
+                return NotFound();
             }
+
+            if (!IsAdminUser() && set.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }
+
+            if (set.Cards != null && set.Cards.Any())
+            {
+                _context.Cards.RemoveRange(set.Cards);
+            }
+
+            _context.Sets.Remove(set);
+            _context.SaveChanges();
 
             // Quay lại trang chi tiết thư mục
             return RedirectToAction("FolderDetail", new { id = folderId });
@@ -527,25 +564,32 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult RemoveSetFromFolder(int setId, int folderId)
         {
-            // Tìm học phần cần xóa
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
             var set = _context.Sets
-                .Include(s => s.Cards) // Bao gồm cả các thẻ con để xóa sạch dữ liệu liên quan
+                .Include(s => s.Cards)
                 .FirstOrDefault(s => s.SetId == setId && s.FolderId == folderId);
 
-            if (set != null)
+            if (set == null)
             {
-                // 1. Xóa tất cả các thẻ (Cards) thuộc học phần này trước để tránh lỗi ràng buộc
-                if (set.Cards != null && set.Cards.Any())
-                {
-                    _context.Cards.RemoveRange(set.Cards);
-                }
-
-                // 2. Xóa chính học phần (Set)
-                _context.Sets.Remove(set);
-
-                // 3. Lưu thay đổi vào DB
-                _context.SaveChanges();
+                return NotFound();
             }
+
+            if (!IsAdminUser() && set.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }
+
+            if (set.Cards != null && set.Cards.Any())
+            {
+                _context.Cards.RemoveRange(set.Cards);
+            }
+
+            _context.Sets.Remove(set);
+            _context.SaveChanges();
 
             // Quay lại trang chi tiết thư mục hiện tại
             return RedirectToAction("FolderDetail", new { id = folderId });
@@ -635,12 +679,22 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public IActionResult EditSet(int id)
         {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
             // Lấy thông tin Set cùng với danh sách Cards của nó
             var set = _context.Sets
                 .Include(s => s.Cards)
                 .FirstOrDefault(s => s.SetId == id);
 
             if (set == null) return NotFound();
+
+            if (!IsAdminUser() && set.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }
 
             return View(set); // Trả về View EditSet.cshtml
         }
@@ -649,11 +703,21 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         public async Task<IActionResult> EditSet(int SetId, string SetName, string Description, string[] Terms, string[] Definitions, string[] ExistingImageUrls)
         {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
             var existingSet = _context.Sets
                 .Include(s => s.Cards)
                 .FirstOrDefault(s => s.SetId == SetId);
 
             if (existingSet == null) return NotFound();
+
+            if (!IsAdminUser() && existingSet.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }
 
             // Cập nhật thông tin cơ bản
             existingSet.SetName = SetName;
@@ -707,7 +771,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("FolderDetail", new { id = existingSet.FolderId });
         }
         [HttpPost]
-        [Authorize(Roles = Roles.AdminOrTeacher)]
+        [Authorize]
 
         public async Task<IActionResult> CreateClass(CreateClassViewModel model)
         {
@@ -767,7 +831,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("ClassDetail", new { id = newClass.ClassId });
         }
         [HttpPost]
-        [Authorize(Roles = Roles.AdminOrTeacher)]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public IActionResult EditClass(int classId, string className, string? description)
         {
@@ -778,7 +842,10 @@ namespace TCTVocabulary.Controllers
 
             var cls = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
 
-            if (cls == null || cls.OwnerId != userId)
+            if (cls == null)
+                return NotFound();
+
+            if (!IsAdminUser() && cls.OwnerId != userId)
                 return Forbid();
 
             cls.ClassName = className;
@@ -789,7 +856,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Roles.AdminOrTeacher)]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteClass(int classId)
         {
@@ -804,7 +871,10 @@ namespace TCTVocabulary.Controllers
                 .Include(c => c.ClassFolders)
                 .FirstOrDefault(c => c.ClassId == classId);
 
-            if (cls == null || cls.OwnerId != userId)
+            if (cls == null)
+                return NotFound();
+
+            if (!IsAdminUser() && cls.OwnerId != userId)
                 return Forbid();
 
             _context.Classes.Remove(cls);
@@ -873,12 +943,23 @@ namespace TCTVocabulary.Controllers
         }
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        [Authorize(Roles = Roles.AdminOrTeacher)]
+        [Authorize]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
             if (!TryGetCurrentUserId(out var userId))
             {
                 return Unauthorized();
+            }
+
+            var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
+            if (cls == null)
+            {
+                return NotFound();
+            }
+
+            if (!IsAdminUser() && cls.OwnerId != userId)
+            {
+                return Forbid();
             }
 
             var exists = await _context.ClassFolders

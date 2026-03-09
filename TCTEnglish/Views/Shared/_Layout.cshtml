@@ -192,7 +192,7 @@
                     New folder
                 </button>
 
-                @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                @if (User.Identity?.IsAuthenticated == true)
                 {
                 <button class="workspace-btn"
                         onclick="location.href='@Url.Action("CreateClass", "Home")'">

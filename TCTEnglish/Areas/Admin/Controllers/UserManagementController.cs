@@ -61,7 +61,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     FullName = u.FullName ?? "N/A",
                     Email = u.Email,
                     AvatarUrl = u.AvatarUrl,
-                    Role = u.Role ?? Roles.Student,
+                    Role = u.Role ?? Roles.Standard,
                     Status = u.Status,
                     CreatedAt = u.CreatedAt,
                     FolderCount = u.Folders.Count,
@@ -97,7 +97,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     UserId = u.UserId,
                     FullName = u.FullName ?? "",
                     Email = u.Email,
-                    Role = u.Role ?? Roles.Student,
+                    Role = u.Role ?? Roles.Standard,
                     Status = u.Status
                 })
                 .FirstOrDefaultAsync();
@@ -126,7 +126,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 return NotFound(new { message = "Không tìm thấy người dùng." });
 
             // Validate role value against allowed roles
-            var allowedRoles = new[] { Roles.Admin, Roles.Teacher, Roles.Student };
+            var allowedRoles = new[] { Roles.Admin, Roles.Premium, Roles.Standard };
             if (!allowedRoles.Contains(model.Role))
                 return BadRequest(new { message = "Vai trò không hợp lệ." });
 

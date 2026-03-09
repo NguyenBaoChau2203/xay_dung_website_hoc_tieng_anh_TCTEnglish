@@ -42,7 +42,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                     UserId = u.UserId,
                     FullName = u.FullName ?? "N/A",
                     Email = u.Email,
-                    Role = u.Role ?? Roles.Student,
+                    Role = u.Role ?? Roles.Standard,
                     Status = u.Status,
                     CreatedAt = u.CreatedAt
                 })
