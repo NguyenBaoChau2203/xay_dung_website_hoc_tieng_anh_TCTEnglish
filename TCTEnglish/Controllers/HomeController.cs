@@ -261,12 +261,17 @@ namespace TCTVocabulary.Controllers
             // 🔹 Folder của chính mình
             var myFolders = _context.Folders
                 .Where(f => f.UserId == currentUserId && f.ParentFolderId == null)
+                .Include(f => f.Sets)
+                .Include(f => f.User)
                 .ToList();
 
-            // 🔹 Folder đã lưu (SavedFolder)
+            // 🔹 Folder đã lưu
             var savedFolders = _context.SavedFolders
                 .Where(sf => sf.UserId == currentUserId)
                 .Include(sf => sf.Folder)
+                    .ThenInclude(f => f.Sets)
+                .Include(sf => sf.Folder)
+                    .ThenInclude(f => f.User)
                 .Select(sf => sf.Folder)
                 .ToList();
 
@@ -356,7 +361,70 @@ namespace TCTVocabulary.Controllers
 
             return View(vm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken] // Nên thêm cái này để bảo mật
+        public IActionResult RemoveFolderFromClass(int classId, int folderId)
+        {
+            var item = _context.ClassFolders
+                .FirstOrDefault(x => x.ClassId == classId && x.FolderId == folderId);
 
+            if (item == null) return NotFound();
+
+            var classData = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
+            if (classData == null) return NotFound();
+
+            // Dùng ClaimTypes.NameIdentifier để đồng bộ với View
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null) return Unauthorized();
+
+            int currentUserId = int.Parse(userIdClaim.Value);
+
+            // Kiểm tra quyền: Chủ lớp HOẶC Người đã thêm folder đó vào lớp
+            if (item.AddedByUserId != currentUserId && classData.OwnerId != currentUserId)
+                return Forbid();
+
+            _context.ClassFolders.Remove(item);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult KickMember(int classId, int userId)
+        {
+            // 1. Lấy thông tin thành viên cần kick
+            var member = _context.ClassMembers
+                .FirstOrDefault(x => x.ClassId == classId && x.UserId == userId);
+
+            if (member == null) return NotFound("Thành viên không tồn tại trong lớp.");
+
+            // 2. Lấy thông tin lớp để kiểm tra quyền Owner
+            var classData = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
+            if (classData == null) return NotFound("Lớp học không tồn tại.");
+
+            // 3. Lấy ID người dùng hiện tại từ Claim
+            var currentUserIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (currentUserIdClaim == null) return Unauthorized();
+
+            int currentUserId = int.Parse(currentUserIdClaim.Value);
+
+            // 4. Chỉ chủ lớp (Owner) mới có quyền kick người khác
+            if (classData.OwnerId != currentUserId)
+            {
+                return Forbid(); // Không có quyền
+            }
+
+            // Không cho phép chủ lớp tự kick chính mình qua hàm này (nếu cần)
+            if (userId == currentUserId)
+            {
+                return BadRequest("Chủ lớp không thể tự kick chính mình.");
+            }
+
+            _context.ClassMembers.Remove(member);
+            _context.SaveChanges();
+
+            return Ok();
+        }
         public IActionResult Login()
         {
             return View();
@@ -942,24 +1010,22 @@ namespace TCTVocabulary.Controllers
             return View(vm);
         }
         [HttpPost]
-        [IgnoreAntiforgeryToken]
+        [ValidateAntiForgeryToken] // Bật bảo mật lên để khớp với JS
         [Authorize]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
-            if (!TryGetCurrentUserId(out var userId))
-            {
-                return Unauthorized();
-            }
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            // Kiểm tra xem user này có phải là thành viên hoặc chủ lớp không
+            bool isMember = await _context.ClassMembers
+                .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
 
             var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
-            if (cls == null)
-            {
-                return NotFound();
-            }
+            bool isOwner = cls?.OwnerId == userId;
 
-            if (!IsAdminUser() && cls.OwnerId != userId)
+            if (!isOwner && !isMember && !IsAdminUser())
             {
-                return Forbid();
+                return Forbid(); // Nếu không phải chủ, không phải thành viên, cũng không phải admin thì mới cấm
             }
 
             var exists = await _context.ClassFolders
