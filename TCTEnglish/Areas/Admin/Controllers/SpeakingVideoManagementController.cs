@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,37 +31,10 @@ public class SpeakingVideoManagementController : Controller
     // GET: Admin/SpeakingVideoManagement
     public async Task<IActionResult> Index()
     {
-        // Auto-fix: tính Duration cho video chưa có từ EndTime lớn nhất của transcript
-        var videosWithoutDuration = await _context.SpeakingVideos
-            .Where(v => v.Duration == null)
-            .Include(v => v.SpeakingSentences)
-            .ToListAsync();
-
-        if (videosWithoutDuration.Count > 0)
-        {
-            foreach (var video in videosWithoutDuration)
-            {
-                var maxEndTime = video.SpeakingSentences
-                    .Select(s => s.EndTime)
-                    .DefaultIfEmpty(0)
-                    .Max();
-
-                if (maxEndTime > 0)
-                {
-                    var ts = TimeSpan.FromSeconds(maxEndTime);
-                    video.Duration = ts.TotalHours >= 1
-                        ? $"{(int)ts.TotalHours}:{ts.Minutes:D2}:{ts.Seconds:D2}"
-                        : $"{(int)ts.TotalMinutes}:{ts.Seconds:D2}";
-                }
-            }
-
-            await _context.SaveChangesAsync();
-        }
-
         var videos = await _context.SpeakingVideos
             .AsNoTracking()
             .OrderByDescending(v => v.Id)
-            .Select(v => new SpeakingVideoListItemViewModel
+            .Select(v => new
             {
                 Id = v.Id,
                 Title = v.Title,
@@ -70,12 +43,28 @@ public class SpeakingVideoManagementController : Controller
                 Topic = v.Topic,
                 ThumbnailUrl = v.ThumbnailUrl,
                 Duration = v.Duration,
-                SentenceCount = v.SpeakingSentences.Count
+                SentenceCount = v.SpeakingSentences.Count,
+                MaxEndTime = v.SpeakingSentences
+                    .Select(s => (double?)s.EndTime)
+                    .Max()
             })
             .ToListAsync();
 
-        return View(videos);
+        var viewModels = videos.Select(v => new SpeakingVideoListItemViewModel
+        {
+            Id = v.Id,
+            Title = v.Title,
+            YoutubeId = v.YoutubeId,
+            Level = v.Level,
+            Topic = v.Topic,
+            ThumbnailUrl = v.ThumbnailUrl,
+            Duration = v.Duration ?? FormatDurationFromSeconds(v.MaxEndTime),
+            SentenceCount = v.SentenceCount
+        }).ToList();
+
+        return View(viewModels);
     }
+
 
     // GET: Admin/SpeakingVideoManagement/Create
     public async Task<IActionResult> Create()
@@ -249,6 +238,19 @@ public class SpeakingVideoManagementController : Controller
                 Name = p.Name
             })
             .ToListAsync();
+    }
+
+    private static string? FormatDurationFromSeconds(double? totalSeconds)
+    {
+        if (!totalSeconds.HasValue || totalSeconds.Value <= 0)
+        {
+            return null;
+        }
+
+        var ts = TimeSpan.FromSeconds(totalSeconds.Value);
+        return ts.TotalHours >= 1
+            ? $"{(int)ts.TotalHours}:{ts.Minutes:D2}:{ts.Seconds:D2}"
+            : $"{(int)ts.TotalMinutes}:{ts.Seconds:D2}";
     }
 
     private static string? NormalizeYoutubeId(string input)

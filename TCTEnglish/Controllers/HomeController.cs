@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -1032,11 +1032,34 @@ namespace TCTVocabulary.Controllers
                 .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
 
             var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
-            bool isOwner = cls?.OwnerId == userId;
+            if (cls == null)
+            {
+                return NotFound();
+            }
 
+            bool isOwner = cls.OwnerId == userId;
             if (!isOwner && !isMember && !IsAdminUser())
             {
-                return Forbid(); // Nếu không phải chủ, không phải thành viên, cũng không phải admin thì mới cấm
+                return Forbid();
+            }
+
+            var folder = await _context.Folders
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.FolderId == folderId);
+
+            if (folder == null)
+            {
+                return NotFound("Folder không tồn tại");
+            }
+
+            var hasSavedFolder = await _context.SavedFolders
+                .AsNoTracking()
+                .AnyAsync(sf => sf.UserId == userId && sf.FolderId == folderId);
+
+            var canUseFolder = IsAdminUser() || folder.UserId == userId || hasSavedFolder;
+            if (!canUseFolder)
+            {
+                return Forbid();
             }
 
             var exists = await _context.ClassFolders
