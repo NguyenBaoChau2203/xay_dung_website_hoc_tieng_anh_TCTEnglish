@@ -37,8 +37,9 @@
 
                     <div class="class-avatar">
                         <img src="@(string.IsNullOrEmpty(c.ImageUrl)
-                                                                 ? "/images/class-default.png"
-                                                                 : c.ImageUrl)" />
+                                             ? "/images/ClassDefault/class-default.png"
+                                             : c.ImageUrl)"
+                             onerror="this.src='/images/ClassDefault/class-default.png'" />
                     </div>
 
                     <div class="class-info">
