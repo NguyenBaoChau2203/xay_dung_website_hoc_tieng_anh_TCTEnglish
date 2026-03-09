@@ -19,19 +19,39 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var sevenDaysAgo = DateTime.Now.AddDays(-7);
+            var sevenDaysAgo = DateTime.UtcNow.AddDays(-7);
 
-            // FIX: Single round-trip with AsNoTracking for read-only KPI aggregation
-            var totalUsers = await _context.Users.AsNoTracking().CountAsync();
-            var totalClasses = await _context.Classes.AsNoTracking().CountAsync();
-            var totalSets = await _context.Sets.AsNoTracking().CountAsync();
+            // FIX: Aggregated KPI counts for single round-trip per entity
+            var userStats = await _context.Users.AsNoTracking()
+                .GroupBy(x => 1)
+                .Select(g => new { 
+                    Total = g.Count(), 
+                    NewItems = g.Count(u => u.CreatedAt >= sevenDaysAgo) 
+                })
+                .FirstOrDefaultAsync();
 
-            var newUsersLast7Days = await _context.Users.AsNoTracking()
-                .CountAsync(u => u.CreatedAt >= sevenDaysAgo);
-            var newClassesLast7Days = await _context.Classes.AsNoTracking()
-                .CountAsync(c => c.CreatedAt >= sevenDaysAgo);
-            var newSetsLast7Days = await _context.Sets.AsNoTracking()
-                .CountAsync(s => s.CreatedAt >= sevenDaysAgo);
+            var classStats = await _context.Classes.AsNoTracking()
+                .GroupBy(x => 1)
+                .Select(g => new { 
+                    Total = g.Count(), 
+                    NewItems = g.Count(c => c.CreatedAt >= sevenDaysAgo) 
+                })
+                .FirstOrDefaultAsync();
+
+            var setStats = await _context.Sets.AsNoTracking()
+                .GroupBy(x => 1)
+                .Select(g => new { 
+                    Total = g.Count(), 
+                    NewItems = g.Count(s => s.CreatedAt >= sevenDaysAgo) 
+                })
+                .FirstOrDefaultAsync();
+
+            var totalUsers = userStats?.Total ?? 0;
+            var newUsersLast7Days = userStats?.NewItems ?? 0;
+            var totalClasses = classStats?.Total ?? 0;
+            var newClassesLast7Days = classStats?.NewItems ?? 0;
+            var totalSets = setStats?.Total ?? 0;
+            var newSetsLast7Days = setStats?.NewItems ?? 0;
 
             // FIX: Project into ViewModel via .Select() — never pass raw entities to views
             var recentUsers = await _context.Users.AsNoTracking()

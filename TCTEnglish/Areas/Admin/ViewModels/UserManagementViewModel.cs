@@ -73,4 +73,11 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
     {
         public int UserId { get; set; }
     }
+
+    // Update status request DTO
+    public class UpdateStatusRequest
+    {
+        public int UserId { get; set; }
+        public UserStatus Status { get; set; }
+    }
 }

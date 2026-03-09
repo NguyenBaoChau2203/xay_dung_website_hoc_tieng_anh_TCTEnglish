@@ -35,7 +35,7 @@ namespace TCTVocabulary.Controllers
             ViewBag.MasteredCards = allCards.Count(c => c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
             ViewBag.DueToday = allCards.Count(c =>
                 c.LearningProgresses.Any() &&
-                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now));
+                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.UtcNow));
             
             // Lấy streak từ bảng User
             var user = await _context.Users.FindAsync(currentUserId);
@@ -83,7 +83,7 @@ namespace TCTVocabulary.Controllers
             var detailCards = set.Cards?.ToList() ?? new List<Card>();
             ViewBag.DueToday = detailCards.Count(c =>
                 c.LearningProgresses.Any() &&
-                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now));
+                c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.UtcNow));
 
             // [Feature: View_Count] - Tăng lượt truy cập khi vào Detail
             // [FIX-AI-AUTH] Chống spam ViewCount bằng Cookie
@@ -92,7 +92,7 @@ namespace TCTVocabulary.Controllers
             { // [FIX-AI-AUTH]
                 set.ViewCount++; // [FIX-AI-AUTH]
                 await _context.SaveChangesAsync(); // [FIX-AI-AUTH]
-                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.Now.AddDays(1) }); // [FIX-AI-AUTH]
+                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.UtcNow.AddDays(1) }); // [FIX-AI-AUTH]
             } // [FIX-AI-AUTH]
 
             return View(set);
@@ -161,7 +161,7 @@ namespace TCTVocabulary.Controllers
             {
                 filteredCards = filteredCards
                     .Where(c => c.LearningProgresses.Any() &&
-                               c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.Now))
+                               c.LearningProgresses.Any(lp => lp.NextReviewDate != null && lp.NextReviewDate <= DateTime.UtcNow))
                     .ToList();
             }
 
@@ -186,7 +186,7 @@ namespace TCTVocabulary.Controllers
             { // [FIX-AI-AUTH]
                 set.ViewCount++; // [FIX-AI-AUTH]
                 await _context.SaveChangesAsync(); // [FIX-AI-AUTH]
-                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.Now.AddDays(1) }); // [FIX-AI-AUTH]
+                Response.Cookies.Append(viewedCookieName, "true", new CookieOptions { Expires = DateTime.UtcNow.AddDays(1) }); // [FIX-AI-AUTH]
             } // [FIX-AI-AUTH]
 
             return View("Study", resultSet);
