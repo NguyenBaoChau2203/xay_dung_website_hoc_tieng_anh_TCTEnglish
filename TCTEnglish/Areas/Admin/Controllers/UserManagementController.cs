@@ -48,9 +48,18 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             }
 
             // KPI counts (on full dataset, not filtered)
-            var totalUsers = await _context.Users.AsNoTracking().CountAsync();
-            var onlineUsers = await _context.Users.AsNoTracking().CountAsync(u => u.Status == UserStatus.Online);
-            var blockedUsers = await _context.Users.AsNoTracking().CountAsync(u => u.Status == UserStatus.Blocked);
+            var stats = await _context.Users.AsNoTracking()
+                .GroupBy(x => 1)
+                .Select(g => new {
+                    TotalUsers = g.Count(),
+                    OnlineUsers = g.Count(u => u.Status == UserStatus.Online),
+                    BlockedUsers = g.Count(u => u.Status == UserStatus.Blocked)
+                })
+                .FirstOrDefaultAsync();
+
+            var totalUsers = stats?.TotalUsers ?? 0;
+            var onlineUsers = stats?.OnlineUsers ?? 0;
+            var blockedUsers = stats?.BlockedUsers ?? 0;
 
             // Project into ViewModel via .Select() — never pass raw entities
             var users = await query
@@ -247,10 +256,4 @@ namespace TCTVocabulary.Areas.Admin.Controllers
         }
     }
 
-    // Request DTOs for AJAX actions
-    public class UpdateStatusRequest
-    {
-        public int UserId { get; set; }
-        public UserStatus Status { get; set; }
-    }
 }

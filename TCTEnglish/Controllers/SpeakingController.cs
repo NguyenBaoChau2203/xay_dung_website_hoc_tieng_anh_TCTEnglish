@@ -65,13 +65,7 @@ namespace TCTVocabulary.Controllers
             // 4. Also keep the existing Playlists data for backward compatibility
             var playlists = await _context.SpeakingPlaylists
                 .AsNoTracking()
-                .Include(p => p.SpeakingVideos)
-                    .ThenInclude(v => v.SpeakingSentences)
-                .ToListAsync();
-
-            var viewModel = new SpeakingIndexViewModel
-            {
-                Playlists = playlists.Select(p => new SpeakingPlaylistViewModel
+                .Select(p => new SpeakingPlaylistViewModel
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -86,9 +80,14 @@ namespace TCTVocabulary.Controllers
                         Topic = v.Topic,
                         Duration = v.Duration,
                         ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
-                        SentenceCount = v.SpeakingSentences?.Count ?? 0
+                        SentenceCount = v.SpeakingSentences.Count
                     }).ToList()
-                }).ToList(),
+                })
+                .ToListAsync();
+
+            var viewModel = new SpeakingIndexViewModel
+            {
+                Playlists = playlists,
 
                 // Assign the new properties
                 Topics = topics,

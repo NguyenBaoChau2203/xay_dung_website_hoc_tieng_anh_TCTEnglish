@@ -407,7 +407,7 @@ namespace TCTVocabulary.Controllers
                 SetName = SetName,
                 FolderId = folderId, // Gán vào thư mục cha
                 OwnerId = userId, // [FIX-AI-AUTH] Sử dụng ID người dùng thực tế
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.UtcNow
             };
 
             // 2. Duyệt qua mảng Terms và Definitions để tạo danh sách Card

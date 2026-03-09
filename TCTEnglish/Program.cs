@@ -25,6 +25,7 @@ builder.Services.AddDbContext<DbflashcardContext>(options =>
 
 // Register email sender and background worker
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
+builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 
 // Cấu hình Authentication (Cookie + Social)

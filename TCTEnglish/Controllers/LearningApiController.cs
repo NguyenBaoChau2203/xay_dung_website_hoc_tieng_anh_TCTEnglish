@@ -40,7 +40,7 @@ namespace TCTVocabulary.Controllers
             }
 
             // Cập nhật ngày review cuối
-            progress.LastReviewedDate = DateTime.Now;
+            progress.LastReviewedDate = DateTime.UtcNow;
 
             // Logic SRS – dùng RepetitionCount để tính khoảng cách ôn tập
             int reps = progress.RepetitionCount;
@@ -49,7 +49,7 @@ namespace TCTVocabulary.Controllers
                 case "hard":
                     // Khó → ôn lại sau 10 phút, reset repetition
                     progress.Status = "Learning";
-                    progress.NextReviewDate = DateTime.Now.AddMinutes(1);
+                    progress.NextReviewDate = DateTime.UtcNow.AddMinutes(1);
                     progress.WrongCount = (progress.WrongCount ?? 0) + 1;
                     progress.RepetitionCount = 0;
                     break;
@@ -57,7 +57,7 @@ namespace TCTVocabulary.Controllers
                     // Tốt → khoảng cách tăng dần: 1 giờ → 12 giờ → 24 giờ
                     progress.Status = "Reviewing";
                     int goodHours = reps == 0 ? 1 : (reps == 1 ? 12 : 24);
-                    progress.NextReviewDate = DateTime.Now.AddHours(goodHours);
+                    progress.NextReviewDate = DateTime.UtcNow.AddHours(goodHours);
                     progress.RepetitionCount = reps + 1;
                     break;
                 case "easy":
@@ -65,7 +65,7 @@ namespace TCTVocabulary.Controllers
                     // Dễ → khoảng cách lớn hơn: 1 → 3 → 7 ngày
                     progress.Status = "Mastered";
                     int easyDays = reps == 0 ? 1 : (reps == 1 ? 3 : 7);
-                    progress.NextReviewDate = DateTime.Now.AddDays(easyDays);
+                    progress.NextReviewDate = DateTime.UtcNow.AddDays(easyDays);
                     progress.RepetitionCount = reps + 1;
                     break;
                 default:
@@ -76,7 +76,7 @@ namespace TCTVocabulary.Controllers
             var user = await _context.Users.FindAsync(currentUserId);
             if (user != null)
             {
-                var today = DateTime.Now.Date;
+                var today = DateTime.UtcNow.Date;
                 var lastStudy = user.LastStudyDate?.Date;
 
                 if (lastStudy == null || lastStudy < today)

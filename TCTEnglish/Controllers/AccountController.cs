@@ -18,12 +18,14 @@ namespace TCTVocabulary.Controllers
         private readonly DbflashcardContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IAppEmailSender _emailSender;
+        private readonly IAvatarUploadService _avatarUploadService;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
+            _avatarUploadService = avatarUploadService;
         }
 
         // GET: /Account/Login
@@ -79,7 +81,7 @@ namespace TCTVocabulary.Controllers
                 Email = email,
                 PasswordHash = passwordHash,
                 FullName = fullName,
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
                 Role = Roles.Standard
             };
 
@@ -230,7 +232,7 @@ namespace TCTVocabulary.Controllers
                     Email = emailClaim,
                     FullName = nameClaim ?? "Social User",
                     PasswordHash = "SOCIAL_LOGIN_" + Guid.NewGuid().ToString(),
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.UtcNow,
                     Role = Roles.Standard,
                     AvatarUrl = pictureClaim // Save Google profile picture as default avatar
                 };
@@ -389,62 +391,16 @@ namespace TCTVocabulary.Controllers
                 // Upload Avatar
                 if (model.Avatar != null)
                 {
-                    // Validate file size (2MB max)
-                    if (model.Avatar.Length > 2 * 1024 * 1024)
+                    try
                     {
-                        TempData["ErrorMessage"] = "File ảnh không được vượt quá 2MB.";
+                        user.AvatarUrl = await _avatarUploadService.UploadAvatarAsync(model.Avatar, user.AvatarUrl);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        TempData["ErrorMessage"] = ex.Message;
                         model.CurrentAvatarUrl = user.AvatarUrl;
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
-
-                    // Validate extension
-                    var ext = Path.GetExtension(model.Avatar.FileName).ToLowerInvariant();
-                    if (ext != ".jpg" && ext != ".jpeg" && ext != ".png")
-                    {
-                        TempData["ErrorMessage"] = "Chỉ chấp nhận định dạng ảnh .jpg, .jpeg, .png";
-                        model.CurrentAvatarUrl = user.AvatarUrl;
-                        return View("~/Views/Account/Profile.cshtml", model);
-                    }
-
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Avatar.FileName;
-                    string filePath = "";
-                    using (var ms = new MemoryStream())
-                    {
-                        await model.Avatar.CopyToAsync(ms);
-                        var fileBytes = ms.ToArray();
-                        bool isImage = false;
-                        
-                        if (fileBytes.Length >= 3 && fileBytes[0] == 0xFF && fileBytes[1] == 0xD8 && fileBytes[2] == 0xFF)
-                            isImage = true;
-                        else if (fileBytes.Length >= 8 && fileBytes[0] == 0x89 && fileBytes[1] == 0x50 && fileBytes[2] == 0x4E && fileBytes[3] == 0x47 &&
-                                 fileBytes[4] == 0x0D && fileBytes[5] == 0x0A && fileBytes[6] == 0x1A && fileBytes[7] == 0x0A)
-                            isImage = true;
-
-                        if (!isImage)
-                        {
-                            TempData["ErrorMessage"] = "Tệp tải lên không phải là định dạng hình ảnh hợp lệ (Nguy cơ bảo mật).";
-                            model.CurrentAvatarUrl = user.AvatarUrl;
-                            return View("~/Views/Account/Profile.cshtml", model);
-                        }
-
-                        // Ensure directory exists
-                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "avatars");
-                        Directory.CreateDirectory(uploadsFolder);
-                        filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                        await System.IO.File.WriteAllBytesAsync(filePath, fileBytes);
-                    }
-
-                    // Delete old avatar if it's a local file
-                    if (!string.IsNullOrEmpty(user.AvatarUrl) && user.AvatarUrl.StartsWith("/images/avatars/"))
-                    {
-                        string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, user.AvatarUrl.TrimStart('/'));
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
-                    user.AvatarUrl = "/images/avatars/" + uniqueFileName;
                 }
 
                 user.FullName = model.FullName;
