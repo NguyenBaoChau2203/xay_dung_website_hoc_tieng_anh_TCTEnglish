@@ -34,6 +34,7 @@
         </div>
         <div class="nav-right">
             <button id="darkToggle">🌙</button>
+            <button class="tool-btn" id="shuffleBtn" title="Trộn thẻ">🔀</button>
             <button class="tool-btn" id="speakingModeBtn" title="Chuyển sang Luyện nói" onclick="location.href='@Url.Action("Speaking", "Home", new { id = Model?.Set?.SetId })'">
                 <i class="fas fa-microphone"></i>
             </button>
@@ -112,6 +113,7 @@
                         onclick="speakText(event, 'back')">
                     <i class="fas fa-volume-up"></i>
                 </button>
+                <img id="card-image" class="card-img" style="display: none;" alt="" />
                 <div class="card-text" id="back-text">
                     @(Model?.Cards?.Any() == true ? Model.Cards[0].Definition : "Chưa có dữ liệu")
                 </div>
@@ -119,13 +121,47 @@
         </div>
     </div>
 
-    <div class="learning-actions">
+    <div class="learning-actions" id="learning-actions">
         <button class="btn-status btn-not-known" onclick="markCard(false)">
             <i class="fas fa-times"></i> Chưa thuộc
         </button>
         <button class="btn-status btn-known" onclick="markCard(true)">
             <i class="fas fa-check"></i> Đã thuộc
         </button>
+    </div>
+
+    <!-- [Task 2.3] End-of-set screen -->
+    <div id="end-screen" class="end-screen" style="display:none;">
+        <div class="end-screen-card">
+            <div class="end-icon">🎉</div>
+            <h2>Chúc mừng bạn đã ôn tập xong!</h2>
+            <p class="end-subtitle">Kết quả học tập của bạn:</p>
+            <div class="end-stats">
+                <div class="end-stat mastered">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="endKnown">0</span>
+                    <small>Đã thuộc</small>
+                </div>
+                <div class="end-stat learning">
+                    <i class="fas fa-times-circle"></i>
+                    <span id="endLearning">0</span>
+                    <small>Chưa thuộc</small>
+                </div>
+                <div class="end-stat remaining">
+                    <i class="fas fa-layer-group"></i>
+                    <span id="endUnknown">0</span>
+                    <small>Chưa học</small>
+                </div>
+            </div>
+            <div class="end-actions">
+                <button class="btn-restart" onclick="restartStudy()">
+                    <i class="fas fa-redo"></i> Học lại từ đầu
+                </button>
+                <a href="@Url.Action("FolderDetail", "Home", new { id = Model?.Set?.FolderId ?? 0 })" class="btn-back-folder">
+                    <i class="fas fa-arrow-left"></i> Quay lại thư mục
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- CONTROLS -->
@@ -173,7 +209,7 @@
                             <div class="word-definition">@Model.Cards[i].Definition</div>
                         </div>
                         <button class="word-speak-btn"
-                                onclick="event.stopPropagation(); speakWord('@(Model.Cards[i].Term.Replace("'", "\\'"))')"
+                                data-term="@(Model.Cards[i].Term.Replace("\"", "&quot;"))"
                                 title="Phát âm">
                             <i class="fas fa-volume-up"></i>
                         </button>
@@ -1136,26 +1172,169 @@
     .stats-content {
         transition: background 0.3s ease, color 0.3s ease;
     }
+
+    /* [Image] Card Image */
+    .card-img {
+        max-height: 150px;
+        max-width: 80%;
+        object-fit: contain;
+        margin-bottom: 15px;
+        border-radius: 12px;
+    }
+
+    /* [Task 2.2] Shuffle Button */
+    .tool-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        transition: all 0.2s;
+    }
+    .tool-btn:hover {
+        background: #f1f5f9;
+        transform: scale(1.1);
+    }
+
+    /* [Task 2.3] End Screen */
+    .end-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+    .end-screen-card {
+        background: white;
+        border-radius: 28px;
+        padding: 50px 40px;
+        text-align: center;
+        max-width: 550px;
+        width: 100%;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .end-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+        animation: bounceIn 0.6s ease;
+    }
+    .end-screen-card h2 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+    }
+    .end-subtitle {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+    .end-stats {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 32px;
+    }
+    .end-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    .end-stat i {
+        font-size: 1.8rem;
+    }
+    .end-stat span {
+        font-size: 2rem;
+        font-weight: 800;
+    }
+    .end-stat small {
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+    .end-stat.mastered i, .end-stat.mastered span { color: #22c55e; }
+    .end-stat.learning i, .end-stat.learning span { color: #ef4444; }
+    .end-stat.remaining i, .end-stat.remaining span { color: #94a3b8; }
+    .end-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    .btn-restart {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+        box-shadow: 0 8px 24px rgba(79,70,229,0.3);
+    }
+    .btn-restart:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(79,70,229,0.4);
+    }
+    .btn-back-folder {
+        color: #64748b;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+    }
+    .btn-back-folder:hover {
+        color: #1f2937;
+        background: #f1f5f9;
+    }
+    @@keyframes bounceIn {
+        0% { transform: scale(0.3); opacity: 0; }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    body.dark-mode .end-screen-card {
+        background: #1e293b;
+    }
 </style>
 }
 
 @section Scripts {
 <script>
-    // Dữ liệu cards – thêm index để dễ lọc và nhảy thẻ
+    // [Task 1.3] Dữ liệu cards – thêm cardId để match với progress
     const cards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
         Model?.Cards?.Select((c, i) => new {
             index = i,
+            cardId = c.CardId,
             term = c.Term ?? "",
-            def = c.Definition ?? ""
+            def = c.Definition ?? "",
+            imageUrl = c.ImageUrl ?? ""
         }) ?? Enumerable.Empty<object>()
     ));
 
-    let currentIndex = 0;
-    let cardStates = new Array(cards.length).fill(0); // 0: chưa học, 1: đã thuộc, -1: cần học lại
+    // [Task 1.3] Khởi tạo progress từ dữ liệu đã lưu
+    const masteredCardIds = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model?.MasteredCardIds ?? new List<int>()));
+    const learningCardIds = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model?.LearningCardIds ?? new List<int>()));
 
-    let knownCount    = 0;
-    let learningCount = 0;
-    let unknownCount  = cards.length;
+    let currentIndex = 0;
+    let cardStates = cards.map(c => {
+        if (masteredCardIds.includes(c.cardId)) return 1;
+        if (learningCardIds.includes(c.cardId)) return -1;
+        return 0;
+    });
+
+    let knownCount    = cardStates.filter(s => s === 1).length;
+    let learningCount = cardStates.filter(s => s === -1).length;
+    let unknownCount  = cardStates.filter(s => s === 0).length;
 
     // DOM elements
     const flashcard   = document.getElementById('flashcard');
@@ -1167,10 +1346,16 @@
     const nextBtn     = document.getElementById('nextBtn');
     const flipBtn     = document.getElementById('flipBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const flashcardContainer = document.querySelector('.flashcard-container');
+    const learningActions = document.getElementById('learning-actions');
+    const studyControls = document.querySelector('.study-controls');
+    const endScreen   = document.getElementById('end-screen');
 
     const statKnown   = document.getElementById('statKnown');
     const statLearning = document.getElementById('statLearning');
     const statUnknown = document.getElementById('statUnknown');
+
+    let isEndScreen = false;
 
     function updateStatsUI() {
         statKnown.innerText   = knownCount;
@@ -1185,28 +1370,78 @@
         }
     }
 
+    // [Task 2.3] Hiển thị end screen hoặc flashcard
+    function showEndScreen() {
+        isEndScreen = true;
+        flashcardContainer.style.display = 'none';
+        learningActions.style.display = 'none';
+        studyControls.style.display = 'none';
+        endScreen.style.display = 'flex';
+        document.getElementById('endKnown').textContent = knownCount;
+        document.getElementById('endLearning').textContent = learningCount;
+        document.getElementById('endUnknown').textContent = unknownCount;
+    }
+
+    function hideEndScreen() {
+        isEndScreen = false;
+        flashcardContainer.style.display = '';
+        learningActions.style.display = '';
+        studyControls.style.display = '';
+        endScreen.style.display = 'none';
+    }
+
     function updateCard(direction = 'none') {
+        // [Task 2.3] Nếu đã qua thẻ cuối → hiện end screen
+        if (currentIndex >= cards.length) {
+            showEndScreen();
+            return;
+        }
+
+        // Đảm bảo ẩn end screen nếu đang hiện
+        if (isEndScreen) hideEndScreen();
+
         if (direction !== 'none') {
             flashcard.classList.add(direction === 'next' ? 'slide-next' : 'slide-prev');
         }
         setTimeout(() => {
             flashcard.classList.remove('is-flipped');
-            if (cards.length > 0) {
+            if (cards.length > 0 && currentIndex < cards.length) {
                 frontText.innerText = cards[currentIndex].term;
                 backText.innerText  = cards[currentIndex].def;
                 currentIdxEl.innerText = currentIndex + 1;
                 progressFill.style.width = ((currentIndex + 1) / cards.length * 100) + '%';
+
+                // [Image] Hiển thị hình ảnh nếu có
+                const cardImg = document.getElementById('card-image');
+                if (cards[currentIndex].imageUrl) {
+                    cardImg.src = cards[currentIndex].imageUrl;
+                    cardImg.style.display = 'block';
+                } else {
+                    cardImg.src = '';
+                    cardImg.style.display = 'none';
+                }
             }
             flashcard.classList.remove('slide-next', 'slide-prev');
             prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === cards.length - 1;
+            nextBtn.disabled = currentIndex >= cards.length - 1;
         }, direction === 'none' ? 0 : 180);
     }
 
+    // [Task 1.4] Lưu tiến độ qua AJAX (fire-and-forget)
+    function saveProgress(cardId, isKnown) {
+        fetch('@Url.Action("UpdateCardProgress", "Home")', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cardId: cardId, isKnown: isKnown })
+        }).catch(err => console.warn('Save progress failed:', err));
+    }
+
     function markCard(isKnown) {
+        if (isEndScreen || currentIndex >= cards.length) return;
+
         const prevState = cardStates[currentIndex];
 
-        // Trừ trạng thái cũ nếu có
+        // Trừ trạng thái cũ
         if (prevState !== 0) {
             if (prevState === 1) knownCount--;
             else if (prevState === -1) learningCount--;
@@ -1221,17 +1456,33 @@
 
         updateStatsUI();
 
-        // Tự động chuyển thẻ tiếp (nếu chưa hết)
-        if (currentIndex < cards.length - 1) {
-            currentIndex++;
-            updateCard('next');
-        }
-        // Không hiện modal chúc mừng nữa
+        // [Task 1.4] Lưu tiến độ
+        saveProgress(cards[currentIndex].cardId, isKnown);
+
+        // Tự động chuyển thẻ tiếp
+        currentIndex++;
+        updateCard('next');
     }
 
-    // Hiển thị danh sách từ theo trạng thái khi click vào stat-card
+    // [Task 2.3] Học lại từ đầu
+    function restartStudy() {
+        currentIndex = 0;
+        cardStates = new Array(cards.length).fill(0);
+        knownCount = 0;
+        learningCount = 0;
+        unknownCount = cards.length;
+        updateStatsUI();
+        hideEndScreen();
+        updateCard('none');
+    }
+
+    // [Task 1.5] Hiển thị danh sách từ – dùng data-term + event delegation
     function showWordsByState(state) {
-        const filteredCards = cards.filter(c => cardStates[c.index] === state);
+        // Lọc theo trạng thái hiện tại (dùng index trong mảng cards)
+        const filteredCards = [];
+        for (let i = 0; i < cards.length; i++) {
+            if (cardStates[i] === state) filteredCards.push({ ...cards[i], currentIdx: i });
+        }
 
         const titleMap = {
             1:  "Từ đã thuộc",
@@ -1250,19 +1501,19 @@
                 const div = document.createElement('div');
                 div.className = 'word-stat-item';
                 div.innerHTML = `
-                    <div class="word-stat-index">${c.index + 1}</div>
+                    <div class="word-stat-index">${c.currentIdx + 1}</div>
                     <div class="word-stat-content">
-                        <div class="word-stat-term">${c.term}</div>
-                        <div class="word-stat-def">${c.def}</div>
+                        <div class="word-stat-term">${escapeHtml(c.term)}</div>
+                        <div class="word-stat-def">${escapeHtml(c.def)}</div>
                     </div>
-                    <button class="word-speak-btn" onclick="event.stopPropagation(); speakWord('${c.term.replace(/'/g,"\\'")}')">
+                    <button class="word-speak-btn" data-term="${escapeHtml(c.term)}">
                         <i class="fas fa-volume-up"></i>
                     </button>
                 `;
                 div.addEventListener('click', (e) => {
                     if (e.target.closest('.word-speak-btn')) return;
                     closeWordsModal();
-                    jumpToCard(c.index);
+                    jumpToCard(c.currentIdx);
                 });
                 listContainer.appendChild(div);
             });
@@ -1271,9 +1522,34 @@
         document.getElementById('wordsModal').style.display = 'flex';
     }
 
+    // [Task 1.5] Escape HTML để tránh XSS
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
     function closeWordsModal() {
         document.getElementById('wordsModal').style.display = 'none';
     }
+
+    // [Task 1.5] Event delegation cho word-speak-btn trong modal
+    document.getElementById('wordsList').addEventListener('click', e => {
+        const btn = e.target.closest('.word-speak-btn');
+        if (btn) {
+            e.stopPropagation();
+            speakWord(btn.dataset.term);
+        }
+    });
+
+    // [Task 1.5] Event delegation cho word-speak-btn trong word list
+    document.querySelector('.wordlist')?.addEventListener('click', e => {
+        const btn = e.target.closest('.word-speak-btn');
+        if (btn) {
+            e.stopPropagation();
+            speakWord(btn.dataset.term);
+        }
+    });
 
     // Gắn sự kiện click cho 3 thẻ thống kê
     document.querySelectorAll('.stat-card').forEach(el => {
@@ -1283,7 +1559,7 @@
         });
     });
 
-    // Các hàm còn lại (giữ nguyên)
+    // Flip card
     flashcard.onclick = () => flashcard.classList.toggle('is-flipped');
 
     flipBtn.onclick = e => {
@@ -1305,13 +1581,28 @@
         }
     };
 
+    // [Task 2.1] Keyboard shortcuts
     document.addEventListener('keydown', e => {
+        // Bỏ qua nếu đang focus vào input/textarea
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+
         if (e.code === 'Space') {
             e.preventDefault();
             flashcard.classList.toggle('is-flipped');
         }
         if (e.code === 'ArrowRight') nextBtn.click();
         if (e.code === 'ArrowLeft') prevBtn.click();
+
+        // Phím 1 hoặc ArrowUp → Đã thuộc
+        if (e.code === 'Digit1' || e.code === 'ArrowUp') {
+            e.preventDefault();
+            markCard(true);
+        }
+        // Phím 2 hoặc ArrowDown → Chưa thuộc
+        if (e.code === 'Digit2' || e.code === 'ArrowDown') {
+            e.preventDefault();
+            markCard(false);
+        }
     });
 
     fullscreenBtn.onclick = () => {
@@ -1321,6 +1612,20 @@
             document.documentElement.requestFullscreen().catch(() => {});
         }
     };
+
+    // [Task 2.2] Shuffle cards (Fisher-Yates)
+    document.getElementById('shuffleBtn').addEventListener('click', () => {
+        for (let i = cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            // Swap cards
+            [cards[i], cards[j]] = [cards[j], cards[i]];
+            // Swap cardStates tương ứng
+            [cardStates[i], cardStates[j]] = [cardStates[j], cardStates[i]];
+        }
+        currentIndex = 0;
+        if (isEndScreen) hideEndScreen();
+        updateCard('none');
+    });
 
     function speakText(event, side) {
         if (event) event.stopPropagation();
@@ -1342,7 +1647,7 @@
         window.speechSynthesis.speak(utterance);
     }
 
-    // Swipe logic (giữ nguyên)
+    // Swipe logic
     let startX = 0, currentX = 0, isDown = false;
     const threshold = 90;
 
@@ -1402,6 +1707,7 @@
     function jumpToCard(idx) {
         if (idx >= 0 && idx < cards.length) {
             currentIndex = idx;
+            if (isEndScreen) hideEndScreen();
             updateCard('none');
             document.querySelector('.flashcard-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -1410,7 +1716,6 @@
     // ================= DARK MODE =================
     const darkToggle = document.getElementById("darkToggle");
 
-    // Load trạng thái đã lưu
     if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
         darkToggle.textContent = "☀️";

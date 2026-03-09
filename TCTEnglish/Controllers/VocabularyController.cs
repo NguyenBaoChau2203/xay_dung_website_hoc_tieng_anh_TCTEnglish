@@ -42,12 +42,12 @@ namespace TCTVocabulary.Controllers
             ViewBag.Streak = user?.Streak ?? 0;
             ViewBag.LongestStreak = user?.LongestStreak ?? 0;
 
-            // [Feature: Continue_Learning] - Lấy set học gần nhất từ LearningProgress
+            // [Feature: Continue_Learning] - Lấy set học gần nhất từ LearningProgress (chỉ lấy các set hệ thống)
             var lastProgress = await _context.LearningProgresses
-                .Where(lp => lp.UserId == currentUserId && lp.LastReviewedDate != null)
-                .OrderByDescending(lp => lp.LastReviewedDate)
                 .Include(lp => lp.Card)
                     .ThenInclude(c => c.Set)
+                .Where(lp => lp.UserId == currentUserId && lp.LastReviewedDate != null && lp.Card.Set.OwnerId == sysId)
+                .OrderByDescending(lp => lp.LastReviewedDate)
                 .FirstOrDefaultAsync();
 
             if (lastProgress?.Card?.Set != null)
