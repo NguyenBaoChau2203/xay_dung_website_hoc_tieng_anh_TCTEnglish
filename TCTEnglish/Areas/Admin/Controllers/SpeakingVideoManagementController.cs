@@ -1,181 +1,289 @@
+﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 
-namespace TCTVocabulary.Areas.Admin.Controllers
+namespace TCTVocabulary.Areas.Admin.Controllers;
+
+[Area("Admin")]
+[Authorize(Roles = Roles.Admin)]
+public class SpeakingVideoManagementController : Controller
 {
-    [Area("Admin")]
-    [Authorize(Roles = Roles.Admin)]
-    public class SpeakingVideoManagementController : Controller
+    private static readonly Regex YoutubeIdRegex = new("^[a-zA-Z0-9_-]{11}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+    private readonly DbflashcardContext _context;
+    private readonly IYoutubeTranscriptService _transcriptService;
+    private readonly ILogger<SpeakingVideoManagementController> _logger;
+
+    public SpeakingVideoManagementController(
+        DbflashcardContext context,
+        IYoutubeTranscriptService transcriptService,
+        ILogger<SpeakingVideoManagementController> logger)
     {
-        private readonly DbflashcardContext _context;
-        private readonly IYoutubeTranscriptService _transcriptService;
-        private readonly ILogger<SpeakingVideoManagementController> _logger;
+        _context = context;
+        _transcriptService = transcriptService;
+        _logger = logger;
+    }
 
-        public SpeakingVideoManagementController(
-            DbflashcardContext context, 
-            IYoutubeTranscriptService transcriptService,
-            ILogger<SpeakingVideoManagementController> logger)
+    // GET: Admin/SpeakingVideoManagement
+    public async Task<IActionResult> Index()
+    {
+        var videos = await _context.SpeakingVideos
+            .AsNoTracking()
+            .OrderByDescending(v => v.Id)
+            .Select(v => new SpeakingVideoListItemViewModel
+            {
+                Id = v.Id,
+                Title = v.Title,
+                YoutubeId = v.YoutubeId,
+                Level = v.Level,
+                Topic = v.Topic,
+                ThumbnailUrl = v.ThumbnailUrl,
+                Duration = v.Duration,
+                SentenceCount = v.SpeakingSentences.Count
+            })
+            .ToListAsync();
+
+        return View(videos);
+    }
+
+    // GET: Admin/SpeakingVideoManagement/Create
+    public async Task<IActionResult> Create()
+    {
+        var model = new SpeakingVideoCreateViewModel
         {
-            _context = context;
-            _transcriptService = transcriptService;
-            _logger = logger;
+            Topic = "General",
+            Playlists = await GetPlaylistOptionsAsync()
+        };
+
+        return View(model);
+    }
+
+    // POST: Admin/SpeakingVideoManagement/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create([FromForm] SpeakingVideoCreateViewModel model)
+    {
+        model.Playlists = await GetPlaylistOptionsAsync();
+
+        if (!ModelState.IsValid)
+        {
+            return View(model);
         }
 
-        // GET: Admin/SpeakingVideoManagement
-        public async Task<IActionResult> Index()
+        var normalizedYoutubeId = NormalizeYoutubeId(model.YoutubeId);
+        if (normalizedYoutubeId is null)
         {
-            var videos = await _context.SpeakingVideos
+            ModelState.AddModelError(nameof(model.YoutubeId), "YouTube ID is invalid. Please enter a valid video ID or URL.");
+            return View(model);
+        }
+
+        var isDuplicateVideo = await _context.SpeakingVideos
+            .AsNoTracking()
+            .AnyAsync(v => v.YoutubeId == normalizedYoutubeId);
+
+        if (isDuplicateVideo)
+        {
+            ModelState.AddModelError(nameof(model.YoutubeId), "This YouTube video is already in the system.");
+            return View(model);
+        }
+
+        var normalizedTitle = model.Title.Trim();
+        var normalizedLevel = model.Level.Trim().ToUpperInvariant();
+        var normalizedTopic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic.Trim();
+
+        try
+        {
+            var sentences = await _transcriptService.GetTranscriptAsync(normalizedYoutubeId);
+            if (sentences.Count == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Unable to extract captions from this video. Please try another video.");
+                return View(model);
+            }
+
+            var targetPlaylistId = await ResolveTargetPlaylistIdAsync(model.PlaylistId);
+            if (targetPlaylistId == 0)
+            {
+                ModelState.AddModelError(nameof(model.PlaylistId), "Selected playlist does not exist.");
+                return View(model);
+            }
+
+            var strategy = _context.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
+            {
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+
+                var video = new SpeakingVideo
+                {
+                    Title = normalizedTitle,
+                    YoutubeId = normalizedYoutubeId,
+                    Level = normalizedLevel,
+                    Topic = normalizedTopic,
+                    PlaylistId = targetPlaylistId,
+                    ThumbnailUrl = $"https://img.youtube.com/vi/{normalizedYoutubeId}/hqdefault.jpg"
+                };
+
+                _context.SpeakingVideos.Add(video);
+                await _context.SaveChangesAsync();
+
+                foreach (var sentence in sentences)
+                {
+                    sentence.VideoId = video.Id;
+                }
+
+                _context.SpeakingSentences.AddRange(sentences);
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+            });
+
+            TempData["SuccessMessage"] = $"Video created successfully with {sentences.Count} transcript sentences.";
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to create speaking video from YouTube source {YoutubeId}", normalizedYoutubeId);
+            ModelState.AddModelError(string.Empty, "An unexpected error happened while creating this video. Please try again.");
+            return View(model);
+        }
+    }
+
+    // POST: Admin/SpeakingVideoManagement/Delete
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete([FromForm] int id)
+    {
+        var video = await _context.SpeakingVideos.FirstOrDefaultAsync(v => v.Id == id);
+        if (video == null)
+        {
+            TempData["ErrorMessage"] = "Video not found.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        try
+        {
+            _context.SpeakingVideos.Remove(video);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Video deleted successfully.";
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to delete speaking video {VideoId}", id);
+            TempData["ErrorMessage"] = "Unable to delete video at this time. Please try again.";
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    private async Task<int> ResolveTargetPlaylistIdAsync(int playlistId)
+    {
+        if (playlistId > 0)
+        {
+            var playlistExists = await _context.SpeakingPlaylists
                 .AsNoTracking()
-                .OrderByDescending(v => v.Id)
-                .Select(v => new
-                {
-                    v.Id,
-                    v.Title,
-                    v.YoutubeId,
-                    v.Level,
-                    v.Topic,
-                    v.ThumbnailUrl,
-                    v.Duration,
-                    SentenceCount = v.SpeakingSentences.Count
-                })
-                .ToListAsync();
+                .AnyAsync(p => p.Id == playlistId);
 
-            return View(videos);
+            return playlistExists ? playlistId : 0;
         }
 
-        // GET: Admin/SpeakingVideoManagement/Create
-        public IActionResult Create()
+        var defaultPlaylist = await _context.SpeakingPlaylists
+            .FirstOrDefaultAsync(p => p.Name == "General");
+
+        if (defaultPlaylist != null)
         {
-            // Populate ViewBag with available Playlists
-            ViewBag.Playlists = _context.SpeakingPlaylists.AsNoTracking().ToList();
-            return View();
+            return defaultPlaylist.Id;
         }
 
-        // POST: Admin/SpeakingVideoManagement/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] string title, [FromForm] string youtubeId, [FromForm] string level, [FromForm] string topic, [FromForm] int playlistId)
+        defaultPlaylist = new SpeakingPlaylist
         {
-            if (string.IsNullOrWhiteSpace(youtubeId) || string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(level))
+            Name = "General",
+            Description = "Default playlist for videos without selected playlist."
+        };
+
+        _context.SpeakingPlaylists.Add(defaultPlaylist);
+        await _context.SaveChangesAsync();
+
+        return defaultPlaylist.Id;
+    }
+
+    private async Task<List<SpeakingPlaylistOptionViewModel>> GetPlaylistOptionsAsync()
+    {
+        return await _context.SpeakingPlaylists
+            .AsNoTracking()
+            .OrderBy(p => p.Name)
+            .Select(p => new SpeakingPlaylistOptionViewModel
             {
-                ModelState.AddModelError("", "Title, YouTube ID, and Level are required.");
-                ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                return View();
-            }
+                Id = p.Id,
+                Name = p.Name
+            })
+            .ToListAsync();
+    }
 
-            // Simple validation for Youtube ID format (usually 11 chars)
-            if (youtubeId.Contains("youtube.com") || youtubeId.Contains("youtu.be"))
+    private static string? NormalizeYoutubeId(string input)
+    {
+        var value = input?.Trim();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return null;
+        }
+
+        if (YoutubeIdRegex.IsMatch(value))
+        {
+            return value;
+        }
+
+        if (!Uri.TryCreate(value, UriKind.Absolute, out var uri))
+        {
+            return null;
+        }
+
+        var host = uri.Host.ToLowerInvariant();
+
+        if (host.Contains("youtu.be", StringComparison.Ordinal))
+        {
+            var shortId = uri.AbsolutePath.Trim('/').Split('/', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+            return shortId is not null && YoutubeIdRegex.IsMatch(shortId) ? shortId : null;
+        }
+
+        if (!host.Contains("youtube.com", StringComparison.Ordinal))
+        {
+            return null;
+        }
+
+        var query = uri.Query.TrimStart('?');
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            foreach (var pair in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
             {
-                ModelState.AddModelError("youtubeId", "Vui lòng chỉ nhập Video ID (ví dụ: dQw4w9WgXcQ), không nhập toàn bộ link.");
-                ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                return View();
-            }
-
-            try
-            {
-                // Call Transcript Service to get sentences
-                var sentences = await _transcriptService.GetTranscriptAsync(youtubeId);
-                
-                if (sentences == null || !sentences.Any())
+                var parts = pair.Split('=', 2, StringSplitOptions.None);
+                if (parts.Length != 2 || !parts[0].Equals("v", StringComparison.OrdinalIgnoreCase))
                 {
-                    ModelState.AddModelError("", "Không thể lấy được phụ đề hoặc âm thanh từ video này. Vui lòng thử video khác.");
-                    ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                    return View();
+                    continue;
                 }
 
-                // Validate playlist before entering the execution strategy
-                int targetPlaylistId;
-
-                if (playlistId > 0)
+                var candidate = Uri.UnescapeDataString(parts[1]);
+                if (YoutubeIdRegex.IsMatch(candidate))
                 {
-                    var playlistExists = await _context.SpeakingPlaylists
-                        .AsNoTracking()
-                        .AnyAsync(p => p.Id == playlistId);
-
-                    if (!playlistExists)
-                    {
-                        ModelState.AddModelError("playlistId", "Playlist đã chọn không tồn tại.");
-                        ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                        return View();
-                    }
-
-                    targetPlaylistId = playlistId;
+                    return candidate;
                 }
-                else
-                {
-                    var defaultPlaylist = await _context.SpeakingPlaylists
-                        .FirstOrDefaultAsync(p => p.Name == "General");
-
-                    if (defaultPlaylist == null)
-                    {
-                        defaultPlaylist = new SpeakingPlaylist
-                        {
-                            Name = "General",
-                            Description = "Default playlist for videos without selected playlist."
-                        };
-
-                        _context.SpeakingPlaylists.Add(defaultPlaylist);
-                        await _context.SaveChangesAsync();
-                    }
-
-                    targetPlaylistId = defaultPlaylist.Id;
-                }
-
-                var strategy = _context.Database.CreateExecutionStrategy();
-
-                try
-                {
-                    await strategy.ExecuteAsync(async () =>
-                    {
-                        using var transaction = await _context.Database.BeginTransactionAsync();
-
-                        // 1. Create the SpeakingVideo
-                        var video = new SpeakingVideo
-                        {
-                            Title = title,
-                            YoutubeId = youtubeId,
-                            Level = level,
-                            Topic = topic ?? "General",
-                            PlaylistId = targetPlaylistId,
-                            ThumbnailUrl = $"https://img.youtube.com/vi/{youtubeId}/hqdefault.jpg"
-                        };
-
-                        _context.SpeakingVideos.Add(video);
-                        await _context.SaveChangesAsync();
-
-                        // 2. Assign VideoId to all derived sentences and add them
-                        foreach (var sentence in sentences)
-                        {
-                            sentence.VideoId = video.Id;
-                            _context.SpeakingSentences.Add(sentence);
-                        }
-
-                        await _context.SaveChangesAsync();
-
-                        await transaction.CommitAsync();
-                    });
-
-                    TempData["SuccessMessage"] = $"Tạo video thành công và trích xuất được {sentences.Count} câu thoại.";
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Lỗi khi lưu video và phụ đề vào database.");
-                    ModelState.AddModelError("", $"Lỗi hệ thống khi lưu: {ex.Message}");
-                    ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Lỗi khi gọi service xử lý Youtube: {YoutubeId}", youtubeId);
-                ModelState.AddModelError("", $"Lỗi khi trích xuất dữ liệu Youtube: {ex.Message}");
-                ViewBag.Playlists = await _context.SpeakingPlaylists.AsNoTracking().ToListAsync();
-                return View();
             }
         }
+
+        var pathSegments = uri.AbsolutePath
+            .Split('/', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+        if (pathSegments.Length >= 2 &&
+            (pathSegments[0].Equals("shorts", StringComparison.OrdinalIgnoreCase) ||
+             pathSegments[0].Equals("embed", StringComparison.OrdinalIgnoreCase)) &&
+            YoutubeIdRegex.IsMatch(pathSegments[1]))
+        {
+            return pathSegments[1];
+        }
+
+        return null;
     }
 }
