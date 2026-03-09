@@ -21,11 +21,19 @@ builder.Services.AddRazorPages()
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+            sqlOptions.CommandTimeout(60);
+        }));
 
 // Register email sender and background worker
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 
 // Cấu hình Authentication (Cookie + Social)
@@ -100,6 +108,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ClassChatHub>("/classChatHub");
 
+// Legacy route compatibility for old admin speaking URL
+app.MapControllerRoute(
+    name: "admin-speaking-management-legacy",
+    pattern: "Admin/SpeakingManagement/{action=Index}/{id?}",
+    defaults: new { area = "Admin", controller = "SpeakingVideoManagement" });
+
 // Area route (Admin Dashboard)
 app.MapControllerRoute(
     name: "areas",
@@ -110,20 +124,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Landing}/{id?}");
 
-// Execute Seeding logic asynchronously before the app runs
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        await TCTVocabulary.Models.SpeakingDataSeeder.SeedAsync(services);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred seeding the DB.");
-    }
-}
 
 // Seed từ vựng hệ thống từ file JSON (có try-catch riêng, web không sập nếu file JSON lỗi)
 try

@@ -1,0 +1,119 @@
+﻿@model TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoCreateViewModel
+@{
+    ViewData["Title"] = "Thêm Speaking Video";
+}
+
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="d-flex align-items-center mb-4">
+                <a asp-action="Index" class="btn btn-link text-decoration-none text-muted p-0 me-3">
+                    <i class="fa-solid fa-arrow-left fa-lg"></i>
+                </a>
+                <h2 class="mb-0 text-dark fw-bold">Thêm Video Mới</h2>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4 p-md-5">
+                    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger rounded-3" role="alert"></div>
+
+                    <form asp-action="Create" method="post" id="createVideoForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row g-4">
+                            <div class="col-md-12">
+                                <label asp-for="YoutubeId" class="form-label fw-bold">YouTube Video ID <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="fa-brands fa-youtube text-danger"></i></span>
+                                    <input asp-for="YoutubeId" class="form-control" placeholder="Ví dụ: dQw4w9WgXcQ hoặc full URL" />
+                                </div>
+                                <span asp-validation-for="YoutubeId" class="text-danger"></span>
+                                <div class="form-text text-muted mt-2">
+                                    <i class="fa-solid fa-circle-info me-1"></i>
+                                    Bạn có thể nhập YouTube ID hoặc URL đầy đủ. Hệ thống sẽ tự động chuẩn hóa ID.
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label asp-for="Title" class="form-label fw-bold">Tiêu đề bài học <span class="text-danger">*</span></label>
+                                <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề hiển thị cho học viên" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Level" class="form-label fw-bold">Trình độ <span class="text-danger">*</span></label>
+                                <select asp-for="Level" class="form-select">
+                                    <option value="">-- Chọn trình độ --</option>
+                                    <option value="A1">A1 (Beginner)</option>
+                                    <option value="A2">A2 (Pre-Intermediate)</option>
+                                    <option value="B1">B1 (Intermediate)</option>
+                                    <option value="B2">B2 (Upper-Intermediate)</option>
+                                    <option value="C1">C1 (Advanced)</option>
+                                    <option value="C2">C2 (Proficient)</option>
+                                </select>
+                                <span asp-validation-for="Level" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Topic" class="form-label fw-bold">Chủ đề</label>
+                                <input asp-for="Topic" class="form-control" placeholder="Ví dụ: Business, Daily Life, Vlogs..." />
+                                <span asp-validation-for="Topic" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label asp-for="PlaylistId" class="form-label fw-bold">Thêm vào Playlist (Tùy chọn)</label>
+                                <select asp-for="PlaylistId" class="form-select">
+                                    <option value="0">-- Mặc định (General) --</option>
+                                    @foreach (var playlist in Model.Playlists)
+                                    {
+                                        <option value="@playlist.Id">@playlist.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="PlaylistId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-5 opacity-10" />
+
+                        <div class="d-flex justify-content-end gap-3">
+                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Hủy bỏ</a>
+                            <button type="submit" class="btn btn-primary shadow-sm rounded-pill px-4" id="btnSubmit">
+                                <span class="d-none spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" id="submitSpinner"></span>
+                                <i class="fa-solid fa-cloud-arrow-down me-2" id="submitIcon"></i> Trích xuất và Lưu Video
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-4 rounded-4 shadow-sm border-0 d-flex gap-3">
+                <i class="fa-solid fa-robot fa-2x text-info"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Quy trình tự động hóa</h6>
+                    <p class="mb-0 small">
+                        Sau khi bấm Lưu, hệ thống sẽ thử theo 2 bước:
+                        <br />1. Thử lấy Closed Captions tiếng Anh có sẵn trên YouTube.
+                        <br />2. Nếu không có, tự động tải audio và gọi Whisper để nhận diện giọng nói.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById('createVideoForm').addEventListener('submit', function () {
+            const btn = document.getElementById('btnSubmit');
+            const spinner = document.getElementById('submitSpinner');
+            const icon = document.getElementById('submitIcon');
+
+            btn.disabled = true;
+            icon.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Đang xử lý...';
+        });
+    </script>
+}

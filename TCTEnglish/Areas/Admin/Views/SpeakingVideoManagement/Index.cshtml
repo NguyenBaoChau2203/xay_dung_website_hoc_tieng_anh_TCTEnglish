@@ -1,0 +1,205 @@
+﻿@model IEnumerable<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>
+@{
+    ViewData["Title"] = "Quản lý Speaking Video";
+    var videos = Model?.ToList() ?? new List<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>();
+    var levels = videos.Select(v => v.Level).Distinct().OrderBy(l => l).ToList();
+    var topics = videos.Select(v => v.Topic).Distinct().OrderBy(t => t).ToList();
+}
+
+<div class="container-fluid py-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="mb-0 text-dark fw-bold">Quản lý Speaking Video</h2>
+            <p class="text-muted mb-0">Quản lý các video luyện nói và phụ đề</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-3 mt-md-0 d-flex justify-content-md-end gap-2">
+            <a asp-action="Create" class="btn btn-primary shadow-sm rounded-pill px-4">
+                <i class="fa-solid fa-plus me-2"></i> Thêm Video Mới
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-4" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i><strong>Thành công!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-4" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i><strong>Lỗi!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @* Filter Section *@
+    <div class="card border-0 shadow-sm rounded-4 mb-3">
+        <div class="card-body py-3 px-4">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-layer-group me-1"></i> Lọc theo Trình độ
+                    </label>
+                    <select id="filterLevel" class="form-select form-select-sm">
+                        <option value="">Tất cả trình độ</option>
+                        @foreach (var level in levels)
+                        {
+                            <option value="@level">@level</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-tag me-1"></i> Lọc theo Chủ đề
+                    </label>
+                    <select id="filterTopic" class="form-select form-select-sm">
+                        <option value="">Tất cả chủ đề</option>
+                        @foreach (var topic in topics)
+                        {
+                            <option value="@topic">@topic</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end gap-2">
+                    <button type="button" id="btnResetFilter" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                        <i class="fa-solid fa-rotate-left me-1"></i> Đặt lại
+                    </button>
+                    <span id="filterResultCount" class="text-muted small ms-auto"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="videoTable">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4 border-0 text-muted" style="width: 120px;">Ảnh nhỏ</th>
+                            <th class="border-0 text-muted">Video</th>
+                            <th class="border-0 text-muted">YouTube ID</th>
+                            <th class="border-0 text-muted">Trình độ / Chủ đề</th>
+                            <th class="border-0 text-muted text-center" style="width: 150px;">Số câu thoại</th>
+                            <th class="pe-4 border-0 text-muted text-center" style="width: 120px;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="videoTableBody">
+                        @if (!videos.Any())
+                        {
+                            <tr class="empty-row">
+                                <td colspan="6" class="text-center py-5">
+                                    <div class="text-muted">
+                                        <i class="fa-solid fa-video-slash fa-3x mb-3 text-secondary opacity-50"></i>
+                                        <h5>Chưa có video nào</h5>
+                                        <p>Hãy thêm video đầu tiên của bạn.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in videos)
+                            {
+                                <tr data-level="@item.Level" data-topic="@item.Topic">
+                                    <td class="ps-4 py-3">
+                                        <img src="@(string.IsNullOrWhiteSpace(item.ThumbnailUrl) ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg" : item.ThumbnailUrl)"
+                                             alt="Ảnh nhỏ"
+                                             class="img-fluid rounded-3 shadow-sm"
+                                             style="width: 100px; height: 56px; object-fit: cover;" />
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold text-dark text-truncate" style="max-width: 300px;" title="@item.Title">
+                                            @item.Title
+                                        </div>
+                                        <div class="text-muted small">
+                                            <i class="fa-regular fa-clock me-1"></i> @(item.Duration ?? "--:--")
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="https://youtube.com/watch?v=@item.YoutubeId" target="_blank" rel="noopener noreferrer"
+                                           class="text-decoration-none badge bg-danger text-white rounded-pill">
+                                            <i class="fa-brands fa-youtube me-1"></i> @item.YoutubeId
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column gap-1 align-items-start">
+                                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">
+                                                Level @item.Level
+                                            </span>
+                                            <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25">
+                                                @item.Topic
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-success rounded-pill px-3 py-2">
+                                            @item.SentenceCount câu
+                                        </span>
+                                    </td>
+                                    <td class="pe-4 text-center">
+                                        <form asp-action="Delete" method="post" class="d-inline"
+                                              onsubmit="return confirm('Bạn có chắc chắn muốn xóa video này? Mọi câu thoại liên quan cũng sẽ bị xóa.');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Xóa">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+</div>
+
+@Html.AntiForgeryToken()
+
+@section Scripts {
+    <script>
+        (function () {
+            const filterLevel = document.getElementById('filterLevel');
+            const filterTopic = document.getElementById('filterTopic');
+            const btnReset = document.getElementById('btnResetFilter');
+            const resultCount = document.getElementById('filterResultCount');
+            const tbody = document.getElementById('videoTableBody');
+
+            function applyFilters() {
+                const level = filterLevel.value;
+                const topic = filterTopic.value;
+                const rows = tbody.querySelectorAll('tr[data-level]');
+                let visible = 0;
+
+                rows.forEach(function (row) {
+                    const rowLevel = row.getAttribute('data-level');
+                    const rowTopic = row.getAttribute('data-topic');
+                    const matchLevel = !level || rowLevel === level;
+                    const matchTopic = !topic || rowTopic === topic;
+                    const show = matchLevel && matchTopic;
+                    row.style.display = show ? '' : 'none';
+                    if (show) visible++;
+                });
+
+                if (level || topic) {
+                    resultCount.textContent = 'Hiển thị ' + visible + ' / ' + rows.length + ' video';
+                } else {
+                    resultCount.textContent = '';
+                }
+            }
+
+            filterLevel.addEventListener('change', applyFilters);
+            filterTopic.addEventListener('change', applyFilters);
+
+            btnReset.addEventListener('click', function () {
+                filterLevel.value = '';
+                filterTopic.value = '';
+                applyFilters();
+            });
+        })();
+    </script>
+}
