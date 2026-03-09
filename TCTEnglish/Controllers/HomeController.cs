@@ -682,13 +682,85 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("FolderDetail", new { id = set.FolderId });
             }
 
+            // Truy vấn LearningProgress để lấy tiến độ đã lưu
+            var cardIds = set.Cards.Select(c => c.CardId).ToList();
+            var masteredIds = new List<int>();
+            var learningIds = new List<int>();
+
+            if (TryGetCurrentUserId(out var userId))
+            {
+                var progresses = _context.LearningProgresses
+                    .Where(lp => lp.UserId == userId && cardIds.Contains(lp.CardId))
+                    .ToList();
+
+                masteredIds = progresses
+                    .Where(lp => lp.Status == "Mastered")
+                    .Select(lp => lp.CardId)
+                    .ToList();
+
+                learningIds = progresses
+                    .Where(lp => lp.Status == "Learning" || lp.Status == "Reviewing")
+                    .Select(lp => lp.CardId)
+                    .ToList();
+            }
+
             var vm = new StudyViewModel
             {
                 Set = set,
-                Cards = set.Cards.ToList()
+                Cards = set.Cards.ToList(),
+                MasteredCardIds = masteredIds,
+                LearningCardIds = learningIds
             };
 
             return View(vm);
+        }
+
+        // [Task 1.4] Endpoint lưu tiến độ học tập qua AJAX
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdateCardProgress([FromBody] UpdateCardProgressRequest request)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized();
+
+            var progress = await _context.LearningProgresses
+                .FirstOrDefaultAsync(lp => lp.UserId == userId && lp.CardId == request.CardId);
+
+            if (progress == null)
+            {
+                progress = new LearningProgress
+                {
+                    UserId = userId,
+                    CardId = request.CardId,
+                    Status = "Learning",
+                    WrongCount = 0,
+                    RepetitionCount = 0
+                };
+                _context.LearningProgresses.Add(progress);
+            }
+
+            progress.LastReviewedDate = DateTime.UtcNow;
+
+            if (request.IsKnown)
+            {
+                // Đã thuộc
+                progress.Status = "Mastered";
+                progress.RepetitionCount += 1;
+                // Đặt mặc định xem lại sau 7 ngày để tránh bị quá rườm rà
+                progress.NextReviewDate = DateTime.UtcNow.AddDays(7);
+            }
+            else
+            {
+                // Chưa thuộc
+                progress.Status = "Learning";
+                progress.RepetitionCount = 0;
+                progress.WrongCount = (progress.WrongCount ?? 0) + 1;
+                progress.NextReviewDate = DateTime.UtcNow.AddMinutes(1);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
 
         public IActionResult Speaking(int? id)
@@ -790,6 +862,14 @@ namespace TCTVocabulary.Controllers
             // Cập nhật thông tin cơ bản
             existingSet.SetName = SetName;
             existingSet.Description = Description;
+
+            // Xóa các tiến độ học tập (LearningProgress) liên quan đến các thẻ cũ để tránh lỗi foreign key constraint "DELETE statement conflicted with the REFERENCE constraint"
+            var oldCardIds = existingSet.Cards.Select(c => c.CardId).ToList();
+            if (oldCardIds.Any())
+            {
+                var relatedProgresses = _context.LearningProgresses.Where(lp => oldCardIds.Contains(lp.CardId));
+                _context.LearningProgresses.RemoveRange(relatedProgresses);
+            }
 
             // Xóa toàn bộ Cards cũ và thêm lại Cards mới (cách đơn giản nhất)
             _context.Cards.RemoveRange(existingSet.Cards);
@@ -1229,5 +1309,11 @@ namespace TCTVocabulary.Controllers
             // Trả về đường dẫn để JS gọi Hub
             return Json(new { imageUrl = "/uploads/chat/" + fileName });
         }
+    }
+
+    public class UpdateCardProgressRequest
+    {
+        public int CardId { get; set; }
+        public bool IsKnown { get; set; }
     }
 }
