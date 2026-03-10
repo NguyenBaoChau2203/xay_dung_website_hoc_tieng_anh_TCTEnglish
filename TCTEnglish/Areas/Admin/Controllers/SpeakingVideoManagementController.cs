@@ -108,7 +108,12 @@ public class SpeakingVideoManagementController : Controller
         }
 
         var normalizedTitle = model.Title.Trim();
-        var normalizedLevel = model.Level.Trim().ToUpperInvariant();
+        var normalizedLevel = NormalizeCefrLevel(model.Level);
+        if (normalizedLevel is null)
+        {
+            ModelState.AddModelError(nameof(model.Level), "Level must be one of A1, A2, B1, B2, C1, C2.");
+            return View(model);
+        }
         var normalizedTopic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic.Trim();
 
         try
@@ -194,6 +199,77 @@ public class SpeakingVideoManagementController : Controller
         }
 
         return RedirectToAction(nameof(Index));
+    }
+
+    // GET: Admin/SpeakingVideoManagement/Edit/5
+    public async Task<IActionResult> Edit(int id)
+    {
+        var video = await _context.SpeakingVideos
+            .AsNoTracking()
+            .Where(v => v.Id == id)
+            .Select(v => new SpeakingVideoEditViewModel
+            {
+                Id = v.Id,
+                Title = v.Title,
+                Level = v.Level,
+                Topic = v.Topic,
+                PlaylistId = v.PlaylistId,
+                YoutubeId = v.YoutubeId,
+                ThumbnailUrl = v.ThumbnailUrl,
+                SentenceCount = v.SpeakingSentences.Count
+            })
+            .FirstOrDefaultAsync();
+
+        if (video == null) return NotFound();
+
+        video.Playlists = await GetPlaylistOptionsAsync();
+        return View(video);
+    }
+
+    // POST: Admin/SpeakingVideoManagement/Edit/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, [FromForm] SpeakingVideoEditViewModel model)
+    {
+        if (id != model.Id) return NotFound();
+
+        model.Playlists = await GetPlaylistOptionsAsync();
+
+        if (!ModelState.IsValid) return View(model);
+
+        var normalizedLevel = NormalizeCefrLevel(model.Level);
+        if (normalizedLevel is null)
+        {
+            ModelState.AddModelError(nameof(model.Level), "Level must be one of A1, A2, B1, B2, C1, C2.");
+            return View(model);
+        }
+
+        var video = await _context.SpeakingVideos.FirstOrDefaultAsync(v => v.Id == id);
+        if (video == null) return NotFound();
+
+        var targetPlaylistId = await ResolveTargetPlaylistIdAsync(model.PlaylistId);
+        if (targetPlaylistId == 0)
+        {
+            ModelState.AddModelError(nameof(model.PlaylistId), "Playlist Ä‘Ã£ chá»n khÃ´ng tá»“n táº¡i.");
+            return View(model);
+        }
+
+        video.Title = model.Title.Trim();
+        video.Level = normalizedLevel;
+        video.Topic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic.Trim();
+        video.PlaylistId = targetPlaylistId;
+
+        await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Admin updated SpeakingVideo {VideoId} at {Time}", id, DateTime.UtcNow);
+        TempData["SuccessMessage"] = $"Video \"{video.Title}\" Ä‘Ã£ Ä‘Æ°á»£c cáº­p nháº­t thÃ nh cÃ´ng.";
+        return RedirectToAction(nameof(Index));
+    }
+
+    private static string? NormalizeCefrLevel(string? level)
+    {
+        var normalized = level?.Trim().ToUpperInvariant();
+        return normalized is "A1" or "A2" or "B1" or "B2" or "C1" or "C2" ? normalized : null;
     }
 
     private async Task<int> ResolveTargetPlaylistIdAsync(int playlistId)

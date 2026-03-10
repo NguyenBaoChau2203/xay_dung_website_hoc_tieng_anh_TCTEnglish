@@ -5,22 +5,10 @@
 }
 
 @section Styles {
-    <style>
-        .btn-primary {
-            background-color: #4255ff !important;
-            border-color: #4255ff !important;
-        }
-        .btn-primary:hover, .btn-primary:focus {
-            background-color: #2f3fe0 !important;
-            border-color: #2f3fe0 !important;
-        }
-        .text-primary {
-            color: #4255ff !important;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
 }
 
-<div class="bg-light min-vh-100 py-5">
+<div class="account-page bg-light min-vh-100 py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-7">
@@ -54,16 +42,14 @@
                     </div>
                 }
 
-                <form asp-controller="Account" asp-action="ChangePassword" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-4"></div>
-
+                <form asp-controller="Account" asp-action="UpdateEmail" method="post">
+                    @Html.AntiForgeryToken()
                     <!-- Email Settings Card -->
                     <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
                         <div class="card-body p-4">
                             <h6 class="fw-semibold text-dark mb-4 d-flex align-items-center">
                                 <i class="fas fa-envelope-open text-muted me-2 small"></i> Liên hệ
                             </h6>
-                            
                             <div class="mb-2">
                                 <label asp-for="Email" class="form-label small fw-medium text-secondary">Địa chỉ email</label>
                                 <input asp-for="Email" class="form-control border-secondary-subtle py-2 px-3" placeholder="name@example.com" />
@@ -71,8 +57,16 @@
                             </div>
                             <p class="text-muted small mb-0">Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
                         </div>
+                        <div class="card-footer bg-light border-top border-secondary-subtle p-3 px-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary py-2 px-4 shadow-sm border-0 fw-medium">
+                                <i class="fas fa-save me-2"></i> Cập nhật email
+                            </button>
+                        </div>
                     </div>
+                </form>
 
+                <form asp-controller="Account" asp-action="ChangePassword" method="post">
+                    @Html.AntiForgeryToken()
                     <!-- Password Settings Card -->
                     <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
                         <div class="card-body p-4">
@@ -89,7 +83,8 @@
                                 <label asp-for="CurrentPassword" class="form-label small fw-medium text-secondary">Mật khẩu hiện tại</label>
                                 <div class="input-group">
                                     <input asp-for="CurrentPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập mật khẩu hiện nay" />
-                                    <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
+                                    <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
+                                            tabindex="-1" aria-label="Hiện/ẩn mật khẩu hiện tại">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
@@ -101,7 +96,8 @@
                                     <label asp-for="NewPassword" class="form-label small fw-medium text-secondary">Mật khẩu mới</label>
                                     <div class="input-group">
                                         <input asp-for="NewPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Tối thiểu 8 ký tự" />
-                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
+                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
+                                                tabindex="-1" aria-label="Hiện/ẩn mật khẩu mới">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
@@ -111,7 +107,8 @@
                                     <label asp-for="ConfirmPassword" class="form-label small fw-medium text-secondary">Xác nhận mật khẩu</label>
                                     <div class="input-group">
                                         <input asp-for="ConfirmPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập lại mật khẩu mới" />
-                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button" tabindex="-1">
+                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
+                                                tabindex="-1" aria-label="Hiện/ẩn xác nhận mật khẩu">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
@@ -121,7 +118,7 @@
                         </div>
                         <div class="card-footer bg-light border-top border-secondary-subtle p-3 px-4 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary py-2 px-4 shadow-sm border-0 fw-medium">
-                                <i class="fas fa-save me-2"></i> Lưu thay đổi
+                                <i class="fas fa-save me-2"></i> Đổi mật khẩu
                             </button>
                         </div>
                     </div>
@@ -139,9 +136,37 @@
                                 <div class="fw-semibold text-danger">Xóa tài khoản vĩnh viễn</div>
                                 <div class="text-danger small">Hành động này không thể hoàn tác. Mọi dữ liệu học tập sẽ bị mất.</div>
                             </div>
-                            <button type="button" class="btn btn-danger px-4 py-2 shadow-sm fw-medium border-0">
+                            <button type="button" class="btn btn-danger px-4 py-2 shadow-sm fw-medium border-0"
+                                    data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                                 <i class="fas fa-trash-can me-2"></i> Xóa ngay
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete Account Confirmation Modal -->
+                <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow">
+                            <div class="modal-header bg-danger bg-opacity-10 border-bottom">
+                                <h5 class="modal-title fw-semibold text-danger" id="deleteAccountModalLabel">
+                                    <i class="fas fa-triangle-exclamation me-2"></i> Xác nhận xóa tài khoản
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-muted">Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng, và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.</p>
+                                <p class="text-muted small mb-0">Hành động này không thể hoàn tác.</p>
+                            </div>
+                            <div class="modal-footer border-top">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-danger fw-medium">
+                                        <i class="fas fa-trash-can me-1"></i> Xóa vĩnh viễn
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

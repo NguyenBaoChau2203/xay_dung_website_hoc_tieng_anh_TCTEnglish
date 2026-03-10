@@ -1,0 +1,67 @@
+/* =================================================================
+   account.css  —  Shared styles for Account pages (Profile, Settings)
+   ================================================================= */
+
+/* ── Brand color overrides ─────────────────────────────────────── */
+.account-page .btn-primary {
+    background-color: #4255ff;
+    border-color: #4255ff;
+}
+
+.account-page .btn-primary:hover,
+.account-page .btn-primary:focus {
+    background-color: #2f3fe0;
+    border-color: #2f3fe0;
+}
+
+.account-page .text-primary {
+    color: #4255ff;
+}
+
+/* ── Avatar ────────────────────────────────────────────────────── */
+.account-avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+
+.account-avatar-camera {
+    width: 32px;
+    height: 32px;
+    transform: translate(10%, 10%);
+}
+
+/* ── Admin KPI icon containers (reusable) ──────────────────────── */
+.admin-kpi-icon {
+    width: 56px;
+    height: 56px;
+}
+
+.admin-kpi-icon-sm {
+    width: 48px;
+    height: 48px;
+}
+
+/* ── Admin avatar placeholder ──────────────────────────────────── */
+.admin-avatar-placeholder {
+    width: 36px;
+    height: 36px;
+}
+
+/* ── Admin table thumbnail ─────────────────────────────────────── */
+.admin-video-thumb {
+    width: 100px;
+    height: 56px;
+    object-fit: cover;
+}
+
+.admin-video-thumb-lg {
+    width: 180px;
+    height: 101px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.admin-title-truncate {
+    max-width: 300px;
+}

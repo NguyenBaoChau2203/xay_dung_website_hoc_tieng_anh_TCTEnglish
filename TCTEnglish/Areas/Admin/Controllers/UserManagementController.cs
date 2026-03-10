@@ -21,8 +21,10 @@ namespace TCTVocabulary.Areas.Admin.Controllers
         }
 
         // GET: /Admin/UserManagement
-        public async Task<IActionResult> Index(string? q, string? role, string? status)
+        public async Task<IActionResult> Index(string? q, string? role, string? status, int page = 1)
         {
+            const int pageSize = 20;
+
             // Base query — AsNoTracking for read-only listing
             var query = _context.Users.AsNoTracking().AsQueryable();
 
@@ -61,9 +63,16 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             var onlineUsers = stats?.OnlineUsers ?? 0;
             var blockedUsers = stats?.BlockedUsers ?? 0;
 
+            // Pagination
+            var totalFilteredCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalFilteredCount / (double)pageSize);
+            page = Math.Clamp(page, 1, Math.Max(1, totalPages));
+
             // Project into ViewModel via .Select() — never pass raw entities
             var users = await query
                 .OrderByDescending(u => u.CreatedAt)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(u => new UserRowViewModel
                 {
                     UserId = u.UserId,
@@ -89,7 +98,11 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 TotalUsers = totalUsers,
                 OnlineUsers = onlineUsers,
                 OfflineUsers = totalUsers - onlineUsers - blockedUsers,
-                BlockedUsers = blockedUsers
+                BlockedUsers = blockedUsers,
+                CurrentPage = page,
+                TotalPages = totalPages,
+                PageSize = pageSize,
+                TotalFilteredCount = totalFilteredCount
             };
 
             return View(viewModel);

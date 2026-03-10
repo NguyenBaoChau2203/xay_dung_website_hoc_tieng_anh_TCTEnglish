@@ -20,6 +20,7 @@
     const videoCounter = document.getElementById('vi-video-count');
     const allCards = document.querySelectorAll('.vi-video-col');
     const levelSections = document.querySelectorAll('.vi-level-section');
+    const noResultsEl = document.getElementById('vi-no-results');
 
     // ── State ────────────────────────────────────────────────────
     let activeTopic = 'all';
@@ -101,6 +102,10 @@
             videoCounter.textContent = query || activeTopic !== 'all'
                 ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
                 : `${totalVisibleCount} videos`;
+        }
+
+        if (noResultsEl) {
+            noResultsEl.style.display = totalVisibleCount === 0 ? '' : 'none';
         }
     }
 
@@ -217,6 +222,12 @@
     const dicInput = $('dic-input');
     const dicFeedback = $('dic-feedback');
     const dicSentIndicator = $('dic-sent-indicator');
+    const btnDicHint = $('btn-dic-hint');
+    const btnDicPlay = $('btn-dic-play');
+    const dicPlayIcon = $('dic-play-icon');
+    const dicPlayLabel = $('dic-play-label');
+    const btnDicNext = $('btn-dic-next');
+    const btnDicPlaySlow = $('btn-dic-play-slow') || $('btn-dic-slow-play');
 
     // ── State ────────────────────────────────────────────────────────
     let player = null;
@@ -226,6 +237,7 @@
     let isVideoHidden = false;
     let playbackTimer = null;
     let toastTimer = null;
+    let isDictationAnswerRevealed = false;
 
     // ────────────────────────────────────────────────────────────────
     //  YOUTUBE IFRAME API
@@ -262,8 +274,12 @@
     function onPlayerStateChange(evt) {
         if (evt.data === YT.PlayerState.PLAYING) {
             if (!playbackTimer) playbackTimer = setInterval(checkLoopBoundary, 120);
+            setDictationPlayState(true);
         } else {
             if (playbackTimer) { clearInterval(playbackTimer); playbackTimer = null; }
+            if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
+                setDictationPlayState(false);
+            }
         }
     }
 
@@ -309,6 +325,9 @@
         if (dicSentIndicator) dicSentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
 
         // Reset dictation state
+        isDictationAnswerRevealed = false;
+        btnDicHint?.classList.remove('is-active');
+        setDictationPlayState(false);
         if (dicInput) dicInput.value = '';
         renderDictationFeedback('', s.text);
 
@@ -671,6 +690,51 @@
         return map[ch] || ch;
     }
 
+    function escapeHtmlText(text) {
+        return (text || '').replace(/[&<>"']/g, ch => escapeHtml(ch));
+    }
+
+    function setDictationPlayState(isPlaying) {
+        if (!btnDicPlay) return;
+        btnDicPlay.classList.toggle('is-playing', isPlaying);
+        if (dicPlayIcon) dicPlayIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+        if (dicPlayLabel) dicPlayLabel.textContent = isPlaying ? 'Tạm dừng' : 'Phát lại';
+    }
+
+    function replayCurrentSentence(rate = 1) {
+        if (activeSentIdx < 0 || !player || typeof player.seekTo !== 'function') return;
+        const s = SENTENCES[activeSentIdx];
+        if (!s) return;
+
+        if (typeof player.setPlaybackRate === 'function') {
+            player.setPlaybackRate(rate);
+        }
+
+        player.seekTo(s.start, true);
+        player.playVideo();
+    }
+
+    function revealDictationAnswer() {
+        if (activeSentIdx < 0) {
+            showToast('⚠️ Hãy chọn một câu trước!', 'warning');
+            return;
+        }
+
+        const expectedText = SENTENCES[activeSentIdx]?.text || '';
+        if (!expectedText || !dicFeedback) return;
+
+        if (!isDictationAnswerRevealed) {
+            isDictationAnswerRevealed = true;
+            btnDicHint?.classList.add('is-active');
+            renderDictationFeedback(expectedText, expectedText);
+            return;
+        }
+
+        isDictationAnswerRevealed = false;
+        btnDicHint?.classList.remove('is-active');
+        renderDictationFeedback(dicInput?.value || '', expectedText);
+    }
+
     // ── Toast notification ───────────────────────────────────────────
     function showToast(msg, type = 'info') {
         if (!toastEl) return;
@@ -698,12 +762,28 @@
 
         // Replay
         btnReplay?.addEventListener('click', () => {
-            if (activeSentIdx < 0) return;
-            const s = SENTENCES[activeSentIdx];
-            if (player && typeof player.seekTo === 'function') {
-                player.seekTo(s.start, true);
-                player.playVideo();
+            replayCurrentSentence(1);
+        });
+
+        // Dictation support buttons
+        btnDicHint?.addEventListener('click', revealDictationAnswer);
+
+        btnDicPlay?.addEventListener('click', () => {
+            if (!player) return;
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                return;
             }
+            replayCurrentSentence(1);
+        });
+
+        btnDicPlaySlow?.addEventListener('click', () => {
+            replayCurrentSentence(0.5);
+        });
+
+        btnDicNext?.addEventListener('click', () => {
+            if (activeSentIdx < SENTENCES.length - 1) selectSentence(activeSentIdx + 1);
+            else if (activeSentIdx === -1 && SENTENCES.length) selectSentence(0);
         });
 
         // Record
@@ -742,6 +822,7 @@
         // Dictation real-time feedback
         dicInput?.addEventListener('input', () => {
             if (activeSentIdx < 0) return;
+            if (isDictationAnswerRevealed) return;
             const expected = SENTENCES[activeSentIdx]?.text || '';
             renderDictationFeedback(dicInput.value, expected);
         });
