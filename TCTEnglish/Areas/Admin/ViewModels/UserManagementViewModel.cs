@@ -18,6 +18,12 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public int OnlineUsers { get; set; }
         public int OfflineUsers { get; set; }
         public int BlockedUsers { get; set; }
+
+        // Pagination
+        public int CurrentPage { get; set; } = 1;
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; } = 20;
+        public int TotalFilteredCount { get; set; }
     }
 
     // Row-level projection — never expose raw User entity

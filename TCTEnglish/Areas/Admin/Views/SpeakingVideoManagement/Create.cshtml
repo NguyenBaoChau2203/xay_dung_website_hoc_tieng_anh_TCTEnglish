@@ -79,7 +79,9 @@
                             <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Hủy bỏ</a>
                             <button type="submit" class="btn btn-primary shadow-sm rounded-pill px-4" id="btnSubmit">
                                 <span class="d-none spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" id="submitSpinner"></span>
-                                <i class="fa-solid fa-cloud-arrow-down me-2" id="submitIcon"></i> Trích xuất và Lưu Video
+                                <i class="fa-solid fa-cloud-arrow-down me-2" id="submitIcon"></i>
+                                <span id="submitText">Trích xuất và Lưu Video</span>
+                                <span id="submitTextLoading" class="d-none">Đang xử lý...</span>
                             </button>
                         </div>
                     </form>
@@ -105,15 +107,54 @@
     <partial name="_ValidationScriptsPartial" />
 
     <script>
-        document.getElementById('createVideoForm').addEventListener('submit', function () {
+        // ── YouTube ID client-side validator ──────────────────────────
+        const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
+        const YOUTUBE_URL_RE = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+        function extractYoutubeId(input) {
+            const trimmed = input.trim();
+            if (YOUTUBE_ID_RE.test(trimmed)) return trimmed;
+            const match = trimmed.match(YOUTUBE_URL_RE);
+            return match ? match[1] : null;
+        }
+
+        const youtubeInput = document.querySelector('[name="YoutubeId"]');
+        const youtubeError = document.createElement('span');
+        youtubeError.className = 'text-danger small mt-1 d-block';
+        youtubeInput?.parentElement?.after(youtubeError);
+
+        youtubeInput?.addEventListener('blur', function () {
+            const extracted = extractYoutubeId(this.value);
+            if (this.value.trim() && !extracted) {
+                youtubeError.textContent = 'YouTube ID không hợp lệ. Nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
+                this.classList.add('is-invalid');
+            } else {
+                youtubeError.textContent = '';
+                this.classList.remove('is-invalid');
+            }
+        });
+
+        // ── Submit handler: loading state ─────────────────────────────
+        document.getElementById('createVideoForm').addEventListener('submit', function (e) {
+            if (youtubeInput && !extractYoutubeId(youtubeInput.value)) {
+                e.preventDefault();
+                youtubeError.textContent = 'YouTube ID không hợp lệ. Nhập ID 11 ký tự hoặc URL YouTube đầy đủ.';
+                youtubeInput.classList.add('is-invalid');
+                youtubeInput.focus();
+                return;
+            }
+
             const btn = document.getElementById('btnSubmit');
             const spinner = document.getElementById('submitSpinner');
             const icon = document.getElementById('submitIcon');
+            const textNormal = document.getElementById('submitText');
+            const textLoading = document.getElementById('submitTextLoading');
 
             btn.disabled = true;
             icon.classList.add('d-none');
             spinner.classList.remove('d-none');
-            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Đang xử lý...';
+            textNormal.classList.add('d-none');
+            textLoading.classList.remove('d-none');
         });
     </script>
 }

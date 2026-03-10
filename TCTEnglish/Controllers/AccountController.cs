@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TCTVocabulary.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,13 +19,15 @@ namespace TCTVocabulary.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IAppEmailSender _emailSender;
         private readonly IAvatarUploadService _avatarUploadService;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _avatarUploadService = avatarUploadService;
+            _logger = logger;
         }
 
         // GET: /Account/Login
@@ -357,18 +359,20 @@ namespace TCTVocabulary.Controllers
             var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
 
-            // OPTIMIZE: AsNoTracking — read-only query for display
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null) return RedirectToAction("Login");
 
-            if (user == null)
-            {
-                return RedirectToAction("Login");
-            }
+            var savedWordsCount = await _context.Cards
+                .AsNoTracking()
+                .Where(c => c.Set.OwnerId == userId)
+                .CountAsync();
 
             var model = new TCTVocabulary.ViewModels.UpdateProfileViewModel
             {
                 FullName = user.FullName ?? string.Empty,
-                CurrentAvatarUrl = user.AvatarUrl
+                CurrentAvatarUrl = user.AvatarUrl,
+                StreakDays = user.Streak ?? 0,
+                SavedWordsCount = savedWordsCount
             };
 
             return View("~/Views/Account/Profile.cshtml", model);
@@ -399,6 +403,11 @@ namespace TCTVocabulary.Controllers
                     {
                         TempData["ErrorMessage"] = ex.Message;
                         model.CurrentAvatarUrl = user.AvatarUrl;
+                        model.StreakDays = user.Streak ?? 0;
+                        model.SavedWordsCount = await _context.Cards
+                            .AsNoTracking()
+                            .Where(c => c.Set.OwnerId == userId)
+                            .CountAsync();
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
                 }
@@ -529,6 +538,54 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("Settings");
         }
 
+        // POST: /Account/DeleteAccount
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+
+            var accountDeleted = false;
+
+            try
+            {
+                var strategy = _context.Database.CreateExecutionStrategy();
+                await strategy.ExecuteAsync(async () =>
+                {
+                    await using var transaction = await _context.Database.BeginTransactionAsync();
+
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                    if (user == null)
+                    {
+                        return;
+                    }
+
+                    await DeleteUserRelatedDataAsync(userId);
+
+                    _context.Users.Remove(user);
+                    await _context.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                    accountDeleted = true;
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to delete account for User {UserId}", userId);
+                TempData["ErrorMessage"] = "Unable to delete account at this time. Please try again.";
+                return RedirectToAction("Settings");
+            }
+
+            if (!accountDeleted) return NotFound();
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            try { await HttpContext.SignOutAsync("ExternalCookie"); } catch { }
+
+            TempData["SuccessMessage"] = "Your account has been deleted permanently.";
+            return RedirectToAction("Login");
+        }
         // GET: /Account/ResetPassword
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
@@ -580,6 +637,185 @@ namespace TCTVocabulary.Controllers
 
             TempData["SuccessMessage"] = "Password reset successfully. Please log in.";
             return RedirectToAction("Login");
+        }
+
+        private async Task DeleteUserRelatedDataAsync(int userId)
+        {
+            var classFoldersAdded = await _context.ClassFolders
+                .Where(cf => cf.AddedByUserId == userId)
+                .ToListAsync();
+            if (classFoldersAdded.Count > 0)
+            {
+                _context.ClassFolders.RemoveRange(classFoldersAdded);
+            }
+
+            var classMessages = await _context.ClassMessages
+                .Where(cm => cm.UserId == userId)
+                .ToListAsync();
+            if (classMessages.Count > 0)
+            {
+                _context.ClassMessages.RemoveRange(classMessages);
+            }
+
+            var classMembers = await _context.ClassMembers
+                .Where(cm => cm.UserId == userId)
+                .ToListAsync();
+            if (classMembers.Count > 0)
+            {
+                _context.ClassMembers.RemoveRange(classMembers);
+            }
+
+            var savedFolders = await _context.SavedFolders
+                .Where(sf => sf.UserId == userId)
+                .ToListAsync();
+            if (savedFolders.Count > 0)
+            {
+                _context.SavedFolders.RemoveRange(savedFolders);
+            }
+
+            var userLearningProgresses = await _context.LearningProgresses
+                .Where(lp => lp.UserId == userId)
+                .ToListAsync();
+            if (userLearningProgresses.Count > 0)
+            {
+                _context.LearningProgresses.RemoveRange(userLearningProgresses);
+            }
+
+            var speakingProgresses = await _context.UserSpeakingProgresses
+                .Where(p => p.UserId == userId)
+                .ToListAsync();
+            if (speakingProgresses.Count > 0)
+            {
+                _context.UserSpeakingProgresses.RemoveRange(speakingProgresses);
+            }
+
+            var ownedClasses = await _context.Classes
+                .Where(c => c.OwnerId == userId)
+                .ToListAsync();
+            if (ownedClasses.Count > 0)
+            {
+                _context.Classes.RemoveRange(ownedClasses);
+            }
+
+            await DeleteOwnedLearningContentAsync(userId);
+        }
+
+        private async Task DeleteOwnedLearningContentAsync(int userId)
+        {
+            var ownedSetIds = await _context.Sets
+                .AsNoTracking()
+                .Where(s => s.OwnerId == userId)
+                .Select(s => s.SetId)
+                .ToListAsync();
+
+            if (ownedSetIds.Count > 0)
+            {
+                var ownedCardIds = await _context.Cards
+                    .AsNoTracking()
+                    .Where(c => ownedSetIds.Contains(c.SetId))
+                    .Select(c => c.CardId)
+                    .ToListAsync();
+
+                if (ownedCardIds.Count > 0)
+                {
+                    var progressesForOwnedCards = await _context.LearningProgresses
+                        .Where(lp => ownedCardIds.Contains(lp.CardId) && lp.UserId != userId)
+                        .ToListAsync();
+                    if (progressesForOwnedCards.Count > 0)
+                    {
+                        _context.LearningProgresses.RemoveRange(progressesForOwnedCards);
+                    }
+
+                    var ownedCards = await _context.Cards
+                        .Where(c => ownedCardIds.Contains(c.CardId))
+                        .ToListAsync();
+                    if (ownedCards.Count > 0)
+                    {
+                        _context.Cards.RemoveRange(ownedCards);
+                    }
+                }
+
+                var ownedSets = await _context.Sets
+                    .Where(s => ownedSetIds.Contains(s.SetId))
+                    .ToListAsync();
+                if (ownedSets.Count > 0)
+                {
+                    _context.Sets.RemoveRange(ownedSets);
+                }
+            }
+
+            var ownedFolderIds = await _context.Folders
+                .AsNoTracking()
+                .Where(f => f.UserId == userId)
+                .Select(f => f.FolderId)
+                .ToListAsync();
+
+            if (ownedFolderIds.Count > 0)
+            {
+                var savedFolderReferences = await _context.SavedFolders
+                    .Where(sf => ownedFolderIds.Contains(sf.FolderId))
+                    .ToListAsync();
+                if (savedFolderReferences.Count > 0)
+                {
+                    _context.SavedFolders.RemoveRange(savedFolderReferences);
+                }
+
+                await DeleteOwnedFoldersAsync(userId);
+            }
+        }
+
+        private async Task DeleteOwnedFoldersAsync(int userId)
+        {
+            var folders = await _context.Folders
+                .AsNoTracking()
+                .Where(f => f.UserId == userId)
+                .Select(f => new { f.FolderId, f.ParentFolderId })
+                .ToListAsync();
+
+            if (folders.Count == 0)
+            {
+                return;
+            }
+
+            var folderMap = folders.ToDictionary(f => f.FolderId, f => f.ParentFolderId);
+            var depthCache = new Dictionary<int, int>();
+
+            int GetDepth(int folderId)
+            {
+                if (depthCache.TryGetValue(folderId, out var cachedDepth))
+                {
+                    return cachedDepth;
+                }
+
+                if (!folderMap.TryGetValue(folderId, out var parentId)
+                    || parentId is null
+                    || !folderMap.ContainsKey(parentId.Value))
+                {
+                    depthCache[folderId] = 0;
+                    return 0;
+                }
+
+                var depth = GetDepth(parentId.Value) + 1;
+                depthCache[folderId] = depth;
+                return depth;
+            }
+
+            var orderedFolderIds = folderMap.Keys
+                .OrderByDescending(GetDepth)
+                .ToList();
+
+            var trackedFolders = await _context.Folders
+                .Where(f => orderedFolderIds.Contains(f.FolderId))
+                .ToListAsync();
+
+            var trackedFolderLookup = trackedFolders.ToDictionary(f => f.FolderId);
+            foreach (var folderId in orderedFolderIds)
+            {
+                if (trackedFolderLookup.TryGetValue(folderId, out var folder))
+                {
+                    _context.Folders.Remove(folder);
+                }
+            }
         }
     }
 }

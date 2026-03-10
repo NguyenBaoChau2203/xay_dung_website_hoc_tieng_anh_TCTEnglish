@@ -13,5 +13,9 @@ namespace TCTVocabulary.ViewModels
 
         [Display(Name = "Ảnh đại diện mới")]
         public IFormFile? Avatar { get; set; }
+
+        // Stats displayed on profile page
+        public int StreakDays { get; set; }
+        public int SavedWordsCount { get; set; }
     }
 }

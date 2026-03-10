@@ -108,11 +108,10 @@
                                     <td class="ps-4 py-3">
                                         <img src="@(string.IsNullOrWhiteSpace(item.ThumbnailUrl) ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg" : item.ThumbnailUrl)"
                                              alt="Ảnh nhỏ"
-                                             class="img-fluid rounded-3 shadow-sm"
-                                             style="width: 100px; height: 56px; object-fit: cover;" />
+                                             class="img-fluid rounded-3 shadow-sm admin-video-thumb" />
                                     </td>
                                     <td>
-                                        <div class="fw-bold text-dark text-truncate" style="max-width: 300px;" title="@item.Title">
+                                        <div class="fw-bold text-dark text-truncate admin-title-truncate" title="@item.Title">
                                             @item.Title
                                         </div>
                                         <div class="text-muted small">
@@ -141,14 +140,18 @@
                                         </span>
                                     </td>
                                     <td class="pe-4 text-center">
-                                        <form asp-action="Delete" method="post" class="d-inline"
-                                              onsubmit="return confirm('Bạn có chắc chắn muốn xóa video này? Mọi câu thoại liên quan cũng sẽ bị xóa.');">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="id" value="@item.Id" />
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Xóa">
+                                        <div class="d-flex gap-1 justify-content-center">
+                                            <a asp-action="Edit" asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-video"
+                                                    data-video-id="@item.Id"
+                                                    data-video-title="@item.Title"
+                                                    title="Xóa">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </div>
                                     </td>
                                 </tr>
                             }
@@ -160,6 +163,35 @@
     </div>
 </div>
 @Html.AntiForgeryToken()
+
+<!-- ===== DELETE VIDEO CONFIRMATION MODAL ===== -->
+<div class="modal fade" id="deleteVideoModal" tabindex="-1" aria-labelledby="deleteVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger bg-opacity-10 border-bottom">
+                <h5 class="modal-title fw-semibold text-danger" id="deleteVideoModalLabel">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i> Xác nhận xóa video
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-1">Bạn có chắc chắn muốn xóa video:</p>
+                <p class="fw-bold text-dark" id="deleteVideoTitle"></p>
+                <p class="text-danger small mb-0">Mọi câu thoại liên quan cũng sẽ bị xóa. Hành động này không thể hoàn tác.</p>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form asp-action="Delete" method="post" id="deleteVideoForm" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" id="deleteVideoId" />
+                    <button type="submit" class="btn btn-danger fw-medium">
+                        <i class="fa-solid fa-trash me-1"></i> Xóa vĩnh viễn
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <script>
@@ -200,6 +232,17 @@
                 filterLevel.value = '';
                 filterTopic.value = '';
                 applyFilters();
+            });
+
+            // Delete video modal binding
+            document.querySelectorAll('.btn-delete-video').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var videoId = this.dataset.videoId;
+                    var videoTitle = this.dataset.videoTitle;
+                    document.getElementById('deleteVideoId').value = videoId;
+                    document.getElementById('deleteVideoTitle').textContent = videoTitle;
+                    new bootstrap.Modal(document.getElementById('deleteVideoModal')).show();
+                });
             });
         })();
     </script>
