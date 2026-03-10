@@ -436,40 +436,122 @@
         }
     }
 
-    function applyRecordingFeedback(similarity, heard) {
+    function setScoringUIState(scoring) {
+        if (!btnRecord) return;
+        if (scoring) {
+            btnRecord.classList.add('is-scoring');
+            btnRecord.disabled = true;
+            if (recordIcon) recordIcon.className = 'fas fa-spinner fa-spin';
+            if (recordLabel) recordLabel.textContent = 'Đang chấm điểm...';
+        } else {
+            btnRecord.classList.remove('is-scoring');
+            btnRecord.disabled = false;
+            if (recordIcon) recordIcon.className = 'fas fa-microphone';
+            if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
+        }
+    }
+
+    // ── API — Save progress to backend ─────────────────────────────
+    async function saveSpeakingProgress(sentenceId, scores) {
+        try {
+            const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (!tokenEl) { console.warn('Anti-forgery token not found'); return null; }
+
+            const response = await fetch(`/api/speaking/${sentenceId}/progress`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': tokenEl.value
+                },
+                body: JSON.stringify(scores)
+            });
+
+            if (!response.ok) {
+                const err = await response.json().catch(() => ({}));
+                console.error('Save progress failed:', err);
+                return null;
+            }
+            return await response.json();
+        } catch (ex) {
+            console.error('Save progress error:', ex);
+            return null;
+        }
+    }
+
+    async function applyRecordingFeedback(similarity, heard) {
         const pct = Math.round(similarity * 100);
         const s = SENTENCES[activeSentIdx];
 
-        s.totalScore = pct;
-        s.accuracyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.fluencyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.completenessScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.isPracticed = true;
+        const scores = {
+            totalScore: pct,
+            accuracyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
+            fluencyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
+            completenessScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5)))
+        };
 
-        updateScoreBoard(s);
-        updateProgressUI();
-        markSentenceDone(activeSentIdx);
+        // Hiện trạng thái "Đang chấm điểm..."
+        setScoringUIState(true);
 
-        if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
-        else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+        // Lưu lên server trước — chỉ cập nhật UI khi thành công
+        const result = await saveSpeakingProgress(s.id, scores);
+
+        // Tắt trạng thái chấm điểm
+        setScoringUIState(false);
+
+        if (result && result.success) {
+            s.totalScore = scores.totalScore;
+            s.accuracyScore = scores.accuracyScore;
+            s.fluencyScore = scores.fluencyScore;
+            s.completenessScore = scores.completenessScore;
+            s.isPracticed = true;
+
+            updateScoreBoard(s);
+            updateProgressUI();
+            markSentenceDone(activeSentIdx);
+
+            if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
+            else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+        } else {
+            showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
+        }
     }
 
     function simulateFeedback() {
         isRecording = true;
         setRecordUIState(true);
-        setTimeout(() => {
+        setTimeout(async () => {
             isRecording = false;
             setRecordUIState(false);
             const s = SENTENCES[activeSentIdx];
-            s.totalScore = Math.floor(Math.random() * 20) + 78;
-            s.accuracyScore = Math.floor(Math.random() * 20) + 78;
-            s.fluencyScore = Math.floor(Math.random() * 20) + 78;
-            s.completenessScore = Math.floor(Math.random() * 20) + 78;
-            s.isPracticed = true;
-            updateScoreBoard(s);
-            updateProgressUI();
-            markSentenceDone(activeSentIdx);
-            showToast(`✅ Demo: Điểm ${s.totalScore}%`, 'success');
+
+            const scores = {
+                totalScore: Math.floor(Math.random() * 20) + 78,
+                accuracyScore: Math.floor(Math.random() * 20) + 78,
+                fluencyScore: Math.floor(Math.random() * 20) + 78,
+                completenessScore: Math.floor(Math.random() * 20) + 78
+            };
+
+            // Hiện trạng thái "Đang chấm điểm..."
+            setScoringUIState(true);
+
+            const result = await saveSpeakingProgress(s.id, scores);
+
+            // Tắt trạng thái chấm điểm
+            setScoringUIState(false);
+
+            if (result && result.success) {
+                s.totalScore = scores.totalScore;
+                s.accuracyScore = scores.accuracyScore;
+                s.fluencyScore = scores.fluencyScore;
+                s.completenessScore = scores.completenessScore;
+                s.isPracticed = true;
+                updateScoreBoard(s);
+                updateProgressUI();
+                markSentenceDone(activeSentIdx);
+                showToast(`✅ Demo: Điểm ${scores.totalScore}%`, 'success');
+            } else {
+                showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
+            }
         }, 2500);
     }
 
