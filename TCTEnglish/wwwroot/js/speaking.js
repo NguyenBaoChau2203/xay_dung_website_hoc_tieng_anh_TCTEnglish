@@ -214,6 +214,9 @@
     const btnHideVideo = $('btn-dic-hide-video');
     const videoOverlay = $('video-overlay');
     const youtubeFrame = $('youtube-player');
+    const dicInput = $('dic-input');
+    const dicFeedback = $('dic-feedback');
+    const dicSentIndicator = $('dic-sent-indicator');
 
     // ── State ────────────────────────────────────────────────────────
     let player = null;
@@ -301,6 +304,13 @@
 
         // Update indicator
         if (sentIndicator) sentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
+
+        // Update dictation indicator
+        if (dicSentIndicator) dicSentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
+
+        // Reset dictation state
+        if (dicInput) dicInput.value = '';
+        renderDictationFeedback('', s.text);
 
         // Update score board from stored data
         updateScoreBoard(s);
@@ -595,6 +605,72 @@
         return dp[a.length][b.length];
     }
 
+    // ────────────────────────────────────────────────────────────────
+    //  DICTATION — Real-time character feedback
+    // ────────────────────────────────────────────────────────────────
+    function renderDictationFeedback(typedText, expectedText) {
+        if (!dicFeedback) return;
+        if (!expectedText) { dicFeedback.innerHTML = ''; return; }
+
+        const words = expectedText.split(/\s+/);
+        let globalIdx = 0;          // tracks position across full sentence
+        const htmlParts = [];
+
+        words.forEach((word, wIdx) => {
+            // Determine word-level status
+            const wordStart = globalIdx;
+            const wordEnd = globalIdx + word.length;
+            let wordClass = 'spk-dic-word';
+
+            if (typedText.length >= wordEnd) {
+                // All chars of this word have been typed — check if all correct
+                let allCorrect = true;
+                for (let c = 0; c < word.length; c++) {
+                    if (typedText[wordStart + c]?.toLowerCase() !== word[c].toLowerCase()) {
+                        allCorrect = false;
+                        break;
+                    }
+                }
+                wordClass += allCorrect ? ' spk-dic-word--done' : '';
+            } else if (typedText.length > wordStart) {
+                // Currently typing this word
+                wordClass += ' spk-dic-word--active';
+            }
+
+            // Build character spans for this word
+            let charSpans = '';
+            for (let c = 0; c < word.length; c++) {
+                const pos = globalIdx + c;
+                if (pos >= typedText.length) {
+                    // Not yet reached
+                    charSpans += '<span class="char-untyped">*</span>';
+                } else if (typedText[pos].toLowerCase() === word[c].toLowerCase()) {
+                    // Correct — show the expected char (preserves original case)
+                    charSpans += `<span class="char-correct">${escapeHtml(word[c])}</span>`;
+                } else {
+                    // Incorrect — show what the user typed
+                    charSpans += `<span class="char-incorrect">${escapeHtml(typedText[pos])}</span>`;
+                }
+            }
+
+            htmlParts.push(`<span class="${wordClass}">${charSpans}</span>`);
+            globalIdx += word.length;
+
+            // Account for the space between words in the typed text
+            // (we skip the space character in comparison)
+            if (wIdx < words.length - 1) {
+                globalIdx++; // skip the space in expectedText
+            }
+        });
+
+        dicFeedback.innerHTML = htmlParts.join('');
+    }
+
+    function escapeHtml(ch) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return map[ch] || ch;
+    }
+
     // ── Toast notification ───────────────────────────────────────────
     function showToast(msg, type = 'info') {
         if (!toastEl) return;
@@ -661,6 +737,13 @@
             btn.addEventListener('click', function () {
                 selectSentence(parseInt(this.dataset.dicIndex, 10));
             });
+        });
+
+        // Dictation real-time feedback
+        dicInput?.addEventListener('input', () => {
+            if (activeSentIdx < 0) return;
+            const expected = SENTENCES[activeSentIdx]?.text || '';
+            renderDictationFeedback(dicInput.value, expected);
         });
 
         // Hide text toggle
