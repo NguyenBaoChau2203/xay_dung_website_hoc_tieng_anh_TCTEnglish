@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>
+@model IEnumerable<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>
 @{
     ViewData["Title"] = "Quản lý Speaking Video";
     var videos = Model?.ToList() ?? new List<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>();
@@ -156,8 +156,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
 </div>
-
 @Html.AntiForgeryToken()
 
 @section Scripts {

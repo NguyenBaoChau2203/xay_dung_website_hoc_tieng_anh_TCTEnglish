@@ -12,6 +12,7 @@
 }
 
 <div class="spk-page">
+    @Html.AntiForgeryToken()
 
     <!-- ══════════ TOP NAV BAR ══════════ -->
     <div class="spk-topnav">
@@ -307,36 +308,9 @@
                           spellcheck="false"
                           rows="3"></textarea>
 
-                <!-- Real-time masked feedback (JS will rebuild this dynamically) -->
+                <!-- Real-time masked feedback (JS populates this dynamically) -->
                 <div class="spk-dic-feedback" id="dic-feedback">
-                    <!-- Mock spans for styling preview -->
-                    <span class="spk-dic-word spk-dic-word--done">
-                        <span class="char-correct">O</span><span class="char-correct">n</span><span class="char-correct">e</span>
-                    </span>
-                    <span class="spk-dic-word spk-dic-word--active">
-                        <span class="char-correct">t</span><span class="char-correct">w</span><span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span><span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-incorrect">t</span><span class="char-incorrect">r</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
-                    </span>
-                    <span class="spk-dic-word">
-                        <span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span><span class="char-untyped">*</span>
-                    </span>
+                    <!-- Rendered by renderDictationFeedback() in speaking.js -->
                 </div>
 
                 <!-- Bottom action bar: [Hint] [Play/Pause] [Next] -->

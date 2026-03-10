@@ -144,5 +144,94 @@ namespace TCTVocabulary.Controllers
 
             return View(viewModel);
         }
+
+        // ────────────────────────────────────────────────────────────
+        //  API — Save Speaking Progress (Upsert: giữ điểm cao nhất)
+        // ────────────────────────────────────────────────────────────
+        [HttpPost("api/speaking/{sentenceId}/progress")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveSpeakingProgress(int sentenceId, [FromBody] SpeakingProgressDto dto)
+        {
+            // 1. Lấy userId an toàn
+            var userId = GetCurrentUserId();
+            if (userId == null)
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            // 2. Validate điểm số (0–100)
+            if (dto.TotalScore < 0 || dto.TotalScore > 100 ||
+                dto.AccuracyScore < 0 || dto.AccuracyScore > 100 ||
+                dto.FluencyScore < 0 || dto.FluencyScore > 100 ||
+                dto.CompletenessScore < 0 || dto.CompletenessScore > 100)
+            {
+                return BadRequest(new { error = "Điểm số phải từ 0 đến 100." });
+            }
+
+            // 3. Kiểm tra câu tồn tại
+            var sentenceExists = await _context.SpeakingSentences
+                .AnyAsync(s => s.Id == sentenceId);
+
+            if (!sentenceExists)
+                return NotFound(new { error = "Câu không tồn tại." });
+
+            // 4. Upsert — giữ điểm cao nhất
+            var existing = await _context.UserSpeakingProgresses
+                .FirstOrDefaultAsync(p => p.UserId == userId.Value && p.SentenceId == sentenceId);
+
+            if (existing != null)
+            {
+                // Chỉ cập nhật nếu điểm mới cao hơn
+                if (dto.TotalScore > existing.TotalScore)
+                {
+                    existing.TotalScore = dto.TotalScore;
+                    existing.AccuracyScore = dto.AccuracyScore;
+                    existing.FluencyScore = dto.FluencyScore;
+                    existing.CompletenessScore = dto.CompletenessScore;
+                    existing.PracticedAt = DateTime.UtcNow;
+                }
+            }
+            else
+            {
+                var progress = new UserSpeakingProgress
+                {
+                    UserId = userId.Value,
+                    SentenceId = sentenceId,
+                    TotalScore = dto.TotalScore,
+                    AccuracyScore = dto.AccuracyScore,
+                    FluencyScore = dto.FluencyScore,
+                    CompletenessScore = dto.CompletenessScore,
+                    PracticedAt = DateTime.UtcNow
+                };
+                _context.UserSpeakingProgresses.Add(progress);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                success = true,
+                sentenceId,
+                totalScore = dto.TotalScore,
+                accuracyScore = dto.AccuracyScore,
+                fluencyScore = dto.FluencyScore,
+                completenessScore = dto.CompletenessScore
+            });
+        }
+
+        // ── Helper ───────────────────────────────────────────────────
+        private int? GetCurrentUserId()
+        {
+            if (int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int uid))
+                return uid;
+            return null;
+        }
+    }
+
+    // ── DTO ──────────────────────────────────────────────────────────
+    public class SpeakingProgressDto
+    {
+        public double TotalScore { get; set; }
+        public double AccuracyScore { get; set; }
+        public double FluencyScore { get; set; }
+        public double CompletenessScore { get; set; }
     }
 }
