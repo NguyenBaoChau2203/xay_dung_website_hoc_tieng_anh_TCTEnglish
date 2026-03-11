@@ -236,6 +236,15 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
+
+        // =========================
+        // CONTACT
+        // =========================
+        [AllowAnonymous]
+        public IActionResult Contact()
+        {
+            return View();
+        }
         [HttpGet]
       
         public IActionResult Search(string q)
