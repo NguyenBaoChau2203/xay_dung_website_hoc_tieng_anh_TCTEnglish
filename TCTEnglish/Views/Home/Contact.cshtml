@@ -1,16 +1,18 @@
+@model TCTVocabulary.ViewModel.ContactFormViewModel
+
 @{
     ViewData["Title"] = "Liên hệ";
+    var subjectOptions = TCTVocabulary.ViewModel.ContactFormViewModel.SubjectOptions;
 }
 
 @section Styles {
 <style>
-    /* ===== CONTACT PAGE ===== */
     .contact-hero {
         background: linear-gradient(135deg, #4255ff 0%, #7c3aed 100%);
         border-radius: 16px;
         padding: 48px 40px;
         color: #fff;
-        margin-bottom: 32px;
+        margin-bottom: 24px;
         position: relative;
         overflow: hidden;
     }
@@ -37,19 +39,25 @@
         border-radius: 50%;
     }
 
-    .contact-hero h1 {
-        font-size: 2rem;
-        font-weight: 800;
-        margin-bottom: 8px;
+    .contact-hero h1,
+    .contact-hero p {
         position: relative;
         z-index: 1;
     }
 
+    .contact-hero h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
     .contact-hero p {
         font-size: 1rem;
-        opacity: 0.9;
-        position: relative;
-        z-index: 1;
+        opacity: 0.92;
+    }
+
+    .contact-alert {
+        margin-bottom: 16px;
     }
 
     .contact-grid {
@@ -65,7 +73,6 @@
         }
     }
 
-    /* --- INFO CARDS --- */
     .info-section {
         display: flex;
         flex-direction: column;
@@ -99,8 +106,8 @@
         flex-shrink: 0;
     }
 
-    .icon-box.blue   { background: #e0e7ff; color: #4255ff; }
-    .icon-box.green  { background: #d1fae5; color: #059669; }
+    .icon-box.blue { background: #e0e7ff; color: #4255ff; }
+    .icon-box.green { background: #d1fae5; color: #059669; }
     .icon-box.purple { background: #ede9fe; color: #7c3aed; }
     .icon-box.orange { background: #ffedd5; color: #ea580c; }
 
@@ -120,7 +127,6 @@
         margin: 0;
     }
 
-    /* --- FORM CARD --- */
     .form-card {
         background: #fff;
         border: 1px solid #e5e7eb;
@@ -166,6 +172,16 @@
         min-height: 120px;
     }
 
+    .field-validation-error {
+        display: block;
+        margin-top: 6px;
+        font-size: 12px;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
+
     .btn-send {
         background: #4255ff;
         color: #fff;
@@ -190,7 +206,6 @@
         transform: scale(0.98);
     }
 
-    /* --- FAQ --- */
     .faq-section {
         margin-top: 48px;
     }
@@ -200,6 +215,10 @@
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 20px;
+    }
+
+    .faq-icon {
+        color: #4255ff;
     }
 
     .faq-grid {
@@ -242,16 +261,26 @@
 </style>
 }
 
-<!-- ===== HERO ===== -->
 <div class="contact-hero">
     <h1><i class="fa-solid fa-headset me-2"></i> Liên hệ với chúng tôi</h1>
     <p>Bạn có câu hỏi, góp ý hoặc cần hỗ trợ? Đội ngũ TCT English luôn sẵn sàng giúp đỡ bạn.</p>
 </div>
 
-<!-- ===== GRID: INFO + FORM ===== -->
-<div class="contact-grid">
+@if (TempData["ContactSuccessMessage"] is string successMessage)
+{
+    <div class="alert alert-success contact-alert" role="alert">
+        @successMessage
+    </div>
+}
 
-    <!-- LEFT: Info Cards -->
+@if (TempData["ContactErrorMessage"] is string errorMessage)
+{
+    <div class="alert alert-danger contact-alert" role="alert">
+        @errorMessage
+    </div>
+}
+
+<div class="contact-grid">
     <div class="info-section">
         <div class="info-card">
             <div class="icon-box blue">
@@ -289,41 +318,46 @@
             </div>
             <div class="info-text">
                 <h5>Giờ làm việc</h5>
-                <p>Thứ 2 – Thứ 6, 8:00 – 17:30</p>
+                <p>Thứ 2 - Thứ 6, 8:00 - 17:30</p>
             </div>
         </div>
     </div>
 
-    <!-- RIGHT: Contact Form -->
     <div class="form-card">
         <h3>Gửi tin nhắn</h3>
         <p class="form-subtitle">Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
 
-        <form id="contactForm">
+        <form asp-action="Contact" asp-controller="Home" method="post" id="contactForm" novalidate>
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-3"></div>
+
             <div class="mb-3">
-                <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="contactName" placeholder="Nhập họ tên..." required />
+                <label asp-for="Name" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                <input asp-for="Name" class="form-control" placeholder="Nhập họ tên..." autocomplete="name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" id="contactEmail" placeholder="example@email.com" required />
+                <label asp-for="Email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input asp-for="Email" class="form-control" placeholder="example@email.com" autocomplete="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Chủ đề</label>
-                <select class="form-control" id="contactSubject">
-                    <option value="general">Câu hỏi chung</option>
-                    <option value="khieu-nai-khoa-tai-khoan">Khiếu nại khóa tài khoản</option>
-                    <option value="bug">Báo lỗi / Bug</option>
-                    <option value="feedback">Góp ý cải tiến</option>
-                    <option value="other">Khác</option>
+                <label asp-for="Subject" class="form-label">Chủ đề</label>
+                <select asp-for="Subject" class="form-control">
+                    @foreach (var item in subjectOptions)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
                 </select>
+                <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Nội dung <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="contactMessage" placeholder="Mô tả chi tiết vấn đề của bạn..." required></textarea>
+                <label asp-for="Message" class="form-label">Nội dung <span class="text-danger">*</span></label>
+                <textarea asp-for="Message" class="form-control" placeholder="Mô tả chi tiết vấn đề của bạn..."></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn-send">
@@ -333,71 +367,25 @@
     </div>
 </div>
 
-<!-- ===== FAQ ===== -->
 <div class="faq-section">
-    <h3><i class="fa-solid fa-circle-question me-2" style="color:#4255ff;"></i> Câu hỏi thường gặp</h3>
+    <h3><i class="fa-solid fa-circle-question me-2 faq-icon"></i> Câu hỏi thường gặp</h3>
     <div class="faq-grid">
         <div class="faq-item">
             <h5>Tài khoản bị khóa thì phải làm gì?</h5>
-            <p>Bạn hãy gửi tin nhắn với chủ đề "Khiếu nại khóa tài khoản" kèm theo email đăng ký. Đội ngũ admin sẽ xem xét và phản hồi sớm nhất.</p>
+            <p>Hãy gửi tin nhắn với chủ đề "Khiếu nại khóa tài khoản" kèm theo email đăng ký. Đội ngũ admin sẽ xem xét và phản hồi sớm nhất.</p>
         </div>
         <div class="faq-item">
             <h5>Làm sao để đổi mật khẩu?</h5>
-            <p>Vào Cài đặt tài khoản → Đổi mật khẩu, hoặc sử dụng chức năng "Quên mật khẩu" ở trang đăng nhập.</p>
+            <p>Vào Cài đặt tài khoản -> Đổi mật khẩu, hoặc dùng chức năng "Quên mật khẩu" ở trang đăng nhập.</p>
         </div>
         <div class="faq-item">
             <h5>TCT English có miễn phí không?</h5>
-            <p>Có! Tất cả tính năng cơ bản đều miễn phí cho nhân viên công ty TCT.</p>
+            <p>Có. Tất cả tính năng cơ bản đều miễn phí cho nhân viên công ty TCT.</p>
         </div>
         <div class="faq-item">
             <h5>Tôi muốn góp ý/báo lỗi?</h5>
-            <p>Bạn có thể gửi qua form trên hoặc email trực tiếp cho chúng tôi. Mọi ý kiến đều được ghi nhận!</p>
+            <p>Bạn có thể gửi qua form trên hoặc email trực tiếp cho chúng tôi. Mọi ý kiến đều được ghi nhận.</p>
         </div>
     </div>
 </div>
 
-@section Scripts {
-<script>
-    // Auto-select subject from query string
-    document.addEventListener('DOMContentLoaded', function () {
-        const params = new URLSearchParams(window.location.search);
-        const subject = params.get('subject');
-        if (subject) {
-            const select = document.getElementById('contactSubject');
-            const option = select.querySelector('option[value="' + subject + '"]');
-            if (option) {
-                select.value = subject;
-            }
-        }
-    });
-
-    // Form submit → SweetAlert (no backend processing for now)
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById('contactName').value.trim();
-        const email = document.getElementById('contactEmail').value.trim();
-        const message = document.getElementById('contactMessage').value.trim();
-
-        if (!name || !email || !message) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Thiếu thông tin',
-                text: 'Vui lòng điền đầy đủ các trường bắt buộc.',
-                confirmButtonColor: '#4255ff'
-            });
-            return;
-        }
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Đã gửi thành công!',
-            html: 'Cảm ơn bạn đã liên hệ.<br>Chúng tôi sẽ phản hồi qua email <strong>' + email + '</strong> trong thời gian sớm nhất.',
-            confirmButtonColor: '#4255ff',
-            confirmButtonText: 'Đã hiểu'
-        });
-
-        this.reset();
-    });
-</script>
-}
