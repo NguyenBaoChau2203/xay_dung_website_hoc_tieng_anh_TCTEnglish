@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 
@@ -8,16 +9,29 @@ namespace TCTVocabulary.Workers
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly ILogger<AutoUnlockWorker> _logger;
+        private readonly bool _enabled;
         private static readonly TimeSpan Interval = TimeSpan.FromMinutes(5);
 
-        public AutoUnlockWorker(IServiceScopeFactory scopeFactory, ILogger<AutoUnlockWorker> logger)
+        public AutoUnlockWorker(
+            IServiceScopeFactory scopeFactory,
+            ILogger<AutoUnlockWorker> logger,
+            IConfiguration configuration)
         {
             _scopeFactory = scopeFactory;
             _logger = logger;
+            _enabled = configuration.GetValue<bool>("BackgroundJobs:AutoUnlockWorkerEnabled");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            if (!_enabled)
+            {
+                _logger.LogWarning(
+                    "AutoUnlockWorker is disabled (BackgroundJobs:AutoUnlockWorkerEnabled=false). " +
+                    "Enable it after LockExpiry data/schema are cleaned.");
+                return;
+            }
+
             _logger.LogInformation("AutoUnlockWorker started.");
 
             while (!stoppingToken.IsCancellationRequested)
@@ -53,7 +67,9 @@ namespace TCTVocabulary.Workers
                 .ToListAsync(stoppingToken);
 
             if (expiredUsers.Count == 0)
+            {
                 return;
+            }
 
             _logger.LogInformation("AutoUnlockWorker: Found {Count} expired lock(s).", expiredUsers.Count);
 

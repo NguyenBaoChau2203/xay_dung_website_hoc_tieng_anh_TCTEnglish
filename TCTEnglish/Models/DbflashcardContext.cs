@@ -253,7 +253,7 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(1000)
                 .IsRequired(false);
             entity.Property(e => e.LockExpiry)
-                .HasColumnType("datetime")
+                .HasColumnType("datetime2")
                 .IsRequired(false);
         });
 

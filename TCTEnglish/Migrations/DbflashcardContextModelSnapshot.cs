@@ -495,7 +495,7 @@ namespace TCTVocabulary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("LockExpiry")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LockReason")
                         .HasMaxLength(1000)
