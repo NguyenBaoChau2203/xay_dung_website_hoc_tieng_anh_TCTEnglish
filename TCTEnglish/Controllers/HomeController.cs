@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
+using TCTVocabulary.Services;
 using TCTVocabulary.ViewModel;
 
 namespace TCTVocabulary.Controllers
@@ -12,10 +13,12 @@ namespace TCTVocabulary.Controllers
     public class HomeController : Controller
     {
         private readonly DbflashcardContext _context;
+        private readonly IAppEmailSender _emailSender;
 
-        public HomeController(DbflashcardContext context)
+        public HomeController(DbflashcardContext context, IAppEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
 
         private bool TryGetCurrentUserId(out int userId)
@@ -241,12 +244,45 @@ namespace TCTVocabulary.Controllers
         // CONTACT
         // =========================
         [AllowAnonymous]
-        public IActionResult Contact()
-        {
-            return View();
-        }
         [HttpGet]
-      
+        public IActionResult Contact(string? subject)
+        {
+            var vm = new ContactFormViewModel
+            {
+                Subject = ContactFormViewModel.NormalizeSubject(subject)
+            };
+
+            return View(vm);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(ContactFormViewModel model)
+        {
+            model.Subject = ContactFormViewModel.NormalizeSubject(model.Subject);
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var isSent = await _emailSender.SendContactMessageAsync(
+                model.Name,
+                model.Email,
+                model.SubjectDisplayName,
+                model.Message,
+                HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Request.Headers.UserAgent.ToString());
+
+            TempData[isSent ? "ContactSuccessMessage" : "ContactErrorMessage"] = isSent
+                ? "Yêu cầu của bạn đã được gửi. Chúng tôi sẽ phản hồi trong thời gian sớm nhất."
+                : "Không thể gửi liên hệ lúc này. Vui lòng thử lại sau hoặc email support.tctenglish@gmail.com.";
+
+            return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+        }
+
+        [HttpGet]
         public IActionResult Search(string q)
         {
             var vm = new SearchViewModel

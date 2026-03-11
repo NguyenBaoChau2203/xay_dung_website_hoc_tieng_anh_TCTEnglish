@@ -159,10 +159,7 @@
                     <span>Từ vựng (Hệ thống)</span>
                 </a>
 
-                <a class="nav-item" asp-controller="Home" asp-action="Contact">
-                    <i class="fas fa-envelope"></i>
-                    <span>Liên hệ</span>
-                </a>
+
 
                 <div class="nav-dropdown" id="classDropdown">
 
@@ -225,6 +222,10 @@
                     </div>
                 </div>
 
+                <a class="nav-item" asp-controller="Home" asp-action="Contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Liên hệ</span>
+                </a>
 
                 @if (User.IsInRole("Admin"))
                 {
