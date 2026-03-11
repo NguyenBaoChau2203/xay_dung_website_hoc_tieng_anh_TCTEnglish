@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,6 +159,8 @@
                     <span>Từ vựng (Hệ thống)</span>
                 </a>
 
+
+
                 <div class="nav-dropdown" id="classDropdown">
 
                     <div class="nav-dropdown-item" id="classDropdownBtn">
@@ -220,6 +222,10 @@
                     </div>
                 </div>
 
+                <a class="nav-item" asp-controller="Home" asp-action="Contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Liên hệ</span>
+                </a>
 
                 @if (User.IsInRole("Admin"))
                 {
@@ -292,7 +298,7 @@
                 <a href="#">Giới thiệu</a>
                 <a href="#">Blog</a>
                 <a href="#">Điều khoản</a>
-                <a href="#">Liên hệ</a>
+                <a asp-controller="Home" asp-action="Contact">Liên hệ</a>
 
             </div>
             <div class="footer-links">

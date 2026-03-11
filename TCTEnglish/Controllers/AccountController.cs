@@ -574,7 +574,7 @@ namespace TCTVocabulary.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to delete account for User {UserId}", userId);
-                TempData["ErrorMessage"] = "Unable to delete account at this time. Please try again.";
+                TempData["ErrorMessage"] = "Không thể xóa tài khoản lúc này. Vui lòng thử lại.";
                 return RedirectToAction("Settings");
             }
 
@@ -583,7 +583,7 @@ namespace TCTVocabulary.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             try { await HttpContext.SignOutAsync("ExternalCookie"); } catch { }
 
-            TempData["SuccessMessage"] = "Your account has been deleted permanently.";
+            TempData["SuccessMessage"] = "Tài khoản của bạn đã được xóa vĩnh viễn.";
             return RedirectToAction("Login");
         }
         // GET: /Account/ResetPassword
@@ -635,7 +635,7 @@ namespace TCTVocabulary.Controllers
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Password reset successfully. Please log in.";
+            TempData["SuccessMessage"] = "Đặt lại mật khẩu thành công. Vui lòng đăng nhập.";
             return RedirectToAction("Login");
         }
 
