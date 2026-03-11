@@ -85,24 +85,92 @@ namespace TCTVocabulary.Services
             await SendEmailAsync(toEmail, subject, body);
         }
 
-        private async Task SendEmailAsync(string toEmail, string subject, string htmlBody)
+        public async Task<bool> SendContactMessageAsync(
+            string senderName,
+            string senderEmail,
+            string subject,
+            string message,
+            string? ipAddress,
+            string? userAgent)
+        {
+            var fallbackRecipient = _configuration["SmtpSettings:SenderEmail"];
+            var supportRecipient = _configuration["SmtpSettings:SupportEmail"];
+            var toEmail = string.IsNullOrWhiteSpace(supportRecipient) ? fallbackRecipient : supportRecipient;
+
+            if (string.IsNullOrWhiteSpace(toEmail))
+            {
+                _logger.LogError("[Email Error] Missing support recipient email for contact form.");
+                return false;
+            }
+
+            var safeName = WebUtility.HtmlEncode(senderName.Trim());
+            var safeEmail = WebUtility.HtmlEncode(senderEmail.Trim());
+            var safeSubject = WebUtility.HtmlEncode(subject.Trim());
+            var safeMessage = WebUtility.HtmlEncode(message.Trim())
+                .Replace("\r\n", "<br />")
+                .Replace("\n", "<br />");
+            var safeIpAddress = WebUtility.HtmlEncode(ipAddress ?? "N/A");
+            var safeUserAgent = WebUtility.HtmlEncode(userAgent ?? "N/A");
+
+            var mailSubject = $"[Liên hệ] {subject}";
+            var body = $@"
+                <div style='font-family: Inter, Arial, sans-serif; max-width: 680px; margin: 0 auto; padding: 24px; background-color: #f9fafe;'>
+                    <div style='background-color: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb;'>
+                        <h2 style='color: #1f2937; margin: 0 0 16px 0;'>Yêu cầu liên hệ mới</h2>
+                        <p style='margin: 0 0 8px 0; color: #4b5563;'><strong>Người gửi:</strong> {safeName}</p>
+                        <p style='margin: 0 0 8px 0; color: #4b5563;'><strong>Email:</strong> {safeEmail}</p>
+                        <p style='margin: 0 0 8px 0; color: #4b5563;'><strong>Chủ đề:</strong> {safeSubject}</p>
+                        <hr style='border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;' />
+                        <p style='margin: 0; color: #111827; line-height: 1.65;'>{safeMessage}</p>
+                        <hr style='border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;' />
+                        <p style='margin: 0 0 4px 0; color: #9ca3af; font-size: 12px;'><strong>IP:</strong> {safeIpAddress}</p>
+                        <p style='margin: 0; color: #9ca3af; font-size: 12px;'><strong>User-Agent:</strong> {safeUserAgent}</p>
+                    </div>
+                </div>";
+
+            return await SendEmailAsync(toEmail, mailSubject, body, senderEmail);
+        }
+
+        private async Task<bool> SendEmailAsync(string toEmail, string subject, string htmlBody, string? replyToEmail = null)
         {
             try
             {
                 var smtpHost = _configuration["SmtpSettings:Host"];
-                var smtpPort = int.Parse(_configuration["SmtpSettings:Port"] ?? "587");
                 var senderEmail = _configuration["SmtpSettings:SenderEmail"];
                 var senderName = _configuration["SmtpSettings:SenderName"] ?? "TCT English";
                 var smtpPassword = _configuration["SmtpSettings:Password"];
 
-                var mailMessage = new MailMessage
+                if (string.IsNullOrWhiteSpace(smtpHost)
+                    || string.IsNullOrWhiteSpace(senderEmail)
+                    || string.IsNullOrWhiteSpace(smtpPassword))
                 {
-                    From = new MailAddress(senderEmail!, senderName),
+                    _logger.LogError("[Email Error] SMTP settings are incomplete.");
+                    return false;
+                }
+
+                var smtpPortRaw = _configuration["SmtpSettings:Port"];
+                var smtpPort = int.TryParse(smtpPortRaw, out var parsedPort) ? parsedPort : 587;
+
+                using var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(senderEmail, senderName),
                     Subject = subject,
                     IsBodyHtml = true,
                     Body = htmlBody
                 };
                 mailMessage.To.Add(toEmail);
+
+                if (!string.IsNullOrWhiteSpace(replyToEmail))
+                {
+                    try
+                    {
+                        mailMessage.ReplyToList.Add(new MailAddress(replyToEmail.Trim()));
+                    }
+                    catch (FormatException)
+                    {
+                        _logger.LogWarning("[Email Warning] Invalid reply-to email '{ReplyToEmail}'.", replyToEmail);
+                    }
+                }
 
                 using var smtpClient = new SmtpClient(smtpHost, smtpPort)
                 {
@@ -112,10 +180,12 @@ namespace TCTVocabulary.Services
                 await smtpClient.SendMailAsync(mailMessage);
 
                 _logger.LogInformation("[Email] Sent '{Subject}' to {Email}", subject, toEmail);
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "[Email Error] Failed to send '{Subject}' to {Email}", subject, toEmail);
+                return false;
             }
         }
     }
