@@ -323,13 +323,13 @@ namespace TCTVocabulary.Controllers
                 return View(model);
             }
 
-            // SECURE: Generic message regardless of outcome to prevent email enumeration attacks
-            var genericMessage = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
+            // SECURE: Dùng thông báo chung để tránh email enumeration attack
+            const string genericMessage = "Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.";
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (user == null)
             {
-                // SECURE: Do NOT reveal whether the email exists — show the same generic message
+                // SECURE: Không tiết lộ email có tồn tại hay không
                 ViewBag.Message = genericMessage;
                 return View("ForgotPasswordConfirmation");
             }
@@ -519,6 +519,13 @@ namespace TCTVocabulary.Controllers
                 if (!isPasswordValid)
                 {
                     TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng.";
+                    return RedirectToAction("Settings");
+                }
+
+                // Check if new password is the same as the current password
+                if (BCrypt.Net.BCrypt.Verify(model.NewPassword, user.PasswordHash))
+                {
+                    TempData["ErrorMessage"] = "Mật khẩu mới không được trùng với mật khẩu hiện tại. Vui lòng chọn mật khẩu khác.";
                     return RedirectToAction("Settings");
                 }
             }
