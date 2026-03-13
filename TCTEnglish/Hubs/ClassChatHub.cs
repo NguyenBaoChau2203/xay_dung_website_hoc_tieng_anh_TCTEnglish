@@ -43,7 +43,12 @@ namespace TCTVocabulary.Hubs
             var presenceChange = UserPresenceTracker.RemoveConnection(Context.ConnectionId);
             if (presenceChange?.WentOffline == true)
             {
-                await UpdatePresenceStatusAsync(presenceChange.UserId, UserStatus.Offline);
+                // FIX: absorb brief reload/reconnect gaps before broadcasting the user offline.
+                await Task.Delay(UserPresenceTracker.OfflineTransitionDelay);
+                if (!UserPresenceTracker.IsUserOnline(presenceChange.UserId))
+                {
+                    await UpdatePresenceStatusAsync(presenceChange.UserId, UserStatus.Offline);
+                }
             }
 
             await base.OnDisconnectedAsync(exception);

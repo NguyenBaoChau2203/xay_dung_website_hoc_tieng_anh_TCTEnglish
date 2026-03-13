@@ -10,6 +10,8 @@ namespace TCTVocabulary.Realtime
 
     public static class UserPresenceTracker
     {
+        public static readonly TimeSpan OfflineTransitionDelay = TimeSpan.FromSeconds(5);
+
         private static readonly object SyncRoot = new();
         private static readonly Dictionary<int, HashSet<string>> ConnectionsByUserId = new();
         private static readonly Dictionary<string, int> UserIdByConnectionId = new();
@@ -18,6 +20,11 @@ namespace TCTVocabulary.Realtime
         {
             lock (SyncRoot)
             {
+                if (UserIdByConnectionId.TryGetValue(connectionId, out var previousUserId))
+                {
+                    DetachConnectionUnsafe(previousUserId, connectionId);
+                }
+
                 if (!ConnectionsByUserId.TryGetValue(userId, out var connections))
                 {
                     connections = new HashSet<string>(StringComparer.Ordinal);
@@ -58,13 +65,10 @@ namespace TCTVocabulary.Realtime
                     };
                 }
 
-                connections.Remove(connectionId);
-                var connectionCount = connections.Count;
-
-                if (connectionCount == 0)
-                {
-                    ConnectionsByUserId.Remove(userId);
-                }
+                DetachConnectionUnsafe(userId, connectionId);
+                var connectionCount = ConnectionsByUserId.TryGetValue(userId, out var remainingConnections)
+                    ? remainingConnections.Count
+                    : 0;
 
                 return new UserPresenceChange
                 {
@@ -90,6 +94,20 @@ namespace TCTVocabulary.Realtime
             lock (SyncRoot)
             {
                 return ConnectionsByUserId.Keys.ToArray();
+            }
+        }
+
+        private static void DetachConnectionUnsafe(int userId, string connectionId)
+        {
+            if (!ConnectionsByUserId.TryGetValue(userId, out var connections))
+            {
+                return;
+            }
+
+            connections.Remove(connectionId);
+            if (connections.Count == 0)
+            {
+                ConnectionsByUserId.Remove(userId);
             }
         }
     }

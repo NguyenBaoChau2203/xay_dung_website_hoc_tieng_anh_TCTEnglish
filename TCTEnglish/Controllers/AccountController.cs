@@ -285,12 +285,13 @@ namespace TCTVocabulary.Controllers
 
         private async Task SignInUserAsync(User user)
         {
+            var normalizedRole = Roles.Normalize(user.Role);
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.FullName ?? user.Email),
-                new Claim(ClaimTypes.Role, user.Role ?? Roles.Standard)
+                new Claim(ClaimTypes.Role, normalizedRole)
             };
 
             // Add AvatarUrl Claim if exists
