@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using TCTVocabulary.Models;
+using TCTVocabulary.Realtime;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels
 {
@@ -32,13 +33,14 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public int SetCount { get; set; }
         public string? LockReason { get; set; }
         public DateTime? LockExpiry { get; set; }
-        public string RoleBadgeClass => Role switch
+        private string NormalizedRole => Roles.Normalize(Role);
+        public string RoleBadgeClass => NormalizedRole switch
         {
             Roles.Admin => "badge bg-danger",
             Roles.Premium => "badge bg-primary",
             _ => "badge bg-secondary"
         };
-        public string RoleIconClass => Role switch
+        public string RoleIconClass => NormalizedRole switch
         {
             Roles.Admin => "bi-shield-lock-fill",
             Roles.Premium => "bi-gem",
@@ -106,13 +108,14 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
         public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public UserStatus Status { get; set; }
-        public string RoleBadgeClass => Role switch
+        private string NormalizedRole => Roles.Normalize(Role);
+        public string RoleBadgeClass => NormalizedRole switch
         {
             Roles.Admin => "badge bg-danger",
             Roles.Premium => "badge bg-primary",
             _ => "badge bg-secondary"
         };
-        public string RoleIconClass => Role switch
+        public string RoleIconClass => NormalizedRole switch
         {
             Roles.Admin => "bi-shield-lock-fill",
             Roles.Premium => "bi-gem",
@@ -160,5 +163,20 @@ namespace TCTVocabulary.Areas.Admin.ViewModels
     {
         public int UserId { get; set; }
         public UserStatus Status { get; set; }
+    }
+
+    public class PresenceSummaryViewModel
+    {
+        public int TotalUsers { get; set; }
+        public int OnlineUsers { get; set; }
+        public int OfflineUsers { get; set; }
+        public int BlockedUsers { get; set; }
+    }
+
+    public class UserPresenceSnapshotViewModel
+    {
+        public List<AdminUserStatusChangedMessage> StatusUpdates { get; set; } = new();
+        public PresenceSummaryViewModel Summary { get; set; } = new();
+        public int TotalFilteredCount { get; set; }
     }
 }

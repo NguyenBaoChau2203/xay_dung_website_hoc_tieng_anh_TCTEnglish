@@ -58,6 +58,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 })
                 .ToListAsync();
 
+            NormalizeUserRoles(users);
             ApplyLivePresence(users);
             var summary = await BuildSummaryAsync();
 
@@ -98,12 +99,35 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 return NotFound(new { message = "Không tìm thấy người dùng." });
             }
 
-             if (user.Status != UserStatus.Blocked)
-            {
-                user.Status = ResolveActiveStatus(user.UserId);
-            }
+            user.Role = Roles.Normalize(user.Role);
+            user.Status = ResolveDisplayStatus(user.Status, user.UserId);
 
             return Json(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPresenceSnapshot([FromQuery] int[] userIds, string? q, string? role, string? status)
+        {
+            var normalizedUserIds = userIds
+                .Where(id => id > 0)
+                .Distinct()
+                .ToArray();
+
+            var summary = await BuildSummaryAsync();
+            var snapshot = new UserPresenceSnapshotViewModel
+            {
+                StatusUpdates = await BuildStatusUpdatesAsync(normalizedUserIds),
+                Summary = new PresenceSummaryViewModel
+                {
+                    TotalUsers = summary.TotalUsers,
+                    OnlineUsers = summary.OnlineUsers,
+                    OfflineUsers = summary.OfflineUsers,
+                    BlockedUsers = summary.BlockedUsers
+                },
+                TotalFilteredCount = await BuildFilteredQuery(q, role, status).CountAsync()
+            };
+
+            return Json(snapshot);
         }
 
         [HttpPost]
@@ -139,7 +163,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
             user.FullName = model.FullName;
             user.Email = model.Email;
-            user.Role = model.Role;
+            user.Role = Roles.Normalize(model.Role);
 
             await _context.SaveChangesAsync();
 
@@ -299,7 +323,12 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
             if (!string.IsNullOrWhiteSpace(role))
             {
-                query = query.Where(u => u.Role == role);
+                var normalizedRole = Roles.Normalize(role);
+                query = normalizedRole == Roles.Standard
+                    ? query.Where(u => u.Role == null
+                        || u.Role == Roles.Standard
+                        || u.Role == Roles.LegacyStudent)
+                    : query.Where(u => u.Role == normalizedRole);
             }
 
             if (string.IsNullOrWhiteSpace(status)
@@ -324,12 +353,15 @@ namespace TCTVocabulary.Areas.Admin.Controllers
         {
             foreach (var user in users)
             {
-                if (user.Status == UserStatus.Blocked)
-                {
-                    continue;
-                }
+                user.Status = ResolveDisplayStatus(user.Status, user.UserId);
+            }
+        }
 
-                user.Status = ResolveActiveStatus(user.UserId);
+        private void NormalizeUserRoles(IEnumerable<UserRowViewModel> users)
+        {
+            foreach (var user in users)
+            {
+                user.Role = Roles.Normalize(user.Role);
             }
         }
 
@@ -359,6 +391,13 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 : UserStatus.Offline;
         }
 
+        private UserStatus ResolveDisplayStatus(UserStatus storedStatus, int userId)
+        {
+            return storedStatus == UserStatus.Blocked
+                ? UserStatus.Blocked
+                : ResolveActiveStatus(userId);
+        }
+
         private UserRowUpdateViewModel CreateRowUpdateViewModel(User user)
         {
             return new UserRowUpdateViewModel
@@ -366,11 +405,30 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 UserId = user.UserId,
                 FullName = user.FullName ?? "N/A",
                 Email = user.Email,
-                Role = user.Role ?? Roles.Standard,
-                Status = user.Status == UserStatus.Blocked
-                    ? UserStatus.Blocked
-                    : ResolveActiveStatus(user.UserId)
+                Role = Roles.Normalize(user.Role),
+                Status = ResolveDisplayStatus(user.Status, user.UserId)
             };
+        }
+
+        private async Task<List<AdminUserStatusChangedMessage>> BuildStatusUpdatesAsync(int[] userIds)
+        {
+            if (userIds.Length == 0)
+            {
+                return new List<AdminUserStatusChangedMessage>();
+            }
+
+            var persistedStatuses = await _context.Users.AsNoTracking()
+                .Where(u => userIds.Contains(u.UserId))
+                .Select(u => new { u.UserId, u.Status })
+                .ToListAsync();
+
+            return persistedStatuses
+                .Select(u =>
+                {
+                    var currentStatus = ResolveDisplayStatus(u.Status, u.UserId);
+                    return AdminUserStatusChangedMessage.Create(u.UserId, currentStatus, currentStatus);
+                })
+                .ToList();
         }
 
         private async Task BroadcastStatusUpdateAsync(

@@ -9,8 +9,16 @@
     const blockModalElement = document.getElementById("blockUserModal");
     const editModal = editModalElement ? new bootstrap.Modal(editModalElement) : null;
     const blockModal = blockModalElement ? new bootstrap.Modal(blockModalElement) : null;
+    const filterForm = page.querySelector('form[method="get"]');
+    const searchInput = filterForm?.querySelector('input[name="q"]');
+    const roleSelect = filterForm?.querySelector('select[name="role"]');
+    const statusSelect = filterForm?.querySelector('select[name="status"]');
+    const usersTableBody = document.querySelector("#usersTable tbody");
 
     let blockUserEmail = "";
+    let presenceSyncTimeoutId = 0;
+    let isSyncingPresence = false;
+    let pendingPresenceSync = false;
 
     const statusLabelMap = {
         0: "Offline",
@@ -32,6 +40,15 @@
         return Number.isNaN(currentStatus) ? null : currentStatus;
     }
 
+    function setCounterValue(counterId, value) {
+        const counter = document.getElementById(counterId);
+        if (!counter) {
+            return;
+        }
+
+        counter.textContent = String(Math.max(0, Number(value) || 0));
+    }
+
     function adjustCounter(counterId, delta) {
         const counter = document.getElementById(counterId);
         if (!counter) {
@@ -40,6 +57,26 @@
 
         const nextValue = Math.max(0, (Number(counter.textContent) || 0) + delta);
         counter.textContent = String(nextValue);
+    }
+
+    function updateSummary(summary) {
+        if (!summary) {
+            return;
+        }
+
+        setCounterValue("totalUsersCount", summary.totalUsers);
+        setCounterValue("onlineUsersCount", summary.onlineUsers);
+        setCounterValue("offlineUsersCount", summary.offlineUsers);
+        setCounterValue("blockedUsersCount", summary.blockedUsers);
+    }
+
+    function setFilteredUsersCount(value) {
+        const filteredUsersCount = document.getElementById("filteredUsersCount");
+        if (!filteredUsersCount) {
+            return;
+        }
+
+        filteredUsersCount.textContent = String(Math.max(0, Number(value) || 0));
     }
 
     function counterIdForStatus(status) {
@@ -53,38 +90,120 @@
         }
     }
 
-    function applyStatusUpdate(statusUpdate) {
+    function getActiveStatusFilter() {
+        return (statusSelect?.value ?? "").trim().toLowerCase();
+    }
+
+    function statusMatchesActiveFilter(status) {
+        const activeStatusFilter = getActiveStatusFilter();
+        if (!activeStatusFilter) {
+            return true;
+        }
+
+        return getStatusLabel(status).toLowerCase() === activeStatusFilter;
+    }
+
+    function getTrackedRows() {
+        return Array.from(usersTableBody?.querySelectorAll("tr[data-user-id]") ?? []);
+    }
+
+    function getTrackedUserIds() {
+        return getTrackedRows()
+            .map((row) => Number(row.dataset.userId))
+            .filter((userId) => Number.isInteger(userId) && userId > 0);
+    }
+
+    function getOrCreateEmptyStateRow() {
+        if (!usersTableBody) {
+            return null;
+        }
+
+        let emptyStateRow = usersTableBody.querySelector("tr[data-empty-state]");
+        if (emptyStateRow) {
+            return emptyStateRow;
+        }
+
+        emptyStateRow = usersTableBody.querySelector("tr:not([data-user-id])");
+        if (emptyStateRow) {
+            emptyStateRow.dataset.emptyState = "existing";
+            return emptyStateRow;
+        }
+
+        emptyStateRow = document.createElement("tr");
+        emptyStateRow.dataset.emptyState = "dynamic";
+        emptyStateRow.innerHTML = `
+            <td colspan="8" class="text-center text-muted py-5">
+                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                Không tìm thấy người dùng nào phù hợp với bộ lọc hiện tại.
+            </td>`;
+        usersTableBody.appendChild(emptyStateRow);
+
+        return emptyStateRow;
+    }
+
+    function syncEmptyState() {
+        const emptyStateRow = getOrCreateEmptyStateRow();
+        if (!emptyStateRow) {
+            return;
+        }
+
+        const hasVisibleRows = getTrackedRows().some((row) => !row.hidden);
+        emptyStateRow.hidden = hasVisibleRows;
+    }
+
+    function applyRowVisibility(userId, status) {
+        const row = document.getElementById(`user-row-${userId}`);
+        if (!row) {
+            return;
+        }
+
+        row.hidden = !statusMatchesActiveFilter(status);
+    }
+
+    function applyStatusUpdate(statusUpdate, options = {}) {
         if (!statusUpdate) {
             return;
         }
 
-        const currentStatus = getCurrentStatus(statusUpdate.userId);
-        if (currentStatus === Number(statusUpdate.status)) {
+        const skipCounters = options.skipCounters === true;
+        const nextStatus = Number(statusUpdate.status);
+        if (Number.isNaN(nextStatus)) {
             return;
         }
 
+        const currentStatus = getCurrentStatus(statusUpdate.userId);
         const previousStatus = currentStatus ?? Number(statusUpdate.previousStatus);
-        if (previousStatus !== Number(statusUpdate.status)) {
+
+        if (!skipCounters
+            && !Number.isNaN(previousStatus)
+            && previousStatus !== nextStatus) {
             adjustCounter(counterIdForStatus(previousStatus), -1);
-            adjustCounter(counterIdForStatus(statusUpdate.status), 1);
+            adjustCounter(counterIdForStatus(nextStatus), 1);
         }
 
         const badge = document.getElementById(`status-badge-${statusUpdate.userId}`);
         if (badge) {
             badge.className = statusUpdate.statusBadgeClass;
-            badge.dataset.status = String(statusUpdate.status);
+            badge.dataset.status = String(nextStatus);
             badge.innerHTML = `<i class="bi ${statusUpdate.statusIconClass} me-1"></i>${statusUpdate.statusLabel}`;
         }
 
         const row = document.getElementById(`user-row-${statusUpdate.userId}`);
         if (row) {
-            row.dataset.status = String(statusUpdate.status);
+            row.dataset.status = String(nextStatus);
         }
 
         const unlockButton = row?.querySelector(".btn-unlock");
         if (unlockButton) {
             unlockButton.disabled = !statusUpdate.canUnlock;
         }
+
+        if (Number(document.getElementById("editUserId")?.value) === Number(statusUpdate.userId)) {
+            document.getElementById("editStatusLabel").value = statusUpdate.statusLabel;
+        }
+
+        applyRowVisibility(statusUpdate.userId, nextStatus);
+        syncEmptyState();
     }
 
     function applyUserUpdate(user) {
@@ -148,6 +267,84 @@
         document.getElementById(targetId)?.classList.add("d-none");
     }
 
+    function buildPresenceSnapshotUrl() {
+        const params = new URLSearchParams();
+        const searchQuery = searchInput?.value.trim();
+        const role = roleSelect?.value ?? "";
+        const status = statusSelect?.value ?? "";
+
+        if (searchQuery) {
+            params.set("q", searchQuery);
+        }
+
+        if (role) {
+            params.set("role", role);
+        }
+
+        if (status) {
+            params.set("status", status);
+        }
+
+        getTrackedUserIds().forEach((userId) => {
+            params.append("userIds", String(userId));
+        });
+
+        const queryString = params.toString();
+        return queryString
+            ? `/Admin/UserManagement/GetPresenceSnapshot?${queryString}`
+            : "/Admin/UserManagement/GetPresenceSnapshot";
+    }
+
+    async function fetchPresenceSnapshot() {
+        const response = await fetch(buildPresenceSnapshotUrl(), {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Unable to refresh the user presence snapshot.");
+        }
+
+        return response.json();
+    }
+
+    async function syncPresenceSnapshot() {
+        if (isSyncingPresence) {
+            pendingPresenceSync = true;
+            return;
+        }
+
+        isSyncingPresence = true;
+
+        try {
+            const snapshot = await fetchPresenceSnapshot();
+            (snapshot.statusUpdates ?? []).forEach((statusUpdate) => {
+                applyStatusUpdate(statusUpdate, { skipCounters: true });
+            });
+
+            updateSummary(snapshot.summary);
+            setFilteredUsersCount(snapshot.totalFilteredCount);
+            syncEmptyState();
+        } catch (error) {
+            console.error("Unable to refresh user presence snapshot.", error);
+        } finally {
+            isSyncingPresence = false;
+
+            if (pendingPresenceSync) {
+                pendingPresenceSync = false;
+                queuePresenceSync(0);
+            }
+        }
+    }
+
+    function queuePresenceSync(delayMilliseconds = 250) {
+        window.clearTimeout(presenceSyncTimeoutId);
+        presenceSyncTimeoutId = window.setTimeout(() => {
+            void syncPresenceSnapshot();
+        }, delayMilliseconds);
+    }
+
     async function loadUser(userId) {
         const response = await fetch(`/Admin/UserManagement/GetUser/${userId}`);
         if (!response.ok) {
@@ -173,6 +370,22 @@
         }
 
         return result;
+    }
+
+    function bindPresenceConnection(connection) {
+        if (!connection) {
+            return;
+        }
+
+        connection.off("UserStatusChanged");
+        connection.on("UserStatusChanged", (statusUpdate) => {
+            applyStatusUpdate(statusUpdate);
+            queuePresenceSync();
+        });
+    }
+
+    function handlePresenceConnected() {
+        queuePresenceSync(0);
     }
 
     page.querySelectorAll(".btn-edit").forEach((button) => {
@@ -274,6 +487,7 @@
             const result = await postJson("/Admin/UserManagement/BlockUser", payload);
             applyStatusUpdate(result.statusUpdate);
             blockModal?.hide();
+            queuePresenceSync();
 
             await Swal.fire({
                 icon: "success",
@@ -316,6 +530,7 @@
 
             if (result.isConfirmed && result.value) {
                 applyStatusUpdate(result.value.statusUpdate);
+                queuePresenceSync();
 
                 await Swal.fire({
                     icon: "success",
@@ -328,10 +543,20 @@
         });
     });
 
+    bindPresenceConnection(window.userActivityHubConnection);
+
     if (window.userActivityHubReady) {
         window.userActivityHubReady.then((connection) => {
-            connection.off("UserStatusChanged");
-            connection.on("UserStatusChanged", applyStatusUpdate);
+            bindPresenceConnection(connection);
+            handlePresenceConnected();
         });
+    } else {
+        handlePresenceConnected();
     }
+
+    window.addEventListener("user-activity:connected", handlePresenceConnected);
+    window.addEventListener("user-activity:reconnected", handlePresenceConnected);
+
+    syncEmptyState();
+    queuePresenceSync(0);
 })();
