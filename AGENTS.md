@@ -51,6 +51,18 @@ SpeakingPlaylist → SpeakingVideo (YoutubeId, Level A1-C2, Topic) → SpeakingS
 - RBAC: `[Authorize(Roles = "Admin")]` for admin-only, `[Authorize]` for authenticated users
 - Return `NotFound()` for IDOR violations (never `Forbid()` — avoids resource enumeration)
 
+## Bug Fix Memory
+
+- If the task is a bug fix, read `.ai/context/bug-fix-log.md` and `.ai/context/known-issues.md` before editing any code
+- Check newest bug log entries first and search for matching symptoms, stack traces, controllers, entities, or regression patterns
+- Reuse a previous fix pattern only after verifying the current bug has the same root cause
+- After resolving a bug, append a new entry to `.ai/context/bug-fix-log.md` using the file's required format and update `.ai/context/known-issues.md` if that issue was listed there
+
+## Communication
+
+- After completing any task, include a concise summary in Vietnamese
+- The Vietnamese summary should cover outcome, files changed, checks run, and any remaining risks or blockers
+
 ## Key File Locations
 
 | Type | Location |
@@ -67,7 +79,7 @@ SpeakingPlaylist → SpeakingVideo (YoutubeId, Level A1-C2, Topic) → SpeakingS
 
 ## Extended Context
 
-- See `.ai/context/` for detailed project documentation, coding conventions, known issues, and domain glossary
+- See `.ai/context/` for detailed project documentation, coding conventions, known issues, domain glossary, and bug fix history (`bug-fix-log.md`)
 - See `.ai/templates/` for reusable code boilerplate (Controller, Service, ViewModel, View, Entity)
 - See `.agent/skills/` for Antigravity IDE skills (SKILL.md format)
 - See `.agent/workflows/` for multi-step process guides
