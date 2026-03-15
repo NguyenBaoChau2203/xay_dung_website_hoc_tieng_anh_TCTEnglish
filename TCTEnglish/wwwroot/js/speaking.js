@@ -20,6 +20,7 @@
     const videoCounter = document.getElementById('vi-video-count');
     const allCards = document.querySelectorAll('.vi-video-col');
     const levelSections = document.querySelectorAll('.vi-level-section');
+    const noResultsEl = document.getElementById('vi-no-results');
 
     // ── State ────────────────────────────────────────────────────
     let activeTopic = 'all';
@@ -101,6 +102,10 @@
             videoCounter.textContent = query || activeTopic !== 'all'
                 ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
                 : `${totalVisibleCount} videos`;
+        }
+
+        if (noResultsEl) {
+            noResultsEl.style.display = totalVisibleCount === 0 ? '' : 'none';
         }
     }
 
@@ -214,6 +219,15 @@
     const btnHideVideo = $('btn-dic-hide-video');
     const videoOverlay = $('video-overlay');
     const youtubeFrame = $('youtube-player');
+    const dicInput = $('dic-input');
+    const dicFeedback = $('dic-feedback');
+    const dicSentIndicator = $('dic-sent-indicator');
+    const btnDicHint = $('btn-dic-hint');
+    const btnDicPlay = $('btn-dic-play');
+    const dicPlayIcon = $('dic-play-icon');
+    const dicPlayLabel = $('dic-play-label');
+    const btnDicNext = $('btn-dic-next');
+    const btnDicPlaySlow = $('btn-dic-play-slow') || $('btn-dic-slow-play');
 
     // ── State ────────────────────────────────────────────────────────
     let player = null;
@@ -223,6 +237,7 @@
     let isVideoHidden = false;
     let playbackTimer = null;
     let toastTimer = null;
+    let isDictationAnswerRevealed = false;
 
     // ────────────────────────────────────────────────────────────────
     //  YOUTUBE IFRAME API
@@ -259,8 +274,12 @@
     function onPlayerStateChange(evt) {
         if (evt.data === YT.PlayerState.PLAYING) {
             if (!playbackTimer) playbackTimer = setInterval(checkLoopBoundary, 120);
+            setDictationPlayState(true);
         } else {
             if (playbackTimer) { clearInterval(playbackTimer); playbackTimer = null; }
+            if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
+                setDictationPlayState(false);
+            }
         }
     }
 
@@ -301,6 +320,16 @@
 
         // Update indicator
         if (sentIndicator) sentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
+
+        // Update dictation indicator
+        if (dicSentIndicator) dicSentIndicator.textContent = `(Câu hỏi ${idx + 1}/${SENTENCES.length})`;
+
+        // Reset dictation state
+        isDictationAnswerRevealed = false;
+        btnDicHint?.classList.remove('is-active');
+        setDictationPlayState(false);
+        if (dicInput) dicInput.value = '';
+        renderDictationFeedback('', s.text);
 
         // Update score board from stored data
         updateScoreBoard(s);
@@ -436,40 +465,122 @@
         }
     }
 
-    function applyRecordingFeedback(similarity, heard) {
+    function setScoringUIState(scoring) {
+        if (!btnRecord) return;
+        if (scoring) {
+            btnRecord.classList.add('is-scoring');
+            btnRecord.disabled = true;
+            if (recordIcon) recordIcon.className = 'fas fa-spinner fa-spin';
+            if (recordLabel) recordLabel.textContent = 'Đang chấm điểm...';
+        } else {
+            btnRecord.classList.remove('is-scoring');
+            btnRecord.disabled = false;
+            if (recordIcon) recordIcon.className = 'fas fa-microphone';
+            if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
+        }
+    }
+
+    // ── API — Save progress to backend ─────────────────────────────
+    async function saveSpeakingProgress(sentenceId, scores) {
+        try {
+            const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (!tokenEl) { console.warn('Anti-forgery token not found'); return null; }
+
+            const response = await fetch(`/api/speaking/${sentenceId}/progress`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': tokenEl.value
+                },
+                body: JSON.stringify(scores)
+            });
+
+            if (!response.ok) {
+                const err = await response.json().catch(() => ({}));
+                console.error('Save progress failed:', err);
+                return null;
+            }
+            return await response.json();
+        } catch (ex) {
+            console.error('Save progress error:', ex);
+            return null;
+        }
+    }
+
+    async function applyRecordingFeedback(similarity, heard) {
         const pct = Math.round(similarity * 100);
         const s = SENTENCES[activeSentIdx];
 
-        s.totalScore = pct;
-        s.accuracyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.fluencyScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.completenessScore = Math.max(0, pct + Math.round(Math.random() * 10 - 5));
-        s.isPracticed = true;
+        const scores = {
+            totalScore: pct,
+            accuracyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
+            fluencyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
+            completenessScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5)))
+        };
 
-        updateScoreBoard(s);
-        updateProgressUI();
-        markSentenceDone(activeSentIdx);
+        // Hiện trạng thái "Đang chấm điểm..."
+        setScoringUIState(true);
 
-        if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
-        else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+        // Lưu lên server trước — chỉ cập nhật UI khi thành công
+        const result = await saveSpeakingProgress(s.id, scores);
+
+        // Tắt trạng thái chấm điểm
+        setScoringUIState(false);
+
+        if (result && result.success) {
+            s.totalScore = scores.totalScore;
+            s.accuracyScore = scores.accuracyScore;
+            s.fluencyScore = scores.fluencyScore;
+            s.completenessScore = scores.completenessScore;
+            s.isPracticed = true;
+
+            updateScoreBoard(s);
+            updateProgressUI();
+            markSentenceDone(activeSentIdx);
+
+            if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
+            else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+        } else {
+            showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
+        }
     }
 
     function simulateFeedback() {
         isRecording = true;
         setRecordUIState(true);
-        setTimeout(() => {
+        setTimeout(async () => {
             isRecording = false;
             setRecordUIState(false);
             const s = SENTENCES[activeSentIdx];
-            s.totalScore = Math.floor(Math.random() * 20) + 78;
-            s.accuracyScore = Math.floor(Math.random() * 20) + 78;
-            s.fluencyScore = Math.floor(Math.random() * 20) + 78;
-            s.completenessScore = Math.floor(Math.random() * 20) + 78;
-            s.isPracticed = true;
-            updateScoreBoard(s);
-            updateProgressUI();
-            markSentenceDone(activeSentIdx);
-            showToast(`✅ Demo: Điểm ${s.totalScore}%`, 'success');
+
+            const scores = {
+                totalScore: Math.floor(Math.random() * 20) + 78,
+                accuracyScore: Math.floor(Math.random() * 20) + 78,
+                fluencyScore: Math.floor(Math.random() * 20) + 78,
+                completenessScore: Math.floor(Math.random() * 20) + 78
+            };
+
+            // Hiện trạng thái "Đang chấm điểm..."
+            setScoringUIState(true);
+
+            const result = await saveSpeakingProgress(s.id, scores);
+
+            // Tắt trạng thái chấm điểm
+            setScoringUIState(false);
+
+            if (result && result.success) {
+                s.totalScore = scores.totalScore;
+                s.accuracyScore = scores.accuracyScore;
+                s.fluencyScore = scores.fluencyScore;
+                s.completenessScore = scores.completenessScore;
+                s.isPracticed = true;
+                updateScoreBoard(s);
+                updateProgressUI();
+                markSentenceDone(activeSentIdx);
+                showToast(`✅ Demo: Điểm ${scores.totalScore}%`, 'success');
+            } else {
+                showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
+            }
         }, 2500);
     }
 
@@ -513,6 +624,117 @@
         return dp[a.length][b.length];
     }
 
+    // ────────────────────────────────────────────────────────────────
+    //  DICTATION — Real-time character feedback
+    // ────────────────────────────────────────────────────────────────
+    function renderDictationFeedback(typedText, expectedText) {
+        if (!dicFeedback) return;
+        if (!expectedText) { dicFeedback.innerHTML = ''; return; }
+
+        const words = expectedText.split(/\s+/);
+        let globalIdx = 0;          // tracks position across full sentence
+        const htmlParts = [];
+
+        words.forEach((word, wIdx) => {
+            // Determine word-level status
+            const wordStart = globalIdx;
+            const wordEnd = globalIdx + word.length;
+            let wordClass = 'spk-dic-word';
+
+            if (typedText.length >= wordEnd) {
+                // All chars of this word have been typed — check if all correct
+                let allCorrect = true;
+                for (let c = 0; c < word.length; c++) {
+                    if (typedText[wordStart + c]?.toLowerCase() !== word[c].toLowerCase()) {
+                        allCorrect = false;
+                        break;
+                    }
+                }
+                wordClass += allCorrect ? ' spk-dic-word--done' : '';
+            } else if (typedText.length > wordStart) {
+                // Currently typing this word
+                wordClass += ' spk-dic-word--active';
+            }
+
+            // Build character spans for this word
+            let charSpans = '';
+            for (let c = 0; c < word.length; c++) {
+                const pos = globalIdx + c;
+                if (pos >= typedText.length) {
+                    // Not yet reached
+                    charSpans += '<span class="char-untyped">*</span>';
+                } else if (typedText[pos].toLowerCase() === word[c].toLowerCase()) {
+                    // Correct — show the expected char (preserves original case)
+                    charSpans += `<span class="char-correct">${escapeHtml(word[c])}</span>`;
+                } else {
+                    // Incorrect — show what the user typed
+                    charSpans += `<span class="char-incorrect">${escapeHtml(typedText[pos])}</span>`;
+                }
+            }
+
+            htmlParts.push(`<span class="${wordClass}">${charSpans}</span>`);
+            globalIdx += word.length;
+
+            // Account for the space between words in the typed text
+            // (we skip the space character in comparison)
+            if (wIdx < words.length - 1) {
+                globalIdx++; // skip the space in expectedText
+            }
+        });
+
+        dicFeedback.innerHTML = htmlParts.join('');
+    }
+
+    function escapeHtml(ch) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return map[ch] || ch;
+    }
+
+    function escapeHtmlText(text) {
+        return (text || '').replace(/[&<>"']/g, ch => escapeHtml(ch));
+    }
+
+    function setDictationPlayState(isPlaying) {
+        if (!btnDicPlay) return;
+        btnDicPlay.classList.toggle('is-playing', isPlaying);
+        if (dicPlayIcon) dicPlayIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+        if (dicPlayLabel) dicPlayLabel.textContent = isPlaying ? 'Tạm dừng' : 'Phát lại';
+    }
+
+    function replayCurrentSentence(rate = 1) {
+        if (activeSentIdx < 0 || !player || typeof player.seekTo !== 'function') return;
+        const s = SENTENCES[activeSentIdx];
+        if (!s) return;
+
+        if (typeof player.setPlaybackRate === 'function') {
+            player.setPlaybackRate(rate);
+        }
+
+        player.seekTo(s.start, true);
+        player.playVideo();
+    }
+
+    function revealDictationAnswer() {
+        if (activeSentIdx < 0) {
+            showToast('⚠️ Hãy chọn một câu trước!', 'warning');
+            return;
+        }
+
+        const expectedText = SENTENCES[activeSentIdx]?.text || '';
+        if (!expectedText || !dicFeedback) return;
+
+        if (!isDictationAnswerRevealed) {
+            isDictationAnswerRevealed = true;
+            btnDicHint?.classList.add('is-active');
+            renderDictationFeedback(expectedText, expectedText);
+            return;
+        }
+
+        isDictationAnswerRevealed = false;
+        btnDicHint?.classList.remove('is-active');
+        renderDictationFeedback(dicInput?.value || '', expectedText);
+    }
+
     // ── Toast notification ───────────────────────────────────────────
     function showToast(msg, type = 'info') {
         if (!toastEl) return;
@@ -540,12 +762,28 @@
 
         // Replay
         btnReplay?.addEventListener('click', () => {
-            if (activeSentIdx < 0) return;
-            const s = SENTENCES[activeSentIdx];
-            if (player && typeof player.seekTo === 'function') {
-                player.seekTo(s.start, true);
-                player.playVideo();
+            replayCurrentSentence(1);
+        });
+
+        // Dictation support buttons
+        btnDicHint?.addEventListener('click', revealDictationAnswer);
+
+        btnDicPlay?.addEventListener('click', () => {
+            if (!player) return;
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                return;
             }
+            replayCurrentSentence(1);
+        });
+
+        btnDicPlaySlow?.addEventListener('click', () => {
+            replayCurrentSentence(0.5);
+        });
+
+        btnDicNext?.addEventListener('click', () => {
+            if (activeSentIdx < SENTENCES.length - 1) selectSentence(activeSentIdx + 1);
+            else if (activeSentIdx === -1 && SENTENCES.length) selectSentence(0);
         });
 
         // Record
@@ -579,6 +817,14 @@
             btn.addEventListener('click', function () {
                 selectSentence(parseInt(this.dataset.dicIndex, 10));
             });
+        });
+
+        // Dictation real-time feedback
+        dicInput?.addEventListener('input', () => {
+            if (activeSentIdx < 0) return;
+            if (isDictationAnswerRevealed) return;
+            const expected = SENTENCES[activeSentIdx]?.text || '';
+            renderDictationFeedback(dicInput.value, expected);
         });
 
         // Hide text toggle

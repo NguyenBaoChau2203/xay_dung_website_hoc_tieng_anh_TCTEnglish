@@ -16,6 +16,35 @@ public static class Roles
     public const string Admin = "Admin";
     public const string Premium = "Premium";
     public const string Standard = "Standard";
+    public const string LegacyStudent = "Student";
+
+    public static string Normalize(string? role)
+    {
+        if (string.IsNullOrWhiteSpace(role))
+        {
+            return Standard;
+        }
+
+        var trimmedRole = role.Trim();
+
+        if (trimmedRole.Equals(Admin, StringComparison.OrdinalIgnoreCase))
+        {
+            return Admin;
+        }
+
+        if (trimmedRole.Equals(Premium, StringComparison.OrdinalIgnoreCase))
+        {
+            return Premium;
+        }
+
+        if (trimmedRole.Equals(Standard, StringComparison.OrdinalIgnoreCase)
+            || trimmedRole.Equals(LegacyStudent, StringComparison.OrdinalIgnoreCase))
+        {
+            return Standard;
+        }
+
+        return Standard;
+    }
 }
 
 public partial class User

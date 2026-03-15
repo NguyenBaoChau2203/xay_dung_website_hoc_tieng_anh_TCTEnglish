@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels;
 
@@ -34,6 +34,7 @@ public sealed class SpeakingVideoCreateViewModel
 
     [Required(ErrorMessage = "Level is required.")]
     [Display(Name = "Level")]
+    [RegularExpression("^(A1|A2|B1|B2|C1|C2)$", ErrorMessage = "Level must be one of A1, A2, B1, B2, C1, C2.")]
     [StringLength(50)]
     public string Level { get; set; } = string.Empty;
 
@@ -45,4 +46,34 @@ public sealed class SpeakingVideoCreateViewModel
     public int PlaylistId { get; set; }
 
     public List<SpeakingPlaylistOptionViewModel> Playlists { get; set; } = new();
+}
+
+public sealed class SpeakingVideoEditViewModel
+{
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "Title is required.")]
+    [Display(Name = "Title")]
+    [StringLength(255)]
+    public string Title { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Level is required.")]
+    [Display(Name = "Level")]
+    [RegularExpression("^(A1|A2|B1|B2|C1|C2)$", ErrorMessage = "Level must be one of A1, A2, B1, B2, C1, C2.")]
+    [StringLength(50)]
+    public string Level { get; set; } = string.Empty;
+
+    [Display(Name = "Topic")]
+    [StringLength(100)]
+    public string Topic { get; set; } = "General";
+
+    [Display(Name = "Playlist")]
+    public int PlaylistId { get; set; }
+
+    public List<SpeakingPlaylistOptionViewModel> Playlists { get; set; } = new();
+
+    // Read-only display info
+    public string YoutubeId { get; set; } = string.Empty;
+    public string? ThumbnailUrl { get; set; }
+    public int SentenceCount { get; set; }
 }

@@ -68,6 +68,11 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 })
                 .ToListAsync();
 
+            foreach (var user in recentUsers)
+            {
+                user.Role = Roles.Normalize(user.Role);
+            }
+
             var viewModel = new AdminDashboardViewModel
             {
                 TotalUsers = totalUsers,

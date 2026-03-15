@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +51,11 @@
 
             <button class="btn-upgrade">
                 Upgrade: free 7-day trial
+            </button>
+
+            <button class="btn-notification">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
             </button>
 
             @if (User.Identity!.IsAuthenticated)
@@ -138,11 +143,7 @@
                     <span>Your library</span>
                 </a>
 
-                <a class="nav-item">
-                    <i class="fas fa-bell"></i>
-                    <span>Notifications</span>
-                </a>
-
+            
                 <a class="nav-item" asp-controller="Goals" asp-action="Index">
                     <i class="fas fa-bullseye"></i>
                     <span>Goals</span>
@@ -153,19 +154,77 @@
                     <span>Ranking</span>
                 </a>
 
-                <a class="nav-item" asp-controller="Home" asp-action="Class">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span>Class</span>
-                </a>
-
-                <a class="nav-item" asp-controller="Home" asp-action="Folder">
-                    <i class="fas fa-folder"></i>
-                    <span>Folder</span>
-                </a>
-
                 <a class="nav-item" asp-controller="Vocabulary" asp-action="Index">
                     <i class="fas fa-book"></i>
-                    <span>Từ vựng (Hệ thống)</span>
+                    <span>Vocabulary</span>
+                </a>
+
+
+
+                <div class="nav-dropdown" id="classDropdown">
+
+                    <div class="nav-dropdown-item" id="classDropdownBtn">
+                        <div class="nav-dropdown-title">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Classes</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+
+                    <div class="nav-dropdown-menu" id="classDropdownMenu">
+
+                        <a class="nav-sub-item"
+                           asp-controller="Home"
+                           asp-action="CreateClass">
+
+                            <span class="icon-circle small">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            New class
+                        </a>
+
+                        <a class="nav-sub-item"
+                           asp-controller="Home"
+                           asp-action="Class">
+
+                            <i class="fas fa-users"></i>
+                            My classes
+
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="nav-dropdown" id="folderDropdown">
+
+                    <div class="nav-dropdown-item" id="folderDropdownBtn">
+                        <div class="nav-dropdown-title">
+                            <i class="fas fa-folder"></i>
+                            <span>Folders</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+
+                    <div class="nav-dropdown-menu" id="folderDropdownMenu">
+
+                        <button class="nav-sub-item" id="newFolderBtn">
+                            <span class="icon-circle small">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            New folder
+                        </button>
+
+                        <a class="nav-sub-item" asp-controller="Home" asp-action="Folder">
+                            <i class="fas fa-folder-open"></i>
+                            My folders
+                        </a>
+
+                    </div>
+                </div>
+
+                <a class="nav-item" asp-controller="Home" asp-action="Contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Liên hệ</span>
                 </a>
 
                 @if (User.IsInRole("Admin"))
@@ -180,36 +239,6 @@
 
             <hr />
 
-            <!-- ================= WORKSPACE ================= -->
-            <div class="workspace">
-                <p class="workspace-title">Workspace</p>
-
-                <!-- New Folder -->
-                <button class="workspace-btn" id="newFolderBtn">
-                    <span class="icon-circle">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    New folder
-                </button>
-
-                @if (User.Identity?.IsAuthenticated == true)
-                {
-                <button class="workspace-btn"
-                        onclick="location.href='@Url.Action("CreateClass", "Home")'">
-                    <span class="icon-circle">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    New class
-                </button>
-                }
-
-                <button class="workspace-btn">
-                    <span class="icon-circle">
-                        <i class="fas fa-clone"></i>
-                    </span>
-                    Add flashcard
-                </button>
-            </div>
 
             <div class="sidebar-footer">
                 Tận dụng Flashcards để ghi nhớ kiến thức nhanh hơn 3 lần.
@@ -221,7 +250,88 @@
             @RenderBody()
         </main>
     </div>
+    <footer class="tct-footer">
 
+        <div class="footer-container">
+
+            <!-- BRAND -->
+            <div class="footer-brand">
+
+                <h3>TCT Vocabulary</h3>
+
+                <p>
+                    Hệ thống học từ vựng thông minh sử dụng
+                    phương pháp lặp lại ngắt quãng (SRS)
+                </p>
+
+                <div class="footer-contact">
+
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Hà Nội, Việt Nam</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@tctvocab.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+84 123 456 789</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>tctvocabulary.com</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LINKS -->
+            <div class="footer-links">
+
+                <h4>Khám phá</h4>
+
+                <a href="#">Giới thiệu</a>
+                <a href="#">Blog</a>
+                <a href="#">Điều khoản</a>
+                <a asp-controller="Home" asp-action="Contact">Liên hệ</a>
+
+            </div>
+            <div class="footer-links">
+                <h5>Học tập</h5>
+                <a href="#">Flashcards</a>
+                <a href="#">Ôn tập SRS</a>
+                <a href="#">Lớp học</a>
+                <a href="#">Thư mục</a>
+            </div>
+            <!-- SOCIAL -->
+            <div class="footer-social">
+
+                <h4>Kết nối</h4>
+
+                <div class="social-icons">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#"><i class="fab fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TCT Vocabulary. All rights reserved.
+        </div>
+
+    </footer>
     <!-- ================= CREATE FOLDER MODAL ================= -->
     <div id="folderModal" class="modal-overlay">
         <div class="tct-modal">
@@ -252,6 +362,12 @@
             </form>
         </div>
     </div>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+        <script src="~/js/user-activity.js" asp-append-version="true"></script>
+    }
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

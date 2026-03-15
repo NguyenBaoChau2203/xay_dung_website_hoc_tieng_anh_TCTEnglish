@@ -1625,18 +1625,22 @@
                 <div class="writing-mode">
                     <!-- Định nghĩa và ví dụ -->
                     <div class="definition-section">
-                        <div class="def-english">
-                            <h4>Định nghĩa Tiếng Anh:</h4>
-                            <p>The child of your uncle or aunt. A relative in the same generation.</p>
-                        </div>
+
                         <div class="def-vietnamese">
                             <h4>Định nghĩa:</h4>
                             <p>@currentCard.Definition</p>
                         </div>
                         @if (!string.IsNullOrEmpty(currentCard.Example))
                         {
+                            var escapedTerm = System.Text.RegularExpressions.Regex.Escape(currentCard.Term);
+                            var maskedExample = System.Text.RegularExpressions.Regex.Replace(
+                                currentCard.Example,
+                                $@"\b{escapedTerm}\b",
+                                "___",
+                                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
                             <div class="example-box">
-                                <div class="example-en">@currentCard.Example</div>
+                                <div class="example-en">@maskedExample</div>
                                 @if (!string.IsNullOrEmpty(currentCard.ExampleTranslation))
                                 {
                                     <div class="example-vi">@currentCard.ExampleTranslation</div>
@@ -1753,6 +1757,7 @@
         let isFlipped = false;
         let currentIndex = @currentIndex;
         let totalCards = @totalCards;
+        let isReview = @Html.Raw(Json.Serialize((bool)(ViewBag.IsReview ?? false))); // [FIX: Review Skip]
         let currentMode = 'writing'; // Mặc định là writing
         let autoPlayAudio = true;
         let speechRate = 0.9;
@@ -1989,10 +1994,18 @@
 
         // Navigation (chỉ gọi khi hoàn thành)
         function nextCard() {
-            if (currentIndex < totalCards) {
+            // [FIX: Review Skip] Trong review mode, server lọc lại danh sách mỗi lần load.
+            // Thẻ vừa học bị loại khỏi danh sách, nên thẻ kế tiếp luôn ở index=1.
+            if (isReview) {
+                if (totalCards <= 1) {
+                    showCompletionScreen();
+                } else {
+                    navigateToCard(1);
+                }
+            } else if (currentIndex < totalCards) {
                 currentIndex++;
                 navigateToCard(currentIndex);
-            } else if (currentIndex === totalCards) {
+            } else {
                 showCompletionScreen();
             }
         }
@@ -2007,8 +2020,9 @@
         function navigateToCard(index) {
             const setId = '@setId';
             const topic = @Html.Raw(Json.Serialize(ViewBag.TopicName ?? ""));
-            const isReview = @Html.Raw(Json.Serialize((bool)(ViewBag.IsReview ?? false)));
-            let url = '@Url.Action("Study", "Vocabulary")?setId=' + setId + '&index=' + index;
+            // [FIX: Review Skip] Trong review mode, luôn dùng index=1
+            let actualIndex = isReview ? 1 : index;
+            let url = '@Url.Action("Study", "Vocabulary")?setId=' + setId + '&index=' + actualIndex;
             if (topic) url += '&topic=' + encodeURIComponent(topic);
             if (isReview) url += '&mode=review';
             window.location.href = url;

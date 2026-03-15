@@ -28,13 +28,14 @@
             <p class="vi-subtitle">Shadow real speakers. Build your accent and fluency.</p>
         </div>
 
-        <div class="vi-search-box">
-            <i class="fas fa-search vi-search-icon"></i>
-            <input id="vi-search"
-                   type="text"
-                   class="vi-search-input"
-                   placeholder="Search videos…"
-                   autocomplete="off" />
+        <div class="vi-search-box" role="search">
+                <i class="fas fa-search vi-search-icon"></i>
+                <input id="vi-search"
+                       type="text"
+                       class="vi-search-input"
+                       placeholder="Search videos…"
+                       aria-label="Search videos"
+                       autocomplete="off" />
         </div>
     </header>
 
@@ -71,7 +72,7 @@
     @* ── LEVEL FILTER TABS ───────────────────────────────────── *@
     @if (Model.VideosByLevel.Any())
     {
-        <section class="vi-filter-section" style="margin-top: 15px;">
+        <section class="vi-filter-section vi-filter-section--level">
             <div class="vi-filter-header">
                 <i class="fas fa-layer-group"></i>
                 <span>Filter by Level</span>
@@ -204,6 +205,13 @@
             </section>
         }
     }
+
+    @* ── NO RESULTS STATE (shown/hidden by JS) ────────────────── *@
+    <div id="vi-no-results" class="vi-empty" style="display:none;">
+        <i class="fas fa-search"></i>
+        <h3>No results found</h3>
+        <p>Try a different search term or clear your filters.</p>
+    </div>
 
 </div>
 

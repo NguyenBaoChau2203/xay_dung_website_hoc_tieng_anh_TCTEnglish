@@ -5,22 +5,10 @@
 }
 
 @section Styles {
-    <style>
-        .btn-primary {
-            background-color: #4255ff !important;
-            border-color: #4255ff !important;
-        }
-        .btn-primary:hover, .btn-primary:focus {
-            background-color: #2f3fe0 !important;
-            border-color: #2f3fe0 !important;
-        }
-        .text-primary {
-            color: #4255ff !important;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
 }
 
-<div class="bg-light min-vh-100 py-5">
+<div class="account-page bg-light min-vh-100 py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
@@ -67,14 +55,12 @@
                                         var avatarSrc = string.IsNullOrEmpty(Model.CurrentAvatarUrl) ? "/images/default-avatar.png" : Model.CurrentAvatarUrl;
                                     }
                                     
-                                    <div class="position-relative shadow-sm rounded-circle p-1 border border-secondary-subtle" 
-                                         style="width: 120px; height: 120px; cursor: pointer;"
-                                         onclick="document.getElementById('Avatar').click();">
+                                    <div class="position-relative shadow-sm rounded-circle p-1 border border-secondary-subtle account-avatar-wrapper"
+                                         id="avatarClickTarget">
                                         <img id="avatarPreview" src="@avatarSrc" alt="Avatar" 
                                              class="rounded-circle w-100 h-100 object-fit-cover" />
-                                        
-                                        <div class="position-absolute bottom-0 end-0 bg-white border border-secondary-subtle rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
-                                             style="width: 32px; height: 32px; transform: translate(10%, 10%);">
+
+                                        <div class="position-absolute bottom-0 end-0 bg-white border border-secondary-subtle rounded-circle shadow-sm d-flex align-items-center justify-content-center account-avatar-camera">
                                             <i class="fas fa-camera text-primary small"></i>
                                         </div>
                                     </div>
@@ -106,14 +92,14 @@
                             <div class="col-6 border-end border-secondary-subtle">
                                 <div class="p-4 text-center">
                                     <div class="mb-1 text-warning"><i class="fas fa-fire fa-lg"></i></div>
-                                    <div class="fw-bold fs-3 text-dark mb-0">5</div>
+                                    <div class="fw-bold fs-3 text-dark mb-0">@Model.StreakDays</div>
                                     <div class="text-muted small fw-medium">Ngày liên tiếp</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="p-4 text-center">
                                     <div class="mb-1 text-success"><i class="fas fa-book fa-lg"></i></div>
-                                    <div class="fw-bold fs-3 text-dark mb-0">120</div>
+                                    <div class="fw-bold fs-3 text-dark mb-0">@Model.SavedWordsCount</div>
                                     <div class="text-muted small fw-medium">Từ đã lưu</div>
                                 </div>
                             </div>
@@ -136,6 +122,10 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
+        document.getElementById('avatarClickTarget')?.addEventListener('click', function () {
+            document.getElementById('Avatar').click();
+        });
+
         function previewImage(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

@@ -1,4 +1,4 @@
-﻿@model TCTVocabulary.ViewModel.ClassDetailViewModel
+@model TCTVocabulary.ViewModel.ClassDetailViewModel
 @using System.Security.Claims
 
 @{
@@ -14,8 +14,9 @@
     <div class="class-header">
         <img class="class-avatar"
              src="@(string.IsNullOrEmpty(Model.Class.ImageUrl)
-                                ? "/images/class-default.png"
-                                : Model.Class.ImageUrl)" />
+                         ? "/images/ClassDefault/class-default.png" 
+                         : Model.Class.ImageUrl)"
+             onerror="this.src='/images/ClassDefault/class-default.png'" />
 
         <div class="class-info">
             <h1>@Model.Class.ClassName</h1>
@@ -91,16 +92,24 @@ else
                 }
             </div>
 
-            <div class="chat-input-bar">
+            <div class="chat-input-bar" style="position: relative;">
 
-                <!-- nút upload ảnh -->
-                <label type="button" class="chat-icon">
+                <label type="button" class="chat-icon" style="cursor:pointer">
                     📷
                     <input type="file" id="imageInput" accept="image/*" hidden>
                 </label>
 
-                <!-- emoji -->
-                <button type="button" onclick="toggleEmoji()">😊</button>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <button type="button" onclick="toggleEmoji()" style="background:none; border:none; font-size: 1.2rem; cursor:pointer">😊</button>
+
+                    <div id="emojiPanel" class="emoji-picker">
+                        <span class="emoji-item">😀</span> <span class="emoji-item">😁</span>
+                        <span class="emoji-item">😂</span> <span class="emoji-item">🤣</span>
+                        <span class="emoji-item">😍</span> <span class="emoji-item">😎</span>
+                        <span class="emoji-item">👍</span> <span class="emoji-item">❤️</span>
+                        <span class="emoji-item">🎉</span> <span class="emoji-item">🔥</span>
+                    </div>
+                </div>
 
                 <input id="chatInput"
                        placeholder="Nhập tin nhắn..."
@@ -109,17 +118,9 @@ else
                 <button onclick="sendMessage()">
                     <i class="fas fa-paper-plane"></i>
                 </button>
-
             </div>
 
-            <!-- emoji panel -->
-            <div id="emojiPanel" class="emoji-picker" style="display:none">
-                <span class="emoji-item">😀</span> <span class="emoji-item">😁</span>
-                <span class="emoji-item">😂</span> <span class="emoji-item">🤣</span>
-                <span class="emoji-item">😍</span> <span class="emoji-item">😎</span>
-                <span class="emoji-item">👍</span> <span class="emoji-item">❤️</span>
-                <span class="emoji-item">🎉</span> <span class="emoji-item">🔥</span>
-            </div>
+            
     </div>
 
     <!-- ===== FOLDERS ===== -->
@@ -148,15 +149,27 @@ else
                        asp-route-id="@f.FolderId"
                        class="f-link">
 
-                        <div class="class-folder-row">
-                            <div class="folder-left">
-                                <i class="fas fa-folder"></i>
-                                <span class="folder-name">@f.Folder.FolderName</span>
+                            <div class="class-folder-row">
+
+                                <div class="folder-left">
+                                    <i class="fas fa-folder"></i>
+                                    <span class="folder-name">@f.Folder.FolderName</span>
+                                </div>
+
+                                <div class="folder-right">
+                                    Thêm bởi <strong>@f.AddedByUser.FullName</strong>
+
+                                    @* OWNER hoặc NGƯỜI THÊM *@
+                                    @if (Model.IsOwner || f.AddedByUserId == currentUserId)
+                                    {
+                                        <button class="btn-delete-folder"
+                                                onclick="removeFolder(event, @f.FolderId)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    }
+                                </div>
+
                             </div>
-                            <div class="folder-right">
-                                Thêm bởi <strong>@f.AddedByUser.FullName</strong>
-                            </div>
-                        </div>
                     </a>
                 }
             </div>
@@ -168,10 +181,22 @@ else
         <ul class="member-list">
             @foreach (var u in Model.Members)
             {
-                <li>
-                    <i class="fas fa-user"></i>
-                    @u.FullName
-                </li>
+                    <li class="member-row">
+
+                        <div class="member-left">
+                            <i class="fas fa-user"></i>
+                            @u.FullName
+                        </div>
+
+                        @if (Model.IsOwner && u.UserId != currentUserId)
+                        {
+                            <button class="btn-kick"
+                                    onclick="kickMember(@u.UserId)">
+                                Kick
+                            </button>
+                        }
+
+                    </li>
             }
         </ul>
     </div>
@@ -302,15 +327,29 @@ else
     }
 
            function addFolder(folderId) {
-            fetch('/Home/AddFolderToClass', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'RequestVerificationToken': token
-                },
-                body: `classId=@Model.Class.ClassId&folderId=${folderId}`
-            }).then(() => location.reload());
+    // Sử dụng biến token đã khai báo ở đầu thẻ script của bạn
+    fetch('/Home/AddFolderToClass', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token // Token này lấy từ input ẩn của AntiforgeryToken
+        },
+        body: `classId=${classId}&folderId=${folderId}` 
+    })
+    .then(async res => {
+        if (res.ok) {
+            location.reload();
+        } else {
+            // Đọc thông báo lỗi từ server (ví dụ: "Folder đã tồn tại trong lớp")
+            const errorMsg = await res.text();
+            alert("Lỗi: " + (errorMsg || "Không thể thêm folder"));
         }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Lỗi kết nối máy chủ");
+    });
+}
 
     function openClassActionModal() {
         document.getElementById('classActionModal').classList.add('active');
@@ -979,22 +1018,33 @@ else
             border: 1px solid #e5e7eb;
             font-size: 14px;
         }
-
+        .chat-input-bar {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* các style cũ của bạn... */
+}
         /* CHỈNH SỬA EMOJI PICKER */
         .emoji-picker {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            padding: 12px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            position: absolute;
-            bottom: 70px;
-            z-index: 100;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+     display: none; /* Mặc định ẩn */
+     grid-template-columns: repeat(5, 1fr);
+     gap: 8px;
+     padding: 12px;
+     background: white;
+     border: 1px solid #e5e7eb;
+     border-radius: 12px;
+     position: absolute;
+     bottom: 70px;
+     left: 10px; /* Thêm dòng này để xác định vị trí ngang */
+     z-index: 1000; /* Tăng z-index để chắc chắn nó nằm trên khung chat */
+     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+ }
+
+ /* Thêm class này để JS kích hoạt */
+ .emoji-picker.active {
+     display: grid !important;
+ }
 
         .emoji-item {
             display: flex;
@@ -1016,9 +1066,39 @@ else
             margin-top: 5px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-    </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+        .btn-delete-folder{
+    margin-left:10px;
+    border:none;
+    background:#fee2e2;
+    color:#dc2626;
+    border-radius:8px;
+    padding:6px 8px;
+    cursor:pointer;
+}
 
+.btn-delete-folder:hover{
+    background:#fecaca;
+}
+
+.member-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.btn-kick{
+    border:none;
+    background:#fee2e2;
+    color:#dc2626;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn-kick:hover{
+    background:#fecaca;
+}
+    </style>
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 
@@ -1077,17 +1157,29 @@ else
 
     // --- XỬ LÝ EMOJI ---
     function toggleEmoji() {
-        const panel = document.getElementById("emojiPanel");
-        panel.style.display = panel.style.display === "none" ? "grid" : "none";
+    const panel = document.getElementById("emojiPanel");
+    if (!panel) return;
+    
+    // Kiểm tra trạng thái hiển thị
+    if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = "grid"; // Hoặc "block" tùy CSS của bạn
+    } else {
+        panel.style.display = "none";
     }
+}
 
+// Đăng ký sự kiện click cho từng emoji một cách chắc chắn
+document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".emoji-item").forEach(item => {
-        item.addEventListener("click", function() {
+        item.onclick = function() {
             const input = document.getElementById("chatInput");
             input.value += this.innerText;
             input.focus();
-        });
+            // Tùy chọn: Đóng panel sau khi chọn
+            // document.getElementById("emojiPanel").style.display = "none";
+        };
     });
+});
 
     // --- XỬ LÝ UPLOAD ẢNH ---
     document.getElementById("imageInput").addEventListener("change", async function () {
@@ -1125,5 +1217,66 @@ else
             sendMessage();
         }
     });
+   function removeFolder(event, folderId) {
+    // Ngăn chặn việc nhảy vào link FolderDetail của thẻ <a> cha
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!confirm("Bạn có chắc muốn xoá folder khỏi lớp?")) return;
+
+    // Lấy token từ input ẩn do @Html.AntiForgeryToken() tạo ra
+    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+    fetch('/Home/RemoveFolderFromClass', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token
+        },
+        body: `classId=${classId}&folderId=${folderId}`
+    })
+    .then(res => {
+        if (res.ok) {
+            location.reload();
+        } else {
+            alert("Lỗi: Không có quyền hoặc không tìm thấy folder.");
+        }
+    })
+    .catch(() => alert("Không thể kết nối đến máy chủ"));
+}
+function kickMember(userId) {
+    if (!confirm("Bạn có chắc muốn kick thành viên này ra khỏi lớp?")) return;
+
+    // Lấy token từ input ẩn do @Html.AntiForgeryToken() sinh ra
+    const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+    if (!tokenElement) {
+        alert("Không tìm thấy RequestVerificationToken!");
+        return;
+    }
+    const token = tokenElement.value;
+
+    fetch('/Home/KickMember', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token
+        },
+        body: `classId=${classId}&userId=${userId}`
+    })
+    .then(res => {
+        if (res.ok) {
+            alert("Đã xóa thành viên thành công.");
+            location.reload();
+        } else if (res.status === 403) {
+            alert("Bạn không có quyền thực hiện hành động này.");
+        } else {
+            alert("Có lỗi xảy ra khi kick thành viên.");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Không thể kết nối đến máy chủ.");
+    });
+}
 </script>
 }

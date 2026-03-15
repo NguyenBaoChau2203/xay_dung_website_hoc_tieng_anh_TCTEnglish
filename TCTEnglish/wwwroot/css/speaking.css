@@ -136,6 +136,10 @@
     margin-bottom: 32px;
 }
 
+.vi-filter-section--level {
+    margin-top: 15px;
+}
+
 .vi-filter-header {
     display: flex;
     align-items: center;
@@ -706,6 +710,21 @@
    PRACTICE PAGE v3 — Premium 2-Column Design (spk-*)
    ================================================================= */
 
+/* ── Global focus-visible for all interactive spk-* elements ────── */
+.spk-btn:focus-visible,
+.spk-sent-btn:focus-visible,
+.spk-pill-btn:focus-visible,
+.spk-slider-arrow:focus-visible,
+.spk-back-btn:focus-visible,
+.spk-vid-ctrl-btn:focus-visible,
+.spk-hide-text-btn:focus-visible,
+.spk-dic-hint-btn:focus-visible,
+.spk-dic-play-btn:focus-visible,
+.spk-dic-input:focus-visible {
+    outline: 2px solid var(--sp-blue);
+    outline-offset: 2px;
+}
+
 /* ── Page shell ─────────────────────────────────────────────────── */
 .spk-page {
     padding: 20px 24px 48px;
@@ -808,6 +827,7 @@
 ══════════════════════════════════════════════════════════════════ */
 .spk-left-col {
     flex: 0 0 58%;
+    max-width: 720px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -928,6 +948,18 @@
     flex-direction: column;
     gap: 24px;
     flex: 1;
+    animation: spk-fade-in 0.25s ease;
+}
+
+@keyframes spk-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Pane header */
@@ -981,6 +1013,10 @@
     color: #374151;
 }
 
+.spk-slider-arrow:active {
+    transform: scale(0.92);
+}
+
 .spk-slider-track {
     display: flex;
     gap: 7px;
@@ -991,6 +1027,7 @@
     -ms-overflow-style: none;
     /* IE/Edge */
     padding-bottom: 3px;
+    scroll-snap-type: x mandatory;
 }
 
 .spk-slider-track::-webkit-scrollbar {
@@ -1016,6 +1053,7 @@
     justify-content: center;
     white-space: nowrap;
     transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    scroll-snap-align: center;
 }
 
 .spk-sent-btn:hover {
@@ -1023,9 +1061,9 @@
     color: #374151;
 }
 
-.spk-sent-btn--active {
-    background: var(--sp-blue) !important;
-    color: #fff !important;
+.spk-sent-btn.spk-sent-btn--active {
+    background: var(--sp-blue);
+    color: #fff;
     box-shadow: 0 4px 12px rgba(66, 85, 255, 0.35);
 }
 
@@ -1035,8 +1073,8 @@
 }
 
 .spk-sent-btn--done.spk-sent-btn--active {
-    background: var(--sp-blue) !important;
-    color: #fff !important;
+    background: var(--sp-blue);
+    color: #fff;
 }
 
 .spk-done-check {
@@ -1083,20 +1121,21 @@
     position: absolute;
     top: 18px;
     right: 18px;
-    background: #f3f4f6;
-    border: 1px solid #e5e7eb;
+    background: #e5e7eb;
+    border: 1px solid #d1d5db;
     border-radius: 999px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    padding: 4px 14px;
-    color: #6b7280;
+    padding: 5px 14px;
+    color: #374151;
     cursor: pointer;
-    transition: background 0.18s;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
 .spk-hide-text-btn:hover {
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--sp-blue-lt);
+    border-color: var(--sp-blue);
+    color: var(--sp-blue);
 }
 
 .spk-transcript-text {
@@ -1189,6 +1228,10 @@
     transform: translateY(-1px);
 }
 
+.spk-btn--nav:active {
+    transform: translateY(0) scale(0.97);
+}
+
 .spk-btn--nav-next {
     background: var(--sp-blue-lt);
     color: var(--sp-blue);
@@ -1219,6 +1262,10 @@
     transform: scale(1.07);
 }
 
+.spk-btn--replay:active {
+    transform: scale(0.95);
+}
+
 /* Record button — the hero element */
 .spk-btn--record {
     background: var(--sp-blue);
@@ -1238,6 +1285,11 @@
     box-shadow: 0 10px 28px rgba(66, 85, 255, 0.5);
 }
 
+.spk-btn--record:active:not(.is-recording):not(.is-scoring) {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.3);
+}
+
 .spk-btn--record.is-recording {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
@@ -1253,6 +1305,24 @@
 
     50% {
         box-shadow: 0 6px 32px rgba(239, 68, 68, 0.7);
+    }
+}
+
+/* Scoring state — amber glow while saving to server */
+.spk-btn--record.is-scoring {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+    animation: scoring-pulse 1s ease-in-out infinite;
+    cursor: wait;
+    pointer-events: none;
+}
+
+@keyframes scoring-pulse {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+    }
+    50% {
+        box-shadow: 0 6px 32px rgba(245, 158, 11, 0.75);
     }
 }
 
@@ -1395,7 +1465,7 @@
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     padding: 10px 22px;
-    border-radius: 999px;
+    border-radius: 16px;
     font-size: 0.85rem;
     font-weight: 600;
     color: #fff;
@@ -1405,7 +1475,10 @@
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.25s, transform 0.25s;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
+    max-width: min(90vw, 440px);
+    word-break: break-word;
 }
 
 .spk-toast.is-visible {
@@ -1441,8 +1514,20 @@
         flex-direction: column;
     }
 
+    .spk-left-col {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+
     .spk-progress-card {
         margin-top: 0;
+    }
+}
+
+/* Hide keyboard shortcut hints on touch/small screens (Issue #12) */
+@media (max-width: 768px) {
+    .spk-shortcut {
+        display: none;
     }
 }
 
@@ -1452,17 +1537,83 @@
         min-height: calc(0.95rem * 1.55 * 2);
     }
 
-    .spk-btn--record {
-        padding: 13px 16px;
-        font-size: 0.85rem;
+    /* Stack action row vertically on mobile (Issue #1) */
+    .spk-action-row {
+        flex-direction: column;
+        gap: 12px;
     }
 
-    .spk-score-name {
-        font-size: 0.72rem;
+    .spk-action-col--center {
+        order: -1;
+        width: 100%;
+    }
+
+    .spk-center-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .spk-center-btn-wrap {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .spk-btn--record {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 0.88rem;
+        justify-content: center;
+    }
+
+    .spk-btn--replay {
+        width: 44px;
+        height: 44px;
+        font-size: 0.95rem;
+    }
+
+    /* Prev/Next become a horizontal row under center actions */
+    .spk-action-col:not(.spk-action-col--center) {
+        width: 100%;
+    }
+
+    .spk-btn--nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Score grid single-column on small screens (Issue #2) */
+    .spk-score-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .spk-score-cell--border-right {
+        border-right: none;
     }
 
     .spk-score-cell {
-        padding: 12px 10px;
+        padding: 12px 14px;
+        border-bottom: 1px solid #f0f0f5;
+    }
+
+    .spk-score-cell:last-child {
+        border-bottom: none;
+    }
+
+    .spk-score-name {
+        font-size: 0.78rem;
+        white-space: normal;
+    }
+
+    /* Smaller textarea on mobile (Issue #14) */
+    .spk-dic-input {
+        font-size: 1rem;
+        padding: 12px 14px;
+    }
+
+    .spk-dic-feedback {
+        font-size: 0.95rem;
+        gap: 6px;
     }
 }
 
@@ -1602,8 +1753,8 @@
     min-height: 52px;
     padding: 4px 0;
     font-size: 1.1rem;
-    letter-spacing: 2px;
-    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1.5px;
+    font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, monospace;
 }
 
 /* Each word is a rounded box with a dashed border by default */
@@ -1687,6 +1838,16 @@
     transform: scale(1.08);
 }
 
+.spk-dic-hint-btn:active {
+    transform: scale(0.95);
+}
+
+.spk-dic-hint-btn.is-active {
+    background: var(--sp-amber);
+    border-color: var(--sp-amber);
+    color: #fff;
+}
+
 /* Play/Pause button — large pill, primary blue */
 .spk-dic-play-btn {
     display: inline-flex;
@@ -1710,6 +1871,11 @@
     background: var(--sp-blue-dk);
     transform: translateY(-2px);
     box-shadow: 0 10px 28px rgba(66, 85, 255, 0.5);
+}
+
+.spk-dic-play-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.3);
 }
 
 /* Pause state (JS toggles this class) */
@@ -2228,79 +2394,4 @@
 
 .spk-toast.spk-toast-retry {
     background: #d97706;
-}
-
-/* =================================================================
-   RESPONSIVE
-   ================================================================= */
-@media (max-width: 1200px) {
-    .vi-video-col {
-        flex: 0 0 calc((100% - 48px) / 4);
-        /* 4 columns */
-        min-width: 190px;
-    }
-}
-
-@media (max-width: 960px) {
-    .prac-shell {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-        height: auto;
-        overflow: auto;
-    }
-
-    .prac-left {
-        padding: 16px;
-    }
-
-    .prac-right {
-        border-left: none;
-        border-top: 1px solid #f0f0f5;
-        min-height: 400px;
-    }
-
-    .prac-sentence-list {
-        max-height: 55vh;
-    }
-
-    .vi-video-col {
-        flex: 0 0 calc((100% - 32px) / 3);
-        /* 3 columns */
-        min-width: 180px;
-    }
-}
-
-@media (max-width: 640px) {
-    .vi-page {
-        padding: 20px 16px 48px;
-    }
-
-    .vi-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .vi-search-box {
-        width: 100%;
-    }
-
-    .vi-level-head {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .vi-filter-pills {
-        gap: 6px;
-    }
-
-    .topic-filter-btn {
-        padding: 6px 14px;
-        font-size: 0.78rem;
-    }
-
-    .vi-video-col {
-        flex: 0 0 calc((100% - 16px) / 2);
-        /* 2 columns */
-        min-width: 160px;
-    }
 }

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 using TCTVocabulary.Models;
 using TCTVocabulary.Models.ViewModels;
+using TCTVocabulary.Services;
 using TCTVocabulary.ViewModel;
 
 namespace TCTVocabulary.Controllers
@@ -12,10 +13,12 @@ namespace TCTVocabulary.Controllers
     public class HomeController : Controller
     {
         private readonly DbflashcardContext _context;
+        private readonly IAppEmailSender _emailSender;
 
-        public HomeController(DbflashcardContext context)
+        public HomeController(DbflashcardContext context, IAppEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
 
         private bool TryGetCurrentUserId(out int userId)
@@ -236,8 +239,50 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
+
+        // =========================
+        // CONTACT
+        // =========================
+        [AllowAnonymous]
         [HttpGet]
-      
+        public IActionResult Contact(string? subject)
+        {
+            var vm = new ContactFormViewModel
+            {
+                Subject = ContactFormViewModel.NormalizeSubject(subject)
+            };
+
+            return View(vm);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(ContactFormViewModel model)
+        {
+            model.Subject = ContactFormViewModel.NormalizeSubject(model.Subject);
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var isSent = await _emailSender.SendContactMessageAsync(
+                model.Name,
+                model.Email,
+                model.SubjectDisplayName,
+                model.Message,
+                HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Request.Headers.UserAgent.ToString());
+
+            TempData[isSent ? "ContactSuccessMessage" : "ContactErrorMessage"] = isSent
+                ? "Yêu cầu của bạn đã được gửi. Chúng tôi sẽ phản hồi trong thời gian sớm nhất."
+                : "Không thể gửi liên hệ lúc này. Vui lòng thử lại sau hoặc email support.tctenglish@gmail.com.";
+
+            return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+        }
+
+        [HttpGet]
         public IActionResult Search(string q)
         {
             var vm = new SearchViewModel
@@ -272,12 +317,17 @@ namespace TCTVocabulary.Controllers
             // 🔹 Folder của chính mình
             var myFolders = _context.Folders
                 .Where(f => f.UserId == currentUserId && f.ParentFolderId == null)
+                .Include(f => f.Sets)
+                .Include(f => f.User)
                 .ToList();
 
-            // 🔹 Folder đã lưu (SavedFolder)
+            // 🔹 Folder đã lưu
             var savedFolders = _context.SavedFolders
                 .Where(sf => sf.UserId == currentUserId)
                 .Include(sf => sf.Folder)
+                    .ThenInclude(f => f.Sets)
+                .Include(sf => sf.Folder)
+                    .ThenInclude(f => f.User)
                 .Select(sf => sf.Folder)
                 .ToList();
 
@@ -367,7 +417,70 @@ namespace TCTVocabulary.Controllers
 
             return View(vm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken] // Nên thêm cái này để bảo mật
+        public IActionResult RemoveFolderFromClass(int classId, int folderId)
+        {
+            var item = _context.ClassFolders
+                .FirstOrDefault(x => x.ClassId == classId && x.FolderId == folderId);
 
+            if (item == null) return NotFound();
+
+            var classData = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
+            if (classData == null) return NotFound();
+
+            // Dùng ClaimTypes.NameIdentifier để đồng bộ với View
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null) return Unauthorized();
+
+            int currentUserId = int.Parse(userIdClaim.Value);
+
+            // Kiểm tra quyền: Chủ lớp HOẶC Người đã thêm folder đó vào lớp
+            if (item.AddedByUserId != currentUserId && classData.OwnerId != currentUserId)
+                return Forbid();
+
+            _context.ClassFolders.Remove(item);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult KickMember(int classId, int userId)
+        {
+            // 1. Lấy thông tin thành viên cần kick
+            var member = _context.ClassMembers
+                .FirstOrDefault(x => x.ClassId == classId && x.UserId == userId);
+
+            if (member == null) return NotFound("Thành viên không tồn tại trong lớp.");
+
+            // 2. Lấy thông tin lớp để kiểm tra quyền Owner
+            var classData = _context.Classes.FirstOrDefault(c => c.ClassId == classId);
+            if (classData == null) return NotFound("Lớp học không tồn tại.");
+
+            // 3. Lấy ID người dùng hiện tại từ Claim
+            var currentUserIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (currentUserIdClaim == null) return Unauthorized();
+
+            int currentUserId = int.Parse(currentUserIdClaim.Value);
+
+            // 4. Chỉ chủ lớp (Owner) mới có quyền kick người khác
+            if (classData.OwnerId != currentUserId)
+            {
+                return Forbid(); // Không có quyền
+            }
+
+            // Không cho phép chủ lớp tự kick chính mình qua hàm này (nếu cần)
+            if (userId == currentUserId)
+            {
+                return BadRequest("Chủ lớp không thể tự kick chính mình.");
+            }
+
+            _context.ClassMembers.Remove(member);
+            _context.SaveChanges();
+
+            return Ok();
+        }
         public IActionResult Login()
         {
             return View();
@@ -625,13 +738,85 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("FolderDetail", new { id = set.FolderId });
             }
 
+            // Truy vấn LearningProgress để lấy tiến độ đã lưu
+            var cardIds = set.Cards.Select(c => c.CardId).ToList();
+            var masteredIds = new List<int>();
+            var learningIds = new List<int>();
+
+            if (TryGetCurrentUserId(out var userId))
+            {
+                var progresses = _context.LearningProgresses
+                    .Where(lp => lp.UserId == userId && cardIds.Contains(lp.CardId))
+                    .ToList();
+
+                masteredIds = progresses
+                    .Where(lp => lp.Status == "Mastered")
+                    .Select(lp => lp.CardId)
+                    .ToList();
+
+                learningIds = progresses
+                    .Where(lp => lp.Status == "Learning" || lp.Status == "Reviewing")
+                    .Select(lp => lp.CardId)
+                    .ToList();
+            }
+
             var vm = new StudyViewModel
             {
                 Set = set,
-                Cards = set.Cards.ToList()
+                Cards = set.Cards.ToList(),
+                MasteredCardIds = masteredIds,
+                LearningCardIds = learningIds
             };
 
             return View(vm);
+        }
+
+        // [Task 1.4] Endpoint lưu tiến độ học tập qua AJAX
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdateCardProgress([FromBody] UpdateCardProgressRequest request)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized();
+
+            var progress = await _context.LearningProgresses
+                .FirstOrDefaultAsync(lp => lp.UserId == userId && lp.CardId == request.CardId);
+
+            if (progress == null)
+            {
+                progress = new LearningProgress
+                {
+                    UserId = userId,
+                    CardId = request.CardId,
+                    Status = "Learning",
+                    WrongCount = 0,
+                    RepetitionCount = 0
+                };
+                _context.LearningProgresses.Add(progress);
+            }
+
+            progress.LastReviewedDate = DateTime.UtcNow;
+
+            if (request.IsKnown)
+            {
+                // Đã thuộc
+                progress.Status = "Mastered";
+                progress.RepetitionCount += 1;
+                // Đặt mặc định xem lại sau 7 ngày để tránh bị quá rườm rà
+                progress.NextReviewDate = DateTime.UtcNow.AddDays(7);
+            }
+            else
+            {
+                // Chưa thuộc
+                progress.Status = "Learning";
+                progress.RepetitionCount = 0;
+                progress.WrongCount = (progress.WrongCount ?? 0) + 1;
+                progress.NextReviewDate = DateTime.UtcNow.AddMinutes(1);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
 
         public IActionResult Speaking(int? id)
@@ -733,6 +918,14 @@ namespace TCTVocabulary.Controllers
             // Cập nhật thông tin cơ bản
             existingSet.SetName = SetName;
             existingSet.Description = Description;
+
+            // Xóa các tiến độ học tập (LearningProgress) liên quan đến các thẻ cũ để tránh lỗi foreign key constraint "DELETE statement conflicted with the REFERENCE constraint"
+            var oldCardIds = existingSet.Cards.Select(c => c.CardId).ToList();
+            if (oldCardIds.Any())
+            {
+                var relatedProgresses = _context.LearningProgresses.Where(lp => oldCardIds.Contains(lp.CardId));
+                _context.LearningProgresses.RemoveRange(relatedProgresses);
+            }
 
             // Xóa toàn bộ Cards cũ và thêm lại Cards mới (cách đơn giản nhất)
             _context.Cards.RemoveRange(existingSet.Cards);
@@ -953,14 +1146,15 @@ namespace TCTVocabulary.Controllers
             return View(vm);
         }
         [HttpPost]
-        [IgnoreAntiforgeryToken]
+        [ValidateAntiForgeryToken] // Bật bảo mật lên để khớp với JS
         [Authorize]
         public async Task<IActionResult> AddFolderToClass(int classId, int folderId)
         {
-            if (!TryGetCurrentUserId(out var userId))
-            {
-                return Unauthorized();
-            }
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            // Kiểm tra xem user này có phải là thành viên hoặc chủ lớp không
+            bool isMember = await _context.ClassMembers
+                .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId);
 
             var cls = await _context.Classes.FirstOrDefaultAsync(c => c.ClassId == classId);
             if (cls == null)
@@ -968,7 +1162,27 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
             }
 
-            if (!IsAdminUser() && cls.OwnerId != userId)
+            bool isOwner = cls.OwnerId == userId;
+            if (!isOwner && !isMember && !IsAdminUser())
+            {
+                return Forbid();
+            }
+
+            var folder = await _context.Folders
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.FolderId == folderId);
+
+            if (folder == null)
+            {
+                return NotFound("Folder không tồn tại");
+            }
+
+            var hasSavedFolder = await _context.SavedFolders
+                .AsNoTracking()
+                .AnyAsync(sf => sf.UserId == userId && sf.FolderId == folderId);
+
+            var canUseFolder = IsAdminUser() || folder.UserId == userId || hasSavedFolder;
+            if (!canUseFolder)
             {
                 return Forbid();
             }
@@ -1174,5 +1388,11 @@ namespace TCTVocabulary.Controllers
             // Trả về đường dẫn để JS gọi Hub
             return Json(new { imageUrl = "/uploads/chat/" + fileName });
         }
+    }
+
+    public class UpdateCardProgressRequest
+    {
+        public int CardId { get; set; }
+        public bool IsKnown { get; set; }
     }
 }
