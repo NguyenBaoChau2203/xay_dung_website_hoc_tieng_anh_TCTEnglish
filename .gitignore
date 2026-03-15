@@ -44,3 +44,13 @@ node_modules/
 *.mdf
 *.ldf
 /TCTVocabulary/wwwroot/images/classes
+
+# ===============================
+# Runtime uploads
+# ===============================
+TCTEnglish/wwwroot/uploads/chat/*
+!TCTEnglish/wwwroot/uploads/chat/.gitkeep
+TCTEnglish/wwwroot/images/cards/*
+!TCTEnglish/wwwroot/images/cards/.gitkeep
+TCTEnglish/wwwroot/images/avatars/*
+!TCTEnglish/wwwroot/images/avatars/.gitkeep
