@@ -27,6 +27,14 @@ obj/
 *.log
 *.cache
 .appdata/
+.tmp/
+.dotnet-home/
+.dotnet/
+.dotnet_cli/
+dotnet-test-output.txt
+git_log.txt
+git_status.txt
+git_status_s.txt
 
 # ===============================
 # OS
