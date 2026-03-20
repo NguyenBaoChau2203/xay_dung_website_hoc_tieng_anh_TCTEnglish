@@ -10,7 +10,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace TCTEnglish.ViewModels
+namespace TCTVocabulary.ViewModels // ViewModels use TCTVocabulary namespace root
 {
     // ============================================================
     // Main ViewModel (used for both Create and Edit forms)

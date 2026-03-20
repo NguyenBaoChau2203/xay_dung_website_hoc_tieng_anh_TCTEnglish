@@ -34,8 +34,12 @@ Use when generating git commit messages for TCT English changes.
 |-------|------|
 | `auth` | Login, register, OAuth, password reset |
 | `vocab` | Sets, cards, flashcard modes |
-| `speaking` | Videos, shadowing, dictation |
-| `class` | Classroom, SignalR chat |
+| `folder` | Folder list, folder detail, nested folder flows |
+| `set` | Set create/edit/delete flows |
+| `study` | Study modes (quiz, write, match, read, flashcard) |
+| `chat` | Chat image upload, class chat HTTP endpoints |
+| `speaking` | Videos, shadowing, dictation, speaking playlist |
+| `class` | Classroom creation, join/leave, SignalR chat |
 | `goals` | Daily goals, streaks |
 | `admin` | Admin panel, user/video management |
 | `api` | API endpoints |

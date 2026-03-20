@@ -12,9 +12,9 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TCTEnglish.Models;
+using TCTEnglish.Models;      // EF entities use TCTEnglish namespace
 using TCTEnglish.Services;
-using TCTEnglish.ViewModels;
+using TCTVocabulary.ViewModels; // ViewModels use TCTVocabulary namespace
 
 namespace TCTEnglish.Controllers
 {

@@ -30,14 +30,18 @@ AI assistants should use these exact terms consistently.
 
 | Mode | View File | Description |
 |------|-----------|-------------|
-| **Flashcard mode** | `Study.cshtml` | Flip card to reveal definition; mark known/unknown |
-| **Quiz mode** | `QuizMode.cshtml` | Multiple choice (4 options); distractors from same set |
-| **Write mode** | `WriteMode.cshtml` | Type the term from definition; exact match grading |
-| **Matching mode** | `MatchingMode.cshtml` | Drag term to its definition; max 8 pairs per round |
-| **Read mode** | `Reading.cshtml` | Display cards as reading text for passive review |
-| **Shadowing** | `Speaking.cshtml` | A-B repeat listening; user speaks along with audio |
-| **Dictation** | `Speaking.cshtml` | Type what you hear; normalized grading |
-| **Listening** | `Speaking.cshtml` | Comprehension questions about audio content |
+| **Flashcard mode** | `Views/Study/Study.cshtml` | Flip card to reveal definition; mark known/unknown |
+| **Quiz mode** | `Views/Study/QuizMode.cshtml` | Multiple choice (4 options); distractors from same set |
+| **Write mode** | `Views/Study/WriteMode.cshtml` | Type the term from definition; exact match grading |
+| **Matching mode** | `Views/Study/MatchingMode.cshtml` | Drag term to its definition; max 8 pairs per round |
+| **Read mode** | `Views/Study/Reading.cshtml` | Display cards as reading text for passive review |
+| **Shadowing** | `Views/Study/Speaking.cshtml` | A-B repeat listening; user speaks along with audio |
+| **Dictation** | `Views/Study/Speaking.cshtml` | Type what you hear; normalized grading |
+| **Listening** | `Views/Study/Speaking.cshtml` | Comprehension questions about audio content |
+
+> **Note**: The study-mode speaking screen (`Views/Study/Speaking.cshtml`) is owned by `StudyController`
+> and is distinct from the speaking playlist area (`Views/Speaking/Index.cshtml`,
+> `Views/Speaking/Practice.cshtml`) which is owned by `SpeakingController`.
 
 ---
 
@@ -51,11 +55,12 @@ AI assistants should use these exact terms consistently.
 | **N+1 query** | EF loading relationships one-by-one in a loop (performance bug) |
 | **AsNoTracking** | EF hint to skip change tracking for read-only queries (performance improvement) |
 | **BaseController** | Parent controller class providing `GetCurrentUserId()` helper |
-| **GetCurrentUserId()** | Helper method: `int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))` |
+| **GetCurrentUserId()** | Helper method on `BaseController` using `CurrentUserIdExtensions` — always use this, never parse `ClaimTypes.NameIdentifier` inline |
 | **DbflashcardContext** | The EF Core `DbContext` class for TCT English database |
 | **Seeder guard** | `if (await context.X.AnyAsync()) return;` prevents duplicate seeding |
 | **Idempotent** | An operation that produces the same result when executed multiple times |
 | **AutoUnlockWorker** | Background `IHostedService` that unblocks users when `LockExpiry` passes |
+| **OperationResult** | Shared success/failure wrapper returned by services; use instead of raw bool or exceptions |
 
 ---
 

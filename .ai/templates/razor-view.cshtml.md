@@ -8,7 +8,7 @@
 {{!--   3. Customize the content area with your feature-specific HTML --}}
 {{!--   4. Add feature-specific CSS/JS in the sections at the bottom --}}
 
-@model TCTEnglish.ViewModels.{Feature}ViewModel
+@model TCTVocabulary.ViewModels.{Feature}ViewModel
 @{
     ViewData["Title"] = "{Feature}";
     ViewData["ActivePage"] = "{feature}";  // Used by _Layout.cshtml to highlight nav item
