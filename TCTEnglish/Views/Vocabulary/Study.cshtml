@@ -1,23 +1,23 @@
-@model TCTVocabulary.Models.Set
+@model TCTVocabulary.ViewModels.StudyViewModel
 @{
     ViewData["Title"] = "Học từ vựng";
 
-    var setId = Model.SetId;
-    var set = Model;
-    var cards = Model.Cards?.ToList() ?? new List<TCTVocabulary.Models.Card>();
+    var setId = Model.Set.SetId;
+    var cards = Model.Cards?.ToList() ?? new List<TCTVocabulary.ViewModels.VocabularyCardItemViewModel>();
     var totalCards = cards.Count;
-    var currentIndex = ViewBag.CurrentIndex ?? 1;
+    var currentIndex = Model.CurrentIndex;
 
-    TCTVocabulary.Models.Card currentCard = null;
-    if (cards != null && cards.Count > 0 && currentIndex <= cards.Count)
+    TCTVocabulary.ViewModels.VocabularyCardItemViewModel? currentCard = null;
+    if (cards.Count > 0 && currentIndex <= cards.Count)
     {
         currentCard = cards[currentIndex - 1];
     }
 
-    // Tính toán thống kê
-    var learnedCount = cards.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true);
+    var learnedCount = cards.Count(c => c.LearningStatus == "Mastered");
     var progress = totalCards > 0 ? (learnedCount * 100) / totalCards : 0;
 }
+
+@Html.AntiForgeryToken()
 
 @section Styles {
     <link rel="stylesheet" href="~/css/vocabulary-system.css" />
@@ -1335,8 +1335,8 @@
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div class="set-info-compact">
-                <h2>@(set?.SetName ?? "3000 từ vựng Oxford")</h2>
-                <span class="set-category">@(set?.Folder?.FolderName ?? "Animal")</span>
+                <h2>@(string.IsNullOrWhiteSpace(Model.Set.SetName) ? "3000 từ vựng Oxford" : Model.Set.SetName)</h2>
+                <span class="set-category">@(string.IsNullOrWhiteSpace(Model.Set.FolderName) ? "Animal" : Model.Set.FolderName)</span>
             </div>
         </div>
 
@@ -1757,7 +1757,7 @@
         let isFlipped = false;
         let currentIndex = @currentIndex;
         let totalCards = @totalCards;
-        let isReview = @Html.Raw(Json.Serialize((bool)(ViewBag.IsReview ?? false))); // [FIX: Review Skip]
+        let isReview = @Html.Raw(Json.Serialize((bool)(Model.IsReview))); // [FIX: Review Skip]
         let currentMode = 'writing'; // Mặc định là writing
         let autoPlayAudio = true;
         let speechRate = 0.9;
@@ -1962,9 +1962,13 @@
 
             // Gọi API để ghi nhận
             try {
+                const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
                 const response = await fetch('/api/LearningApi/record', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': antiForgeryToken
+                    },
                     body: JSON.stringify({
                         cardId: @(currentCard?.CardId ?? 0),
                         masteryLevel: level,
@@ -2019,7 +2023,7 @@
 
         function navigateToCard(index) {
             const setId = '@setId';
-            const topic = @Html.Raw(Json.Serialize(ViewBag.TopicName ?? ""));
+            const topic = @Html.Raw(Json.Serialize(Model.TopicName ?? ""));
             // [FIX: Review Skip] Trong review mode, luôn dùng index=1
             let actualIndex = isReview ? 1 : index;
             let url = '@Url.Action("Study", "Vocabulary")?setId=' + setId + '&index=' + actualIndex;
@@ -2048,9 +2052,13 @@
         function markAsImportant() {
             const btn = event.currentTarget;
             btn.innerHTML = '<i class="fas fa-star" style="color: #fbbf24;"></i>';
+            const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
             fetch('/api/LearningApi/important', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': antiForgeryToken
+                },
                 body: JSON.stringify({ cardId: @(currentCard?.CardId ?? 0) })
             }).catch(err => console.error(err));
         }

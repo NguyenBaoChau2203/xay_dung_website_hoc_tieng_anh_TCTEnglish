@@ -10,10 +10,11 @@ using BCrypt.Net;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using TCTVocabulary.Services;
+using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly DbflashcardContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -357,8 +358,7 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
 
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null) return RedirectToAction("Login");
@@ -368,7 +368,7 @@ namespace TCTVocabulary.Controllers
                 .Where(c => c.Set.OwnerId == userId)
                 .CountAsync();
 
-            var model = new TCTVocabulary.ViewModels.UpdateProfileViewModel
+            var model = new UpdateProfileViewModel
             {
                 FullName = user.FullName ?? string.Empty,
                 CurrentAvatarUrl = user.AvatarUrl,
@@ -383,10 +383,9 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public async Task<IActionResult> UpdateProfile(TCTVocabulary.ViewModels.UpdateProfileViewModel model)
+        public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
@@ -431,8 +430,7 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> Settings()
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
 
             // OPTIMIZE: AsNoTracking — read-only query for display
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
@@ -442,7 +440,7 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Login");
             }
 
-            var model = new TCTVocabulary.ViewModels.SecuritySettingsViewModel
+            var model = new SecuritySettingsViewModel
             {
                 Email = user.Email
             };
@@ -454,10 +452,9 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public async Task<IActionResult> UpdateEmail(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
+        public async Task<IActionResult> UpdateEmail(SecuritySettingsViewModel model)
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
@@ -494,10 +491,9 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public async Task<IActionResult> ChangePassword(TCTVocabulary.ViewModels.SecuritySettingsViewModel model)
+        public async Task<IActionResult> ChangePassword(SecuritySettingsViewModel model)
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null) return RedirectToAction("Login");
@@ -552,8 +548,7 @@ namespace TCTVocabulary.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<IActionResult> DeleteAccount()
         {
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
 
             var accountDeleted = false;
 

@@ -1,0 +1,560 @@
+@model TCTVocabulary.ViewModels.SetEditorViewModel
+@{
+    var isEdit = Model.SetId.HasValue;
+    var heading = isEdit ? "Chỉnh sửa học phần" : "Tạo học phần mới";
+    var submitLabel = isEdit ? "Lưu thay đổi" : "Tạo";
+    var submitLabelLong = isEdit ? "Lưu học phần" : "Tạo học phần";
+    var cards = Model.Cards?.Any() == true
+        ? Model.Cards
+        : new List<SetCardEditorItemViewModel> { new() };
+}
+
+<div class="create-set-wrapper">
+    <form asp-action="@(isEdit ? "EditSet" : "CreateSet")" method="post" enctype="multipart/form-data" id="setEditorForm">
+        <input asp-for="SetId" type="hidden" />
+        <input asp-for="FolderId" type="hidden" />
+
+        <div class="sticky-header">
+            <div class="header-container">
+                <h1 class="page-title">@heading</h1>
+                <div class="header-actions">
+                    <button type="submit" class="btn-submit-main">@submitLabel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-main">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div asp-validation-summary="All" class="alert alert-danger mb-4"></div>
+            }
+
+            <div class="info-section card-shadow">
+                <div class="input-floating">
+                    <input asp-for="SetName" id="setName" placeholder=" " />
+                    <label asp-for="SetName">Tiêu đề (ví dụ: "Tiếng Anh chuyên ngành")</label>
+                    <div class="input-line"></div>
+                    <span asp-validation-for="SetName" class="text-danger d-block mt-2"></span>
+                </div>
+
+                <div class="input-floating mt-4">
+                    <textarea asp-for="Description" id="setDescription" placeholder=" " rows="1"></textarea>
+                    <label asp-for="Description">Thêm mô tả về học phần này...</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="toolbar-minimal">
+                    <button type="button" class="btn-tool"><i class="fas fa-plus-circle"></i> Nhập dữ liệu</button>
+                    <button type="button" class="btn-tool"><i class="fas fa-project-diagram"></i> Thêm sơ đồ</button>
+                </div>
+            </div>
+
+            <div id="terms-container">
+                @for (var i = 0; i < cards.Count; i++)
+                {
+                    var card = cards[i];
+                    <div class="term-card card-shadow">
+                        <div class="term-card-header">
+                            <span class="index-badge">@(i + 1)</span>
+                            <div class="header-controls">
+                                <button type="button" class="btn-control drag-handle"><i class="fas fa-grip-lines"></i></button>
+                                <button type="button" class="btn-control btn-delete" onclick="removeTerm(this)"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="term-card-content">
+                            <div class="input-group">
+                                <div class="input-minimal">
+                                    <input type="text" name="Cards[@i].Term" value="@card.Term" placeholder="Thuật ngữ" class="term-input" />
+                                    <label>THUẬT NGỮ</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-minimal">
+                                    <input type="text" name="Cards[@i].Definition" value="@card.Definition" placeholder="Định nghĩa" class="definition-input" />
+                                    <label>ĐỊNH NGHĨA</label>
+                                </div>
+                            </div>
+                            <div class="image-upload-area">
+                                <label class="image-upload-box">
+                                    <i class="fas fa-image @(card.HasImage ? "d-none" : string.Empty)"></i>
+                                    <span class="image-label @(card.HasImage ? "d-none" : string.Empty)">@(card.HasImage ? "Thay đổi ảnh" : "Thêm ảnh")</span>
+                                    <input type="file" name="Cards[@i].ImageFile" accept="image/*" class="image-file-input d-none" onchange="previewImage(this)" />
+                                    <input type="hidden" name="Cards[@i].ExistingImageUrl" value="@card.ExistingImageUrl" class="existing-image-input" />
+                                    <img src="@card.ExistingImageUrl" class="img-preview @(card.HasImage ? string.Empty : "d-none")" alt="" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button type="button" class="btn-add-card-large card-shadow" id="btnAddCard">
+                <div class="add-content">
+                    <div class="plus-icon"><i class="fas fa-plus"></i></div>
+                    <span>THÊM THẺ MỚI</span>
+                </div>
+            </button>
+
+            <div class="bottom-submit-area">
+                <button type="submit" class="btn-submit-main btn-large">@submitLabelLong</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    :root {
+        --primary: #4255ff;
+        --primary-hover: #2e3fe0;
+        --bg: #f6f7fb;
+        --text-main: #1a1d23;
+        --text-sub: #6b7280;
+        --border: #d9dde8;
+        --white: #ffffff;
+        --card-radius: 12px;
+        --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text-main);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+        margin-bottom: 30px;
+    }
+
+    .header-container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .btn-submit-main {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 12px rgba(66, 85, 255, 0.2);
+    }
+
+    .btn-submit-main:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(66, 85, 255, 0.3);
+    }
+
+    .container-main {
+        max-width: 1000px;
+        margin: auto;
+        padding-bottom: 100px;
+    }
+
+    .card-shadow {
+        background: var(--white);
+        border-radius: var(--card-radius);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--border);
+        margin-bottom: 24px;
+    }
+
+    .info-section {
+        padding: 32px;
+    }
+
+    .input-floating {
+        position: relative;
+    }
+
+    .input-floating input,
+    .input-floating textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid var(--border);
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 8px 0;
+        outline: none;
+        background: transparent;
+        transition: var(--transition);
+    }
+
+    .input-floating label {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        color: var(--text-sub);
+        pointer-events: none;
+        transition: var(--transition);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.9rem;
+    }
+
+    .input-floating input:focus ~ label,
+    .input-floating input:not(:placeholder-shown) ~ label,
+    .input-floating textarea:focus ~ label,
+    .input-floating textarea:not(:placeholder-shown) ~ label {
+        top: -20px;
+        font-size: 0.75rem;
+        color: var(--primary);
+        font-weight: 700;
+    }
+
+    .input-floating input:focus,
+    .input-floating textarea:focus {
+        border-bottom-color: var(--primary);
+    }
+
+    .term-card {
+        transition: var(--transition);
+    }
+
+    .term-card:hover {
+        border-color: var(--primary);
+        transform: translateX(4px);
+    }
+
+    .term-card-header {
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fcfcfd;
+        border-bottom: 1px solid #f1f1f4;
+        border-radius: var(--card-radius) var(--card-radius) 0 0;
+    }
+
+    .index-badge {
+        font-weight: 800;
+        color: var(--text-sub);
+    }
+
+    .term-card-content {
+        padding: 24px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 140px;
+        gap: 30px;
+    }
+
+    .input-minimal {
+        position: relative;
+    }
+
+    .input-minimal input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid var(--text-main);
+        padding: 8px 0;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    .input-minimal label {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--text-sub);
+        letter-spacing: 1px;
+    }
+
+    .input-minimal input:focus {
+        border-color: var(--primary);
+    }
+
+    .toolbar-minimal {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .btn-tool {
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 999px;
+        padding: 10px 16px;
+        color: var(--text-sub);
+        font-weight: 600;
+    }
+
+    .image-upload-box {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 88px;
+        border: 2px dashed var(--border);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--text-sub);
+    }
+
+    .image-upload-box:hover {
+        border-color: var(--primary);
+        background: #f4f6ff;
+        color: var(--primary);
+    }
+
+    .image-upload-box i {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+
+    .image-upload-box span {
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .img-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .btn-add-card-large {
+        width: 100%;
+        padding: 24px;
+        border: 2px dashed var(--primary);
+        background: white;
+        color: var(--primary);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .btn-add-card-large:hover {
+        background: #eff1ff;
+        transform: scale(1.01);
+    }
+
+    .plus-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+    }
+
+    .add-content span {
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .bottom-submit-area {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 40px;
+    }
+
+    .btn-large {
+        padding: 16px 48px;
+        font-size: 1.1rem;
+    }
+
+    .btn-control {
+        border: none;
+        background: transparent;
+        color: var(--text-sub);
+    }
+
+    .header-controls {
+        display: flex;
+        gap: 8px;
+    }
+</style>
+
+<script>
+    (() => {
+        const form = document.getElementById('setEditorForm');
+        const container = document.getElementById('terms-container');
+        const addButton = document.getElementById('btnAddCard');
+        const description = document.getElementById('setDescription');
+
+        if (!form || !container || !addButton) {
+            return;
+        }
+
+        const createCardMarkup = index => `
+            <div class="term-card card-shadow">
+                <div class="term-card-header">
+                    <span class="index-badge">${index + 1}</span>
+                    <div class="header-controls">
+                        <button type="button" class="btn-control drag-handle"><i class="fas fa-grip-lines"></i></button>
+                        <button type="button" class="btn-control btn-delete" onclick="removeTerm(this)"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+                <div class="term-card-content">
+                    <div class="input-group">
+                        <div class="input-minimal">
+                            <input type="text" name="Cards[${index}].Term" placeholder="Thuật ngữ" class="term-input" />
+                            <label>THUẬT NGỮ</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-minimal">
+                            <input type="text" name="Cards[${index}].Definition" placeholder="Định nghĩa" class="definition-input" />
+                            <label>ĐỊNH NGHĨA</label>
+                        </div>
+                    </div>
+                    <div class="image-upload-area">
+                        <label class="image-upload-box">
+                            <i class="fas fa-image"></i>
+                            <span class="image-label">Thêm ảnh</span>
+                            <input type="file" name="Cards[${index}].ImageFile" accept="image/*" class="image-file-input d-none" onchange="previewImage(this)" />
+                            <input type="hidden" name="Cards[${index}].ExistingImageUrl" value="" class="existing-image-input" />
+                            <img src="" class="img-preview d-none" alt="" />
+                        </label>
+                    </div>
+                </div>
+            </div>`;
+
+        const syncCardIndexes = () => {
+            const cards = [...container.querySelectorAll('.term-card')];
+
+            cards.forEach((card, index) => {
+                card.querySelector('.index-badge').textContent = index + 1;
+
+                const termInput = card.querySelector('.term-input');
+                const definitionInput = card.querySelector('.definition-input');
+                const imageInput = card.querySelector('.image-file-input');
+                const existingImageInput = card.querySelector('.existing-image-input');
+
+                if (termInput) {
+                    termInput.name = `Cards[${index}].Term`;
+                }
+
+                if (definitionInput) {
+                    definitionInput.name = `Cards[${index}].Definition`;
+                }
+
+                if (imageInput) {
+                    imageInput.name = `Cards[${index}].ImageFile`;
+                }
+
+                if (existingImageInput) {
+                    existingImageInput.name = `Cards[${index}].ExistingImageUrl`;
+                }
+            });
+        };
+
+        window.removeTerm = button => {
+            const cards = container.querySelectorAll('.term-card');
+            if (cards.length <= 1) {
+                alert('Bạn cần có ít nhất một thẻ để tạo học phần!');
+                return;
+            }
+
+            const card = button.closest('.term-card');
+            if (!card) {
+                return;
+            }
+
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.9)';
+
+            setTimeout(() => {
+                card.remove();
+                syncCardIndexes();
+            }, 300);
+        };
+
+        window.previewImage = input => {
+            const box = input.closest('.image-upload-box');
+            if (!box || !input.files || !input.files[0]) {
+                return;
+            }
+
+            const preview = box.querySelector('.img-preview');
+            const label = box.querySelector('.image-label');
+            const icon = box.querySelector('.fa-image');
+
+            const reader = new FileReader();
+            reader.onload = event => {
+                if (preview) {
+                    preview.src = event.target?.result ?? '';
+                    preview.classList.remove('d-none');
+                }
+
+                if (label) {
+                    label.classList.add('d-none');
+                }
+
+                if (icon) {
+                    icon.classList.add('d-none');
+                }
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        };
+
+        addButton.addEventListener('click', () => {
+            const index = container.querySelectorAll('.term-card').length;
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = createCardMarkup(index);
+
+            const card = wrapper.firstElementChild;
+            if (!card) {
+                return;
+            }
+
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            container.appendChild(card);
+
+            setTimeout(() => {
+                card.style.transition = 'all 0.4s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 10);
+
+            syncCardIndexes();
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        form.addEventListener('submit', syncCardIndexes);
+
+        if (description) {
+            description.addEventListener('input', event => {
+                event.target.style.height = 'auto';
+                event.target.style.height = `${event.target.scrollHeight}px`;
+            });
+
+            description.style.height = 'auto';
+            description.style.height = `${description.scrollHeight}px`;
+        }
+
+        syncCardIndexes();
+    })();
+</script>

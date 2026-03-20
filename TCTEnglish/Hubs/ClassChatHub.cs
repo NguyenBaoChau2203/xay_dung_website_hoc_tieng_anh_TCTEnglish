@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using TCTVocabulary.Models;
 using TCTVocabulary.Realtime;
+using TCTVocabulary.Security;
+using TCTVocabulary.Services;
 
 namespace TCTVocabulary.Hubs
 {
@@ -11,10 +12,17 @@ namespace TCTVocabulary.Hubs
         public const string AdminPresenceGroupName = "admin-user-management";
 
         private readonly DbflashcardContext _context;
+        private readonly IClassService _classService;
+        private readonly ILogger<ClassChatHub> _logger;
 
-        public ClassChatHub(DbflashcardContext context)
+        public ClassChatHub(
+            DbflashcardContext context,
+            IClassService classService,
+            ILogger<ClassChatHub> logger)
         {
             _context = context;
+            _classService = classService;
+            _logger = logger;
         }
 
         public override async Task OnConnectedAsync()
@@ -59,39 +67,45 @@ namespace TCTVocabulary.Hubs
             var userId = TryGetCurrentUserId();
             if (!userId.HasValue)
             {
+                _logger.LogWarning("Anonymous connection attempted to join class {classId}", classId);
                 return;
             }
 
-            var isMember = await _context.ClassMembers
-                .AnyAsync(cm => cm.ClassId == classId && cm.UserId == userId.Value);
-
-            var isOwner = await _context.Classes
-                .AnyAsync(c => c.ClassId == classId && c.OwnerId == userId.Value);
-
-            if (!isMember && !isOwner)
+            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
             {
+                _logger.LogWarning("Access denied when user {userId} tried to join class {classId}", userId.Value, classId);
                 throw new HubException("Không có quyền truy cập lớp.");
             }
 
             await Groups.AddToGroupAsync(Context.ConnectionId, $"class-{classId}");
+            _logger.LogInformation("User {userId} joined class group {classId}", userId.Value, classId);
         }
 
         public async Task SendMessage(int classId, string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
+                _logger.LogDebug("Ignored empty message for class {classId}", classId);
                 return;
             }
 
             var userId = TryGetCurrentUserId();
             if (!userId.HasValue)
             {
+                _logger.LogWarning("Anonymous connection attempted to send message to class {classId}", classId);
                 return;
+            }
+
+            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
+            {
+                _logger.LogWarning("Access denied when user {userId} tried to send message to class {classId}", userId.Value, classId);
+                throw new HubException("Không có quyền truy cập lớp.");
             }
 
             var user = await _context.Users.FindAsync(userId.Value);
             if (user == null)
             {
+                _logger.LogWarning("Cannot send message because user {userId} was not found", userId.Value);
                 return;
             }
 
@@ -107,6 +121,12 @@ namespace TCTVocabulary.Hubs
             _context.ClassMessages.Add(message);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation(
+                "Message created in class {classId} by user {userId}, messageId {messageId}",
+                classId,
+                userId.Value,
+                message.MessageId);
+
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveMessage", new
                 {
@@ -121,18 +141,27 @@ namespace TCTVocabulary.Hubs
         {
             if (string.IsNullOrWhiteSpace(imageUrl))
             {
+                _logger.LogDebug("Ignored empty image message for class {classId}", classId);
                 return;
             }
 
             var userId = TryGetCurrentUserId();
             if (!userId.HasValue)
             {
+                _logger.LogWarning("Anonymous connection attempted to send image to class {classId}", classId);
                 return;
+            }
+
+            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
+            {
+                _logger.LogWarning("Access denied when user {userId} tried to send image to class {classId}", userId.Value, classId);
+                throw new HubException("Không có quyền truy cập lớp.");
             }
 
             var user = await _context.Users.FindAsync(userId.Value);
             if (user == null)
             {
+                _logger.LogWarning("Cannot send image because user {userId} was not found", userId.Value);
                 return;
             }
 
@@ -147,6 +176,12 @@ namespace TCTVocabulary.Hubs
             _context.ClassMessages.Add(message);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation(
+                "Image message created in class {classId} by user {userId}, messageId {messageId}",
+                classId,
+                userId.Value,
+                message.MessageId);
+
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveImage", new
                 {
@@ -158,7 +193,7 @@ namespace TCTVocabulary.Hubs
 
         private int? TryGetCurrentUserId()
         {
-            if (int.TryParse(Context.User?.FindFirstValue(ClaimTypes.NameIdentifier), out var userId))
+            if (Context.User.TryGetUserId(out var userId))
             {
                 return userId;
             }
@@ -171,6 +206,7 @@ namespace TCTVocabulary.Hubs
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null)
             {
+                _logger.LogWarning("Cannot update presence because user {userId} was not found", userId);
                 return;
             }
 
@@ -186,6 +222,12 @@ namespace TCTVocabulary.Hubs
 
             user.Status = currentStatus;
             await _context.SaveChangesAsync();
+
+            _logger.LogInformation(
+                "Presence changed for user {userId}: previousStatus {previousStatus}, currentStatus {currentStatus}",
+                userId,
+                previousStatus,
+                currentStatus);
 
             await Clients.Group(AdminPresenceGroupName)
                 .SendAsync("UserStatusChanged",

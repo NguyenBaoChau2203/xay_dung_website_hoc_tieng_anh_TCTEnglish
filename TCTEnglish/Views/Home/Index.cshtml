@@ -1,4 +1,4 @@
-﻿@model TCTVocabulary.ViewModel.DashboardViewModel
+@model TCTVocabulary.ViewModels.DashboardViewModel
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -72,22 +72,22 @@
             <h3>Top Features</h3>
 
             <div class="feature-list">
-                <a asp-controller="Home" asp-action="Grammar" class="feature">
+                <a asp-controller="Study" asp-action="Grammar" class="feature">
                     <i class="fa-solid fa-spell-check"></i>
                     Grammar
                 </a>
 
-                <a asp-controller="Home" asp-action="Listening" class="feature">
+                <a asp-controller="Study" asp-action="Listening" class="feature">
                     <i class="fa-solid fa-headphones"></i>
                     Listening
                 </a>
 
-                <a asp-controller="Home" asp-action="Reading" class="feature">
+                <a asp-controller="Study" asp-action="Reading" class="feature">
                     <i class="fa-solid fa-book-open"></i>
                     Reading
                 </a>
 
-                <a asp-controller="Home" asp-action="Writing" class="feature">
+                <a asp-controller="Study" asp-action="Writing" class="feature">
                     <i class="fa-solid fa-pen-nib"></i>
                     Writing
                 </a>
@@ -117,15 +117,15 @@
                                 @folder.FolderName
                             </h4>
 
-                            <p>
+                                <p>
                                 <i class="fa-solid fa-layer-group"></i>
-                                @folder.Sets.Count set •
+                                @folder.SetCount set •
                                 <i class="fa-solid fa-user"></i>
-                                @folder.User.FullName
+                                @folder.CreatorName
                             </p>
 
                             <a asp-action="FolderDetail"
-                               asp-controller="Home"
+                               asp-controller="Folder"
                                asp-route-id="@folder.FolderId" class="learn-btn">
                                 Xem & học
                                 <i class="fa-solid fa-arrow-right"></i>
@@ -150,21 +150,7 @@
                 Daily Challenge
             </h3>
 
-            <h2 id="challenge-term">
-                @Model.DailyChallenge.Term
-            </h2>
-
-            <div class="answers">
-                @foreach (var opt in Model.DailyChallenge.Options)
-                {
-                    <button class="answer-btn"
-                            data-id="@opt.CardId"
-                            data-correct="@Model.DailyChallenge.CardId">
-                        <i class="fa-solid fa-circle-dot"></i>
-                        @opt.Definition
-                    </button>
-                }
-            </div>
+            <partial name="_DailyChallenge" model="Model.DailyChallenge" />
         </div>
 
     </div>

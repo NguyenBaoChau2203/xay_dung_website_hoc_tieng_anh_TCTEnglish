@@ -1,0 +1,27 @@
+@model TCTVocabulary.ViewModels.DailyChallengeViewModel
+
+@if (!string.IsNullOrWhiteSpace(Model.Term) && Model.Options.Any())
+{
+    <h2 id="challenge-term">
+        @Model.Term
+    </h2>
+
+    <div class="answers">
+        @foreach (var opt in Model.Options)
+        {
+            <button class="answer-btn"
+                    data-id="@opt.CardId"
+                    data-correct="@Model.CardId">
+                <i class="fa-solid fa-circle-dot"></i>
+                @opt.Definition
+            </button>
+        }
+    </div>
+}
+else
+{
+    <p class="empty-text">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        Daily challenge hiện chưa khả dụng
+    </p>
+}

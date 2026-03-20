@@ -1,57 +1,19 @@
-@model TCTVocabulary.Models.Set
+@model TCTVocabulary.ViewModels.VocabularySetDetailViewModel
 @using System.Linq
-@using System.Collections.Generic
 @{
-    ViewData["Title"] = Model.SetName;
+    ViewData["Title"] = Model.Set.SetName;
 
-    // Kiểm tra Model.Cards có null không
-    var cards = Model.Cards ?? new List<TCTVocabulary.Models.Card>();
-
-    // Tính toán Learning Progress
-    var learnedStatuses = new[] { "Mastered", "Learned" };
-
-    // Nhóm các thẻ theo Topic
-    var topics = cards
-        .GroupBy(c => string.IsNullOrEmpty(c.Topic) ? "Chưa phân loại" : c.Topic)
-        .Select(g =>
-        {
-            var learnedCount = g.Count(c => c.LearningProgresses != null
-                && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
-            var totalCount = g.Count();
-
-            return new
-            {
-                TopicName = g.Key,
-                Cards = g.ToList(),
-                TotalCards = totalCount,
-                LearnedCards = learnedCount,
-                Progress = totalCount > 0 ? (learnedCount * 100) / totalCount : 0
-            };
-        })
-        .OrderBy(t => t.TopicName)
-        .ToList();
-
+    var topics = Model.Topics;
     var topicsCount = topics.Count;
-
-    // Các biến khác
-    var tags = (Model.Description ?? "")
-        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-        .Where(t => t.StartsWith("#"))
-        .ToList();
-
-    var totalCards = cards.Count;
-    var learnedCards = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
-    var remainingCards = totalCards - learnedCards;
-    var accuracy = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
-
-    var newCards = cards.Count(c => c.LearningProgresses == null
-        || !c.LearningProgresses.Any());
-    var reviewingCards = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => lp.Status == "Reviewing" || lp.Status == "Learning"));
-    var masteredCards = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
-    var dueToday = ViewBag.DueToday ?? 0;
+    var tags = Model.Tags;
+    var totalCards = Model.Stats.TotalCards;
+    var learnedCards = Model.Stats.LearnedCards;
+    var remainingCards = Model.Stats.RemainingCards;
+    var accuracy = Model.Stats.Accuracy;
+    var newCards = Model.Stats.NewCards;
+    var reviewingCards = Model.Stats.ReviewingCards;
+    var masteredCards = Model.Stats.MasteredCards;
+    var dueToday = Model.Stats.DueToday;
 }
 
 @section Styles {
@@ -451,11 +413,11 @@
             <div class="due-modal-count">@dueToday</div>
             <div class="due-modal-title">từ đến hạn ôn tập!</div>
             <div class="due-modal-desc">
-                Bạn có <strong>@dueToday từ vựng</strong> trong bộ <strong>@Model.SetName</strong> cần được ôn tập.<br>
+                Bạn có <strong>@dueToday từ vựng</strong> trong bộ <strong>@Model.Set.SetName</strong> cần được ôn tập.<br>
                 Hãy ôn ngay để ghi nhớ lâu hơn nhé! 🧠
             </div>
             <div class="due-modal-actions">
-                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, mode = "review" })" class="due-modal-btn-primary">
+                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId, mode = "review" })" class="due-modal-btn-primary">
                     <i class="fas fa-play"></i> Ôn tập ngay
                 </a>
                 <button class="due-modal-btn-secondary" onclick="document.getElementById('dueModal').remove()">
@@ -473,9 +435,9 @@
             <i class="fas fa-home"></i> Trang chủ
         </a>
         <i class="fas fa-chevron-right separator"></i>
-        <a href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.Folder?.FolderId })">@(Model.Folder?.FolderName ?? "Từ vựng")</a>
+        <a href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.Set.FolderId })">@(Model.Set.FolderName ?? "Từ vựng")</a>
         <i class="fas fa-chevron-right separator"></i>
-        <span>@Model.SetName</span>
+        <span>@Model.Set.SetName</span>
     </nav>
 
     <!-- Hero Section -->
@@ -486,7 +448,7 @@
                 <i class="fas fa-layer-group"></i>
                 <span>@totalCards từ vựng</span>
             </div>
-            <h1 class="set-title">@Model.SetName</h1>
+            <h1 class="set-title">@Model.Set.SetName</h1>
             <div class="set-tags">
                 @foreach (var tag in tags)
                 {
@@ -514,13 +476,13 @@
 
             <!-- Action Buttons -->
             <div class="hero-actions">
-                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId })" class="btn-study">
+                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId })" class="btn-study">
                     <i class="fas fa-play"></i>
                     <span>@(learnedCards > 0 ? "Tiếp tục học" : "Bắt đầu học")</span>
                 </a>
                 @if (dueToday > 0)
                 {
-                    <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, mode = "review" })" class="btn-study" style="background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);">
+                    <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId, mode = "review" })" class="btn-study" style="background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);">
                         <i class="fas fa-clock"></i>
                         <span>Ôn tập @dueToday từ đến hạn</span>
                     </a>
@@ -633,7 +595,7 @@
                     <i class="fas fa-tags"></i>
                     Danh sách chủ đề
                 </h2>
-                <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="view-all-link">
+                <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.Set.SetId })" class="view-all-link">
                     <span>Xem tất cả @topicsCount chủ đề</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
@@ -642,7 +604,7 @@
             <div class="topics-grid">
                 @foreach (var topic in topics.Take(4))
                 {
-                    <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.SetId, topic = topic.TopicName })"
+                    <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.Set.SetId, topic = topic.TopicName })"
                        class="topic-preview-card">
                         <div class="topic-preview-header">
                             <div class="topic-icon">
@@ -668,7 +630,7 @@
             @if (topics.Count > 4)
             {
                 <div class="view-all-container">
-                    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.SetId })" class="btn-view-all">
+                    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.Set.SetId })" class="btn-view-all">
                         <span>Xem tất cả @topicsCount chủ đề</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -678,15 +640,13 @@
     }
 
     <!-- Related Sets -->
-    @if (Model.Folder?.Sets != null && Model.Folder.Sets.Count > 1)
+    @if (Model.RelatedSets.Any())
     {
         <div class="related-section">
             <h2>Bộ từ cùng danh mục</h2>
             <div class="related-grid">
-                @foreach (var relatedSet in Model.Folder.Sets.Where(s => s.SetId != Model.SetId).Take(3))
+                @foreach (var relatedSet in Model.RelatedSets)
                 {
-                    var relatedTags = (relatedSet.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                    .Where(t => t.StartsWith("#")).ToList();
 
                     <div class="related-card">
                         <div class="related-header">
@@ -695,10 +655,10 @@
                         <div class="related-body">
                             <h3>@relatedSet.SetName</h3>
                             <div class="related-meta">
-                                <span><i class="fas fa-layer-group"></i> @(relatedSet.Cards?.Count ?? 0) từ</span>
-                                @if (relatedTags.Any())
+                                <span><i class="fas fa-layer-group"></i> @relatedSet.CardCount từ</span>
+                                @if (relatedSet.Tags.Any())
                                 {
-                                    <span class="related-tag">@relatedTags.First()</span>
+                                    <span class="related-tag">@relatedSet.Tags.First()</span>
                                 }
                             </div>
                             <a href="@Url.Action("Detail", "Vocabulary", new { setId = relatedSet.SetId })" class="related-link">
