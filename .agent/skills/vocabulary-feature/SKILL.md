@@ -19,11 +19,14 @@ User → Class → ClassMember (Owner|Member) → SavedFolder
 ## Study Modes
 | Mode | View | Key Logic |
 |------|------|-----------|
-| Flashcard | Study.cshtml | Card flip, mark known/unknown |
-| Quiz | QuizMode.cshtml | 4 choices, distractors from same set |
-| Write | WriteMode.cshtml | Type term, normalized grading |
-| Matching | MatchingMode.cshtml | Drag pairs, max 8 per round |
-| Read | Reading.cshtml | Passive review |
+| Flashcard | `Views/Study/Study.cshtml` | Card flip, mark known/unknown |
+| Quiz | `Views/Study/QuizMode.cshtml` | 4 choices, distractors from same set |
+| Write | `Views/Study/WriteMode.cshtml` | Type term, normalized grading |
+| Matching | `Views/Study/MatchingMode.cshtml` | Drag pairs, max 8 per round |
+| Read | `Views/Study/Reading.cshtml` | Passive review |
+
+> All study-mode views are owned by **`StudyController`**, not `HomeController`.
+> The speaking playlist and practice area (`Views/Speaking/`) belongs to `SpeakingController` and is separate.
 
 ## Card CRUD Pattern
 ```csharp
