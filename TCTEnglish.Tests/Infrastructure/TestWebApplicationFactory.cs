@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,7 @@ namespace TCTEnglish.Tests.Infrastructure;
 
 public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private readonly string _databaseName = $"tctenglish-tests-{Guid.NewGuid():N}";
+    private SqliteConnection? _sqliteConnection;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -37,6 +38,10 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.RemoveAll<DbflashcardContext>();
             services.RemoveAll<IDbContextOptionsConfiguration<DbflashcardContext>>();
 
+            _sqliteConnection?.Dispose();
+            _sqliteConnection = new SqliteConnection("Data Source=:memory:");
+            _sqliteConnection.Open();
+
             var hostedServiceDescriptors = services
                 .Where(descriptor => descriptor.ServiceType == typeof(IHostedService)
                     && descriptor.ImplementationType == typeof(AutoUnlockWorker))
@@ -49,7 +54,8 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
 
             services.AddDbContext<DbflashcardContext>(options =>
             {
-                options.UseInMemoryDatabase(_databaseName);
+                options.UseSqlite(_sqliteConnection);
+                options.ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>();
             });
 
             services.AddDataProtection()
@@ -77,6 +83,19 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
         await context.Database.EnsureCreatedAsync();
 
         await SeedAsync(context);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (!disposing)
+        {
+            return;
+        }
+
+        _sqliteConnection?.Dispose();
+        _sqliteConnection = null;
     }
 
     private static async Task SeedAsync(DbflashcardContext context)
@@ -114,6 +133,17 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             CreatedAt = DateTime.UtcNow
         };
 
+        var memberUser = new User
+        {
+            UserId = TestDataIds.MemberUserId,
+            Email = "member@test.local",
+            PasswordHash = "hash",
+            FullName = "Sprint Two Member",
+            Role = Roles.Standard,
+            Status = UserStatus.Online,
+            CreatedAt = DateTime.UtcNow
+        };
+
         var systemUser = new User
         {
             Email = "system@tct.local",
@@ -124,7 +154,7 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             CreatedAt = DateTime.UtcNow
         };
 
-        context.Users.AddRange(standardUser, adminUser, outsiderUser, systemUser);
+        context.Users.AddRange(standardUser, adminUser, outsiderUser, memberUser, systemUser);
         await context.SaveChangesAsync();
 
         var userFolder = new Folder
@@ -141,7 +171,14 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             FolderName = "System Sprint Folder"
         };
 
-        context.Folders.AddRange(userFolder, systemFolder);
+        var deletableUserFolder = new Folder
+        {
+            FolderId = TestDataIds.DeletableUserFolderId,
+            UserId = standardUser.UserId,
+            FolderName = "Sprint One Delete Folder"
+        };
+
+        context.Folders.AddRange(userFolder, systemFolder, deletableUserFolder);
         await context.SaveChangesAsync();
 
         var userSet = new Set
@@ -199,7 +236,7 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
         context.ClassMembers.Add(new ClassMember
         {
             ClassId = TestDataIds.ClassId,
-            UserId = adminUser.UserId
+            UserId = memberUser.UserId
         });
 
         context.ClassFolders.Add(new ClassFolder

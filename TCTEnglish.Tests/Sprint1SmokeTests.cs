@@ -1,8 +1,5 @@
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Mvc.Testing;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
 using Xunit;
@@ -16,11 +13,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-            HandleCookies = true
-        });
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
 
         var response = await client.GetAsync("/Home/Landing");
 
@@ -32,7 +25,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         var response = await client.GetAsync("/Home/Index");
         var body = await response.Content.ReadAsStringAsync();
@@ -41,15 +34,25 @@ public sealed class Sprint1SmokeTests
     }
 
     [Fact]
+    public async Task DailyChallengePartial_ReturnsOkForAuthenticatedUser()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var response = await client.GetAsync("/Home/GetDailyChallenge");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.True(response.StatusCode == HttpStatusCode.OK, body);
+        Assert.Contains("answer-btn", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task Dashboard_RedirectsAnonymousUsersToLanding()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-            HandleCookies = true
-        });
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
 
         var response = await client.GetAsync("/Home/Index");
 
@@ -67,7 +70,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         var response = await client.GetAsync(route);
         var body = await response.Content.ReadAsStringAsync();
@@ -80,11 +83,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-            HandleCookies = true
-        });
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
 
         var response = await client.GetAsync($"/Home/ClassDetail/{TestDataIds.ClassId}");
 
@@ -99,11 +98,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-            HandleCookies = true
-        });
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
 
         var response = await client.PostAsync(
             "/api/LearningApi/record",
@@ -117,9 +112,9 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
-        var antiForgeryToken = await GetAntiForgeryTokenAsync(client, "/Vocabulary/Study?setId=302");
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Vocabulary/Study?setId=302");
         using var request = new HttpRequestMessage(HttpMethod.Post, "/api/LearningApi/record")
         {
             Content = new StringContent(
@@ -137,12 +132,32 @@ public sealed class Sprint1SmokeTests
     }
 
     [Fact]
+    public async Task LearningRecord_RejectsMissingAntiforgeryToken()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/LearningApi/record")
+        {
+            Content = new StringContent(
+                """{"cardId":401,"masteryLevel":"good","timestamp":"2026-03-19T00:00:00Z"}""",
+                Encoding.UTF8,
+                "application/json")
+        };
+
+        var response = await client.SendAsync(request);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    [Fact]
     public async Task AdminUserList_ReturnsOkForAdminAndForbiddenForStandardUser()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var adminClient = CreateAuthenticatedClient(factory, TestDataIds.AdminUserId, Roles.Admin);
-        using var standardClient = CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var adminClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AdminUserId, Roles.Admin);
+        using var standardClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         var adminResponse = await adminClient.GetAsync("/Admin/UserManagement");
         var standardResponse = await standardClient.GetAsync("/Admin/UserManagement");
@@ -157,9 +172,9 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
 
-        var antiForgeryToken = await GetAntiForgeryTokenAsync(client, "/Home/Class");
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Home/Class");
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/JoinClass")
         {
             Content = new StringContent(
@@ -179,7 +194,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
 
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/JoinClass")
         {
@@ -199,7 +214,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
 
         var response = await client.GetAsync($"/Home/ClassDetail/{TestDataIds.ClassId}");
         var body = await response.Content.ReadAsStringAsync();
@@ -219,17 +234,14 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
 
-        var antiForgeryToken = await GetAntiForgeryTokenAsync(client, "/Home/Class");
-        using var imageContent = new ByteArrayContent("fake-image"u8.ToArray());
-        imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
-
-        using var formData = new MultipartFormDataContent
-        {
-            { imageContent, "image", "chat.png" },
-            { new StringContent(TestDataIds.ClassId.ToString()), "classId" }
-        };
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Home/Class");
+        using var formData = IntegrationTestClientHelper.CreatePngUploadForm(
+            "image",
+            "chat.png",
+            "classId",
+            TestDataIds.ClassId.ToString());
 
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Chat/UploadImage")
         {
@@ -240,49 +252,5 @@ public sealed class Sprint1SmokeTests
         var response = await client.SendAsync(request);
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-    }
-
-    private static HttpClient CreateAuthenticatedClient(
-        TestWebApplicationFactory factory,
-        int userId,
-        string role)
-    {
-        var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-            HandleCookies = true
-        });
-
-        client.DefaultRequestHeaders.Add(TestAuthenticationHandler.UserIdHeaderName, userId.ToString());
-        client.DefaultRequestHeaders.Add(TestAuthenticationHandler.RoleHeaderName, role);
-        client.DefaultRequestHeaders.Add(TestAuthenticationHandler.EmailHeaderName, $"user{userId}@test.local");
-        client.DefaultRequestHeaders.Add(TestAuthenticationHandler.NameHeaderName, $"User {userId}");
-
-        return client;
-    }
-
-    private static async Task<string> GetAntiForgeryTokenAsync(HttpClient client, string route)
-    {
-        var response = await client.GetAsync(route);
-        var body = await response.Content.ReadAsStringAsync();
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new HttpRequestException(
-                $"Request to '{route}' failed with {(int)response.StatusCode} {response.StatusCode}.{Environment.NewLine}{body}");
-        }
-
-        var match = Regex.Match(
-            body,
-            "name=\"__RequestVerificationToken\"[^>]*value=\"([^\"]+)\"|value=\"([^\"]+)\"[^>]*name=\"__RequestVerificationToken\"",
-            RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-        var token = match.Groups[1].Value;
-        if (string.IsNullOrWhiteSpace(token))
-        {
-            token = match.Groups[2].Value;
-        }
-
-        Assert.False(string.IsNullOrWhiteSpace(token), $"Missing antiforgery token on route {route}.{Environment.NewLine}{body}");
-        return token;
     }
 }

@@ -3,15 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using TCTVocabulary.Models;
-using TCTVocabulary.ViewModel;
+using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
     [Authorize]
-    public class SpeakingController : Controller
+    public class SpeakingController : BaseController
     {
         private readonly DbflashcardContext _context;
 
@@ -99,8 +98,7 @@ namespace TCTVocabulary.Controllers
 
         public async Task<IActionResult> Practice(int id)
         {
-            // FIX: Use TryParse instead of Parse to avoid InvalidOperationException if claim is missing
-            if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int currentUserId))
+            if (!TryGetCurrentUserId(out var currentUserId))
                 return RedirectToAction("Login", "Account");
 
             var video = await _context.SpeakingVideos
@@ -152,9 +150,7 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveSpeakingProgress(int sentenceId, [FromBody] SpeakingProgressDto dto)
         {
-            // 1. Lấy userId an toàn
-            var userId = GetCurrentUserId();
-            if (userId == null)
+            if (!TryGetCurrentUserId(out var userId))
                 return Unauthorized(new { error = "Chưa đăng nhập." });
 
             // 2. Validate điểm số (0–100)
@@ -175,7 +171,7 @@ namespace TCTVocabulary.Controllers
 
             // 4. Upsert — giữ điểm cao nhất
             var existing = await _context.UserSpeakingProgresses
-                .FirstOrDefaultAsync(p => p.UserId == userId.Value && p.SentenceId == sentenceId);
+                .FirstOrDefaultAsync(p => p.UserId == userId && p.SentenceId == sentenceId);
 
             if (existing != null)
             {
@@ -193,7 +189,7 @@ namespace TCTVocabulary.Controllers
             {
                 var progress = new UserSpeakingProgress
                 {
-                    UserId = userId.Value,
+                    UserId = userId,
                     SentenceId = sentenceId,
                     TotalScore = dto.TotalScore,
                     AccuracyScore = dto.AccuracyScore,
@@ -217,13 +213,6 @@ namespace TCTVocabulary.Controllers
             });
         }
 
-        // ── Helper ───────────────────────────────────────────────────
-        private int? GetCurrentUserId()
-        {
-            if (int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int uid))
-                return uid;
-            return null;
-        }
     }
 
     // ── DTO ──────────────────────────────────────────────────────────

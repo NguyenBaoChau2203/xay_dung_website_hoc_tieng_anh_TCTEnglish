@@ -1,20 +1,14 @@
-﻿@model TCTVocabulary.Models.Set
+@model TCTVocabulary.ViewModels.VocabularyTopicDetailViewModel
 @{
-    var topicName = ViewBag.TopicName as string;
+    var topicName = Model.Topic.TopicName;
     ViewData["Title"] = topicName;
 
-    var cardsInTopic = Model.Cards?
-        .Where(c => (c.Topic ?? "Chưa phân loại") == topicName)
-        .ToList() ?? new List<TCTVocabulary.Models.Card>();
-
-    var totalCards = cardsInTopic.Count;
-    var learnedCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Mastered" || lp.Status == "Learned"));
-    var progress = totalCards > 0 ? (learnedCards * 100) / totalCards : 0;
-
-    // Đếm số lượng theo trạng thái
-    var newCards = cardsInTopic.Count(c => c.LearningProgresses == null || !c.LearningProgresses.Any() || c.LearningProgresses.FirstOrDefault()?.Status == "New");
-    var reviewingCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Reviewing"));
-    var masteredCards = cardsInTopic.Count(c => c.LearningProgresses != null && c.LearningProgresses.Any(lp => lp.Status == "Mastered"));
+    var totalCards = Model.Stats.TotalCards;
+    var learnedCards = Model.Stats.LearnedCards;
+    var progress = Model.Topic.Progress;
+    var newCards = Model.Stats.NewCards;
+    var reviewingCards = Model.Stats.ReviewingCards;
+    var masteredCards = Model.Stats.MasteredCards;
 }
 
 @section Styles {
@@ -587,7 +581,7 @@
 
 <div class="topic-detail">
     <!-- Back Link -->
-    <a href="@Url.Action("Detail", "Vocabulary", new { setId = Model.SetId })" class="back-link">
+    <a href="@Url.Action("Detail", "Vocabulary", new { setId = Model.Set.SetId })" class="back-link">
         <i class="fas fa-arrow-left"></i>
         <span>Quay lại</span>
     </a>
@@ -662,7 +656,7 @@
         </div>
 
         <div class="action-buttons">
-            <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.SetId, topic = topicName })" class="btn-primary">
+            <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId, topic = topicName })" class="btn-primary">
                 <i class="fas fa-play"></i>
                 <span>Học</span>
             </a>
@@ -678,14 +672,11 @@
         <span class="card-count">@totalCards thẻ</span>
     </div>
 
-    @if (cardsInTopic.Any())
+    @if (Model.Cards.Any())
     {
         <div class="cards-list">
-            @foreach (var card in cardsInTopic)
+            @foreach (var card in Model.Cards)
             {
-                var status = card.LearningProgresses?.FirstOrDefault()?.Status ?? "New";
-                var statusClass = status == "Mastered" ? "mastered" : (status == "Reviewing" ? "reviewing" : "new");
-                var statusText = status == "Mastered" ? "Thành thạo" : (status == "Reviewing" ? "Đang ôn" : "Mới");
 
                 <div class="card-item">
                     <div class="card-header">
@@ -696,8 +687,8 @@
                                 <span class="phonetic">@card.Phonetic</span>
                             }
                         </div>
-                        <span class="status-badge @statusClass">
-                            @statusText
+                        <span class="status-badge @card.StatusClass">
+                            @card.StatusText
                         </span>
                     </div>
 

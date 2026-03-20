@@ -105,7 +105,7 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
         }
 
         // For auto-generated captions, group short fragments into longer sentences
-        SpeakingSentence currentSentence = null;
+        SpeakingSentence? currentSentence = null;
         double sentenceGapThreshold = 1.0; 
         int minWords = 8;
         

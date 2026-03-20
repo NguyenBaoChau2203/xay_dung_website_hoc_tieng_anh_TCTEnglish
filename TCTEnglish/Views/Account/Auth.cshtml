@@ -804,7 +804,7 @@
         }
     </script>
 
-    @if (TempData["IsBlocked"] != null && (bool)TempData["IsBlocked"])
+    @if (TempData["IsBlocked"] is true)
     {
         <!-- ===== BLOCKED ACCOUNT MODAL (Bootstrap 5) ===== -->
         <div class="modal fade" id="blockedAccountModal" tabindex="-1" aria-labelledby="blockedAccountModalLabel" aria-hidden="true">

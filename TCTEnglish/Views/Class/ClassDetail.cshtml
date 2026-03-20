@@ -1,0 +1,1308 @@
+@model TCTVocabulary.ViewModels.ClassDetailViewModel
+@{
+    ViewData["Title"] = Model.Class.ClassName;
+    var canViewContent = Model.CanViewPrivateContent;
+}
+
+<div class="class-detail-container">
+@Html.AntiForgeryToken()
+    <!-- ===== HEADER ===== -->
+    <div class="class-header">
+        <img class="class-avatar"
+             src="@(string.IsNullOrEmpty(Model.Class.ImageUrl)
+                         ? "/images/ClassDefault/class-default.png" 
+                         : Model.Class.ImageUrl)"
+             onerror="this.src='/images/ClassDefault/class-default.png'" />
+
+        <div class="class-info">
+            <h1>@Model.Class.ClassName</h1>
+            <p>
+                @(string.IsNullOrEmpty(Model.Class.Description)
+                                ? "Chưa có mô tả cho lớp học này."
+                                : Model.Class.Description)
+            </p>
+        </div>
+
+        <div class="class-actions">
+            <button class="more-btn" onclick="openClassActionModal()">⋯</button>
+        </div>
+    </div>
+    <!-- ===== NỘI DUNG CHÍNH ===== -->
+@if (!canViewContent)
+{
+    <!-- ===== JOIN REQUIRED ===== -->
+    <div class="join-required-panel">
+        <div class="join-required-card">
+            <div class="lock-icon">🔒</div>
+            <h2>Hãy tham gia nhóm</h2>
+            <p>Bạn cần tham gia lớp học này để xem nội dung chat, thư mục và thành viên.</p>
+
+            <button class="btn-primary"
+                    onclick="handleJoinClick(@Model.Class.ClassId, @(Model.Class.HasPassword.ToString().ToLower()))">
+                ➕ Tham gia nhóm
+            </button>
+        </div>
+    </div>
+}
+else
+{
+    <!-- ===== TABS ===== -->
+    <div class="class-tabs">
+        <button class="tab-btn active" onclick="showTab('chat')">
+            <i class="fas fa-comments"></i> Chat
+        </button>
+        <button class="tab-btn" onclick="showTab('folders')">
+            <i class="fas fa-folder"></i> Folder
+        </button>
+        <button class="tab-btn" onclick="showTab('members')">
+            <i class="fas fa-user-group"></i> Thành viên
+        </button>
+        <button class="tab-btn" onclick="showTab('about')">
+            <i class="fas fa-circle-info"></i> Giới thiệu
+        </button>
+    </div>
+
+    <!-- ===== CHAT ===== -->
+    <div id="tab-chat" class="tab-content active">
+            <div id="chatMessages" class="chat-box">
+                @foreach (var msg in Model.Messages)
+                {
+                    <div class="chat-message @(msg.IsMine ? "mine" : "other")">
+                        <div class="chat-bubble">
+                            @if (!msg.IsMine)
+                            {
+                                <div class="chat-name">@msg.FullName</div>
+                            }
+                            <div class="chat-content">
+                                @if (msg.Content.StartsWith("/uploads/"))
+                                {
+                                    <img src="@msg.Content" class="chat-image" onclick="window.open(this.src)" />
+                                }
+                                else
+                                {
+                                    @msg.Content
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="chat-input-bar" style="position: relative;">
+
+                <label type="button" class="chat-icon" style="cursor:pointer">
+                    📷
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                </label>
+
+                <div style="position: relative; display: flex; align-items: center;">
+                    <button type="button" onclick="toggleEmoji()" style="background:none; border:none; font-size: 1.2rem; cursor:pointer">😊</button>
+
+                    <div id="emojiPanel" class="emoji-picker">
+                        <span class="emoji-item">😀</span> <span class="emoji-item">😁</span>
+                        <span class="emoji-item">😂</span> <span class="emoji-item">🤣</span>
+                        <span class="emoji-item">😍</span> <span class="emoji-item">😎</span>
+                        <span class="emoji-item">👍</span> <span class="emoji-item">❤️</span>
+                        <span class="emoji-item">🎉</span> <span class="emoji-item">🔥</span>
+                    </div>
+                </div>
+
+                <input id="chatInput"
+                       placeholder="Nhập tin nhắn..."
+                       onkeydown="if(event.key==='Enter') sendMessage()" />
+
+                <button onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+            
+    </div>
+
+    <!-- ===== FOLDERS ===== -->
+    <div id="tab-folders" class="tab-content">
+        <div class="folder-header">
+            <h3>Folder của lớp</h3>
+            <button class="btn-add-folder" onclick="openAddFolderModal()">
+                <i class="fas fa-plus"></i> Thêm folder
+            </button>
+        </div>
+
+        @if (!Model.ClassFolders.Any())
+        {
+            <div class="empty-box">
+                <i class="fas fa-folder-open"></i>
+                <p>Chưa có folder nào trong lớp</p>
+            </div>
+        }
+        else
+        {
+            <div class="folder-grid">
+                @foreach (var f in Model.ClassFolders)
+                {
+                    <a asp-action="FolderDetail"
+                       asp-controller="Folder"
+                       asp-route-id="@f.FolderId"
+                       class="f-link">
+
+                            <div class="class-folder-row">
+
+                                <div class="folder-left">
+                                    <i class="fas fa-folder"></i>
+                                    <span class="folder-name">@f.FolderName</span>
+                                </div>
+
+                                <div class="folder-right">
+                                    Thêm bởi <strong>@f.AddedByUserName</strong>
+
+                                    @if (f.CanRemove)
+                                    {
+                                        <button class="btn-delete-folder"
+                                                onclick="removeFolder(event, @f.FolderId)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    }
+                                </div>
+
+                            </div>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- ===== MEMBERS ===== -->
+    <div id="tab-members" class="tab-content">
+        <ul class="member-list">
+            @foreach (var u in Model.Members)
+            {
+                    <li class="member-row">
+
+                        <div class="member-left">
+                            <i class="fas fa-user"></i>
+                            @u.FullName
+                        </div>
+
+                        @if (Model.CanManageClass && u.UserId != Model.CurrentUserId)
+                        {
+                            <button class="btn-kick"
+                                    onclick="kickMember(@u.UserId)">
+                                Kick
+                            </button>
+                        }
+
+                    </li>
+            }
+        </ul>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <div id="tab-about" class="tab-content">
+        <h3>Thông tin lớp học</h3>
+        <p>@Model.Class.Description</p>
+    </div>
+}
+@if (canViewContent)
+{
+    <div id="addFolderModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Thêm folder vào lớp</h3>
+                <button class="close-btn" onclick="closeAddFolderModal()">×</button>
+            </div>
+
+            <div class="modal-section">
+                <h4>Folder của tôi</h4>
+                @foreach (var f in Model.MyFolders)
+                {
+                    <div class="modal-folder-item" onclick="addFolder(@f.FolderId)">
+                        <i class="fas fa-folder"></i> @f.FolderName
+                    </div>
+                }
+            </div>
+
+            <div class="modal-section">
+                <h4>Folder đã lưu</h4>
+                @foreach (var f in Model.SavedFolders)
+                {
+                    <div class="modal-folder-item" onclick="addFolder(@f.FolderId)">
+                        <i class="fas fa-bookmark"></i> @f.FolderName
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<!-- ===== CLASS ACTION MODAL ===== -->
+<div id="classActionModal" class="modal-overlay">
+    <div class="modal-container">
+
+        @if (Model.CanManageClass)
+        {
+            <button class="modal-item" onclick="openEditClassModal()">Sửa tên / mô tả</button>
+            <button class="modal-item danger" onclick="deleteClass()">Giải tán lớp</button>
+        }
+        else if (Model.CanJoinClass)
+        {
+            <button class="modal-item"
+                    onclick="handleJoinClick(@Model.Class.ClassId, @(Model.Class.HasPassword.ToString().ToLower()))">
+                ➕ Tham gia lớp
+            </button>
+        }
+        else if (Model.IsMember && !Model.IsOwner)
+        {
+            <button class="modal-item danger" onclick="leaveClass()">Thoát lớp</button>
+        }
+
+        <button class="modal-item cancel" onclick="closeClassActionModal()">Hủy</button>
+    </div>
+</div>
+@if (Model.CanManageClass)
+{
+    <div id="editClassModal" class="modal-overlay">
+        <div class="modal-container">
+
+            <div class="modal-header">
+                <h3>Chỉnh sửa lớp học</h3>
+                <button class="close-btn" onclick="closeEditClassModal()">×</button>
+            </div>
+
+            <div class="modal-section">
+                <label>Tên lớp</label>
+                <input type="text"
+                       id="editClassName"
+                       value="@Model.Class.ClassName"
+                       placeholder="Nhập tên lớp" />
+            </div>
+
+            <div class="modal-section">
+                <label>Mô tả</label>
+                <textarea id="editClassDescription"
+                          rows="4"
+                          placeholder="Nhập mô tả lớp">@Model.Class.Description</textarea>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px">
+                <button class="btn-outline" onclick="closeEditClassModal()">Hủy</button>
+                <button class="btn-primary" onclick="saveClassInfo()">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.CanJoinClass)
+{
+    <div id="joinClassModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>Nhập mật khẩu lớp</h3>
+            <input type="password" id="joinClassPassword" placeholder="Mật khẩu lớp" />
+
+            <div style="margin-top:20px;display:flex;justify-content:flex-end;gap:10px">
+                <button class="btn-outline" onclick="closeJoinClassModal()">Hủy</button>
+                <button class="btn-primary" onclick="confirmJoinClass()">Tham gia</button>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+        const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+    let pendingClassId = null;
+
+    function showTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add('active');
+        document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+
+    function openAddFolderModal() {
+        document.getElementById('addFolderModal').classList.add('active');
+    }
+
+    function closeAddFolderModal() {
+        document.getElementById('addFolderModal').classList.remove('active');
+    }
+
+           function addFolder(folderId) {
+    // Sử dụng biến token đã khai báo ở đầu thẻ script của bạn
+    fetch('/Home/AddFolderToClass', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token // Token này lấy từ input ẩn của AntiforgeryToken
+        },
+        body: `classId=${classId}&folderId=${folderId}` 
+    })
+    .then(async res => {
+        if (res.ok) {
+            location.reload();
+        } else {
+            // Đọc thông báo lỗi từ server (ví dụ: "Folder đã tồn tại trong lớp")
+            const errorMsg = await res.text();
+            alert("Lỗi: " + (errorMsg || "Không thể thêm folder"));
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Lỗi kết nối máy chủ");
+    });
+}
+
+    function openClassActionModal() {
+        document.getElementById('classActionModal').classList.add('active');
+    }
+
+    function closeClassActionModal() {
+        document.getElementById('classActionModal').classList.remove('active');
+    }
+
+    function handleJoinClick(classId, hasPassword) {
+        closeClassActionModal();
+        if (hasPassword) {
+            pendingClassId = classId;
+            document.getElementById('joinClassModal').classList.add('active');
+        } else {
+            joinClass(classId, '');
+        }
+    }
+
+    function closeJoinClassModal() {
+        document.getElementById('joinClassModal').classList.remove('active');
+        pendingClassId = null;
+    }
+
+    function confirmJoinClass() {
+        const pw = document.getElementById('joinClassPassword').value;
+        joinClass(pendingClassId, pw);
+    }
+
+           function joinClass(classId, password) {
+            fetch('/Home/JoinClass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body: `classId=${classId}&password=${encodeURIComponent(password)}`
+            }).then(async response => {
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    throw new Error(errorMessage || 'Không thể tham gia lớp học.');
+                }
+
+                location.reload();
+            }).catch(error => alert(error.message));
+        }
+
+           function leaveClass() {
+            if (!confirm('Bạn chắc chắn muốn rời lớp?')) return;
+
+            fetch('/Home/LeaveClass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body: `classId=@Model.Class.ClassId`
+            })
+            .then(async response => {
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    throw new Error(errorMessage || 'Không thể rời lớp học.');
+                }
+
+                window.location.href = '/Home/Class';
+            })
+            .catch(error => alert(error.message));
+        }
+</script>
+<script>
+    /* ===== EDIT CLASS ===== */
+    function openEditClassModal() {
+        closeClassActionModal();
+        document.getElementById('editClassModal').classList.add('active');
+    }
+
+    function closeEditClassModal() {
+        document.getElementById('editClassModal').classList.remove('active');
+    }
+
+            function saveClassInfo() {
+
+            const name = document.getElementById('editClassName').value.trim();
+            const desc = document.getElementById('editClassDescription').value.trim();
+
+            if (!name) {
+                alert("Tên lớp không được để trống");
+                return;
+            }
+
+            fetch('/Home/EditClass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body:
+                    `classId=@Model.Class.ClassId` +
+                    `&className=${encodeURIComponent(name)}` +
+                    `&description=${encodeURIComponent(desc)}`
+            })
+            .then(res => {
+                if (!res.ok) throw new Error();
+                location.reload();
+            })
+            .catch(() => alert("Không thể cập nhật lớp"));
+        }
+
+    /* ===== DELETE CLASS ===== */
+            function deleteClass() {
+
+            if (!confirm("Bạn có chắc muốn GIẢI TÁN lớp này? Tất cả thành viên sẽ bị xoá.")) return;
+
+            fetch('/Home/DeleteClass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': token
+                },
+                body: `classId=@Model.Class.ClassId`
+            })
+            .then(() => window.location.href = '/Home/Class')
+            .catch(() => alert("Không thể xoá lớp"));
+        }
+</script>
+<!-- CSS -->
+    <style>
+        .join-required-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .join-required-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+            .join-required-card h2 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .join-required-card p {
+                color: #6b7280;
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+        .lock-icon {
+            font-size: 48px;
+        }
+
+        .modal-section label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .modal-section input,
+        .modal-section textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .f-link {
+            text-decoration: none;
+        }
+
+        .class-detail-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .class-header {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .class-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 2px solid #eee;
+        }
+
+        .class-info h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .class-desc {
+            color: #6b7280;
+            margin-top: 6px;
+        }
+
+        /* Tabs */
+        .class-tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+            .tab-btn.active {
+                color: #4255ff;
+                border-bottom: 4px solid #4255ff;
+            }
+
+        /* Content */
+        .tab-content {
+            display: none;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+
+        /* Chat */
+        .chat-box {
+            height: 450px;
+            overflow-y: auto;
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid #eee;
+        }
+
+        /* CHỈNH SỬA PHẦN INPUT BAR */
+        .chat-input-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+            /* Style cho nút Icon (Ảnh & Emoji) */
+            .chat-icon,
+            .chat-input-bar button[onclick="toggleEmoji()"] {
+                width: 42px;
+                height: 42px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #f3f4f6;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                transition: all 0.2s ease;
+                padding: 0;
+                margin: 0;
+            }
+
+                .chat-icon:hover,
+                .chat-input-bar button[onclick="toggleEmoji()"]:hover {
+                    background: #e5e7eb;
+                    transform: scale(1.05);
+                }
+
+            .chat-input-bar input {
+                flex: 1;
+                padding: 11px 14px;
+                border-radius: 10px;
+                border: 1px solid #e5e7eb;
+                outline: none;
+                transition: border 0.2s;
+            }
+
+                .chat-input-bar input:focus {
+                    border-color: #4255ff;
+                }
+
+            /* Nút Gửi (Primary) */
+            .chat-input-bar button:not([onclick="toggleEmoji()"]) {
+                background: #4255ff;
+                color: white;
+                height: 42px;
+                padding: 0 18px;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+            }
+
+                .chat-input-bar button:not([onclick="toggleEmoji()"]):hover {
+                    background: #3344cc;
+                    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.2);
+                }
+
+        /* Members */
+        .member-list {
+            list-style: none;
+            padding: 0;
+        }
+
+            .member-list li {
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+        /* Empty */
+        .empty-text {
+            color: #9ca3af;
+        }
+
+        .chat-message {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+            .chat-message.mine {
+                justify-content: flex-end;
+            }
+
+            .chat-message.other {
+                justify-content: flex-start;
+            }
+
+        .chat-bubble {
+            max-width: 60%;
+            padding: 10px 14px;
+            border-radius: 16px;
+        }
+
+        .chat-message.mine .chat-bubble {
+            background: #007bff;
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-message.other .chat-bubble {
+            background: #f1f1f1;
+            color: #222;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* ================= FOLDER TAB ================= */
+
+        .folder-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .class-folder-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #e4e8ff;
+            box-shadow: 0 4px 10px rgba(79, 108, 255, 0.05);
+            transition: all 0.25s ease;
+        }
+
+            .class-folder-row:hover {
+                background: #f6f8ff;
+                border-color: #4f6cff;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(79, 108, 255, 0.12);
+            }
+
+        .folder-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+            .folder-left i {
+                font-size: 24px;
+                color: #4f6cff;
+            }
+
+        .folder-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .folder-right {
+            font-size: 13px;
+            color: #6b7280;
+            white-space: nowrap;
+        }
+
+        /* ===== MODAL OVERLAY ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+            .modal-overlay.active {
+                display: flex;
+            }
+
+        .modal-container {
+            width: 520px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 22px 26px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            animation: modalFadeUp 0.25s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+            .modal-header h3 {
+                font-size: 20px;
+                font-weight: 700;
+                color: #1f2937;
+            }
+
+        .close-btn {
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            font-size: 22px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .close-btn:hover {
+                background: #e5e7eb;
+            }
+
+        .modal-section {
+            margin-bottom: 20px;
+        }
+
+            .modal-section h4 {
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 12px;
+                color: #374151;
+            }
+
+        .modal-folder-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: #f5f7ff;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .modal-folder-item i {
+                color: #4f6cff;
+                font-size: 18px;
+            }
+
+            .modal-folder-item span {
+                font-weight: 500;
+                color: #1f2937;
+            }
+
+            .modal-folder-item:hover {
+                background: #eef1ff;
+                border-color: #4f6cff;
+                transform: translateX(4px);
+            }
+
+        .folder-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+            .folder-header h3 {
+                font-size: 20px;
+                font-weight: 700;
+                color: #1f2937;
+            }
+
+        .btn-add-folder {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #4f6cff;
+            color: #ffffff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .btn-add-folder:hover {
+                background: #3f5be0;
+                transform: translateY(-1px);
+            }
+
+        .empty-box {
+            margin-top: 40px;
+            padding: 40px 20px;
+            border-radius: 16px;
+            background: #f6f8ff;
+            border: 2px dashed #c7d2fe;
+            text-align: center;
+        }
+
+            .empty-box i {
+                font-size: 42px;
+                color: #4f6cff;
+                margin-bottom: 12px;
+            }
+
+            .empty-box p {
+                font-size: 15px;
+                font-weight: 500;
+                color: #4b5563;
+                margin-bottom: 18px;
+            }
+
+        .btn-primary {
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: #4f6cff;
+            color: #ffffff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .btn-primary:hover {
+                background: #3f5be0;
+                transform: translateY(-1px);
+            }
+
+        .class-actions {
+            margin-left: auto;
+        }
+
+        .more-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #f3f4f6;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .more-btn:hover {
+                background: #e5e7eb;
+                transform: scale(1.05);
+            }
+
+        #classActionModal .modal-container {
+            width: 320px;
+            padding: 12px;
+        }
+
+        .modal-item {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            background: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+            .modal-item:hover {
+                background: #f3f4f6;
+            }
+
+            .modal-item.danger {
+                color: #dc2626;
+            }
+
+            .modal-item.cancel {
+                margin-top: 6px;
+                color: #6b7280;
+            }
+
+        #editClassModal .modal-container {
+            width: 480px;
+        }
+
+        #editClassModal label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        #editClassModal input,
+        #editClassModal textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        #editClassModal textarea {
+            resize: vertical;
+        }
+
+        #joinClassModal .modal-container {
+            width: 420px;
+        }
+
+        #joinClassModal h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        #joinClassModal input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+        .chat-input-bar {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* các style cũ của bạn... */
+}
+        /* CHỈNH SỬA EMOJI PICKER */
+        .emoji-picker {
+     display: none; /* Mặc định ẩn */
+     grid-template-columns: repeat(5, 1fr);
+     gap: 8px;
+     padding: 12px;
+     background: white;
+     border: 1px solid #e5e7eb;
+     border-radius: 12px;
+     position: absolute;
+     bottom: 70px;
+     left: 10px; /* Thêm dòng này để xác định vị trí ngang */
+     z-index: 1000; /* Tăng z-index để chắc chắn nó nằm trên khung chat */
+     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+ }
+
+ /* Thêm class này để JS kích hoạt */
+ .emoji-picker.active {
+     display: grid !important;
+ }
+
+        .emoji-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            transition: background 0.2s;
+        }
+
+            .emoji-item:hover {
+                background: #f3f4f6;
+                border-radius: 6px;
+            }
+
+        .chat-image {
+            max-width: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn-delete-folder{
+    margin-left:10px;
+    border:none;
+    background:#fee2e2;
+    color:#dc2626;
+    border-radius:8px;
+    padding:6px 8px;
+    cursor:pointer;
+}
+
+.btn-delete-folder:hover{
+    background:#fecaca;
+}
+
+.member-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.btn-kick{
+    border:none;
+    background:#fee2e2;
+    color:#dc2626;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn-kick:hover{
+    background:#fecaca;
+}
+    </style>
+@section Scripts {
+    @if (canViewContent)
+    {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
+        <script>
+    const classId = @Model.Class.ClassId;
+    const currentUserId = @Model.CurrentUserId;
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/classChatHub")
+        .build();
+
+    // 1. Hàm cuộn xuống đáy khung chat
+    function scrollToBottom() {
+        const box = document.getElementById("chatMessages");
+        if (box) {
+            box.scrollTop = box.scrollHeight;
+        }
+    }
+
+    // 2. Hàm chung để render tin nhắn vào box
+    function appendMessage(msg, type = 'text') {
+        const box = document.getElementById("chatMessages");
+        const isMine = msg.userId === currentUserId;
+
+        // Thêm onload="scrollToBottom()" cho ảnh để cuộn đúng sau khi ảnh tải xong
+        let contentHtml = type === 'image'
+            ? `<img src="${msg.imageUrl}" class="chat-image" onload="scrollToBottom()" onclick="window.open(this.src)"/>`
+            : msg.content;
+
+        box.insertAdjacentHTML("beforeend", `
+            <div class="chat-message ${isMine ? 'mine' : 'other'}">
+                <div class="chat-bubble">
+                    ${(!isMine && type === 'text') ? `<div class="chat-name">${msg.fullName}</div>` : ''}
+                    <div class="chat-content">${contentHtml}</div>
+                </div>
+            </div>
+        `);
+        
+        scrollToBottom();
+    }
+
+    // --- SIGNALR EVENTS ---
+    connection.on("ReceiveMessage", msg => appendMessage(msg, 'text'));
+    connection.on("ReceiveImage", msg => appendMessage(msg, 'image'));
+
+    connection.start()
+        .then(() => {
+            connection.invoke("JoinClass", classId);
+            // Cuộn xuống sau khi kết nối thành công (đã render tin nhắn cũ từ server)
+            scrollToBottom();
+        })
+        .catch(err => console.error(err.toString()));
+
+    // --- XỬ LÝ KHI VỪA LOAD TRANG ---
+    document.addEventListener("DOMContentLoaded", scrollToBottom);
+
+    // --- XỬ LÝ EMOJI ---
+    function toggleEmoji() {
+    const panel = document.getElementById("emojiPanel");
+    if (!panel) return;
+    
+    // Kiểm tra trạng thái hiển thị
+    if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = "grid"; // Hoặc "block" tùy CSS của bạn
+    } else {
+        panel.style.display = "none";
+    }
+}
+
+// Đăng ký sự kiện click cho từng emoji một cách chắc chắn
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".emoji-item").forEach(item => {
+        item.onclick = function() {
+            const input = document.getElementById("chatInput");
+            input.value += this.innerText;
+            input.focus();
+            // Tùy chọn: Đóng panel sau khi chọn
+            // document.getElementById("emojiPanel").style.display = "none";
+        };
+    });
+});
+
+    // --- XỬ LÝ UPLOAD ẢNH ---
+    document.getElementById("imageInput").addEventListener("change", async function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("classId", classId);
+
+        try {
+            const res = await fetch("/Chat/UploadImage", {
+                method: "POST",
+                headers: {
+                    'RequestVerificationToken': token
+                },
+                body: formData
+            });
+            if (res.ok) {
+                const data = await res.json();
+                connection.invoke("SendImageMessage", classId, data.imageUrl);
+            } else {
+                const errorMessage = await res.text();
+                alert(errorMessage || "Không thể upload ảnh.");
+            }
+        } catch (err) {
+            console.error("Lỗi upload:", err);
+        }
+        this.value = ""; // Reset input file
+    });
+
+    // --- GỬI TIN NHẮN CHỮ ---
+    function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (!text) return;
+        connection.invoke("SendMessage", classId, text);
+        input.value = '';
+    }
+
+    // Gửi bằng phím Enter
+    document.getElementById("chatInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            sendMessage();
+        }
+    });
+   function removeFolder(event, folderId) {
+    // Ngăn chặn việc nhảy vào link FolderDetail của thẻ <a> cha
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!confirm("Bạn có chắc muốn xoá folder khỏi lớp?")) return;
+
+    // Lấy token từ input ẩn do @Html.AntiForgeryToken() tạo ra
+    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+    fetch('/Home/RemoveFolderFromClass', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token
+        },
+        body: `classId=${classId}&folderId=${folderId}`
+    })
+    .then(res => {
+        if (res.ok) {
+            location.reload();
+        } else {
+            alert("Lỗi: Không có quyền hoặc không tìm thấy folder.");
+        }
+    })
+    .catch(() => alert("Không thể kết nối đến máy chủ"));
+}
+function kickMember(userId) {
+    if (!confirm("Bạn có chắc muốn kick thành viên này ra khỏi lớp?")) return;
+
+    // Lấy token từ input ẩn do @Html.AntiForgeryToken() sinh ra
+    const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+    if (!tokenElement) {
+        alert("Không tìm thấy RequestVerificationToken!");
+        return;
+    }
+    const token = tokenElement.value;
+
+    fetch('/Home/KickMember', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': token
+        },
+        body: `classId=${classId}&userId=${userId}`
+    })
+    .then(res => {
+        if (res.ok) {
+            alert("Đã xóa thành viên thành công.");
+            location.reload();
+        } else if (res.status === 403) {
+            alert("Bạn không có quyền thực hiện hành động này.");
+        } else {
+            alert("Có lỗi xảy ra khi kick thành viên.");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Không thể kết nối đến máy chủ.");
+    });
+}
+</script>
+    }
+}

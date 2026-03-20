@@ -1,7 +1,7 @@
-@model IEnumerable<TCTVocabulary.Models.Set>
+@model TCTVocabulary.ViewModels.VocabularyFolderDetailViewModel
 
 @{
-    ViewData["Title"] = ViewBag.FolderName ?? "Chi Tiết Danh Mục";
+    ViewData["Title"] = Model.FolderName;
     string[] folderColors = { "#667eea", "#f093fb", "#4facfe", "#43e97b", "#fa709a", "#fcb045" };
 }
 
@@ -23,19 +23,19 @@
                 <div class="folder-icon">
                     <i class="fas fa-folder-open"></i>
                 </div>
-                <h1 class="folder-name">@ViewBag.FolderName</h1>
+                <h1 class="folder-name">@Model.FolderName</h1>
                 <div class="folder-stats">
                     <div class="stat">
-                        <span class="stat-value">@Model?.Count()</span>
+                        <span class="stat-value">@Model.TotalSets</span>
                         <span class="stat-label">Bộ từ</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-value">@(Model?.Sum(s => s.Cards?.Count ?? 0) ?? 0)</span>
+                        <span class="stat-value">@Model.TotalCards</span>
                         <span class="stat-label">Từ vựng</span>
                     </div>
                     <div class="stat">
                         @* [Feature: View_Count] - Tổng lượt học từ tất cả set *@
-                        <span class="stat-value">@(Model?.Sum(s => s.ViewCount) ?? 0)</span>
+                        <span class="stat-value">@Model.TotalViews</span>
                         <span class="stat-label">Lượt học</span>
                     </div>
                 </div>
@@ -74,21 +74,20 @@
 
     <!-- Sets Grid -->
     <div class="sets-container">
-        @if (Model != null && Model.Any())
+        @if (Model.Sets.Any())
         {
             <div class="sets-grid" id="setsGrid">
                 @{
                     int colorIndex = 0;
                 }
-                @foreach (var set in Model)
+                @foreach (var set in Model.Sets)
                 {
-                    var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                    .Where(t => t.StartsWith("#")).ToList();
+                    var tags = set.Tags;
                     var bgColor = folderColors[colorIndex % folderColors.Length];
                     var randomIcon = new[] { "📚", "💬", "🌍", "✏️", "🎯", "🎨" }[colorIndex % 6];
                     colorIndex++;
 
-                    <div class="set-grid-item" data-name="@set.SetName" data-cards="@(set.Cards?.Count ?? 0)">
+                    <div class="set-grid-item" data-name="@set.SetName" data-cards="@set.CardCount">
                         <div class="set-card">
                             <div class="set-card-header" style="background: @bgColor">
                                 <span class="set-icon">@randomIcon</span>
@@ -100,33 +99,27 @@
 
                             <div class="set-card-body">
                                 <h3 class="set-name">@set.SetName</h3>
-                                <p class="set-description">@(set.Description?.Replace("#", "").Trim() ?? "Không có mô tả")</p>
+                                <p class="set-description">@set.DescriptionText</p>
 
                                 <div class="set-meta">
                                     <span class="meta-item">
                                         <i class="fas fa-layer-group"></i>
-                                        @(set.Cards?.Count ?? 0) từ
+                                        @set.CardCount từ
                                     </span>
                                     <span class="meta-item">
                                         <i class="fas fa-clock"></i>
                                         @* [Fix: Remove Fake Data] - Ước tính ~2 phút/từ thay vì Random *@
-                                        ~@(Math.Max(1, (set.Cards?.Count ?? 0) * 2)) phút
+                                        ~@set.EstimatedMinutes phút
                                     </span>
                                 </div>
 
-                                @{
-                                    @* [Fix: Remove Fake Data] - Tính tiến độ thật từ LearningProgresses *@
-                                    var totalSetCards = set.Cards?.Count ?? 0;
-                                    var masteredSetCards = set.Cards?.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true) ?? 0;
-                                    var realProgress = totalSetCards > 0 ? (masteredSetCards * 100) / totalSetCards : 0;
-                                }
                                 <div class="set-progress">
                                     <div class="progress-text">
                                         <span>Tiến độ</span>
-                                        <span class="progress-percent">@(realProgress)%</span>
+                                        <span class="progress-percent">@set.ProgressPercentage%</span>
                                     </div>
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: @(realProgress)%; background: @bgColor"></div>
+                                        <div class="progress-fill" style="width: @set.ProgressPercentage%; background: @bgColor"></div>
                                     </div>
                                 </div>
 
@@ -159,14 +152,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var set in Model)
+                        @foreach (var set in Model.Sets)
                         {
-                            var tags = (set.Description ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                            .Where(t => t.StartsWith("#")).ToList();
-                            @* [Fix: Remove Fake Data] - Tính tiến độ thật cho List View *@
-                            var listTotalCards = set.Cards?.Count ?? 0;
-                            var listMasteredCards = set.Cards?.Count(c => c.LearningProgresses?.Any(lp => lp.Status == "Mastered") == true) ?? 0;
-                            var progress = listTotalCards > 0 ? (listMasteredCards * 100) / listTotalCards : 0;
+                            var tags = set.Tags;
 
                             <tr class="list-row">
                                 <td>
@@ -175,7 +163,7 @@
                                         <span>@set.SetName</span>
                                     </div>
                                 </td>
-                                <td>@(set.Cards?.Count ?? 0) từ</td>
+                                <td>@set.CardCount từ</td>
                                 <td>
                                     <div class="list-tags">
                                         @foreach (var tag in tags.Take(2))
@@ -191,9 +179,9 @@
                                 <td>
                                     <div class="list-progress">
                                         <div class="progress-bar-small">
-                                            <div class="progress-fill-small" style="width: @progress%"></div>
+                                            <div class="progress-fill-small" style="width: @set.ProgressPercentage%"></div>
                                         </div>
-                                        <span class="progress-text">@progress%</span>
+                                        <span class="progress-text">@set.ProgressPercentage%</span>
                                     </div>
                                 </td>
                                 <td>

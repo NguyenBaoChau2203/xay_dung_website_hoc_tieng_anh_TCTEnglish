@@ -1,0 +1,373 @@
+@model TCTVocabulary.ViewModels.FolderPageViewModel
+@{
+    ViewData["Title"] = "Folders";
+}
+
+<div class="folder-page">
+    <section class="folder-section">
+        <div class="folder-section-header">
+            <h2>Your folders</h2>
+            <button class="btn-create-folder" id="newFolderBtnPage">
+                <i class="fas fa-plus"></i> New folder
+            </button>
+        </div>
+
+        <div class="folder-grid">
+            @if (Model.MyFolders != null && Model.MyFolders.Any())
+            {
+                @foreach (var folder in Model.MyFolders)
+                {
+                    <a asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId" class="folder-card">
+                        <i class="fas fa-folder folder-icon"></i>
+                        <div class="folder-info">
+                            <p class="folder-name">@folder.FolderName</p>
+                            <div class="folder-meta">
+                                <span><i class="fas fa-layer-group"></i> @folder.SetCount sets</span>
+                                <span><i class="fas fa-user-circle"></i> @folder.CreatorName</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <div class="empty-icon-wrapper">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <p class="empty-title">Chưa có thư mục nào</p>
+                    <p class="empty-description">Hãy tạo thư mục đầu tiên để tổ chức các bộ từ vựng của bạn tốt hơn.</p>
+                    <button class="btn-empty-action" onclick="document.getElementById('newFolderBtnPage').click()">
+                        Tạo thư mục ngay
+                    </button>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="folder-section">
+        <div class="folder-section-header">
+            <h2>Saved folders</h2>
+        </div>
+
+        <div class="folder-grid">
+            @if (Model.SavedFolders != null && Model.SavedFolders.Any())
+            {
+                @foreach (var folder in Model.SavedFolders)
+                {
+                    <a asp-action="FolderDetail" asp-controller="Folder" asp-route-id="@folder.FolderId" class="folder-card saved">
+                        <i class="fas fa-folder-open folder-icon"></i>
+                        <div class="folder-info">
+                            <p class="folder-name">@folder.FolderName</p>
+                            <div class="folder-meta">
+                                <span><i class="fas fa-layer-group"></i> @folder.SetCount sets</span>
+                                <span><i class="fas fa-user-edit"></i> @folder.CreatorName</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <div class="empty-icon-wrapper">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <p class="empty-title">Thư mục đã lưu trống</p>
+                    <p class="empty-description">Bạn có thể lưu các thư mục hữu ích từ cộng đồng để học tập.</p>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+<!-- ================= CREATE FOLDER MODAL (REUSE) ================= -->
+<div id="folderModal" class="modal-overlay">
+    <div class="tct-modal">
+        <h3 class="modal-title">Create new folder</h3>
+
+        <form asp-controller="Folder" asp-action="CreateFolder" method="post">
+
+            <input type="text"
+                   id="folderNameInput"
+                   name="folderName"
+                   class="modal-input"
+                   placeholder="Folder name"
+                   required />
+
+            <div class="modal-actions">
+                <button type="button" class="btn-decline" id="cancelFolderBtn">
+                    Decline
+                </button>
+
+                <button type="submit"
+                        id="confirmFolderBtn"
+                        class="btn-confirm">
+                    Confirm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const openBtn = document.getElementById("newFolderBtnPage");
+            const modal = document.getElementById("folderModal");
+            const cancelBtn = document.getElementById("cancelFolderBtn");
+            const confirmBtn = document.getElementById("confirmFolderBtn");
+            const input = document.getElementById("folderNameInput");
+
+            openBtn.addEventListener("click", () => {
+                modal.classList.add("active");
+                input.value = "";
+                input.focus();
+            });
+
+            function closeModal() {
+                modal.classList.remove("active");
+            }
+
+            cancelBtn.addEventListener("click", closeModal);
+
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            confirmBtn.addEventListener("click", () => {
+                const name = input.value.trim();
+                if (!name) {
+                    alert("Folder name is required");
+                    return;
+                }
+
+                console.log("Create folder:", name);
+                closeModal();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeModal();
+                if (e.key === "Enter" && modal.classList.contains("active")) {
+                    confirmBtn.click();
+                }
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+    :root {
+        --primary: #4255ff;
+        --primary-dark: #2f3fe0;
+        --bg-main: #f6f8fa;
+        --card-bg: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .folder-page {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* ===== HEADER SECTION ===== */
+    .folder-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .folder-section-header h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--text-main);
+    }
+
+    .btn-create-folder {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-create-folder:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(66, 85, 255, 0.3);
+    }
+
+    /* ===== GRID SYSTEM ===== */
+    .folder-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    /* ===== FOLDER CARD STYLING ===== */
+    .folder-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 28px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .folder-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary);
+    }
+
+    .folder-icon {
+        font-size: 42px;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+    }
+
+    .folder-card:hover .folder-icon {
+        transform: scale(1.15) rotate(-5deg);
+    }
+
+    .folder-info {
+        text-align: center;
+        width: 100%;
+    }
+
+    .folder-name {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text-main);
+    }
+
+    /* Meta data: Sets & Creator */
+    .folder-meta {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .folder-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: #f1f5f9;
+        padding: 4px 10px;
+        border-radius: 20px;
+    }
+
+    .folder-card:hover .folder-meta span {
+        background: rgba(66, 85, 255, 0.1);
+        color: var(--primary);
+    }
+
+    /* Saved folder style */
+    .folder-card.saved {
+        border-style: dashed;
+        background: #fafafa;
+    }
+
+    /* ===== EMPTY STATE STYLING ===== */
+    .empty-state-container {
+        grid-column: 1 / -1; /* Trải dài toàn bộ grid */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 20px;
+        background: #fff;
+        border: 2px dashed var(--border-color);
+        border-radius: 24px;
+        text-align: center;
+    }
+
+    .empty-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        background: #f8fafc;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+
+    .empty-icon-wrapper i {
+        font-size: 28px;
+        color: #94a3b8;
+    }
+
+    .empty-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 8px;
+    }
+
+    .empty-description {
+        font-size: 14px;
+        color: var(--text-muted);
+        max-width: 320px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .btn-empty-action {
+        padding: 10px 24px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-empty-action:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @@media (max-width: 768px) {
+        .folder-section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .btn-create-folder {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+}
+
