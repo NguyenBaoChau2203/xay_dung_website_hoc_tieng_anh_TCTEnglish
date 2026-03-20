@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using TCTVocabulary.Models;
+using TCTVocabulary.Security;
 
 namespace TCTVocabulary.Controllers
 {
@@ -7,8 +8,7 @@ namespace TCTVocabulary.Controllers
     {
         protected int GetCurrentUserId()
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdClaim, out var userId))
+            if (!User.TryGetUserId(out var userId))
             {
                 throw new InvalidOperationException("Authenticated user id is unavailable.");
             }
@@ -18,7 +18,12 @@ namespace TCTVocabulary.Controllers
 
         protected bool TryGetCurrentUserId(out int userId)
         {
-            return int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out userId);
+            return User.TryGetUserId(out userId);
+        }
+
+        protected bool IsAdminUser()
+        {
+            return User.IsInRole(Roles.Admin);
         }
     }
 }

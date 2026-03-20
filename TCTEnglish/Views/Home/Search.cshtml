@@ -1,4 +1,4 @@
-﻿@model TCTVocabulary.ViewModel.SearchViewModel
+@model TCTVocabulary.ViewModels.SearchViewModel
 @{
     ViewData["Title"] = $"Kết quả cho \"{Model.Query}\"";
 }
@@ -8,7 +8,7 @@
         <h2 class="search-title">
             Kết quả cho <span class="query-text">"@Model.Query"</span>
         </h2>
-        <p class="search-stats">Tìm thấy kết quả trong thư mục, lớp học và người dùng</p>
+        <p class="search-stats">Tìm thấy @Model.TotalResults kết quả trong thư mục, lớp học và người dùng</p>
     </div>
 
     <div class="search-tabs">
@@ -27,7 +27,6 @@
     </div>
 
     <div class="search-results-content">
-
         <section class="result-section" id="folders-section">
             <div class="section-header">
                 <h3>Thư mục</h3>
@@ -36,13 +35,13 @@
             <div class="result-grid">
                 @if (Model.Folders.Any())
                 {
-                    foreach (var f in Model.Folders)
+                    foreach (var folder in Model.Folders)
                     {
-                        <a asp-action="FolderDetail" asp-route-id="@f.FolderId" class="result-card">
+                        <a asp-controller="Folder" asp-action="FolderDetail" asp-route-id="@folder.FolderId" class="result-card">
                             <div class="card-icon folder"><i class="fas fa-folder"></i></div>
                             <div class="card-info">
-                                <span class="card-name">@f.FolderName</span>
-                                <span class="card-meta">Tạo bởi <b>@f.User.FullName</b></span>
+                                <span class="card-name">@folder.FolderName</span>
+                                <span class="card-meta">Tạo bởi <b>@folder.CreatorName</b></span>
                             </div>
                             <i class="fas fa-chevron-right arrow-icon"></i>
                         </a>
@@ -63,13 +62,13 @@
             <div class="result-grid">
                 @if (Model.Classes.Any())
                 {
-                    foreach (var c in Model.Classes)
+                    foreach (var classResult in Model.Classes)
                     {
-                        <a asp-action="ClassDetail" asp-route-id="@c.ClassId" class="result-card">
+                        <a asp-controller="Class" asp-action="ClassDetail" asp-route-id="@classResult.ClassId" class="result-card">
                             <div class="card-icon class"><i class="fas fa-chalkboard-teacher"></i></div>
                             <div class="card-info">
-                                <span class="card-name">@c.ClassName</span>
-                                <span class="card-meta">Chủ sở hữu: <b>@c.Owner.FullName</b></span>
+                                <span class="card-name">@classResult.ClassName</span>
+                                <span class="card-meta">Chủ sở hữu: <b>@classResult.OwnerName</b></span>
                             </div>
                             <i class="fas fa-chevron-right arrow-icon"></i>
                         </a>
@@ -90,18 +89,18 @@
             <div class="result-grid">
                 @if (Model.Users.Any())
                 {
-                    foreach (var u in Model.Users)
+                    foreach (var user in Model.Users)
                     {
                         <div class="result-card user-card">
-                            <div class="card-avatar" style="background-image: url('@(string.IsNullOrEmpty(u.AvatarUrl) ? "/img/default-avatar.png" : u.AvatarUrl)')">
-                                @if (string.IsNullOrEmpty(u.AvatarUrl))
+                            <div class="card-avatar" style="background-image: url('@(string.IsNullOrEmpty(user.AvatarUrl) ? "/img/default-avatar.png" : user.AvatarUrl)')">
+                                @if (string.IsNullOrEmpty(user.AvatarUrl))
                                 {
-                                    @u.FullName.Substring(0, 1)
+                                    @user.AvatarInitial
                                 }
                             </div>
                             <div class="card-info">
-                                <span class="card-name">@u.FullName</span>
-                                <span class="card-meta">@u.Email</span>
+                                <span class="card-name">@user.FullName</span>
+                                <span class="card-meta">@user.Email</span>
                             </div>
                         </div>
                     }
@@ -112,9 +111,9 @@
                 }
             </div>
         </section>
-
     </div>
 </div>
+
 <style>
     :root {
         --primary: #2563eb;
@@ -134,7 +133,6 @@
         font-family: 'Inter', system-ui, sans-serif;
     }
 
-    /* Header */
     .search-header {
         margin-bottom: 32px;
     }
@@ -155,7 +153,6 @@
         font-size: 0.95rem;
     }
 
-    /* Tabs */
     .search-tabs {
         display: flex;
         gap: 8px;
@@ -181,25 +178,23 @@
         white-space: nowrap;
     }
 
-        .tab-btn i {
-            font-size: 14px;
-        }
+    .tab-btn i {
+        font-size: 14px;
+    }
 
-        .tab-btn:hover {
-            color: var(--primary);
-            background: var(--primary-light);
-            border-radius: 8px 8px 0 0;
-        }
+    .tab-btn:hover {
+        color: var(--primary);
+        background: var(--primary-light);
+        border-radius: 8px 8px 0 0;
+    }
 
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
+    .tab-btn.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+    }
 
-    /* Sections */
     .result-section {
         margin-bottom: 48px;
-        transition: opacity 0.3s ease;
     }
 
     .section-header {
@@ -209,11 +204,11 @@
         margin-bottom: 20px;
     }
 
-        .section-header h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
+    .section-header h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-main);
+    }
 
     .badge {
         background: var(--border);
@@ -224,7 +219,6 @@
         color: var(--text-sub);
     }
 
-    /* Grid & Cards */
     .result-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -241,14 +235,14 @@
         gap: 16px;
         text-decoration: none;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
-        .result-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-            border-color: var(--primary);
-        }
+    .result-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+        border-color: var(--primary);
+    }
 
     .card-icon {
         width: 48px;
@@ -260,15 +254,15 @@
         font-size: 20px;
     }
 
-        .card-icon.folder {
-            background: #fff7ed;
-            color: #f59e0b;
-        }
+    .card-icon.folder {
+        background: #fff7ed;
+        color: #f59e0b;
+    }
 
-        .card-icon.class {
-            background: #f0fdf4;
-            color: #22c55e;
-        }
+    .card-icon.class {
+        background: #f0fdf4;
+        color: #22c55e;
+    }
 
     .card-avatar {
         width: 48px;
@@ -282,6 +276,7 @@
         align-items: center;
         justify-content: center;
         font-weight: bold;
+        text-transform: uppercase;
     }
 
     .card-info {
@@ -322,11 +317,10 @@
         color: var(--text-sub);
         border: 2px dashed var(--border);
     }
-
-   
 </style>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const tabs = document.querySelectorAll(".tab-btn");
         const sections = document.querySelectorAll(".result-section");
 
@@ -334,21 +328,13 @@
             tab.addEventListener("click", () => {
                 const target = tab.getAttribute("data-target");
 
-                // Update Active Tab
-                tabs.forEach(t => t.classList.remove("active"));
+                tabs.forEach(item => item.classList.remove("active"));
                 tab.classList.add("active");
 
-                // Filter Sections
                 sections.forEach(section => {
-                    section.style.display = "none";
-
-                    if (target === "all") {
-                        section.style.display = "block";
-                    } else {
-                        if (section.id === `${target}-section`) {
-                            section.style.display = "block";
-                        }
-                    }
+                    section.style.display = target === "all" || section.id === `${target}-section`
+                        ? "block"
+                        : "none";
                 });
             });
         });

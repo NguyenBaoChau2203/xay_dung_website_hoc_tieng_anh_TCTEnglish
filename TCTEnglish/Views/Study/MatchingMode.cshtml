@@ -1,0 +1,720 @@
+@model TCTVocabulary.ViewModels.StudyViewModel
+@{
+    ViewData["Title"] = "Matching Mode: " + Model.Set.SetName;
+}
+<div class="matching-container">
+    <!-- Header -->
+    <header class="matching-header">
+        <a asp-action="Study" asp-route-id="@Model.Set.SetId" class="btn-back" title="Quay lại học phần">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-main">
+            <h1 class="set-title">Ghép cặp: @Model.Set.SetName</h1>
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0 / @Model.Cards.Count</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Khu vực chơi -->
+    <main class="matching-main" id="matchingMain">
+        <div class="matching-grid" id="matchingGrid"></div>
+
+        <div class="matching-controls">
+            <button class="btn-control btn-shuffle" id="shuffleBtn">
+                <i class="fas fa-random"></i> Trộn lại
+            </button>
+            <button class="btn-control btn-finish" id="finishBtn">
+                <i class="fas fa-flag-checkered"></i> Kết thúc
+            </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+    </main>
+
+    <!-- Kết quả -->
+    <section class="result-panel" id="resultPanel" style="display: none;">
+        <div class="result-card">
+            <div class="result-header">
+                <div class="result-icon">🏆</div>
+                <h2>Kết quả ghép cặp</h2>
+                <p>Bạn đã hoàn thành bài tập!</p>
+            </div>
+
+            <div class="result-stats">
+                <div class="stat-item correct">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <span class="stat-label">Đúng</span>
+                        <span class="stat-value" id="correctCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-item incorrect">
+                    <i class="fas fa-times-circle"></i>
+                    <div>
+                        <span class="stat-label">Sai</span>
+                        <span class="stat-value" id="incorrectCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-item time">
+                    <i class="fas fa-stopwatch"></i>
+                    <div>
+                        <span class="stat-label">Thời gian</span>
+                        <span class="stat-value" id="timeSpent">0s</span>
+                    </div>
+                </div>
+                <div class="stat-item accuracy">
+                    <i class="fas fa-percentage"></i>
+                    <div>
+                        <span class="stat-label">Chính xác</span>
+                        <span class="stat-value" id="accuracyPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <a asp-action="Study" asp-route-id="@Model.Set.SetId" class="btn-primary">
+                    Học tiếp
+                </a>
+                <button class="btn-secondary" onclick="location.reload()">
+                    Chơi lại
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    :root {
+        --primary: #4255ff; /* Màu xanh đặc trưng Quizlet */
+        --primary-light: #6e7eff;
+        --secondary: #ffcd1f; /* Vàng */
+        --success: #23b26d;
+        --danger: #ff6b6b;
+        --bg: #f9fafc;
+        --card-bg: #ffffff;
+        --text-primary: #2e3856;
+        --text-secondary: #6f7c93;
+        --border-light: #e5e8f0;
+        --shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+        --shadow-hover: 0 20px 30px -10px rgba(66,85,255,0.15);
+    }
+
+    .matching-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px;
+        min-height: 100vh;
+        background: var(--bg);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Header */
+    .matching-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--card-bg);
+        padding: 16px 28px;
+        border-radius: 60px;
+        box-shadow: var(--shadow);
+        margin-bottom: 32px;
+    }
+
+    .btn-back {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0f2f7;
+        border-radius: 50%;
+        color: var(--text-secondary);
+        font-size: 1.3rem;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+        .btn-back:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+    .header-main {
+        flex: 1;
+    }
+
+    .set-title {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 6px;
+        letter-spacing: -0.02em;
+    }
+
+    .progress-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .progress-bar {
+        flex: 1;
+        height: 12px;
+        background: #eef0f5;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--primary), #8f79ff);
+        border-radius: 30px;
+        transition: width 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+
+    .progress-text {
+        font-weight: 600;
+        color: var(--text-secondary);
+        min-width: 70px;
+        text-align: right;
+        font-size: 1rem;
+    }
+
+    /* Main game area */
+    .matching-main {
+        background: transparent;
+    }
+
+    .matching-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        margin-bottom: 36px;
+    }
+
+    .matching-item {
+        background: var(--card-bg);
+        border: 2px solid transparent;
+        border-radius: 24px;
+        padding: 28px 18px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        user-select: none;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-break: break-word;
+        box-shadow: var(--shadow);
+        color: var(--text-primary);
+        line-height: 1.4;
+        position: relative;
+    }
+
+        .matching-item:hover:not(.matched):not(.selected) {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .matching-item.selected {
+            border: 2px solid var(--primary);
+            background: #f0f3ff;
+            transform: scale(1.02);
+            box-shadow: 0 0 0 4px rgba(66,85,255,0.15);
+        }
+
+        .matching-item.matched {
+            background: #e3f7ec;
+            border-color: var(--success);
+            color: #1a7b4c;
+            cursor: default;
+            opacity: 0.8;
+            text-decoration: line-through;
+            pointer-events: none;
+            box-shadow: none;
+            filter: grayscale(0.2);
+        }
+
+        .matching-item.term {
+            border-left: 8px solid var(--primary);
+        }
+
+        .matching-item.definition {
+            border-left: 8px solid var(--secondary);
+        }
+
+
+
+    /* Hiệu ứng khi ghép đúng */
+    @@keyframes matchPop {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+            background: #c8f0d9;
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .matching-item.matched {
+        animation: matchPop 0.3s ease;
+    }
+
+    /* Hiệu ứng rung khi chọn sai */
+    @@keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+
+        20% {
+            transform: translateX(-6px);
+        }
+
+        40% {
+            transform: translateX(6px);
+        }
+
+        60% {
+            transform: translateX(-3px);
+        }
+
+        80% {
+            transform: translateX(3px);
+        }
+    }
+
+    .shake {
+        animation: shake 0.3s ease;
+    }
+
+    /* Controls */
+    .matching-controls {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 32px 0 24px;
+    }
+
+    .btn-control {
+        padding: 14px 36px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all 0.25s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        color: var(--text-primary);
+        box-shadow: var(--shadow);
+    }
+
+        .btn-control i {
+            font-size: 1.2rem;
+        }
+
+        .btn-control.btn-shuffle:hover {
+            background: #f0f2f7;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.1);
+        }
+
+        .btn-control.btn-finish {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 12px 25px -8px var(--primary);
+        }
+
+            .btn-control.btn-finish:hover {
+                background: #2f44e0;
+                transform: translateY(-4px);
+                box-shadow: 0 18px 30px -8px var(--primary);
+            }
+
+    /* Feedback */
+    .feedback {
+        min-height: 70px;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        padding: 12px;
+        border-radius: 50px;
+        background: white;
+        box-shadow: var(--shadow);
+        margin-top: 20px;
+    }
+
+        .feedback.correct {
+            color: var(--success);
+        }
+
+        .feedback.incorrect {
+            color: var(--danger);
+        }
+
+        .feedback i {
+            font-size: 2rem;
+        }
+
+    /* Result panel */
+    .result-panel {
+        margin-top: 40px;
+    }
+
+    .result-card {
+        background: white;
+        border-radius: 48px;
+        padding: 60px 40px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .result-header .result-icon {
+        font-size: 5rem;
+        margin-bottom: 16px;
+        filter: drop-shadow(0 8px 12px rgba(255,215,0,0.3));
+    }
+
+    .result-header h2 {
+        font-size: 2.5rem;
+        margin: 0 0 8px;
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    .result-header p {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+    }
+
+    .result-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        margin: 50px 0;
+    }
+
+    .stat-item {
+        background: #f5f7fc;
+        border-radius: 28px;
+        padding: 28px 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: transform 0.25s, box-shadow 0.25s;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.02);
+    }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(66,85,255,0.15);
+        }
+
+        .stat-item i {
+            font-size: 2.8rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 22px;
+            color: white;
+        }
+
+        .stat-item.correct i {
+            background: var(--success);
+        }
+
+        .stat-item.incorrect i {
+            background: var(--danger);
+        }
+
+        .stat-item.time i {
+            background: #ffae42;
+        }
+
+        .stat-item.accuracy i {
+            background: #a259ff;
+        }
+
+        .stat-item .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-item .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+    .result-actions {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 40px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 16px 48px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all 0.25s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        box-shadow: 0 12px 25px -8px var(--primary);
+    }
+
+        .btn-primary:hover {
+            background: #2f44e0;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -8px var(--primary);
+        }
+
+    .btn-secondary {
+        background: #f0f2f7;
+        color: var(--text-primary);
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background: #e2e6f0;
+            transform: translateY(-4px);
+        }
+
+    /* Responsive */
+    @@media (max-width: 700px) {
+        .matching-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .matching-item {
+            padding: 20px 12px;
+            font-size: 1rem;
+            min-height: 100px;
+        }
+
+        .matching-controls {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-control {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .result-stats {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        const cards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+            Model?.Cards?.Select(c => (object)new { term = c.Term ?? string.Empty, def = c.Definition ?? string.Empty })
+            ?? global::System.Linq.Enumerable.Empty<object>()));
+        const hasCards = cards.length > 0;
+        let items = [];
+        let selectedId = null;
+        let matchedCount = 0;
+        let incorrectCount = 0;
+        const startTime = Date.now();
+
+        const matchingGrid = document.getElementById('matchingGrid');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const feedback = document.getElementById('feedback');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const finishBtn = document.getElementById('finishBtn');
+        const matchingMain = document.getElementById('matchingMain');
+        const resultPanel = document.getElementById('resultPanel');
+
+        function initGame() {
+            if (!hasCards) {
+                items = [];
+                selectedId = null;
+                matchedCount = 0;
+                incorrectCount = 0;
+                matchingGrid.innerHTML = '<div class="text-muted text-center py-4">Không có thẻ để luyện ghép cặp.</div>';
+                feedback.innerHTML = '';
+                progressFill.style.width = '0%';
+                progressText.textContent = '0 / 0';
+                shuffleBtn.disabled = true;
+                finishBtn.disabled = true;
+                return;
+            }
+
+            items = [];
+            cards.forEach((card, index) => {
+                items.push({ id: `t${index}`, text: card.term, type: 'term', pairId: index, matched: false });
+                items.push({ id: `d${index}`, text: card.def, type: 'def', pairId: index, matched: false });
+            });
+            shuffleArray(items);
+            matchedCount = 0;
+            incorrectCount = 0;
+            selectedId = null;
+            renderGrid();
+            updateProgress();
+            feedback.innerHTML = '';
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        function renderGrid() {
+            matchingGrid.innerHTML = items.map(item => {
+                let cls = 'matching-item';
+                if (item.matched) cls += ' matched';
+                if (item.id === selectedId) cls += ' selected';
+                if (item.type === 'term') cls += ' term';
+                else cls += ' definition';
+                return `<div class="${cls}" data-id="${item.id}">${item.text}</div>`;
+            }).join('');
+        }
+
+        function updateProgress() {
+            if (cards.length === 0) {
+                progressFill.style.width = '0%';
+                progressText.textContent = '0 / 0';
+                return;
+            }
+
+            const percent = (matchedCount / cards.length) * 100;
+            progressFill.style.width = percent + '%';
+            progressText.textContent = `${matchedCount} / ${cards.length}`;
+        }
+
+        matchingGrid.addEventListener('click', e => {
+            if (!hasCards) {
+                return;
+            }
+
+            const target = e.target.closest('.matching-item');
+            if (!target || target.classList.contains('matched')) return;
+
+            const id = target.dataset.id;
+            const item = items.find(i => i.id === id);
+
+            if (selectedId === null) {
+                selectedId = id;
+                renderGrid();
+                return;
+            }
+
+            if (selectedId === id) {
+                selectedId = null;
+                renderGrid();
+                return;
+            }
+
+            const selected = items.find(i => i.id === selectedId);
+
+            if (selected.type === item.type) {
+                selectedId = id;
+                renderGrid();
+                return;
+            }
+
+            if (selected.pairId === item.pairId) {
+                selected.matched = item.matched = true;
+                matchedCount++;
+                feedback.innerHTML = '<div class="feedback correct"><i class="fas fa-check-circle"></i> Ghép đúng!</div>';
+                setTimeout(() => feedback.innerHTML = '', 1200);
+                selectedId = null;
+                renderGrid();
+                updateProgress();
+                if (matchedCount === cards.length) finishGame();
+            } else {
+                // Hiệu ứng rung khi sai
+                target.classList.add('shake');
+                setTimeout(() => target.classList.remove('shake'), 300);
+                // Cũng có thể thêm rung cho thẻ đã chọn
+                const selectedElement = document.querySelector(`[data-id="${selectedId}"]`);
+                if (selectedElement) {
+                    selectedElement.classList.add('shake');
+                    setTimeout(() => selectedElement.classList.remove('shake'), 300);
+                }
+
+                incorrectCount++;
+                feedback.innerHTML = '<div class="feedback incorrect"><i class="fas fa-times-circle"></i> Sai rồi!</div>';
+                setTimeout(() => feedback.innerHTML = '', 1200);
+                selectedId = null;
+                renderGrid();
+            }
+        });
+
+        function reshuffle() {
+            const unmatched = items.filter(i => !i.matched);
+            shuffleArray(unmatched);
+            let idx = 0;
+            items = items.map(i => i.matched ? i : unmatched[idx++]);
+            selectedId = null;
+            renderGrid();
+        }
+
+        function finishGame() {
+            const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+            const totalAttempts = matchedCount + incorrectCount;
+            const accuracy = totalAttempts > 0 ? Math.round((matchedCount / totalAttempts) * 100) : 100;
+
+            document.getElementById('correctCount').textContent = matchedCount;
+            document.getElementById('incorrectCount').textContent = incorrectCount;
+            document.getElementById('timeSpent').textContent = timeSpent + 's';
+            document.getElementById('accuracyPercent').textContent = accuracy + '%';
+
+            matchingMain.style.display = 'none';
+            resultPanel.style.display = 'block';
+        }
+
+        shuffleBtn.addEventListener('click', reshuffle);
+        finishBtn.addEventListener('click', () => {
+            if (matchedCount === cards.length || confirm('Bạn có chắc muốn kết thúc sớm?')) {
+                finishGame();
+            }
+        });
+
+        initGame();
+    </script>
+}

@@ -250,7 +250,7 @@ public class SpeakingVideoManagementController : Controller
         var targetPlaylistId = await ResolveTargetPlaylistIdAsync(model.PlaylistId);
         if (targetPlaylistId == 0)
         {
-            ModelState.AddModelError(nameof(model.PlaylistId), "Playlist Ä‘Ã£ chá»n khÃ´ng tá»“n táº¡i.");
+            ModelState.AddModelError(nameof(model.PlaylistId), "Playlist đã chọn không tồn tại.");
             return View(model);
         }
 
@@ -262,7 +262,7 @@ public class SpeakingVideoManagementController : Controller
         await _context.SaveChangesAsync();
 
         _logger.LogInformation("Admin updated SpeakingVideo {VideoId} at {Time}", id, DateTime.UtcNow);
-        TempData["SuccessMessage"] = $"Video \"{video.Title}\" Ä‘Ã£ Ä‘Æ°á»£c cáº­p nháº­t thÃ nh cÃ´ng.";
+        TempData["SuccessMessage"] = $"Video \"{video.Title}\" đã được cập nhật thành công.";
         return RedirectToAction(nameof(Index));
     }
 

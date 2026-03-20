@@ -1,40 +1,12 @@
-﻿@model TCTVocabulary.Models.Set
+@model TCTVocabulary.ViewModels.VocabularyTopicsViewModel
 @using System.Linq
-@using System.Collections.Generic
 @{
-    ViewData["Title"] = Model.SetName + " - Danh sách chủ đề";
+    ViewData["Title"] = Model.Set.SetName + " - Danh sách chủ đề";
 
-    // Kiểm tra Model.Cards có null không
-    var cards = Model.Cards ?? new List<TCTVocabulary.Models.Card>();
-
-    // Các trạng thái đã học
-    var learnedStatuses = new[] { "Mastered", "Learned" };
-
-    // Nhóm các thẻ theo Topic
-    var topics = cards
-        .GroupBy(c => string.IsNullOrEmpty(c.Topic) ? "Chưa phân loại" : c.Topic)
-        .Select(g =>
-        {
-            var learnedCount = g.Count(c => c.LearningProgresses != null
-                && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
-            var totalCount = g.Count();
-
-            return new
-            {
-                TopicName = g.Key,
-                Cards = g.ToList(),
-                TotalCards = totalCount,
-                LearnedCards = learnedCount,
-                Progress = totalCount > 0 ? (learnedCount * 100) / totalCount : 0
-            };
-        })
-        .OrderBy(t => t.TopicName)
-        .ToList();
-
-    var totalCards = cards.Count;
-    var totalLearned = cards.Count(c => c.LearningProgresses != null
-        && c.LearningProgresses.Any(lp => learnedStatuses.Contains(lp.Status)));
-    var overallProgress = totalCards > 0 ? (totalLearned * 100) / totalCards : 0;
+    var topics = Model.Topics;
+    var totalCards = Model.Stats.TotalCards;
+    var totalLearned = Model.Stats.LearnedCards;
+    var overallProgress = Model.Stats.Accuracy;
 }
 
 @section Styles {
@@ -497,17 +469,17 @@
 
 <div class="topics-container">
     <!-- Back Link -->
-    <a href="@Url.Action("Detail", "Vocabulary", new { setId = Model.SetId })" class="back-link">
+    <a href="@Url.Action("Detail", "Vocabulary", new { setId = Model.Set.SetId })" class="back-link">
         <i class="fas fa-arrow-left"></i>
         <span>Quay lại</span>
     </a>
 
     <!-- Header -->
     <div class="header-section">
-        <h1 class="set-title">@Model.SetName</h1>
-        @if (!string.IsNullOrEmpty(Model.Description))
+        <h1 class="set-title">@Model.Set.SetName</h1>
+        @if (!string.IsNullOrEmpty(Model.Set.Description))
         {
-            <p class="set-description">@Model.Description</p>
+            <p class="set-description">@Model.Set.Description</p>
         }
     </div>
 
@@ -524,7 +496,7 @@
         <div class="topics-list">
             @foreach (var topic in topics)
             {
-                <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.SetId, topic = topic.TopicName })"
+                <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.Set.SetId, topic = topic.TopicName })"
                    class="topic-card">
                     <div class="topic-content">
                         <div class="topic-icon">

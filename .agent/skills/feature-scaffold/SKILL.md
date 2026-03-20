@@ -8,6 +8,9 @@ description: Scaffold a complete new feature end-to-end for TCT English platform
 ## When to Use
 Use when creating a new feature from scratch that needs Model, Service, Controller, ViewModel, and View layers.
 
+## Pre-Scaffold Step
+Before generating any files, read `docs/project-structure.md` to verify current folder boundaries and avoid placing files in the wrong location.
+
 ## Steps
 
 ### Step 1 — Feature Spec
@@ -44,11 +47,14 @@ public interface I<Feature>Service
 {
     Task<List<<Feature>ViewModel>> GetAllAsync(int userId);
     Task<<Feature>ViewModel?> GetByIdAsync(int id, int userId);
-    Task<bool> CreateAsync(<Feature>ViewModel model, int userId);
-    Task<bool> UpdateAsync(<Feature>ViewModel model, int userId);
-    Task<bool> DeleteAsync(int id, int userId);
+    Task<OperationResult> CreateAsync(<Feature>ViewModel model, int userId);
+    Task<OperationResult> UpdateAsync(<Feature>ViewModel model, int userId);
+    Task<OperationResult> DeleteAsync(int id, int userId);
 }
 ```
+
+> Use `OperationResult` (in `Services/OperationResult.cs`) as the return type for all mutating
+> service methods. Do not use raw `bool` or re-throw exceptions to controllers.
 
 ### Step 4 — Controller Layer
 ```csharp
@@ -86,7 +92,9 @@ public class <Feature>Controller : BaseController
 - All sensitive actions: `[Authorize]` with appropriate role
 
 ## TCT English Constraints
+- **Placement**: Controllers → `Controllers/` | Admin → `Areas/Admin/Controllers/` | Views → `Views/{Feature}/` | ViewModels → `ViewModels/`
 - User identity: always use `GetCurrentUserId()` from `BaseController`
 - Never pass raw EF entities to Views — always use ViewModels
+- Service return type for mutations: use `OperationResult` not raw `bool`
 - New entities: add to `DbflashcardContext` AND create EF migration instruction
 - Bootstrap 5 only — no custom CSS unless absolutely necessary

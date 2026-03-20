@@ -1,30 +1,51 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization; // [FIX-AI-AUTH]
-using System.Security.Claims; // [FIX-AI-AUTH]
 using TCTVocabulary.Models;
+using TCTVocabulary.Security;
+using TCTVocabulary.Services;
 
 namespace TCTVocabulary.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize] // [FIX-AI-AUTH]
+    [AutoValidateAntiforgeryToken]
     public class LearningApiController : ControllerBase
     {
         private readonly DbflashcardContext _context;
+        private readonly IStreakService _streakService;
+        private readonly ILogger<LearningApiController> _logger;
 
-        public LearningApiController(DbflashcardContext context)
+        public LearningApiController(
+            DbflashcardContext context,
+            IStreakService streakService,
+            ILogger<LearningApiController> logger)
         {
             _context = context;
+            _streakService = streakService;
+            _logger = logger;
         }
 
         [HttpPost("record")]
         public async Task<IActionResult> Record([FromBody] LearningRecordRequest request)
         {
-            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!); // [FIX-AI-AUTH]
+            if (!User.TryGetUserId(out var currentUserId))
+            {
+                _logger.LogWarning("Unauthorized learning record request for card {cardId}", request.CardId);
+                return Unauthorized();
+            }
+
+            _logger.LogInformation(
+                "Learning record request received for user {userId}, card {cardId}, masteryLevel {masteryLevel}",
+                currentUserId,
+                request.CardId,
+                request.MasteryLevel);
 
             var progress = await _context.LearningProgresses
                 .FirstOrDefaultAsync(lp => lp.CardId == request.CardId && lp.UserId == currentUserId);
+
+            var isNewProgress = progress == null;
 
             if (progress == null)
             {
@@ -43,8 +64,18 @@ namespace TCTVocabulary.Controllers
             progress.LastReviewedDate = DateTime.UtcNow;
 
             // Logic SRS – dùng RepetitionCount để tính khoảng cách ôn tập
+            var masteryLevel = request.MasteryLevel?.Trim().ToLowerInvariant();
+            if (string.IsNullOrWhiteSpace(masteryLevel))
+            {
+                _logger.LogWarning(
+                    "Invalid mastery level for user {userId}, card {cardId}",
+                    currentUserId,
+                    request.CardId);
+                return BadRequest("Invalid mastery level");
+            }
+
             int reps = progress.RepetitionCount;
-            switch (request.MasteryLevel.ToLower())
+            switch (masteryLevel)
             {
                 case "hard":
                     // Khó → ôn lại sau 10 phút, reset repetition
@@ -69,43 +100,27 @@ namespace TCTVocabulary.Controllers
                     progress.RepetitionCount = reps + 1;
                     break;
                 default:
+                    _logger.LogWarning(
+                        "Unsupported mastery level {masteryLevel} for user {userId}, card {cardId}",
+                        masteryLevel,
+                        currentUserId,
+                        request.CardId);
                     return BadRequest("Invalid mastery level");
             }
 
-            // ============ STREAK UPDATE ============
-            var user = await _context.Users.FindAsync(currentUserId);
-            if (user != null)
-            {
-                var today = DateTime.UtcNow.Date;
-                var lastStudy = user.LastStudyDate?.Date;
+            var streak = await _streakService.UpdateStreakAsync(currentUserId);
 
-                if (lastStudy == null || lastStudy < today)
-                {
-                    if (lastStudy == today.AddDays(-1))
-                    {
-                        // Hôm qua đã học → tăng streak
-                        user.Streak = (user.Streak ?? 0) + 1;
-                    }
-                    else if (lastStudy < today.AddDays(-1))
-                    {
-                        // Bỏ lỡ → reset streak về 1
-                        user.Streak = 1;
-                    }
+            _logger.LogInformation(
+                "Learning record updated for user {userId}, card {cardId}, status {status}, repetitionCount {repetitionCount}, nextReviewDate {nextReviewDate}, isNewProgress {isNewProgress}, streak {streak}",
+                currentUserId,
+                request.CardId,
+                progress.Status,
+                progress.RepetitionCount,
+                progress.NextReviewDate,
+                isNewProgress,
+                streak);
 
-                    user.LastStudyDate = today;
-
-                    // Cập nhật kỷ lục
-                    if ((user.Streak ?? 0) > (user.LongestStreak ?? 0))
-                    {
-                        user.LongestStreak = user.Streak;
-                    }
-                }
-                // Nếu lastStudy == today → không thay đổi streak (đã tính rồi)
-            }
-
-            await _context.SaveChangesAsync();
-
-            return Ok(new { success = true, nextReviewDate = progress.NextReviewDate, streak = user?.Streak ?? 0 });
+            return Ok(new { success = true, nextReviewDate = progress.NextReviewDate, streak });
         }
     }
 

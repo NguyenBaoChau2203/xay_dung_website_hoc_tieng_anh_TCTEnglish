@@ -1,4 +1,4 @@
-# TCT English — Coding Conventions & Architecture Patterns
+# TCT English - Coding Conventions & Architecture Patterns
 
 This document defines the authoritative coding standards for the TCT English codebase.
 All AI-generated code must follow these conventions.
@@ -61,15 +61,15 @@ function handleSearchInput(event) { ... }
 ### MVC Layer Responsibilities
 
 ```
-Controller  → Receive request → validate → call service → return result
-Service     → Business logic, DB operations, domain rules
-ViewModel   → Data contract between controller and view
-View        → Render HTML with Bootstrap 5, display ViewModel data
+Controller  -> Receive request -> validate -> call service -> return result
+Service     -> Business logic, DB operations, domain rules
+ViewModel   -> Data contract between controller and view
+View        -> Render HTML with Bootstrap 5, display ViewModel data
 ```
 
-**Controller action should be ≤ 25 lines of logic:**
+**Controller action should be <= 25 lines of logic:**
 ```csharp
-// CORRECT — thin controller:
+// CORRECT - thin controller:
 [HttpPost, ValidateAntiForgeryToken]
 public async Task<IActionResult> CreateSet(CreateSetViewModel model)
 {
@@ -80,7 +80,7 @@ public async Task<IActionResult> CreateSet(CreateSetViewModel model)
     return RedirectToAction(nameof(Index));
 }
 
-// INCORRECT — business logic in controller (extract to service):
+// INCORRECT - business logic in controller (extract to service):
 [HttpPost, ValidateAntiForgeryToken]
 public async Task<IActionResult> CreateSet(CreateSetViewModel model)
 {
@@ -106,9 +106,9 @@ public class VocabularyController : BaseController
 
 // Register in Program.cs:
 builder.Services.AddScoped<ISetService, SetService>();
-// AddScoped  → one per HTTP request (most common for services)
-// AddSingleton → one for app lifetime (IAppEmailSender, caches)
-// AddTransient → new instance every time (rare)
+// AddScoped -> one per HTTP request (most common for services)
+// AddSingleton -> one for app lifetime (IAppEmailSender, caches)
+// AddTransient -> new instance every time (rare)
 ```
 
 ### User Identity Pattern
@@ -118,13 +118,13 @@ builder.Services.AddScoped<ISetService, SetService>();
 var userId = GetCurrentUserId();
 
 // NEVER use inline parsing:
-var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);  // ❌
+var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);  // X
 ```
 
 ### EF Core Query Patterns
 
 ```csharp
-// READ — Always AsNoTracking + ownership check:
+// READ - Always AsNoTracking + ownership check:
 var set = await _context.Sets
     .AsNoTracking()
     .Where(s => s.SetId == id && s.OwnerId == userId)
@@ -137,7 +137,7 @@ var user = await _context.Users
     .Include(u => u.Sets).ThenInclude(s => s.Cards)
     .FirstOrDefaultAsync(u => u.UserId == userId);
 
-// WRITE — track entity + ownership check:
+// WRITE - track entity + ownership check:
 var set = await _context.Sets
     .FirstOrDefaultAsync(s => s.SetId == id && s.OwnerId == userId);
 if (set == null) return NotFound();
@@ -149,7 +149,7 @@ var newSet = new Set { OwnerId = userId, SetName = model.SetName, CreatedAt = Da
 _context.Sets.Add(newSet);
 await _context.SaveChangesAsync();
 
-// DELETE — verify ownership first:
+// DELETE - verify ownership first:
 var set = await _context.Sets.FirstOrDefaultAsync(s => s.SetId == id && s.OwnerId == userId);
 if (set == null) return NotFound();
 _context.Sets.Remove(set);
@@ -160,7 +160,7 @@ await _context.SaveChangesAsync();
 
 ```csharp
 // NEVER pass EF entities to Views:
-return View(set);  // ❌ Exposes internals, risky
+return View(set);  // X Exposes internals, risky
 
 // ALWAYS project to ViewModel:
 var viewModel = new SetDetailViewModel
@@ -169,7 +169,7 @@ var viewModel = new SetDetailViewModel
     SetName = set.SetName,
     Cards = set.Cards.Select(c => new CardViewModel { ... }).ToList()
 };
-return View(viewModel);  // ✅
+return View(viewModel);  // OK
 ```
 
 ---
@@ -179,10 +179,10 @@ return View(viewModel);  // ✅
 ### Authorization Hierarchy
 
 ```csharp
-[AllowAnonymous]           → Public (Landing, Auth pages)
-[Authorize]                → Any authenticated user
-[Authorize(Roles = "Teacher,Admin")]  → Teacher or Admin
-[Authorize(Roles = "Admin")]          → Admin only
+[AllowAnonymous]           -> Public (Landing, Auth pages)
+[Authorize]                -> Any authenticated user
+[Authorize(Roles = "Teacher,Admin")]  -> Teacher or Admin
+[Authorize(Roles = "Admin")]          -> Admin only
 ```
 
 ### IDOR Prevention (Required on all parameterized queries)
@@ -212,11 +212,12 @@ headers: { 'RequestVerificationToken': document.querySelector('[name=__RequestVe
 ## Razor View Conventions
 
 ```cshtml
-@* Always declare model type *@
+@* Always declare model type - use the canonical namespace root *@
 @model TCTEnglish.ViewModels.SetDetailViewModel
 
 @* Use Tag Helpers (not Url.Action or UrlHelper) *@
-<a asp-controller="Home" asp-action="Study" asp-route-setId="@Model.SetId">Study</a>
+@* Feature controllers own their domains - do not route through HomeController *@
+<a asp-controller="Study" asp-action="Study" asp-route-setId="@Model.SetId">Study</a>
 <form asp-controller="Vocabulary" asp-action="Delete" method="post">
 
 @* Use asp-for for form inputs *@
@@ -228,35 +229,38 @@ headers: { 'RequestVerificationToken': document.querySelector('[name=__RequestVe
     <script src="~/js/vocabulary.js" asp-append-version="true"></script>
 }
 
-@* Conditional rendering — always null-safe *@
+@* Conditional rendering - always null-safe *@
 @if (Model.Cards?.Any() == true) { ... }
 else { <p>No cards yet.</p> }
 ```
+
+> **View placement rule**: Feature views live in `Views/{Controller}/` (e.g. `Views/Study/Study.cshtml`,
+> `Views/Class/ClassDetail.cshtml`). Never add new feature screens to `Views/Home/`.
 
 ---
 
 ## Anti-Patterns (Never Do These)
 
 ```csharp
-// ❌ Sync DB operations:
+// X Sync DB operations:
 var cards = _context.Cards.ToList();  // Use ToListAsync()
 
-// ❌ Expose entities to Views:
+// X Expose entities to Views:
 return View(await _context.Sets.FindAsync(id));
 
-// ❌ Business logic in Views:
+// X Business logic in Views:
 @if (someComplexCalculation) { ... }  // Calculate in ViewModel
 
-// ❌ Magic strings for roles:
+// X Magic strings for roles:
 [Authorize(Roles = "admin")]  // Wrong case! Use "Admin"
 
-// ❌ Instantiate services with new:
+// X Instantiate services with new:
 var service = new SetService(_context);  // Use DI
 
-// ❌ Hardcode user ID:
+// X Hardcode user ID:
 .Where(s => s.OwnerId == 42)  // Get from GetCurrentUserId()
 
-// ❌ Blocking async:
+// X Blocking async:
 someTask.Result;  // Deadlock risk!
 someTask.GetAwaiter().GetResult();  // Deadlock risk!
 ```

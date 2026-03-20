@@ -11,7 +11,7 @@
 // FILE 1: I{Feature}Service.cs
 // ============================================================
 
-using TCTEnglish.ViewModels;
+using TCTVocabulary.ViewModels; // ViewModels use TCTVocabulary namespace
 
 namespace TCTEnglish.Services
 {
@@ -46,7 +46,7 @@ namespace TCTEnglish.Services
 
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Models;
-using TCTEnglish.ViewModels;
+using TCTVocabulary.ViewModels; // ViewModels use TCTVocabulary namespace
 
 namespace TCTEnglish.Services
 {
