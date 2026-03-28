@@ -1,4 +1,23 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("globalSearchInput");
+
+    function syncHeaderSearchPlaceholder() {
+        if (!searchInput) {
+            return;
+        }
+
+        const useCompactPlaceholder = window.matchMedia("(max-width: 576px)").matches;
+        const defaultPlaceholder = searchInput.dataset.placeholderDefault || "Search";
+        const compactPlaceholder = searchInput.dataset.placeholderCompact || "Search";
+
+        searchInput.placeholder = useCompactPlaceholder
+            ? compactPlaceholder
+            : defaultPlaceholder;
+    }
+
+    syncHeaderSearchPlaceholder();
+    window.addEventListener("resize", syncHeaderSearchPlaceholder);
+
     // 1. XỬ LÝ SIDEBAR (COLLAPSE/ACTIVE)
     const menuIcon = document.querySelector(".menu-icon");
     const sidebar = document.querySelector(".sidebar");

@@ -38,9 +38,13 @@
             <i class="fas fa-search"></i>
 
             <input type="text"
+                   id="globalSearchInput"
                    name="q"
                    value="@Context.Request.Query["q"]"
-                   placeholder="Search for folders, classes, users"
+                   placeholder="Search folders, classes, users"
+                   aria-label="Search folders, classes, users"
+                   data-placeholder-default="Search folders, classes, users"
+                   data-placeholder-compact="Search"
                    autocomplete="off" />
         </form>
 

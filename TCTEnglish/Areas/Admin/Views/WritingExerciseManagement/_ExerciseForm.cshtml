@@ -1,0 +1,279 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseFormViewModel
+@{
+    var formAction = ViewData["FormAction"]?.ToString() ?? "Create";
+    var submitText = ViewData["SubmitText"]?.ToString() ?? "Lưu bài viết";
+    var submitIcon = ViewData["SubmitIcon"]?.ToString() ?? "fa-solid fa-floppy-disk";
+    var formHeading = ViewData["FormHeading"]?.ToString() ?? "Writing Exercise";
+    var formDescription = ViewData["FormDescription"]?.ToString() ?? string.Empty;
+}
+
+<form asp-action="@formAction"
+      asp-route-id="@(Model.Id > 0 ? Model.Id : null)"
+      method="post"
+      id="writingExerciseForm">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-4 shadow-sm mb-4" role="alert"></div>
+
+    <div class="row g-4 align-items-start">
+        <div class="col-xl-8">
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card mb-4">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
+                        <div>
+                            <h4 class="mb-1 fw-bold text-dark">@formHeading</h4>
+                            <p class="text-muted mb-0">@formDescription</p>
+                        </div>
+                        <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-3 py-2" id="previewStatusBadge">
+                            @(Model.IsPublished ? "Sẵn sàng hiển thị" : "Đang ở trạng thái nháp")
+                        </span>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <label asp-for="Title" class="form-label fw-bold">
+                                Tiêu đề bài viết <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Title"
+                                   class="form-control form-control-lg"
+                                   placeholder="Ví dụ: Thank-you email after receiving a gift" />
+                            <span asp-validation-for="Title" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Level" class="form-label fw-bold">
+                                Trình độ <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="Level" class="form-select">
+                                @foreach (var option in Model.LevelOptions)
+                                {
+                                    <option value="@option.Value">@option.Label</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Level" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="ContentType" class="form-label fw-bold">
+                                Loại nội dung <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="ContentType" class="form-select">
+                                @foreach (var option in Model.ContentTypeOptions)
+                                {
+                                    <option value="@option.Value">@option.Label</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ContentType" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Topic" class="form-label fw-bold">
+                                Chủ đề <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Topic" class="form-control" placeholder="Ví dụ: Workplace, Gratitude, Daily Life..." />
+                            <span asp-validation-for="Topic" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="PreviewText" class="form-label fw-bold">
+                                Preview text <span class="text-danger">*</span>
+                            </label>
+                            <textarea asp-for="PreviewText"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Mô tả ngắn để learner hiểu nội dung trước khi bắt đầu viết."></textarea>
+                            <span asp-validation-for="PreviewText" class="text-danger small mt-1 d-block"></span>
+                            <div class="form-text">
+                                Phần này sẽ xuất hiện ở trang learner trước khi người học mở màn practice writing.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="admin-writing-toggle-shell">
+                                <div>
+                                    <div class="fw-semibold text-dark">Hiển thị cho learner</div>
+                                    <div class="text-muted small">Bật để bài viết xuất hiện trong learner flow Writing đúng level và content type đã chọn.</div>
+                                </div>
+                                <div class="form-check form-switch mb-0">
+                                    <input asp-for="IsPublished" class="form-check-input" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card mb-4">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
+                        <div>
+                            <h4 class="mb-1 fw-bold text-dark">Full Text Builder</h4>
+                            <p class="text-muted mb-0">
+                                Dán nguyên đoạn tiếng Việt và nguyên đoạn tiếng Anh mẫu. Hệ thống sẽ tự tách câu khi gặp dấu chấm câu như `.`, `!`, `?`, `;`, `:`.
+                            </p>
+                        </div>
+                        <span class="admin-writing-helper-pill">
+                            <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Tự tách câu khi lưu
+                        </span>
+                    </div>
+
+                    <div class="admin-writing-builder-note mb-4">
+                        <div class="admin-writing-builder-note-item">
+                            <i class="fa-solid fa-align-left text-primary"></i>
+                            <span>Muốn xuống đoạn mới trong learner preview, hãy chừa một dòng trống giữa hai paragraph.</span>
+                        </div>
+                        <div class="admin-writing-builder-note-item">
+                            <i class="fa-solid fa-circle-nodes text-primary"></i>
+                            <span>Hai full text cần có cùng số câu sau khi tách tự động để hệ thống ghép cặp chính xác.</span>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <label asp-for="FullVietnameseText" class="form-label fw-bold">
+                                Full text tiếng Việt <span class="text-danger">*</span>
+                            </label>
+                            <textarea asp-for="FullVietnameseText"
+                                      class="form-control admin-writing-passage-input"
+                                      rows="10"
+                                      placeholder="Dán toàn bộ đoạn tiếng Việt ở đây. Mỗi câu nên kết thúc bằng dấu câu như ., !, ?, ; hoặc :."></textarea>
+                            <span asp-validation-for="FullVietnameseText" class="text-danger small mt-1 d-block"></span>
+                            <div class="form-text">
+                                Đây là phần learner sẽ nhìn thấy ở cột trái trong màn practice writing.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="FullEnglishText" class="form-label fw-bold">
+                                Full text tiếng Anh mẫu <span class="text-danger">*</span>
+                            </label>
+                            <textarea asp-for="FullEnglishText"
+                                      class="form-control admin-writing-passage-input"
+                                      rows="10"
+                                      placeholder="Dán toàn bộ đoạn tiếng Anh mẫu để hệ thống tự ghép từng câu tương ứng."></textarea>
+                            <span asp-validation-for="FullEnglishText" class="text-danger small mt-1 d-block"></span>
+                            <div class="form-text">
+                                Phần này dùng làm reference answer cho từng câu sau khi tách tự động.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="pairSyncMessage" class="alert alert-secondary rounded-4 mb-0 admin-writing-sync-alert">
+                                Hệ thống sẽ tự chia hai đoạn văn thành các câu tương ứng khi bạn bấm lưu.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
+                        <div>
+                            <h4 class="mb-1 fw-bold text-dark">Auto-Detected Sentence Pairs</h4>
+                            <p class="text-muted mb-0">
+                                Xem nhanh hệ thống sẽ ghép những câu nào trước khi lưu vào database.
+                            </p>
+                        </div>
+                        <span class="badge rounded-pill bg-light text-secondary border px-3 py-2" id="pairCountBadge">
+                            Chưa nhận diện câu
+                        </span>
+                    </div>
+
+                    <div id="autoPairEmpty" class="admin-writing-empty-state">
+                        Dán cả full text tiếng Việt và tiếng Anh mẫu để xem trước các cặp câu được nhận diện.
+                    </div>
+
+                    <div id="autoPairList" class="d-grid gap-3"></div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Hủy bỏ</a>
+                <button type="submit" class="btn btn-primary shadow-sm rounded-pill px-4">
+                    <i class="@submitIcon me-2"></i>@submitText
+                </button>
+            </div>
+        </div>
+
+        <div class="col-xl-4">
+            <div class="admin-writing-sidebar sticky-xl-top">
+                <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                            <div>
+                                <div class="text-uppercase text-muted small fw-semibold mb-2">Quick Summary</div>
+                                <h5 class="mb-1 fw-bold text-dark">Tình trạng bài viết</h5>
+                            </div>
+                            <i class="fa-solid fa-chart-column text-primary"></i>
+                        </div>
+
+                        <div class="admin-writing-mini-grid">
+                            <div class="admin-writing-mini-item">
+                                <div class="admin-writing-mini-label">Câu nhận diện</div>
+                                <div class="admin-writing-mini-value" id="summarySentenceCount">0</div>
+                            </div>
+                            <div class="admin-writing-mini-item">
+                                <div class="admin-writing-mini-label">Số đoạn</div>
+                                <div class="admin-writing-mini-value" id="summaryParagraphCount">0</div>
+                            </div>
+                            <div class="admin-writing-mini-item">
+                                <div class="admin-writing-mini-label">Trạng thái tách</div>
+                                <div class="admin-writing-mini-value" id="summarySplitStatus">Chờ nhập</div>
+                            </div>
+                            <div class="admin-writing-mini-item">
+                                <div class="admin-writing-mini-label">Hiển thị</div>
+                                <div class="admin-writing-mini-value" id="summaryPublishStatus">
+                                    @(Model.IsPublished ? "Published" : "Draft")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card mb-4">
+                    <div class="card-body p-4">
+                        <div class="text-uppercase text-muted small fw-semibold mb-2">Learner Preview</div>
+                        <h5 class="mb-3 fw-bold text-dark">Xem trước bài viết</h5>
+
+                        <div class="admin-writing-preview-meta mb-3">
+                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25" id="previewLevelChip">
+                                @Model.Level
+                            </span>
+                            <span class="badge bg-warning bg-opacity-10 text-warning-emphasis border border-warning border-opacity-25" id="previewContentTypeChip">
+                                @Model.ContentType
+                            </span>
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" id="previewTopicChip">
+                                @Model.Topic
+                            </span>
+                        </div>
+
+                        <div class="admin-writing-preview-surface">
+                            <div class="fw-bold text-dark mb-2" id="previewTitleText">@(!string.IsNullOrWhiteSpace(Model.Title) ? Model.Title : "Bài viết chưa có tiêu đề")</div>
+                            <div class="text-muted small mb-3" id="previewTextText">
+                                @(!string.IsNullOrWhiteSpace(Model.PreviewText) ? Model.PreviewText : "Preview text sẽ xuất hiện ở đây sau khi bạn nhập.")
+                            </div>
+                            <div id="previewParagraphs" class="admin-writing-preview-copy">
+                                <p class="text-muted mb-0">Nhập full text tiếng Việt để xem learner preview hiển thị như thế nào.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card">
+                    <div class="card-body p-4">
+                        <div class="text-uppercase text-muted small fw-semibold mb-2">Checklist</div>
+                        <h5 class="mb-3 fw-bold text-dark">Nhập bài nhanh</h5>
+                        <ul class="admin-writing-checklist mb-0">
+                            <li>Mỗi câu nên kết thúc bằng dấu câu như `.`, `!`, `?`, `;`, `:` để hệ thống tách chính xác hơn.</li>
+                            <li>Muốn xuống paragraph trong learner preview, hãy chừa một dòng trống giữa hai đoạn.</li>
+                            <li>Full text tiếng Việt và tiếng Anh mẫu cần khớp số câu sau khi tách tự động.</li>
+                            <li>Preview text nên ngắn gọn để learner hiểu bối cảnh trước khi vào bài practice.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

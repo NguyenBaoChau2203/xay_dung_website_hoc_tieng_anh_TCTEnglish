@@ -178,14 +178,24 @@ Do this after:
 SignalR is still the likely fit because the app already uses it, but it is not
 the next foundation task.
 
-### 11. Unified content model for Reading/Writing/Listening/Grammar
+### 11. Launch one focused writing slice before a shared content model
 
-Wait until at least one new module has concrete authoring and progress-tracking
+Do not design a shared Reading/Writing/Listening/Grammar content model until at
+least one new module has concrete authoring and progress-tracking
 requirements.
+
+Phase 1 scope decision for the first writing slice:
+- Keep learner flows inside `StudyController` + `Views/Study/`.
+- Keep manual authoring inside `Areas/Admin/*`; do not route new writing logic through `HomeController`.
+- Ship only `Beginner` + `Emails`, backed by real database content instead of controller-seeded mock data.
+- Remove credits and points from the practice screen; phase 1 should validate the learning loop, not gamification.
+- Add Hint behavior driven by highlighted lesson text stored with the content.
+- Provide an admin-only manual entry workflow for lessons, prompts, highlighted spans, and hints.
+- Explicitly defer permanent per-user history and durable progress persistence for this module until a later phase.
 
 Safer rollout:
 - launch one focused new module first
-- validate authoring/query/reporting needs
+- validate authoring/query/reporting needs with that narrow slice
 - only then decide whether a shared `ContentItem` model is worth the complexity
 
 ## Not Recommended Right Now
@@ -212,6 +222,11 @@ Safer rollout:
 - Add pagination to search/discovery flows
 - Review and add missing database indexes
 - Reassess readiness for new roadmap work
+
+### Sprint D - First new module slice
+- Ship the first writing phase with real DB-backed `Beginner` / `Emails` content
+- Add admin manual authoring plus highlight-based hints
+- Keep the practice UI free of credits/points and defer durable per-user history
 
 ## Exit Criteria Before Starting Payments, AI, Or New Learning Modules
 

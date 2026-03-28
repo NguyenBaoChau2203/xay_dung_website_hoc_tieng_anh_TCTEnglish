@@ -1,0 +1,265 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseFormViewModel
+
+<script>
+    (function () {
+        const form = document.getElementById('writingExerciseForm');
+        const titleInput = form?.querySelector('[name="Title"]');
+        const previewInput = form?.querySelector('[name="PreviewText"]');
+        const topicInput = form?.querySelector('[name="Topic"]');
+        const levelSelect = form?.querySelector('[name="Level"]');
+        const contentTypeSelect = form?.querySelector('[name="ContentType"]');
+        const publishedToggle = form?.querySelector('[name="IsPublished"]');
+        const fullVietnameseInput = form?.querySelector('[name="FullVietnameseText"]');
+        const fullEnglishInput = form?.querySelector('[name="FullEnglishText"]');
+        const summarySentenceCount = document.getElementById('summarySentenceCount');
+        const summaryParagraphCount = document.getElementById('summaryParagraphCount');
+        const summarySplitStatus = document.getElementById('summarySplitStatus');
+        const summaryPublishStatus = document.getElementById('summaryPublishStatus');
+        const previewLevelChip = document.getElementById('previewLevelChip');
+        const previewContentTypeChip = document.getElementById('previewContentTypeChip');
+        const previewTopicChip = document.getElementById('previewTopicChip');
+        const previewStatusBadge = document.getElementById('previewStatusBadge');
+        const previewTitleText = document.getElementById('previewTitleText');
+        const previewTextText = document.getElementById('previewTextText');
+        const previewParagraphs = document.getElementById('previewParagraphs');
+        const pairSyncMessage = document.getElementById('pairSyncMessage');
+        const pairCountBadge = document.getElementById('pairCountBadge');
+        const autoPairEmpty = document.getElementById('autoPairEmpty');
+        const autoPairList = document.getElementById('autoPairList');
+
+        if (!form || !titleInput || !previewInput || !topicInput || !levelSelect || !contentTypeSelect ||
+            !publishedToggle || !fullVietnameseInput || !fullEnglishInput || !summarySentenceCount ||
+            !summaryParagraphCount || !summarySplitStatus || !summaryPublishStatus || !previewLevelChip ||
+            !previewContentTypeChip || !previewTopicChip || !previewStatusBadge || !previewTitleText ||
+            !previewTextText || !previewParagraphs || !pairSyncMessage || !pairCountBadge ||
+            !autoPairEmpty || !autoPairList) {
+            return;
+        }
+
+        function normalizeTextBlock(value) {
+            return String(value || '')
+                .replace(/\r\n/g, '\n')
+                .replace(/\u00a0/g, ' ')
+                .trim();
+        }
+
+        function collapseWhitespace(value) {
+            return String(value || '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function splitIntoParagraphs(value) {
+            const normalized = normalizeTextBlock(value);
+            if (!normalized) {
+                return [];
+            }
+
+            return normalized
+                .split(/\n\s*\n+/)
+                .map(function (paragraph) {
+                    return collapseWhitespace(paragraph.replace(/\n+/g, ' '));
+                })
+                .filter(Boolean);
+        }
+
+        function splitParagraphIntoSentences(paragraph) {
+            const normalized = collapseWhitespace(paragraph);
+            if (!normalized) {
+                return [];
+            }
+
+            return normalized
+                .split(/(?:(?<=[.!?;:…])|(?<=[.!?;:…]["'”’)\]]))\s+/u)
+                .map(collapseWhitespace)
+                .filter(Boolean);
+        }
+
+        function parsePassage(value) {
+            const paragraphs = splitIntoParagraphs(value);
+            const sentences = [];
+
+            paragraphs.forEach(function (paragraph) {
+                const parts = splitParagraphIntoSentences(paragraph);
+                parts.forEach(function (part, index) {
+                    sentences.push({
+                        text: part,
+                        breakAfter: index === parts.length - 1
+                    });
+                });
+            });
+
+            return {
+                paragraphs: paragraphs,
+                sentences: sentences
+            };
+        }
+
+        function setSyncMessage(type, message) {
+            pairSyncMessage.className = 'alert rounded-4 mb-0 admin-writing-sync-alert';
+
+            if (type === 'success') {
+                pairSyncMessage.classList.add('alert-success');
+            } else if (type === 'danger') {
+                pairSyncMessage.classList.add('alert-danger');
+            } else if (type === 'warning') {
+                pairSyncMessage.classList.add('alert-warning');
+            } else {
+                pairSyncMessage.classList.add('alert-secondary');
+            }
+
+            pairSyncMessage.textContent = message;
+        }
+
+        function setPairBadge(type, text) {
+            pairCountBadge.className = 'badge rounded-pill px-3 py-2';
+
+            if (type === 'success') {
+                pairCountBadge.classList.add('bg-success-subtle', 'text-success', 'border', 'border-success-subtle');
+            } else if (type === 'danger') {
+                pairCountBadge.classList.add('bg-danger-subtle', 'text-danger', 'border', 'border-danger-subtle');
+            } else if (type === 'warning') {
+                pairCountBadge.classList.add('bg-warning-subtle', 'text-warning-emphasis', 'border', 'border-warning-subtle');
+            } else {
+                pairCountBadge.classList.add('bg-light', 'text-secondary', 'border');
+            }
+
+            pairCountBadge.textContent = text;
+        }
+
+        function renderPairPreview(vietnamesePassage, englishPassage) {
+            const maxCount = Math.max(vietnamesePassage.sentences.length, englishPassage.sentences.length);
+
+            if (maxCount === 0) {
+                autoPairEmpty.hidden = false;
+                autoPairList.innerHTML = '';
+                setPairBadge('neutral', 'Chưa nhận diện câu');
+                return;
+            }
+
+            autoPairEmpty.hidden = true;
+
+            const rows = [];
+
+            for (let index = 0; index < maxCount; index += 1) {
+                const vietnameseSentence = vietnamesePassage.sentences[index]?.text || '';
+                const englishSentence = englishPassage.sentences[index]?.text || '';
+                const isMatched = Boolean(vietnameseSentence && englishSentence);
+
+                rows.push(`
+                    <article class="admin-writing-pair-row ${isMatched ? '' : 'is-missing'}">
+                        <div class="admin-writing-pair-head">
+                            <span class="badge rounded-pill text-bg-dark px-3 py-2">Câu ${index + 1}</span>
+                            <span class="admin-writing-pair-status ${isMatched ? 'is-matched' : 'is-missing'}">
+                                ${isMatched ? 'Đã ghép cặp' : 'Thiếu dữ liệu'}
+                            </span>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <div class="admin-writing-pair-label">Tiếng Việt</div>
+                                <div class="admin-writing-pair-copy">
+                                    ${vietnameseSentence ? escapeHtml(vietnameseSentence) : '<span class="text-danger">Chưa có câu tương ứng.</span>'}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="admin-writing-pair-label">Tiếng Anh mẫu</div>
+                                <div class="admin-writing-pair-copy">
+                                    ${englishSentence ? escapeHtml(englishSentence) : '<span class="text-danger">Chưa có câu tương ứng.</span>'}
+                                </div>
+                            </div>
+                        </div>
+                    </article>`);
+            }
+
+            autoPairList.innerHTML = rows.join('');
+
+            if (vietnamesePassage.sentences.length > 0 && vietnamesePassage.sentences.length === englishPassage.sentences.length) {
+                setPairBadge('success', `${vietnamesePassage.sentences.length} cặp khớp`);
+                return;
+            }
+
+            if (!vietnamesePassage.sentences.length || !englishPassage.sentences.length) {
+                setPairBadge('warning', 'Thiếu một đoạn');
+                return;
+            }
+
+            setPairBadge('danger', 'Lệch số câu');
+        }
+
+        function renderPreview() {
+            const vietnamesePassage = parsePassage(fullVietnameseInput.value);
+            const englishPassage = parsePassage(fullEnglishInput.value);
+            const detectedSentenceCount = vietnamesePassage.sentences.length || englishPassage.sentences.length;
+            const paragraphCount = vietnamesePassage.paragraphs.length || englishPassage.paragraphs.length;
+
+            summarySentenceCount.textContent = detectedSentenceCount;
+            summaryParagraphCount.textContent = paragraphCount;
+            previewTitleText.textContent = (titleInput.value || '').trim() || 'Bài viết chưa có tiêu đề';
+            previewTextText.textContent = (previewInput.value || '').trim() || 'Preview text sẽ xuất hiện ở đây sau khi bạn nhập.';
+            previewTopicChip.textContent = (topicInput.value || '').trim() || 'General';
+
+            const levelText = levelSelect.options[levelSelect.selectedIndex]?.text || 'beginner';
+            const contentTypeText = contentTypeSelect.options[contentTypeSelect.selectedIndex]?.text || 'emails';
+
+            previewLevelChip.textContent = levelText;
+            previewContentTypeChip.textContent = contentTypeText;
+
+            if (publishedToggle.checked) {
+                previewStatusBadge.textContent = 'Sẵn sàng hiển thị';
+                previewStatusBadge.className = 'badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-3 py-2';
+                summaryPublishStatus.textContent = 'Published';
+            } else {
+                previewStatusBadge.textContent = 'Đang ở trạng thái nháp';
+                previewStatusBadge.className = 'badge rounded-pill bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-2';
+                summaryPublishStatus.textContent = 'Draft';
+            }
+
+            previewParagraphs.innerHTML = vietnamesePassage.paragraphs.length > 0
+                ? vietnamesePassage.paragraphs.map(function (paragraph) {
+                    return `<p>${escapeHtml(paragraph)}</p>`;
+                }).join('')
+                : '<p class="text-muted mb-0">Nhập full text tiếng Việt để xem learner preview hiển thị như thế nào.</p>';
+
+            if (!fullVietnameseInput.value.trim() && !fullEnglishInput.value.trim()) {
+                summarySplitStatus.textContent = 'Chờ nhập';
+                setSyncMessage('neutral', 'Hệ thống sẽ tự chia hai đoạn văn thành các câu tương ứng khi bạn bấm lưu.');
+            } else if (!fullVietnameseInput.value.trim() || !fullEnglishInput.value.trim()) {
+                summarySplitStatus.textContent = 'Thiếu 1 đoạn';
+                setSyncMessage('warning', 'Bạn cần nhập đủ full text tiếng Việt và full text tiếng Anh mẫu để hệ thống ghép cặp chính xác.');
+            } else if (vietnamesePassage.sentences.length !== englishPassage.sentences.length) {
+                summarySplitStatus.textContent = 'Lệch số câu';
+                setSyncMessage(
+                    'danger',
+                    `Tiếng Việt đang tách ${vietnamesePassage.sentences.length} câu, tiếng Anh đang tách ${englishPassage.sentences.length} câu. Hãy kiểm tra lại dấu chấm câu.`
+                );
+            } else {
+                summarySplitStatus.textContent = 'Đã khớp';
+                setSyncMessage(
+                    'success',
+                    `Hệ thống đã nhận diện ${vietnamesePassage.sentences.length} cặp câu khớp nhau. Khi lưu, các cặp này sẽ được dùng cho learner practice flow.`
+                );
+            }
+
+            renderPairPreview(vietnamesePassage, englishPassage);
+        }
+
+        [titleInput, previewInput, topicInput, fullVietnameseInput, fullEnglishInput].forEach(function (element) {
+            element.addEventListener('input', renderPreview);
+        });
+
+        [levelSelect, contentTypeSelect, publishedToggle].forEach(function (element) {
+            element.addEventListener('change', renderPreview);
+        });
+
+        renderPreview();
+    })();
+</script>

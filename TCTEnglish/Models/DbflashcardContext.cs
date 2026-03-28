@@ -30,6 +30,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingPlaylist> SpeakingPlaylists { get; set; }
     public virtual DbSet<SpeakingVideo> SpeakingVideos { get; set; }
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
+    public virtual DbSet<WritingExercise> WritingExercises { get; set; }
+    public virtual DbSet<WritingExerciseSentence> WritingExerciseSentences { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
     public virtual DbSet<ClassMember> ClassMembers { get; set; }
     public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
@@ -337,6 +339,65 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_SpeakingSentences_SpeakingVideos");
+        });
+
+        modelBuilder.Entity<WritingExercise>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.IsPublished, e.Level, e.ContentType, e.Topic })
+                .HasDatabaseName("IX_WritingExercises_Published_Level_ContentType_Topic");
+
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            entity.Property(e => e.Level)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.ContentType)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.Topic)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.PreviewText)
+                .IsRequired()
+                .HasMaxLength(1000);
+
+            entity.Property(e => e.IsPublished)
+                .HasDefaultValue(false);
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+        });
+
+        modelBuilder.Entity<WritingExerciseSentence>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.WritingExerciseId, e.SortOrder })
+                .IsUnique()
+                .HasDatabaseName("IX_WritingExerciseSentences_WritingExerciseId_SortOrder");
+
+            entity.Property(e => e.VietnameseText)
+                .IsRequired();
+
+            entity.Property(e => e.EnglishMeaning)
+                .IsRequired();
+
+            entity.Property(e => e.BreakAfter)
+                .HasDefaultValue(false);
+
+            entity.HasOne(d => d.WritingExercise)
+                .WithMany(p => p.WritingExerciseSentences)
+                .HasForeignKey(d => d.WritingExerciseId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
         });
 
         modelBuilder.Entity<UserSpeakingProgress>(entity =>

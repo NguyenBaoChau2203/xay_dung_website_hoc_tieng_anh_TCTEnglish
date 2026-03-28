@@ -255,6 +255,9 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             CreatedAt = DateTime.UtcNow
         });
 
+        context.WritingExercises.AddRange(WritingExerciseSeedData.CreateExercises());
+        context.WritingExerciseSentences.AddRange(WritingExerciseSeedData.CreateSentences());
+
         await context.SaveChangesAsync();
     }
 }

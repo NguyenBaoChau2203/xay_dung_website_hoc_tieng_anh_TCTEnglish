@@ -173,15 +173,25 @@ Chỉ nên làm sau khi:
 SignalR vẫn là lựa chọn hợp lý vì app đã có sẵn, nhưng chưa phải hạng mục nền
 tảng cần làm tiếp ngay.
 
-### 11. Content model dùng chung cho Reading/Writing/Listening/Grammar
+### 11. Triển khai một lát cắt Writing hẹp trước khi nghĩ tới content model dùng chung
 
-Nên chờ tới khi ít nhất một module mới có requirement authoring và
+Chưa nên thiết kế content model dùng chung cho Reading/Writing/Listening/Grammar
+cho tới khi ít nhất một module mới có requirement authoring và
 progress-tracking cụ thể.
 
+Phạm vi phase 1 được chốt cho lát cắt writing đầu tiên:
+- Giữ learner flow trong `StudyController` + `Views/Study/`.
+- Giữ manual authoring trong `Areas/Admin/*`; không đưa logic writing mới vào `HomeController`.
+- Chỉ ship `Beginner` + `Emails`, đọc từ dữ liệu DB thật thay vì seed/mock cứng trong controller.
+- Bỏ credits và points khỏi màn practice; phase 1 cần kiểm chứng learning loop, chưa cần gamification.
+- Thêm Hint dựa trên đoạn text được bôi đen và lưu kèm theo bài học.
+- Có workflow admin-only để nhập thủ công lesson, prompt, đoạn bôi đen, và hint.
+- Chốt rõ là chưa lưu lịch sử làm bài hay progress bền vững theo từng user trong phase 1.
+
 Cách rollout an toàn hơn:
-- làm một module mới có scope nhỏ trước
-- kiểm chứng authoring/query/reporting needs
-- rồi mới quyết định có đáng gom vào `ContentItem` chung hay không
+- ra mắt một module mới có scope hẹp trước
+- kiểm chứng nhu cầu authoring/query/reporting với lát cắt đó
+- rồi mới quyết định có nên gom vào `ContentItem` dùng chung hay không
 
 ## Những việc không nên làm ngay
 
@@ -207,6 +217,12 @@ Cách rollout an toàn hơn:
 - Thêm pagination cho các flow search/discovery
 - Review và thêm database indexes cần thiết
 - Đánh giá lại mức sẵn sàng trước khi làm roadmap lớn
+
+
+### Sprint D - Lát cắt module mới đầu tiên
+- Ship phase 1 writing với dữ liệu DB thật cho `Beginner` / `Emails`
+- Thêm admin manual authoring và hint theo đoạn bôi đen
+- Giữ màn practice không có credits/points và hoãn lưu lịch sử bền vững theo user
 
 ## Điều kiện đạt trước khi bắt đầu Payment, AI, hoặc module học mới
 

@@ -1,0 +1,268 @@
+@using System.Linq
+@using System.Text.Json
+@model TCTEnglish.ViewModels.WritingPracticeViewModel
+@{
+    ViewData["Title"] = "Luyện viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var firstSentence = Model.Sentences.FirstOrDefault();
+    var hintEndpoint = Url.Action("WritingHint", "Study") ?? string.Empty;
+    var evaluateEndpoint = Url.Action("EvaluateWritingSentence", "Study") ?? string.Empty;
+    var practicePayload = JsonSerializer.Serialize(Model.Sentences.Select(sentence => new
+    {
+        id = sentence.Id,
+        number = sentence.Number,
+        vietnameseText = sentence.VietnameseText,
+        placeholder = sentence.Placeholder,
+        breakAfter = sentence.BreakAfter
+    }));
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/writing.css" asp-append-version="true" />
+}
+
+<div class="writing-practice-page">
+    <div class="writing-practice-shell"
+         data-writing-practice
+         data-exercise-id="@Model.ExerciseId"
+         data-hint-url="@hintEndpoint"
+         data-evaluate-url="@evaluateEndpoint">
+        @Html.AntiForgeryToken()
+
+        <div class="writing-practice-header">
+            <a id="backToExercisesLink"
+               asp-controller="Study"
+               asp-action="WritingExercises"
+               asp-route-level="@Model.SelectedLevelKey"
+               asp-route-contentType="@Model.SelectedContentTypeKey"
+               asp-route-topic="@Model.SelectedTopic"
+               asp-route-status="@Model.SelectedStatus"
+               asp-route-page="@Model.SelectedPage"
+               class="btn-close-writing"
+               aria-label="Quay lại danh sách bài tập">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+
+            <div class="writing-progress-card">
+                <div class="writing-progress-copy">
+                    <span class="writing-progress-label">Tiến độ dịch</span>
+                    <strong id="progressText">0/@Model.TotalSentenceCount câu đã xong</strong>
+                </div>
+                <div class="progress-wrapper" aria-hidden="true">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="writing-context">
+            <span class="writing-context-chip">
+                <i class="fas fa-layer-group"></i>
+                @Model.SelectedLevelTitle
+            </span>
+            <span class="writing-context-chip">
+                <i class="fas fa-pen-nib"></i>
+                @Model.SelectedContentTypeTitle
+            </span>
+            <span class="writing-context-chip">
+                <i class="fas fa-tag"></i>
+                @Model.ExerciseTopic
+            </span>
+        </div>
+
+        <div class="writing-layout">
+            <section class="writing-panel writing-workspace-panel">
+                <div class="writing-panel-head writing-panel-head-split">
+                    <div>
+                        <div class="prompt-label">Đoạn gốc</div>
+                        <h1 class="writing-panel-title">@Model.ExerciseTitle</h1>
+                        <p class="writing-panel-summary">@Model.ExercisePreviewText</p>
+                    </div>
+
+                    <div class="writing-panel-callout">
+                        Hãy dịch từng câu một. Hệ thống sẽ chấm từng dòng trước khi ghép vào đoạn tiếng Anh hoàn chỉnh.
+                    </div>
+                </div>
+
+                <div class="writing-workspace-stack">
+                    <div class="writing-compose-panel">
+                        <div class="writing-compose-head">
+                            <div>
+                                <div class="prompt-label">Mỗi lần một câu</div>
+                                <h2 class="writing-selected-counter" id="selectedSentenceCounter">
+                                    @(firstSentence == null ? "Chưa chọn câu" : $"Câu {firstSentence.Number} / {Model.TotalSentenceCount}")
+                                </h2>
+                            </div>
+
+                            <div class="writing-compose-badge">Gửi từng câu một</div>
+                        </div>
+
+                        <div class="writing-selected-text" id="selectedSentenceText">
+                            @(firstSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
+                        </div>
+
+                        <label class="writing-input-label" for="answerInput">Câu tiếng Anh của bạn</label>
+                        <textarea class="writing-input"
+                                  id="answerInput"
+                                  placeholder="@(firstSentence?.Placeholder ?? "Chọn câu rồi bắt đầu nhập...")"
+                                  autocomplete="off"
+                                  spellcheck="false"></textarea>
+
+                        <p class="writing-selection-note" id="selectionNote">
+                            Chỉ gửi câu đang chọn hoặc một đoạn ngắn. Câu sẽ đổi sang tiếng Anh sau khi hệ thống chấp nhận.
+                        </p>
+
+                        <div class="writing-editor-actions">
+                            <div class="writing-nav-actions">
+                                <button class="btn-action btn-secondary" id="btnPrevious" type="button">
+                                    <i class="fas fa-arrow-left"></i> Trước
+                                </button>
+                                <button class="btn-action btn-secondary" id="btnNext" type="button">
+                                    Sau <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="writing-primary-actions">
+                                <button class="btn-action btn-hint" id="btnHint" type="button">
+                                    <i class="fas fa-lightbulb"></i> Gợi ý
+                                </button>
+                                <button class="btn-action btn-submit" id="btnSubmit" type="button">
+                                    Gửi bài
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="writing-reading-surface">
+                        <div class="writing-reading-label">
+                            <i class="fas fa-book-open"></i>
+                            Toàn văn
+                        </div>
+
+                        <div class="writing-email-body" id="emailBody">
+                            @for (var index = 0; index < Model.Sentences.Count; index++)
+                            {
+                                var sentence = Model.Sentences[index];
+                                var isParagraphStart = index == 0 || Model.Sentences[index - 1].BreakAfter;
+                                var isParagraphEnd = sentence.BreakAfter || index == Model.Sentences.Count - 1;
+
+                                if (isParagraphStart)
+                                {
+                                    @:<p class="writing-text-paragraph">
+                                }
+
+                                <button class="writing-inline-sentence"
+                                        type="button"
+                                        data-sentence-item
+                                        data-sentence-id="@sentence.Id"
+                                        data-sentence-number="@sentence.Number"
+                                        aria-label="Câu @sentence.Number">
+                                    <span class="writing-email-text"
+                                          data-sentence-id="@sentence.Id"
+                                          data-sentence-text>@sentence.VietnameseText</span>
+                                </button>
+
+                                if (!isParagraphEnd)
+                                {
+                                    <text> </text>
+                                }
+
+                                if (isParagraphEnd)
+                                {
+                                    @:</p>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="writing-panel writing-feedback-panel">
+                <div class="writing-panel-head">
+                    <div>
+                        <div class="prompt-label">Phản hồi</div>
+                        <h2 class="writing-feedback-title">Khu vực nhận xét</h2>
+                        <p class="writing-panel-summary">
+                            Mỗi lần gửi sẽ được hệ thống kiểm tra về ý nghĩa, ngữ pháp, độ tự nhiên và cách dùng từ trước khi bạn chuyển sang câu tiếp theo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="writing-feedback-banner is-info" id="feedbackBanner">
+                    <div class="writing-feedback-banner-icon">
+                        <i class="fas fa-circle-info" id="feedbackIcon"></i>
+                    </div>
+                    <div class="writing-feedback-banner-copy">
+                        <h3 id="feedbackTitle">Đang chờ câu hiện tại</h3>
+                        <p id="feedbackText">Hãy dịch câu đang chọn rồi nhấn Gửi bài để cập nhật bài viết.</p>
+                    </div>
+                </div>
+
+                <p class="writing-feedback-source-note" id="feedbackSourceNote" hidden>
+                    Phản hồi AI chi tiết hiện chưa khả dụng, nên kết quả này đang dùng đánh giá nhanh từ hệ thống.
+                </p>
+
+                <div class="writing-feedback-stack">
+                    <section class="writing-feedback-card">
+                        <div class="writing-feedback-card-label">
+                            <i class="fas fa-language"></i>
+                            Câu hiện tại
+                        </div>
+                        <div class="writing-feedback-card-meta" id="feedbackSentenceMeta">
+                            @(firstSentence == null ? "Chưa chọn câu" : $"Câu {firstSentence.Number} / {Model.TotalSentenceCount}")
+                        </div>
+                        <p class="writing-feedback-card-text" id="feedbackSourceText">
+                            @(firstSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
+                        </p>
+                    </section>
+
+                    <section class="writing-feedback-card">
+                        <div class="writing-feedback-card-label">
+                            <i class="fas fa-feather-pointed"></i>
+                            Câu tiếng Anh của bạn
+                        </div>
+                        <p class="writing-feedback-card-text" id="feedbackSubmissionText">
+                            Hãy gửi câu đang chọn để hiện phần tiếng Anh của bạn ở đây.
+                        </p>
+                    </section>
+
+                    <section class="writing-feedback-card">
+                        <div class="writing-feedback-card-label">
+                            <i class="fas fa-list-check"></i>
+                            Chi tiết đánh giá
+                        </div>
+                        <p class="writing-feedback-card-text" id="feedbackReviewText">
+                            Hãy gửi câu đang chọn để nhận phản hồi từ hệ thống tại đây.
+                        </p>
+                    </section>
+
+                    <section class="writing-feedback-card">
+                        <div class="writing-feedback-card-label">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            Câu gợi ý chỉnh lại
+                        </div>
+                        <p class="writing-feedback-card-text" id="feedbackReferenceText">
+                            Nếu hệ thống gợi ý một câu viết tốt hơn, nội dung sẽ xuất hiện ở đây sau khi bạn gửi bài.
+                        </p>
+                    </section>
+
+                    <section class="writing-feedback-card writing-feedback-card--wide">
+                        <div class="writing-feedback-card-label">
+                            <i class="fas fa-lightbulb"></i>
+                            Gợi ý
+                        </div>
+                        <p class="writing-feedback-card-text" id="feedbackHintText">
+                            Hãy dùng Gợi ý nếu bạn muốn được nhắc nhanh cho câu hiện tại trước khi gửi bài.
+                        </p>
+                    </section>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script id="writingPracticeData" type="application/json">@Html.Raw(practicePayload)</script>
+
+@section Scripts {
+    <script src="~/js/writing.js" asp-append-version="true"></script>
+}

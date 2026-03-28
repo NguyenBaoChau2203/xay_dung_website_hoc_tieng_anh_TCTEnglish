@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TCTEnglish.ViewModels;
 using TCTVocabulary.ViewModels;
 using TCTVocabulary.Services;
 
@@ -90,9 +91,108 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("Writing")]
-        public IActionResult Writing()
+        public async Task<IActionResult> Writing(string? level = null)
         {
-            return View();
+            var viewModel = await _studyService.GetWritingIndexViewModelAsync(level);
+            return View(viewModel);
+        }
+
+        [HttpGet("Writing/Exercises")]
+        public async Task<IActionResult> WritingExercises(
+            string? level = null,
+            string? contentType = null,
+            string? topic = null,
+            string? status = null,
+            int page = 1)
+        {
+            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page);
+            return View(viewModel);
+        }
+
+        [HttpGet("Writing/Exercises/Data")]
+        public async Task<IActionResult> WritingExercisesData(
+            string? level = null,
+            string? contentType = null,
+            string? topic = null)
+        {
+            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic);
+            return Json(data);
+        }
+
+        [HttpGet("Writing/Practice")]
+        public async Task<IActionResult> WritingPractice(
+            string? level = null,
+            string? contentType = null,
+            string? topic = null,
+            string? status = null,
+            int page = 1,
+            int? exerciseId = null)
+        {
+            var viewModel = await _studyService.GetWritingPracticeViewModelAsync(
+                level,
+                contentType,
+                topic,
+                status,
+                page,
+                exerciseId);
+
+            return viewModel == null ? NotFound() : View(viewModel);
+        }
+
+        [HttpGet("Writing/Practice/Data")]
+        public async Task<IActionResult> WritingPracticeData(int exerciseId)
+        {
+            if (exerciseId <= 0)
+            {
+                return BadRequest();
+            }
+
+            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId);
+            return data == null ? NotFound() : Json(data);
+        }
+
+        [HttpGet("Writing/Practice/Hint")]
+        public async Task<IActionResult> WritingHint(int exerciseId, int sentenceId)
+        {
+            if (exerciseId <= 0 || sentenceId <= 0)
+            {
+                return BadRequest();
+            }
+
+            var data = await _studyService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
+            return data == null ? NotFound() : Json(data);
+        }
+
+        [HttpPost("Writing/Practice/Evaluate")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EvaluateWritingSentence([FromBody] WritingSentenceEvaluationRequestViewModel? request)
+        {
+            if (request == null)
+            {
+                return BadRequest(new { error = "Thiếu dữ liệu chấm bài." });
+            }
+
+            if (request.ExerciseId <= 0 || request.SentenceId <= 0)
+            {
+                return BadRequest(new { error = "Cần cung cấp bài tập và câu hợp lệ." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.UserAnswer))
+            {
+                return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
+            }
+
+            var evaluation = await _studyService.EvaluateWritingSentenceAsync(
+                request.ExerciseId,
+                request.SentenceId,
+                request.UserAnswer);
+
+            if (evaluation == null)
+            {
+                return NotFound(new { error = "Không tìm thấy câu viết mà bạn yêu cầu." });
+            }
+
+            return Json(new { success = true, data = evaluation });
         }
 
         [Authorize]

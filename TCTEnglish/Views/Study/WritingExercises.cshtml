@@ -1,0 +1,199 @@
+@using System
+@using System.Linq
+@model TCTEnglish.ViewModels.WritingExerciseListViewModel
+@{
+    ViewData["Title"] = "Bài tập viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/writing-exercises.css" asp-append-version="true" />
+}
+
+<div class="writing-exercises-page">
+    <div class="writing-exercises-shell">
+        <div class="writing-exercises-topbar">
+            <a asp-controller="Study"
+               asp-action="Writing"
+               asp-route-level="@Model.SelectedLevelKey"
+               class="writing-back-link">
+                <i class="fas fa-arrow-left"></i>
+                Quay lại chọn trình độ và dạng bài
+            </a>
+
+            <nav class="writing-breadcrumb" aria-label="Điều hướng trang">
+                <a asp-controller="Study" asp-action="Writing" asp-route-level="@Model.SelectedLevelKey">Luyện viết</a>
+                <span><i class="fas fa-angle-right"></i></span>
+                <span>@Model.SelectedLevelTitle</span>
+                <span><i class="fas fa-angle-right"></i></span>
+                <span>@Model.SelectedContentTypeTitle</span>
+            </nav>
+        </div>
+
+        <div class="writing-exercises-head">
+            <div class="writing-exercises-title-block">
+                <h1>Bài tập hiện có</h1>
+            </div>
+
+            <form method="get"
+                  asp-controller="Study"
+                  asp-action="WritingExercises"
+                  class="writing-filters"
+                  data-writing-filter-form>
+                <input type="hidden" name="level" value="@Model.SelectedLevelKey" />
+                <input type="hidden" name="contentType" value="@Model.SelectedContentTypeKey" />
+                <input type="hidden" name="page" value="1" />
+
+                <label class="writing-filter">
+                    <span>Lọc chủ đề:</span>
+                    <select name="topic" class="writing-select" data-filter-select>
+                        @foreach (var option in Model.TopicOptions)
+                        {
+                            <option value="@option.Value" selected="@(string.Equals(option.Value, Model.SelectedTopic, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">
+                                @option.Label
+                            </option>
+                        }
+                    </select>
+                </label>
+
+                <label class="writing-filter">
+                    <span>Lọc trạng thái:</span>
+                    <select name="status" class="writing-select" data-filter-select>
+                        @foreach (var option in Model.StatusOptions)
+                        {
+                            <option value="@option.Value" selected="@(string.Equals(option.Value, Model.SelectedStatus, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">
+                                @option.Label
+                            </option>
+                        }
+                    </select>
+                </label>
+            </form>
+        </div>
+
+        @if (!Model.Exercises.Any())
+        {
+            <div class="writing-empty-state">
+                <i class="fas fa-search"></i>
+                <h2>Không tìm thấy bài tập</h2>
+                <p>Hãy thử đổi chủ đề hoặc trạng thái để xem thêm bài luyện viết.</p>
+            </div>
+        }
+        else
+        {
+            <div class="writing-exercise-grid">
+                @foreach (var exercise in Model.Exercises)
+                {
+                    <article class="writing-exercise-card">
+                        <div class="writing-exercise-top">
+                            <div>
+                                <h2 class="writing-exercise-title">@exercise.Title</h2>
+                                <span class="writing-attempt-badge">Lượt làm: @exercise.AttemptCount</span>
+                            </div>
+                            <span class="writing-status-badge writing-status-badge--@exercise.StatusKey">@exercise.StatusLabel</span>
+                        </div>
+
+                        <p class="writing-exercise-preview">@exercise.PreviewText</p>
+
+                        <div class="writing-exercise-bottom">
+                            <div class="writing-exercise-meta">
+                                <span><i class="far fa-clock"></i> @exercise.LastAttemptText</span>
+                                <span class="writing-meta-separator">|</span>
+                                <span>@exercise.Topic</span>
+                            </div>
+
+                            <a class="writing-start-btn"
+                               asp-controller="Study"
+                               asp-action="WritingPractice"
+                               asp-route-level="@Model.SelectedLevelKey"
+                               asp-route-contentType="@Model.SelectedContentTypeKey"
+                               asp-route-topic="@Model.SelectedTopic"
+                               asp-route-status="@Model.SelectedStatus"
+                               asp-route-page="@Model.CurrentPage"
+                               asp-route-exerciseId="@exercise.Id">
+                                Bắt đầu
+                            </a>
+                        </div>
+                    </article>
+                }
+            </div>
+
+            <div class="writing-results-footer">
+                <p>
+                    Hiển thị <strong>@Model.StartItemNumber-@Model.EndItemNumber</strong> trên tổng <strong>@Model.TotalCount</strong> bài
+                </p>
+
+                @if (Model.TotalPages > 1)
+                {
+                    <nav class="writing-pagination" aria-label="Các trang bài tập">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <a asp-controller="Study"
+                               asp-action="WritingExercises"
+                               asp-route-level="@Model.SelectedLevelKey"
+                               asp-route-contentType="@Model.SelectedContentTypeKey"
+                               asp-route-topic="@Model.SelectedTopic"
+                               asp-route-status="@Model.SelectedStatus"
+                               asp-route-page="@(Model.CurrentPage - 1)"
+                               class="writing-page-link writing-page-link--arrow"
+                               aria-label="Trang trước">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
+                                <i class="fas fa-angle-left"></i>
+                            </span>
+                        }
+
+                        @foreach (var pageNumber in Model.PageNumbers)
+                        {
+                            if (pageNumber.HasValue)
+                            {
+                                <a asp-controller="Study"
+                                   asp-action="WritingExercises"
+                                   asp-route-level="@Model.SelectedLevelKey"
+                                   asp-route-contentType="@Model.SelectedContentTypeKey"
+                                   asp-route-topic="@Model.SelectedTopic"
+                                   asp-route-status="@Model.SelectedStatus"
+                                   asp-route-page="@pageNumber.Value"
+                                   class="writing-page-link @(pageNumber.Value == Model.CurrentPage ? "is-active" : string.Empty)">
+                                    @pageNumber.Value
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="writing-page-ellipsis">...</span>
+                            }
+                        }
+
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <a asp-controller="Study"
+                               asp-action="WritingExercises"
+                               asp-route-level="@Model.SelectedLevelKey"
+                               asp-route-contentType="@Model.SelectedContentTypeKey"
+                               asp-route-topic="@Model.SelectedTopic"
+                               asp-route-status="@Model.SelectedStatus"
+                               asp-route-page="@(Model.CurrentPage + 1)"
+                               class="writing-page-link writing-page-link--arrow"
+                               aria-label="Trang sau">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        }
+                    </nav>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/writing-exercises.js" asp-append-version="true"></script>
+}

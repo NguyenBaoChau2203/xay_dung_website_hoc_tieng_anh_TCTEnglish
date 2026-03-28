@@ -1,0 +1,73 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseEditViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa Writing Exercise";
+    ViewData["FormAction"] = "Edit";
+    ViewData["SubmitText"] = "Lưu thay đổi";
+    ViewData["SubmitIcon"] = "fa-solid fa-check";
+    ViewData["FormHeading"] = "Chỉnh sửa Writing Exercise";
+    ViewData["FormDescription"] = "Cập nhật full text và để hệ thống tự tách lại từng câu dựa trên dấu câu trước khi publish cho learner.";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-writing-exercise.css" asp-append-version="true" />
+}
+
+<div class="container-fluid py-4 admin-writing-page">
+    <div class="row justify-content-center">
+        <div class="col-xl-11">
+            <div class="d-flex align-items-start gap-3 mb-4">
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Quay lại
+                </a>
+                <div>
+                    <div class="text-uppercase text-muted small fw-semibold mb-2">Content Builder</div>
+                    <h2 class="mb-1 text-dark fw-bold">Chỉnh sửa Writing Exercise</h2>
+                    <p class="text-muted mb-0">
+                        Điều chỉnh full text, preview learner và để hệ thống tự tách lại câu nếu passage thay đổi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <div class="admin-writing-mini-label">Mã bài viết</div>
+                            <div class="fw-semibold text-dark">#@Model.Id</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-writing-mini-label">Ngày tạo</div>
+                            <div class="fw-semibold text-dark">@Model.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-writing-mini-label">Trạng thái</div>
+                            @if (Model.IsPublished)
+                            {
+                                <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                                    <i class="fa-solid fa-eye me-1"></i> Đang hiển thị
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge rounded-pill bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-2">
+                                    <i class="fa-solid fa-eye-slash me-1"></i> Đang ẩn
+                                </span>
+                            }
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-writing-mini-label">Kiểu nhập</div>
+                            <div class="fw-semibold text-dark">Full text auto split</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_ExerciseForm" model="Model" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ExerciseFormScripts" model="Model" />
+}

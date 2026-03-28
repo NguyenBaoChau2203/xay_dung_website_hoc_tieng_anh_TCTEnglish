@@ -1,0 +1,390 @@
+@using System
+@using System.Linq
+@model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseIndexViewModel
+@{
+    ViewData["Title"] = "Quản lý Writing Exercises";
+
+    var exercises = Model?.Exercises ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseListItemViewModel>();
+    var levelOptions = Model?.LevelOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
+    var contentTypeOptions = Model?.ContentTypeOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
+    var topicOptions = Model?.TopicOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
+    var visibilityOptions = Model?.VisibilityOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
+
+    var totalExercises = exercises.Count;
+    var publishedCount = exercises.Count(item => item.IsPublished);
+    var hiddenCount = totalExercises - publishedCount;
+    var totalAutoSplitSentences = exercises.Sum(item => item.SentenceCount);
+    var activeTopics = exercises
+        .Select(item => item.Topic)
+        .Where(topic => !string.IsNullOrWhiteSpace(topic))
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .Count();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-writing-exercise.css" asp-append-version="true" />
+}
+
+<div class="container-fluid py-4 admin-writing-page">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div>
+            <div class="text-uppercase text-muted small fw-semibold mb-2">Content Management</div>
+            <h2 class="mb-1 text-dark fw-bold">Quản lý Writing Exercises</h2>
+            <p class="text-muted mb-0">
+                Quản trị metadata, full text và trạng thái hiển thị cho learner flow Writing. Hệ thống sẽ tự tách câu khi admin lưu bài.
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            <a asp-action="Create" class="btn btn-primary shadow-sm rounded-pill px-4">
+                <i class="fa-solid fa-plus me-2"></i> Thêm bài viết mới
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-stat-card">
+                <div class="card-body p-4">
+                    <div class="admin-writing-stat-label">Tổng bài viết</div>
+                    <div class="admin-writing-stat-value">@totalExercises</div>
+                    <div class="admin-writing-stat-note">Tất cả exercise hiện có trong hệ thống.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-stat-card">
+                <div class="card-body p-4">
+                    <div class="admin-writing-stat-label">Đang hiển thị</div>
+                    <div class="admin-writing-stat-value text-success">@publishedCount</div>
+                    <div class="admin-writing-stat-note">Các bài đang mở cho learner flow.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-stat-card">
+                <div class="card-body p-4">
+                    <div class="admin-writing-stat-label">Chủ đề đang có</div>
+                    <div class="admin-writing-stat-value text-secondary">@activeTopics</div>
+                    <div class="admin-writing-stat-note">Số chủ đề khác nhau đang được dùng cho bài writing.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-stat-card">
+                <div class="card-body p-4">
+                    <div class="admin-writing-stat-label">Tự động tách câu</div>
+                    <div class="admin-writing-stat-value text-primary">@totalAutoSplitSentences</div>
+                    <div class="admin-writing-stat-note">Tổng số câu đã được hệ thống nhận diện từ các full text đang lưu.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-4" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i><strong>Thành công!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-4" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i><strong>Lỗi!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-start gap-3 mb-3">
+                <div>
+                    <h5 class="mb-1 fw-bold text-dark">Bộ lọc nhanh</h5>
+                    <p class="text-muted mb-0 small">
+                        Tìm bài theo tiêu đề, chủ đề, level, content type và trạng thái hiển thị.
+                    </p>
+                </div>
+                <button type="button" id="btnResetFilter" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Đặt lại
+                </button>
+            </div>
+
+            <div class="row g-3 align-items-end">
+                <div class="col-xl-3 col-md-6">
+                    <label for="filterSearch" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i> Tìm nhanh
+                    </label>
+                    <input id="filterSearch"
+                           type="search"
+                           class="form-control"
+                           placeholder="Nhập tiêu đề hoặc chủ đề..." />
+                </div>
+
+                <div class="col-xl-2 col-md-6">
+                    <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-layer-group me-1"></i> Trình độ
+                    </label>
+                    <select id="filterLevel" class="form-select">
+                        <option value="">Tất cả trình độ</option>
+                        @foreach (var option in levelOptions)
+                        {
+                            <option value="@option.Value">@option.Label</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-xl-2 col-md-6">
+                    <label for="filterContentType" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-pen-nib me-1"></i> Content type
+                    </label>
+                    <select id="filterContentType" class="form-select">
+                        <option value="">Tất cả loại</option>
+                        @foreach (var option in contentTypeOptions)
+                        {
+                            <option value="@option.Value">@option.Label</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-xl-2 col-md-6">
+                    <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-tag me-1"></i> Chủ đề
+                    </label>
+                    <select id="filterTopic" class="form-select">
+                        @foreach (var option in topicOptions)
+                        {
+                            <option value="@(option.Value == "all" ? string.Empty : option.Value)">@option.Label</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <label for="filterVisibility" class="form-label fw-semibold text-muted small mb-1">
+                        <i class="fa-solid fa-eye me-1"></i> Trạng thái hiển thị
+                    </label>
+                    <select id="filterVisibility" class="form-select">
+                        @foreach (var option in visibilityOptions)
+                        {
+                            <option value="@(option.Value == "all" ? string.Empty : option.Value)">@option.Label</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between gap-3 mt-3 flex-wrap">
+                <div class="text-muted small">
+                    @if (totalExercises > 0)
+                    {
+                        <span>Danh sách được sắp theo bài mới tạo gần nhất.</span>
+                    }
+                </div>
+                <div id="filterResultCount" class="text-muted small fw-semibold"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="exerciseTable">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4 border-0 text-muted">Bài viết</th>
+                            <th class="border-0 text-muted">Thiết lập</th>
+                            <th class="border-0 text-muted text-center" style="width: 180px;">Cấu trúc</th>
+                            <th class="border-0 text-muted text-center" style="width: 170px;">Hiển thị</th>
+                            <th class="pe-4 border-0 text-muted text-center" style="width: 120px;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="exerciseTableBody">
+                        @if (!exercises.Any())
+                        {
+                            <tr class="empty-row">
+                                <td colspan="5" class="text-center py-5">
+                                    <div class="text-muted">
+                                        <i class="fa-solid fa-file-circle-plus fa-3x mb-3 text-secondary opacity-50"></i>
+                                        <h5>Chưa có writing exercise nào</h5>
+                                        <p class="mb-0">Hãy tạo bài viết đầu tiên bằng full text để bắt đầu nhập nội dung cho learner flow.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in exercises)
+                            {
+                                <tr data-level="@item.Level"
+                                    data-content-type="@item.ContentType"
+                                    data-topic="@item.Topic"
+                                    data-visibility="@(item.IsPublished ? "published" : "hidden")"
+                                    data-search="@($"{item.Title} {item.Topic} {item.PreviewText}".ToLowerInvariant())">
+                                    <td class="ps-4 py-3">
+                                        <div class="fw-bold text-dark mb-1">@item.Title</div>
+                                        <div class="text-muted small admin-writing-line-clamp">@item.PreviewText</div>
+                                        <div class="text-muted smaller mt-2">
+                                            <i class="fa-regular fa-clock me-1"></i> @item.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2 mb-2">
+                                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">
+                                                @item.LevelLabel
+                                            </span>
+                                            <span class="badge bg-warning bg-opacity-10 text-warning-emphasis border border-warning border-opacity-25">
+                                                @item.ContentTypeLabel
+                                            </span>
+                                            <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25">
+                                                @item.Topic
+                                            </span>
+                                        </div>
+                                        <div class="text-muted small">Learner sẽ thấy preview này trước khi vào màn practice.</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="fw-semibold text-dark">@item.SentenceCount câu</div>
+                                        <div class="text-muted small">tự nhận diện từ full text</div>
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.IsPublished)
+                                        {
+                                            <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                                                <i class="fa-solid fa-eye me-1"></i> Đang hiển thị
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge rounded-pill bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-2">
+                                                <i class="fa-solid fa-eye-slash me-1"></i> Đang ẩn
+                                            </span>
+                                        }
+                                    </td>
+                                    <td class="pe-4 text-center">
+                                        <div class="d-flex gap-1 justify-content-center">
+                                            <a asp-action="Edit" asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+                                            <button type="button"
+                                                    class="btn btn-sm btn-outline-danger btn-delete-exercise"
+                                                    data-exercise-id="@item.Id"
+                                                    data-exercise-title="@item.Title"
+                                                    title="Xóa">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger bg-opacity-10 border-bottom">
+                <h5 class="modal-title fw-semibold text-danger" id="deleteExerciseModalLabel">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i> Xác nhận xóa bài viết
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-1">Bạn có chắc chắn muốn xóa bài viết:</p>
+                <p class="fw-bold text-dark" id="deleteExerciseTitle"></p>
+                <p class="text-danger small mb-0">
+                    Toàn bộ câu con sẽ bị xóa theo cascade. Hành động này không thể hoàn tác.
+                </p>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form asp-action="Delete" method="post" id="deleteExerciseForm" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" id="deleteExerciseId" />
+                    <button type="submit" class="btn btn-danger fw-medium">
+                        <i class="fa-solid fa-trash me-1"></i> Xóa vĩnh viễn
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const filterSearch = document.getElementById('filterSearch');
+            const filterLevel = document.getElementById('filterLevel');
+            const filterContentType = document.getElementById('filterContentType');
+            const filterTopic = document.getElementById('filterTopic');
+            const filterVisibility = document.getElementById('filterVisibility');
+            const btnReset = document.getElementById('btnResetFilter');
+            const resultCount = document.getElementById('filterResultCount');
+            const tbody = document.getElementById('exerciseTableBody');
+
+            function applyFilters() {
+                const search = (filterSearch.value || '').trim().toLowerCase();
+                const level = filterLevel.value;
+                const contentType = filterContentType.value;
+                const topic = filterTopic.value;
+                const visibility = filterVisibility.value;
+                const rows = tbody.querySelectorAll('tr[data-level]');
+                let visible = 0;
+
+                rows.forEach(function (row) {
+                    const matches =
+                        (!search || row.getAttribute('data-search').includes(search)) &&
+                        (!level || row.getAttribute('data-level') === level) &&
+                        (!contentType || row.getAttribute('data-content-type') === contentType) &&
+                        (!topic || row.getAttribute('data-topic') === topic) &&
+                        (!visibility || row.getAttribute('data-visibility') === visibility);
+
+                    row.style.display = matches ? '' : 'none';
+                    if (matches) {
+                        visible++;
+                    }
+                });
+
+                if (search || level || contentType || topic || visibility) {
+                    resultCount.textContent = 'Hiển thị ' + visible + ' / ' + rows.length + ' bài viết';
+                } else {
+                    resultCount.textContent = '';
+                }
+            }
+
+            [filterSearch, filterLevel, filterContentType, filterTopic, filterVisibility].forEach(function (element) {
+                element.addEventListener(element === filterSearch ? 'input' : 'change', applyFilters);
+            });
+
+            btnReset.addEventListener('click', function () {
+                filterSearch.value = '';
+                filterLevel.value = '';
+                filterContentType.value = '';
+                filterTopic.value = '';
+                filterVisibility.value = '';
+                applyFilters();
+            });
+
+            const deleteModalElement = document.getElementById('deleteExerciseModal');
+            if (!deleteModalElement || typeof bootstrap === 'undefined') {
+                return;
+            }
+
+            const deleteModal = new bootstrap.Modal(deleteModalElement);
+            const deleteTitle = document.getElementById('deleteExerciseTitle');
+            const deleteIdInput = document.getElementById('deleteExerciseId');
+
+            document.querySelectorAll('.btn-delete-exercise').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    deleteTitle.textContent = button.getAttribute('data-exercise-title') || '';
+                    deleteIdInput.value = button.getAttribute('data-exercise-id') || '';
+                    deleteModal.show();
+                });
+            });
+        })();
+    </script>
+}

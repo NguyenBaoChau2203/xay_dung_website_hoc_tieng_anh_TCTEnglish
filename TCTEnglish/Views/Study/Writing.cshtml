@@ -1,8 +1,91 @@
+@model TCTEnglish.ViewModels.WritingIndexViewModel
 @{
-    ViewData["Title"] = "Writing";
+    ViewData["Title"] = "Luyện viết đoạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="coming-soon-container" style="text-align:center; padding: 100px;">
-    <h2>Writing Practice</h2>
-    <p>This feature is coming soon!</p>
-    <a asp-action="Index" class="btn btn-primary" style="margin-top: 20px;">Go back Home</a>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/writing-index.css" asp-append-version="true" />
+}
+
+<div class="writing-index-page">
+    <div class="writing-index-shell">
+        <header class="writing-hero">
+            <div class="writing-hero-badge">
+                <i class="fas fa-pen-fancy"></i>
+                Phòng luyện viết
+            </div>
+            <h1 class="writing-hero-title">Luyện viết đoạn văn</h1>
+            <p class="writing-hero-subtitle">
+                Chọn trình độ, chọn dạng bài và bắt đầu luyện viết từng bước thật rõ ràng.
+            </p>
+        </header>
+
+        <section class="writing-section">
+            <div class="writing-section-heading">
+                <h2>Chọn trình độ</h2>
+                <p>Bắt đầu ở mức phù hợp với sự tự tin của bạn hôm nay.</p>
+            </div>
+
+            <div class="writing-level-grid" data-writing-level-grid>
+                @foreach (var level in Model.Levels)
+                {
+                    <a class="writing-card-option writing-card-option--level @(level.IsSelected ? "is-selected" : string.Empty)"
+                       asp-controller="Study"
+                       asp-action="Writing"
+                       asp-route-level="@level.Key"
+                       data-writing-level-card
+                       data-level-key="@level.Key"
+                       data-level-title="@level.Title"
+                       aria-current="@(level.IsSelected ? "true" : "false")"
+                       style="--writing-accent: @level.AccentColor;">
+                        <div class="writing-card-icon" aria-hidden="true">
+                            <i class="@level.IconClass"></i>
+                        </div>
+                        <div class="writing-card-copy">
+                            <div class="writing-card-title">@level.Title</div>
+                            <p class="writing-card-description">@level.Description</p>
+                            <div class="writing-card-meta">
+                                <i class="far fa-clock"></i>
+                                <span>@level.DurationText</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <div class="writing-section-heading">
+                <h2>Chọn dạng nội dung</h2>
+                <p data-writing-selected-level-copy>Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.</p>
+            </div>
+
+            <div class="writing-content-grid">
+                @foreach (var contentType in Model.ContentTypes)
+                {
+                    <a class="writing-card-option writing-card-option--content"
+                       asp-controller="Study"
+                       asp-action="WritingExercises"
+                       asp-route-level="@Model.SelectedLevelKey"
+                       asp-route-contentType="@contentType.Key"
+                       data-writing-content-link
+                       data-content-type-key="@contentType.Key"
+                       style="--writing-accent: @contentType.AccentColor;">
+                        <div class="writing-card-icon writing-card-icon--content" aria-hidden="true">
+                            <i class="@contentType.IconClass"></i>
+                        </div>
+                        <div class="writing-card-copy writing-card-copy--center">
+                            <div class="writing-card-title">@contentType.Title</div>
+                            <p class="writing-card-description">@contentType.Description</p>
+                        </div>
+                    </a>
+                }
+            </div>
+        </section>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/writing-index.js" asp-append-version="true"></script>
+}
