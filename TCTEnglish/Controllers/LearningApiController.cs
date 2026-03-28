@@ -13,16 +13,22 @@ namespace TCTVocabulary.Controllers
     [AutoValidateAntiforgeryToken]
     public class LearningApiController : ControllerBase
     {
+        private const int ReviewXp = 5;
+        private const int NewLearningXp = 10;
+        private const int MasteredXp = 15;
         private readonly DbflashcardContext _context;
+        private readonly IGoalsService _goalsService;
         private readonly IStreakService _streakService;
         private readonly ILogger<LearningApiController> _logger;
 
         public LearningApiController(
             DbflashcardContext context,
+            IGoalsService goalsService,
             IStreakService streakService,
             ILogger<LearningApiController> logger)
         {
             _context = context;
+            _goalsService = goalsService;
             _streakService = streakService;
             _logger = logger;
         }
@@ -46,6 +52,7 @@ namespace TCTVocabulary.Controllers
                 .FirstOrDefaultAsync(lp => lp.CardId == request.CardId && lp.UserId == currentUserId);
 
             var isNewProgress = progress == null;
+            var previousStatus = progress?.Status;
 
             if (progress == null)
             {
@@ -105,23 +112,88 @@ namespace TCTVocabulary.Controllers
                         masteryLevel,
                         currentUserId,
                         request.CardId);
-                    return BadRequest("Invalid mastery level");
+                return BadRequest("Invalid mastery level");
+            }
+
+            await _context.SaveChangesAsync();
+
+            var activityUpdate = BuildGoalsActivityUpdate(isNewProgress, previousStatus, progress.Status);
+            var activityResult = await _goalsService.RecordActivityAsync(currentUserId, activityUpdate);
+            if (activityResult.Status == OperationStatus.NotFound)
+            {
+                _logger.LogWarning(
+                    "Learning activity record aborted because user {userId} was not found",
+                    currentUserId);
+                return NotFound();
+            }
+
+            if (activityResult.Status == OperationStatus.Invalid)
+            {
+                _logger.LogWarning(
+                    "Learning activity record was rejected for user {userId}, card {cardId}",
+                    currentUserId,
+                    request.CardId);
+                return BadRequest("Unable to record learning activity");
             }
 
             var streak = await _streakService.UpdateStreakAsync(currentUserId);
 
             _logger.LogInformation(
-                "Learning record updated for user {userId}, card {cardId}, status {status}, repetitionCount {repetitionCount}, nextReviewDate {nextReviewDate}, isNewProgress {isNewProgress}, streak {streak}",
+                "Learning record updated for user {userId}, card {cardId}, status {status}, repetitionCount {repetitionCount}, nextReviewDate {nextReviewDate}, isNewProgress {isNewProgress}, xpEarned {xpEarned}, streak {streak}",
                 currentUserId,
                 request.CardId,
                 progress.Status,
                 progress.RepetitionCount,
                 progress.NextReviewDate,
                 isNewProgress,
+                activityUpdate.XpEarned,
                 streak);
 
-            return Ok(new { success = true, nextReviewDate = progress.NextReviewDate, streak });
+            return Ok(new
+            {
+                success = true,
+                nextReviewDate = progress.NextReviewDate,
+                streak,
+                xpEarned = activityUpdate.XpEarned
+            });
         }
+
+        private static GoalsActivityUpdate BuildGoalsActivityUpdate(bool isNewProgress, string? previousStatus, string currentStatus)
+        {
+            var activityKind = DetermineLearningActivityKind(isNewProgress, previousStatus, currentStatus);
+
+            return new GoalsActivityUpdate
+            {
+                CardsReviewed = 1,
+                NewCardsLearned = isNewProgress ? 1 : 0,
+                XpEarned = activityKind switch
+                {
+                    LearningActivityKind.NewLearning => NewLearningXp,
+                    LearningActivityKind.Mastered => MasteredXp,
+                    _ => ReviewXp
+                }
+            };
+        }
+
+        private static LearningActivityKind DetermineLearningActivityKind(bool isNewProgress, string? previousStatus, string currentStatus)
+        {
+            if (!string.Equals(previousStatus, "Mastered", StringComparison.Ordinal)
+                && string.Equals(currentStatus, "Mastered", StringComparison.Ordinal))
+            {
+                return LearningActivityKind.Mastered;
+            }
+
+            return isNewProgress
+                ? LearningActivityKind.NewLearning
+                : LearningActivityKind.Review;
+        }
+    }
+
+    internal enum LearningActivityKind
+    {
+        Review,
+        NewLearning,
+        Mastered
     }
 
     public class LearningRecordRequest

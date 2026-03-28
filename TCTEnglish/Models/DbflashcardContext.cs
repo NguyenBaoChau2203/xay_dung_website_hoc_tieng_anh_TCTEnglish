@@ -34,6 +34,9 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<WritingExerciseSentence> WritingExerciseSentences { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
     public virtual DbSet<ClassMember> ClassMembers { get; set; }
+    public virtual DbSet<Badge> Badges { get; set; }
+    public virtual DbSet<UserDailyActivity> UserDailyActivities { get; set; }
+    public virtual DbSet<UserBadge> UserBadges { get; set; }
     public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
 
 
@@ -257,6 +260,103 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.LockExpiry)
                 .HasColumnType("datetime2")
                 .IsRequired(false);
+        });
+
+        modelBuilder.Entity<UserDailyActivity>(entity =>
+        {
+            entity.ToTable("UserDailyActivities");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.ActivityDate })
+                .IsUnique()
+                .HasDatabaseName("IX_UserDailyActivities_UserId_ActivityDate");
+
+            entity.Property(e => e.ActivityDate)
+                .HasColumnType("date");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.XpEarned).HasDefaultValue(0);
+            entity.Property(e => e.CardsReviewed).HasDefaultValue(0);
+            entity.Property(e => e.NewCardsLearned).HasDefaultValue(0);
+            entity.Property(e => e.QuizzesCompleted).HasDefaultValue(0);
+            entity.Property(e => e.SpeakingCompletedCount).HasDefaultValue(0);
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserDailyActivities)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserDailyActivities_Users");
+        });
+
+        modelBuilder.Entity<Badge>(entity =>
+        {
+            entity.ToTable("Badges");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => e.Code)
+                .IsUnique()
+                .HasDatabaseName("IX_Badges_Code");
+
+            entity.Property(e => e.Code)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(150)
+                .IsRequired();
+
+            entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            entity.Property(e => e.IconClass)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            entity.Property(e => e.MetricType)
+                .HasConversion<int>();
+
+            entity.Property(e => e.ThresholdValue);
+            entity.Property(e => e.SortOrder);
+
+            entity.HasData(BadgeSeedData.CreateBadges());
+        });
+
+        modelBuilder.Entity<UserBadge>(entity =>
+        {
+            entity.ToTable("UserBadges");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.BadgeId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserBadges_UserId_BadgeId");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.BadgeId)
+                .HasColumnName("BadgeID");
+
+            entity.Property(e => e.AwardedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserBadges)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserBadges_Users");
+
+            entity.HasOne(d => d.Badge)
+                .WithMany(p => p.UserBadges)
+                .HasForeignKey(d => d.BadgeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserBadges_Badges");
         });
 
         modelBuilder.Entity<SpeakingPlaylist>(entity =>

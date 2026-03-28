@@ -157,6 +157,12 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
         context.Users.AddRange(standardUser, adminUser, outsiderUser, memberUser, systemUser);
         await context.SaveChangesAsync();
 
+        if (!await context.Badges.AnyAsync())
+        {
+            context.Badges.AddRange(BadgeSeedData.CreateBadges());
+            await context.SaveChangesAsync();
+        }
+
         var userFolder = new Folder
         {
             FolderId = TestDataIds.UserFolderId,

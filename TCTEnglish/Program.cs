@@ -35,6 +35,7 @@ builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<IStreakService, StreakService>();
+builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCTVocabulary.Models;
 
@@ -11,9 +12,11 @@ using TCTVocabulary.Models;
 namespace TCTVocabulary.Migrations
 {
     [DbContext(typeof(DbflashcardContext))]
-    partial class DbflashcardContextModelSnapshot : ModelSnapshot
+    [Migration("20260328144310_AddUserDailyActivities")]
+    partial class AddUserDailyActivities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,120 +40,6 @@ namespace TCTVocabulary.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ClassMembers", (string)null);
-                });
-
-            modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("IconClass")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("MetricType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThresholdValue")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Badges_Code");
-
-                    b.ToTable("Badges", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "first-session",
-                            Description = "Hoàn thành ngày học đầu tiên để bắt đầu hành trình.",
-                            IconClass = "fas fa-seedling",
-                            MetricType = 3,
-                            Name = "Khởi động",
-                            SortOrder = 1,
-                            ThresholdValue = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "three-day-streak",
-                            Description = "Duy trì streak học tập trong 3 ngày liên tiếp.",
-                            IconClass = "fas fa-fire",
-                            MetricType = 1,
-                            Name = "Giữ nhịp",
-                            SortOrder = 2,
-                            ThresholdValue = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "seven-day-peak",
-                            Description = "Chạm mốc streak dài nhất 7 ngày.",
-                            IconClass = "fas fa-bolt",
-                            MetricType = 2,
-                            Name = "Bền bỉ",
-                            SortOrder = 3,
-                            ThresholdValue = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "active-week",
-                            Description = "Có hoạt động học tập trong 7 ngày khác nhau.",
-                            IconClass = "fas fa-calendar-check",
-                            MetricType = 3,
-                            Name = "Cả tuần chăm chỉ",
-                            SortOrder = 4,
-                            ThresholdValue = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "xp-collector",
-                            Description = "Tích lũy đủ 50 XP từ các hoạt động học tập.",
-                            IconClass = "fas fa-star",
-                            MetricType = 4,
-                            Name = "Tích điểm",
-                            SortOrder = 5,
-                            ThresholdValue = 50
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "xp-champion",
-                            Description = "Đạt 200 XP để mở khóa cột mốc cao hơn.",
-                            IconClass = "fas fa-trophy",
-                            MetricType = 4,
-                            Name = "Bứt phá",
-                            SortOrder = 6,
-                            ThresholdValue = 200
-                        });
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
@@ -654,38 +543,6 @@ namespace TCTVocabulary.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.UserBadge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AwardedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
-
-                    b.Property<int>("BadgeId")
-                        .HasColumnType("int")
-                        .HasColumnName("BadgeID");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BadgeId");
-
-                    b.HasIndex("UserId", "BadgeId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserBadges_UserId_BadgeId");
-
-                    b.ToTable("UserBadges", (string)null);
-                });
-
             modelBuilder.Entity("TCTVocabulary.Models.UserDailyActivity", b =>
                 {
                     b.Property<int>("Id")
@@ -1048,27 +905,6 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SpeakingPlaylist");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.UserBadge", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Badge", "Badge")
-                        .WithMany("UserBadges")
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserBadges_Badges");
-
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserBadges")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserBadges_Users");
-
-                    b.Navigation("Badge");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("TCTVocabulary.Models.UserDailyActivity", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -1112,11 +948,6 @@ namespace TCTVocabulary.Migrations
                         .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
 
                     b.Navigation("WritingExercise");
-                });
-
-            modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
-                {
-                    b.Navigation("UserBadges");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
@@ -1177,8 +1008,6 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SavedFolders");
 
                     b.Navigation("Sets");
-
-                    b.Navigation("UserBadges");
 
                     b.Navigation("UserDailyActivities");
 

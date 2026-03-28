@@ -80,6 +80,8 @@ public partial class User
     public virtual ICollection<Folder> Folders { get; set; } = new List<Folder>();
 
     public virtual ICollection<LearningProgress> LearningProgresses { get; set; } = new List<LearningProgress>();
+    public virtual ICollection<UserDailyActivity> UserDailyActivities { get; set; } = new List<UserDailyActivity>();
+    public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
 
     public virtual ICollection<Set> Sets { get; set; } = new List<Set>();
 
