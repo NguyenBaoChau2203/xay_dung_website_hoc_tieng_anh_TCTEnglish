@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
@@ -11,21 +16,25 @@ namespace TCTVocabulary.Controllers
     [AutoValidateAntiforgeryToken]
     public class HomeController : BaseController
     {
+        private static readonly TimeSpan DailyChallengeTokenLifetime = TimeSpan.FromMinutes(15);
         private readonly DbflashcardContext _context;
         private readonly IAppEmailSender _emailSender;
         private readonly IStreakService _streakService;
         private readonly ILogger<HomeController> _logger;
+        private readonly IDataProtector _dailyChallengeProtector;
 
         public HomeController(
             DbflashcardContext context,
             IAppEmailSender emailSender,
             IStreakService streakService,
+            IDataProtectionProvider dataProtectionProvider,
             ILogger<HomeController> logger)
         {
             _context = context;
             _emailSender = emailSender;
             _streakService = streakService;
             _logger = logger;
+            _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
 
         public async Task<IActionResult> Index()
@@ -92,23 +101,33 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CheckAnswer(int selectedCardId, int correctCardId)
+        public async Task<IActionResult> CheckAnswer(int selectedCardId, string challengeToken)
         {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                _logger.LogWarning("Unauthorized check answer request for selected card {cardId}", selectedCardId);
+                return Unauthorized();
+            }
+
+            if (string.IsNullOrWhiteSpace(challengeToken)
+                || !TryReadDailyChallengeAnswer(challengeToken, userId, out var correctCardId))
+            {
+                _logger.LogWarning(
+                    "Invalid daily challenge token for user {userId}, selected card {cardId}",
+                    userId,
+                    selectedCardId);
+                return BadRequest();
+            }
+
             var isCorrect = selectedCardId == correctCardId;
 
             if (isCorrect)
             {
-                if (!TryGetCurrentUserId(out var userId))
-                {
-                    _logger.LogWarning("Unauthorized check answer request for card {cardId}", correctCardId);
-                    return Unauthorized();
-                }
-
                 await _streakService.UpdateStreakAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 
-            return Json(new { correct = isCorrect });
+            return Json(new { correct = isCorrect, correctCardId });
         }
 
         private async Task<DailyChallengeViewModel> GetRandomChallengeAsync()
@@ -133,12 +152,81 @@ namespace TCTVocabulary.Controllers
                 Definition = randomCard.Definition
             });
 
+            var challengeToken = string.Empty;
+            if (TryGetCurrentUserId(out var userId))
+            {
+                challengeToken = CreateDailyChallengeToken(userId, randomCard.CardId);
+            }
+
             return new DailyChallengeViewModel
             {
                 CardId = randomCard.CardId,
                 Term = randomCard.Term,
+                ChallengeToken = challengeToken,
                 Options = wrongAnswers.OrderBy(_ => Random.Shared.Next()).ToList()
             };
+        }
+
+        private string CreateDailyChallengeToken(int userId, int correctCardId)
+        {
+            var expiresAtTicks = DateTime.UtcNow.Add(DailyChallengeTokenLifetime).Ticks;
+            var payload = $"{userId}|{correctCardId}|{expiresAtTicks}";
+            var protectedPayload = _dailyChallengeProtector.Protect(payload);
+            return WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(protectedPayload));
+        }
+
+        private bool TryReadDailyChallengeAnswer(string challengeToken, int userId, out int correctCardId)
+        {
+            correctCardId = 0;
+
+            try
+            {
+                var protectedPayload = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(challengeToken));
+                var payload = _dailyChallengeProtector.Unprotect(protectedPayload);
+                var segments = payload.Split('|', StringSplitOptions.None);
+                if (segments.Length != 3)
+                {
+                    return false;
+                }
+
+                if (!int.TryParse(segments[0], NumberStyles.None, CultureInfo.InvariantCulture, out var tokenUserId)
+                    || tokenUserId != userId)
+                {
+                    return false;
+                }
+
+                if (!int.TryParse(segments[1], NumberStyles.None, CultureInfo.InvariantCulture, out var tokenCorrectCardId))
+                {
+                    return false;
+                }
+
+                if (!long.TryParse(segments[2], NumberStyles.None, CultureInfo.InvariantCulture, out var expiresAtTicks)
+                    || expiresAtTicks < DateTime.MinValue.Ticks
+                    || expiresAtTicks > DateTime.MaxValue.Ticks)
+                {
+                    return false;
+                }
+
+                if (new DateTime(expiresAtTicks, DateTimeKind.Utc) < DateTime.UtcNow)
+                {
+                    return false;
+                }
+
+                correctCardId = tokenCorrectCardId;
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (CryptographicException)
+            {
+                return false;
+            }
         }
 
         private async Task<List<TodayFolderViewModel>> GetTodayFoldersAsync(int userId)

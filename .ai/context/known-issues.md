@@ -27,17 +27,6 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
-### BUG-006: Goals page is still a static placeholder
-- **Symptom**: `/Goals/Index` renders demo cards and a "Chỉnh sửa mục tiêu"
-  button, but the page does not load or persist `User.Goal` data.
-- **Root Cause**: `GoalsController` only returns the view and there is no real
-  read/write flow, service, or POST endpoint for daily-goal management.
-- **When it triggers**: Any user tries to edit or trust the numbers shown on the
-  goals page.
-- **Recommended fix**: Either implement real goal CRUD/progress binding or hide
-  the navigation entry until the feature is production-ready.
-- **Status**: Confirmed unresolved.
-
 ### BUG-007: AutoUnlockWorker is disabled by default in the current config
 - **Symptom**: Expired locks are not auto-cleared in the default app
   configuration; users rely on lazy unlock during login or manual admin unlock.
@@ -157,6 +146,28 @@ proposing follow-up work so they do not optimize already-completed items.
   controllers are service-extracted.
 - **Effort**: Small ongoing.
 
+### TD-009: Goals/streak/day-activity still use UTC day boundaries directly [MEDIUM]
+- **Files**: `Services/GoalsService.cs`, `Services/StreakService.cs`
+- **Issue**: Day-based logic currently uses `DateTime.UtcNow.Date` directly for
+  daily activity aggregation, streak updates, and goals progress windows.
+- **Impact**: Internal users operating in local timezone can see day-boundary
+  differences (late evening/early morning) versus expected local business date.
+- **Recommended fix**: Introduce a business-date abstraction (timezone-aware)
+  and migrate goals/streak daily calculations to that abstraction.
+- **Effort**: Small to medium.
+
+### TD-010: Goals migration rollout checklist is not documented strongly enough [MEDIUM]
+- **Files**: `Migrations/*Goals*`, `Models/DbflashcardContext.cs`, `Services/GoalsService.cs`
+- **Issue**: Goals schema migrations are additive and safe by design, but there is
+  no explicit deployment checklist for backup/apply/verify order on real SQL
+  Server environments.
+- **Impact**: Increased release risk when applying goals migrations at scale
+  without a repeatable operator runbook.
+- **Recommended fix**: Add and follow a rollout checklist: database backup,
+  migration apply order, post-deploy query verification, and seed/idempotency
+  validation for badge records.
+- **Effort**: Small.
+
 ---
 
 ## Architecture Warnings
@@ -191,3 +202,5 @@ proposing follow-up work so they do not optimize already-completed items.
 | Folder/set split-controller anti-IDOR gaps | Fixed and covered by `FolderSetIdorRegressionTests` |
 | Dashboard SQLite random ordering failure | Fixed with provider-safe fallback logic |
 | Duplicate `ViewModel/` vs `ViewModels/` folders | Normalized to `ViewModels/` only |
+| BUG-006 Goals placeholder page | Resolved with real `GoalsController` + `IGoalsService` read/write flow and integration tests |
+| Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |

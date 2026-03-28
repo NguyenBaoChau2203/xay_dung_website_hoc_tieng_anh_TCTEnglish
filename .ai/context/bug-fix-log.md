@@ -42,6 +42,28 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Goals core rollout and challenge-token hardening restored after cleanup — 2026-03-28
+
+**Symptom**: During commit cleanup, related updates around goals rollout documentation and daily-challenge token validation were dropped from working changes even though they were still required.
+
+**Root Cause**: The workspace was intentionally trimmed to a narrow `goals core` commit scope, which discarded additional local updates that were planned for a follow-up commit.
+
+**Solution**: Restored the dropped updates by reapplying token-based daily challenge validation flow (`HomeController` + dashboard views), startup migration block in `Program.cs` per team decision, XP reward toast in vocabulary study view, and documentation/context updates in known-issues and bug-fix log.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/HomeController.cs` - restored signed challenge token generation/validation and secure `CheckAnswer` flow.
+- `TCTEnglish/ViewModels/DailyChallengeViewModel.cs` - restored `ChallengeToken` property.
+- `TCTEnglish/Views/Home/Index.cshtml` and `TCTEnglish/Views/Home/_DailyChallenge.cshtml` - restored token-aware answer submission.
+- `TCTEnglish/Views/Vocabulary/Study.cshtml` - restored XP reward toast display.
+- `TCTEnglish/Program.cs` - restored startup `Database.Migrate()` block.
+- `.ai/context/known-issues.md` and `.ai/context/bug-fix-log.md` - restored context records.
+
+**Verification**: Build/check verification should be run after reapplying all restored files.
+
+**Commit**: Not created yet.
+
+**Notes**: This entry documents restoration of intentionally removed local changes that were later confirmed as still required.
+
 ### Writing UI still showed mojibake Vietnamese text that looked like font corruption — 2026-03-28
 
 **Symptom**: Learners still saw broken Vietnamese fragments (for example `TrÃ¢n trá»ng`, `ChÃºc may máº¯n`) in writing-related UI paths, which appeared as a font/display issue on the interface.

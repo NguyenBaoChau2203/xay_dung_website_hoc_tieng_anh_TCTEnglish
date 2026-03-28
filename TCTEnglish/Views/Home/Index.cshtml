@@ -5,6 +5,7 @@
 
 
 <link rel="stylesheet" href="~/css/Dashboard.css" />
+@Html.AntiForgeryToken()
 <div class="dashboard">
     <div class="hero-section">
 
@@ -163,25 +164,45 @@
                 return;
 
             const selected = this.dataset.id;
-            const correct = this.dataset.correct;
+            const challengeToken = this.dataset.token;
+            const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
 
-            if (selected === correct) {
-                this.classList.add("correct");
-            } else {
-                this.classList.add("wrong");
-            }
-                if (selected !== correct) {
-        document.querySelector(
-            `.answer-btn[data-id="${correct}"]`
-        )?.classList.add("correct");
-    }
-            setTimeout(() => {
-                fetch("/Home/GetDailyChallenge")
-                    .then(res => res.text())
-                    .then(html => {
+            const payload = new URLSearchParams({
+                selectedCardId: selected,
+                challengeToken: challengeToken ?? ""
+            });
+
+            fetch("/Home/CheckAnswer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "RequestVerificationToken": antiForgeryToken ?? ""
+                },
+                body: payload.toString()
+            })
+                .then(async response => {
+                    if (!response.ok) {
+                        throw new Error(`CheckAnswer failed: ${response.status}`);
+                    }
+
+                    return await response.json();
+                })
+                .then(data => {
+                    const correctCardId = String(data.correctCardId ?? "");
+                    if (data.correct === true) {
+                        this.classList.add("correct");
+                    } else {
+                        this.classList.add("wrong");
+                        document.querySelector(`.answer-btn[data-id="${correctCardId}"]`)?.classList.add("correct");
+                    }
+
+                    setTimeout(() => {
                         location.reload();
-                    });
-            }, 800);
+                    }, 800);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     });
 </script>

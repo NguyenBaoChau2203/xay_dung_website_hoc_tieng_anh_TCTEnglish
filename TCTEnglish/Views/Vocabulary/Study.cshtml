@@ -1034,6 +1034,11 @@
             color: white;
         }
 
+        .toast-notification.reward {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            color: white;
+        }
+
         .toast-notification i {
             font-size: 1.3rem;
         }
@@ -1924,7 +1929,7 @@
         }
 
         // Toast notification
-        function showToast(message, type) {
+        function showToast(message, type, iconOverride) {
             // Tạo toast element
             let toast = document.getElementById('toastNotification');
             if (!toast) {
@@ -1934,7 +1939,11 @@
                 document.body.appendChild(toast);
             }
 
-            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const icon = iconOverride || (type === 'success'
+                ? 'fa-check-circle'
+                : type === 'reward'
+                    ? 'fa-bolt'
+                    : 'fa-exclamation-circle');
             toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
             toast.className = `toast-notification ${type}`;
 
@@ -1987,6 +1996,10 @@
                 } else {
                     const data = await response.json();
                     console.log('Progress saved:', data);
+
+                    if (data?.xpEarned > 0) {
+                        showToast(`+${data.xpEarned} XP cho lượt học này`, 'reward', 'fa-bolt');
+                    }
                 }
             } catch (err) {
                 console.error('Error recording mastery:', err);
