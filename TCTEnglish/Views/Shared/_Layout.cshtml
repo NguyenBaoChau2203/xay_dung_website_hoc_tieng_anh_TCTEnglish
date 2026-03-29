@@ -16,6 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/ai-chat-launcher.css" asp-append-version="true" />
 
     <script src="~/js/layout.js"></script>
 
@@ -366,12 +367,23 @@
             </form>
         </div>
     </div>
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var showAiLauncher = !string.Equals(currentController, "Ai", System.StringComparison.OrdinalIgnoreCase)
+            || !string.Equals(currentAction, "Chat", System.StringComparison.OrdinalIgnoreCase);
+    }
+    @if (showAiLauncher)
+    {
+        <partial name="_AiChatLauncher" />
+    }
     @if (User.Identity?.IsAuthenticated == true)
     {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
         <script src="~/js/user-activity.js" asp-append-version="true"></script>
     }
 
+    <script src="~/js/ai-chat-launcher.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

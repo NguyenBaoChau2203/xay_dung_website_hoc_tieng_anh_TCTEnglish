@@ -1,0 +1,75 @@
+@{
+    var chatUrl = Url.Action("Chat", "Ai") ?? "/AI/Chat";
+    var embedUrl = Url.Action("Chat", "Ai", new { embed = true }) ?? "/AI/Chat?embed=true";
+    var loginUrl = Url.Action("Login", "Account", new { returnUrl = chatUrl }) ?? "/Account/Login";
+    var isAuthenticated = User.Identity?.IsAuthenticated == true;
+}
+
+<div class="ai-launcher" data-ai-launcher>
+    @if (isAuthenticated)
+    {
+        <div class="ai-launcher-backdrop" data-ai-backdrop></div>
+
+        <section class="ai-launcher-panel" id="aiLauncherPanel" aria-hidden="true" aria-label="TCT AI chat">
+            <div class="ai-launcher-panel-header">
+                <div class="ai-launcher-panel-copy">
+                    <div class="ai-launcher-panel-kicker">TCT AI</div>
+                    <div class="ai-launcher-panel-title">Trợ lý học tập</div>
+                </div>
+
+                <div class="ai-launcher-panel-actions">
+                    <a class="ai-launcher-panel-link"
+                       href="@chatUrl"
+                       title="Mở trang chat đầy đủ"
+                       aria-label="Mở trang chat đầy đủ">
+                        <i class="fas fa-up-right-from-square"></i>
+                    </a>
+                    <button type="button"
+                            class="ai-launcher-panel-close"
+                            data-ai-close
+                            aria-label="Đóng chat">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="ai-launcher-panel-body">
+                <iframe class="ai-launcher-frame"
+                        title="TCT AI chat"
+                        loading="lazy"
+                        data-ai-frame
+                        data-src="@embedUrl"></iframe>
+            </div>
+        </section>
+
+        <button type="button"
+                class="ai-launcher-trigger"
+                data-ai-toggle
+                aria-controls="aiLauncherPanel"
+                aria-expanded="false"
+                aria-label="Mở trợ lý AI">
+            <span class="ai-launcher-icon-shell">
+                <img src="~/images/ai/tct-ai-launcher.png"
+                     asp-append-version="true"
+                     alt="TCT AI"
+                     class="ai-launcher-icon" />
+            </span>
+            <span class="ai-launcher-tooltip">AI hỗ trợ</span>
+        </button>
+    }
+    else
+    {
+        <a class="ai-launcher-trigger ai-launcher-trigger-link"
+           href="@loginUrl"
+           aria-label="Đăng nhập để chat cùng AI"
+           title="Đăng nhập để chat cùng AI">
+            <span class="ai-launcher-icon-shell">
+                <img src="~/images/ai/tct-ai-launcher.png"
+                     asp-append-version="true"
+                     alt="TCT AI"
+                     class="ai-launcher-icon" />
+            </span>
+            <span class="ai-launcher-tooltip">Đăng nhập để chat</span>
+        </a>
+    }
+</div>

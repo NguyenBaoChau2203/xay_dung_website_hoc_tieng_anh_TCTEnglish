@@ -613,7 +613,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasOne(e => e.User)
                 .WithMany(u => u.AiRequestLogs)
                 .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_AiRequestLogs_Users");
 
             entity.HasOne(e => e.Conversation)

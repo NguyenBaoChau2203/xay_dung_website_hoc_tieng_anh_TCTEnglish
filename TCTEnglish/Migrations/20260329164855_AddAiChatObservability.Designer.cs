@@ -12,8 +12,8 @@ using TCTVocabulary.Models;
 namespace TCTVocabulary.Migrations
 {
     [DbContext(typeof(DbflashcardContext))]
-    [Migration("20260329111532_AddAiChatPhase1Data")]
-    partial class AddAiChatPhase1Data
+    [Migration("20260329164855_AddAiChatObservability")]
+    partial class AddAiChatObservability
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace TCTVocabulary.Migrations
                     b.ToTable("ClassMembers", (string)null);
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.AiConversation", b =>
+            modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace TCTVocabulary.Migrations
                     b.ToTable("AiConversations", (string)null);
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.AiMessage", b =>
+            modelBuilder.Entity("TCTEnglish.Models.AiMessage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,6 +113,60 @@ namespace TCTVocabulary.Migrations
                         .HasDatabaseName("IX_AiMessages_ConversationId_CreatedAtUtc");
 
                     b.ToTable("AiMessages", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("CompletionTokens")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ConversationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ErrorCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LatencyMs")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModelName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("PromptTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RequestedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<int?>("TotalTokens")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
+
+                    b.HasIndex("RequestedAtUtc")
+                        .HasDatabaseName("IX_AiRequestLogs_RequestedAtUtc");
+
+                    b.HasIndex("UserId", "RequestedAtUtc")
+                        .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
+
+                    b.ToTable("AiRequestLogs", (string)null);
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
@@ -957,7 +1011,7 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.AiConversation", b =>
+            modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
                         .WithMany("AiConversations")
@@ -969,9 +1023,9 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.AiMessage", b =>
+            modelBuilder.Entity("TCTEnglish.Models.AiMessage", b =>
                 {
-                    b.HasOne("TCTVocabulary.Models.AiConversation", "Conversation")
+                    b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
                         .WithMany("Messages")
                         .HasForeignKey("ConversationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -979,6 +1033,27 @@ namespace TCTVocabulary.Migrations
                         .HasConstraintName("FK_AiMessages_AiConversations");
 
                     b.Navigation("Conversation");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
+                {
+                    b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
+                        .WithMany()
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_AiRequestLogs_AiConversations");
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("AiRequestLogs")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_AiRequestLogs_Users");
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
@@ -1214,7 +1289,7 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("WritingExercise");
                 });
 
-            modelBuilder.Entity("TCTVocabulary.Models.AiConversation", b =>
+            modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.Navigation("Messages");
                 });
@@ -1270,6 +1345,8 @@ namespace TCTVocabulary.Migrations
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
                 {
                     b.Navigation("AiConversations");
+
+                    b.Navigation("AiRequestLogs");
 
                     b.Navigation("ClassMembers");
 

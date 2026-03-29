@@ -33,7 +33,7 @@ public sealed class AiController : BaseController
     }
 
     [HttpGet("Chat")]
-    public async Task<IActionResult> Chat(Guid? conversationId, CancellationToken ct)
+    public async Task<IActionResult> Chat(Guid? conversationId, bool embed = false, CancellationToken ct = default)
     {
         var userId = GetCurrentUserId();
         var currentConversationId = conversationId ?? (await _conversationService.CreateConversationAsync(userId, null, ct)).Id;
@@ -51,8 +51,14 @@ public sealed class AiController : BaseController
         var viewModel = new AiChatPageViewModel
         {
             ConversationId = currentConversationId,
-            Messages = messages.Select(MapToViewModel).ToList()
+            Messages = messages.Select(MapToViewModel).ToList(),
+            IsEmbedded = embed
         };
+
+        if (embed)
+        {
+            return View("ChatEmbed", viewModel);
+        }
 
         return View(viewModel);
     }

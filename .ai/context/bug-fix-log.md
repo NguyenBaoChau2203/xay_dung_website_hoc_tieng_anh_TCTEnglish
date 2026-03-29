@@ -42,6 +42,34 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### AI chat existed as a page but had no visible launcher in the main UI - 2026-03-30
+
+**Symptom**: Users could only access AI chat by directly visiting `/AI/Chat`; the main shared site UI had no floating launcher/button, so the built chat experience was effectively hidden from normal browsing flows.
+
+**Root Cause**: The AI chat implementation lived only as a dedicated authenticated feature page (`AiController` + `Views/Ai/Chat.cshtml`). No shared partial, shared CSS/JS launcher asset, or layout hook rendered an entry point from `Views/Shared/_Layout.cshtml`.
+
+**Solution**: Added a shared floating AI launcher partial to the main layout, created dedicated launcher CSS/JS assets, added a launcher image asset under `wwwroot/images/ai/`, and introduced an embedded AI chat render path (`ChatEmbed.cshtml`) so the existing chat UI can be opened inside a compact bottom-right panel without rewriting the current chat logic or touching the in-progress `wwwroot/js/ai-chat.js` work.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/AiController.cs` - added `embed` handling and returned `ChatEmbed` for the compact widget route.
+- `TCTEnglish/ViewModels/AI/AiChatPageViewModel.cs` - added `IsEmbedded` so the chat shell can render full-page vs embedded modes safely.
+- `TCTEnglish/Views/Ai/Chat.cshtml` - converted the full-page chat view to use the shared chat shell partial plus dedicated stylesheet.
+- `TCTEnglish/Views/Ai/ChatEmbed.cshtml` - added a layout-free embedded chat document for the floating widget iframe.
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml` - extracted reusable chat markup shared by full-page and embedded AI chat renders.
+- `TCTEnglish/Views/Shared/_Layout.cshtml` - loaded launcher assets and rendered the shared AI launcher outside the AI chat page itself.
+- `TCTEnglish/Views/Shared/_AiChatLauncher.cshtml` - added the floating launcher button/panel markup and login fallback.
+- `TCTEnglish/wwwroot/css/ai-chat.css` - added dedicated styling for the refreshed AI chat page and embedded shell.
+- `TCTEnglish/wwwroot/css/ai-chat-launcher.css` - added floating launcher and panel styling.
+- `TCTEnglish/wwwroot/js/ai-chat-launcher.js` - added launcher open/close/lazy-iframe behavior.
+- `TCTEnglish/wwwroot/images/ai/tct-ai-launcher.png` - added the cropped launcher icon derived from the provided mascot image.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: Ran `git diff --check` on the touched AI/layout files (passed; line-ending warnings only). Ran `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore -p:OutputPath=D:\TCTEnglish\.tmp\build\TCTEnglish\ -p:UseAppHost=false` with workspace-local `DOTNET_CLI_HOME` and `HOME` (passed, 0 warnings / 0 errors).
+
+**Commit**: Not created yet.
+
+**Notes**: `wwwroot/js/ai-chat.js` already had unrelated local edits, so the fix intentionally avoided changing that file. `scripts/encoding_guard.py` is not present in this repository, so no encoding guard script could be run. `known-issues.md` was not updated because this specific launcher gap was not listed there.
+
 ### Goals dashboard/challenge sync and GoalsPhase startup unblock — 2026-03-29
 
 **Symptom**: Dashboard stat still rendered hardcoded Goal value, daily challenge correct answers only updated streak without writing Goals activity/XP, and all `GoalsPhase1-5` integration tests failed at startup with `PendingModelChangesWarning` from `Program.cs` migration execution.

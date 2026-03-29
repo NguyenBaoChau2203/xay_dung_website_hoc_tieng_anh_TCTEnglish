@@ -1,0 +1,98 @@
+@model TCTEnglish.ViewModels.AI.AiChatPageViewModel
+
+<div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")">
+    @if (!Model.IsEmbedded)
+    {
+        <div class="ai-chat-shell-header">
+            <div>
+                <div class="ai-chat-shell-kicker">TCT AI</div>
+                <h1 class="ai-chat-shell-title">Trợ lý học tiếng Anh</h1>
+                <p class="ai-chat-shell-subtitle mb-0">
+                    Hỏi về từ vựng, cách luyện tập, speaking và mẹo học phù hợp với lộ trình của bạn.
+                </p>
+            </div>
+
+            <div class="ai-chat-shell-meta">
+                <span class="ai-chat-shell-meta-label">Conversation</span>
+                <strong class="ai-chat-shell-meta-value">@Model.ConversationId</strong>
+            </div>
+        </div>
+
+        <div class="row g-2 ai-chat-metrics" id="aiObservabilityPanel">
+            <div class="col-md-3">
+                <div class="ai-chat-metric-card">
+                    <div class="ai-chat-metric-label">Requests (7 ngày)</div>
+                    <div id="aiMetricRequestCount" class="ai-chat-metric-value">-</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ai-chat-metric-card">
+                    <div class="ai-chat-metric-label">Error rate</div>
+                    <div id="aiMetricErrorRate" class="ai-chat-metric-value">-</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ai-chat-metric-card">
+                    <div class="ai-chat-metric-label">Latency p50/p95</div>
+                    <div id="aiMetricLatency" class="ai-chat-metric-value">-</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ai-chat-metric-card">
+                    <div class="ai-chat-metric-label">Token hôm nay</div>
+                    <div id="aiMetricTokenToday" class="ai-chat-metric-value">-</div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div id="chatWindow" class="ai-chat-window">
+        @if (Model.Messages.Count == 0)
+        {
+            <div class="ai-chat-empty-state">
+                Hãy bắt đầu cuộc trò chuyện với AI.
+            </div>
+        }
+        else
+        {
+            @foreach (var message in Model.Messages)
+            {
+                var isUser = string.Equals(message.Role, "user", System.StringComparison.OrdinalIgnoreCase);
+                var isAssistant = string.Equals(message.Role, "assistant", System.StringComparison.OrdinalIgnoreCase);
+                var justifyClass = isUser ? "justify-content-end" : "justify-content-start";
+                var bubbleClass = isUser ? "bg-primary text-white" : "bg-light";
+
+                <div class="d-flex @justifyClass mb-2" data-role="@message.Role">
+                    <div class="rounded px-3 py-2 @bubbleClass">
+                        @if (isAssistant)
+                        {
+                            <div class="js-assistant-markdown">@message.Content</div>
+                        }
+                        else
+                        {
+                            @message.Content
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <form id="chatForm" class="ai-chat-form" data-state="idle">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="conversationIdInput" value="@Model.ConversationId" />
+
+        <div class="input-group ai-chat-input-group">
+            <input id="messageInput"
+                   class="form-control ai-chat-input"
+                   maxlength="1000"
+                   placeholder="Nhập câu hỏi của bạn..."
+                   autocomplete="off" />
+            <button id="sendBtn" class="btn btn-primary ai-chat-send-btn" type="submit">Gửi</button>
+            <button id="stopBtn" class="btn btn-outline-secondary ai-chat-stop-btn d-none" type="button">Dừng</button>
+        </div>
+    </form>
+
+    <div id="typing" class="ai-chat-typing d-none">AI đang trả lời...</div>
+    <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="alert"></div>
+</div>
