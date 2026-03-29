@@ -95,15 +95,16 @@ proposing follow-up work so they do not optimize already-completed items.
   smaller services or slices, and finish the move to typed view models.
 - **Effort**: Medium.
 
-### TD-004: Goals domain is not wired into real user state [MEDIUM]
-- **Files**: `Controllers/GoalsController.cs`, `Views/Goals/Index.cshtml`,
-  `ViewModels/DashboardViewModel.cs`
-- **Issue**: Dashboard displays `User.Goal`, but the dedicated goals page still
-  contains static sample content instead of a live experience.
-- **Impact**: Product inconsistency and misleading UX.
-- **Recommended fix**: Choose one canonical goals workflow and remove the
-  placeholder page once the real flow exists.
-- **Effort**: Small to medium.
+### TD-004: Goals rollout consistency across dashboard/challenge must stay enforced [LOW]
+- **Files**: `Views/Home/Index.cshtml`, `Controllers/HomeController.cs`,
+  `Services/GoalsService.cs`
+- **Issue**: Goals page flow is now live, but dashboard stats/challenge reward
+  wiring can regress if feature changes bypass `IGoalsService` or reintroduce
+  hardcoded display values.
+- **Impact**: Product inconsistency and missing activity/XP telemetry.
+- **Recommended fix**: Keep dashboard values model-driven and ensure daily
+  challenge writes activity through `IGoalsService.RecordActivityAsync(...)`.
+- **Effort**: Small.
 
 ### TD-005: Secrets remain in source-controlled appsettings [SECURITY]
 - **Files**: `appsettings.json`

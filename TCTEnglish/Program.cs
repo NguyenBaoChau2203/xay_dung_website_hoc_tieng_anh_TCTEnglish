@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
-using TCTVocabulary.Hubs;
+using Microsoft.Extensions.Options;
+using TCTEnglish.Hubs;
+using TCTEnglish.Services.AI;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.Workers;
-
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR();
@@ -17,9 +18,7 @@ builder.Services.AddRazorPages()
         options.JsonSerializerOptions.ReferenceHandler =
             System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
-// 1. Cấu hình dịch vụ (Phải nằm TRƯỚC builder.Build)
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-// Đăng ký kết nối Database
 builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -29,7 +28,6 @@ builder.Services.AddDbContext<DbflashcardContext>(options =>
             sqlOptions.CommandTimeout(60);
         }));
 
-// Register email sender and background worker
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
@@ -39,9 +37,46 @@ builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
+builder.Services.AddOptions<AiOptions>()
+    .Configure<IConfiguration>((options, configuration) =>
+    {
+        configuration.GetSection("AI").Bind(options);
+
+        if (string.IsNullOrWhiteSpace(options.ApiKey))
+        {
+            options.ApiKey = configuration["OpenAiApiKey"] ?? options.ApiKey;
+        }
+    });
+builder.Services.AddScoped<IAiConversationService, AiConversationService>();
+builder.Services.AddScoped<IAiChatService, AiChatService>();
+builder.Services.AddScoped<IAiObservabilityService, AiObservabilityService>();
+builder.Services.AddScoped<IAiContextBuilder, AiContextBuilder>();
+builder.Services.AddScoped<OpenAiProviderClient>();
+builder.Services.AddScoped<IAiProviderClient>(serviceProvider =>
+{
+    var aiOptions = serviceProvider.GetRequiredService<IOptions<AiOptions>>().Value;
+    var providerName = aiOptions.Provider?.Trim();
+
+    if (string.Equals(providerName, "OpenAI", StringComparison.OrdinalIgnoreCase)
+        || string.IsNullOrWhiteSpace(providerName))
+    {
+        return serviceProvider.GetRequiredService<OpenAiProviderClient>();
+    }
+
+    if (string.Equals(providerName, "Azure OpenAI", StringComparison.OrdinalIgnoreCase)
+        || string.Equals(providerName, "AzureOpenAI", StringComparison.OrdinalIgnoreCase))
+    {
+        throw new InvalidOperationException("Azure OpenAI provider chưa được cấu hình trong bản hiện tại.");
+    }
+
+    throw new InvalidOperationException($"Unsupported AI provider '{providerName}'.");
+});
+builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
+builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
+builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();
+builder.Services.AddSingleton<IAiStreamingService, AiStreamingService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 
-// Cấu hình Authentication (Cookie + Social)
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -56,14 +91,9 @@ builder.Services.AddAuthentication(options =>
 .AddCookie("ExternalCookie")
 .AddGoogle(options =>
 {
-    // Lấy từ appsettings.json hoặc User Secrets
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? "dummy-client-id";
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "dummy-client-secret";
-
-    // Request 'profile' scope so Google returns the picture field in UserInfo
     options.Scope.Add("profile");
-
-    // Extract 'picture' from Google's UserInfo JSON and add it as a claim
     options.Events.OnCreatingTicket = ctx =>
     {
         var pictureUrl = ctx.User.GetProperty("picture").GetString();
@@ -71,6 +101,7 @@ builder.Services.AddAuthentication(options =>
         {
             ctx.Identity?.AddClaim(new System.Security.Claims.Claim("picture", pictureUrl));
         }
+
         return System.Threading.Tasks.Task.CompletedTask;
     };
     options.Events.OnRemoteFailure = ctx =>
@@ -100,7 +131,6 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
-// 2. Cấu hình đường đi của dữ liệu (Middleware)
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -108,35 +138,25 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// Thay vì MapStaticAssets, dùng UseStaticFiles để an toàn cho mọi phiên bản .NET
 app.UseStaticFiles();
-
 app.UseRouting();
-
-// Authentication phải trước Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ClassChatHub>("/classChatHub");
 
-// Legacy route compatibility for old admin speaking URL
 app.MapControllerRoute(
     name: "admin-speaking-management-legacy",
     pattern: "Admin/SpeakingManagement/{action=Index}/{id?}",
     defaults: new { area = "Admin", controller = "SpeakingVideoManagement" });
 
-// Area route (Admin Dashboard)
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
-// 3. Cấu hình trang chủ mặc định
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Landing}/{id?}");
 
-
-// Seed từ vựng hệ thống từ file JSON (có try-catch riêng, web không sập nếu file JSON lỗi)
 try
 {
     await TCTVocabulary.Models.JsonVocabularySeeder.SeedFromJsonAsync(app.Services);

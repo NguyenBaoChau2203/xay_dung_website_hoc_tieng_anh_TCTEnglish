@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
@@ -14,9 +16,15 @@ using TCTVocabulary.Workers;
 
 namespace TCTEnglish.Tests.Infrastructure;
 
-public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
+public class TestWebApplicationFactory : WebApplicationFactory<Program>
 {
+    private readonly Action<IServiceCollection>? _configureTestServices;
     private SqliteConnection? _sqliteConnection;
+
+    public TestWebApplicationFactory(Action<IServiceCollection>? configureTestServices = null)
+    {
+        _configureTestServices = configureTestServices;
+    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -56,6 +64,8 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             {
                 options.UseSqlite(_sqliteConnection);
                 options.ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>();
+                options.ReplaceService<IMigrator, NoOpMigrator>();
+                options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
             });
 
             services.AddDataProtection()
@@ -71,6 +81,8 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
                 .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(
                     TestAuthenticationHandler.SchemeName,
                     _ => { });
+
+            _configureTestServices?.Invoke(services);
         });
     }
 

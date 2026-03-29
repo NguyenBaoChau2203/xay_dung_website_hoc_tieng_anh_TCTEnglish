@@ -28,9 +28,11 @@ obj/
 *.cache
 .appdata/
 .tmp/
+.tmp-tests/
 .dotnet-home/
 .dotnet/
 .dotnet_cli/
+.dotnet_cli_home/
 dotnet-test-output.txt
 git_log.txt
 git_status.txt

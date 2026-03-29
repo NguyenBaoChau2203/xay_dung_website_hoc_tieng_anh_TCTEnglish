@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Controllers;
-using TCTVocabulary.Hubs;
+using TCTEnglish.Hubs;
 using TCTVocabulary.Models;
 using TCTVocabulary.Realtime;
 using TCTVocabulary.Services;
@@ -96,7 +96,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
             if (user == null)
             {
-                return NotFound(new { message = "Không tìm thấy người dùng." });
+                return NotFound(new { message = "KhÃ´ng tÃ¬m tháº¥y ngÆ°á»i dÃ¹ng." });
             }
 
             user.Role = Roles.Normalize(user.Role);
@@ -145,20 +145,20 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == model.UserId);
             if (user == null)
             {
-                return NotFound(new { message = "Không tìm thấy người dùng." });
+                return NotFound(new { message = "KhÃ´ng tÃ¬m tháº¥y ngÆ°á»i dÃ¹ng." });
             }
 
             var allowedRoles = new[] { Roles.Admin, Roles.Premium, Roles.Standard };
             if (!allowedRoles.Contains(model.Role))
             {
-                return BadRequest(new { message = "Vai trò không hợp lệ." });
+                return BadRequest(new { message = "Vai trÃ² khÃ´ng há»£p lá»‡." });
             }
 
             var emailTaken = await _context.Users.AsNoTracking()
                 .AnyAsync(u => u.Email == model.Email && u.UserId != model.UserId);
             if (emailTaken)
             {
-                return BadRequest(new { message = "Email này đã được sử dụng bởi người dùng khác." });
+                return BadRequest(new { message = "Email nÃ y Ä‘Ã£ Ä‘Æ°á»£c sá»­ dá»¥ng bá»Ÿi ngÆ°á»i dÃ¹ng khÃ¡c." });
             }
 
             user.FullName = model.FullName;
@@ -170,7 +170,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             return Json(new
             {
                 success = true,
-                message = "Cập nhật thành công.",
+                message = "Cáº­p nháº­t thÃ nh cÃ´ng.",
                 user = CreateRowUpdateViewModel(user)
             });
         }
@@ -181,18 +181,18 @@ namespace TCTVocabulary.Areas.Admin.Controllers
         {
             if (!Enum.IsDefined(request.Status))
             {
-                return BadRequest(new { message = "Trạng thái không hợp lệ." });
+                return BadRequest(new { message = "Tráº¡ng thÃ¡i khÃ´ng há»£p lá»‡." });
             }
 
             if (request.Status == UserStatus.Blocked)
             {
-                return BadRequest(new { message = "Vui lòng dùng chức năng khóa tài khoản." });
+                return BadRequest(new { message = "Vui lÃ²ng dÃ¹ng chá»©c nÄƒng khÃ³a tÃ i khoáº£n." });
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
             if (user == null)
             {
-                return NotFound(new { message = "Không tìm thấy người dùng." });
+                return NotFound(new { message = "KhÃ´ng tÃ¬m tháº¥y ngÆ°á»i dÃ¹ng." });
             }
 
             var previousStatus = user.Status;
@@ -211,8 +211,8 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             {
                 success = true,
                 message = user.Status == UserStatus.Online
-                    ? "Tài khoản đang trực tuyến."
-                    : "Tài khoản đã chuyển sang Offline.",
+                    ? "TÃ i khoáº£n Ä‘ang trá»±c tuyáº¿n."
+                    : "TÃ i khoáº£n Ä‘Ã£ chuyá»ƒn sang Offline.",
                 statusUpdate
             });
         }
@@ -232,12 +232,12 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
             if (user == null)
             {
-                return NotFound(new { message = "Không tìm thấy người dùng." });
+                return NotFound(new { message = "KhÃ´ng tÃ¬m tháº¥y ngÆ°á»i dÃ¹ng." });
             }
 
             if (GetCurrentUserId() == user.UserId)
             {
-                return BadRequest(new { message = "Không thể khóa chính tài khoản đang đăng nhập." });
+                return BadRequest(new { message = "KhÃ´ng thá»ƒ khÃ³a chÃ­nh tÃ i khoáº£n Ä‘ang Ä‘Äƒng nháº­p." });
             }
 
             var lockExpiry = request.Duration switch
@@ -252,7 +252,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
             if (!lockExpiry.HasValue)
             {
-                return BadRequest(new { message = "Thời hạn khóa không hợp lệ." });
+                return BadRequest(new { message = "Thá»i háº¡n khÃ³a khÃ´ng há»£p lá»‡." });
             }
 
             var previousStatus = user.Status;
@@ -270,7 +270,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             return Json(new
             {
                 success = true,
-                message = "Đã khóa tài khoản thành công.",
+                message = "ÄÃ£ khÃ³a tÃ i khoáº£n thÃ nh cÃ´ng.",
                 statusUpdate
             });
         }
@@ -282,12 +282,12 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == request.UserId);
             if (user == null)
             {
-                return NotFound(new { message = "Không tìm thấy người dùng." });
+                return NotFound(new { message = "KhÃ´ng tÃ¬m tháº¥y ngÆ°á»i dÃ¹ng." });
             }
 
             if (user.Status != UserStatus.Blocked)
             {
-                return BadRequest(new { message = "Người dùng không ở trạng thái bị khóa." });
+                return BadRequest(new { message = "NgÆ°á»i dÃ¹ng khÃ´ng á»Ÿ tráº¡ng thÃ¡i bá»‹ khÃ³a." });
             }
 
             var previousStatus = user.Status;
@@ -305,7 +305,7 @@ namespace TCTVocabulary.Areas.Admin.Controllers
             return Json(new
             {
                 success = true,
-                message = "Đã mở khóa tài khoản thành công.",
+                message = "ÄÃ£ má»Ÿ khÃ³a tÃ i khoáº£n thÃ nh cÃ´ng.",
                 statusUpdate
             });
         }
@@ -446,3 +446,4 @@ namespace TCTVocabulary.Areas.Admin.Controllers
         }
     }
 }
+

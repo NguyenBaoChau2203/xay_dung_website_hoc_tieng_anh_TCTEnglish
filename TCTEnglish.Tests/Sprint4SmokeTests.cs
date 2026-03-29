@@ -1,9 +1,9 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using TCTVocabulary.Areas.Admin.Controllers;
 using TCTVocabulary.Controllers;
-using TCTVocabulary.Hubs;
+using TCTEnglish.Hubs;
 using TCTVocabulary.Services;
 using Xunit;
 
@@ -178,3 +178,4 @@ public sealed class Sprint4SmokeTests
         ];
     }
 }
+

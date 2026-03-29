@@ -17,8 +17,10 @@ namespace TCTVocabulary.Controllers
     public class HomeController : BaseController
     {
         private static readonly TimeSpan DailyChallengeTokenLifetime = TimeSpan.FromMinutes(15);
+        private const int DailyChallengeXp = 10;
         private readonly DbflashcardContext _context;
         private readonly IAppEmailSender _emailSender;
+        private readonly IGoalsService _goalsService;
         private readonly IStreakService _streakService;
         private readonly ILogger<HomeController> _logger;
         private readonly IDataProtector _dailyChallengeProtector;
@@ -26,12 +28,14 @@ namespace TCTVocabulary.Controllers
         public HomeController(
             DbflashcardContext context,
             IAppEmailSender emailSender,
+            IGoalsService goalsService,
             IStreakService streakService,
             IDataProtectionProvider dataProtectionProvider,
             ILogger<HomeController> logger)
         {
             _context = context;
             _emailSender = emailSender;
+            _goalsService = goalsService;
             _streakService = streakService;
             _logger = logger;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
@@ -123,6 +127,26 @@ namespace TCTVocabulary.Controllers
 
             if (isCorrect)
             {
+                var activityUpdate = new GoalsActivityUpdate
+                {
+                    CardsReviewed = 1,
+                    QuizzesCompleted = 1,
+                    XpEarned = DailyChallengeXp
+                };
+
+                var activityResult = await _goalsService.RecordActivityAsync(userId, activityUpdate);
+                if (activityResult.Status == OperationStatus.NotFound)
+                {
+                    _logger.LogWarning("Daily challenge activity record skipped because user {userId} was not found", userId);
+                    return NotFound();
+                }
+
+                if (activityResult.Status == OperationStatus.Invalid)
+                {
+                    _logger.LogWarning("Daily challenge activity record rejected for user {userId}", userId);
+                    return BadRequest();
+                }
+
                 await _streakService.UpdateStreakAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }

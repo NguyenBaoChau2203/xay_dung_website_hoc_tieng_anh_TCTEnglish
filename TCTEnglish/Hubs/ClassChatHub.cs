@@ -1,11 +1,13 @@
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Realtime;
+using TCTEnglish.Services.AI;
 using TCTVocabulary.Models;
 using TCTVocabulary.Realtime;
 using TCTVocabulary.Security;
 using TCTVocabulary.Services;
 
-namespace TCTVocabulary.Hubs
+namespace TCTEnglish.Hubs
 {
     public class ClassChatHub : Hub
     {
@@ -13,15 +15,18 @@ namespace TCTVocabulary.Hubs
 
         private readonly DbflashcardContext _context;
         private readonly IClassService _classService;
+        private readonly IAiStreamingService _aiStreamingService;
         private readonly ILogger<ClassChatHub> _logger;
 
         public ClassChatHub(
             DbflashcardContext context,
             IClassService classService,
+            IAiStreamingService aiStreamingService,
             ILogger<ClassChatHub> logger)
         {
             _context = context;
             _classService = classService;
+            _aiStreamingService = aiStreamingService;
             _logger = logger;
         }
 
@@ -48,10 +53,11 @@ namespace TCTVocabulary.Hubs
 
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
+            await _aiStreamingService.CancelAllStreamsAsync(Context.ConnectionId);
+
             var presenceChange = UserPresenceTracker.RemoveConnection(Context.ConnectionId);
             if (presenceChange?.WentOffline == true)
             {
-                // FIX: absorb brief reload/reconnect gaps before broadcasting the user offline.
                 await Task.Delay(UserPresenceTracker.OfflineTransitionDelay);
                 if (!UserPresenceTracker.IsUserOnline(presenceChange.UserId))
                 {
@@ -191,6 +197,104 @@ namespace TCTVocabulary.Hubs
                 });
         }
 
+        public async Task StartAiStream(Guid conversationId, string message)
+        {
+            var userId = TryGetCurrentUserId();
+            if (!userId.HasValue)
+            {
+                throw new HubException("Bạn cần đăng nhập để sử dụng AI Chat.");
+            }
+
+            try
+            {
+                var remoteIp = Context.GetHttpContext()?.Connection.RemoteIpAddress?.ToString();
+                await using var streamSession = await _aiStreamingService.StartStreamAsync(
+                    userId.Value,
+                    conversationId,
+                    message,
+                    Context.ConnectionId,
+                    remoteIp,
+                    Context.ConnectionAborted);
+
+                await Clients.Caller.SendAsync(
+                    "AiStreamStarted",
+                    AiStreamStartedMessage.Create(conversationId, streamSession.StreamId));
+
+                var chunkIndex = 0;
+                foreach (var chunk in streamSession.Chunks)
+                {
+                    streamSession.CancellationToken.ThrowIfCancellationRequested();
+
+                    await Clients.Caller.SendAsync(
+                        "AiStreamChunk",
+                        AiStreamChunkMessage.Create(conversationId, streamSession.StreamId, chunk, chunkIndex++));
+
+                    await Task.Delay(25, streamSession.CancellationToken);
+                }
+
+                await Clients.Caller.SendAsync(
+                    "AiStreamCompleted",
+                    AiStreamCompletedMessage.Create(
+                        conversationId,
+                        streamSession.StreamId,
+                        streamSession.Usage,
+                        streamSession.Metadata));
+            }
+            catch (OperationCanceledException)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(
+                        conversationId,
+                        null,
+                        "cancelled",
+                        "Đã dừng phản hồi AI."));
+            }
+            catch (KeyNotFoundException)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(
+                        conversationId,
+                        null,
+                        "not_found",
+                        "Không tìm thấy cuộc hội thoại hoặc bạn không có quyền truy cập."));
+            }
+            catch (AiRateLimitException ex)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(conversationId, null, ex.ErrorCode, ex.Message));
+            }
+            catch (AiConcurrentRequestException ex)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(conversationId, null, ex.ErrorCode, ex.Message));
+            }
+            catch (ArgumentException ex)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(conversationId, null, "invalid_request", ex.Message));
+            }
+            catch (AiProviderException)
+            {
+                await Clients.Caller.SendAsync(
+                    "AiStreamFailed",
+                    AiStreamFailedMessage.Create(
+                        conversationId,
+                        null,
+                        "provider_unavailable",
+                        "Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại."));
+            }
+        }
+
+        public Task StopAiStream(string streamId)
+        {
+            return _aiStreamingService.StopStreamAsync(Context.ConnectionId, streamId).AsTask();
+        }
+
         private int? TryGetCurrentUserId()
         {
             if (Context.User.TryGetUserId(out var userId))
@@ -235,3 +339,4 @@ namespace TCTVocabulary.Hubs
         }
     }
 }
+

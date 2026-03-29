@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using TCTEnglish.Models;
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Models;
@@ -38,6 +39,9 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<UserDailyActivity> UserDailyActivities { get; set; }
     public virtual DbSet<UserBadge> UserBadges { get; set; }
     public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
+    public virtual DbSet<AiConversation> AiConversations { get; set; }
+    public virtual DbSet<AiMessage> AiMessages { get; set; }
+    public virtual DbSet<AiRequestLog> AiRequestLogs { get; set; }
 
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
@@ -520,8 +524,108 @@ public partial class DbflashcardContext : DbContext
                 .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
         });
 
+        modelBuilder.Entity<AiConversation>(entity =>
+        {
+            entity.ToTable("AiConversations");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.Title)
+                .HasMaxLength(200)
+                .IsRequired();
+
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.Property(e => e.UpdatedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.UserId, e.UpdatedAtUtc })
+                .HasDatabaseName("IX_AiConversations_UserId_UpdatedAtUtc");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.AiConversations)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiConversations_Users");
+        });
+
+        modelBuilder.Entity<AiMessage>(entity =>
+        {
+            entity.ToTable("AiMessages");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Content)
+                .HasMaxLength(8000)
+                .IsRequired();
+
+            entity.Property(e => e.ModelName)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Role)
+                .HasConversion<int>();
+
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.ConversationId, e.CreatedAtUtc })
+                .HasDatabaseName("IX_AiMessages_ConversationId_CreatedAtUtc");
+
+            entity.HasOne(e => e.Conversation)
+                .WithMany(c => c.Messages)
+                .HasForeignKey(e => e.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiMessages_AiConversations");
+        });
+
+        modelBuilder.Entity<AiRequestLog>(entity =>
+        {
+            entity.ToTable("AiRequestLogs");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.ErrorCode)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.ModelName)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.RequestedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.UserId, e.RequestedAtUtc })
+                .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
+
+            entity.HasIndex(e => e.RequestedAtUtc)
+                .HasDatabaseName("IX_AiRequestLogs_RequestedAtUtc");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.AiRequestLogs)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiRequestLogs_Users");
+
+            entity.HasOne(e => e.Conversation)
+                .WithMany()
+                .HasForeignKey(e => e.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiRequestLogs_AiConversations");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+

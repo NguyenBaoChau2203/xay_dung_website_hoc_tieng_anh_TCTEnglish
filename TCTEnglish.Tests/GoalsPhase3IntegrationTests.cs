@@ -1,5 +1,7 @@
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
@@ -11,6 +13,69 @@ namespace TCTEnglish.Tests;
 
 public sealed class GoalsPhase3IntegrationTests
 {
+    [Fact]
+    public async Task DailyChallenge_CorrectAnswer_RecordsGoalsActivityAndXp()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Home/Index");
+        using var dashboardResponse = await client.GetAsync("/Home/Index");
+        var dashboardBody = await dashboardResponse.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, dashboardResponse.StatusCode);
+
+        var challengeMatches = Regex.Matches(
+            dashboardBody,
+            "data-id=\"(?<id>\\d+)\"\\s+data-token=\"(?<token>[^\"]+)\"",
+            RegexOptions.Singleline);
+
+        Assert.NotEmpty(challengeMatches);
+
+        var challengeToken = challengeMatches[0].Groups["token"].Value;
+        Assert.False(string.IsNullOrWhiteSpace(challengeToken));
+
+        var foundCorrectAnswer = false;
+        foreach (Match option in challengeMatches)
+        {
+            var selectedCardId = option.Groups["id"].Value;
+            using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/CheckAnswer")
+            {
+                Content = new StringContent(
+                    $"selectedCardId={selectedCardId}&challengeToken={Uri.EscapeDataString(challengeToken)}",
+                    Encoding.UTF8,
+                    "application/x-www-form-urlencoded")
+            };
+            request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+            using var answerResponse = await client.SendAsync(request);
+            var answerBody = await answerResponse.Content.ReadAsStringAsync();
+
+            Assert.Equal(HttpStatusCode.OK, answerResponse.StatusCode);
+
+            using var payload = JsonDocument.Parse(answerBody);
+            if (payload.RootElement.TryGetProperty("correct", out var isCorrect) && isCorrect.GetBoolean())
+            {
+                foundCorrectAnswer = true;
+                break;
+            }
+        }
+
+        Assert.True(foundCorrectAnswer, "Daily challenge options did not contain a correct answer payload.");
+
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var today = DateTime.UtcNow.Date;
+        var activity = await context.UserDailyActivities
+            .AsNoTracking()
+            .SingleAsync(a => a.UserId == TestDataIds.UserId && a.ActivityDate == today);
+
+        Assert.Equal(1, activity.CardsReviewed);
+        Assert.Equal(1, activity.QuizzesCompleted);
+        Assert.Equal(10, activity.XpEarned);
+    }
+
     [Fact]
     public async Task LearningRecord_NewCard_CreatesDailyActivityAndUpdatesGoalsProgress()
     {

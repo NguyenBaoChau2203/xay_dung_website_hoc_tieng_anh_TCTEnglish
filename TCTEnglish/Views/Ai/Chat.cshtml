@@ -1,0 +1,103 @@
+@model TCTEnglish.ViewModels.AI.AiChatPageViewModel
+
+@{
+    ViewData["Title"] = "AI Chat";
+}
+
+<div class="container-fluid py-3">
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>AI Chatbot</span>
+            <small class="text-muted">Conversation: @Model.ConversationId</small>
+        </div>
+        <div class="card-body">
+            <div class="row g-2 mb-3" id="aiObservabilityPanel">
+                <div class="col-md-3">
+                    <div class="border rounded p-2 h-100">
+                        <div class="small text-muted">Requests (7 ngày)</div>
+                        <div id="aiMetricRequestCount" class="fw-semibold">-</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="border rounded p-2 h-100">
+                        <div class="small text-muted">Error rate</div>
+                        <div id="aiMetricErrorRate" class="fw-semibold">-</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="border rounded p-2 h-100">
+                        <div class="small text-muted">Latency p50/p95</div>
+                        <div id="aiMetricLatency" class="fw-semibold">-</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="border rounded p-2 h-100">
+                        <div class="small text-muted">Token hôm nay</div>
+                        <div id="aiMetricTokenToday" class="fw-semibold">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chatWindow" class="border rounded p-3 mb-3" style="height: 420px; overflow-y: auto;">
+                @if (Model.Messages.Count == 0)
+                {
+                    <div class="text-muted small">Hãy bắt đầu cuộc trò chuyện với AI.</div>
+                }
+                else
+                {
+                    @foreach (var message in Model.Messages)
+                    {
+                        var isUser = string.Equals(message.Role, "user", StringComparison.OrdinalIgnoreCase);
+                        var isAssistant = string.Equals(message.Role, "assistant", StringComparison.OrdinalIgnoreCase);
+                        var justifyClass = isUser ? "justify-content-end" : "justify-content-start";
+                        var bubbleClass = isUser ? "bg-primary text-white" : "bg-light";
+
+                        <div class="d-flex @justifyClass mb-2" data-role="@message.Role">
+                            <div class="rounded px-3 py-2 @bubbleClass" style="max-width: 85%; white-space: pre-wrap;">
+                                @if (isAssistant)
+                                {
+                                    <div class="js-assistant-markdown">@message.Content</div>
+                                }
+                                else
+                                {
+                                    @message.Content
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <form id="chatForm" data-state="idle">
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="conversationIdInput" value="@Model.ConversationId" />
+
+                <div class="input-group">
+                    <input id="messageInput"
+                           class="form-control"
+                           maxlength="1000"
+                           placeholder="Nhập câu hỏi của bạn..."
+                           autocomplete="off" />
+                    <button id="sendBtn" class="btn btn-primary" type="submit">Gửi</button>
+                    <button id="stopBtn" class="btn btn-outline-secondary d-none" type="button">Dừng</button>
+                </div>
+            </form>
+
+            <div id="typing" class="small text-muted mt-2 d-none">AI đang trả lời...</div>
+            <div id="chatStatus" class="alert alert-warning mt-2 d-none mb-0" role="alert"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+    <script src="~/js/ai-chat.js" asp-append-version="true"></script>
+    <script>
+        window.tctAiChat?.init({
+            sendUrl: '@Url.Action("Send", "Ai")',
+            observabilityUrl: '@Url.Action("Observability", "Ai")',
+            hubUrl: '/classChatHub'
+        });
+    </script>
+}

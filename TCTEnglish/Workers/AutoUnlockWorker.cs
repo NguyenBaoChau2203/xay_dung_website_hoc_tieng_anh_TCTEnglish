@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using TCTVocabulary.Hubs;
+using TCTEnglish.Hubs;
 using TCTVocabulary.Models;
 using TCTVocabulary.Realtime;
 using TCTVocabulary.Services;
@@ -109,3 +109,4 @@ namespace TCTVocabulary.Workers
         }
     }
 }
+
