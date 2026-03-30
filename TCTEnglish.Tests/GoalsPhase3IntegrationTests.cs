@@ -29,7 +29,7 @@ public sealed class GoalsPhase3IntegrationTests
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
         var goalsService = scope.ServiceProvider.GetRequiredService<IGoalsService>();
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
 
         var activity = await context.UserDailyActivities
             .AsNoTracking()
@@ -57,7 +57,7 @@ public sealed class GoalsPhase3IntegrationTests
             new UserDailyActivity
             {
                 UserId = TestDataIds.UserId,
-                ActivityDate = DateTime.UtcNow.Date,
+                ActivityDate = BusinessDateHelper.Today,
                 CardsReviewed = 2,
                 NewCardsLearned = 1,
                 XpEarned = 4
@@ -73,7 +73,7 @@ public sealed class GoalsPhase3IntegrationTests
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
 
         var activity = await context.UserDailyActivities
             .AsNoTracking()
@@ -113,7 +113,7 @@ public sealed class GoalsPhase3IntegrationTests
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         var rows = await context.UserDailyActivities
             .AsNoTracking()
             .Where(a => a.UserId == TestDataIds.UserId && a.ActivityDate == today)
@@ -171,8 +171,8 @@ public sealed class GoalsPhase3IntegrationTests
             Status = status,
             RepetitionCount = repetitionCount,
             WrongCount = 0,
-            LastReviewedDate = DateTime.UtcNow.Date.AddDays(-1),
-            NextReviewDate = DateTime.UtcNow.Date
+            LastReviewedDate = BusinessDateHelper.Today.AddDays(-1),
+            NextReviewDate = BusinessDateHelper.Today
         });
 
         await context.SaveChangesAsync();

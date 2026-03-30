@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TCTVocabulary.ViewModels
+namespace TCTEnglish.ViewModels
 {
     public class GoalsViewModel
     {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
@@ -56,6 +57,7 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             {
                 options.UseSqlite(_sqliteConnection);
                 options.ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>();
+                options.ReplaceService<IMigrator, NoOpMigrator>();
             });
 
             services.AddDataProtection()

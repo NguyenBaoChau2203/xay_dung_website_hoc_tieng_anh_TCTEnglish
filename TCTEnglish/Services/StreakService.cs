@@ -23,7 +23,7 @@ namespace TCTVocabulary.Services
                 return 0;
             }
 
-            var today = DateTime.UtcNow.Date;
+            var today = BusinessDateHelper.Today;
             var lastStudy = user.LastStudyDate?.Date;
             var previousStreak = user.Streak ?? 0;
 

@@ -1,4 +1,4 @@
-using TCTVocabulary.ViewModels;
+using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Services
 {
@@ -7,5 +7,6 @@ namespace TCTVocabulary.Services
         Task<GoalsViewModel?> GetGoalsAsync(int userId);
         Task<OperationResult> UpdateGoalAsync(int userId, int dailyGoal);
         Task<OperationResult> RecordActivityAsync(int userId, GoalsActivityUpdate update);
+        Task<GoalsActivityRecordResult> RecordLearningActivityAsync(int userId, GoalsActivityUpdate update);
     }
 }

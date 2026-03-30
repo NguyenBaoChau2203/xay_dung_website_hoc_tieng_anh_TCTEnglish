@@ -18,18 +18,15 @@ namespace TCTVocabulary.Controllers
         private const int MasteredXp = 15;
         private readonly DbflashcardContext _context;
         private readonly IGoalsService _goalsService;
-        private readonly IStreakService _streakService;
         private readonly ILogger<LearningApiController> _logger;
 
         public LearningApiController(
             DbflashcardContext context,
             IGoalsService goalsService,
-            IStreakService streakService,
             ILogger<LearningApiController> logger)
         {
             _context = context;
             _goalsService = goalsService;
-            _streakService = streakService;
             _logger = logger;
         }
 
@@ -118,7 +115,7 @@ namespace TCTVocabulary.Controllers
             await _context.SaveChangesAsync();
 
             var activityUpdate = BuildGoalsActivityUpdate(isNewProgress, previousStatus, progress.Status);
-            var activityResult = await _goalsService.RecordActivityAsync(currentUserId, activityUpdate);
+            var activityResult = await _goalsService.RecordLearningActivityAsync(currentUserId, activityUpdate);
             if (activityResult.Status == OperationStatus.NotFound)
             {
                 _logger.LogWarning(
@@ -136,7 +133,7 @@ namespace TCTVocabulary.Controllers
                 return BadRequest("Unable to record learning activity");
             }
 
-            var streak = await _streakService.UpdateStreakAsync(currentUserId);
+            var streak = activityResult.Streak;
 
             _logger.LogInformation(
                 "Learning record updated for user {userId}, card {cardId}, status {status}, repetitionCount {repetitionCount}, nextReviewDate {nextReviewDate}, isNewProgress {isNewProgress}, xpEarned {xpEarned}, streak {streak}",

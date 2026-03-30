@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TCTVocabulary.Services;
-using TCTVocabulary.ViewModels;
+using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
@@ -31,6 +31,12 @@ namespace TCTVocabulary.Controllers
             [Bind(Prefix = nameof(GoalsViewModel.GoalEditor))] UpdateGoalInputViewModel input)
         {
             var userId = GetCurrentUserId();
+            var form = await Request.ReadFormAsync();
+
+            if (!form.ContainsKey(GoalEditorFieldName))
+            {
+                ModelState.AddModelError(GoalEditorFieldName, "Không thể cập nhật mục tiêu ngày lúc này.");
+            }
 
             if (!ModelState.IsValid)
             {

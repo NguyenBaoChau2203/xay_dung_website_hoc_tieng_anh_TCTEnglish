@@ -1,18 +1,23 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
-using TCTVocabulary.ViewModels;
+using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Services
 {
     public class GoalsService : IGoalsService
     {
         private readonly DbflashcardContext _context;
+        private readonly IStreakService _streakService;
         private readonly ILogger<GoalsService> _logger;
 
-        public GoalsService(DbflashcardContext context, ILogger<GoalsService> logger)
+        public GoalsService(
+            DbflashcardContext context,
+            IStreakService streakService,
+            ILogger<GoalsService> logger)
         {
             _context = context;
+            _streakService = streakService;
             _logger = logger;
         }
 
@@ -36,7 +41,7 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            var today = ResolveActivityDateUtc();
+            var today = ResolveBusinessDate();
             var weekStart = today.AddDays(-6);
 
             var dailyActivities = await _context.UserDailyActivities
@@ -55,7 +60,9 @@ namespace TCTVocabulary.Services
             var currentStreak = ComputeCurrentStreak(user.LastStudyDate, user.Streak, today);
             var longestStreak = Math.Max(user.LongestStreak ?? 0, currentStreak);
             var dailyGoal = Math.Max(UpdateGoalInputViewModel.MinDailyGoal, user.Goal ?? 0);
-            var activityByDate = dailyActivities.ToDictionary(activity => activity.Date.Date, activity => activity.CardsReviewed);
+            var activityByDate = dailyActivities.ToDictionary(
+                activity => activity.Date.Date,
+                activity => activity.CardsReviewed);
             var weeklyActivity = BuildWeeklyActivity(weekStart, today, dailyGoal, activityByDate);
             var hasWeeklyActivity = weeklyActivity.Any(day => day.ActivityCount > 0);
             var todayProgressValue = activityByDate.TryGetValue(today, out var reviewedToday)
@@ -118,6 +125,39 @@ namespace TCTVocabulary.Services
 
         public async Task<OperationResult> RecordActivityAsync(int userId, GoalsActivityUpdate update)
         {
+            return await RecordActivityCoreAsync(userId, update, refreshBadgesAfterPersist: true);
+        }
+
+        public async Task<GoalsActivityRecordResult> RecordLearningActivityAsync(int userId, GoalsActivityUpdate update)
+        {
+            var activityResult = await RecordActivityCoreAsync(userId, update, refreshBadgesAfterPersist: false);
+            if (activityResult.Status == OperationStatus.NotFound)
+            {
+                return GoalsActivityRecordResult.NotFound(activityResult.ErrorMessage);
+            }
+
+            if (activityResult.Status == OperationStatus.Invalid)
+            {
+                return GoalsActivityRecordResult.Invalid(activityResult.ErrorMessage);
+            }
+
+            var streak = await _streakService.UpdateStreakAsync(userId);
+            var unlockedBadgeCount = await RefreshUserBadgesAsync(userId);
+
+            _logger.LogDebug(
+                "Recorded learning activity for user {userId}, streak {streak}, unlockedBadges {unlockedBadgeCount}",
+                userId,
+                streak,
+                unlockedBadgeCount);
+
+            return GoalsActivityRecordResult.Success(streak);
+        }
+
+        private async Task<OperationResult> RecordActivityCoreAsync(
+            int userId,
+            GoalsActivityUpdate update,
+            bool refreshBadgesAfterPersist)
+        {
             ArgumentNullException.ThrowIfNull(update);
 
             if (update.HasNegativeValues)
@@ -130,18 +170,19 @@ namespace TCTVocabulary.Services
                 return OperationResult.Success();
             }
 
-            var activityDate = ResolveActivityDateUtc();
+            var activityDate = ResolveBusinessDate();
             var updatedRows = await IncrementExistingActivityAsync(userId, activityDate, update);
             if (updatedRows > 0)
             {
-                var unlockedBadges = await RefreshUserBadgesAsync(userId);
+                var unlockedBadges = await RefreshBadgesIfNeededAsync(userId, refreshBadgesAfterPersist);
 
                 _logger.LogDebug(
-                    "Updated existing daily activity for user {userId} on {activityDate} with xp {xpEarned}, cardsReviewed {cardsReviewed}, unlockedBadges {unlockedBadges}",
+                    "Updated existing daily activity for user {userId} on {activityDate} with xp {xpEarned}, cardsReviewed {cardsReviewed}, refreshBadgesAfterPersist {refreshBadgesAfterPersist}, unlockedBadges {unlockedBadges}",
                     userId,
                     activityDate,
                     update.XpEarned,
                     update.CardsReviewed,
+                    refreshBadgesAfterPersist,
                     unlockedBadges);
                 return OperationResult.Success();
             }
@@ -183,31 +224,33 @@ namespace TCTVocabulary.Services
                     throw;
                 }
 
-                var recoveredBadges = await RefreshUserBadgesAsync(userId);
+                var recoveredBadges = await RefreshBadgesIfNeededAsync(userId, refreshBadgesAfterPersist);
 
                 _logger.LogDebug(
-                    "Recovered daily activity race for user {userId} on {activityDate} and unlocked {unlockedBadges} badges",
+                    "Recovered daily activity race for user {userId} on {activityDate}, refreshBadgesAfterPersist {refreshBadgesAfterPersist}, unlockedBadges {unlockedBadges}",
                     userId,
                     activityDate,
+                    refreshBadgesAfterPersist,
                     recoveredBadges);
                 return OperationResult.Success();
             }
 
-            var unlockedBadgeCount = await RefreshUserBadgesAsync(userId);
+            var unlockedBadgeCount = await RefreshBadgesIfNeededAsync(userId, refreshBadgesAfterPersist);
 
             _logger.LogInformation(
-                "Created daily activity for user {userId} on {activityDate} with xp {xpEarned}, cardsReviewed {cardsReviewed}, unlockedBadges {unlockedBadgeCount}",
+                "Created daily activity for user {userId} on {activityDate} with xp {xpEarned}, cardsReviewed {cardsReviewed}, refreshBadgesAfterPersist {refreshBadgesAfterPersist}, unlockedBadges {unlockedBadgeCount}",
                 userId,
                 activityDate,
                 update.XpEarned,
                 update.CardsReviewed,
+                refreshBadgesAfterPersist,
                 unlockedBadgeCount);
             return OperationResult.Success();
         }
 
         private async Task<List<GoalsBadgeViewModel>> BuildBadgesAsync(int userId, GoalsBadgeMetrics metrics)
         {
-            var today = ResolveActivityDateUtc();
+            var today = ResolveBusinessDate();
             var badges = await _context.Badges
                 .AsNoTracking()
                 .OrderBy(badge => badge.SortOrder)
@@ -258,7 +301,7 @@ namespace TCTVocabulary.Services
                 storedLongestStreak = user.LongestStreak;
             }
 
-            var today = ResolveActivityDateUtc();
+            var today = ResolveBusinessDate();
             var currentStreak = ComputeCurrentStreak(lastStudyDate, storedStreak, today);
             var longestStreak = Math.Max(storedLongestStreak ?? 0, currentStreak);
 
@@ -378,7 +421,7 @@ namespace TCTVocabulary.Services
                 Description = badge.Description,
                 IconClass = badge.IconClass,
                 IsUnlocked = isUnlocked,
-                IsRecentlyUnlocked = isUnlocked && awardedAt.Date == today,
+                IsRecentlyUnlocked = isUnlocked && BusinessDateHelper.ToBusinessDateFromUtcStorage(awardedAt) == today,
                 ProgressValue = currentValue,
                 TargetValue = badge.ThresholdValue,
                 ProgressPercent = CalculateProgressPercent(currentValue, badge.ThresholdValue),
@@ -479,10 +522,19 @@ namespace TCTVocabulary.Services
                     .SetProperty(activity => activity.SpeakingCompletedCount, activity => activity.SpeakingCompletedCount + update.SpeakingCompletedCount));
         }
 
-        private static DateTime ResolveActivityDateUtc()
+        private static DateTime ResolveBusinessDate()
         {
-            // Phase 3 and Phase 4 keep UTC day boundaries aligned with the existing streak logic.
-            return DateTime.UtcNow.Date;
+            return BusinessDateHelper.Today;
+        }
+
+        private async Task<int> RefreshBadgesIfNeededAsync(int userId, bool refreshBadgesAfterPersist)
+        {
+            if (!refreshBadgesAfterPersist)
+            {
+                return 0;
+            }
+
+            return await RefreshUserBadgesAsync(userId);
         }
 
         private static bool IsUserDailyActivityUniqueConflict(DbUpdateException exception)

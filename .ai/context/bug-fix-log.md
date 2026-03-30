@@ -42,6 +42,51 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Goals merge-safety, business-date badge alignment, and test-host migration isolation - 2026-03-30
+
+**Symptom**: The branch was not merge-safe because stray AI chat migration artifacts sat in the workspace outside the Goals scope, goals-related tests failed during startup with `PendingModelChangesWarning`, and the recent badge highlight could drift across the local midnight boundary for SQL Server `datetime2` badge timestamps.
+
+**Root Cause**: Untracked migration artifacts (`20260329111532_AddAiChatPhase1Data*`, `20260329164730___TempPendingInspection*`) introduced unrelated schema noise. The SQLite integration host still executed `Program` startup migration behavior, which is not valid for the test database setup. In addition, badge highlighting depended on timestamps that SQL Server materializes as `DateTimeKind.Unspecified`, so the business date had to be interpreted explicitly as stored UTC.
+
+**Solution**: Removed the stray migration artifacts from the branch, replaced the EF migrator inside the SQLite test host with a test-only no-op implementation so startup no longer attempts the SQL Server migration chain, kept streak/badge sequencing inside `GoalsService`, and added regression coverage for SQL Server-style `datetime2` badge timestamps near the business-date boundary.
+
+**Files Changed**:
+- `TCTEnglish/Services/GoalsService.cs` - treated daily activity rows as stored business dates directly and kept badge recent-unlock evaluation on the UTC-aware helper path.
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` - replaced the runtime migrator in the SQLite host with a no-op test implementation.
+- `TCTEnglish.Tests/Infrastructure/NoOpMigrator.cs` - added a test-only EF Core migrator that makes startup `Database.Migrate()` a no-op.
+- `TCTEnglish.Tests/GoalsPhase4IntegrationTests.cs` - added a regression test for SQL Server `datetime2` badge timestamps near local midnight.
+- `.ai/context/known-issues.md` - moved the goals business-date issue out of unresolved technical debt.
+- `TCTEnglish/Migrations/20260329111532_AddAiChatPhase1Data.cs` - removed empty stray migration artifact.
+- `TCTEnglish/Migrations/20260329111532_AddAiChatPhase1Data.Designer.cs` - removed empty stray migration artifact.
+- `TCTEnglish/Migrations/20260329164730___TempPendingInspection.cs` - removed stray AI chat migration artifact.
+- `TCTEnglish/Migrations/20260329164730___TempPendingInspection.Designer.cs` - removed stray AI chat migration snapshot artifact.
+
+**Verification**: Ran `dotnet ef migrations has-pending-model-changes --project TCTEnglish/TCTEnglish.csproj --startup-project TCTEnglish/TCTEnglish.csproj --context DbflashcardContext --no-build`, then ran `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~GoalsPhase4IntegrationTests` and `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~GoalsPhase5IntegrationTests`.
+
+**Commit**: Not created yet.
+
+**Notes**: This replaces the temporary controller-level badge refresh workaround with service-owned orchestration already present in the workspace, and it keeps `Program.cs` untouched by isolating the migration behavior inside the test host only.
+
+### Streak badge unlock bị trễ một lượt học vì thứ tự cập nhật streak và badge — 2026-03-30
+
+**Symptom**: Khi người dùng đạt mốc streak (ví dụ 3 ngày liên tiếp) trong request học hiện tại, badge streak có thể chưa mở khóa ngay, chỉ xuất hiện ở lượt học sau.
+
+**Root Cause**: `LearningApiController.Record` gọi `IGoalsService.RecordActivityAsync(...)` (có refresh badge) trước khi gọi `IStreakService.UpdateStreakAsync(...)`, nên logic badge đọc `User.Streak` cũ trong cùng request.
+
+**Solution**: Thêm API refresh badge tường minh trong goals service và gọi lại ngay sau khi cập nhật streak để đồng bộ trạng thái badge theo streak mới trong cùng request.
+
+**Files Changed**:
+- `TCTEnglish/Services/IGoalsService.cs` — thêm `RefreshBadgesAsync(int userId)`.
+- `TCTEnglish/Services/GoalsService.cs` — triển khai `RefreshBadgesAsync(...)` dùng lại `RefreshUserBadgesAsync(...)`.
+- `TCTEnglish/Controllers/LearningApiController.cs` — gọi `await _goalsService.RefreshBadgesAsync(currentUserId);` sau `UpdateStreakAsync(...)`.
+- `TCTEnglish.Tests/GoalsPhase5IntegrationTests.cs` — thêm regression test `LearningRecord_ReachesThreeDayStreak_UnlocksStreakBadgeImmediately`.
+
+**Verification**: `run_build` thành công. Chạy `GoalsPhase5IntegrationTests` bị chặn bởi lỗi nền workspace `PendingModelChangesWarning` (liên quan migration local chưa đồng bộ), không do thay đổi fix này.
+
+**Commit**: Not created yet.
+
+**Notes**: Fix này giữ nguyên boundary hiện tại (`LearningApiController` + `IGoalsService`), không thêm logic sang `HomeController`.
+
 ### Goals core rollout and challenge-token hardening restored after cleanup — 2026-03-28
 
 **Symptom**: During commit cleanup, related updates around goals rollout documentation and daily-challenge token validation were dropped from working changes even though they were still required.

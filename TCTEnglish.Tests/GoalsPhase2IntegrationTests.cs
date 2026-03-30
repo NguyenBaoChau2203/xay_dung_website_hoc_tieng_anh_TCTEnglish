@@ -33,7 +33,7 @@ public sealed class GoalsPhase2IntegrationTests
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         await SeedDailyActivitiesAsync(
             factory,
             goal: 12,
@@ -98,7 +98,7 @@ public sealed class GoalsPhase2IntegrationTests
         user.Goal = goal;
         user.Streak = 2;
         user.LongestStreak = 4;
-        user.LastStudyDate = DateTime.UtcNow.Date;
+        user.LastStudyDate = BusinessDateHelper.Today;
 
         context.UserDailyActivities.AddRange(activities);
         await context.SaveChangesAsync();

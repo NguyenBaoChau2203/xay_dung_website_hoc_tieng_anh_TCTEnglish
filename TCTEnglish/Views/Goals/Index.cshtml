@@ -1,5 +1,5 @@
-@model TCTVocabulary.ViewModels.GoalsViewModel
-@using TCTVocabulary.ViewModels
+@model TCTEnglish.ViewModels.GoalsViewModel
+@using TCTEnglish.ViewModels
 @{
     ViewData["Title"] = "Mục tiêu học tập";
 }
@@ -241,7 +241,7 @@
     </div>
 </div>
 
-<div class="modal fade goal-editor-modal" id="goalEditorModal" tabindex="-1" aria-labelledby="goalEditorModalLabel" aria-hidden="true">
+<div class="modal fade goal-editor-modal" id="goalEditorModal" data-open-on-load="@(Model.ShowGoalEditor ? "true" : "false")" tabindex="-1" aria-labelledby="goalEditorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0 pb-0">
@@ -275,33 +275,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var shouldOpenGoalEditor = @Html.Raw(Model.ShowGoalEditor ? "true" : "false");
-            var modalElement = document.getElementById("goalEditorModal");
-            if (shouldOpenGoalEditor && modalElement && window.bootstrap) {
-                bootstrap.Modal.getOrCreateInstance(modalElement).show();
-            }
-
-            var goalUpdateToast = document.getElementById("goalUpdateToast");
-            if (!goalUpdateToast) {
-                return;
-            }
-
-            var hideToast = function () {
-                goalUpdateToast.classList.remove("is-visible");
-            };
-
-            window.setTimeout(function () {
-                goalUpdateToast.classList.add("is-visible");
-            }, 10);
-
-            window.setTimeout(hideToast, 3800);
-
-            document.querySelectorAll('[data-goals-dismiss="goalUpdateToast"]').forEach(function (dismissButton) {
-                dismissButton.addEventListener("click", hideToast);
-            });
-        });
-    </script>
+    <script src="~/js/goals.js" asp-append-version="true"></script>
 }

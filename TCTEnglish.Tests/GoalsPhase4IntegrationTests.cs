@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
-using TCTVocabulary.ViewModels;
+using TCTEnglish.ViewModels;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -16,7 +16,7 @@ public sealed class GoalsPhase4IntegrationTests
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         await SeedGoalsStateAsync(
             factory,
             streak: 3,
@@ -82,7 +82,7 @@ public sealed class GoalsPhase4IntegrationTests
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         await SeedGoalsStateAsync(
             factory,
             streak: 1,
@@ -119,7 +119,7 @@ public sealed class GoalsPhase4IntegrationTests
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         await SeedGoalsStateAsync(
             factory,
             streak: 1,
@@ -165,6 +165,39 @@ public sealed class GoalsPhase4IntegrationTests
         Assert.Equal(1, duplicateCount);
     }
 
+    [Fact]
+    public async Task GetGoalsAsync_TreatsSqlServerDatetime2BadgeAwardAsUtcForRecentUnlock()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        var today = BusinessDateHelper.Today;
+        await SeedGoalsStateAsync(
+            factory,
+            streak: 1,
+            longestStreak: 1,
+            lastStudyDate: today,
+            new UserDailyActivity
+            {
+                UserId = TestDataIds.UserId,
+                ActivityDate = today,
+                CardsReviewed = 1,
+                XpEarned = 5
+            });
+
+        var sqlServerDatetime2UtcValue = DateTime.SpecifyKind(
+            today.AddDays(-1).AddHours(17).AddMinutes(30),
+            DateTimeKind.Unspecified);
+
+        await SeedUserBadgeAsync(factory, "first-session", sqlServerDatetime2UtcValue);
+
+        var model = await LoadGoalsAsync(factory);
+        var badge = Assert.Single(model!.Badges.Where(candidate => candidate.Code == "first-session"));
+
+        Assert.True(badge.IsUnlocked);
+        Assert.True(badge.IsRecentlyUnlocked);
+    }
+
     private static async Task RecordActivityAsync(TestWebApplicationFactory factory, GoalsActivityUpdate update)
     {
         using var scope = factory.Services.CreateScope();
@@ -201,7 +234,10 @@ public sealed class GoalsPhase4IntegrationTests
         await context.SaveChangesAsync();
     }
 
-    private static async Task SeedUserBadgeAsync(TestWebApplicationFactory factory, string badgeCode)
+    private static async Task SeedUserBadgeAsync(
+        TestWebApplicationFactory factory,
+        string badgeCode,
+        DateTime? awardedAt = null)
     {
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -215,7 +251,7 @@ public sealed class GoalsPhase4IntegrationTests
         {
             UserId = TestDataIds.UserId,
             BadgeId = badgeId,
-            AwardedAt = DateTime.UtcNow
+            AwardedAt = awardedAt ?? DateTime.UtcNow
         });
 
         await context.SaveChangesAsync();

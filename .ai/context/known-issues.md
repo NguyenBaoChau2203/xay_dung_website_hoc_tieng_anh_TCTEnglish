@@ -146,16 +146,6 @@ proposing follow-up work so they do not optimize already-completed items.
   controllers are service-extracted.
 - **Effort**: Small ongoing.
 
-### TD-009: Goals/streak/day-activity still use UTC day boundaries directly [MEDIUM]
-- **Files**: `Services/GoalsService.cs`, `Services/StreakService.cs`
-- **Issue**: Day-based logic currently uses `DateTime.UtcNow.Date` directly for
-  daily activity aggregation, streak updates, and goals progress windows.
-- **Impact**: Internal users operating in local timezone can see day-boundary
-  differences (late evening/early morning) versus expected local business date.
-- **Recommended fix**: Introduce a business-date abstraction (timezone-aware)
-  and migrate goals/streak daily calculations to that abstraction.
-- **Effort**: Small to medium.
-
 ### TD-010: Goals migration rollout checklist is not documented strongly enough [MEDIUM]
 - **Files**: `Migrations/*Goals*`, `Models/DbflashcardContext.cs`, `Services/GoalsService.cs`
 - **Issue**: Goals schema migrations are additive and safe by design, but there is
@@ -203,4 +193,5 @@ proposing follow-up work so they do not optimize already-completed items.
 | Dashboard SQLite random ordering failure | Fixed with provider-safe fallback logic |
 | Duplicate `ViewModel/` vs `ViewModels/` folders | Normalized to `ViewModels/` only |
 | BUG-006 Goals placeholder page | Resolved with real `GoalsController` + `IGoalsService` read/write flow and integration tests |
+| Goals business-date badge/streak alignment | Resolved with business-date normalization plus service-level learning activity orchestration |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |

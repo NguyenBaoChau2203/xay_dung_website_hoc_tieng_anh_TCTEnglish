@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -119,19 +120,19 @@ public sealed class GoalsPhase1IntegrationTests
         user.Goal = goal;
         user.Streak = streak;
         user.LongestStreak = longestStreak;
-        user.LastStudyDate = DateTime.UtcNow.Date;
+        user.LastStudyDate = BusinessDateHelper.Today;
 
         context.UserDailyActivities.AddRange(
             new UserDailyActivity
             {
                 UserId = TestDataIds.UserId,
-                ActivityDate = DateTime.UtcNow.Date.AddDays(-1),
+                ActivityDate = BusinessDateHelper.Today.AddDays(-1),
                 CardsReviewed = 1
             },
             new UserDailyActivity
             {
                 UserId = TestDataIds.UserId,
-                ActivityDate = DateTime.UtcNow.Date,
+                ActivityDate = BusinessDateHelper.Today,
                 CardsReviewed = 2
             });
 
