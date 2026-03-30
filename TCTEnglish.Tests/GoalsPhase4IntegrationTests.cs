@@ -1,3 +1,5 @@
+using System.Net;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
@@ -10,6 +12,89 @@ namespace TCTEnglish.Tests;
 
 public sealed class GoalsPhase4IntegrationTests
 {
+    [Fact]
+    public async Task GoalsPage_RendersBootstrapBundle_AndGoalEditorModalContract()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SetGoalAsync(factory, 10);
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Goals");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("bootstrap.bundle.min.js", body, StringComparison.Ordinal);
+        Assert.Contains("id=\"goalEditorModal\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-open-on-load=\"false\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-title\" data-goal-mode=\"edit\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-submit\" data-goal-mode=\"edit\"", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task GoalsPage_RendersCreateModeContract_WhenUserHasNoGoal()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SetGoalAsync(factory, null);
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Goals");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("data-testid=\"goal-header-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-goal-mode=\"create\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-empty-state-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-title\" data-goal-mode=\"create\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-submit\" data-goal-mode=\"create\"", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task UpdateGoal_InvalidSubmit_ReturnsOpenModalContractForReload()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SetGoalAsync(factory, 9);
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Goals");
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Goals/UpdateGoal")
+        {
+            Content = new StringContent(
+                "GoalEditor.DailyGoal=999",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+        using var response = await client.SendAsync(request);
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("id=\"goalEditorModal\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-open-on-load=\"true\"", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task GoalsPage_RendersGoalInputContract_ForAutofocusTarget()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SetGoalAsync(factory, null);
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Goals");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("name=\"__RequestVerificationToken\"", body, StringComparison.Ordinal);
+        Assert.Contains("type=\"hidden\"", body, StringComparison.Ordinal);
+        Assert.Contains("class=\"form-control form-control-lg goal-input\"", body, StringComparison.Ordinal);
+        Assert.Contains("name=\"GoalEditor.DailyGoal\"", body, StringComparison.Ordinal);
+    }
+
     [Fact]
     public async Task GetGoalsAsync_IsReadOnly_AndRecordActivityAsyncAwardsBadges()
     {
@@ -231,6 +316,16 @@ public sealed class GoalsPhase4IntegrationTests
         user.LastStudyDate = lastStudyDate;
 
         context.UserDailyActivities.AddRange(activities);
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SetGoalAsync(TestWebApplicationFactory factory, int? goal)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var user = await context.Users.SingleAsync(candidate => candidate.UserId == TestDataIds.UserId);
+
+        user.Goal = goal;
         await context.SaveChangesAsync();
     }
 

@@ -17,24 +17,26 @@
                     <i class="fas fa-check"></i>
                 </div>
                 <div class="goals-feedback-toast__content">
-                    <p class="goals-feedback-toast__title mb-1">Mục tiêu đã được cập nhật</p>
-                    <p class="goals-feedback-toast__message mb-0">@successMessage</p>
+                    <p class="goals-feedback-toast__title mb-1" data-testid="goal-toast-title">Đã lưu mục tiêu ngày</p>
+                    <p class="goals-feedback-toast__message mb-0" data-testid="goal-toast-message">@successMessage</p>
                 </div>
                 <button type="button" class="btn-close goals-feedback-toast__close" data-goals-dismiss="goalUpdateToast" aria-label="Đóng"></button>
             </div>
         </div>
     }
 
-    <div class="row align-items-center mb-5 mt-2">
-        <div class="col-6">
+    <div class="row align-items-center g-3 mb-5 mt-2">
+        <div class="col-12 col-lg-6">
             <h2 class="section-title fw-bold m-0">Mục tiêu của tôi</h2>
         </div>
-        <div class="col-6 text-end">
+        <div class="col-12 col-lg-6 text-lg-end">
             <button type="button"
                     class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm btn-edit-goals"
+                    data-testid="goal-header-cta"
+                    data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")"
                     data-bs-toggle="modal"
                     data-bs-target="#goalEditorModal">
-                <i class="fas fa-pencil-alt me-2"></i>Chỉnh sửa mục tiêu
+                <i class="fas fa-pencil-alt me-2"></i>@Model.GoalHeaderActionText
             </button>
         </div>
     </div>
@@ -57,7 +59,7 @@
 
         <div class="col-md-6">
             <div class="card h-100 shadow-sm border-0 goal-card">
-                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center goal-progress-card-body">
                     <div class="circular-progress position-relative">
                         <svg viewBox="0 0 36 36" class="circular-chart" aria-hidden="true">
                             <path class="circle-bg"
@@ -73,17 +75,24 @@
                         <div class="percentage-label">
                             @if (Model.HasDailyGoal)
                             {
-                                <span class="fs-4 fw-bold">@Model.TodayProgressValue/@Model.TodayProgressMax</span>
-                                <span class="d-block text-muted small">thẻ đã ôn</span>
+                                <span class="goal-progress-value">@Model.TodayProgressValue/@Model.TodayProgressMax</span>
+                                <span class="goal-progress-meta">thẻ đã ôn</span>
                             }
                             else
                             {
-                                <span class="fs-4 fw-bold">@Model.TodayProgressValue</span>
-                                <span class="d-block text-muted small">thẻ hôm nay</span>
+                                <span class="goal-progress-value">@Model.TodayProgressValue</span>
+                                <span class="goal-progress-meta">thẻ hôm nay</span>
                             }
                         </div>
                     </div>
-                    <p class="mt-3 mb-1 fw-bold">Mục tiêu ngày: @Model.DailyGoal thẻ</p>
+                    @if (Model.HasDailyGoal)
+                    {
+                        <p class="mt-3 mb-1 fw-bold">Mục tiêu ngày: @Model.DailyGoal thẻ</p>
+                    }
+                    else
+                    {
+                        <p class="mt-3 mb-1 fw-bold">Bạn chưa đặt mục tiêu ngày</p>
+                    }
                     <p class="progress-caption mb-0">
                         @if (Model.HasDailyGoal)
                         {
@@ -98,9 +107,11 @@
                     {
                         <button type="button"
                                 class="btn btn-outline-primary rounded-pill px-4 progress-empty-action"
+                                data-testid="goal-empty-state-cta"
+                                data-goal-mode="create"
                                 data-bs-toggle="modal"
                                 data-bs-target="#goalEditorModal">
-                            Đặt mục tiêu hôm nay
+                            @Model.GoalEmptyStateActionText
                         </button>
                     }
                 </div>
@@ -117,9 +128,10 @@
 
                     @if (Model.HasWeeklyActivity)
                     {
-                        <div class="chart-container">
-                            @foreach (var day in Model.WeeklyActivity)
+                        <div class="chart-container" role="list" aria-label="Biểu đồ hoạt động 7 ngày">
+                            @for (var dayIndex = 0; dayIndex < Model.WeeklyActivity.Count; dayIndex++)
                             {
+                                var day = Model.WeeklyActivity[dayIndex];
                                 var chartBarClass = day.IsToday ? "chart-bar active" : "chart-bar";
                                 if (day.ActivityCount > 0)
                                 {
@@ -127,14 +139,17 @@
                                 }
 
                                 var tooltipText = $"{day.FullLabel}: {day.ActivityCount} thẻ đã ôn";
+                                var tooltipId = $"goals-chart-tooltip-{dayIndex}";
 
                                 <div class="@chartBarClass"
                                      style="--height: @day.HeightPercent%;"
                                      data-day="@day.DayLabel"
                                      data-tooltip="@tooltipText"
                                      tabindex="0"
-                                     role="img"
-                                     aria-label="@tooltipText">
+                                     role="listitem"
+                                     aria-label="@tooltipText"
+                                     aria-describedby="@tooltipId">
+                                    <span id="@tooltipId" class="visually-hidden">@tooltipText</span>
                                     @if (day.ActivityCount > 0)
                                     {
                                         <span class="chart-value">@day.ActivityCount</span>
@@ -241,11 +256,11 @@
     </div>
 </div>
 
-<div class="modal fade goal-editor-modal" id="goalEditorModal" data-open-on-load="@(Model.ShowGoalEditor ? "true" : "false")" tabindex="-1" aria-labelledby="goalEditorModalLabel" aria-hidden="true">
+<div class="modal fade goal-editor-modal" id="goalEditorModal" data-open-on-load="@(Model.ShowGoalEditor ? "true" : "false")" tabindex="-1" aria-labelledby="goalEditorModalLabel" aria-describedby="goalEditorModalHelp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title fw-bold" id="goalEditorModalLabel">Cập nhật mục tiêu ngày</h5>
+                <h5 class="modal-title fw-bold" id="goalEditorModalLabel" data-testid="goal-modal-title" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorTitle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
             <form asp-controller="Goals" asp-action="UpdateGoal" method="post">
@@ -260,13 +275,13 @@
                                max="@UpdateGoalInputViewModel.MaxDailyGoal" />
                         <span asp-validation-for="GoalEditor.DailyGoal" class="text-danger small"></span>
                     </div>
-                    <p class="text-muted small mb-0">
-                        Nhập số thẻ bạn muốn hoàn thành mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinDailyGoal đến @UpdateGoalInputViewModel.MaxDailyGoal thẻ.
+                    <p class="text-muted small mb-0" id="goalEditorModalHelp">
+                        Nhập số thẻ bạn muốn hoàn thành mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinDailyGoal đến @UpdateGoalInputViewModel.MaxDailyGoal thẻ và thay đổi bất kỳ lúc nào.
                     </p>
                 </div>
                 <div class="modal-footer border-0 pt-0">
                     <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary rounded-pill px-4">Lưu mục tiêu</button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4" data-testid="goal-modal-submit" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorSubmitText</button>
                 </div>
             </form>
         </div>

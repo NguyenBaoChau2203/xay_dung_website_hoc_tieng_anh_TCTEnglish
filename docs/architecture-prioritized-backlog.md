@@ -65,23 +65,23 @@ Success criteria:
 - Controllers become orchestration-only for the touched flows.
 - Validation, persistence, and authorization rules become reusable and testable.
 
-### 2. Decide whether the Goals feature should be real or hidden
+### 2. Keep the now-real Goals feature hardened and regression-safe
 
 Current state:
-- `GoalsController` only returns a static page.
-- Dashboard already reads `User.Goal`.
-- The goals UI still shows placeholder/demo content.
+- `GoalsController` is now backed by `IGoalsService` and real user data.
+- Goal create/edit flows are live and covered by phased integration tests.
+- Activity, streak/progress, and badge unlock states are rendered from real totals.
 
-Why this is P0:
-- Users can reach the page today, so the inconsistency is product-visible.
+Why this remains important:
+- Goals is now a user-visible production workflow, so regressions are costly.
 
-Options:
-- Implement the real goal-edit + progress flow.
-- Or remove/hide the page until the feature is ready.
+Recommended direction:
+- Preserve UI contract coverage for modal/create/edit/invalid-submit states.
+- Keep documentation synchronized whenever Goals behavior changes.
 
 Success criteria:
-- There is one canonical goals workflow.
-- The UI no longer shows static demo data to production users.
+- Existing goals integration suites continue to pass.
+- Docs do not regress to placeholder descriptions.
 
 ### 3. Operationalize account lock/unlock behavior safely
 

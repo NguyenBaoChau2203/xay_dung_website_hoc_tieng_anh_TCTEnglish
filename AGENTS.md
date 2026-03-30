@@ -53,7 +53,7 @@ Important note:
 | `SpeakingController` | Speaking playlist index and practice flows |
 | `AccountController` | Auth, OAuth, profile, password reset, security settings |
 | `LearningApiController` | AJAX endpoints for card progress tracking |
-| `GoalsController` | Goals page; currently a static placeholder |
+| `GoalsController` | Goals page with real goal update, progress, and badge workflows |
 | `Areas/Admin/*` | Admin-only: dashboard, user management, speaking video management |
 
 ### View Boundaries

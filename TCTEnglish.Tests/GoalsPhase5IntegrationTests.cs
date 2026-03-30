@@ -77,6 +77,8 @@ public sealed class GoalsPhase5IntegrationTests
         Assert.Equal(HttpStatusCode.OK, followUpResponse.StatusCode);
         Assert.Contains("goalUpdateToast", body, StringComparison.Ordinal);
         Assert.Contains("goals-feedback-toast", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-toast-title\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-toast-message\"", body, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -257,4 +259,5 @@ public sealed class GoalsPhase5IntegrationTests
 
         Assert.Equal(OperationStatus.Success, result.Status);
     }
+
 }

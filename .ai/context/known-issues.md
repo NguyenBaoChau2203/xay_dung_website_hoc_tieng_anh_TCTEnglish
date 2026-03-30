@@ -95,15 +95,17 @@ proposing follow-up work so they do not optimize already-completed items.
   smaller services or slices, and finish the move to typed view models.
 - **Effort**: Medium.
 
-### TD-004: Goals domain is not wired into real user state [MEDIUM]
-- **Files**: `Controllers/GoalsController.cs`, `Views/Goals/Index.cshtml`,
-  `ViewModels/DashboardViewModel.cs`
-- **Issue**: Dashboard displays `User.Goal`, but the dedicated goals page still
-  contains static sample content instead of a live experience.
-- **Impact**: Product inconsistency and misleading UX.
-- **Recommended fix**: Choose one canonical goals workflow and remove the
-  placeholder page once the real flow exists.
-- **Effort**: Small to medium.
+### TD-004: Goals documentation and UI contract can drift if not maintained [LOW]
+- **Files**: `docs/architecture-prioritized-backlog*.md`,
+  `.github/copilot-instructions.md`, `AGENTS.md`,
+  `TCTEnglish.Tests/GoalsPhase*.cs`
+- **Issue**: The Goals feature is now real, but docs and test contracts can
+  become stale if future changes are made without synchronized updates.
+- **Impact**: Future agents/developers may receive conflicting guidance and
+  miss UI regressions.
+- **Recommended fix**: Keep docs aligned with current Goals behavior and retain
+  phased integration coverage for modal/create/edit/invalid-submit contracts.
+- **Effort**: Small ongoing.
 
 ### TD-005: Secrets remain in source-controlled appsettings [SECURITY]
 - **Files**: `appsettings.json`
@@ -194,4 +196,5 @@ proposing follow-up work so they do not optimize already-completed items.
 | Duplicate `ViewModel/` vs `ViewModels/` folders | Normalized to `ViewModels/` only |
 | BUG-006 Goals placeholder page | Resolved with real `GoalsController` + `IGoalsService` read/write flow and integration tests |
 | Goals business-date badge/streak alignment | Resolved with business-date normalization plus service-level learning activity orchestration |
+| Goals phase-5 documentation closeout | Resolved by removing stale placeholder descriptions from backlog/instruction docs and aligning known-issues with real Goals state |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |

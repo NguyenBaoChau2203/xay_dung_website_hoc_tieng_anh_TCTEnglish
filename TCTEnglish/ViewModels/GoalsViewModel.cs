@@ -23,6 +23,11 @@ namespace TCTEnglish.ViewModels
         public bool HasRecentlyUnlockedBadges => Badges.Any(badge => badge.IsRecentlyUnlocked);
         public int RecentlyUnlockedBadgeCount => Badges.Count(badge => badge.IsRecentlyUnlocked);
         public int UnlockedBadgeCount => Badges.Count(badge => badge.IsUnlocked);
+        public bool IsCreatingGoal => !HasDailyGoal;
+        public string GoalHeaderActionText => IsCreatingGoal ? "Đặt mục tiêu" : "Chỉnh sửa mục tiêu";
+        public string GoalEmptyStateActionText => IsCreatingGoal ? "Đặt mục tiêu hôm nay" : "Cập nhật mục tiêu";
+        public string GoalEditorTitle => IsCreatingGoal ? "Đặt mục tiêu ngày" : "Cập nhật mục tiêu ngày";
+        public string GoalEditorSubmitText => IsCreatingGoal ? "Lưu mục tiêu" : "Lưu thay đổi";
     }
 
     public class GoalsWeekDayViewModel

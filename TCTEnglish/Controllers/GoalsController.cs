@@ -46,7 +46,7 @@ namespace TCTVocabulary.Controllers
             var result = await _goalsService.UpdateGoalAsync(userId, input.DailyGoal);
             if (result.Status == OperationStatus.Success)
             {
-                TempData["SuccessMessage"] = "Cập nhật mục tiêu ngày thành công.";
+                TempData["SuccessMessage"] = "Đã lưu mục tiêu ngày.";
                 return RedirectToAction(nameof(Index));
             }
 

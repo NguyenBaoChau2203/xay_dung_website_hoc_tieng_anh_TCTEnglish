@@ -11,6 +11,44 @@ namespace TCTEnglish.Tests;
 public sealed class GoalsPhase2IntegrationTests
 {
     [Fact]
+    public async Task GoalsPage_ShowsCreateGoalCopy_WhenUserHasNoGoal()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedWithoutGoalAsync(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using var response = await client.GetAsync("/Goals");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("data-testid=\"goal-header-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-goal-mode=\"create\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-empty-state-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-title\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-submit\" data-goal-mode=\"create\"", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task GoalsPage_ShowsEditGoalCopy_WhenUserAlreadyHasGoal()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedGoalOnlyAsync(factory, goal: 9);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using var response = await client.GetAsync("/Goals");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("data-testid=\"goal-header-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-goal-mode=\"edit\"", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-testid=\"goal-empty-state-cta\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-title\" data-goal-mode=\"edit\"", body, StringComparison.Ordinal);
+        Assert.Contains("data-testid=\"goal-modal-submit\" data-goal-mode=\"edit\"", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task GoalsPage_ShowsWeeklyEmptyState_WhenUserHasNoDailyActivity()
     {
         await using var factory = new TestWebApplicationFactory();
@@ -25,6 +63,20 @@ public sealed class GoalsPhase2IntegrationTests
         Assert.Contains("chart-empty-state", body, StringComparison.Ordinal);
         Assert.Contains(">0/9<", body, StringComparison.Ordinal);
         Assert.DoesNotContain("class=\"chart-bar", body, StringComparison.Ordinal);
+    }
+
+    private static async Task SeedWithoutGoalAsync(TestWebApplicationFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var user = await context.Users.SingleAsync(u => u.UserId == TestDataIds.UserId);
+
+        user.Goal = null;
+        user.Streak = 0;
+        user.LongestStreak = 0;
+        user.LastStudyDate = null;
+
+        await context.SaveChangesAsync();
     }
 
     [Fact]

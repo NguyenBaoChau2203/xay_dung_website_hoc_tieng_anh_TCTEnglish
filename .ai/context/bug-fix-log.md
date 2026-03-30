@@ -42,6 +42,60 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Goals modal autofocus nhắm nhầm hidden anti-forgery field — 2026-03-30
+
+**Symptom**: Khi mở modal chỉnh sửa mục tiêu trên trang `Goals`, con trỏ có thể focus vào hidden anti-forgery input thay vì ô nhập số mục tiêu, làm trải nghiệm create/edit kém ổn định.
+
+**Root Cause**: `goals.js` dùng selector quá rộng (`input, select, textarea, button`) trong `shown.bs.modal`, nên phần tử đầu tiên có thể là `input[type="hidden"]` do `@Html.AntiForgeryToken()` render ra.
+
+**Solution**: Ưu tiên focus thẳng `.goal-input`; nếu không có thì fallback sang selector loại trừ hidden input (`input:not([type='hidden'])`). Đồng thời thêm contract test HTML để giữ ổn định target field trong modal.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/goals.js` - đổi logic autofocus để ưu tiên `.goal-input` và loại trừ hidden input ở fallback.
+- `TCTEnglish.Tests/GoalsPhase4IntegrationTests.cs` - thêm test `GoalsPage_RendersGoalInputContract_ForAutofocusTarget` xác nhận modal có hidden anti-forgery field và ô nhập `.goal-input` cho `GoalEditor.DailyGoal`.
+
+**Verification**: Chạy `dotnet test TCTEnglish.Tests --filter 'FullyQualifiedName~GoalsPhase' --no-restore` và không ghi nhận lỗi backend/data integrity mới trong bộ Goals phases.
+
+**Commit**: Not created yet.
+
+**Notes**: Đây là hardening UX/accessibility cho modal interaction; logic dữ liệu/service không thay đổi.
+
+### Goals modal CTA không mở ổn định vì thiếu Bootstrap JS bundle toàn cục — 2026-03-30
+
+**Symptom**: Trên trang `Goals`, các CTA dùng `data-bs-toggle="modal"` (nút đầu trang và empty-state) có thể không mở được modal editor trong runtime do layout chính chưa nạp Bootstrap JS.
+
+**Root Cause**: `Views/Shared/_Layout.cshtml` chỉ nạp Bootstrap CSS mà chưa nạp `bootstrap.bundle.min.js`, nên các hành vi `data-bs-*` không được kích hoạt. `goals.js` cũng gọi qua global `bootstrap` thay vì API tham chiếu an toàn từ `window.bootstrap`.
+
+**Solution**: Nạp Bootstrap JS bundle ở layout chung để tất cả màn dùng `data-bs-*` hoạt động ổn định, đồng thời harden `goals.js` để mở modal qua `window.bootstrap?.Modal` và không ném lỗi nếu API chưa sẵn sàng.
+
+**Files Changed**:
+- `TCTEnglish/Views/Shared/_Layout.cshtml` - thêm script CDN `bootstrap.bundle.min.js` trước `RenderSection("Scripts")`.
+- `TCTEnglish/wwwroot/js/goals.js` - dùng `modalApi = window.bootstrap?.Modal` và gọi `modalApi.getOrCreateInstance(...)`.
+
+**Verification**: Chạy `dotnet test TCTEnglish.Tests --filter "FullyQualifiedName~GoalsPhase1IntegrationTests|FullyQualifiedName~GoalsPhase5IntegrationTests" --no-restore` (11/11 passed), chạy `Sprint2SmokeTests` (15/15 passed), và `run_build` (passed).
+
+**Commit**: Not created yet.
+
+**Notes**: `scripts/encoding_guard.py` không tồn tại trong repo hiện tại nên không thể chạy encoding guard script.
+
+### Goals progress card text wraps vertically and header CTA is cramped on small screens - 2026-03-30
+
+**Symptom**: On the Goals page, the text inside the circular daily-progress widget could break into awkward vertical wrapping (for example `thẻ hôm nay` split across multiple lines), and the top `Chỉnh sửa mục tiêu` CTA felt cramped on narrower layouts.
+
+**Root Cause**: The absolute-positioned `.percentage-label` inside the progress ring had no stable width constraints, so the label container could shrink too aggressively. The header row also used fixed `col-6` columns at all breakpoints, which reduced available space for title/CTA on smaller screens.
+
+**Solution**: Added dedicated progress label classes and fixed sizing (`.goal-progress-value`, `.goal-progress-meta`, `.percentage-label`, `.circular-progress`) to keep the center text readable and stable. Updated the header row to responsive columns (`col-12 col-lg-6`) and improved mobile CTA behavior. Also adjusted no-goal caption copy to show `Mục tiêu ngày: Chưa đặt`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Goals/Index.cshtml` - improved responsive header layout, progress-label markup, and no-goal daily target caption.
+- `TCTEnglish/wwwroot/css/goals.css` - added sizing/typography rules for progress text and responsive tweaks for title + CTA.
+
+**Verification**: Ran `run_build` (passed). Ran goals regression tests via `run_tests` with TypeName filters `TCTEnglish.Tests.GoalsPhase1IntegrationTests` and `TCTEnglish.Tests.GoalsPhase2IntegrationTests` (6/6 passed).
+
+**Commit**: Not created yet.
+
+**Notes**: `scripts/encoding_guard.py` is not present in this repository, so no encoding guard script could be run.
+
 ### Goals merge-safety, business-date badge alignment, and test-host migration isolation - 2026-03-30
 
 **Symptom**: The branch was not merge-safe because stray AI chat migration artifacts sat in the workspace outside the Goals scope, goals-related tests failed during startup with `PendingModelChangesWarning`, and the recent badge highlight could drift across the local midnight boundary for SQL Server `datetime2` badge timestamps.
