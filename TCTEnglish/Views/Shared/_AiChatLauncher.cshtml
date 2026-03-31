@@ -10,11 +10,19 @@
     {
         <div class="ai-launcher-backdrop" data-ai-backdrop></div>
 
-        <section class="ai-launcher-panel" id="aiLauncherPanel" aria-hidden="true" aria-label="TCT AI chat">
+        <section class="ai-launcher-panel"
+                 id="aiLauncherPanel"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-hidden="true"
+                 aria-labelledby="aiLauncherPanelTitle"
+                 aria-describedby="aiLauncherPanelBody"
+                 tabindex="-1"
+                 data-ai-panel>
             <div class="ai-launcher-panel-header">
                 <div class="ai-launcher-panel-copy">
                     <div class="ai-launcher-panel-kicker">TCT AI</div>
-                    <div class="ai-launcher-panel-title">Trợ lý học tập</div>
+                    <div id="aiLauncherPanelTitle" class="ai-launcher-panel-title">Trợ lý học tập</div>
                 </div>
 
                 <div class="ai-launcher-panel-actions">
@@ -27,13 +35,14 @@
                     <button type="button"
                             class="ai-launcher-panel-close"
                             data-ai-close
+                            data-ai-initial-focus
                             aria-label="Đóng chat">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="ai-launcher-panel-body">
+            <div class="ai-launcher-panel-body" id="aiLauncherPanelBody" data-ai-panel-body>
                 <iframe class="ai-launcher-frame"
                         title="TCT AI chat"
                         loading="lazy"
@@ -45,6 +54,7 @@
         <button type="button"
                 class="ai-launcher-trigger"
                 data-ai-toggle
+                aria-haspopup="dialog"
                 aria-controls="aiLauncherPanel"
                 aria-expanded="false"
                 aria-label="Mở trợ lý AI">

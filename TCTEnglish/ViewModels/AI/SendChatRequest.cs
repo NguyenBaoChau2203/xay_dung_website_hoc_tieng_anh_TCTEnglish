@@ -5,8 +5,7 @@ namespace TCTEnglish.ViewModels.AI;
 
 public sealed class SendChatRequest
 {
-    [Required]
-    public Guid ConversationId { get; set; }
+    public Guid? ConversationId { get; set; }
 
     [Required]
     [StringLength(1000, MinimumLength = 1)]

@@ -5,6 +5,7 @@ namespace TCTEnglish.ViewModels.AI;
 public sealed record ChatReplyDto(
     string Text,
     Guid ConversationId,
+    string ConversationTitle,
     ChatUsageDto Usage,
     ChatMetadataDto Metadata);
 

@@ -2,10 +2,56 @@
 
 @{
     ViewData["Title"] = "AI Chat";
+    var chatPageUrl = Url.Action("Chat", "Ai") ?? "/AI/Chat";
 }
 
 <div class="ai-chat-page">
-    <partial name="_ChatShell" model="Model" />
+    <div class="ai-chat-layout" data-ai-chat-layout>
+        <aside class="ai-chat-history"
+               aria-label="Lịch sử hội thoại"
+               data-ai-history-root
+               data-ai-chat-base-url="@chatPageUrl">
+            <div class="ai-chat-history-header">
+                <h2 class="ai-chat-history-title">Đoạn chat gần đây</h2>
+                <a class="btn btn-outline-primary btn-sm"
+                   asp-controller="Ai"
+                   asp-action="Chat"
+                   data-ai-new-chat-link>
+                    New chat
+                </a>
+            </div>
+
+            <div class="ai-chat-history-empty @(Model.Conversations.Count == 0 ? string.Empty : "d-none")"
+                 data-ai-history-empty>
+                Bạn chưa có hội thoại nào.
+            </div>
+
+            <nav class="ai-chat-history-list @(Model.Conversations.Count == 0 ? "d-none" : string.Empty)"
+                 aria-label="Danh sách hội thoại"
+                 data-ai-history-list>
+                @foreach (var conversation in Model.Conversations)
+                {
+                    var isActive = Model.ConversationId.HasValue && Model.ConversationId.Value == conversation.Id;
+                    var updatedLabel = conversation.UpdatedAtUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+
+                    <a class="ai-chat-history-item @(isActive ? "active" : string.Empty)"
+                       asp-controller="Ai"
+                       asp-action="Chat"
+                       asp-route-conversationId="@conversation.Id"
+                       aria-current="@(isActive ? "page" : null)"
+                       data-ai-history-item
+                       data-conversation-id="@conversation.Id">
+                        <span class="ai-chat-history-item-title">@conversation.Title</span>
+                        <span class="ai-chat-history-item-time" data-timestamp="@conversation.UpdatedAtUtc.ToString("O")">@updatedLabel</span>
+                    </a>
+                }
+            </nav>
+        </aside>
+
+        <div class="ai-chat-surface" data-ai-chat-surface>
+            <partial name="_ChatShell" model="Model" />
+        </div>
+    </div>
 </div>
 
 @section Styles {

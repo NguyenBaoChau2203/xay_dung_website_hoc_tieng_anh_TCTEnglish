@@ -36,22 +36,42 @@ public sealed class AiController : BaseController
     public async Task<IActionResult> Chat(Guid? conversationId, bool embed = false, CancellationToken ct = default)
     {
         var userId = GetCurrentUserId();
-        var currentConversationId = conversationId ?? (await _conversationService.CreateConversationAsync(userId, null, ct)).Id;
+        IReadOnlyList<AiMessage> messages = [];
+        IReadOnlyList<AiConversationSummaryDto> conversations = [];
 
-        IReadOnlyList<AiMessage> messages;
-        try
+        if (!embed)
         {
-            messages = await _conversationService.GetMessagesByConversationAsync(userId, currentConversationId, ct);
+            conversations = await _conversationService.GetConversationsByUserAsync(userId, ct);
         }
-        catch (KeyNotFoundException)
+
+        if (conversationId.HasValue)
         {
-            return NotFound();
+            try
+            {
+                messages = await _conversationService.GetMessagesByConversationAsync(userId, conversationId.Value, ct);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
+
+        var activeConversation = conversationId.HasValue
+            ? conversations.FirstOrDefault(x => x.Id == conversationId.Value)
+            : null;
+        var currentConversationTitle = activeConversation?.Title
+            ?? (conversationId.HasValue ? "Đoạn chat hiện tại" : "Bản nháp mới");
+        var currentConversationStatus = conversationId.HasValue
+            ? "Đang mở từ lịch sử hội thoại."
+            : "Sẽ tạo sau khi bạn gửi tin nhắn đầu tiên.";
 
         var viewModel = new AiChatPageViewModel
         {
-            ConversationId = currentConversationId,
+            ConversationId = conversationId,
             Messages = messages.Select(MapToViewModel).ToList(),
+            Conversations = conversations.Select(MapToConversationSummaryViewModel).ToList(),
+            CurrentConversationTitle = currentConversationTitle,
+            CurrentConversationStatus = currentConversationStatus,
             IsEmbedded = embed
         };
 
@@ -149,6 +169,16 @@ public sealed class AiController : BaseController
             },
             Content = message.Content,
             CreatedAtUtc = message.CreatedAtUtc
+        };
+    }
+
+    private static AiConversationSummaryViewModel MapToConversationSummaryViewModel(AiConversationSummaryDto conversation)
+    {
+        return new AiConversationSummaryViewModel
+        {
+            Id = conversation.Id,
+            Title = conversation.Title,
+            UpdatedAtUtc = conversation.UpdatedAtUtc
         };
     }
 }

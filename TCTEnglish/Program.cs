@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using TCTEnglish.Hubs;
 using TCTEnglish.Services.AI;
 using TCTVocabulary.Models;
@@ -41,36 +40,13 @@ builder.Services.AddOptions<AiOptions>()
     .Configure<IConfiguration>((options, configuration) =>
     {
         configuration.GetSection("AI").Bind(options);
-
-        if (string.IsNullOrWhiteSpace(options.ApiKey))
-        {
-            options.ApiKey = configuration["OpenAiApiKey"] ?? options.ApiKey;
-        }
     });
 builder.Services.AddScoped<IAiConversationService, AiConversationService>();
 builder.Services.AddScoped<IAiChatService, AiChatService>();
 builder.Services.AddScoped<IAiObservabilityService, AiObservabilityService>();
 builder.Services.AddScoped<IAiContextBuilder, AiContextBuilder>();
-builder.Services.AddScoped<OpenAiProviderClient>();
-builder.Services.AddScoped<IAiProviderClient>(serviceProvider =>
-{
-    var aiOptions = serviceProvider.GetRequiredService<IOptions<AiOptions>>().Value;
-    var providerName = aiOptions.Provider?.Trim();
-
-    if (string.Equals(providerName, "OpenAI", StringComparison.OrdinalIgnoreCase)
-        || string.IsNullOrWhiteSpace(providerName))
-    {
-        return serviceProvider.GetRequiredService<OpenAiProviderClient>();
-    }
-
-    if (string.Equals(providerName, "Azure OpenAI", StringComparison.OrdinalIgnoreCase)
-        || string.Equals(providerName, "AzureOpenAI", StringComparison.OrdinalIgnoreCase))
-    {
-        throw new InvalidOperationException("Azure OpenAI provider chưa được cấu hình trong bản hiện tại.");
-    }
-
-    throw new InvalidOperationException($"Unsupported AI provider '{providerName}'.");
-});
+builder.Services.AddScoped<GeminiProviderClient>();
+builder.Services.AddScoped<IAiProviderClient, GeminiProviderClient>();
 builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
 builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
 builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();

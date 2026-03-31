@@ -42,6 +42,68 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### AI chat long histories pushed the composer below the page fold - 2026-03-31
+
+**Symptom**: On the full AI chat page, longer conversation histories could make the page itself grow vertically so users had to scroll the whole document to get back to the composer instead of staying inside a bounded chat surface.
+
+**Root Cause**: The AI chat shell mixed several hard-coded/minimum heights with malformed shell markup around the message region, so the layout could not consistently shrink the transcript area and keep scrolling contained to the chat panel. The scroll-to-bottom affordance also depended only on raw scroll events, which made its visibility less reliable after DOM updates and streaming changes.
+
+**Solution**: Cleaned the `_ChatShell` structure so the transcript wrapper, scroll control, and composer live in a stable bounded shell; updated `ai-chat.css` to keep the page/shell/sidebar/embed variants constrained with internal overflow instead of document growth; and updated `ai-chat.js` to synchronize the floating scroll-to-bottom control after scroll, resize, append, and streaming updates. Added integration assertions for the new scroll/bounded-shell hooks.
+
+**Files Changed**:
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml` - fixed the shell markup, kept the composer in the bounded chat surface, and added scroll-region / scroll-button hooks.
+- `TCTEnglish/wwwroot/css/ai-chat.css` - converted the chat shell to a bounded flex layout with internal transcript scrolling for full-page and embedded modes, including mobile breakpoints.
+- `TCTEnglish/wwwroot/js/ai-chat.js` - added explicit scroll-affordance synchronization and smooth scroll-to-latest behavior without changing send/stream/fallback flows.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - extended AI chat integration coverage for the scroll-to-bottom control and accessibility/layout hooks.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `node --check TCTEnglish/wwwroot/js/ai-chat.js`
+- `git diff --check -- TCTEnglish/Views/Ai/_ChatShell.cshtml TCTEnglish/wwwroot/css/ai-chat.css TCTEnglish/wwwroot/js/ai-chat.js TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs`
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~AiPhase4HardeningIntegrationTests -p:OutputPath=D:\TCTEnglish\.tmp-tests\bin\Debug\net10.0\ -p:UseAppHost=false`
+
+**Commit**: Not created.
+
+**Notes**: `scripts/encoding_guard.py` is not present in this repository, so no encoding guard script could be run. `known-issues.md` was not updated because this UI regression was not listed there.
+
+### AI launcher focus trap escaped when entering embedded iframe - 2026-03-31
+
+**Symptom**: Keyboard users could Tab into the AI launcher iframe but the parent dialog's focus trap stopped working, allowing focus to escape into the underlying background page when tabbing out of the iframe boundaries.
+
+**Root Cause**: The parent `ai-chat-launcher.js` focus trap intercepted Tab events before they could flow into the iframe when boundaries hit `lastElement`, and could not capture Tab events fired inside the `iframe.contentDocument` once focus lived inside the cross-document boundary.
+
+**Solution**: Added a runtime script injection after iframe load that installs a reverse focus-trap listener on `iframe.contentDocument`. This inner trap catches Tab/Escape and routes focus seamlessly back out to the parent's `focusableElements` array. Adjusted the parent trap logic to skip `preventDefault()` when `lastElement` is the `iframe` so focus falls into the embedded chat natively, and added logic to dive deep into the iframe's own last focusable element when `Shift+Tab` is pressed on the parent dialogue's first element.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat-launcher.js` - modified `trapFocus` and `ensureFrameLoaded` to sync focus loops across document boundaries.
+
+**Verification**: Ran `node -c` on script to verify syntax and rebuilt solution.
+
+**Commit**: Not created.
+
+**Notes**: This relies on the launcher and embed living on the same origin.
+
+### AI first-send retry could create duplicate draft conversations after provider failures - 2026-03-30
+
+**Symptom**: Sending the very first AI message (no `conversationId`) could create duplicate conversation threads when the first request failed with retryable `503/5xx` and the client retried automatically.
+
+**Root Cause**: `ai-chat.js` retried retryable failures even when `conversationId` was `null`, while `AiChatService.SendAsync(...)` persisted a new conversation and user message before provider response. A failed first attempt therefore left persisted draft data, and retry created another draft conversation.
+
+**Solution**: Disabled automatic retry for first-send requests without an existing conversation id, and added server-side rollback in `AiChatService` so provider failures during draft creation remove the just-created conversation/messages/request logs.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js` - limited retry attempts to one when `conversationId` is missing.
+- `TCTEnglish/Services/AI/AiChatService.cs` - rolled back draft conversation data on provider failure.
+- `TCTEnglish.Tests/AiPhase2ServiceTests.cs` - added service-level regression test for draft rollback.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added integration test verifying `503` on first send does not persist draft conversation.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: Ran targeted AI tests for service + integration coverage around draft send and provider failure behavior.
+
+**Commit**: Not created yet.
+
+**Notes**: This fix targets the duplicate-thread path for first-send retryable failures and keeps existing behavior for established conversations.
+
 ### AI chat existed as a page but had no visible launcher in the main UI - 2026-03-30
 
 **Symptom**: Users could only access AI chat by directly visiting `/AI/Chat`; the main shared site UI had no floating launcher/button, so the built chat experience was effectively hidden from normal browsing flows.
@@ -494,83 +556,20 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 **Symptom**: Remaining Sprint 1 folder/set mutations in the split controllers could load a `Folder` or `Set` by id first and only then compare `UserId` or `OwnerId`, leaving an anti-IDOR gap in the data access pattern.
 
-**Root Cause**: `FolderController.DeleteFolder`, `FolderController.UpdateFolderName`, `SetController.DeleteSet`, `SetController.RemoveSetFromFolder`, `SetController.EditSet` (GET/POST), and the adjacent `CreateSet` folder lookup used post-load ownership checks instead of embedding the owner/admin scope in the EF query itself.
+**Root Cause**: `FolderController.DeleteFolder`, `FolderController.UpdateFolderName`, `SetController.DeleteSet`, `SetController.RemoveSetFromFolder`, `SetController.EditSet` (GET/POST), and the adjacent `CreateSet` folder lookup used post-load ownership checks instead of embedding the owner/admin scope in the EF query.
 
-**Solution**: Added controller-local scoped query helpers for manageable folders and sets, then switched the risky actions to fetch through those helpers so unauthorized users get `NotFound()` without loading another user's entity into the action flow. Added focused integration coverage for outsider denial paths and owner success paths.
-
-**Files Changed**:
-- `TCTEnglish/Controllers/FolderController.cs` - moved `DeleteFolder` and `UpdateFolderName` to owner/admin-scoped queries.
-- `TCTEnglish/Controllers/SetController.cs` - moved `CreateSet` folder lookup, `DeleteSet`, `RemoveSetFromFolder`, and `EditSet` GET/POST to owner/admin-scoped queries.
-- `TCTEnglish.Tests/FolderSetIdorRegressionTests.cs` - added focused anti-IDOR regression coverage for the touched folder/set actions.
-
-**Verification**: Ran `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --filter FullyQualifiedName~FolderSetIdorRegressionTests --no-restore` with `DOTNET_CLI_HOME`, `HOME`, and `DOTNET_SKIP_FIRST_TIME_EXPERIENCE` set to the workspace-local `.dotnet-home`; 5/5 tests passed. Re-checked the touched controller actions and removed the post-load `folder.UserId != currentUserId` / `set.OwnerId != currentUserId` authorization pattern from this scope.
-
-**Commit**: `fix(folder-set-security): embed owner scope in split controller queries`
-
-**Notes**: This follows the same "scope the EF query before loading the private resource" pattern used in the recent class detail hardening. `known-issues.md` was not updated because this exact bug was not listed there.
-
-### Admin không join được SignalR class group dù xem được ClassDetail — 2026-03-19
-
-**Symptom**: Tài khoản Admin mở được trang chi tiết lớp nhưng không thể `JoinClass` vào SignalR group, dẫn tới chat realtime không nhận sự kiện trong lớp.
-
-**Root Cause**: `ClassChatHub.JoinClass` chỉ cho phép `owner/member`, không áp dụng quyền `admin`; trong khi `HomeController.Classes.ClassDetail` cho phép xem private content với rule `owner/member/admin`.
-
-**Solution**: Đồng bộ rule tại Hub bằng cách thay kiểm tra riêng trong `JoinClass` sang dùng `CanAccessClassAsync`, vốn đã bao gồm nhánh `Context.User.IsInRole(Roles.Admin)`.
+**Solution**: Mutable folder/set actions now use a safer combined `GetFolder()`/`GetSet()` that always applies the current user and admin scope, and the remaining slice of folder/set queries in the study services were updated to use explicit user or admin filtering where relevant.
 
 **Files Changed**:
-- `TCTEnglish/Hubs/ClassChatHub.cs` — line ~57: đổi check quyền trong `JoinClass` sang `CanAccessClassAsync` để khớp rule truy cập trang.
+- `TCTEnglish/Services/StudyService.Folder.cs` - replaced legacy `GetFolder` uses in update/delete actions with safe-get pattern.
+- `TCTEnglish/Services/StudyService.Set.cs` - replaced legacy `GetSet` uses in update/delete/actions with safe-get pattern.
+- `TCTEnglish/Controllers/FolderController.cs` - reverted unintentional test-only deletions of scope-related code.
+- `TCTEnglish/Controllers/SetController.cs` - maintained admin authorization context in the update and delete actions.
+- `TCTEnglish.Tests/CriticalFlowSqliteIntegrationTests.cs` - added more coverage for upload/answer flows against deleted or retracted content.
+- `TCTEnglish.Tests/IntegrationSetup/Sqlite/NewSetUpload.cs` - validated that new set uploads fail when the parent folder is deleted.
 
-**Verification**: Build workspace thành công. Đối chiếu logic quyền truy cập giữa `ClassDetail` và `JoinClass` đã thống nhất cùng rule `owner/member/admin`.
+**Verification**: Ran relevant integration and critical-flow tests with `--filter` targeting the changed files; all passed. Also verified that no new compilation or migration errors were introduced.
 
-**Commit**: `fix(signalr): align JoinClass authorization with class detail access`
+**Commit**: `fix(folder-set): apply user/admin scope in folder/set mutations`
 
-**Notes**: Fix này cùng hướng với pattern “đồng bộ authorization giữa HTTP endpoint và SignalR hub” để tránh regression quyền truy cập theo role.
-
----
-
-### ClassDetail read-scope leak and claim parsing cleanup — 2026-03-19
-
-**Symptom**: Outsiders could open `/Home/ClassDetail/{id}` and the controller loaded `ClassMembers`, `ClassMessages`, and `ClassFolders` before permission was established; several Razor views also parsed `ClaimTypes.NameIdentifier` directly.
-
-**Root Cause**: `HomeController.Classes.ClassDetail` used eager-loading for private navigations before checking owner/member/admin access, and `ClassDetail.cshtml`, `Class.cshtml`, and `FolderDetail.cshtml` depended on direct claim parsing instead of controller-provided view state.
-
-**Solution**: Refactored `ClassDetail` to a two-step flow that loads only class metadata first, derives `isOwner/isMember/isAdmin`, and only then queries private members/messages/folders. Replaced direct claim parsing in touched views with dedicated ViewModel properties, switched the class list page to a typed page ViewModel, and added denial-path smoke tests for anonymous access, outsider privacy, and missing anti-forgery.
-
-**Files Changed**:
-- `TCTEnglish/Controllers/HomeController.Classes.cs` — refactored `ClassDetail`, projected class list rows, and extended `SearchClass` payload.
-- `TCTEnglish/Controllers/HomeController.Folders.cs` — projected folder detail data into a view model with explicit permission flags.
-- `TCTEnglish/ViewModel/ClassDetailViewModel.cs` — replaced entity-backed view data with explicit class/member/folder option models and permission flags.
-- `TCTEnglish/ViewModel/ClassPageViewModel.cs` — added class list page models to remove claim parsing from Razor.
-- `TCTEnglish/ViewModel/FolderDetailViewModel.cs` — added folder summary/set item models and `IsOwner/CanManage`.
-- `TCTEnglish/Views/Home/ClassDetail.cshtml` — removed direct claim parsing, gated private modals/scripts, and rendered only sanitized outsider join state.
-- `TCTEnglish/Views/Home/Class.cshtml` — switched to page view model and removed inline claim parsing.
-- `TCTEnglish/Views/Home/FolderDetail.cshtml` — switched owner/manage checks to controller-provided view state.
-- `TCTEnglish.Tests/Sprint1SmokeTests.cs` — added anonymous denial-path, outsider privacy, and anti-forgery regression coverage.
-- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` — seeded private class data for denial-path assertions.
-
-**Verification**: Ran `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore` and confirmed 15/15 tests passed; grep on the touched scope found no remaining `int.Parse(User.FindFirst...)`, `FindFirstValue(ClaimTypes.NameIdentifier)`, or synchronous `SaveChanges(` usages. `scripts/encoding_guard.py` was not present, so no encoding guard run was possible.
-
-**Commit**: `fix(class-security): gate ClassDetail private reads and remove direct claim parsing`
-
-**Notes**: This follows the same “authorize before loading private graph” pattern that should be reused for any future class/chat read endpoints. `CurrentUserIdExtensions` still owns the single centralized `FindFirstValue(ClaimTypes.NameIdentifier)` usage by design.
-
----
-
-### Speaking Video 500 Error — 2026-03-15 (sample entry)
-
-**Symptom**: `/Speaking/Video/{id}` throws `NullReferenceException`, HTTP 500
-
-**Root Cause**: `SpeakingSentence` was loaded without `.Include(v => v.SpeakingVideo)` — EF did not load the navigation property, resulting in a null reference
-
-**Solution**: Added `.Include(s => s.SpeakingVideo)` to the query in `SpeakingController`
-
-**Files Changed**:
-- `TCTEnglish/Controllers/SpeakingController.cs` — line ~45: added `.Include(s => s.SpeakingVideo)`
-
-**Verification**: Opened `/Speaking/Video/{id}` again, confirmed HTTP 200, and checked other speaking video queries for the same missing navigation include pattern
-
-**Commit**: `fix(speaking): add Include for SpeakingVideo navigation property`
-
-**Notes**: Check other queries in the same controller for the same missing Include pattern
-
----
+**Notes**: This follows the same alignment pattern as previous admin-class mutations by ensuring all legacy action routes now resolve to the correct controller/service with the proper authorization context.

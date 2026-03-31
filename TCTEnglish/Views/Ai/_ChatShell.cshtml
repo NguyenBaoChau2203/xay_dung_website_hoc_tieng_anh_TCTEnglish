@@ -1,6 +1,7 @@
 @model TCTEnglish.ViewModels.AI.AiChatPageViewModel
 
-<div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")">
+<div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")"
+     data-ai-chat-shell="@(Model.IsEmbedded ? "embedded" : "page")">
     @if (!Model.IsEmbedded)
     {
         <div class="ai-chat-shell-header">
@@ -13,8 +14,13 @@
             </div>
 
             <div class="ai-chat-shell-meta">
-                <span class="ai-chat-shell-meta-label">Conversation</span>
-                <strong class="ai-chat-shell-meta-value">@Model.ConversationId</strong>
+                <span class="ai-chat-shell-meta-label">Đoạn chat hiện tại</span>
+                <span id="conversationMetaValue"
+                      class="ai-chat-shell-meta-value"
+                      title="@Model.CurrentConversationTitle">
+                    @Model.CurrentConversationTitle
+                </span>
+                <span id="conversationMetaStatus" class="ai-chat-shell-meta-hint">@Model.CurrentConversationStatus</span>
             </div>
         </div>
 
@@ -46,53 +52,95 @@
         </div>
     }
 
-    <div id="chatWindow" class="ai-chat-window">
-        @if (Model.Messages.Count == 0)
-        {
-            <div class="ai-chat-empty-state">
-                Hãy bắt đầu cuộc trò chuyện với AI.
-            </div>
-        }
-        else
-        {
-            @foreach (var message in Model.Messages)
+    <div class="ai-chat-window-wrapper" data-ai-chat-panel>
+        <div id="chatWindow"
+             class="ai-chat-window"
+             data-ai-chat-scroll-region
+             tabindex="0"
+             role="log"
+             aria-live="polite"
+             aria-relevant="additions text"
+             aria-label="Lịch sử tin nhắn AI">
+            @if (Model.Messages.Count == 0)
             {
-                var isUser = string.Equals(message.Role, "user", System.StringComparison.OrdinalIgnoreCase);
-                var isAssistant = string.Equals(message.Role, "assistant", System.StringComparison.OrdinalIgnoreCase);
-                var justifyClass = isUser ? "justify-content-end" : "justify-content-start";
-                var bubbleClass = isUser ? "bg-primary text-white" : "bg-light";
-
-                <div class="d-flex @justifyClass mb-2" data-role="@message.Role">
-                    <div class="rounded px-3 py-2 @bubbleClass">
-                        @if (isAssistant)
-                        {
-                            <div class="js-assistant-markdown">@message.Content</div>
-                        }
-                        else
-                        {
-                            @message.Content
-                        }
-                    </div>
+                <div class="ai-chat-empty-state" data-chat-empty-state>
+                    Hãy bắt đầu cuộc trò chuyện với AI.
                 </div>
             }
-        }
+            else
+            {
+                @foreach (var message in Model.Messages)
+                {
+                    var isUser = string.Equals(message.Role, "user", System.StringComparison.OrdinalIgnoreCase);
+                    var isAssistant = string.Equals(message.Role, "assistant", System.StringComparison.OrdinalIgnoreCase);
+                    var isSystem = string.Equals(message.Role, "system", System.StringComparison.OrdinalIgnoreCase);
+                    var messageClass = isUser
+                        ? "ai-chat-message ai-chat-message-user"
+                        : isSystem
+                            ? "ai-chat-message ai-chat-message-system"
+                            : "ai-chat-message ai-chat-message-assistant";
+                    var bubbleClass = isUser
+                        ? "ai-chat-bubble ai-chat-bubble-user"
+                        : isSystem
+                            ? "ai-chat-bubble ai-chat-bubble-system"
+                            : "ai-chat-bubble ai-chat-bubble-assistant";
+
+                    <div class="@messageClass" data-role="@message.Role">
+                        <div class="@bubbleClass">
+                            @if (isAssistant)
+                            {
+                                <div class="js-assistant-markdown">@message.Content</div>
+                            }
+                            else
+                            {
+                                @message.Content
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <button type="button"
+                id="scrollToBottomBtn"
+                class="ai-scroll-bottom-btn"
+                data-ai-scroll-bottom
+                hidden
+                aria-hidden="true"
+                aria-label="Cuộn xuống cuối"
+                aria-controls="chatWindow"
+                title="Cuộn xuống cuối">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </button>
     </div>
 
-    <form id="chatForm" class="ai-chat-form" data-state="idle">
-        @Html.AntiForgeryToken()
-        <input type="hidden" id="conversationIdInput" value="@Model.ConversationId" />
+    <div class="ai-chat-composer-zone" data-ai-chat-composer>
+        <form id="chatForm" class="ai-chat-form" data-state="idle">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="conversationIdInput" value="@(Model.ConversationId?.ToString() ?? string.Empty)" />
 
-        <div class="input-group ai-chat-input-group">
-            <input id="messageInput"
-                   class="form-control ai-chat-input"
-                   maxlength="1000"
-                   placeholder="Nhập câu hỏi của bạn..."
-                   autocomplete="off" />
-            <button id="sendBtn" class="btn btn-primary ai-chat-send-btn" type="submit">Gửi</button>
-            <button id="stopBtn" class="btn btn-outline-secondary ai-chat-stop-btn d-none" type="button">Dừng</button>
-        </div>
-    </form>
+            <div class="ai-chat-composer">
+                <label for="messageInput" class="visually-hidden">Nội dung tin nhắn chat</label>
 
-    <div id="typing" class="ai-chat-typing d-none">AI đang trả lời...</div>
-    <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="alert"></div>
+                <div class="ai-chat-composer-main">
+                    <input id="messageInput"
+                           class="form-control ai-chat-input"
+                           maxlength="1000"
+                           placeholder="Nhập câu hỏi của bạn..."
+                           autocomplete="off"
+                           aria-describedby="typing chatStatus" />
+
+                    <div class="ai-chat-composer-actions">
+                        <button id="sendBtn" class="btn btn-primary ai-chat-send-btn" type="submit">Gửi</button>
+                        <button id="stopBtn" class="btn btn-outline-secondary ai-chat-stop-btn d-none" type="button">Dừng</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div id="typing" class="ai-chat-typing d-none" role="status" aria-live="polite" aria-atomic="true">AI đang trả lời...</div>
+        <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="status" aria-live="assertive" aria-atomic="true"></div>
+    </div>
 </div>

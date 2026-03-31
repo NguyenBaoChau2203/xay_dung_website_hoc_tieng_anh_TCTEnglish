@@ -6,6 +6,8 @@ namespace TCTEnglish.Services.AI;
 
 public sealed class AiConversationService : IAiConversationService
 {
+    private const int MaxConversationTitleLength = 80;
+
     private readonly DbflashcardContext _context;
 
     public AiConversationService(DbflashcardContext context)
@@ -15,9 +17,7 @@ public sealed class AiConversationService : IAiConversationService
 
     public async Task<AiConversation> CreateConversationAsync(int userId, string? title, CancellationToken ct)
     {
-        var normalizedTitle = string.IsNullOrWhiteSpace(title)
-            ? "New chat"
-            : title.Trim();
+        var normalizedTitle = NormalizeConversationTitle(title);
 
         var now = DateTime.UtcNow;
         var conversation = new AiConversation
@@ -33,6 +33,27 @@ public sealed class AiConversationService : IAiConversationService
         await _context.SaveChangesAsync(ct);
 
         return conversation;
+    }
+
+    private static string NormalizeConversationTitle(string? title)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            return "New chat";
+        }
+
+        var collapsedWhitespace = string.Join(
+            ' ',
+            title
+                .Trim()
+                .Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
+
+        if (collapsedWhitespace.Length <= MaxConversationTitleLength)
+        {
+            return collapsedWhitespace;
+        }
+
+        return collapsedWhitespace[..MaxConversationTitleLength];
     }
 
     public async Task<IReadOnlyList<AiConversationSummaryDto>> GetConversationsByUserAsync(int userId, CancellationToken ct)

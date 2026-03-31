@@ -1,17 +1,30 @@
-﻿(function () {
+(function () {
+    const MAX_CONVERSATION_TITLE_LENGTH = 80;
+    const SCROLL_BOTTOM_THRESHOLD = 80;
+    const ACTIVE_CONVERSATION_STATUS = 'Đang mở từ lịch sử hội thoại.';
+
     function init(options) {
         const elForm = document.getElementById('chatForm');
         const elInput = document.getElementById('messageInput');
         const elChatWindow = document.getElementById('chatWindow');
+        const elScrollToBottomBtn = document.getElementById('scrollToBottomBtn');
         const elTyping = document.getElementById('typing');
         const elSendBtn = document.getElementById('sendBtn');
         const elStopBtn = document.getElementById('stopBtn');
         const elConversationId = document.getElementById('conversationIdInput');
+        const elConversationMetaValue = document.getElementById('conversationMetaValue');
+        const elConversationMetaStatus = document.getElementById('conversationMetaStatus');
         const elStatus = document.getElementById('chatStatus');
         const elMetricRequestCount = document.getElementById('aiMetricRequestCount');
         const elMetricErrorRate = document.getElementById('aiMetricErrorRate');
         const elMetricLatency = document.getElementById('aiMetricLatency');
         const elMetricTokenToday = document.getElementById('aiMetricTokenToday');
+        const elHistoryRoot = document.querySelector('[data-ai-history-root]');
+        const historyElements = {
+            list: document.querySelector('[data-ai-history-list]'),
+            empty: document.querySelector('[data-ai-history-empty]'),
+            chatPageUrl: elHistoryRoot?.dataset.aiChatBaseUrl || '/AI/Chat'
+        };
 
         if (!elForm || !elInput || !elChatWindow || !elTyping || !elSendBtn || !elStopBtn || !elConversationId) {
             return;
@@ -21,10 +34,12 @@
             sendUrl: options?.sendUrl || '',
             observabilityUrl: options?.observabilityUrl || '',
             hubUrl: options?.hubUrl || '/classChatHub',
+            chatWindowElement: elChatWindow,
             hubConnection: null,
             hubAvailable: false,
             activeStreamId: null,
             isStreaming: false,
+            scrollToBottomButton: elScrollToBottomBtn,
             streamChunkCount: 0,
             streamBuffer: '',
             streamMessageElement: null,
@@ -32,7 +47,10 @@
         };
 
         hydrateAssistantMessages(elChatWindow);
-        scrollToBottom(elChatWindow);
+        hydrateTimestamps(historyElements);
+        scrollToBottom(elChatWindow, false, elScrollToBottomBtn);
+        syncHistoryVisibility(historyElements);
+        syncScrollAffordance(elChatWindow, elScrollToBottomBtn);
         void initializeHub(runtime, elStatus, elForm, elSendBtn, elStopBtn, elTyping);
         void refreshObservability(runtime.observabilityUrl, {
             requestCount: elMetricRequestCount,
@@ -40,6 +58,19 @@
             latency: elMetricLatency,
             tokenToday: elMetricTokenToday
         });
+
+        if (elScrollToBottomBtn && elChatWindow) {
+            const syncScrollButtonState = function () {
+                syncScrollAffordance(elChatWindow, elScrollToBottomBtn);
+            };
+
+            elChatWindow.addEventListener('scroll', syncScrollButtonState);
+            window.addEventListener('resize', syncScrollButtonState);
+
+            elScrollToBottomBtn.addEventListener('click', function () {
+                scrollToBottom(elChatWindow, true, elScrollToBottomBtn);
+            });
+        }
 
         elStopBtn.addEventListener('click', async function () {
             if (!runtime.activeStreamId || !runtime.hubConnection) {
@@ -65,28 +96,45 @@
                 return;
             }
 
-            appendMessage(elChatWindow, 'user', text);
+            appendMessage(elChatWindow, 'user', text, elScrollToBottomBtn);
             elInput.value = '';
             hideStatus(elStatus);
 
             setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, false);
 
             try {
-                const streamed = await trySendWithStreaming(runtime, text, elConversationId.value, elChatWindow, elForm, elSendBtn, elStopBtn, elTyping, elStatus);
+                const currentConversationId = getConversationIdValue(elConversationId);
+                const draftConversationTitle = buildConversationTitle(text, elConversationMetaValue?.textContent || 'Đoạn chat mới');
+                const streamed = await trySendWithStreaming(runtime, text, currentConversationId, elChatWindow, elForm, elSendBtn, elStopBtn, elTyping, elStatus);
 
                 if (!streamed) {
                     const payload = await sendWithRetry(runtime.sendUrl, {
-                        conversationId: elConversationId.value,
+                        conversationId: currentConversationId || null,
                         message: text
+                    }, {
+                        allowRetry: Boolean(currentConversationId)
                     });
-                    appendMessage(elChatWindow, 'assistant', payload.text || '');
+
+                    updateConversationContext(
+                        elConversationId,
+                        elConversationMetaValue,
+                        elConversationMetaStatus,
+                        historyElements,
+                        payload?.conversationId,
+                        payload?.conversationTitle || draftConversationTitle);
+                    appendMessage(elChatWindow, 'assistant', payload.text || '', elScrollToBottomBtn);
+                } else if (currentConversationId) {
+                    touchConversationHistory(
+                        historyElements,
+                        currentConversationId,
+                        buildConversationTitle(elConversationMetaValue?.textContent || '', 'Đoạn chat hiện tại'));
                 }
 
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
                 setUiState('error', elForm, elSendBtn, elStopBtn, elTyping, false);
                 showStatus(elStatus, error?.message || 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
-                appendMessage(elChatWindow, 'system', 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
+                appendMessage(elChatWindow, 'system', 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.', elScrollToBottomBtn);
             } finally {
                 if (elForm.dataset.state !== 'error') {
                     setUiState('idle', elForm, elSendBtn, elStopBtn, elTyping, false);
@@ -201,9 +249,18 @@
                 return;
             }
 
+            const chatWindow = runtime.streamMessageElement.closest('.ai-chat-window');
+            const isNearBottom = isChatWindowNearBottom(chatWindow);
+
             runtime.streamChunkCount += 1;
             runtime.streamBuffer += payload?.chunk || '';
             renderAssistantContent(runtime.streamMessageElement, runtime.streamBuffer);
+
+            if (isNearBottom && chatWindow) {
+                scrollToBottom(chatWindow, false, runtime.scrollToBottomButton);
+            } else {
+                syncScrollAffordance(chatWindow, runtime.scrollToBottomButton);
+            }
         });
 
         connection.on('AiStreamCompleted', function (payload) {
@@ -258,6 +315,10 @@
     }
 
     async function trySendWithStreaming(runtime, text, conversationId, elChatWindow, elForm, elSendBtn, elStopBtn, elTyping, elStatus) {
+        if (!conversationId) {
+            return false;
+        }
+
         if (!runtime.hubAvailable || !runtime.hubConnection || runtime.hubConnection.state !== signalR.HubConnectionState.Connected) {
             return false;
         }
@@ -265,7 +326,7 @@
         runtime.isStreaming = true;
         runtime.streamChunkCount = 0;
         runtime.streamBuffer = '';
-        runtime.streamMessageElement = appendStreamingAssistantMessage(elChatWindow);
+        runtime.streamMessageElement = appendStreamingAssistantMessage(elChatWindow, runtime.scrollToBottomButton);
         setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, true);
 
         const completionPromise = new Promise(function (resolve) {
@@ -300,10 +361,11 @@
         if (completion.shouldFallback) {
             removeStreamingPlaceholder(runtime.streamMessageElement);
             runtime.streamMessageElement = null;
+            syncScrollAffordance(runtime.chatWindowElement, runtime.scrollToBottomButton);
             return false;
         }
 
-        throw new Error(completion.message || 'Realtime tháº¥t báº¡i.');
+        throw new Error(completion.message || 'Realtime thất bại.');
     }
 
     function finalizeStreaming(runtime) {
@@ -325,8 +387,8 @@
         });
     }
 
-    function appendStreamingAssistantMessage(elChatWindow) {
-        const result = appendMessage(elChatWindow, 'assistant', '');
+    function appendStreamingAssistantMessage(elChatWindow, scrollButton) {
+        const result = appendMessage(elChatWindow, 'assistant', '', scrollButton);
         return result?.contentElement || null;
     }
 
@@ -337,8 +399,8 @@
         }
     }
 
-    async function sendWithRetry(sendUrl, payload) {
-        const maxAttempts = 2;
+    async function sendWithRetry(sendUrl, payload, options) {
+        const maxAttempts = options?.allowRetry === false ? 1 : 2;
 
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
             const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
@@ -377,15 +439,32 @@
         });
     }
 
-    function appendMessage(elChatWindow, role, text) {
+    function hydrateTimestamps(historyElements) {
+        if (!historyElements?.list) {
+            return;
+        }
+
+        const timeNodes = historyElements.list.querySelectorAll('[data-timestamp]');
+        timeNodes.forEach(function (node) {
+            const timestamp = node.getAttribute('data-timestamp');
+            if (timestamp) {
+                const date = new Date(timestamp);
+                if (!isNaN(date.getTime())) {
+                    node.textContent = formatConversationTimestamp(date);
+                }
+            }
+        });
+    }
+
+    function appendMessage(elChatWindow, role, text, scrollButton) {
+        removeEmptyState(elChatWindow);
+
         const container = document.createElement('div');
-        container.className = role === 'user' ? 'd-flex justify-content-end mb-2' : 'd-flex justify-content-start mb-2';
+        container.className = getMessageContainerClassName(role);
         container.setAttribute('data-role', role);
 
         const bubble = document.createElement('div');
-        bubble.className = role === 'user' ? 'rounded px-3 py-2 bg-primary text-white' : 'rounded px-3 py-2 bg-light';
-        bubble.style.maxWidth = '85%';
-        bubble.style.whiteSpace = 'pre-wrap';
+        bubble.className = getBubbleClassName(role);
 
         if (role === 'assistant') {
             renderAssistantContent(bubble, text);
@@ -395,12 +474,43 @@
 
         container.appendChild(bubble);
         elChatWindow.appendChild(container);
-        scrollToBottom(elChatWindow);
+        scrollToBottom(elChatWindow, false, scrollButton);
 
         return {
             containerElement: container,
             contentElement: bubble
         };
+    }
+
+    function removeEmptyState(elChatWindow) {
+        const emptyStateElement = elChatWindow.querySelector('[data-chat-empty-state]');
+        if (emptyStateElement?.parentElement) {
+            emptyStateElement.parentElement.removeChild(emptyStateElement);
+        }
+    }
+
+    function getMessageContainerClassName(role) {
+        if (role === 'user') {
+            return 'ai-chat-message ai-chat-message-user';
+        }
+
+        if (role === 'system') {
+            return 'ai-chat-message ai-chat-message-system';
+        }
+
+        return 'ai-chat-message ai-chat-message-assistant';
+    }
+
+    function getBubbleClassName(role) {
+        if (role === 'user') {
+            return 'ai-chat-bubble ai-chat-bubble-user';
+        }
+
+        if (role === 'system') {
+            return 'ai-chat-bubble ai-chat-bubble-system';
+        }
+
+        return 'ai-chat-bubble ai-chat-bubble-assistant';
     }
 
     function renderAssistantContent(element, markdownText) {
@@ -416,14 +526,28 @@
 
     function setUiState(state, elForm, elSendBtn, elStopBtn, elTyping, isStreaming) {
         elForm.dataset.state = state;
+        elForm.dataset.streaming = isStreaming ? 'true' : 'false';
         elSendBtn.disabled = state === 'sending';
         elTyping.classList.toggle('d-none', state !== 'sending');
         elStopBtn.classList.toggle('d-none', !isStreaming);
         elStopBtn.disabled = !isStreaming;
     }
 
-    function scrollToBottom(elChatWindow) {
-        elChatWindow.scrollTop = elChatWindow.scrollHeight;
+    function scrollToBottom(elChatWindow, smooth, scrollButton) {
+        if (!elChatWindow) return;
+
+        if (smooth) {
+            elChatWindow.scrollTo({
+                top: elChatWindow.scrollHeight,
+                behavior: 'smooth'
+            });
+        } else {
+            elChatWindow.scrollTop = elChatWindow.scrollHeight;
+        }
+
+        window.requestAnimationFrame(function () {
+            syncScrollAffordance(elChatWindow, scrollButton);
+        });
     }
 
     function showStatus(elStatus, message) {
@@ -488,6 +612,215 @@
         });
     }
 
+    function isChatWindowNearBottom(elChatWindow) {
+        if (!elChatWindow) {
+            return true;
+        }
+
+        const distanceToBottom = elChatWindow.scrollHeight - elChatWindow.scrollTop - elChatWindow.clientHeight;
+        return distanceToBottom <= SCROLL_BOTTOM_THRESHOLD;
+    }
+
+    function syncScrollAffordance(elChatWindow, scrollButton) {
+        if (!scrollButton) {
+            return;
+        }
+
+        if (!elChatWindow) {
+            setScrollButtonVisibility(scrollButton, false);
+            return;
+        }
+
+        const hasOverflow = elChatWindow.scrollHeight - elChatWindow.clientHeight > SCROLL_BOTTOM_THRESHOLD;
+        const shouldShowButton = hasOverflow && !isChatWindowNearBottom(elChatWindow);
+        setScrollButtonVisibility(scrollButton, shouldShowButton);
+    }
+
+    function setScrollButtonVisibility(scrollButton, isVisible) {
+        if (!scrollButton) {
+            return;
+        }
+
+        scrollButton.classList.toggle('show', isVisible);
+        scrollButton.hidden = !isVisible;
+        scrollButton.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+    }
+
+    function getConversationIdValue(elConversationId) {
+        return (elConversationId?.value || '').trim();
+    }
+
+    function updateConversationContext(elConversationId, elConversationMetaValue, elConversationMetaStatus, historyElements, conversationId, conversationTitle) {
+        const normalizedConversationId = (conversationId || '').toString().trim();
+        if (!normalizedConversationId) {
+            return;
+        }
+
+        const normalizedConversationTitle = buildConversationTitle(conversationTitle, 'Đoạn chat mới');
+
+        if (elConversationId) {
+            elConversationId.value = normalizedConversationId;
+        }
+
+        updateConversationMeta(elConversationMetaValue, elConversationMetaStatus, normalizedConversationTitle);
+        touchConversationHistory(historyElements, normalizedConversationId, normalizedConversationTitle);
+        syncConversationQueryString(normalizedConversationId);
+    }
+
+    function updateConversationMeta(elConversationMetaValue, elConversationMetaStatus, conversationTitle) {
+        if (elConversationMetaValue) {
+            elConversationMetaValue.textContent = conversationTitle;
+            elConversationMetaValue.title = conversationTitle;
+        }
+
+        if (elConversationMetaStatus) {
+            elConversationMetaStatus.textContent = ACTIVE_CONVERSATION_STATUS;
+        }
+    }
+
+    function touchConversationHistory(historyElements, conversationId, conversationTitle) {
+        if (!historyElements?.list || !conversationId) {
+            return;
+        }
+
+        let historyItem = historyElements.list.querySelector(`[data-conversation-id="${conversationId}"]`);
+        if (!historyItem) {
+            historyItem = createConversationHistoryItem(historyElements.chatPageUrl, conversationId);
+            historyElements.list.prepend(historyItem);
+        }
+
+        updateConversationHistoryItem(
+            historyItem,
+            buildConversationTitle(conversationTitle || getConversationHistoryTitle(historyItem), 'Đoạn chat mới'),
+            formatConversationTimestamp(new Date()));
+        historyElements.list.prepend(historyItem);
+        setActiveConversationHistoryItem(historyElements.list, conversationId);
+        syncHistoryVisibility(historyElements);
+    }
+
+    function createConversationHistoryItem(chatPageUrl, conversationId) {
+        const historyItem = document.createElement('a');
+        historyItem.className = 'ai-chat-history-item';
+        historyItem.dataset.aiHistoryItem = '';
+        historyItem.dataset.conversationId = conversationId;
+        historyItem.href = buildConversationHref(chatPageUrl, conversationId);
+
+        const titleElement = document.createElement('span');
+        titleElement.className = 'ai-chat-history-item-title';
+
+        const timeElement = document.createElement('span');
+        timeElement.className = 'ai-chat-history-item-time';
+
+        historyItem.appendChild(titleElement);
+        historyItem.appendChild(timeElement);
+        return historyItem;
+    }
+
+    function updateConversationHistoryItem(historyItem, title, timestampLabel) {
+        const titleElement = historyItem.querySelector('.ai-chat-history-item-title');
+        const timeElement = historyItem.querySelector('.ai-chat-history-item-time');
+
+        if (titleElement) {
+            titleElement.textContent = title;
+        }
+
+        if (timeElement) {
+            timeElement.textContent = timestampLabel;
+        }
+    }
+
+    function getConversationHistoryTitle(historyItem) {
+        return historyItem?.querySelector('.ai-chat-history-item-title')?.textContent || '';
+    }
+
+    function setActiveConversationHistoryItem(historyList, conversationId) {
+        if (!historyList) {
+            return;
+        }
+
+        historyList.querySelectorAll('[data-ai-history-item]').forEach(function (historyItem) {
+            const isActive = historyItem.dataset.conversationId === conversationId;
+            historyItem.classList.toggle('active', isActive);
+
+            if (isActive) {
+                historyItem.setAttribute('aria-current', 'page');
+            } else {
+                historyItem.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    function syncHistoryVisibility(historyElements) {
+        const historyCount = historyElements?.list?.children?.length || 0;
+        const hasHistory = historyCount > 0;
+
+        if (historyElements?.list) {
+            historyElements.list.classList.toggle('d-none', !hasHistory);
+        }
+
+        if (historyElements?.empty) {
+            historyElements.empty.classList.toggle('d-none', hasHistory);
+        }
+    }
+
+    function buildConversationTitle(rawTitle, fallbackTitle) {
+        const normalizedTitle = normalizeWhitespace(rawTitle);
+        if (!normalizedTitle) {
+            return fallbackTitle || '';
+        }
+
+        return normalizedTitle.length <= MAX_CONVERSATION_TITLE_LENGTH
+            ? normalizedTitle
+            : normalizedTitle.slice(0, MAX_CONVERSATION_TITLE_LENGTH);
+    }
+
+    function normalizeWhitespace(value) {
+        return (value || '')
+            .trim()
+            .replace(/\s+/g, ' ');
+    }
+
+    function formatConversationTimestamp(date) {
+        try {
+            const pad = function (n) { return String(n).padStart(2, '0'); };
+            const day = pad(date.getDate());
+            const month = pad(date.getMonth() + 1);
+            const year = date.getFullYear();
+            const hours = pad(date.getHours());
+            const minutes = pad(date.getMinutes());
+
+            return `${day}/${month}/${year} ${hours}:${minutes}`;
+        } catch {
+            return '';
+        }
+    }
+
+    function buildConversationHref(chatPageUrl, conversationId) {
+        return `${chatPageUrl}?conversationId=${encodeURIComponent(conversationId)}`;
+    }
+
+    function syncConversationQueryString(conversationId) {
+        if (!conversationId || typeof window === 'undefined') {
+            return;
+        }
+
+        if (window.top !== window.self) {
+            return;
+        }
+
+        const currentUrl = new URL(window.location.href);
+        if (currentUrl.searchParams.get('embed') === 'true') {
+            return;
+        }
+
+        if (currentUrl.searchParams.get('conversationId') === conversationId) {
+            return;
+        }
+
+        currentUrl.searchParams.set('conversationId', conversationId);
+        window.history.replaceState(window.history.state, '', currentUrl.toString());
+    }
+
     async function refreshObservability(observabilityUrl, elements) {
         if (!observabilityUrl) {
             return;
@@ -539,4 +872,3 @@
         init: init
     };
 })();
-

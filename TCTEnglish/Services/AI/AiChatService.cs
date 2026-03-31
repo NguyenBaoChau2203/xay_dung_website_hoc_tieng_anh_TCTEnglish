@@ -23,6 +23,7 @@ public sealed class AiChatService : IAiChatService
     };
 
     private readonly DbflashcardContext _context;
+    private readonly IAiConversationService _conversationService;
     private readonly IAiContextBuilder _contextBuilder;
     private readonly IAiProviderClient _providerClient;
     private readonly IAiConversationExecutionGuard _conversationExecutionGuard;
@@ -31,6 +32,7 @@ public sealed class AiChatService : IAiChatService
 
     public AiChatService(
         DbflashcardContext context,
+        IAiConversationService conversationService,
         IAiContextBuilder contextBuilder,
         IAiProviderClient providerClient,
         IAiConversationExecutionGuard conversationExecutionGuard,
@@ -38,6 +40,7 @@ public sealed class AiChatService : IAiChatService
         ILogger<AiChatService> logger)
     {
         _context = context;
+        _conversationService = conversationService;
         _contextBuilder = contextBuilder;
         _providerClient = providerClient;
         _conversationExecutionGuard = conversationExecutionGuard;
@@ -45,7 +48,7 @@ public sealed class AiChatService : IAiChatService
         _logger = logger;
     }
 
-    public async Task<ChatReplyDto> SendAsync(int userId, Guid conversationId, string message, CancellationToken ct)
+    public async Task<ChatReplyDto> SendAsync(int userId, Guid? conversationId, string message, CancellationToken ct)
     {
         var normalizedMessage = message?.Trim() ?? string.Empty;
         if (string.IsNullOrWhiteSpace(normalizedMessage))
@@ -63,16 +66,30 @@ public sealed class AiChatService : IAiChatService
             throw new ArgumentException("Nội dung yêu cầu không được hỗ trợ.", nameof(message));
         }
 
-        using var conversationLease = AcquireConversationLease(conversationId);
+        var resolvedConversationId = conversationId.GetValueOrDefault();
+        var hasConversationId = conversationId.HasValue && resolvedConversationId != Guid.Empty;
 
-        var conversation = await _context.AiConversations
-            .FirstOrDefaultAsync(x => x.Id == conversationId && x.UserId == userId, ct)
-            ?? throw new KeyNotFoundException($"Conversation '{conversationId}' was not found.");
+        AiConversation conversation;
+        var isDraftConversation = false;
+        if (hasConversationId)
+        {
+            conversation = await _context.AiConversations
+                .FirstOrDefaultAsync(x => x.Id == resolvedConversationId && x.UserId == userId, ct)
+                ?? throw new KeyNotFoundException($"Conversation '{resolvedConversationId}' was not found.");
+        }
+        else
+        {
+            conversation = await _conversationService.CreateConversationAsync(userId, normalizedMessage, ct);
+            resolvedConversationId = conversation.Id;
+            isDraftConversation = true;
+        }
+
+        using var conversationLease = AcquireConversationLease(resolvedConversationId);
 
         var userMessage = new AiMessage
         {
             Id = Guid.NewGuid(),
-            ConversationId = conversationId,
+            ConversationId = resolvedConversationId,
             Role = AiMessageRole.User,
             Content = normalizedMessage,
             CreatedAtUtc = DateTime.UtcNow
@@ -83,7 +100,7 @@ public sealed class AiChatService : IAiChatService
 
         var history = await _context.AiMessages
             .AsNoTracking()
-            .Where(x => x.ConversationId == conversationId && x.Id != userMessage.Id)
+            .Where(x => x.ConversationId == resolvedConversationId && x.Id != userMessage.Id)
             .OrderBy(x => x.CreatedAtUtc)
             .ToListAsync(ct);
 
@@ -99,11 +116,16 @@ public sealed class AiChatService : IAiChatService
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
-                ConversationId = conversationId,
+                ConversationId = resolvedConversationId,
                 IsSuccess = false,
                 ErrorCode = "request_token_budget_exceeded",
                 RequestedAtUtc = DateTime.UtcNow
             }, ct);
+
+            if (isDraftConversation)
+            {
+                await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
+            }
 
             throw new ArgumentException("Yêu cầu vượt giới hạn token cho mỗi lượt chat.", nameof(message));
         }
@@ -123,11 +145,16 @@ public sealed class AiChatService : IAiChatService
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
-                    ConversationId = conversationId,
+                    ConversationId = resolvedConversationId,
                     IsSuccess = false,
                     ErrorCode = "daily_token_budget_exceeded",
                     RequestedAtUtc = DateTime.UtcNow
                 }, ct);
+
+                if (isDraftConversation)
+                {
+                    await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
+                }
 
                 throw new AiRateLimitException("Bạn đã đạt giới hạn sử dụng AI trong ngày.", "daily_token_budget_exceeded");
             }
@@ -147,17 +174,22 @@ public sealed class AiChatService : IAiChatService
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
-                ConversationId = conversationId,
+                ConversationId = resolvedConversationId,
                 IsSuccess = false,
                 ErrorCode = ex.ErrorCode,
                 LatencyMs = (int)stopwatch.ElapsedMilliseconds,
                 RequestedAtUtc = DateTime.UtcNow
             }, ct);
 
+            if (isDraftConversation)
+            {
+                await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
+            }
+
             _logger.LogWarning(
                 ex,
                 "AI provider request failed for conversation {conversationId}. ErrorCode {errorCode}",
-                conversationId,
+                resolvedConversationId,
                 ex.ErrorCode);
 
             throw;
@@ -168,7 +200,7 @@ public sealed class AiChatService : IAiChatService
         var assistantMessage = new AiMessage
         {
             Id = Guid.NewGuid(),
-            ConversationId = conversationId,
+            ConversationId = resolvedConversationId,
             Role = AiMessageRole.Assistant,
             Content = aiReply.Text,
             PromptTokens = aiReply.PromptTokens,
@@ -182,7 +214,7 @@ public sealed class AiChatService : IAiChatService
         {
             Id = Guid.NewGuid(),
             UserId = userId,
-            ConversationId = conversationId,
+            ConversationId = resolvedConversationId,
             IsSuccess = true,
             PromptTokens = aiReply.PromptTokens,
             CompletionTokens = aiReply.CompletionTokens,
@@ -200,7 +232,7 @@ public sealed class AiChatService : IAiChatService
 
         _logger.LogInformation(
             "AI chat reply completed for conversation {conversationId}. LatencyMs {latencyMs}. Model {model}. PromptTokens {promptTokens}. CompletionTokens {completionTokens}. TotalTokens {totalTokens}",
-            conversationId,
+            resolvedConversationId,
             stopwatch.ElapsedMilliseconds,
             aiReply.Model,
             aiReply.PromptTokens,
@@ -209,7 +241,8 @@ public sealed class AiChatService : IAiChatService
 
         return new ChatReplyDto(
             aiReply.Text,
-            conversationId,
+            resolvedConversationId,
+            conversation.Title,
             new ChatUsageDto(aiReply.PromptTokens, aiReply.CompletionTokens, aiReply.TotalTokens, aiReply.Model),
             new ChatMetadataDto(requestId, (int)stopwatch.ElapsedMilliseconds));
     }
@@ -252,6 +285,49 @@ public sealed class AiChatService : IAiChatService
                 "Unable to persist AI request observability log. ConversationId {conversationId}. ErrorCode {errorCode}",
                 requestLog.ConversationId,
                 requestLog.ErrorCode);
+        }
+    }
+
+    private async Task RollbackDraftConversationAsync(int userId, Guid conversationId, CancellationToken ct)
+    {
+        try
+        {
+            var draftConversation = await _context.AiConversations
+                .FirstOrDefaultAsync(x => x.Id == conversationId && x.UserId == userId, ct);
+
+            if (draftConversation is null)
+            {
+                return;
+            }
+
+            var draftMessages = await _context.AiMessages
+                .Where(x => x.ConversationId == conversationId)
+                .ToListAsync(ct);
+
+            if (draftMessages.Count > 0)
+            {
+                _context.AiMessages.RemoveRange(draftMessages);
+            }
+
+            var draftRequestLogs = await _context.AiRequestLogs
+                .Where(x => x.ConversationId == conversationId)
+                .ToListAsync(ct);
+
+            if (draftRequestLogs.Count > 0)
+            {
+                _context.AiRequestLogs.RemoveRange(draftRequestLogs);
+            }
+
+            _context.AiConversations.Remove(draftConversation);
+            await _context.SaveChangesAsync(ct);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(
+                ex,
+                "Unable to rollback draft AI conversation {conversationId} for user {userId} after provider failure.",
+                conversationId,
+                userId);
         }
     }
 }
