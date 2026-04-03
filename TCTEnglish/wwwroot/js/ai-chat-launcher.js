@@ -1,4 +1,6 @@
 (function () {
+    const QUOTA_SYNC_EVENT = 'tct-ai-launcher-quota-consumed';
+
     function initLauncher(root) {
         if (!root) {
             return;
@@ -9,10 +11,76 @@
         const backdrop = root.querySelector('[data-ai-backdrop]');
         const panel = root.querySelector('.ai-launcher-panel');
         const frame = root.querySelector('[data-ai-frame]');
+        const standardQuotaElement = root.querySelector('[data-ai-plan-quota]');
+        const usageUrl = root.getAttribute('data-ai-usage-url') || '';
+        let isRefreshingQuota = false;
         let lastFocusedElement = null;
 
         if (!toggleButton || !panel) {
             return;
+        }
+
+        function syncStandardQuotaDisplay(usedCount, dailyLimit) {
+            if (!standardQuotaElement || !Number.isFinite(usedCount) || !Number.isFinite(dailyLimit) || dailyLimit <= 0) {
+                return;
+            }
+
+            const nextUsed = Math.min(dailyLimit, Math.max(0, usedCount));
+            standardQuotaElement.setAttribute('data-ai-plan-quota-used', String(nextUsed));
+            standardQuotaElement.setAttribute('data-ai-plan-quota-limit', String(dailyLimit));
+            standardQuotaElement.textContent = `Đã dùng ${nextUsed}/${dailyLimit}`;
+        }
+
+        async function refreshQuotaFromServerAsync() {
+            if (!standardQuotaElement || !usageUrl || isRefreshingQuota) {
+                return;
+            }
+
+            isRefreshingQuota = true;
+
+            try {
+                const response = await fetch(usageUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                });
+
+                if (!response.ok) {
+                    return;
+                }
+
+                const payload = await response.json();
+                if (!payload || payload.isUnlimited === true) {
+                    return;
+                }
+
+                const usedCount = Number.parseInt(payload.requestedToday, 10);
+                const dailyLimit = Number.parseInt(payload.dailyLimit, 10);
+                syncStandardQuotaDisplay(usedCount, dailyLimit);
+            } catch {
+                // no-op
+            } finally {
+                isRefreshingQuota = false;
+            }
+        }
+
+        function handleFrameMessage(event) {
+            if (!frame || !frame.contentWindow || event.source !== frame.contentWindow) {
+                return;
+            }
+
+            if (event.origin !== window.location.origin) {
+                return;
+            }
+
+            const payload = event.data;
+            if (!payload || payload.type !== QUOTA_SYNC_EVENT) {
+                return;
+            }
+
+            void refreshQuotaFromServerAsync();
         }
 
         function ensureFrameLoaded() {
@@ -239,6 +307,8 @@
                 closeLauncher();
             }
         });
+
+        window.addEventListener('message', handleFrameMessage);
     }
 
     document.addEventListener('DOMContentLoaded', function () {

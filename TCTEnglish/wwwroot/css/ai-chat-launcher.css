@@ -110,6 +110,10 @@
     padding: 0.9rem 0.95rem 0.85rem;
 }
 
+.ai-launcher-panel-copy {
+    min-width: 0;
+}
+
 .ai-launcher-panel-kicker {
     font-size: 0.68rem;
     letter-spacing: 0.1em;
@@ -122,9 +126,29 @@
     font-weight: 700;
 }
 
+.ai-launcher-panel-plan {
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.70rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+    max-width: 100%;
+    padding: 0.20rem 0.50rem;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.ai-launcher-panel-quota {
+    background: rgba(255, 255, 255, 0.24);
+}
+
 .ai-launcher-panel-actions {
     align-items: center;
     display: flex;
+    flex-shrink: 0;
     gap: 0.5rem;
 }
 

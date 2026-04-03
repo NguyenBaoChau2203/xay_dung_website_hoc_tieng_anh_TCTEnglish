@@ -1,12 +1,28 @@
 @model TCTEnglish.ViewModels.AI.AiChatPageViewModel
 
+@{
+    var userAvatar = User.FindFirst("AvatarUrl")?.Value;
+    var userName = User.Identity?.Name;
+    var userInitial = !string.IsNullOrEmpty(userName) ? userName[0].ToString().ToUpper() : "U";
+    var aiAvatar = "/images/ai/tct-ai-launcher.png";
+}
+
 <div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")"
-     data-ai-chat-shell="@(Model.IsEmbedded ? "embedded" : "page")">
+     data-ai-chat-shell="@(Model.IsEmbedded ? "embedded" : "page")"
+     data-user-avatar="@userAvatar"
+     data-user-initial="@userInitial"
+     data-ai-avatar="@aiAvatar">
     @if (!Model.IsEmbedded)
     {
         <div class="ai-chat-shell-header">
             <div>
-                <div class="ai-chat-shell-kicker">TCT AI</div>
+                <div class="ai-chat-shell-kicker">
+                    TCT AI
+                    @if (Model.IsStandardPlan)
+                    {
+                        <span class="badge bg-secondary ms-2 fw-normal" style="font-size: 0.75rem;">Gói Standard: 15 câu/ngày</span>
+                    }
+                </div>
                 <h1 class="ai-chat-shell-title">Trợ lý học tiếng Anh</h1>
                 <p class="ai-chat-shell-subtitle mb-0">
                     Hỏi về từ vựng, cách luyện tập, speaking và mẹo học phù hợp với lộ trình của bạn.
@@ -86,6 +102,13 @@
                             : "ai-chat-bubble ai-chat-bubble-assistant";
 
                     <div class="@messageClass" data-role="@message.Role">
+                        @if (isAssistant || isSystem)
+                        {
+                            <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
+                                <img src="@aiAvatar" alt="AI Avatar" loading="lazy" />
+                            </div>
+                        }
+
                         <div class="@bubbleClass">
                             @if (isAssistant)
                             {
@@ -96,9 +119,33 @@
                                 @message.Content
                             }
                         </div>
+
+                        @if (isUser)
+                        {
+                            <div class="ai-chat-avatar ai-chat-avatar-user" aria-hidden="true">
+                                @if (!string.IsNullOrEmpty(userAvatar))
+                                {
+                                    <img src="@userAvatar" alt="User Avatar" loading="lazy" />
+                                }
+                                else
+                                {
+                                    <div class="ai-chat-avatar-fallback">@userInitial</div>
+                                }
+                            </div>
+                        }
                     </div>
                 }
             }
+
+            <div id="typing" class="ai-chat-message ai-chat-message-assistant d-none" data-role="assistant" aria-live="polite" aria-atomic="true">
+                <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
+                    <img src="@aiAvatar" alt="AI Avatar" loading="lazy" />
+                </div>
+                <div class="ai-chat-bubble ai-chat-bubble-assistant ai-chat-typing-bubble">
+                    <span class="ai-chat-typing-dots"><span>.</span><span>.</span><span>.</span></span>
+                </div>
+            </div>
+
         </div>
         <button type="button"
                 id="scrollToBottomBtn"
@@ -130,7 +177,7 @@
                            maxlength="1000"
                            placeholder="Nhập câu hỏi của bạn..."
                            autocomplete="off"
-                           aria-describedby="typing chatStatus" />
+                           aria-describedby="chatStatus" />
 
                     <div class="ai-chat-composer-actions">
                         <button id="sendBtn" class="btn btn-primary ai-chat-send-btn" type="submit">Gửi</button>
@@ -140,7 +187,6 @@
             </div>
         </form>
 
-        <div id="typing" class="ai-chat-typing d-none" role="status" aria-live="polite" aria-atomic="true">AI đang trả lời...</div>
         <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="status" aria-live="assertive" aria-atomic="true"></div>
     </div>
 </div>

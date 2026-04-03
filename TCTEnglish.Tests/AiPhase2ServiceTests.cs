@@ -83,7 +83,7 @@ public sealed class AiChatServiceTests
     }
 
     [Fact]
-    public async Task SendAsync_ProviderFailure_ThrowsAndDoesNotSaveAssistantMessage()
+    public async Task SendAsync_ProviderFailure_ThrowsAndRollsBackUserPromptInExistingConversation()
     {
         var dbName = $"ai-phase2-provider-{Guid.NewGuid()}";
         await using var context = CreateContext(dbName);
@@ -100,8 +100,7 @@ public sealed class AiChatServiceTests
             .Where(x => x.ConversationId == conversationId)
             .ToListAsync();
 
-        Assert.Single(messages);
-        Assert.Equal(AiMessageRole.User, messages[0].Role);
+        Assert.Empty(messages);
 
         var requestLogs = await context.AiRequestLogs
             .AsNoTracking()
@@ -111,6 +110,41 @@ public sealed class AiChatServiceTests
         Assert.Single(requestLogs);
         Assert.False(requestLogs[0].IsSuccess);
         Assert.Equal("http_503", requestLogs[0].ErrorCode);
+    }
+
+    [Fact]
+    public async Task SendAsync_ExistingConversation_ProviderFailureThenRetry_DoesNotDuplicateUserPrompt()
+    {
+        var dbName = $"ai-phase2-provider-retry-no-dup-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        var attempt = 0;
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        {
+            attempt++;
+            return attempt == 1
+                ? throw new AiProviderException("AI provider request failed.", "http_503", true)
+                : Task.FromResult(new AiProviderReply("retry-success", 3, 4, 7, "test-model", "req-retry"));
+        }));
+
+        await Assert.ThrowsAsync<AiProviderException>(() =>
+            service.SendAsync(1, conversationId, "hello", CancellationToken.None));
+
+        var retryResult = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
+        Assert.Equal("retry-success", retryResult.Text);
+
+        var messages = await context.AiMessages
+            .AsNoTracking()
+            .Where(x => x.ConversationId == conversationId)
+            .OrderBy(x => x.CreatedAtUtc)
+            .ToListAsync();
+
+        Assert.Equal(2, messages.Count);
+        Assert.Equal(AiMessageRole.User, messages[0].Role);
+        Assert.Equal("hello", messages[0].Content);
+        Assert.Equal(AiMessageRole.Assistant, messages[1].Role);
+        Assert.Equal("retry-success", messages[1].Content);
     }
 
     [Fact]
@@ -202,6 +236,196 @@ public sealed class AiChatServiceTests
         Assert.Equal(2, savedMessages.Count);
         Assert.Equal(AiMessageRole.User, savedMessages[0].Role);
         Assert.Equal(AiMessageRole.Assistant, savedMessages[1].Role);
+    }
+
+    [Fact]
+    public async Task SendAsync_StandardUser_AtLimit_ThrowsRateLimitException()
+    {
+        var dbName = $"ai-phase1-limit-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        for (int i = 0; i < 15; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = true,
+                RequestedAtUtc = DateTime.UtcNow,
+                ErrorCode = null
+            });
+        }
+        await context.SaveChangesAsync();
+
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
+
+        var exception = await Assert.ThrowsAsync<AiRateLimitException>(() =>
+            service.SendAsync(1, conversationId, "hello", CancellationToken.None));
+
+        Assert.Equal("daily_question_limit_exceeded", exception.ErrorCode);
+    }
+
+    [Fact]
+    public async Task SendAsync_StandardUser_BelowDailyLimit_Succeeds()
+    {
+        var dbName = $"ai-phase1-standard-below-limit-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        for (int i = 0; i < 14; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = true,
+                RequestedAtUtc = DateTime.UtcNow
+            });
+        }
+
+        await context.SaveChangesAsync();
+
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
+
+        var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
+
+        Assert.Equal("success", result.Text);
+    }
+
+    [Fact]
+    public async Task SendAsync_ProviderFailure_DoesNotConsumeDailyQuestionQuota()
+    {
+        var dbName = $"ai-phase1-provider-failure-does-not-consume-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        for (int i = 0; i < 14; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = true,
+                RequestedAtUtc = DateTime.UtcNow
+            });
+        }
+
+        await context.SaveChangesAsync();
+
+        var failingService = CreateService(context, new StubAiProviderClient((_, _) =>
+            throw new AiProviderException("AI provider request failed.", "http_503", true)));
+
+        await Assert.ThrowsAsync<AiProviderException>(() =>
+            failingService.SendAsync(1, conversationId, "provider fails", CancellationToken.None));
+
+        var successfulRequestCountAfterFailure = await context.AiRequestLogs
+            .AsNoTracking()
+            .CountAsync(x => x.UserId == 1 && x.IsSuccess);
+
+        Assert.Equal(14, successfulRequestCountAfterFailure);
+
+        var successService = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 5, 7, 12, "test-model", null))));
+
+        var result = await successService.SendAsync(1, conversationId, "after failure", CancellationToken.None);
+
+        Assert.Equal("success", result.Text);
+    }
+
+    [Fact]
+    public async Task SendAsync_PremiumUser_AboveStandardLimit_Succeeds()
+    {
+        var dbName = $"ai-phase1-premium-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        var user = await context.Users.FindAsync(1);
+        user!.Role = Roles.Premium;
+
+        for (int i = 0; i < 15; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = true,
+                RequestedAtUtc = DateTime.UtcNow,
+                ErrorCode = null
+            });
+        }
+        await context.SaveChangesAsync();
+
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
+
+        var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
+        Assert.Equal("success", result.Text);
+    }
+
+    [Fact]
+    public async Task SendAsync_FailedRequestsDoNotCountTowardsLimit()
+    {
+        var dbName = $"ai-phase1-failedreqs-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        for (int i = 0; i < 15; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = false,
+                RequestedAtUtc = DateTime.UtcNow,
+                ErrorCode = "provider_error"
+            });
+        }
+        await context.SaveChangesAsync();
+
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
+
+        var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
+        Assert.Equal("success", result.Text);
+    }
+
+    [Fact]
+    public async Task SendAsync_AdminUser_AboveStandardLimit_Succeeds()
+    {
+        var dbName = $"ai-phase1-admin-{Guid.NewGuid()}";
+        await using var context = CreateContext(dbName);
+        var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
+
+        var user = await context.Users.FindAsync(1);
+        user!.Role = Roles.Admin;
+
+        for (int i = 0; i < 15; i++)
+        {
+            context.AiRequestLogs.Add(new AiRequestLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = 1,
+                ConversationId = conversationId,
+                IsSuccess = true,
+                RequestedAtUtc = DateTime.UtcNow,
+                ErrorCode = null
+            });
+        }
+        await context.SaveChangesAsync();
+
+        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+            Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
+
+        var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
+        Assert.Equal("success", result.Text);
     }
 
     private static DbflashcardContext CreateContext(string dbName)

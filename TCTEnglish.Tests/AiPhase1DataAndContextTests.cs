@@ -163,6 +163,86 @@ public sealed class AiConversationServiceTests
         Assert.Equal("Mine", conversations[0].Title);
     }
 
+    [Fact]
+    public async Task DeleteConversationAsync_WhenCalledByOwner_ReturnsTrueAndCascades()
+    {
+        var dbName = $"ai-phase2-delete-{Guid.NewGuid()}";
+        var options = new DbContextOptionsBuilder<DbflashcardContext>()
+            .UseInMemoryDatabase(dbName)
+            .Options;
+
+        await using var context = new DbflashcardContext(options);
+        await SeedUsersAsync(context);
+
+        var conversationId = Guid.NewGuid();
+        context.AiConversations.Add(new AiConversation
+        {
+            Id = conversationId,
+            UserId = 1,
+            Title = "Mine",
+            CreatedAtUtc = DateTime.UtcNow,
+            UpdatedAtUtc = DateTime.UtcNow
+        });
+
+        context.AiMessages.Add(new AiMessage
+        {
+            Id = Guid.NewGuid(),
+            ConversationId = conversationId,
+            Role = AiMessageRole.User,
+            Content = "test",
+            CreatedAtUtc = DateTime.UtcNow
+        });
+
+        context.AiRequestLogs.Add(new AiRequestLog
+        {
+            Id = Guid.NewGuid(),
+            UserId = 1,
+            ConversationId = conversationId,
+            IsSuccess = true,
+            RequestedAtUtc = DateTime.UtcNow
+        });
+
+        await context.SaveChangesAsync();
+
+        var service = new AiConversationService(context);
+        var result = await service.DeleteConversationAsync(1, conversationId, CancellationToken.None);
+
+        Assert.True(result);
+        Assert.Empty(context.AiConversations);
+        Assert.Empty(context.AiMessages);
+        Assert.Empty(context.AiRequestLogs);
+    }
+
+    [Fact]
+    public async Task DeleteConversationAsync_WhenCalledByOutsider_ReturnsFalseAndLeavesDataIntact()
+    {
+        var dbName = $"ai-phase2-deloutsider-{Guid.NewGuid()}";
+        var options = new DbContextOptionsBuilder<DbflashcardContext>()
+            .UseInMemoryDatabase(dbName)
+            .Options;
+
+        await using var context = new DbflashcardContext(options);
+        await SeedUsersAsync(context);
+
+        var conversationId = Guid.NewGuid();
+        context.AiConversations.Add(new AiConversation
+        {
+            Id = conversationId,
+            UserId = 1,
+            Title = "Mine",
+            CreatedAtUtc = DateTime.UtcNow,
+            UpdatedAtUtc = DateTime.UtcNow
+        });
+
+        await context.SaveChangesAsync();
+
+        var service = new AiConversationService(context);
+        var result = await service.DeleteConversationAsync(2, conversationId, CancellationToken.None);
+
+        Assert.False(result);
+        Assert.Single(context.AiConversations);
+    }
+
     private static async Task SeedUsersAsync(DbflashcardContext context)
     {
         context.Users.AddRange(

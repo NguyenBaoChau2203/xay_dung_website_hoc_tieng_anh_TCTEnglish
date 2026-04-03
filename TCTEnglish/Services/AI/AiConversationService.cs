@@ -70,6 +70,22 @@ public sealed class AiConversationService : IAiConversationService
             .ToListAsync(ct);
     }
 
+    public async Task<bool> DeleteConversationAsync(int userId, Guid conversationId, CancellationToken ct)
+    {
+        var conversation = await _context.AiConversations
+            .FirstOrDefaultAsync(x => x.Id == conversationId && x.UserId == userId, ct);
+
+        if (conversation == null)
+        {
+            return false;
+        }
+
+        _context.AiConversations.Remove(conversation);
+        await _context.SaveChangesAsync(ct);
+
+        return true;
+    }
+
     public async Task<IReadOnlyList<AiMessage>> GetMessagesByConversationAsync(int userId, Guid conversationId, CancellationToken ct)
     {
         var hasOwnership = await _context.AiConversations

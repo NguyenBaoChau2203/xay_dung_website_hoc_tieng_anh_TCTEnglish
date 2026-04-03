@@ -11,5 +11,6 @@ public sealed class AiChatPageViewModel
     public string CurrentConversationTitle { get; init; } = string.Empty;
     public string CurrentConversationStatus { get; init; } = string.Empty;
     public bool IsEmbedded { get; init; }
+    public bool IsStandardPlan { get; init; }
 }
 

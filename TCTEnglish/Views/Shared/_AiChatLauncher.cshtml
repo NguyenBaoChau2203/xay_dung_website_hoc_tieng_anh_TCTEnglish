@@ -1,11 +1,23 @@
+@using TCTVocabulary.Security
+@using TCTEnglish.Services.AI
+@inject IAiChatService AiChatService
 @{
     var chatUrl = Url.Action("Chat", "Ai") ?? "/AI/Chat";
     var embedUrl = Url.Action("Chat", "Ai", new { embed = true }) ?? "/AI/Chat?embed=true";
+    var usageUrl = Url.Action("Usage", "Ai") ?? "/AI/Chat/Usage";
     var loginUrl = Url.Action("Login", "Account", new { returnUrl = chatUrl }) ?? "/Account/Login";
     var isAuthenticated = User.Identity?.IsAuthenticated == true;
+    var isAdminPlan = User.IsInRole(TCTVocabulary.Models.Roles.Admin);
+    var isPremiumPlan = User.IsInRole(TCTVocabulary.Models.Roles.Premium);
+
+    TCTEnglish.ViewModels.AI.AiUsageInfo? usageInfo = null;
+    if (isAuthenticated && User.TryGetUserId(out var userId))
+    {
+        usageInfo = await AiChatService.GetDailyUsageAsync(userId, Context.RequestAborted);
+    }
 }
 
-<div class="ai-launcher" data-ai-launcher>
+<div class="ai-launcher" data-ai-launcher data-ai-usage-url="@(isAuthenticated ? usageUrl : string.Empty)">
     @if (isAuthenticated)
     {
         <div class="ai-launcher-backdrop" data-ai-backdrop></div>
@@ -21,7 +33,38 @@
                  data-ai-panel>
             <div class="ai-launcher-panel-header">
                 <div class="ai-launcher-panel-copy">
-                    <div class="ai-launcher-panel-kicker">TCT AI</div>
+                    <div class="ai-launcher-panel-kicker d-flex align-items-center gap-2 mb-1">
+                        <span>TCT AI</span>
+                        @if (isAdminPlan)
+                        {
+                            <div class="ai-launcher-panel-plan m-0" data-ai-plan-summary>Admin: Không giới hạn</div>
+                        }
+                        else if (isPremiumPlan)
+                        {
+                            <div class="ai-launcher-panel-plan m-0" data-ai-plan-summary>Gói Premium: Không giới hạn</div>
+                        }
+                        else if (usageInfo != null)
+                        {
+                            var usedToday = Math.Clamp(usageInfo.RequestedToday, 0, usageInfo.DailyLimit);
+                            <div class="d-inline-flex align-items-center flex-wrap gap-1">
+                                <div class="ai-launcher-panel-plan m-0" data-ai-plan-summary>Gói Standard: @usageInfo.DailyLimit câu/ngày</div>
+                                <div class="ai-launcher-panel-plan ai-launcher-panel-quota m-0"
+                                     data-ai-plan-quota
+                                     data-ai-plan-quota-used="@usedToday"
+                                     data-ai-plan-quota-limit="@usageInfo.DailyLimit">Đã dùng @usedToday/@usageInfo.DailyLimit</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-inline-flex align-items-center flex-wrap gap-1">
+                                <div class="ai-launcher-panel-plan m-0" data-ai-plan-summary>Gói Standard: 15 câu/ngày</div>
+                                <div class="ai-launcher-panel-plan ai-launcher-panel-quota m-0"
+                                     data-ai-plan-quota
+                                     data-ai-plan-quota-used="0"
+                                     data-ai-plan-quota-limit="15">Đã dùng 0/15</div>
+                            </div>
+                        }
+                    </div>
                     <div id="aiLauncherPanelTitle" class="ai-launcher-panel-title">Trợ lý học tập</div>
                 </div>
 

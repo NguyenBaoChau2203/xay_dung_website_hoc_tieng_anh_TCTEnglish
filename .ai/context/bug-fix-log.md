@@ -42,6 +42,116 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### AI launcher quota sync could drift with multi-tab sends due to local UI increments - 2026-04-03
+
+**Symptom**: Standard-plan quota countdown in launcher could be temporarily inaccurate when embedded chat sends happened across multiple tabs/windows because host UI incremented locally per success event.
+
+**Root Cause**: The initial iframe-to-host sync used client-side `+1` increments only, without pulling authoritative `AiRequestLogs`-based usage after each successful embedded send.
+
+**Solution**: Added authoritative usage refresh path in AI boundary: new `GET /AI/Chat/Usage` endpoint (via existing `IAiChatService.GetDailyUsageAsync`) and launcher runtime now refreshes quota from server on each embedded success sync event instead of relying on local increments.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/AiController.cs` - added `Usage` endpoint (`/AI/Chat/Usage`) for authenticated usage snapshot.
+- `TCTEnglish/Views/Shared/_AiChatLauncher.cshtml` - exposed `data-ai-usage-url` on launcher root.
+- `TCTEnglish/wwwroot/js/ai-chat-launcher.js` - replaced local increment logic with authoritative `fetch(usageUrl)` refresh.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added integration assertions for usage endpoint and launcher usage refresh hook.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `run_tests` with `TypeName=TCTEnglish.Tests.AiPhase4HardeningIntegrationTests` (34 passed)
+- `run_build` (successful)
+
+**Commit**: Not created.
+
+**Notes**: Premium/Admin behavior remains unchanged (unlimited path, no Standard quota countdown element).
+
+### AI launcher Standard quota countdown did not refresh after embedded chat sends - 2026-04-03
+
+**Symptom**: On pages with the shared AI launcher, Standard-plan quota text (`Đã dùng x/15`) stayed stale after the user sent successful messages inside the embedded `/AI/Chat?embed=true` iframe. The countdown only refreshed after reloading the parent page.
+
+**Root Cause**: Launcher quota markup was rendered server-side once and had no runtime sync channel from the embedded chat frame to the launcher host after successful sends.
+
+**Solution**: Added a minimal same-origin message bridge: embedded chat now posts a quota-consumed event to the parent only after successful sends, and launcher host listens for that event (from its iframe only) to increment Standard quota UI in place. Added machine-readable quota attributes in launcher markup and targeted integration checks for the JS hooks.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js` - added post-send quota sync event emission via `window.parent.postMessage(...)`.
+- `TCTEnglish/wwwroot/js/ai-chat-launcher.js` - added same-origin message listener scoped to launcher iframe and Standard quota DOM update logic.
+- `TCTEnglish/Views/Shared/_AiChatLauncher.cshtml` - added `data-ai-plan-quota-used` / `data-ai-plan-quota-limit` attributes and Standard fallback quota line.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added targeted regression tests for embedded send sync message + launcher host listener and new quota attributes.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `run_tests` with `TypeName=TCTEnglish.Tests.AiPhase4HardeningIntegrationTests` (33 passed)
+- `run_build` (successful)
+
+**Commit**: Not created.
+
+**Notes**: Sync is intentionally additive and UI-only; Premium/Admin unlimited rendering remains unchanged because no Standard quota element exists for those plans.
+
+### AI existing-conversation retry could duplicate user prompt after provider failure - 2026-04-03
+
+**Symptom**: In an existing conversation, a provider timeout/unavailable response could leave the just-sent user prompt persisted. When the user retried, the same prompt was stored again, creating duplicate user entries for effectively one retry flow.
+
+**Root Cause**: `AiChatService.SendAsync(...)` persisted the user message before calling the provider and only rolled back draft-conversation data on provider failure. Existing conversations kept the failed-attempt user message.
+
+**Solution**: Added provider-failure rollback for existing conversations to remove the just-persisted user prompt message while preserving failure request logs. Added service and integration regression tests for fail-then-retry behavior to ensure only one user prompt is persisted.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/AiChatService.cs` - added existing-conversation failed-prompt rollback path and helper method.
+- `TCTEnglish.Tests/AiPhase2ServiceTests.cs` - updated provider-failure expectation and added retry no-duplicate regression test.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added integration test for existing conversation fail-then-retry prompt dedup behavior.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests --filter Ai --no-restore`
+
+**Commit**: Not created.
+
+**Notes**: This follows the same AI hardening theme as the 2026-03-30 draft-rollback fix, but addresses a different root cause scope (existing conversations instead of first-send drafts).
+
+### AI regression slice failed to compile due to missing Phase4 helper utilities - 2026-04-03
+
+**Symptom**: `dotnet test TCTEnglish.Tests --filter Ai --no-restore` failed at compile time in `AiPhase4HardeningIntegrationTests` because helper methods (`SeedSuccessfulRequestLogsAsync`, `CreateDeleteRequest`, `SeedMessageAndRequestLogAsync`) were referenced but not implemented.
+
+**Root Cause**: During prior AI regression-suite edits, calls to shared local test helpers remained in the integration test class but the helper implementations were removed, leaving unresolved symbols in the AI test slice.
+
+**Solution**: Restored the missing local helper utilities in `AiPhase4HardeningIntegrationTests` for quota-log seeding, delete-request construction (including optional anti-forgery token), and message/request-log seeding for delete cascade verification. Added one focused regression assertion to keep upgraded UI coverage meaningful (`Standard` plan hint + delete feedback hooks).
+
+**Files Changed**:
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - restored missing helper methods and added `Chat_FullPage_StandardPlan_RendersPlanHintAndDeleteFeedbackHooks`.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests --filter Ai --no-restore` (passed, AI slice compiles/runs)
+- `run_build` (passed)
+
+**Commit**: Not created.
+
+**Notes**: Root cause does not match previously logged delete-UX runtime bug; this fix is scoped strictly to AI regression-suite compile/run restoration.
+
+### AI chat delete UX still fell back to browser-native dialogs on full page - 2026-04-03
+
+**Symptom**: On `/AI/Chat`, clicking delete in the conversation history could still trigger browser-native `confirm(...)` / `alert(...)` flows instead of the intended app-styled confirmation modal and toast feedback.
+
+**Root Cause**: `ai-chat.js` had a native-dialog fallback path when `window.bootstrap` was unavailable, and `_Layout.cshtml` did not load the Bootstrap bundle runtime required by the existing modal/toast implementation.
+
+**Solution**: Loaded Bootstrap bundle runtime in shared layout so full-page AI chat always has modal/toast support, then removed the native delete fallback branch in `ai-chat.js` and kept error reporting in-app via chat status/modal error state. Added integration assertions to lock the runtime and no-native-dialog behavior.
+
+**Files Changed**:
+- `TCTEnglish/Views/Shared/_Layout.cshtml` - added Bootstrap bundle script include.
+- `TCTEnglish/wwwroot/js/ai-chat.js` - removed `confirm(...)` / `alert(...)` delete fallback and required modal path.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added assertions for delete modal/toast hooks, Bootstrap bundle presence, and no native delete-dialog APIs in script.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `dotnet build D:\TCTEnglish\TCTEnglish\TCTEnglish.csproj --no-restore`
+- `node --check D:\TCTEnglish\TCTEnglish\wwwroot\js\ai-chat.js`
+- `dotnet test D:\TCTEnglish\TCTEnglish.Tests\TCTEnglish.Tests.csproj --filter Ai --no-restore` *(blocked by existing missing helper methods in `AiPhase4HardeningIntegrationTests.cs`: `SeedSuccessfulRequestLogsAsync`, `CreateDeleteRequest`, `SeedMessageAndRequestLogAsync`)*
+
+**Commit**: Not created.
+
+**Notes**: This follow-up is intentionally scoped to the delete UX runtime gap only; existing AI regression-suite compile breakage remains a separate blocker tracked by follow-up `02`.
+
 ### AI chat long histories pushed the composer below the page fold - 2026-03-31
 
 **Symptom**: On the full AI chat page, longer conversation histories could make the page itself grow vertically so users had to scroll the whole document to get back to the composer instead of staying inside a bounded chat surface.

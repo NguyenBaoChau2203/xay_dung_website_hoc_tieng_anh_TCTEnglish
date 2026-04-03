@@ -2,6 +2,7 @@
     const MAX_CONVERSATION_TITLE_LENGTH = 80;
     const SCROLL_BOTTOM_THRESHOLD = 80;
     const ACTIVE_CONVERSATION_STATUS = 'Đang mở từ lịch sử hội thoại.';
+    const LAUNCHER_QUOTA_SYNC_EVENT = 'tct-ai-launcher-quota-consumed';
 
     function init(options) {
         const elForm = document.getElementById('chatForm');
@@ -48,6 +49,60 @@
 
         hydrateAssistantMessages(elChatWindow);
         hydrateTimestamps(historyElements);
+
+        if (historyElements.list) {
+            let pendingDeleteBtn = null;
+            let pendingConversationId = null;
+            const deleteModalEl = document.getElementById('deleteConversationModal');
+            const deleteModal = deleteModalEl && window.bootstrap ? new bootstrap.Modal(deleteModalEl) : null;
+            const confirmDeleteBtn = document.getElementById('confirmDeleteConversationBtn');
+
+            if (confirmDeleteBtn) {
+                confirmDeleteBtn.addEventListener('click', async function () {
+                    if (!pendingConversationId || !pendingDeleteBtn) return;
+
+                    const errorEl = document.getElementById('deleteConversationError');
+                    if (errorEl) errorEl.classList.add('d-none');
+                    confirmDeleteBtn.disabled = true;
+
+                    try {
+                        await deleteConversationContext(pendingConversationId, options?.deleteUrl, elConversationId.value, historyElements, pendingDeleteBtn);
+                        if (deleteModal) deleteModal.hide();
+                    } catch (err) {
+                        if (errorEl) {
+                            errorEl.textContent = err.message || 'Đã xảy ra lỗi khi xóa hội thoại.';
+                            errorEl.classList.remove('d-none');
+                        }
+                    } finally {
+                        confirmDeleteBtn.disabled = false;
+                        pendingConversationId = null;
+                        pendingDeleteBtn = null;
+                    }
+                });
+            }
+
+            historyElements.list.addEventListener('click', function (e) {
+                const deleteBtn = e.target.closest('[data-ai-history-delete]');
+                if (deleteBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const conversationId = deleteBtn.getAttribute('data-ai-history-delete');
+                    if (!deleteModal) {
+                        showStatus(elStatus, 'Không thể mở hộp thoại xác nhận xóa. Vui lòng tải lại trang và thử lại.');
+                        return;
+                    }
+
+                    pendingConversationId = conversationId;
+                    pendingDeleteBtn = deleteBtn;
+                    const errorEl = document.getElementById('deleteConversationError');
+                    if (errorEl) errorEl.classList.add('d-none');
+                    hideStatus(elStatus);
+                    deleteModal.show();
+                }
+            });
+        }
+
         scrollToBottom(elChatWindow, false, elScrollToBottomBtn);
         syncHistoryVisibility(historyElements);
         syncScrollAffordance(elChatWindow, elScrollToBottomBtn);
@@ -129,6 +184,8 @@
                         currentConversationId,
                         buildConversationTitle(elConversationMetaValue?.textContent || '', 'Đoạn chat hiện tại'));
                 }
+
+                notifyLauncherQuotaConsumed();
 
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
@@ -252,6 +309,14 @@
             const chatWindow = runtime.streamMessageElement.closest('.ai-chat-window');
             const isNearBottom = isChatWindowNearBottom(chatWindow);
 
+            if (runtime.streamChunkCount === 0) {
+                const elTyping = document.getElementById('typing');
+                if (elTyping) elTyping.classList.add('d-none');
+                if (runtime.streamMessageElement && runtime.streamMessageElement.closest('.ai-chat-message')) {
+                    runtime.streamMessageElement.closest('.ai-chat-message').classList.remove('d-none');
+                }
+            }
+
             runtime.streamChunkCount += 1;
             runtime.streamBuffer += payload?.chunk || '';
             renderAssistantContent(runtime.streamMessageElement, runtime.streamBuffer);
@@ -323,11 +388,14 @@
             return false;
         }
 
+        setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, true);
         runtime.isStreaming = true;
         runtime.streamChunkCount = 0;
         runtime.streamBuffer = '';
         runtime.streamMessageElement = appendStreamingAssistantMessage(elChatWindow, runtime.scrollToBottomButton);
-        setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, true);
+        if (runtime.streamMessageElement && runtime.streamMessageElement.closest('.ai-chat-message')) {
+            runtime.streamMessageElement.closest('.ai-chat-message').classList.add('d-none');
+        }
 
         const completionPromise = new Promise(function (resolve) {
             runtime.streamCompletionResolver = resolve;
@@ -439,6 +507,55 @@
         });
     }
 
+    async function deleteConversationContext(conversationId, deleteUrl, activeConversationId, historyElements, deleteBtn) {
+        if (!deleteUrl || !conversationId) throw new Error("Missing parameters");
+
+        const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+        const formData = new FormData();
+        formData.append('conversationId', conversationId);
+
+        const btnOriginalHtml = deleteBtn.innerHTML;
+        deleteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        deleteBtn.disabled = true;
+
+        const resp = await fetch(deleteUrl, {
+            method: 'POST',
+            headers: {
+                'RequestVerificationToken': token,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        });
+
+        if (!resp.ok) {
+            deleteBtn.innerHTML = btnOriginalHtml;
+            deleteBtn.disabled = false;
+            throw new Error(resp.status === 404 ? 'Không tìm thấy hội thoại để xóa.' : 'Đã xảy ra lỗi khi xóa hội thoại.');
+        }
+
+        const itemWrapper = deleteBtn.closest('.ai-chat-history-item-wrapper');
+        if (itemWrapper) {
+            itemWrapper.remove();
+        }
+
+        if (historyElements.list && Array.from(historyElements.list.querySelectorAll('.ai-chat-history-item-wrapper')).length === 0) {
+            historyElements.list.classList.add('d-none');
+            if (historyElements.empty) {
+                historyElements.empty.classList.remove('d-none');
+            }
+        }
+
+        if (activeConversationId === conversationId) {
+            window.location.href = historyElements.chatPageUrl;
+        } else {
+            const toastEl = document.getElementById('deleteSuccessToast');
+            if (toastEl && window.bootstrap) {
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        }
+    }
+
     function hydrateTimestamps(historyElements) {
         if (!historyElements?.list) {
             return;
@@ -463,22 +580,51 @@
         container.className = getMessageContainerClassName(role);
         container.setAttribute('data-role', role);
 
+        const shell = document.querySelector('.ai-chat-shell');
+        const userAvatar = shell?.dataset.userAvatar || '';
+        const userInitial = shell?.dataset.userInitial || 'U';
+        const aiAvatar = shell?.dataset.aiAvatar || '/images/ai/tct-ai-launcher.png';
+
+        if (role === 'assistant' || role === 'system') {
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'ai-chat-avatar ai-chat-avatar-assistant';
+            avatarDiv.setAttribute('aria-hidden', 'true');
+            avatarDiv.innerHTML = `<img src="${aiAvatar}" alt="AI Avatar" loading="lazy" />`;
+            container.appendChild(avatarDiv);
+        }
+
         const bubble = document.createElement('div');
         bubble.className = getBubbleClassName(role);
 
         if (role === 'assistant') {
-            renderAssistantContent(bubble, text);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'js-assistant-markdown';
+            renderAssistantContent(wrapper, text);
+            bubble.appendChild(wrapper);
         } else {
             bubble.textContent = text;
         }
 
         container.appendChild(bubble);
+
+        if (role === 'user') {
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'ai-chat-avatar ai-chat-avatar-user';
+            avatarDiv.setAttribute('aria-hidden', 'true');
+            if (userAvatar) {
+                avatarDiv.innerHTML = `<img src="${userAvatar}" alt="User Avatar" loading="lazy" />`;
+            } else {
+                avatarDiv.innerHTML = `<div class="ai-chat-avatar-fallback">${userInitial}</div>`;
+            }
+            container.appendChild(avatarDiv);
+        }
+
         elChatWindow.appendChild(container);
         scrollToBottom(elChatWindow, false, scrollButton);
 
         return {
             containerElement: container,
-            contentElement: bubble
+            contentElement: bubble.querySelector('.js-assistant-markdown') || bubble
         };
     }
 
@@ -528,7 +674,18 @@
         elForm.dataset.state = state;
         elForm.dataset.streaming = isStreaming ? 'true' : 'false';
         elSendBtn.disabled = state === 'sending';
-        elTyping.classList.toggle('d-none', state !== 'sending');
+
+        if (state === 'sending' && elTyping) {
+            const chatWindow = document.getElementById('chatWindow');
+            if (chatWindow) {
+                chatWindow.appendChild(elTyping);
+            }
+            elTyping.classList.remove('d-none');
+            scrollToBottom(chatWindow, false, document.getElementById('scrollToBottomBtn'));
+        } else if (elTyping) {
+            elTyping.classList.add('d-none');
+        }
+
         elStopBtn.classList.toggle('d-none', !isStreaming);
         elStopBtn.disabled = !isStreaming;
     }
@@ -612,6 +769,21 @@
         });
     }
 
+    function notifyLauncherQuotaConsumed() {
+        if (typeof window === 'undefined' || window.top === window.self) {
+            return;
+        }
+
+        try {
+            window.parent.postMessage({
+                type: LAUNCHER_QUOTA_SYNC_EVENT,
+                consumed: 1
+            }, window.location.origin);
+        } catch {
+            // no-op
+        }
+    }
+
     function isChatWindowNearBottom(elChatWindow) {
         if (!elChatWindow) {
             return true;
@@ -683,22 +855,28 @@
             return;
         }
 
-        let historyItem = historyElements.list.querySelector(`[data-conversation-id="${conversationId}"]`);
-        if (!historyItem) {
-            historyItem = createConversationHistoryItem(historyElements.chatPageUrl, conversationId);
-            historyElements.list.prepend(historyItem);
+        const existingHistoryAnchor = historyElements.list.querySelector(`[data-conversation-id="${conversationId}"]`);
+        let historyItemWrapper = existingHistoryAnchor?.closest('.ai-chat-history-item-wrapper');
+
+        if (!historyItemWrapper) {
+            historyItemWrapper = createConversationHistoryItem(historyElements.chatPageUrl, conversationId);
+            historyElements.list.prepend(historyItemWrapper);
         }
 
         updateConversationHistoryItem(
-            historyItem,
-            buildConversationTitle(conversationTitle || getConversationHistoryTitle(historyItem), 'Đoạn chat mới'),
+            historyItemWrapper,
+            buildConversationTitle(conversationTitle || getConversationHistoryTitle(historyItemWrapper), 'Đoạn chat mới'),
             formatConversationTimestamp(new Date()));
-        historyElements.list.prepend(historyItem);
+        historyElements.list.prepend(historyItemWrapper);
         setActiveConversationHistoryItem(historyElements.list, conversationId);
         syncHistoryVisibility(historyElements);
     }
 
     function createConversationHistoryItem(chatPageUrl, conversationId) {
+        const historyItemWrapper = document.createElement('div');
+        historyItemWrapper.className = 'ai-chat-history-item-wrapper';
+        historyItemWrapper.dataset.aiHistoryItemWrapper = '';
+
         const historyItem = document.createElement('a');
         historyItem.className = 'ai-chat-history-item';
         historyItem.dataset.aiHistoryItem = '';
@@ -713,7 +891,18 @@
 
         historyItem.appendChild(titleElement);
         historyItem.appendChild(timeElement);
-        return historyItem;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.className = 'ai-chat-history-delete-btn';
+        deleteButton.setAttribute('data-ai-history-delete', conversationId);
+        deleteButton.setAttribute('aria-label', 'Xóa hội thoại');
+        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+        historyItemWrapper.appendChild(historyItem);
+        historyItemWrapper.appendChild(deleteButton);
+
+        return historyItemWrapper;
     }
 
     function updateConversationHistoryItem(historyItem, title, timestampLabel) {
@@ -726,6 +915,7 @@
 
         if (timeElement) {
             timeElement.textContent = timestampLabel;
+            timeElement.setAttribute('data-timestamp', new Date().toISOString());
         }
     }
 

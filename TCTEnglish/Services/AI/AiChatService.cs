@@ -66,6 +66,21 @@ public sealed class AiChatService : IAiChatService
             throw new ArgumentException("Nội dung yêu cầu không được hỗ trợ.", nameof(message));
         }
 
+        var normalizedRole = await GetNormalizedUserRoleAsync(userId, ct);
+        if (normalizedRole == Roles.Standard)
+        {
+            var successfulRequestsToday = await _context.AiRequestLogs
+                .AsNoTracking()
+                .CountAsync(x => x.UserId == userId 
+                    && x.IsSuccess 
+                    && x.RequestedAtUtc >= DateTime.UtcNow.Date, ct);
+
+            if (successfulRequestsToday >= 15)
+            {
+                throw new AiRateLimitException("Bạn đã vượt quá giới hạn 15 câu hỏi AI mỗi ngày của gói Standard.", "daily_question_limit_exceeded");
+            }
+        }
+
         var resolvedConversationId = conversationId.GetValueOrDefault();
         var hasConversationId = conversationId.HasValue && resolvedConversationId != Guid.Empty;
 
@@ -185,6 +200,10 @@ public sealed class AiChatService : IAiChatService
             {
                 await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
             }
+            else
+            {
+                await RollbackFailedUserMessageAsync(userMessage.Id, ct);
+            }
 
             _logger.LogWarning(
                 ex,
@@ -258,6 +277,17 @@ public sealed class AiChatService : IAiChatService
             "Cuộc hội thoại này đang có một yêu cầu AI khác đang xử lý. Vui lòng chờ phản hồi hiện tại hoàn tất.");
     }
 
+    private async Task<string> GetNormalizedUserRoleAsync(int userId, CancellationToken ct)
+    {
+        var role = await _context.Users
+            .AsNoTracking()
+            .Where(u => u.UserId == userId)
+            .Select(u => u.Role)
+            .FirstOrDefaultAsync(ct);
+
+        return Roles.Normalize(role);
+    }
+
     private static bool ContainsBlockedContent(string message)
     {
         foreach (var pattern in BlockedContentPatterns)
@@ -329,5 +359,56 @@ public sealed class AiChatService : IAiChatService
                 conversationId,
                 userId);
         }
+    }
+
+    private async Task RollbackFailedUserMessageAsync(Guid userMessageId, CancellationToken ct)
+    {
+        try
+        {
+            var failedMessage = await _context.AiMessages
+                .FirstOrDefaultAsync(x => x.Id == userMessageId, ct);
+
+            if (failedMessage is null)
+            {
+                return;
+            }
+
+            _context.AiMessages.Remove(failedMessage);
+            await _context.SaveChangesAsync(ct);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(
+                ex,
+                "Unable to rollback failed user AI prompt message {messageId} after provider failure.",
+                userMessageId);
+        }
+    }
+
+    public async Task<AiUsageInfo> GetDailyUsageAsync(int userId, CancellationToken ct)
+    {
+        var role = await GetNormalizedUserRoleAsync(userId, ct);
+        if (role == Roles.Admin || role == Roles.Premium)
+        {
+            return new AiUsageInfo
+            {
+                IsUnlimited = true,
+                DailyLimit = 0,
+                RequestedToday = 0
+            };
+        }
+
+        var successfulRequestsToday = await _context.AiRequestLogs
+            .AsNoTracking()
+            .CountAsync(x => x.UserId == userId
+                && x.IsSuccess
+                && x.RequestedAtUtc >= DateTime.UtcNow.Date, ct);
+
+        return new AiUsageInfo
+        {
+            IsUnlimited = false,
+            DailyLimit = 15,
+            RequestedToday = successfulRequestsToday
+        };
     }
 }

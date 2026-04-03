@@ -65,6 +65,8 @@ public sealed class AiController : BaseController
             ? "Đang mở từ lịch sử hội thoại."
             : "Sẽ tạo sau khi bạn gửi tin nhắn đầu tiên.";
 
+        var isStandardPlan = !User.IsInRole(TCTVocabulary.Models.Roles.Premium) && !User.IsInRole(TCTVocabulary.Models.Roles.Admin);
+
         var viewModel = new AiChatPageViewModel
         {
             ConversationId = conversationId,
@@ -72,7 +74,8 @@ public sealed class AiController : BaseController
             Conversations = conversations.Select(MapToConversationSummaryViewModel).ToList(),
             CurrentConversationTitle = currentConversationTitle,
             CurrentConversationStatus = currentConversationStatus,
-            IsEmbedded = embed
+            IsEmbedded = embed,
+            IsStandardPlan = isStandardPlan
         };
 
         if (embed)
@@ -148,12 +151,35 @@ public sealed class AiController : BaseController
         }
     }
 
+    [HttpPost("Chat/Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete([FromForm] Guid conversationId, CancellationToken ct)
+    {
+        var userId = GetCurrentUserId();
+        var success = await _conversationService.DeleteConversationAsync(userId, conversationId, ct);
+
+        if (!success)
+        {
+            return NotFound();
+        }
+
+        return Ok(new { success = true });
+    }
+
     [HttpGet("Observability")]
     public async Task<IActionResult> Observability([FromQuery] int days = 7, CancellationToken ct = default)
     {
         var userId = GetCurrentUserId();
         var snapshot = await _observabilityService.GetUserSnapshotAsync(userId, days, ct);
         return Json(snapshot);
+    }
+
+    [HttpGet("Chat/Usage")]
+    public async Task<IActionResult> Usage(CancellationToken ct = default)
+    {
+        var userId = GetCurrentUserId();
+        var usage = await _chatService.GetDailyUsageAsync(userId, ct);
+        return Json(usage);
     }
 
     private static AiChatMessageViewModel MapToViewModel(AiMessage message)
