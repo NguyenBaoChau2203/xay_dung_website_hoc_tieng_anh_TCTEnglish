@@ -82,6 +82,7 @@ public partial class User
     public virtual ICollection<LearningProgress> LearningProgresses { get; set; } = new List<LearningProgress>();
     public virtual ICollection<UserDailyActivity> UserDailyActivities { get; set; } = new List<UserDailyActivity>();
     public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
+    public virtual ICollection<UserGoal> UserGoals { get; set; } = new List<UserGoal>();
 
     public virtual ICollection<Set> Sets { get; set; } = new List<Set>();
 
@@ -96,4 +97,7 @@ public partial class User
     = new List<Class>();
 
     public virtual ICollection<UserSpeakingProgress> UserSpeakingProgresses { get; set; } = new List<UserSpeakingProgress>();
+    public virtual ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
+    public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
+    public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
 }

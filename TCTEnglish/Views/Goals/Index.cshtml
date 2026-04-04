@@ -59,52 +59,35 @@
 
         <div class="col-md-6">
             <div class="card h-100 shadow-sm border-0 goal-card">
-                <div class="card-body d-flex flex-column justify-content-center align-items-center goal-progress-card-body">
-                    <div class="circular-progress position-relative">
-                        <svg viewBox="0 0 36 36" class="circular-chart" aria-hidden="true">
-                            <path class="circle-bg"
-                                  d="M18 2.0845
-                                     a 15.9155 15.9155 0 0 1 0 31.831
-                                     a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle"
-                                  stroke-dasharray="@Model.ProgressPercent, 100"
-                                  d="M18 2.0845
-                                     a 15.9155 15.9155 0 0 1 0 31.831
-                                     a 15.9155 15.9155 0 0 1 0 -31.831" />
-                        </svg>
-                        <div class="percentage-label">
-                            @if (Model.HasDailyGoal)
+                <div class="card-body">
+                    <h5 class="card-title fw-bold mb-3">Mục tiêu theo kỹ năng</h5>
+                    @if (Model.HasDeferredGoalAreas)
+                    {
+                        <div class="alert alert-warning py-2 px-3 small" role="status">
+                            @(string.Join(", ", Model.DeferredGoalAreaLabels)) hiện đang tạm hoãn vì chưa có tín hiệu hoàn thành đáng tin cậy trên server.
+                        </div>
+                    }
+                    @if (Model.HasGoalCards)
+                    {
+                        <div class="d-flex flex-column gap-3">
+                            @foreach (var goal in Model.GoalCards)
                             {
-                                <span class="goal-progress-value">@Model.TodayProgressValue/@Model.TodayProgressMax</span>
-                                <span class="goal-progress-meta">thẻ đã ôn</span>
-                            }
-                            else
-                            {
-                                <span class="goal-progress-value">@Model.TodayProgressValue</span>
-                                <span class="goal-progress-meta">thẻ hôm nay</span>
+                                <div class="border rounded-3 p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong>@goal.AreaLabel</strong>
+                                        <span class="text-muted small">@goal.TargetLabel</span>
+                                    </div>
+                                    <div class="progress mb-2" role="progressbar" aria-valuenow="@goal.ProgressPercent" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: @goal.ProgressPercent%;">@goal.ProgressPercent%</div>
+                                    </div>
+                                    <p class="mb-0 text-muted small">@goal.ProgressLabel</p>
+                                </div>
                             }
                         </div>
-                    </div>
-                    @if (Model.HasDailyGoal)
-                    {
-                        <p class="mt-3 mb-1 fw-bold">Mục tiêu ngày: @Model.DailyGoal thẻ</p>
                     }
                     else
                     {
-                        <p class="mt-3 mb-1 fw-bold">Bạn chưa đặt mục tiêu ngày</p>
-                    }
-                    <p class="progress-caption mb-0">
-                        @if (Model.HasDailyGoal)
-                        {
-                            <span>Tiến độ đang được tính theo số thẻ đã ôn hôm nay.</span>
-                        }
-                        else
-                        {
-                            <span>Bạn chưa đặt mục tiêu ngày. Hãy thêm mục tiêu để theo dõi tiến độ rõ hơn.</span>
-                        }
-                    </p>
-                    @if (!Model.HasDailyGoal)
-                    {
+                        <p class="mb-3">Bạn chưa có mục tiêu nào theo kỹ năng.</p>
                         <button type="button"
                                 class="btn btn-outline-primary rounded-pill px-4 progress-empty-action"
                                 data-testid="goal-empty-state-cta"
@@ -268,15 +251,20 @@
                     @Html.AntiForgeryToken()
                     <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
                     <div class="mb-3">
-                        <label asp-for="GoalEditor.DailyGoal" class="form-label fw-semibold"></label>
-                        <input asp-for="GoalEditor.DailyGoal"
+                        <label asp-for="GoalEditor.GoalArea" class="form-label fw-semibold"></label>
+                        <select asp-for="GoalEditor.GoalArea" asp-items="Model.GoalAreaOptions" class="form-select form-select-lg goal-input"></select>
+                        <span asp-validation-for="GoalEditor.GoalArea" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="GoalEditor.TargetValue" class="form-label fw-semibold"></label>
+                        <input asp-for="GoalEditor.TargetValue"
                                class="form-control form-control-lg goal-input"
-                               min="@UpdateGoalInputViewModel.MinDailyGoal"
-                               max="@UpdateGoalInputViewModel.MaxDailyGoal" />
-                        <span asp-validation-for="GoalEditor.DailyGoal" class="text-danger small"></span>
+                               min="@UpdateGoalInputViewModel.MinTargetValue"
+                               max="@UpdateGoalInputViewModel.MaxTargetValue" />
+                        <span asp-validation-for="GoalEditor.TargetValue" class="text-danger small"></span>
                     </div>
                     <p class="text-muted small mb-0" id="goalEditorModalHelp">
-                        Nhập số thẻ bạn muốn hoàn thành mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinDailyGoal đến @UpdateGoalInputViewModel.MaxDailyGoal thẻ và thay đổi bất kỳ lúc nào.
+                        Chọn kỹ năng có luồng hoàn thành thật trên server và đặt chỉ tiêu mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinTargetValue đến @UpdateGoalInputViewModel.MaxTargetValue và thay đổi bất kỳ lúc nào.
                     </p>
                 </div>
                 <div class="modal-footer border-0 pt-0">

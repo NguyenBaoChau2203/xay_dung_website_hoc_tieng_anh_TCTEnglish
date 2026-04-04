@@ -1,8 +1,10 @@
 @{
     ViewData["Title"] = "Reading";
 }
-<div class="coming-soon-container" style="text-align:center; padding: 100px;">
-    <h2>Reading Practice</h2>
-    <p>This feature is coming soon!</p>
-    <a asp-action="Index" class="btn btn-primary" style="margin-top: 20px;">Go back Home</a>
+<div class="container py-5 text-center">
+    <h2 class="mb-3">Reading Practice</h2>
+    <p class="mb-2">Reading hiện đang ở trạng thái tạm hoãn trong hệ thống Goals/XP.</p>
+    <p class="text-muted mb-4">Khi có luồng hoàn thành chính thức và lưu tiến độ theo người dùng, mục tiêu Reading sẽ được bật lại.</p>
+    <a asp-controller="Goals" asp-action="Index" class="btn btn-outline-primary me-2">Xem Goals hiện tại</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Về trang chủ</a>
 </div>

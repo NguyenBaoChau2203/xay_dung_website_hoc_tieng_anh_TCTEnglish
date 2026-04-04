@@ -69,19 +69,22 @@ Success criteria:
 
 Current state:
 - `GoalsController` is now backed by `IGoalsService` and real user data.
-- Goal create/edit flows are live and covered by phased integration tests.
+- Cross-feature goal/reward rollout is live for `Vocabulary`, `Speaking`, and `Writing`.
+- `Reading` and `Listening` remain explicitly deferred until real completion signals exist.
+- Goal create/edit flows plus reward-dedup regressions are covered by phased integration tests.
 - Activity, streak/progress, and badge unlock states are rendered from real totals.
 
 Why this remains important:
-- Goals is now a user-visible production workflow, so regressions are costly.
+- Goals is now a user-visible cross-feature production workflow, so regressions are costly.
 
 Recommended direction:
 - Preserve UI contract coverage for modal/create/edit/invalid-submit states.
+- Keep reward-dedup coverage for speaking and writing completion paths.
 - Keep documentation synchronized whenever Goals behavior changes.
 
 Success criteria:
 - Existing goals integration suites continue to pass.
-- Docs do not regress to placeholder descriptions.
+- Docs stay aligned with the active areas (`Vocabulary`, `Speaking`, `Writing`) and deferred areas (`Reading`, `Listening`).
 
 ### 3. Operationalize account lock/unlock behavior safely
 

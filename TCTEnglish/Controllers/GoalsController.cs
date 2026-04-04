@@ -10,7 +10,7 @@ namespace TCTVocabulary.Controllers
     [Route("Goals")]
     public class GoalsController : BaseController
     {
-        private const string GoalEditorFieldName = $"{nameof(GoalsViewModel.GoalEditor)}.{nameof(UpdateGoalInputViewModel.DailyGoal)}";
+        private const string GoalEditorFieldName = $"{nameof(GoalsViewModel.GoalEditor)}.{nameof(UpdateGoalInputViewModel.TargetValue)}";
         private readonly IGoalsService _goalsService;
 
         public GoalsController(IGoalsService goalsService)
@@ -35,7 +35,7 @@ namespace TCTVocabulary.Controllers
 
             if (!form.ContainsKey(GoalEditorFieldName))
             {
-                ModelState.AddModelError(GoalEditorFieldName, "Không thể cập nhật mục tiêu ngày lúc này.");
+                ModelState.AddModelError(GoalEditorFieldName, "Không thể cập nhật mục tiêu lúc này.");
             }
 
             if (!ModelState.IsValid)
@@ -43,7 +43,7 @@ namespace TCTVocabulary.Controllers
                 return await ReturnEditorViewAsync(userId, input);
             }
 
-            var result = await _goalsService.UpdateGoalAsync(userId, input.DailyGoal);
+            var result = await _goalsService.UpdateGoalAsync(userId, input.GoalArea, input.TargetValue);
             if (result.Status == OperationStatus.Success)
             {
                 TempData["SuccessMessage"] = "Đã lưu mục tiêu ngày.";
@@ -57,7 +57,7 @@ namespace TCTVocabulary.Controllers
 
             ModelState.AddModelError(
                 GoalEditorFieldName,
-                result.ErrorMessage ?? "Không thể cập nhật mục tiêu ngày lúc này.");
+                result.ErrorMessage ?? "Không thể cập nhật mục tiêu lúc này.");
 
             return await ReturnEditorViewAsync(userId, input);
         }

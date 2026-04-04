@@ -90,6 +90,7 @@ namespace TCTVocabulary.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet("Writing")]
         public async Task<IActionResult> Writing(string? level = null)
         {
@@ -97,6 +98,7 @@ namespace TCTVocabulary.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Exercises")]
         public async Task<IActionResult> WritingExercises(
             string? level = null,
@@ -105,20 +107,32 @@ namespace TCTVocabulary.Controllers
             string? status = null,
             int page = 1)
         {
-            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page, userId);
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Exercises/Data")]
         public async Task<IActionResult> WritingExercisesData(
             string? level = null,
             string? contentType = null,
             string? topic = null)
         {
-            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic, userId);
             return Json(data);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice")]
         public async Task<IActionResult> WritingPractice(
             string? level = null,
@@ -128,13 +142,19 @@ namespace TCTVocabulary.Controllers
             int page = 1,
             int? exerciseId = null)
         {
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var viewModel = await _studyService.GetWritingPracticeViewModelAsync(
                 level,
                 contentType,
                 topic,
                 status,
                 page,
-                exerciseId);
+                exerciseId,
+                userId);
 
             return viewModel == null ? NotFound() : View(viewModel);
         }
@@ -147,7 +167,12 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId, userId);
             return data == null ? NotFound() : Json(data);
         }
 
@@ -163,6 +188,7 @@ namespace TCTVocabulary.Controllers
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpPost("Writing/Practice/Evaluate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EvaluateWritingSentence([FromBody] WritingSentenceEvaluationRequestViewModel? request)
@@ -177,6 +203,11 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Cần cung cấp bài tập và câu hợp lệ." });
             }
 
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized(new { error = "Bạn cần đăng nhập để luyện viết." });
+            }
+
             if (string.IsNullOrWhiteSpace(request.UserAnswer))
             {
                 return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
@@ -185,7 +216,8 @@ namespace TCTVocabulary.Controllers
             var evaluation = await _studyService.EvaluateWritingSentenceAsync(
                 request.ExerciseId,
                 request.SentenceId,
-                request.UserAnswer);
+                request.UserAnswer,
+                userId);
 
             if (evaluation == null)
             {

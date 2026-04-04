@@ -19,20 +19,20 @@ namespace TCTVocabulary.Controllers
         private static readonly TimeSpan DailyChallengeTokenLifetime = TimeSpan.FromMinutes(15);
         private readonly DbflashcardContext _context;
         private readonly IAppEmailSender _emailSender;
-        private readonly IStreakService _streakService;
+        private readonly IGoalsService _goalsService;
         private readonly ILogger<HomeController> _logger;
         private readonly IDataProtector _dailyChallengeProtector;
 
         public HomeController(
             DbflashcardContext context,
             IAppEmailSender emailSender,
-            IStreakService streakService,
+            IGoalsService goalsService,
             IDataProtectionProvider dataProtectionProvider,
             ILogger<HomeController> logger)
         {
             _context = context;
             _emailSender = emailSender;
-            _streakService = streakService;
+            _goalsService = goalsService;
             _logger = logger;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
@@ -123,7 +123,7 @@ namespace TCTVocabulary.Controllers
 
             if (isCorrect)
             {
-                await _streakService.UpdateStreakAsync(userId);
+                await _goalsService.UpdateStreakAndRewardsAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 

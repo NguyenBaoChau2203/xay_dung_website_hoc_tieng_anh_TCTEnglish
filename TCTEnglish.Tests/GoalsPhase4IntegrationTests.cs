@@ -63,7 +63,7 @@ public sealed class GoalsPhase4IntegrationTests
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Goals/UpdateGoal")
         {
             Content = new StringContent(
-                "GoalEditor.DailyGoal=999",
+                "GoalEditor.GoalArea=Vocabulary&GoalEditor.TargetValue=999",
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded")
         };
@@ -92,7 +92,7 @@ public sealed class GoalsPhase4IntegrationTests
         Assert.Contains("name=\"__RequestVerificationToken\"", body, StringComparison.Ordinal);
         Assert.Contains("type=\"hidden\"", body, StringComparison.Ordinal);
         Assert.Contains("class=\"form-control form-control-lg goal-input\"", body, StringComparison.Ordinal);
-        Assert.Contains("name=\"GoalEditor.DailyGoal\"", body, StringComparison.Ordinal);
+        Assert.Contains("name=\"GoalEditor.TargetValue\"", body, StringComparison.Ordinal);
     }
 
     [Fact]
