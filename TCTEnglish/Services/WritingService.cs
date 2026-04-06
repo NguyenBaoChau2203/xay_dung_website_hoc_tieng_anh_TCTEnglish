@@ -1,23 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
-using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Services
 {
-    public partial class StudyService
+    public class WritingService : IWritingService
     {
-        private static readonly SemaphoreSlim WritingSchemaInitializationLock = new(1, 1);
-        private static readonly JsonSerializerOptions WritingJsonOptions = new()
-        {
-            PropertyNameCaseInsensitive = true
-        };
         private static readonly HashSet<string> CommonEnglishStopWords = new(StringComparer.OrdinalIgnoreCase)
         {
             "a", "an", "and", "are", "as", "at", "be", "been", "being", "but", "by",
@@ -26,7 +18,16 @@ namespace TCTVocabulary.Services
             "ours", "she", "that", "the", "their", "theirs", "them", "there", "they",
             "this", "to", "us", "was", "we", "were", "will", "with", "you", "your", "yours"
         };
-        private static volatile bool _writingSchemaInitialized;
+        private readonly DbflashcardContext _context;
+        private readonly IWritingAiEvaluationService _writingAiEvaluationService;
+
+        public WritingService(
+            DbflashcardContext context,
+            IWritingAiEvaluationService writingAiEvaluationService)
+        {
+            _context = context;
+            _writingAiEvaluationService = writingAiEvaluationService;
+        }
 
         public Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel)
         {
@@ -46,17 +47,14 @@ namespace TCTVocabulary.Services
             string? selectedLevel,
             string? contentType,
             string? topic,
-            string? status,
             int page)
         {
             var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic);
-            return BuildWritingExerciseListViewModel(exerciseData, status, page);
+            return BuildWritingExerciseListViewModel(exerciseData, page);
         }
 
         public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             var exercise = await _context.WritingExercises
                 .AsNoTracking()
                 .Where(item => item.IsPublished && item.Id == exerciseId)
@@ -97,8 +95,6 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            await EnsureWritingSchemaReadyAsync();
-
             var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
             if (sentenceIndex < 0)
@@ -123,8 +119,6 @@ namespace TCTVocabulary.Services
             int sentenceId,
             string userAnswer)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
             if (sentenceIndex < 0)
@@ -146,7 +140,12 @@ namespace TCTVocabulary.Services
                 return BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
             }
 
-            var aiEvaluation = await TryEvaluateWritingSentenceWithAiAsync(sentence, normalizedAnswer);
+            var aiEvaluation = await _writingAiEvaluationService.TryEvaluateSentenceAsync(
+                new WritingAiEvaluationRequest(
+                    sentence.Id,
+                    sentence.VietnameseText,
+                    sentence.EnglishMeaning,
+                    normalizedAnswer));
             if (aiEvaluation == null)
             {
                 return BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
@@ -187,13 +186,12 @@ namespace TCTVocabulary.Services
             string? selectedLevel,
             string? contentType,
             string? topic,
-            string? status,
             int page,
             int? exerciseId)
         {
             var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType);
             var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic);
-            var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, status, page);
+            var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, page);
             var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, catalog.Exercises);
 
             if (!selectedExerciseId.HasValue)
@@ -247,13 +245,11 @@ namespace TCTVocabulary.Services
 
         private static WritingExerciseListViewModel BuildWritingExerciseListViewModel(
             WritingExerciseDataViewModel exerciseData,
-            string? status,
             int page)
         {
             const int pageSize = 6;
 
-            var normalizedStatus = NormalizeWritingStatus(status);
-            var filteredExercises = FilterWritingExercisesByStatus(exerciseData.Exercises, normalizedStatus);
+            var filteredExercises = exerciseData.Exercises;
             var totalCount = filteredExercises.Count;
             var totalPages = totalCount == 0 ? 0 : (int)Math.Ceiling(totalCount / (double)pageSize);
             var currentPage = totalPages == 0 ? 0 : Math.Clamp(page, 1, totalPages);
@@ -268,7 +264,6 @@ namespace TCTVocabulary.Services
                 SelectedContentTypeKey = exerciseData.SelectedContentTypeKey,
                 SelectedContentTypeTitle = exerciseData.SelectedContentTypeTitle,
                 SelectedTopic = exerciseData.SelectedTopic,
-                SelectedStatus = normalizedStatus,
                 CurrentPage = currentPage,
                 TotalPages = totalPages,
                 TotalCount = totalCount,
@@ -276,7 +271,6 @@ namespace TCTVocabulary.Services
                 StartItemNumber = totalPages == 0 ? 0 : ((currentPage - 1) * pageSize) + 1,
                 EndItemNumber = totalPages == 0 ? 0 : Math.Min(currentPage * pageSize, totalCount),
                 TopicOptions = exerciseData.TopicOptions,
-                StatusOptions = GetWritingStatusOptions(),
                 PageNumbers = BuildWritingPageNumbers(currentPage, totalPages),
                 Exercises = pagedItems
             };
@@ -284,8 +278,6 @@ namespace TCTVocabulary.Services
 
         private async Task<List<WritingExerciseCardViewModel>> LoadWritingExerciseCardsAsync(string levelKey, string contentTypeKey)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             return await _context.WritingExercises
                 .AsNoTracking()
                 .Where(exercise => exercise.IsPublished
@@ -298,36 +290,9 @@ namespace TCTVocabulary.Services
                     Title = exercise.Title,
                     PreviewText = exercise.PreviewText,
                     Topic = exercise.Topic,
-                    StatusKey = "new",
-                    StatusLabel = "Mới",
-                    AttemptCount = 0,
-                    LastAttemptText = "Chưa bắt đầu"
+                    SentenceCount = exercise.WritingExerciseSentences.Count()
                 })
                 .ToListAsync();
-        }
-
-        private async Task EnsureWritingSchemaReadyAsync()
-        {
-            if (_writingSchemaInitialized || !_context.Database.IsSqlServer())
-            {
-                return;
-            }
-
-            await WritingSchemaInitializationLock.WaitAsync();
-            try
-            {
-                if (_writingSchemaInitialized)
-                {
-                    return;
-                }
-
-                await _context.Database.MigrateAsync();
-                _writingSchemaInitialized = true;
-            }
-            finally
-            {
-                WritingSchemaInitializationLock.Release();
-            }
         }
 
         private static List<WritingExerciseCardViewModel> FilterWritingExercisesByTopic(
@@ -338,17 +303,6 @@ namespace TCTVocabulary.Services
                 ? exercises.ToList()
                 : exercises
                     .Where(exercise => string.Equals(exercise.Topic, normalizedTopic, StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-        }
-
-        private static List<WritingExerciseCardViewModel> FilterWritingExercisesByStatus(
-            IEnumerable<WritingExerciseCardViewModel> exercises,
-            string normalizedStatus)
-        {
-            return string.Equals(normalizedStatus, "all", StringComparison.OrdinalIgnoreCase)
-                ? exercises.ToList()
-                : exercises
-                    .Where(exercise => string.Equals(exercise.StatusKey, normalizedStatus, StringComparison.OrdinalIgnoreCase))
                     .ToList();
         }
 
@@ -396,7 +350,6 @@ namespace TCTVocabulary.Services
                 SelectedContentTypeKey = exerciseListViewModel.SelectedContentTypeKey,
                 SelectedContentTypeTitle = exerciseListViewModel.SelectedContentTypeTitle,
                 SelectedTopic = exerciseListViewModel.SelectedTopic,
-                SelectedStatus = exerciseListViewModel.SelectedStatus,
                 SelectedPage = selectedPage,
                 ExerciseId = practiceData.ExerciseId,
                 ExerciseTitle = practiceData.ExerciseTitle,
@@ -439,106 +392,6 @@ namespace TCTVocabulary.Services
                     BreakAfter = sentence.BreakAfter
                 })
                 .ToList();
-        }
-
-        private static string BuildLessonSummary(WritingExerciseCardViewModel selectedExercise, int sentenceCount)
-        {
-            return $"Hoàn thành bài viết về chủ đề {selectedExercise.Topic.ToLowerInvariant()} qua {sentenceCount} bước ngắn.";
-        }
-
-        private static List<string> BuildWritingTips(string contentTypeKey)
-        {
-            if (string.Equals(contentTypeKey, "emails", StringComparison.OrdinalIgnoreCase))
-            {
-                return new List<string>
-                {
-                    "Giữ lời chào, câu hỏi và câu kết ngắn gọn, tự nhiên.",
-                    "Dịch từng dòng được đánh dấu và bám sát ý gốc.",
-                    "Dùng tiếng Anh đơn giản, lịch sự và giống cách viết email thật."
-                };
-            }
-
-            return new List<string>
-            {
-                "Hãy dịch rõ ràng dòng đang được đánh dấu trước khi chuyển tiếp.",
-                "Giữ đúng ý và diễn đạt tự nhiên.",
-                "Dựa vào câu tham chiếu để nhận ra giọng điệu và cấu trúc câu."
-            };
-        }
-
-        private static List<WritingLessonSegmentViewModel> BuildLessonSegments(IReadOnlyList<WritingExerciseSentence> sentences)
-        {
-            var segments = new List<WritingLessonSegmentViewModel>();
-
-            for (var index = 0; index < sentences.Count; index++)
-            {
-                var sentence = sentences[index];
-
-                segments.Add(new WritingLessonSegmentViewModel
-                {
-                    Text = sentence.VietnameseText,
-                    HighlightKey = BuildHighlightKey(sentence.SortOrder)
-                });
-
-                if (sentence.BreakAfter && index < sentences.Count - 1)
-                {
-                    segments.Add(new WritingLessonSegmentViewModel
-                    {
-                        Text = string.Empty
-                    });
-                }
-            }
-
-            return segments;
-        }
-
-        private static List<WritingPracticeStepViewModel> BuildWritingPracticeSteps(IReadOnlyList<WritingExerciseSentence> sentences)
-        {
-            return sentences
-                .Select((sentence, index) => new WritingPracticeStepViewModel
-                {
-                    Number = index + 1,
-                    PromptLabel = BuildPromptLabel(sentence.VietnameseText, index, sentences.Count),
-                    PromptText = sentence.VietnameseText,
-                    Placeholder = "Nhập câu tiếng Anh ở đây...",
-                    HintTitle = BuildHintTitle(sentence.VietnameseText, index, sentences.Count),
-                    HintText = BuildHintText(sentence.VietnameseText, index, sentences.Count),
-                    HighlightKey = BuildHighlightKey(sentence.SortOrder),
-                    SuccessTitle = "Đã khớp câu tham chiếu",
-                    SuccessMessage = $"Câu tham chiếu: {sentence.EnglishMeaning}",
-                    ErrorTitle = "Hãy xem lại câu tham chiếu",
-                    ErrorMessage = $"Câu tham chiếu: {sentence.EnglishMeaning}",
-                    AcceptedAnswers = new List<string>
-                    {
-                        sentence.EnglishMeaning
-                    }
-                })
-                .ToList();
-        }
-
-        private static string BuildPromptLabel(string vietnameseText, int index, int totalCount)
-        {
-            if (IsSenderNameLine(index, totalCount))
-            {
-                return "Tên người gửi";
-            }
-
-            if (IsGreetingLine(index))
-            {
-                return "Lời chào";
-            }
-
-            if (IsClosingLine(vietnameseText, index, totalCount))
-            {
-                return "Lời kết";
-            }
-
-            if (vietnameseText.Contains('?'))
-            {
-                return "Câu hỏi";
-            }
-
-            return $"Câu {index + 1}";
         }
 
         private static string BuildHintTitle(string vietnameseText, int index, int totalCount)
@@ -604,18 +457,13 @@ namespace TCTVocabulary.Services
         private static bool IsClosingLine(string vietnameseText, int index, int totalCount)
         {
             var normalizedVietnameseText = NormalizeVietnameseDisplayText(vietnameseText);
-            var hasClosingPhrase = normalizedVietnameseText.Contains("Trân trọng", StringComparison.OrdinalIgnoreCase)
-                || normalizedVietnameseText.Contains("Chúc may mắn", StringComparison.OrdinalIgnoreCase);
+            var hasClosingPhrase = normalizedVietnameseText.Contains("Tran trong", StringComparison.OrdinalIgnoreCase)
+                || normalizedVietnameseText.Contains("Chuc may man", StringComparison.OrdinalIgnoreCase);
 
             return !IsGreetingLine(index)
                 && !IsSenderNameLine(index, totalCount)
                 && (index == totalCount - 2
                     || hasClosingPhrase);
-        }
-
-        private static string BuildHighlightKey(int sortOrder)
-        {
-            return $"sentence-{sortOrder}";
         }
 
         private static string ResolveWritingLevelKey(string? selectedLevel, List<WritingLevelCardViewModel> levels)
@@ -763,47 +611,9 @@ namespace TCTVocabulary.Services
             return options;
         }
 
-        private static List<WritingFilterOptionViewModel> GetWritingStatusOptions()
-        {
-            return new List<WritingFilterOptionViewModel>
-            {
-                new()
-                {
-                    Value = "all",
-                    Label = "Tất cả trạng thái"
-                },
-                new()
-                {
-                    Value = "new",
-                    Label = "Mới"
-                },
-                new()
-                {
-                    Value = "in-progress",
-                    Label = "Đang làm"
-                },
-                new()
-                {
-                    Value = "completed",
-                    Label = "Hoàn thành"
-                }
-            };
-        }
-
         private static string NormalizeWritingTopic(string? topic)
         {
             return string.IsNullOrWhiteSpace(topic) ? "all" : topic.Trim();
-        }
-
-        private static string NormalizeWritingStatus(string? status)
-        {
-            var normalizedStatus = string.IsNullOrWhiteSpace(status)
-                ? "all"
-                : status.Trim().ToLowerInvariant();
-
-            return normalizedStatus is "new" or "in-progress" or "completed"
-                ? normalizedStatus
-                : "all";
         }
 
         private static List<int?> BuildWritingPageNumbers(int currentPage, int totalPages)
@@ -868,151 +678,6 @@ namespace TCTVocabulary.Services
             }
 
             return sentenceRows;
-        }
-
-        private async Task<WritingAiEvaluationResult?> TryEvaluateWritingSentenceWithAiAsync(
-            WritingSentenceLookupRow sentence,
-            string userAnswer)
-        {
-            var apiKey = GetConfiguredOpenAiApiKey();
-            if (string.IsNullOrWhiteSpace(apiKey))
-            {
-                return null;
-            }
-
-            var model = GetWritingEvaluationModel();
-            var client = _httpClientFactory.CreateClient();
-            client.Timeout = TimeSpan.FromSeconds(30);
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-
-            var requestPayload = new
-            {
-                model,
-                temperature = 0.2,
-                response_format = new
-                {
-                    type = "json_object"
-                },
-                messages = new object[]
-                {
-                    new
-                    {
-                        role = "system",
-                        content = "You evaluate ESL writing submissions. Use the reference answer only as a guide, not as the only acceptable wording. Accept meaning-equivalent paraphrases. Return strict JSON with keys: passed, overallFeedback, meaningFeedback, grammarFeedback, naturalnessFeedback, wordChoiceFeedback, suggestedRewrite. Write overallFeedback, meaningFeedback, grammarFeedback, naturalnessFeedback, and wordChoiceFeedback in Vietnamese for the learner. Keep suggestedRewrite as one improved English sentence."
-                    },
-                    new
-                    {
-                        role = "user",
-                        content = BuildWritingEvaluationPrompt(sentence.VietnameseText, sentence.EnglishMeaning, userAnswer)
-                    }
-                }
-            };
-
-            using var response = await client.PostAsync(
-                "https://api.openai.com/v1/chat/completions",
-                new StringContent(JsonSerializer.Serialize(requestPayload), Encoding.UTF8, "application/json"));
-
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorBody = await response.Content.ReadAsStringAsync();
-                _logger.LogWarning(
-                    "Writing evaluation AI request failed for sentence {SentenceId} with status {StatusCode}: {ErrorBody}",
-                    sentence.Id,
-                    response.StatusCode,
-                    errorBody);
-                return null;
-            }
-
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var aiContent = ExtractAiResponseContent(responseBody);
-
-            if (string.IsNullOrWhiteSpace(aiContent))
-            {
-                _logger.LogWarning("Writing evaluation AI response was empty for sentence {SentenceId}.", sentence.Id);
-                return null;
-            }
-
-            try
-            {
-                var normalizedAiContent = NormalizeAiJsonPayload(aiContent);
-                return JsonSerializer.Deserialize<WritingAiEvaluationResult>(normalizedAiContent, WritingJsonOptions);
-            }
-            catch (JsonException exception)
-            {
-                _logger.LogWarning(exception, "Writing evaluation AI response was not valid JSON for sentence {SentenceId}.", sentence.Id);
-                return null;
-            }
-        }
-
-        private string? GetConfiguredOpenAiApiKey()
-        {
-            var apiKey = _configuration["OpenAiApiKey"] ?? _configuration["OpenAI:ApiKey"];
-            if (string.IsNullOrWhiteSpace(apiKey)
-                || apiKey.Contains("your_openai_api_key_here", StringComparison.OrdinalIgnoreCase))
-            {
-                return null;
-            }
-
-            return apiKey;
-        }
-
-        private static string NormalizeAiJsonPayload(string aiContent)
-        {
-            var trimmed = aiContent.Trim();
-            if (!trimmed.StartsWith("```", StringComparison.Ordinal))
-            {
-                return trimmed;
-            }
-
-            var firstNewLineIndex = trimmed.IndexOf('\n');
-            if (firstNewLineIndex < 0)
-            {
-                return trimmed;
-            }
-
-            var contentBody = trimmed[(firstNewLineIndex + 1)..].Trim();
-            if (contentBody.EndsWith("```", StringComparison.Ordinal))
-            {
-                contentBody = contentBody[..^3].Trim();
-            }
-
-            return contentBody;
-        }
-
-        private string GetWritingEvaluationModel()
-        {
-            return _configuration["OpenAI:WritingEvaluationModel"]
-                ?? _configuration["OpenAI:Model"]
-                ?? _configuration["OpenAiModel"]
-                ?? "gpt-4o-mini";
-        }
-
-        private static string BuildWritingEvaluationPrompt(
-            string vietnameseText,
-            string englishMeaning,
-            string userAnswer)
-        {
-            return $"""
-                Evaluate this learner translation.
-
-                Vietnamese text:
-                {vietnameseText}
-
-                Teacher reference:
-                {englishMeaning}
-
-                Learner answer:
-                {userAnswer}
-
-                Requirements:
-                - Judge the learner by meaning first, then grammar, naturalness, and word choice.
-                - Accept meaning-equivalent paraphrases. Do not require an exact match to the teacher reference.
-                - Set "passed" to true only when the learner answer is acceptable for moving to the next sentence.
-                - Keep each feedback field short and actionable.
-                - Write all feedback fields in Vietnamese so the learner can understand them quickly.
-                - If the answer should be improved, suggest one better English sentence in "suggestedRewrite".
-                - If the answer is already good, "suggestedRewrite" can be empty.
-                """;
         }
 
         private static WritingRuleEvaluationResult EvaluateWritingSentenceRuleBased(
@@ -1104,7 +769,7 @@ namespace TCTVocabulary.Services
                 : "Hãy bám sát ý gốc hơn và diễn đạt thành một câu tiếng Anh tự nhiên.";
             var wordChoiceFeedback = matchedContentTokens > 0
                 ? "Bạn đã dùng được một vài từ khóa gần với ý cần diễn đạt, đó là khởi đầu tốt."
-                : "Hãy thử đưa vào động từ chính hoặc danh từ quan trọng từ câu tiếng Việt.";
+                : "Hãy thử dựa vào động từ chính hoặc danh từ quan trọng từ câu tiếng Việt.";
 
             return new WritingRuleEvaluationResult
             {
@@ -1156,51 +821,6 @@ namespace TCTVocabulary.Services
                 WordChoiceFeedback = evaluation.WordChoiceFeedback,
                 SuggestedRewrite = evaluation.SuggestedRewrite
             };
-        }
-
-        private static string? ExtractAiResponseContent(string responseBody)
-        {
-            if (string.IsNullOrWhiteSpace(responseBody))
-            {
-                return null;
-            }
-
-            using var document = JsonDocument.Parse(responseBody);
-            if (!document.RootElement.TryGetProperty("choices", out var choices)
-                || choices.ValueKind != JsonValueKind.Array
-                || choices.GetArrayLength() == 0)
-            {
-                return null;
-            }
-
-            var firstChoice = choices[0];
-            if (!firstChoice.TryGetProperty("message", out var message)
-                || !message.TryGetProperty("content", out var content))
-            {
-                return null;
-            }
-
-            if (content.ValueKind == JsonValueKind.String)
-            {
-                return content.GetString();
-            }
-
-            if (content.ValueKind != JsonValueKind.Array)
-            {
-                return null;
-            }
-
-            foreach (var part in content.EnumerateArray())
-            {
-                if (part.TryGetProperty("type", out var type)
-                    && string.Equals(type.GetString(), "text", StringComparison.OrdinalIgnoreCase)
-                    && part.TryGetProperty("text", out var text))
-                {
-                    return text.GetString();
-                }
-            }
-
-            return null;
         }
 
         private static string BuildReviewText(
@@ -1275,8 +895,8 @@ namespace TCTVocabulary.Services
             }
 
             return value
-                .Replace("TrÃ¢n trá»ng", "Trân trọng", StringComparison.Ordinal)
-                .Replace("ChÃºc may máº¯n", "Chúc may mắn", StringComparison.Ordinal);
+                .Replace("Tron trong", "Tran trong", StringComparison.Ordinal)
+                .Replace("Chuc may mon", "Chuc may man", StringComparison.Ordinal);
         }
 
         private static List<string> ExtractComparisonTokens(string? value)
@@ -1331,15 +951,6 @@ namespace TCTVocabulary.Services
             public string SuggestedRewrite { get; set; } = string.Empty;
         }
 
-        private sealed class WritingAiEvaluationResult
-        {
-            public bool Passed { get; set; }
-            public string OverallFeedback { get; set; } = string.Empty;
-            public string MeaningFeedback { get; set; } = string.Empty;
-            public string GrammarFeedback { get; set; } = string.Empty;
-            public string NaturalnessFeedback { get; set; } = string.Empty;
-            public string WordChoiceFeedback { get; set; } = string.Empty;
-            public string SuggestedRewrite { get; set; } = string.Empty;
-        }
     }
 }
+

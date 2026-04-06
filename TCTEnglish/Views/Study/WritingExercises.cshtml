@@ -32,7 +32,10 @@
 
         <div class="writing-exercises-head">
             <div class="writing-exercises-title-block">
-                <h1>Bài tập hiện có</h1>
+                <div>
+                    <h1>Bài tập hiện có</h1>
+                    <p class="writing-exercises-subtitle">Chọn một bài và bắt đầu luyện viết ngay.</p>
+                </div>
             </div>
 
             <form method="get"
@@ -55,18 +58,6 @@
                         }
                     </select>
                 </label>
-
-                <label class="writing-filter">
-                    <span>Lọc trạng thái:</span>
-                    <select name="status" class="writing-select" data-filter-select>
-                        @foreach (var option in Model.StatusOptions)
-                        {
-                            <option value="@option.Value" selected="@(string.Equals(option.Value, Model.SelectedStatus, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">
-                                @option.Label
-                            </option>
-                        }
-                    </select>
-                </label>
             </form>
         </div>
 
@@ -75,7 +66,7 @@
             <div class="writing-empty-state">
                 <i class="fas fa-search"></i>
                 <h2>Không tìm thấy bài tập</h2>
-                <p>Hãy thử đổi chủ đề hoặc trạng thái để xem thêm bài luyện viết.</p>
+                <p>Hãy thử đổi chủ đề để xem thêm bài luyện viết.</p>
             </div>
         }
         else
@@ -85,29 +76,22 @@
                 {
                     <article class="writing-exercise-card">
                         <div class="writing-exercise-top">
-                            <div>
+                            <div class="writing-exercise-title-group">
+                                <span class="writing-exercise-topic">@exercise.Topic</span>
                                 <h2 class="writing-exercise-title">@exercise.Title</h2>
-                                <span class="writing-attempt-badge">Lượt làm: @exercise.AttemptCount</span>
                             </div>
-                            <span class="writing-status-badge writing-status-badge--@exercise.StatusKey">@exercise.StatusLabel</span>
+                            <span class="writing-exercise-count">@exercise.SentenceCount câu</span>
                         </div>
 
                         <p class="writing-exercise-preview">@exercise.PreviewText</p>
 
                         <div class="writing-exercise-bottom">
-                            <div class="writing-exercise-meta">
-                                <span><i class="far fa-clock"></i> @exercise.LastAttemptText</span>
-                                <span class="writing-meta-separator">|</span>
-                                <span>@exercise.Topic</span>
-                            </div>
-
                             <a class="writing-start-btn"
                                asp-controller="Study"
                                asp-action="WritingPractice"
                                asp-route-level="@Model.SelectedLevelKey"
                                asp-route-contentType="@Model.SelectedContentTypeKey"
                                asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
                                asp-route-page="@Model.CurrentPage"
                                asp-route-exerciseId="@exercise.Id">
                                 Bắt đầu
@@ -132,7 +116,6 @@
                                asp-route-level="@Model.SelectedLevelKey"
                                asp-route-contentType="@Model.SelectedContentTypeKey"
                                asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
                                asp-route-page="@(Model.CurrentPage - 1)"
                                class="writing-page-link writing-page-link--arrow"
                                aria-label="Trang trước">
@@ -155,7 +138,6 @@
                                    asp-route-level="@Model.SelectedLevelKey"
                                    asp-route-contentType="@Model.SelectedContentTypeKey"
                                    asp-route-topic="@Model.SelectedTopic"
-                                   asp-route-status="@Model.SelectedStatus"
                                    asp-route-page="@pageNumber.Value"
                                    class="writing-page-link @(pageNumber.Value == Model.CurrentPage ? "is-active" : string.Empty)">
                                     @pageNumber.Value
@@ -174,7 +156,6 @@
                                asp-route-level="@Model.SelectedLevelKey"
                                asp-route-contentType="@Model.SelectedContentTypeKey"
                                asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
                                asp-route-page="@(Model.CurrentPage + 1)"
                                class="writing-page-link writing-page-link--arrow"
                                aria-label="Trang sau">

@@ -1,4 +1,3 @@
-using TCTEnglish.ViewModels;
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Services
@@ -7,30 +6,6 @@ namespace TCTVocabulary.Services
     {
         Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null);
         Task<OperationResult> UpdateCardProgressAsync(int cardId, bool isKnown, int userId);
-        Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel);
-        Task<WritingExerciseDataViewModel> GetWritingExerciseDataAsync(
-            string? selectedLevel,
-            string? contentType,
-            string? topic);
-        Task<WritingExerciseListViewModel> GetWritingExerciseListViewModelAsync(
-            string? selectedLevel,
-            string? contentType,
-            string? topic,
-            string? status,
-            int page);
-        Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId);
-        Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId);
-        Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(
-            int exerciseId,
-            int sentenceId,
-            string userAnswer);
-        Task<WritingPracticeViewModel?> GetWritingPracticeViewModelAsync(
-            string? selectedLevel,
-            string? contentType,
-            string? topic,
-            string? status,
-            int page,
-            int? exerciseId);
         Task<VocabularyIndexViewModel> GetVocabularyIndexViewModelAsync(int currentUserId);
         Task<VocabularySetDetailViewModel?> GetVocabularySetDetailViewModelAsync(int setId, int currentUserId);
         Task<VocabularyTopicsViewModel?> GetVocabularyTopicsViewModelAsync(int setId, int currentUserId);

@@ -11,10 +11,17 @@ namespace TCTVocabulary.Controllers
     public class StudyController : BaseController
     {
         private readonly IStudyService _studyService;
+        private readonly IWritingService _writingService;
+        private readonly IWritingRequestRateLimiter _writingRequestRateLimiter;
 
-        public StudyController(IStudyService studyService)
+        public StudyController(
+            IStudyService studyService,
+            IWritingService writingService,
+            IWritingRequestRateLimiter writingRequestRateLimiter)
         {
             _studyService = studyService;
+            _writingService = writingService;
+            _writingRequestRateLimiter = writingRequestRateLimiter;
         }
 
         [Authorize]
@@ -93,7 +100,7 @@ namespace TCTVocabulary.Controllers
         [HttpGet("Writing")]
         public async Task<IActionResult> Writing(string? level = null)
         {
-            var viewModel = await _studyService.GetWritingIndexViewModelAsync(level);
+            var viewModel = await _writingService.GetWritingIndexViewModelAsync(level);
             return View(viewModel);
         }
 
@@ -102,10 +109,9 @@ namespace TCTVocabulary.Controllers
             string? level = null,
             string? contentType = null,
             string? topic = null,
-            string? status = null,
             int page = 1)
         {
-            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page);
+            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page);
             return View(viewModel);
         }
 
@@ -115,30 +121,30 @@ namespace TCTVocabulary.Controllers
             string? contentType = null,
             string? topic = null)
         {
-            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic);
+            var data = await _writingService.GetWritingExerciseDataAsync(level, contentType, topic);
             return Json(data);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice")]
         public async Task<IActionResult> WritingPractice(
             string? level = null,
             string? contentType = null,
             string? topic = null,
-            string? status = null,
             int page = 1,
             int? exerciseId = null)
         {
-            var viewModel = await _studyService.GetWritingPracticeViewModelAsync(
+            var viewModel = await _writingService.GetWritingPracticeViewModelAsync(
                 level,
                 contentType,
                 topic,
-                status,
                 page,
                 exerciseId);
 
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Data")]
         public async Task<IActionResult> WritingPracticeData(int exerciseId)
         {
@@ -147,10 +153,11 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId);
+            var data = await _writingService.GetWritingPracticeDataAsync(exerciseId);
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Hint")]
         public async Task<IActionResult> WritingHint(int exerciseId, int sentenceId)
         {
@@ -159,10 +166,22 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
+            var userId = GetCurrentUserId();
+            if (!_writingRequestRateLimiter.TryConsumeHint(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang yeu cau goi y qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var data = await _writingService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpPost("Writing/Practice/Evaluate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EvaluateWritingSentence([FromBody] WritingSentenceEvaluationRequestViewModel? request)
@@ -182,7 +201,18 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
             }
 
-            var evaluation = await _studyService.EvaluateWritingSentenceAsync(
+            var userId = GetCurrentUserId();
+            if (!_writingRequestRateLimiter.TryConsumeEvaluation(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang gui bai qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var evaluation = await _writingService.EvaluateWritingSentenceAsync(
                 request.ExerciseId,
                 request.SentenceId,
                 request.UserAnswer);
@@ -234,6 +264,16 @@ namespace TCTVocabulary.Controllers
             }
 
             return View(viewName, viewModel);
+        }
+
+        private IActionResult BuildWritingRateLimitResult(string errorMessage, int retryAfterSeconds)
+        {
+            Response.Headers["Retry-After"] = retryAfterSeconds.ToString();
+            return StatusCode(429, new
+            {
+                error = errorMessage,
+                retryAfterSeconds
+            });
         }
     }
 

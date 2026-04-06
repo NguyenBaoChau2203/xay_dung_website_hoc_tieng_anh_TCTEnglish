@@ -37,7 +37,6 @@ namespace TCTEnglish.ViewModels
         public string SelectedContentTypeKey { get; set; } = string.Empty;
         public string SelectedContentTypeTitle { get; set; } = string.Empty;
         public string SelectedTopic { get; set; } = "all";
-        public string SelectedStatus { get; set; } = "all";
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int TotalCount { get; set; }
@@ -45,7 +44,6 @@ namespace TCTEnglish.ViewModels
         public int StartItemNumber { get; set; }
         public int EndItemNumber { get; set; }
         public List<WritingFilterOptionViewModel> TopicOptions { get; set; } = new();
-        public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<int?> PageNumbers { get; set; } = new();
         public List<WritingExerciseCardViewModel> Exercises { get; set; } = new();
     }
@@ -73,10 +71,7 @@ namespace TCTEnglish.ViewModels
         public string Title { get; set; } = string.Empty;
         public string PreviewText { get; set; } = string.Empty;
         public string Topic { get; set; } = string.Empty;
-        public string StatusKey { get; set; } = string.Empty;
-        public string StatusLabel { get; set; } = string.Empty;
-        public int AttemptCount { get; set; }
-        public string LastAttemptText { get; set; } = string.Empty;
+        public int SentenceCount { get; set; }
     }
 
     public class WritingPracticeDataViewModel
@@ -100,7 +95,6 @@ namespace TCTEnglish.ViewModels
         public string SelectedContentTypeKey { get; set; } = string.Empty;
         public string SelectedContentTypeTitle { get; set; } = string.Empty;
         public string SelectedTopic { get; set; } = "all";
-        public string SelectedStatus { get; set; } = "all";
         public int SelectedPage { get; set; } = 1;
         public int ExerciseId { get; set; }
         public string ExerciseTitle { get; set; } = string.Empty;
@@ -117,28 +111,6 @@ namespace TCTEnglish.ViewModels
         public string VietnameseText { get; set; } = string.Empty;
         public string Placeholder { get; set; } = string.Empty;
         public bool BreakAfter { get; set; }
-    }
-
-    public class WritingLessonSegmentViewModel
-    {
-        public string Text { get; set; } = string.Empty;
-        public string? HighlightKey { get; set; }
-    }
-
-    public class WritingPracticeStepViewModel
-    {
-        public int Number { get; set; }
-        public string PromptLabel { get; set; } = string.Empty;
-        public string PromptText { get; set; } = string.Empty;
-        public string Placeholder { get; set; } = string.Empty;
-        public string HintTitle { get; set; } = string.Empty;
-        public string HintText { get; set; } = string.Empty;
-        public string HighlightKey { get; set; } = string.Empty;
-        public string SuccessTitle { get; set; } = string.Empty;
-        public string SuccessMessage { get; set; } = string.Empty;
-        public string ErrorTitle { get; set; } = string.Empty;
-        public string ErrorMessage { get; set; } = string.Empty;
-        public List<string> AcceptedAnswers { get; set; } = new();
     }
 
     public class WritingSentenceHintViewModel
