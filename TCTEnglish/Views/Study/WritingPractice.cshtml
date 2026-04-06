@@ -1,3 +1,4 @@
+@using System
 @using System.Linq
 @using System.Text.Json
 @model TCTEnglish.ViewModels.WritingPracticeViewModel
@@ -5,9 +6,13 @@
     ViewData["Title"] = "Luyện viết - " + Model.ExerciseTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var firstSentence = Model.Sentences.FirstOrDefault();
+    var activeSentence = Model.Sentences.FirstOrDefault(sentence => sentence.Id == Model.ResumeSentenceId)
+        ?? Model.Sentences.FirstOrDefault();
     var hintEndpoint     = Url.Action("WritingHint",              "Study") ?? string.Empty;
     var evaluateEndpoint = Url.Action("EvaluateWritingSentence",  "Study") ?? string.Empty;
+    var initialProgressPercent = Model.TotalSentenceCount == 0
+        ? 0
+        : Math.Round(Model.CompletedSentenceCount / (double)Model.TotalSentenceCount * 100, 2);
 
     // Only non-sensitive fields are passed to JS (no EnglishMeaning / reference answer)
     var practicePayload = JsonSerializer.Serialize(Model.Sentences.Select(s => new
@@ -16,7 +21,12 @@
         number         = s.Number,
         vietnameseText = s.VietnameseText,
         placeholder    = s.Placeholder,
-        breakAfter     = s.BreakAfter
+        breakAfter     = s.BreakAfter,
+        attemptCount   = s.AttemptCount,
+        lastSubmittedAnswer = s.LastSubmittedAnswer,
+        acceptedAnswer = s.AcceptedAnswer,
+        hasAccepted    = s.HasAccepted,
+        lastEvaluationPassed = s.LastEvaluationPassed
     }));
 }
 
@@ -28,6 +38,7 @@
     <div class="writing-practice-shell"
          data-writing-practice
          data-exercise-id="@Model.ExerciseId"
+         data-resume-sentence-id="@Model.ResumeSentenceId"
          data-hint-url="@hintEndpoint"
          data-evaluate-url="@evaluateEndpoint">
 
@@ -40,6 +51,7 @@
                asp-route-level="@Model.SelectedLevelKey"
                asp-route-contentType="@Model.SelectedContentTypeKey"
                asp-route-topic="@Model.SelectedTopic"
+               asp-route-status="@Model.SelectedStatus"
                asp-route-page="@Model.SelectedPage"
                class="btn-close-writing"
                aria-label="Quay lại danh sách bài tập">
@@ -49,10 +61,10 @@
             <div class="writing-progress-card" role="region" aria-label="Tiến độ bài tập">
                 <div class="writing-progress-copy">
                     <span class="writing-progress-label">Tiến độ</span>
-                    <strong id="progressText">0/@Model.TotalSentenceCount câu đã xong</strong>
+                    <strong id="progressText">@Model.CompletedSentenceCount/@Model.TotalSentenceCount câu đã xong</strong>
                 </div>
                 <div class="progress-wrapper" aria-hidden="true">
-                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-fill" id="progressFill" style="width: @initialProgressPercent%"></div>
                 </div>
             </div>
         </div>
@@ -70,7 +82,43 @@
                 <i class="fas fa-tag" aria-hidden="true"></i>
                 @Model.ExerciseTopic
             </span>
+            <span class="writing-context-chip writing-context-chip--status">
+                <i class="fas fa-flag-checkered" aria-hidden="true"></i>
+                @Model.StatusLabel
+            </span>
+            <span class="writing-context-chip">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                @Model.AttemptCount lượt gửi
+            </span>
+            @if (!string.IsNullOrWhiteSpace(Model.LastAttemptedAtDisplay))
+            {
+                <span class="writing-context-chip">
+                    <i class="fas fa-clock-rotate-left" aria-hidden="true"></i>
+                    @Model.LastAttemptedAtDisplay
+                </span>
+            }
         </div>
+
+        @if (Model.RecentAttempts.Any())
+        {
+            <div class="writing-history-strip" aria-label="Lịch sử gần đây">
+                <div class="writing-history-header">
+                    <span class="writing-history-title">Lần làm gần đây</span>
+                    <span class="writing-history-summary">@Model.CompletedSentenceCount/@Model.TotalSentenceCount câu đạt</span>
+                </div>
+                <div class="writing-history-list">
+                    @foreach (var attempt in Model.RecentAttempts)
+                    {
+                        <div class="writing-history-item">
+                            <span class="writing-history-item-label">Câu @attempt.SentenceNumber</span>
+                            <span class="writing-history-item-status @(attempt.Passed ? "is-success" : "is-warning")">@attempt.StatusLabel</span>
+                            <span class="writing-history-item-preview">@attempt.SubmittedAnswerPreview</span>
+                            <span class="writing-history-item-time">@attempt.TimestampDisplay</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
 
         <div class="writing-exercise-card">
             <div class="prompt-label">Đoạn gốc</div>
@@ -89,13 +137,37 @@
                         var sentence = Model.Sentences[index];
                         var isParagraphStart = index == 0 || Model.Sentences[index - 1].BreakAfter;
                         var isParagraphEnd = sentence.BreakAfter || index == Model.Sentences.Count - 1;
+                        var hasPendingRevision = sentence.HasAccepted
+                            && !string.IsNullOrWhiteSpace(sentence.LastSubmittedAnswer)
+                            && !string.Equals(sentence.LastSubmittedAnswer, sentence.AcceptedAnswer, StringComparison.Ordinal);
+                        var sentenceClass = "writing-inline-sentence";
+
+                        if (sentence.Id == activeSentence?.Id)
+                        {
+                            sentenceClass += " is-active";
+                        }
+
+                        if (hasPendingRevision)
+                        {
+                            sentenceClass += " is-editing";
+                        }
+                        else if (sentence.HasAccepted)
+                        {
+                            sentenceClass += " is-completed";
+                        }
+                        else if (sentence.LastEvaluationPassed == false)
+                        {
+                            sentenceClass += " is-retry";
+                        }
+
+                        var displayText = sentence.HasAccepted ? sentence.AcceptedAnswer : sentence.VietnameseText;
 
                         if (isParagraphStart)
                         {
                             @:<p class="writing-text-paragraph">
                         }
 
-                        <button class="writing-inline-sentence"
+                        <button class="@sentenceClass"
                                 type="button"
                                 data-sentence-item
                                 data-sentence-id="@sentence.Id"
@@ -103,7 +175,7 @@
                                 aria-label="Câu @sentence.Number">
                             <span class="writing-email-text"
                                   data-sentence-id="@sentence.Id"
-                                  data-sentence-text>@sentence.VietnameseText</span>
+                                  data-sentence-text>@displayText</span>
                         </button>
 
                         if (!isParagraphEnd)
@@ -123,23 +195,23 @@
         <div class="writing-compose-card">
             <div class="writing-sentence-header">
                 <h2 class="writing-selected-counter" id="selectedSentenceCounter">
-                    @(firstSentence == null ? "Chưa chọn câu" : $"Câu {firstSentence.Number} / {Model.TotalSentenceCount}")
+                    @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
                 </h2>
                 <span class="writing-compose-badge">Gửi từng câu một</span>
             </div>
 
             <div class="writing-selected-text" id="selectedSentenceText" aria-live="polite">
-                @(firstSentence?.VietnameseText ?? "Chọn một câu bên trên để bắt đầu.")
+                @(activeSentence?.VietnameseText ?? "Chọn một câu bên trên để bắt đầu.")
             </div>
 
             <div>
                 <label class="writing-input-label" for="answerInput">Câu tiếng Anh của bạn</label>
                 <textarea class="writing-input"
                           id="answerInput"
-                          placeholder="@(firstSentence?.Placeholder ?? "Chọn câu rồi bắt đầu nhập...")"
+                          placeholder="@(activeSentence?.Placeholder ?? "Chọn câu rồi bắt đầu nhập...")"
                           autocomplete="off"
                           spellcheck="false"
-                          aria-describedby="selectionNote"></textarea>
+                          aria-describedby="selectionNote">@(activeSentence?.LastSubmittedAnswer ?? string.Empty)</textarea>
 
                 <div class="writing-draft-indicator" id="draftIndicator" aria-live="polite">
                     <i class="fas fa-floppy-disk" aria-hidden="true"></i>
@@ -203,10 +275,10 @@
                         Câu đang chấm
                     </span>
                     <p class="writing-feedback-section-meta" id="feedbackSentenceMeta">
-                        @(firstSentence == null ? "Chưa chọn câu" : $"Câu {firstSentence.Number} / {Model.TotalSentenceCount}")
+                        @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
                     </p>
                     <p class="writing-feedback-section-text" id="feedbackSourceText">
-                        @(firstSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
+                        @(activeSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
                     </p>
                 </div>
 
@@ -216,7 +288,9 @@
                         Câu tiếng Anh của bạn
                     </span>
                     <p class="writing-feedback-section-text" id="feedbackSubmissionText">
-                        Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây.
+                        @(string.IsNullOrWhiteSpace(activeSentence?.LastSubmittedAnswer)
+                            ? "Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây."
+                            : activeSentence.LastSubmittedAnswer)
                     </p>
                 </div>
 

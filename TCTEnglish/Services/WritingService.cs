@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,10 @@ namespace TCTVocabulary.Services
             "ours", "she", "that", "the", "their", "theirs", "them", "there", "they",
             "this", "to", "us", "was", "we", "were", "will", "with", "you", "your", "yours"
         };
+        private const string WritingStatusAll = "all";
+        private const string WritingStatusNotStarted = "not-started";
+        private const string WritingStatusInProgress = "in-progress";
+        private const string WritingStatusCompleted = "completed";
         private readonly DbflashcardContext _context;
         private readonly IWritingAiEvaluationService _writingAiEvaluationService;
 
@@ -37,23 +42,27 @@ namespace TCTVocabulary.Services
         public async Task<WritingExerciseDataViewModel> GetWritingExerciseDataAsync(
             string? selectedLevel,
             string? contentType,
-            string? topic)
+            string? topic,
+            int? userId = null,
+            string? status = null)
         {
-            var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType);
-            return BuildWritingExerciseDataViewModel(catalog, topic);
+            var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType, userId);
+            return BuildWritingExerciseDataViewModel(catalog, topic, status);
         }
 
         public async Task<WritingExerciseListViewModel> GetWritingExerciseListViewModelAsync(
             string? selectedLevel,
             string? contentType,
             string? topic,
-            int page)
+            int page,
+            int? userId = null,
+            string? status = null)
         {
-            var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic);
+            var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic, userId, status);
             return BuildWritingExerciseListViewModel(exerciseData, page);
         }
 
-        public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId)
+        public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId)
         {
             var exercise = await _context.WritingExercises
                 .AsNoTracking()
@@ -85,7 +94,8 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            return BuildWritingPracticeDataViewModel(exercise, sentences);
+            var attempts = await LoadWritingAttemptRowsAsync(userId, exerciseId);
+            return BuildWritingPracticeDataViewModel(exercise, sentences, attempts);
         }
 
         public async Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId)
@@ -117,7 +127,8 @@ namespace TCTVocabulary.Services
         public async Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(
             int exerciseId,
             int sentenceId,
-            string userAnswer)
+            string userAnswer,
+            int userId)
         {
             var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
@@ -135,51 +146,35 @@ namespace TCTVocabulary.Services
                 sentences.Count,
                 normalizedAnswer);
 
+            WritingSentenceEvaluationViewModel evaluationViewModel;
+
             if (ruleEvaluation.IsHardFailure)
             {
-                return BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
+                evaluationViewModel = BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
+            }
+            else
+            {
+                var aiEvaluation = await _writingAiEvaluationService.TryEvaluateSentenceAsync(
+                    new WritingAiEvaluationRequest(
+                        sentence.Id,
+                        sentence.VietnameseText,
+                        sentence.EnglishMeaning,
+                        normalizedAnswer));
+                evaluationViewModel = aiEvaluation == null
+                    ? BuildWritingSentenceEvaluationViewModel(ruleEvaluation)
+                    : BuildWritingSentenceEvaluationViewModel(exerciseId, sentence, aiEvaluation);
             }
 
-            var aiEvaluation = await _writingAiEvaluationService.TryEvaluateSentenceAsync(
-                new WritingAiEvaluationRequest(
-                    sentence.Id,
-                    sentence.VietnameseText,
-                    sentence.EnglishMeaning,
-                    normalizedAnswer));
-            if (aiEvaluation == null)
-            {
-                return BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
-            }
+            await PersistWritingAttemptAsync(userId, exerciseId, sentence, normalizedAnswer, evaluationViewModel);
 
-            var finalPassed = aiEvaluation.Passed;
-            var summaryTitle = finalPassed ? "Câu đạt yêu cầu" : "Hãy sửa lại câu này";
-            var summaryText = finalPassed
-                ? "Hệ thống đã chấp nhận câu dịch này. Bạn có thể chuyển sang câu tiếp theo."
-                : "Ý nghĩa hoặc cách diễn đạt của câu này vẫn cần chỉnh thêm trước khi được đánh dấu hoàn thành.";
+            var progressSummary = await LoadWritingExerciseProgressSummaryAsync(exerciseId, userId, sentences.Count);
+            evaluationViewModel.SentenceAttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id);
+            evaluationViewModel.ExerciseAttemptCount = progressSummary.AttemptCount;
+            evaluationViewModel.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
+            evaluationViewModel.ExerciseStatusKey = progressSummary.StatusKey;
+            evaluationViewModel.ExerciseStatusLabel = progressSummary.StatusLabel;
 
-            return new WritingSentenceEvaluationViewModel
-            {
-                ExerciseId = exerciseId,
-                SentenceId = sentence.Id,
-                SentenceNumber = sentence.SortOrder,
-                Passed = finalPassed,
-                CanAutoAdvance = finalPassed,
-                UsedAi = true,
-                EvaluationSource = "ai",
-                SummaryTitle = summaryTitle,
-                SummaryText = summaryText,
-                ReviewText = BuildReviewText(
-                    aiEvaluation.OverallFeedback,
-                    aiEvaluation.MeaningFeedback,
-                    aiEvaluation.GrammarFeedback,
-                    aiEvaluation.NaturalnessFeedback,
-                    aiEvaluation.WordChoiceFeedback),
-                MeaningFeedback = aiEvaluation.MeaningFeedback,
-                GrammarFeedback = aiEvaluation.GrammarFeedback,
-                NaturalnessFeedback = aiEvaluation.NaturalnessFeedback,
-                WordChoiceFeedback = aiEvaluation.WordChoiceFeedback,
-                SuggestedRewrite = aiEvaluation.SuggestedRewrite
-            };
+            return evaluationViewModel;
         }
 
         public async Task<WritingPracticeViewModel?> GetWritingPracticeViewModelAsync(
@@ -187,10 +182,12 @@ namespace TCTVocabulary.Services
             string? contentType,
             string? topic,
             int page,
-            int? exerciseId)
+            int? exerciseId,
+            int userId,
+            string? status = null)
         {
-            var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType);
-            var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic);
+            var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType, userId);
+            var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic, status);
             var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, page);
             var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, catalog.Exercises);
 
@@ -199,7 +196,7 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            var practiceData = await GetWritingPracticeDataAsync(selectedExerciseId.Value);
+            var practiceData = await GetWritingPracticeDataAsync(selectedExerciseId.Value, userId);
             if (practiceData == null)
             {
                 return null;
@@ -212,24 +209,37 @@ namespace TCTVocabulary.Services
             return BuildWritingPracticeViewModel(exerciseListViewModel, practiceData, selectedPage);
         }
 
-        private async Task<WritingExerciseCatalog> GetWritingExerciseCatalogAsync(string? selectedLevel, string? contentType)
+        private async Task<WritingExerciseCatalog> GetWritingExerciseCatalogAsync(
+            string? selectedLevel,
+            string? contentType,
+            int? userId = null)
         {
             var writingIndexViewModel = BuildWritingIndexViewModel(selectedLevel);
             var selectedContentTypeKey = ResolveWritingContentTypeKey(contentType);
+            var exercises = await LoadWritingExerciseCardsAsync(writingIndexViewModel.SelectedLevelKey, selectedContentTypeKey);
+
+            if (userId.HasValue)
+            {
+                await ApplyWritingProgressMetadataAsync(exercises, userId.Value);
+            }
 
             return new WritingExerciseCatalog(
                 writingIndexViewModel.SelectedLevelKey,
                 writingIndexViewModel.SelectedLevelTitle,
                 selectedContentTypeKey,
                 ResolveWritingContentTypeTitle(selectedContentTypeKey),
-                await LoadWritingExerciseCardsAsync(writingIndexViewModel.SelectedLevelKey, selectedContentTypeKey));
+                exercises,
+                userId.HasValue);
         }
 
         private static WritingExerciseDataViewModel BuildWritingExerciseDataViewModel(
             WritingExerciseCatalog catalog,
-            string? topic)
+            string? topic,
+            string? status)
         {
             var normalizedTopic = NormalizeWritingTopic(topic);
+            var normalizedStatus = NormalizeWritingStatus(status, catalog.HasProgressMetadata);
+            var topicFilteredExercises = FilterWritingExercisesByTopic(catalog.Exercises, normalizedTopic);
 
             return new WritingExerciseDataViewModel
             {
@@ -238,8 +248,16 @@ namespace TCTVocabulary.Services
                 SelectedContentTypeKey = catalog.SelectedContentTypeKey,
                 SelectedContentTypeTitle = catalog.SelectedContentTypeTitle,
                 SelectedTopic = normalizedTopic,
+                SelectedStatus = normalizedStatus,
+                ShowProgressMetadata = catalog.HasProgressMetadata,
                 TopicOptions = BuildWritingTopicOptions(catalog.Exercises),
-                Exercises = FilterWritingExercisesByTopic(catalog.Exercises, normalizedTopic)
+                StatusOptions = catalog.HasProgressMetadata
+                    ? BuildWritingStatusOptions()
+                    : new List<WritingFilterOptionViewModel>(),
+                Exercises = FilterWritingExercisesByStatus(
+                    topicFilteredExercises,
+                    normalizedStatus,
+                    catalog.HasProgressMetadata)
             };
         }
 
@@ -264,6 +282,8 @@ namespace TCTVocabulary.Services
                 SelectedContentTypeKey = exerciseData.SelectedContentTypeKey,
                 SelectedContentTypeTitle = exerciseData.SelectedContentTypeTitle,
                 SelectedTopic = exerciseData.SelectedTopic,
+                SelectedStatus = exerciseData.SelectedStatus,
+                ShowProgressMetadata = exerciseData.ShowProgressMetadata,
                 CurrentPage = currentPage,
                 TotalPages = totalPages,
                 TotalCount = totalCount,
@@ -271,6 +291,7 @@ namespace TCTVocabulary.Services
                 StartItemNumber = totalPages == 0 ? 0 : ((currentPage - 1) * pageSize) + 1,
                 EndItemNumber = totalPages == 0 ? 0 : Math.Min(currentPage * pageSize, totalCount),
                 TopicOptions = exerciseData.TopicOptions,
+                StatusOptions = exerciseData.StatusOptions,
                 PageNumbers = BuildWritingPageNumbers(currentPage, totalPages),
                 Exercises = pagedItems
             };
@@ -295,6 +316,43 @@ namespace TCTVocabulary.Services
                 .ToListAsync();
         }
 
+        private async Task ApplyWritingProgressMetadataAsync(List<WritingExerciseCardViewModel> exercises, int userId)
+        {
+            foreach (var exercise in exercises)
+            {
+                exercise.StatusKey = WritingStatusNotStarted;
+                exercise.StatusLabel = ResolveWritingProgressStatusLabel(WritingStatusNotStarted);
+                exercise.StartActionLabel = ResolveWritingStartActionLabel(WritingStatusNotStarted);
+            }
+
+            if (exercises.Count == 0)
+            {
+                return;
+            }
+
+            var exerciseIds = exercises
+                .Select(exercise => exercise.Id)
+                .ToList();
+            var attemptRows = await LoadWritingAttemptRowsAsync(userId, exerciseIds);
+            var progressByExerciseId = exerciseIds.ToDictionary(
+                exerciseId => exerciseId,
+                exerciseId => BuildWritingExerciseProgressSummary(
+                    attemptRows.Where(row => row.ExerciseId == exerciseId),
+                    exercises.First(exercise => exercise.Id == exerciseId).SentenceCount));
+
+            foreach (var exercise in exercises)
+            {
+                var progressSummary = progressByExerciseId.GetValueOrDefault(exercise.Id)
+                    ?? BuildWritingExerciseProgressSummary(Array.Empty<WritingAttemptRow>(), exercise.SentenceCount);
+                exercise.AttemptCount = progressSummary.AttemptCount;
+                exercise.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
+                exercise.StatusKey = progressSummary.StatusKey;
+                exercise.StatusLabel = progressSummary.StatusLabel;
+                exercise.StartActionLabel = ResolveWritingStartActionLabel(progressSummary.StatusKey);
+                exercise.LastAttemptedAtDisplay = FormatWritingTimestamp(progressSummary.LastAttemptedAtUtc);
+            }
+        }
+
         private static List<WritingExerciseCardViewModel> FilterWritingExercisesByTopic(
             IEnumerable<WritingExerciseCardViewModel> exercises,
             string normalizedTopic)
@@ -304,6 +362,21 @@ namespace TCTVocabulary.Services
                 : exercises
                     .Where(exercise => string.Equals(exercise.Topic, normalizedTopic, StringComparison.OrdinalIgnoreCase))
                     .ToList();
+        }
+
+        private static List<WritingExerciseCardViewModel> FilterWritingExercisesByStatus(
+            IEnumerable<WritingExerciseCardViewModel> exercises,
+            string normalizedStatus,
+            bool hasProgressMetadata)
+        {
+            if (!hasProgressMetadata || string.Equals(normalizedStatus, WritingStatusAll, StringComparison.OrdinalIgnoreCase))
+            {
+                return exercises.ToList();
+            }
+
+            return exercises
+                .Where(exercise => string.Equals(exercise.StatusKey, normalizedStatus, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
 
         private static int? ResolveSelectedWritingExerciseId(
@@ -321,8 +394,11 @@ namespace TCTVocabulary.Services
 
         private static WritingPracticeDataViewModel BuildWritingPracticeDataViewModel(
             WritingPracticeExerciseRow exercise,
-            IReadOnlyList<WritingExerciseSentence> sentences)
+            IReadOnlyList<WritingExerciseSentence> sentences,
+            IReadOnlyList<WritingAttemptRow> attempts)
         {
+            var progressSummary = BuildWritingExerciseProgressSummary(attempts, sentences.Count);
+
             return new WritingPracticeDataViewModel
             {
                 SelectedLevelKey = exercise.Level,
@@ -334,7 +410,14 @@ namespace TCTVocabulary.Services
                 ExercisePreviewText = exercise.PreviewText,
                 ExerciseTopic = exercise.Topic,
                 TotalSentenceCount = sentences.Count,
-                Sentences = BuildWritingPracticeSentences(sentences)
+                CompletedSentenceCount = progressSummary.CompletedSentenceCount,
+                AttemptCount = progressSummary.AttemptCount,
+                ResumeSentenceId = ResolveResumeSentenceId(sentences, progressSummary),
+                StatusKey = progressSummary.StatusKey,
+                StatusLabel = progressSummary.StatusLabel,
+                LastAttemptedAtDisplay = FormatWritingTimestamp(progressSummary.LastAttemptedAtUtc),
+                Sentences = BuildWritingPracticeSentences(sentences, progressSummary),
+                RecentAttempts = BuildWritingAttemptHistory(progressSummary.RecentAttempts)
             };
         }
 
@@ -350,13 +433,21 @@ namespace TCTVocabulary.Services
                 SelectedContentTypeKey = exerciseListViewModel.SelectedContentTypeKey,
                 SelectedContentTypeTitle = exerciseListViewModel.SelectedContentTypeTitle,
                 SelectedTopic = exerciseListViewModel.SelectedTopic,
+                SelectedStatus = exerciseListViewModel.SelectedStatus,
                 SelectedPage = selectedPage,
                 ExerciseId = practiceData.ExerciseId,
                 ExerciseTitle = practiceData.ExerciseTitle,
                 ExercisePreviewText = practiceData.ExercisePreviewText,
                 ExerciseTopic = practiceData.ExerciseTopic,
                 TotalSentenceCount = practiceData.TotalSentenceCount,
-                Sentences = practiceData.Sentences
+                CompletedSentenceCount = practiceData.CompletedSentenceCount,
+                AttemptCount = practiceData.AttemptCount,
+                ResumeSentenceId = practiceData.ResumeSentenceId,
+                StatusKey = practiceData.StatusKey,
+                StatusLabel = practiceData.StatusLabel,
+                LastAttemptedAtDisplay = practiceData.LastAttemptedAtDisplay,
+                Sentences = practiceData.Sentences,
+                RecentAttempts = practiceData.RecentAttempts
             };
         }
 
@@ -380,16 +471,28 @@ namespace TCTVocabulary.Services
             };
         }
 
-        private static List<WritingPracticeSentenceViewModel> BuildWritingPracticeSentences(IReadOnlyList<WritingExerciseSentence> sentences)
+        private static List<WritingPracticeSentenceViewModel> BuildWritingPracticeSentences(
+            IReadOnlyList<WritingExerciseSentence> sentences,
+            WritingExerciseProgressSummary progressSummary)
         {
             return sentences
-                .Select((sentence, index) => new WritingPracticeSentenceViewModel
+                .Select(sentence =>
                 {
-                    Id = sentence.Id,
-                    Number = index + 1,
-                    VietnameseText = NormalizeVietnameseDisplayText(sentence.VietnameseText),
-                    Placeholder = "Nhập câu tiếng Anh cho dòng đang chọn...",
-                    BreakAfter = sentence.BreakAfter
+                    var sentenceState = progressSummary.SentenceStates.GetValueOrDefault(sentence.Id);
+
+                    return new WritingPracticeSentenceViewModel
+                    {
+                        Id = sentence.Id,
+                        Number = sentence.SortOrder,
+                        VietnameseText = NormalizeVietnameseDisplayText(sentence.VietnameseText),
+                        Placeholder = "Nhập câu tiếng Anh cho dòng đang chọn...",
+                        BreakAfter = sentence.BreakAfter,
+                        AttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id),
+                        LastSubmittedAnswer = sentenceState?.LastSubmittedAnswer ?? string.Empty,
+                        AcceptedAnswer = sentenceState?.AcceptedAnswer ?? string.Empty,
+                        HasAccepted = sentenceState?.HasAccepted ?? false,
+                        LastEvaluationPassed = sentenceState?.LastEvaluationPassed
+                    };
                 })
                 .ToList();
         }
@@ -611,9 +714,52 @@ namespace TCTVocabulary.Services
             return options;
         }
 
+        private static List<WritingFilterOptionViewModel> BuildWritingStatusOptions()
+        {
+            return new List<WritingFilterOptionViewModel>
+            {
+                new()
+                {
+                    Value = WritingStatusAll,
+                    Label = "Tất cả trạng thái"
+                },
+                new()
+                {
+                    Value = WritingStatusNotStarted,
+                    Label = "Chưa bắt đầu"
+                },
+                new()
+                {
+                    Value = WritingStatusInProgress,
+                    Label = "Đang luyện"
+                },
+                new()
+                {
+                    Value = WritingStatusCompleted,
+                    Label = "Hoàn thành"
+                }
+            };
+        }
+
         private static string NormalizeWritingTopic(string? topic)
         {
-            return string.IsNullOrWhiteSpace(topic) ? "all" : topic.Trim();
+            return string.IsNullOrWhiteSpace(topic) ? WritingStatusAll : topic.Trim();
+        }
+
+        private static string NormalizeWritingStatus(string? status, bool hasProgressMetadata)
+        {
+            if (!hasProgressMetadata || string.IsNullOrWhiteSpace(status))
+            {
+                return WritingStatusAll;
+            }
+
+            return status.Trim().ToLowerInvariant() switch
+            {
+                WritingStatusNotStarted => WritingStatusNotStarted,
+                WritingStatusInProgress => WritingStatusInProgress,
+                WritingStatusCompleted => WritingStatusCompleted,
+                _ => WritingStatusAll
+            };
         }
 
         private static List<int?> BuildWritingPageNumbers(int currentPage, int totalPages)
@@ -654,6 +800,199 @@ namespace TCTVocabulary.Services
             });
 
             return pages;
+        }
+
+        private async Task<List<WritingAttemptRow>> LoadWritingAttemptRowsAsync(int userId, IReadOnlyCollection<int> exerciseIds)
+        {
+            if (exerciseIds.Count == 0)
+            {
+                return new List<WritingAttemptRow>();
+            }
+
+            return await _context.UserWritingAttempts
+                .AsNoTracking()
+                .Where(attempt => attempt.UserId == userId && exerciseIds.Contains(attempt.WritingExerciseId))
+                .OrderByDescending(attempt => attempt.CreatedAtUtc)
+                .Select(attempt => new WritingAttemptRow
+                {
+                    ExerciseId = attempt.WritingExerciseId,
+                    SentenceId = attempt.WritingExerciseSentenceId,
+                    SentenceNumber = attempt.WritingExerciseSentence.SortOrder,
+                    SubmittedAnswer = attempt.SubmittedAnswer,
+                    Passed = attempt.Passed,
+                    UsedAi = attempt.UsedAi,
+                    EvaluationSource = attempt.EvaluationSource,
+                    CreatedAtUtc = attempt.CreatedAtUtc
+                })
+                .ToListAsync();
+        }
+
+        private Task<List<WritingAttemptRow>> LoadWritingAttemptRowsAsync(int userId, int exerciseId)
+        {
+            return LoadWritingAttemptRowsAsync(userId, new[] { exerciseId });
+        }
+
+        private async Task PersistWritingAttemptAsync(
+            int userId,
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            string normalizedAnswer,
+            WritingSentenceEvaluationViewModel evaluationViewModel)
+        {
+            _context.UserWritingAttempts.Add(new UserWritingAttempt
+            {
+                UserId = userId,
+                WritingExerciseId = exerciseId,
+                WritingExerciseSentenceId = sentence.Id,
+                SubmittedAnswer = normalizedAnswer,
+                Passed = evaluationViewModel.Passed,
+                UsedAi = evaluationViewModel.UsedAi,
+                EvaluationSource = evaluationViewModel.EvaluationSource,
+                CreatedAtUtc = DateTime.UtcNow
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task<WritingExerciseProgressSummary> LoadWritingExerciseProgressSummaryAsync(
+            int exerciseId,
+            int userId,
+            int totalSentenceCount)
+        {
+            var attemptRows = await LoadWritingAttemptRowsAsync(userId, exerciseId);
+            return BuildWritingExerciseProgressSummary(attemptRows, totalSentenceCount);
+        }
+
+        private static WritingExerciseProgressSummary BuildWritingExerciseProgressSummary(
+            IEnumerable<WritingAttemptRow> attempts,
+            int totalSentenceCount)
+        {
+            var attemptList = attempts
+                .OrderByDescending(attempt => attempt.CreatedAtUtc)
+                .ToList();
+
+            var progressSummary = new WritingExerciseProgressSummary
+            {
+                AttemptCount = attemptList.Count,
+                LastAttemptedAtUtc = attemptList.FirstOrDefault()?.CreatedAtUtc,
+                LatestAttemptSentenceId = attemptList.FirstOrDefault()?.SentenceId,
+                RecentAttempts = attemptList.Take(5).ToList()
+            };
+
+            foreach (var sentenceAttemptGroup in attemptList.GroupBy(attempt => attempt.SentenceId))
+            {
+                var latestAttempt = sentenceAttemptGroup
+                    .OrderByDescending(attempt => attempt.CreatedAtUtc)
+                    .First();
+                var latestAcceptedAttempt = sentenceAttemptGroup
+                    .Where(attempt => attempt.Passed)
+                    .OrderByDescending(attempt => attempt.CreatedAtUtc)
+                    .FirstOrDefault();
+
+                progressSummary.SentenceAttemptCounts[sentenceAttemptGroup.Key] = sentenceAttemptGroup.Count();
+                progressSummary.SentenceStates[sentenceAttemptGroup.Key] = new WritingSentenceProgressState
+                {
+                    LastSubmittedAnswer = latestAttempt.SubmittedAnswer,
+                    AcceptedAnswer = latestAcceptedAttempt?.SubmittedAnswer ?? string.Empty,
+                    HasAccepted = latestAcceptedAttempt != null,
+                    LastEvaluationPassed = latestAttempt.Passed
+                };
+            }
+
+            progressSummary.CompletedSentenceCount = progressSummary.SentenceStates.Values.Count(state => state.HasAccepted);
+            progressSummary.StatusKey = ResolveWritingProgressStatusKey(
+                progressSummary.AttemptCount,
+                progressSummary.CompletedSentenceCount,
+                totalSentenceCount);
+            progressSummary.StatusLabel = ResolveWritingProgressStatusLabel(progressSummary.StatusKey);
+
+            return progressSummary;
+        }
+
+        private static int ResolveResumeSentenceId(
+            IReadOnlyList<WritingExerciseSentence> sentences,
+            WritingExerciseProgressSummary progressSummary)
+        {
+            var firstIncompleteSentenceId = sentences
+                .FirstOrDefault(sentence =>
+                    !progressSummary.SentenceStates.TryGetValue(sentence.Id, out var sentenceState)
+                    || !sentenceState.HasAccepted)
+                ?.Id;
+
+            return firstIncompleteSentenceId
+                ?? progressSummary.LatestAttemptSentenceId
+                ?? sentences.First().Id;
+        }
+
+        private static List<WritingAttemptHistoryItemViewModel> BuildWritingAttemptHistory(
+            IReadOnlyList<WritingAttemptRow> recentAttempts)
+        {
+            return recentAttempts
+                .Select(attempt => new WritingAttemptHistoryItemViewModel
+                {
+                    SentenceId = attempt.SentenceId,
+                    SentenceNumber = attempt.SentenceNumber,
+                    Passed = attempt.Passed,
+                    StatusLabel = attempt.Passed ? "Đạt" : "Cần sửa",
+                    SubmittedAnswerPreview = BuildWritingAttemptPreview(attempt.SubmittedAnswer),
+                    EvaluationSource = attempt.EvaluationSource,
+                    TimestampDisplay = FormatWritingTimestamp(attempt.CreatedAtUtc)
+                })
+                .ToList();
+        }
+
+        private static string BuildWritingAttemptPreview(string submittedAnswer)
+        {
+            var normalizedAnswer = CollapseWhitespace(submittedAnswer);
+
+            if (normalizedAnswer.Length <= 72)
+            {
+                return normalizedAnswer;
+            }
+
+            return normalizedAnswer[..69] + "...";
+        }
+
+        private static string ResolveWritingProgressStatusKey(
+            int attemptCount,
+            int completedSentenceCount,
+            int totalSentenceCount)
+        {
+            if (attemptCount <= 0)
+            {
+                return WritingStatusNotStarted;
+            }
+
+            return totalSentenceCount > 0 && completedSentenceCount >= totalSentenceCount
+                ? WritingStatusCompleted
+                : WritingStatusInProgress;
+        }
+
+        private static string ResolveWritingProgressStatusLabel(string statusKey)
+        {
+            return statusKey switch
+            {
+                WritingStatusCompleted => "Hoàn thành",
+                WritingStatusInProgress => "Đang luyện",
+                _ => "Chưa bắt đầu"
+            };
+        }
+
+        private static string ResolveWritingStartActionLabel(string statusKey)
+        {
+            return statusKey switch
+            {
+                WritingStatusCompleted => "Xem lại",
+                WritingStatusInProgress => "Tiếp tục",
+                _ => "Bắt đầu"
+            };
+        }
+
+        private static string FormatWritingTimestamp(DateTime? timestampUtc)
+        {
+            return timestampUtc.HasValue
+                ? timestampUtc.Value.ToString("dd/MM/yyyy HH:mm 'UTC'", CultureInfo.InvariantCulture)
+                : string.Empty;
         }
 
         private async Task<List<WritingSentenceLookupRow>> LoadPublishedWritingSentenceRowsAsync(int exerciseId)
@@ -796,6 +1135,42 @@ namespace TCTVocabulary.Services
         }
 
         private static WritingSentenceEvaluationViewModel BuildWritingSentenceEvaluationViewModel(
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            WritingAiEvaluationResult aiEvaluation)
+        {
+            var finalPassed = aiEvaluation.Passed;
+            var summaryTitle = finalPassed ? "Câu đạt yêu cầu" : "Hãy sửa lại câu này";
+            var summaryText = finalPassed
+                ? "Hệ thống đã chấp nhận câu dịch này. Bạn có thể chuyển sang câu tiếp theo."
+                : "Ý nghĩa hoặc cách diễn đạt của câu này vẫn cần chỉnh thêm trước khi được đánh dấu hoàn thành.";
+
+            return new WritingSentenceEvaluationViewModel
+            {
+                ExerciseId = exerciseId,
+                SentenceId = sentence.Id,
+                SentenceNumber = sentence.SortOrder,
+                Passed = finalPassed,
+                CanAutoAdvance = finalPassed,
+                UsedAi = true,
+                EvaluationSource = "ai",
+                SummaryTitle = summaryTitle,
+                SummaryText = summaryText,
+                ReviewText = BuildReviewText(
+                    aiEvaluation.OverallFeedback,
+                    aiEvaluation.MeaningFeedback,
+                    aiEvaluation.GrammarFeedback,
+                    aiEvaluation.NaturalnessFeedback,
+                    aiEvaluation.WordChoiceFeedback),
+                MeaningFeedback = aiEvaluation.MeaningFeedback,
+                GrammarFeedback = aiEvaluation.GrammarFeedback,
+                NaturalnessFeedback = aiEvaluation.NaturalnessFeedback,
+                WordChoiceFeedback = aiEvaluation.WordChoiceFeedback,
+                SuggestedRewrite = aiEvaluation.SuggestedRewrite
+            };
+        }
+
+        private static WritingSentenceEvaluationViewModel BuildWritingSentenceEvaluationViewModel(
             WritingRuleEvaluationResult evaluation)
         {
             return new WritingSentenceEvaluationViewModel
@@ -912,7 +1287,41 @@ namespace TCTVocabulary.Services
             string SelectedLevelTitle,
             string SelectedContentTypeKey,
             string SelectedContentTypeTitle,
-            List<WritingExerciseCardViewModel> Exercises);
+            List<WritingExerciseCardViewModel> Exercises,
+            bool HasProgressMetadata);
+
+        private sealed class WritingAttemptRow
+        {
+            public int ExerciseId { get; set; }
+            public int SentenceId { get; set; }
+            public int SentenceNumber { get; set; }
+            public string SubmittedAnswer { get; set; } = string.Empty;
+            public bool Passed { get; set; }
+            public bool UsedAi { get; set; }
+            public string EvaluationSource { get; set; } = string.Empty;
+            public DateTime CreatedAtUtc { get; set; }
+        }
+
+        private sealed class WritingExerciseProgressSummary
+        {
+            public int AttemptCount { get; set; }
+            public int CompletedSentenceCount { get; set; }
+            public string StatusKey { get; set; } = WritingStatusNotStarted;
+            public string StatusLabel { get; set; } = "Chưa bắt đầu";
+            public DateTime? LastAttemptedAtUtc { get; set; }
+            public int? LatestAttemptSentenceId { get; set; }
+            public Dictionary<int, int> SentenceAttemptCounts { get; } = new();
+            public Dictionary<int, WritingSentenceProgressState> SentenceStates { get; } = new();
+            public List<WritingAttemptRow> RecentAttempts { get; set; } = new();
+        }
+
+        private sealed class WritingSentenceProgressState
+        {
+            public string LastSubmittedAnswer { get; set; } = string.Empty;
+            public string AcceptedAnswer { get; set; } = string.Empty;
+            public bool HasAccepted { get; set; }
+            public bool? LastEvaluationPassed { get; set; }
+        }
 
         private sealed class WritingPracticeExerciseRow
         {

@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── Config from data attributes ──────────────────────────────────────── */
     const antiForgeryToken = elPracticeRoot.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
     const exerciseId       = elPracticeRoot.getAttribute('data-exercise-id') || '';
+    const resumeSentenceId = elPracticeRoot.getAttribute('data-resume-sentence-id') || '';
     const hintUrl          = elPracticeRoot.getAttribute('data-hint-url')    || '';
     const evaluateUrl      = elPracticeRoot.getAttribute('data-evaluate-url') || '';
 
@@ -110,23 +111,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ── Sentence state ───────────────────────────────────────────────────── */
     const sentenceStateById = new Map(sentencePayload.map(function (s) {
+        const restoredDraft = loadDraft(s.id);
+        const persistedAttempt = collapseWhitespace(s.lastSubmittedAnswer || '');
+
         return [String(s.id), {
             id:              s.id,
             number:          s.number,
             vietnameseText:  s.vietnameseText || '',
             placeholder:     s.placeholder   || 'Nhập câu tiếng Anh của bạn ở đây...',
             breakAfter:      Boolean(s.breakAfter),
-            draft:           loadDraft(s.id),   // restored from localStorage
-            lastAttemptText: '',
-            acceptedText:    '',
-            hasAccepted:     false,
+            draft:           restoredDraft || persistedAttempt,
+            attemptCount:    Number(s.attemptCount || 0),
+            lastAttemptText: persistedAttempt,
+            acceptedText:    collapseWhitespace(s.acceptedAnswer || ''),
+            hasAccepted:     Boolean(s.hasAccepted),
+            lastEvaluationPassed: typeof s.lastEvaluationPassed === 'boolean' ? s.lastEvaluationPassed : null,
             lastHintTitle:   '',
             lastHintText:    '',
             lastEvaluation:  null
         }];
     }));
 
-    let activeSentenceId = orderedSentenceIds[0];
+    let activeSentenceId = orderedSentenceIds.includes(String(resumeSentenceId))
+        ? String(resumeSentenceId)
+        : orderedSentenceIds[0];
     let isSubmitting     = false;
 
     /* ── Draft-saved indicator (debounced) ───────────────────────────────── */
@@ -186,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!sentence)                                                    { return 'Chờ làm';   }
         if (sentence.hasAccepted && hasPendingChanges(sentence))         { return 'Đang sửa';  }
         if (sentence.hasAccepted)                                        { return 'Hoàn thành'; }
-        if (sentence.lastEvaluation && !sentence.lastEvaluation.passed)  { return 'Làm lại';   }
+        if (sentence.lastEvaluationPassed === false)                     { return 'Làm lại';   }
         if (isActive)                                                     { return 'Đang chọn'; }
         if (hasDraft(sentence))                                          { return 'Bản nháp';  }
         return 'Chờ làm';
@@ -266,8 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isActive   = sentenceId === activeSentenceId;
             const elText     = item.querySelector('[data-sentence-text]');
             const isEditing  = Boolean(sentence) && hasPendingChanges(sentence);
-            const isRetry    = Boolean(sentence && sentence.lastEvaluation &&
-                                        !sentence.lastEvaluation.passed && !sentence.hasAccepted);
+            const isRetry    = Boolean(sentence && sentence.lastEvaluationPassed === false && !sentence.hasAccepted);
 
             if (!sentence || !elText) { return; }
 
@@ -612,7 +619,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const copy       = getEvaluationBannerCopy(evaluation);
 
             active.lastAttemptText = trimmedDraft;
+            active.attemptCount    = Number(active.attemptCount || 0) + 1;
             active.lastEvaluation  = evaluation;
+            active.lastEvaluationPassed = Boolean(evaluation.passed);
             hideSessionExpiredPrompt();
 
             if (evaluation.passed) {

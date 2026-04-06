@@ -109,9 +109,13 @@ namespace TCTVocabulary.Controllers
             string? level = null,
             string? contentType = null,
             string? topic = null,
+            string? status = null,
             int page = 1)
         {
-            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page);
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status);
             return View(viewModel);
         }
 
@@ -119,9 +123,13 @@ namespace TCTVocabulary.Controllers
         public async Task<IActionResult> WritingExercisesData(
             string? level = null,
             string? contentType = null,
-            string? topic = null)
+            string? topic = null,
+            string? status = null)
         {
-            var data = await _writingService.GetWritingExerciseDataAsync(level, contentType, topic);
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var data = await _writingService.GetWritingExerciseDataAsync(level, contentType, topic, userId, status);
             return Json(data);
         }
 
@@ -131,15 +139,19 @@ namespace TCTVocabulary.Controllers
             string? level = null,
             string? contentType = null,
             string? topic = null,
+            string? status = null,
             int page = 1,
             int? exerciseId = null)
         {
+            var userId = GetCurrentUserId();
             var viewModel = await _writingService.GetWritingPracticeViewModelAsync(
                 level,
                 contentType,
                 topic,
                 page,
-                exerciseId);
+                exerciseId,
+                userId,
+                status);
 
             return viewModel == null ? NotFound() : View(viewModel);
         }
@@ -153,7 +165,7 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _writingService.GetWritingPracticeDataAsync(exerciseId);
+            var data = await _writingService.GetWritingPracticeDataAsync(exerciseId, GetCurrentUserId());
             return data == null ? NotFound() : Json(data);
         }
 
@@ -215,7 +227,8 @@ namespace TCTVocabulary.Controllers
             var evaluation = await _writingService.EvaluateWritingSentenceAsync(
                 request.ExerciseId,
                 request.SentenceId,
-                request.UserAnswer);
+                request.UserAnswer,
+                userId);
 
             if (evaluation == null)
             {

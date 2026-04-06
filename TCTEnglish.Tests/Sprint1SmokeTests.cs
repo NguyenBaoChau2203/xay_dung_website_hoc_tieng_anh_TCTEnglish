@@ -172,20 +172,27 @@ public sealed class Sprint1SmokeTests
 
         Assert.Equal("emails", exercisesJson.RootElement.GetProperty("selectedContentTypeKey").GetString());
         Assert.Equal("Personal Check-In", exercisesJson.RootElement.GetProperty("selectedTopic").GetString());
+        Assert.Equal("all", exercisesJson.RootElement.GetProperty("selectedStatus").GetString());
+        Assert.False(exercisesJson.RootElement.GetProperty("showProgressMetadata").GetBoolean());
         Assert.True(exercisesJson.RootElement.GetProperty("exercises").GetArrayLength() > 0);
         Assert.True(firstExercise.TryGetProperty("sentenceCount", out var sentenceCount));
         Assert.True(sentenceCount.GetInt32() > 0);
-        Assert.False(firstExercise.TryGetProperty("statusKey", out _));
-        Assert.False(firstExercise.TryGetProperty("statusLabel", out _));
-        Assert.False(firstExercise.TryGetProperty("attemptCount", out _));
-        Assert.False(firstExercise.TryGetProperty("lastAttemptText", out _));
+        Assert.Equal(string.Empty, firstExercise.GetProperty("statusKey").GetString());
+        Assert.Equal(string.Empty, firstExercise.GetProperty("statusLabel").GetString());
+        Assert.Equal(0, firstExercise.GetProperty("attemptCount").GetInt32());
+        Assert.Equal(0, firstExercise.GetProperty("completedSentenceCount").GetInt32());
         Assert.False(firstExercise.TryGetProperty("englishMeaning", out _));
 
         Assert.Equal(1, practiceJson.RootElement.GetProperty("exerciseId").GetInt32());
         Assert.Equal("Just Checking In!", practiceJson.RootElement.GetProperty("exerciseTitle").GetString());
         Assert.Equal(14, practiceJson.RootElement.GetProperty("totalSentenceCount").GetInt32());
+        Assert.Equal(0, practiceJson.RootElement.GetProperty("completedSentenceCount").GetInt32());
+        Assert.Equal(0, practiceJson.RootElement.GetProperty("attemptCount").GetInt32());
+        Assert.Equal(1, practiceJson.RootElement.GetProperty("resumeSentenceId").GetInt32());
+        Assert.Equal("not-started", practiceJson.RootElement.GetProperty("statusKey").GetString());
         Assert.True(practiceJson.RootElement.GetProperty("sentences").GetArrayLength() > 0);
         Assert.False(practiceJson.RootElement.GetProperty("sentences")[0].TryGetProperty("englishMeaning", out _));
+        Assert.False(practiceJson.RootElement.GetProperty("sentences")[0].GetProperty("hasAccepted").GetBoolean());
 
         foreach (var sentence in practiceJson.RootElement.GetProperty("sentences").EnumerateArray())
         {

@@ -310,6 +310,11 @@ Stop after the gate passes.
 Goal:
 - Add true per-user Writing progress/history/status so list metadata becomes real.
 
+Operational rollout note:
+- Shipping the code and committing the migration is not enough to make progress accumulate in a running environment.
+- Writing progress/history/status starts accumulating only after the additive Writing progress migration is actually applied to the real SQL Server database used by that environment.
+- If that live SQL Server step has not happened yet, treat the environment as code-ready but not rollout-complete for durable Writing progress.
+
 Only start this phase if the user explicitly wants:
 - real attempts
 - real status filters
@@ -339,6 +344,8 @@ dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-build --filter "Writin
 Also required:
 - document migration impact
 - confirm migration is additive and reversible
+- explicitly state whether the migration was only generated locally, applied to a local/dev database, or applied to the target live SQL Server environment
+- include the live rollout checklist: backup target SQL Server database, apply the migration there, restart/recycle the app if required by the environment, then verify new `UserWritingAttempts` rows appear after a real learner submission
 
 Stop after the gate passes.
 
@@ -420,6 +427,7 @@ Baseline completion requires:
 Expanded completion requires:
 - baseline completion
 - Phase 6 done
+- the durable-progress migration applied on the live SQL Server environment where progress is expected to accumulate
 - Phase 8 says `Expanded 100% complete (with durable progress/history): Yes`
 
 ---

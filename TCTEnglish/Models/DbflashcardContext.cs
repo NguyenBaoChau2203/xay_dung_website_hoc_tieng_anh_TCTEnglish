@@ -33,6 +33,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
     public virtual DbSet<WritingExercise> WritingExercises { get; set; }
     public virtual DbSet<WritingExerciseSentence> WritingExerciseSentences { get; set; }
+    public virtual DbSet<UserWritingAttempt> UserWritingAttempts { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
     public virtual DbSet<ClassMember> ClassMembers { get; set; }
     public virtual DbSet<Badge> Badges { get; set; }
@@ -502,6 +503,51 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.WritingExerciseId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
+        });
+
+        modelBuilder.Entity<UserWritingAttempt>(entity =>
+        {
+            entity.ToTable("UserWritingAttempts");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.WritingExerciseId, e.CreatedAtUtc })
+                .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseId_CreatedAtUtc");
+
+            entity.HasIndex(e => new { e.UserId, e.WritingExerciseSentenceId, e.CreatedAtUtc })
+                .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseSentenceId_CreatedAtUtc");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.SubmittedAnswer)
+                .IsRequired();
+
+            entity.Property(e => e.EvaluationSource)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserWritingAttempts)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingAttempts_Users");
+
+            entity.HasOne(d => d.WritingExercise)
+                .WithMany(p => p.UserWritingAttempts)
+                .HasForeignKey(d => d.WritingExerciseId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_UserWritingAttempts_WritingExercises");
+
+            entity.HasOne(d => d.WritingExerciseSentence)
+                .WithMany(p => p.UserWritingAttempts)
+                .HasForeignKey(d => d.WritingExerciseSentenceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingAttempts_WritingExerciseSentences");
         });
 
         modelBuilder.Entity<UserSpeakingProgress>(entity =>

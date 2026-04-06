@@ -42,6 +42,32 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Writing progress live migration failed on SQL Server due to multiple cascade paths - 2026-04-06
+
+**Symptom**: Applying migration `20260406144534_AddUserWritingAttempts` to the live SQL Server failed with `Introducing FOREIGN KEY constraint 'FK_UserWritingAttempts_WritingExercises' on table 'UserWritingAttempts' may cause cycles or multiple cascade paths`, so durable Writing progress could not start accumulating in the running environment.
+
+**Root Cause**: The new `UserWritingAttempts` table cascaded from both `WritingExercises` and `WritingExerciseSentences`, while `WritingExerciseSentences` already cascades from `WritingExercises`. SQL Server rejected the schema because that created two delete paths from `WritingExercises` to `UserWritingAttempts`.
+
+**Solution**: Changed the `UserWritingAttempt -> WritingExercise` relationship to `DeleteBehavior.NoAction` / `ReferentialAction.NoAction`, kept cascade cleanup through `WritingExerciseSentence`, updated the generated migration metadata/snapshot, added a metadata regression test for the FK delete behaviors, and re-ran the migration successfully against the live SQL Server.
+
+**Files Changed**:
+- `TCTEnglish/Models/DbflashcardContext.cs` - changed `FK_UserWritingAttempts_WritingExercises` to `DeleteBehavior.NoAction`.
+- `TCTEnglish/Migrations/20260406144534_AddUserWritingAttempts.cs` - changed the SQL Server FK delete action to `ReferentialAction.NoAction`.
+- `TCTEnglish/Migrations/20260406144534_AddUserWritingAttempts.Designer.cs` - synced the migration designer metadata to `DeleteBehavior.NoAction`.
+- `TCTEnglish/Migrations/DbflashcardContextModelSnapshot.cs` - synced the model snapshot to `DeleteBehavior.NoAction`.
+- `TCTEnglish.Tests/WritingSchemaTests.cs` - added a regression test for the `UserWritingAttempt` FK delete-behavior shape.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore`
+- `dotnet build TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore`
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-build --filter "Writing"`
+- `dotnet ef database update 20260406144534_AddUserWritingAttempts --project TCTEnglish/TCTEnglish.csproj --startup-project TCTEnglish/TCTEnglish.csproj --no-build` against the live SQL Server (passed; `UserWritingAttempts` created and migration recorded in `__EFMigrationsHistory`)
+
+**Commit**: Not created.
+
+**Notes**: This follows the same operational area as the 2026-03-27 Writing table rollout issue, but the root cause is different: SQL Server cascade-path validation rather than missing schema application. A later focused `WritingSchemaTests` run was noisy in this environment because of a transient testhost dependency resolution issue (`AngleSharp.dll`), but the rebuilt Writing regression slice passed after the fix.
+
 ### AI launcher quota sync could drift with multi-tab sends due to local UI increments - 2026-04-03
 
 **Symptom**: Standard-plan quota countdown in launcher could be temporarily inaccurate when embedded chat sends happened across multiple tabs/windows because host UI incremented locally per success event.
