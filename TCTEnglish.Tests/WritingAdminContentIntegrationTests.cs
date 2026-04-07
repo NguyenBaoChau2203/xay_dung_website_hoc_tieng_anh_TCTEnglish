@@ -155,6 +155,204 @@ public sealed class WritingAdminContentIntegrationTests
         Assert.Equal("Published again after admin review.", visiblePracticeJson.RootElement.GetProperty("exercisePreviewText").GetString());
     }
 
+    [Fact]
+    public async Task AdminWriting_CreateDraftExercise_RemainsHiddenFromLearners()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var adminClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AdminUserId, Roles.Admin);
+        using var browseClient = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var learnerClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        const string title = "Phase 7 Draft Check";
+        const string topic = "Draft Only";
+        const string previewText = "Draft content should stay off the learner surface until published.";
+
+        using var createResponse = await PostCreateAsync(
+            adminClient,
+            new WritingExerciseFormPayload
+            {
+                Title = title,
+                Topic = topic,
+                PreviewText = previewText,
+                FullVietnameseText = "Xin chao Minh. Toi dang luu ban nhap.",
+                FullEnglishText = "Hello Minh. I am saving a draft.",
+                IsPublished = false
+            });
+
+        Assert.Equal(HttpStatusCode.Redirect, createResponse.StatusCode);
+
+        int createdExerciseId;
+
+        using (var scope = factory.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            var exercise = await context.WritingExercises
+                .AsNoTracking()
+                .SingleAsync(item => item.Title == title);
+
+            createdExerciseId = exercise.Id;
+
+            Assert.False(exercise.IsPublished);
+            Assert.Equal(topic, exercise.Topic);
+            Assert.Equal(previewText, exercise.PreviewText);
+        }
+
+        var listBody = await browseClient.GetStringAsync(
+            $"/Home/Writing/Exercises/Data?level=beginner&contentType=emails&topic={Uri.EscapeDataString(topic)}");
+
+        using var listJson = JsonDocument.Parse(listBody);
+        var visibleIds = listJson.RootElement
+            .GetProperty("exercises")
+            .EnumerateArray()
+            .Select(item => item.GetProperty("id").GetInt32())
+            .ToList();
+
+        Assert.DoesNotContain(createdExerciseId, visibleIds);
+
+        using var practiceResponse = await learnerClient.GetAsync($"/Home/Writing/Practice/Data?exerciseId={createdExerciseId}");
+        Assert.Equal(HttpStatusCode.NotFound, practiceResponse.StatusCode);
+    }
+
+    [Fact]
+    public async Task AdminWriting_EditFullText_ResplitsSentencesAndPreservesExistingSentenceIds()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var adminClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AdminUserId, Roles.Admin);
+
+        var payload = await LoadFormPayloadAsync(factory, exerciseId: 1);
+        List<int> originalSentenceIds;
+        int trackedAttemptId;
+
+        using (var scope = factory.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            originalSentenceIds = await context.WritingExerciseSentences
+                .AsNoTracking()
+                .Where(item => item.WritingExerciseId == 1)
+                .OrderBy(item => item.SortOrder)
+                .ThenBy(item => item.Id)
+                .Select(item => item.Id)
+                .ToListAsync();
+
+            var trackedAttempt = new UserWritingAttempt
+            {
+                UserId = TestDataIds.UserId,
+                WritingExerciseId = 1,
+                WritingExerciseSentenceId = originalSentenceIds[0],
+                SubmittedAnswer = "Hello there.",
+                Passed = true,
+                UsedAi = false,
+                EvaluationSource = "rule-based",
+                SummaryTitle = "Looks good",
+                SummaryText = "Kept for regression coverage.",
+                ReviewText = "Initial sentence attempt should survive admin edits.",
+                CreatedAtUtc = DateTime.UtcNow
+            };
+
+            context.UserWritingAttempts.Add(trackedAttempt);
+            await context.SaveChangesAsync();
+            trackedAttemptId = trackedAttempt.Id;
+        }
+
+        payload.Title = "Updated Full Text Check";
+        payload.Topic = "Retention Check";
+        payload.PreviewText = "Editing full text should preserve stable sentence ids.";
+        payload.FullVietnameseText = "Xin chao Minh. Hom nay toi gui ban ban cap nhat.\n\nChung ta can chot lich. Cam on ban.";
+        payload.FullEnglishText = "Hello Minh. Today I am sending you an update.\n\nWe need to finalize the schedule. Thank you.";
+        payload.IsPublished = true;
+
+        using var editResponse = await PostEditAsync(adminClient, exerciseId: 1, payload);
+        Assert.Equal(HttpStatusCode.Redirect, editResponse.StatusCode);
+
+        using (var scope = factory.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            var exercise = await context.WritingExercises
+                .AsNoTracking()
+                .Include(item => item.WritingExerciseSentences)
+                .SingleAsync(item => item.Id == 1);
+
+            var updatedSentences = exercise.WritingExerciseSentences
+                .OrderBy(item => item.SortOrder)
+                .ThenBy(item => item.Id)
+                .ToList();
+
+            Assert.Equal("Updated Full Text Check", exercise.Title);
+            Assert.Equal("Retention Check", exercise.Topic);
+            Assert.Equal("Editing full text should preserve stable sentence ids.", exercise.PreviewText);
+            Assert.Equal(4, updatedSentences.Count);
+            Assert.Equal(originalSentenceIds.Take(4).ToList(), updatedSentences.Select(item => item.Id).ToList());
+
+            Assert.Collection(
+                updatedSentences,
+                sentence =>
+                {
+                    Assert.Equal("Xin chao Minh.", sentence.VietnameseText);
+                    Assert.Equal("Hello Minh.", sentence.EnglishMeaning);
+                    Assert.False(sentence.BreakAfter);
+                },
+                sentence =>
+                {
+                    Assert.Equal("Hom nay toi gui ban ban cap nhat.", sentence.VietnameseText);
+                    Assert.Equal("Today I am sending you an update.", sentence.EnglishMeaning);
+                    Assert.True(sentence.BreakAfter);
+                },
+                sentence =>
+                {
+                    Assert.Equal("Chung ta can chot lich.", sentence.VietnameseText);
+                    Assert.Equal("We need to finalize the schedule.", sentence.EnglishMeaning);
+                    Assert.False(sentence.BreakAfter);
+                },
+                sentence =>
+                {
+                    Assert.Equal("Cam on ban.", sentence.VietnameseText);
+                    Assert.Equal("Thank you.", sentence.EnglishMeaning);
+                    Assert.True(sentence.BreakAfter);
+                });
+
+            var trackedAttempt = await context.UserWritingAttempts
+                .AsNoTracking()
+                .SingleAsync(item => item.Id == trackedAttemptId);
+
+            Assert.Equal(originalSentenceIds[0], trackedAttempt.WritingExerciseSentenceId);
+            Assert.Contains(updatedSentences, sentence => sentence.Id == trackedAttempt.WritingExerciseSentenceId);
+        }
+    }
+
+    [Fact]
+    public async Task AdminWriting_DeleteExercise_RemovesLearnerVisibility()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var adminClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AdminUserId, Roles.Admin);
+        using var browseClient = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var learnerClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using var deleteResponse = await PostDeleteAsync(adminClient, exerciseId: 1);
+        Assert.Equal(HttpStatusCode.Redirect, deleteResponse.StatusCode);
+
+        using (var scope = factory.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            Assert.False(await context.WritingExercises.AsNoTracking().AnyAsync(item => item.Id == 1));
+        }
+
+        var visibleListBody = await browseClient.GetStringAsync("/Home/Writing/Exercises/Data?level=beginner&contentType=emails");
+        using var visibleListJson = JsonDocument.Parse(visibleListBody);
+        var visibleIds = visibleListJson.RootElement
+            .GetProperty("exercises")
+            .EnumerateArray()
+            .Select(item => item.GetProperty("id").GetInt32())
+            .ToList();
+
+        Assert.DoesNotContain(1, visibleIds);
+
+        using var practiceResponse = await learnerClient.GetAsync("/Home/Writing/Practice/Data?exerciseId=1");
+        Assert.Equal(HttpStatusCode.NotFound, practiceResponse.StatusCode);
+    }
+
     private static async Task<HttpResponseMessage> PostCreateAsync(HttpClient client, WritingExerciseFormPayload payload)
     {
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(
@@ -175,6 +373,21 @@ public sealed class WritingAdminContentIntegrationTests
         return await client.PostAsync(
             $"/Admin/WritingExerciseManagement/Edit/{exerciseId}",
             BuildFormContent(payload, antiForgeryToken));
+    }
+
+    private static async Task<HttpResponseMessage> PostDeleteAsync(HttpClient client, int exerciseId)
+    {
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(
+            client,
+            "/Admin/WritingExerciseManagement");
+
+        return await client.PostAsync(
+            "/Admin/WritingExerciseManagement/Delete",
+            new FormUrlEncodedContent(
+            [
+                new KeyValuePair<string, string>("__RequestVerificationToken", antiForgeryToken),
+                new KeyValuePair<string, string>("id", exerciseId.ToString())
+            ]));
     }
 
     private static FormUrlEncodedContent BuildFormContent(WritingExerciseFormPayload payload, string antiForgeryToken)

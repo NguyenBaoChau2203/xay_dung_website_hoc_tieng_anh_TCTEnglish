@@ -527,6 +527,30 @@ public partial class DbflashcardContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50);
 
+            entity.Property(e => e.SummaryTitle)
+                .HasMaxLength(200);
+
+            entity.Property(e => e.SummaryText)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.ReviewText)
+                .HasMaxLength(2000);
+
+            entity.Property(e => e.MeaningFeedback)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.GrammarFeedback)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.NaturalnessFeedback)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.WordChoiceFeedback)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.SuggestedRewrite)
+                .HasMaxLength(1000);
+
             entity.Property(e => e.CreatedAtUtc)
                 .HasColumnType("datetime2")
                 .HasDefaultValueSql("SYSUTCDATETIME()");

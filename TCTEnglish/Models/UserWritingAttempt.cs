@@ -12,6 +12,14 @@ public class UserWritingAttempt
     public bool Passed { get; set; }
     public bool UsedAi { get; set; }
     public string EvaluationSource { get; set; } = null!;
+    public string? SummaryTitle { get; set; }
+    public string? SummaryText { get; set; }
+    public string? ReviewText { get; set; }
+    public string? MeaningFeedback { get; set; }
+    public string? GrammarFeedback { get; set; }
+    public string? NaturalnessFeedback { get; set; }
+    public string? WordChoiceFeedback { get; set; }
+    public string? SuggestedRewrite { get; set; }
     public DateTime CreatedAtUtc { get; set; }
 
     public virtual User User { get; set; } = null!;

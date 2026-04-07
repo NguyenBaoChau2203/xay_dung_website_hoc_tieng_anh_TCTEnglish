@@ -143,6 +143,22 @@ namespace TCTEnglish.ViewModels
         public string AcceptedAnswer { get; set; } = string.Empty;
         public bool HasAccepted { get; set; }
         public bool? LastEvaluationPassed { get; set; }
+        public WritingSentenceEvaluationSnapshotViewModel? LastEvaluation { get; set; }
+    }
+
+    public class WritingSentenceEvaluationSnapshotViewModel
+    {
+        public bool Passed { get; set; }
+        public bool UsedAi { get; set; }
+        public string EvaluationSource { get; set; } = string.Empty;
+        public string SummaryTitle { get; set; } = string.Empty;
+        public string SummaryText { get; set; } = string.Empty;
+        public string ReviewText { get; set; } = string.Empty;
+        public string MeaningFeedback { get; set; } = string.Empty;
+        public string GrammarFeedback { get; set; } = string.Empty;
+        public string NaturalnessFeedback { get; set; } = string.Empty;
+        public string WordChoiceFeedback { get; set; } = string.Empty;
+        public string SuggestedRewrite { get; set; } = string.Empty;
     }
 
     public class WritingSentenceHintViewModel

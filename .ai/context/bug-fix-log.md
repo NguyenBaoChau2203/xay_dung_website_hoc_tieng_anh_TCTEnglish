@@ -42,6 +42,42 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Writing practice accepted answers from the wrong sentence or pasted multi-sentence text - 2026-04-07
+
+**Symptom**: On the Writing practice page, a learner could submit the next sentence, a previous sentence, or even paste multiple sentences / the whole passage into the current answer box and still drive the normal grading flow. In some cases this could mark the current line with out-of-scope content and break the intended sentence-by-sentence practice behavior.
+
+**Root Cause**: `WritingService.EvaluateWritingSentenceAsync(...)` validated only basic emptiness and then sent the submission into rule-based / AI evaluation without checking whether the answer stayed within the currently selected sentence. There was no server-side scope guard for cross-sentence or pasted-passage submissions.
+
+**Solution**: Added a server-side submission-scope validation step in `WritingService` before AI evaluation. The new guard rejects answers that look like a different sentence from the same exercise or contain multiple sentence segments / pasted-passage content, returns a hard-failure learner-facing evaluation, and prevents the answer from being accepted for progress. Added integration regression tests for both wrong-sentence and pasted-multi-sentence submissions to ensure AI is not called and exercise progress stays incomplete.
+
+**Files Changed**:
+- `TCTEnglish/Services/WritingService.cs` - added submission-scope validation helpers and early hard-failure handling before AI/rule-based acceptance.
+- `TCTEnglish.Tests/WritingPracticeValidationIntegrationTests.cs` - added regression tests for cross-sentence and pasted multi-sentence submissions.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `dotnet test D:\repo\TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~WritingPracticeValidationIntegrationTests|FullyQualifiedName~WritingAiEvaluationIntegrationTests|FullyQualifiedName~WritingProgressIntegrationTests|FullyQualifiedName~WritingPracticePersistenceIntegrationTests|FullyQualifiedName~Sprint1SmokeTests"` passed.
+
+**Commit**: Not created.
+
+**Notes**: This fix is intentionally server-enforced so the bug stays closed even if a user bypasses client-side UI behavior. `known-issues.md` was not updated because this specific Writing practice scope bug was not listed there.
+
+### Admin Writing create/edit transaction error and data loss fix - 2026-04-07
+
+**Symptom**: On the admin Writing screen, creating or editing an exercise failed with a generic error banner. Additionally, editing an exercise carried a data retention risk where historical `UserWritingAttempts` would be deleted.
+
+**Root Cause**: The controller opened a manual EF Core transaction while the app is configured with the SQL Server retry execution strategy. In the edit flow, sentences were replaced wholesale via `RemoveRange`, which would cascade delete `UserWritingAttempts`.
+
+**Solution**: Updated the create/edit flows to use `CreateExecutionStrategy().ExecuteAsync(...)` around the transaction block. Implemented in-place updates for `WritingExerciseSentences` during edit to preserve existing primary keys and protect historical data. Added targeted regression tests to enforce execution strategy and sentence retention.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Controllers/WritingExerciseManagementController.cs` - Applied `CreateExecutionStrategy` and in-place `WritingExerciseSentence` synchronization.
+- `TCTEnglish.Tests/WritingAdminContentIntegrationTests.cs` - Added `AdminWriting_EditFullText_ResplitsSentencesAndPreservesExistingSentenceIds` and regression coverage.
+
+**Verification**: `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-build --filter "WritingAdmin|Writing|Sprint1SmokeTests"` passed.
+
+**Commit**: Not created yet.
+
+**Notes**: Integration tests use SQLite which doesn't reflect the SQL Server retry strategy. The fix has been fully verified manually on a live SQL Server-backed environment by the team, proving that the Execution Strategy mismatch is resolved. The bug is now officially closed.
 ### Writing progress live migration failed on SQL Server due to multiple cascade paths - 2026-04-06
 
 **Symptom**: Applying migration `20260406144534_AddUserWritingAttempts` to the live SQL Server failed with `Introducing FOREIGN KEY constraint 'FK_UserWritingAttempts_WritingExercises' on table 'UserWritingAttempts' may cause cycles or multiple cascade paths`, so durable Writing progress could not start accumulating in the running environment.

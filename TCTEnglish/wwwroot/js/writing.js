@@ -113,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const sentenceStateById = new Map(sentencePayload.map(function (s) {
         const restoredDraft = loadDraft(s.id);
         const persistedAttempt = collapseWhitespace(s.lastSubmittedAnswer || '');
+        const persistedEvaluation = normalizeEvaluationSnapshot(s.lastEvaluation);
+        const lastEvaluationPassed = typeof s.lastEvaluationPassed === 'boolean'
+            ? s.lastEvaluationPassed
+            : (persistedEvaluation ? Boolean(persistedEvaluation.passed) : null);
 
         return [String(s.id), {
             id:              s.id,
@@ -125,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
             lastAttemptText: persistedAttempt,
             acceptedText:    collapseWhitespace(s.acceptedAnswer || ''),
             hasAccepted:     Boolean(s.hasAccepted),
-            lastEvaluationPassed: typeof s.lastEvaluationPassed === 'boolean' ? s.lastEvaluationPassed : null,
+            lastEvaluationPassed: lastEvaluationPassed,
             lastHintTitle:   '',
             lastHintText:    '',
-            lastEvaluation:  null
+            lastEvaluation:  persistedEvaluation
         }];
     }));
 
@@ -152,6 +156,26 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── Utility ──────────────────────────────────────────────────────────── */
     function collapseWhitespace(value) {
         return String(value || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function normalizeEvaluationSnapshot(value) {
+        if (!value || typeof value !== 'object') {
+            return null;
+        }
+
+        return {
+            passed: Boolean(value.passed),
+            usedAi: Boolean(value.usedAi),
+            evaluationSource: collapseWhitespace(value.evaluationSource || ''),
+            summaryTitle: collapseWhitespace(value.summaryTitle || ''),
+            summaryText: collapseWhitespace(value.summaryText || ''),
+            reviewText: String(value.reviewText || '').trim(),
+            meaningFeedback: collapseWhitespace(value.meaningFeedback || ''),
+            grammarFeedback: collapseWhitespace(value.grammarFeedback || ''),
+            naturalnessFeedback: collapseWhitespace(value.naturalnessFeedback || ''),
+            wordChoiceFeedback: collapseWhitespace(value.wordChoiceFeedback || ''),
+            suggestedRewrite: String(value.suggestedRewrite || '').trim()
+        };
     }
 
     function getSentenceById(sentenceId) {
@@ -344,7 +368,9 @@ document.addEventListener('DOMContentLoaded', function () {
                        '\nTừ vựng: '  + wordChoice;
             }
 
-            return ev.reviewText || 'Hệ thống đã có phản hồi cho câu này.';
+            return ev.reviewText || (ev.passed
+                ? 'Câu này đã được chấp nhận.'
+                : 'Câu này cần chỉnh thêm. Hãy xem gợi ý bên dưới.');
         }
 
         return 'Hãy gửi câu đang chọn để nhận phản hồi chi tiết tại đây.';
@@ -369,10 +395,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Rule-based fallback was used (not AI) – label this honestly
         elFeedbackSourceNote.hidden      = false;
         elFeedbackSourceNote.textContent = ev.passed
-            ? 'Phản hồi AI chi tiết hiện chưa khả dụng – kết quả đạt này dùng đánh giá nhanh từ hệ thống.'
-            : 'Phản hồi AI chi tiết hiện chưa khả dụng – kết quả làm lại này dùng đánh giá nhanh từ hệ thống.';
+            ? 'Hệ thống đã dùng đánh giá tự động (không dùng AI). Câu này đủ điều kiện để tiếp tục.'
+            : 'Hệ thống đã dùng đánh giá tự động (không dùng AI). Hãy chỉnh sửa và gửi lại câu này.';
     }
 
     function getEvaluationBannerCopy(evaluation) {
@@ -407,8 +434,8 @@ document.addEventListener('DOMContentLoaded', function () {
             elFeedbackSourceText.textContent      = 'Chọn một câu để bắt đầu.';
             elFeedbackSubmissionText.textContent  = 'Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây.';
             elFeedbackReviewText.textContent      = 'Hãy gửi câu đang chọn để nhận phản hồi chi tiết tại đây.';
-            elFeedbackReferenceText.textContent   = 'Nếu hệ thống có câu gợi ý, nội dung sẽ xuất hiện tại đây sau khi bạn gửi bài.';
-            elFeedbackHintText.textContent        = 'Nhấn nút Gợi ý để nhận gợi ý nhanh cho câu hiện tại trước khi gửi bài.';
+            elFeedbackReferenceText.textContent   = 'Câu gợi ý chỉnh lại sẽ xuất hiện tại đây nếu câu của bạn cần sửa.';
+            elFeedbackHintText.textContent        = 'Nhấn nút Gợi ý để hiện bản dịch tiếng Anh của câu đang chọn.';
             return;
         }
 
@@ -423,13 +450,13 @@ document.addEventListener('DOMContentLoaded', function () {
         elFeedbackSubmissionText.textContent = currentEnglish || 'Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây.';
         elFeedbackReviewText.textContent     = getDefaultReviewText(active);
         elFeedbackReferenceText.textContent  = getDefaultRewriteText(active);
-        elFeedbackHintText.textContent       = active.lastHintText || 'Nhấn nút Gợi ý để nhận gợi ý nhanh cho câu hiện tại trước khi gửi bài.';
+        elFeedbackHintText.textContent       = active.lastHintText || 'Nhấn nút Gợi ý để hiện bản dịch tiếng Anh của câu đang chọn.';
 
         if (reason === 'hint') {
             setBanner(
                 'hint',
-                active.lastHintTitle || 'Gợi ý cho câu ' + active.number,
-                active.lastHintText  || 'Hãy xem gợi ý này rồi gửi câu của bạn để được nhận xét.'
+                active.lastHintTitle || 'Bản dịch tham khảo – Câu ' + active.number,
+                active.lastHintText  || 'Hãy xem bản dịch này rồi gửi câu của bạn để được nhận xét.'
             );
             return;
         }

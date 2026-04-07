@@ -205,29 +205,22 @@ public sealed class Sprint1SmokeTests
         Assert.Equal(1, hintJson.RootElement.GetProperty("sentenceNumber").GetInt32());
         Assert.True(hintJson.RootElement.TryGetProperty("hintText", out var hintText));
         Assert.False(string.IsNullOrWhiteSpace(hintText.GetString()));
-        Assert.NotEqual("Hello!", hintText.GetString());
 
-        int? closingSentenceId = null;
+        // Phase 1: all hint titles use the stable format "Bản dịch tham khảo – Câu N"
+        var firstHintTitle = hintJson.RootElement.GetProperty("hintTitle").GetString() ?? string.Empty;
+        Assert.StartsWith("Bản dịch tham khảo", firstHintTitle, StringComparison.Ordinal);
+
+        // Verify that every sentence returns the stable title format and a non-empty hint text
         foreach (var sentence in practiceJson.RootElement.GetProperty("sentences").EnumerateArray())
         {
             var sentenceId = sentence.GetProperty("id").GetInt32();
             var candidateHintBody = await authenticatedClient.GetStringAsync($"/Home/Writing/Practice/Hint?exerciseId=1&sentenceId={sentenceId}");
             using var candidateHintJson = JsonDocument.Parse(candidateHintBody);
-            if (string.Equals(
-                candidateHintJson.RootElement.GetProperty("hintTitle").GetString(),
-                "Gợi ý lời kết",
-                StringComparison.Ordinal))
-            {
-                closingSentenceId = sentenceId;
-                break;
-            }
+            var candidateTitle = candidateHintJson.RootElement.GetProperty("hintTitle").GetString() ?? string.Empty;
+            var candidateText  = candidateHintJson.RootElement.GetProperty("hintText").GetString() ?? string.Empty;
+            Assert.StartsWith("Bản dịch tham khảo", candidateTitle, StringComparison.Ordinal);
+            Assert.False(string.IsNullOrWhiteSpace(candidateText));
         }
-
-        Assert.True(closingSentenceId.HasValue, "Expected a seeded writing sentence with a closing phrase.");
-
-        var closingHintBody = await authenticatedClient.GetStringAsync($"/Home/Writing/Practice/Hint?exerciseId=1&sentenceId={closingSentenceId.Value}");
-        using var closingHintJson = JsonDocument.Parse(closingHintBody);
-        Assert.Equal("Gợi ý lời kết", closingHintJson.RootElement.GetProperty("hintTitle").GetString());
     }
 
     [Fact]

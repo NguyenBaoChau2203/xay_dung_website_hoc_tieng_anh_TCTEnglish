@@ -26,7 +26,23 @@
         lastSubmittedAnswer = s.LastSubmittedAnswer,
         acceptedAnswer = s.AcceptedAnswer,
         hasAccepted    = s.HasAccepted,
-        lastEvaluationPassed = s.LastEvaluationPassed
+        lastEvaluationPassed = s.LastEvaluationPassed,
+        lastEvaluation = s.LastEvaluation == null
+            ? null
+            : new
+            {
+                passed = s.LastEvaluation.Passed,
+                usedAi = s.LastEvaluation.UsedAi,
+                evaluationSource = s.LastEvaluation.EvaluationSource,
+                summaryTitle = s.LastEvaluation.SummaryTitle,
+                summaryText = s.LastEvaluation.SummaryText,
+                reviewText = s.LastEvaluation.ReviewText,
+                meaningFeedback = s.LastEvaluation.MeaningFeedback,
+                grammarFeedback = s.LastEvaluation.GrammarFeedback,
+                naturalnessFeedback = s.LastEvaluation.NaturalnessFeedback,
+                wordChoiceFeedback = s.LastEvaluation.WordChoiceFeedback,
+                suggestedRewrite = s.LastEvaluation.SuggestedRewrite
+            }
     }));
 }
 
@@ -310,7 +326,7 @@
                         Câu gợi ý chỉnh lại
                     </span>
                     <p class="writing-feedback-section-text" id="feedbackReferenceText">
-                        Nếu hệ thống có câu gợi ý, nội dung sẽ xuất hiện tại đây sau khi bạn gửi bài.
+                        Câu gợi ý chỉnh lại sẽ xuất hiện tại đây nếu câu của bạn cần sửa.
                     </p>
                 </div>
 
@@ -320,7 +336,7 @@
                         Gợi ý
                     </span>
                     <p class="writing-feedback-section-text" id="feedbackHintText">
-                        Nhấn nút Gợi ý để nhận gợi ý nhanh cho câu hiện tại trước khi gửi bài.
+                        Nhấn nút Gợi ý để hiện bản dịch tiếng Anh của câu đang chọn.
                     </p>
                 </div>
             </div>

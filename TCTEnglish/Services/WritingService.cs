@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -23,6 +23,11 @@ namespace TCTVocabulary.Services
         private const string WritingStatusNotStarted = "not-started";
         private const string WritingStatusInProgress = "in-progress";
         private const string WritingStatusCompleted = "completed";
+        private const int SummaryTitleMaxLength = 200;
+        private const int SummaryTextMaxLength = 500;
+        private const int ReviewTextMaxLength = 2000;
+        private const int FeedbackFieldMaxLength = 500;
+        private const int SuggestedRewriteMaxLength = 1000;
         private readonly DbflashcardContext _context;
         private readonly IWritingAiEvaluationService _writingAiEvaluationService;
 
@@ -119,8 +124,10 @@ namespace TCTVocabulary.Services
                 ExerciseId = exerciseId,
                 SentenceId = sentence.Id,
                 SentenceNumber = sentence.SortOrder,
-                HintTitle = BuildHintTitle(sentence.VietnameseText, sentenceIndex, sentences.Count),
-                HintText = BuildHintText(sentence.VietnameseText, sentenceIndex, sentences.Count)
+                HintTitle = $"Bản dịch tham khảo \u2013 Câu {sentence.SortOrder}",
+                HintText = string.IsNullOrWhiteSpace(sentence.EnglishMeaning)
+                    ? "Câu này hiện chưa có bản dịch tham khảo."
+                    : sentence.EnglishMeaning
             };
         }
 
@@ -139,12 +146,18 @@ namespace TCTVocabulary.Services
 
             var sentence = sentences[sentenceIndex];
             var normalizedAnswer = CollapseWhitespace(userAnswer);
-            var ruleEvaluation = EvaluateWritingSentenceRuleBased(
+            var scopeValidationFailure = TryBuildOutOfScopeSubmissionFailure(
                 exerciseId,
                 sentence,
-                sentenceIndex,
-                sentences.Count,
+                sentences,
                 normalizedAnswer);
+            var ruleEvaluation = scopeValidationFailure
+                ?? EvaluateWritingSentenceRuleBased(
+                    exerciseId,
+                    sentence,
+                    sentenceIndex,
+                    sentences.Count,
+                    normalizedAnswer);
 
             WritingSentenceEvaluationViewModel evaluationViewModel;
 
@@ -161,7 +174,7 @@ namespace TCTVocabulary.Services
                         sentence.EnglishMeaning,
                         normalizedAnswer));
                 evaluationViewModel = aiEvaluation == null
-                    ? BuildWritingSentenceEvaluationViewModel(ruleEvaluation)
+                    ? BuildWritingSentenceEvaluationViewModel(ruleEvaluation, sentence.EnglishMeaning)
                     : BuildWritingSentenceEvaluationViewModel(exerciseId, sentence, aiEvaluation);
             }
 
@@ -491,38 +504,19 @@ namespace TCTVocabulary.Services
                         LastSubmittedAnswer = sentenceState?.LastSubmittedAnswer ?? string.Empty,
                         AcceptedAnswer = sentenceState?.AcceptedAnswer ?? string.Empty,
                         HasAccepted = sentenceState?.HasAccepted ?? false,
-                        LastEvaluationPassed = sentenceState?.LastEvaluationPassed
+                        LastEvaluationPassed = sentenceState?.LastEvaluationPassed,
+                        LastEvaluation = sentenceState?.LastEvaluation
                     };
                 })
                 .ToList();
         }
 
-        private static string BuildHintTitle(string vietnameseText, int index, int totalCount)
-        {
-            if (IsSenderNameLine(index, totalCount))
-            {
-                return "Gợi ý tên";
-            }
+        // BuildHintTitle removed – hint titles are now the stable format
+        //   "Bản dịch tham khảo – Câu N" generated directly in GetWritingSentenceHintAsync.
 
-            if (IsGreetingLine(index))
-            {
-                return "Gợi ý lời chào";
-            }
-
-            if (IsClosingLine(vietnameseText, index, totalCount))
-            {
-                return "Gợi ý lời kết";
-            }
-
-            if (vietnameseText.Contains('?'))
-            {
-                return "Gợi ý câu hỏi";
-            }
-
-            return "Gợi ý dịch";
-        }
-
-        private static string BuildHintText(string vietnameseText, int index, int totalCount)
+        // BuildSentenceTypeHint is used only by EvaluateWritingSentenceRuleBased to compose
+        // MeaningFeedback copy. It is NOT used by the public hint endpoint.
+        private static string BuildSentenceTypeHint(string vietnameseText, int index, int totalCount)
         {
             if (IsSenderNameLine(index, totalCount))
             {
@@ -822,6 +816,14 @@ namespace TCTVocabulary.Services
                     Passed = attempt.Passed,
                     UsedAi = attempt.UsedAi,
                     EvaluationSource = attempt.EvaluationSource,
+                    SummaryTitle = attempt.SummaryTitle,
+                    SummaryText = attempt.SummaryText,
+                    ReviewText = attempt.ReviewText,
+                    MeaningFeedback = attempt.MeaningFeedback,
+                    GrammarFeedback = attempt.GrammarFeedback,
+                    NaturalnessFeedback = attempt.NaturalnessFeedback,
+                    WordChoiceFeedback = attempt.WordChoiceFeedback,
+                    SuggestedRewrite = attempt.SuggestedRewrite,
                     CreatedAtUtc = attempt.CreatedAtUtc
                 })
                 .ToListAsync();
@@ -848,6 +850,14 @@ namespace TCTVocabulary.Services
                 Passed = evaluationViewModel.Passed,
                 UsedAi = evaluationViewModel.UsedAi,
                 EvaluationSource = evaluationViewModel.EvaluationSource,
+                SummaryTitle = NormalizeSnapshotText(evaluationViewModel.SummaryTitle, SummaryTitleMaxLength),
+                SummaryText = NormalizeSnapshotText(evaluationViewModel.SummaryText, SummaryTextMaxLength),
+                ReviewText = NormalizeSnapshotText(evaluationViewModel.ReviewText, ReviewTextMaxLength, preserveLineBreaks: true),
+                MeaningFeedback = NormalizeSnapshotText(evaluationViewModel.MeaningFeedback, FeedbackFieldMaxLength),
+                GrammarFeedback = NormalizeSnapshotText(evaluationViewModel.GrammarFeedback, FeedbackFieldMaxLength),
+                NaturalnessFeedback = NormalizeSnapshotText(evaluationViewModel.NaturalnessFeedback, FeedbackFieldMaxLength),
+                WordChoiceFeedback = NormalizeSnapshotText(evaluationViewModel.WordChoiceFeedback, FeedbackFieldMaxLength),
+                SuggestedRewrite = NormalizeSnapshotText(evaluationViewModel.SuggestedRewrite, SuggestedRewriteMaxLength),
                 CreatedAtUtc = DateTime.UtcNow
             });
 
@@ -895,7 +905,8 @@ namespace TCTVocabulary.Services
                     LastSubmittedAnswer = latestAttempt.SubmittedAnswer,
                     AcceptedAnswer = latestAcceptedAttempt?.SubmittedAnswer ?? string.Empty,
                     HasAccepted = latestAcceptedAttempt != null,
-                    LastEvaluationPassed = latestAttempt.Passed
+                    LastEvaluationPassed = latestAttempt.Passed,
+                    LastEvaluation = BuildEvaluationSnapshot(latestAttempt)
                 };
             }
 
@@ -1019,6 +1030,117 @@ namespace TCTVocabulary.Services
             return sentenceRows;
         }
 
+        private static WritingRuleEvaluationResult? TryBuildOutOfScopeSubmissionFailure(
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            IReadOnlyList<WritingSentenceLookupRow> allSentences,
+            string userAnswer)
+        {
+            var answerTokens = ExtractComparisonTokens(userAnswer);
+            if (answerTokens.Count == 0)
+            {
+                return null;
+            }
+
+            var referenceTokens = ExtractComparisonTokens(sentence.EnglishMeaning);
+            var answerDistinctTokens = answerTokens
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+            var currentMatch = BuildSentenceContentOverlap(sentence, answerDistinctTokens);
+            var otherMatches = allSentences
+                .Where(candidate => candidate.Id != sentence.Id)
+                .Select(candidate => BuildSentenceContentOverlap(candidate, answerDistinctTokens))
+                .Where(match => match.MatchedContentTokens > 0)
+                .OrderByDescending(match => match.Coverage)
+                .ThenByDescending(match => match.MatchedContentTokens)
+                .ToList();
+            var bestOtherMatch = otherMatches.FirstOrDefault();
+            var hasStrongOtherMatch = otherMatches.Any(match => match.Coverage >= 0.55d && match.MatchedContentTokens >= 2);
+
+            var looksLikeMultipleSentences = CountSentenceLikeSegments(userAnswer) >= 2
+                && answerTokens.Count >= Math.Max(referenceTokens.Count + 2, 5);
+            var looksOverlongForSingleSentence = referenceTokens.Count > 0
+                && answerTokens.Count >= Math.Max(referenceTokens.Count + 8, (int)Math.Ceiling(referenceTokens.Count * 2.6d));
+            var looksLikePastedPassage = !looksLikeMultipleSentences
+                && looksOverlongForSingleSentence
+                && hasStrongOtherMatch;
+            var looksLikeAnotherSentence = bestOtherMatch != null
+                && bestOtherMatch.Coverage >= 0.85d
+                && bestOtherMatch.MatchedContentTokens >= 2
+                && bestOtherMatch.MatchedContentTokens >= currentMatch.MatchedContentTokens + 2;
+
+            if (looksLikeMultipleSentences || looksLikePastedPassage)
+            {
+                return new WritingRuleEvaluationResult
+                {
+                    ExerciseId = exerciseId,
+                    SentenceId = sentence.Id,
+                    SentenceNumber = sentence.SortOrder,
+                    Passed = false,
+                    CanAutoAdvance = false,
+                    UsedAi = false,
+                    EvaluationSource = "rule-based",
+                    IsHardFailure = true,
+                    SummaryTitle = "Chỉ gửi một câu mỗi lần",
+                    SummaryText = "Câu trả lời này có vẻ đang chứa nhiều hơn một câu hoặc kéo sang phần khác của bài. Hãy chỉ gửi đúng câu đang được chọn.",
+                    MeaningFeedback = "Bài Writing này được chấm theo từng câu, nên hệ thống chưa thể chấp nhận nội dung gồm câu khác hoặc cả đoạn.",
+                    GrammarFeedback = "Hãy tách riêng đúng một câu tiếng Anh cho dòng hiện tại trước khi gửi lại.",
+                    NaturalnessFeedback = "Giữ câu trả lời gọn trong phạm vi của đúng câu đang được tô sáng.",
+                    WordChoiceFeedback = "Chỉ dùng ý và từ vựng cần thiết để dịch câu hiện tại, không gộp thêm câu trước hoặc câu sau.",
+                    SuggestedRewrite = string.Empty
+                };
+            }
+
+            if (!looksLikeAnotherSentence)
+            {
+                return null;
+            }
+
+            var meaningFeedback = bestOtherMatch == null
+                ? "Nội dung vừa gửi chưa bám đúng câu hiện tại. Hãy dịch lại đúng dòng đang được chọn."
+                : $"Nội dung vừa gửi đang giống câu {bestOtherMatch.SentenceNumber} hơn câu {sentence.SortOrder}. Hãy dịch đúng dòng đang được tô sáng.";
+
+            return new WritingRuleEvaluationResult
+            {
+                ExerciseId = exerciseId,
+                SentenceId = sentence.Id,
+                SentenceNumber = sentence.SortOrder,
+                Passed = false,
+                CanAutoAdvance = false,
+                UsedAi = false,
+                EvaluationSource = "rule-based",
+                IsHardFailure = true,
+                SummaryTitle = "Bạn đang trả lời sang câu khác",
+                SummaryText = $"Câu trả lời này có vẻ khớp với một câu khác trong bài hơn là câu {sentence.SortOrder}. Hãy quay lại đúng câu đang được chọn.",
+                MeaningFeedback = meaningFeedback,
+                GrammarFeedback = "Hãy chỉ gửi một câu tiếng Anh cho đúng dòng hiện tại.",
+                NaturalnessFeedback = "Sau khi đổi sang câu khác trên màn hình, hãy cập nhật lại câu trả lời cho khớp.",
+                WordChoiceFeedback = "Đừng gộp hoặc chuyển ý từ câu liền trước hay câu liền sau vào câu hiện tại.",
+                SuggestedRewrite = string.Empty
+            };
+        }
+
+        private static WritingSentenceContentOverlap BuildSentenceContentOverlap(
+            WritingSentenceLookupRow sentence,
+            IReadOnlyCollection<string> answerDistinctTokens)
+        {
+            var referenceContentTokens = ExtractMeaningfulComparisonTokens(sentence.EnglishMeaning);
+            var matchedContentTokens = referenceContentTokens
+                .Intersect(answerDistinctTokens, StringComparer.OrdinalIgnoreCase)
+                .Count();
+            var coverage = referenceContentTokens.Count == 0
+                ? 0d
+                : matchedContentTokens / (double)referenceContentTokens.Count;
+
+            return new WritingSentenceContentOverlap
+            {
+                SentenceId = sentence.Id,
+                SentenceNumber = sentence.SortOrder,
+                MatchedContentTokens = matchedContentTokens,
+                Coverage = coverage
+            };
+        }
+
         private static WritingRuleEvaluationResult EvaluateWritingSentenceRuleBased(
             int exerciseId,
             WritingSentenceLookupRow sentence,
@@ -1101,7 +1223,7 @@ namespace TCTVocabulary.Services
             var structuralPass = contentCoverage >= 0.4 && lengthRatio is >= 0.45 and <= 2.5;
             var fallbackPass = exactMatch || shortFormPass || structuralPass;
 
-            var sentenceTypeHint = BuildHintText(sentence.VietnameseText, sentenceIndex, totalSentenceCount);
+            var sentenceTypeHint = BuildSentenceTypeHint(sentence.VietnameseText, sentenceIndex, totalSentenceCount);
             var grammarFeedback = BuildGrammarFeedback(userAnswer, fallbackPass);
             var naturalnessFeedback = fallbackPass
                 ? "Cấu trúc câu này tạm ổn và đủ rõ để bạn đi tiếp."
@@ -1140,6 +1262,10 @@ namespace TCTVocabulary.Services
             WritingAiEvaluationResult aiEvaluation)
         {
             var finalPassed = aiEvaluation.Passed;
+            var suggestedRewrite = ResolveSuggestedRewrite(
+                sentence.EnglishMeaning,
+                aiEvaluation.Passed,
+                aiEvaluation.SuggestedRewrite);
             var summaryTitle = finalPassed ? "Câu đạt yêu cầu" : "Hãy sửa lại câu này";
             var summaryText = finalPassed
                 ? "Hệ thống đã chấp nhận câu dịch này. Bạn có thể chuyển sang câu tiếp theo."
@@ -1166,13 +1292,18 @@ namespace TCTVocabulary.Services
                 GrammarFeedback = aiEvaluation.GrammarFeedback,
                 NaturalnessFeedback = aiEvaluation.NaturalnessFeedback,
                 WordChoiceFeedback = aiEvaluation.WordChoiceFeedback,
-                SuggestedRewrite = aiEvaluation.SuggestedRewrite
+                SuggestedRewrite = suggestedRewrite
             };
         }
 
         private static WritingSentenceEvaluationViewModel BuildWritingSentenceEvaluationViewModel(
-            WritingRuleEvaluationResult evaluation)
+            WritingRuleEvaluationResult evaluation,
+            string? referenceAnswer = null)
         {
+            var suggestedRewrite = referenceAnswer == null
+                ? evaluation.SuggestedRewrite
+                : ResolveSuggestedRewrite(referenceAnswer, evaluation.Passed, evaluation.SuggestedRewrite);
+
             return new WritingSentenceEvaluationViewModel
             {
                 ExerciseId = evaluation.ExerciseId,
@@ -1194,7 +1325,7 @@ namespace TCTVocabulary.Services
                 GrammarFeedback = evaluation.GrammarFeedback,
                 NaturalnessFeedback = evaluation.NaturalnessFeedback,
                 WordChoiceFeedback = evaluation.WordChoiceFeedback,
-                SuggestedRewrite = evaluation.SuggestedRewrite
+                SuggestedRewrite = suggestedRewrite
             };
         }
 
@@ -1205,7 +1336,128 @@ namespace TCTVocabulary.Services
             string naturalnessFeedback,
             string wordChoiceFeedback)
         {
-            return $"Tổng quan: {overallFeedback} Ý nghĩa: {meaningFeedback} Ngữ pháp: {grammarFeedback} Độ tự nhiên: {naturalnessFeedback} Từ vựng: {wordChoiceFeedback}";
+            var reviewLines = new[]
+            {
+                BuildReviewLine("Tổng quan", overallFeedback),
+                BuildReviewLine("Ý nghĩa", meaningFeedback),
+                BuildReviewLine("Ngữ pháp", grammarFeedback),
+                BuildReviewLine("Độ tự nhiên", naturalnessFeedback),
+                BuildReviewLine("Từ vựng", wordChoiceFeedback)
+            }
+            .Where(line => !string.IsNullOrWhiteSpace(line));
+
+            return string.Join("\n", reviewLines);
+        }
+
+        private static string BuildReviewLine(string label, string value)
+        {
+            var normalizedValue = CollapseWhitespace(value);
+            return string.IsNullOrWhiteSpace(normalizedValue)
+                ? string.Empty
+                : $"{label}: {normalizedValue}";
+        }
+
+        private static string ResolveSuggestedRewrite(
+            string referenceAnswer,
+            bool passed,
+            string suggestedRewrite)
+        {
+            if (passed)
+            {
+                return string.Empty;
+            }
+
+            var normalizedRewrite = CollapseWhitespace(suggestedRewrite);
+            if (IsMeaningfulSuggestedRewrite(normalizedRewrite))
+            {
+                return normalizedRewrite;
+            }
+
+            var normalizedReference = CollapseWhitespace(referenceAnswer);
+            return !string.IsNullOrWhiteSpace(normalizedReference)
+                ? normalizedReference
+                : "Try again with a closer meaning and a more natural English sentence.";
+        }
+
+        private static bool IsMeaningfulSuggestedRewrite(string suggestedRewrite)
+        {
+            if (string.IsNullOrWhiteSpace(suggestedRewrite))
+            {
+                return false;
+            }
+
+            if (!suggestedRewrite.Any(char.IsLetter))
+            {
+                return false;
+            }
+
+            var normalizedRewrite = suggestedRewrite.ToLowerInvariant();
+            return !normalizedRewrite.StartsWith("try again", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("teacher reference", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("hidden reference", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("learner answer", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("closer meaning", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("more natural english", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("corrected sentence", StringComparison.Ordinal)
+                && !normalizedRewrite.Contains("suggested rewrite", StringComparison.Ordinal);
+        }
+
+        private static WritingSentenceEvaluationSnapshotViewModel? BuildEvaluationSnapshot(WritingAttemptRow attempt)
+        {
+            if (string.IsNullOrWhiteSpace(attempt.SummaryTitle)
+                && string.IsNullOrWhiteSpace(attempt.SummaryText)
+                && string.IsNullOrWhiteSpace(attempt.ReviewText)
+                && string.IsNullOrWhiteSpace(attempt.MeaningFeedback)
+                && string.IsNullOrWhiteSpace(attempt.GrammarFeedback)
+                && string.IsNullOrWhiteSpace(attempt.NaturalnessFeedback)
+                && string.IsNullOrWhiteSpace(attempt.WordChoiceFeedback)
+                && string.IsNullOrWhiteSpace(attempt.SuggestedRewrite))
+            {
+                return null;
+            }
+
+            return new WritingSentenceEvaluationSnapshotViewModel
+            {
+                Passed = attempt.Passed,
+                UsedAi = attempt.UsedAi,
+                EvaluationSource = attempt.EvaluationSource,
+                SummaryTitle = attempt.SummaryTitle ?? string.Empty,
+                SummaryText = attempt.SummaryText ?? string.Empty,
+                ReviewText = attempt.ReviewText ?? string.Empty,
+                MeaningFeedback = attempt.MeaningFeedback ?? string.Empty,
+                GrammarFeedback = attempt.GrammarFeedback ?? string.Empty,
+                NaturalnessFeedback = attempt.NaturalnessFeedback ?? string.Empty,
+                WordChoiceFeedback = attempt.WordChoiceFeedback ?? string.Empty,
+                SuggestedRewrite = attempt.SuggestedRewrite ?? string.Empty
+            };
+        }
+
+        private static string? NormalizeSnapshotText(string? value, int maxLength, bool preserveLineBreaks = false)
+        {
+            var normalizedValue = preserveLineBreaks
+                ? NormalizeMultilineSnapshotText(value)
+                : CollapseWhitespace(value);
+
+            if (string.IsNullOrWhiteSpace(normalizedValue))
+            {
+                return null;
+            }
+
+            return normalizedValue.Length <= maxLength
+                ? normalizedValue
+                : normalizedValue[..maxLength];
+        }
+
+        private static string NormalizeMultilineSnapshotText(string? value)
+        {
+            var normalizedLines = (value ?? string.Empty)
+                .Replace("\r\n", "\n", StringComparison.Ordinal)
+                .Replace('\r', '\n')
+                .Split('\n', StringSplitOptions.RemoveEmptyEntries)
+                .Select(CollapseWhitespace)
+                .Where(line => !string.IsNullOrWhiteSpace(line));
+
+            return string.Join("\n", normalizedLines);
         }
 
         private static string BuildGrammarFeedback(string userAnswer, bool fallbackPass)
@@ -1282,6 +1534,52 @@ namespace TCTVocabulary.Services
                 : normalized.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
+        private static List<string> ExtractMeaningfulComparisonTokens(string? value)
+        {
+            return ExtractComparisonTokens(value)
+                .Where(token => !CommonEnglishStopWords.Contains(token))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+
+        private static int CountSentenceLikeSegments(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return 0;
+            }
+
+            var segmentCount = 0;
+            var hasWordContent = false;
+
+            foreach (var character in value)
+            {
+                if (char.IsLetterOrDigit(character))
+                {
+                    hasWordContent = true;
+                    continue;
+                }
+
+                if (!hasWordContent)
+                {
+                    continue;
+                }
+
+                if (character is '.' or '!' or '?' or '\r' or '\n')
+                {
+                    segmentCount++;
+                    hasWordContent = false;
+                }
+            }
+
+            if (hasWordContent)
+            {
+                segmentCount++;
+            }
+
+            return segmentCount;
+        }
+
         private sealed record WritingExerciseCatalog(
             string SelectedLevelKey,
             string SelectedLevelTitle,
@@ -1299,6 +1597,14 @@ namespace TCTVocabulary.Services
             public bool Passed { get; set; }
             public bool UsedAi { get; set; }
             public string EvaluationSource { get; set; } = string.Empty;
+            public string? SummaryTitle { get; set; }
+            public string? SummaryText { get; set; }
+            public string? ReviewText { get; set; }
+            public string? MeaningFeedback { get; set; }
+            public string? GrammarFeedback { get; set; }
+            public string? NaturalnessFeedback { get; set; }
+            public string? WordChoiceFeedback { get; set; }
+            public string? SuggestedRewrite { get; set; }
             public DateTime CreatedAtUtc { get; set; }
         }
 
@@ -1321,6 +1627,7 @@ namespace TCTVocabulary.Services
             public string AcceptedAnswer { get; set; } = string.Empty;
             public bool HasAccepted { get; set; }
             public bool? LastEvaluationPassed { get; set; }
+            public WritingSentenceEvaluationSnapshotViewModel? LastEvaluation { get; set; }
         }
 
         private sealed class WritingPracticeExerciseRow
@@ -1339,6 +1646,14 @@ namespace TCTVocabulary.Services
             public int SortOrder { get; set; }
             public string VietnameseText { get; set; } = string.Empty;
             public string EnglishMeaning { get; set; } = string.Empty;
+        }
+
+        private sealed class WritingSentenceContentOverlap
+        {
+            public int SentenceId { get; set; }
+            public int SentenceNumber { get; set; }
+            public int MatchedContentTokens { get; set; }
+            public double Coverage { get; set; }
         }
 
         private sealed class WritingRuleEvaluationResult

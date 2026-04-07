@@ -10,13 +10,20 @@ namespace TCTVocabulary.Services
     {
         private const string EvaluationSystemPrompt = """
             You evaluate ESL writing submissions for Vietnamese learners.
-            Use the teacher reference only as private grading guidance.
+            Use the teacher reference only as private grading guidance for the Vietnamese feedback fields.
             Accept meaning-equivalent paraphrases.
-            Never reveal, quote, or mention the teacher reference in any feedback or suggested rewrite.
             Return strict JSON with these keys only:
             passed, overallFeedback, meaningFeedback, grammarFeedback, naturalnessFeedback, wordChoiceFeedback, suggestedRewrite
-            Write every feedback field in Vietnamese.
-            Keep suggestedRewrite as one improved English sentence, or an empty string when the learner answer is already acceptable.
+            Write every feedback field in natural Vietnamese for the learner.
+            Each feedback field must usually be one short sentence and stay around 30 words or less.
+            Keep the tone concise, clear, and actionable.
+            Do not teach grammar theory, define grammar terms, or give long explanations.
+            Only point out the concrete problem and the practical fix.
+            Never reveal, quote, or mention the teacher reference in the Vietnamese feedback fields.
+            If passed is false, suggestedRewrite should normally be one natural learner-facing English sentence.
+            If passed is true, suggestedRewrite may be empty.
+            Do not include markdown, debug notes, internal notes, or extra keys.
+            suggestedRewrite may be close to the best learner-facing corrected sentence when needed.
             """;
 
         private readonly IAiProviderClient _providerClient;
@@ -80,10 +87,10 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            if (ContainsReferenceAnswerLeak(request.ReferenceAnswer, parsedResult))
+            if (ContainsNarrationReferenceLeak(request.ReferenceAnswer, parsedResult))
             {
                 _logger.LogWarning(
-                    "Writing evaluation provider response for sentence {SentenceId} contained teacher reference content. Falling back to rule-based evaluation.",
+                    "Writing evaluation provider response for sentence {SentenceId} contained teacher reference content in narration fields. Falling back to rule-based evaluation.",
                     request.SentenceId);
                 return null;
             }
@@ -118,11 +125,17 @@ namespace TCTVocabulary.Services
                 - Judge the learner by meaning first, then grammar, naturalness, and word choice.
                 - Accept meaning-equivalent paraphrases. Do not require an exact match to the teacher reference.
                 - Set "passed" to true only when the learner answer is acceptable for moving to the next sentence.
-                - Keep each feedback field short and actionable.
-                - Write all feedback fields in Vietnamese.
-                - Never reveal or quote the teacher reference in any feedback field or in "suggestedRewrite".
-                - If the answer should be improved, "suggestedRewrite" must be one better English sentence that does not copy the teacher reference verbatim.
-                - If the answer is already good, "suggestedRewrite" can be empty.
+                - Write all feedback fields in Vietnamese for the learner.
+                - "overallFeedback" should be one short Vietnamese sentence that summarizes the result.
+                - "meaningFeedback", "grammarFeedback", "naturalnessFeedback", and "wordChoiceFeedback" should each be one short Vietnamese sentence.
+                - Each feedback field should usually stay within about 30 words unless a few extra words are truly needed.
+                - If a field is already acceptable, say that briefly instead of expanding.
+                - Do not teach grammar theory. State only the concrete problem and the practical fix.
+                - Keep the feedback learner-facing. Do not mention hidden references, scoring rubrics, models, providers, or debugging.
+                - Never reveal or quote the teacher reference in any Vietnamese feedback field.
+                - "suggestedRewrite" is learner-facing and may be a concrete corrected English sentence.
+                - If "passed" is false, "suggestedRewrite" should normally contain one natural corrected English sentence.
+                - If "passed" is true, "suggestedRewrite" may be empty.
                 - Return strict JSON only.
                 """;
         }
@@ -198,7 +211,7 @@ namespace TCTVocabulary.Services
             return value;
         }
 
-        private static bool ContainsReferenceAnswerLeak(string referenceAnswer, WritingAiEvaluationResult result)
+        private static bool ContainsNarrationReferenceLeak(string referenceAnswer, WritingAiEvaluationResult result)
         {
             var normalizedReference = NormalizeForLeakDetection(referenceAnswer);
             if (string.IsNullOrWhiteSpace(normalizedReference))
@@ -210,8 +223,7 @@ namespace TCTVocabulary.Services
                 || ContainsNormalizedReference(result.MeaningFeedback, normalizedReference)
                 || ContainsNormalizedReference(result.GrammarFeedback, normalizedReference)
                 || ContainsNormalizedReference(result.NaturalnessFeedback, normalizedReference)
-                || ContainsNormalizedReference(result.WordChoiceFeedback, normalizedReference)
-                || ContainsNormalizedReference(result.SuggestedRewrite, normalizedReference);
+                || ContainsNormalizedReference(result.WordChoiceFeedback, normalizedReference);
         }
 
         private static bool ContainsNormalizedReference(string value, string normalizedReference)
