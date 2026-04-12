@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TCTEnglish.Services;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.ViewModels;
 using TCTVocabulary.Services;
@@ -11,10 +12,12 @@ namespace TCTVocabulary.Controllers
     public class StudyController : BaseController
     {
         private readonly IStudyService _studyService;
+        private readonly IListeningService _listeningService;
 
-        public StudyController(IStudyService studyService)
+        public StudyController(IStudyService studyService, IListeningService listeningService)
         {
             _studyService = studyService;
+            _listeningService = listeningService;
         }
 
         [Authorize]
@@ -73,9 +76,50 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("Listening")]
-        public IActionResult Listening()
+        public async Task<IActionResult> Listening(string? level = null, string? topic = null)
         {
-            return View();
+            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic);
+            return View(viewModel);
+        }
+
+        [HttpGet("Listening/Practice/{id:int}")]
+        public async Task<IActionResult> ListeningPractice(int id)
+        {
+            TryGetCurrentUserId(out var userId);
+            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId);
+            return viewModel == null ? NotFound() : View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost("Listening/EvaluateQuiz")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto)
+        {
+            if (dto == null || dto.LessonId <= 0)
+                return BadRequest(new { error = "Dữ liệu không hợp lệ." });
+
+            var result = await _listeningService.EvaluateQuizAsync(dto);
+            return result == null
+                ? NotFound(new { error = "Không tìm thấy bài nghe." })
+                : Json(new { success = true, data = result });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/SaveProgress/{lessonId:int}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveListeningProgress(int lessonId, [FromBody] ListeningProgressUpdateDto? dto)
+        {
+            if (dto == null)
+                return BadRequest(new { error = "Dữ liệu không hợp lệ." });
+
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Bạn cần đăng nhập." });
+
+            // Anti-IDOR: userId comes from server-side claims, never from the request body.
+            var saved = await _listeningService.SaveProgressAsync(userId, lessonId, dto);
+            return saved
+                ? Json(new { success = true })
+                : NotFound(new { error = "Không tìm thấy bài nghe." });
         }
 
         [HttpGet("Grammar")]
