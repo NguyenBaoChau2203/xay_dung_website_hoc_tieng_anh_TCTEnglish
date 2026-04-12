@@ -1,8 +1,176 @@
+@model TCTEnglish.ViewModels.ListeningIndexViewModel
 @{
-    ViewData["Title"] = "Listening";
+    ViewData["Title"] = "Luyện nghe tiếng Anh - TCT English";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int totalLessons = Model.LessonsByLevel.Sum(kv => kv.Value.Count);
+
+    // Hardcoded level metadata for UI aesthetics (mapping keys from Service/ViewModel)
+    var levelDescriptions = new Dictionary<string, (string Desc, string Icon, string ColorClass)>
+    {
+        ["A1"] = ("Easy English, slow speech", "fas fa-seedling", "lvl-a1"),
+        ["A2"] = ("Clear speech, common vocabulary", "fas fa-leaf", "lvl-a2"),
+        ["B1"] = ("Natural English at normal speed", "fas fa-fire", "lvl-b1"),
+        ["B2"] = ("Wider range of vocabulary", "fas fa-bolt", "lvl-b2"),
+        ["C1"] = ("Fast, natural speech", "fas fa-rocket", "lvl-c1"),
+    };
 }
-<div class="coming-soon-container" style="text-align:center; padding: 100px;">
-    <h2>Listening Practice</h2>
-    <p>This feature is coming soon!</p>
-    <a asp-action="Index" class="btn btn-primary" style="margin-top: 20px;">Go back Home</a>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/listening-index.css" asp-append-version="true" />
+}
+
+<div class="listening-index-page">
+    <div class="li-container">
+
+        @* ── HERO SECTION ──────────────────────────────────────────── *@
+        <header class="li-hero">
+            <div class="li-hero-badge">
+                <i class="fas fa-headphones-alt"></i>
+                Luyện nghe Tiếng Anh
+            </div>
+            <h1 class="li-hero-title">English Listening Lab</h1>
+            <p class="li-hero-subtitle">
+                Cải thiện kỹ năng nghe qua các cuộc hội thoại thực tế, transcript chi tiết và bài tập thực hành.
+            </p>
+
+            <div class="li-search-container">
+                <i class="fas fa-search li-search-icon"></i>
+                <input type="text" id="li-search" class="li-search-input" placeholder="Tìm kiếm bài nghe hoặc chủ đề..." autocomplete="off" />
+            </div>
+        </header>
+
+        @* ── STATS ROW ────────────────────────────────────────────── *@
+        <div class="li-stats-row">
+            <span class="li-stat-chip"><i class="fas fa-play-circle"></i> <span id="li-total-count">@totalLessons bài học</span></span>
+            <span class="li-stat-chip"><i class="fas fa-layer-group"></i> @Model.Levels.Count cấp độ</span>
+            <span class="li-stat-chip"><i class="fas fa-tags"></i> @Model.Topics.Count chủ đề</span>
+            <span class="li-stat-chip" style="background: #ecfdf5; border-color: #d1fae5; color: #047857;"><i class="fas fa-check-circle" style="color: #10b981;"></i> Update hàng tuần</span>
+        </div>
+
+        @* ── FILTERS ──────────────────────────────────────────────── *@
+        <section class="li-filters">
+            <div class="li-filter-tabs">
+                <button class="btn-tab active" data-level="all">Tất cả trình độ</button>
+                @foreach (var level in Model.Levels)
+                {
+                    <button class="btn-tab" data-level="@level.Key">@level.Key @level.Title</button>
+                }
+            </div>
+
+            @if (Model.Topics.Any())
+            {
+                <div class="li-topic-pills">
+                    <button class="pill-topic active" data-topic="all">Tất cả chủ đề</button>
+                    @foreach (var topic in Model.Topics)
+                    {
+                        <button class="pill-topic" data-topic="@topic">@topic</button>
+                    }
+                </div>
+            }
+        </section>
+
+        @* ── LEVEL SECTIONS ───────────────────────────────────────── *@
+        <div id="li-sections-wrapper">
+            @if (!Model.LessonsByLevel.Any())
+            {
+                <div class="li-empty">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h3>Chưa có bài học nào</h3>
+                    <p>Chúng tôi đang cập nhật thêm nội dung mới. Vui lòng quay lại sau!</p>
+                </div>
+            }
+            else
+            {
+                foreach (var level in Model.Levels.OrderBy(l => l.Key))
+                {
+                    if (!Model.LessonsByLevel.ContainsKey(level.Key)) continue;
+
+                    var lessons = Model.LessonsByLevel[level.Key];
+                    var meta = levelDescriptions.ContainsKey(level.Key) 
+                        ? levelDescriptions[level.Key] 
+                        : (Desc: "Học tiếng Anh qua bài nghe", Icon: "fas fa-headphones", ColorClass: "lvl-a1");
+
+                    <section class="li-level-section" data-level="@level.Key">
+                        <header class="li-level-header">
+                            <div class="li-level-icon-wrapper" style="background-color: var(--@meta.ColorClass);">
+                                <i class="@meta.Icon"></i>
+                            </div>
+                            <div class="li-level-info">
+                                <h2>@level.Key @level.Title</h2>
+                                <p class="li-level-desc">@meta.Desc</p>
+                            </div>
+                            <div class="li-level-count-badge">
+                                @lessons.Count lesson@(lessons.Count != 1 ? "s" : "")
+                            </div>
+                        </header>
+
+                        <div class="li-card-grid">
+                            @foreach (var item in lessons)
+                            {
+                                <div class="li-card-col card-visible" 
+                                     data-title="@item.Title" 
+                                     data-topic="@item.Topic" 
+                                     data-level="@item.Level">
+                                    <a asp-controller="Study" asp-action="ListeningPractice" asp-route-id="@item.Id" class="li-card">
+                                        <div class="li-card-top">
+                                            <div class="li-card-visual">
+                                                <i class="fas fa-wave-square"></i>
+                                            </div>
+                                            @if (item.QuizCompleted == true)
+                                            {
+                                                <span class="li-status-badge badge-completed">
+                                                    <i class="fas fa-check"></i> @item.QuizScore%
+                                                </span>
+                                            }
+                                            else if (item.TranscriptCompleted == true)
+                                            {
+                                                <span class="li-status-badge badge-progress">Đang học</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="li-status-badge badge-new">Mới</span>
+                                            }
+                                        </div>
+
+                                        <h3 class="li-card-title">@item.Title</h3>
+
+                                        <div class="li-card-meta">
+                                            <span class="li-meta-tag tag-topic"><i class="fas fa-tag"></i> @item.Topic</span>
+                                            <span class="li-meta-tag"><i class="far fa-clock"></i> @item.Duration</span>
+                                            <span class="li-meta-tag"><i class="fas fa-question-circle"></i> @item.QuizQuestionCount Qs</span>
+                                        </div>
+
+                                        <div class="li-card-footer">
+                                            <div class="li-speaker-info">
+                                                <i class="fas fa-user-friends"></i>
+                                                <span class="li-speaker-name">@item.Speaker1Name</span>
+                                            </div>
+                                            <div class="ms-auto" style="opacity: 0.5;">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="li-pagination"></div>
+                    </section>
+                }
+            }
+        </div>
+
+        @* ── NO RESULTS STATE ──────────────────────────────────── *@
+        <div id="li-no-results" class="li-empty" style="display:none;">
+            <i class="fas fa-search"></i>
+            <h3>Không tìm thấy kết quả</h3>
+            <p>Hãy thử từ khóa khác hoặc xóa bớt các bộ lọc.</p>
+        </div>
+
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/listening-index.js" asp-append-version="true"></script>
+}

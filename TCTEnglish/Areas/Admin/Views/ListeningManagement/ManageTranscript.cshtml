@@ -1,0 +1,172 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.ListeningTranscriptManageViewModel
+@{
+    ViewData["Title"] = "Manage Transcript — " + Model.LessonTitle;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a asp-action="Index" class="btn btn-link text-decoration-none p-0 text-secondary mb-1">
+                <i class="fas fa-arrow-left me-1"></i> Back to Lessons
+            </a>
+            <h1 class="h3 mb-0 text-gray-800">Transcript for: <span class="text-primary">@Model.LessonTitle</span></h1>
+        </div>
+        <div class="d-flex gap-2">
+            @if (!string.IsNullOrEmpty(Model.YoutubeId))
+            {
+                <form asp-action="ImportTranscript" asp-route-id="@Model.LessonId" method="post" onsubmit="return confirm('Việc nhập transcript từ Youtube sẽ XÓA các dòng hiện tại. Bạn có chắc chắn?')">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fab fa-youtube me-1"></i> Lấy transcript từ Youtube
+                    </button>
+                </form>
+            }
+            <button type="button" class="btn btn-success" id="btn-add-line">
+                <i class="fas fa-plus me-1"></i> Thêm dòng mới
+            </button>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-1"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle me-1"></i> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm border-0">
+        <form asp-action="ManageTranscript" asp-route-id="@Model.LessonId" method="post" id="transcript-form">
+            @Html.AntiForgeryToken()
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle" id="transcript-table">
+                    <thead class="bg-light small fw-bold">
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 150px;">Speaker</th>
+                            <th>Text Content (English)</th>
+                            <th>Vietnamese Meaning (Optional)</th>
+                            <th style="width: 120px;">Start (s)</th>
+                            <th style="width: 120px;">End (s)</th>
+                            <th style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="transcript-body">
+                        @for (int i = 0; i < Model.Lines.Count; i++)
+                        {
+                            <tr class="transcript-row">
+                                <td class="text-center text-muted row-index">@(i + 1)</td>
+                                <td>
+                                    <input type="text" name="Lines[@i].Speaker" value="@Model.Lines[i].Speaker" class="form-control form-control-sm" required />
+                                </td>
+                                <td>
+                                    <textarea name="Lines[@i].Text" class="form-control form-control-sm" rows="1" required>@Model.Lines[i].Text</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="Lines[@i].VietnameseMeaning" class="form-control form-control-sm" rows="1">@Model.Lines[i].VietnameseMeaning</textarea>
+                                </td>
+                                <td>
+                                    <input type="number" step="0.01" name="Lines[@i].StartTime" value="@Model.Lines[i].StartTime" class="form-control form-control-sm" />
+                                </td>
+                                <td>
+                                    <input type="number" step="0.01" name="Lines[@i].EndTime" value="@Model.Lines[i].EndTime" class="form-control form-control-sm" />
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm btn-remove-line"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer bg-white py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted small" id="line-count-hint">@Model.Lines.Count dòng hội thoại.</span>
+                    <button type="submit" class="btn btn-primary px-5">
+                        <i class="fas fa-save me-2"></i> Lưu toàn bộ Transcript
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.getElementById('transcript-body');
+            const btnAdd = document.getElementById('btn-add-line');
+            const hint = document.getElementById('line-count-hint');
+
+            function updateIndices() {
+                const rows = body.querySelectorAll('.transcript-row');
+                rows.forEach((row, index) => {
+                    row.querySelector('.row-index').textContent = index + 1;
+                    
+                    // Update field names for list binding
+                    row.querySelectorAll('input, textarea').forEach(input => {
+                        const name = input.getAttribute('name');
+                        if (name) {
+                            input.setAttribute('name', name.replace(/Lines\[\d+\]/, `Lines[${index}]`));
+                        }
+                    });
+                });
+                hint.textContent = rows.length + ' dòng hội thoại.';
+            }
+
+            btnAdd.addEventListener('click', function() {
+                const index = body.querySelectorAll('.transcript-row').length;
+                const lastRow = body.querySelector('.transcript-row:last-child');
+                let lastSpeaker = "Speaker 1";
+                if (lastRow) {
+                    lastSpeaker = lastRow.querySelector('input[name*="Speaker"]').value;
+                    // Auto-flip if it's Speaker 1/2 or similar common patterns
+                    if (lastSpeaker === "Speaker 1") lastSpeaker = "Speaker 2";
+                    else if (lastSpeaker === "Speaker 2") lastSpeaker = "Speaker 1";
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'transcript-row';
+                tr.innerHTML = `
+                    <td class="text-center text-muted row-index">${index + 1}</td>
+                    <td>
+                        <input type="text" name="Lines[${index}].Speaker" value="${lastSpeaker}" class="form-control form-control-sm" required />
+                    </td>
+                    <td>
+                        <textarea name="Lines[${index}].Text" class="form-control form-control-sm" rows="1" required></textarea>
+                    </td>
+                    <td>
+                        <textarea name="Lines[${index}].VietnameseMeaning" class="form-control form-control-sm" rows="1"></textarea>
+                    </td>
+                    <td>
+                        <input type="number" step="0.01" name="Lines[${index}].StartTime" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                        <input type="number" step="0.01" name="Lines[${index}].EndTime" class="form-control form-control-sm" />
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-danger btn-sm btn-remove-line"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                body.appendChild(tr);
+                tr.querySelector('textarea').focus();
+                updateIndices();
+            });
+
+            body.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-remove-line')) {
+                    e.target.closest('.transcript-row').remove();
+                    updateIndices();
+                }
+            });
+        });
+    </script>
+}

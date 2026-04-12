@@ -115,6 +115,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="ListeningManagement" asp-action="Index"
+                       class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "ListeningManagement" ? "active" : "")">
+                        <i class="bi bi-headphones me-2"></i> Listening Lessons
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a asp-area="Admin" asp-controller="WritingExerciseManagement" asp-action="Index"
                        class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "WritingExerciseManagement" ? "active" : "")">
                         <i class="bi bi-pencil-square me-2"></i> Writing Exercises

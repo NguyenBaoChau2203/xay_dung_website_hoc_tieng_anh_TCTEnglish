@@ -1,0 +1,716 @@
+@using System.Globalization
+@model TCTEnglish.ViewModels.ListeningPracticeViewModel
+@{
+    ViewData["Title"] = "Luyện nghe — " + Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Country code → flag emoji helper
+    string FlagEmoji(string? country) {
+        var flags = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
+            ["US"] = "🇺🇸", ["UK"] = "🇬🇧", ["GB"] = "🇬🇧", ["AU"] = "🇦🇺",
+            ["CA"] = "🇨🇦", ["NZ"] = "🇳🇿", ["IE"] = "🇮🇪", ["ZA"] = "🇿🇦",
+            ["IN"] = "🇮🇳", ["SG"] = "🇸🇬", ["PH"] = "🇵🇭", ["VN"] = "🇻🇳",
+            ["United States"] = "🇺🇸", ["United Kingdom"] = "🇬🇧", ["Australia"] = "🇦🇺"
+        };
+        if (!string.IsNullOrWhiteSpace(country) && flags.TryGetValue(country, out var flag))
+            return flag;
+        return "🌍";
+    }
+
+    bool hasYoutube  = !string.IsNullOrEmpty(Model.YoutubeId);
+    bool hasAudio    = !string.IsNullOrEmpty(Model.AudioUrl);
+    bool hasSpeaker1 = !string.IsNullOrEmpty(Model.Speaker1Name);
+    bool hasSpeaker2 = !string.IsNullOrEmpty(Model.Speaker2Name);
+
+    int transcriptCount = Model.TranscriptLines.Count;
+    int quizCount       = Model.QuizQuestions.Count;
+    int vocabCount      = Model.VocabItems.Count;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/listening-practice.css" asp-append-version="true" />
+}
+
+<div class="lp-page">
+    @Html.AntiForgeryToken()
+
+    <!-- ══════════════════════════════════════════════════════════
+         TOP BAR: Back + Breadcrumb + Level Badge
+    ══════════════════════════════════════════════════════════ -->
+    <div class="lp-topbar">
+        <a asp-controller="Study" asp-action="Listening" class="lp-back-btn" title="Quay lại danh sách">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <nav class="lp-breadcrumb" aria-label="breadcrumb">
+            <a asp-controller="Study" asp-action="Listening">Listening</a>
+            <span class="lp-breadcrumb-sep">/</span>
+            <span class="lp-breadcrumb-current">@Model.Title</span>
+        </nav>
+
+        <span class="lp-level-badge">@Model.Level</span>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         MAIN CONTENT (max-width 800px centered)
+    ══════════════════════════════════════════════════════════ -->
+    <div class="lp-container">
+
+        <!-- ── Lesson Header ── -->
+        <div class="lp-lesson-header">
+            <h1 class="lp-lesson-title">@Model.Title</h1>
+
+            @if (hasSpeaker1 || hasSpeaker2)
+            {
+                <div class="lp-speaker-badges">
+                    @if (hasSpeaker1)
+                    {
+                        <span class="lp-speaker-badge">
+                            <span class="lp-speaker-flag">@FlagEmoji(Model.Speaker1Country)</span>
+                            @Model.Speaker1Name
+                            @if (!string.IsNullOrEmpty(Model.Speaker1Country))
+                            {
+                                <span class="text-muted small">(@Model.Speaker1Country)</span>
+                            }
+                        </span>
+                    }
+                    @if (hasSpeaker2)
+                    {
+                        <span class="lp-speaker-badge">
+                            <span class="lp-speaker-flag">@FlagEmoji(Model.Speaker2Country)</span>
+                            @Model.Speaker2Name
+                            @if (!string.IsNullOrEmpty(Model.Speaker2Country))
+                            {
+                                <span class="text-muted small">(@Model.Speaker2Country)</span>
+                            }
+                        </span>
+                    }
+                </div>
+            }
+
+            <div class="lp-meta-row">
+                <span><i class="fas fa-tag"></i> @Model.Topic</span>
+                @if (!string.IsNullOrEmpty(Model.Duration))
+                {
+                    <span><i class="fas fa-clock"></i> @Model.Duration</span>
+                }
+                <span><i class="fas fa-file-alt"></i> @transcriptCount dòng transcript</span>
+                @if (quizCount > 0)
+                {
+                    <span><i class="fas fa-question-circle"></i> @quizCount câu hỏi</span>
+                }
+                @if (vocabCount > 0)
+                {
+                    <span><i class="fas fa-book"></i> @vocabCount từ vựng</span>
+                }
+            </div>
+        </div>
+
+        <!-- ── Player Section ── -->
+        <div class="lp-player-section">
+            @if (hasYoutube)
+            {
+                <!-- YouTube embed (16:9) — enablejsapi=1 required for IFrame API -->
+                <div class="lp-yt-wrapper">
+                    <iframe id="youtube-player"
+                            src="https://www.youtube.com/embed/@Model.YoutubeId?enablejsapi=1&rel=0&modestbranding=1"
+                            title="@Model.Title"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            }
+            else if (hasAudio)
+            {
+                <!-- HTML5 Audio -->
+                <div class="lp-audio-wrapper">
+                    <div class="lp-audio-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <audio id="lp-audio" class="lp-audio-player" controls preload="metadata">
+                        <source src="@Model.AudioUrl" />
+                        Trình duyệt của bạn không hỗ trợ phát audio.
+                    </audio>
+                </div>
+            }
+            else
+            {
+                <!-- No media -->
+                <div class="lp-empty py-4">
+                    <div class="lp-empty-icon"><i class="fas fa-volume-mute"></i></div>
+                    <h3>Chưa có file âm thanh</h3>
+                    <p>Bài học này chưa được tải lên media.</p>
+                </div>
+            }
+
+            <!-- Player Controls Bar: Speed -->
+            <div class="lp-player-controls">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="lp-speed-label">Tốc độ:</span>
+                    <div class="lp-speed-btns">
+                        <button class="lp-speed-btn" data-rate="0.5">0.5×</button>
+                        <button class="lp-speed-btn" data-rate="0.75">0.75×</button>
+                        <button class="lp-speed-btn lp-speed-active" data-rate="1">1×</button>
+                        <button class="lp-speed-btn" data-rate="1.25">1.25×</button>
+                        <button class="lp-speed-btn" data-rate="1.5">1.5×</button>
+                    </div>
+                </div>
+
+                <div class="lp-progress-mini">
+                    <span class="lp-speed-label">Tiến độ:</span>
+                    <div class="lp-progress-dots">
+                        <div class="lp-dot @(Model.TranscriptCompleted ? "done" : "")" id="dot-transcript" title="Transcript"></div>
+                        <div class="lp-dot @(Model.QuizCompleted ? "done" : "")" id="dot-quiz" title="Quiz"></div>
+                        <div class="lp-dot @(Model.VocabReviewed ? "done" : "")" id="dot-vocab" title="Từ vựng"></div>
+                    </div>
+                    @if (Model.TranscriptCompleted && Model.QuizCompleted && Model.VocabReviewed)
+                    {
+                        <span class="text-success small"><i class="fas fa-check-circle"></i> Hoàn thành</span>
+                    }
+                </div>
+            </div>
+
+            <!-- Player Extras: A-B loop + Auto-scroll + Listen counter -->
+            <div class="lp-player-extras">
+                <!-- A-B Loop toggle (3 states: off → setA → looping) -->
+                <button class="lp-ab-btn" id="btn-ab-loop" data-state="off" title="Lặp đoạn A-B">
+                    <i class="fas fa-retweet"></i>
+                    <span id="ab-btn-label">A-B Loop</span>
+                </button>
+
+                <!-- Auto-scroll toggle -->
+                <button class="lp-auto-scroll-btn" id="btn-auto-scroll" title="Tự động cuộn đến dòng đang nghe">
+                    <i class="fas fa-scroll"></i>
+                    Tự cuộn
+                </button>
+
+                <!-- Listen counter -->
+                <div class="lp-listen-counter" id="lp-listen-counter" title="Số lần đã nghe hết bài">
+                    <i class="fas fa-headphones-alt"></i>
+                    Đã nghe: <span class="lp-count-num" id="lp-count-num">0</span> lần
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             PILL TABS
+        ══════════════════════════════════════════════════════════ -->
+        <div class="lp-tabs" role="tablist">
+            <button class="lp-tab-btn lp-tab-active" data-tab="transcript" role="tab" aria-selected="true">
+                <i class="fas fa-file-alt"></i>
+                Transcript
+                @if (transcriptCount > 0)
+                {
+                    <span class="lp-tab-badge">@transcriptCount</span>
+                }
+                @if (Model.TranscriptCompleted)
+                {
+                    <i class="fas fa-check-circle text-success small"></i>
+                }
+            </button>
+            <button class="lp-tab-btn" data-tab="quiz" role="tab" aria-selected="false">
+                <i class="fas fa-question-circle"></i>
+                Quiz
+                @if (quizCount > 0)
+                {
+                    <span class="lp-tab-badge">@quizCount</span>
+                }
+                @if (Model.QuizCompleted)
+                {
+                    <i class="fas fa-check-circle text-success small"></i>
+                }
+            </button>
+            <button class="lp-tab-btn" data-tab="vocab" role="tab" aria-selected="false">
+                <i class="fas fa-book-open"></i>
+                Từ vựng
+                @if (vocabCount > 0)
+                {
+                    <span class="lp-tab-badge">@vocabCount</span>
+                }
+                @if (Model.VocabReviewed)
+                {
+                    <i class="fas fa-check-circle text-success small"></i>
+                }
+            </button>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TAB PANEL: TRANSCRIPT
+        ══════════════════════════════════════════════════════════ -->
+        <div id="panel-transcript" class="lp-tab-panel lp-panel-active">
+            @if (transcriptCount == 0)
+            {
+                <div class="lp-empty">
+                    <div class="lp-empty-icon"><i class="fas fa-align-left"></i></div>
+                    <h3>Chưa có transcript</h3>
+                    <p>Nội dung transcript đang được chuẩn bị.</p>
+                </div>
+            }
+            else
+            {
+                <!-- ── Mode Selector ── -->
+                <div class="lp-mode-selector" id="lp-mode-selector">
+                    <div class="lp-mode-card active" data-mode="normal">
+                        <span class="lp-mode-icon">📖</span>
+                        <span class="lp-mode-label">Nghe<br>thường</span>
+                    </div>
+                    <div class="lp-mode-card" data-mode="dictation">
+                        <span class="lp-mode-icon">✍️</span>
+                        <span class="lp-mode-label">Chính<br>tả</span>
+                    </div>
+                    <div class="lp-mode-card" data-mode="fillin">
+                        <span class="lp-mode-icon">🔤</span>
+                        <span class="lp-mode-label">Điền<br>từ</span>
+                    </div>
+                    <div class="lp-mode-card" data-mode="shadowing">
+                        <span class="lp-mode-icon">🎙️</span>
+                        <span class="lp-mode-label">Shadow-<br>ing</span>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════════
+                     MODE 1: NORMAL (transcript)
+                ════════════════════════════════════════ -->
+                <div id="mode-normal" class="lp-mode-panel lp-mode-active">
+                    <!-- Header actions -->
+                    <div class="lp-transcript-header">
+                        <span class="text-muted small">@transcriptCount dòng hội thoại</span>
+                        <div class="lp-transcript-actions">
+                            <button class="lp-transcript-action-btn" id="btn-toggle-all-vi">
+                                <i class="fas fa-language"></i> Xem tất cả bản dịch
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Transcript lines -->
+                    <div class="lp-transcript-list">
+                        @{ var speakers = new Dictionary<string, int>(); }
+                        @foreach (var line in Model.TranscriptLines.OrderBy(l => l.OrderIndex))
+                        {
+                            if (!speakers.ContainsKey(line.Speaker))
+                                speakers[line.Speaker] = speakers.Count;
+                            var speakerClass = speakers[line.Speaker] == 0 ? "" : "speaker-b";
+                            bool hasVi  = !string.IsNullOrEmpty(line.VietnameseMeaning);
+                            bool hasTimes = line.StartTime.HasValue;
+
+                            <div class="lp-transcript-line"
+                                 data-line-id="@line.Id"
+                                 @(hasTimes ? $"data-start=\"{line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)}\" data-end=\"{line.EndTime?.ToString("F2", CultureInfo.InvariantCulture) ?? (line.StartTime.GetValueOrDefault() + 5).ToString("F2", CultureInfo.InvariantCulture)}\"" : "")>
+
+                                <div class="lp-line-inner">
+                                    <span class="lp-line-speaker @speakerClass">@line.Speaker</span>
+                                    <div class="lp-line-body">
+                                        <div class="lp-line-text">@line.Text</div>
+                                        @if (hasVi)
+                                        {
+                                            <div class="lp-line-vi">🇻🇳 @line.VietnameseMeaning</div>
+                                        }
+                                    </div>
+                                    <div class="lp-line-actions">
+                                        @if (hasTimes)
+                                        {
+                                            <span class="lp-line-seek-hint">
+                                                <i class="fas fa-play-circle"></i> Click để nghe
+                                            </span>
+                                            <button class="lp-line-replay-btn" type="button"
+                                                    data-start="@line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)"
+                                                    title="Nghe lại dòng này">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        }
+                                        @if (hasVi)
+                                        {
+                                            <button class="lp-line-vi-btn" type="button" title="Xem/ẩn bản dịch">
+                                                Xem dịch
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Mark transcript done -->
+                    <button class="lp-mark-read-btn" id="btn-mark-transcript-read"
+                            @(Model.TranscriptCompleted ? "disabled" : "")>
+                        @if (Model.TranscriptCompleted)
+                        {
+                            <i class="fas fa-check-circle"></i>
+                            <span>Đã hoàn thành Transcript</span>
+                        }
+                        else
+                        {
+                            <i class="fas fa-check"></i>
+                            <span>Đánh dấu đã đọc hết</span>
+                        }
+                    </button>
+                </div>
+
+                <!-- ════════════════════════════════════════
+                     MODE 2: DICTATION
+                ════════════════════════════════════════ -->
+                <div id="mode-dictation" class="lp-mode-panel">
+                    <div class="lp-dict-header">
+                        <div>
+                            <div style="font-weight:700;font-size:0.95rem;color:var(--lp-text)">✍️ Chính tả</div>
+                            <div style="font-size:0.8rem;color:var(--lp-muted);margin-top:2px">Nghe và gõ lại từng câu. Nhấn Tab để nghe lại.</div>
+                        </div>
+                        <div class="lp-dict-progress-wrap">
+                            <!-- SVG ring: r=24, circumference ≈ 150.8 -->
+                            <div class="lp-progress-ring" id="dict-ring">
+                                <svg width="60" height="60" viewBox="0 0 60 60">
+                                    <circle class="lp-ring-track" cx="30" cy="30" r="24"/>
+                                    <circle class="lp-ring-progress" id="dict-ring-progress" cx="30" cy="30" r="24"
+                                            stroke-dasharray="150.796" stroke-dashoffset="150.796"/>
+                                </svg>
+                                <div class="lp-ring-label">
+                                    <span class="lp-ring-pct" id="dict-ring-pct">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictation items rendered by JS from LP_TRANSCRIPT -->
+                    <div id="dictation-lines"></div>
+
+                    <!-- Summary (shown when done) -->
+                    <div class="lp-dict-summary" id="dict-summary">
+                        <div class="lp-dict-summary-title">🎉 Kết quả Chính tả</div>
+                        <div class="lp-dict-summary-stats">
+                            <div class="lp-dict-stat correct">
+                                <span class="lp-dict-stat-num" id="dict-stat-correct">0</span>
+                                <span class="lp-dict-stat-label">Đúng</span>
+                            </div>
+                            <div class="lp-dict-stat near">
+                                <span class="lp-dict-stat-num" id="dict-stat-near">0</span>
+                                <span class="lp-dict-stat-label">Gần đúng</span>
+                            </div>
+                            <div class="lp-dict-stat wrong">
+                                <span class="lp-dict-stat-num" id="dict-stat-wrong">0</span>
+                                <span class="lp-dict-stat-label">Sai</span>
+                            </div>
+                        </div>
+                        <button class="lp-dict-retry-btn" id="btn-dict-retry">
+                            <i class="fas fa-redo"></i> Làm lại
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════════
+                     MODE 3: FILL IN THE BLANKS
+                ════════════════════════════════════════ -->
+                <div id="mode-fillin" class="lp-mode-panel">
+                    <div class="lp-fillin-header">
+                        <div>
+                            <div style="font-weight:700;font-size:0.95rem;color:var(--lp-text)">🔤 Điền từ</div>
+                            <div style="font-size:0.8rem;color:var(--lp-muted);margin-top:2px">Điền các từ còn thiếu vào chỗ trống.</div>
+                        </div>
+                        <div class="lp-fillin-progress-text">
+                            <span id="fillin-correct-count">0</span> / <span id="fillin-total-count">0</span> từ
+                        </div>
+                    </div>
+
+                    <div class="lp-progress-bar">
+                        <div class="lp-progress-fill" id="fillin-progress-fill"></div>
+                    </div>
+
+                    <!-- Fill-in items rendered by JS -->
+                    <div id="fillin-lines"></div>
+
+                    <div class="lp-fillin-footer" id="fillin-footer" style="display:none">
+                        <button class="lp-btn-check-all" id="btn-fillin-check">
+                            <i class="fas fa-check-double"></i> Kiểm tra tất cả
+                        </button>
+                        <button class="lp-btn-retry" id="btn-fillin-retry">
+                            <i class="fas fa-redo"></i> Làm lại
+                        </button>
+                        <div id="fillin-progress-text" class="ms-3 small fw-bold text-muted"></div>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════════
+                     MODE 4: SHADOWING
+                ════════════════════════════════════════ -->
+                <div id="mode-shadowing" class="lp-mode-panel">
+                    <div class="lp-shadow-panel" id="shadow-panel">
+                        <div class="lp-shadow-meta">
+                            <div class="lp-shadow-counter">
+                                Câu <strong id="shadow-idx-display">1</strong> / <span id="shadow-total">0</span>
+                            </div>
+                            <div class="lp-shadow-status" id="shadow-status">Nhấn Nghe để bắt đầu</div>
+                        </div>
+
+                        <div class="lp-shadow-progress-wrap">
+                            <div class="lp-shadow-progress-label" id="shadow-progress-label">0%</div>
+                            <div class="lp-progress-bar" style="margin-bottom:0">
+                                <div class="lp-progress-fill" id="shadow-progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Main card -->
+                        <div class="lp-shadow-card" id="shadow-card">
+                            <span class="lp-shadow-speaker" id="shadow-speaker"></span>
+                            <div class="lp-shadow-hidden-hint" id="shadow-hidden-hint">
+                                🎧 Nghe và lặp lại — nhấn "Hiện text" để xem câu
+                            </div>
+                            <div class="lp-shadow-text-wrap" id="shadow-text-wrap">
+                                <div class="lp-shadow-text" id="shadow-text"></div>
+                                <div class="lp-shadow-vi" id="shadow-vi"></div>
+                            </div>
+                        </div>
+
+                        <!-- Action buttons -->
+                        <div class="lp-shadow-actions">
+                            <button class="lp-shadow-btn primary" id="btn-shadow-listen">
+                                <i class="fas fa-play"></i> Nghe
+                            </button>
+                            <button class="lp-shadow-btn" id="btn-shadow-relisten" disabled>
+                                <i class="fas fa-redo"></i> Nghe lại
+                            </button>
+                            <button class="lp-shadow-btn" id="btn-shadow-show-text">
+                                <i class="fas fa-eye"></i> Hiện text
+                            </button>
+                            <button class="lp-shadow-btn" id="btn-shadow-next">
+                                <i class="fas fa-forward"></i> Tiếp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TAB PANEL: QUIZ
+        ══════════════════════════════════════════════════════════ -->
+        <div id="panel-quiz" class="lp-tab-panel">
+            @if (quizCount == 0)
+            {
+                <div class="lp-empty">
+                    <div class="lp-empty-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3>Chưa có bài tập</h3>
+                    <p>Bài quiz đang được chuẩn bị.</p>
+                </div>
+            }
+            else
+            {
+                <!-- Quiz instruction box -->
+                <div class="lp-quiz-instruction">
+                    <div class="lp-quiz-instruction-icon">💡</div>
+                    <div class="lp-quiz-instruction-text">
+                        <strong>Gợi ý trước khi làm quiz</strong>
+                        Nghe lại bài hội thoại rồi trả lời. Nên nghe ít nhất <strong>2 lần</strong> trước khi làm quiz để đạt kết quả tốt nhất.
+                    </div>
+                </div>
+
+                <div class="lp-quiz-list">
+                    @{ int qIdx = 0; }
+                    @foreach (var q in Model.QuizQuestions.OrderBy(x => x.OrderIndex))
+                    {
+                        qIdx++;
+                        <div class="lp-quiz-item" data-question-id="@q.Id">
+                            <div class="lp-quiz-question">
+                                <span class="lp-qnum">@qIdx</span>
+                                @q.QuestionText
+                            </div>
+                            <div class="lp-quiz-options">
+                                @if (!string.IsNullOrEmpty(q.OptionA))
+                                {
+                                    <label class="lp-option-label">
+                                        <input type="radio" name="q_@q.Id" value="A" @(Model.QuizCompleted ? "disabled" : "") />
+                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
+                                        <span class="fw-semibold me-1">A.</span> @q.OptionA
+                                    </label>
+                                }
+                                @if (!string.IsNullOrEmpty(q.OptionB))
+                                {
+                                    <label class="lp-option-label">
+                                        <input type="radio" name="q_@q.Id" value="B" @(Model.QuizCompleted ? "disabled" : "") />
+                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
+                                        <span class="fw-semibold me-1">B.</span> @q.OptionB
+                                    </label>
+                                }
+                                @if (!string.IsNullOrEmpty(q.OptionC))
+                                {
+                                    <label class="lp-option-label">
+                                        <input type="radio" name="q_@q.Id" value="C" @(Model.QuizCompleted ? "disabled" : "") />
+                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
+                                        <span class="fw-semibold me-1">C.</span> @q.OptionC
+                                    </label>
+                                }
+                                @if (!string.IsNullOrEmpty(q.OptionD))
+                                {
+                                    <label class="lp-option-label">
+                                        <input type="radio" name="q_@q.Id" value="D" @(Model.QuizCompleted ? "disabled" : "") />
+                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
+                                        <span class="fw-semibold me-1">D.</span> @q.OptionD
+                                    </label>
+                                }
+                            </div>
+                            <!-- Explanation shown after submit (populated by JS) -->
+                            <div class="lp-explanation"></div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Submit + Result -->
+                <div class="lp-quiz-footer">
+                    @if (!Model.QuizCompleted)
+                    {
+                        <button class="lp-submit-btn" id="btn-submit-quiz">
+                            <i class="fas fa-paper-plane"></i> Nộp bài
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="lp-submit-btn" id="btn-submit-quiz" disabled>
+                            <i class="fas fa-check-circle"></i> Đã hoàn thành
+                            @if (Model.QuizScore.HasValue)
+                            {
+                                <span>(@Model.QuizScore%)</span>
+                            }
+                        </button>
+                    }
+
+                    <!-- Result panel (populated by JS) -->
+                    <div class="lp-result-panel @(Model.QuizCompleted && Model.QuizScore.HasValue ? (Model.QuizScore >= 70 ? "show lp-result-pass" : "show lp-result-fail") : "")"
+                         id="quiz-result-panel">
+                        <div class="lp-result-emoji" id="result-emoji">
+                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
+                            {
+                                @(Model.QuizScore >= 70 ? "🎉" : "😅")
+                            }
+                        </div>
+                        <div class="lp-result-score" id="result-score">
+                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
+                            {
+                                @:@Model.QuizScore%
+                            }
+                        </div>
+                        <div class="lp-result-msg" id="result-msg">
+                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
+                            {
+                                @(Model.QuizScore >= 70 ? "Xuất sắc! Bạn đã vượt qua bài kiểm tra." : "Chưa đạt. Hãy nghe lại và thử lại nhé!")
+                            }
+                        </div>
+                        <div class="mt-2 small text-muted" id="result-pct"></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TAB PANEL: VOCABULARY
+        ══════════════════════════════════════════════════════════ -->
+        <div id="panel-vocab" class="lp-tab-panel">
+            @if (vocabCount == 0)
+            {
+                <div class="lp-empty">
+                    <div class="lp-empty-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Chưa có từ vựng</h3>
+                    <p>Danh sách từ vựng đang được chuẩn bị.</p>
+                </div>
+            }
+            else
+            {
+                <div class="lp-vocab-grid">
+                    @foreach (var vocab in Model.VocabItems.OrderBy(v => v.OrderIndex))
+                    {
+                        <div class="lp-vocab-card">
+                            <!-- Image or placeholder -->
+                            <div class="lp-vocab-image">
+                                @if (!string.IsNullOrEmpty(vocab.ImageUrl))
+                                {
+                                    <img src="@vocab.ImageUrl" alt="@vocab.Word" loading="lazy" />
+                                }
+                                else
+                                {
+                                    <svg class="lp-vocab-image-placeholder" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                    </svg>
+                                }
+                            </div>
+                            <!-- Body -->
+                            <div class="lp-vocab-body">
+                                <div class="lp-vocab-word">@vocab.Word</div>
+                                <div class="lp-vocab-def">@vocab.Definition</div>
+                                @if (!string.IsNullOrEmpty(vocab.ExampleSentence))
+                                {
+                                    <div class="lp-vocab-example">
+                                        <i class="fas fa-quote-left fa-xs me-1 opacity-50"></i>@vocab.ExampleSentence
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Mark vocab done -->
+                <button class="lp-vocab-done-btn" id="btn-vocab-done"
+                        @(Model.VocabReviewed ? "disabled" : "")>
+                    @if (Model.VocabReviewed)
+                    {
+                        <i class="fas fa-check-circle"></i>
+                        <span>Đã ôn từ vựng</span>
+                    }
+                    else
+                    {
+                        <i class="fas fa-check"></i>
+                        <span>Đánh dấu đã ôn xong</span>
+                    }
+                </button>
+            }
+        </div>
+
+    </div>
+    <!-- /lp-container -->
+</div>
+<!-- /lp-page -->
+
+<!-- Toast notification -->
+<div class="lp-toast" id="lp-toast" aria-live="polite"></div>
+
+@{
+    var transcriptJson = System.Text.Json.JsonSerializer.Serialize(Model.TranscriptLines.Select(l => new {
+        id = l.Id,
+        orderIndex = l.OrderIndex,
+        speaker = l.Speaker,
+        text = l.Text,
+        vi = l.VietnameseMeaning,
+        startTime = l.StartTime,
+        endTime = l.EndTime
+    }), new System.Text.Json.JsonSerializerOptions {
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    });
+
+    var quizJson = System.Text.Json.JsonSerializer.Serialize(Model.QuizQuestions.Select(q => new {
+        id = q.Id,
+        orderIndex = q.OrderIndex,
+        questionText = q.QuestionText,
+        optA = q.OptionA,
+        optB = q.OptionB,
+        optC = q.OptionC,
+        optD = q.OptionD
+    }), new System.Text.Json.JsonSerializerOptions {
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    });
+}
+
+@section Scripts {
+    <script>
+        // ── Data bridge: Razor → JS ───────────────────────────────
+        window.LP_LESSON_ID  = @Html.Raw(Model.LessonId);
+        window.LP_YOUTUBE_ID = @Html.Raw(string.IsNullOrEmpty(Model.YoutubeId) ? "null" : $"\"{Model.YoutubeId}\"");
+        window.LP_AUTH       = @Html.Raw(User.Identity?.IsAuthenticated == true ? "true" : "false");
+
+        window.LP_TRANSCRIPT = @Html.Raw(transcriptJson ?? "[]");
+        window.LP_QUIZ       = @Html.Raw(quizJson ?? "[]");
+
+        console.log('[LP] Inline data check:', {
+            lessonId: window.LP_LESSON_ID,
+            transcriptCount: window.LP_TRANSCRIPT ? window.LP_TRANSCRIPT.length : 0,
+            quizCount: window.LP_QUIZ ? window.LP_QUIZ.length : 0
+        });
+    </script>
+    <script src="~/js/listening-practice.js" asp-append-version="true"></script>
+}
