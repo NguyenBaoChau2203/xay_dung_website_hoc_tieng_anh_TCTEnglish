@@ -5,6 +5,11 @@ namespace TCTVocabulary.Services
     public interface IWritingService
     {
         Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel);
+        Task<WritingCreateFromAiResultViewModel> CreateFromAiAsync(
+            WritingCreateFromAiRequestViewModel request,
+            int userId,
+            CancellationToken ct = default);
+        Task<OperationResult> DeleteOwnedExerciseAsync(int exerciseId, int userId);
         Task<WritingExerciseDataViewModel> GetWritingExerciseDataAsync(
             string? selectedLevel,
             string? contentType,
@@ -19,7 +24,7 @@ namespace TCTVocabulary.Services
             int? userId = null,
             string? status = null);
         Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId);
-        Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId);
+        Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId, int userId);
         Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(
             int exerciseId,
             int sentenceId,

@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "Bài tập viết";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var hasMyExercises = Model.MyExercises.Any();
+    var createFromAiUrl = Url.Action("CreateWritingExerciseFromAi", "Study") ?? string.Empty;
+    var practiceUrl = Url.Action("WritingPractice", "Study") ?? string.Empty;
 }
 
 @section Styles {
@@ -30,11 +33,28 @@
             </nav>
         </div>
 
+        @if (TempData["SuccessMessage"] is string successMessage)
+        {
+            <div class="writing-inline-alert writing-inline-alert--success" role="status">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>@successMessage</span>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] is string errorMessage)
+        {
+            <div class="writing-inline-alert writing-inline-alert--error" role="alert">
+                <i class="fas fa-circle-exclamation" aria-hidden="true"></i>
+                <span>@errorMessage</span>
+            </div>
+        }
+
         <div class="writing-exercises-head">
             <div class="writing-exercises-title-block">
                 <div>
+                    <span class="writing-section-kicker">Catalog hệ thống</span>
                     <h1>Bài tập hiện có</h1>
-                    <p class="writing-exercises-subtitle">Chọn một bài và bắt đầu luyện viết ngay.</p>
+                    <p class="writing-exercises-subtitle">Giữ nguyên trải nghiệm Writing công khai, đồng thời tách riêng bài viết cá nhân của bạn ở khu vực bên dưới.</p>
                 </div>
             </div>
 
@@ -58,6 +78,7 @@
                         }
                     </select>
                 </label>
+
                 @if (Model.ShowProgressMetadata)
                 {
                     <label class="writing-filter">
@@ -75,104 +96,294 @@
             </form>
         </div>
 
-        @if (!Model.Exercises.Any())
+        @if (Model.IsAuthenticatedUser)
         {
-            <div class="writing-empty-state">
-                <i class="fas fa-search"></i>
-                <h2>Không tìm thấy bài tập</h2>
-                <p>Hãy thử đổi chủ đề để xem thêm bài luyện viết.</p>
-            </div>
-        }
-        else
-        {
-            <div class="writing-exercise-grid">
-                @foreach (var exercise in Model.Exercises)
+            <section class="writing-my-exercises-section" id="my-exercises">
+                <div class="writing-section-header">
+                    <div>
+                        <span class="writing-section-kicker">Không gian cá nhân</span>
+                        <h2>Bài viết của tôi</h2>
+                        <p>Theo dõi bài viết AI đã tạo, xem trạng thái luyện tập, hoặc quay lại bài cũ khi gói của bạn vẫn còn quyền truy cập.</p>
+                    </div>
+
+                    @if (Model.CanCreateFromAi)
+                    {
+                        <span class="writing-panel-chip">
+                            <i class="fas fa-sparkles" aria-hidden="true"></i>
+                            5 bài AI mỗi ngày
+                        </span>
+                    }
+                </div>
+
+                @if (Model.CanCreateFromAi)
                 {
-                    <article class="writing-exercise-card">
-                        <div class="writing-exercise-top">
-                            <div class="writing-exercise-title-group">
-                                <div class="writing-exercise-tag-row">
-                                    <span class="writing-exercise-topic">@exercise.Topic</span>
-                                    @if (Model.ShowProgressMetadata)
+                    <div class="writing-create-panel">
+                        <div class="writing-create-copy">
+                            <h3>Tạo bài viết bằng AI</h3>
+                            <p>Dán một bài tiếng Việt hoặc tiếng Anh hoàn chỉnh. Hệ thống sẽ tách câu, dịch song ngữ và đưa bài mới vào đúng learner flow hiện tại.</p>
+                        </div>
+
+                        <form class="writing-create-form"
+                              data-writing-create-form
+                              data-create-url="@createFromAiUrl"
+                              data-practice-url="@practiceUrl">
+                            @Html.AntiForgeryToken()
+
+                            <label class="writing-create-label" for="writingSourceText">Bài viết gốc</label>
+                            <textarea id="writingSourceText"
+                                      name="sourceText"
+                                      class="writing-create-textarea"
+                                      rows="6"
+                                      maxlength="4000"
+                                      required
+                                      placeholder="Dán bài viết của bạn ở đây. AI sẽ tự nhận diện ngôn ngữ, tạo metadata và tách thành các cặp câu song ngữ."></textarea>
+
+                            <div class="writing-create-hint">
+                                Chấp nhận bài tiếng Việt hoặc tiếng Anh. Giới hạn tối đa 4000 ký tự cho mỗi lần tạo.
+                            </div>
+
+                            <div class="writing-create-actions">
+                                <button type="submit" class="writing-start-btn writing-start-btn--create" data-writing-create-submit>
+                                    <span data-writing-create-submit-text>Tạo bài viết bằng AI</span>
+                                </button>
+
+                                <p class="writing-create-message" data-writing-create-message hidden></p>
+                            </div>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="writing-upgrade-panel">
+                        <div class="writing-upgrade-copy">
+                            <h3>Tạo bài viết bằng AI dành cho Premium/Admin</h3>
+                            <p>
+                                @(hasMyExercises
+                                    ? "Các bài bạn đã tạo trước đây vẫn được liệt kê bên dưới. Nếu gói hiện tại là Standard, hệ thống sẽ chỉ hiển thị locked shell và chặn luyện/xóa cho tới khi bạn nâng cấp lại."
+                                    : "Bạn vẫn có thể học với catalog công khai như hiện tại. Khi nâng cấp lên Premium hoặc Admin, bạn sẽ mở khóa tính năng tạo bài viết riêng bằng AI.")
+                            </p>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.IsMyExercisesLocked && hasMyExercises)
+                {
+                    <div class="writing-lock-banner" role="status">
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                        <div>
+                            <strong>Đã khóa do gói hiện tại</strong>
+                            <p>Bạn vẫn nhìn thấy tiêu đề, preview, chủ đề, số câu và thời gian tạo của các bài cũ, nhưng hệ thống sẽ khóa chi tiết bài luyện tập cho tới khi bạn nâng cấp lại.</p>
+                        </div>
+                    </div>
+                }
+
+                @if (!hasMyExercises)
+                {
+                    <div class="writing-empty-state writing-empty-state--personal">
+                        <i class="fas fa-feather-pointed"></i>
+                        <h3>Chưa có bài viết cá nhân</h3>
+                        <p>
+                            @(Model.CanCreateFromAi
+                                ? "Tạo bài đầu tiên bằng AI để lưu riêng cho tài khoản của bạn và luyện ngay trong luồng Writing này."
+                                : "Khu vực này sẽ hiển thị bài viết cá nhân đã tạo bằng AI khi tài khoản của bạn có quyền phù hợp.")
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="writing-exercise-grid writing-exercise-grid--private">
+                        @foreach (var exercise in Model.MyExercises)
+                        {
+                            <article class="writing-exercise-card writing-exercise-card--private @(exercise.IsLocked ? "is-locked" : string.Empty)">
+                                <div class="writing-exercise-top">
+                                    <div class="writing-exercise-title-group">
+                                        <div class="writing-exercise-tag-row">
+                                            <span class="writing-exercise-topic">@exercise.Topic</span>
+                                            <span class="writing-private-badge">Riêng tư</span>
+
+                                            @if (exercise.IsLocked)
+                                            {
+                                                <span class="writing-status-badge writing-status-badge--locked">Đã khóa</span>
+                                            }
+                                            else if (Model.ShowProgressMetadata)
+                                            {
+                                                <span class="writing-status-badge writing-status-badge--@(string.IsNullOrWhiteSpace(exercise.StatusKey) ? "not-started" : exercise.StatusKey)">
+                                                    @exercise.StatusLabel
+                                                </span>
+                                            }
+                                        </div>
+
+                                        <h3 class="writing-exercise-title">@exercise.Title</h3>
+                                    </div>
+
+                                    <div class="writing-exercise-metrics">
+                                        <span class="writing-exercise-count">@exercise.SentenceCount câu</span>
+
+                                        @if (!exercise.IsLocked && Model.ShowProgressMetadata)
+                                        {
+                                            <span class="writing-attempt-badge">@exercise.AttemptCount lượt gửi</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <p class="writing-exercise-preview">@exercise.PreviewText</p>
+
+                                <div class="writing-card-meta-row">
+                                    <span><i class="far fa-clock" aria-hidden="true"></i> @exercise.CreatedAtDisplay</span>
+
+                                    @if (!exercise.IsLocked && !string.IsNullOrWhiteSpace(exercise.LastAttemptedAtDisplay))
                                     {
-                                        <span class="writing-status-badge writing-status-badge--@(string.IsNullOrWhiteSpace(exercise.StatusKey) ? "not-started" : exercise.StatusKey)">
-                                            @exercise.StatusLabel
+                                        <span><i class="fas fa-rotate-right" aria-hidden="true"></i> @exercise.LastAttemptedAtDisplay</span>
+                                    }
+                                </div>
+
+                                @if (exercise.IsLocked)
+                                {
+                                    <p class="writing-card-note">
+                                        Gói hiện tại chỉ hiển thị thông tin cơ bản. Nội dung chi tiết, dịch gợi ý, chấm điểm AI và chức năng xóa bài đều đang bị khóa.
+                                    </p>
+                                }
+                                else if (!exercise.CanDelete)
+                                {
+                                    <p class="writing-card-note">
+                                        Bài viết đã có lịch sử luyện nên hiện chưa thể xóa khỏi learner flow.
+                                    </p>
+                                }
+
+                                <div class="writing-exercise-bottom writing-exercise-bottom--split">
+                                    @if (exercise.IsLocked)
+                                    {
+                                        <span class="writing-start-btn is-disabled" aria-disabled="true">
+                                            @(string.IsNullOrWhiteSpace(exercise.StartActionLabel) ? "Nâng cấp để mở khóa" : exercise.StartActionLabel)
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <a class="writing-start-btn"
+                                           asp-controller="Study"
+                                           asp-action="WritingPractice"
+                                           asp-route-level="@Model.SelectedLevelKey"
+                                           asp-route-contentType="@Model.SelectedContentTypeKey"
+                                           asp-route-topic="@Model.SelectedTopic"
+                                           asp-route-status="@Model.SelectedStatus"
+                                           asp-route-page="@Model.CurrentPage"
+                                           asp-route-exerciseId="@exercise.Id">
+                                            @(string.IsNullOrWhiteSpace(exercise.StartActionLabel) ? "Luyện ngay" : exercise.StartActionLabel)
+                                        </a>
+                                    }
+
+                                    @if (!exercise.IsLocked && exercise.CanDelete)
+                                    {
+                                        <form method="post"
+                                              asp-controller="Study"
+                                              asp-action="DeleteOwnedWritingExercise"
+                                              class="writing-delete-form"
+                                              data-writing-delete-form>
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="exerciseId" value="@exercise.Id" />
+                                            <input type="hidden" name="level" value="@Model.SelectedLevelKey" />
+                                            <input type="hidden" name="contentType" value="@Model.SelectedContentTypeKey" />
+                                            <input type="hidden" name="topic" value="@Model.SelectedTopic" />
+                                            <input type="hidden" name="status" value="@Model.SelectedStatus" />
+                                            <input type="hidden" name="page" value="@Model.CurrentPage" />
+
+                                            <button type="submit" class="writing-secondary-btn writing-secondary-btn--danger">
+                                                <i class="fas fa-trash" aria-hidden="true"></i>
+                                                Xóa
+                                            </button>
+                                        </form>
+                                    }
+                                    else if (!exercise.IsLocked)
+                                    {
+                                        <span class="writing-secondary-btn is-disabled" aria-disabled="true">
+                                            Không thể xóa
                                         </span>
                                     }
                                 </div>
-                                <h2 class="writing-exercise-title">@exercise.Title</h2>
-                            </div>
-                            <div class="writing-exercise-metrics">
-                                <span class="writing-exercise-count">@exercise.SentenceCount câu</span>
-                                @if (Model.ShowProgressMetadata)
-                                {
-                                    <span class="writing-attempt-badge">@exercise.AttemptCount lượt gửi</span>
-                                }
-                            </div>
-                        </div>
-
-                        <p class="writing-exercise-preview">@exercise.PreviewText</p>
-
-                        @if (Model.ShowProgressMetadata)
-                        {
-                            <div class="writing-progress-meta">
-                                <span>@exercise.CompletedSentenceCount/@exercise.SentenceCount câu đạt</span>
-                                @if (!string.IsNullOrWhiteSpace(exercise.LastAttemptedAtDisplay))
-                                {
-                                    <span>Lần gần nhất: @exercise.LastAttemptedAtDisplay</span>
-                                }
-                            </div>
+                            </article>
                         }
-
-                        <div class="writing-exercise-bottom">
-                            <a class="writing-start-btn"
-                               asp-controller="Study"
-                               asp-action="WritingPractice"
-                               asp-route-level="@Model.SelectedLevelKey"
-                               asp-route-contentType="@Model.SelectedContentTypeKey"
-                               asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
-                               asp-route-page="@Model.CurrentPage"
-                               asp-route-exerciseId="@exercise.Id">
-                                @(string.IsNullOrWhiteSpace(exercise.StartActionLabel) ? "Bắt đầu" : exercise.StartActionLabel)
-                            </a>
-                        </div>
-                    </article>
+                    </div>
                 }
-            </div>
+            </section>
+        }
 
-            <div class="writing-results-footer">
-                <p>
-                    Hiển thị <strong>@Model.StartItemNumber-@Model.EndItemNumber</strong> trên tổng <strong>@Model.TotalCount</strong> bài
-                </p>
+        <section class="writing-public-section">
+            @if (!Model.Exercises.Any())
+            {
+                <div class="writing-empty-state">
+                    <i class="fas fa-search"></i>
+                    <h2>Không tìm thấy bài tập</h2>
+                    <p>Hãy thử đổi chủ đề để xem thêm bài luyện viết trong catalog công khai.</p>
+                </div>
+            }
+            else
+            {
+                <div class="writing-exercise-grid">
+                    @foreach (var exercise in Model.Exercises)
+                    {
+                        <article class="writing-exercise-card">
+                            <div class="writing-exercise-top">
+                                <div class="writing-exercise-title-group">
+                                    <div class="writing-exercise-tag-row">
+                                        <span class="writing-exercise-topic">@exercise.Topic</span>
+                                        @if (Model.ShowProgressMetadata)
+                                        {
+                                            <span class="writing-status-badge writing-status-badge--@(string.IsNullOrWhiteSpace(exercise.StatusKey) ? "not-started" : exercise.StatusKey)">
+                                                @exercise.StatusLabel
+                                            </span>
+                                        }
+                                    </div>
+                                    <h2 class="writing-exercise-title">@exercise.Title</h2>
+                                </div>
 
-                @if (Model.TotalPages > 1)
-                {
-                    <nav class="writing-pagination" aria-label="Các trang bài tập">
-                        @if (Model.CurrentPage > 1)
-                        {
-                            <a asp-controller="Study"
-                               asp-action="WritingExercises"
-                               asp-route-level="@Model.SelectedLevelKey"
-                               asp-route-contentType="@Model.SelectedContentTypeKey"
-                               asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
-                               asp-route-page="@(Model.CurrentPage - 1)"
-                               class="writing-page-link writing-page-link--arrow"
-                               aria-label="Trang trước">
-                                <i class="fas fa-angle-left"></i>
-                            </a>
-                        }
-                        else
-                        {
-                            <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
-                                <i class="fas fa-angle-left"></i>
-                            </span>
-                        }
+                                <div class="writing-exercise-metrics">
+                                    <span class="writing-exercise-count">@exercise.SentenceCount câu</span>
+                                    @if (Model.ShowProgressMetadata)
+                                    {
+                                        <span class="writing-attempt-badge">@exercise.AttemptCount lượt gửi</span>
+                                    }
+                                </div>
+                            </div>
 
-                        @foreach (var pageNumber in Model.PageNumbers)
-                        {
-                            if (pageNumber.HasValue)
+                            <p class="writing-exercise-preview">@exercise.PreviewText</p>
+
+                            @if (Model.ShowProgressMetadata)
+                            {
+                                <div class="writing-progress-meta">
+                                    <span>@exercise.CompletedSentenceCount/@exercise.SentenceCount câu đạt</span>
+                                    @if (!string.IsNullOrWhiteSpace(exercise.LastAttemptedAtDisplay))
+                                    {
+                                        <span>Lần gần nhất: @exercise.LastAttemptedAtDisplay</span>
+                                    }
+                                </div>
+                            }
+
+                            <div class="writing-exercise-bottom">
+                                <a class="writing-start-btn"
+                                   asp-controller="Study"
+                                   asp-action="WritingPractice"
+                                   asp-route-level="@Model.SelectedLevelKey"
+                                   asp-route-contentType="@Model.SelectedContentTypeKey"
+                                   asp-route-topic="@Model.SelectedTopic"
+                                   asp-route-status="@Model.SelectedStatus"
+                                   asp-route-page="@Model.CurrentPage"
+                                   asp-route-exerciseId="@exercise.Id">
+                                    @(string.IsNullOrWhiteSpace(exercise.StartActionLabel) ? "Bắt đầu" : exercise.StartActionLabel)
+                                </a>
+                            </div>
+                        </article>
+                    }
+                </div>
+
+                <div class="writing-results-footer">
+                    <p>
+                        Hiển thị <strong>@Model.StartItemNumber-@Model.EndItemNumber</strong> trên tổng <strong>@Model.TotalCount</strong> bài
+                    </p>
+
+                    @if (Model.TotalPages > 1)
+                    {
+                        <nav class="writing-pagination" aria-label="Các trang bài tập">
+                            @if (Model.CurrentPage > 1)
                             {
                                 <a asp-controller="Study"
                                    asp-action="WritingExercises"
@@ -180,41 +391,65 @@
                                    asp-route-contentType="@Model.SelectedContentTypeKey"
                                    asp-route-topic="@Model.SelectedTopic"
                                    asp-route-status="@Model.SelectedStatus"
-                                   asp-route-page="@pageNumber.Value"
-                                   class="writing-page-link @(pageNumber.Value == Model.CurrentPage ? "is-active" : string.Empty)">
-                                    @pageNumber.Value
+                                   asp-route-page="@(Model.CurrentPage - 1)"
+                                   class="writing-page-link writing-page-link--arrow"
+                                   aria-label="Trang trước">
+                                    <i class="fas fa-angle-left"></i>
                                 </a>
                             }
                             else
                             {
-                                <span class="writing-page-ellipsis">...</span>
+                                <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
+                                    <i class="fas fa-angle-left"></i>
+                                </span>
                             }
-                        }
 
-                        @if (Model.CurrentPage < Model.TotalPages)
-                        {
-                            <a asp-controller="Study"
-                               asp-action="WritingExercises"
-                               asp-route-level="@Model.SelectedLevelKey"
-                               asp-route-contentType="@Model.SelectedContentTypeKey"
-                               asp-route-topic="@Model.SelectedTopic"
-                               asp-route-status="@Model.SelectedStatus"
-                               asp-route-page="@(Model.CurrentPage + 1)"
-                               class="writing-page-link writing-page-link--arrow"
-                               aria-label="Trang sau">
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        }
-                        else
-                        {
-                            <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
-                        }
-                    </nav>
-                }
-            </div>
-        }
+                            @foreach (var pageNumber in Model.PageNumbers)
+                            {
+                                if (pageNumber.HasValue)
+                                {
+                                    <a asp-controller="Study"
+                                       asp-action="WritingExercises"
+                                       asp-route-level="@Model.SelectedLevelKey"
+                                       asp-route-contentType="@Model.SelectedContentTypeKey"
+                                       asp-route-topic="@Model.SelectedTopic"
+                                       asp-route-status="@Model.SelectedStatus"
+                                       asp-route-page="@pageNumber.Value"
+                                       class="writing-page-link @(pageNumber.Value == Model.CurrentPage ? "is-active" : string.Empty)">
+                                        @pageNumber.Value
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="writing-page-ellipsis">...</span>
+                                }
+                            }
+
+                            @if (Model.CurrentPage < Model.TotalPages)
+                            {
+                                <a asp-controller="Study"
+                                   asp-action="WritingExercises"
+                                   asp-route-level="@Model.SelectedLevelKey"
+                                   asp-route-contentType="@Model.SelectedContentTypeKey"
+                                   asp-route-topic="@Model.SelectedTopic"
+                                   asp-route-status="@Model.SelectedStatus"
+                                   asp-route-page="@(Model.CurrentPage + 1)"
+                                   class="writing-page-link writing-page-link--arrow"
+                                   aria-label="Trang sau">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="writing-page-link writing-page-link--arrow is-disabled" aria-hidden="true">
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
+                            }
+                        </nav>
+                    }
+                </div>
+            }
+        </section>
     </div>
 </div>
 

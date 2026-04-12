@@ -134,6 +134,94 @@ namespace TCTVocabulary.Controllers
         }
 
         [Authorize]
+        [HttpPost("Writing/Exercises/CreateFromAi")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateWritingExerciseFromAi(
+            [FromBody] WritingCreateFromAiRequestViewModel? request,
+            CancellationToken cancellationToken)
+        {
+            if (request == null)
+            {
+                return BadRequest(new { error = "Thieu du lieu tao bai viet.", errorCode = "request_required" });
+            }
+
+            var result = await _writingService.CreateFromAiAsync(request, GetCurrentUserId(), cancellationToken);
+            if (result.Outcome == WritingCreateFromAiOutcome.Success)
+            {
+                return Json(new
+                {
+                    success = true,
+                    data = new
+                    {
+                        exerciseId = result.ExerciseId,
+                        sentenceCount = result.SentenceCount,
+                        level = result.Level,
+                        contentType = result.ContentType,
+                        isReplay = result.IsReplay
+                    }
+                });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.QuotaExceeded)
+            {
+                if (result.RetryAfterSeconds > 0)
+                {
+                    Response.Headers["Retry-After"] = result.RetryAfterSeconds.ToString();
+                }
+
+                return StatusCode(429, new { error = result.ErrorMessage, errorCode = result.ErrorCode, retryAfterSeconds = result.RetryAfterSeconds });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Forbidden)
+            {
+                return StatusCode(403, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Invalid)
+            {
+                return BadRequest(new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            return StatusCode(503, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+        }
+
+        [Authorize]
+        [HttpPost("Writing/Exercises/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteOwnedWritingExercise(
+            int exerciseId,
+            string? level = null,
+            string? contentType = null,
+            string? topic = null,
+            string? status = null,
+            int page = 1)
+        {
+            var result = await _writingService.DeleteOwnedExerciseAsync(exerciseId, GetCurrentUserId());
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status == OperationStatus.Invalid)
+            {
+                TempData["ErrorMessage"] = result.ErrorMessage ?? "Khong the xoa bai viet luc nay.";
+            }
+            else
+            {
+                TempData["SuccessMessage"] = "Da xoa bai viet cua ban.";
+            }
+
+            return RedirectToAction(nameof(WritingExercises), new
+            {
+                level,
+                contentType,
+                topic,
+                status,
+                page
+            });
+        }
+
+        [Authorize]
         [HttpGet("Writing/Practice")]
         public async Task<IActionResult> WritingPractice(
             string? level = null,
@@ -189,7 +277,7 @@ namespace TCTVocabulary.Controllers
                     retryAfterSeconds);
             }
 
-            var data = await _writingService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
+            var data = await _writingService.GetWritingSentenceHintAsync(exerciseId, sentenceId, userId);
             return data == null ? NotFound() : Json(data);
         }
 

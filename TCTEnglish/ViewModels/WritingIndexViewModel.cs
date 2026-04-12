@@ -49,6 +49,10 @@ namespace TCTEnglish.ViewModels
         public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<int?> PageNumbers { get; set; } = new();
         public List<WritingExerciseCardViewModel> Exercises { get; set; } = new();
+        public List<WritingExerciseCardViewModel> MyExercises { get; set; } = new();
+        public bool IsMyExercisesLocked { get; set; }
+        public bool IsAuthenticatedUser { get; set; }
+        public bool CanCreateFromAi { get; set; }
     }
 
     public class WritingExerciseDataViewModel
@@ -63,6 +67,10 @@ namespace TCTEnglish.ViewModels
         public List<WritingFilterOptionViewModel> TopicOptions { get; set; } = new();
         public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<WritingExerciseCardViewModel> Exercises { get; set; } = new();
+        public List<WritingExerciseCardViewModel> MyExercises { get; set; } = new();
+        public bool IsMyExercisesLocked { get; set; }
+        public bool IsAuthenticatedUser { get; set; }
+        public bool CanCreateFromAi { get; set; }
     }
 
     public class WritingFilterOptionViewModel
@@ -84,6 +92,10 @@ namespace TCTEnglish.ViewModels
         public string StatusLabel { get; set; } = string.Empty;
         public string StartActionLabel { get; set; } = "Bắt đầu";
         public string LastAttemptedAtDisplay { get; set; } = string.Empty;
+        public bool IsPrivate { get; set; }
+        public bool IsLocked { get; set; }
+        public bool CanDelete { get; set; }
+        public string CreatedAtDisplay { get; set; } = string.Empty;
     }
 
     public class WritingPracticeDataViewModel

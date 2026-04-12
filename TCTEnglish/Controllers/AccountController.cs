@@ -701,6 +701,51 @@ namespace TCTVocabulary.Controllers
             }
 
             await DeleteOwnedLearningContentAsync(userId);
+            await DeleteOwnedPrivateWritingContentAsync(userId);
+        }
+
+        private async Task DeleteOwnedPrivateWritingContentAsync(int userId)
+        {
+            var ownedExerciseIds = await _context.WritingExercises
+                .AsNoTracking()
+                .Where(exercise => exercise.UserId == userId)
+                .Select(exercise => exercise.Id)
+                .ToListAsync();
+
+            if (ownedExerciseIds.Count > 0)
+            {
+                var attemptsForOwnedExercises = await _context.UserWritingAttempts
+                    .Where(attempt => ownedExerciseIds.Contains(attempt.WritingExerciseId))
+                    .ToListAsync();
+                if (attemptsForOwnedExercises.Count > 0)
+                {
+                    _context.UserWritingAttempts.RemoveRange(attemptsForOwnedExercises);
+                }
+
+                var sentencesForOwnedExercises = await _context.WritingExerciseSentences
+                    .Where(sentence => ownedExerciseIds.Contains(sentence.WritingExerciseId))
+                    .ToListAsync();
+                if (sentencesForOwnedExercises.Count > 0)
+                {
+                    _context.WritingExerciseSentences.RemoveRange(sentencesForOwnedExercises);
+                }
+
+                var ownedExercises = await _context.WritingExercises
+                    .Where(exercise => ownedExerciseIds.Contains(exercise.Id))
+                    .ToListAsync();
+                if (ownedExercises.Count > 0)
+                {
+                    _context.WritingExercises.RemoveRange(ownedExercises);
+                }
+            }
+
+            var writingGenerationLogs = await _context.WritingGenerationLogs
+                .Where(log => log.UserId == userId)
+                .ToListAsync();
+            if (writingGenerationLogs.Count > 0)
+            {
+                _context.WritingGenerationLogs.RemoveRange(writingGenerationLogs);
+            }
         }
 
         private async Task DeleteOwnedLearningContentAsync(int userId)

@@ -4,12 +4,15 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using TCTEnglish.Services.AI;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Services
 {
-    public class WritingService : IWritingService
+    public partial class WritingService : IWritingService
     {
         private static readonly HashSet<string> CommonEnglishStopWords = new(StringComparer.OrdinalIgnoreCase)
         {
@@ -33,10 +36,18 @@ namespace TCTVocabulary.Services
 
         public WritingService(
             DbflashcardContext context,
-            IWritingAiEvaluationService writingAiEvaluationService)
+            IWritingAiEvaluationService writingAiEvaluationService,
+            IAiProviderClient aiProviderClient,
+            IAiTokenCounter aiTokenCounter,
+            IOptions<AiOptions> aiOptions,
+            ILogger<WritingService> logger)
         {
             _context = context;
             _writingAiEvaluationService = writingAiEvaluationService;
+            _aiProviderClient = aiProviderClient;
+            _aiTokenCounter = aiTokenCounter;
+            _aiOptions = aiOptions.Value;
+            _logger = logger;
         }
 
         public Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel)
@@ -69,19 +80,7 @@ namespace TCTVocabulary.Services
 
         public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId)
         {
-            var exercise = await _context.WritingExercises
-                .AsNoTracking()
-                .Where(item => item.IsPublished && item.Id == exerciseId)
-                .Select(item => new WritingPracticeExerciseRow
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Level = item.Level,
-                    ContentType = item.ContentType,
-                    Topic = item.Topic,
-                    PreviewText = item.PreviewText
-                })
-                .FirstOrDefaultAsync();
+            var exercise = await ResolveWritingExerciseAccessAsync(exerciseId, userId);
 
             if (exercise == null)
             {
@@ -103,14 +102,20 @@ namespace TCTVocabulary.Services
             return BuildWritingPracticeDataViewModel(exercise, sentences, attempts);
         }
 
-        public async Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId)
+        public async Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId, int userId)
         {
             if (sentenceId <= 0)
             {
                 return null;
             }
 
-            var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
+            var exercise = await ResolveWritingExerciseAccessAsync(exerciseId, userId);
+            if (exercise == null)
+            {
+                return null;
+            }
+
+            var sentences = await LoadWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
             if (sentenceIndex < 0)
             {
@@ -137,7 +142,13 @@ namespace TCTVocabulary.Services
             string userAnswer,
             int userId)
         {
-            var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
+            var exercise = await ResolveWritingExerciseAccessAsync(exerciseId, userId);
+            if (exercise == null)
+            {
+                return null;
+            }
+
+            var sentences = await LoadWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
             if (sentenceIndex < 0)
             {
@@ -202,7 +213,10 @@ namespace TCTVocabulary.Services
             var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType, userId);
             var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic, status);
             var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, page);
-            var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, catalog.Exercises);
+            var accessibleExercises = catalog.Exercises
+                .Concat(catalog.MyExercises.Where(item => !item.IsLocked))
+                .ToList();
+            var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, accessibleExercises);
 
             if (!selectedExerciseId.HasValue)
             {
@@ -230,10 +244,39 @@ namespace TCTVocabulary.Services
             var writingIndexViewModel = BuildWritingIndexViewModel(selectedLevel);
             var selectedContentTypeKey = ResolveWritingContentTypeKey(contentType);
             var exercises = await LoadWritingExerciseCardsAsync(writingIndexViewModel.SelectedLevelKey, selectedContentTypeKey);
+            List<WritingExerciseCardViewModel> myExercises = new();
+            var isMyExercisesLocked = false;
+            var canCreateFromAi = false;
 
             if (userId.HasValue)
             {
                 await ApplyWritingProgressMetadataAsync(exercises, userId.Value);
+
+                var accessContext = await ResolveWritingAccessContextAsync(userId.Value);
+                canCreateFromAi = accessContext.CanCreateFromAi;
+                myExercises = await LoadOwnerWritingExerciseCardsAsync(
+                    writingIndexViewModel.SelectedLevelKey,
+                    selectedContentTypeKey,
+                    userId.Value);
+
+                if (myExercises.Count > 0)
+                {
+                    isMyExercisesLocked = !accessContext.CanAccessOwnedPrivateExercises;
+
+                    foreach (var myExercise in myExercises)
+                    {
+                        myExercise.IsPrivate = true;
+                        myExercise.IsLocked = isMyExercisesLocked;
+                        myExercise.StartActionLabel = isMyExercisesLocked
+                            ? "Nâng cấp để mở khóa"
+                            : "Luyện ngay";
+                    }
+
+                    if (!isMyExercisesLocked)
+                    {
+                        await ApplyWritingProgressMetadataAsync(myExercises, userId.Value);
+                    }
+                }
             }
 
             return new WritingExerciseCatalog(
@@ -242,7 +285,10 @@ namespace TCTVocabulary.Services
                 selectedContentTypeKey,
                 ResolveWritingContentTypeTitle(selectedContentTypeKey),
                 exercises,
-                userId.HasValue);
+                myExercises,
+                userId.HasValue,
+                isMyExercisesLocked,
+                canCreateFromAi);
         }
 
         private static WritingExerciseDataViewModel BuildWritingExerciseDataViewModel(
@@ -263,14 +309,18 @@ namespace TCTVocabulary.Services
                 SelectedTopic = normalizedTopic,
                 SelectedStatus = normalizedStatus,
                 ShowProgressMetadata = catalog.HasProgressMetadata,
-                TopicOptions = BuildWritingTopicOptions(catalog.Exercises),
+                TopicOptions = BuildWritingTopicOptions(catalog.Exercises.Concat(catalog.MyExercises)),
                 StatusOptions = catalog.HasProgressMetadata
                     ? BuildWritingStatusOptions()
                     : new List<WritingFilterOptionViewModel>(),
                 Exercises = FilterWritingExercisesByStatus(
                     topicFilteredExercises,
                     normalizedStatus,
-                    catalog.HasProgressMetadata)
+                    catalog.HasProgressMetadata),
+                MyExercises = FilterWritingExercisesByTopic(catalog.MyExercises, normalizedTopic),
+                IsMyExercisesLocked = catalog.IsMyExercisesLocked,
+                IsAuthenticatedUser = catalog.HasProgressMetadata,
+                CanCreateFromAi = catalog.CanCreateFromAi
             };
         }
 
@@ -306,7 +356,11 @@ namespace TCTVocabulary.Services
                 TopicOptions = exerciseData.TopicOptions,
                 StatusOptions = exerciseData.StatusOptions,
                 PageNumbers = BuildWritingPageNumbers(currentPage, totalPages),
-                Exercises = pagedItems
+                Exercises = pagedItems,
+                MyExercises = exerciseData.MyExercises,
+                IsMyExercisesLocked = exerciseData.IsMyExercisesLocked,
+                IsAuthenticatedUser = exerciseData.IsAuthenticatedUser,
+                CanCreateFromAi = exerciseData.CanCreateFromAi
             };
         }
 
@@ -314,7 +368,8 @@ namespace TCTVocabulary.Services
         {
             return await _context.WritingExercises
                 .AsNoTracking()
-                .Where(exercise => exercise.IsPublished
+                .Where(exercise => exercise.UserId == null
+                    && exercise.IsPublished
                     && exercise.Level == levelKey
                     && exercise.ContentType == contentTypeKey)
                 .OrderBy(exercise => exercise.Id)
@@ -397,9 +452,11 @@ namespace TCTVocabulary.Services
             IReadOnlyCollection<WritingExerciseCardViewModel> pagedExercises,
             IReadOnlyCollection<WritingExerciseCardViewModel> catalogExercises)
         {
-            if (requestedExerciseId.HasValue && catalogExercises.Any(exercise => exercise.Id == requestedExerciseId.Value))
+            if (requestedExerciseId.HasValue)
             {
-                return requestedExerciseId.Value;
+                return catalogExercises.Any(exercise => exercise.Id == requestedExerciseId.Value)
+                    ? requestedExerciseId.Value
+                    : null;
             }
 
             return pagedExercises.FirstOrDefault()?.Id ?? catalogExercises.FirstOrDefault()?.Id;
@@ -1006,12 +1063,11 @@ namespace TCTVocabulary.Services
                 : string.Empty;
         }
 
-        private async Task<List<WritingSentenceLookupRow>> LoadPublishedWritingSentenceRowsAsync(int exerciseId)
+        private async Task<List<WritingSentenceLookupRow>> LoadWritingSentenceRowsAsync(int exerciseId)
         {
             var sentenceRows = await _context.WritingExerciseSentences
                 .AsNoTracking()
-                .Where(sentence => sentence.WritingExerciseId == exerciseId
-                    && sentence.WritingExercise.IsPublished)
+                .Where(sentence => sentence.WritingExerciseId == exerciseId)
                 .OrderBy(sentence => sentence.SortOrder)
                 .Select(sentence => new WritingSentenceLookupRow
                 {
@@ -1586,7 +1642,10 @@ namespace TCTVocabulary.Services
             string SelectedContentTypeKey,
             string SelectedContentTypeTitle,
             List<WritingExerciseCardViewModel> Exercises,
-            bool HasProgressMetadata);
+            List<WritingExerciseCardViewModel> MyExercises,
+            bool HasProgressMetadata,
+            bool IsMyExercisesLocked,
+            bool CanCreateFromAi);
 
         private sealed class WritingAttemptRow
         {

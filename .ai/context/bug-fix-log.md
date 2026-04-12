@@ -42,6 +42,26 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Premium writing generation inherited oversized shared AI budgets instead of enforcing dedicated limits - 2026-04-12
+
+**Symptom**: The Premium Writing create-from-AI flow could silently use higher timeout/output-token ceilings when shared `AiOptions` were configured above the writing defaults, which weakened the intended dedicated budget controls for this endpoint.
+
+**Root Cause**: `WritingService.Generation` built provider options with `Math.Max(...)` against shared `AiOptions` values, so shared chat-oriented settings could override writing-specific hard limits.
+
+**Solution**: Switched writing generation provider request options to dedicated constants for `MaxOutputTokens` and `RequestTimeoutSeconds`, independent from shared chat ceilings. Added regression coverage that forces high shared `AiOptions` values and verifies create-from-AI still sends the dedicated writing limits.
+
+**Files Changed**:
+- `TCTEnglish/Services/WritingService.Generation.cs` - enforced dedicated request option values for writing generation provider calls.
+- `TCTEnglish.Tests/TestHelpers/StubAiProviderClient.cs` - added an option-aware handler overload so tests can inspect provider request options.
+- `TCTEnglish.Tests/PremiumWritingGenerationIntegrationTests.cs` - added integration regression test `CreateFromAi_PremiumUser_UsesDedicatedWritingGenerationRequestOptions`.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.PremiumWritingGenerationIntegrationTests` and `TypeName=TCTEnglish.Tests.PremiumWritingLearnerFlowIntegrationTests` and `TypeName=TCTEnglish.Tests.WritingSchemaTests` passed.
+
+**Commit**: Not created.
+
+**Notes**: This aligns with the Premium Writing feature requirement to avoid reusing chat defaults blindly for generation timeout/token/output handling.
+
 ### Writing practice accepted answers from the wrong sentence or pasted multi-sentence text - 2026-04-07
 
 **Symptom**: On the Writing practice page, a learner could submit the next sentence, a previous sentence, or even paste multiple sentences / the whole passage into the current answer box and still drive the normal grading flow. In some cases this could mark the current line with out-of-scope content and break the intended sentence-by-sentence practice behavior.

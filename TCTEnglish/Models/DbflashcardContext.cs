@@ -43,6 +43,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<AiConversation> AiConversations { get; set; }
     public virtual DbSet<AiMessage> AiMessages { get; set; }
     public virtual DbSet<AiRequestLog> AiRequestLogs { get; set; }
+    public virtual DbSet<WritingGenerationLog> WritingGenerationLogs { get; set; }
 
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
@@ -450,8 +451,14 @@ public partial class DbflashcardContext : DbContext
         {
             entity.HasKey(e => e.Id);
 
-            entity.HasIndex(e => new { e.IsPublished, e.Level, e.ContentType, e.Topic })
-                .HasDatabaseName("IX_WritingExercises_Published_Level_ContentType_Topic");
+            entity.HasIndex(e => new { e.UserId, e.IsPublished, e.Level, e.ContentType, e.Topic })
+                .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_Level_ContentType_Topic");
+
+            entity.HasIndex(e => new { e.UserId, e.IsPublished, e.CreatedAt })
+                .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_CreatedAt");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
 
             entity.Property(e => e.Title)
                 .IsRequired()
@@ -469,6 +476,11 @@ public partial class DbflashcardContext : DbContext
                 .IsRequired()
                 .HasMaxLength(100);
 
+            entity.Property(e => e.SourceType)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValue("admin");
+
             entity.Property(e => e.PreviewText)
                 .IsRequired()
                 .HasMaxLength(1000);
@@ -479,6 +491,12 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasColumnType("datetime2")
                 .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.WritingExercises)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_WritingExercises_Users");
         });
 
         modelBuilder.Entity<WritingExerciseSentence>(entity =>
@@ -691,6 +709,39 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(e => e.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_AiRequestLogs_AiConversations");
+        });
+
+        modelBuilder.Entity<WritingGenerationLog>(entity =>
+        {
+            entity.ToTable("WritingGenerationLogs");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.RequestType)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.ErrorCode)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.RequestedAtUtc)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.UserId, e.RequestedAtUtc })
+                .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestedAtUtc");
+
+            entity.HasIndex(e => new { e.UserId, e.RequestType, e.RequestedAtUtc })
+                .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestType_RequestedAtUtc");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.WritingGenerationLogs)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_WritingGenerationLogs_Users");
         });
 
         OnModelCreatingPartial(modelBuilder);
