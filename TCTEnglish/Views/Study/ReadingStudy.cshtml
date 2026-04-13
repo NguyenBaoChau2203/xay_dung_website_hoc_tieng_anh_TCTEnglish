@@ -1,0 +1,46 @@
+﻿@model TCTEnglish.ViewModels.ReadingStudyViewModel
+
+<link rel="stylesheet" href="~/css/reading-study.css" />
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-7 passage-box">
+            <div class="card p-4 shadow-sm">
+                <h2>@Model.Title</h2>
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" class="img-fluid mb-3" />
+                }
+                <div class="passage-text">@Html.Raw(Model.Content?.Replace("\n", "<br/>"))</div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div id="quizStatus" class="alert d-none mb-3"></div>
+            <form id="readingForm">
+                <input type="hidden" name="passageId" value="@Model.Id" />
+                @foreach (var q in Model.Questions)
+                {
+                    <div class="card mb-3 question-card" data-q-id="@q.Id">
+                        <div class="card-body">
+                            <h6>@q.QuestionText</h6>
+                            @foreach (var opt in q.Options)
+                            {
+                                <div class="form-check border p-2 mb-1 rounded">
+                                    <input class="form-check-input ms-1" type="radio" name="answers[@q.Id]" value="@opt.Id" id="opt_@opt.Id" required>
+                                    <label class="form-check-label d-block ms-4" for="opt_@opt.Id">@opt.OptionText</label>
+                                </div>
+                            }
+                            <div class="result-feedback mt-2 d-none"></div>
+                        </div>
+                    </div>
+                }
+                <button type="submit" id="btnSubmit" class="btn btn-primary w-100">Nộp bài</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/reading-study.js"></script>
+}

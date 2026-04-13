@@ -1,0 +1,50 @@
+﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingCreateViewModel
+
+<h2>Create Reading Passage</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group mb-3">
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Level</label>
+        <select asp-for="Level" class="form-control">
+            <option value="">Select level</option>
+            <option>A1</option>
+            <option>A2</option>
+            <option>B1</option>
+            <option>B2</option>
+            <option>C1</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Topic</label>
+        <input asp-for="Topic" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Image URL</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Content (HTML allowed)</label>
+        <textarea asp-for="Content"
+                  class="form-control"
+                  rows="10"></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsPublished" class="form-check-input" />
+        <label class="form-check-label">Published</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Create Reading
+    </button>
+
+</form>

@@ -89,6 +89,23 @@ namespace TCTVocabulary.Controllers
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
+            // --- LOGIC THÊM VÀO: Lấy bài đọc đang học dở gần nhất ---
+            var recentReading = await _context.UserReadingHistories
+                .AsNoTracking()
+                .Include(h => h.ReadingPassage)
+                .Where(h => h.UserId == userId && h.IsCompleted == false)
+                .OrderByDescending(h => h.ViewedAt)
+                .Select(h => new RecentReadingViewModel
+                {
+                    Id = h.ReadingPassageId,
+                    Title = h.ReadingPassage.Title,
+                    Level = h.ReadingPassage.Level,
+                    Topic = h.ReadingPassage.Topic,
+                    LastViewed = h.ViewedAt
+                })
+                .FirstOrDefaultAsync();
+            // -------------------------------------------------------
+
             return new DashboardViewModel
             {
                 FullName = user.FullName,
@@ -98,7 +115,9 @@ namespace TCTVocabulary.Controllers
                 SetCount = user.Sets.Count,
                 CardCount = cardCount,
                 DailyChallenge = await GetRandomChallengeAsync(),
-                TodayFolders = todayFolders
+                TodayFolders = todayFolders,
+                // Gán dữ liệu vào ViewModel
+                RecentInProcessReading = recentReading
             };
         }
 

@@ -99,5 +99,6 @@ public partial class User
     = new List<Class>();
 
     public virtual ICollection<UserSpeakingProgress> UserSpeakingProgresses { get; set; } = new List<UserSpeakingProgress>();
+    public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();
 }
 
