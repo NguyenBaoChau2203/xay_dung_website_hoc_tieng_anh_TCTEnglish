@@ -31,7 +31,12 @@
         </div>
 
         <div class="spk-topnav-right">
-            <!-- intentionally empty – reserved for future actions -->
+            @if (Model.IsPrivate)
+            {
+                <span class="spk-private-badge" title="Video riêng tư của bạn">
+                    <i class="fas fa-user-shield"></i> Riêng tư
+                </span>
+            }
         </div>
     </div>
 

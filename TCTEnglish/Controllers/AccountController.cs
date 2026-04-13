@@ -53,6 +53,12 @@ namespace TCTVocabulary.Controllers
             return View("Auth");
         }
 
+        [HttpGet]
+        public IActionResult Premium()
+        {
+            return Redirect("/Home/Landing#pricing");
+        }
+
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -566,6 +572,7 @@ namespace TCTVocabulary.Controllers
                     }
 
                     await DeleteUserRelatedDataAsync(userId);
+                    await _context.SaveChangesAsync();
 
                     _context.Users.Remove(user);
                     await _context.SaveChangesAsync();
@@ -701,7 +708,58 @@ namespace TCTVocabulary.Controllers
             }
 
             await DeleteOwnedLearningContentAsync(userId);
+            await DeleteOwnedPrivateSpeakingContentAsync(userId);
             await DeleteOwnedPrivateWritingContentAsync(userId);
+        }
+
+        private async Task DeleteOwnedPrivateSpeakingContentAsync(int userId)
+        {
+            var ownedPrivateVideoIds = await _context.SpeakingVideos
+                .AsNoTracking()
+                .Where(video => video.OwnerUserId == userId)
+                .Select(video => video.Id)
+                .ToListAsync();
+
+            if (ownedPrivateVideoIds.Count == 0)
+            {
+                return;
+            }
+
+            var ownedPrivateSentenceIds = await _context.SpeakingSentences
+                .AsNoTracking()
+                .Where(sentence => ownedPrivateVideoIds.Contains(sentence.VideoId))
+                .Select(sentence => sentence.Id)
+                .ToListAsync();
+
+            if (ownedPrivateSentenceIds.Count > 0)
+            {
+                var dependentProgresses = await _context.UserSpeakingProgresses
+                    .Where(progress => ownedPrivateSentenceIds.Contains(progress.SentenceId))
+                    .ToListAsync();
+
+                if (dependentProgresses.Count > 0)
+                {
+                    _context.UserSpeakingProgresses.RemoveRange(dependentProgresses);
+                }
+
+                var ownedPrivateSentences = await _context.SpeakingSentences
+                    .Where(sentence => ownedPrivateSentenceIds.Contains(sentence.Id))
+                    .ToListAsync();
+
+                if (ownedPrivateSentences.Count > 0)
+                {
+                    _context.SpeakingSentences.RemoveRange(ownedPrivateSentences);
+                }
+            }
+
+            var ownedPrivateVideos = await _context.SpeakingVideos
+                .Where(video => ownedPrivateVideoIds.Contains(video.Id))
+                .ToListAsync();
+
+            if (ownedPrivateVideos.Count > 0)
+            {
+                _context.SpeakingVideos.RemoveRange(ownedPrivateVideos);
+            }
         }
 
         private async Task DeleteOwnedPrivateWritingContentAsync(int userId)

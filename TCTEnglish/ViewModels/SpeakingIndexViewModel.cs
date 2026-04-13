@@ -13,6 +13,10 @@ namespace TCTVocabulary.ViewModels
 
         // NEW: Videos grouped by CEFR level (A1, A2, B1, B2)
         public Dictionary<string, List<SpeakingVideoViewModel>> VideosByLevel { get; set; } = new();
+
+        public List<SpeakingVideoViewModel> MyVideos { get; set; } = new();
+        public bool CanImportPrivateVideos { get; set; }
+        public bool IsMyVideosLocked { get; set; }
         
     }
 

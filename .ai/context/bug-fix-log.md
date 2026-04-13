@@ -42,6 +42,25 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Premium speaking Phase 6 regressions on owner-scoped delete and account cleanup - 2026-04-13
+
+**Symptom**: In Premium Speaking lifecycle integration tests, outsider delete of another owner's private video returned `BadRequest` instead of `NotFound`, and account deletion redirected to `/Account/Settings` (failure path) instead of `/Account/Login` when owned private speaking content had dependent speaking progress rows.
+
+**Root Cause**: `SpeakingService.DeleteOwnedVideoAsync` evaluated entitlement before ownership lookup, so non-owner calls from downgraded users could return upgrade errors instead of owner-safe `NotFound`. In account cleanup, `DeleteOwnedPrivateSpeakingContentAsync` relied on deleting parent videos only; dependent sentence/progress rows were not explicitly removed in cleanup order, causing delete-account transaction failure in integration flow.
+
+**Solution**: Reordered delete logic in `SpeakingService` to resolve ownership (`videoId + owner`) first, then apply entitlement checks only for owned rows. Updated `AccountController.DeleteOwnedPrivateSpeakingContentAsync` to explicitly collect owned private video/sentence ids and remove dependent `UserSpeakingProgress` and `SpeakingSentence` rows before removing `SpeakingVideo` rows.
+
+**Files Changed**:
+- `TCTEnglish/Services/SpeakingService.cs` - changed private delete flow ordering to preserve anti-IDOR `NotFound` semantics.
+- `TCTEnglish/Controllers/AccountController.cs` - hardened private speaking cascade cleanup during account deletion.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.PremiumSpeakingLifecycleIntegrationTests` passed (5/5).
+
+**Commit**: Not created.
+
+**Notes**: Fix keeps downgraded-owner delete blocked (`premium_required`) while preventing ownership leakage for non-owner/private-id probes.
+
 ### Premium writing generation inherited oversized shared AI budgets instead of enforcing dedicated limits - 2026-04-12
 
 **Symptom**: The Premium Writing create-from-AI flow could silently use higher timeout/output-token ceilings when shared `AiOptions` were configured above the writing defaults, which weakened the intended dedicated budget controls for this endpoint.
