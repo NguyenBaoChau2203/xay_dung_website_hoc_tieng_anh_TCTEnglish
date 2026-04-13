@@ -18,12 +18,12 @@
 
     <style>
         :root {
-            --primary: #0EA5E9; /* Xanh nước sáng */
-            --primary-light: #E0F2FE; /* Xanh nước siêu nhạt */
-            --primary-dark: #0284C7; /* Xanh nước đậm hơn */
-            --primary-soft: #F0F9FF; /* Nền xanh nhẹ */
-            --secondary: #38BDF8; /* Xanh nước sáng hơn */
-            --accent: #2DD4BF; /* Xanh ngọc */
+            --primary: #4255ff; /* Xanh nước sáng */
+            --primary-light: #eef0ff; /* Xanh nước siêu nhạt */
+            --primary-dark: #2e3ed1; /* Xanh nước đậm hơn */
+            --primary-soft: #f5f6ff; /* Nền xanh nhẹ */
+            --secondary: #a5b4fc; /* Xanh nước sáng hơn */
+            --accent: #6478ff; /* Xanh ngọc */
 
             --neutral-50: #F8FAFC;
             --neutral-100: #F1F5F9;
@@ -40,9 +40,9 @@
             --error: #EF4444;
             --white: #FFFFFF;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -2px rgba(14, 165, 233, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(14, 165, 233, 0.15);
-            --shadow-xl: 0 20px 25px -5px rgba(14, 165, 233, 0.2);
+            --shadow-md: 0 4px 6px -2px rgba(66, 85, 255, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(66, 85, 255, 0.15);
+            --shadow-xl: 0 20px 25px -5px rgba(66, 85, 255, 0.2);
         }
 
         * {
@@ -53,7 +53,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #f5f6ff 100%);
             color: var(--neutral-800);
             line-height: 1.5;
             min-height: 100vh;
@@ -74,7 +74,7 @@
                 right: 0;
                 width: 600px;
                 height: 600px;
-                background: radial-gradient(circle, rgba(14, 165, 233, 0.03) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(66, 85, 255, 0.03) 0%, transparent 70%);
                 border-radius: 50%;
                 z-index: -1;
                 pointer-events: none;
@@ -122,7 +122,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: 100px;
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             color: var(--neutral-700);
             font-weight: 500;
             font-size: 0.95rem;
@@ -148,7 +148,7 @@
             backdrop-filter: blur(10px);
             padding: 1.5rem;
             border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -190,7 +190,7 @@
             justify-content: center;
             color: var(--primary);
             font-size: 1.5rem;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .stat-trend {
@@ -200,7 +200,7 @@
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--neutral-600);
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
             .stat-trend.positive {
@@ -261,7 +261,7 @@
             padding: 0.5rem 1rem;
             border-radius: 100px;
             background: rgba(255,255,255,0.5);
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
             .view-all:hover {
@@ -286,7 +286,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 28px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             padding: 1.75rem;
             display: flex;
             align-items: center;
@@ -404,7 +404,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 28px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             padding: 1.75rem;
             display: flex;
             flex-direction: column;
@@ -486,7 +486,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             padding: 1.25rem;
             display: flex;
             align-items: center;
@@ -536,7 +536,7 @@
 
         .due-btn {
             background: var(--primary-light);
-            border: 1px solid rgba(14, 165, 233, 0.3);
+            border: 1px solid rgba(66, 85, 255, 0.3);
             color: var(--primary);
             padding: 0.5rem 1.25rem;
             border-radius: 14px;
@@ -567,7 +567,7 @@
             padding: 0.5rem 1.25rem;
             border-radius: 100px;
             background: rgba(255,255,255,0.5);
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             color: var(--neutral-600);
             font-size: 0.9rem;
             font-weight: 500;
@@ -619,7 +619,7 @@
             border-radius: 100px;
             font-size: 0.85rem;
             color: var(--primary);
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .sets-grid {
@@ -632,7 +632,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
@@ -647,7 +647,7 @@
 
         .card-header {
             padding: 1.5rem 1.5rem 0.5rem;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.02) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(66, 85, 255, 0.02) 0%, transparent 100%);
         }
 
         .card-tags {
@@ -664,7 +664,7 @@
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 500;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .card-title {
@@ -711,7 +711,7 @@
 
         .card-footer {
             padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
+            border-top: 1px solid rgba(66, 85, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -759,7 +759,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             padding: 1.5rem;
             position: relative;
             transition: all 0.3s ease;
@@ -783,7 +783,7 @@
             border-radius: 100px;
             font-size: 0.7rem;
             font-weight: 600;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .recommend-content h4 {
@@ -823,7 +823,7 @@
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
             padding: 1rem;
             box-shadow: var(--shadow-sm);
         }
@@ -853,7 +853,7 @@
             font-weight: 600;
             color: var(--neutral-700);
             font-size: 0.9rem;
-            border: 1px solid rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .rank-avatar {
@@ -898,7 +898,7 @@
         .vocab-footer {
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(14, 165, 233, 0.2);
+            border-top: 1px solid rgba(66, 85, 255, 0.2);
         }
 
         .footer-content {
@@ -956,7 +956,7 @@
                 justify-content: center;
                 color: var(--neutral-500);
                 transition: all 0.2s ease;
-                border: 1px solid rgba(14, 165, 233, 0.2);
+                border: 1px solid rgba(66, 85, 255, 0.2);
                 font-size: 1.2rem;
             }
 
@@ -972,7 +972,7 @@
             padding: 1.5rem 0 0;
             color: var(--neutral-500);
             font-size: 0.9rem;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
+            border-top: 1px solid rgba(66, 85, 255, 0.1);
         }
 
         /* Responsive */
@@ -1056,7 +1056,7 @@
     background: rgba(255,255,255,0.7);
     backdrop-filter: blur(10px);
     border-radius: 24px;
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(66, 85, 255, 0.2);
     padding: 1.5rem;
     margin-bottom: 2rem;
     box-shadow: var(--shadow-sm);
@@ -1093,7 +1093,7 @@
 .filter-select {
     padding: 0.75rem 1rem;
     border-radius: 14px;
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(66, 85, 255, 0.2);
     background: white;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
@@ -1106,7 +1106,7 @@
 .filter-select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    box-shadow: 0 0 0 3px rgba(66, 85, 255, 0.1);
 }
 
 .filter-input::placeholder {
@@ -1125,7 +1125,7 @@
 .tag-filter-btn {
     padding: 0.5rem 1rem;
     border-radius: 100px;
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(66, 85, 255, 0.2);
     background: white;
     color: var(--neutral-600);
     font-size: 0.85rem;
@@ -1169,7 +1169,7 @@
 .active-filters {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(14, 165, 233, 0.1);
+    border-top: 1px solid rgba(66, 85, 255, 0.1);
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -1197,7 +1197,7 @@
     border-radius: 100px;
     font-size: 0.85rem;
     color: var(--primary-dark);
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(66, 85, 255, 0.2);
 }
 
 .filter-tag i {
