@@ -144,19 +144,8 @@
                 </div>
             }
 
-            <!-- Player Controls Bar: Speed -->
+            <!-- Progress indicator -->
             <div class="lp-player-controls">
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <span class="lp-speed-label">Tốc độ:</span>
-                    <div class="lp-speed-btns">
-                        <button class="lp-speed-btn" data-rate="0.5">0.5×</button>
-                        <button class="lp-speed-btn" data-rate="0.75">0.75×</button>
-                        <button class="lp-speed-btn lp-speed-active" data-rate="1">1×</button>
-                        <button class="lp-speed-btn" data-rate="1.25">1.25×</button>
-                        <button class="lp-speed-btn" data-rate="1.5">1.5×</button>
-                    </div>
-                </div>
-
                 <div class="lp-progress-mini">
                     <span class="lp-speed-label">Tiến độ:</span>
                     <div class="lp-progress-dots">
@@ -168,27 +157,6 @@
                     {
                         <span class="text-success small"><i class="fas fa-check-circle"></i> Hoàn thành</span>
                     }
-                </div>
-            </div>
-
-            <!-- Player Extras: A-B loop + Auto-scroll + Listen counter -->
-            <div class="lp-player-extras">
-                <!-- A-B Loop toggle (3 states: off → setA → looping) -->
-                <button class="lp-ab-btn" id="btn-ab-loop" data-state="off" title="Lặp đoạn A-B">
-                    <i class="fas fa-retweet"></i>
-                    <span id="ab-btn-label">A-B Loop</span>
-                </button>
-
-                <!-- Auto-scroll toggle -->
-                <button class="lp-auto-scroll-btn" id="btn-auto-scroll" title="Tự động cuộn đến dòng đang nghe">
-                    <i class="fas fa-scroll"></i>
-                    Tự cuộn
-                </button>
-
-                <!-- Listen counter -->
-                <div class="lp-listen-counter" id="lp-listen-counter" title="Số lần đã nghe hết bài">
-                    <i class="fas fa-headphones-alt"></i>
-                    Đã nghe: <span class="lp-count-num" id="lp-count-num">0</span> lần
                 </div>
             </div>
         </div>
@@ -263,21 +231,22 @@
                         <span class="lp-mode-icon">🔤</span>
                         <span class="lp-mode-label">Điền<br>từ</span>
                     </div>
-                    <div class="lp-mode-card" data-mode="shadowing">
-                        <span class="lp-mode-icon">🎙️</span>
-                        <span class="lp-mode-label">Shadow-<br>ing</span>
-                    </div>
+
                 </div>
 
                 <!-- ════════════════════════════════════════
                      MODE 1: NORMAL (transcript)
                 ════════════════════════════════════════ -->
                 <div id="mode-normal" class="lp-mode-panel lp-mode-active">
-                    <!-- Header actions -->
-                    <div class="lp-transcript-header">
-                        <span class="text-muted small">@transcriptCount dòng hội thoại</span>
-                        <div class="lp-transcript-actions">
-                            <button class="lp-transcript-action-btn" id="btn-toggle-all-vi">
+                    <!-- Unified mode header -->
+                    <div class="lp-mode-header">
+                        <div class="lp-mode-header-icon">📖</div>
+                        <div class="lp-mode-header-body">
+                            <div class="lp-mode-header-title">Nghe thường</div>
+                            <div class="lp-mode-header-desc">Click vào dòng hoặc nút ▶ để nghe lại từng câu.</div>
+                        </div>
+                        <div class="lp-mode-header-actions">
+                            <button class="lp-action-btn" id="btn-toggle-all-vi">
                                 <i class="fas fa-language"></i> Xem tất cả bản dịch
                             </button>
                         </div>
@@ -332,7 +301,7 @@
                     </div>
 
                     <!-- Mark transcript done -->
-                    <button class="lp-mark-read-btn" id="btn-mark-transcript-read"
+                    <button class="lp-mode-done-btn" id="btn-mark-transcript-read"
                             @(Model.TranscriptCompleted ? "disabled" : "")>
                         @if (Model.TranscriptCompleted)
                         {
@@ -351,15 +320,16 @@
                      MODE 2: DICTATION
                 ════════════════════════════════════════ -->
                 <div id="mode-dictation" class="lp-mode-panel">
-                    <div class="lp-dict-header">
-                        <div>
-                            <div style="font-weight:700;font-size:0.95rem;color:var(--lp-text)">✍️ Chính tả</div>
-                            <div style="font-size:0.8rem;color:var(--lp-muted);margin-top:2px">Nghe và gõ lại từng câu. Nhấn Tab để nghe lại.</div>
+                    <!-- Unified mode header -->
+                    <div class="lp-mode-header">
+                        <div class="lp-mode-header-icon">✍️</div>
+                        <div class="lp-mode-header-body">
+                            <div class="lp-mode-header-title">Chính tả</div>
+                            <div class="lp-mode-header-desc">Nghe và gõ lại từng câu. Nhấn <kbd>Tab</kbd> để nghe lại.</div>
                         </div>
-                        <div class="lp-dict-progress-wrap">
-                            <!-- SVG ring: r=24, circumference ≈ 150.8 -->
+                        <div class="lp-mode-header-actions">
                             <div class="lp-progress-ring" id="dict-ring">
-                                <svg width="60" height="60" viewBox="0 0 60 60">
+                                <svg width="52" height="52" viewBox="0 0 60 60">
                                     <circle class="lp-ring-track" cx="30" cy="30" r="24"/>
                                     <circle class="lp-ring-progress" id="dict-ring-progress" cx="30" cy="30" r="24"
                                             stroke-dasharray="150.796" stroke-dashoffset="150.796"/>
@@ -372,7 +342,7 @@
                     </div>
 
                     <!-- Dictation items rendered by JS from LP_TRANSCRIPT -->
-                    <div id="dictation-lines"></div>
+                    <div id="dictation-lines" class="lp-items-list"></div>
 
                     <!-- Summary (shown when done) -->
                     <div class="lp-dict-summary" id="dict-summary">
@@ -391,7 +361,7 @@
                                 <span class="lp-dict-stat-label">Sai</span>
                             </div>
                         </div>
-                        <button class="lp-dict-retry-btn" id="btn-dict-retry">
+                        <button class="lp-mode-done-btn" id="btn-dict-retry">
                             <i class="fas fa-redo"></i> Làm lại
                         </button>
                     </div>
@@ -401,13 +371,20 @@
                      MODE 3: FILL IN THE BLANKS
                 ════════════════════════════════════════ -->
                 <div id="mode-fillin" class="lp-mode-panel">
-                    <div class="lp-fillin-header">
-                        <div>
-                            <div style="font-weight:700;font-size:0.95rem;color:var(--lp-text)">🔤 Điền từ</div>
-                            <div style="font-size:0.8rem;color:var(--lp-muted);margin-top:2px">Điền các từ còn thiếu vào chỗ trống.</div>
+                    <!-- Unified mode header -->
+                    <div class="lp-mode-header">
+                        <div class="lp-mode-header-icon">🔤</div>
+                        <div class="lp-mode-header-body">
+                            <div class="lp-mode-header-title">Điền từ</div>
+                            <div class="lp-mode-header-desc">Điền các từ còn thiếu vào chỗ trống.</div>
                         </div>
-                        <div class="lp-fillin-progress-text">
-                            <span id="fillin-correct-count">0</span> / <span id="fillin-total-count">0</span> từ
+                        <div class="lp-mode-header-actions">
+                            <div class="lp-fillin-score">
+                                <span class="lp-fillin-score-num" id="fillin-correct-count">0</span>
+                                <span class="lp-fillin-score-sep">/</span>
+                                <span class="lp-fillin-score-num" id="fillin-total-count">0</span>
+                                <span class="lp-fillin-score-label">từ đúng</span>
+                            </div>
                         </div>
                     </div>
 
@@ -416,67 +393,19 @@
                     </div>
 
                     <!-- Fill-in items rendered by JS -->
-                    <div id="fillin-lines"></div>
+                    <div id="fillin-lines" class="lp-items-list"></div>
 
                     <div class="lp-fillin-footer" id="fillin-footer" style="display:none">
                         <button class="lp-btn-check-all" id="btn-fillin-check">
                             <i class="fas fa-check-double"></i> Kiểm tra tất cả
                         </button>
-                        <button class="lp-btn-retry" id="btn-fillin-retry">
+                        <button class="lp-mode-done-btn" id="btn-fillin-retry">
                             <i class="fas fa-redo"></i> Làm lại
                         </button>
-                        <div id="fillin-progress-text" class="ms-3 small fw-bold text-muted"></div>
+                        <div id="fillin-progress-text" class="lp-fillin-result-text"></div>
                     </div>
                 </div>
 
-                <!-- ════════════════════════════════════════
-                     MODE 4: SHADOWING
-                ════════════════════════════════════════ -->
-                <div id="mode-shadowing" class="lp-mode-panel">
-                    <div class="lp-shadow-panel" id="shadow-panel">
-                        <div class="lp-shadow-meta">
-                            <div class="lp-shadow-counter">
-                                Câu <strong id="shadow-idx-display">1</strong> / <span id="shadow-total">0</span>
-                            </div>
-                            <div class="lp-shadow-status" id="shadow-status">Nhấn Nghe để bắt đầu</div>
-                        </div>
-
-                        <div class="lp-shadow-progress-wrap">
-                            <div class="lp-shadow-progress-label" id="shadow-progress-label">0%</div>
-                            <div class="lp-progress-bar" style="margin-bottom:0">
-                                <div class="lp-progress-fill" id="shadow-progress-fill"></div>
-                            </div>
-                        </div>
-
-                        <!-- Main card -->
-                        <div class="lp-shadow-card" id="shadow-card">
-                            <span class="lp-shadow-speaker" id="shadow-speaker"></span>
-                            <div class="lp-shadow-hidden-hint" id="shadow-hidden-hint">
-                                🎧 Nghe và lặp lại — nhấn "Hiện text" để xem câu
-                            </div>
-                            <div class="lp-shadow-text-wrap" id="shadow-text-wrap">
-                                <div class="lp-shadow-text" id="shadow-text"></div>
-                                <div class="lp-shadow-vi" id="shadow-vi"></div>
-                            </div>
-                        </div>
-
-                        <!-- Action buttons -->
-                        <div class="lp-shadow-actions">
-                            <button class="lp-shadow-btn primary" id="btn-shadow-listen">
-                                <i class="fas fa-play"></i> Nghe
-                            </button>
-                            <button class="lp-shadow-btn" id="btn-shadow-relisten" disabled>
-                                <i class="fas fa-redo"></i> Nghe lại
-                            </button>
-                            <button class="lp-shadow-btn" id="btn-shadow-show-text">
-                                <i class="fas fa-eye"></i> Hiện text
-                            </button>
-                            <button class="lp-shadow-btn" id="btn-shadow-next">
-                                <i class="fas fa-forward"></i> Tiếp
-                            </button>
-                        </div>
-                    </div>
-                </div>
             }
         </div>
 
