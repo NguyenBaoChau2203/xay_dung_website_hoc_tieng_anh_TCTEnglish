@@ -47,9 +47,7 @@
     // ══════════════════════════════════════════════════════════════
     let ytPlayer          = null;
     let audioEl           = document.getElementById('lp-audio');
-    let currentSpeed      = 1;
     let transcriptPolling = null;
-    let autoScrollEnabled = false;
 
     // ── YouTube IFrame API ────────────────────────────────────────
     if (youtubeId) {
@@ -66,7 +64,6 @@
                             stopTranscriptHighlight();
                         } else if (e.data === YT.PlayerState.ENDED) {
                             stopTranscriptHighlight();
-                            onPlaybackEnded();
                         }
                     }
                 }
@@ -84,7 +81,6 @@
         audioEl.addEventListener('pause', stopTranscriptHighlight);
         audioEl.addEventListener('ended', function () {
             stopTranscriptHighlight();
-            onPlaybackEnded();
         });
     }
 
@@ -116,118 +112,8 @@
         }
     }
 
-    // ── Speed control ─────────────────────────────────────────────
-    document.querySelectorAll('.lp-speed-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const rate = parseFloat(this.dataset.rate);
-            if (isNaN(rate)) return;
-
-            currentSpeed = rate;
-            document.querySelectorAll('.lp-speed-btn').forEach(b => b.classList.remove('lp-speed-active'));
-            this.classList.add('lp-speed-active');
-
-            if (ytPlayer && typeof ytPlayer.setPlaybackRate === 'function') {
-                ytPlayer.setPlaybackRate(rate);
-            }
-            if (audioEl) {
-                audioEl.playbackRate = rate;
-            }
-        });
-    });
-
     // ══════════════════════════════════════════════════════════════
-    // 4. LISTEN COUNTER
-    // ══════════════════════════════════════════════════════════════
-    let listenCount = 0;
-    const listenCounterEl = document.getElementById('lp-listen-counter');
-    const listenCountNum  = document.getElementById('lp-count-num');
-
-    function onPlaybackEnded() {
-        listenCount++;
-        if (listenCountNum) listenCountNum.textContent = listenCount;
-        if (listenCounterEl) {
-            if (listenCount >= 3) {
-                listenCounterEl.classList.add('lp-listened-enough');
-                showToast('success', `Đã nghe ${listenCount} lần — Rất tốt! 👏`);
-            } else {
-                showToast('', `Đã nghe ${listenCount} lần — mục tiêu 3 lần 🎧`);
-            }
-        }
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 5. A-B LOOP
-    // ══════════════════════════════════════════════════════════════
-    let abState    = 'off';   // 'off' | 'setA' | 'looping'
-    let abPointA   = 0;
-    let abPointB   = 0;
-    let abInterval = null;
-    const abBtn    = document.getElementById('btn-ab-loop');
-    const abLabel  = document.getElementById('ab-btn-label');
-
-    if (abBtn) {
-        abBtn.addEventListener('click', function () {
-            if (abState === 'off') {
-                // → State: set A
-                abPointA = getCurrentTime();
-                abState  = 'setA';
-                abBtn.dataset.state = 'setA';
-                if (abLabel) abLabel.textContent = `A=${abPointA.toFixed(1)}s — nhấn để đặt B`;
-                showToast('', `✅ Điểm A = ${abPointA.toFixed(1)}s`);
-
-            } else if (abState === 'setA') {
-                // → State: looping
-                abPointB = getCurrentTime();
-                if (abPointB <= abPointA) {
-                    showToast('error', 'Điểm B phải sau điểm A!');
-                    return;
-                }
-                abState = 'looping';
-                abBtn.dataset.state = 'looping';
-                if (abLabel) abLabel.textContent = `A-B (${abPointA.toFixed(1)}–${abPointB.toFixed(1)}s)`;
-                seekTo(abPointA);
-
-                // Start looping check
-                abInterval = setInterval(() => {
-                    const t = getCurrentTime();
-                    if (t >= abPointB) {
-                        seekTo(abPointA);
-                    }
-                }, 200);
-
-                showToast('success', `🔁 Lặp ${abPointA.toFixed(1)}s → ${abPointB.toFixed(1)}s`);
-
-            } else {
-                // → State: off (reset)
-                clearInterval(abInterval);
-                abInterval = null;
-                abState    = 'off';
-                abPointA   = 0;
-                abPointB   = 0;
-                abBtn.dataset.state = 'off';
-                if (abLabel) abLabel.textContent = 'A-B Loop';
-                showToast('', 'A-B Loop đã tắt');
-            }
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 6. AUTO-SCROLL TOGGLE
-    // ══════════════════════════════════════════════════════════════
-    const autoScrollBtn = document.getElementById('btn-auto-scroll');
-
-    if (autoScrollBtn) {
-        autoScrollBtn.addEventListener('click', function () {
-            autoScrollEnabled = !autoScrollEnabled;
-            autoScrollBtn.classList.toggle('active', autoScrollEnabled);
-            autoScrollBtn.innerHTML = autoScrollEnabled
-                ? '<i class="fas fa-scroll"></i> Tự cuộn: Bật'
-                : '<i class="fas fa-scroll"></i> Tự cuộn';
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 7. TAB SWITCHING
+    // 4. TAB SWITCHING
     // ══════════════════════════════════════════════════════════════
     const tabBtns   = document.querySelectorAll('.lp-tab-btn');
     const tabPanels = document.querySelectorAll('.lp-tab-panel');
@@ -245,7 +131,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════
-    // 8. MODE SELECTOR
+    // 5. MODE SELECTOR
     // ══════════════════════════════════════════════════════════════
     const modeCards  = document.querySelectorAll('.lp-mode-card');
     const modePanels = document.querySelectorAll('.lp-mode-panel');
@@ -266,14 +152,12 @@
                 initDictation();
             } else if (mode === 'fillin' && !fillinInited) {
                 initFillIn();
-            } else if (mode === 'shadowing' && !shadowingInitialized) {
-                initShadowing();
             }
         });
     });
 
     // ══════════════════════════════════════════════════════════════
-    // 9. TRANSCRIPT (MODE 1)
+    // 6. TRANSCRIPT (MODE 1)
     // ══════════════════════════════════════════════════════════════
     const transcriptLines = document.querySelectorAll('.lp-transcript-line');
 
@@ -314,22 +198,15 @@
     // ── Highlight current line during playback ────────────────────
     function highlightCurrentLine() {
         const t = getCurrentTime();
-        let activeEl = null;
         transcriptLines.forEach(line => {
             const start = parseFloat(line.dataset.start);
             const end   = parseFloat(line.dataset.end);
             if (!isNaN(start) && !isNaN(end) && t >= start && t <= end) {
                 line.classList.add('lp-line-active');
-                activeEl = line;
             } else {
                 line.classList.remove('lp-line-active');
             }
         });
-
-        // Auto-scroll to active line
-        if (autoScrollEnabled && activeEl) {
-            activeEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
     }
 
     function startTranscriptHighlight() {
@@ -376,7 +253,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════
-    // 10. DICTATION MODE (MODE 2)
+    // 7. DICTATION MODE (MODE 2)
     // ══════════════════════════════════════════════════════════════
     let dictationInited = false;
     let dictTotalWords  = 0;
@@ -398,147 +275,80 @@
     }
 
     function initDictation() {
-        console.log('[LP] initDictation triggered');
-        
-        // Final fallback in case timing was weird
         if ((!transcriptData || transcriptData.length === 0) && window.LP_TRANSCRIPT && window.LP_TRANSCRIPT.length > 0) {
-            console.log('[LP] transcriptData was empty but window.LP_TRANSCRIPT has data. Re-initializing...');
             transcriptData = window.LP_TRANSCRIPT.slice().sort((a, b) => a.orderIndex - b.orderIndex);
         }
-
         const container = document.getElementById('dictation-lines');
         if (!container) return;
-        
         if (!transcriptData || transcriptData.length === 0) {
-            console.warn('[LP] No transcript data for dictation. window.LP_TRANSCRIPT:', window.LP_TRANSCRIPT);
             container.innerHTML = '<p class="text-muted p-3">Không có nội dung transcript để luyện tập.</p>';
             return;
         }
-
         dictationInited = true;
         container.innerHTML = '';
-
         const speakerMap = new Map();
         let speakerIdx = 0;
-
         transcriptData.forEach((line, idx) => {
-            if (!speakerMap.has(line.speaker)) {
-                speakerMap.set(line.speaker, speakerIdx++);
-            }
+            if (!speakerMap.has(line.speaker)) speakerMap.set(line.speaker, speakerIdx++);
             const spClass = speakerMap.get(line.speaker) === 0 ? '' : 'speaker-b';
-
             const item = document.createElement('div');
-            item.className = 'lp-dictation-item'; 
+            item.className = 'lp-dictation-item';
             item.innerHTML = `
                 <div class="lp-dict-item-header">
                     <span class="lp-dict-num">${idx + 1}</span>
                     <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null
-                        ? `<button class="lp-dict-listen-btn" data-start="${line.startTime}">
-                               <i class="fas fa-play"></i> Nghe
-                           </button>`
-                        : ''}
+                    ${line.startTime != null ? `<button class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
                 </div>
                 <textarea class="lp-dict-textarea" rows="2" placeholder="Nhập những gì bạn nghe được…"></textarea>
                 <div class="lp-dict-feedback" style="display:none; margin-top:10px; line-height:1.6"></div>
                 <div class="lp-dict-answer" style="display:none; margin-top:5px; color:var(--lp-muted); font-size:0.9rem">
                     <strong>Đáp án:</strong> ${escHtml(line.text)}
                 </div>
-                <div style="margin-top:10px">
-                    <button class="lp-dict-check-btn">Kiểm tra</button>
-                </div>
+                <div style="margin-top:10px"><button class="lp-dict-check-btn">Kiểm tra</button></div>
             `;
-
             container.appendChild(item);
-
             const ta = item.querySelector('.lp-dict-textarea');
             const checkBtn = item.querySelector('.lp-dict-check-btn');
             const listenBtn = item.querySelector('.lp-dict-listen-btn');
-
-            if (listenBtn) {
-                listenBtn.addEventListener('click', () => seekTo(line.startTime));
-            }
-
+            if (listenBtn) listenBtn.addEventListener('click', () => seekTo(line.startTime));
             if (ta) {
                 ta.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        e.preventDefault();
-                        if (line.startTime != null) seekTo(line.startTime);
-                    } else if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        checkDictationLine(item, line);
-                    }
+                    if (e.key === 'Tab') { e.preventDefault(); if (line.startTime != null) seekTo(line.startTime); }
+                    else if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); checkDictationLine(item, line); }
                 });
             }
-
-            if (checkBtn) {
-                checkBtn.addEventListener('click', () => checkDictationLine(item, line));
-            }
+            if (checkBtn) checkBtn.addEventListener('click', () => checkDictationLine(item, line));
         });
-
-        console.log(`[LP] Generated ${transcriptData.length} dictation items`);
         updateDictRing(0);
     }
 
     function checkDictationLine(item, line) {
         if (item.classList.contains('lp-dict-done')) return;
-
         const ta = item.querySelector('.lp-dict-textarea');
         const feedbackEl = item.querySelector('.lp-dict-feedback');
         const answerEl = item.querySelector('.lp-dict-answer');
         const checkBtn = item.querySelector('.lp-dict-check-btn');
-
         if (!ta || !feedbackEl) return;
-
-        const userText = ta.value.trim();
-        const targetText = line.text;
-
-        const userWords = userText.toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
-        const targetWords = targetText.toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
-
-        let correctInLine = 0;
-        let nearInLine = 0;
-        let wrongInLine = 0;
-
-        let html = '';
+        const userWords   = ta.value.trim().toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
+        const targetWords = line.text.toLowerCase().replace(/[^a-z0-9'\s]/g, '').split(/\s+/).filter(Boolean);
+        let correctInLine = 0, nearInLine = 0, wrongInLine = 0, html = '';
         const maxLen = Math.max(userWords.length, targetWords.length);
-
         for (let i = 0; i < maxLen; i++) {
-            const u = userWords[i] || '';
-            const t = targetWords[i] || '';
-
-            if (u === t && u !== '') {
-                html += `<span class="lp-w-correct">${escHtml(u)}</span> `;
-                correctInLine++;
-            } else if (t !== '' && u !== '' && levenshtein(u, t) <= 2) {
-                html += `<span class="lp-w-near" title="Đúng: ${escHtml(t)}">${escHtml(u)}</span> `;
-                nearInLine++;
-            } else if (t !== '') {
-                html += `<span class="lp-w-wrong" title="Đúng: ${escHtml(t)}">${escHtml(u || '—')}</span> `;
-                wrongInLine++;
-            }
+            const u = userWords[i] || '', t = targetWords[i] || '';
+            if (u === t && u !== '') { html += `<span class="lp-w-correct">${escHtml(u)}</span> `; correctInLine++; }
+            else if (t !== '' && u !== '' && levenshtein(u, t) <= 2) { html += `<span class="lp-w-near" title="Đúng: ${escHtml(t)}">${escHtml(u)}</span> `; nearInLine++; }
+            else if (t !== '') { html += `<span class="lp-w-wrong" title="Đúng: ${escHtml(t)}">${escHtml(u || '—')}</span> `; wrongInLine++; }
         }
-
-        feedbackEl.innerHTML = html;
-        feedbackEl.style.display = 'block';
+        feedbackEl.innerHTML = html; feedbackEl.style.display = 'block';
         answerEl.style.display = 'block';
-        item.classList.add('lp-dict-done');
-        ta.disabled = true;
+        item.classList.add('lp-dict-done'); ta.disabled = true;
         if (checkBtn) checkBtn.disabled = true;
-
-        dictCorrect += correctInLine;
-        dictNear += nearInLine;
-        dictWrong += wrongInLine;
-        dictTotalWords += maxLen;
-
+        dictCorrect += correctInLine; dictNear += nearInLine; dictWrong += wrongInLine; dictTotalWords += maxLen;
         const pct = dictTotalWords > 0 ? Math.round((dictCorrect + dictNear * 0.5) / dictTotalWords * 100) : 0;
         updateDictRing(pct);
-
         const totalItems = document.querySelectorAll('.lp-dictation-item').length;
         const doneItems  = document.querySelectorAll('.lp-dictation-item.lp-dict-done').length;
-        if (doneItems === totalItems) {
-            showDictSummary();
-        }
+        if (doneItems === totalItems) showDictSummary();
     }
 
     function updateDictRing(pct) {
@@ -546,8 +356,7 @@
         const ringProg  = document.getElementById('dict-ring-progress');
         if (ringPctEl) ringPctEl.textContent = pct + '%';
         if (ringProg) {
-            const circumference = 150.796;
-            const offset = circumference - (pct / 100) * circumference;
+            const offset = 150.796 - (pct / 100) * 150.796;
             ringProg.style.strokeDashoffset = offset;
             ringProg.style.stroke = pct >= 70 ? 'var(--lp-success)' : pct >= 40 ? 'var(--lp-warning)' : 'var(--lp-error)';
         }
@@ -574,7 +383,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════
-    // 11. FILL-IN-THE-BLANKS MODE (MODE 3)
+    // 8. FILL-IN-THE-BLANKS MODE (MODE 3)
     // ══════════════════════════════════════════════════════════════
     let fillinInited = false;
     let fillinBlanks = []; // Array of {id, answer}
@@ -805,201 +614,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════
-    // 12. SHADOWING MODE (MODE 4)
-    // ══════════════════════════════════════════════════════════════
-    let shadowingInitialized = false;
-    let shadowIdx = 0;
-    let shadowTextVisible = false;
-    let shadowListenTimer = null;
-
-    function initShadowing() {
-        shadowingInitialized = true;
-        shadowIdx = 0;
-        shadowTextVisible = false;
-
-        const totalEl = document.getElementById('shadow-total');
-        if (totalEl) totalEl.textContent = transcriptData.length;
-
-        renderShadowCard();
-    }
-
-    function renderShadowCard() {
-        // Final fallback
-        if ((!transcriptData || transcriptData.length === 0) && window.LP_TRANSCRIPT && window.LP_TRANSCRIPT.length > 0) {
-            console.log('[LP] transcriptData was empty but window.LP_TRANSCRIPT has data. Re-initializing...');
-            transcriptData = window.LP_TRANSCRIPT.slice().sort((a, b) => a.orderIndex - b.orderIndex);
-        }
-
-        if (!transcriptData || !transcriptData.length) {
-            console.warn('[LP] No transcript data for shadowing');
-            const card = document.getElementById('shadow-card');
-            if (card) card.innerHTML = '<p class="text-muted p-3">Không có nội dung transcript để shadowing.</p>';
-            return;
-        }
-
-        const line = transcriptData[shadowIdx];
-
-        // Counter
-        const idxDisplay = document.getElementById('shadow-idx-display');
-        if (idxDisplay) idxDisplay.textContent = shadowIdx + 1;
-
-        // Progress
-        const pct = Math.round(shadowIdx / transcriptData.length * 100);
-        const fill = document.getElementById('shadow-progress-fill');
-        if (fill) fill.style.width = pct + '%';
-        const pgLabel = document.getElementById('shadow-progress-label');
-        if (pgLabel) pgLabel.textContent = pct + '%';
-
-        // Speaker
-        const speakerEl = document.getElementById('shadow-speaker');
-        if (speakerEl) {
-            speakerEl.textContent = line.speaker;
-            speakerEl.className   = 'lp-shadow-speaker';
-            // Detect 2nd speaker (simple approach: track unique speakers)
-            const speakerSeen = {};
-            let spIdx = 0;
-            transcriptData.forEach(l => {
-                if (speakerSeen[l.speaker] == null) speakerSeen[l.speaker] = spIdx++;
-            });
-            if (speakerSeen[line.speaker] > 0) speakerEl.classList.add('speaker-b');
-        }
-
-        // Reset text visibility
-        shadowTextVisible = false;
-        const textWrap = document.getElementById('shadow-text-wrap');
-        const hiddenHint = document.getElementById('shadow-hidden-hint');
-        if (textWrap)    textWrap.classList.remove('visible');
-        if (hiddenHint)  hiddenHint.style.display = '';
-
-        const shadowText = document.getElementById('shadow-text');
-        const shadowVi   = document.getElementById('shadow-vi');
-        if (shadowText) shadowText.textContent = line.text;
-        if (shadowVi)   shadowVi.textContent   = line.vi ? '🇻🇳 ' + line.vi : '';
-
-        // Status
-        setStatus('Nhấn Nghe để bắt đầu', false);
-
-        // Reset card state
-        const card = document.getElementById('shadow-card');
-        if (card) card.classList.remove('lp-shadow-listening');
-
-        // Reset button states
-        setShadowBtnState('idle');
-    }
-
-    function setStatus(msg, isListening) {
-        const el = document.getElementById('shadow-status');
-        if (!el) return;
-        el.textContent = msg;
-        el.className   = 'lp-shadow-status' + (isListening ? ' listening' : '');
-    }
-
-    function setShadowBtnState(state) {
-        const listenBtn   = document.getElementById('btn-shadow-listen');
-        const relistenBtn = document.getElementById('btn-shadow-relisten');
-        const showBtn     = document.getElementById('btn-shadow-show-text');
-        const nextBtn     = document.getElementById('btn-shadow-next');
-
-        if (state === 'idle') {
-            listenBtn.disabled   = false;
-            relistenBtn.disabled = true;
-            showBtn.disabled     = false;
-            nextBtn.disabled     = shadowIdx >= transcriptData.length - 1;
-        } else if (state === 'listening') {
-            listenBtn.disabled   = true;
-            relistenBtn.disabled = true;
-            showBtn.disabled     = false;
-            nextBtn.disabled     = true;
-        } else if (state === 'done') {
-            listenBtn.disabled   = false;
-            relistenBtn.disabled = false;
-            showBtn.disabled     = false;
-            nextBtn.disabled     = shadowIdx >= transcriptData.length - 1;
-        }
-    }
-
-    function shadowListen(line) {
-        if (line.startTime == null) {
-            setStatus('Câu này không có timestamps', false);
-            return;
-        }
-
-        const card = document.getElementById('shadow-card');
-        if (card) card.classList.add('lp-shadow-listening');
-        setStatus('Đang phát…', true);
-        setShadowBtnState('listening');
-
-        seekTo(line.startTime);
-
-        // Calculate duration
-        const endTime  = line.endTime != null ? line.endTime : line.startTime + 5;
-        const duration = ((endTime - line.startTime) / currentSpeed) * 1000 + 500;
-
-        clearTimeout(shadowListenTimer);
-        shadowListenTimer = setTimeout(() => {
-            pausePlayer();
-            if (card) card.classList.remove('lp-shadow-listening');
-            setStatus('🎙️ Bây giờ hãy lặp lại!', false);
-            setShadowBtnState('done');
-        }, duration);
-    }
-
-    // Shadow: Listen button
-    const btnShadowListen = document.getElementById('btn-shadow-listen');
-    if (btnShadowListen) {
-        btnShadowListen.addEventListener('click', () => {
-            if (!transcriptData.length) return;
-            shadowListen(transcriptData[shadowIdx]);
-        });
-    }
-
-    // Shadow: Re-listen button
-    const btnShadowRelisten = document.getElementById('btn-shadow-relisten');
-    if (btnShadowRelisten) {
-        btnShadowRelisten.addEventListener('click', () => {
-            if (!transcriptData.length) return;
-            shadowListen(transcriptData[shadowIdx]);
-        });
-    }
-
-    // Shadow: Show text button
-    const btnShadowShowText = document.getElementById('btn-shadow-show-text');
-    if (btnShadowShowText) {
-        btnShadowShowText.addEventListener('click', () => {
-            shadowTextVisible = !shadowTextVisible;
-            const textWrap   = document.getElementById('shadow-text-wrap');
-            const hiddenHint = document.getElementById('shadow-hidden-hint');
-            if (textWrap)    textWrap.classList.toggle('visible', shadowTextVisible);
-            if (hiddenHint)  hiddenHint.style.display = shadowTextVisible ? 'none' : '';
-            btnShadowShowText.innerHTML = shadowTextVisible
-                ? '<i class="fas fa-eye-slash"></i> Ẩn text'
-                : '<i class="fas fa-eye"></i> Hiện text';
-        });
-    }
-
-    // Shadow: Next button
-    const btnShadowNext = document.getElementById('btn-shadow-next');
-    if (btnShadowNext) {
-        btnShadowNext.addEventListener('click', () => {
-            clearTimeout(shadowListenTimer);
-            if (shadowIdx < transcriptData.length - 1) {
-                shadowIdx++;
-                renderShadowCard();
-            } else {
-                // All done
-                const fill = document.getElementById('shadow-progress-fill');
-                if (fill) fill.style.width = '100%';
-                const pgLabel = document.getElementById('shadow-progress-label');
-                if (pgLabel) pgLabel.textContent = '100%';
-                showToast('success', '🎉 Đã hoàn thành Shadowing!');
-                setShadowBtnState('idle');
-                setStatus('✅ Hoàn thành tất cả', false);
-            }
-        });
-    }
-
-    // ══════════════════════════════════════════════════════════════
-    // 13. QUIZ
+    // 8. QUIZ
     // ══════════════════════════════════════════════════════════════
     const submitBtn   = document.getElementById('btn-submit-quiz');
     const resultPanel = document.getElementById('quiz-result-panel');
