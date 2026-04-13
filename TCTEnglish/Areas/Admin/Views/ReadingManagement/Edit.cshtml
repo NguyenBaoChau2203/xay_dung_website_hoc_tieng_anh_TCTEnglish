@@ -1,0 +1,52 @@
+﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingCreateViewModel
+@{
+    int id = ViewBag.Id;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+        <h2>Chỉnh sửa bài đọc</h2>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+    </div>
+
+    <form asp-action="Edit" asp-route-id="@id" method="post" class="card shadow-sm p-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label class="form-label">Tiêu đề</label>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nội dung bài đọc (HTML)</label>
+                    <textarea asp-for="Content" class="form-control" rows="12"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="form-label">Cấp độ (A1-C1)</label>
+                    <select asp-for="Level" class="form-select">
+                        <option>A1</option>
+                        <option>A2</option>
+                        <option>B1</option>
+                        <option>B2</option>
+                        <option>C1</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Chủ đề</label>
+                    <input asp-for="Topic" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">URL Ảnh</label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                </div>
+                <div class="form-check mb-3">
+                    <input asp-for="IsPublished" class="form-check-input" />
+                    <label class="form-check-label">Cho phép hiển thị</label>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary w-100 mb-2">Lưu thay đổi</button>
+            </div>
+        </div>
+    </form>
+</div>

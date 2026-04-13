@@ -50,7 +50,10 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ListeningVocabItem> ListeningVocabItems { get; set; }
     public virtual DbSet<UserListeningProgress> UserListeningProgresses { get; set; }
 
-
+    public virtual DbSet<ReadingPassage> ReadingPassages { get; set; }
+    public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
+    public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
+    public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -137,8 +140,36 @@ public partial class DbflashcardContext : DbContext
                   .HasForeignKey(e => e.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<UserReadingHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id);
 
+            entity.HasIndex(e => new { e.UserId, e.ReadingPassageId })
+                .IsUnique();
 
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserReadingHistories)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.ReadingPassage)
+                .WithMany(p => p.UserReadingHistories)
+                .HasForeignKey(d => d.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+        // ReadingQuestion
+        modelBuilder.Entity<ReadingQuestion>()
+            .HasOne(q => q.Passage)
+            .WithMany(p => p.Questions)
+            .HasForeignKey(q => q.PassageId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // ReadingOption
+        modelBuilder.Entity<ReadingOption>()
+            .HasOne(o => o.Question)
+            .WithMany(q => q.Options)
+            .HasForeignKey(o => o.QuestionId)
+            .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__Folders__ACD7109F2ECFF2AF");

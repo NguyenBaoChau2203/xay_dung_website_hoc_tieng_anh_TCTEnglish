@@ -1,23 +1,27 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services;
 using TCTEnglish.ViewModels;
-using TCTVocabulary.ViewModels;
+using TCTVocabulary.Models;
 using TCTVocabulary.Services;
+using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
+   
     [AutoValidateAntiforgeryToken]
     [Route("Home")]
     public class StudyController : BaseController
     {
         private readonly IStudyService _studyService;
         private readonly IListeningService _listeningService;
-
-        public StudyController(IStudyService studyService, IListeningService listeningService)
+        private readonly DbflashcardContext _context;
+        public StudyController(IStudyService studyService, IListeningService listeningService, DbflashcardContext context)
         {
             _studyService = studyService;
             _listeningService = listeningService;
+            _context = context;
         }
 
         [Authorize]
@@ -74,7 +78,7 @@ namespace TCTVocabulary.Controllers
 
             return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToFolderWhenEmpty: true);
         }
-
+        
         [HttpGet("Listening")]
         public async Task<IActionResult> Listening(string? level = null, string? topic = null)
         {
@@ -129,9 +133,30 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("Reading")]
-        public IActionResult Reading()
+        public async Task<IActionResult> Reading()
         {
-            return View();
+            if (!TryGetCurrentUserId(out var userId))
+                return RedirectToAction("Login", "Account");
+
+            // Lưu ý: Đảm bảo _context đã được khai báo và inject trong Constructor của StudyController
+            var readings = await _context.ReadingPassages
+                .Where(r => r.IsPublished)
+                .Select(r => new ReadingListViewModel
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    ImageUrl = r.ImageUrl,
+                    Level = r.Level,
+                    // Thêm logic kiểm tra lịch sử học tập
+                    IsCompleted = r.UserReadingHistories
+                        .Any(u => u.UserId == userId && u.IsCompleted),
+                    IsInProgress = r.UserReadingHistories
+                        .Any(u => u.UserId == userId && !u.IsCompleted)
+                })
+                .ToListAsync();
+
+            // Sử dụng tên View cụ thể để tránh nhầm lẫn
+            return View("Reading", readings);
         }
 
         [HttpGet("Writing")]
