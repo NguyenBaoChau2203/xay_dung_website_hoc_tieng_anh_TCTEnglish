@@ -6,18 +6,21 @@
     // CEFR level display info
     var levelMeta = new Dictionary<string, (string Label, string Color, string Icon)>
     {
-        ["A1"] = ("Beginner", "#10b981", "fas fa-seedling"),
-        ["A2"] = ("Elementary", "#06b6d4", "fas fa-leaf"),
-        ["B1"] = ("Intermediate", "#f59e0b", "fas fa-fire"),
+        ["A1"] = ("Beginner",           "#10b981", "fas fa-seedling"),
+        ["A2"] = ("Elementary",         "#06b6d4", "fas fa-leaf"),
+        ["B1"] = ("Intermediate",       "#f59e0b", "fas fa-fire"),
         ["B2"] = ("Upper-Intermediate", "#ef4444", "fas fa-bolt"),
-        ["C1"] = ("Advanced", "#8b5cf6", "fas fa-rocket"),
-        ["C2"] = ("Proficient", "#3b82f6", "fas fa-gem")
+        ["C1"] = ("Advanced",           "#8b5cf6", "fas fa-rocket"),
+        ["C2"] = ("Proficient",         "#3b82f6", "fas fa-gem")
     };
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
 }
+
+@* Anti-forgery token for AJAX import requests *@
+@Html.AntiForgeryToken()
 
 <div class="vi-page">
 
@@ -29,13 +32,13 @@
         </div>
 
         <div class="vi-search-box" role="search">
-                <i class="fas fa-search vi-search-icon"></i>
-                <input id="vi-search"
-                       type="text"
-                       class="vi-search-input"
-                       placeholder="Search videos…"
-                       aria-label="Search videos"
-                       autocomplete="off" />
+            <i class="fas fa-search vi-search-icon"></i>
+            <input id="vi-search"
+                   type="text"
+                   class="vi-search-input"
+                   placeholder="Search videos…"
+                   aria-label="Search videos"
+                   autocomplete="off" />
         </div>
     </header>
 
@@ -45,6 +48,231 @@
         <span class="vi-meta-chip"><i class="fas fa-layer-group"></i> @Model.VideosByLevel.Count levels</span>
         <span class="vi-meta-chip"><i class="fas fa-tags"></i> @Model.Topics.Count topics</span>
         <span class="vi-meta-chip vi-chip-green"><i class="fas fa-infinity"></i> Free forever</span>
+    </div>
+
+    @* ─────────────────────────────────────────────────────────── *@
+    @* ── IMPORT PANEL (visible to all authenticated users) ────── *@
+    @* ─────────────────────────────────────────────────────────── *@
+    <section class="mip-panel" id="my-import-panel" aria-label="Thêm video YouTube của tôi">
+        <div class="mip-inner">
+
+            @* Left — heading copy *@
+            <div class="mip-left">
+                <span class="mip-yt-chip">
+                    <i class="fab fa-youtube" style="color:#ff4444;"></i> YouTube
+                </span>
+                <h2 class="mip-heading">
+                    Luyện nói với<br>video YouTube của bạn
+                </h2>
+                <p class="mip-sub">
+                    Dán link YouTube — hệ thống tự lấy transcript<br>
+                    và tạo bài luyện phát âm riêng cho bạn.
+                </p>
+            </div>
+
+            @* Right — form *@
+            <div class="mip-right">
+                <div class="mip-form-area">
+                    <div class="mip-input-wrap">
+                        <i class="fab fa-youtube mip-input-icon" style="color:#ff4444;"></i>
+                        <input type="url"
+                               id="mip-url-input"
+                               class="mip-input"
+                               placeholder="Dán link YouTube vào đây..."
+                               autocomplete="off"
+                               autocorrect="off"
+                               spellcheck="false"
+                               aria-label="YouTube video URL" />
+                    </div>
+                    <button type="button" id="mip-submit-btn" class="mip-cta-btn">
+                        <i class="fas fa-plus" id="mip-btn-icon"></i>
+                        <span id="mip-btn-label">Thêm video</span>
+                    </button>
+                </div>
+                <div class="mip-feedback" id="mip-feedback" aria-live="polite" role="alert"></div>
+                <p class="mip-hint">
+                    <i class="fas fa-info-circle"></i>
+                    Chỉ hỗ trợ video tiếng Anh có phụ đề. Yêu cầu tài khoản Premium.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    @* ─────────────────────────────────────────────────────────── *@
+    @* ── BÀI NÓI CỦA TÔI ─────────────────────────────────────── *@
+    @* ─────────────────────────────────────────────────────────── *@
+    <section class="my-videos-section" id="my-videos-section" aria-label="Bài nói của tôi">
+
+        <div class="my-sec-head">
+            <div class="my-sec-title-wrap">
+                <h2 class="my-sec-title">
+                    <i class="fas fa-user-circle"></i>
+                    Bài nói của tôi
+                </h2>
+                @if (Model.IsMyVideosLocked)
+                {
+                    <span class="my-locked-badge">
+                        <i class="fas fa-lock"></i> Tính năng đã khóa
+                    </span>
+                }
+            </div>
+            <span class="my-sec-count" id="my-sec-count">
+                @Model.MyVideos.Count bài
+            </span>
+        </div>
+
+        @* Empty state — shown by server when no private videos exist *@
+        @if (!Model.MyVideos.Any())
+        {
+            <div class="my-empty-state" id="my-empty-state">
+                <div class="my-empty-icon"><i class="fas fa-film"></i></div>
+                <p class="my-empty-title">Chưa có video nào.</p>
+                <p class="my-empty-sub">Dán link YouTube ở trên để thêm bài luyện nói của bạn.</p>
+            </div>
+        }
+
+        @* Private video grid *@
+        <div class="my-videos-grid" id="my-videos-grid">
+
+            @foreach (var v in Model.MyVideos)
+            {
+                var thumb = string.IsNullOrEmpty(v.ThumbnailUrl)
+                    ? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg"
+                    : v.ThumbnailUrl;
+
+                // Determine status badge label + class
+                string statusLabel;
+                string statusCls;
+                if (v.IsLocked)           { statusLabel = "Đã khóa";       statusCls = "my-badge-locked"; }
+                else if (v.ImportStatus == "processing") { statusLabel = "Đang xử lý"; statusCls = "my-badge-processing"; }
+                else if (v.ImportStatus == "failed")     { statusLabel = "Thất bại";   statusCls = "my-badge-failed"; }
+                else                      { statusLabel = "Sẵn sàng";      statusCls = "my-badge-ready"; }
+
+                <article class="my-video-card @(v.IsLocked ? "my-video-card--locked" : "")"
+                         data-id="@v.Id"
+                         data-title="@v.Title">
+
+                    @* ── Thumbnail ─────────────────────────────── *@
+                    <div class="my-vc-thumb">
+                        <img src="@thumb"
+                             alt="@v.Title"
+                             class="my-vc-img"
+                             loading="lazy" />
+
+                        @* Lock overlay for downgraded owners *@
+                        @if (v.IsLocked)
+                        {
+                            <div class="my-vc-lock-overlay">
+                                <div class="my-vc-lock-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                        }
+                        else if (v.ImportStatus == "processing")
+                        {
+                            <div class="my-vc-processing-overlay">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                        }
+
+                        @* Private badge — always shown *@
+                        <span class="my-vc-private-badge">
+                            <i class="fas fa-user-shield"></i> Riêng tư
+                        </span>
+                    </div>
+
+                    @* ── Card body ─────────────────────────────── *@
+                    <div class="my-vc-body">
+                        <h3 class="my-vc-title">@v.Title</h3>
+
+                        <div class="my-vc-meta">
+                            <span class="my-vc-status @statusCls">@statusLabel</span>
+                            @if (!string.IsNullOrEmpty(v.Duration))
+                            {
+                                <span class="my-vc-duration">
+                                    <i class="far fa-clock"></i> @v.Duration
+                                </span>
+                            }
+                            @if (v.SentenceCount > 0)
+                            {
+                                <span class="my-vc-sentences">
+                                    <i class="fas fa-align-left"></i> @v.SentenceCount câu
+                                </span>
+                            }
+                            <span class="my-vc-date">
+                                <i class="far fa-calendar-alt"></i> @v.CreatedAt.ToString("dd/MM/yyyy")
+                            </span>
+                        </div>
+
+                        @* ── Actions ───────────────────────────── *@
+                        <div class="my-vc-actions">
+                            @if (v.IsLocked)
+                            {
+                                @* Standard user downgraded — show upgrade CTA *@
+                                <a href="/Account/Premium" class="my-btn my-btn-upgrade">
+                                    <i class="fas fa-crown"></i> Nâng cấp để mở khóa
+                                </a>
+                            }
+                            else if (v.ImportStatus == "ready")
+                            {
+                                <a href="@Url.Action("Practice", "Speaking", new { id = v.Id })"
+                                   class="my-btn my-btn-practice">
+                                    <i class="fas fa-play"></i> Luyện ngay
+                                </a>
+                                <button type="button"
+                                        class="my-btn my-btn-delete"
+                                        data-id="@v.Id"
+                                        data-title="@v.Title"
+                                        aria-label="Xóa @v.Title">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            }
+                            else if (v.ImportStatus == "processing")
+                            {
+                                <span class="my-btn my-btn-state">
+                                    <i class="fas fa-spinner fa-spin"></i> Đang xử lý...
+                                </span>
+                            }
+                            else
+                            {
+                                @* failed — allow deletion *@
+                                <span class="my-btn my-btn-state my-btn-state--failed">
+                                    <i class="fas fa-exclamation-circle"></i> Thất bại
+                                </span>
+                                <button type="button"
+                                        class="my-btn my-btn-delete"
+                                        data-id="@v.Id"
+                                        data-title="@v.Title"
+                                        aria-label="Xóa @v.Title">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            }
+                        </div>
+
+                    </div>
+                </article>
+            }
+
+        </div>
+
+        @* Skeleton loading card — hidden; JS unhides it during import *@
+        <div class="my-video-card my-video-card--skeleton d-none" id="mip-loading-card" aria-hidden="true">
+            <div class="my-vc-thumb skeleton-thumb"></div>
+            <div class="my-vc-body my-vc-body--skeleton">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line skeleton-meta"></div>
+                <div class="skeleton-line skeleton-action"></div>
+            </div>
+        </div>
+
+    </section>
+
+    @* ── SEPARATOR ────────────────────────────────────────────── *@
+    <div class="vi-catalog-separator">
+        <div class="vi-catalog-label">
+            <i class="fas fa-globe"></i> Thư viện công cộng
+        </div>
     </div>
 
     @* ── TOPIC FILTER PILLS ──────────────────────────────────── *@
@@ -61,9 +289,7 @@
                 </button>
                 @foreach (var topic in Model.Topics)
                 {
-                    <button class="topic-filter-btn" data-topic="@topic">
-                        @topic
-                    </button>
+                    <button class="topic-filter-btn" data-topic="@topic">@topic</button>
                 }
             </div>
         </section>
@@ -104,9 +330,11 @@
     {
         foreach (var kvp in Model.VideosByLevel)
         {
-            var level = kvp.Key;
+            var level  = kvp.Key;
             var videos = kvp.Value;
-            var meta = levelMeta.ContainsKey(level) ? levelMeta[level] : (Label: "Level " + level, Color: "#6b7280", Icon: "fas fa-book");
+            var meta   = levelMeta.ContainsKey(level)
+                ? levelMeta[level]
+                : (Label: "Level " + level, Color: "#6b7280", Icon: "fas fa-book");
 
             <section class="vi-level-section" data-level="@level">
 
@@ -213,6 +441,34 @@
         <p>Try a different search term or clear your filters.</p>
     </div>
 
+</div>
+
+@* ── DELETE CONFIRMATION MODAL ───────────────────────────────── *@
+<div class="modal fade" id="deleteVideoModal" tabindex="-1"
+     aria-labelledby="deleteVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="deleteVideoModalLabel">
+                    <i class="fas fa-trash-alt text-danger me-2"></i> Xác nhận xóa
+                </h5>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-2">
+                Bạn có chắc muốn xóa video
+                <strong id="delete-modal-title"></strong>?
+                Hành động này không thể hoàn tác và sẽ xóa toàn bộ tiến trình luyện tập của video này.
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="delete-modal-confirm">
+                    <i class="fas fa-trash-alt me-1"></i> Xóa
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

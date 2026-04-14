@@ -53,6 +53,12 @@ namespace TCTVocabulary.Controllers
             return View("Auth");
         }
 
+        [HttpGet]
+        public IActionResult Premium()
+        {
+            return Redirect("/Home/Landing#pricing");
+        }
+
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -566,6 +572,7 @@ namespace TCTVocabulary.Controllers
                     }
 
                     await DeleteUserRelatedDataAsync(userId);
+                    await _context.SaveChangesAsync();
 
                     _context.Users.Remove(user);
                     await _context.SaveChangesAsync();
@@ -701,6 +708,102 @@ namespace TCTVocabulary.Controllers
             }
 
             await DeleteOwnedLearningContentAsync(userId);
+            await DeleteOwnedPrivateSpeakingContentAsync(userId);
+            await DeleteOwnedPrivateWritingContentAsync(userId);
+        }
+
+        private async Task DeleteOwnedPrivateSpeakingContentAsync(int userId)
+        {
+            var ownedPrivateVideoIds = await _context.SpeakingVideos
+                .AsNoTracking()
+                .Where(video => video.OwnerUserId == userId)
+                .Select(video => video.Id)
+                .ToListAsync();
+
+            if (ownedPrivateVideoIds.Count == 0)
+            {
+                return;
+            }
+
+            var ownedPrivateSentenceIds = await _context.SpeakingSentences
+                .AsNoTracking()
+                .Where(sentence => ownedPrivateVideoIds.Contains(sentence.VideoId))
+                .Select(sentence => sentence.Id)
+                .ToListAsync();
+
+            if (ownedPrivateSentenceIds.Count > 0)
+            {
+                var dependentProgresses = await _context.UserSpeakingProgresses
+                    .Where(progress => ownedPrivateSentenceIds.Contains(progress.SentenceId))
+                    .ToListAsync();
+
+                if (dependentProgresses.Count > 0)
+                {
+                    _context.UserSpeakingProgresses.RemoveRange(dependentProgresses);
+                }
+
+                var ownedPrivateSentences = await _context.SpeakingSentences
+                    .Where(sentence => ownedPrivateSentenceIds.Contains(sentence.Id))
+                    .ToListAsync();
+
+                if (ownedPrivateSentences.Count > 0)
+                {
+                    _context.SpeakingSentences.RemoveRange(ownedPrivateSentences);
+                }
+            }
+
+            var ownedPrivateVideos = await _context.SpeakingVideos
+                .Where(video => ownedPrivateVideoIds.Contains(video.Id))
+                .ToListAsync();
+
+            if (ownedPrivateVideos.Count > 0)
+            {
+                _context.SpeakingVideos.RemoveRange(ownedPrivateVideos);
+            }
+        }
+
+        private async Task DeleteOwnedPrivateWritingContentAsync(int userId)
+        {
+            var ownedExerciseIds = await _context.WritingExercises
+                .AsNoTracking()
+                .Where(exercise => exercise.UserId == userId)
+                .Select(exercise => exercise.Id)
+                .ToListAsync();
+
+            if (ownedExerciseIds.Count > 0)
+            {
+                var attemptsForOwnedExercises = await _context.UserWritingAttempts
+                    .Where(attempt => ownedExerciseIds.Contains(attempt.WritingExerciseId))
+                    .ToListAsync();
+                if (attemptsForOwnedExercises.Count > 0)
+                {
+                    _context.UserWritingAttempts.RemoveRange(attemptsForOwnedExercises);
+                }
+
+                var sentencesForOwnedExercises = await _context.WritingExerciseSentences
+                    .Where(sentence => ownedExerciseIds.Contains(sentence.WritingExerciseId))
+                    .ToListAsync();
+                if (sentencesForOwnedExercises.Count > 0)
+                {
+                    _context.WritingExerciseSentences.RemoveRange(sentencesForOwnedExercises);
+                }
+
+                var ownedExercises = await _context.WritingExercises
+                    .Where(exercise => ownedExerciseIds.Contains(exercise.Id))
+                    .ToListAsync();
+                if (ownedExercises.Count > 0)
+                {
+                    _context.WritingExercises.RemoveRange(ownedExercises);
+                }
+            }
+
+            var writingGenerationLogs = await _context.WritingGenerationLogs
+                .Where(log => log.UserId == userId)
+                .ToListAsync();
+            if (writingGenerationLogs.Count > 0)
+            {
+                _context.WritingGenerationLogs.RemoveRange(writingGenerationLogs);
+            }
         }
 
         private async Task DeleteOwnedLearningContentAsync(int userId)

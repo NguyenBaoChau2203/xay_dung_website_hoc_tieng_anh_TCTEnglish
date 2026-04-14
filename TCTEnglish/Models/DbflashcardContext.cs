@@ -378,14 +378,33 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.YoutubeId).IsRequired().HasMaxLength(50);
             entity.Property(e => e.ThumbnailUrl).HasMaxLength(500);
             entity.Property(e => e.Level).HasMaxLength(50);
-            entity.Property(e => e.Topic).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Topic).HasMaxLength(100);
             entity.Property(e => e.Duration).HasMaxLength(20);
+            entity.Property(e => e.SourceUrl).HasMaxLength(500);
+            entity.Property(e => e.SourceType).IsRequired().HasMaxLength(50).HasDefaultValue("admin");
+            entity.Property(e => e.TranscriptSource).HasMaxLength(50);
+            entity.Property(e => e.ImportStatus).IsRequired().HasMaxLength(50).HasDefaultValue("ready");
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime2").HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.OwnerUserId, e.CreatedAt })
+                .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_CreatedAt");
+
+            entity.HasIndex(e => new { e.OwnerUserId, e.YoutubeId })
+                .IsUnique()
+                .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_YoutubeId")
+                .HasFilter("[OwnerUserId] IS NOT NULL");
 
             entity.HasOne(d => d.SpeakingPlaylist)
                 .WithMany(p => p.SpeakingVideos)
                 .HasForeignKey(d => d.PlaylistId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_SpeakingVideos_SpeakingPlaylists");
+
+            entity.HasOne(d => d.OwnerUser)
+                .WithMany(p => p.OwnedSpeakingVideos)
+                .HasForeignKey(d => d.OwnerUserId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_SpeakingVideos_Users_OwnerUserId");
         });
         modelBuilder.Entity<ClassFolder>(entity =>
         {
@@ -436,7 +455,10 @@ public partial class DbflashcardContext : DbContext
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Text).IsRequired();
-            entity.Property(e => e.VietnameseMeaning).IsRequired();
+            entity.Property(e => e.VietnameseMeaning).IsRequired().HasDefaultValue(string.Empty);
+
+            entity.HasIndex(e => new { e.VideoId, e.StartTime })
+                .HasDatabaseName("IX_SpeakingSentences_VideoId_StartTime");
 
             entity.HasOne(d => d.SpeakingVideo)
                 .WithMany(p => p.SpeakingSentences)

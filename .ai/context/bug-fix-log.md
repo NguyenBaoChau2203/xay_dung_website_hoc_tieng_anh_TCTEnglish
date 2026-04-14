@@ -42,6 +42,107 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Premium speaking Phase 6 regressions on owner-scoped delete and account cleanup - 2026-04-13
+
+**Symptom**: In Premium Speaking lifecycle integration tests, outsider delete of another owner's private video returned `BadRequest` instead of `NotFound`, and account deletion redirected to `/Account/Settings` (failure path) instead of `/Account/Login` when owned private speaking content had dependent speaking progress rows.
+
+**Root Cause**: `SpeakingService.DeleteOwnedVideoAsync` evaluated entitlement before ownership lookup, so non-owner calls from downgraded users could return upgrade errors instead of owner-safe `NotFound`. In account cleanup, `DeleteOwnedPrivateSpeakingContentAsync` relied on deleting parent videos only; dependent sentence/progress rows were not explicitly removed in cleanup order, causing delete-account transaction failure in integration flow.
+
+**Solution**: Reordered delete logic in `SpeakingService` to resolve ownership (`videoId + owner`) first, then apply entitlement checks only for owned rows. Updated `AccountController.DeleteOwnedPrivateSpeakingContentAsync` to explicitly collect owned private video/sentence ids and remove dependent `UserSpeakingProgress` and `SpeakingSentence` rows before removing `SpeakingVideo` rows.
+
+**Files Changed**:
+- `TCTEnglish/Services/SpeakingService.cs` - changed private delete flow ordering to preserve anti-IDOR `NotFound` semantics.
+- `TCTEnglish/Controllers/AccountController.cs` - hardened private speaking cascade cleanup during account deletion.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.PremiumSpeakingLifecycleIntegrationTests` passed (5/5).
+
+**Commit**: Not created.
+
+**Notes**: Fix keeps downgraded-owner delete blocked (`premium_required`) while preventing ownership leakage for non-owner/private-id probes.
+
+### Premium writing generation inherited oversized shared AI budgets instead of enforcing dedicated limits - 2026-04-12
+
+**Symptom**: The Premium Writing create-from-AI flow could silently use higher timeout/output-token ceilings when shared `AiOptions` were configured above the writing defaults, which weakened the intended dedicated budget controls for this endpoint.
+
+**Root Cause**: `WritingService.Generation` built provider options with `Math.Max(...)` against shared `AiOptions` values, so shared chat-oriented settings could override writing-specific hard limits.
+
+**Solution**: Switched writing generation provider request options to dedicated constants for `MaxOutputTokens` and `RequestTimeoutSeconds`, independent from shared chat ceilings. Added regression coverage that forces high shared `AiOptions` values and verifies create-from-AI still sends the dedicated writing limits.
+
+**Files Changed**:
+- `TCTEnglish/Services/WritingService.Generation.cs` - enforced dedicated request option values for writing generation provider calls.
+- `TCTEnglish.Tests/TestHelpers/StubAiProviderClient.cs` - added an option-aware handler overload so tests can inspect provider request options.
+- `TCTEnglish.Tests/PremiumWritingGenerationIntegrationTests.cs` - added integration regression test `CreateFromAi_PremiumUser_UsesDedicatedWritingGenerationRequestOptions`.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.PremiumWritingGenerationIntegrationTests` and `TypeName=TCTEnglish.Tests.PremiumWritingLearnerFlowIntegrationTests` and `TypeName=TCTEnglish.Tests.WritingSchemaTests` passed.
+
+**Commit**: Not created.
+
+**Notes**: This aligns with the Premium Writing feature requirement to avoid reusing chat defaults blindly for generation timeout/token/output handling.
+
+### Writing practice accepted answers from the wrong sentence or pasted multi-sentence text - 2026-04-07
+
+**Symptom**: On the Writing practice page, a learner could submit the next sentence, a previous sentence, or even paste multiple sentences / the whole passage into the current answer box and still drive the normal grading flow. In some cases this could mark the current line with out-of-scope content and break the intended sentence-by-sentence practice behavior.
+
+**Root Cause**: `WritingService.EvaluateWritingSentenceAsync(...)` validated only basic emptiness and then sent the submission into rule-based / AI evaluation without checking whether the answer stayed within the currently selected sentence. There was no server-side scope guard for cross-sentence or pasted-passage submissions.
+
+**Solution**: Added a server-side submission-scope validation step in `WritingService` before AI evaluation. The new guard rejects answers that look like a different sentence from the same exercise or contain multiple sentence segments / pasted-passage content, returns a hard-failure learner-facing evaluation, and prevents the answer from being accepted for progress. Added integration regression tests for both wrong-sentence and pasted-multi-sentence submissions to ensure AI is not called and exercise progress stays incomplete.
+
+**Files Changed**:
+- `TCTEnglish/Services/WritingService.cs` - added submission-scope validation helpers and early hard-failure handling before AI/rule-based acceptance.
+- `TCTEnglish.Tests/WritingPracticeValidationIntegrationTests.cs` - added regression tests for cross-sentence and pasted multi-sentence submissions.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `dotnet test D:\repo\TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~WritingPracticeValidationIntegrationTests|FullyQualifiedName~WritingAiEvaluationIntegrationTests|FullyQualifiedName~WritingProgressIntegrationTests|FullyQualifiedName~WritingPracticePersistenceIntegrationTests|FullyQualifiedName~Sprint1SmokeTests"` passed.
+
+**Commit**: Not created.
+
+**Notes**: This fix is intentionally server-enforced so the bug stays closed even if a user bypasses client-side UI behavior. `known-issues.md` was not updated because this specific Writing practice scope bug was not listed there.
+
+### Admin Writing create/edit transaction error and data loss fix - 2026-04-07
+
+**Symptom**: On the admin Writing screen, creating or editing an exercise failed with a generic error banner. Additionally, editing an exercise carried a data retention risk where historical `UserWritingAttempts` would be deleted.
+
+**Root Cause**: The controller opened a manual EF Core transaction while the app is configured with the SQL Server retry execution strategy. In the edit flow, sentences were replaced wholesale via `RemoveRange`, which would cascade delete `UserWritingAttempts`.
+
+**Solution**: Updated the create/edit flows to use `CreateExecutionStrategy().ExecuteAsync(...)` around the transaction block. Implemented in-place updates for `WritingExerciseSentences` during edit to preserve existing primary keys and protect historical data. Added targeted regression tests to enforce execution strategy and sentence retention.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Controllers/WritingExerciseManagementController.cs` - Applied `CreateExecutionStrategy` and in-place `WritingExerciseSentence` synchronization.
+- `TCTEnglish.Tests/WritingAdminContentIntegrationTests.cs` - Added `AdminWriting_EditFullText_ResplitsSentencesAndPreservesExistingSentenceIds` and regression coverage.
+
+**Verification**: `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-build --filter "WritingAdmin|Writing|Sprint1SmokeTests"` passed.
+
+**Commit**: Not created yet.
+
+**Notes**: Integration tests use SQLite which doesn't reflect the SQL Server retry strategy. The fix has been fully verified manually on a live SQL Server-backed environment by the team, proving that the Execution Strategy mismatch is resolved. The bug is now officially closed.
+### Writing progress live migration failed on SQL Server due to multiple cascade paths - 2026-04-06
+
+**Symptom**: Applying migration `20260406144534_AddUserWritingAttempts` to the live SQL Server failed with `Introducing FOREIGN KEY constraint 'FK_UserWritingAttempts_WritingExercises' on table 'UserWritingAttempts' may cause cycles or multiple cascade paths`, so durable Writing progress could not start accumulating in the running environment.
+
+**Root Cause**: The new `UserWritingAttempts` table cascaded from both `WritingExercises` and `WritingExerciseSentences`, while `WritingExerciseSentences` already cascades from `WritingExercises`. SQL Server rejected the schema because that created two delete paths from `WritingExercises` to `UserWritingAttempts`.
+
+**Solution**: Changed the `UserWritingAttempt -> WritingExercise` relationship to `DeleteBehavior.NoAction` / `ReferentialAction.NoAction`, kept cascade cleanup through `WritingExerciseSentence`, updated the generated migration metadata/snapshot, added a metadata regression test for the FK delete behaviors, and re-ran the migration successfully against the live SQL Server.
+
+**Files Changed**:
+- `TCTEnglish/Models/DbflashcardContext.cs` - changed `FK_UserWritingAttempts_WritingExercises` to `DeleteBehavior.NoAction`.
+- `TCTEnglish/Migrations/20260406144534_AddUserWritingAttempts.cs` - changed the SQL Server FK delete action to `ReferentialAction.NoAction`.
+- `TCTEnglish/Migrations/20260406144534_AddUserWritingAttempts.Designer.cs` - synced the migration designer metadata to `DeleteBehavior.NoAction`.
+- `TCTEnglish/Migrations/DbflashcardContextModelSnapshot.cs` - synced the model snapshot to `DeleteBehavior.NoAction`.
+- `TCTEnglish.Tests/WritingSchemaTests.cs` - added a regression test for the `UserWritingAttempt` FK delete-behavior shape.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**:
+- `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore`
+- `dotnet build TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore`
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-build --filter "Writing"`
+- `dotnet ef database update 20260406144534_AddUserWritingAttempts --project TCTEnglish/TCTEnglish.csproj --startup-project TCTEnglish/TCTEnglish.csproj --no-build` against the live SQL Server (passed; `UserWritingAttempts` created and migration recorded in `__EFMigrationsHistory`)
+
+**Commit**: Not created.
+
+**Notes**: This follows the same operational area as the 2026-03-27 Writing table rollout issue, but the root cause is different: SQL Server cascade-path validation rather than missing schema application. A later focused `WritingSchemaTests` run was noisy in this environment because of a transient testhost dependency resolution issue (`AngleSharp.dll`), but the rebuilt Writing regression slice passed after the fix.
+
 ### AI launcher quota sync could drift with multi-tab sends due to local UI increments - 2026-04-03
 
 **Symptom**: Standard-plan quota countdown in launcher could be temporarily inaccurate when embedded chat sends happened across multiple tabs/windows because host UI incremented locally per success event.
