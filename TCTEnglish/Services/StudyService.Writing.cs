@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
@@ -13,7 +12,6 @@ namespace TCTVocabulary.Services
 {
     public partial class StudyService
     {
-        private static readonly SemaphoreSlim WritingSchemaInitializationLock = new(1, 1);
         private static readonly JsonSerializerOptions WritingJsonOptions = new()
         {
             PropertyNameCaseInsensitive = true
@@ -26,8 +24,6 @@ namespace TCTVocabulary.Services
             "ours", "she", "that", "the", "their", "theirs", "them", "there", "they",
             "this", "to", "us", "was", "we", "were", "will", "with", "you", "your", "yours"
         };
-        private static volatile bool _writingSchemaInitialized;
-
         public Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel)
         {
             return Task.FromResult(BuildWritingIndexViewModel(selectedLevel));
@@ -36,9 +32,11 @@ namespace TCTVocabulary.Services
         public async Task<WritingExerciseDataViewModel> GetWritingExerciseDataAsync(
             string? selectedLevel,
             string? contentType,
-            string? topic)
+            string? topic,
+            int userId)
         {
             var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType);
+            await ApplyWritingExerciseProgressAsync(catalog.Exercises, userId);
             return BuildWritingExerciseDataViewModel(catalog, topic);
         }
 
@@ -47,16 +45,15 @@ namespace TCTVocabulary.Services
             string? contentType,
             string? topic,
             string? status,
-            int page)
+            int page,
+            int userId)
         {
-            var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic);
+            var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic, userId);
             return BuildWritingExerciseListViewModel(exerciseData, status, page);
         }
 
-        public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId)
+        public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             var exercise = await _context.WritingExercises
                 .AsNoTracking()
                 .Where(item => item.IsPublished && item.Id == exerciseId)
@@ -87,7 +84,8 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            return BuildWritingPracticeDataViewModel(exercise, sentences);
+            var sentenceProgressLookup = await LoadWritingSentenceProgressLookupAsync(exerciseId, userId);
+            return BuildWritingPracticeDataViewModel(exercise, sentences, sentenceProgressLookup);
         }
 
         public async Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId)
@@ -96,8 +94,6 @@ namespace TCTVocabulary.Services
             {
                 return null;
             }
-
-            await EnsureWritingSchemaReadyAsync();
 
             var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
@@ -121,10 +117,9 @@ namespace TCTVocabulary.Services
         public async Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(
             int exerciseId,
             int sentenceId,
-            string userAnswer)
+            string userAnswer,
+            int userId)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             var sentences = await LoadPublishedWritingSentenceRowsAsync(exerciseId);
             var sentenceIndex = sentences.FindIndex(sentence => sentence.Id == sentenceId);
             if (sentenceIndex < 0)
@@ -149,10 +144,27 @@ namespace TCTVocabulary.Services
             var aiEvaluation = await TryEvaluateWritingSentenceWithAiAsync(sentence, normalizedAnswer);
             if (aiEvaluation == null)
             {
+                await RecordWritingCompletionRewardIfNeededAsync(
+                    userId,
+                    exerciseId,
+                    sentence,
+                    sentences.Count,
+                    normalizedAnswer,
+                    ruleEvaluation.Passed);
+
                 return BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
             }
 
             var finalPassed = aiEvaluation.Passed;
+
+            await RecordWritingCompletionRewardIfNeededAsync(
+                userId,
+                exerciseId,
+                sentence,
+                sentences.Count,
+                normalizedAnswer,
+                finalPassed);
+
             var summaryTitle = finalPassed ? "Câu đạt yêu cầu" : "Hãy sửa lại câu này";
             var summaryText = finalPassed
                 ? "Hệ thống đã chấp nhận câu dịch này. Bạn có thể chuyển sang câu tiếp theo."
@@ -189,9 +201,11 @@ namespace TCTVocabulary.Services
             string? topic,
             string? status,
             int page,
-            int? exerciseId)
+            int? exerciseId,
+            int userId)
         {
             var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType);
+            await ApplyWritingExerciseProgressAsync(catalog.Exercises, userId);
             var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic);
             var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, status, page);
             var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, catalog.Exercises);
@@ -201,7 +215,7 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
-            var practiceData = await GetWritingPracticeDataAsync(selectedExerciseId.Value);
+            var practiceData = await GetWritingPracticeDataAsync(selectedExerciseId.Value, userId);
             if (practiceData == null)
             {
                 return null;
@@ -284,8 +298,6 @@ namespace TCTVocabulary.Services
 
         private async Task<List<WritingExerciseCardViewModel>> LoadWritingExerciseCardsAsync(string levelKey, string contentTypeKey)
         {
-            await EnsureWritingSchemaReadyAsync();
-
             return await _context.WritingExercises
                 .AsNoTracking()
                 .Where(exercise => exercise.IsPublished
@@ -306,28 +318,222 @@ namespace TCTVocabulary.Services
                 .ToListAsync();
         }
 
-        private async Task EnsureWritingSchemaReadyAsync()
+        private async Task ApplyWritingExerciseProgressAsync(
+            IReadOnlyCollection<WritingExerciseCardViewModel> exercises,
+            int userId)
         {
-            if (_writingSchemaInitialized || !_context.Database.IsSqlServer())
+            if (exercises.Count == 0)
             {
                 return;
             }
 
-            await WritingSchemaInitializationLock.WaitAsync();
-            try
+            var exerciseIds = exercises
+                .Select(exercise => exercise.Id)
+                .ToList();
+
+            var progressRows = await _context.UserWritingExerciseProgresses
+                .AsNoTracking()
+                .Where(progress => progress.UserId == userId && exerciseIds.Contains(progress.WritingExerciseId))
+                .ToListAsync();
+
+            var progressLookup = progressRows.ToDictionary(progress => progress.WritingExerciseId);
+
+            foreach (var exercise in exercises)
             {
-                if (_writingSchemaInitialized)
+                if (!progressLookup.TryGetValue(exercise.Id, out var progress) || progress.AttemptCount <= 0)
                 {
-                    return;
+                    exercise.StatusKey = "new";
+                    exercise.StatusLabel = "Mới";
+                    exercise.AttemptCount = 0;
+                    exercise.LastAttemptText = "Chưa bắt đầu";
+                    continue;
                 }
 
-                await _context.Database.MigrateAsync();
-                _writingSchemaInitialized = true;
+                exercise.AttemptCount = progress.AttemptCount;
+                exercise.LastAttemptText = FormatWritingLastAttemptText(progress.LastAttemptAt);
+
+                if (progress.IsCompleted)
+                {
+                    exercise.StatusKey = "completed";
+                    exercise.StatusLabel = "Hoàn thành";
+                }
+                else
+                {
+                    exercise.StatusKey = "in-progress";
+                    exercise.StatusLabel = "Đang làm";
+                }
             }
-            finally
+        }
+
+        private async Task<Dictionary<int, UserWritingSentenceProgress>> LoadWritingSentenceProgressLookupAsync(
+            int exerciseId,
+            int userId)
+        {
+            return await _context.UserWritingSentenceProgresses
+                .AsNoTracking()
+                .Where(progress => progress.UserId == userId && progress.WritingExerciseId == exerciseId)
+                .ToDictionaryAsync(progress => progress.SentenceId);
+        }
+
+        private static string FormatWritingLastAttemptText(DateTime? lastAttemptAt)
+        {
+            if (!lastAttemptAt.HasValue)
             {
-                WritingSchemaInitializationLock.Release();
+                return "Chưa bắt đầu";
             }
+
+            return lastAttemptAt.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+        }
+
+        private async Task RecordWritingCompletionRewardIfNeededAsync(
+            int userId,
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            int totalSentenceCount,
+            string normalizedAnswer,
+            bool passed)
+        {
+            var writingReward = await PersistWritingProgressAsync(
+                userId,
+                exerciseId,
+                sentence,
+                totalSentenceCount,
+                normalizedAnswer,
+                passed);
+
+            if (!writingReward.FirstExerciseCompletion)
+            {
+                return;
+            }
+
+            var rewardUpdate = _goalsService.BuildWritingCompletionActivityUpdate();
+            var rewardResult = await _goalsService.RecordLearningActivityAsync(userId, rewardUpdate);
+
+            if (rewardResult.Status != OperationStatus.Success)
+            {
+                _logger.LogWarning(
+                    "Writing completion reward failed for user {userId}, exercise {exerciseId}, status {status}",
+                    userId,
+                    exerciseId,
+                    rewardResult.Status);
+            }
+        }
+
+        private async Task<WritingProgressPersistResult> PersistWritingProgressAsync(
+            int userId,
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            int totalSentenceCount,
+            string normalizedAnswer,
+            bool passed)
+        {
+            var utcNow = DateTime.UtcNow;
+
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
+            var sentenceProgress = await _context.UserWritingSentenceProgresses
+                .FirstOrDefaultAsync(progress => progress.UserId == userId && progress.SentenceId == sentence.Id);
+
+            if (sentenceProgress == null)
+            {
+                sentenceProgress = new UserWritingSentenceProgress
+                {
+                    UserId = userId,
+                    WritingExerciseId = exerciseId,
+                    SentenceId = sentence.Id,
+                    AttemptCount = 0,
+                    IsPassed = false
+                };
+
+                _context.UserWritingSentenceProgresses.Add(sentenceProgress);
+            }
+
+            sentenceProgress.AttemptCount += 1;
+            sentenceProgress.LastAttemptAt = utcNow;
+
+            if (passed && !sentenceProgress.IsPassed)
+            {
+                sentenceProgress.IsPassed = true;
+                sentenceProgress.PassedAt = utcNow;
+                sentenceProgress.AcceptedAnswer = normalizedAnswer;
+            }
+
+            var exerciseProgress = await _context.UserWritingExerciseProgresses
+                .FirstOrDefaultAsync(progress =>
+                    progress.UserId == userId
+                    && progress.WritingExerciseId == exerciseId);
+
+            if (exerciseProgress == null)
+            {
+                exerciseProgress = new UserWritingExerciseProgress
+                {
+                    UserId = userId,
+                    WritingExerciseId = exerciseId,
+                    TotalSentenceCount = totalSentenceCount,
+                    PassedSentenceCount = 0,
+                    AttemptCount = 0,
+                    IsCompleted = false
+                };
+
+                _context.UserWritingExerciseProgresses.Add(exerciseProgress);
+            }
+
+            exerciseProgress.TotalSentenceCount = totalSentenceCount;
+            exerciseProgress.AttemptCount += 1;
+            exerciseProgress.LastAttemptAt = utcNow;
+
+            await _context.SaveChangesAsync();
+
+            var passedSentenceCount = await _context.UserWritingSentenceProgresses
+                .CountAsync(progress =>
+                    progress.UserId == userId
+                    && progress.WritingExerciseId == exerciseId
+                    && progress.IsPassed);
+
+            var shouldComplete = totalSentenceCount > 0 && passedSentenceCount >= totalSentenceCount;
+            var firstExerciseCompletion = false;
+
+            if (shouldComplete)
+            {
+                var completionTransitionRows = await _context.UserWritingExerciseProgresses
+                    .Where(progress =>
+                        progress.UserId == userId
+                        && progress.WritingExerciseId == exerciseId
+                        && !progress.IsCompleted)
+                    .ExecuteUpdateAsync(setters => setters
+                        .SetProperty(progress => progress.TotalSentenceCount, _ => totalSentenceCount)
+                        .SetProperty(progress => progress.PassedSentenceCount, _ => passedSentenceCount)
+                        .SetProperty(progress => progress.LastAttemptAt, _ => utcNow)
+                        .SetProperty(progress => progress.IsCompleted, _ => true)
+                        .SetProperty(progress => progress.CompletedAt, _ => utcNow));
+
+                firstExerciseCompletion = completionTransitionRows > 0;
+                if (!firstExerciseCompletion)
+                {
+                    await _context.UserWritingExerciseProgresses
+                        .Where(progress => progress.UserId == userId && progress.WritingExerciseId == exerciseId)
+                        .ExecuteUpdateAsync(setters => setters
+                            .SetProperty(progress => progress.TotalSentenceCount, _ => totalSentenceCount)
+                            .SetProperty(progress => progress.PassedSentenceCount, _ => passedSentenceCount)
+                            .SetProperty(progress => progress.LastAttemptAt, _ => utcNow));
+                }
+            }
+            else
+            {
+                await _context.UserWritingExerciseProgresses
+                    .Where(progress => progress.UserId == userId && progress.WritingExerciseId == exerciseId)
+                    .ExecuteUpdateAsync(setters => setters
+                        .SetProperty(progress => progress.TotalSentenceCount, _ => totalSentenceCount)
+                        .SetProperty(progress => progress.PassedSentenceCount, _ => passedSentenceCount)
+                        .SetProperty(progress => progress.LastAttemptAt, _ => utcNow));
+            }
+
+            await transaction.CommitAsync();
+
+            return new WritingProgressPersistResult
+            {
+                FirstExerciseCompletion = firstExerciseCompletion
+            };
         }
 
         private static List<WritingExerciseCardViewModel> FilterWritingExercisesByTopic(
@@ -367,7 +573,8 @@ namespace TCTVocabulary.Services
 
         private static WritingPracticeDataViewModel BuildWritingPracticeDataViewModel(
             WritingPracticeExerciseRow exercise,
-            IReadOnlyList<WritingExerciseSentence> sentences)
+            IReadOnlyList<WritingExerciseSentence> sentences,
+            IReadOnlyDictionary<int, UserWritingSentenceProgress> sentenceProgressLookup)
         {
             return new WritingPracticeDataViewModel
             {
@@ -380,7 +587,7 @@ namespace TCTVocabulary.Services
                 ExercisePreviewText = exercise.PreviewText,
                 ExerciseTopic = exercise.Topic,
                 TotalSentenceCount = sentences.Count,
-                Sentences = BuildWritingPracticeSentences(sentences)
+                Sentences = BuildWritingPracticeSentences(sentences, sentenceProgressLookup)
             };
         }
 
@@ -427,7 +634,9 @@ namespace TCTVocabulary.Services
             };
         }
 
-        private static List<WritingPracticeSentenceViewModel> BuildWritingPracticeSentences(IReadOnlyList<WritingExerciseSentence> sentences)
+        private static List<WritingPracticeSentenceViewModel> BuildWritingPracticeSentences(
+            IReadOnlyList<WritingExerciseSentence> sentences,
+            IReadOnlyDictionary<int, UserWritingSentenceProgress> sentenceProgressLookup)
         {
             return sentences
                 .Select((sentence, index) => new WritingPracticeSentenceViewModel
@@ -436,7 +645,11 @@ namespace TCTVocabulary.Services
                     Number = index + 1,
                     VietnameseText = NormalizeVietnameseDisplayText(sentence.VietnameseText),
                     Placeholder = "Nhập câu tiếng Anh cho dòng đang chọn...",
-                    BreakAfter = sentence.BreakAfter
+                    BreakAfter = sentence.BreakAfter,
+                    IsCompleted = sentenceProgressLookup.TryGetValue(sentence.Id, out var progress) && progress.IsPassed,
+                    AcceptedText = sentenceProgressLookup.TryGetValue(sentence.Id, out var acceptedProgress)
+                        ? acceptedProgress.AcceptedAnswer ?? string.Empty
+                        : string.Empty
                 })
                 .ToList();
         }
@@ -1340,6 +1553,11 @@ namespace TCTVocabulary.Services
             public string NaturalnessFeedback { get; set; } = string.Empty;
             public string WordChoiceFeedback { get; set; } = string.Empty;
             public string SuggestedRewrite { get; set; } = string.Empty;
+        }
+
+        private sealed class WritingProgressPersistResult
+        {
+            public bool FirstExerciseCompletion { get; set; }
         }
     }
 }

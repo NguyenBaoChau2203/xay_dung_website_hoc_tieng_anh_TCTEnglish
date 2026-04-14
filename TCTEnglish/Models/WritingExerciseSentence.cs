@@ -10,4 +10,5 @@ public class WritingExerciseSentence
     public bool BreakAfter { get; set; }
 
     public WritingExercise WritingExercise { get; set; } = null!;
+    public ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
 }

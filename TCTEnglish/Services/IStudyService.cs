@@ -11,26 +11,30 @@ namespace TCTVocabulary.Services
         Task<WritingExerciseDataViewModel> GetWritingExerciseDataAsync(
             string? selectedLevel,
             string? contentType,
-            string? topic);
+            string? topic,
+            int userId);
         Task<WritingExerciseListViewModel> GetWritingExerciseListViewModelAsync(
             string? selectedLevel,
             string? contentType,
             string? topic,
             string? status,
-            int page);
-        Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId);
+            int page,
+            int userId);
+        Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId);
         Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId);
         Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(
             int exerciseId,
             int sentenceId,
-            string userAnswer);
+            string userAnswer,
+            int userId);
         Task<WritingPracticeViewModel?> GetWritingPracticeViewModelAsync(
             string? selectedLevel,
             string? contentType,
             string? topic,
             string? status,
             int page,
-            int? exerciseId);
+            int? exerciseId,
+            int userId);
         Task<VocabularyIndexViewModel> GetVocabularyIndexViewModelAsync(int currentUserId);
         Task<VocabularySetDetailViewModel?> GetVocabularySetDetailViewModelAsync(int setId, int currentUserId);
         Task<VocabularyTopicsViewModel?> GetVocabularyTopicsViewModelAsync(int setId, int currentUserId);

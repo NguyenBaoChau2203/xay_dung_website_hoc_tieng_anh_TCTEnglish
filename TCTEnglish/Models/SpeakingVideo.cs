@@ -17,4 +17,5 @@ public class SpeakingVideo
     // Navigation properties
     public SpeakingPlaylist SpeakingPlaylist { get; set; } = null!;
     public ICollection<SpeakingSentence> SpeakingSentences { get; set; } = new List<SpeakingSentence>();
+    public ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
 }

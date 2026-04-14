@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TCTVocabulary.Services;
-using TCTVocabulary.ViewModels;
+using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
@@ -10,7 +10,7 @@ namespace TCTVocabulary.Controllers
     [Route("Goals")]
     public class GoalsController : BaseController
     {
-        private const string GoalEditorFieldName = $"{nameof(GoalsViewModel.GoalEditor)}.{nameof(UpdateGoalInputViewModel.DailyGoal)}";
+        private const string GoalEditorFieldName = $"{nameof(GoalsViewModel.GoalEditor)}.{nameof(UpdateGoalInputViewModel.TargetValue)}";
         private readonly IGoalsService _goalsService;
 
         public GoalsController(IGoalsService goalsService)
@@ -31,16 +31,22 @@ namespace TCTVocabulary.Controllers
             [Bind(Prefix = nameof(GoalsViewModel.GoalEditor))] UpdateGoalInputViewModel input)
         {
             var userId = GetCurrentUserId();
+            var form = await Request.ReadFormAsync();
+
+            if (!form.ContainsKey(GoalEditorFieldName))
+            {
+                ModelState.AddModelError(GoalEditorFieldName, "Không thể cập nhật mục tiêu lúc này.");
+            }
 
             if (!ModelState.IsValid)
             {
                 return await ReturnEditorViewAsync(userId, input);
             }
 
-            var result = await _goalsService.UpdateGoalAsync(userId, input.DailyGoal);
+            var result = await _goalsService.UpdateGoalAsync(userId, input.GoalArea, input.TargetValue);
             if (result.Status == OperationStatus.Success)
             {
-                TempData["SuccessMessage"] = "Cập nhật mục tiêu ngày thành công.";
+                TempData["SuccessMessage"] = "Đã lưu mục tiêu ngày.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -51,7 +57,7 @@ namespace TCTVocabulary.Controllers
 
             ModelState.AddModelError(
                 GoalEditorFieldName,
-                result.ErrorMessage ?? "Không thể cập nhật mục tiêu ngày lúc này.");
+                result.ErrorMessage ?? "Không thể cập nhật mục tiêu lúc này.");
 
             return await ReturnEditorViewAsync(userId, input);
         }

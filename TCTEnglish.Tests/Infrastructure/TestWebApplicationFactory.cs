@@ -276,6 +276,53 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         context.WritingExercises.AddRange(WritingExerciseSeedData.CreateExercises());
         context.WritingExerciseSentences.AddRange(WritingExerciseSeedData.CreateSentences());
 
+        context.SpeakingPlaylists.Add(new SpeakingPlaylist
+        {
+            Id = TestDataIds.SpeakingPlaylistId,
+            Name = "Goals Speaking Playlist",
+            Description = "Seeded speaking playlist for goals phase tests"
+        });
+
+        context.SpeakingVideos.Add(new SpeakingVideo
+        {
+            Id = TestDataIds.SpeakingVideoId,
+            PlaylistId = TestDataIds.SpeakingPlaylistId,
+            Title = "Goals Speaking Video",
+            YoutubeId = "dQw4w9WgXcQ",
+            Level = "A1",
+            Topic = "Basics",
+            Duration = "02:00"
+        });
+
+        context.SpeakingSentences.AddRange(
+            new SpeakingSentence
+            {
+                Id = TestDataIds.SpeakingSentenceOneId,
+                VideoId = TestDataIds.SpeakingVideoId,
+                StartTime = 0,
+                EndTime = 5,
+                Text = "Good morning everyone",
+                VietnameseMeaning = "Chào buổi sáng mọi người"
+            },
+            new SpeakingSentence
+            {
+                Id = TestDataIds.SpeakingSentenceTwoId,
+                VideoId = TestDataIds.SpeakingVideoId,
+                StartTime = 6,
+                EndTime = 10,
+                Text = "Let's start the meeting",
+                VietnameseMeaning = "Hãy bắt đầu cuộc họp"
+            },
+            new SpeakingSentence
+            {
+                Id = TestDataIds.SpeakingSentenceThreeId,
+                VideoId = TestDataIds.SpeakingVideoId,
+                StartTime = 11,
+                EndTime = 15,
+                Text = "Please share your updates",
+                VietnameseMeaning = "Vui lòng chia sẻ cập nhật của bạn"
+            });
+
         await context.SaveChangesAsync();
     }
 }

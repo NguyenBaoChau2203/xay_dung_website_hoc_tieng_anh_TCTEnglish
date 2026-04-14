@@ -21,7 +21,6 @@ namespace TCTVocabulary.Controllers
         private readonly DbflashcardContext _context;
         private readonly IAppEmailSender _emailSender;
         private readonly IGoalsService _goalsService;
-        private readonly IStreakService _streakService;
         private readonly ILogger<HomeController> _logger;
         private readonly IDataProtector _dailyChallengeProtector;
 
@@ -29,14 +28,12 @@ namespace TCTVocabulary.Controllers
             DbflashcardContext context,
             IAppEmailSender emailSender,
             IGoalsService goalsService,
-            IStreakService streakService,
             IDataProtectionProvider dataProtectionProvider,
             ILogger<HomeController> logger)
         {
             _context = context;
             _emailSender = emailSender;
             _goalsService = goalsService;
-            _streakService = streakService;
             _logger = logger;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
@@ -147,7 +144,7 @@ namespace TCTVocabulary.Controllers
                     return BadRequest();
                 }
 
-                await _streakService.UpdateStreakAsync(userId);
+                await _goalsService.UpdateStreakAndRewardsAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 

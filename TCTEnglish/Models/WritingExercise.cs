@@ -15,4 +15,6 @@ public class WritingExercise
     public DateTime CreatedAt { get; set; }
 
     public ICollection<WritingExerciseSentence> WritingExerciseSentences { get; set; } = new List<WritingExerciseSentence>();
+    public ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
+    public ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
 }

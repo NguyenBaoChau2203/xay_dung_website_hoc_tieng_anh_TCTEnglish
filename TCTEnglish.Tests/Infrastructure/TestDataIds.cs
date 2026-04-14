@@ -14,4 +14,9 @@ public static class TestDataIds
     public const int SystemSetId = 302;
     public const int SystemCardId = 402;
     public const int ClassId = 501;
+    public const int SpeakingPlaylistId = 601;
+    public const int SpeakingVideoId = 701;
+    public const int SpeakingSentenceOneId = 801;
+    public const int SpeakingSentenceTwoId = 802;
+    public const int SpeakingSentenceThreeId = 803;
 }
