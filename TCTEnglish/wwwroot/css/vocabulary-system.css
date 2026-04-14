@@ -1,9 +1,9 @@
 /* Modern Vocabulary System CSS */
 
 :root {
-    --primary: #667eea;
-    --primary-light: #764ba2;
-    --secondary: #f093fb;
+    --primary: #4255ff;
+    --primary-light: #2e3ed1;
+    --secondary: #a5b4fc;
     --success: #43e97b;
     --warning: #fbbf24;
     --danger: #f87171;
@@ -66,7 +66,7 @@
 .hero-section {
     position: relative;
     min-height: 600px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     border-radius: 0 0 50px 50px;
     overflow: hidden;
     margin-bottom: 60px;
@@ -1200,12 +1200,12 @@
 /* Hero Section */
 .set-hero {
     position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     border-radius: 30px;
     padding: 40px;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 20px 40px rgba(66, 85, 255, 0.3);
 }
 
 .hero-overlay {
@@ -1587,7 +1587,7 @@
     .btn-add:hover {
         background: var(--primary-light);
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 10px 20px rgba(66, 85, 255, 0.3);
     }
 
 .btn-import {
@@ -1641,7 +1641,7 @@
 
     .btn-add-first:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 10px 20px rgba(66, 85, 255, 0.3);
     }
 
 /* Word Cards */
@@ -1661,7 +1661,7 @@
 
     .word-card:hover {
         border-color: var(--primary);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+        box-shadow: 0 10px 30px rgba(66, 85, 255, 0.1);
     }
 
     .word-card.expanded {
@@ -2605,12 +2605,12 @@
 .btn-continue-study {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(66, 85, 255, 0.3);
 }
 
     .btn-continue-study:hover {
         transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 15px 30px rgba(66, 85, 255, 0.4);
     }
 
 /* Responsive */
@@ -2812,7 +2812,7 @@ body {
 .logo-text {
     font-weight: 700;
     font-size: 18px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -2831,7 +2831,7 @@ body {
 }
 
     .nav-link:hover {
-        color: #667eea;
+        color: #4255ff;
     }
 
     .nav-link.active {
@@ -2894,7 +2894,7 @@ body {
 }
 
     .welcome-title .highlight {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -2910,7 +2910,7 @@ body {
 }
 
 .btn-create {
-    background: #667eea;
+    background: #4255ff;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -2986,7 +2986,7 @@ body {
 }
 
     .stat-icon.blue {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     }
 
     .stat-icon.green {
@@ -3055,7 +3055,7 @@ body {
 }
 
 .view-all-link {
-    color: #667eea;
+    color: #4255ff;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -3071,7 +3071,7 @@ body {
 }
 
 .continue-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     border-radius: 24px;
     padding: 30px;
     color: white;
@@ -3129,7 +3129,7 @@ body {
 
 .btn-continue-large {
     background: white;
-    color: #667eea;
+    color: #4255ff;
     padding: 16px 32px;
     border-radius: 40px;
     text-decoration: none;
@@ -3156,7 +3156,7 @@ body {
     align-items: center;
     gap: 8px;
     margin-bottom: 20px;
-    color: #667eea;
+    color: #4255ff;
     font-weight: 600;
 }
 
@@ -3176,7 +3176,7 @@ body {
 }
 
 .goal-circle-fill {
-    stroke: #667eea;
+    stroke: #4255ff;
 }
 
 .goal-text {
@@ -3280,7 +3280,7 @@ body {
     }
 
 .due-btn {
-    background: #667eea;
+    background: #4255ff;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -3324,9 +3324,9 @@ body {
     }
 
     .category-tab.active {
-        background: #667eea;
+        background: #4255ff;
         color: white;
-        border-color: #667eea;
+        border-color: #4255ff;
     }
 
 .category-group {
@@ -3361,7 +3361,7 @@ body {
 }
 
 .view-more {
-    color: #667eea;
+    color: #4255ff;
     text-decoration: none;
     font-size: 14px;
     display: flex;
@@ -3386,12 +3386,12 @@ body {
     .showcase-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
-        border-color: #667eea;
+        border-color: #4255ff;
     }
 
 .showcase-preview {
     height: 120px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -3456,7 +3456,7 @@ body {
 }
 
 .showcase-link {
-    color: #667eea;
+    color: #4255ff;
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
@@ -3499,7 +3499,7 @@ body {
     position: absolute;
     top: -10px;
     left: 20px;
-    background: #667eea;
+    background: #4255ff;
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
@@ -3657,7 +3657,7 @@ body {
     }
 
         .footer-links a:hover {
-            color: #667eea;
+            color: #4255ff;
         }
 
 .footer-social {
@@ -3678,7 +3678,7 @@ body {
     }
 
         .footer-social a:hover {
-            background: #667eea;
+            background: #4255ff;
             color: white;
         }
 
@@ -3799,7 +3799,7 @@ body {
 }
 
     .back-btn:hover {
-        background: #667eea;
+        background: #4255ff;
         color: white;
         transform: translateX(-3px);
     }
@@ -3849,7 +3849,7 @@ body {
 }
 
     .icon-btn:hover {
-        background: #667eea;
+        background: #4255ff;
         color: white;
         transform: rotate(90deg);
     }
@@ -3879,11 +3879,11 @@ body {
     }
 
     .timeline-dot.completed {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #4255ff 0%, #2e3ed1 100%);
     }
 
     .timeline-dot.active {
-        background: #667eea;
+        background: #4255ff;
         transform: scaleY(1.5);
     }
 
@@ -3946,7 +3946,7 @@ body {
 }
 
 .flashcard-back {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4255ff 0%, #2e3ed1 100%);
     color: white;
     transform: rotateY(180deg);
 }
@@ -3991,9 +3991,9 @@ body {
 }
 
     .card-action:hover {
-        background: #667eea;
+        background: #4255ff;
         color: white;
-        border-color: #667eea;
+        border-color: #4255ff;
     }
 
 .flashcard-back .card-action {
@@ -4004,7 +4004,7 @@ body {
 
     .flashcard-back .card-action:hover {
         background: white;
-        color: #667eea;
+        color: #4255ff;
     }
 
 /* Card Content */
@@ -4040,13 +4040,13 @@ body {
     border-radius: 50%;
     border: none;
     background: #f1f5f9;
-    color: #667eea;
+    color: #4255ff;
     cursor: pointer;
     transition: all 0.3s;
 }
 
     .play-sound:hover {
-        background: #667eea;
+        background: #4255ff;
         color: white;
         transform: scale(1.1);
     }
@@ -4092,7 +4092,7 @@ body {
 }
 
     .example-item i {
-        color: #667eea;
+        color: #4255ff;
         font-size: 12px;
         opacity: 0.5;
     }
@@ -4183,7 +4183,7 @@ body {
 }
 
     .flip-hint:hover {
-        color: #667eea;
+        color: #4255ff;
     }
 
     .flip-hint i {
@@ -4224,7 +4224,7 @@ body {
 }
 
     .control-btn:hover:not(:disabled) {
-        background: #667eea;
+        background: #4255ff;
         color: white;
         transform: translateX(-3px);
         box-shadow: 0 10px 20px rgba(102,126,234,0.3);
@@ -4253,7 +4253,7 @@ body {
 
 .progress-ring-fill {
     fill: none;
-    stroke: #667eea;
+    stroke: #4255ff;
     stroke-width: 4;
     stroke-linecap: round;
     transform: rotate(-90deg);
@@ -4574,7 +4574,7 @@ body {
 
     .completion-stat-card i {
         font-size: 24px;
-        color: #667eea;
+        color: #4255ff;
     }
 
 .stat-value {
@@ -4608,7 +4608,7 @@ body {
 }
 
 .btn-study-again {
-    background: #667eea;
+    background: #4255ff;
     color: white;
 }
 

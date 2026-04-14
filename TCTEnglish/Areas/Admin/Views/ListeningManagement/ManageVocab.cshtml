@@ -1,0 +1,139 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.ListeningVocabManageViewModel
+@{
+    ViewData["Title"] = "Manage Vocabulary — " + Model.LessonTitle;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-link text-decoration-none p-0 text-secondary mb-1">
+            <i class="fas fa-arrow-left me-1"></i> Back to Lessons
+        </a>
+        <h1 class="h3 mb-0 text-gray-800">Vocabulary for: <span class="text-primary">@Model.LessonTitle</span></h1>
+    </div>
+
+    <form asp-action="ManageVocab" asp-route-id="@Model.LessonId" method="post" id="vocab-form">
+        @Html.AntiForgeryToken()
+        
+        <div class="row g-4" id="vocab-container">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <div class="col-md-6 col-lg-4 vocab-item" data-index="@i">
+                    <div class="card shadow-sm h-100 position-relative border-0 bg-white">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 btn-remove-vocab" style="z-index: 5;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="card-body p-4">
+                            <div class="mb-3 text-center">
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 100px; height: 100px; overflow: hidden;">
+                                    <img src="@(string.IsNullOrEmpty(Model.Items[i].ImageUrl) ? "https://placehold.co/100" : Model.Items[i].ImageUrl)" 
+                                         class="img-fluid vocab-preview" alt="preview" />
+                                </div>
+                                <input type="text" name="Items[@i].ImageUrl" value="@Model.Items[i].ImageUrl" class="form-control form-control-sm img-url-input" placeholder="URL hình ảnh" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Từ vựng</label>
+                                <input type="text" name="Items[@i].Word" value="@Model.Items[i].Word" class="form-control fw-bold border-0 bg-light" placeholder="Word" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Định nghĩa / Nghĩa</label>
+                                <textarea name="Items[@i].Definition" class="form-control border-0 bg-light" rows="2" placeholder="Definition" required>@Model.Items[i].Definition</textarea>
+                            </div>
+                            <div class="mb-0">
+                                <label class="form-label small fw-bold">Ví dụ</label>
+                                <textarea name="Items[@i].ExampleSentence" class="form-control border-0 bg-light" rows="2" placeholder="Example sentence">@Model.Items[i].ExampleSentence</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-5 mt-5">
+            <button type="button" class="btn btn-outline-success btn-lg" id="btn-add-vocab">
+                <i class="fas fa-plus me-1"></i> Thêm từ vựng
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg px-5 shadow">
+                <i class="fas fa-save me-2"></i> Lưu danh sách từ
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('vocab-container');
+            const btnAdd = document.getElementById('btn-add-vocab');
+
+            function updateIndices() {
+                const items = container.querySelectorAll('.vocab-item');
+                items.forEach((item, index) => {
+                    item.dataset.index = index;
+                    item.querySelectorAll('input, textarea').forEach(input => {
+                        const name = input.getAttribute('name');
+                        if (name) {
+                            input.setAttribute('name', name.replace(/Items\[\d+\]/, `Items[${index}]`));
+                        }
+                    });
+                });
+            }
+
+            btnAdd.addEventListener('click', function() {
+                const index = container.querySelectorAll('.vocab-item').length;
+                const div = document.createElement('div');
+                div.className = 'col-md-6 col-lg-4 vocab-item';
+                div.dataset.index = index;
+                div.innerHTML = `
+                    <div class="card shadow-sm h-100 position-relative border-0 bg-white">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 btn-remove-vocab" style="z-index: 5;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="card-body p-4">
+                            <div class="mb-3 text-center">
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 100px; height: 100px; overflow: hidden;">
+                                    <img src="https://placehold.co/100" class="img-fluid vocab-preview" alt="preview" />
+                                </div>
+                                <input type="text" name="Items[${index}].ImageUrl" class="form-control form-control-sm img-url-input" placeholder="URL hình ảnh" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Từ vựng</label>
+                                <input type="text" name="Items[${index}].Word" class="form-control fw-bold border-0 bg-light" placeholder="Word" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Định nghĩa / Nghĩa</label>
+                                <textarea name="Items[${index}].Definition" class="form-control border-0 bg-light" rows="2" placeholder="Definition" required></textarea>
+                            </div>
+                            <div class="mb-0">
+                                <label class="form-label small fw-bold">Ví dụ</label>
+                                <textarea name="Items[${index}].ExampleSentence" class="form-control border-0 bg-light" rows="2" placeholder="Example sentence"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+                div.querySelector('input[name*="Word"]').focus();
+                updateIndices();
+            });
+
+            container.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-remove-vocab')) {
+                    e.target.closest('.vocab-item').remove();
+                    updateIndices();
+                }
+            });
+
+            // Live preview for image URL
+            container.addEventListener('input', function(e) {
+                if (e.target.classList.contains('img-url-input')) {
+                    const preview = e.target.closest('.vocab-item').querySelector('.vocab-preview');
+                    if (preview && e.target.value) {
+                        preview.src = e.target.value;
+                    } else if (preview) {
+                        preview.src = 'https://placehold.co/100';
+                    }
+                }
+            });
+        });
+    </script>
+}

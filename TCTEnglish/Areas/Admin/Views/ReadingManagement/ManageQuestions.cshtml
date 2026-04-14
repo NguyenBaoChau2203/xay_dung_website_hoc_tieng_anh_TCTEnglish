@@ -1,0 +1,120 @@
+﻿@model TCTEnglish.Areas.Admin.ViewModels.ManageQuestionsViewModel
+
+<div class="container mt-4 mb-5">
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Quản lý câu hỏi cho: <span class="text-primary">@Model.PassageTitle</span></h3>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card shadow-sm sticky-top" style="top: 20px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Thêm Câu Hỏi Mới</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AddQuestion" method="post">
+                        <input type="hidden" asp-for="PassageId" />
+                        
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label>Thứ tự</label>
+                                <input asp-for="NewOrderIndex" class="form-control" type="number" />
+                            </div>
+                            <div class="col-9">
+                                <label>Nội dung câu hỏi</label>
+                                <textarea asp-for="NewQuestionText" class="form-control" rows="2" required></textarea>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <label class="fw-bold mb-2">Nhập 4 đáp án và chọn đáp án đúng:</label>
+                        
+                        <div class="input-group mb-2">
+                            <div class="input-group-text">
+                                <input type="radio" asp-for="CorrectOption" value="A" required class="form-check-input mt-0" title="Chọn làm đáp án đúng">
+                                </div>
+                                <span class="input-group-text fw-bold">A</span>
+                                <input asp-for="OptionA" class="form-control" placeholder="Nội dung đáp án A..." required />
+                            </div>
+
+                            <div class="input-group mb-2">
+                                <div class="input-group-text">
+                                    <input type="radio" asp-for="CorrectOption" value="B" class="form-check-input mt-0">
+                                    </div>
+                                    <span class="input-group-text fw-bold">B</span>
+                                    <input asp-for="OptionB" class="form-control" placeholder="Nội dung đáp án B..." required />
+                                </div>
+
+                                <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input type="radio" asp-for="CorrectOption" value="C" class="form-check-input mt-0">
+                                        </div>
+                                        <span class="input-group-text fw-bold">C</span>
+                                        <input asp-for="OptionC" class="form-control" placeholder="Nội dung đáp án C..." required />
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-text">
+                                            <input type="radio" asp-for="CorrectOption" value="D" class="form-check-input mt-0">
+                                            </div>
+                                            <span class="input-group-text fw-bold">D</span>
+                                            <input asp-for="OptionD" class="form-control" placeholder="Nội dung đáp án D..." required />
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success w-100">Lưu Câu Hỏi</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h5 class="mb-3">Danh sách câu hỏi (@Model.ExistingQuestions.Count)</h5>
+                            @if (!Model.ExistingQuestions.Any())
+                            {
+                                <div class="alert alert-info">Chưa có câu hỏi nào. Hãy thêm ở form bên trái.</div>
+                            }
+
+                            @foreach (var q in Model.ExistingQuestions)
+                            {
+                                <div class="card mb-3 border-secondary">
+                                    <div class="card-header d-flex justify-content-between align-items-center bg-light">
+                                        <strong>Câu @q.OrderIndex: @q.QuestionText</strong>
+                        
+                                        <form asp-action="DeleteQuestion" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa câu này?');">
+                                            <input type="hidden" name="questionId" value="@q.Id" />
+                                            <input type="hidden" name="passageId" value="@Model.PassageId" />
+                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-body py-2">
+                                        <ul class="list-unstyled mb-0">
+                                            @foreach (var opt in q.Options)
+                                            {
+                                                <li class="mb-1">
+                                                    @if (opt == q.CorrectOptionText)
+                                                    {
+                                                        <span class="text-success fw-bold">✔ @opt</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted ms-3">@opt</span>
+                                                    }
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>

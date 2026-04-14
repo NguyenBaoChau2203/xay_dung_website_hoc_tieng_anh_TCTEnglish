@@ -1,0 +1,164 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.ListeningLessonCreateEditViewModel
+@{
+    bool isEdit = Model.Id > 0;
+    ViewData["Title"] = isEdit ? "Sửa bài học" : "Tạo bài học mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-link text-decoration-none p-0 text-secondary mb-2">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại danh sách
+        </a>
+        <h1 class="h3 mb-0 text-gray-800">@(isEdit ? "Sửa bài học" : "Tạo bài học mới")</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin cơ bản</h6>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateEdit" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-bold">Tiêu đề bài học</label>
+                            <input asp-for="Title" class="form-control form-control-lg" placeholder="Nhập tiêu đề..." />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Level" class="form-label fw-bold">Cấp độ (CEFR)</label>
+                                <select asp-for="Level" class="form-select">
+                                    <option value="A1">A1 - Beginner</option>
+                                    <option value="A2">A2 - Elementary</option>
+                                    <option value="B1">B1 - Intermediate</option>
+                                    <option value="B2">B2 - Upper-Intermediate</option>
+                                    <option value="C1">C1 - Advanced</option>
+                                    <option value="C2">C2 - Proficiency</option>
+                                </select>
+                                <span asp-validation-for="Level" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Topic" class="form-label fw-bold">Chủ đề</label>
+                                <input asp-for="Topic" class="form-control" placeholder="Food, Travel, Work..." />
+                                <span asp-validation-for="Topic" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <h6 class="mb-3 text-secondary text-uppercase small fw-bold">Media Configuration</h6>
+
+                        <div class="mb-3">
+                            <label asp-for="YoutubeId" class="form-label fw-bold">YouTube Video ID hoặc URL</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fab fa-youtube text-danger"></i></span>
+                                <input asp-for="YoutubeId" class="form-control" placeholder="dQw4w9WgXcQ" />
+                            </div>
+                            <div class="form-text">Nhập ID (11 ký tự) hoặc link đầy đủ. ID này dùng để lấy transcript tự động.</div>
+                            <span asp-validation-for="YoutubeId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AudioUrl" class="form-label fw-bold">Audio URL (Fallback)</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-music"></i></span>
+                                <input asp-for="AudioUrl" class="form-control" placeholder="https://example.com/audio.mp3" />
+                            </div>
+                            <div class="form-text">Dùng nếu không có YouTube hoặc muốn phát file audio riêng.</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="ThumbnailUrl" class="form-label fw-bold">Thumbnail URL (Tùy chọn)</label>
+                                <input asp-for="ThumbnailUrl" class="form-control" placeholder="Để trống để tự dùng YT thumbnail" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Duration" class="form-label fw-bold">Thời lượng (m:ss)</label>
+                                <input asp-for="Duration" class="form-control" placeholder="2:30" />
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <h6 class="mb-3 text-secondary text-uppercase small fw-bold">Speakers Info</h6>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3">
+                                    <label class="form-label small fw-bold mb-2">Speaker 1</label>
+                                    <input asp-for="Speaker1Name" class="form-control mb-2" placeholder="Tên (ví dụ: Todd)" />
+                                    <input asp-for="Speaker1Country" class="form-control" placeholder="Quốc gia (ví dụ: US)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3">
+                                    <label class="form-label small fw-bold mb-2">Speaker 2</label>
+                                    <input asp-for="Speaker2Name" class="form-control mb-2" placeholder="Tên (ví dụ: Katia)" />
+                                    <input asp-for="Speaker2Country" class="form-control" placeholder="Quốc gia (ví dụ: MX)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 border rounded-3 d-flex align-items-center bg-white shadow-xs">
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" type="checkbox" asp-for="IsPublished">
+                                <label class="form-check-label fw-bold ms-2" asp-for="IsPublished">Hiển thị bài học này cho người dùng</label>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 d-flex gap-2">
+                            <button type="submit" class="btn btn-primary px-4 py-2">
+                                <i class="fas fa-save me-1"></i> Lưu & @(isEdit ? "Quay lại" : "Tiếp tục nhập transcript")
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4">Hủy</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @if (isEdit)
+        {
+            <div class="col-xl-4">
+                <div class="card shadow-sm mb-4 border-left-info">
+                    <div class="card-body">
+                        <h6 class="font-weight-bold text-info mb-3">Quick Navigation</h6>
+                        <div class="list-group list-group-flush">
+                            <a asp-action="ManageTranscript" asp-route-id="@Model.Id" class="list-group-item list-group-item-action border-0 px-0 d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-file-text me-3"></i> Transcript</span>
+                                <i class="bi bi-chevron-right text-muted"></i>
+                            </a>
+                            <a asp-action="ManageQuiz" asp-route-id="@Model.Id" class="list-group-item list-group-item-action border-0 px-0 d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-patch-question me-3"></i> Quiz Questions</span>
+                                <i class="bi bi-chevron-right text-muted"></i>
+                            </a>
+                            <a asp-action="ManageVocab" asp-route-id="@Model.Id" class="list-group-item list-group-item-action border-0 px-0 d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-book me-3"></i> Vocabulary</span>
+                                <i class="bi bi-chevron-right text-muted"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.YoutubeId))
+                {
+                    <div class="card shadow-sm border-0 bg-dark text-white p-2">
+                        <div class="ratio ratio-16x9 rounded overflow-hidden">
+                            <iframe src="https://www.youtube.com/embed/@Model.YoutubeId" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

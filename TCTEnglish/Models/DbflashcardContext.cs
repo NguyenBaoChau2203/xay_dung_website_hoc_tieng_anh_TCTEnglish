@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using TCTEnglish.Models;
@@ -47,7 +47,17 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; }
     public virtual DbSet<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; }
 
+    // ─── Listening feature ───────────────────────────────────────────────────
+    public virtual DbSet<ListeningLesson> ListeningLessons { get; set; }
+    public virtual DbSet<ListeningTranscriptLine> ListeningTranscriptLines { get; set; }
+    public virtual DbSet<ListeningQuizQuestion> ListeningQuizQuestions { get; set; }
+    public virtual DbSet<ListeningVocabItem> ListeningVocabItems { get; set; }
+    public virtual DbSet<UserListeningProgress> UserListeningProgresses { get; set; }
 
+    public virtual DbSet<ReadingPassage> ReadingPassages { get; set; }
+    public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
+    public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
+    public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -134,8 +144,36 @@ public partial class DbflashcardContext : DbContext
                   .HasForeignKey(e => e.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<UserReadingHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id);
 
+            entity.HasIndex(e => new { e.UserId, e.ReadingPassageId })
+                .IsUnique();
 
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserReadingHistories)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.ReadingPassage)
+                .WithMany(p => p.UserReadingHistories)
+                .HasForeignKey(d => d.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+        // ReadingQuestion
+        modelBuilder.Entity<ReadingQuestion>()
+            .HasOne(q => q.Passage)
+            .WithMany(p => p.Questions)
+            .HasForeignKey(q => q.PassageId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // ReadingOption
+        modelBuilder.Entity<ReadingOption>()
+            .HasOne(o => o.Question)
+            .WithMany(q => q.Options)
+            .HasForeignKey(o => o.QuestionId)
+            .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__Folders__ACD7109F2ECFF2AF");
@@ -791,6 +829,140 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
+        });
+
+        // ─── Listening ───────────────────────────────────────────────────────
+        modelBuilder.Entity<ListeningLesson>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            entity.Property(e => e.Level)
+                .IsRequired()
+                .HasMaxLength(10);
+
+            entity.Property(e => e.Topic)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.YoutubeId).HasMaxLength(50);
+            entity.Property(e => e.AudioUrl).HasMaxLength(500);
+            entity.Property(e => e.ThumbnailUrl).HasMaxLength(500);
+            entity.Property(e => e.Duration).HasMaxLength(20);
+            entity.Property(e => e.Speaker1Name).HasMaxLength(150);
+            entity.Property(e => e.Speaker2Name).HasMaxLength(150);
+            entity.Property(e => e.Speaker1Country).HasMaxLength(100);
+            entity.Property(e => e.Speaker2Country).HasMaxLength(100);
+
+            entity.Property(e => e.IsPublished).HasDefaultValue(false);
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasIndex(e => new { e.IsPublished, e.Level, e.Topic })
+                .HasDatabaseName("IX_ListeningLessons_Published_Level_Topic");
+        });
+
+        modelBuilder.Entity<ListeningTranscriptLine>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Speaker)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Text).IsRequired();
+
+            entity.HasIndex(e => new { e.LessonId, e.OrderIndex })
+                .IsUnique()
+                .HasDatabaseName("IX_ListeningTranscriptLines_LessonId_OrderIndex");
+
+            entity.HasOne(d => d.Lesson)
+                .WithMany(p => p.TranscriptLines)
+                .HasForeignKey(d => d.LessonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ListeningTranscriptLines_ListeningLessons");
+        });
+
+        modelBuilder.Entity<ListeningQuizQuestion>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.QuestionText).IsRequired();
+
+            entity.Property(e => e.CorrectAnswer)
+                .IsRequired()
+                .HasMaxLength(1);
+
+            entity.Property(e => e.OptionA).HasMaxLength(500);
+            entity.Property(e => e.OptionB).HasMaxLength(500);
+            entity.Property(e => e.OptionC).HasMaxLength(500);
+            entity.Property(e => e.OptionD).HasMaxLength(500);
+
+            entity.HasIndex(e => new { e.LessonId, e.OrderIndex })
+                .IsUnique()
+                .HasDatabaseName("IX_ListeningQuizQuestions_LessonId_OrderIndex");
+
+            entity.HasOne(d => d.Lesson)
+                .WithMany(p => p.QuizQuestions)
+                .HasForeignKey(d => d.LessonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ListeningQuizQuestions_ListeningLessons");
+        });
+
+        modelBuilder.Entity<ListeningVocabItem>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Word)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            entity.Property(e => e.Definition).IsRequired();
+            entity.Property(e => e.ImageUrl).HasMaxLength(500);
+
+            entity.HasIndex(e => new { e.LessonId, e.OrderIndex })
+                .IsUnique()
+                .HasDatabaseName("IX_ListeningVocabItems_LessonId_OrderIndex");
+
+            entity.HasOne(d => d.Lesson)
+                .WithMany(p => p.VocabItems)
+                .HasForeignKey(d => d.LessonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ListeningVocabItems_ListeningLessons");
+        });
+
+        modelBuilder.Entity<UserListeningProgress>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            // Unique index — one progress record per (user, lesson)
+            entity.HasIndex(e => new { e.UserId, e.LessonId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserListeningProgress_UserId_LessonId");
+
+            entity.Property(e => e.LastAccessedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.Property(e => e.CompletedAt)
+                .HasColumnType("datetime2");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserListeningProgress_Users");
+
+            entity.HasOne(d => d.Lesson)
+                .WithMany(p => p.UserProgresses)
+                .HasForeignKey(d => d.LessonId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserListeningProgress_ListeningLessons");
         });
 
         OnModelCreatingPartial(modelBuilder);
