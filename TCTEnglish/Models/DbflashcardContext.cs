@@ -38,10 +38,14 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<Badge> Badges { get; set; }
     public virtual DbSet<UserDailyActivity> UserDailyActivities { get; set; }
     public virtual DbSet<UserBadge> UserBadges { get; set; }
+    public virtual DbSet<UserGoal> UserGoals { get; set; }
     public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
     public virtual DbSet<AiConversation> AiConversations { get; set; }
     public virtual DbSet<AiMessage> AiMessages { get; set; }
     public virtual DbSet<AiRequestLog> AiRequestLogs { get; set; }
+    public virtual DbSet<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; }
+    public virtual DbSet<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; }
+    public virtual DbSet<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; }
 
     // ─── Listening feature ───────────────────────────────────────────────────
     public virtual DbSet<ListeningLesson> ListeningLessons { get; set; }
@@ -321,16 +325,146 @@ public partial class DbflashcardContext : DbContext
                 .HasColumnName("UserID");
 
             entity.Property(e => e.XpEarned).HasDefaultValue(0);
+            entity.Property(e => e.StreakXpAwarded).HasDefaultValue(0);
             entity.Property(e => e.CardsReviewed).HasDefaultValue(0);
             entity.Property(e => e.NewCardsLearned).HasDefaultValue(0);
+            entity.Property(e => e.VocabularyCompletedCount).HasDefaultValue(0);
             entity.Property(e => e.QuizzesCompleted).HasDefaultValue(0);
             entity.Property(e => e.SpeakingCompletedCount).HasDefaultValue(0);
+            entity.Property(e => e.WritingCompletedCount).HasDefaultValue(0);
+            entity.Property(e => e.ReadingCompletedCount).HasDefaultValue(0);
+            entity.Property(e => e.ListeningCompletedCount).HasDefaultValue(0);
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserDailyActivities)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserDailyActivities_Users");
+        });
+
+        modelBuilder.Entity<UserGoal>(entity =>
+        {
+            entity.ToTable("UserGoals");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.GoalArea })
+                .IsUnique()
+                .HasDatabaseName("IX_UserGoals_UserId_GoalArea");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.GoalArea)
+                .HasConversion<int>();
+
+            entity.Property(e => e.TargetValue)
+                .HasDefaultValue(0);
+
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true);
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserGoals)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserGoals_Users");
+        });
+
+        modelBuilder.Entity<UserWritingExerciseProgress>(entity =>
+        {
+            entity.ToTable("UserWritingExerciseProgresses");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.WritingExerciseId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserWritingExerciseProgresses_UserId_WritingExerciseId");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.WritingExerciseId)
+                .HasColumnName("WritingExerciseID");
+
+            entity.Property(e => e.TotalSentenceCount).HasDefaultValue(0);
+            entity.Property(e => e.PassedSentenceCount).HasDefaultValue(0);
+            entity.Property(e => e.AttemptCount).HasDefaultValue(0);
+
+            entity.Property(e => e.LastAttemptAt)
+                .HasColumnType("datetime2");
+
+            entity.Property(e => e.CompletedAt)
+                .HasColumnType("datetime2");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.UserWritingExerciseProgresses)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingExerciseProgresses_Users");
+
+            entity.HasOne(e => e.WritingExercise)
+                .WithMany(w => w.UserWritingExerciseProgresses)
+                .HasForeignKey(e => e.WritingExerciseId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingExerciseProgresses_WritingExercises");
+        });
+
+        modelBuilder.Entity<UserWritingSentenceProgress>(entity =>
+        {
+            entity.ToTable("UserWritingSentenceProgresses");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.SentenceId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserWritingSentenceProgresses_UserId_SentenceId");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.WritingExerciseId)
+                .HasColumnName("WritingExerciseID");
+
+            entity.Property(e => e.SentenceId)
+                .HasColumnName("SentenceID");
+
+            entity.Property(e => e.AttemptCount).HasDefaultValue(0);
+
+            entity.Property(e => e.AcceptedAnswer)
+                .HasMaxLength(1000);
+
+            entity.Property(e => e.LastAttemptAt)
+                .HasColumnType("datetime2");
+
+            entity.Property(e => e.PassedAt)
+                .HasColumnType("datetime2");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.UserWritingSentenceProgresses)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingSentenceProgresses_Users");
+
+            entity.HasOne(e => e.WritingExercise)
+                .WithMany(w => w.UserWritingSentenceProgresses)
+                .HasForeignKey(e => e.WritingExerciseId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExercises");
+
+            entity.HasOne(e => e.Sentence)
+                .WithMany(s => s.UserWritingSentenceProgresses)
+                .HasForeignKey(e => e.SentenceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExerciseSentences");
         });
 
         modelBuilder.Entity<Badge>(entity =>
@@ -659,6 +793,42 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(e => e.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_AiRequestLogs_AiConversations");
+        });
+
+        modelBuilder.Entity<UserSpeakingVideoCompletion>(entity =>
+        {
+            entity.ToTable("UserSpeakingVideoCompletions");
+
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.VideoId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserSpeakingVideoCompletions_UserId_VideoId");
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.VideoId)
+                .HasColumnName("VideoID");
+
+            entity.Property(e => e.CompletedAt)
+                .HasColumnType("datetime2");
+
+            entity.Property(e => e.LastEvaluatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserSpeakingVideoCompletions)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingVideoCompletions_Users");
+
+            entity.HasOne(d => d.SpeakingVideo)
+                .WithMany(p => p.UserSpeakingVideoCompletions)
+                .HasForeignKey(d => d.VideoId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
         });
 
         // ─── Listening ───────────────────────────────────────────────────────

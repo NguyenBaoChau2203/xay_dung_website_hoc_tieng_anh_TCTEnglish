@@ -62,23 +62,23 @@ Hướng làm:
 - Controller chủ yếu làm orchestration.
 - Validation, persistence, và authorization rules có thể tái dùng và test độc lập.
 
-### 2. Quyết định rõ số phận của feature Goals
+### 2. Giữ feature Goals đã hoàn thiện ở trạng thái ổn định
 
 Trạng thái hiện tại:
-- `GoalsController` chỉ trả về một trang tĩnh.
-- Dashboard đã có đọc `User.Goal`.
-- Trang Goals vẫn là UI mẫu, chưa phải flow thật.
+- `GoalsController` đã chạy trên `IGoalsService` với dữ liệu người dùng thật.
+- Flow tạo/chỉnh sửa mục tiêu đã hoạt động và có integration test theo phase.
+- Activity, progress theo streak và badge unlock đều đọc từ số liệu thật.
 
-Vì sao đây là P0:
-- Người dùng đã nhìn thấy route này, nên đây là vấn đề sản phẩm nhìn thấy được.
+Vì sao vẫn quan trọng:
+- Goals đã là workflow production có người dùng thật, nên regression sẽ ảnh hưởng trực tiếp UX.
 
-Hai hướng hợp lý:
-- Implement flow goal thật sự.
-- Hoặc ẩn route/nav cho tới khi feature sẵn sàng.
+Hướng làm:
+- Giữ coverage cho UI contract modal/create/edit/invalid-submit.
+- Đồng bộ tài liệu ngay khi thay đổi hành vi Goals.
 
 Điều kiện đạt:
-- Chỉ còn một workflow goals chính thức.
-- Không còn hiển thị dữ liệu demo/tĩnh cho người dùng production.
+- Các bộ test Goals integration hiện có luôn pass.
+- Tài liệu không quay lại mô tả Goals như placeholder.
 
 ### 3. Hoàn thiện vận hành lock/unlock tài khoản
 

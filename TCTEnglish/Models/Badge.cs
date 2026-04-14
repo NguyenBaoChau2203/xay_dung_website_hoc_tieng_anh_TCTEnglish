@@ -7,7 +7,10 @@ public enum BadgeMetricType
     CurrentStreak = 1,
     LongestStreak = 2,
     TotalDaysActive = 3,
-    TotalXp = 4
+    TotalXp = 4,
+    SpeakingVideosCompleted = 5,
+    VocabularyCompletions = 6,
+    WritingExercisesCompleted = 7
 }
 
 public class Badge
@@ -104,6 +107,72 @@ public static class BadgeSeedData
                 MetricType = BadgeMetricType.TotalXp,
                 ThresholdValue = 200,
                 SortOrder = 6
+            },
+            new()
+            {
+                Id = 7,
+                Code = "speaking-first-video",
+                Name = "Khởi động Speaking",
+                Description = "Hoàn thành video Speaking đầu tiên.",
+                IconClass = "fas fa-microphone",
+                MetricType = BadgeMetricType.SpeakingVideosCompleted,
+                ThresholdValue = 1,
+                SortOrder = 7
+            },
+            new()
+            {
+                Id = 8,
+                Code = "speaking-five-videos",
+                Name = "Nói trôi chảy",
+                Description = "Hoàn thành 5 video Speaking để duy trì luyện tập.",
+                IconClass = "fas fa-comments",
+                MetricType = BadgeMetricType.SpeakingVideosCompleted,
+                ThresholdValue = 5,
+                SortOrder = 8
+            },
+            new()
+            {
+                Id = 9,
+                Code = "vocabulary-first-mastered",
+                Name = "Mở khóa Từ vựng",
+                Description = "Hoàn thành 1 thẻ Vocabulary ở trạng thái Mastered.",
+                IconClass = "fas fa-book-open",
+                MetricType = BadgeMetricType.VocabularyCompletions,
+                ThresholdValue = 1,
+                SortOrder = 9
+            },
+            new()
+            {
+                Id = 10,
+                Code = "vocabulary-ten-mastered",
+                Name = "Nhịp từ vựng",
+                Description = "Hoàn thành 10 thẻ Vocabulary ở trạng thái Mastered.",
+                IconClass = "fas fa-spell-check",
+                MetricType = BadgeMetricType.VocabularyCompletions,
+                ThresholdValue = 10,
+                SortOrder = 10
+            },
+            new()
+            {
+                Id = 11,
+                Code = "writing-first-exercise",
+                Name = "Mở khóa Writing",
+                Description = "Hoàn thành bài Writing đầu tiên.",
+                IconClass = "fas fa-pen",
+                MetricType = BadgeMetricType.WritingExercisesCompleted,
+                ThresholdValue = 1,
+                SortOrder = 11
+            },
+            new()
+            {
+                Id = 12,
+                Code = "writing-five-exercises",
+                Name = "Viết chắc tay",
+                Description = "Hoàn thành 5 bài Writing để duy trì thói quen luyện viết.",
+                IconClass = "fas fa-pen-fancy",
+                MetricType = BadgeMetricType.WritingExercisesCompleted,
+                ThresholdValue = 5,
+                SortOrder = 12
             }
         ];
     }

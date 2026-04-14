@@ -277,6 +277,72 @@ namespace TCTVocabulary.Migrations
                             Name = "Bứt phá",
                             SortOrder = 6,
                             ThresholdValue = 200
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Code = "speaking-first-video",
+                            Description = "Hoàn thành video Speaking đầu tiên.",
+                            IconClass = "fas fa-microphone",
+                            MetricType = 5,
+                            Name = "Khởi động Speaking",
+                            SortOrder = 7,
+                            ThresholdValue = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Code = "speaking-five-videos",
+                            Description = "Hoàn thành 5 video Speaking để duy trì luyện tập.",
+                            IconClass = "fas fa-comments",
+                            MetricType = 5,
+                            Name = "Nói trôi chảy",
+                            SortOrder = 8,
+                            ThresholdValue = 5
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Code = "vocabulary-first-mastered",
+                            Description = "Hoàn thành 1 thẻ Vocabulary ở trạng thái Mastered.",
+                            IconClass = "fas fa-book-open",
+                            MetricType = 6,
+                            Name = "Mở khóa Từ vựng",
+                            SortOrder = 9,
+                            ThresholdValue = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Code = "vocabulary-ten-mastered",
+                            Description = "Hoàn thành 10 thẻ Vocabulary ở trạng thái Mastered.",
+                            IconClass = "fas fa-spell-check",
+                            MetricType = 6,
+                            Name = "Nhịp từ vựng",
+                            SortOrder = 10,
+                            ThresholdValue = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Code = "writing-first-exercise",
+                            Description = "Hoàn thành bài Writing đầu tiên.",
+                            IconClass = "fas fa-pen",
+                            MetricType = 7,
+                            Name = "Mở khóa Writing",
+                            SortOrder = 11,
+                            ThresholdValue = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Code = "writing-five-exercises",
+                            Description = "Hoàn thành 5 bài Writing để duy trì thói quen luyện viết.",
+                            IconClass = "fas fa-pen-fancy",
+                            MetricType = 7,
+                            Name = "Viết chắc tay",
+                            SortOrder = 12,
+                            ThresholdValue = 5
                         });
                 });
 
@@ -1120,6 +1186,11 @@ namespace TCTVocabulary.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
+                    b.Property<int>("ListeningCompletedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<int>("NewCardsLearned")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1130,7 +1201,17 @@ namespace TCTVocabulary.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
+                    b.Property<int>("ReadingCompletedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<int>("SpeakingCompletedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("StreakXpAwarded")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
@@ -1138,6 +1219,16 @@ namespace TCTVocabulary.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int")
                         .HasColumnName("UserID");
+
+                    b.Property<int>("VocabularyCompletedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("WritingCompletedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("XpEarned")
                         .ValueGeneratedOnAdd()
@@ -1151,6 +1242,50 @@ namespace TCTVocabulary.Migrations
                         .HasDatabaseName("IX_UserDailyActivities_UserId_ActivityDate");
 
                     b.ToTable("UserDailyActivities", (string)null);
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserGoal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<int>("GoalArea")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<int>("TargetValue")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "GoalArea")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserGoals_UserId_GoalArea");
+
+                    b.ToTable("UserGoals", (string)null);
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserListeningProgress", b =>
@@ -1269,6 +1404,152 @@ namespace TCTVocabulary.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserSpeakingProgresses");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CompletedSentenceCount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastEvaluatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<int>("RequiredSentenceCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int")
+                        .HasColumnName("VideoID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VideoId");
+
+                    b.HasIndex("UserId", "VideoId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserSpeakingVideoCompletions_UserId_VideoId");
+
+                    b.ToTable("UserSpeakingVideoCompletions", (string)null);
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingExerciseProgress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastAttemptAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PassedSentenceCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("TotalSentenceCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<int>("WritingExerciseId")
+                        .HasColumnType("int")
+                        .HasColumnName("WritingExerciseID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WritingExerciseId");
+
+                    b.HasIndex("UserId", "WritingExerciseId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserWritingExerciseProgresses_UserId_WritingExerciseId");
+
+                    b.ToTable("UserWritingExerciseProgresses", (string)null);
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingSentenceProgress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AcceptedAnswer")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("AttemptCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsPassed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastAttemptAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PassedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SentenceId")
+                        .HasColumnType("int")
+                        .HasColumnName("SentenceID");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<int>("WritingExerciseId")
+                        .HasColumnType("int")
+                        .HasColumnName("WritingExerciseID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SentenceId");
+
+                    b.HasIndex("WritingExerciseId");
+
+                    b.HasIndex("UserId", "SentenceId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserWritingSentenceProgresses_UserId_SentenceId");
+
+                    b.ToTable("UserWritingSentenceProgresses", (string)null);
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
@@ -1680,6 +1961,18 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.UserGoal", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserGoals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserGoals_Users");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.UserListeningProgress", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
@@ -1739,6 +2032,78 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SpeakingSentence");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserSpeakingVideoCompletions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserSpeakingVideoCompletions_Users");
+
+                    b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
+                        .WithMany("UserSpeakingVideoCompletions")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
+
+                    b.Navigation("SpeakingVideo");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingExerciseProgress", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserWritingExerciseProgresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingExerciseProgresses_Users");
+
+                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                        .WithMany("UserWritingExerciseProgresses")
+                        .HasForeignKey("WritingExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingExerciseProgresses_WritingExercises");
+
+                    b.Navigation("User");
+
+                    b.Navigation("WritingExercise");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingSentenceProgress", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "Sentence")
+                        .WithMany("UserWritingSentenceProgresses")
+                        .HasForeignKey("SentenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExerciseSentences");
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserWritingSentenceProgresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingSentenceProgresses_Users");
+
+                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                        .WithMany("UserWritingSentenceProgresses")
+                        .HasForeignKey("WritingExerciseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExercises");
+
+                    b.Navigation("Sentence");
+
+                    b.Navigation("User");
+
+                    b.Navigation("WritingExercise");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
@@ -1827,6 +2192,8 @@ namespace TCTVocabulary.Migrations
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
                 {
                     b.Navigation("SpeakingSentences");
+
+                    b.Navigation("UserSpeakingVideoCompletions");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
@@ -1853,14 +2220,31 @@ namespace TCTVocabulary.Migrations
 
                     b.Navigation("UserDailyActivities");
 
+                    b.Navigation("UserGoals");
+
                     b.Navigation("UserReadingHistories");
 
                     b.Navigation("UserSpeakingProgresses");
+
+                    b.Navigation("UserSpeakingVideoCompletions");
+
+                    b.Navigation("UserWritingExerciseProgresses");
+
+                    b.Navigation("UserWritingSentenceProgresses");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
                 {
+                    b.Navigation("UserWritingExerciseProgresses");
+
+                    b.Navigation("UserWritingSentenceProgresses");
+
                     b.Navigation("WritingExerciseSentences");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
+                {
+                    b.Navigation("UserWritingSentenceProgresses");
                 });
 #pragma warning restore 612, 618
         }

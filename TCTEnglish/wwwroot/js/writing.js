@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
             vietnameseText: sentence.vietnameseText || '',
             placeholder: sentence.placeholder || 'Nhập câu tiếng Anh của bạn ở đây...',
             breakAfter: Boolean(sentence.breakAfter),
-            draft: '',
+            draft: sentence.acceptedText || '',
             lastAttemptText: '',
-            acceptedText: '',
-            hasAccepted: false,
+            acceptedText: sentence.acceptedText || '',
+            hasAccepted: Boolean(sentence.isCompleted),
             lastHintTitle: '',
             lastHintText: '',
             lastEvaluation: null

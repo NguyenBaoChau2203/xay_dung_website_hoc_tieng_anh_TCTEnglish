@@ -117,6 +117,8 @@ namespace TCTEnglish.ViewModels
         public string VietnameseText { get; set; } = string.Empty;
         public string Placeholder { get; set; } = string.Empty;
         public bool BreakAfter { get; set; }
+        public bool IsCompleted { get; set; }
+        public string AcceptedText { get; set; } = string.Empty;
     }
 
     public class WritingLessonSegmentViewModel
