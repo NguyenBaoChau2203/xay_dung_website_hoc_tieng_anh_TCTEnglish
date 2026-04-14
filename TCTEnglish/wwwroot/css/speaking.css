@@ -2395,3 +2395,721 @@
 .spk-toast.spk-toast-retry {
     background: #d97706;
 }
+
+
+/* =================================================================
+   PHASE 3 — IMPORT PANEL (mip-*)
+   ================================================================= */
+
+/* Panel shell */
+.mip-panel {
+    background: linear-gradient(135deg, #4255ff 0%, #2a3bef 55%, #1a2fd4 100%);
+    border-radius: 20px;
+    padding: 40px 44px;
+    margin-bottom: 36px;
+    box-shadow: 0 10px 36px rgba(66, 85, 255, 0.30), 0 2px 8px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.mip-panel::before,
+.mip-panel::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.08;
+}
+.mip-panel::before {
+    width: 320px;
+    height: 320px;
+    background: #fff;
+    top: -120px;
+    right: -80px;
+}
+.mip-panel::after {
+    width: 180px;
+    height: 180px;
+    background: #fff;
+    bottom: -60px;
+    left: 30px;
+}
+
+.mip-inner {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* Left copy */
+.mip-left {
+    flex: 1;
+    min-width: 220px;
+}
+
+.mip-yt-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    backdrop-filter: blur(6px);
+}
+
+.mip-heading {
+    font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    letter-spacing: -0.025em;
+}
+
+.mip-sub {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Right form */
+.mip-right {
+    flex: 0 0 min(460px, 100%);
+}
+
+.mip-form-area {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.mip-input-wrap {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+
+.mip-input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.mip-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px 0 44px;
+    border-radius: 13px;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.96);
+    font-size: 0.88rem;
+    color: #111827;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.mip-input::placeholder {
+    color: #9ca3af;
+}
+
+.mip-input:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.28);
+}
+
+.mip-input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.mip-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 13px;
+    border: none;
+    background: #fff;
+    color: #4255ff;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.20);
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;
+}
+
+.mip-cta-btn:hover:not(:disabled) {
+    background: #f0f2ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.24);
+}
+
+.mip-cta-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.mip-cta-btn:disabled {
+    opacity: 0.72;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mip-feedback {
+    margin-top: 10px;
+    font-size: 0.83rem;
+    min-height: 20px;
+    line-height: 1.5;
+}
+
+.mip-feedback:empty {
+    display: none;
+}
+
+.mip-feedback-error {
+    color: #fca5a5;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.mip-feedback-upgrade {
+    color: #fde68a;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.mip-feedback-upgrade a {
+    color: #fde68a;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.mip-feedback-upgrade a:hover {
+    color: #fff;
+}
+
+.mip-feedback-success {
+    color: #6ee7b7;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.mip-hint {
+    margin-top: 9px;
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.46);
+    margin-bottom: 0;
+}
+
+.mip-hint i {
+    margin-right: 3px;
+}
+
+/* =================================================================
+   CATALOG SEPARATOR
+   ================================================================= */
+.vi-catalog-separator {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 32px;
+}
+
+.vi-catalog-separator::before,
+.vi-catalog-separator::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: #e5e7eb;
+}
+
+.vi-catalog-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sp-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.vi-catalog-label i {
+    color: var(--sp-blue);
+    font-size: 0.75rem;
+}
+
+/* =================================================================
+   PHASE 3 — BÀI NÓI CỦA TÔI (my-*)
+   ================================================================= */
+
+.my-videos-section {
+    margin-bottom: 40px;
+}
+
+/* Section header */
+.my-sec-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #f0f0f6;
+    flex-wrap: wrap;
+}
+
+.my-sec-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.my-sec-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--sp-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.my-sec-title i {
+    color: var(--sp-blue);
+}
+
+.my-locked-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.my-sec-count {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sp-muted);
+    background: #f3f4f6;
+    padding: 4px 12px;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+/* Empty state */
+.my-empty-state {
+    text-align: center;
+    padding: 52px 24px;
+    background: #fafafa;
+    border-radius: 16px;
+    border: 2px dashed #e5e7eb;
+    margin-bottom: 16px;
+}
+
+.my-empty-icon {
+    font-size: 2.6rem;
+    color: #d1d5db;
+    margin-bottom: 14px;
+}
+
+.my-empty-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--sp-text);
+    margin: 0 0 4px;
+}
+
+.my-empty-sub {
+    font-size: 0.87rem;
+    color: var(--sp-muted);
+    margin: 0;
+}
+
+/* Video grid */
+.my-videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+/* Video card */
+.my-video-card {
+    background: var(--sp-white);
+    border-radius: var(--sp-radius);
+    border: 1.5px solid var(--sp-border);
+    box-shadow: var(--sp-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.28s ease;
+}
+
+.my-video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sp-shadow-lift);
+}
+
+.my-video-card--locked {
+    opacity: 0.82;
+    filter: grayscale(20%);
+}
+
+/* Thumbnail */
+.my-vc-thumb {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #0e1628;
+    flex-shrink: 0;
+}
+
+.my-vc-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.42s ease;
+}
+
+.my-video-card:hover .my-vc-img {
+    transform: scale(1.05);
+}
+
+/* Lock overlay */
+.my-vc-lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.58);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.my-vc-lock-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 2px solid rgba(255, 255, 255, 0.32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.35rem;
+}
+
+/* Processing overlay */
+.my-vc-processing-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+/* Private badge — top-right corner */
+.my-vc-private-badge {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.64rem;
+    font-weight: 800;
+    color: #fff;
+    background: rgba(66, 85, 255, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* Card body */
+.my-vc-body {
+    padding: 14px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.my-vc-body--skeleton {
+    gap: 8px;
+}
+
+.my-vc-title {
+    font-size: 0.87rem;
+    font-weight: 700;
+    color: var(--sp-text);
+    line-height: 1.45;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.my-video-card:hover .my-vc-title {
+    color: var(--sp-blue);
+}
+
+/* Meta chips */
+.my-vc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.my-vc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.67rem;
+    font-weight: 700;
+}
+
+.my-badge-ready      { background: #ecfdf5; color: #065f46; }
+.my-badge-processing { background: #fef3c7; color: #92400e; }
+.my-badge-locked     { background: #f3f4f6; color: #6b7280; }
+.my-badge-failed     { background: #fef2f2; color: #991b1b; }
+
+.my-vc-duration,
+.my-vc-sentences,
+.my-vc-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.67rem;
+    font-weight: 600;
+    color: var(--sp-muted);
+}
+
+/* Action row */
+.my-vc-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.my-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.79rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.my-btn:active {
+    transform: scale(0.97);
+}
+
+/* Practice — blue CTA */
+.my-btn-practice {
+    background: var(--sp-blue);
+    color: #fff;
+    flex: 1;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.25);
+}
+
+.my-btn-practice:hover {
+    background: var(--sp-blue-dk);
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(66, 85, 255, 0.35);
+}
+
+/* Upgrade — amber CTA */
+.my-btn-upgrade {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    flex: 1;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+}
+
+.my-btn-upgrade:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.38);
+}
+
+/* Delete */
+.my-btn-delete {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1.5px solid #fecaca;
+    padding: 8px 12px;
+    flex-shrink: 0;
+}
+
+.my-btn-delete:hover {
+    background: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* State-only (non-interactive) */
+.my-btn-state {
+    background: #f3f4f6;
+    color: var(--sp-muted);
+    flex: 1;
+    justify-content: center;
+    cursor: default;
+}
+
+.my-btn-state--failed {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* =================================================================
+   SKELETON LOADING CARD
+   ================================================================= */
+.my-video-card--skeleton {
+    pointer-events: none;
+}
+
+.skeleton-thumb {
+    width: 100%;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+.skeleton-line,
+.skeleton-thumb {
+    background: linear-gradient(90deg, #e5e7eb 25%, #d1d5db 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+.skeleton-title  { height: 14px; width: 78%; margin-bottom: 6px; }
+.skeleton-meta   { height: 10px; width: 55%; margin-bottom: 6px; }
+.skeleton-action { height: 34px; width: 100%; }
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+/* =================================================================
+   PRACTICE PAGE — PRIVATE BADGE
+   ================================================================= */
+.spk-private-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(66, 85, 255, 0.09);
+    border: 1.5px solid rgba(66, 85, 255, 0.22);
+    color: var(--sp-blue);
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+}
+
+/* =================================================================
+   RESPONSIVE — IMPORT PANEL + MY VIDEOS
+   ================================================================= */
+@media (max-width: 768px) {
+    .mip-panel {
+        padding: 28px 24px;
+    }
+
+    .mip-inner {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .mip-right {
+        flex: 0 0 100%;
+    }
+
+    .mip-form-area {
+        flex-direction: column;
+    }
+
+    .mip-cta-btn {
+        width: 100%;
+        justify-content: center;
+        height: 48px;
+    }
+
+    .mip-input {
+        height: 48px;
+    }
+
+    .my-videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .my-videos-grid {
+        grid-template-columns: 1fr;
+    }
+}

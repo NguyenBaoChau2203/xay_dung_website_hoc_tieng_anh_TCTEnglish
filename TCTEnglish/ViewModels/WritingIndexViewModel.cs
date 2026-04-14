@@ -38,6 +38,7 @@ namespace TCTEnglish.ViewModels
         public string SelectedContentTypeTitle { get; set; } = string.Empty;
         public string SelectedTopic { get; set; } = "all";
         public string SelectedStatus { get; set; } = "all";
+        public bool ShowProgressMetadata { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int TotalCount { get; set; }
@@ -48,6 +49,10 @@ namespace TCTEnglish.ViewModels
         public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<int?> PageNumbers { get; set; } = new();
         public List<WritingExerciseCardViewModel> Exercises { get; set; } = new();
+        public List<WritingExerciseCardViewModel> MyExercises { get; set; } = new();
+        public bool IsMyExercisesLocked { get; set; }
+        public bool IsAuthenticatedUser { get; set; }
+        public bool CanCreateFromAi { get; set; }
     }
 
     public class WritingExerciseDataViewModel
@@ -57,8 +62,15 @@ namespace TCTEnglish.ViewModels
         public string SelectedContentTypeKey { get; set; } = string.Empty;
         public string SelectedContentTypeTitle { get; set; } = string.Empty;
         public string SelectedTopic { get; set; } = "all";
+        public string SelectedStatus { get; set; } = "all";
+        public bool ShowProgressMetadata { get; set; }
         public List<WritingFilterOptionViewModel> TopicOptions { get; set; } = new();
+        public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<WritingExerciseCardViewModel> Exercises { get; set; } = new();
+        public List<WritingExerciseCardViewModel> MyExercises { get; set; } = new();
+        public bool IsMyExercisesLocked { get; set; }
+        public bool IsAuthenticatedUser { get; set; }
+        public bool CanCreateFromAi { get; set; }
     }
 
     public class WritingFilterOptionViewModel
@@ -73,10 +85,17 @@ namespace TCTEnglish.ViewModels
         public string Title { get; set; } = string.Empty;
         public string PreviewText { get; set; } = string.Empty;
         public string Topic { get; set; } = string.Empty;
+        public int SentenceCount { get; set; }
+        public int AttemptCount { get; set; }
+        public int CompletedSentenceCount { get; set; }
         public string StatusKey { get; set; } = string.Empty;
         public string StatusLabel { get; set; } = string.Empty;
-        public int AttemptCount { get; set; }
-        public string LastAttemptText { get; set; } = string.Empty;
+        public string StartActionLabel { get; set; } = "Bắt đầu";
+        public string LastAttemptedAtDisplay { get; set; } = string.Empty;
+        public bool IsPrivate { get; set; }
+        public bool IsLocked { get; set; }
+        public bool CanDelete { get; set; }
+        public string CreatedAtDisplay { get; set; } = string.Empty;
     }
 
     public class WritingPracticeDataViewModel
@@ -90,7 +109,14 @@ namespace TCTEnglish.ViewModels
         public string ExercisePreviewText { get; set; } = string.Empty;
         public string ExerciseTopic { get; set; } = string.Empty;
         public int TotalSentenceCount { get; set; }
+        public int CompletedSentenceCount { get; set; }
+        public int AttemptCount { get; set; }
+        public int ResumeSentenceId { get; set; }
+        public string StatusKey { get; set; } = string.Empty;
+        public string StatusLabel { get; set; } = string.Empty;
+        public string LastAttemptedAtDisplay { get; set; } = string.Empty;
         public List<WritingPracticeSentenceViewModel> Sentences { get; set; } = new();
+        public List<WritingAttemptHistoryItemViewModel> RecentAttempts { get; set; } = new();
     }
 
     public class WritingPracticeViewModel
@@ -107,7 +133,14 @@ namespace TCTEnglish.ViewModels
         public string ExercisePreviewText { get; set; } = string.Empty;
         public string ExerciseTopic { get; set; } = string.Empty;
         public int TotalSentenceCount { get; set; }
+        public int CompletedSentenceCount { get; set; }
+        public int AttemptCount { get; set; }
+        public int ResumeSentenceId { get; set; }
+        public string StatusKey { get; set; } = string.Empty;
+        public string StatusLabel { get; set; } = string.Empty;
+        public string LastAttemptedAtDisplay { get; set; } = string.Empty;
         public List<WritingPracticeSentenceViewModel> Sentences { get; set; } = new();
+        public List<WritingAttemptHistoryItemViewModel> RecentAttempts { get; set; } = new();
     }
 
     public class WritingPracticeSentenceViewModel
@@ -117,30 +150,29 @@ namespace TCTEnglish.ViewModels
         public string VietnameseText { get; set; } = string.Empty;
         public string Placeholder { get; set; } = string.Empty;
         public bool BreakAfter { get; set; }
+        public int AttemptCount { get; set; }
+        public string LastSubmittedAnswer { get; set; } = string.Empty;
+        public string AcceptedAnswer { get; set; } = string.Empty;
+        public bool HasAccepted { get; set; }
+        public bool? LastEvaluationPassed { get; set; }
+        public WritingSentenceEvaluationSnapshotViewModel? LastEvaluation { get; set; }
         public bool IsCompleted { get; set; }
         public string AcceptedText { get; set; } = string.Empty;
     }
 
-    public class WritingLessonSegmentViewModel
+    public class WritingSentenceEvaluationSnapshotViewModel
     {
-        public string Text { get; set; } = string.Empty;
-        public string? HighlightKey { get; set; }
-    }
-
-    public class WritingPracticeStepViewModel
-    {
-        public int Number { get; set; }
-        public string PromptLabel { get; set; } = string.Empty;
-        public string PromptText { get; set; } = string.Empty;
-        public string Placeholder { get; set; } = string.Empty;
-        public string HintTitle { get; set; } = string.Empty;
-        public string HintText { get; set; } = string.Empty;
-        public string HighlightKey { get; set; } = string.Empty;
-        public string SuccessTitle { get; set; } = string.Empty;
-        public string SuccessMessage { get; set; } = string.Empty;
-        public string ErrorTitle { get; set; } = string.Empty;
-        public string ErrorMessage { get; set; } = string.Empty;
-        public List<string> AcceptedAnswers { get; set; } = new();
+        public bool Passed { get; set; }
+        public bool UsedAi { get; set; }
+        public string EvaluationSource { get; set; } = string.Empty;
+        public string SummaryTitle { get; set; } = string.Empty;
+        public string SummaryText { get; set; } = string.Empty;
+        public string ReviewText { get; set; } = string.Empty;
+        public string MeaningFeedback { get; set; } = string.Empty;
+        public string GrammarFeedback { get; set; } = string.Empty;
+        public string NaturalnessFeedback { get; set; } = string.Empty;
+        public string WordChoiceFeedback { get; set; } = string.Empty;
+        public string SuggestedRewrite { get; set; } = string.Empty;
     }
 
     public class WritingSentenceHintViewModel
@@ -176,5 +208,21 @@ namespace TCTEnglish.ViewModels
         public string NaturalnessFeedback { get; set; } = string.Empty;
         public string WordChoiceFeedback { get; set; } = string.Empty;
         public string SuggestedRewrite { get; set; } = string.Empty;
+        public int SentenceAttemptCount { get; set; }
+        public int ExerciseAttemptCount { get; set; }
+        public int CompletedSentenceCount { get; set; }
+        public string ExerciseStatusKey { get; set; } = string.Empty;
+        public string ExerciseStatusLabel { get; set; } = string.Empty;
+    }
+
+    public class WritingAttemptHistoryItemViewModel
+    {
+        public int SentenceId { get; set; }
+        public int SentenceNumber { get; set; }
+        public bool Passed { get; set; }
+        public string StatusLabel { get; set; } = string.Empty;
+        public string SubmittedAnswerPreview { get; set; } = string.Empty;
+        public string EvaluationSource { get; set; } = string.Empty;
+        public string TimestampDisplay { get; set; } = string.Empty;
     }
 }

@@ -166,6 +166,44 @@ namespace TCTVocabulary.Migrations
                     b.ToTable("AiRequestLogs", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.WritingGenerationLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ErrorCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RequestType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("RequestedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "RequestedAtUtc")
+                        .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestedAtUtc");
+
+                    b.HasIndex("UserId", "RequestType", "RequestedAtUtc")
+                        .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestType_RequestedAtUtc");
+
+                    b.ToTable("WritingGenerationLogs", (string)null);
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
                 {
                     b.Property<int>("Id")
@@ -1003,11 +1041,14 @@ namespace TCTVocabulary.Migrations
 
                     b.Property<string>("VietnameseMeaning")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VideoId");
+                    b.HasIndex("VideoId", "StartTime")
+                        .HasDatabaseName("IX_SpeakingSentences_VideoId_StartTime");
 
                     b.ToTable("SpeakingSentences");
                 });
@@ -1020,17 +1061,42 @@ namespace TCTVocabulary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
                     b.Property<string>("Duration")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Level")
+                    b.Property<string>("ImportStatus")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("ready");
+
+                    b.Property<string>("Level")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("PlaylistId")
+                    b.Property<int?>("OwnerUserId")
                         .HasColumnType("int");
+
+                    b.Property<int?>("PlaylistId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SourceType")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("admin");
+
+                    b.Property<string>("SourceUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ThumbnailUrl")
                         .HasMaxLength(500)
@@ -1042,9 +1108,12 @@ namespace TCTVocabulary.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Topic")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TranscriptSource")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("YoutubeId")
                         .IsRequired()
@@ -1054,6 +1123,14 @@ namespace TCTVocabulary.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PlaylistId");
+
+                    b.HasIndex("OwnerUserId", "CreatedAt")
+                        .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_CreatedAt");
+
+                    b.HasIndex("OwnerUserId", "YoutubeId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_YoutubeId")
+                        .HasFilter("[OwnerUserId] IS NOT NULL");
 
                     b.ToTable("SpeakingVideos");
                 });
@@ -1406,6 +1483,91 @@ namespace TCTVocabulary.Migrations
                     b.ToTable("UserSpeakingProgresses");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingAttempt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSUTCDATETIME()");
+
+                    b.Property<string>("EvaluationSource")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("GrammarFeedback")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MeaningFeedback")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("NaturalnessFeedback")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("Passed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ReviewText")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("SubmittedAnswer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SuggestedRewrite")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("SummaryText")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("SummaryTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("UsedAi")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<string>("WordChoiceFeedback")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("WritingExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WritingExerciseSentenceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WritingExerciseId");
+
+                    b.HasIndex("WritingExerciseSentenceId");
+
+                    b.HasIndex("UserId", "WritingExerciseId", "CreatedAtUtc")
+                        .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseId_CreatedAtUtc");
+
+                    b.HasIndex("UserId", "WritingExerciseSentenceId", "CreatedAtUtc")
+                        .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseSentenceId_CreatedAtUtc");
+
+                    b.ToTable("UserWritingAttempts", (string)null);
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
                 {
                     b.Property<int>("Id")
@@ -1585,6 +1747,13 @@ namespace TCTVocabulary.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("SourceType")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("admin");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -1595,10 +1764,17 @@ namespace TCTVocabulary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IsPublished", "Level", "ContentType", "Topic")
-                        .HasDatabaseName("IX_WritingExercises_Published_Level_ContentType_Topic");
+                    b.HasIndex("UserId", "IsPublished", "CreatedAt")
+                        .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_CreatedAt");
+
+                    b.HasIndex("UserId", "IsPublished", "Level", "ContentType", "Topic")
+                        .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_Level_ContentType_Topic");
 
                     b.ToTable("WritingExercises");
                 });
@@ -1699,6 +1875,18 @@ namespace TCTVocabulary.Migrations
                         .HasConstraintName("FK_AiRequestLogs_Users");
 
                     b.Navigation("Conversation");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.WritingGenerationLog", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("WritingGenerationLogs")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_WritingGenerationLogs_Users");
 
                     b.Navigation("User");
                 });
@@ -1918,12 +2106,19 @@ namespace TCTVocabulary.Migrations
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
                 {
+                    b.HasOne("TCTVocabulary.Models.User", "OwnerUser")
+                        .WithMany("OwnedSpeakingVideos")
+                        .HasForeignKey("OwnerUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasConstraintName("FK_SpeakingVideos_Users_OwnerUserId");
+
                     b.HasOne("TCTVocabulary.Models.SpeakingPlaylist", "SpeakingPlaylist")
                         .WithMany("SpeakingVideos")
                         .HasForeignKey("PlaylistId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("FK_SpeakingVideos_SpeakingPlaylists");
+
+                    b.Navigation("OwnerUser");
 
                     b.Navigation("SpeakingPlaylist");
                 });
@@ -2032,6 +2227,36 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("SpeakingSentence");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.UserWritingAttempt", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserWritingAttempts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingAttempts_Users");
+
+                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                        .WithMany("UserWritingAttempts")
+                        .HasForeignKey("WritingExerciseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingAttempts_WritingExercises");
+
+                    b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "WritingExerciseSentence")
+                        .WithMany("UserWritingAttempts")
+                        .HasForeignKey("WritingExerciseSentenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserWritingAttempts_WritingExerciseSentences");
+
+                    b.Navigation("User");
+
+                    b.Navigation("WritingExercise");
+
+                    b.Navigation("WritingExerciseSentence");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
@@ -2212,6 +2437,8 @@ namespace TCTVocabulary.Migrations
 
                     b.Navigation("LearningProgresses");
 
+                    b.Navigation("OwnedSpeakingVideos");
+
                     b.Navigation("SavedFolders");
 
                     b.Navigation("Sets");
@@ -2228,13 +2455,21 @@ namespace TCTVocabulary.Migrations
 
                     b.Navigation("UserSpeakingVideoCompletions");
 
+                    b.Navigation("UserWritingAttempts");
+
                     b.Navigation("UserWritingExerciseProgresses");
 
                     b.Navigation("UserWritingSentenceProgresses");
+
+                    b.Navigation("WritingExercises");
+
+                    b.Navigation("WritingGenerationLogs");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
                 {
+                    b.Navigation("UserWritingAttempts");
+
                     b.Navigation("UserWritingExerciseProgresses");
 
                     b.Navigation("UserWritingSentenceProgresses");
@@ -2244,6 +2479,8 @@ namespace TCTVocabulary.Migrations
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
                 {
+                    b.Navigation("UserWritingAttempts");
+
                     b.Navigation("UserWritingSentenceProgresses");
                 });
 #pragma warning restore 612, 618

@@ -15,11 +15,21 @@ namespace TCTVocabulary.Controllers
     public class StudyController : BaseController
     {
         private readonly IStudyService _studyService;
+        private readonly IWritingService _writingService;
+        private readonly IWritingRequestRateLimiter _writingRequestRateLimiter;
         private readonly IListeningService _listeningService;
         private readonly DbflashcardContext _context;
-        public StudyController(IStudyService studyService, IListeningService listeningService, DbflashcardContext context)
+
+        public StudyController(
+            IStudyService studyService,
+            IWritingService writingService,
+            IWritingRequestRateLimiter writingRequestRateLimiter,
+            IListeningService listeningService,
+            DbflashcardContext context)
         {
             _studyService = studyService;
+            _writingService = writingService;
+            _writingRequestRateLimiter = writingRequestRateLimiter;
             _listeningService = listeningService;
             _context = context;
         }
@@ -163,7 +173,7 @@ namespace TCTVocabulary.Controllers
         [HttpGet("Writing")]
         public async Task<IActionResult> Writing(string? level = null)
         {
-            var viewModel = await _studyService.GetWritingIndexViewModelAsync(level);
+            var viewModel = await _writingService.GetWritingIndexViewModelAsync(level);
             return View(viewModel);
         }
 
@@ -176,12 +186,10 @@ namespace TCTVocabulary.Controllers
             string? status = null,
             int page = 1)
         {
-            if (!TryGetCurrentUserId(out var userId))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page, userId);
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status);
             return View(viewModel);
         }
 
@@ -190,15 +198,102 @@ namespace TCTVocabulary.Controllers
         public async Task<IActionResult> WritingExercisesData(
             string? level = null,
             string? contentType = null,
-            string? topic = null)
+            string? topic = null,
+            string? status = null)
         {
-            if (!TryGetCurrentUserId(out var userId))
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var data = await _writingService.GetWritingExerciseDataAsync(level, contentType, topic, userId, status);
+            return Json(data);
+        }
+
+        [Authorize]
+        [HttpPost("Writing/Exercises/CreateFromAi")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateWritingExerciseFromAi(
+            [FromBody] WritingCreateFromAiRequestViewModel? request,
+            CancellationToken cancellationToken)
+        {
+            if (request == null)
             {
-                return Unauthorized();
+                return BadRequest(new { error = "Thieu du lieu tao bai viet.", errorCode = "request_required" });
             }
 
-            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic, userId);
-            return Json(data);
+            var result = await _writingService.CreateFromAiAsync(request, GetCurrentUserId(), cancellationToken);
+            if (result.Outcome == WritingCreateFromAiOutcome.Success)
+            {
+                return Json(new
+                {
+                    success = true,
+                    data = new
+                    {
+                        exerciseId = result.ExerciseId,
+                        sentenceCount = result.SentenceCount,
+                        level = result.Level,
+                        contentType = result.ContentType,
+                        isReplay = result.IsReplay
+                    }
+                });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.QuotaExceeded)
+            {
+                if (result.RetryAfterSeconds > 0)
+                {
+                    Response.Headers["Retry-After"] = result.RetryAfterSeconds.ToString();
+                }
+
+                return StatusCode(429, new { error = result.ErrorMessage, errorCode = result.ErrorCode, retryAfterSeconds = result.RetryAfterSeconds });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Forbidden)
+            {
+                return StatusCode(403, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Invalid)
+            {
+                return BadRequest(new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            return StatusCode(503, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+        }
+
+        [Authorize]
+        [HttpPost("Writing/Exercises/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteOwnedWritingExercise(
+            int exerciseId,
+            string? level = null,
+            string? contentType = null,
+            string? topic = null,
+            string? status = null,
+            int page = 1)
+        {
+            var result = await _writingService.DeleteOwnedExerciseAsync(exerciseId, GetCurrentUserId());
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status == OperationStatus.Invalid)
+            {
+                TempData["ErrorMessage"] = result.ErrorMessage ?? "Khong the xoa bai viet luc nay.";
+            }
+            else
+            {
+                TempData["SuccessMessage"] = "Da xoa bai viet cua ban.";
+            }
+
+            return RedirectToAction(nameof(WritingExercises), new
+            {
+                level,
+                contentType,
+                topic,
+                status,
+                page
+            });
         }
 
         [Authorize]
@@ -216,18 +311,19 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var viewModel = await _studyService.GetWritingPracticeViewModelAsync(
+            var viewModel = await _writingService.GetWritingPracticeViewModelAsync(
                 level,
                 contentType,
                 topic,
-                status,
                 page,
                 exerciseId,
-                userId);
+                userId,
+                status);
 
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Data")]
         public async Task<IActionResult> WritingPracticeData(int exerciseId)
         {
@@ -241,10 +337,11 @@ namespace TCTVocabulary.Controllers
                 return Unauthorized();
             }
 
-            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId, userId);
+            var data = await _writingService.GetWritingPracticeDataAsync(exerciseId, userId);
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Hint")]
         public async Task<IActionResult> WritingHint(int exerciseId, int sentenceId)
         {
@@ -253,7 +350,18 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
+            var userId = GetCurrentUserId();
+            if (!_writingRequestRateLimiter.TryConsumeHint(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang yeu cau goi y qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var data = await _writingService.GetWritingSentenceHintAsync(exerciseId, sentenceId, userId);
             return data == null ? NotFound() : Json(data);
         }
 
@@ -282,7 +390,17 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
             }
 
-            var evaluation = await _studyService.EvaluateWritingSentenceAsync(
+            if (!_writingRequestRateLimiter.TryConsumeEvaluation(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang gui bai qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var evaluation = await _writingService.EvaluateWritingSentenceAsync(
                 request.ExerciseId,
                 request.SentenceId,
                 request.UserAnswer,
@@ -335,6 +453,16 @@ namespace TCTVocabulary.Controllers
             }
 
             return View(viewName, viewModel);
+        }
+
+        private IActionResult BuildWritingRateLimitResult(string errorMessage, int retryAfterSeconds)
+        {
+            Response.Headers["Retry-After"] = retryAfterSeconds.ToString();
+            return StatusCode(429, new
+            {
+                error = errorMessage,
+                retryAfterSeconds
+            });
         }
     }
 

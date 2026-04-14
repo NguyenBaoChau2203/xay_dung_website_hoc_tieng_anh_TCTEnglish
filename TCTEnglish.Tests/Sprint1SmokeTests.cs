@@ -1,8 +1,11 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -82,11 +85,8 @@ public sealed class Sprint1SmokeTests
     [Theory]
     [InlineData("/Home/Writing")]
     [InlineData("/Home/Writing/Exercises?level=beginner&contentType=emails")]
-    [InlineData("/Home/Writing/Practice?level=beginner&contentType=emails&exerciseId=1")]
     [InlineData("/Home/Writing/Exercises/Data?level=beginner&contentType=emails")]
-    [InlineData("/Home/Writing/Practice/Data?exerciseId=1")]
-    [InlineData("/Home/Writing/Practice/Hint?exerciseId=1&sentenceId=1")]
-    public async Task WritingRoutes_ReturnOkForAnonymousUsers(string route)
+    public async Task WritingBrowseRoutes_ReturnOkForAnonymousUsers(string route)
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
@@ -99,11 +99,43 @@ public sealed class Sprint1SmokeTests
     }
 
     [Fact]
-    public async Task WritingPractice_RendersServerBackedLessonContent()
+    public async Task WritingExercises_ListPage_HidesFakeProgressMetadataAndReferenceAnswers()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
         using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        var response = await client.GetAsync("/Home/Writing/Exercises?level=beginner&contentType=emails");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.DoesNotContain("writing-attempt-badge", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("writing-status-badge", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("name=\"status\"", body, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("englishMeaning", body, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Theory]
+    [InlineData("/Home/Writing/Practice?level=beginner&contentType=emails&exerciseId=1")]
+    [InlineData("/Home/Writing/Practice/Data?exerciseId=1")]
+    [InlineData("/Home/Writing/Practice/Hint?exerciseId=1&sentenceId=1")]
+    public async Task WritingPracticeRoutes_RejectAnonymousUsers(string route)
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        var response = await client.GetAsync(route);
+
+        Assert.Contains(response.StatusCode, new[] { HttpStatusCode.Redirect, HttpStatusCode.Unauthorized });
+    }
+
+    [Fact]
+    public async Task WritingPractice_RendersServerBackedLessonContent()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         var response = await client.GetAsync("/Home/Writing/Practice?level=beginner&contentType=emails&exerciseId=1");
         var body = await response.Content.ReadAsStringAsync();
@@ -115,8 +147,8 @@ public sealed class Sprint1SmokeTests
         Assert.Contains("__RequestVerificationToken", body, StringComparison.Ordinal);
         Assert.DoesNotContain("credits", body, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("points", body, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("TrÃ¢n trá»ng", body, StringComparison.Ordinal);
-        Assert.DoesNotContain("ChÃºc may máº¯n", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("Tran trong", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("Chuc may man", body, StringComparison.Ordinal);
         Assert.DoesNotContain("Toi dang hoc lap trinh de xay dung mot trang web.", body, StringComparison.Ordinal);
         Assert.DoesNotContain("\"englishMeaning\"", body, StringComparison.OrdinalIgnoreCase);
     }
@@ -126,58 +158,89 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var anonymousClient = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var authenticatedClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
-        var exercisesBody = await client.GetStringAsync("/Home/Writing/Exercises/Data?level=beginner&contentType=emails&topic=Personal%20Check-In");
-        var practiceBody = await client.GetStringAsync("/Home/Writing/Practice/Data?exerciseId=1");
-        var hintBody = await client.GetStringAsync("/Home/Writing/Practice/Hint?exerciseId=1&sentenceId=1");
+        var exercisesBody = await anonymousClient.GetStringAsync("/Home/Writing/Exercises/Data?level=beginner&contentType=emails&topic=Personal%20Check-In");
+        var practiceBody = await authenticatedClient.GetStringAsync("/Home/Writing/Practice/Data?exerciseId=1");
+        var hintBody = await authenticatedClient.GetStringAsync("/Home/Writing/Practice/Hint?exerciseId=1&sentenceId=1");
 
         using var exercisesJson = JsonDocument.Parse(exercisesBody);
         using var practiceJson = JsonDocument.Parse(practiceBody);
         using var hintJson = JsonDocument.Parse(hintBody);
+        var firstExercise = exercisesJson.RootElement.GetProperty("exercises")[0];
 
         Assert.Equal("emails", exercisesJson.RootElement.GetProperty("selectedContentTypeKey").GetString());
         Assert.Equal("Personal Check-In", exercisesJson.RootElement.GetProperty("selectedTopic").GetString());
+        Assert.Equal("all", exercisesJson.RootElement.GetProperty("selectedStatus").GetString());
+        Assert.False(exercisesJson.RootElement.GetProperty("showProgressMetadata").GetBoolean());
         Assert.True(exercisesJson.RootElement.GetProperty("exercises").GetArrayLength() > 0);
+        Assert.True(firstExercise.TryGetProperty("sentenceCount", out var sentenceCount));
+        Assert.True(sentenceCount.GetInt32() > 0);
+        Assert.Equal(string.Empty, firstExercise.GetProperty("statusKey").GetString());
+        Assert.Equal(string.Empty, firstExercise.GetProperty("statusLabel").GetString());
+        Assert.Equal(0, firstExercise.GetProperty("attemptCount").GetInt32());
+        Assert.Equal(0, firstExercise.GetProperty("completedSentenceCount").GetInt32());
+        Assert.False(firstExercise.TryGetProperty("englishMeaning", out _));
 
         Assert.Equal(1, practiceJson.RootElement.GetProperty("exerciseId").GetInt32());
         Assert.Equal("Just Checking In!", practiceJson.RootElement.GetProperty("exerciseTitle").GetString());
         Assert.Equal(14, practiceJson.RootElement.GetProperty("totalSentenceCount").GetInt32());
+        Assert.Equal(0, practiceJson.RootElement.GetProperty("completedSentenceCount").GetInt32());
+        Assert.Equal(0, practiceJson.RootElement.GetProperty("attemptCount").GetInt32());
+        Assert.Equal(1, practiceJson.RootElement.GetProperty("resumeSentenceId").GetInt32());
+        Assert.Equal("not-started", practiceJson.RootElement.GetProperty("statusKey").GetString());
         Assert.True(practiceJson.RootElement.GetProperty("sentences").GetArrayLength() > 0);
         Assert.False(practiceJson.RootElement.GetProperty("sentences")[0].TryGetProperty("englishMeaning", out _));
+        Assert.False(practiceJson.RootElement.GetProperty("sentences")[0].GetProperty("hasAccepted").GetBoolean());
 
         foreach (var sentence in practiceJson.RootElement.GetProperty("sentences").EnumerateArray())
         {
             var vietnameseText = sentence.GetProperty("vietnameseText").GetString() ?? string.Empty;
-            Assert.DoesNotContain("TrÃ¢n trá»ng", vietnameseText, StringComparison.Ordinal);
-            Assert.DoesNotContain("ChÃºc may máº¯n", vietnameseText, StringComparison.Ordinal);
+            Assert.DoesNotContain("Tran trong", vietnameseText, StringComparison.Ordinal);
+            Assert.DoesNotContain("Chuc may man", vietnameseText, StringComparison.Ordinal);
         }
 
         Assert.Equal(1, hintJson.RootElement.GetProperty("sentenceId").GetInt32());
         Assert.Equal(1, hintJson.RootElement.GetProperty("sentenceNumber").GetInt32());
         Assert.True(hintJson.RootElement.TryGetProperty("hintText", out var hintText));
         Assert.False(string.IsNullOrWhiteSpace(hintText.GetString()));
-        Assert.NotEqual("Hello!", hintText.GetString());
 
-        int? closingSentenceId = null;
+        // Phase 1: all hint titles use the stable format "Bản dịch tham khảo – Câu N"
+        var firstHintTitle = hintJson.RootElement.GetProperty("hintTitle").GetString() ?? string.Empty;
+        Assert.StartsWith("Bản dịch tham khảo", firstHintTitle, StringComparison.Ordinal);
+
+        // Verify that every sentence returns the stable title format and a non-empty hint text
         foreach (var sentence in practiceJson.RootElement.GetProperty("sentences").EnumerateArray())
         {
-            var vietnameseText = sentence.GetProperty("vietnameseText").GetString() ?? string.Empty;
-            if (vietnameseText.Contains("Trân trọng", StringComparison.OrdinalIgnoreCase)
-                || vietnameseText.Contains("Chúc may mắn", StringComparison.OrdinalIgnoreCase)
-                || vietnameseText.Contains("TrÃ¢n trá»ng", StringComparison.OrdinalIgnoreCase)
-                || vietnameseText.Contains("ChÃºc may máº¯n", StringComparison.OrdinalIgnoreCase))
-            {
-                closingSentenceId = sentence.GetProperty("id").GetInt32();
-                break;
-            }
+            var sentenceId = sentence.GetProperty("id").GetInt32();
+            var candidateHintBody = await authenticatedClient.GetStringAsync($"/Home/Writing/Practice/Hint?exerciseId=1&sentenceId={sentenceId}");
+            using var candidateHintJson = JsonDocument.Parse(candidateHintBody);
+            var candidateTitle = candidateHintJson.RootElement.GetProperty("hintTitle").GetString() ?? string.Empty;
+            var candidateText  = candidateHintJson.RootElement.GetProperty("hintText").GetString() ?? string.Empty;
+            Assert.StartsWith("Bản dịch tham khảo", candidateTitle, StringComparison.Ordinal);
+            Assert.False(string.IsNullOrWhiteSpace(candidateText));
         }
+    }
 
-        Assert.True(closingSentenceId.HasValue, "Expected a seeded writing sentence with a closing phrase.");
+    [Fact]
+    public async Task WritingEvaluate_RejectsAnonymousUsers()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
 
-        var closingHintBody = await client.GetStringAsync($"/Home/Writing/Practice/Hint?exerciseId=1&sentenceId={closingSentenceId.Value}");
-        using var closingHintJson = JsonDocument.Parse(closingHintBody);
-        Assert.Equal("Gợi ý lời kết", closingHintJson.RootElement.GetProperty("hintTitle").GetString());
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/Writing/Practice/Evaluate")
+        {
+            Content = new StringContent(
+                """{"exerciseId":1,"sentenceId":1,"userAnswer":"Hello!"}""",
+                Encoding.UTF8,
+                "application/json")
+        };
+
+        var response = await client.SendAsync(request);
+
+        Assert.Contains(response.StatusCode, new[] { HttpStatusCode.Redirect, HttpStatusCode.Unauthorized });
     }
 
     [Fact]
@@ -185,7 +248,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/Writing/Practice/Evaluate")
         {
@@ -205,7 +268,7 @@ public sealed class Sprint1SmokeTests
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(
             client,
@@ -235,6 +298,65 @@ public sealed class Sprint1SmokeTests
         Assert.Equal("rule-based", data.GetProperty("evaluationSource").GetString());
         Assert.False(data.TryGetProperty("englishMeaning", out _));
         Assert.False(string.IsNullOrWhiteSpace(data.GetProperty("summaryTitle").GetString()));
+    }
+
+    [Fact]
+    public async Task WritingHint_ReturnsTooManyRequestsWhenRateLimited()
+    {
+        await using var factory = new TestWebApplicationFactory(services =>
+        {
+            services.RemoveAll<IWritingRequestRateLimiter>();
+            services.AddSingleton<IWritingRequestRateLimiter>(new FixedWritingRequestRateLimiter(
+                allowHint: false,
+                allowEvaluation: true,
+                retryAfterSeconds: 7));
+        });
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using var response = await client.GetAsync("/Home/Writing/Practice/Hint?exerciseId=1&sentenceId=1");
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.TooManyRequests, response.StatusCode);
+        Assert.True(response.Headers.TryGetValues("Retry-After", out var values));
+        Assert.Contains("7", values);
+        Assert.Contains("\"retryAfterSeconds\":7", body, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task WritingEvaluate_ReturnsTooManyRequestsWhenRateLimited()
+    {
+        await using var factory = new TestWebApplicationFactory(services =>
+        {
+            services.RemoveAll<IWritingRequestRateLimiter>();
+            services.AddSingleton<IWritingRequestRateLimiter>(new FixedWritingRequestRateLimiter(
+                allowHint: true,
+                allowEvaluation: false,
+                retryAfterSeconds: 9));
+        });
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(
+            client,
+            "/Home/Writing/Practice?level=beginner&contentType=emails&exerciseId=1");
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/Writing/Practice/Evaluate")
+        {
+            Content = new StringContent(
+                """{"exerciseId":1,"sentenceId":1,"userAnswer":"Hello!"}""",
+                Encoding.UTF8,
+                "application/json")
+        };
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+        using var response = await client.SendAsync(request);
+        var body = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.TooManyRequests, response.StatusCode);
+        Assert.True(response.Headers.TryGetValues("Retry-After", out var values));
+        Assert.Contains("9", values);
+        Assert.Contains("\"retryAfterSeconds\":9", body, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -411,5 +533,31 @@ public sealed class Sprint1SmokeTests
         var response = await client.SendAsync(request);
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    private sealed class FixedWritingRequestRateLimiter : IWritingRequestRateLimiter
+    {
+        private readonly bool _allowHint;
+        private readonly bool _allowEvaluation;
+        private readonly int _retryAfterSeconds;
+
+        public FixedWritingRequestRateLimiter(bool allowHint, bool allowEvaluation, int retryAfterSeconds)
+        {
+            _allowHint = allowHint;
+            _allowEvaluation = allowEvaluation;
+            _retryAfterSeconds = retryAfterSeconds;
+        }
+
+        public bool TryConsumeHint(int userId, string? ipAddress, out int retryAfterSeconds)
+        {
+            retryAfterSeconds = _allowHint ? 0 : _retryAfterSeconds;
+            return _allowHint;
+        }
+
+        public bool TryConsumeEvaluation(int userId, string? ipAddress, out int retryAfterSeconds)
+        {
+            retryAfterSeconds = _allowEvaluation ? 0 : _retryAfterSeconds;
+            return _allowEvaluation;
+        }
     }
 }

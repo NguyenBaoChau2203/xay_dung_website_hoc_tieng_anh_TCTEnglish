@@ -6,15 +6,19 @@ namespace TCTVocabulary.Models;
 public class WritingExercise
 {
     public int Id { get; set; }
+    public int? UserId { get; set; }
     public string Title { get; set; } = null!;
     public string Level { get; set; } = null!;
     public string ContentType { get; set; } = null!;
     public string Topic { get; set; } = null!;
+    public string SourceType { get; set; } = null!;
     public string PreviewText { get; set; } = null!;
     public bool IsPublished { get; set; }
     public DateTime CreatedAt { get; set; }
 
+    public User? User { get; set; }
     public ICollection<WritingExerciseSentence> WritingExerciseSentences { get; set; } = new List<WritingExerciseSentence>();
+    public ICollection<UserWritingAttempt> UserWritingAttempts { get; set; } = new List<UserWritingAttempt>();
     public ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
     public ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
 }

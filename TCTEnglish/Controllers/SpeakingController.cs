@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using TCTVocabulary.Services;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
@@ -18,141 +18,94 @@ namespace TCTVocabulary.Controllers
         private const double SpeakingVideoCompletionRatio = 0.7d;
 
         private readonly DbflashcardContext _context;
+        private readonly ISpeakingService _speakingService;
         private readonly IGoalsService _goalsService;
         private readonly ILogger<SpeakingController> _logger;
 
         public SpeakingController(
             DbflashcardContext context,
+            IYoutubeTranscriptService transcriptService,
+            ILogger<SpeakingService> speakingServiceLogger,
             IGoalsService goalsService,
             ILogger<SpeakingController> logger)
         {
             _context = context;
+            _speakingService = new SpeakingService(context, transcriptService, speakingServiceLogger);
             _goalsService = goalsService;
             _logger = logger;
         }
 
+        [HttpGet("/Speaking")]
         public async Task<IActionResult> Index()
         {
-            // 1. Fetch all videos (Projected for optimization)
-            var allVideos = await _context.SpeakingVideos
-                .AsNoTracking()
-                .Select(v => new SpeakingVideoViewModel
-                {
-                    Id = v.Id,
-                    Title = v.Title,
-                    YoutubeId = v.YoutubeId,
-                    Level = v.Level,
-                    Topic = v.Topic,
-                    Duration = v.Duration,
-                    ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
-                    SentenceCount = v.SpeakingSentences.Count
-                })
-                .ToListAsync();
-
-            // 2. Extract distinct topics directly from the database for optimization
-            var topics = await _context.SpeakingVideos
-                .Where(v => !string.IsNullOrEmpty(v.Topic))
-                .Select(v => v.Topic)
-                .Distinct()
-                .OrderBy(t => t)
-                .ToListAsync();
-
-            // 3. Group videos by Level (A1, A2, B1, B2, C1, C2) with consistent ordering
-            var levelOrder = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
-            var videosByLevel = new Dictionary<string, List<SpeakingVideoViewModel>>();
-
-            foreach (var level in levelOrder)
-            {
-                var videosInLevel = allVideos
-                    .Where(v => v.Level == level)
-                    .ToList();
-
-                if (videosInLevel.Any())
-                {
-                    videosByLevel[level] = videosInLevel;
-                }
-            }
-
-            // 4. Also keep the existing Playlists data for backward compatibility
-            var playlists = await _context.SpeakingPlaylists
-                .AsNoTracking()
-                .Select(p => new SpeakingPlaylistViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    ThumbnailUrl = p.ThumbnailUrl,
-                    Videos = p.SpeakingVideos.Select(v => new SpeakingVideoViewModel
-                    {
-                        Id = v.Id,
-                        Title = v.Title,
-                        YoutubeId = v.YoutubeId,
-                        Level = v.Level,
-                        Topic = v.Topic,
-                        Duration = v.Duration,
-                        ThumbnailUrl = v.ThumbnailUrl ?? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg",
-                        SentenceCount = v.SpeakingSentences.Count
-                    }).ToList()
-                })
-                .ToListAsync();
-
-            var viewModel = new SpeakingIndexViewModel
-            {
-                Playlists = playlists,
-
-                // Assign the new properties
-                Topics = topics,
-                VideosByLevel = videosByLevel
-            };
+            var currentUserId = TryGetCurrentUserId(out var userId) ? userId : (int?)null;
+            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId);
 
             return View(viewModel);
         }
 
+        [HttpGet("/Speaking/Practice/{id:int}")]
         public async Task<IActionResult> Practice(int id)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
                 return RedirectToAction("Login", "Account");
 
-            var video = await _context.SpeakingVideos
-                .AsNoTracking()
-                .Include(v => v.SpeakingSentences)
-                    .ThenInclude(s => s.UserSpeakingProgresses.Where(p => p.UserId == currentUserId)) // SECURE: Enforced UserId filter
-                .FirstOrDefaultAsync(v => v.Id == id);
-
-            if (video == null)
-            {
+            var viewModel = await _speakingService.GetSpeakingPracticeViewModelAsync(id, currentUserId);
+            if (viewModel == null)
                 return NotFound();
-            }
-
-            var viewModel = new SpeakingPracticeViewModel
-            {
-                VideoId = video.Id,
-                Title = video.Title,
-                YoutubeId = video.YoutubeId,
-                Sentences = video.SpeakingSentences
-                    .OrderBy(s => s.StartTime)
-                    .Select(s => 
-                    {
-                        var latestProgress = s.UserSpeakingProgresses
-                            .OrderByDescending(p => p.PracticedAt)
-                            .FirstOrDefault();
-
-                        return new SpeakingSentenceViewModel
-                        {
-                            Id = s.Id,
-                            StartTime = s.StartTime,
-                            EndTime = s.EndTime,
-                            Text = s.Text,
-                            VietnameseMeaning = s.VietnameseMeaning,
-                            TotalScore = latestProgress?.TotalScore,
-                            AccuracyScore = latestProgress?.AccuracyScore,
-                            FluencyScore = latestProgress?.FluencyScore,
-                            CompletenessScore = latestProgress?.CompletenessScore
-                        };
-                    }).ToList()
-            };
 
             return View(viewModel);
+        }
+
+        [HttpPost("/Speaking/My/Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMyVideo([FromForm] string youtubeUrl, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            var result = await _speakingService.CreateOwnedVideoAsync(userId, youtubeUrl, ct);
+
+            if (result.RequiresUpgrade)
+            {
+                return BadRequest(new
+                {
+                    error = result.ErrorMessage,
+                    code = "premium_required"
+                });
+            }
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { error = result.ErrorMessage });
+            }
+
+            return Ok(new
+            {
+                success = true,
+                videoId = result.VideoId
+            });
+        }
+
+        [HttpPost("/Speaking/My/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMyVideo([FromForm] int id)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            var result = await _speakingService.DeleteOwnedVideoAsync(userId, id);
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(new { success = true }),
+                OperationStatus.NotFound => NotFound(),
+                _ => BadRequest(new
+                {
+                    error = result.ErrorMessage,
+                    code = "premium_required"
+                })
+            };
         }
 
         // ────────────────────────────────────────────────────────────
@@ -174,15 +127,35 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Điểm số phải từ 0 đến 100." });
             }
 
-            // 3. Kiểm tra câu tồn tại và lấy VideoId
-            var sentence = await _context.SpeakingSentences
+            // 3. Kiểm tra câu tồn tại, quyền truy cập video cha, và VideoId
+            var sentenceAccess = await _context.SpeakingSentences
                 .AsNoTracking()
                 .Where(s => s.Id == sentenceId)
-                .Select(s => new { s.Id, s.VideoId })
+                .Select(s => new
+                {
+                    s.Id,
+                    s.VideoId,
+                    OwnerUserId = s.SpeakingVideo.OwnerUserId
+                })
                 .FirstOrDefaultAsync();
 
-            if (sentence == null)
+            if (sentenceAccess == null)
                 return NotFound(new { error = "Câu không tồn tại." });
+
+            if (sentenceAccess.OwnerUserId.HasValue && sentenceAccess.OwnerUserId.Value != userId)
+                return NotFound();
+
+            if (sentenceAccess.OwnerUserId == userId)
+            {
+                var role = await _context.Users
+                    .AsNoTracking()
+                    .Where(user => user.UserId == userId)
+                    .Select(user => user.Role)
+                    .FirstOrDefaultAsync();
+
+                if (Roles.Normalize(role) == Roles.Standard)
+                    return NotFound();
+            }
 
             // 4. Upsert — giữ điểm cao nhất
             var existing = await _context.UserSpeakingProgresses
@@ -221,14 +194,14 @@ namespace TCTVocabulary.Controllers
 
             var totalSentenceCount = await _context.SpeakingSentences
                 .AsNoTracking()
-                .CountAsync(s => s.VideoId == sentence.VideoId);
+                .CountAsync(s => s.VideoId == sentenceAccess.VideoId);
 
             var requiredSentenceCount = Math.Max(1, (int)Math.Ceiling(totalSentenceCount * SpeakingVideoCompletionRatio));
 
             var passedSentenceCount = await _context.UserSpeakingProgresses
                 .AsNoTracking()
                 .Where(p => p.UserId == userId
-                    && p.SpeakingSentence.VideoId == sentence.VideoId
+                    && p.SpeakingSentence.VideoId == sentenceAccess.VideoId
                     && p.TotalScore >= SpeakingSentencePassScore)
                 .Select(p => p.SentenceId)
                 .Distinct()
@@ -237,7 +210,7 @@ namespace TCTVocabulary.Controllers
             var reachedVideoCompletion = passedSentenceCount >= requiredSentenceCount;
             var firstTimeVideoCompletion = await UpsertSpeakingVideoCompletionAsync(
                 userId,
-                sentence.VideoId,
+                sentenceAccess.VideoId,
                 passedSentenceCount,
                 requiredSentenceCount,
                 reachedVideoCompletion,
@@ -259,7 +232,7 @@ namespace TCTVocabulary.Controllers
                     _logger.LogWarning(
                         "Speaking completion reward failed for user {userId}, video {videoId}, status {status}",
                         userId,
-                        sentence.VideoId,
+                        sentenceAccess.VideoId,
                         rewardResult.Status);
                 }
             }
@@ -268,7 +241,7 @@ namespace TCTVocabulary.Controllers
             {
                 success = true,
                 sentenceId,
-                videoId = sentence.VideoId,
+                videoId = sentenceAccess.VideoId,
                 totalScore = dto.TotalScore,
                 accuracyScore = dto.AccuracyScore,
                 fluencyScore = dto.FluencyScore,

@@ -914,3 +914,237 @@
     }
 
 })(window);
+
+
+// ════════════════════════════════════════════════════════════════════
+//  PART 3 — IMPORT PANEL & BÀI NÓI CỦA TÔI (Index page only)
+// ════════════════════════════════════════════════════════════════════
+(function () {
+    'use strict';
+
+    // Guard: only run on Index page (import submit button must exist)
+    const submitBtn = document.getElementById('mip-submit-btn');
+    if (!submitBtn) return;
+
+    // ── DOM refs ───────────────────────────────────────────────────
+    const urlInput      = document.getElementById('mip-url-input');
+    const feedback      = document.getElementById('mip-feedback');
+    const btnLabel      = document.getElementById('mip-btn-label');
+    const btnIcon       = document.getElementById('mip-btn-icon');
+    const myVideosGrid  = document.getElementById('my-videos-grid');
+    const myEmptyState  = document.getElementById('my-empty-state');
+    const mySecCount    = document.getElementById('my-sec-count');
+    const loadingCard   = document.getElementById('mip-loading-card');
+
+    // ── Anti-forgery token ─────────────────────────────────────────
+    function getToken() {
+        const t = document.querySelector('input[name="__RequestVerificationToken"]');
+        return t ? t.value : '';
+    }
+
+    // ── Feedback helpers ───────────────────────────────────────────
+    function showFeedback(innerHtml, cls) {
+        if (!feedback) return;
+        feedback.innerHTML = `<span class="${cls}">${innerHtml}</span>`;
+    }
+
+    function clearFeedback() {
+        if (feedback) feedback.innerHTML = '';
+    }
+
+    function escHtml(str) {
+        return (str || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // ── Loading state ──────────────────────────────────────────────
+    function setLoading(loading) {
+        if (submitBtn)  submitBtn.disabled  = loading;
+        if (urlInput)   urlInput.disabled   = loading;
+
+        if (loading) {
+            if (btnLabel) btnLabel.textContent = 'Đang xử lý...';
+            if (btnIcon)  btnIcon.className    = 'fas fa-spinner fa-spin';
+
+            // Show skeleton card in my-videos grid
+            if (loadingCard && myVideosGrid) {
+                loadingCard.classList.remove('d-none');
+                myVideosGrid.insertBefore(loadingCard, myVideosGrid.firstChild);
+            }
+        } else {
+            if (btnLabel) btnLabel.textContent = 'Thêm video';
+            if (btnIcon)  btnIcon.className    = 'fas fa-plus';
+
+            if (loadingCard) loadingCard.classList.add('d-none');
+        }
+    }
+
+    // ── My-videos section count ────────────────────────────────────
+    function updateCount() {
+        if (!mySecCount || !myVideosGrid) return;
+        const realCards = myVideosGrid.querySelectorAll(
+            '.my-video-card:not(.my-video-card--skeleton)'
+        );
+        const n = realCards.length;
+        mySecCount.textContent = n + ' bài';
+
+        if (myEmptyState) {
+            myEmptyState.style.display = n === 0 ? '' : 'none';
+        }
+    }
+
+    // ── Import submit ──────────────────────────────────────────────
+    submitBtn.addEventListener('click', async () => {
+        const url = (urlInput ? urlInput.value : '').trim();
+
+        if (!url) {
+            showFeedback(
+                '<i class="fas fa-exclamation-circle"></i> Vui lòng nhập YouTube URL.',
+                'mip-feedback-error'
+            );
+            if (urlInput) urlInput.focus();
+            return;
+        }
+
+        clearFeedback();
+        setLoading(true);
+
+        try {
+            const formData = new FormData();
+            formData.append('youtubeUrl', url);
+            formData.append('__RequestVerificationToken', getToken());
+
+            const res  = await fetch('/Speaking/My/Create', { method: 'POST', body: formData });
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok && data.success) {
+                urlInput.value = '';
+                showFeedback(
+                    '<i class="fas fa-check-circle"></i> Thêm thành công! Đang tải lại trang...',
+                    'mip-feedback-success'
+                );
+                // Short delay so the user sees the success message, then reload
+                setTimeout(() => window.location.reload(), 1400);
+                return; // keep loading state while reloading
+            }
+
+            // Premium gate
+            if (data.code === 'premium_required') {
+                showFeedback(
+                    '<i class="fas fa-crown"></i> '
+                    + escHtml(data.error || 'Tính năng này yêu cầu tài khoản Premium.')
+                    + ' <a href="/Account/Premium" title="Nâng cấp Premium">Nâng cấp ngay →</a>',
+                    'mip-feedback-upgrade'
+                );
+                setLoading(false);
+                return;
+            }
+
+            // Generic / validation error
+            showFeedback(
+                '<i class="fas fa-exclamation-circle"></i> '
+                + escHtml(data.error || 'Đã xảy ra lỗi — vui lòng thử lại.'),
+                'mip-feedback-error'
+            );
+
+        } catch (_err) {
+            showFeedback(
+                '<i class="fas fa-exclamation-circle"></i> Lỗi kết nối — vui lòng thử lại sau.',
+                'mip-feedback-error'
+            );
+        }
+
+        setLoading(false);
+    });
+
+    // Allow Enter key in URL input to trigger submit
+    if (urlInput) {
+        urlInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
+        });
+    }
+
+    // ── Delete confirmation ────────────────────────────────────────
+    let pendingDeleteId   = null;
+    let pendingDeleteCard = null;
+
+    const deleteModalEl = document.getElementById('deleteVideoModal');
+    const deleteModal   = deleteModalEl && typeof bootstrap !== 'undefined'
+        ? new bootstrap.Modal(deleteModalEl)
+        : null;
+    const confirmBtn    = document.getElementById('delete-modal-confirm');
+    const modalTitle    = document.getElementById('delete-modal-title');
+
+    async function executeDelete() {
+        if (!pendingDeleteId) return;
+
+        const formData = new FormData();
+        formData.append('id', pendingDeleteId);
+        formData.append('__RequestVerificationToken', getToken());
+
+        try {
+            const res = await fetch('/Speaking/My/Delete', { method: 'POST', body: formData });
+
+            if (res.ok) {
+                if (deleteModal) deleteModal.hide();
+
+                // Animate card removal
+                const card = pendingDeleteCard;
+                if (card) {
+                    card.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+                    card.style.opacity    = '0';
+                    card.style.transform  = 'scale(0.94)';
+                    setTimeout(() => { card.remove(); updateCount(); }, 300);
+                } else {
+                    updateCount();
+                }
+            }
+        } catch (err) {
+            console.error('[Speaking] Delete error:', err);
+        }
+
+        pendingDeleteId   = null;
+        pendingDeleteCard = null;
+    }
+
+    function bindDeleteButton(btn) {
+        if (btn._deleteHandlerBound) return;
+        btn._deleteHandlerBound = true;
+
+        btn.addEventListener('click', () => {
+            pendingDeleteId   = btn.dataset.id;
+            pendingDeleteCard = btn.closest('.my-video-card');
+
+            if (modalTitle) {
+                modalTitle.textContent = btn.dataset.title || 'video này';
+            }
+
+            if (deleteModal) {
+                deleteModal.show();
+            } else {
+                // Fallback: native confirm (Bootstrap not yet loaded)
+                if (window.confirm('Xóa "' + (btn.dataset.title || 'video này') + '"?')) {
+                    executeDelete();
+                } else {
+                    pendingDeleteId   = null;
+                    pendingDeleteCard = null;
+                }
+            }
+        });
+    }
+
+    // Bind existing delete buttons on page load
+    document.querySelectorAll('.my-btn-delete').forEach(bindDeleteButton);
+
+    // Wire up modal confirm button
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', executeDelete);
+    }
+
+    // ── Initial count sync ─────────────────────────────────────────
+    updateCount();
+
+})();

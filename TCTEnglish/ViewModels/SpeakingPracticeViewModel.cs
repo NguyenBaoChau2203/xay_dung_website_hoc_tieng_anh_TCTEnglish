@@ -7,6 +7,7 @@ namespace TCTVocabulary.ViewModels
         public int VideoId { get; set; }
         public string Title { get; set; } = null!;
         public string YoutubeId { get; set; } = null!;
+        public bool IsPrivate { get; set; }
         public List<SpeakingSentenceViewModel> Sentences { get; set; } = new();
     }
 

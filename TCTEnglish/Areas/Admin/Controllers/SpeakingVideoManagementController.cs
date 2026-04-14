@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +11,6 @@ namespace TCTVocabulary.Areas.Admin.Controllers;
 [Authorize(Roles = Roles.Admin)]
 public class SpeakingVideoManagementController : Controller
 {
-    private static readonly Regex YoutubeIdRegex = new("^[a-zA-Z0-9_-]{11}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
     private readonly DbflashcardContext _context;
     private readonly IYoutubeTranscriptService _transcriptService;
     private readonly ILogger<SpeakingVideoManagementController> _logger;
@@ -55,8 +52,8 @@ public class SpeakingVideoManagementController : Controller
             Id = v.Id,
             Title = v.Title,
             YoutubeId = v.YoutubeId,
-            Level = v.Level,
-            Topic = v.Topic,
+            Level = v.Level ?? string.Empty,
+            Topic = v.Topic ?? string.Empty,
             ThumbnailUrl = v.ThumbnailUrl,
             Duration = v.Duration ?? FormatDurationFromSeconds(v.MaxEndTime),
             SentenceCount = v.SentenceCount
@@ -90,7 +87,7 @@ public class SpeakingVideoManagementController : Controller
             return View(model);
         }
 
-        var normalizedYoutubeId = NormalizeYoutubeId(model.YoutubeId);
+        var normalizedYoutubeId = YoutubeUrlHelper.NormalizeYoutubeId(model.YoutubeId);
         if (normalizedYoutubeId is null)
         {
             ModelState.AddModelError(nameof(model.YoutubeId), "YouTube ID is invalid. Please enter a valid video ID or URL.");
@@ -211,9 +208,9 @@ public class SpeakingVideoManagementController : Controller
             {
                 Id = v.Id,
                 Title = v.Title,
-                Level = v.Level,
-                Topic = v.Topic,
-                PlaylistId = v.PlaylistId,
+                Level = v.Level ?? string.Empty,
+                Topic = v.Topic ?? string.Empty,
+                PlaylistId = v.PlaylistId ?? 0,
                 YoutubeId = v.YoutubeId,
                 ThumbnailUrl = v.ThumbnailUrl,
                 SentenceCount = v.SpeakingSentences.Count
@@ -329,67 +326,4 @@ public class SpeakingVideoManagementController : Controller
             : $"{(int)ts.TotalMinutes}:{ts.Seconds:D2}";
     }
 
-    private static string? NormalizeYoutubeId(string input)
-    {
-        var value = input?.Trim();
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            return null;
-        }
-
-        if (YoutubeIdRegex.IsMatch(value))
-        {
-            return value;
-        }
-
-        if (!Uri.TryCreate(value, UriKind.Absolute, out var uri))
-        {
-            return null;
-        }
-
-        var host = uri.Host.ToLowerInvariant();
-
-        if (host.Contains("youtu.be", StringComparison.Ordinal))
-        {
-            var shortId = uri.AbsolutePath.Trim('/').Split('/', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
-            return shortId is not null && YoutubeIdRegex.IsMatch(shortId) ? shortId : null;
-        }
-
-        if (!host.Contains("youtube.com", StringComparison.Ordinal))
-        {
-            return null;
-        }
-
-        var query = uri.Query.TrimStart('?');
-        if (!string.IsNullOrWhiteSpace(query))
-        {
-            foreach (var pair in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
-            {
-                var parts = pair.Split('=', 2, StringSplitOptions.None);
-                if (parts.Length != 2 || !parts[0].Equals("v", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                var candidate = Uri.UnescapeDataString(parts[1]);
-                if (YoutubeIdRegex.IsMatch(candidate))
-                {
-                    return candidate;
-                }
-            }
-        }
-
-        var pathSegments = uri.AbsolutePath
-            .Split('/', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-
-        if (pathSegments.Length >= 2 &&
-            (pathSegments[0].Equals("shorts", StringComparison.OrdinalIgnoreCase) ||
-             pathSegments[0].Equals("embed", StringComparison.OrdinalIgnoreCase)) &&
-            YoutubeIdRegex.IsMatch(pathSegments[1]))
-        {
-            return pathSegments[1];
-        }
-
-        return null;
-    }
 }

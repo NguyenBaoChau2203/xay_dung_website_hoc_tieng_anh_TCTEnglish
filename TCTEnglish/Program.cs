@@ -35,6 +35,9 @@ builder.Services.AddScoped<IStreakService, StreakService>();
 builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
+builder.Services.AddScoped<IWritingService, WritingService>();
+builder.Services.AddScoped<IWritingAiEvaluationService, WritingAiEvaluationService>();
+builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimiter>();
 builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Services.ListeningService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
 builder.Services.AddOptions<AiOptions>()
