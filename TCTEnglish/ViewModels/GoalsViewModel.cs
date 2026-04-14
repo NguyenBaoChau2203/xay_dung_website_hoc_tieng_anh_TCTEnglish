@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using TCTVocabulary.Models;
 
-namespace TCTVocabulary.ViewModels
+namespace TCTEnglish.ViewModels
 {
     public class GoalsViewModel
     {
         public int CurrentStreak { get; set; }
         public int LongestStreak { get; set; }
         public string StreakMessage { get; set; } = string.Empty;
+        public List<GoalCardViewModel> GoalCards { get; set; } = new();
         public int DailyGoal { get; set; }
         public int TodayProgressValue { get; set; }
         public int TodayProgressMax { get; set; }
@@ -15,14 +18,35 @@ namespace TCTVocabulary.ViewModels
         public string WeeklyActivityMessage { get; set; } = string.Empty;
         public List<GoalsBadgeViewModel> Badges { get; set; } = new();
         public UpdateGoalInputViewModel GoalEditor { get; set; } = new();
+        public List<SelectListItem> GoalAreaOptions { get; set; } = new();
+        public List<string> DeferredGoalAreaLabels { get; set; } = new();
         public bool ShowGoalEditor { get; set; }
 
+        public bool HasGoalCards => GoalCards.Count > 0;
         public bool HasDailyGoal => DailyGoal > 0;
         public bool HasWeeklyActivity => WeeklyActivity.Any(day => day.ActivityCount > 0);
         public bool HasBadges => Badges.Count > 0;
+        public bool HasDeferredGoalAreas => DeferredGoalAreaLabels.Count > 0;
         public bool HasRecentlyUnlockedBadges => Badges.Any(badge => badge.IsRecentlyUnlocked);
         public int RecentlyUnlockedBadgeCount => Badges.Count(badge => badge.IsRecentlyUnlocked);
         public int UnlockedBadgeCount => Badges.Count(badge => badge.IsUnlocked);
+        public bool IsCreatingGoal => !HasGoalCards;
+        public string GoalHeaderActionText => IsCreatingGoal ? "Thêm mục tiêu" : "Thêm / cập nhật mục tiêu";
+        public string GoalEmptyStateActionText => IsCreatingGoal ? "Tạo mục tiêu đầu tiên" : "Cập nhật mục tiêu";
+        public string GoalEditorTitle => IsCreatingGoal ? "Tạo mục tiêu mới" : "Cập nhật mục tiêu theo kỹ năng";
+        public string GoalEditorSubmitText => IsCreatingGoal ? "Lưu mục tiêu" : "Lưu thay đổi";
+    }
+
+    public class GoalCardViewModel
+    {
+        public GoalArea GoalArea { get; set; }
+        public string AreaLabel { get; set; } = string.Empty;
+        public string UnitLabel { get; set; } = string.Empty;
+        public int TargetValue { get; set; }
+        public int TodayProgressValue { get; set; }
+        public int ProgressPercent { get; set; }
+        public string ProgressLabel => $"Hôm nay: {TodayProgressValue}/{TargetValue} {UnitLabel}";
+        public string TargetLabel => $"Mục tiêu: {TargetValue} {UnitLabel}/ngày";
     }
 
     public class GoalsWeekDayViewModel
@@ -53,11 +77,15 @@ namespace TCTVocabulary.ViewModels
 
     public class UpdateGoalInputViewModel
     {
-        public const int MinDailyGoal = 0;
-        public const int MaxDailyGoal = 500;
+        public const int MinTargetValue = 0;
+        public const int MaxTargetValue = 500;
 
-        [Display(Name = "Mục tiêu ngày")]
-        [Range(MinDailyGoal, MaxDailyGoal, ErrorMessage = "Mục tiêu ngày phải từ {1} đến {2} thẻ.")]
-        public int DailyGoal { get; set; }
+        [Display(Name = "Kỹ năng")]
+        [Required(ErrorMessage = "Vui lòng chọn kỹ năng cho mục tiêu.")]
+        public GoalArea GoalArea { get; set; } = GoalArea.Vocabulary;
+
+        [Display(Name = "Mục tiêu mỗi ngày")]
+        [Range(MinTargetValue, MaxTargetValue, ErrorMessage = "Mục tiêu mỗi ngày phải từ {1} đến {2}.")]
+        public int TargetValue { get; set; }
     }
 }

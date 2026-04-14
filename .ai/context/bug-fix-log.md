@@ -365,6 +365,198 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 **Notes**: This fix intentionally avoids changing `Program.cs`; startup migration behavior is unchanged in app runtime, only test-host warning handling was adjusted.
 
+### Goals phase-2 database apply was blocked by a missing migration designer artifact - 2026-04-04
+
+**Symptom**: The app could be kept alive with compatibility fallback, but applying the intended SQL Server migration `20260404143000_AddUserDailyActivityAreaCountersPhase2` failed because EF reported `The migration '20260404143000_AddUserDailyActivityAreaCountersPhase2' was not found.`
+
+**Root Cause**: The migration had its `.cs` file but was missing the generated `20260404143000_AddUserDailyActivityAreaCountersPhase2.Designer.cs`, so EF Core did not discover it as a valid migration. At the same time, the local `bin/*/TCTEnglish.dll` outputs were locked by a running process, which blocked a normal rebuild to refresh migration metadata before database update.
+
+**Solution**: Restored the missing designer artifact for the phase-2 migration, then applied the schema change directly on SQL Server with an idempotent script that adds `VocabularyCompletedCount`, `WritingCompletedCount`, `ReadingCompletedCount`, and `ListeningCompletedCount` only when absent and records the matching row in `__EFMigrationsHistory`.
+
+**Files Changed**:
+- `TCTEnglish/Migrations/20260404143000_AddUserDailyActivityAreaCountersPhase2.Designer.cs` - restored the missing EF Core designer metadata so the migration exists in source as a complete pair again.
+- `.ai/context/bug-fix-log.md` - recorded the database-apply follow-up and the missing-designer root cause.
+
+**Verification**: Connected to the configured SQL Server and verified `COL_LENGTH('dbo.UserDailyActivities', ...) = 4` for all four phase-2 counters plus `COUNT(*) = 1` in `__EFMigrationsHistory` for `20260404143000_AddUserDailyActivityAreaCountersPhase2` with product version `10.0.2`.
+
+**Commit**: Not created yet.
+
+**Notes**: This database apply complements the earlier compatibility fallback in `GoalsService`; the site now has both the code-side safety net and the intended SQL schema. Local EF CLI rebuild/update is still blocked while a process keeps `bin\Debug\net10.0\TCTEnglish.dll` and `bin\Release\net10.0\TCTEnglish.dll` locked.
+
+### Goals page crashed on legacy UserDailyActivities schema missing phase-2 counters - 2026-04-04
+
+**Symptom**: Opening `/Goals` on a database that had not yet applied the latest additive `UserDailyActivities` rollout failed with `SqlException: Invalid column name 'VocabularyCompletedCount' / 'WritingCompletedCount' / 'ReadingCompletedCount' / 'ListeningCompletedCount'`.
+
+**Root Cause**: `GoalsService` assumed the phase-2 daily-activity counter migration was already present everywhere. Both the Goals read path (`GetGoalsAsync` / badge metrics) and the activity write path (`RecordLearningActivityAsync`, streak XP row creation) materialized or updated the new columns directly through EF, so any environment still on the older table shape crashed at runtime instead of degrading safely.
+
+**Solution**: Added schema detection plus compatibility-mode read/write helpers in `GoalsService` for `UserDailyActivities`. When the phase-2 counters are missing, the service now reads/writes only the legacy column set, defaults the missing counters to `0`, and logs an explicit warning that migration `20260404143000_AddUserDailyActivityAreaCountersPhase2` still needs to be applied for full metrics. Added regression coverage for loading `/Goals` and recording learning activity against a downgraded SQLite table that drops those four columns.
+
+**Files Changed**:
+- `TCTEnglish/Services/GoalsService.cs` - added `UserDailyActivities` schema detection, compatibility queries/commands, and fallback streak/activity persistence when the new counters are absent.
+- `TCTEnglish.Tests/GoalsPhase2IntegrationTests.cs` - added regressions for `/Goals` page load and learning-activity persistence against a legacy `UserDailyActivities` schema.
+- `TCTEnglish.Tests/GoalsPhase7IntegrationTests.cs` - added the missing `TCTVocabulary.Services` import so the test project can compile `BusinessDateHelper` references during verification.
+
+**Verification**: Ran `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore`, `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~GoalsPhase2IntegrationTests`, and `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~GoalsPhase1IntegrationTests|FullyQualifiedName~GoalsPhase2IntegrationTests|FullyQualifiedName~GoalsPhase3IntegrationTests|FullyQualifiedName~GoalsPhase4IntegrationTests|FullyQualifiedName~GoalsPhase5IntegrationTests|FullyQualifiedName~GoalsPhase6IntegrationTests"` with workspace-local `.dotnet-home`; all passed.
+
+**Commit**: Not created yet.
+
+**Notes**: Full `FullyQualifiedName~GoalsPhase` still reports an unrelated existing phase-7 failure (`/Home/Writing/Practice` anti-forgery fetch returning `401` for the anonymous test client). The compatibility fallback keeps the site working on legacy schema, but missing phase-2 counters still need the real migration applied if the team wants complete vocabulary/writing badge metrics and backfilled reporting.
+
+### Goals phase-7 reward hardening and request-path cleanup - 2026-04-04
+
+**Symptom**: Final review for the cross-feature Goals rollout found two closure risks: speaking/writing completion rewards still depended on non-atomic completion-state transitions, and writing request paths could call `Database.MigrateAsync()` during normal user traffic even though startup already migrates the app.
+
+**Root Cause**: `SpeakingController.SaveSpeakingProgress` and `StudyService.Writing.PersistWritingProgressAsync(...)` used read-then-write completion flips (`IsCompleted == false` to `true`) without an atomic guard on the transition that triggers XP. In parallel or replay-heavy conditions, that left room for the same logical completion to be rewarded twice. Separately, an older writing hotfix added a request-time schema guard that no longer matched the current startup-migration baseline.
+
+**Solution**: Hardened both completion paths so XP/reward issuance is driven only by an atomic conditional update of the persisted completion row, removed request-time writing schema migration logic, added a focused replay regression for writing completion, and synchronized backlog/known-issues/playbook docs with an explicit `Close` decision for the rollout.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/SpeakingController.cs` - replaced tracked completion flip logic with an atomic completion-row update so a speaking video completion only awards once.
+- `TCTEnglish/Services/StudyService.Writing.cs` - removed `EnsureWritingSchemaReadyAsync()` request-path migration logic and changed exercise completion to an atomic transition before awarding writing rewards.
+- `TCTEnglish.Tests/GoalsPhase7IntegrationTests.cs` - added replay regression coverage for writing completion so XP/progress stay single-award after the first completed submit.
+- `docs/architecture-prioritized-backlog.md` - updated Goals backlog truth to reflect active vs deferred goal areas and reward-dedup coverage expectations.
+- `.ai/context/known-issues.md` - updated the Goals drift warning and marked phase-7 closure/reward hardening as resolved/verified.
+- `docs/goals-cross-feature-rollout-playbook.md` - recorded the explicit rollout close decision and verification snapshot.
+
+**Verification**: Ran `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore`, `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter 'FullyQualifiedName~GoalsPhase'`, and `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter 'FullyQualifiedName~Sprint1SmokeTests'` with workspace-local `.dotnet-home`; all commands exited `0`.
+
+**Commit**: Not created yet.
+
+**Notes**: The rollout is now closed for `Vocabulary`, `Speaking`, and `Writing`. `Reading`/`Listening` remain explicitly deferred and should stay that way until they gain real completion signals.
+
+### Goals phase-2 mastered-retry test expected pre-streak-XP total — 2026-04-04
+
+**Symptom**: `GoalsPhase2IntegrationTests.RecordLearningActivityAsync_MasteredCompletionCountsOnceAcrossRetries` failed with XP mismatch (`Expected: 20`, `Actual: 30`) after phase-6 streak XP rollout.
+
+**Root Cause**: The phase-2 assertion still reflected pre-phase-6 behavior and did not include one-time streak XP (`StreakXpAwarded`) when streak increases on the business day.
+
+**Solution**: Updated phase-2 test expectations to include streak XP in daily total and assert `StreakXpAwarded == 10` to keep the contract explicit.
+
+**Files Changed**:
+- `TCTEnglish.Tests/GoalsPhase2IntegrationTests.cs` — updated expected XP and added streak-XP assertion in mastered-retry regression.
+
+**Verification**: Ran focused test `TCTEnglish.Tests.GoalsPhase2IntegrationTests.RecordLearningActivityAsync_MasteredCompletionCountsOnceAcrossRetries` (passed), then reran goals phase suites.
+
+**Commit**: Not created yet.
+
+**Notes**: Same regression family as prior phase-3 expectation updates after streak-XP integration; root cause is test contract drift, not service logic failure.
+
+### Goals Phase4 modal contract test drifted after multi-goal input rename — 2026-04-04
+
+**Symptom**: `GoalsPhase4IntegrationTests.GoalsPage_RendersGoalInputContract_ForAutofocusTarget` failed because it still asserted `name="GoalEditor.DailyGoal"`, while the UI had moved to the multi-goal model using `GoalEditor.TargetValue`.
+
+**Root Cause**: Regression in test contract after Phase 1/2 model migration (`DailyGoal` -> `TargetValue` + `GoalArea`). The view and controller were already updated, but one phase-4 test still referenced the legacy field name.
+
+**Solution**: Updated phase-4 test payload/assertions to use `GoalEditor.TargetValue` and include `GoalEditor.GoalArea` in invalid submit POST data so model binding and validation reflect current behavior.
+
+**Files Changed**:
+- `TCTEnglish.Tests/GoalsPhase4IntegrationTests.cs` — replaced legacy `GoalEditor.DailyGoal` references with `GoalEditor.TargetValue` and aligned invalid-submit form payload.
+
+**Verification**: Ran focused tests for `TCTEnglish.Tests.GoalsPhase4IntegrationTests.GoalsPage_RendersGoalInputContract_ForAutofocusTarget` and `TCTEnglish.Tests.GoalsPhase4IntegrationTests.UpdateGoal_InvalidSubmit_ReturnsOpenModalContractForReload` (both passed).
+
+**Commit**: Not created yet.
+
+**Notes**: Related to earlier modal/autofocus hardening entries; same class of issue (HTML contract drift) but different root cause (input name migration).
+
+### Goals modal autofocus nhắm nhầm hidden anti-forgery field — 2026-03-30
+
+**Symptom**: Khi mở modal chỉnh sửa mục tiêu trên trang `Goals`, con trỏ có thể focus vào hidden anti-forgery input thay vì ô nhập số mục tiêu, làm trải nghiệm create/edit kém ổn định.
+
+**Root Cause**: `goals.js` dùng selector quá rộng (`input, select, textarea, button`) trong `shown.bs.modal`, nên phần tử đầu tiên có thể là `input[type="hidden"]` do `@Html.AntiForgeryToken()` render ra.
+
+**Solution**: Ưu tiên focus thẳng `.goal-input`; nếu không có thì fallback sang selector loại trừ hidden input (`input:not([type='hidden'])`). Đồng thời thêm contract test HTML để giữ ổn định target field trong modal.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/goals.js` - đổi logic autofocus để ưu tiên `.goal-input` và loại trừ hidden input ở fallback.
+- `TCTEnglish.Tests/GoalsPhase4IntegrationTests.cs` - thêm test `GoalsPage_RendersGoalInputContract_ForAutofocusTarget` xác nhận modal có hidden anti-forgery field và ô nhập `.goal-input` cho `GoalEditor.DailyGoal`.
+
+**Verification**: Chạy `dotnet test TCTEnglish.Tests --filter 'FullyQualifiedName~GoalsPhase' --no-restore` và không ghi nhận lỗi backend/data integrity mới trong bộ Goals phases.
+
+**Commit**: Not created yet.
+
+**Notes**: Đây là hardening UX/accessibility cho modal interaction; logic dữ liệu/service không thay đổi.
+
+### Goals modal CTA không mở ổn định vì thiếu Bootstrap JS bundle toàn cục — 2026-03-30
+
+**Symptom**: Trên trang `Goals`, các CTA dùng `data-bs-toggle="modal"` (nút đầu trang và empty-state) có thể không mở được modal editor trong runtime do layout chính chưa nạp Bootstrap JS.
+
+**Root Cause**: `Views/Shared/_Layout.cshtml` chỉ nạp Bootstrap CSS mà chưa nạp `bootstrap.bundle.min.js`, nên các hành vi `data-bs-*` không được kích hoạt. `goals.js` cũng gọi qua global `bootstrap` thay vì API tham chiếu an toàn từ `window.bootstrap`.
+
+**Solution**: Nạp Bootstrap JS bundle ở layout chung để tất cả màn dùng `data-bs-*` hoạt động ổn định, đồng thời harden `goals.js` để mở modal qua `window.bootstrap?.Modal` và không ném lỗi nếu API chưa sẵn sàng.
+
+**Files Changed**:
+- `TCTEnglish/Views/Shared/_Layout.cshtml` - thêm script CDN `bootstrap.bundle.min.js` trước `RenderSection("Scripts")`.
+- `TCTEnglish/wwwroot/js/goals.js` - dùng `modalApi = window.bootstrap?.Modal` và gọi `modalApi.getOrCreateInstance(...)`.
+
+**Verification**: Chạy `dotnet test TCTEnglish.Tests --filter "FullyQualifiedName~GoalsPhase1IntegrationTests|FullyQualifiedName~GoalsPhase5IntegrationTests" --no-restore` (11/11 passed), chạy `Sprint2SmokeTests` (15/15 passed), và `run_build` (passed).
+
+**Commit**: Not created yet.
+
+**Notes**: `scripts/encoding_guard.py` không tồn tại trong repo hiện tại nên không thể chạy encoding guard script.
+
+### Goals progress card text wraps vertically and header CTA is cramped on small screens - 2026-03-30
+
+**Symptom**: On the Goals page, the text inside the circular daily-progress widget could break into awkward vertical wrapping (for example `thẻ hôm nay` split across multiple lines), and the top `Chỉnh sửa mục tiêu` CTA felt cramped on narrower layouts.
+
+**Root Cause**: The absolute-positioned `.percentage-label` inside the progress ring had no stable width constraints, so the label container could shrink too aggressively. The header row also used fixed `col-6` columns at all breakpoints, which reduced available space for title/CTA on smaller screens.
+
+**Solution**: Added dedicated progress label classes and fixed sizing (`.goal-progress-value`, `.goal-progress-meta`, `.percentage-label`, `.circular-progress`) to keep the center text readable and stable. Updated the header row to responsive columns (`col-12 col-lg-6`) and improved mobile CTA behavior. Also adjusted no-goal caption copy to show `Mục tiêu ngày: Chưa đặt`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Goals/Index.cshtml` - improved responsive header layout, progress-label markup, and no-goal daily target caption.
+- `TCTEnglish/wwwroot/css/goals.css` - added sizing/typography rules for progress text and responsive tweaks for title + CTA.
+
+**Verification**: Ran `run_build` (passed). Ran goals regression tests via `run_tests` with TypeName filters `TCTEnglish.Tests.GoalsPhase1IntegrationTests` and `TCTEnglish.Tests.GoalsPhase2IntegrationTests` (6/6 passed).
+
+**Commit**: Not created yet.
+
+**Notes**: `scripts/encoding_guard.py` is not present in this repository, so no encoding guard script could be run.
+
+### Goals merge-safety, business-date badge alignment, and test-host migration isolation - 2026-03-30
+
+**Symptom**: The branch was not merge-safe because stray AI chat migration artifacts sat in the workspace outside the Goals scope, goals-related tests failed during startup with `PendingModelChangesWarning`, and the recent badge highlight could drift across the local midnight boundary for SQL Server `datetime2` badge timestamps.
+
+**Root Cause**: Untracked migration artifacts (`20260329111532_AddAiChatPhase1Data*`, `20260329164730___TempPendingInspection*`) introduced unrelated schema noise. The SQLite integration host still executed `Program` startup migration behavior, which is not valid for the test database setup. In addition, badge highlighting depended on timestamps that SQL Server materializes as `DateTimeKind.Unspecified`, so the business date had to be interpreted explicitly as stored UTC.
+
+**Solution**: Removed the stray migration artifacts from the branch, replaced the EF migrator inside the SQLite test host with a test-only no-op implementation so startup no longer attempts the SQL Server migration chain, kept streak/badge sequencing inside `GoalsService`, and added regression coverage for SQL Server-style `datetime2` badge timestamps near the business-date boundary.
+
+**Files Changed**:
+- `TCTEnglish/Services/GoalsService.cs` - treated daily activity rows as stored business dates directly and kept badge recent-unlock evaluation on the UTC-aware helper path.
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` - replaced the runtime migrator in the SQLite host with a no-op test implementation.
+- `TCTEnglish.Tests/Infrastructure/NoOpMigrator.cs` - added a test-only EF Core migrator that makes startup `Database.Migrate()` a no-op.
+- `TCTEnglish.Tests/GoalsPhase4IntegrationTests.cs` - added a regression test for SQL Server `datetime2` badge timestamps near local midnight.
+- `.ai/context/known-issues.md` - moved the goals business-date issue out of unresolved technical debt.
+- `TCTEnglish/Migrations/20260329111532_AddAiChatPhase1Data.cs` - removed empty stray migration artifact.
+- `TCTEnglish/Migrations/20260329111532_AddAiChatPhase1Data.Designer.cs` - removed empty stray migration artifact.
+- `TCTEnglish/Migrations/20260329164730___TempPendingInspection.cs` - removed stray AI chat migration artifact.
+- `TCTEnglish/Migrations/20260329164730___TempPendingInspection.Designer.cs` - removed stray AI chat migration snapshot artifact.
+
+**Verification**: Ran `dotnet ef migrations has-pending-model-changes --project TCTEnglish/TCTEnglish.csproj --startup-project TCTEnglish/TCTEnglish.csproj --context DbflashcardContext --no-build`, then ran `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~GoalsPhase4IntegrationTests` and `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter FullyQualifiedName~GoalsPhase5IntegrationTests`.
+
+**Commit**: Not created yet.
+
+**Notes**: This replaces the temporary controller-level badge refresh workaround with service-owned orchestration already present in the workspace, and it keeps `Program.cs` untouched by isolating the migration behavior inside the test host only.
+
+### Streak badge unlock bị trễ một lượt học vì thứ tự cập nhật streak và badge — 2026-03-30
+
+**Symptom**: Khi người dùng đạt mốc streak (ví dụ 3 ngày liên tiếp) trong request học hiện tại, badge streak có thể chưa mở khóa ngay, chỉ xuất hiện ở lượt học sau.
+
+**Root Cause**: `LearningApiController.Record` gọi `IGoalsService.RecordActivityAsync(...)` (có refresh badge) trước khi gọi `IStreakService.UpdateStreakAsync(...)`, nên logic badge đọc `User.Streak` cũ trong cùng request.
+
+**Solution**: Thêm API refresh badge tường minh trong goals service và gọi lại ngay sau khi cập nhật streak để đồng bộ trạng thái badge theo streak mới trong cùng request.
+
+**Files Changed**:
+- `TCTEnglish/Services/IGoalsService.cs` — thêm `RefreshBadgesAsync(int userId)`.
+- `TCTEnglish/Services/GoalsService.cs` — triển khai `RefreshBadgesAsync(...)` dùng lại `RefreshUserBadgesAsync(...)`.
+- `TCTEnglish/Controllers/LearningApiController.cs` — gọi `await _goalsService.RefreshBadgesAsync(currentUserId);` sau `UpdateStreakAsync(...)`.
+- `TCTEnglish.Tests/GoalsPhase5IntegrationTests.cs` — thêm regression test `LearningRecord_ReachesThreeDayStreak_UnlocksStreakBadgeImmediately`.
+
+**Verification**: `run_build` thành công. Chạy `GoalsPhase5IntegrationTests` bị chặn bởi lỗi nền workspace `PendingModelChangesWarning` (liên quan migration local chưa đồng bộ), không do thay đổi fix này.
+
+**Commit**: Not created yet.
+
+**Notes**: Fix này giữ nguyên boundary hiện tại (`LearningApiController` + `IGoalsService`), không thêm logic sang `HomeController`.
+
 ### Goals core rollout and challenge-token hardening restored after cleanup — 2026-03-28
 
 **Symptom**: During commit cleanup, related updates around goals rollout documentation and daily-challenge token validation were dropped from working changes even though they were still required.

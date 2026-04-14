@@ -21,7 +21,6 @@ namespace TCTVocabulary.Controllers
         private readonly DbflashcardContext _context;
         private readonly IAppEmailSender _emailSender;
         private readonly IGoalsService _goalsService;
-        private readonly IStreakService _streakService;
         private readonly ILogger<HomeController> _logger;
         private readonly IDataProtector _dailyChallengeProtector;
 
@@ -29,14 +28,12 @@ namespace TCTVocabulary.Controllers
             DbflashcardContext context,
             IAppEmailSender emailSender,
             IGoalsService goalsService,
-            IStreakService streakService,
             IDataProtectionProvider dataProtectionProvider,
             ILogger<HomeController> logger)
         {
             _context = context;
             _emailSender = emailSender;
             _goalsService = goalsService;
-            _streakService = streakService;
             _logger = logger;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
@@ -89,6 +86,23 @@ namespace TCTVocabulary.Controllers
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
+            // --- LOGIC THÊM VÀO: Lấy bài đọc đang học dở gần nhất ---
+            var recentReading = await _context.UserReadingHistories
+                .AsNoTracking()
+                .Include(h => h.ReadingPassage)
+                .Where(h => h.UserId == userId && h.IsCompleted == false)
+                .OrderByDescending(h => h.ViewedAt)
+                .Select(h => new RecentReadingViewModel
+                {
+                    Id = h.ReadingPassageId,
+                    Title = h.ReadingPassage.Title,
+                    Level = h.ReadingPassage.Level,
+                    Topic = h.ReadingPassage.Topic,
+                    LastViewed = h.ViewedAt
+                })
+                .FirstOrDefaultAsync();
+            // -------------------------------------------------------
+
             return new DashboardViewModel
             {
                 FullName = user.FullName,
@@ -98,7 +112,9 @@ namespace TCTVocabulary.Controllers
                 SetCount = user.Sets.Count,
                 CardCount = cardCount,
                 DailyChallenge = await GetRandomChallengeAsync(),
-                TodayFolders = todayFolders
+                TodayFolders = todayFolders,
+                // Gán dữ liệu vào ViewModel
+                RecentInProcessReading = recentReading
             };
         }
 
@@ -147,7 +163,7 @@ namespace TCTVocabulary.Controllers
                     return BadRequest();
                 }
 
-                await _streakService.UpdateStreakAsync(userId);
+                await _goalsService.UpdateStreakAndRewardsAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 

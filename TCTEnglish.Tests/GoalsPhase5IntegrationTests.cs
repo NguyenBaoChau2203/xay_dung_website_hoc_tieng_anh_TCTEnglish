@@ -1,11 +1,10 @@
 using System.Net;
 using System.Text;
-using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
-using TCTVocabulary.Services;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -13,45 +12,23 @@ namespace TCTEnglish.Tests;
 public sealed class GoalsPhase5IntegrationTests
 {
     [Fact]
-    public async Task GoalsPage_ShowsRecentBadgeHighlight_AndChartTooltips()
+    public async Task GoalsPage_ShowsDeferredAreas_AndDoesNotRenderReadingListeningOptions()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-
-        var today = DateTime.UtcNow.Date;
-        await SeedGoalsStateAsync(
-            factory,
-            goal: 8,
-            streak: 1,
-            longestStreak: 1,
-            lastStudyDate: today,
-            new UserDailyActivity
-            {
-                UserId = TestDataIds.UserId,
-                ActivityDate = today,
-                CardsReviewed = 4,
-                XpEarned = 10
-            });
-        await RecordActivityAsync(
-            factory,
-            new GoalsActivityUpdate
-            {
-                CardsReviewed = 1,
-                XpEarned = 0
-            });
-
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
         using var response = await client.GetAsync("/Goals");
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Contains("goals-insight-banner", body, StringComparison.Ordinal);
-        Assert.Contains("goals-badge-card is-unlocked is-recently-unlocked", body, StringComparison.Ordinal);
-        Assert.Contains("data-tooltip=", body, StringComparison.Ordinal);
+        Assert.Contains("Reading, Listening hiện đang tạm hoãn", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("value=\"Reading\"", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("value=\"Listening\"", body, StringComparison.Ordinal);
     }
 
     [Fact]
-    public async Task UpdateGoal_RedirectFollowUp_RendersGoalToast()
+    public async Task UpdateGoal_DeferredAreaSubmission_ReturnsValidationError_AndDoesNotCreateGoal()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
@@ -61,79 +38,40 @@ public sealed class GoalsPhase5IntegrationTests
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Goals/UpdateGoal")
         {
             Content = new StringContent(
-                "GoalEditor.DailyGoal=14",
+                "GoalEditor.GoalArea=Reading&GoalEditor.TargetValue=5",
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded")
         };
         request.Headers.Add("RequestVerificationToken", antiForgeryToken);
 
-        using var redirectResponse = await client.SendAsync(request);
-        Assert.Equal(HttpStatusCode.Redirect, redirectResponse.StatusCode);
-
-        var followUpRoute = redirectResponse.Headers.Location?.ToString() ?? "/Goals";
-        using var followUpResponse = await client.GetAsync(followUpRoute);
-        var body = await followUpResponse.Content.ReadAsStringAsync();
-
-        Assert.Equal(HttpStatusCode.OK, followUpResponse.StatusCode);
-        Assert.Contains("goalUpdateToast", body, StringComparison.Ordinal);
-        Assert.Contains("goals-feedback-toast", body, StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public async Task LearningRecord_ResponseIncludesXpEarned_ForRewardToast()
-    {
-        await using var factory = new TestWebApplicationFactory();
-        await factory.InitializeAsync();
-        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
-
-        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Vocabulary/Study?setId=302");
-        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/LearningApi/record")
-        {
-            Content = new StringContent(
-                """{"cardId":401,"masteryLevel":"good","timestamp":"2026-03-29T00:00:00Z"}""",
-                Encoding.UTF8,
-                "application/json")
-        };
-        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
-
         using var response = await client.SendAsync(request);
-        var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        using var payload = JsonDocument.Parse(body);
-        Assert.True(payload.RootElement.TryGetProperty("xpEarned", out var xpEarned));
-        Assert.Equal(10, xpEarned.GetInt32());
-    }
-
-    private static async Task SeedGoalsStateAsync(
-        TestWebApplicationFactory factory,
-        int goal,
-        int streak,
-        int longestStreak,
-        DateTime? lastStudyDate,
-        params UserDailyActivity[] activities)
-    {
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var user = await context.Users.SingleAsync(candidate => candidate.UserId == TestDataIds.UserId);
+        var readingGoalCount = await context.UserGoals
+            .AsNoTracking()
+            .CountAsync(goal => goal.UserId == TestDataIds.UserId && goal.GoalArea == GoalArea.Reading && goal.IsActive);
 
-        user.Goal = goal;
-        user.Streak = streak;
-        user.LongestStreak = longestStreak;
-        user.LastStudyDate = lastStudyDate;
-
-        context.UserDailyActivities.AddRange(activities);
-        await context.SaveChangesAsync();
+        Assert.Equal(0, readingGoalCount);
     }
 
-    private static async Task RecordActivityAsync(TestWebApplicationFactory factory, GoalsActivityUpdate update)
+    [Fact]
+    public async Task ReadingAndListeningPages_ShowExplicitDeferredGateCopy()
     {
-        using var scope = factory.Services.CreateScope();
-        var goalsService = scope.ServiceProvider.GetRequiredService<IGoalsService>();
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
 
-        var result = await goalsService.RecordActivityAsync(TestDataIds.UserId, update);
+        using var readingResponse = await client.GetAsync("/Home/Reading");
+        var readingBody = await readingResponse.Content.ReadAsStringAsync();
+        Assert.Equal(HttpStatusCode.OK, readingResponse.StatusCode);
+        Assert.Contains("Reading hiện đang ở trạng thái tạm hoãn trong hệ thống Goals/XP", readingBody, StringComparison.Ordinal);
 
-        Assert.Equal(OperationStatus.Success, result.Status);
+        using var listeningResponse = await client.GetAsync("/Home/Listening");
+        var listeningBody = await listeningResponse.Content.ReadAsStringAsync();
+        Assert.Equal(HttpStatusCode.OK, listeningResponse.StatusCode);
+        Assert.Contains("Listening hiện đang ở trạng thái tạm hoãn trong hệ thống Goals/XP", listeningBody, StringComparison.Ordinal);
     }
 }

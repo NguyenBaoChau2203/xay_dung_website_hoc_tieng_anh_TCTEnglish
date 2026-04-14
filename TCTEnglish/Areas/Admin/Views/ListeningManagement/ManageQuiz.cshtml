@@ -1,0 +1,180 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.ListeningQuizManageViewModel
+@{
+    ViewData["Title"] = "Manage Quiz — " + Model.LessonTitle;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-link text-decoration-none p-0 text-secondary mb-1">
+            <i class="fas fa-arrow-left me-1"></i> Back to Lessons
+        </a>
+        <h1 class="h3 mb-0 text-gray-800">Quiz Questions for: <span class="text-primary">@Model.LessonTitle</span></h1>
+    </div>
+
+    <form asp-action="ManageQuiz" asp-route-id="@Model.LessonId" method="post" id="quiz-form">
+        @Html.AntiForgeryToken()
+        
+        <div id="quiz-container">
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                <div class="card shadow-sm mb-4 quiz-item" data-index="@i">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                        <span class="fw-bold fw-bold text-gray-800">Câu hỏi #<span class="q-index">@(i + 1)</span></span>
+                        <button type="button" class="btn btn-sm btn-outline-danger btn-remove-quiz"><i class="fas fa-times me-1"></i> Xóa câu này</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Nội dung câu hỏi</label>
+                            <input type="text" name="Questions[@i].QuestionText" value="@Model.Questions[i].QuestionText" class="form-control" required />
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">A</span>
+                                    <input type="text" name="Questions[@i].OptionA" value="@Model.Questions[i].OptionA" class="form-control" placeholder="Đáp án A" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">B</span>
+                                    <input type="text" name="Questions[@i].OptionB" value="@Model.Questions[i].OptionB" class="form-control" placeholder="Đáp án B" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">C</span>
+                                    <input type="text" name="Questions[@i].OptionC" value="@Model.Questions[i].OptionC" class="form-control" placeholder="Đáp án C (tùy chọn)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">D</span>
+                                    <input type="text" name="Questions[@i].OptionD" value="@Model.Questions[i].OptionD" class="form-control" placeholder="Đáp án D (tùy chọn)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Đáp án đúng</label>
+                                <select name="Questions[@i].CorrectAnswer" class="form-select">
+                                    <option value="A" selected="@(Model.Questions[i].CorrectAnswer == "A")">A</option>
+                                    <option value="B" selected="@(Model.Questions[i].CorrectAnswer == "B")">B</option>
+                                    <option value="C" selected="@(Model.Questions[i].CorrectAnswer == "C")">C</option>
+                                    <option value="D" selected="@(Model.Questions[i].CorrectAnswer == "D")">D</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label small fw-bold">Giải thích (tùy chọn)</label>
+                                <input type="text" name="Questions[@i].Explanation" value="@Model.Questions[i].Explanation" class="form-control" placeholder="Vì sao đáp án này đúng..." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-5 mt-4">
+            <button type="button" class="btn btn-outline-primary" id="btn-add-quiz">
+                <i class="fas fa-plus me-1"></i> Thêm câu hỏi
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg px-5">
+                <i class="fas fa-save me-2"></i> Lưu bộ câu hỏi
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('quiz-container');
+            const btnAdd = document.getElementById('btn-add-quiz');
+
+            function updateIndices() {
+                const items = container.querySelectorAll('.quiz-item');
+                items.forEach((item, index) => {
+                    item.dataset.index = index;
+                    item.querySelector('.q-index').textContent = index + 1;
+                    
+                    item.querySelectorAll('input, select').forEach(input => {
+                        const name = input.getAttribute('name');
+                        if (name) {
+                            input.setAttribute('name', name.replace(/Questions\[\d+\]/, `Questions[${index}]`));
+                        }
+                    });
+                });
+            }
+
+            btnAdd.addEventListener('click', function() {
+                const index = container.querySelectorAll('.quiz-item').length;
+                const div = document.createElement('div');
+                div.className = 'card shadow-sm mb-4 quiz-item';
+                div.dataset.index = index;
+                div.innerHTML = `
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                        <span class="fw-bold text-gray-800">Câu hỏi #<span class="q-index">${index + 1}</span></span>
+                        <button type="button" class="btn btn-sm btn-outline-danger btn-remove-quiz"><i class="fas fa-times me-1"></i> Xóa câu này</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Nội dung câu hỏi</label>
+                            <input type="text" name="Questions[${index}].QuestionText" class="form-control" required />
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">A</span>
+                                    <input type="text" name="Questions[${index}].OptionA" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">B</span>
+                                    <input type="text" name="Questions[${index}].OptionB" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">C</span>
+                                    <input type="text" name="Questions[${index}].OptionC" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">D</span>
+                                    <input type="text" name="Questions[${index}].OptionD" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 g-3">
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Đáp án đúng</label>
+                                <select name="Questions[${index}].CorrectAnswer" class="form-select">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label small fw-bold">Giải thích (tùy chọn)</label>
+                                <input type="text" name="Questions[${index}].Explanation" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+                div.querySelector('input').focus();
+                updateIndices();
+            });
+
+            container.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-remove-quiz')) {
+                    e.target.closest('.quiz-item').remove();
+                    updateIndices();
+                }
+            });
+        });
+    </script>
+}

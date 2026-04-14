@@ -297,7 +297,7 @@ public sealed class Sprint2SmokeTests
         var user = await context.Users.SingleAsync(u => u.UserId == TestDataIds.UserId);
 
         Assert.Equal(1, user.Streak);
-        Assert.Equal(DateTime.UtcNow.Date, user.LastStudyDate?.Date);
+        Assert.Equal(BusinessDateHelper.Today, user.LastStudyDate?.Date);
     }
 
     [Fact]
@@ -328,7 +328,7 @@ public sealed class Sprint2SmokeTests
     public void StreakConsumers_RequireConstructorInjectedService()
     {
         AssertRequiresNonOptionalService(typeof(HomeController), typeof(IStreakService));
-        AssertRequiresNonOptionalService(typeof(LearningApiController), typeof(IStreakService));
+        AssertRequiresNonOptionalService(typeof(LearningApiController), typeof(IGoalsService));
     }
 
     [Fact]

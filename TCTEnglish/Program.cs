@@ -38,6 +38,7 @@ builder.Services.AddScoped<IStudyService, StudyService>();
 builder.Services.AddScoped<IWritingService, WritingService>();
 builder.Services.AddScoped<IWritingAiEvaluationService, WritingAiEvaluationService>();
 builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimiter>();
+builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Services.ListeningService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
 builder.Services.AddOptions<AiOptions>()
     .Configure<IConfiguration>((options, configuration) =>
@@ -144,6 +145,16 @@ catch (Exception ex)
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "JsonVocabularySeeder: Lỗi không mong đợi khi seed từ JSON.");
+}
+
+try
+{
+    await TCTVocabulary.Models.ListeningLessonSeedData.SeedAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "ListeningLessonSeedData: Lỗi không mong đợi khi seed dữ liệu luyện nghe.");
 }
 
 app.Run();

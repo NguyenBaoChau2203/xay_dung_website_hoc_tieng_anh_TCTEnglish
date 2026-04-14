@@ -21,14 +21,16 @@ namespace TCTVocabulary.Controllers
         private readonly IAppEmailSender _emailSender;
         private readonly IAvatarUploadService _avatarUploadService;
         private readonly ILogger<AccountController> _logger;
+        private readonly IGoalsService _goalsService;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger, IGoalsService goalsService)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _avatarUploadService = avatarUploadService;
             _logger = logger;
+            _goalsService = goalsService;
         }
 
         // GET: /Account/Login
@@ -369,17 +371,14 @@ namespace TCTVocabulary.Controllers
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null) return RedirectToAction("Login");
 
-            var savedWordsCount = await _context.Cards
-                .AsNoTracking()
-                .Where(c => c.Set.OwnerId == userId)
-                .CountAsync();
+            var goalsData = await _goalsService.GetGoalsAsync(userId);
 
             var model = new UpdateProfileViewModel
             {
                 FullName = user.FullName ?? string.Empty,
                 CurrentAvatarUrl = user.AvatarUrl,
                 StreakDays = user.Streak ?? 0,
-                SavedWordsCount = savedWordsCount
+                EarnedBadges = goalsData?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new()
             };
 
             return View("~/Views/Account/Profile.cshtml", model);
@@ -410,10 +409,8 @@ namespace TCTVocabulary.Controllers
                         TempData["ErrorMessage"] = ex.Message;
                         model.CurrentAvatarUrl = user.AvatarUrl;
                         model.StreakDays = user.Streak ?? 0;
-                        model.SavedWordsCount = await _context.Cards
-                            .AsNoTracking()
-                            .Where(c => c.Set.OwnerId == userId)
-                            .CountAsync();
+                        var goalsDataOnError = await _goalsService.GetGoalsAsync(userId);
+                        model.EarnedBadges = goalsDataOnError?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new();
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
                 }

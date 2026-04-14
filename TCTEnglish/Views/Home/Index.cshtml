@@ -99,7 +99,31 @@
                 </a>
             </div>
         </div>
-
+        @if (Model.RecentInProcessReading != null)
+        {
+            <div class="continue-learning mb-4">
+                <div class="card border-primary shadow-sm" style="border-left: 5px solid var(--primary-blue);">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="badge bg-warning text-dark mb-1">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Đang học dở
+                            </span>
+                            <h4 class="mb-1">@Model.RecentInProcessReading.Title</h4>
+                            <p class="text-muted mb-0 small">
+                                <i class="fa-solid fa-tag"></i> @Model.RecentInProcessReading.Topic •
+                                <i class="fa-solid fa-layer-group"></i> Level @Model.RecentInProcessReading.Level
+                            </p>
+                        </div>
+                        <div>
+                            <a asp-controller="Reading" asp-action="Study" asp-route-id="@Model.RecentInProcessReading.Id"
+                                   class="btn btn-primary rounded-pill px-4">
+                                Tiếp tục học <i class="fa-solid fa-play ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         <!-- ===== TODAY LEARNING ===== -->
         <div class="today-learning">
             <h3>

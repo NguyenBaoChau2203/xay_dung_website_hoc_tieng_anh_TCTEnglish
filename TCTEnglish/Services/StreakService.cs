@@ -16,22 +16,34 @@ namespace TCTVocabulary.Services
 
         public async Task<int> UpdateStreakAsync(int userId)
         {
+            var result = await UpdateStreakWithMetadataAsync(userId);
+            return result.CurrentStreak;
+        }
+
+        public async Task<StreakUpdateResult> UpdateStreakWithMetadataAsync(int userId)
+        {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null)
             {
                 _logger.LogWarning("Cannot update streak because user {userId} was not found", userId);
-                return 0;
+                return new StreakUpdateResult
+                {
+                    CurrentStreak = 0,
+                    DidIncrease = false
+                };
             }
 
-            var today = DateTime.UtcNow.Date;
+            var today = BusinessDateHelper.Today;
             var lastStudy = user.LastStudyDate?.Date;
             var previousStreak = user.Streak ?? 0;
 
+            var didIncrease = false;
             if (lastStudy != today)
             {
                 user.Streak = lastStudy == today.AddDays(-1)
                     ? (user.Streak ?? 0) + 1
                     : 1;
+                didIncrease = true;
 
                 user.LastStudyDate = today;
 
@@ -57,7 +69,11 @@ namespace TCTVocabulary.Services
             }
 
             await _context.SaveChangesAsync();
-            return user.Streak ?? 0;
+            return new StreakUpdateResult
+            {
+                CurrentStreak = user.Streak ?? 0,
+                DidIncrease = didIncrease
+            };
         }
     }
 }

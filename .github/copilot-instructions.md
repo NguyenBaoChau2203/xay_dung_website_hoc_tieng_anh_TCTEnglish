@@ -36,7 +36,7 @@ exists.
 | `SpeakingController` | Speaking playlist and practice |
 | `AccountController` | Auth, OAuth, profile, password reset |
 | `LearningApiController` | AJAX card progress endpoints |
-| `GoalsController` | Goals page; static placeholder |
+| `GoalsController` | Goals page with real goal update, progress, and badge workflows |
 | `Areas/Admin/*` | Admin dashboard, user management, speaking video management |
 
 ### Route Compatibility

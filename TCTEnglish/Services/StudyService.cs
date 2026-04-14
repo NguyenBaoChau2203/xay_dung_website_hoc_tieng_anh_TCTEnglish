@@ -7,10 +7,23 @@ namespace TCTVocabulary.Services
     public partial class StudyService : IStudyService
     {
         private readonly DbflashcardContext _context;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IGoalsService _goalsService;
+        private readonly ILogger<StudyService> _logger;
 
-        public StudyService(DbflashcardContext context)
+        public StudyService(
+            DbflashcardContext context,
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory,
+            IGoalsService goalsService,
+            ILogger<StudyService> logger)
         {
             _context = context;
+            _configuration = configuration;
+            _httpClientFactory = httpClientFactory;
+            _goalsService = goalsService;
+            _logger = logger;
         }
 
         public async Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null)

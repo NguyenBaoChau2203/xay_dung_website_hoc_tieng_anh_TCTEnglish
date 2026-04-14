@@ -12,6 +12,8 @@ namespace TCTVocabulary.ViewModels
 
         public DailyChallengeViewModel? DailyChallenge { get; set; }
         public List<TodayFolderViewModel> TodayFolders { get; set; } = new();
+
+        public RecentReadingViewModel? RecentInProcessReading { get; set; }
     }
 
     public class TodayFolderViewModel
@@ -20,5 +22,13 @@ namespace TCTVocabulary.ViewModels
         public string FolderName { get; set; } = string.Empty;
         public int SetCount { get; set; }
         public string CreatorName { get; set; } = "Unknown";
+    }
+    public class RecentReadingViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string? Level { get; set; }
+        public string? Topic { get; set; }
+        public DateTime LastViewed { get; set; }
     }
 }

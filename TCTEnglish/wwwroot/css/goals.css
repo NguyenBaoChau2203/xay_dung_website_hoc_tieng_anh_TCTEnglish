@@ -75,6 +75,10 @@
     flex-shrink: 0;
 }
 
+.goal-editor-modal .modal-footer {
+    gap: 0.65rem;
+}
+
 /* Streak Fire Icon */
 .fire-icon-wrapper {
     width: 64px;
@@ -125,8 +129,8 @@
 
 /* Circular Chart */
 .circular-chart {
-    max-width: 120px;
-    max-height: 120px;
+    width: 132px;
+    height: 132px;
     display: block;
     margin: 0 auto;
 }
@@ -147,7 +151,9 @@
 
 .circular-progress {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    width: 132px;
+    height: 132px;
 }
 
 .percentage-label {
@@ -156,6 +162,30 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 92px;
+    max-width: calc(100% - 18px);
+}
+
+.goal-progress-card-body {
+    text-align: center;
+}
+
+.goal-progress-value {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1.55rem;
+    line-height: 1.1;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.goal-progress-meta {
+    display: block;
+    margin-top: 0.15rem;
+    color: #6b7280;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .progress-caption {
@@ -221,6 +251,7 @@
         transform: translate(-50%, 8px);
         min-width: max-content;
         max-width: 180px;
+        width: max-content;
         padding: 0.45rem 0.7rem;
         border-radius: 12px;
         background: rgba(48, 53, 69, 0.96);
@@ -462,8 +493,13 @@
         padding: 1rem;
     }
 
+    .btn-edit-goals {
+        width: 100%;
+    }
+
     .goals-toast-region {
-        top: 1rem;
+        top: auto;
+        bottom: 1rem;
         right: 1rem;
         left: 1rem;
     }
@@ -480,5 +516,87 @@
 
     .goals-feedback-toast {
         width: 100%;
+    }
+
+    .goal-editor-modal .modal-footer {
+        flex-wrap: wrap;
+    }
+
+    .goal-editor-modal .modal-footer .btn {
+        width: 100%;
+    }
+
+    .chart-container {
+        gap: 0.35rem;
+        padding-top: 16px;
+        height: 188px;
+    }
+
+    .chart-bar {
+        width: calc((100% - 2.1rem) / 7);
+    }
+
+    .chart-bar::before {
+        min-width: 120px;
+        max-width: 140px;
+        white-space: normal;
+    }
+
+    .chart-bar::after {
+        font-size: 0.75rem;
+        bottom: -22px;
+    }
+
+    .goal-progress-value {
+        font-size: 1.35rem;
+    }
+
+    .goal-progress-meta {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 374.98px) {
+    .circular-chart,
+    .circular-progress {
+        width: 116px;
+        height: 116px;
+    }
+
+    .percentage-label {
+        width: 82px;
+    }
+
+    .goal-progress-value {
+        font-size: 1.2rem;
+    }
+
+    .goals-insight-banner {
+        align-items: center;
+    }
+
+    .goals-insight-banner__icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .goal-card:hover {
+        transform: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fire-icon,
+    .circle,
+    .goals-feedback-toast,
+    .goal-card,
+    .chart-bar,
+    .chart-bar::before,
+    .goals-badge-card.is-recently-unlocked::after {
+        animation: none !important;
+        transition: none !important;
     }
 }

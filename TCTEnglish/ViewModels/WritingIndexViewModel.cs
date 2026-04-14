@@ -156,6 +156,8 @@ namespace TCTEnglish.ViewModels
         public bool HasAccepted { get; set; }
         public bool? LastEvaluationPassed { get; set; }
         public WritingSentenceEvaluationSnapshotViewModel? LastEvaluation { get; set; }
+        public bool IsCompleted { get; set; }
+        public string AcceptedText { get; set; } = string.Empty;
     }
 
     public class WritingSentenceEvaluationSnapshotViewModel

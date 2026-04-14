@@ -1,0 +1,83 @@
+﻿.scrollable-content {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.passage-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+}
+
+/* Hiệu ứng câu hỏi đúng/sai */
+.question-card.correct {
+    border: 2px solid #28a745;
+}
+
+.question-card.wrong {
+    border: 2px solid #dc3545;
+}
+
+.option-correct {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 4px;
+    padding-left: 5px;
+}
+
+.option-wrong {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    padding-left: 5px;
+}
+
+.sticky-top {
+    z-index: 10;
+}
+/* Màu cho câu đúng */
+.question-card.border-success {
+    border: 2px solid #28a745 !important;
+    background-color: #f8fff9 !important;
+}
+
+/* Màu cho câu sai */
+.question-card.border-danger {
+    border: 2px solid #dc3545 !important;
+    background-color: #fff8f8 !important;
+}
+
+.result-feedback {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+.bg-light-success {
+    background-color: #f0fff4 !important;
+}
+
+.bg-light-danger {
+    background-color: #fff5f5 !important;
+}
+
+.question-card.border-success {
+    border: 2px solid #28a745 !important;
+}
+
+.question-card.border-danger {
+    border: 2px solid #dc3545 !important;
+}
+
+.passage-text {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+.passage-box {
+    max-height: 85vh;
+    overflow-y: auto;
+}

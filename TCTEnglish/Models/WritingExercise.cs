@@ -19,4 +19,6 @@ public class WritingExercise
     public User? User { get; set; }
     public ICollection<WritingExerciseSentence> WritingExerciseSentences { get; set; } = new List<WritingExerciseSentence>();
     public ICollection<UserWritingAttempt> UserWritingAttempts { get; set; } = new List<UserWritingAttempt>();
+    public ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
+    public ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
 }
