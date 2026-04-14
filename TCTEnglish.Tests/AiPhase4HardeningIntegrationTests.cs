@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Models;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Tests.Infrastructure;
 using TCTEnglish.Tests.TestHelpers;
 using TCTEnglish.ViewModels.AI;
@@ -529,7 +530,7 @@ public sealed class AiPhase4HardeningIntegrationTests
     }
 
     [Fact]
-    public async Task DependencyInjection_ResolvesGeminiProviderClient()
+    public async Task DependencyInjection_ResolvesInternalKnowledgeProvider()
     {
         await using var factory = new TestWebApplicationFactory(services =>
         {
@@ -545,7 +546,7 @@ public sealed class AiPhase4HardeningIntegrationTests
         using var scope = factory.Services.CreateScope();
         var providerClient = scope.ServiceProvider.GetRequiredService<IAiProviderClient>();
 
-        Assert.IsType<GeminiProviderClient>(providerClient);
+        Assert.IsType<InternalKnowledgeProvider>(providerClient);
     }
 
     [Fact]
@@ -753,7 +754,7 @@ public sealed class AiPhase4HardeningIntegrationTests
                 options.DailyTokenBudgetPerUser = 60000;
             });
 
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, ct) => replyFactory(ct)));
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, ct) => replyFactory(ct)));
         });
     }
 

@@ -8,15 +8,15 @@ namespace TCTEnglish.Tests.TestHelpers;
 
 public sealed class StubAiProviderClient : IAiProviderClient
 {
-    private readonly Func<IReadOnlyList<AiContextMessage>, CancellationToken, Task<AiProviderReply>> _handler;
+    private readonly Func<int, IReadOnlyList<AiContextMessage>, CancellationToken, Task<AiProviderReply>> _handler;
 
-    public StubAiProviderClient(Func<IReadOnlyList<AiContextMessage>, CancellationToken, Task<AiProviderReply>> handler)
+    public StubAiProviderClient(Func<int, IReadOnlyList<AiContextMessage>, CancellationToken, Task<AiProviderReply>> handler)
     {
         _handler = handler;
     }
 
-    public Task<AiProviderReply> GenerateReplyAsync(IReadOnlyList<AiContextMessage> messages, CancellationToken ct)
+    public Task<AiProviderReply> GenerateReplyAsync(int userId, IReadOnlyList<AiContextMessage> messages, CancellationToken ct)
     {
-        return _handler(messages, ct);
+        return _handler(userId, messages, ct);
     }
 }

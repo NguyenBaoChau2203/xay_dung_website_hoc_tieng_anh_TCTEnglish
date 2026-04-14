@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Hubs;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.AI.Internal;
+using TCTEnglish.Services.AI.Internal.Retrievers;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.Workers;
@@ -45,8 +47,25 @@ builder.Services.AddScoped<IAiConversationService, AiConversationService>();
 builder.Services.AddScoped<IAiChatService, AiChatService>();
 builder.Services.AddScoped<IAiObservabilityService, AiObservabilityService>();
 builder.Services.AddScoped<IAiContextBuilder, AiContextBuilder>();
-builder.Services.AddScoped<GeminiProviderClient>();
-builder.Services.AddScoped<IAiProviderClient, GeminiProviderClient>();
+builder.Services.AddSingleton<DeterministicIntentClassifier>();
+builder.Services.AddSingleton<IAiQueryClassifier, MlNetAiQueryClassifier>();
+// Also register the concrete type so AiManagementController can inject it directly
+// for the InvalidateModel() hot-reload call. Both resolve the same singleton instance.
+builder.Services.AddSingleton<MlNetAiQueryClassifier>(
+    sp => (MlNetAiQueryClassifier)sp.GetRequiredService<IAiQueryClassifier>());
+builder.Services.AddScoped<IAnswerComposer, TemplateAnswerComposer>();
+builder.Services.AddOptions<MlNetIntentClassifierOptions>()
+    .BindConfiguration(MlNetIntentClassifierOptions.SectionName);
+builder.Services.AddSingleton<MlNetIntentClassifierAssetResolver>();
+builder.Services.AddScoped<MlNetIntentDatasetLoader>();
+builder.Services.AddScoped<IMlNetTrainerService, MlNetTrainerService>();
+builder.Services.AddSingleton<IKnowledgeRetriever, WebsiteGuideRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, UserVocabularyRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, LearningProgressRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, CardLookupRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, SpeakingRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, ClassRetriever>();
+builder.Services.AddScoped<IAiProviderClient, InternalKnowledgeProvider>();
 builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
 builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
 builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();

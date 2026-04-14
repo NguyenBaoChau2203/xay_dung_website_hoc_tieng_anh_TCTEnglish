@@ -18,7 +18,7 @@ public sealed class AiChatServiceTests
         await using var context = CreateContext(dbName);
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("Xin chào", 12, 18, 30, "test-model", "req-1"))));
 
         var result = await service.SendAsync(1, conversationId, "Hello teacher", CancellationToken.None);
@@ -61,7 +61,7 @@ public sealed class AiChatServiceTests
         await using var context = CreateContext(dbName);
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("ignored", 0, 0, 0, "test-model", null))));
 
         await Assert.ThrowsAsync<ArgumentException>(() =>
@@ -75,7 +75,7 @@ public sealed class AiChatServiceTests
         await using var context = CreateContext(dbName);
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("ignored", 0, 0, 0, "test-model", null))));
 
         await Assert.ThrowsAsync<KeyNotFoundException>(() =>
@@ -89,7 +89,7 @@ public sealed class AiChatServiceTests
         await using var context = CreateContext(dbName);
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             throw new AiProviderException("AI provider request failed.", "http_503", true)));
 
         await Assert.ThrowsAsync<AiProviderException>(() =>
@@ -120,7 +120,7 @@ public sealed class AiChatServiceTests
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
         var attempt = 0;
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
         {
             attempt++;
             return attempt == 1
@@ -154,7 +154,7 @@ public sealed class AiChatServiceTests
         await using var context = CreateContext(dbName);
         await SeedUsersOnlyAsync(context);
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             throw new AiProviderException("AI provider request failed.", "http_503", true)));
 
         await Assert.ThrowsAsync<AiProviderException>(() =>
@@ -185,7 +185,7 @@ public sealed class AiChatServiceTests
         var conversationId = await SeedUsersAndConversationAsync(context, ownerUserId: 1);
 
         var gate = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        var provider = new StubAiProviderClient(async (_, _) =>
+        var provider = new StubAiProviderClient(async (_, _, _) =>
         {
             await gate.Task;
             return new AiProviderReply("done", 1, 1, 2, "test-model", "req-2");
@@ -213,7 +213,7 @@ public sealed class AiChatServiceTests
         await SeedUsersOnlyAsync(context);
 
         var longPrompt = "   Explain the difference between present perfect and past simple with practical examples and common mistakes for Vietnamese learners.   ";
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("Sure", 8, 9, 17, "test-model", "req-create"))));
 
         var result = await service.SendAsync(1, null, longPrompt, CancellationToken.None);
@@ -259,7 +259,7 @@ public sealed class AiChatServiceTests
         }
         await context.SaveChangesAsync();
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
 
         var exception = await Assert.ThrowsAsync<AiRateLimitException>(() =>
@@ -289,7 +289,7 @@ public sealed class AiChatServiceTests
 
         await context.SaveChangesAsync();
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
 
         var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
@@ -318,7 +318,7 @@ public sealed class AiChatServiceTests
 
         await context.SaveChangesAsync();
 
-        var failingService = CreateService(context, new StubAiProviderClient((_, _) =>
+        var failingService = CreateService(context, new StubAiProviderClient((_, _, _) =>
             throw new AiProviderException("AI provider request failed.", "http_503", true)));
 
         await Assert.ThrowsAsync<AiProviderException>(() =>
@@ -330,7 +330,7 @@ public sealed class AiChatServiceTests
 
         Assert.Equal(14, successfulRequestCountAfterFailure);
 
-        var successService = CreateService(context, new StubAiProviderClient((_, _) =>
+        var successService = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 5, 7, 12, "test-model", null))));
 
         var result = await successService.SendAsync(1, conversationId, "after failure", CancellationToken.None);
@@ -362,7 +362,7 @@ public sealed class AiChatServiceTests
         }
         await context.SaveChangesAsync();
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
 
         var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
@@ -390,7 +390,7 @@ public sealed class AiChatServiceTests
         }
         await context.SaveChangesAsync();
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
 
         var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);
@@ -421,7 +421,7 @@ public sealed class AiChatServiceTests
         }
         await context.SaveChangesAsync();
 
-        var service = CreateService(context, new StubAiProviderClient((_, _) =>
+        var service = CreateService(context, new StubAiProviderClient((_, _, _) =>
             Task.FromResult(new AiProviderReply("success", 10, 10, 20, "test-model", null))));
 
         var result = await service.SendAsync(1, conversationId, "hello", CancellationToken.None);

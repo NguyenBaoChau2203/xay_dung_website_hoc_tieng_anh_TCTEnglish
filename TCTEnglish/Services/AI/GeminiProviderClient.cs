@@ -32,7 +32,7 @@ public sealed class GeminiProviderClient : IAiProviderClient
         _logger = logger;
     }
 
-    public async Task<AiProviderReply> GenerateReplyAsync(IReadOnlyList<AiContextMessage> messages, CancellationToken ct)
+    public async Task<AiProviderReply> GenerateReplyAsync(int userId, IReadOnlyList<AiContextMessage> messages, CancellationToken ct)
     {
         if (messages == null || messages.Count == 0)
         {

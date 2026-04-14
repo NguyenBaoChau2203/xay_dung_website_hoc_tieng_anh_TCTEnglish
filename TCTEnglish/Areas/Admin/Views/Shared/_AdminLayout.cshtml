@@ -131,6 +131,12 @@
                         <i class="bi bi-chat-dots-fill me-2"></i> Messages
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="AiManagement" asp-action="Index"
+                       class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "AiManagement" ? "active" : "")">
+                        <i class="bi bi-robot me-2"></i> AI Management
+                    </a>
+                </li>
             </ul>
         </nav>
 

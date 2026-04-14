@@ -180,7 +180,7 @@ public sealed class AiChatService : IAiChatService
 
         try
         {
-            aiReply = await _providerClient.GenerateReplyAsync(contextResult.Messages, ct);
+            aiReply = await _providerClient.GenerateReplyAsync(userId, contextResult.Messages, ct);
         }
         catch (AiProviderException ex)
         {

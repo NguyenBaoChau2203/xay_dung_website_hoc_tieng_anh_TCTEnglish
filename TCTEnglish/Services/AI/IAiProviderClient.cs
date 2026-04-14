@@ -6,6 +6,6 @@ namespace TCTEnglish.Services.AI;
 
 public interface IAiProviderClient
 {
-    Task<AiProviderReply> GenerateReplyAsync(IReadOnlyList<AiContextMessage> messages, CancellationToken ct);
+    Task<AiProviderReply> GenerateReplyAsync(int userId, IReadOnlyList<AiContextMessage> messages, CancellationToken ct);
 }
 
