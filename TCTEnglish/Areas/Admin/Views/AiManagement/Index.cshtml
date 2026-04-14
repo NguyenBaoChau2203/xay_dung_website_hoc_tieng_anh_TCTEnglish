@@ -1,0 +1,310 @@
+@model AiManagementViewModel
+@{
+    ViewData["Title"] = "AI Management";
+
+    // Deserialise TempData payloads passed from AiManagementController
+    var trainingResultJson = TempData["TrainingResult"] as string;
+    var trainingError     = TempData["TrainingError"]  as string;
+}
+
+@* ===== PAGE HEADER ===== *@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="fw-bold mb-1 fs-3">
+            <i class="bi bi-robot me-2 text-primary"></i>AI Management
+        </h1>
+        <p class="text-muted mb-0">Quản lý mô hình phân loại ý định (ML.NET Intent Classifier)</p>
+    </div>
+    <span class="badge bg-primary-subtle text-primary-emphasis fs-6">
+        <i class="bi bi-cpu me-1"></i>ML.NET SDCA
+    </span>
+</div>
+
+@* ===== STATUS CARDS ROW ===== *@
+<div class="row g-4 mb-4">
+
+    @* --- MODEL STATUS CARD --- *@
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom py-3 d-flex align-items-center gap-2">
+                <i class="bi bi-file-earmark-zip-fill text-primary fs-5"></i>
+                <h5 class="fw-semibold mb-0">Trạng thái Model</h5>
+                @if (Model.ModelExists)
+                {
+                    <span class="badge bg-success ms-auto">
+                        <i class="bi bi-circle-fill me-1" style="font-size:.55rem;"></i>Đã huấn luyện
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-danger ms-auto">
+                        <i class="bi bi-circle-fill me-1" style="font-size:.55rem;"></i>Chưa có model
+                    </span>
+                }
+            </div>
+            <div class="card-body">
+                @if (Model.ModelExists)
+                {
+                    <dl class="row mb-0 small">
+                        <dt class="col-5 text-muted fw-normal">Đường dẫn</dt>
+                        <dd class="col-7">
+                            <code class="user-select-all" style="font-size:.75rem;word-break:break-all;">
+                                @System.IO.Path.GetFileName(Model.ModelPath)
+                            </code>
+                        </dd>
+
+                        <dt class="col-5 text-muted fw-normal">Kích thước</dt>
+                        <dd class="col-7 fw-semibold">
+                            @if (Model.ModelFileSizeBytes.HasValue)
+                            {
+                                @(Model.ModelFileSizeBytes.Value < 1024 * 1024
+                                    ? $"{Model.ModelFileSizeBytes.Value / 1024.0:F1} KB"
+                                    : $"{Model.ModelFileSizeBytes.Value / 1024.0 / 1024.0:F2} MB")
+                            }
+                            else
+                            {
+                                <span class="text-muted">N/A</span>
+                            }
+                        </dd>
+
+                        <dt class="col-5 text-muted fw-normal">Cập nhật lần cuối</dt>
+                        <dd class="col-7">
+                            @if (Model.ModelLastModifiedUtc.HasValue)
+                            {
+                                var local = Model.ModelLastModifiedUtc.Value.ToLocalTime();
+                                <span title="@local.ToString("o")">@local.ToString("dd/MM/yyyy HH:mm")</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">N/A</span>
+                            }
+                        </dd>
+                    </dl>
+                }
+                else
+                {
+                    <div class="text-center py-3 text-muted">
+                        <i class="bi bi-exclamation-triangle-fill text-warning fs-2 d-block mb-2"></i>
+                        <p class="mb-0 small">
+                            Chưa có file model nào. Nhấn <strong>Huấn luyện Model</strong> bên dưới để tạo model từ dataset.
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @* --- DATASET STATUS CARD --- *@
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom py-3 d-flex align-items-center gap-2">
+                <i class="bi bi-table text-success fs-5"></i>
+                <h5 class="fw-semibold mb-0">Trạng thái Dataset</h5>
+                @if (Model.DatasetExists)
+                {
+                    <span class="badge bg-success ms-auto">
+                        <i class="bi bi-circle-fill me-1" style="font-size:.55rem;"></i>Sẵn sàng
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-danger ms-auto">
+                        <i class="bi bi-circle-fill me-1" style="font-size:.55rem;"></i>Không tìm thấy
+                    </span>
+                }
+            </div>
+            <div class="card-body">
+                @if (Model.DatasetExists)
+                {
+                    <dl class="row mb-0 small">
+                        <dt class="col-5 text-muted fw-normal">File</dt>
+                        <dd class="col-7">
+                            <code style="font-size:.75rem;">@System.IO.Path.GetFileName(Model.DatasetPath)</code>
+                        </dd>
+
+                        <dt class="col-5 text-muted fw-normal">Số mẫu</dt>
+                        <dd class="col-7">
+                            @if (Model.DatasetSampleCount.HasValue)
+                            {
+                                <span class="fw-semibold text-success">@Model.DatasetSampleCount.Value.ToString("N0")</span>
+                                <span class="text-muted ms-1">mẫu gán nhãn</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Không đọc được</span>
+                            }
+                        </dd>
+                    </dl>
+                }
+                else
+                {
+                    <div class="text-center py-3 text-muted">
+                        <i class="bi bi-file-earmark-x-fill text-danger fs-2 d-block mb-2"></i>
+                        <p class="mb-0 small">
+                            File dataset <code>intent-samples.seed.csv</code> không tìm thấy.
+                            Huấn luyện sẽ thất bại cho đến khi dataset được khôi phục.
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ===== TRAIN BUTTON CARD ===== *@
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
+        <div class="flex-grow-1">
+            <h6 class="fw-semibold mb-1">Huấn luyện lại Model AI</h6>
+            <p class="text-muted small mb-0">
+                Quá trình huấn luyện đọc toàn bộ dataset CSV, xây dựng pipeline SDCA, đánh giá
+                độ chính xác, và lưu <code>intent-classifier-model.zip</code>. Model mới sẽ được
+                tải tự động (hot-reload) mà không cần khởi động lại ứng dụng.
+            </p>
+        </div>
+
+        @* Hidden form — submitted by JS after SweetAlert2 confirm *@
+        <form id="trainForm" asp-area="Admin" asp-controller="AiManagement" asp-action="TrainModel"
+              method="post" class="d-none">
+            @Html.AntiForgeryToken()
+        </form>
+
+        <button type="button" id="btnTrain"
+                class="btn btn-primary px-4 d-flex align-items-center gap-2 flex-shrink-0"
+                @(!Model.DatasetExists ? "disabled" : "")>
+            <i class="bi bi-rocket-takeoff-fill"></i>
+            Huấn luyện Model
+        </button>
+    </div>
+</div>
+
+@* ===== TECH INFO CARD ===== *@
+<div class="card border-0 bg-light">
+    <div class="card-body small text-muted">
+        <i class="bi bi-info-circle me-1"></i>
+        <strong>Pipeline:</strong>
+        <code>TextFeaturizing("Features","Text")</code> →
+        <code>MapValueToKey("Label")</code> →
+        <code>SdcaMaximumEntropy</code> →
+        <code>MapKeyToValue("PredictedLabel")</code>.
+        Mô hình phân loại <strong>@Enum.GetValues(typeof(TCTEnglish.Services.AI.Internal.UserIntent)).Length</strong> ý định từ
+        dataset tại <code>Services/AI/Internal/Data/</code>.
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    // ─── helper: parse TimeSpan string "hh:mm:ss.fff" from System.Text.Json ──
+    function fmtDuration(raw) {
+        if (!raw) return '—';
+        // TimeSpan serialised as "00:00:05.1230000"
+        if (typeof raw === 'string') {
+            const parts = raw.split(':');
+            if (parts.length >= 3) {
+                const h = parseInt(parts[0], 10);
+                const m = parseInt(parts[1], 10);
+                const s = parseFloat(parts[2]);
+                const totalSec = h * 3600 + m * 60 + Math.round(s);
+                if (totalSec < 60) return totalSec + 's';
+                return Math.floor(totalSec / 60) + 'm ' + (totalSec % 60) + 's';
+            }
+        }
+        // Fallback: treat as milliseconds number
+        const totalSec = Math.round(Number(raw) / 1000);
+        if (isNaN(totalSec)) return '—';
+        if (totalSec < 60) return totalSec + 's';
+        return Math.floor(totalSec / 60) + 'm ' + (totalSec % 60) + 's';
+    }
+
+    // ─── TempData payloads injected by Razor ──────────────────────────────────
+    const trainingResultJson = @Html.Raw(trainingResultJson != null
+        ? System.Text.Json.JsonSerializer.Serialize(trainingResultJson)
+        : "null");
+    const trainingError = @Html.Raw(trainingError != null
+        ? System.Text.Json.JsonSerializer.Serialize(trainingError)
+        : "null");
+
+    // ─── Show result/error toast on page load ─────────────────────────────────
+    if (trainingResultJson) {
+        try {
+            const result = JSON.parse(trainingResultJson);
+            const duration = result.Duration ?? result.duration ?? null;
+
+            if (result.success ?? result.Success) {
+                const micro  = result.microAccuracy  ?? result.MicroAccuracy  ?? 0;
+                const macro  = result.macroAccuracy  ?? result.MacroAccuracy  ?? 0;
+                const count  = result.sampleCount    ?? result.SampleCount    ?? 0;
+                const intents= result.intentCount    ?? result.IntentCount    ?? 0;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '✅ Huấn luyện thành công!',
+                    html:
+                        `<div class="text-start small">
+                            <div class="mb-1"><strong>Micro Accuracy:</strong> <span class="text-success fw-bold">${(micro * 100).toFixed(1)}%</span></div>
+                            <div class="mb-1"><strong>Macro Accuracy:</strong> <span class="text-success fw-bold">${(macro * 100).toFixed(1)}%</span></div>
+                            <div class="mb-1"><strong>Số mẫu:</strong> ${count.toLocaleString()}</div>
+                            <div class="mb-1"><strong>Số ý định:</strong> ${intents}</div>
+                            <div><strong>Thời gian:</strong> ${fmtDuration(duration)}</div>
+                        </div>`,
+                    toast: false,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Đóng',
+                    confirmButtonColor: '#0d6efd',
+                    timer: 15000,
+                    timerProgressBar: true
+                });
+            } else {
+                const msg = result.errorMessage ?? result.ErrorMessage ?? 'Lỗi không xác định.';
+                Swal.fire({
+                    icon: 'error',
+                    title: '❌ Huấn luyện thất bại',
+                    text: msg,
+                    confirmButtonColor: '#dc3545'
+                });
+            }
+        } catch (e) {
+            console.error('Failed to parse training result JSON:', e);
+        }
+    }
+
+    if (trainingError) {
+        Swal.fire({
+            icon: 'error',
+            title: '❌ Lỗi huấn luyện',
+            text: trainingError,
+            confirmButtonColor: '#dc3545'
+        });
+    }
+
+    // ─── Train button: confirm → loading spinner → submit ─────────────────────
+    document.getElementById('btnTrain')?.addEventListener('click', function () {
+        Swal.fire({
+            title: 'Xác nhận huấn luyện?',
+            html:  'Bạn có chắc muốn <strong>huấn luyện lại model AI</strong>?<br>' +
+                   '<small class="text-muted">Quá trình có thể mất vài giây tùy kích thước dataset.</small>',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '🚀 Huấn luyện',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#0d6efd',
+            cancelButtonColor: '#6c757d',
+            reverseButtons: true
+        }).then(function (result) {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Đang huấn luyện...',
+                    html: '<p class="text-muted small mb-0">ML.NET đang xử lý dataset, vui lòng chờ.</p>',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false,
+                    didOpen: function () {
+                        Swal.showLoading();
+                    }
+                });
+                document.getElementById('trainForm').submit();
+            }
+        });
+    });
+</script>
+}
