@@ -65,3 +65,40 @@
 .admin-title-truncate {
     max-width: 300px;
 }
+
+/* ── Badge cards on Profile page ───────────────────────────────── */
+.badge-card {
+    background: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.badge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 85, 255, 0.12) !important;
+}
+
+.badge-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-icon {
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+/* Unique gradient per common badge icon colors */
+.badge-icon-wrap:has(.fa-fire)          { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+.badge-icon-wrap:has(.fa-star)          { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+.badge-icon-wrap:has(.fa-award)         { background: linear-gradient(135deg, #4255ff 0%, #764ba2 100%); }
+.badge-icon-wrap:has(.fa-trophy)        { background: linear-gradient(135deg, #f7971e 0%, #ff6b6b 100%); }
+.badge-icon-wrap:has(.fa-medal)         { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.badge-icon-wrap:has(.fa-graduation-cap){ background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.badge-icon-wrap:has(.fa-bolt)          { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.badge-icon-wrap:has(.fa-gem)           { background: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%); }
