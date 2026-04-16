@@ -56,6 +56,9 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ListeningVocabItem> ListeningVocabItems { get; set; }
     public virtual DbSet<UserListeningProgress> UserListeningProgresses { get; set; }
 
+    // ─── Notifications ───────────────────────────────────────────────────────
+    public virtual DbSet<Notification> Notifications { get; set; }
+
     public virtual DbSet<ReadingPassage> ReadingPassages { get; set; }
     public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
     public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
@@ -1107,6 +1110,46 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.LessonId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserListeningProgress_ListeningLessons");
+        });
+
+        // ─── Notifications ────────────────────────────────────────────────────
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Title)
+                .HasMaxLength(200)
+                .IsRequired();
+
+            entity.Property(e => e.Message)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(e => e.RelatedUrl)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.IconClass)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Type)
+                .HasConversion<int>();
+
+            entity.Property(e => e.IsRead)
+                .HasDefaultValue(false);
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime2")
+                .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            // Composite index: query by user → filter unread → sort by date
+            entity.HasIndex(e => new { e.UserId, e.IsRead, e.CreatedAt })
+                .HasDatabaseName("IX_Notifications_UserId_IsRead_CreatedAt");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.Notifications)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Notifications_Users");
         });
 
         OnModelCreatingPartial(modelBuilder);

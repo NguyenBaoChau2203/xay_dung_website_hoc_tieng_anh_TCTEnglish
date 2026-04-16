@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using TCTEnglish.Models;
 using TCTVocabulary.Models;
@@ -108,5 +108,8 @@ public partial class User
     public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
     public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
     public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();
+
+    // ─── Notifications ────────────────────────────────────────────────────────
+    public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 }
 

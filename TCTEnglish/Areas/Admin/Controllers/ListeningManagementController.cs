@@ -276,15 +276,23 @@ public class ListeningManagementController : Controller
             var existing = _context.ListeningTranscriptLines.Where(l => l.LessonId == id);
             _context.ListeningTranscriptLines.RemoveRange(existing);
 
+            // Detect speakers from lesson config or transcript text
+            var defaultSpeaker1 = !string.IsNullOrWhiteSpace(lesson.Speaker1Name)
+                ? lesson.Speaker1Name : "Speaker 1";
+            var defaultSpeaker2 = !string.IsNullOrWhiteSpace(lesson.Speaker2Name)
+                ? lesson.Speaker2Name : "Speaker 2";
+
             for (int i = 0; i < sentences.Count; i++)
             {
                 var s = sentences[i];
+                var (speaker, cleanedText) = DetectSpeaker(s.Text, defaultSpeaker1, defaultSpeaker2);
+
                 _context.ListeningTranscriptLines.Add(new ListeningTranscriptLine
                 {
                     LessonId = id,
                     OrderIndex = i + 1,
-                    Speaker = "Speaker 1",
-                    Text = s.Text,
+                    Speaker = speaker,
+                    Text = cleanedText,
                     StartTime = s.StartTime,
                     EndTime = s.EndTime
                 });
@@ -306,6 +314,39 @@ public class ListeningManagementController : Controller
         }
 
         return RedirectToAction(nameof(ManageTranscript), new { id });
+    }
+
+    /// <summary>
+    /// Detect speaker from transcript text patterns:
+    ///   "[Speaker Name]:" / "Speaker Name:" / "Name:" at start of line.
+    /// Returns (speaker, cleaned text without the speaker prefix).
+    /// </summary>
+    private static readonly Regex SpeakerPatternRegex = new(
+        @"^\s*\[?([A-Za-z][A-Za-z\s]{0,30}?)\]?\s*:\s*",
+        RegexOptions.Compiled);
+
+    private static (string Speaker, string Text) DetectSpeaker(
+        string text, string defaultSpeaker1, string defaultSpeaker2)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return (defaultSpeaker1, text);
+
+        var match = SpeakerPatternRegex.Match(text);
+        if (match.Success)
+        {
+            var detectedName = match.Groups[1].Value.Trim();
+            var remainingText = text[match.Length..].Trim();
+
+            // Chỉ accept nếu phần còn lại không rỗng và tên hợp lý (1-4 từ)
+            var nameWords = detectedName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (!string.IsNullOrWhiteSpace(remainingText) && nameWords.Length <= 4)
+            {
+                return (detectedName, remainingText);
+            }
+        }
+
+        // Không detect được → trả default
+        return (defaultSpeaker1, text);
     }
 
     // GET: Admin/ListeningManagement/ManageQuiz/5

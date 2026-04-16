@@ -42,6 +42,37 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Notification entity missing from migration snapshot and database — 2026-04-15
+
+**Symptom**: Two sequential errors after the Notification feature was added:
+1. `System.InvalidOperationException` at `dbContext.Database.Migrate()` in `Program.cs` during application startup (model snapshot mismatch).
+2. `Microsoft.Data.SqlClient.SqlException` at `NotificationService.GetUnreadCountAsync` (line 27) — "Invalid object name 'Notifications'" — because the Notifications table did not exist in the database.
+
+**Root Cause**: The `Notification` entity was registered in `DbflashcardContext.OnModelCreating` (with table, index, and FK relationship) and the `User.Notifications` navigation property was added, but:
+1. The migration snapshot (`DbflashcardContextModelSnapshot.cs`) was never updated to include the Notification definition.
+2. No migration file was ever created to generate the `CREATE TABLE Notifications` SQL.
+This is the same class of bug as the WritingExercise snapshot issue documented earlier in this log.
+
+**Solution**: Two-phase fix:
+1. **Generated EF migration** via `dotnet ef migrations add AddNotifications` — this auto-detected the Notification entity difference (snapshot vs model) and generated both the migration `.cs` + `.Designer.cs` files AND updated the snapshot.
+2. **Trimmed the migration** — the auto-generated migration included unrelated diffs from previously-applied migrations (UserGoals, SpeakingVideoCompletions, WritingAttempts, etc.) because the snapshot had drifted from the live DB. Hand-trimmed the migration to only include `CreateTable("Notifications")` + `CreateIndex("IX_Notifications_UserId_IsRead_CreatedAt")`.
+3. **Applied migration** via `dotnet ef database update` — successfully created the `Notifications` table in SQL Server.
+
+**Files Changed**:
+- `TCTEnglish/Migrations/20260415090417_AddNotifications.cs` — hand-trimmed migration with only Notifications CreateTable + CreateIndex.
+- `TCTEnglish/Migrations/20260415090417_AddNotifications.Designer.cs` — auto-generated designer metadata (by EF).
+- `TCTEnglish/Migrations/DbflashcardContextModelSnapshot.cs` — auto-updated by EF to include Notification entity, relationship, and User navigation.
+- `.ai/context/bug-fix-log.md` — added this incident record.
+
+**Verification**:
+- `dotnet ef database update` — `CREATE TABLE [Notifications]`, `CREATE INDEX`, and `INSERT INTO [__EFMigrationsHistory]` all succeeded.
+- `dotnet run` — app started cleanly: `No migrations were applied. The database is already up to date.`, `NotificationWorker started.`, `Now listening on: http://localhost:5100`. No `InvalidOperationException` or `SqlException`.
+
+**Commit**: Not created.
+
+**Notes**: The auto-generated migration was dangerously large because the snapshot had drifted from the live DB — it included CreateTable for 6 already-existing tables plus column additions and index changes that were already applied. Always trim auto-generated migrations when the snapshot is known to be behind. Future entity additions should use `dotnet ef migrations add` as the primary workflow rather than manual snapshot editing.
+
+
 ### Premium speaking Phase 6 regressions on owner-scoped delete and account cleanup - 2026-04-13
 
 **Symptom**: In Premium Speaking lifecycle integration tests, outsider delete of another owner's private video returned `BadRequest` instead of `NotFound`, and account deletion redirected to `/Account/Settings` (failure path) instead of `/Account/Login` when owned private speaking content had dependent speaking progress rows.

@@ -1,0 +1,62 @@
+@*
+    _NotificationDropdown.cshtml
+    Được render bởi _Layout.cshtml bên trong .notif-wrapper.
+    JS trong notifications.js mount vào các id bên dưới.
+*@
+
+@* CSRF token — đọc bởi notifications.js khi gọi POST *@
+@Html.AntiForgeryToken()
+
+<div class="notif-panel" id="notifPanel" role="dialog"
+     aria-label="Thông báo" aria-modal="false">
+
+    @* ── Header ── *@
+    <div class="notif-header">
+        <h6>
+            <i class="fas fa-bell me-1" style="color:#6366f1;"></i>
+            Thông báo
+        </h6>
+        <button class="notif-mark-all-btn" id="notifMarkAllBtn" type="button"
+                title="Đánh dấu tất cả đã đọc">
+            Đọc tất cả
+        </button>
+    </div>
+
+    @* ── Notification list — JS sẽ replace nội dung này ── *@
+    <div class="notif-list" id="notifList" role="list"
+         aria-live="polite" aria-label="Danh sách thông báo">
+
+        @* Skeleton loader hiển thị trước khi data về *@
+        <div class="notif-skeleton">
+            <div class="skeleton-circle"></div>
+            <div class="skeleton-lines">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+            </div>
+        </div>
+        <div class="notif-skeleton">
+            <div class="skeleton-circle"></div>
+            <div class="skeleton-lines">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+            </div>
+        </div>
+        <div class="notif-skeleton">
+            <div class="skeleton-circle"></div>
+            <div class="skeleton-lines">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+            </div>
+        </div>
+    </div>
+
+    @* ── Load More ── *@
+    <button class="notif-load-more" id="notifLoadMoreBtn" type="button" style="display:none;">
+        Tải thêm…
+    </button>
+
+    @* ── Footer ── *@
+    <div class="notif-footer">
+        <a href="/Notification">Xem tất cả thông báo →</a>
+    </div>
+</div>
