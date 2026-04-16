@@ -1,5 +1,17 @@
 ﻿@model IEnumerable<TCTVocabulary.Models.ReadingPassage>
+<style>
+    /* Tạo khoảng cách nhỏ nếu không dùng btn-group */
+    .action-buttons .btn {
+        margin-right: 5px;
+        border-radius: 4px !important; /* Bo góc riêng từng nút thay vì chỉ bo góc 2 đầu group */
+    }
 
+    /* Hoặc nếu dùng btn-group mà muốn tách nhẹ */
+    .btn-group > .btn, .btn-group > form > .btn {
+        margin-right: 4px !important;
+        border-radius: 4px !important;
+    }
+</style>
 <div class="container-fluid mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Quản lý Bài Đọc</h2>

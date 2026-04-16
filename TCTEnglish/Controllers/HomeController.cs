@@ -170,21 +170,27 @@ namespace TCTVocabulary.Controllers
             return Json(new { correct = isCorrect, correctCardId });
         }
 
+        // 1. Cập nhật hàm lấy Challenge ngẫu nhiên
         private async Task<DailyChallengeViewModel> GetRandomChallengeAsync()
         {
-            var totalCards = await _context.Cards.CountAsync();
-            if (totalCards == 0)
-            {
-                return new DailyChallengeViewModel();
-            }
+            // Lọc Cards: Card -> thuộc Set -> có Owner (User) -> có Role là "System"
+            var systemCardsQuery = _context.Cards
+                .AsNoTracking()
+                .Where(c => c.Set.Owner.Role == "System"); // Lọc theo Role System
+
+            var totalCards = await systemCardsQuery.CountAsync();
+
+            if (totalCards == 0) return new DailyChallengeViewModel();
 
             var randomIndex = Random.Shared.Next(totalCards);
-            var randomCard = await _context.Cards
-                .AsNoTracking()
+            var randomCard = await systemCardsQuery
                 .Skip(randomIndex)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
 
-            var wrongAnswers = await GetWrongAnswersAsync(randomCard.CardId);
+            if (randomCard == null) return new DailyChallengeViewModel();
+
+            // Lấy các phương án sai cũng chỉ từ nguồn System
+            var wrongAnswers = await GetSystemWrongAnswersAsync(randomCard.CardId);
 
             wrongAnswers.Add(new AnswerOption
             {
@@ -203,7 +209,7 @@ namespace TCTVocabulary.Controllers
                 CardId = randomCard.CardId,
                 Term = randomCard.Term,
                 ChallengeToken = challengeToken,
-                Options = wrongAnswers.OrderBy(_ => Random.Shared.Next()).ToList()
+                Options = wrongAnswers.OrderBy(_ => Guid.NewGuid()).ToList()
             };
         }
 
@@ -320,51 +326,31 @@ namespace TCTVocabulary.Controllers
                 .ToList();
         }
 
-        private async Task<List<AnswerOption>> GetWrongAnswersAsync(int excludedCardId)
+        // 2. Cập nhật hàm lấy phương án sai
+        private async Task<List<AnswerOption>> GetSystemWrongAnswersAsync(int excludedCardId)
         {
             var eligibleCards = _context.Cards
                 .AsNoTracking()
-                .Where(c => c.CardId != excludedCardId);
+                .Where(c => c.CardId != excludedCardId && c.Set.Owner.Role == "System");
 
-            if (_context.Database.IsSqlServer())
-            {
-                return await eligibleCards
-                    .OrderBy(_ => Guid.NewGuid())
-                    .Take(3)
-                    .Select(c => new AnswerOption
-                    {
-                        CardId = c.CardId,
-                        Definition = c.Definition
-                    })
-                    .ToListAsync();
-            }
-
-            // FIX: SQLite test provider cannot translate Guid.NewGuid() inside OrderBy.
-            var cardIds = await TakeRandomIdsAsync(
-                eligibleCards
-                    .OrderBy(c => c.CardId)
-                    .Select(c => c.CardId),
-                3);
-
-            if (cardIds.Count == 0)
-            {
-                return new List<AnswerOption>();
-            }
-
-            var answers = await eligibleCards
-                .Where(c => cardIds.Contains(c.CardId))
+            // Lấy ngẫu nhiên 3 định nghĩa từ System
+            return await eligibleCards
+                .OrderBy(c => Guid.NewGuid())
+                .Take(3)
                 .Select(c => new AnswerOption
                 {
                     CardId = c.CardId,
                     Definition = c.Definition
                 })
                 .ToListAsync();
+        }
 
-            var answersById = answers.ToDictionary(a => a.CardId);
-            return cardIds
-                .Where(answersById.ContainsKey)
-                .Select(id => answersById[id])
-                .ToList();
+        // 3. Thêm Action mới để trả về Partial View cho AJAX
+        [HttpGet]
+        public async Task<IActionResult> RefreshDailyChallenge()
+        {
+            var challenge = await GetRandomChallengeAsync();
+            return PartialView("_DailyChallenge", challenge);
         }
 
         private static List<int> GetUniqueRandomOffsets(int totalCount, int takeCount)
@@ -415,7 +401,22 @@ namespace TCTVocabulary.Controllers
         {
             return View();
         }
+        public IActionResult Introduction()
+        {
+            return View("~/Views/Footer/Introduction.cshtml");
+        }
 
+        // Trang Điều khoản sử dụng
+        public IActionResult Termsofuse()
+        {
+            return View("~/Views/Footer/Termsofuse.cshtml");
+        }
+
+        // Trang Chính sách bảo mật
+        public IActionResult Privacypolicy()
+        {
+            return View("~/Views/Footer/Privacypolicy.cshtml");
+        }
         public IActionResult Privacy()
         {
             return View();

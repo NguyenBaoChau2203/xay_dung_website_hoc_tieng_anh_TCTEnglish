@@ -4,6 +4,7 @@ using System.Security.Claims;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTEnglish.ViewModels;
+using System.Text.Json;
 
 namespace TCTEnglish.Controllers
 {
@@ -117,6 +118,51 @@ namespace TCTEnglish.Controllers
             userId = 0;
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             return claim != null && int.TryParse(claim.Value, out userId);
+        }
+        [HttpGet]
+
+        public async Task<IActionResult> Translate(string text)
+
+        {
+
+            if (string.IsNullOrEmpty(text))
+
+                return Json(new { translation = "" });
+
+
+
+            using var client = new HttpClient();
+
+
+
+            var url =
+
+            $"https://api.mymemory.translated.net/get?q={Uri.EscapeDataString(text)}&langpair=en|vi";
+
+
+
+            var response = await client.GetStringAsync(url);
+
+
+
+            using JsonDocument doc = JsonDocument.Parse(response);
+
+
+
+            var translated =
+
+            doc.RootElement
+
+            .GetProperty("responseData")
+
+            .GetProperty("translatedText")
+
+            .GetString();
+
+
+
+            return Json(new { translation = translated });
+
         }
     }
 }

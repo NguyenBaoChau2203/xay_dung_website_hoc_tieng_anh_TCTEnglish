@@ -1,0 +1,176 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    .privacy-container {
+        background: linear-gradient(to bottom, #f8faff, #ffffff);
+        min-height: 100vh;
+    }
+    .privacy-card {
+        border: none;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        border: 1px solid rgba(0,0,0,0.02);
+    }
+    .policy-section {
+        padding: 30px 0;
+        border-bottom: 1px dashed #dee2e6;
+    }
+    .policy-section:last-child {
+        border-bottom: none;
+    }
+    .policy-icon {
+        width: 45px;
+        height: 45px;
+        background: #eef2ff;
+        color: #4f46e5;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    .info-box {
+        background: #fdfdfd;
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #f1f1f1;
+        height: 100%;
+    }
+    .security-alert {
+        background: #fff9db;
+        border-left: 4px solid #fab005;
+        color: #856404;
+    }
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(10px);
+        padding: 15px 0;
+    }
+</style>
+
+<div class="privacy-container py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                
+                <div class="text-center mb-5">
+                    <div class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-3">Bảo mật dữ liệu</div>
+                    <h1 class="display-5 fw-bold text-dark">Chính sách quyền riêng tư</h1>
+                    <p class="text-muted mx-auto" style="max-width: 700px;">
+                        Tại TCT English, sự riêng tư của bạn là ưu tiên hàng đầu. Chúng tôi cam kết minh bạch trong việc thu thập và bảo vệ thông tin của bạn. 🔐
+                    </p>
+                </div>
+
+                <div class="card privacy-card p-4 p-md-5">
+                    
+                    <div class="policy-section">
+                        <div class="d-flex gap-3 mb-4">
+                            <div class="policy-icon"><i class="bi bi-database-add"></i></div>
+                            <div>
+                                <h4 class="fw-bold mb-1">1. Thông tin chúng tôi thu thập</h4>
+                                <p class="text-muted">Chúng tôi thu thập dữ liệu để tối ưu hóa trải nghiệm học tập.</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <h6 class="fw-bold text-primary"><i class="bi bi-person-circle me-2"></i>Tài khoản</h6>
+                                    <ul class="small list-unstyled mb-0">
+                                        <li>• Tên người dùng & Email</li>
+                                        <li>• Mật khẩu (Mã hóa)</li>
+                                        <li>• Thông tin hồ sơ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <h6 class="fw-bold text-danger"><i class="bi bi-mortarboard me-2"></i>Học tập</h6>
+                                    <ul class="small list-unstyled mb-0">
+                                        <li>• Lớp học & Thư mục</li>
+                                        <li>• Bộ Flashcard & Tiến độ</li>
+                                        <li>• Kết quả luyện tập 4 kỹ năng</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <h6 class="fw-bold text-success"><i class="bi bi-cpu me-2"></i>Kỹ thuật</h6>
+                                    <ul class="small list-unstyled mb-0">
+                                        <li>• Địa chỉ IP & Thiết bị</li>
+                                        <li>• Trình duyệt & Thời gian</li>
+                                        <li>• Hoạt động trên web</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 border-end">
+                            <div class="policy-section border-0">
+                                <h5 class="fw-bold mb-3">2. Mục đích sử dụng</h5>
+                                <ul class="text-muted small">
+                                    <li>Duy trì và lưu tiến độ học tập.</li>
+                                    <li>Cá nhân hóa nội dung phù hợp trình độ.</li>
+                                    <li>Phát hiện hành vi vi phạm hệ thống.</li>
+                                    <li>Hỗ trợ kỹ thuật nhanh chóng.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="policy-section border-0">
+                                <h5 class="fw-bold mb-3">3. Chia sẻ thông tin</h5>
+                                <p class="text-muted small">Chúng tôi <strong>không bán</strong> dữ liệu cho bên thứ ba. Chỉ chia sẻ khi có yêu cầu pháp lý hoặc để bảo vệ hệ thống khỏi gian lận.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="policy-section">
+                        <div class="d-flex gap-3 mb-3">
+                            <div class="policy-icon"><i class="bi bi-shield-lock"></i></div>
+                            <h4 class="fw-bold">4. Bảo mật dữ liệu</h4>
+                        </div>
+                        <p class="text-muted">Hệ thống áp dụng mã hóa mật khẩu và giám sát truy cập bất thường 24/7.</p>
+                        <div class="security-alert p-3 rounded-3 small">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <strong>Lời khuyên:</strong> Bạn nên sử dụng mật khẩu mạnh, đăng xuất khỏi thiết bị công cộng và tuyệt đối không chia sẻ mật khẩu cho bất kỳ ai.
+                        </div>
+                    </div>
+
+                    <div class="policy-section">
+                        <h5 class="fw-bold">5. Cookie & 6. Lưu trữ</h5>
+                        <p class="text-muted small">
+                            Chúng tôi dùng Cookie để ghi nhớ trạng thái đăng nhập. Dữ liệu học tập được lưu trữ trọn đời trừ khi bạn yêu cầu xóa tài khoản. 
+                            Khi xóa, thông tin cá nhân sẽ bị ẩn danh hoàn toàn.
+                        </p>
+                    </div>
+
+                    <div class="policy-section bg-light-subtle p-3 rounded-4 mt-3">
+                        <h5 class="fw-bold"><i class="bi bi-hand-index-thumb me-2"></i>7. Quyền của bạn</h5>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Xem & Cập nhật dữ liệu</span>
+                            <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Yêu cầu xóa tài khoản</span>
+                            <span class="badge rounded-pill bg-white text-dark border p-2 px-3">Từ chối thông báo</span>
+                        </div>
+                    </div>
+
+                    <div class="policy-section">
+                        <h5 class="fw-bold text-warning">8. Quyền riêng tư của trẻ em</h5>
+                        <p class="text-muted small mb-0">Nền tảng không dành cho trẻ em dưới 13 tuổi. Nếu phát hiện vi phạm, chúng tôi sẽ tiến hành khóa tài khoản và xóa dữ liệu liên quan.</p>
+                    </div>
+
+
+                </div>
+
+                <div class="text-center mt-4 text-muted small">
+                    <p>&copy; 2026 TCT English. Mọi quyền được bảo lưu.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
