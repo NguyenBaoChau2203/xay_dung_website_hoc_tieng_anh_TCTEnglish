@@ -27,16 +27,19 @@ namespace TCTVocabulary.Services
 
         private readonly DbflashcardContext _context;
         private readonly IStreakService _streakService;
+        private readonly INotificationService _notificationService;
         private readonly ILogger<GoalsService> _logger;
         private UserDailyActivityColumnSupport? _userDailyActivityColumnSupport;
 
         public GoalsService(
             DbflashcardContext context,
             IStreakService streakService,
+            INotificationService notificationService,
             ILogger<GoalsService> logger)
         {
             _context = context;
             _streakService = streakService;
+            _notificationService = notificationService;
             _logger = logger;
         }
 
@@ -275,7 +278,19 @@ namespace TCTVocabulary.Services
                 streakResult.StreakXpAwarded,
                 unlockedBadgeCount);
 
-            return GoalsActivityRecordResult.Success(streakResult.CurrentStreak);
+            // ── Notification: goal progress / completion ─────────────────
+            var activityRecordResult = GoalsActivityRecordResult.Success(streakResult.CurrentStreak);
+            try
+            {
+                await _notificationService.GenerateGoalNotificationsAsync(userId, activityRecordResult);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex,
+                    "Failed to generate goal notification for user {UserId}", userId);
+            }
+
+            return activityRecordResult;
         }
 
         public async Task<StreakUpdateResult> UpdateStreakAndRewardsAsync(int userId)
@@ -559,6 +574,21 @@ namespace TCTVocabulary.Services
                 badgesToAward.Count,
                 userId,
                 string.Join(", ", badgesToAward.Select(badge => badge.Code)));
+
+            // ── Notification: badge earned ───────────────────────────────
+            foreach (var awardedBadge in badgesToAward)
+            {
+                try
+                {
+                    await _notificationService.GenerateBadgeNotificationAsync(userId, awardedBadge.Id);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex,
+                        "Failed to generate badge notification for user {UserId}, badge {BadgeId}",
+                        userId, awardedBadge.Id);
+                }
+            }
 
             return badgesToAward.Count;
         }

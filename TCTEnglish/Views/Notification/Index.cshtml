@@ -1,0 +1,265 @@
+@model TCTVocabulary.ViewModels.NotificationListViewModel
+@{
+    ViewData["Title"] = "Thông báo";
+    var filter      = ViewData["Filter"]?.ToString() ?? "all";
+    var unreadCount = (int)(ViewData["UnreadCount"] ?? 0);
+    var isUnreadTab = string.Equals(filter, "unread", StringComparison.OrdinalIgnoreCase);
+    var csrfToken   = Html.AntiForgeryToken();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/notification-page.css" asp-append-version="true" />
+}
+
+@Html.AntiForgeryToken()
+
+<div class="notif-page">
+
+    @* ── Page header ── *@
+    <div class="notif-page-header">
+        <h1 class="notif-page-title">
+            <i class="fas fa-bell"></i>Thông báo
+        </h1>
+
+        @if (Model.Items.Any() || isUnreadTab)
+        {
+            <button class="notif-mark-all-page-btn" id="markAllPageBtn" type="button">
+                <i class="fas fa-check-double me-1"></i>Đọc tất cả
+            </button>
+        }
+    </div>
+
+    @* ── Filter tabs ── *@
+    <div class="notif-filter-tabs">
+        <a href="@Url.Action("Index", "Notification", new { filter = "all" })"
+           class="notif-filter-tab @(filter == "all" ? "active" : "")">
+            <i class="fas fa-list me-1"></i>Tất cả
+        </a>
+        <a href="@Url.Action("Index", "Notification", new { filter = "unread" })"
+           class="notif-filter-tab @(isUnreadTab ? "active" : "")">
+            <i class="fas fa-circle me-1" style="font-size:8px;vertical-align:middle;"></i>Chưa đọc
+            @if (unreadCount > 0)
+            {
+                <span class="badge">@(unreadCount > 99 ? "99+" : unreadCount.ToString())</span>
+            }
+        </a>
+    </div>
+
+    @* ── TempData alerts ── *@
+    @if (TempData["Success"] is string successMsg)
+    {
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@successMsg
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* ── Empty state ── *@
+    @if (!Model.Items.Any())
+    {
+        <div class="notif-page-empty">
+            <i class="fas fa-bell-slash"></i>
+            <h4>@(isUnreadTab ? "Không có thông báo chưa đọc" : "Chưa có thông báo nào")</h4>
+            <p>
+                @if (isUnreadTab)
+                {
+                    <text>Bạn đã đọc hết tất cả thông báo 🎉</text>
+                }
+                else
+                {
+                    <text>Các thông báo về streak, mục tiêu và huy hiệu sẽ xuất hiện ở đây.</text>
+                }
+            </p>
+        </div>
+    }
+    else
+    {
+        @* ── Notification card list ── *@
+        <div class="notif-card-list" id="notifPageList">
+            @foreach (var item in Model.Items)
+            {
+                var iconClass  = ResolveIcon(item.Type, item.IconClass);
+                var colorClass = ResolveColor(item.Type);
+
+                <div class="notif-page-item @(item.IsRead ? "" : "is-unread")"
+                     data-id="@item.Id"
+                     data-url="@(item.RelatedUrl ?? "")"
+                     role="button"
+                     tabindex="0"
+                     aria-label="@item.Title">
+                    <div class="notif-page-icon @colorClass">
+                        <i class="@iconClass"></i>
+                    </div>
+                    <div class="notif-page-body">
+                        <div class="notif-page-item-title">@item.Title</div>
+                        <div class="notif-page-item-msg">@item.Message</div>
+                        <div class="notif-page-item-time">
+                            @FormatTimeAgo(item.CreatedAt)
+                        </div>
+                    </div>
+                    @if (!item.IsRead)
+                    {
+                        <div class="notif-page-dot" aria-label="Chưa đọc"></div>
+                    }
+                </div>
+            }
+        </div>
+
+        @* ── Pagination ── *@
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="notif-pagination d-flex justify-content-center" aria-label="Phân trang thông báo">
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@(Model.CurrentPage - 1)"
+                           asp-route-filter="@filter">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    @for (int p = Math.Max(1, Model.CurrentPage - 2);
+                              p <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); p++)
+                    {
+                        <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="Index"
+                               asp-route-page="@p"
+                               asp-route-filter="@filter">@p</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@(Model.CurrentPage + 1)"
+                           asp-route-filter="@filter">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
+</div>
+
+@* ── Razor helper functions (file-scoped) ── *@
+@functions {
+    static string ResolveIcon(string type, string? serverIconClass)
+    {
+        if (!string.IsNullOrEmpty(serverIconClass)) return serverIconClass;
+        return type switch
+        {
+            "StreakWarning"      => "fas fa-fire-flame-curved",
+            "StreakRecord"       => "fas fa-fire",
+            "GoalProgress"      => "fas fa-chart-line",
+            "GoalCompleted"     => "fas fa-check-circle",
+            "BadgeEarned"       => "fas fa-medal",
+            "BadgeNear"         => "fas fa-star-half-alt",
+            "AdminAnnouncement" => "fas fa-bullhorn",
+            _                   => "fas fa-bell"
+        };
+    }
+
+    static string ResolveColor(string type) => type switch
+    {
+        "StreakWarning" or "StreakRecord"   => "notif-page-icon--streak",
+        "GoalProgress"  or "GoalCompleted" => "notif-page-icon--goal",
+        "BadgeEarned"   or "BadgeNear"     => "notif-page-icon--badge",
+        "AdminAnnouncement"                => "notif-page-icon--admin",
+        _                                  => ""
+    };
+
+    // Enhanced TimeAgo: "vừa xong" → "X phút trước" → "X giờ trước" →
+    //                   "hôm qua" → "3 ngày trước" → date string (> 7 days)
+    static string FormatTimeAgo(DateTime createdAt)
+    {
+        var diff = DateTime.UtcNow - createdAt;
+        if (diff.TotalMinutes < 1)  return "vừa xong";
+        if (diff.TotalMinutes < 60) return $"{(int)diff.TotalMinutes} phút trước";
+        if (diff.TotalHours < 24)   return $"{(int)diff.TotalHours} giờ trước";
+        if (diff.TotalDays < 2)     return "hôm qua";
+        if (diff.TotalDays < 7)     return $"{(int)diff.TotalDays} ngày trước";
+        // Older than 7 days → show date in VN time (UTC+7)
+        var vnTime = createdAt.AddHours(7);
+        return vnTime.ToString("dd/MM/yyyy");
+    }
+}
+
+@section Scripts {
+    <script>
+    (function () {
+        'use strict';
+
+        function getCsrfToken() {
+            const el = document.querySelector('input[name="__RequestVerificationToken"]');
+            return el ? el.value : '';
+        }
+
+        // ── Mark single item as read ──
+        async function markAsRead(notifId) {
+            try {
+                await fetch(`/api/notifications/${notifId}/mark-read`, {
+                    method : 'POST',
+                    headers: { 'RequestVerificationToken': getCsrfToken() },
+                    credentials: 'same-origin'
+                });
+            } catch (_) { /* silent — don't block navigation */ }
+        }
+
+        // ── Item click handler ──
+        document.querySelectorAll('.notif-page-item').forEach(function (el) {
+            function handleClick() {
+                const id  = parseInt(el.dataset.id, 10);
+                const url = el.dataset.url;
+
+                // Optimistically remove unread styling
+                el.classList.remove('is-unread');
+                const dot = el.querySelector('.notif-page-dot');
+                if (dot) dot.remove();
+
+                markAsRead(id).then(function () {
+                    if (url) window.location.href = url;
+                });
+            }
+
+            el.addEventListener('click', handleClick);
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); }
+            });
+        });
+
+        // ── Mark all as read ──
+        const elMarkAll = document.getElementById('markAllPageBtn');
+        if (elMarkAll) {
+            elMarkAll.addEventListener('click', async function () {
+                elMarkAll.disabled = true;
+                try {
+                    const res = await fetch('/api/notifications/mark-all-read', {
+                        method : 'POST',
+                        headers: { 'RequestVerificationToken': getCsrfToken() },
+                        credentials: 'same-origin'
+                    });
+                    if (res.ok) {
+                        // Remove all unread indicators
+                        document.querySelectorAll('.notif-page-item.is-unread').forEach(function (el) {
+                            el.classList.remove('is-unread');
+                            const dot = el.querySelector('.notif-page-dot');
+                            if (dot) dot.remove();
+                        });
+                        // Update badge in header
+                        const badge = document.getElementById('notificationBadge');
+                        if (badge) badge.style.display = 'none';
+                        // Hide tab badge
+                        document.querySelectorAll('.notif-filter-tab .badge').forEach(function(b){ b.remove(); });
+                        elMarkAll.textContent = 'Đã đọc tất cả ✓';
+                    }
+                } catch (_) {
+                    elMarkAll.disabled = false;
+                }
+            });
+        }
+    })();
+    </script>
+}

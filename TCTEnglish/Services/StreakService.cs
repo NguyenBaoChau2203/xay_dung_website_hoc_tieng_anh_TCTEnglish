@@ -6,11 +6,16 @@ namespace TCTVocabulary.Services
     public class StreakService : IStreakService
     {
         private readonly DbflashcardContext _context;
+        private readonly INotificationService _notificationService;
         private readonly ILogger<StreakService> _logger;
 
-        public StreakService(DbflashcardContext context, ILogger<StreakService> logger)
+        public StreakService(
+            DbflashcardContext context,
+            INotificationService notificationService,
+            ILogger<StreakService> logger)
         {
             _context = context;
+            _notificationService = notificationService;
             _logger = logger;
         }
 
@@ -36,6 +41,7 @@ namespace TCTVocabulary.Services
             var today = BusinessDateHelper.Today;
             var lastStudy = user.LastStudyDate?.Date;
             var previousStreak = user.Streak ?? 0;
+            var previousLongestStreak = user.LongestStreak ?? 0;
 
             var didIncrease = false;
             if (lastStudy != today)
@@ -69,11 +75,30 @@ namespace TCTVocabulary.Services
             }
 
             await _context.SaveChangesAsync();
-            return new StreakUpdateResult
+
+            var result = new StreakUpdateResult
             {
                 CurrentStreak = user.Streak ?? 0,
                 DidIncrease = didIncrease
             };
+
+            // ── Notification: streak record ──────────────────────────────
+            // Fire-and-forget — never let notification errors break streak logic
+            if (didIncrease && (user.Streak ?? 0) > previousLongestStreak)
+            {
+                try
+                {
+                    await _notificationService.GenerateStreakNotificationsAsync(userId, result);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex,
+                        "Failed to generate streak notification for user {UserId}", userId);
+                }
+            }
+
+            return result;
         }
     }
 }
+

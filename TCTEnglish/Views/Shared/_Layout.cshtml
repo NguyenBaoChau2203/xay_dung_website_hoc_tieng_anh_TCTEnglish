@@ -21,6 +21,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/notifications.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/ai-chat-launcher.css" asp-append-version="true" />
 
     <script src="~/js/layout.js"></script>
@@ -63,10 +64,20 @@
                 Upgrade: free 7-day trial
             </button>
 
-            <button class="btn-notification">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">3</span>
-            </button>
+            @* ── Bell / Notification dropdown ── *@
+            <div class="notif-wrapper">
+                <button class="btn-notification" id="notificationBtn"
+                        aria-haspopup="dialog" aria-expanded="false"
+                        title="Thông báo">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge"
+                          style="display:none;">0</span>
+                </button>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <partial name="_NotificationDropdown" />
+                }
+            </div>
 
             @if (User.Identity!.IsAuthenticated)
             {
@@ -154,6 +165,12 @@
                 <a class="nav-item" asp-controller="Goals" asp-action="Index">
                     <i class="fas fa-bullseye"></i>
                     <span>Goals</span>
+                </a>
+
+                <a class="nav-item" asp-controller="Notification" asp-action="Index">
+                    <i class="fas fa-bell"></i>
+                    <span>Thông báo</span>
+                    <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" style="display:none;position:static;margin-left:auto;font-size:10px;min-width:18px;"></span>
                 </a>
 
                 <a class="nav-item " asp-controller="Ranking" asp-action="Index">
@@ -383,6 +400,7 @@
     {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
         <script src="~/js/user-activity.js" asp-append-version="true"></script>
+        <script src="~/js/notifications.js" asp-append-version="true"></script>
     }
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

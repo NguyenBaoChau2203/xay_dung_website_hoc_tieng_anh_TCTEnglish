@@ -138,6 +138,12 @@
                     <span class="text-uppercase text-secondary small fw-semibold px-3">Hệ thống</span>
                 </li>
                 <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="NotificationManagement" asp-action="Create"
+                       class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "NotificationManagement" ? "active" : "")">
+                        <i class="bi bi-megaphone-fill me-2"></i> Thông báo
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a asp-area="Admin" asp-controller="MessageManagement" asp-action="Index"
                        class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "MessageManagement" ? "active" : "")">
                         <i class="bi bi-chat-dots-fill me-2"></i> Messages
