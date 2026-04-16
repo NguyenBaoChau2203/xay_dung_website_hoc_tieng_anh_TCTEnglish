@@ -23,2477 +23,2477 @@ namespace TCTVocabulary.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("ClassMember", b =>
-                {
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int")
-                        .HasColumnName("ClassID");
+            {
+                b.Property<int>("ClassId")
+                    .HasColumnType("int")
+                    .HasColumnName("ClassID");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("ClassId", "UserId");
+                b.HasKey("ClassId", "UserId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("ClassMembers", (string)null);
-                });
+                b.ToTable("ClassMembers", (string)null);
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime>("UpdatedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("UpdatedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId", "UpdatedAtUtc")
-                        .HasDatabaseName("IX_AiConversations_UserId_UpdatedAtUtc");
+                b.HasIndex("UserId", "UpdatedAtUtc")
+                    .HasDatabaseName("IX_AiConversations_UserId_UpdatedAtUtc");
 
-                    b.ToTable("AiConversations", (string)null);
-                });
+                b.ToTable("AiConversations", (string)null);
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiMessage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("CompletionTokens")
-                        .HasColumnType("int");
+                b.Property<int?>("CompletionTokens")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(8000)
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasMaxLength(8000)
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ConversationId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("ConversationId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<string>("ModelName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ModelName")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("PromptTokens")
-                        .HasColumnType("int");
+                b.Property<int?>("PromptTokens")
+                    .HasColumnType("int");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                b.Property<int>("Role")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ConversationId", "CreatedAtUtc")
-                        .HasDatabaseName("IX_AiMessages_ConversationId_CreatedAtUtc");
+                b.HasIndex("ConversationId", "CreatedAtUtc")
+                    .HasDatabaseName("IX_AiMessages_ConversationId_CreatedAtUtc");
 
-                    b.ToTable("AiMessages", (string)null);
-                });
+                b.ToTable("AiMessages", (string)null);
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("CompletionTokens")
-                        .HasColumnType("int");
+                b.Property<int?>("CompletionTokens")
+                    .HasColumnType("int");
 
-                    b.Property<Guid>("ConversationId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("ConversationId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ErrorCode")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ErrorCode")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("IsSuccess")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsSuccess")
+                    .HasColumnType("bit");
 
-                    b.Property<int?>("LatencyMs")
-                        .HasColumnType("int");
+                b.Property<int?>("LatencyMs")
+                    .HasColumnType("int");
 
-                    b.Property<string>("ModelName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ModelName")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("PromptTokens")
-                        .HasColumnType("int");
+                b.Property<int?>("PromptTokens")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("RequestedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("RequestedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int?>("TotalTokens")
-                        .HasColumnType("int");
+                b.Property<int?>("TotalTokens")
+                    .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ConversationId");
+                b.HasIndex("ConversationId");
 
-                    b.HasIndex("RequestedAtUtc")
-                        .HasDatabaseName("IX_AiRequestLogs_RequestedAtUtc");
+                b.HasIndex("RequestedAtUtc")
+                    .HasDatabaseName("IX_AiRequestLogs_RequestedAtUtc");
 
-                    b.HasIndex("UserId", "RequestedAtUtc")
-                        .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
+                b.HasIndex("UserId", "RequestedAtUtc")
+                    .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
 
-                    b.ToTable("AiRequestLogs", (string)null);
-                });
+                b.ToTable("AiRequestLogs", (string)null);
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.WritingGenerationLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ErrorCode")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ErrorCode")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("IsSuccess")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsSuccess")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("RequestType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("RequestType")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("RequestedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("RequestedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId", "RequestedAtUtc")
-                        .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestedAtUtc");
+                b.HasIndex("UserId", "RequestedAtUtc")
+                    .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestedAtUtc");
 
-                    b.HasIndex("UserId", "RequestType", "RequestedAtUtc")
-                        .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestType_RequestedAtUtc");
+                b.HasIndex("UserId", "RequestType", "RequestedAtUtc")
+                    .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestType_RequestedAtUtc");
 
-                    b.ToTable("WritingGenerationLogs", (string)null);
-                });
+                b.ToTable("WritingGenerationLogs", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Code")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("IconClass")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("IconClass")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("MetricType")
-                        .HasColumnType("int");
+                b.Property<int>("MetricType")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
+                b.Property<int>("SortOrder")
+                    .HasColumnType("int");
 
-                    b.Property<int>("ThresholdValue")
-                        .HasColumnType("int");
+                b.Property<int>("ThresholdValue")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Badges_Code");
+                b.HasIndex("Code")
+                    .IsUnique()
+                    .HasDatabaseName("IX_Badges_Code");
 
-                    b.ToTable("Badges", (string)null);
+                b.ToTable("Badges", (string)null);
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "first-session",
-                            Description = "Hoàn thành ngày học đầu tiên để bắt đầu hành trình.",
-                            IconClass = "fas fa-seedling",
-                            MetricType = 3,
-                            Name = "Khởi động",
-                            SortOrder = 1,
-                            ThresholdValue = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "three-day-streak",
-                            Description = "Duy trì streak học tập trong 3 ngày liên tiếp.",
-                            IconClass = "fas fa-fire",
-                            MetricType = 1,
-                            Name = "Giữ nhịp",
-                            SortOrder = 2,
-                            ThresholdValue = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "seven-day-peak",
-                            Description = "Chạm mốc streak dài nhất 7 ngày.",
-                            IconClass = "fas fa-bolt",
-                            MetricType = 2,
-                            Name = "Bền bỉ",
-                            SortOrder = 3,
-                            ThresholdValue = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "active-week",
-                            Description = "Có hoạt động học tập trong 7 ngày khác nhau.",
-                            IconClass = "fas fa-calendar-check",
-                            MetricType = 3,
-                            Name = "Cả tuần chăm chỉ",
-                            SortOrder = 4,
-                            ThresholdValue = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "xp-collector",
-                            Description = "Tích lũy đủ 50 XP từ các hoạt động học tập.",
-                            IconClass = "fas fa-star",
-                            MetricType = 4,
-                            Name = "Tích điểm",
-                            SortOrder = 5,
-                            ThresholdValue = 50
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "xp-champion",
-                            Description = "Đạt 200 XP để mở khóa cột mốc cao hơn.",
-                            IconClass = "fas fa-trophy",
-                            MetricType = 4,
-                            Name = "Bứt phá",
-                            SortOrder = 6,
-                            ThresholdValue = 200
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Code = "speaking-first-video",
-                            Description = "Hoàn thành video Speaking đầu tiên.",
-                            IconClass = "fas fa-microphone",
-                            MetricType = 5,
-                            Name = "Khởi động Speaking",
-                            SortOrder = 7,
-                            ThresholdValue = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "speaking-five-videos",
-                            Description = "Hoàn thành 5 video Speaking để duy trì luyện tập.",
-                            IconClass = "fas fa-comments",
-                            MetricType = 5,
-                            Name = "Nói trôi chảy",
-                            SortOrder = 8,
-                            ThresholdValue = 5
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Code = "vocabulary-first-mastered",
-                            Description = "Hoàn thành 1 thẻ Vocabulary ở trạng thái Mastered.",
-                            IconClass = "fas fa-book-open",
-                            MetricType = 6,
-                            Name = "Mở khóa Từ vựng",
-                            SortOrder = 9,
-                            ThresholdValue = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Code = "vocabulary-ten-mastered",
-                            Description = "Hoàn thành 10 thẻ Vocabulary ở trạng thái Mastered.",
-                            IconClass = "fas fa-spell-check",
-                            MetricType = 6,
-                            Name = "Nhịp từ vựng",
-                            SortOrder = 10,
-                            ThresholdValue = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Code = "writing-first-exercise",
-                            Description = "Hoàn thành bài Writing đầu tiên.",
-                            IconClass = "fas fa-pen",
-                            MetricType = 7,
-                            Name = "Mở khóa Writing",
-                            SortOrder = 11,
-                            ThresholdValue = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Code = "writing-five-exercises",
-                            Description = "Hoàn thành 5 bài Writing để duy trì thói quen luyện viết.",
-                            IconClass = "fas fa-pen-fancy",
-                            MetricType = 7,
-                            Name = "Viết chắc tay",
-                            SortOrder = 12,
-                            ThresholdValue = 5
-                        });
-                });
+                b.HasData(
+                    new
+                    {
+                        Id = 1,
+                        Code = "first-session",
+                        Description = "Hoàn thành ngày học đầu tiên để bắt đầu hành trình.",
+                        IconClass = "fas fa-seedling",
+                        MetricType = 3,
+                        Name = "Khởi động",
+                        SortOrder = 1,
+                        ThresholdValue = 1
+                    },
+                    new
+                    {
+                        Id = 2,
+                        Code = "three-day-streak",
+                        Description = "Duy trì streak học tập trong 3 ngày liên tiếp.",
+                        IconClass = "fas fa-fire",
+                        MetricType = 1,
+                        Name = "Giữ nhịp",
+                        SortOrder = 2,
+                        ThresholdValue = 3
+                    },
+                    new
+                    {
+                        Id = 3,
+                        Code = "seven-day-peak",
+                        Description = "Chạm mốc streak dài nhất 7 ngày.",
+                        IconClass = "fas fa-bolt",
+                        MetricType = 2,
+                        Name = "Bền bỉ",
+                        SortOrder = 3,
+                        ThresholdValue = 7
+                    },
+                    new
+                    {
+                        Id = 4,
+                        Code = "active-week",
+                        Description = "Có hoạt động học tập trong 7 ngày khác nhau.",
+                        IconClass = "fas fa-calendar-check",
+                        MetricType = 3,
+                        Name = "Cả tuần chăm chỉ",
+                        SortOrder = 4,
+                        ThresholdValue = 7
+                    },
+                    new
+                    {
+                        Id = 5,
+                        Code = "xp-collector",
+                        Description = "Tích lũy đủ 50 XP từ các hoạt động học tập.",
+                        IconClass = "fas fa-star",
+                        MetricType = 4,
+                        Name = "Tích điểm",
+                        SortOrder = 5,
+                        ThresholdValue = 50
+                    },
+                    new
+                    {
+                        Id = 6,
+                        Code = "xp-champion",
+                        Description = "Đạt 200 XP để mở khóa cột mốc cao hơn.",
+                        IconClass = "fas fa-trophy",
+                        MetricType = 4,
+                        Name = "Bứt phá",
+                        SortOrder = 6,
+                        ThresholdValue = 200
+                    },
+                    new
+                    {
+                        Id = 7,
+                        Code = "speaking-first-video",
+                        Description = "Hoàn thành video Speaking đầu tiên.",
+                        IconClass = "fas fa-microphone",
+                        MetricType = 5,
+                        Name = "Khởi động Speaking",
+                        SortOrder = 7,
+                        ThresholdValue = 1
+                    },
+                    new
+                    {
+                        Id = 8,
+                        Code = "speaking-five-videos",
+                        Description = "Hoàn thành 5 video Speaking để duy trì luyện tập.",
+                        IconClass = "fas fa-comments",
+                        MetricType = 5,
+                        Name = "Nói trôi chảy",
+                        SortOrder = 8,
+                        ThresholdValue = 5
+                    },
+                    new
+                    {
+                        Id = 9,
+                        Code = "vocabulary-first-mastered",
+                        Description = "Hoàn thành 1 thẻ Vocabulary ở trạng thái Mastered.",
+                        IconClass = "fas fa-book-open",
+                        MetricType = 6,
+                        Name = "Mở khóa Từ vựng",
+                        SortOrder = 9,
+                        ThresholdValue = 1
+                    },
+                    new
+                    {
+                        Id = 10,
+                        Code = "vocabulary-ten-mastered",
+                        Description = "Hoàn thành 10 thẻ Vocabulary ở trạng thái Mastered.",
+                        IconClass = "fas fa-spell-check",
+                        MetricType = 6,
+                        Name = "Nhịp từ vựng",
+                        SortOrder = 10,
+                        ThresholdValue = 10
+                    },
+                    new
+                    {
+                        Id = 11,
+                        Code = "writing-first-exercise",
+                        Description = "Hoàn thành bài Writing đầu tiên.",
+                        IconClass = "fas fa-pen",
+                        MetricType = 7,
+                        Name = "Mở khóa Writing",
+                        SortOrder = 11,
+                        ThresholdValue = 1
+                    },
+                    new
+                    {
+                        Id = 12,
+                        Code = "writing-five-exercises",
+                        Description = "Hoàn thành 5 bài Writing để duy trì thói quen luyện viết.",
+                        IconClass = "fas fa-pen-fancy",
+                        MetricType = 7,
+                        Name = "Viết chắc tay",
+                        SortOrder = 12,
+                        ThresholdValue = 5
+                    });
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
-                {
-                    b.Property<int>("CardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("CardID");
+            {
+                b.Property<int>("CardId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("CardID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CardId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CardId"));
 
-                    b.Property<string>("Definition")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Definition")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Example")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Example")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ExampleTranslation")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ExampleTranslation")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ImageUrl")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phonetic")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Phonetic")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SetId")
-                        .HasColumnType("int")
-                        .HasColumnName("SetID");
+                b.Property<int>("SetId")
+                    .HasColumnType("int")
+                    .HasColumnName("SetID");
 
-                    b.Property<string>("Term")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Term")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Topic")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Topic")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CardId")
-                        .HasName("PK__Cards__55FECD8E2103FA66");
+                b.HasKey("CardId")
+                    .HasName("PK__Cards__55FECD8E2103FA66");
 
-                    b.HasIndex("SetId");
+                b.HasIndex("SetId");
 
-                    b.ToTable("Cards");
-                });
+                b.ToTable("Cards");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Class", b =>
-                {
-                    b.Property<int>("ClassId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ClassID");
+            {
+                b.Property<int>("ClassId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("ClassID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassId"));
 
-                    b.Property<string>("ClassName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("ClassName")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                b.Property<DateTime>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("Description")
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<bool>("HasPassword")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("HasPassword")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("ImageUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int")
-                        .HasColumnName("OwnerID");
+                b.Property<int>("OwnerId")
+                    .HasColumnType("int")
+                    .HasColumnName("OwnerID");
 
-                    b.Property<string>("PasswordHash")
-                        .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                b.Property<string>("PasswordHash")
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnType("varchar(255)");
 
-                    b.HasKey("ClassId")
-                        .HasName("PK__Classes__CB1927A0B52422EC");
+                b.HasKey("ClassId")
+                    .HasName("PK__Classes__CB1927A0B52422EC");
 
-                    b.HasIndex("OwnerId");
+                b.HasIndex("OwnerId");
 
-                    b.ToTable("Classes");
-                });
+                b.ToTable("Classes");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ClassFolder", b =>
-                {
-                    b.Property<int>("ClassFolderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ClassFolderID");
+            {
+                b.Property<int>("ClassFolderId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("ClassFolderID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassFolderId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassFolderId"));
 
-                    b.Property<DateTime>("AddedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
+                b.Property<DateTime>("AddedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<int>("AddedByUserId")
-                        .HasColumnType("int")
-                        .HasColumnName("AddedByUserID");
+                b.Property<int>("AddedByUserId")
+                    .HasColumnType("int")
+                    .HasColumnName("AddedByUserID");
 
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int")
-                        .HasColumnName("ClassID");
+                b.Property<int>("ClassId")
+                    .HasColumnType("int")
+                    .HasColumnName("ClassID");
 
-                    b.Property<int>("FolderId")
-                        .HasColumnType("int")
-                        .HasColumnName("FolderID");
+                b.Property<int>("FolderId")
+                    .HasColumnType("int")
+                    .HasColumnName("FolderID");
 
-                    b.HasKey("ClassFolderId");
+                b.HasKey("ClassFolderId");
 
-                    b.HasIndex("AddedByUserId");
+                b.HasIndex("AddedByUserId");
 
-                    b.HasIndex("FolderId");
+                b.HasIndex("FolderId");
 
-                    b.HasIndex("ClassId", "FolderId")
-                        .IsUnique();
+                b.HasIndex("ClassId", "FolderId")
+                    .IsUnique();
 
-                    b.ToTable("ClassFolders", (string)null);
-                });
+                b.ToTable("ClassFolders", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ClassMessage", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("MessageId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
 
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int");
+                b.Property<int>("ClassId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                    b.HasKey("MessageId");
+                b.HasKey("MessageId");
 
-                    b.HasIndex("ClassId");
+                b.HasIndex("ClassId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("ClassMessages");
-                });
+                b.ToTable("ClassMessages");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
-                {
-                    b.Property<int>("FolderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("FolderID");
+            {
+                b.Property<int>("FolderId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("FolderID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FolderId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FolderId"));
 
-                    b.Property<string>("FolderName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("FolderName")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("ParentFolderId")
-                        .HasColumnType("int")
-                        .HasColumnName("ParentFolderID");
+                b.Property<int?>("ParentFolderId")
+                    .HasColumnType("int")
+                    .HasColumnName("ParentFolderID");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("FolderId")
-                        .HasName("PK__Folders__ACD7109F2ECFF2AF");
+                b.HasKey("FolderId")
+                    .HasName("PK__Folders__ACD7109F2ECFF2AF");
 
-                    b.HasIndex("ParentFolderId");
+                b.HasIndex("ParentFolderId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Folders");
-                });
+                b.ToTable("Folders");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.LearningProgress", b =>
-                {
-                    b.Property<int>("ProgressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ProgressID");
+            {
+                b.Property<int>("ProgressId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("ProgressID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgressId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgressId"));
 
-                    b.Property<int>("CardId")
-                        .HasColumnType("int")
-                        .HasColumnName("CardID");
+                b.Property<int>("CardId")
+                    .HasColumnType("int")
+                    .HasColumnName("CardID");
 
-                    b.Property<DateTime?>("LastReviewedDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                b.Property<DateTime?>("LastReviewedDate")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
-                    b.Property<DateTime?>("NextReviewDate")
-                        .HasColumnType("datetime");
+                b.Property<DateTime?>("NextReviewDate")
+                    .HasColumnType("datetime");
 
-                    b.Property<int>("RepetitionCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("RepetitionCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<string>("Status")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
+                b.Property<string>("Status")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnType("varchar(20)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<int?>("WrongCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int?>("WrongCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.HasKey("ProgressId")
-                        .HasName("PK__Learning__BAE29C8531677C23");
+                b.HasKey("ProgressId")
+                    .HasName("PK__Learning__BAE29C8531677C23");
 
-                    b.HasIndex("CardId");
+                b.HasIndex("CardId");
 
-                    b.HasIndex(new[] { "UserId", "CardId" }, "UQ__Learning__E2D72075740E222A")
-                        .IsUnique();
+                b.HasIndex(new[] { "UserId", "CardId" }, "UQ__Learning__E2D72075740E222A")
+                    .IsUnique();
 
-                    b.ToTable("LearningProgress", (string)null);
-                });
+                b.ToTable("LearningProgress", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningLesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AudioUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("AudioUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<string>("Duration")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                b.Property<string>("Duration")
+                    .HasMaxLength(20)
+                    .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool>("IsPublished")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsPublished")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                b.Property<string>("Level")
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("Speaker1Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Speaker1Country")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Speaker1Name")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Speaker1Name")
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("Speaker2Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Speaker2Country")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Speaker2Name")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Speaker2Name")
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("ThumbnailUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("ThumbnailUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Topic")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Topic")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("YoutubeId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("YoutubeId")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("IsPublished", "Level", "Topic")
-                        .HasDatabaseName("IX_ListeningLessons_Published_Level_Topic");
+                b.HasIndex("IsPublished", "Level", "Topic")
+                    .HasDatabaseName("IX_ListeningLessons_Published_Level_Topic");
 
-                    b.ToTable("ListeningLessons");
-                });
+                b.ToTable("ListeningLessons");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningQuizQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CorrectAnswer")
-                        .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                b.Property<string>("CorrectAnswer")
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .HasColumnType("nvarchar(1)");
 
-                    b.Property<string>("Explanation")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Explanation")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
+                b.Property<int>("LessonId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("OptionA")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("OptionA")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("OptionB")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("OptionB")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("OptionC")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("OptionC")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("OptionD")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("OptionD")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("OrderIndex")
-                        .HasColumnType("int");
+                b.Property<int>("OrderIndex")
+                    .HasColumnType("int");
 
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("QuestionText")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("LessonId", "OrderIndex")
-                        .IsUnique()
-                        .HasDatabaseName("IX_ListeningQuizQuestions_LessonId_OrderIndex");
+                b.HasIndex("LessonId", "OrderIndex")
+                    .IsUnique()
+                    .HasDatabaseName("IX_ListeningQuizQuestions_LessonId_OrderIndex");
 
-                    b.ToTable("ListeningQuizQuestions");
-                });
+                b.ToTable("ListeningQuizQuestions");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningTranscriptLine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double?>("EndTime")
-                        .HasColumnType("float");
+                b.Property<double?>("EndTime")
+                    .HasColumnType("float");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
+                b.Property<int>("LessonId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("OrderIndex")
-                        .HasColumnType("int");
+                b.Property<int>("OrderIndex")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Speaker")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Speaker")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<double?>("StartTime")
-                        .HasColumnType("float");
+                b.Property<double?>("StartTime")
+                    .HasColumnType("float");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Text")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VietnameseMeaning")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("VietnameseMeaning")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("LessonId", "OrderIndex")
-                        .IsUnique()
-                        .HasDatabaseName("IX_ListeningTranscriptLines_LessonId_OrderIndex");
+                b.HasIndex("LessonId", "OrderIndex")
+                    .IsUnique()
+                    .HasDatabaseName("IX_ListeningTranscriptLines_LessonId_OrderIndex");
 
-                    b.ToTable("ListeningTranscriptLines");
-                });
+                b.ToTable("ListeningTranscriptLines");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningVocabItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Definition")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Definition")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ExampleSentence")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ExampleSentence")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("ImageUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
+                b.Property<int>("LessonId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("OrderIndex")
-                        .HasColumnType("int");
+                b.Property<int>("OrderIndex")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Word")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                b.Property<string>("Word")
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("LessonId", "OrderIndex")
-                        .IsUnique()
-                        .HasDatabaseName("IX_ListeningVocabItems_LessonId_OrderIndex");
+                b.HasIndex("LessonId", "OrderIndex")
+                    .IsUnique()
+                    .HasDatabaseName("IX_ListeningVocabItems_LessonId_OrderIndex");
 
-                    b.ToTable("ListeningVocabItems");
-                });
+                b.ToTable("ListeningVocabItems");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsCorrect")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("OptionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("OptionText")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
+                b.Property<int>("QuestionId")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                b.HasIndex("QuestionId");
 
-                    b.ToTable("ReadingOptions");
-                });
+                b.ToTable("ReadingOptions");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingPassage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ImageUrl")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsPublished")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Level")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Topic")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Topic")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("ReadingPassages");
-                });
+                b.ToTable("ReadingPassages");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OrderIndex")
-                        .HasColumnType("int");
+                b.Property<int>("OrderIndex")
+                    .HasColumnType("int");
 
-                    b.Property<int>("PassageId")
-                        .HasColumnType("int");
+                b.Property<int>("PassageId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("QuestionText")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("PassageId");
+                b.HasIndex("PassageId");
 
-                    b.ToTable("ReadingQuestions");
-                });
+                b.ToTable("ReadingQuestions");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SavedFolder", b =>
-                {
-                    b.Property<int>("SavedFolderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("SavedFolderId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SavedFolderId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SavedFolderId"));
 
-                    b.Property<int>("FolderId")
-                        .HasColumnType("int");
+                b.Property<int>("FolderId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("SavedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("SavedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                    b.HasKey("SavedFolderId");
+                b.HasKey("SavedFolderId");
 
-                    b.HasIndex("FolderId");
+                b.HasIndex("FolderId");
 
-                    b.HasIndex("UserId", "FolderId")
-                        .IsUnique();
+                b.HasIndex("UserId", "FolderId")
+                    .IsUnique();
 
-                    b.ToTable("SavedFolders");
-                });
+                b.ToTable("SavedFolders");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Set", b =>
-                {
-                    b.Property<int>("SetId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("SetID");
+            {
+                b.Property<int>("SetId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("SetID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SetId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SetId"));
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                b.Property<DateTime?>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FolderId")
-                        .HasColumnType("int")
-                        .HasColumnName("FolderID");
+                b.Property<int?>("FolderId")
+                    .HasColumnType("int")
+                    .HasColumnName("FolderID");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int")
-                        .HasColumnName("OwnerID");
+                b.Property<int>("OwnerId")
+                    .HasColumnType("int")
+                    .HasColumnName("OwnerID");
 
-                    b.Property<string>("SetName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("SetName")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("ViewCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("ViewCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.HasKey("SetId")
-                        .HasName("PK__Sets__7E08473D47BDA11E");
+                b.HasKey("SetId")
+                    .HasName("PK__Sets__7E08473D47BDA11E");
 
-                    b.HasIndex("FolderId");
+                b.HasIndex("FolderId");
 
-                    b.HasIndex("OwnerId");
+                b.HasIndex("OwnerId");
 
-                    b.ToTable("Sets");
-                });
+                b.ToTable("Sets");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingPlaylist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("Description")
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("ThumbnailUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("ThumbnailUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("SpeakingPlaylists");
-                });
+                b.ToTable("SpeakingPlaylists");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingSentence", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("EndTime")
-                        .HasColumnType("float");
+                b.Property<double>("EndTime")
+                    .HasColumnType("float");
 
-                    b.Property<double>("StartTime")
-                        .HasColumnType("float");
+                b.Property<double>("StartTime")
+                    .HasColumnType("float");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Text")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VideoId")
-                        .HasColumnType("int");
+                b.Property<int>("VideoId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("VietnameseMeaning")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("");
+                b.Property<string>("VietnameseMeaning")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("nvarchar(max)")
+                    .HasDefaultValue("");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("VideoId", "StartTime")
-                        .HasDatabaseName("IX_SpeakingSentences_VideoId_StartTime");
+                b.HasIndex("VideoId", "StartTime")
+                    .HasDatabaseName("IX_SpeakingSentences_VideoId_StartTime");
 
-                    b.ToTable("SpeakingSentences");
-                });
+                b.ToTable("SpeakingSentences");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<string>("Duration")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                b.Property<string>("Duration")
+                    .HasMaxLength(20)
+                    .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ImportStatus")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("ready");
+                b.Property<string>("ImportStatus")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)")
+                    .HasDefaultValue("ready");
 
-                    b.Property<string>("Level")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Level")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("OwnerUserId")
-                        .HasColumnType("int");
+                b.Property<int?>("OwnerUserId")
+                    .HasColumnType("int");
 
-                    b.Property<int?>("PlaylistId")
-                        .HasColumnType("int");
+                b.Property<int?>("PlaylistId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("SourceType")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("admin");
+                b.Property<string>("SourceType")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)")
+                    .HasDefaultValue("admin");
 
-                    b.Property<string>("SourceUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("SourceUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("ThumbnailUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("ThumbnailUrl")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Topic")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Topic")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("TranscriptSource")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("TranscriptSource")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("YoutubeId")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("YoutubeId")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("PlaylistId");
+                b.HasIndex("PlaylistId");
 
-                    b.HasIndex("OwnerUserId", "CreatedAt")
-                        .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_CreatedAt");
+                b.HasIndex("OwnerUserId", "CreatedAt")
+                    .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_CreatedAt");
 
-                    b.HasIndex("OwnerUserId", "YoutubeId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_YoutubeId")
-                        .HasFilter("[OwnerUserId] IS NOT NULL");
+                b.HasIndex("OwnerUserId", "YoutubeId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_YoutubeId")
+                    .HasFilter("[OwnerUserId] IS NOT NULL");
 
-                    b.ToTable("SpeakingVideos");
-                });
+                b.ToTable("SpeakingVideos");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+            {
+                b.Property<int>("UserId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("AvatarUrl")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                b.Property<DateTime?>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnType("varchar(255)");
 
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("FullName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Goal")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int?>("Goal")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<DateTime?>("LastStudyDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("LastStudyDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LockExpiry")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("LockExpiry")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("LockReason")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("LockReason")
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int?>("LongestStreak")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int?>("LongestStreak")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                b.Property<string>("PasswordHash")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnType("varchar(255)");
 
-                    b.Property<string>("ResetPasswordToken")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ResetPasswordToken")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ResetPasswordTokenExpiry")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("ResetPasswordTokenExpiry")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Role")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("Status")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int?>("Streak")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int?>("Streak")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Users__1788CCAC46CDCFCA");
+                b.HasKey("UserId")
+                    .HasName("PK__Users__1788CCAC46CDCFCA");
 
-                    b.HasIndex(new[] { "Email" }, "UQ__Users__A9D10534362A84D8")
-                        .IsUnique();
+                b.HasIndex(new[] { "Email" }, "UQ__Users__A9D10534362A84D8")
+                    .IsUnique();
 
-                    b.ToTable("Users");
-                });
+                b.ToTable("Users");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserBadge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("AwardedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("AwardedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("BadgeId")
-                        .HasColumnType("int")
-                        .HasColumnName("BadgeID");
+                b.Property<int>("BadgeId")
+                    .HasColumnType("int")
+                    .HasColumnName("BadgeID");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BadgeId");
+                b.HasIndex("BadgeId");
 
-                    b.HasIndex("UserId", "BadgeId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserBadges_UserId_BadgeId");
+                b.HasIndex("UserId", "BadgeId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserBadges_UserId_BadgeId");
 
-                    b.ToTable("UserBadges", (string)null);
-                });
+                b.ToTable("UserBadges", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserDailyActivity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ActivityDate")
-                        .HasColumnType("date");
+                b.Property<DateTime>("ActivityDate")
+                    .HasColumnType("date");
 
-                    b.Property<int>("CardsReviewed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("CardsReviewed")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("ListeningCompletedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("ListeningCompletedCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("NewCardsLearned")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("NewCardsLearned")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("QuizzesCompleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("QuizzesCompleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("ReadingCompletedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("ReadingCompletedCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("SpeakingCompletedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("SpeakingCompletedCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("StreakXpAwarded")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("StreakXpAwarded")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<int>("VocabularyCompletedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("VocabularyCompletedCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("WritingCompletedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("WritingCompletedCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("XpEarned")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("XpEarned")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId", "ActivityDate")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserDailyActivities_UserId_ActivityDate");
+                b.HasIndex("UserId", "ActivityDate")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserDailyActivities_UserId_ActivityDate");
 
-                    b.ToTable("UserDailyActivities", (string)null);
-                });
+                b.ToTable("UserDailyActivities", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserGoal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("GoalArea")
-                        .HasColumnType("int");
+                b.Property<int>("GoalArea")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                b.Property<bool>("IsActive")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(true);
 
-                    b.Property<int>("TargetValue")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("TargetValue")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("UpdatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId", "GoalArea")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserGoals_UserId_GoalArea");
+                b.HasIndex("UserId", "GoalArea")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserGoals_UserId_GoalArea");
 
-                    b.ToTable("UserGoals", (string)null);
-                });
+                b.ToTable("UserGoals", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserListeningProgress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CompletedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("CompletedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastAccessedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("LastAccessedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
+                b.Property<int>("LessonId")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("QuizCompleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("QuizCompleted")
+                    .HasColumnType("bit");
 
-                    b.Property<int?>("QuizScore")
-                        .HasColumnType("int");
+                b.Property<int?>("QuizScore")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("TranscriptCompleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("TranscriptCompleted")
+                    .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("VocabReviewed")
-                        .HasColumnType("bit");
+                b.Property<bool>("VocabReviewed")
+                    .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("LessonId");
+                b.HasIndex("LessonId");
 
-                    b.HasIndex("UserId", "LessonId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserListeningProgress_UserId_LessonId");
+                b.HasIndex("UserId", "LessonId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserListeningProgress_UserId_LessonId");
 
-                    b.ToTable("UserListeningProgresses");
-                });
+                b.ToTable("UserListeningProgresses");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserReadingHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("bit");
 
-                    b.Property<int>("ReadingPassageId")
-                        .HasColumnType("int");
+                b.Property<int>("ReadingPassageId")
+                    .HasColumnType("int");
 
-                    b.Property<int?>("Score")
-                        .HasColumnType("int");
+                b.Property<int?>("Score")
+                    .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("ViewedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("ViewedAt")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ReadingPassageId");
+                b.HasIndex("ReadingPassageId");
 
-                    b.HasIndex("UserId", "ReadingPassageId")
-                        .IsUnique();
+                b.HasIndex("UserId", "ReadingPassageId")
+                    .IsUnique();
 
-                    b.ToTable("UserReadingHistories");
-                });
+                b.ToTable("UserReadingHistories");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingProgress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("AccuracyScore")
-                        .HasColumnType("float");
+                b.Property<double>("AccuracyScore")
+                    .HasColumnType("float");
 
-                    b.Property<double>("CompletenessScore")
-                        .HasColumnType("float");
+                b.Property<double>("CompletenessScore")
+                    .HasColumnType("float");
 
-                    b.Property<double>("FluencyScore")
-                        .HasColumnType("float");
+                b.Property<double>("FluencyScore")
+                    .HasColumnType("float");
 
-                    b.Property<DateTime>("PracticedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                b.Property<DateTime>("PracticedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("SentenceId")
-                        .HasColumnType("int");
+                b.Property<int>("SentenceId")
+                    .HasColumnType("int");
 
-                    b.Property<double>("TotalScore")
-                        .HasColumnType("float");
+                b.Property<double>("TotalScore")
+                    .HasColumnType("float");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("SentenceId");
+                b.HasIndex("SentenceId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("UserSpeakingProgresses");
-                });
+                b.ToTable("UserSpeakingProgresses");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingAttempt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAtUtc")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<string>("EvaluationSource")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("EvaluationSource")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("GrammarFeedback")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("GrammarFeedback")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("MeaningFeedback")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("MeaningFeedback")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("NaturalnessFeedback")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("NaturalnessFeedback")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("Passed")
-                        .HasColumnType("bit");
+                b.Property<bool>("Passed")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("ReviewText")
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
+                b.Property<string>("ReviewText")
+                    .HasMaxLength(2000)
+                    .HasColumnType("nvarchar(2000)");
 
-                    b.Property<string>("SubmittedAnswer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("SubmittedAnswer")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SuggestedRewrite")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("SuggestedRewrite")
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("SummaryText")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("SummaryText")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("SummaryTitle")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                b.Property<string>("SummaryTitle")
+                    .HasMaxLength(200)
+                    .HasColumnType("nvarchar(200)");
 
-                    b.Property<bool>("UsedAi")
-                        .HasColumnType("bit");
+                b.Property<bool>("UsedAi")
+                    .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<string>("WordChoiceFeedback")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("WordChoiceFeedback")
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("WritingExerciseId")
-                        .HasColumnType("int");
+                b.Property<int>("WritingExerciseId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("WritingExerciseSentenceId")
-                        .HasColumnType("int");
+                b.Property<int>("WritingExerciseSentenceId")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("WritingExerciseId");
+                b.HasIndex("WritingExerciseId");
 
-                    b.HasIndex("WritingExerciseSentenceId");
+                b.HasIndex("WritingExerciseSentenceId");
 
-                    b.HasIndex("UserId", "WritingExerciseId", "CreatedAtUtc")
-                        .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseId_CreatedAtUtc");
+                b.HasIndex("UserId", "WritingExerciseId", "CreatedAtUtc")
+                    .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseId_CreatedAtUtc");
 
-                    b.HasIndex("UserId", "WritingExerciseSentenceId", "CreatedAtUtc")
-                        .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseSentenceId_CreatedAtUtc");
+                b.HasIndex("UserId", "WritingExerciseSentenceId", "CreatedAtUtc")
+                    .HasDatabaseName("IX_UserWritingAttempts_UserId_WritingExerciseSentenceId_CreatedAtUtc");
 
-                    b.ToTable("UserWritingAttempts", (string)null);
-                });
+                b.ToTable("UserWritingAttempts", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CompletedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("CompletedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("CompletedSentenceCount")
-                        .HasColumnType("int");
+                b.Property<int>("CompletedSentenceCount")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastEvaluatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("LastEvaluatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<int>("RequiredSentenceCount")
-                        .HasColumnType("int");
+                b.Property<int>("RequiredSentenceCount")
+                    .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<int>("VideoId")
-                        .HasColumnType("int")
-                        .HasColumnName("VideoID");
+                b.Property<int>("VideoId")
+                    .HasColumnType("int")
+                    .HasColumnName("VideoID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("VideoId");
+                b.HasIndex("VideoId");
 
-                    b.HasIndex("UserId", "VideoId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserSpeakingVideoCompletions_UserId_VideoId");
+                b.HasIndex("UserId", "VideoId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserSpeakingVideoCompletions_UserId_VideoId");
 
-                    b.ToTable("UserSpeakingVideoCompletions", (string)null);
-                });
+                b.ToTable("UserSpeakingVideoCompletions", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingExerciseProgress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AttemptCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("AttemptCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<DateTime?>("CompletedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("CompletedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime?>("LastAttemptAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("LastAttemptAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("PassedSentenceCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("PassedSentenceCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("TotalSentenceCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("TotalSentenceCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<int>("WritingExerciseId")
-                        .HasColumnType("int")
-                        .HasColumnName("WritingExerciseID");
+                b.Property<int>("WritingExerciseId")
+                    .HasColumnType("int")
+                    .HasColumnName("WritingExerciseID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("WritingExerciseId");
+                b.HasIndex("WritingExerciseId");
 
-                    b.HasIndex("UserId", "WritingExerciseId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserWritingExerciseProgresses_UserId_WritingExerciseId");
+                b.HasIndex("UserId", "WritingExerciseId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserWritingExerciseProgresses_UserId_WritingExerciseId");
 
-                    b.ToTable("UserWritingExerciseProgresses", (string)null);
-                });
+                b.ToTable("UserWritingExerciseProgresses", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingSentenceProgress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AcceptedAnswer")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("AcceptedAnswer")
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("AttemptCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                b.Property<int>("AttemptCount")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasDefaultValue(0);
 
-                    b.Property<bool>("IsPassed")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsPassed")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime?>("LastAttemptAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("LastAttemptAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("PassedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("PassedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("SentenceId")
-                        .HasColumnType("int")
-                        .HasColumnName("SentenceID");
+                b.Property<int>("SentenceId")
+                    .HasColumnType("int")
+                    .HasColumnName("SentenceID");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.Property<int>("WritingExerciseId")
-                        .HasColumnType("int")
-                        .HasColumnName("WritingExerciseID");
+                b.Property<int>("WritingExerciseId")
+                    .HasColumnType("int")
+                    .HasColumnName("WritingExerciseID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("SentenceId");
+                b.HasIndex("SentenceId");
 
-                    b.HasIndex("WritingExerciseId");
+                b.HasIndex("WritingExerciseId");
 
-                    b.HasIndex("UserId", "SentenceId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_UserWritingSentenceProgresses_UserId_SentenceId");
+                b.HasIndex("UserId", "SentenceId")
+                    .IsUnique()
+                    .HasDatabaseName("IX_UserWritingSentenceProgresses_UserId_SentenceId");
 
-                    b.ToTable("UserWritingSentenceProgresses", (string)null);
-                });
+                b.ToTable("UserWritingSentenceProgresses", (string)null);
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ContentType")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("SYSUTCDATETIME()");
+                b.Property<DateTime>("CreatedAt")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2")
+                    .HasDefaultValueSql("SYSUTCDATETIME()");
 
-                    b.Property<bool>("IsPublished")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsPublished")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Level")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PreviewText")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                b.Property<string>("PreviewText")
+                    .IsRequired()
+                    .HasMaxLength(1000)
+                    .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("SourceType")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("admin");
+                b.Property<string>("SourceType")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)")
+                    .HasDefaultValue("admin");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Topic")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Topic")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
+                b.Property<int?>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("UserID");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId", "IsPublished", "CreatedAt")
-                        .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_CreatedAt");
+                b.HasIndex("UserId", "IsPublished", "CreatedAt")
+                    .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_CreatedAt");
 
-                    b.HasIndex("UserId", "IsPublished", "Level", "ContentType", "Topic")
-                        .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_Level_ContentType_Topic");
+                b.HasIndex("UserId", "IsPublished", "Level", "ContentType", "Topic")
+                    .HasDatabaseName("IX_WritingExercises_UserId_IsPublished_Level_ContentType_Topic");
 
-                    b.ToTable("WritingExercises");
-                });
+                b.ToTable("WritingExercises");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("BreakAfter")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("BreakAfter")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("EnglishMeaning")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("EnglishMeaning")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
+                b.Property<int>("SortOrder")
+                    .HasColumnType("int");
 
-                    b.Property<string>("VietnameseText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("VietnameseText")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WritingExerciseId")
-                        .HasColumnType("int");
+                b.Property<int>("WritingExerciseId")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("WritingExerciseId", "SortOrder")
-                        .IsUnique()
-                        .HasDatabaseName("IX_WritingExerciseSentences_WritingExerciseId_SortOrder");
+                b.HasIndex("WritingExerciseId", "SortOrder")
+                    .IsUnique()
+                    .HasDatabaseName("IX_WritingExerciseSentences_WritingExerciseId_SortOrder");
 
-                    b.ToTable("WritingExerciseSentences");
-                });
+                b.ToTable("WritingExerciseSentences");
+            });
 
             modelBuilder.Entity("ClassMember", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Class", "Class")
-                        .WithMany("ClassMembers")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.Class", "Class")
+                    .WithMany("ClassMembers")
+                    .HasForeignKey("ClassId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("ClassMembers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("ClassMembers")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Class");
+                b.Navigation("Class");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("AiConversations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_AiConversations_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("AiConversations")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_AiConversations_Users");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiMessage", b =>
-                {
-                    b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
-                        .WithMany("Messages")
-                        .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_AiMessages_AiConversations");
+            {
+                b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
+                    .WithMany("Messages")
+                    .HasForeignKey("ConversationId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_AiMessages_AiConversations");
 
-                    b.Navigation("Conversation");
-                });
+                b.Navigation("Conversation");
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
-                {
-                    b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
-                        .WithMany()
-                        .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_AiRequestLogs_AiConversations");
+            {
+                b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
+                    .WithMany()
+                    .HasForeignKey("ConversationId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_AiRequestLogs_AiConversations");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("AiRequestLogs")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
-                        .HasConstraintName("FK_AiRequestLogs_Users");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("AiRequestLogs")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired()
+                    .HasConstraintName("FK_AiRequestLogs_Users");
 
-                    b.Navigation("Conversation");
+                b.Navigation("Conversation");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.WritingGenerationLog", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("WritingGenerationLogs")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
-                        .HasConstraintName("FK_WritingGenerationLogs_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("WritingGenerationLogs")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired()
+                    .HasConstraintName("FK_WritingGenerationLogs_Users");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Set", "Set")
-                        .WithMany("Cards")
-                        .HasForeignKey("SetId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Cards__SetID__4CA06362");
+            {
+                b.HasOne("TCTVocabulary.Models.Set", "Set")
+                    .WithMany("Cards")
+                    .HasForeignKey("SetId")
+                    .IsRequired()
+                    .HasConstraintName("FK__Cards__SetID__4CA06362");
 
-                    b.Navigation("Set");
-                });
+                b.Navigation("Set");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Class", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "Owner")
-                        .WithMany("Classes")
-                        .HasForeignKey("OwnerId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "Owner")
+                    .WithMany("Classes")
+                    .HasForeignKey("OwnerId")
+                    .IsRequired()
+                    .HasConstraintName("FK__Classes__OwnerID__412EB0B6");
 
-                    b.Navigation("Owner");
-                });
+                b.Navigation("Owner");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ClassFolder", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "AddedByUser")
-                        .WithMany()
-                        .HasForeignKey("AddedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.User", "AddedByUser")
+                    .WithMany()
+                    .HasForeignKey("AddedByUserId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.Class", "Class")
-                        .WithMany("ClassFolders")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.Class", "Class")
+                    .WithMany("ClassFolders")
+                    .HasForeignKey("ClassId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.Folder", "Folder")
-                        .WithMany()
-                        .HasForeignKey("FolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.Folder", "Folder")
+                    .WithMany()
+                    .HasForeignKey("FolderId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("AddedByUser");
+                b.Navigation("AddedByUser");
 
-                    b.Navigation("Class");
+                b.Navigation("Class");
 
-                    b.Navigation("Folder");
-                });
+                b.Navigation("Folder");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ClassMessage", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Class", "Class")
-                        .WithMany("ClassMessages")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.Class", "Class")
+                    .WithMany("ClassMessages")
+                    .HasForeignKey("ClassId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("ClassMessages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("ClassMessages")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Class");
+                b.Navigation("Class");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Folder", "ParentFolder")
-                        .WithMany("InverseParentFolder")
-                        .HasForeignKey("ParentFolderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .HasConstraintName("FK__Folders__ParentF__3E52440B");
+            {
+                b.HasOne("TCTVocabulary.Models.Folder", "ParentFolder")
+                    .WithMany("InverseParentFolder")
+                    .HasForeignKey("ParentFolderId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK__Folders__ParentF__3E52440B");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("Folders")
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Folders__UserID__3D5E1FD2");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("Folders")
+                    .HasForeignKey("UserId")
+                    .IsRequired()
+                    .HasConstraintName("FK__Folders__UserID__3D5E1FD2");
 
-                    b.Navigation("ParentFolder");
+                b.Navigation("ParentFolder");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.LearningProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Card", "Card")
-                        .WithMany("LearningProgresses")
-                        .HasForeignKey("CardId")
-                        .IsRequired()
-                        .HasConstraintName("FK__LearningP__CardI__5441852A");
+            {
+                b.HasOne("TCTVocabulary.Models.Card", "Card")
+                    .WithMany("LearningProgresses")
+                    .HasForeignKey("CardId")
+                    .IsRequired()
+                    .HasConstraintName("FK__LearningP__CardI__5441852A");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("LearningProgresses")
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK__LearningP__UserI__534D60F1");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("LearningProgresses")
+                    .HasForeignKey("UserId")
+                    .IsRequired()
+                    .HasConstraintName("FK__LearningP__UserI__534D60F1");
 
-                    b.Navigation("Card");
+                b.Navigation("Card");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningQuizQuestion", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
-                        .WithMany("QuizQuestions")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_ListeningQuizQuestions_ListeningLessons");
+            {
+                b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
+                    .WithMany("QuizQuestions")
+                    .HasForeignKey("LessonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_ListeningQuizQuestions_ListeningLessons");
 
-                    b.Navigation("Lesson");
-                });
+                b.Navigation("Lesson");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningTranscriptLine", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
-                        .WithMany("TranscriptLines")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_ListeningTranscriptLines_ListeningLessons");
+            {
+                b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
+                    .WithMany("TranscriptLines")
+                    .HasForeignKey("LessonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_ListeningTranscriptLines_ListeningLessons");
 
-                    b.Navigation("Lesson");
-                });
+                b.Navigation("Lesson");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningVocabItem", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
-                        .WithMany("VocabItems")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_ListeningVocabItems_ListeningLessons");
+            {
+                b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
+                    .WithMany("VocabItems")
+                    .HasForeignKey("LessonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_ListeningVocabItems_ListeningLessons");
 
-                    b.Navigation("Lesson");
-                });
+                b.Navigation("Lesson");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingOption", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ReadingQuestion", "Question")
-                        .WithMany("Options")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.ReadingQuestion", "Question")
+                    .WithMany("Options")
+                    .HasForeignKey("QuestionId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Question");
-                });
+                b.Navigation("Question");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingQuestion", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "Passage")
-                        .WithMany("Questions")
-                        .HasForeignKey("PassageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.ReadingPassage", "Passage")
+                    .WithMany("Questions")
+                    .HasForeignKey("PassageId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Passage");
-                });
+                b.Navigation("Passage");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SavedFolder", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Folder", "Folder")
-                        .WithMany("SavedFolders")
-                        .HasForeignKey("FolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.Folder", "Folder")
+                    .WithMany("SavedFolders")
+                    .HasForeignKey("FolderId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("SavedFolders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("SavedFolders")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Folder");
+                b.Navigation("Folder");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Set", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Folder", "Folder")
-                        .WithMany("Sets")
-                        .HasForeignKey("FolderId")
-                        .HasConstraintName("FK__Sets__FolderID__49C3F6B7");
+            {
+                b.HasOne("TCTVocabulary.Models.Folder", "Folder")
+                    .WithMany("Sets")
+                    .HasForeignKey("FolderId")
+                    .HasConstraintName("FK__Sets__FolderID__49C3F6B7");
 
-                    b.HasOne("TCTVocabulary.Models.User", "Owner")
-                        .WithMany("Sets")
-                        .HasForeignKey("OwnerId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Sets__OwnerID__48CFD27E");
+                b.HasOne("TCTVocabulary.Models.User", "Owner")
+                    .WithMany("Sets")
+                    .HasForeignKey("OwnerId")
+                    .IsRequired()
+                    .HasConstraintName("FK__Sets__OwnerID__48CFD27E");
 
-                    b.Navigation("Folder");
+                b.Navigation("Folder");
 
-                    b.Navigation("Owner");
-                });
+                b.Navigation("Owner");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingSentence", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
-                        .WithMany("SpeakingSentences")
-                        .HasForeignKey("VideoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_SpeakingSentences_SpeakingVideos");
+            {
+                b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
+                    .WithMany("SpeakingSentences")
+                    .HasForeignKey("VideoId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_SpeakingSentences_SpeakingVideos");
 
-                    b.Navigation("SpeakingVideo");
-                });
+                b.Navigation("SpeakingVideo");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "OwnerUser")
-                        .WithMany("OwnedSpeakingVideos")
-                        .HasForeignKey("OwnerUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .HasConstraintName("FK_SpeakingVideos_Users_OwnerUserId");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "OwnerUser")
+                    .WithMany("OwnedSpeakingVideos")
+                    .HasForeignKey("OwnerUserId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasConstraintName("FK_SpeakingVideos_Users_OwnerUserId");
 
-                    b.HasOne("TCTVocabulary.Models.SpeakingPlaylist", "SpeakingPlaylist")
-                        .WithMany("SpeakingVideos")
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("FK_SpeakingVideos_SpeakingPlaylists");
+                b.HasOne("TCTVocabulary.Models.SpeakingPlaylist", "SpeakingPlaylist")
+                    .WithMany("SpeakingVideos")
+                    .HasForeignKey("PlaylistId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_SpeakingVideos_SpeakingPlaylists");
 
-                    b.Navigation("OwnerUser");
+                b.Navigation("OwnerUser");
 
-                    b.Navigation("SpeakingPlaylist");
-                });
+                b.Navigation("SpeakingPlaylist");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserBadge", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.Badge", "Badge")
-                        .WithMany("UserBadges")
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserBadges_Badges");
+            {
+                b.HasOne("TCTVocabulary.Models.Badge", "Badge")
+                    .WithMany("UserBadges")
+                    .HasForeignKey("BadgeId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserBadges_Badges");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserBadges")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserBadges_Users");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserBadges")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserBadges_Users");
 
-                    b.Navigation("Badge");
+                b.Navigation("Badge");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserDailyActivity", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserDailyActivities")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserDailyActivities_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserDailyActivities")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserDailyActivities_Users");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserGoal", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserGoals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserGoals_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserGoals")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserGoals_Users");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserListeningProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
-                        .WithMany("UserProgresses")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserListeningProgress_ListeningLessons");
+            {
+                b.HasOne("TCTVocabulary.Models.ListeningLesson", "Lesson")
+                    .WithMany("UserProgresses")
+                    .HasForeignKey("LessonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserListeningProgress_ListeningLessons");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserListeningProgress_Users");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserListeningProgress_Users");
 
-                    b.Navigation("Lesson");
+                b.Navigation("Lesson");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserReadingHistory", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
-                        .WithMany("UserReadingHistories")
-                        .HasForeignKey("ReadingPassageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                    .WithMany("UserReadingHistories")
+                    .HasForeignKey("ReadingPassageId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserReadingHistories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserReadingHistories")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("ReadingPassage");
+                b.Navigation("ReadingPassage");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.SpeakingSentence", "SpeakingSentence")
-                        .WithMany("UserSpeakingProgresses")
-                        .HasForeignKey("SentenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
+            {
+                b.HasOne("TCTVocabulary.Models.SpeakingSentence", "SpeakingSentence")
+                    .WithMany("UserSpeakingProgresses")
+                    .HasForeignKey("SentenceId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserSpeakingProgresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingProgress_Users");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserSpeakingProgresses")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserSpeakingProgress_Users");
 
-                    b.Navigation("SpeakingSentence");
+                b.Navigation("SpeakingSentence");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingAttempt", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserWritingAttempts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingAttempts_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserWritingAttempts")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingAttempts_Users");
 
-                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
-                        .WithMany("UserWritingAttempts")
-                        .HasForeignKey("WritingExerciseId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingAttempts_WritingExercises");
+                b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                    .WithMany("UserWritingAttempts")
+                    .HasForeignKey("WritingExerciseId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingAttempts_WritingExercises");
 
-                    b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "WritingExerciseSentence")
-                        .WithMany("UserWritingAttempts")
-                        .HasForeignKey("WritingExerciseSentenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingAttempts_WritingExerciseSentences");
+                b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "WritingExerciseSentence")
+                    .WithMany("UserWritingAttempts")
+                    .HasForeignKey("WritingExerciseSentenceId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingAttempts_WritingExerciseSentences");
 
-                    b.Navigation("User");
+                b.Navigation("User");
 
-                    b.Navigation("WritingExercise");
+                b.Navigation("WritingExercise");
 
-                    b.Navigation("WritingExerciseSentence");
-                });
+                b.Navigation("WritingExerciseSentence");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserSpeakingVideoCompletion", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserSpeakingVideoCompletions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingVideoCompletions_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserSpeakingVideoCompletions")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserSpeakingVideoCompletions_Users");
 
-                    b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
-                        .WithMany("UserSpeakingVideoCompletions")
-                        .HasForeignKey("VideoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
+                b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
+                    .WithMany("UserSpeakingVideoCompletions")
+                    .HasForeignKey("VideoId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
 
-                    b.Navigation("SpeakingVideo");
+                b.Navigation("SpeakingVideo");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingExerciseProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserWritingExerciseProgresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingExerciseProgresses_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserWritingExerciseProgresses")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingExerciseProgresses_Users");
 
-                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
-                        .WithMany("UserWritingExerciseProgresses")
-                        .HasForeignKey("WritingExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingExerciseProgresses_WritingExercises");
+                b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                    .WithMany("UserWritingExerciseProgresses")
+                    .HasForeignKey("WritingExerciseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingExerciseProgresses_WritingExercises");
 
-                    b.Navigation("User");
+                b.Navigation("User");
 
-                    b.Navigation("WritingExercise");
-                });
+                b.Navigation("WritingExercise");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserWritingSentenceProgress", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "Sentence")
-                        .WithMany("UserWritingSentenceProgresses")
-                        .HasForeignKey("SentenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExerciseSentences");
+            {
+                b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "Sentence")
+                    .WithMany("UserWritingSentenceProgresses")
+                    .HasForeignKey("SentenceId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExerciseSentences");
 
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("UserWritingSentenceProgresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingSentenceProgresses_Users");
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("UserWritingSentenceProgresses")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingSentenceProgresses_Users");
 
-                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
-                        .WithMany("UserWritingSentenceProgresses")
-                        .HasForeignKey("WritingExerciseId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
-                        .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExercises");
+                b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                    .WithMany("UserWritingSentenceProgresses")
+                    .HasForeignKey("WritingExerciseId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired()
+                    .HasConstraintName("FK_UserWritingSentenceProgresses_WritingExercises");
 
-                    b.Navigation("Sentence");
+                b.Navigation("Sentence");
 
-                    b.Navigation("User");
+                b.Navigation("User");
 
-                    b.Navigation("WritingExercise");
-                });
-
-            modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
-                        .WithMany("WritingExerciseSentences")
-                        .HasForeignKey("WritingExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
-
-                    b.Navigation("WritingExercise");
-                });
+                b.Navigation("WritingExercise");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
-                {
-                    b.HasOne("TCTVocabulary.Models.User", "User")
-                        .WithMany("WritingExercises")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .HasConstraintName("FK_WritingExercises_Users");
+            {
+                b.HasOne("TCTVocabulary.Models.User", "User")
+                    .WithMany("WritingExercises")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasConstraintName("FK_WritingExercises_Users");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
+
+            modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
+            {
+                b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                    .WithMany("WritingExerciseSentences")
+                    .HasForeignKey("WritingExerciseId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
+
+                b.Navigation("WritingExercise");
+            });
 
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
-                {
-                    b.Navigation("Messages");
-                });
+            {
+                b.Navigation("Messages");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
-                {
-                    b.Navigation("UserBadges");
-                });
+            {
+                b.Navigation("UserBadges");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Card", b =>
-                {
-                    b.Navigation("LearningProgresses");
-                });
+            {
+                b.Navigation("LearningProgresses");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Class", b =>
-                {
-                    b.Navigation("ClassFolders");
+            {
+                b.Navigation("ClassFolders");
 
-                    b.Navigation("ClassMembers");
+                b.Navigation("ClassMembers");
 
-                    b.Navigation("ClassMessages");
-                });
+                b.Navigation("ClassMessages");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Folder", b =>
-                {
-                    b.Navigation("InverseParentFolder");
+            {
+                b.Navigation("InverseParentFolder");
 
-                    b.Navigation("SavedFolders");
+                b.Navigation("SavedFolders");
 
-                    b.Navigation("Sets");
-                });
+                b.Navigation("Sets");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ListeningLesson", b =>
-                {
-                    b.Navigation("QuizQuestions");
+            {
+                b.Navigation("QuizQuestions");
 
-                    b.Navigation("TranscriptLines");
+                b.Navigation("TranscriptLines");
 
-                    b.Navigation("UserProgresses");
+                b.Navigation("UserProgresses");
 
-                    b.Navigation("VocabItems");
-                });
+                b.Navigation("VocabItems");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingPassage", b =>
-                {
-                    b.Navigation("Questions");
+            {
+                b.Navigation("Questions");
 
-                    b.Navigation("UserReadingHistories");
-                });
+                b.Navigation("UserReadingHistories");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingQuestion", b =>
-                {
-                    b.Navigation("Options");
-                });
+            {
+                b.Navigation("Options");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.Set", b =>
-                {
-                    b.Navigation("Cards");
-                });
+            {
+                b.Navigation("Cards");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingPlaylist", b =>
-                {
-                    b.Navigation("SpeakingVideos");
-                });
+            {
+                b.Navigation("SpeakingVideos");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingSentence", b =>
-                {
-                    b.Navigation("UserSpeakingProgresses");
-                });
+            {
+                b.Navigation("UserSpeakingProgresses");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingVideo", b =>
-                {
-                    b.Navigation("SpeakingSentences");
+            {
+                b.Navigation("SpeakingSentences");
 
-                    b.Navigation("UserSpeakingVideoCompletions");
-                });
+                b.Navigation("UserSpeakingVideoCompletions");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
-                {
-                    b.Navigation("AiConversations");
+            {
+                b.Navigation("AiConversations");
 
-                    b.Navigation("AiRequestLogs");
+                b.Navigation("AiRequestLogs");
 
-                    b.Navigation("ClassMembers");
+                b.Navigation("ClassMembers");
 
-                    b.Navigation("ClassMessages");
+                b.Navigation("ClassMessages");
 
-                    b.Navigation("Classes");
+                b.Navigation("Classes");
 
-                    b.Navigation("Folders");
+                b.Navigation("Folders");
 
-                    b.Navigation("LearningProgresses");
+                b.Navigation("LearningProgresses");
 
-                    b.Navigation("OwnedSpeakingVideos");
+                b.Navigation("OwnedSpeakingVideos");
 
-                    b.Navigation("SavedFolders");
+                b.Navigation("SavedFolders");
 
-                    b.Navigation("Sets");
+                b.Navigation("Sets");
 
-                    b.Navigation("UserBadges");
+                b.Navigation("UserBadges");
 
-                    b.Navigation("UserDailyActivities");
+                b.Navigation("UserDailyActivities");
 
-                    b.Navigation("UserGoals");
+                b.Navigation("UserGoals");
 
-                    b.Navigation("UserReadingHistories");
+                b.Navigation("UserReadingHistories");
 
-                    b.Navigation("UserSpeakingProgresses");
+                b.Navigation("UserSpeakingProgresses");
 
-                    b.Navigation("UserSpeakingVideoCompletions");
+                b.Navigation("UserSpeakingVideoCompletions");
 
-                    b.Navigation("UserWritingAttempts");
+                b.Navigation("UserWritingAttempts");
 
-                    b.Navigation("UserWritingExerciseProgresses");
+                b.Navigation("UserWritingExerciseProgresses");
 
-                    b.Navigation("UserWritingSentenceProgresses");
+                b.Navigation("UserWritingSentenceProgresses");
 
-                    b.Navigation("WritingExercises");
+                b.Navigation("WritingExercises");
 
-                    b.Navigation("WritingGenerationLogs");
-                });
+                b.Navigation("WritingGenerationLogs");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
-                {
-                    b.Navigation("UserWritingAttempts");
+            {
+                b.Navigation("UserWritingAttempts");
 
-                    b.Navigation("UserWritingExerciseProgresses");
+                b.Navigation("UserWritingExerciseProgresses");
 
-                    b.Navigation("UserWritingSentenceProgresses");
+                b.Navigation("UserWritingSentenceProgresses");
 
-                    b.Navigation("WritingExerciseSentences");
-                });
+                b.Navigation("WritingExerciseSentences");
+            });
 
             modelBuilder.Entity("TCTVocabulary.Models.WritingExerciseSentence", b =>
-                {
-                    b.Navigation("UserWritingAttempts");
+            {
+                b.Navigation("UserWritingAttempts");
 
-                    b.Navigation("UserWritingSentenceProgresses");
-                });
+                b.Navigation("UserWritingSentenceProgresses");
+            });
 #pragma warning restore 612, 618
         }
     }
