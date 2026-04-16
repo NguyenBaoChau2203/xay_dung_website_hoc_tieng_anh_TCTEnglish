@@ -20,7 +20,9 @@ namespace TCTVocabulary.Services
         [
             GoalArea.Vocabulary,
             GoalArea.Speaking,
-            GoalArea.Writing
+            GoalArea.Writing,
+            GoalArea.Reading,
+            GoalArea.Listening
         ];
 
         private readonly DbflashcardContext _context;
@@ -158,6 +160,22 @@ namespace TCTVocabulary.Services
             {
                 WritingCompletedCount = 1,
                 XpEarned = WritingExerciseCompletionXp
+            };
+        }
+
+        public GoalsActivityUpdate BuildReadingCompletionActivityUpdate()
+        {
+            return new GoalsActivityUpdate
+            {
+                ReadingCompletedCount = 1
+            };
+        }
+
+        public GoalsActivityUpdate BuildListeningCompletionActivityUpdate()
+        {
+            return new GoalsActivityUpdate
+            {
+                ListeningCompletedCount = 1
             };
         }
 

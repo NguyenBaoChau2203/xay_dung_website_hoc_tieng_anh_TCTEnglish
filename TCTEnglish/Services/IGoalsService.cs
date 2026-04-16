@@ -13,5 +13,7 @@ namespace TCTVocabulary.Services
         GoalsActivityUpdate BuildVocabularyActivityUpdate(bool isNewProgress, string? previousStatus, string currentStatus);
         GoalsActivityUpdate BuildSpeakingCompletionActivityUpdate();
         GoalsActivityUpdate BuildWritingCompletionActivityUpdate();
+        GoalsActivityUpdate BuildReadingCompletionActivityUpdate();
+        GoalsActivityUpdate BuildListeningCompletionActivityUpdate();
     }
 }
