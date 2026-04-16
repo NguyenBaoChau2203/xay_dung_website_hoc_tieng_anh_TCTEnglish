@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using TCTEnglish.ViewModels;
 
 namespace TCTEnglish.Controllers
@@ -9,7 +10,13 @@ namespace TCTEnglish.Controllers
     public class ReadingController : Controller
     {
         private readonly DbflashcardContext _context;
-        public ReadingController(DbflashcardContext context) { _context = context; }
+        private readonly IGoalsService _goalsService;
+
+        public ReadingController(DbflashcardContext context, IGoalsService goalsService)
+        {
+            _context = context;
+            _goalsService = goalsService;
+        }
 
         // Trang học chi tiết
         [HttpGet("Reading/Study/{id}")]
@@ -89,10 +96,17 @@ namespace TCTEnglish.Controllers
                 .FirstOrDefaultAsync(h => h.UserId == userId && h.ReadingPassageId == passageId);
             if (history != null)
             {
+                var isNewCompletion = !history.IsCompleted;
                 history.IsCompleted = true; // Chuyển trạng thái
                 history.Score = correctCount;
                 history.ViewedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
+
+                if (isNewCompletion)
+                {
+                    var activityUpdate = _goalsService.BuildReadingCompletionActivityUpdate();
+                    await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+                }
             }
 
             return Json(new { success = true, correctCount, totalCount = questions.Count, details });

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 
 namespace TCTEnglish.Services
 {
@@ -26,11 +27,16 @@ namespace TCTEnglish.Services
 
         private readonly DbflashcardContext _context;
         private readonly ILogger<ListeningService> _logger;
+        private readonly IGoalsService _goalsService;
 
-        public ListeningService(DbflashcardContext context, ILogger<ListeningService> logger)
+        public ListeningService(
+            DbflashcardContext context,
+            ILogger<ListeningService> logger,
+            IGoalsService goalsService)
         {
             _context = context;
             _logger = logger;
+            _goalsService = goalsService;
         }
 
         // ----------------------------------------------------------------
@@ -303,6 +309,7 @@ namespace TCTEnglish.Services
                 progress.LastAccessedAt = DateTime.UtcNow;
 
                 // Mark fully completed when all three sections done
+                var wasCompleted = progress.CompletedAt != null;
                 if (progress.TranscriptCompleted && progress.QuizCompleted && progress.VocabReviewed
                     && progress.CompletedAt == null)
                 {
@@ -310,6 +317,14 @@ namespace TCTEnglish.Services
                 }
 
                 await _context.SaveChangesAsync();
+
+                var isNewCompletion = !wasCompleted && progress.CompletedAt != null;
+                if (isNewCompletion)
+                {
+                    var activityUpdate = _goalsService.BuildListeningCompletionActivityUpdate();
+                    await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+                }
+
                 return true;
             }
             catch (Exception ex)

@@ -2343,6 +2343,17 @@ namespace TCTVocabulary.Migrations
                     b.Navigation("WritingExercise");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("WritingExercises")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasConstraintName("FK_WritingExercises_Users");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.Navigation("Messages");

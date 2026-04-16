@@ -256,7 +256,7 @@ public sealed class GoalsPhase2IntegrationTests
     }
 
     [Fact]
-    public async Task GetGoalsAsync_OnlyReturnsEnabledGoalAreas_WhenReadingListeningAreDeferred()
+    public async Task GetGoalsAsync_ReturnsAllGoalAreasIncludingReadingAndListening_WhenSignalsAreAvailable()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
@@ -298,12 +298,12 @@ public sealed class GoalsPhase2IntegrationTests
         Assert.Equal(6, cards[GoalArea.Vocabulary]);
         Assert.Equal(2, cards[GoalArea.Speaking]);
         Assert.Equal(3, cards[GoalArea.Writing]);
-        Assert.DoesNotContain(GoalArea.Reading, cards.Keys);
-        Assert.DoesNotContain(GoalArea.Listening, cards.Keys);
-        Assert.DoesNotContain(nameof(GoalArea.Reading), goalAreaOptionValues);
-        Assert.DoesNotContain(nameof(GoalArea.Listening), goalAreaOptionValues);
-        Assert.Contains("Reading", deferredLabels);
-        Assert.Contains("Listening", deferredLabels);
+        Assert.Equal(4, cards[GoalArea.Reading]);
+        Assert.Equal(1, cards[GoalArea.Listening]);
+        Assert.Contains(nameof(GoalArea.Reading), goalAreaOptionValues);
+        Assert.Contains(nameof(GoalArea.Listening), goalAreaOptionValues);
+        Assert.DoesNotContain("Reading", deferredLabels);
+        Assert.DoesNotContain("Listening", deferredLabels);
     }
 
     private static async Task SeedGoalOnlyAsync(TestWebApplicationFactory factory, int goal)
