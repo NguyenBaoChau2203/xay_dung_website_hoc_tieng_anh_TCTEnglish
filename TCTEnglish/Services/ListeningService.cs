@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Threading;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
+using TCTEnglish.Services.AI;
 
 namespace TCTEnglish.Services
 {
@@ -28,26 +31,32 @@ namespace TCTEnglish.Services
         private readonly DbflashcardContext _context;
         private readonly ILogger<ListeningService> _logger;
         private readonly IGoalsService _goalsService;
+        private readonly IYoutubeTranscriptService _youtubeTranscriptService;
+        private readonly IAiProviderClient _aiProvider;
 
         public ListeningService(
             DbflashcardContext context,
             ILogger<ListeningService> logger,
-            IGoalsService goalsService)
+            IGoalsService goalsService,
+            IYoutubeTranscriptService youtubeTranscriptService,
+            IAiProviderClient aiProvider)
         {
             _context = context;
             _logger = logger;
             _goalsService = goalsService;
+            _youtubeTranscriptService = youtubeTranscriptService;
+            _aiProvider = aiProvider;
         }
 
         // ----------------------------------------------------------------
         // GetIndexViewModelAsync
         // ----------------------------------------------------------------
 
-        public async Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic)
+        public async Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic, int? userId = null)
         {
             var query = _context.ListeningLessons
                 .AsNoTracking()
-                .Where(l => l.IsPublished);
+                .Where(l => l.OwnerUserId == null && l.IsPublished);
 
             if (!string.IsNullOrWhiteSpace(level))
                 query = query.Where(l => l.Level == level);
@@ -111,7 +120,7 @@ namespace TCTEnglish.Services
                 .Select(key => BuildLevelMeta(key, cardsByLevel))
                 .ToList();
 
-            return new ListeningIndexViewModel
+            var viewModel = new ListeningIndexViewModel
             {
                 LessonsByLevel = cardsByLevel,
                 Topics = allTopics,
@@ -119,6 +128,37 @@ namespace TCTEnglish.Services
                 SelectedLevel = level,
                 SelectedTopic = topic,
             };
+
+            if (!userId.HasValue) return viewModel;
+
+            var currentRole = await GetNormalizedRoleAsync(userId.Value);
+            var isLocked = currentRole == Roles.Standard;
+            var myLessons = await _context.ListeningLessons
+                .AsNoTracking()
+                .Where(l => l.OwnerUserId == userId.Value)
+                .OrderByDescending(l => l.CreatedAt)
+                .Select(l => new ListeningLessonCardViewModel
+                {
+                    Id = l.Id,
+                    Title = l.Title,
+                    Level = l.Level,
+                    Topic = l.Topic,
+                    ThumbnailUrl = l.ThumbnailUrl,
+                    Duration = l.Duration,
+                    TranscriptLineCount = l.TranscriptLines.Count,
+                    QuizQuestionCount = l.QuizQuestions.Count,
+                    VocabItemCount = l.VocabItems.Count,
+                    IsPrivate = true,
+                    IsLocked = isLocked,
+                    ImportStatus = "ready", // For now we keep it simple
+                    CreatedAt = l.CreatedAt
+                })
+                .ToListAsync();
+
+            viewModel.MyLessons = myLessons;
+            viewModel.IsMyLessonsSectionLocked = isLocked;
+
+            return viewModel;
         }
 
         // ----------------------------------------------------------------
@@ -127,9 +167,11 @@ namespace TCTEnglish.Services
 
         public async Task<ListeningPracticeViewModel?> GetPracticeViewModelAsync(int lessonId, int? userId)
         {
+            var role = userId.HasValue ? await GetNormalizedRoleAsync(userId.Value) : Roles.Standard;
+
             var lesson = await _context.ListeningLessons
                 .AsNoTracking()
-                .Where(l => l.Id == lessonId && l.IsPublished)
+                .Where(l => l.Id == lessonId && l.IsPublished && (l.OwnerUserId == null || l.OwnerUserId == userId))
                 .Include(l => l.TranscriptLines)
                 .Include(l => l.QuizQuestions)
                 .Include(l => l.VocabItems)
@@ -137,6 +179,11 @@ namespace TCTEnglish.Services
 
             if (lesson == null)
                 return null;
+
+            if (lesson.OwnerUserId == userId && role == Roles.Standard)
+            {
+                return null; // Premium locked
+            }
 
             // Load user progress (may be null for guests / first-time visitors)
             UserListeningProgress? progress = null;
@@ -331,6 +378,355 @@ namespace TCTEnglish.Services
             {
                 _logger.LogError(ex, "SaveProgressAsync failed for userId={UserId}, lessonId={LessonId}", userId, lessonId);
                 return false;
+            }
+        }
+
+        // ----------------------------------------------------------------
+        // Private Methods for Import/Delete 
+        // ----------------------------------------------------------------
+
+        public async Task<ListeningImportResult> CreateOwnedLessonAsync(int userId, string youtubeUrl, System.Threading.CancellationToken ct = default)
+        {
+            var role = await GetNormalizedRoleAsync(userId);
+            if (role is not (Roles.Admin or Roles.Premium))
+            {
+                return ListeningImportResult.UpgradeRequired("Vui lòng nâng cấp lên Premium để sử dụng tính năng này.");
+            }
+
+            var normalizedYoutubeId = YoutubeUrlHelper.NormalizeYoutubeId(youtubeUrl);
+            if (normalizedYoutubeId is null)
+            {
+                return ListeningImportResult.Invalid("YouTube URL không hợp lệ.");
+            }
+
+            var duplicateExists = await _context.ListeningLessons
+                .AsNoTracking()
+                .AnyAsync(v => v.OwnerUserId == userId && v.YoutubeId == normalizedYoutubeId, ct);
+
+            if (duplicateExists)
+            {
+                return ListeningImportResult.Invalid("Video này đã có trong mục Bài nghe của tôi.");
+            }
+
+            var transcriptResult = await _youtubeTranscriptService.GetTranscriptForSpeakingImportAsync(normalizedYoutubeId, ct);
+            if (!transcriptResult.IsEnglishUsable || transcriptResult.Sentences.Count == 0)
+            {
+                return ListeningImportResult.Invalid("Không thể lấy transcript tiếng Anh hợp lệ từ video này.");
+            }
+
+            var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);
+            if (metadata == null || string.IsNullOrWhiteSpace(metadata.Title))
+            {
+                return ListeningImportResult.Invalid("Không thể tải metadata của video YouTube.");
+            }
+
+            var title = metadata.Title.Trim();
+            if (title.Length > 255) title = title[..255];
+
+            var strategy = _context.Database.CreateExecutionStrategy();
+            var createdLessonId = 0;
+
+            await strategy.ExecuteAsync(async () =>
+            {
+                await using var transaction = await _context.Database.BeginTransactionAsync(ct);
+
+                var lesson = new ListeningLesson
+                {
+                    Title = title,
+                    Level = "B1", // Default level
+                    Topic = "My Lessons",
+                    YoutubeId = normalizedYoutubeId,
+                    ThumbnailUrl = metadata.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(normalizedYoutubeId),
+                    Duration = await _youtubeTranscriptService.GetVideoDurationAsync(normalizedYoutubeId),
+                    Speaker1Name = "Speaker",
+                    IsPublished = true,
+                    OwnerUserId = userId,
+                    TranscriptSource = transcriptResult.TranscriptSource,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.ListeningLessons.Add(lesson);
+                await _context.SaveChangesAsync(ct);
+
+                var transcriptLines = transcriptResult.Sentences.Select((s, index) => new ListeningTranscriptLine
+                {
+                    LessonId = lesson.Id,
+                    OrderIndex = index,
+                    Speaker = "Speaker",
+                    Text = s.Text,
+                    VietnameseMeaning = string.Empty,
+                    StartTime = s.StartTime,
+                    EndTime = s.EndTime
+                }).ToList();
+
+                _context.ListeningTranscriptLines.AddRange(transcriptLines);
+                await _context.SaveChangesAsync(ct);
+                await transaction.CommitAsync(ct);
+
+                createdLessonId = lesson.Id;
+            });
+
+            _logger.LogInformation("User {UserId} imported private listening lesson {LessonId} ({YoutubeId}).", userId, createdLessonId, normalizedYoutubeId);
+
+            // Auto-generate AI Quiz without blocking
+            try 
+            { 
+                 await GenerateQuizFromTranscriptAsync(createdLessonId, userId, ct); 
+            }
+            catch (Exception ex) 
+            { 
+                 _logger.LogWarning(ex, "Auto quiz generation failed for lesson {Id}", createdLessonId); 
+            }
+
+            return ListeningImportResult.Success(createdLessonId);
+        }
+
+        public async Task<OperationResult> DeleteOwnedLessonAsync(int userId, int lessonId)
+        {
+            var lesson = await _context.ListeningLessons
+                .FirstOrDefaultAsync(l => l.Id == lessonId && l.OwnerUserId == userId);
+
+            if (lesson == null)
+            {
+                return OperationResult.NotFound();
+            }
+
+            var role = await GetNormalizedRoleAsync(userId);
+            if (role is not (Roles.Admin or Roles.Premium))
+            {
+                return OperationResult.Invalid("Vui lòng nâng cấp lên Premium để sử dụng tính năng này.");
+            }
+
+            _context.ListeningLessons.Remove(lesson);
+            await _context.SaveChangesAsync();
+            return OperationResult.Success();
+        }
+
+        public async Task<OperationResult> GenerateQuizFromTranscriptAsync(int lessonId, int userId, CancellationToken ct = default)
+        {
+            var role = await GetNormalizedRoleAsync(userId);
+            if (role is not (Roles.Admin or Roles.Premium))
+            {
+                return OperationResult.Invalid("Vui lòng nâng cấp lên Premium để sử dụng tính năng AI.");
+            }
+
+            var lesson = await _context.ListeningLessons
+                .Include(l => l.TranscriptLines)
+                .Include(l => l.QuizQuestions)
+                .FirstOrDefaultAsync(l => l.Id == lessonId, ct);
+
+            if (lesson == null)
+                return OperationResult.NotFound("Bài nghe không tồn tại.");
+
+            if (lesson.OwnerUserId.HasValue && lesson.OwnerUserId != userId)
+                return OperationResult.Invalid("Bạn không có quyền truy cập bài nghe này.");
+
+            if (lesson.QuizQuestions.Any())
+                return OperationResult.Invalid("Bài nghe đã có quiz.");
+
+            if (lesson.TranscriptLines.Count == 0)
+                return OperationResult.Invalid("Bài nghe chưa có phụ đề để sinh quiz.");
+
+            var transcriptText = string.Join("\n", lesson.TranscriptLines
+                .OrderBy(t => t.OrderIndex)
+                .Select(t => $"{t.Speaker}: {t.Text}"));
+
+            var promptText = $@"Dựa trên đoạn hội thoại/transcript tiếng Anh sau, hãy tạo 5 câu hỏi trắc nghiệm (A/B/C/D) để kiểm tra khả năng nghe hiểu.
+Transcript:
+{transcriptText}
+Trả về JSON (không markdown) với format:
+[
+{{
+""question"": ""Câu hỏi bằng tiếng Anh"",
+""optionA"": ""đáp án A"",
+""optionB"": ""đáp án B"",
+""optionC"": ""đáp án C"",
+""optionD"": ""đáp án D"",
+""correctAnswer"": ""A"",
+""explanation"": ""Giải thích ngắn bằng tiếng Việt""
+}}
+]
+Yêu cầu:
+Câu hỏi bám sát nội dung transcript
+Đáp án nhiễu hợp lý, không quá dễ loại
+Trộn đều các dạng: main idea, detail, inference
+Chỉ trả JSON, không giải thích thêm";
+
+            try
+            {
+                var messages = new List<AiContextMessage>
+                {
+                    new AiContextMessage("user", promptText)
+                };
+
+                var aiOptions = new AiProviderRequestOptions
+                {
+                    MaxOutputTokens = 800,
+                    Temperature = 0.3f,
+                    RequestTimeoutSeconds = 20
+                };
+
+                var reply = await _aiProvider.GenerateReplyAsync(messages, ct, aiOptions);
+                var parsedQuestions = ParseQuizJson(reply.Text);
+
+                if (parsedQuestions.Count == 0)
+                    return OperationResult.Invalid("AI không tạo được câu hỏi nào hợp lệ.");
+
+                var newQuestions = parsedQuestions.Select((q, i) => new ListeningQuizQuestion
+                {
+                    LessonId = lessonId,
+                    OrderIndex = i,
+                    QuestionText = q.Question ?? string.Empty,
+                    OptionA = q.OptionA,
+                    OptionB = q.OptionB,
+                    OptionC = q.OptionC,
+                    OptionD = q.OptionD,
+                    CorrectAnswer = q.CorrectAnswer?.ToUpper() ?? "A",
+                    Explanation = q.Explanation
+                }).ToList();
+
+                _context.ListeningQuizQuestions.AddRange(newQuestions);
+                await _context.SaveChangesAsync(ct);
+
+                return OperationResult.Success();
+            }
+            catch (AiProviderException ex)
+            {
+                _logger.LogError(ex, "Lỗi từ AI Provider khi sinh quiz cho lesson {LessonId}", lessonId);
+                return OperationResult.Invalid("Lỗi khi kết nối với hệ thống AI sinh câu hỏi.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Lỗi không xác định khi sinh quiz cho lesson {LessonId}", lessonId);
+                return OperationResult.Invalid("Không thể tạo quiz lúc này.");
+            }
+        }
+
+        private List<ParsedQuizQuestion> ParseQuizJson(string jsonText)
+        {
+            var clean = jsonText.Replace("```json", "").Replace("```", "").Trim();
+            try
+            {
+                return JsonSerializer.Deserialize<List<ParsedQuizQuestion>>(clean, 
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
+            }
+            catch
+            {
+                return new List<ParsedQuizQuestion>();
+            }
+        }
+
+        private class ParsedQuizQuestion
+        {
+            public string? Question { get; set; }
+            public string? OptionA { get; set; }
+            public string? OptionB { get; set; }
+            public string? OptionC { get; set; }
+            public string? OptionD { get; set; }
+            public string? CorrectAnswer { get; set; }
+            public string? Explanation { get; set; }
+        }
+
+        private async Task<string> GetNormalizedRoleAsync(int userId)
+        {
+            var role = await _context.Users
+                .AsNoTracking()
+                .Where(user => user.UserId == userId)
+                .Select(user => user.Role)
+                .FirstOrDefaultAsync();
+
+            return Roles.Normalize(role);
+        }
+
+        public async Task<OperationResult> TranslateTranscriptAsync(int lessonId, int userId, CancellationToken ct = default)
+        {
+            var roleName = await GetNormalizedRoleAsync(userId);
+            if (roleName is not (Roles.Admin or Roles.Premium))
+            {
+                return OperationResult.Invalid("Vui lòng nâng cấp lên Premium để sử dụng tính năng dịch bằng AI.");
+            }
+
+            var lesson = await _context.ListeningLessons
+                .Include(l => l.TranscriptLines)
+                .FirstOrDefaultAsync(l => l.Id == lessonId, ct);
+
+            if (lesson == null)
+                return OperationResult.NotFound("Bài nghe không tồn tại.");
+
+            // Standard permission check: only owners or admins for private lessons. 
+            // Public lessons (no owner) can be translated by any Premium user.
+            if (lesson.OwnerUserId.HasValue && lesson.OwnerUserId != userId && roleName != Roles.Admin)
+                return OperationResult.Invalid("Bạn không có quyền dịch bài nghe này.");
+
+            var lines = lesson.TranscriptLines.OrderBy(l => l.OrderIndex).ToList();
+            if (lines.Count == 0)
+                return OperationResult.Invalid("Bài nghe chưa có transcript để dịch.");
+
+            // Only translate if needed
+            if (lines.All(l => !string.IsNullOrWhiteSpace(l.VietnameseMeaning)))
+                return OperationResult.Success();
+
+            const int BatchSize = 30;
+            var batches = lines.Select((x, i) => new { Index = i, Value = x })
+                               .GroupBy(x => x.Index / BatchSize)
+                               .Select(x => x.Select(v => v.Value).ToList())
+                               .ToList();
+
+            try
+            {
+                foreach (var batch in batches)
+                {
+                    var englishLines = string.Join("\n", batch.Select((l, i) => $"{i + 1}. \"{l.Text}\""));
+                    var promptText = $@"Dịch các câu tiếng Anh sau sang tiếng Việt. Trả về JSON array, mỗi phần tử là bản dịch tương ứng theo đúng thứ tự.
+Chỉ trả JSON array of strings, không giải thích thêm.
+
+{englishLines}";
+
+                    var messages = new List<AiContextMessage> { new AiContextMessage("user", promptText) };
+                    var options = new AiProviderRequestOptions { MaxOutputTokens = 1500, Temperature = 0.2f, RequestTimeoutSeconds = 30 };
+
+                    var reply = await _aiProvider.GenerateReplyAsync(messages, ct, options);
+                    var translations = ParseStringArrayJson(reply.Text);
+
+                    if (translations.Count == batch.Count)
+                    {
+                        for (int i = 0; i < batch.Count; i++)
+                        {
+                            batch[i].VietnameseMeaning = translations[i];
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Gemini returned {Count} translations for {BatchCount} lines in lesson {Id}", translations.Count, batch.Count, lessonId);
+                    }
+                }
+
+                await _context.SaveChangesAsync(ct);
+                return OperationResult.Success();
+            }
+            catch (AiProviderException ex)
+            {
+                _logger.LogError(ex, "AiProvider error during translation for lesson {Id}", lessonId);
+                return OperationResult.Invalid("Lỗi kết nối tới hệ thống AI dịch vụ. Vui lòng thử lại sau.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unknown error during translation for lesson {Id}", lessonId);
+                return OperationResult.Invalid("Có lỗi xảy ra trong quá trình dịch bài nghe.");
+            }
+        }
+
+        private List<string> ParseStringArrayJson(string jsonText)
+        {
+            var clean = jsonText.Replace("```json", "").Replace("```", "").Trim();
+            try
+            {
+                return JsonSerializer.Deserialize<List<string>>(clean, 
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
+            }
+            catch
+            {
+                return new List<string>();
             }
         }
 

@@ -7,10 +7,11 @@
     var cards = Model.Cards?.Any() == true
         ? Model.Cards
         : new List<SetCardEditorItemViewModel> { new() };
+    var isPremium = User.IsInRole("Premium") || User.IsInRole("Admin");
 }
 
 <div class="create-set-wrapper">
-    <form asp-action="@(isEdit ? "EditSet" : "CreateSet")" method="post" enctype="multipart/form-data" id="setEditorForm">
+    <form asp-action="@(isEdit ? "EditSet" : "CreateSet")" asp-controller="Set" asp-route-id="" method="post" enctype="multipart/form-data" id="setEditorForm" data-is-premium="@isPremium.ToString().ToLower()">
         <input asp-for="SetId" type="hidden" />
         <input asp-for="FolderId" type="hidden" />
 
@@ -49,6 +50,17 @@
                 </div>
             </div>
 
+            @if (!User.IsInRole("Premium") && !User.IsInRole("Admin"))
+            {
+                <div class="premium-teaser">
+                    <div class="teaser-content">
+                        <i class="fas fa-crown"></i>
+                        <span class="teaser-text">Nâng cấp Premium để tự động gợi ý nghĩa và hình ảnh khi tạo flashcard</span>
+                    </div>
+                    <a href="/Account/Premium" class="btn-upgrade-now">Nâng cấp ngay</a>
+                </div>
+            }
+
             <div id="terms-container">
                 @for (var i = 0; i < cards.Count; i++)
                 {
@@ -65,25 +77,33 @@
                         <div class="term-card-content">
                             <div class="input-group">
                                 <div class="input-minimal">
-                                    <input type="text" name="Cards[@i].Term" value="@card.Term" placeholder="Thuật ngữ" class="term-input" />
+                                    <input type="text" name="Cards[@i].Term" value="@card.Term" placeholder="Thuật ngữ" class="term-input" autocomplete="off" />
                                     <label>THUẬT NGỮ</label>
                                 </div>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group position-relative">
                                 <div class="input-minimal">
-                                    <input type="text" name="Cards[@i].Definition" value="@card.Definition" placeholder="Định nghĩa" class="definition-input" />
+                                    <input type="text" name="Cards[@i].Definition" value="@card.Definition" placeholder="Định nghĩa" class="definition-input" autocomplete="off" />
                                     <label>ĐỊNH NGHĨA</label>
+                                </div>
+                                <div class="vocab-suggest-dropdown" style="display:none;">
+                                    <div class="suggest-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Đang tìm gợi ý...</div>
+                                    <div class="suggest-items"></div>
                                 </div>
                             </div>
                             <div class="image-upload-area">
                                 <label class="image-upload-box">
                                     <i class="fas fa-image @(card.HasImage ? "d-none" : string.Empty)"></i>
-                                    <span class="image-label @(card.HasImage ? "d-none" : string.Empty)">@(card.HasImage ? "Thay đổi ảnh" : "Thêm ảnh")</span>
+                                    <span class="image-label @(card.HasImage ? "d-none" : string.Empty)">@(card.HasImage ? "Thay đổi" : "Thêm ảnh")</span>
                                     <input type="file" name="Cards[@i].ImageFile" accept="image/*" class="image-file-input d-none" onchange="previewImage(this)" />
                                     <input type="hidden" name="Cards[@i].ExistingImageUrl" value="@card.ExistingImageUrl" class="existing-image-input" />
                                     <img src="@card.ExistingImageUrl" class="img-preview @(card.HasImage ? string.Empty : "d-none")" alt="" />
                                 </label>
                             </div>
+                        </div>
+                        <div class="image-suggest-wrapper" style="display:none;">
+                            <span class="image-suggest-label">Chọn ảnh gợi ý (Premium)</span>
+                            <div class="image-suggest-grid"></div>
                         </div>
                     </div>
                 }
@@ -393,6 +413,177 @@
         display: flex;
         gap: 8px;
     }
+
+    /* Vocab Suggest feature styles */
+    .vocab-suggest-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 200;
+        margin-top: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .suggest-loading {
+        padding: 12px;
+        color: var(--primary);
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .suggest-item {
+        padding: 12px 16px;
+        cursor: pointer;
+        border-bottom: 1px solid #f1f1f4;
+        transition: background 0.2s;
+    }
+
+    .suggest-item:hover {
+        background: #f4f6ff;
+    }
+
+    .suggest-item:last-child {
+        border-bottom: none;
+    }
+
+    .suggest-part {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: inline-block;
+    }
+
+    .suggest-def {
+        font-size: 0.95rem;
+        color: var(--text-main);
+    }
+
+    .image-suggest-wrapper {
+        padding: 12px 20px 16px;
+        border-top: 1px solid #f1f1f4;
+        background: #fafafa;
+        border-radius: 0 0 var(--card-radius) var(--card-radius);
+    }
+
+    .image-suggest-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--text-sub);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .image-suggest-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
+
+    .image-suggest-item {
+        width: 100%;
+        height: 72px;
+        border-radius: 8px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: var(--transition);
+    }
+
+    .image-suggest-item:hover {
+        transform: scale(1.05);
+        border-color: var(--primary);
+    }
+
+    .image-suggest-item.selected {
+        border-color: #4255ff;
+        box-shadow: 0 0 0 2px rgba(66, 85, 255, 0.2);
+    }
+
+    @@media (max-width: 768px) {
+        .term-card-content {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .image-suggest-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .image-upload-area {
+            height: 120px;
+        }
+    }
+
+    /* Selection Flash Effect */
+    @@keyframes flash-success {
+        0% { background-color: transparent; }
+        50% { background-color: rgba(66, 85, 255, 0.1); }
+        100% { background-color: transparent; }
+    }
+
+    .flash-success {
+        animation: flash-success 0.4s ease;
+    }
+
+    /* Premium Teaser Banner */
+    .premium-teaser {
+        background: linear-gradient(90deg, #fff9e6 0%, #fff4d1 100%);
+        border: 1px solid #ffe58f;
+        border-radius: 12px;
+        padding: 16px 24px;
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 12px rgba(255, 230, 143, 0.2);
+    }
+
+    .teaser-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: #856404;
+    }
+
+    .teaser-content i {
+        font-size: 1.5rem;
+        color: #ffc107;
+    }
+
+    .teaser-text {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .btn-upgrade-now {
+        background: #ffc107;
+        color: #333;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: var(--transition);
+        white-space: nowrap;
+    }
+
+    .btn-upgrade-now:hover {
+        background: #ffab00;
+        color: #000;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+    }
 </style>
 
 <script>
@@ -418,14 +609,18 @@
                 <div class="term-card-content">
                     <div class="input-group">
                         <div class="input-minimal">
-                            <input type="text" name="Cards[${index}].Term" placeholder="Thuật ngữ" class="term-input" />
+                            <input type="text" name="Cards[${index}].Term" placeholder="Thuật ngữ" class="term-input" autocomplete="off" />
                             <label>THUẬT NGỮ</label>
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group position-relative">
                         <div class="input-minimal">
-                            <input type="text" name="Cards[${index}].Definition" placeholder="Định nghĩa" class="definition-input" />
+                            <input type="text" name="Cards[${index}].Definition" placeholder="Định nghĩa" class="definition-input" autocomplete="off" />
                             <label>ĐỊNH NGHĨA</label>
+                        </div>
+                        <div class="vocab-suggest-dropdown" style="display:none;">
+                            <div class="suggest-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Đang tìm gợi ý...</div>
+                            <div class="suggest-items"></div>
                         </div>
                     </div>
                     <div class="image-upload-area">
@@ -437,6 +632,10 @@
                             <img src="" class="img-preview d-none" alt="" />
                         </label>
                     </div>
+                </div>
+                <div class="image-suggest-wrapper" style="display:none;">
+                    <span class="image-suggest-label">Chọn ảnh gợi ý (Premium)</span>
+                    <div class="image-suggest-grid"></div>
                 </div>
             </div>`;
 
@@ -556,5 +755,125 @@
         }
 
         syncCardIndexes();
+
+        // ─── Vocab Auto-suggest Logic ─────────────────────────────────────────────────────────
+        const isPremium = form.dataset.isPremium === 'true';
+        if (!isPremium) return;
+
+        let debounceTimer;
+        container.addEventListener('focusout', (e) => {
+            if (e.target.classList.contains('term-input')) {
+                const termInput = e.target;
+                const term = termInput.value.trim();
+                
+                if (!term) return;
+
+                const cardContent = termInput.closest('.term-card-content');
+                const defInput = cardContent.querySelector('.definition-input');
+                
+                // Only suggest if definition is empty
+                if (defInput && defInput.value.trim() !== '') return;
+
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    fetchSuggestions(term, cardContent);
+                }, 600);
+            }
+        });
+
+        async function fetchSuggestions(term, cardContent) {
+            const dropdown = cardContent.querySelector('.vocab-suggest-dropdown');
+            const loading = dropdown.querySelector('.suggest-loading');
+            const itemsContainer = dropdown.querySelector('.suggest-items');
+            
+            const termCard = cardContent.closest('.term-card');
+            const imageWrapper = termCard.querySelector('.image-suggest-wrapper');
+            const imageGrid = termCard.querySelector('.image-suggest-grid');
+
+            dropdown.style.display = 'block';
+            loading.style.display = 'flex';
+            itemsContainer.innerHTML = '';
+            
+            if (imageWrapper) imageWrapper.style.display = 'none';
+            if (imageGrid) imageGrid.innerHTML = '';
+
+            try {
+                const res = await fetch(`/Home/SuggestVocab?term=${encodeURIComponent(term)}`);
+                if (!res.ok) throw new Error('Failed to fetch suggestions');
+                const data = await res.json();
+                
+                loading.style.display = 'none';
+
+                if (data.definitions && data.definitions.length > 0) {
+                    data.definitions.forEach(def => {
+                        const div = document.createElement('div');
+                        div.className = 'suggest-item';
+                        div.innerHTML = `
+                            <span class="suggest-part">${def.partOfSpeech}</span>
+                            <div class="suggest-def">${def.definition}</div>
+                        `;
+                        div.addEventListener('click', () => {
+                            const defInput = cardContent.querySelector('.definition-input');
+                            if (defInput) {
+                                defInput.value = def.definition;
+                                defInput.parentElement.classList.add('flash-success');
+                                setTimeout(() => defInput.parentElement.classList.remove('flash-success'), 400);
+                            }
+                            dropdown.style.display = 'none';
+                        });
+                        itemsContainer.appendChild(div);
+                    });
+                } else {
+                    dropdown.style.display = 'none';
+                }
+
+                if (data.images && data.images.length > 0 && imageWrapper && imageGrid) {
+                    imageWrapper.style.display = 'block';
+                    data.images.forEach(img => {
+                        const imgEl = document.createElement('img');
+                        imgEl.src = img.previewUrl;
+                        imgEl.className = 'image-suggest-item';
+                        imgEl.dataset.fullUrl = img.webformatUrl;
+                        
+                        imgEl.addEventListener('click', function() {
+                            // Clear previous selection
+                            imageGrid.querySelectorAll('.image-suggest-item').forEach(i => i.classList.remove('selected'));
+                            this.classList.add('selected');
+
+                            const existingInput = cardContent.querySelector('.existing-image-input');
+                            const preview = cardContent.querySelector('.img-preview');
+                            const label = cardContent.querySelector('.image-label');
+                            const icon = cardContent.querySelector('.fa-image');
+                            
+                            if (existingInput) existingInput.value = img.webformatUrl;
+                            if (preview) {
+                                preview.src = img.webformatUrl;
+                                preview.classList.remove('d-none');
+                            }
+                            if (label) label.classList.add('d-none');
+                            if (icon) icon.classList.add('d-none');
+
+                            // Hide grid after short delay to show selection
+                            setTimeout(() => {
+                                imageWrapper.style.display = 'none';
+                            }, 300);
+                        });
+                        
+                        imageGrid.appendChild(imgEl);
+                    });
+                }
+
+            } catch (err) {
+                console.error('Suggest error:', err);
+                dropdown.style.display = 'none';
+                loading.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.vocab-suggest-dropdown') && !e.target.closest('.term-input')) {
+                document.querySelectorAll('.vocab-suggest-dropdown').forEach(d => d.style.display = 'none');
+            }
+        });
     })();
 </script>

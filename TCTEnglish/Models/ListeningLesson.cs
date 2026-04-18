@@ -48,9 +48,15 @@ public class ListeningLesson
 
     public bool IsPublished { get; set; } = false;
 
+    public int? OwnerUserId { get; set; }
+
+    [MaxLength(50)]
+    public string? TranscriptSource { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     // Navigation properties
+    public User? OwnerUser { get; set; }
     public ICollection<ListeningTranscriptLine> TranscriptLines { get; set; } = new List<ListeningTranscriptLine>();
     public ICollection<ListeningQuizQuestion> QuizQuestions { get; set; } = new List<ListeningQuizQuestion>();
     public ICollection<ListeningVocabItem> VocabItems { get; set; } = new List<ListeningVocabItem>();

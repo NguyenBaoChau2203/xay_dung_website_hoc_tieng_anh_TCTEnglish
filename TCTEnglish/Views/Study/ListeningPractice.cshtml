@@ -1,6 +1,7 @@
 @using System.Globalization
 @model TCTEnglish.ViewModels.ListeningPracticeViewModel
 @{
+    var isPremiumUser = User.IsInRole("Premium") || User.IsInRole("Admin");
     ViewData["Title"] = "Luyện nghe — " + Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -144,16 +145,41 @@
                 </div>
             }
 
-            <!-- Progress indicator -->
+            <!-- Player Controls -->
             <div class="lp-player-controls">
+                <!-- Speed Control -->
+                <div class="lp-speed-control">
+                    <span class="lp-speed-label">Tốc độ:</span>
+                    <div class="lp-speed-btns">
+                        @if (isPremiumUser)
+                        {
+                            <button type="button" class="lp-speed-btn" data-rate="0.5">0.5x</button>
+                            <button type="button" class="lp-speed-btn" data-rate="0.75">0.75x</button>
+                            <button type="button" class="lp-speed-btn lp-speed-active" data-rate="1">1x</button>
+                            <button type="button" class="lp-speed-btn" data-rate="1.25">1.25x</button>
+                            <button type="button" class="lp-speed-btn" data-rate="1.5">1.5x</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="lp-speed-btn lp-speed-active" disabled title="Tốc độ 1x (Mặc định)">1x</button>
+                            <a href="/Account/Premium" class="lp-speed-btn lp-speed-locked" title="Nâng cấp Premium để mở khóa các tốc độ khác">
+                                <i class="fas fa-lock"></i>
+                            </a>
+                            <span class="lp-premium-hint">
+                                <a href="/Account/Premium">Nâng cấp Premium</a> để chỉnh tốc độ.
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Progress indicator -->
                 <div class="lp-progress-mini">
                     <span class="lp-speed-label">Tiến độ:</span>
                     <div class="lp-progress-dots">
                         <div class="lp-dot @(Model.TranscriptCompleted ? "done" : "")" id="dot-transcript" title="Transcript"></div>
                         <div class="lp-dot @(Model.QuizCompleted ? "done" : "")" id="dot-quiz" title="Quiz"></div>
-                        <div class="lp-dot @(Model.VocabReviewed ? "done" : "")" id="dot-vocab" title="Từ vựng"></div>
                     </div>
-                    @if (Model.TranscriptCompleted && Model.QuizCompleted && Model.VocabReviewed)
+                    @if (Model.TranscriptCompleted && Model.QuizCompleted)
                     {
                         <span class="text-success small"><i class="fas fa-check-circle"></i> Hoàn thành</span>
                     }
@@ -189,16 +215,6 @@
                     <i class="fas fa-check-circle text-success small"></i>
                 }
             </button>
-            <button class="lp-tab-btn" data-tab="vocab" role="tab" aria-selected="false">
-                <i class="fas fa-book-open"></i>
-                Từ vựng
-                @if (vocabCount > 0)
-                {
-                    <span class="lp-tab-badge">@vocabCount</span>
-                }
-                @if (Model.VocabReviewed)
-                {
-                    <i class="fas fa-check-circle text-success small"></i>
                 }
             </button>
         </div>
@@ -418,7 +434,15 @@
                 <div class="lp-empty">
                     <div class="lp-empty-icon"><i class="fas fa-question-circle"></i></div>
                     <h3>Chưa có bài tập</h3>
-                    <p>Bài quiz đang được chuẩn bị.</p>
+                    <p>Bài quiz chưa được biên soạn cho video này.</p>
+                    @if (isPremiumUser)
+                    {
+                        <div class="mt-4">
+                            <button class="btn btn-primary" id="btnGenerateQuiz" data-lesson-id="@Model.LessonId">
+                                <i class="fas fa-magic"></i> Tạo quiz bằng AI
+                            </button>
+                        </div>
+                    }
                 </div>
             }
             else
@@ -523,71 +547,16 @@
                             }
                         </div>
                         <div class="mt-2 small text-muted" id="result-pct"></div>
+                        <div class="mt-3">
+                            <button class="btn btn-outline-primary btn-sm" id="btn-retry-quiz">
+                                <i class="fas fa-redo"></i> Làm lại quiz
+                            </button>
+                        </div>
                     </div>
                 </div>
             }
         </div>
 
-        <!-- ══════════════════════════════════════════════════════════
-             TAB PANEL: VOCABULARY
-        ══════════════════════════════════════════════════════════ -->
-        <div id="panel-vocab" class="lp-tab-panel">
-            @if (vocabCount == 0)
-            {
-                <div class="lp-empty">
-                    <div class="lp-empty-icon"><i class="fas fa-book-open"></i></div>
-                    <h3>Chưa có từ vựng</h3>
-                    <p>Danh sách từ vựng đang được chuẩn bị.</p>
-                </div>
-            }
-            else
-            {
-                <div class="lp-vocab-grid">
-                    @foreach (var vocab in Model.VocabItems.OrderBy(v => v.OrderIndex))
-                    {
-                        <div class="lp-vocab-card">
-                            <!-- Image or placeholder -->
-                            <div class="lp-vocab-image">
-                                @if (!string.IsNullOrEmpty(vocab.ImageUrl))
-                                {
-                                    <img src="@vocab.ImageUrl" alt="@vocab.Word" loading="lazy" />
-                                }
-                                else
-                                {
-                                    <svg class="lp-vocab-image-placeholder" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                                    </svg>
-                                }
-                            </div>
-                            <!-- Body -->
-                            <div class="lp-vocab-body">
-                                <div class="lp-vocab-word">@vocab.Word</div>
-                                <div class="lp-vocab-def">@vocab.Definition</div>
-                                @if (!string.IsNullOrEmpty(vocab.ExampleSentence))
-                                {
-                                    <div class="lp-vocab-example">
-                                        <i class="fas fa-quote-left fa-xs me-1 opacity-50"></i>@vocab.ExampleSentence
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    }
-                </div>
-
-                <!-- Mark vocab done -->
-                <button class="lp-vocab-done-btn" id="btn-vocab-done"
-                        @(Model.VocabReviewed ? "disabled" : "")>
-                    @if (Model.VocabReviewed)
-                    {
-                        <i class="fas fa-check-circle"></i>
-                        <span>Đã ôn từ vựng</span>
-                    }
-                    else
-                    {
-                        <i class="fas fa-check"></i>
-                        <span>Đánh dấu đã ôn xong</span>
-                    }
-                </button>
             }
         </div>
 
@@ -631,6 +600,7 @@
         window.LP_LESSON_ID  = @Html.Raw(Model.LessonId);
         window.LP_YOUTUBE_ID = @Html.Raw(string.IsNullOrEmpty(Model.YoutubeId) ? "null" : $"\"{Model.YoutubeId}\"");
         window.LP_AUTH       = @Html.Raw(User.Identity?.IsAuthenticated == true ? "true" : "false");
+        window.LP_IS_PREMIUM = @Html.Raw(isPremiumUser ? "true" : "false");
 
         window.LP_TRANSCRIPT = @Html.Raw(transcriptJson ?? "[]");
         window.LP_QUIZ       = @Html.Raw(quizJson ?? "[]");

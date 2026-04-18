@@ -18,7 +18,10 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/listening-index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
 }
+
+@Html.AntiForgeryToken()
 
 <div class="listening-index-page">
     <div class="li-container">
@@ -47,6 +50,154 @@
             <span class="li-stat-chip"><i class="fas fa-tags"></i> @Model.Topics.Count chủ đề</span>
             <span class="li-stat-chip" style="background: #ecfdf5; border-color: #d1fae5; color: #047857;"><i class="fas fa-check-circle" style="color: #10b981;"></i> Update hàng tuần</span>
         </div>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            @* ─────────────────────────────────────────────────────────── *@
+            @* ── IMPORT PANEL (visible to all authenticated users) ────── *@
+            @* ─────────────────────────────────────────────────────────── *@
+            <section class="mip-panel" id="my-import-panel" aria-label="Thêm video YouTube của tôi">
+                <div class="mip-inner">
+                    <div class="mip-left">
+                        <span class="mip-yt-chip">
+                            <i class="fab fa-youtube" style="color:#ff4444;"></i> YouTube
+                        </span>
+                        <h2 class="mip-heading">
+                            Luyện nghe với<br>video YouTube của bạn
+                        </h2>
+                        <p class="mip-sub">
+                            Dán link YouTube — hệ thống tự động tải transcript<br>
+                            và tạo bài luyện nghe cá nhân.
+                        </p>
+                    </div>
+                    <div class="mip-right">
+                        <div class="mip-form-area">
+                            <div class="mip-input-wrap">
+                                <i class="fab fa-youtube mip-input-icon" style="color:#ff4444;"></i>
+                                <input type="url"
+                                       id="mip-url-input"
+                                       class="mip-input"
+                                       placeholder="Dán link YouTube vào đây..."
+                                       autocomplete="off"
+                                       aria-label="YouTube video URL" />
+                            </div>
+                            <button type="button" id="mip-submit-btn" class="mip-cta-btn">
+                                <i class="fas fa-plus" id="mip-btn-icon"></i>
+                                <span id="mip-btn-label">Thêm bài nghe</span>
+                            </button>
+                        </div>
+                        <div class="mip-feedback" id="mip-feedback" aria-live="polite" role="alert"></div>
+                        <p class="mip-hint">
+                            <i class="fas fa-info-circle"></i>
+                            Chỉ hỗ trợ video tiếng Anh có phụ đề. Yêu cầu tính năng Premium.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            @* ─────────────────────────────────────────────────────────── *@
+            @* ── BÀI NGHE CỦA TÔI ─────────────────────────────────────── *@
+            @* ─────────────────────────────────────────────────────────── *@
+            <section class="my-videos-section" id="my-videos-section" aria-label="Bài nghe của tôi" style="margin-bottom: 3.5rem;">
+                <div class="my-sec-head">
+                    <div class="my-sec-title-wrap">
+                        <h2 class="my-sec-title">
+                            <i class="fas fa-user-circle"></i>
+                            Bài nghe của tôi
+                        </h2>
+                        @if (Model.IsMyLessonsSectionLocked)
+                        {
+                            <span class="my-locked-badge">
+                                <i class="fas fa-lock"></i> Tính năng đã khóa
+                            </span>
+                        }
+                    </div>
+                    <span class="my-sec-count" id="my-sec-count">
+                        @Model.MyLessons.Count bài
+                    </span>
+                </div>
+
+                @if (!Model.MyLessons.Any())
+                {
+                    <div class="my-empty-state" id="my-empty-state">
+                        <div class="my-empty-icon"><i class="fas fa-headphones"></i></div>
+                        <p class="my-empty-title">Chưa có bài nghe nào.</p>
+                        <p class="my-empty-sub">Hãy dán link YouTube ở trên để thêm bài luyện nghe cá nhân.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="my-videos-grid" id="my-videos-grid">
+                        @foreach (var v in Model.MyLessons)
+                        {
+                            var thumb = string.IsNullOrEmpty(v.ThumbnailUrl)
+                                ? "https://placehold.co/600x400?text=No+Thumbnail"
+                                : v.ThumbnailUrl;
+
+                            string statusLabel;
+                            string statusCls;
+                            if (v.IsLocked) { statusLabel = "Đã khóa"; statusCls = "my-badge-locked"; }
+                            else { statusLabel = "Sẵn sàng"; statusCls = "my-badge-ready"; }
+
+                            <article class="my-video-card @(v.IsLocked ? "my-video-card--locked" : "")"
+                                     data-id="@v.Id"
+                                     data-title="@v.Title">
+                                <div class="my-vc-thumb">
+                                    <img src="@thumb" alt="@v.Title" class="my-vc-img" loading="lazy" />
+                                    @if (v.IsLocked)
+                                    {
+                                        <div class="my-vc-lock-overlay">
+                                            <div class="my-vc-lock-icon">
+                                                <i class="fas fa-lock"></i>
+                                            </div>
+                                        </div>
+                                    }
+                                    <span class="my-vc-private-badge">
+                                        <i class="fas fa-user-shield"></i> Riêng tư
+                                    </span>
+                                </div>
+                                <div class="my-vc-body">
+                                    <h3 class="my-vc-title">@v.Title</h3>
+                                    <div class="my-vc-meta">
+                                        <span class="my-vc-status @statusCls">@statusLabel</span>
+                                        @if (!string.IsNullOrEmpty(v.Duration))
+                                        {
+                                            <span class="my-vc-duration">
+                                                <i class="far fa-clock"></i> @v.Duration
+                                            </span>
+                                        }
+                                        <span class="my-vc-date">
+                                            <i class="far fa-calendar-alt"></i> @v.CreatedAt.ToString("dd/MM/yyyy")
+                                        </span>
+                                    </div>
+                                    <div class="my-vc-actions">
+                                        @if (v.IsLocked)
+                                        {
+                                            <a href="/Account/Premium" class="my-btn my-btn-upgrade">
+                                                <i class="fas fa-crown"></i> Nâng cấp để mở khóa
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ListeningPractice", "Study", new { id = v.Id })" class="my-btn my-btn-practice">
+                                                <i class="fas fa-play"></i> Luyện ngay
+                                            </a>
+                                            <button type="button"
+                                                    class="my-btn my-btn-delete li-delete-btn"
+                                                    data-id="@v.Id"
+                                                    data-title="@v.Title"
+                                                    aria-label="Xóa @v.Title">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                            </article>
+                        }
+                    </div>
+                }
+            </section>
+        }
 
         @* ── FILTERS ──────────────────────────────────────────────── *@
         <section class="li-filters">
@@ -173,4 +324,141 @@
 
 @section Scripts {
     <script src="~/js/listening-index.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mip-submit-btn');
+            const input = document.getElementById('mip-url-input');
+            const feedback = document.getElementById('mip-feedback');
+            const btnIcon = document.getElementById('mip-btn-icon');
+            const btnLabel = document.getElementById('mip-btn-label');
+
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    const url = input.value.trim();
+                    if (!url) return;
+
+                    btn.disabled = true;
+                    btnIcon.classList.remove('fa-plus');
+                    btnIcon.classList.add('fa-spinner', 'fa-spin');
+                    btnLabel.textContent = 'Đang xử lý...';
+                    
+                    feedback.style.display = 'none';
+                    feedback.className = 'mip-status-msg'; // Reset all classes
+
+                    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+                    const token = tokenInput ? tokenInput.value : '';
+
+                    const formData = new FormData();
+                    if (document.querySelector('form')) {
+                        // Just to be safe, sometimes form serialization is easier, but explicit is fine
+                    }
+                    formData.append('youtubeUrl', url);
+                    if (token) formData.append('__RequestVerificationToken', token);
+
+                    fetch('/Home/Listening/My/Create', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(async response => {
+                        let data = null;
+                        try {
+                            data = await response.json();
+                        } catch(e) {}
+
+                        if (response.ok && data && data.success) {
+                            feedback.textContent = 'Thêm video thành công! Nội dung đang tải lại...';
+                            feedback.classList.add('mip-success');
+                            feedback.style.display = 'block';
+                            setTimeout(() => location.reload(), 1500);
+                        } else {
+                            if (response.status === 403 && data && data.requiresUpgrade) {
+                                feedback.innerHTML = `
+                                    <i class="fas fa-crown"></i> 
+                                    ${data.message || 'Tính năng dành riêng cho Premium.'} 
+                                    <a href="/Account/Premium" class="mip-link-upgrade">Nâng cấp ngay</a>
+                                `;
+                                feedback.classList.add('mip-upgrade');
+                                feedback.style.display = 'block';
+                                resetBtn();
+                                return;
+                            }
+                            
+                            const msg = data?.message || data?.error || 'Có lỗi xảy ra. Hãy chắc chắn video có phụ đề CC, nội dung tiếng Anh hợp lệ.';
+                            showError(msg);
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Fetch error:', err);
+                        showError('Có lỗi xảy ra. Vui lòng thử lại.');
+                    });
+                });
+            }
+
+            function showError(msg) {
+                feedback.textContent = msg;
+                feedback.classList.add('mip-error');
+                feedback.style.display = 'block';
+                resetBtn();
+            }
+
+            function resetBtn() {
+                if (btn) btn.disabled = false;
+                if (btnIcon) {
+                    btnIcon.classList.remove('fa-spinner', 'fa-spin');
+                    btnIcon.classList.add('fa-plus');
+                }
+                if (btnLabel) btnLabel.textContent = 'Thêm bài nghe';
+            }
+
+            const deleteBtns = document.querySelectorAll('.li-delete-btn');
+            deleteBtns.forEach(dbtn => {
+                dbtn.addEventListener('click', function(e) {
+                    const title = this.dataset.title || '';
+                    if(!confirm('Bạn có chắc chắn muốn xóa bài nghe "' + title + '" không? Tiến trình học cũng sẽ bị xóa vĩnh viễn.')) return;
+
+                    const lessonId = this.dataset.id;
+                    const card = this.closest('.my-video-card');
+                    
+                    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+                    const token = tokenInput ? tokenInput.value : '';
+
+                    const formData = new FormData();
+                    formData.append('id', lessonId); // Use 'id' to match controller generic pattern or lessonId if named so
+                    formData.append('lessonId', lessonId); // append both just in case! 
+                    if (token) formData.append('__RequestVerificationToken', token);
+
+                    fetch('/Home/Listening/My/Delete', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(async response => {
+                        if (response.ok) {
+                            card.style.transition = 'opacity 0.3s ease';
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.remove();
+                                checkEmptyGrid();
+                            }, 300);
+                        } else {
+                            alert('Xóa thất bại, vui lòng thử lại.');
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('Xóa thất bại, vui lòng thử lại.');
+                    });
+                });
+            });
+
+            function checkEmptyGrid() {
+                const count = document.querySelectorAll('.my-video-card').length;
+                const countBadge = document.getElementById('my-sec-count');
+                if (countBadge) countBadge.textContent = count + ' bài';
+                
+                if (count === 0) {
+                    location.reload(); 
+                }
+            }
+        });
+    </script>
 }
