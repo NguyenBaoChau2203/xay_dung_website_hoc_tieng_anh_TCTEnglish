@@ -135,10 +135,7 @@
                         <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </div>
                     
-                    <div class="nav-dropdown-menu" id="coursesDropdownMenu">
-                        <a class="nav-sub-item" asp-controller="Study" asp-action="Grammar">
-                            <span>Grammar</span>
-                        </a>
+                    <div class="nav-dropdown-menu" id="coursesDropdownMenu">      
                         <a class="nav-sub-item" asp-controller="Study" asp-action="Listening">
                             <span>Listening</span>
                         </a>
@@ -171,11 +168,6 @@
                     <i class="fas fa-bell"></i>
                     <span>Thông báo</span>
                     <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" style="display:none;position:static;margin-left:auto;font-size:10px;min-width:18px;"></span>
-                </a>
-
-                <a class="nav-item " asp-controller="Ranking" asp-action="Index">
-                    <i class="fas fa-trophy"></i>
-                    <span>Ranking</span>
                 </a>
 
                 <a class="nav-item" asp-controller="Vocabulary" asp-action="Index">
@@ -327,10 +319,10 @@
             </div>
             <div class="footer-links">
                 <h5>Học tập</h5>
-                <a href="#">Flashcards</a>
-                <a href="#">Ôn tập SRS</a>
-                <a href="#">Lớp học</a>
-                <a href="#">Thư mục</a>
+                <a asp-controller="Vocabulary" asp-action="Index">Vocabulary</a>
+                <a asp-controller="Study" asp-action="Reading">Reading</a>
+                <a asp-controller="Class" asp-action="Class">Lớp học</a>
+                <a asp-controller="Folder" asp-action="Folder">Thư mục</a>
             </div>
             <!-- SOCIAL -->
             <div class="footer-social">
