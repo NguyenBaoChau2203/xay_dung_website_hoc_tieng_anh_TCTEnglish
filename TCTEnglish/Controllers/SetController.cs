@@ -14,11 +14,41 @@ namespace TCTVocabulary.Controllers
     {
         private readonly DbflashcardContext _context;
         private readonly IFileStorageService _fileStorageService;
+        private readonly IVocabSuggestService _vocabSuggestService;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public SetController(DbflashcardContext context, IFileStorageService fileStorageService)
+        public SetController(
+            DbflashcardContext context, 
+            IFileStorageService fileStorageService,
+            IVocabSuggestService vocabSuggestService,
+            IHttpClientFactory httpClientFactory)
         {
             _context = context;
             _fileStorageService = fileStorageService;
+            _vocabSuggestService = vocabSuggestService;
+            _httpClientFactory = httpClientFactory;
+        }
+
+        [HttpGet("SuggestVocab")]
+        public async Task<IActionResult> SuggestVocab(string term, CancellationToken ct)
+        {
+            if (!(User.IsInRole(Roles.Premium) || User.IsInRole(Roles.Admin)))
+            {
+                return StatusCode(403, "Tính năng Gợi ý từ vựng chỉ dành cho tài khoản Premium.");
+            }
+
+            if (string.IsNullOrWhiteSpace(term))
+            {
+                return BadRequest("Vui lòng cung cấp từ khóa.");
+            }
+
+            var result = await _vocabSuggestService.SuggestAsync(term, ct);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage ?? "Không thể tìm thấy gợi ý.");
+            }
+
+            return Json(result);
         }
 
         [HttpGet("CreateSet")]
@@ -143,7 +173,7 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = folderId });
         }
 
-        [HttpGet("EditSet/{id:int?}")]
+        [HttpGet("EditSet/{id:int}")]
         public async Task<IActionResult> EditSet(int id)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
@@ -244,6 +274,15 @@ namespace TCTVocabulary.Controllers
                 if (card.ImageFile != null && card.ImageFile.Length > 0)
                 {
                     imageUrl = await SaveCardImageAsync(card.ImageFile);
+                }
+                else if (!string.IsNullOrWhiteSpace(imageUrl) && imageUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                {
+                    // It's an external URL (e.g. from Pixabay), download and save
+                    var localPath = await DownloadAndSaveExternalImageAsync(imageUrl);
+                    if (localPath != null)
+                    {
+                        imageUrl = localPath;
+                    }
                 }
 
                 targetSet.Cards.Add(new Card
@@ -353,6 +392,34 @@ namespace TCTVocabulary.Controllers
         private Task<string> SaveCardImageAsync(IFormFile imageFile)
         {
             return _fileStorageService.SaveImageAsync(imageFile, ImageUploadPolicies.CardImage);
+        }
+
+        private async Task<string?> DownloadAndSaveExternalImageAsync(string externalUrl)
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                var imageBytes = await client.GetByteArrayAsync(externalUrl);
+                
+                var ext = ".jpg";
+                var fileName = Guid.NewGuid().ToString("N") + ext;
+                
+                var relativePath = $"/images/cards/{fileName}";
+                var absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cards", fileName);
+                
+                var dir = Path.GetDirectoryName(absolutePath);
+                if (dir != null && !Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                await System.IO.File.WriteAllBytesAsync(absolutePath, imageBytes);
+                return relativePath;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static string? NormalizeDescription(string? description)

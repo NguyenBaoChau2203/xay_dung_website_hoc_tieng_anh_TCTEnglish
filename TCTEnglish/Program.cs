@@ -41,6 +41,7 @@ builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimi
 builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Services.ListeningService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
+builder.Services.AddScoped<IVocabSuggestService, VocabSuggestService>();
 builder.Services.AddOptions<AiOptions>()
     .Configure<IConfiguration>((options, configuration) =>
     {

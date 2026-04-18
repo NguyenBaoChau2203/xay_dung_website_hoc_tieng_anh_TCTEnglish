@@ -3,7 +3,7 @@
  * Client-side logic for the TCT English Listening Index page.
  */
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     const CONFIG = {
         debounceDelay: 300,
         itemsPerPage: 6,
@@ -17,13 +17,12 @@ $(document).ready(function () {
     let searchQuery = '';
 
     // Cache selectors
-    const $searchInput = $('#li-search');
-    const $levelTabs = $('.level-filter-btn'); // Changed class name from btn-tab to level-filter-btn to match Speaking ref if needed, but I used btn-tab in CSS. I'll stick to my CSS classes.
-    const $topicPills = $('.pill-topic');
-    const $sections = $('.li-level-section');
-    const $cards = $('.li-card-col'); // Each card wrapper should have this class
-    const $emptyState = $('#li-no-results');
-    const $totalCountText = $('#li-total-count');
+    const searchInput = document.getElementById('li-search');
+    const levelTabs = document.querySelectorAll('.btn-tab');
+    const topicPills = document.querySelectorAll('.pill-topic');
+    const sections = document.querySelectorAll('.li-level-section');
+    const emptyState = document.getElementById('li-no-results');
+    const totalCountText = document.getElementById('li-total-count');
 
     // =================================================================
     // INITIALIZATION
@@ -31,27 +30,33 @@ $(document).ready(function () {
 
     function init() {
         // Initial pagination for each level section
-        $sections.each(function () {
-            paginateSection($(this), 1);
+        sections.forEach(function (section) {
+            paginateSection(section, 1);
         });
 
         // Event listeners
-        $searchInput.on('keyup', debounce(handleSearch, CONFIG.debounceDelay));
+        if (searchInput) {
+            searchInput.addEventListener('keyup', debounce(handleSearch, CONFIG.debounceDelay));
+        }
         
-        $('.btn-tab').on('click', function() {
-            const level = $(this).data('level');
-            $('.btn-tab').removeClass('active');
-            $(this).addClass('active');
-            activeLevel = level;
-            applyFilters();
+        levelTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const level = this.dataset.level;
+                levelTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                activeLevel = level;
+                applyFilters();
+            });
         });
 
-        $('.pill-topic').on('click', function() {
-            const topic = $(this).data('topic');
-            $('.pill-topic').removeClass('active');
-            $(this).addClass('active');
-            activeTopic = topic;
-            applyFilters();
+        topicPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                const topic = this.dataset.topic;
+                topicPills.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                activeTopic = topic;
+                applyFilters();
+            });
         });
     }
 
@@ -60,27 +65,25 @@ $(document).ready(function () {
     // =================================================================
 
     function handleSearch() {
-        searchQuery = $searchInput.val().toLowerCase().trim();
+        searchQuery = searchInput.value.toLowerCase().trim();
         applyFilters();
     }
 
     function applyFilters() {
         let visibleTotal = 0;
 
-        $sections.each(function () {
-            const $section = $(this);
-            const sectionLevel = $section.data('level');
+        sections.forEach(function (section) {
+            const sectionLevel = section.dataset.level;
             
             // Level Filtering: if level is 'all' or matches section level
             const levelMatches = (activeLevel === 'all' || activeLevel === sectionLevel);
 
             let visibleInLevel = 0;
-            const $levelCards = $section.find('.li-card-col');
+            const levelCards = section.querySelectorAll('.li-card-col');
 
-            $levelCards.each(function () {
-                const $cardCol = $(this);
-                const cardTitle = $cardCol.data('title').toLowerCase();
-                const cardTopic = $cardCol.data('topic');
+            levelCards.forEach(function (cardCol) {
+                const cardTitle = cardCol.dataset.title.toLowerCase();
+                const cardTopic = cardCol.dataset.topic;
 
                 // Topic filtering
                 const topicMatches = (activeTopic === 'all' || activeTopic === cardTopic);
@@ -89,29 +92,35 @@ $(document).ready(function () {
                 const searchMatches = (searchQuery === '' || cardTitle.includes(searchQuery) || cardTopic.toLowerCase().includes(searchQuery));
 
                 if (topicMatches && searchMatches) {
-                    $cardCol.removeClass('card-filtered-out').addClass('card-visible');
+                    cardCol.classList.remove('card-filtered-out');
+                    cardCol.classList.add('card-visible');
                     visibleInLevel++;
                     visibleTotal++;
                 } else {
-                    $cardCol.addClass('card-filtered-out').removeClass('card-visible');
+                    cardCol.classList.add('card-filtered-out');
+                    cardCol.classList.remove('card-visible');
                 }
             });
 
             // Show/Hide section based on level tab and visibility of cards
             if (levelMatches && visibleInLevel > 0) {
-                $section.fadeIn(CONFIG.animations.fadeTime);
-                paginateSection($section, 1); // Reset to page 1 on filter
+                section.style.display = '';
+                paginateSection(section, 1); // Reset to page 1 on filter
             } else {
-                $section.fadeOut(CONFIG.animations.fadeTime);
+                section.style.display = 'none';
             }
         });
 
         // Update counts and empty state
-        $totalCountText.text(`${visibleTotal} lessons`);
-        if (visibleTotal === 0) {
-            $emptyState.fadeIn(CONFIG.animations.fadeTime);
-        } else {
-            $emptyState.hide();
+        if (totalCountText) {
+            totalCountText.textContent = `${visibleTotal} bài học`;
+        }
+        if (emptyState) {
+            if (visibleTotal === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
         }
     }
 
@@ -119,35 +128,40 @@ $(document).ready(function () {
     // PAGINATION LOGIC
     // =================================================================
 
-    function paginateSection($section, page) {
-        const $visibleCards = $section.find('.li-card-col.card-visible');
-        const total = $visibleCards.length;
+    function paginateSection(section, page) {
+        const visibleCards = Array.from(section.querySelectorAll('.li-card-col.card-visible'));
+        const total = visibleCards.length;
         const totalPages = Math.ceil(total / CONFIG.itemsPerPage);
 
         // Hide all visible cards then show only current page
-        $visibleCards.hide();
+        visibleCards.forEach(card => card.style.display = 'none');
+        
         const start = (page - 1) * CONFIG.itemsPerPage;
         const end = start + CONFIG.itemsPerPage;
-        $visibleCards.slice(start, end).fadeIn(CONFIG.animations.fadeTime);
+        visibleCards.slice(start, end).forEach(card => {
+            card.style.display = 'block'; // basic show, no fade needed
+        });
 
         // Build pagination UI
-        const $paginationContainer = $section.find('.li-pagination');
-        $paginationContainer.empty();
+        const paginationContainer = section.querySelector('.li-pagination');
+        if (!paginationContainer) return;
+        
+        paginationContainer.innerHTML = '';
 
         if (totalPages > 1) {
             for (let i = 1; i <= totalPages; i++) {
-                const $btn = $('<button>')
-                    .addClass('page-link')
-                    .text(i)
-                    .attr('data-page', i);
+                const btn = document.createElement('button');
+                btn.className = 'page-link';
+                btn.textContent = i;
+                btn.dataset.page = i;
                 
-                if (i === page) $btn.addClass('active');
+                if (i === page) btn.classList.add('active');
 
-                $btn.on('click', function() {
-                    paginateSection($section, i);
+                btn.addEventListener('click', function() {
+                    paginateSection(section, i);
                 });
 
-                $paginationContainer.append($btn);
+                paginationContainer.appendChild(btn);
             }
         }
     }

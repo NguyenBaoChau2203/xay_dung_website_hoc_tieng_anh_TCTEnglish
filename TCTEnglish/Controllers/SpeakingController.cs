@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TCTVocabulary.Services;
 using TCTVocabulary.Models;
-using TCTVocabulary.Services;
+
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers

@@ -92,7 +92,8 @@ namespace TCTVocabulary.Controllers
         [HttpGet("Listening")]
         public async Task<IActionResult> Listening(string? level = null, string? topic = null)
         {
-            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic);
+            var userId = TryGetCurrentUserId(out var currentUserId) ? currentUserId : (int?)null;
+            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic, userId);
             return View(viewModel);
         }
 
@@ -134,6 +135,78 @@ namespace TCTVocabulary.Controllers
             return saved
                 ? Json(new { success = true })
                 : NotFound(new { error = "Không tìm thấy bài nghe." });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMyListeningLesson([FromForm] string youtubeUrl, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            if (string.IsNullOrWhiteSpace(youtubeUrl))
+            {
+                return BadRequest(new { success = false, message = "URL không được để trống." });
+            }
+
+            var result = await _listeningService.CreateOwnedLessonAsync(userId, youtubeUrl, ct);
+
+            if (result.RequiresUpgrade)
+            {
+                return StatusCode(403, new { success = false, message = result.ErrorMessage, requiresUpgrade = true });
+            }
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { success = false, message = result.ErrorMessage });
+            }
+
+            return Json(new { success = true, lessonId = result.LessonId });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMyListeningLesson([FromForm] int lessonId)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.DeleteOwnedLessonAsync(userId, lessonId);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return StatusCode(403, new { success = false, message = result.ErrorMessage });
+
+            return Json(new { success = true });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/GenerateQuiz")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerateListeningQuiz([FromForm] int lessonId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.GenerateQuizFromTranscriptAsync(lessonId, userId, ct);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return BadRequest(new { success = false, message = result.ErrorMessage ?? "Lỗi tạo quiz." });
+
+            return Ok(new { success = true });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/Translate/{lessonId:int}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TranslateTranscript(int lessonId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.TranslateTranscriptAsync(lessonId, userId, ct);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return BadRequest(new { success = false, message = result.ErrorMessage ?? "Lỗi dịch transcript." });
+
+            return Ok(new { success = true });
         }
 
         [HttpGet("Grammar")]

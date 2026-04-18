@@ -23,6 +23,12 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Currently active topic filter (null = all).</summary>
         public string? SelectedTopic { get; set; }
+
+        /// <summary>User's imported private lessons.</summary>
+        public List<ListeningLessonCardViewModel> MyLessons { get; set; } = new();
+
+        /// <summary>Whether the feature is locked for standard users.</summary>
+        public bool IsMyLessonsSectionLocked { get; set; }
     }
 
     public class ListeningLevelMetaViewModel
@@ -60,6 +66,11 @@ namespace TCTEnglish.ViewModels
         public bool? QuizCompleted { get; set; }
         public int? QuizScore { get; set; }
         public bool? VocabReviewed { get; set; }
+
+        public bool IsPrivate { get; set; }
+        public bool IsLocked { get; set; }
+        public string? ImportStatus { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 
     // ================================================================

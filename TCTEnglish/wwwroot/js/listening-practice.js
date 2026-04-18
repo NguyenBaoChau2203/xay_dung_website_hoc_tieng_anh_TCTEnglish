@@ -31,6 +31,7 @@
     let transcriptData  = (window.LP_TRANSCRIPT || []).slice().sort((a, b) => a.orderIndex - b.orderIndex);
     const quizData        = window.LP_QUIZ || [];
     const isAuthenticated = window.LP_AUTH === true;
+    const isPremiumUser   = window.LP_IS_PREMIUM === true;
 
     console.log('[LP] transcriptData initialized. Length:', transcriptData.length);
 
@@ -54,7 +55,8 @@
         window.onYouTubeIframeAPIReady = function () {
             ytPlayer = new YT.Player('youtube-player', {
                 events: {
-                    onReady: function () {
+                    onReady: function (event) {
+                        window.ytPlayer = event.target;
                         startTranscriptHighlight();
                     },
                     onStateChange: function (e) {
@@ -225,7 +227,44 @@
     let allViVisible = false;
 
     if (toggleAllViBtn) {
-        toggleAllViBtn.addEventListener('click', function () {
+        toggleAllViBtn.addEventListener('click', async function () {
+            // Check if translations exist
+            const anyVi = Array.from(document.querySelectorAll('.lp-line-vi')).some(el => el.textContent.trim().length > 0);
+            
+            if (!anyVi) {
+                if (!isPremiumUser) {
+                    showToast('warning', 'Vui lòng nâng cấp Premium để sử dụng tính năng dịch bằng AI.');
+                    return;
+                }
+
+                toggleAllViBtn.disabled = true;
+                toggleAllViBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang dịch bằng AI...';
+
+                try {
+                    const resp = await fetch(`/Home/Listening/Translate/${lessonId}`, {
+                        method: 'POST',
+                        headers: { 'RequestVerificationToken': getCsrfToken() }
+                    });
+
+                    if (resp.ok) {
+                        showToast('success', 'Đã dịch xong! Đang tải lại...');
+                        setTimeout(() => location.reload(), 1000);
+                        return;
+                    } else {
+                        const err = await resp.json();
+                        showToast('error', err.message || 'Lỗi dịch thuật.');
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('error', 'Lỗi kết nối khi dịch bài.');
+                }
+
+                toggleAllViBtn.disabled = false;
+                toggleAllViBtn.innerHTML = '<i class="fas fa-language"></i> Xem tất cả bản dịch';
+                return;
+            }
+
+            // Normal toggle behavior
             allViVisible = !allViVisible;
             document.querySelectorAll('.lp-line-vi').forEach(vi => {
                 vi.classList.toggle('lp-vi-visible', allViVisible);
@@ -694,7 +733,10 @@
             });
 
             const expEl = item.querySelector('.lp-explanation');
-            if (expEl) expEl.classList.add('show');
+            if (expEl) {
+                expEl.innerHTML = `<strong>Giải thích:</strong> ${ans.explanation || 'Không có giải thích.'}`;
+                expEl.className = 'lp-explanation show ' + (ans.isCorrect ? 'correct' : 'wrong');
+            }
         });
 
         submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Đã nộp bài';
@@ -718,18 +760,41 @@
         showToast('success', `Điểm của bạn: ${result.scorePercent}%`);
     }
 
-    // ══════════════════════════════════════════════════════════════
-    // 14. VOCABULARY DONE
-    // ══════════════════════════════════════════════════════════════
-    const vocabDoneBtn = document.getElementById('btn-vocab-done');
+    // ── Retry Quiz ──────────────────────────────────────────────
+    const retryQuizBtn = document.getElementById('btn-retry-quiz');
+    if (retryQuizBtn) {
+        retryQuizBtn.addEventListener('click', () => {
+            quizSubmitted = false;
+            
+            // Reset items
+            document.querySelectorAll('.lp-quiz-item').forEach(item => {
+                item.classList.remove('correct', 'wrong');
+                item.querySelectorAll('input[type="radio"]').forEach(r => {
+                    r.disabled = false;
+                    r.checked  = false;
+                });
+                item.querySelectorAll('.lp-option-label').forEach(label => {
+                    label.classList.remove('lp-opt-correct', 'lp-opt-wrong');
+                });
+                const expEl = item.querySelector('.lp-explanation');
+                if (expEl) {
+                    expEl.classList.remove('show', 'correct', 'wrong');
+                    expEl.innerHTML = '';
+                }
+            });
 
-    if (vocabDoneBtn) {
-        vocabDoneBtn.addEventListener('click', async function () {
-            await saveProgress({ vocabReviewed: true });
-            vocabDoneBtn.disabled = true;
-            vocabDoneBtn.innerHTML = '<i class="fas fa-check-circle"></i> Đã ôn từ vựng';
-            updateProgressDot('dot-vocab');
-            showToast('success', 'Đã lưu tiến độ Từ vựng! 📚');
+            // Reset footer & results
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Nộp bài';
+            }
+            if (resultPanel) {
+                resultPanel.classList.remove('show', 'lp-result-pass', 'lp-result-fail');
+            }
+
+            // Scroll to top of quiz
+            const quizList = document.querySelector('.lp-quiz-list');
+            if (quizList) quizList.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }
 
@@ -788,6 +853,81 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    // 19. SPEED CONTROL
+    // ══════════════════════════════════════════════════════════════
+    const speedBtns = document.querySelectorAll('.lp-speed-btn:not(.lp-speed-locked):not([disabled])');
+    speedBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const rate = parseFloat(btn.dataset.rate);
+            if (!rate) return;
+
+            // YouTube
+            if (window.ytPlayer && typeof window.ytPlayer.setPlaybackRate === 'function') {
+                window.ytPlayer.setPlaybackRate(rate);
+            } 
+            // HTML5 Audio
+            else if (audioEl) {
+                audioEl.playbackRate = rate;
+            }
+
+            // Update UI
+            document.querySelectorAll('.lp-speed-btn').forEach(b => b.classList.remove('lp-speed-active'));
+            btn.classList.add('lp-speed-active');
+            
+            console.log('[LP] Playback rate set to:', rate);
+        });
+    });
+
+    // ══════════════════════════════════════════════════════════════
+    // 20. AI QUIZ GENERATOR
+    // ══════════════════════════════════════════════════════════════
+    const btnGenQuiz = document.getElementById('btnGenerateQuiz');
+    if (btnGenQuiz) {
+        btnGenQuiz.addEventListener('click', async () => {
+            const lessonId = btnGenQuiz.dataset.lessonId;
+            const token = getCsrfToken();
+            
+            btnGenQuiz.disabled = true;
+            btnGenQuiz.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang biên soạn...';
+
+            try {
+                const formData = new FormData();
+                formData.append('lessonId', lessonId);
+                if (token) formData.append('__RequestVerificationToken', token);
+
+                const resp = await fetch('/Home/Listening/My/GenerateQuiz', {
+                    method: 'POST',
+                    headers: { 'RequestVerificationToken': token },
+                    body: formData
+                });
+
+                if (resp.ok) {
+                    location.reload(); 
+                } else {
+                    let errorMessage = 'Không thể tạo bài tập.';
+                    try {
+                        const data = await resp.json();
+                        errorMessage = data.message || data.error || errorMessage;
+                    } catch (e) {
+                         // Fallback to text reading if JSON is malformed
+                         const textResponse = await resp.text();
+                         console.warn("Could not parse JSON response from Server, body was:", textResponse);
+                    }
+                    
+                    alert(errorMessage);
+                    btnGenQuiz.disabled = false;
+                    btnGenQuiz.innerHTML = '<i class="fas fa-magic"></i> Tạo quiz bằng AI';
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Lỗi kết nối. Vui lòng thử lại.');
+                btnGenQuiz.disabled = false;
+                btnGenQuiz.innerHTML = '<i class="fas fa-magic"></i> Tạo quiz bằng AI';
+            }
+        });
     }
 
 })();

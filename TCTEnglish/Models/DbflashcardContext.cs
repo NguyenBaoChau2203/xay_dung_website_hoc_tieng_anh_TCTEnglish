@@ -789,6 +789,17 @@ public partial class DbflashcardContext : DbContext
                 .HasConstraintName("FK_UserWritingAttempts_WritingExerciseSentences");
         });
 
+        modelBuilder.Entity<ListeningLesson>(entity =>
+        {
+            entity.HasIndex(e => new { e.OwnerUserId, e.CreatedAt })
+                .HasDatabaseName("IX_ListeningLessons_OwnerUserId_CreatedAt");
+
+            entity.HasOne(d => d.OwnerUser)
+                .WithMany()
+                .HasForeignKey(d => d.OwnerUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+        });
+
         modelBuilder.Entity<UserSpeakingProgress>(entity =>
         {
             entity.HasKey(e => e.Id);
