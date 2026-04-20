@@ -23,7 +23,8 @@ public sealed class InternalKnowledgeProvider : IAiProviderClient
     public async Task<AiProviderReply> GenerateReplyAsync(
         int userId,
         IReadOnlyList<AiContextMessage> messages,
-        CancellationToken ct)
+        CancellationToken ct,
+        AiProviderRequestOptions? requestOptions = null)
     {
         var userMessage = messages
             .LastOrDefault(x => string.Equals(x.Role, "user", StringComparison.OrdinalIgnoreCase))

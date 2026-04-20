@@ -25,4 +25,5 @@ public class SpeakingVideo
     public SpeakingPlaylist? SpeakingPlaylist { get; set; }
     public User? OwnerUser { get; set; }
     public ICollection<SpeakingSentence> SpeakingSentences { get; set; } = new List<SpeakingSentence>();
+    public ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
 }

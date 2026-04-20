@@ -32,7 +32,11 @@ public sealed class GeminiProviderClient : IAiProviderClient
         _logger = logger;
     }
 
-    public async Task<AiProviderReply> GenerateReplyAsync(int userId, IReadOnlyList<AiContextMessage> messages, CancellationToken ct)
+    public async Task<AiProviderReply> GenerateReplyAsync(
+        int userId,
+        IReadOnlyList<AiContextMessage> messages,
+        CancellationToken ct,
+        AiProviderRequestOptions? requestOptions = null)
     {
         if (messages == null || messages.Count == 0)
         {
@@ -46,9 +50,9 @@ public sealed class GeminiProviderClient : IAiProviderClient
         {
             try
             {
-                using var request = BuildRequest(messages);
+                using var request = BuildRequest(messages, requestOptions);
                 using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
-                timeoutCts.CancelAfter(TimeSpan.FromSeconds(_options.EffectiveRequestTimeoutSeconds));
+                timeoutCts.CancelAfter(TimeSpan.FromSeconds(ResolveRequestTimeoutSeconds(requestOptions)));
 
                 var httpClient = _httpClientFactory.CreateClient();
                 using var response = await httpClient.SendAsync(request, timeoutCts.Token);
@@ -92,7 +96,9 @@ public sealed class GeminiProviderClient : IAiProviderClient
         throw new AiProviderException("AI provider request failed.", AiProviderException.ErrorCodeUnknown, false);
     }
 
-    private HttpRequestMessage BuildRequest(IReadOnlyList<AiContextMessage> messages)
+    private HttpRequestMessage BuildRequest(
+        IReadOnlyList<AiContextMessage> messages,
+        AiProviderRequestOptions? requestOptions)
     {
         var endpoint = BuildEndpointUri();
         var (systemInstruction, contents) = MapContents(messages);
@@ -103,8 +109,8 @@ public sealed class GeminiProviderClient : IAiProviderClient
             Contents = contents,
             GenerationConfig = new GeminiGenerationConfig
             {
-                Temperature = _options.Temperature,
-                MaxOutputTokens = Math.Max(1, _options.MaxOutputTokens)
+                Temperature = requestOptions?.Temperature ?? _options.Temperature,
+                MaxOutputTokens = ResolveMaxOutputTokens(requestOptions)
             }
         };
 
@@ -114,6 +120,16 @@ public sealed class GeminiProviderClient : IAiProviderClient
         };
 
         return request;
+    }
+
+    private int ResolveMaxOutputTokens(AiProviderRequestOptions? requestOptions)
+    {
+        return Math.Max(1, requestOptions?.MaxOutputTokens ?? _options.MaxOutputTokens);
+    }
+
+    private int ResolveRequestTimeoutSeconds(AiProviderRequestOptions? requestOptions)
+    {
+        return Math.Max(1, requestOptions?.RequestTimeoutSeconds ?? _options.EffectiveRequestTimeoutSeconds);
     }
 
     private async Task<AiProviderReply> ParseSuccessResponseAsync(HttpResponseMessage response, CancellationToken ct)

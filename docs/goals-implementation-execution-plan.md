@@ -1,5 +1,9 @@
 # Goals Feature Implementation Execution Plan
 
+> **Historical plan notice (read first):** this document is kept for implementation history.
+> The current authoritative source for remaining/finalization work is
+> `docs/goals-finalization-playbook.md`.
+
 > The purpose of this document is to turn the Goals idea into a clear execution plan that any AI agent can follow step by step, reduce rework, reduce risk, and stay within the current repository boundaries.
 
 ## 1. Objective

@@ -99,7 +99,31 @@
                 </a>
             </div>
         </div>
-
+        @if (Model.RecentInProcessReading != null)
+        {
+            <div class="continue-learning mb-4">
+                <div class="card border-primary shadow-sm" style="border-left: 5px solid var(--primary-blue);">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="badge bg-warning text-dark mb-1">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Đang học dở
+                            </span>
+                            <h4 class="mb-1">@Model.RecentInProcessReading.Title</h4>
+                            <p class="text-muted mb-0 small">
+                                <i class="fa-solid fa-tag"></i> @Model.RecentInProcessReading.Topic •
+                                <i class="fa-solid fa-layer-group"></i> Level @Model.RecentInProcessReading.Level
+                            </p>
+                        </div>
+                        <div>
+                            <a asp-controller="Reading" asp-action="Study" asp-route-id="@Model.RecentInProcessReading.Id"
+                                   class="btn btn-primary rounded-pill px-4">
+                                Tiếp tục học <i class="fa-solid fa-play ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         <!-- ===== TODAY LEARNING ===== -->
         <div class="today-learning">
             <h3>
@@ -151,20 +175,27 @@
                 Daily Challenge
             </h3>
 
-            <partial name="_DailyChallenge" model="Model.DailyChallenge" />
+            <div id="daily-challenge-content">
+                <partial name="_DailyChallenge" model="Model.DailyChallenge" />
+            </div>
         </div>
 
     </div>
 </div>
 <script>
-    document.querySelectorAll(".answer-btn").forEach(btn => {
-        btn.addEventListener("click", function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("daily-challenge-content");
 
-            if (this.classList.contains("correct") || this.classList.contains("wrong"))
-                return;
+        // Lắng nghe click vào các nút trả lời trong container
+        container.addEventListener("click", function (e) {
+            const btn = e.target.closest(".answer-btn");
+            if (!btn) return;
 
-            const selected = this.dataset.id;
-            const challengeToken = this.dataset.token;
+            // Chặn bấm nhiều lần khi đã có kết quả
+            if (btn.classList.contains("correct") || btn.classList.contains("wrong")) return;
+
+            const selected = btn.dataset.id;
+            const challengeToken = btn.dataset.token;
             const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
 
             const payload = new URLSearchParams({
@@ -180,29 +211,40 @@
                 },
                 body: payload.toString()
             })
-                .then(async response => {
-                    if (!response.ok) {
-                        throw new Error(`CheckAnswer failed: ${response.status}`);
-                    }
+            .then(res => res.json())
+            .then(data => {
+                const correctCardId = String(data.correctCardId ?? "");
+                
+                if (data.correct === true) {
+                    btn.classList.add("correct");
+                } else {
+                    btn.classList.add("wrong");
+                    // Hiển thị đáp án đúng
+                    container.querySelector(`.answer-btn[data-id="${correctCardId}"]`)?.classList.add("correct");
+                }
 
-                    return await response.json();
-                })
-                .then(data => {
-                    const correctCardId = String(data.correctCardId ?? "");
-                    if (data.correct === true) {
-                        this.classList.add("correct");
-                    } else {
-                        this.classList.add("wrong");
-                        document.querySelector(`.answer-btn[data-id="${correctCardId}"]`)?.classList.add("correct");
-                    }
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, 800);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+                // Chờ 1.2s để người dùng thấy kết quả rồi đổi câu mới (không reload)
+                setTimeout(() => {
+                    refreshChallenge();
+                }, 1200);
+            })
+            .catch(err => console.error("Lỗi:", err));
         });
+
+        // Hàm lấy câu hỏi mới qua AJAX
+        function refreshChallenge() {
+            container.style.opacity = "0.5"; // Hiệu ứng làm mờ khi đang tải
+            
+            fetch("/Home/RefreshDailyChallenge")
+                .then(res => res.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    container.style.opacity = "1";
+                })
+                .catch(err => {
+                    console.error("Lỗi tải câu hỏi mới:", err);
+                    container.style.opacity = "1";
+                });
+        }
     });
 </script>

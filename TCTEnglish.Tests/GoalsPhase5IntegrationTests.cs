@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Tests.Infrastructure;
@@ -12,46 +13,30 @@ namespace TCTEnglish.Tests;
 
 public sealed class GoalsPhase5IntegrationTests
 {
+    private const int ReadingReplayPassageId = 99001;
+    private const int ReadingReplayQuestionId = 99011;
+    private const int ReadingReplayCorrectOptionId = 99021;
+    private const int ReadingReplayWrongOptionId = 99022;
+    private const int ListeningReplayLessonId = 99101;
+
     [Fact]
-    public async Task GoalsPage_ShowsRecentBadgeHighlight_AndChartTooltips()
+    public async Task GoalsPage_DoesNotShowDeferredAreas_AndRendersReadingListeningOptions()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-
-        var today = DateTime.UtcNow.Date;
-        await SeedGoalsStateAsync(
-            factory,
-            goal: 8,
-            streak: 1,
-            longestStreak: 1,
-            lastStudyDate: today,
-            new UserDailyActivity
-            {
-                UserId = TestDataIds.UserId,
-                ActivityDate = today,
-                CardsReviewed = 4,
-                XpEarned = 10
-            });
-        await RecordActivityAsync(
-            factory,
-            new GoalsActivityUpdate
-            {
-                CardsReviewed = 1,
-                XpEarned = 0
-            });
-
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
         using var response = await client.GetAsync("/Goals");
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Contains("goals-insight-banner", body, StringComparison.Ordinal);
-        Assert.Contains("goals-badge-card is-unlocked is-recently-unlocked", body, StringComparison.Ordinal);
-        Assert.Contains("data-tooltip=", body, StringComparison.Ordinal);
+        Assert.DoesNotContain("Reading, Listening hiện đang tạm hoãn", body, StringComparison.Ordinal);
+        Assert.Contains("value=\"Reading\"", body, StringComparison.Ordinal);
+        Assert.Contains("value=\"Listening\"", body, StringComparison.Ordinal);
     }
 
     [Fact]
-    public async Task UpdateGoal_RedirectFollowUp_RendersGoalToast()
+    public async Task UpdateGoal_ReadingAreaSubmission_CreatesGoalSuccessfully()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
@@ -61,79 +46,252 @@ public sealed class GoalsPhase5IntegrationTests
         using var request = new HttpRequestMessage(HttpMethod.Post, "/Goals/UpdateGoal")
         {
             Content = new StringContent(
-                "GoalEditor.DailyGoal=14",
+                "GoalEditor.GoalArea=Reading&GoalEditor.TargetValue=5",
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded")
         };
         request.Headers.Add("RequestVerificationToken", antiForgeryToken);
 
-        using var redirectResponse = await client.SendAsync(request);
-        Assert.Equal(HttpStatusCode.Redirect, redirectResponse.StatusCode);
+        using var response = await client.SendAsync(request);
 
-        var followUpRoute = redirectResponse.Headers.Location?.ToString() ?? "/Goals";
-        using var followUpResponse = await client.GetAsync(followUpRoute);
-        var body = await followUpResponse.Content.ReadAsStringAsync();
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
 
-        Assert.Equal(HttpStatusCode.OK, followUpResponse.StatusCode);
-        Assert.Contains("goalUpdateToast", body, StringComparison.Ordinal);
-        Assert.Contains("goals-feedback-toast", body, StringComparison.Ordinal);
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var readingGoal = await context.UserGoals
+            .AsNoTracking()
+            .FirstOrDefaultAsync(goal => goal.UserId == TestDataIds.UserId && goal.GoalArea == GoalArea.Reading && goal.IsActive);
+
+        Assert.NotNull(readingGoal);
+        Assert.Equal(5, readingGoal!.TargetValue);
     }
 
     [Fact]
-    public async Task LearningRecord_ResponseIncludesXpEarned_ForRewardToast()
+    public async Task ReadingAndListeningPages_DoNotShowDeferredGateCopy()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
 
-        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Vocabulary/Study?setId=302");
-        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/LearningApi/record")
-        {
-            Content = new StringContent(
-                """{"cardId":401,"masteryLevel":"good","timestamp":"2026-03-29T00:00:00Z"}""",
-                Encoding.UTF8,
-                "application/json")
-        };
-        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+        using var readingResponse = await client.GetAsync("/Home/Reading");
+        var readingBody = await readingResponse.Content.ReadAsStringAsync();
+        Assert.Equal(HttpStatusCode.OK, readingResponse.StatusCode);
+        Assert.DoesNotContain("Reading hiện đang ở trạng thái tạm hoãn trong hệ thống Goals/XP", readingBody, StringComparison.Ordinal);
 
-        using var response = await client.SendAsync(request);
-        var body = await response.Content.ReadAsStringAsync();
-
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-        using var payload = JsonDocument.Parse(body);
-        Assert.True(payload.RootElement.TryGetProperty("xpEarned", out var xpEarned));
-        Assert.Equal(10, xpEarned.GetInt32());
+        using var listeningResponse = await client.GetAsync("/Home/Listening");
+        var listeningBody = await listeningResponse.Content.ReadAsStringAsync();
+        Assert.Equal(HttpStatusCode.OK, listeningResponse.StatusCode);
+        Assert.DoesNotContain("Listening hiện đang ở trạng thái tạm hoãn trong hệ thống Goals/XP", listeningBody, StringComparison.Ordinal);
     }
 
-    private static async Task SeedGoalsStateAsync(
-        TestWebApplicationFactory factory,
-        int goal,
-        int streak,
-        int longestStreak,
-        DateTime? lastStudyDate,
-        params UserDailyActivity[] activities)
+    [Fact]
+    public async Task SubmitReading_ReplayCompletion_DoesNotDoubleCountReadingActivity()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedReadingReplayPassageAsync(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        using (var studyResponse = await client.GetAsync($"/Reading/Study/{ReadingReplayPassageId}"))
+        {
+            Assert.Equal(HttpStatusCode.OK, studyResponse.StatusCode);
+        }
+
+        using var firstRequest = new HttpRequestMessage(HttpMethod.Post, "/Reading/SubmitReading")
+        {
+            Content = new StringContent(
+                $"passageId={ReadingReplayPassageId}&answers[{ReadingReplayQuestionId}]={ReadingReplayCorrectOptionId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        using var firstResponse = await client.SendAsync(firstRequest);
+        Assert.Equal(HttpStatusCode.OK, firstResponse.StatusCode);
+
+        using var replayRequest = new HttpRequestMessage(HttpMethod.Post, "/Reading/SubmitReading")
+        {
+            Content = new StringContent(
+                $"passageId={ReadingReplayPassageId}&answers[{ReadingReplayQuestionId}]={ReadingReplayWrongOptionId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        using var replayResponse = await client.SendAsync(replayRequest);
+        Assert.Equal(HttpStatusCode.OK, replayResponse.StatusCode);
+
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var today = BusinessDateHelper.Today;
+
+        var activity = await context.UserDailyActivities
+            .AsNoTracking()
+            .SingleAsync(candidate => candidate.UserId == TestDataIds.UserId && candidate.ActivityDate == today);
+
+        var history = await context.UserReadingHistories
+            .AsNoTracking()
+            .SingleAsync(candidate => candidate.UserId == TestDataIds.UserId && candidate.ReadingPassageId == ReadingReplayPassageId);
+
+        Assert.Equal(1, activity.ReadingCompletedCount);
+        Assert.Equal(10, activity.XpEarned);
+        Assert.Equal(10, activity.StreakXpAwarded);
+        Assert.True(history.IsCompleted);
+        Assert.Equal(0, history.Score);
+    }
+
+    [Fact]
+    public async Task SaveListeningProgress_ReplayCompletion_DoesNotDoubleCountListeningActivity()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedListeningReplayLessonAsync(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Home/Listening/Practice/{ListeningReplayLessonId}");
+
+        using (var transcriptRequest = CreateListeningProgressRequest(antiForgeryToken, ListeningReplayLessonId, "{\"transcriptCompleted\":true}"))
+        using (var transcriptResponse = await client.SendAsync(transcriptRequest))
+        {
+            Assert.Equal(HttpStatusCode.OK, transcriptResponse.StatusCode);
+        }
+
+        using (var quizRequest = CreateListeningProgressRequest(antiForgeryToken, ListeningReplayLessonId, "{\"quizCompleted\":true,\"quizScore\":100}"))
+        using (var quizResponse = await client.SendAsync(quizRequest))
+        {
+            Assert.Equal(HttpStatusCode.OK, quizResponse.StatusCode);
+        }
+
+        using (var vocabRequest = CreateListeningProgressRequest(antiForgeryToken, ListeningReplayLessonId, "{\"vocabReviewed\":true}"))
+        using (var vocabResponse = await client.SendAsync(vocabRequest))
+        {
+            Assert.Equal(HttpStatusCode.OK, vocabResponse.StatusCode);
+        }
+
+        using (var replayRequest = CreateListeningProgressRequest(antiForgeryToken, ListeningReplayLessonId, "{\"vocabReviewed\":true}"))
+        using (var replayResponse = await client.SendAsync(replayRequest))
+        {
+            Assert.Equal(HttpStatusCode.OK, replayResponse.StatusCode);
+        }
+
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var today = BusinessDateHelper.Today;
+
+        var activity = await context.UserDailyActivities
+            .AsNoTracking()
+            .SingleAsync(candidate => candidate.UserId == TestDataIds.UserId && candidate.ActivityDate == today);
+
+        var progress = await context.UserListeningProgresses
+            .AsNoTracking()
+            .SingleAsync(candidate => candidate.UserId == TestDataIds.UserId && candidate.LessonId == ListeningReplayLessonId);
+
+        Assert.Equal(1, activity.ListeningCompletedCount);
+        Assert.Equal(10, activity.XpEarned);
+        Assert.Equal(10, activity.StreakXpAwarded);
+        Assert.NotNull(progress.CompletedAt);
+    }
+
+    private static async Task SeedReadingReplayPassageAsync(TestWebApplicationFactory factory)
     {
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var user = await context.Users.SingleAsync(candidate => candidate.UserId == TestDataIds.UserId);
 
-        user.Goal = goal;
-        user.Streak = streak;
-        user.LongestStreak = longestStreak;
-        user.LastStudyDate = lastStudyDate;
+        var passage = new ReadingPassage
+        {
+            Id = ReadingReplayPassageId,
+            Title = "Goals replay reading",
+            Content = "Replay-safe reading passage for goals integration test.",
+            Level = "A1",
+            Topic = "Replay",
+            CreatedAt = DateTime.UtcNow,
+            IsPublished = true,
+            Questions = new List<ReadingQuestion>
+            {
+                new()
+                {
+                    Id = ReadingReplayQuestionId,
+                    OrderIndex = 1,
+                    QuestionText = "Which option is correct?",
+                    Options = new List<ReadingOption>
+                    {
+                        new()
+                        {
+                            Id = ReadingReplayCorrectOptionId,
+                            OptionText = "Correct",
+                            IsCorrect = true
+                        },
+                        new()
+                        {
+                            Id = ReadingReplayWrongOptionId,
+                            OptionText = "Wrong",
+                            IsCorrect = false
+                        }
+                    }
+                }
+            }
+        };
 
-        context.UserDailyActivities.AddRange(activities);
+        context.ReadingPassages.Add(passage);
         await context.SaveChangesAsync();
     }
 
-    private static async Task RecordActivityAsync(TestWebApplicationFactory factory, GoalsActivityUpdate update)
+    private static async Task SeedListeningReplayLessonAsync(TestWebApplicationFactory factory)
     {
         using var scope = factory.Services.CreateScope();
-        var goalsService = scope.ServiceProvider.GetRequiredService<IGoalsService>();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
-        var result = await goalsService.RecordActivityAsync(TestDataIds.UserId, update);
+        var lesson = new ListeningLesson
+        {
+            Id = ListeningReplayLessonId,
+            Title = "Goals replay listening",
+            Level = "A1",
+            Topic = "Replay",
+            YoutubeId = "dQw4w9WgXcQ",
+            IsPublished = true,
+            CreatedAt = DateTime.UtcNow,
+            TranscriptLines = new List<ListeningTranscriptLine>
+            {
+                new()
+                {
+                    OrderIndex = 1,
+                    Speaker = "A",
+                    Text = "Replay safe listening line",
+                    VietnameseMeaning = "Dòng nghe để test replay"
+                }
+            },
+            QuizQuestions = new List<ListeningQuizQuestion>
+            {
+                new()
+                {
+                    OrderIndex = 1,
+                    QuestionText = "Pick A",
+                    OptionA = "A",
+                    OptionB = "B",
+                    OptionC = "C",
+                    OptionD = "D",
+                    CorrectAnswer = "A"
+                }
+            },
+            VocabItems = new List<ListeningVocabItem>
+            {
+                new()
+                {
+                    OrderIndex = 1,
+                    Word = "Replay",
+                    Definition = "Run again"
+                }
+            }
+        };
 
-        Assert.Equal(OperationStatus.Success, result.Status);
+        context.ListeningLessons.Add(lesson);
+        await context.SaveChangesAsync();
+    }
+
+    private static HttpRequestMessage CreateListeningProgressRequest(string antiForgeryToken, int lessonId, string jsonBody)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Post, $"/Home/Listening/SaveProgress/{lessonId}")
+        {
+            Content = new StringContent(jsonBody, Encoding.UTF8, "application/json")
+        };
+
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+        return request;
     }
 }

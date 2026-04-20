@@ -13,23 +13,17 @@ namespace TCTVocabulary.Controllers
     [AutoValidateAntiforgeryToken]
     public class LearningApiController : ControllerBase
     {
-        private const int ReviewXp = 5;
-        private const int NewLearningXp = 10;
-        private const int MasteredXp = 15;
         private readonly DbflashcardContext _context;
         private readonly IGoalsService _goalsService;
-        private readonly IStreakService _streakService;
         private readonly ILogger<LearningApiController> _logger;
 
         public LearningApiController(
             DbflashcardContext context,
             IGoalsService goalsService,
-            IStreakService streakService,
             ILogger<LearningApiController> logger)
         {
             _context = context;
             _goalsService = goalsService;
-            _streakService = streakService;
             _logger = logger;
         }
 
@@ -117,8 +111,8 @@ namespace TCTVocabulary.Controllers
 
             await _context.SaveChangesAsync();
 
-            var activityUpdate = BuildGoalsActivityUpdate(isNewProgress, previousStatus, progress.Status);
-            var activityResult = await _goalsService.RecordActivityAsync(currentUserId, activityUpdate);
+            var activityUpdate = _goalsService.BuildVocabularyActivityUpdate(isNewProgress, previousStatus, progress.Status);
+            var activityResult = await _goalsService.RecordLearningActivityAsync(currentUserId, activityUpdate);
             if (activityResult.Status == OperationStatus.NotFound)
             {
                 _logger.LogWarning(
@@ -136,7 +130,7 @@ namespace TCTVocabulary.Controllers
                 return BadRequest("Unable to record learning activity");
             }
 
-            var streak = await _streakService.UpdateStreakAsync(currentUserId);
+            var streak = activityResult.Streak;
 
             _logger.LogInformation(
                 "Learning record updated for user {userId}, card {cardId}, status {status}, repetitionCount {repetitionCount}, nextReviewDate {nextReviewDate}, isNewProgress {isNewProgress}, xpEarned {xpEarned}, streak {streak}",
@@ -157,43 +151,6 @@ namespace TCTVocabulary.Controllers
                 xpEarned = activityUpdate.XpEarned
             });
         }
-
-        private static GoalsActivityUpdate BuildGoalsActivityUpdate(bool isNewProgress, string? previousStatus, string currentStatus)
-        {
-            var activityKind = DetermineLearningActivityKind(isNewProgress, previousStatus, currentStatus);
-
-            return new GoalsActivityUpdate
-            {
-                CardsReviewed = 1,
-                NewCardsLearned = isNewProgress ? 1 : 0,
-                XpEarned = activityKind switch
-                {
-                    LearningActivityKind.NewLearning => NewLearningXp,
-                    LearningActivityKind.Mastered => MasteredXp,
-                    _ => ReviewXp
-                }
-            };
-        }
-
-        private static LearningActivityKind DetermineLearningActivityKind(bool isNewProgress, string? previousStatus, string currentStatus)
-        {
-            if (!string.Equals(previousStatus, "Mastered", StringComparison.Ordinal)
-                && string.Equals(currentStatus, "Mastered", StringComparison.Ordinal))
-            {
-                return LearningActivityKind.Mastered;
-            }
-
-            return isNewProgress
-                ? LearningActivityKind.NewLearning
-                : LearningActivityKind.Review;
-        }
-    }
-
-    internal enum LearningActivityKind
-    {
-        Review,
-        NewLearning,
-        Mastered
     }
 
     public class LearningRecordRequest

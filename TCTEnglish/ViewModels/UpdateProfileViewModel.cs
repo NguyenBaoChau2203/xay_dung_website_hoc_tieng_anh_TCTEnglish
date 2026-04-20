@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.ViewModels
 {
@@ -16,6 +17,8 @@ namespace TCTVocabulary.ViewModels
 
         // Stats displayed on profile page
         public int StreakDays { get; set; }
-        public int SavedWordsCount { get; set; }
+
+        // Badges earned by the user (unlocked only)
+        public List<GoalsBadgeViewModel> EarnedBadges { get; set; } = new();
     }
 }

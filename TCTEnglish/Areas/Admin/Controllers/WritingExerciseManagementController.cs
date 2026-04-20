@@ -3,20 +3,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Areas.Admin.ViewModels;
+using TCTVocabulary.Controllers;
 using TCTVocabulary.Models;
 
 namespace TCTVocabulary.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Authorize(Roles = Roles.Admin)]
-public class WritingExerciseManagementController : Controller
+public class WritingExerciseManagementController : BaseController
 {
     private static readonly Regex ParagraphSplitRegex = new(
         @"(?:\r?\n\s*){2,}",
         RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-    private static readonly Regex SentenceBoundaryRegex = new(
-        @"(?:(?<=[.!?])|(?<=[.!?][""”’')\]]))\s+",
+    private static readonly Regex AdminSentenceBoundaryRegex = new(
+        @"(?:(?<=[.!?;:\u2026])|(?<=[.!?;:\u2026]['""\)\]\u2019\u201D]))\s+",
         RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private static readonly IReadOnlyList<WritingExerciseOptionViewModel> LevelOptions =
@@ -118,6 +119,7 @@ public class WritingExerciseManagementController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([FromForm] WritingExerciseCreateViewModel model)
     {
+        var adminId = GetCurrentUserId();
         NormalizeFormModel(model);
         PopulateFormOptions(model);
         ValidateFormModel(model);
@@ -129,34 +131,52 @@ public class WritingExerciseManagementController : Controller
 
         try
         {
-            await using var transaction = await _context.Database.BeginTransactionAsync();
+            WritingExercise? exercise = null;
+            List<WritingExerciseSentence> sentences = new();
 
-            var exercise = new WritingExercise
+            await ExecuteWritingTransactionAsync(async () =>
             {
-                Title = model.Title,
-                Level = model.Level,
-                ContentType = model.ContentType,
-                Topic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic,
-                PreviewText = model.PreviewText,
-                IsPublished = model.IsPublished,
-                CreatedAt = DateTime.UtcNow
-            };
+                exercise = new WritingExercise
+                {
+                    Title = model.Title,
+                    Level = model.Level,
+                    ContentType = model.ContentType,
+                    Topic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic,
+                    PreviewText = model.PreviewText,
+                    IsPublished = model.IsPublished,
+                    CreatedAt = DateTime.UtcNow
+                };
 
-            _context.WritingExercises.Add(exercise);
-            await _context.SaveChangesAsync();
+                _context.WritingExercises.Add(exercise);
+                await _context.SaveChangesAsync();
 
-            var sentences = BuildSentenceEntities(model.Sentences, exercise.Id);
-            _context.WritingExerciseSentences.AddRange(sentences);
-            await _context.SaveChangesAsync();
+                sentences = BuildSentenceEntities(model.Sentences, exercise.Id);
+                _context.WritingExerciseSentences.AddRange(sentences);
+                await _context.SaveChangesAsync();
+            });
 
-            await transaction.CommitAsync();
+            var createdExercise = exercise ?? throw new InvalidOperationException("Writing exercise create transaction completed without an exercise.");
+            TempData["SuccessMessage"] = $"Đã tạo bài viết \"{createdExercise.Title}\" với {sentences.Count} câu được tự tách.";
+            _logger.LogInformation(
+                "Admin {AdminId} created WritingExercise {ExerciseId} ({Title}) with {SentenceCount} sentences at {TimeUtc}",
+                adminId,
+                createdExercise.Id,
+                createdExercise.Title,
+                sentences.Count,
+                DateTime.UtcNow);
 
-            TempData["SuccessMessage"] = $"Đã tạo bài viết \"{exercise.Title}\" với {sentences.Count} câu được tự tách.";
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to create writing exercise {Title}", model.Title);
+            _logger.LogError(
+                ex,
+                "Admin {AdminId} failed {Area}/{Controller}/{Action} while creating writing exercise {Title}",
+                adminId,
+                "Admin",
+                nameof(WritingExerciseManagementController),
+                nameof(Create),
+                model.Title);
             ModelState.AddModelError(string.Empty, "Không thể tạo bài viết lúc này. Vui lòng thử lại.");
             return View(model);
         }
@@ -207,6 +227,7 @@ public class WritingExerciseManagementController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [FromForm] WritingExerciseEditViewModel model)
     {
+        var adminId = GetCurrentUserId();
         if (id != model.Id)
         {
             return NotFound();
@@ -223,39 +244,58 @@ public class WritingExerciseManagementController : Controller
 
         try
         {
-            await using var transaction = await _context.Database.BeginTransactionAsync();
+            WritingExercise? exercise = null;
+            var sentenceCount = model.Sentences.Count;
 
-            var exercise = await _context.WritingExercises
-                .Include(item => item.WritingExerciseSentences)
-                .FirstOrDefaultAsync(item => item.Id == id);
+            await ExecuteWritingTransactionAsync(async () =>
+            {
+                exercise = await _context.WritingExercises
+                    .Include(item => item.WritingExerciseSentences)
+                    .FirstOrDefaultAsync(item => item.Id == id);
+
+                if (exercise == null)
+                {
+                    return;
+                }
+
+                exercise.Title = model.Title;
+                exercise.Level = model.Level;
+                exercise.ContentType = model.ContentType;
+                exercise.Topic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic;
+                exercise.PreviewText = model.PreviewText;
+                exercise.IsPublished = model.IsPublished;
+
+                SyncWritingExerciseSentences(exercise, model.Sentences);
+                await _context.SaveChangesAsync();
+            });
 
             if (exercise == null)
             {
                 return NotFound();
             }
 
-            exercise.Title = model.Title;
-            exercise.Level = model.Level;
-            exercise.ContentType = model.ContentType;
-            exercise.Topic = string.IsNullOrWhiteSpace(model.Topic) ? "General" : model.Topic;
-            exercise.PreviewText = model.PreviewText;
-            exercise.IsPublished = model.IsPublished;
-
-            _context.WritingExerciseSentences.RemoveRange(exercise.WritingExerciseSentences);
-            await _context.SaveChangesAsync();
-
-            var sentences = BuildSentenceEntities(model.Sentences, exercise.Id);
-            _context.WritingExerciseSentences.AddRange(sentences);
-            await _context.SaveChangesAsync();
-
-            await transaction.CommitAsync();
-
             TempData["SuccessMessage"] = $"Đã cập nhật bài viết \"{exercise.Title}\".";
+            _logger.LogInformation(
+                "Admin {AdminId} updated WritingExercise {ExerciseId} ({Title}) with {SentenceCount} sentences and Published={IsPublished} at {TimeUtc}",
+                adminId,
+                exercise.Id,
+                exercise.Title,
+                sentenceCount,
+                exercise.IsPublished,
+                DateTime.UtcNow);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to update writing exercise {ExerciseId}", id);
+            _logger.LogError(
+                ex,
+                "Admin {AdminId} failed {Area}/{Controller}/{Action} for writing exercise {ExerciseId} ({Title})",
+                adminId,
+                "Admin",
+                nameof(WritingExerciseManagementController),
+                nameof(Edit),
+                id,
+                model.Title);
             ModelState.AddModelError(string.Empty, "Không thể cập nhật bài viết lúc này. Vui lòng thử lại.");
             return View(model);
         }
@@ -265,6 +305,7 @@ public class WritingExerciseManagementController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete([FromForm] int id)
     {
+        var adminId = GetCurrentUserId();
         var exercise = await _context.WritingExercises.FirstOrDefaultAsync(item => item.Id == id);
         if (exercise == null)
         {
@@ -278,10 +319,16 @@ public class WritingExerciseManagementController : Controller
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = $"Đã xóa bài viết \"{exercise.Title}\" và toàn bộ câu con liên quan.";
+            _logger.LogInformation(
+                "Admin {AdminId} deleted WritingExercise {ExerciseId} ({Title}) at {TimeUtc}",
+                adminId,
+                exercise.Id,
+                exercise.Title,
+                DateTime.UtcNow);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to delete writing exercise {ExerciseId}", id);
+            _logger.LogError(ex, "Admin {AdminId} failed to delete writing exercise {ExerciseId}", adminId, id);
             TempData["ErrorMessage"] = "Không thể xóa bài viết lúc này. Vui lòng thử lại.";
         }
 
@@ -302,6 +349,66 @@ public class WritingExerciseManagementController : Controller
                 BreakAfter = sentence.BreakAfter
             })
             .ToList();
+    }
+
+    private async Task ExecuteWritingTransactionAsync(Func<Task> action)
+    {
+        var strategy = _context.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(async () =>
+        {
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            await action();
+            await transaction.CommitAsync();
+        });
+    }
+
+    private void SyncWritingExerciseSentences(
+        WritingExercise exercise,
+        IReadOnlyList<WritingExerciseSentenceInputViewModel> sentences)
+    {
+        var existingSentences = exercise.WritingExerciseSentences
+            .OrderBy(sentence => sentence.SortOrder)
+            .ThenBy(sentence => sentence.Id)
+            .ToList();
+
+        var sharedCount = Math.Min(existingSentences.Count, sentences.Count);
+        for (var index = 0; index < sharedCount; index++)
+        {
+            var existingSentence = existingSentences[index];
+            var updatedSentence = sentences[index];
+
+            existingSentence.SortOrder = index + 1;
+            existingSentence.VietnameseText = updatedSentence.VietnameseText;
+            existingSentence.EnglishMeaning = updatedSentence.EnglishMeaning;
+            existingSentence.BreakAfter = updatedSentence.BreakAfter;
+        }
+
+        if (existingSentences.Count > sentences.Count)
+        {
+            var trailingSentences = existingSentences
+                .Skip(sentences.Count)
+                .ToList();
+
+            foreach (var trailingSentence in trailingSentences)
+            {
+                exercise.WritingExerciseSentences.Remove(trailingSentence);
+            }
+
+            _context.WritingExerciseSentences.RemoveRange(trailingSentences);
+        }
+
+        for (var index = existingSentences.Count; index < sentences.Count; index++)
+        {
+            var newSentence = sentences[index];
+            exercise.WritingExerciseSentences.Add(new WritingExerciseSentence
+            {
+                WritingExerciseId = exercise.Id,
+                SortOrder = index + 1,
+                VietnameseText = newSentence.VietnameseText,
+                EnglishMeaning = newSentence.EnglishMeaning,
+                BreakAfter = newSentence.BreakAfter
+            });
+        }
     }
 
     private static List<WritingExerciseOptionViewModel> BuildTopicOptions(IEnumerable<string?> topics)
@@ -499,7 +606,7 @@ public class WritingExerciseManagementController : Controller
 
     private static List<string> SplitSentences(string paragraphText)
     {
-        return SentenceBoundaryRegex
+        return AdminSentenceBoundaryRegex
             .Split(paragraphText)
             .Select(CollapseWhitespace)
             .Where(sentence => !string.IsNullOrWhiteSpace(sentence))

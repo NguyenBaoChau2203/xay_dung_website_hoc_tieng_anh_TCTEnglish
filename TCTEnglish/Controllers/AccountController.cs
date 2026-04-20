@@ -21,14 +21,16 @@ namespace TCTVocabulary.Controllers
         private readonly IAppEmailSender _emailSender;
         private readonly IAvatarUploadService _avatarUploadService;
         private readonly ILogger<AccountController> _logger;
+        private readonly IGoalsService _goalsService;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger)
+        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger, IGoalsService goalsService)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _avatarUploadService = avatarUploadService;
             _logger = logger;
+            _goalsService = goalsService;
         }
 
         // GET: /Account/Login
@@ -369,17 +371,14 @@ namespace TCTVocabulary.Controllers
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null) return RedirectToAction("Login");
 
-            var savedWordsCount = await _context.Cards
-                .AsNoTracking()
-                .Where(c => c.Set.OwnerId == userId)
-                .CountAsync();
+            var goalsData = await _goalsService.GetGoalsAsync(userId);
 
             var model = new UpdateProfileViewModel
             {
                 FullName = user.FullName ?? string.Empty,
                 CurrentAvatarUrl = user.AvatarUrl,
                 StreakDays = user.Streak ?? 0,
-                SavedWordsCount = savedWordsCount
+                EarnedBadges = goalsData?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new()
             };
 
             return View("~/Views/Account/Profile.cshtml", model);
@@ -410,10 +409,8 @@ namespace TCTVocabulary.Controllers
                         TempData["ErrorMessage"] = ex.Message;
                         model.CurrentAvatarUrl = user.AvatarUrl;
                         model.StreakDays = user.Streak ?? 0;
-                        model.SavedWordsCount = await _context.Cards
-                            .AsNoTracking()
-                            .Where(c => c.Set.OwnerId == userId)
-                            .CountAsync();
+                        var goalsDataOnError = await _goalsService.GetGoalsAsync(userId);
+                        model.EarnedBadges = goalsDataOnError?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new();
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
                 }
@@ -709,7 +706,56 @@ namespace TCTVocabulary.Controllers
 
             await DeleteOwnedLearningContentAsync(userId);
             await DeleteOwnedPrivateSpeakingContentAsync(userId);
+            await DeleteOwnedPrivateListeningContentAsync(userId);
             await DeleteOwnedPrivateWritingContentAsync(userId);
+        }
+
+        private async Task DeleteOwnedPrivateListeningContentAsync(int userId)
+        {
+            var ownedPrivateLessonIds = await _context.ListeningLessons
+                .AsNoTracking()
+                .Where(lesson => lesson.OwnerUserId == userId)
+                .Select(lesson => lesson.Id)
+                .ToListAsync();
+
+            if (ownedPrivateLessonIds.Count == 0)
+            {
+                return;
+            }
+
+            // Remove dependencies: TranscriptLines, QuizQuestions, VocabItems, UserProgresses
+            var ownedPrivateProgresses = await _context.UserListeningProgresses
+                .Where(p => ownedPrivateLessonIds.Contains(p.LessonId))
+                .ToListAsync();
+            if (ownedPrivateProgresses.Count > 0)
+                _context.UserListeningProgresses.RemoveRange(ownedPrivateProgresses);
+
+            var ownedPrivateVocabs = await _context.ListeningVocabItems
+                .Where(v => ownedPrivateLessonIds.Contains(v.LessonId))
+                .ToListAsync();
+            if (ownedPrivateVocabs.Count > 0)
+                _context.ListeningVocabItems.RemoveRange(ownedPrivateVocabs);
+
+            var ownedPrivateQuizzes = await _context.ListeningQuizQuestions
+                .Where(q => ownedPrivateLessonIds.Contains(q.LessonId))
+                .ToListAsync();
+            if (ownedPrivateQuizzes.Count > 0)
+                _context.ListeningQuizQuestions.RemoveRange(ownedPrivateQuizzes);
+
+            var ownedPrivateTranscripts = await _context.ListeningTranscriptLines
+                .Where(t => ownedPrivateLessonIds.Contains(t.LessonId))
+                .ToListAsync();
+            if (ownedPrivateTranscripts.Count > 0)
+                _context.ListeningTranscriptLines.RemoveRange(ownedPrivateTranscripts);
+
+            var ownedPrivateLessons = await _context.ListeningLessons
+                .Where(l => ownedPrivateLessonIds.Contains(l.Id))
+                .ToListAsync();
+
+            if (ownedPrivateLessons.Count > 0)
+            {
+                _context.ListeningLessons.RemoveRange(ownedPrivateLessons);
+            }
         }
 
         private async Task DeleteOwnedPrivateSpeakingContentAsync(int userId)

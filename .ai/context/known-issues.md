@@ -95,16 +95,21 @@ proposing follow-up work so they do not optimize already-completed items.
   smaller services or slices, and finish the move to typed view models.
 - **Effort**: Medium.
 
-### TD-004: Goals rollout consistency across dashboard/challenge must stay enforced [LOW]
+### TD-004: Goals rollout contracts can drift if dashboard/challenge wiring and docs/tests diverge [LOW]
 - **Files**: `Views/Home/Index.cshtml`, `Controllers/HomeController.cs`,
-  `Services/GoalsService.cs`
-- **Issue**: Goals page flow is now live, but dashboard stats/challenge reward
-  wiring can regress if feature changes bypass `IGoalsService` or reintroduce
-  hardcoded display values.
-- **Impact**: Product inconsistency and missing activity/XP telemetry.
-- **Recommended fix**: Keep dashboard values model-driven and ensure daily
-  challenge writes activity through `IGoalsService.RecordActivityAsync(...)`.
-- **Effort**: Small.
+  `Services/GoalsService.cs`, `docs/architecture-prioritized-backlog*.md`,
+  `.github/copilot-instructions.md`, `AGENTS.md`,
+  `TCTEnglish.Tests/GoalsPhase*.cs`
+- **Issue**: The Goals rollout is live across dashboard/challenge and broader
+  goals flows, but product/docs/test contracts can drift if feature changes
+  bypass `IGoalsService` or update active/deferred areas without synchronized
+  documentation and phased regression coverage.
+- **Impact**: Product inconsistency, missing activity/XP telemetry, and weaker
+  guidance for future changes.
+- **Recommended fix**: Keep dashboard values model-driven, ensure daily
+  challenge writes activity through `IGoalsService.RecordActivityAsync(...)`,
+  and keep docs plus phased goals tests aligned with the live reward contract.
+- **Effort**: Small ongoing.
 
 ### TD-005: Secrets remain in source-controlled appsettings [SECURITY]
 - **Files**: `appsettings.json`
@@ -146,16 +151,6 @@ proposing follow-up work so they do not optimize already-completed items.
 - **Recommended fix**: Continue standardizing structured logs as the remaining
   controllers are service-extracted.
 - **Effort**: Small ongoing.
-
-### TD-009: Goals/streak/day-activity still use UTC day boundaries directly [MEDIUM]
-- **Files**: `Services/GoalsService.cs`, `Services/StreakService.cs`
-- **Issue**: Day-based logic currently uses `DateTime.UtcNow.Date` directly for
-  daily activity aggregation, streak updates, and goals progress windows.
-- **Impact**: Internal users operating in local timezone can see day-boundary
-  differences (late evening/early morning) versus expected local business date.
-- **Recommended fix**: Introduce a business-date abstraction (timezone-aware)
-  and migrate goals/streak daily calculations to that abstraction.
-- **Effort**: Small to medium.
 
 ### TD-010: Goals migration rollout checklist is not documented strongly enough [MEDIUM]
 - **Files**: `Migrations/*Goals*`, `Models/DbflashcardContext.cs`, `Services/GoalsService.cs`
@@ -204,4 +199,7 @@ proposing follow-up work so they do not optimize already-completed items.
 | Dashboard SQLite random ordering failure | Fixed with provider-safe fallback logic |
 | Duplicate `ViewModel/` vs `ViewModels/` folders | Normalized to `ViewModels/` only |
 | BUG-006 Goals placeholder page | Resolved with real `GoalsController` + `IGoalsService` read/write flow and integration tests |
+| Goals business-date badge/streak alignment | Resolved with business-date normalization plus service-level learning activity orchestration |
+| Goals phase-5 documentation closeout | Resolved by removing stale placeholder descriptions from backlog/instruction docs and aligning known-issues with real Goals state |
+| Goals phase-7 closure and reward hardening | Resolved with atomic speaking/writing completion transitions, removal of request-time writing migration, new replay regression coverage, and an explicit rollout close decision |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |

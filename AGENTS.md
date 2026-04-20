@@ -53,8 +53,9 @@ Important note:
 | `SpeakingController` | Speaking playlist index and practice flows |
 | `AccountController` | Auth, OAuth, profile, password reset, security settings |
 | `LearningApiController` | AJAX endpoints for card progress tracking |
-| `GoalsController` | Goals page; currently a static placeholder |
-| `Areas/Admin/*` | Admin-only: dashboard, user management, speaking video management |
+| `GoalsController` | Goals page with real goal update, progress, and badge workflows |
+| `NotificationController` | Notification API endpoints (unread count, list, mark-read) + full notification page |
+| `Areas/Admin/*` | Admin-only: dashboard, user management, speaking video management, notification broadcast |
 
 ### View Boundaries
 
@@ -77,6 +78,8 @@ lives in feature controllers.
 | `IClassService` | `ClassService` | Class creation, membership, access checks |
 | `IStudyService` | `StudyService` + `StudyService.Vocabulary.cs` | Study mode data and vocabulary pages |
 | `IStreakService` | `StreakService` | Daily streak tracking |
+| `IGoalsService` | `GoalsService` | Goal recording, badge refresh, streak rewards |
+| `INotificationService` | `NotificationService` | Notification CRUD, auto-generation (streak/goal/badge), admin broadcast, cleanup |
 | `IFileStorageService` | `LocalFileStorageService` | File save/delete with `ImageUploadPolicies` |
 | `IAvatarUploadService` | `AvatarUploadService` | Avatar upload orchestration |
 | `IAppEmailSender` | `SmtpAppEmailSender` | Email sending |
@@ -131,7 +134,7 @@ lives in feature controllers.
 | Security helpers | `TCTEnglish/Security/CurrentUserIdExtensions.cs` |
 | SignalR hubs | `TCTEnglish/Hubs/ClassChatHub.cs` |
 | Real-time shared types | `TCTEnglish/Realtime/` |
-| Background workers | `TCTEnglish/Workers/AutoUnlockWorker.cs` |
+| Background workers | `TCTEnglish/Workers/` (`AutoUnlockWorker.cs`, `NotificationWorker.cs`) |
 | Razor views | `TCTEnglish/Views/` |
 | Static files | `TCTEnglish/wwwroot/` |
 | Base controller | `TCTEnglish/Controllers/BaseController.cs` |

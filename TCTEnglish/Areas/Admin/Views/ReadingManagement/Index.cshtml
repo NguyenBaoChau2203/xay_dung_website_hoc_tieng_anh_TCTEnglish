@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TCTVocabulary.Models.ReadingPassage>
+<style>
+    /* Tạo khoảng cách nhỏ nếu không dùng btn-group */
+    .action-buttons .btn {
+        margin-right: 5px;
+        border-radius: 4px !important; /* Bo góc riêng từng nút thay vì chỉ bo góc 2 đầu group */
+    }
+
+    /* Hoặc nếu dùng btn-group mà muốn tách nhẹ */
+    .btn-group > .btn, .btn-group > form > .btn {
+        margin-right: 4px !important;
+        border-radius: 4px !important;
+    }
+</style>
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Quản lý Bài Đọc</h2>
+        <a asp-action="Create" class="btn btn-primary">+ Tạo Bài Mới</a>
+    </div>
+
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Cấp độ</th>
+                <th>Số câu hỏi</th>
+                <th>Trạng thái</th>
+                <th style="width: 350px;">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Title</strong></td>
+                    <td><span class="badge bg-info text-dark">@item.Level</span></td>
+                    <td>@item.Questions.Count</td>
+                    <td>
+                        <form asp-action="TogglePublish" asp-route-id="@item.Id" method="post" style="display:inline;">
+                            @if (item.IsPublished)
+                            {
+                                <button type="submit" class="btn btn-sm btn-success">Public</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-sm btn-secondary">Draft</button>
+                            }
+                        </form>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="ManageQuestions" asp-route-passageId="@item.Id" class="btn btn-sm btn-warning">Câu hỏi</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Sửa</a>
+                            
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post"
+                                  onsubmit="return confirm('Xóa bài đọc này sẽ xóa sạch câu hỏi và lịch sử làm bài. Bạn có chắc không?');"
+                                  style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

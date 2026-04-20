@@ -1,20 +1,37 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services;
 using TCTEnglish.ViewModels;
-using TCTVocabulary.ViewModels;
+using TCTVocabulary.Models;
 using TCTVocabulary.Services;
+using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
 {
+   
     [AutoValidateAntiforgeryToken]
     [Route("Home")]
     public class StudyController : BaseController
     {
         private readonly IStudyService _studyService;
+        private readonly IWritingService _writingService;
+        private readonly IWritingRequestRateLimiter _writingRequestRateLimiter;
+        private readonly IListeningService _listeningService;
+        private readonly DbflashcardContext _context;
 
-        public StudyController(IStudyService studyService)
+        public StudyController(
+            IStudyService studyService,
+            IWritingService writingService,
+            IWritingRequestRateLimiter writingRequestRateLimiter,
+            IListeningService listeningService,
+            DbflashcardContext context)
         {
             _studyService = studyService;
+            _writingService = writingService;
+            _writingRequestRateLimiter = writingRequestRateLimiter;
+            _listeningService = listeningService;
+            _context = context;
         }
 
         [Authorize]
@@ -71,11 +88,125 @@ namespace TCTVocabulary.Controllers
 
             return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToFolderWhenEmpty: true);
         }
-
+        
         [HttpGet("Listening")]
-        public IActionResult Listening()
+        public async Task<IActionResult> Listening(string? level = null, string? topic = null)
         {
-            return View();
+            var userId = TryGetCurrentUserId(out var currentUserId) ? currentUserId : (int?)null;
+            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic, userId);
+            return View(viewModel);
+        }
+
+        [HttpGet("Listening/Practice/{id:int}")]
+        public async Task<IActionResult> ListeningPractice(int id)
+        {
+            TryGetCurrentUserId(out var userId);
+            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId);
+            return viewModel == null ? NotFound() : View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost("Listening/EvaluateQuiz")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto)
+        {
+            if (dto == null || dto.LessonId <= 0)
+                return BadRequest(new { error = "Dữ liệu không hợp lệ." });
+
+            var result = await _listeningService.EvaluateQuizAsync(dto);
+            return result == null
+                ? NotFound(new { error = "Không tìm thấy bài nghe." })
+                : Json(new { success = true, data = result });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/SaveProgress/{lessonId:int}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveListeningProgress(int lessonId, [FromBody] ListeningProgressUpdateDto? dto)
+        {
+            if (dto == null)
+                return BadRequest(new { error = "Dữ liệu không hợp lệ." });
+
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Bạn cần đăng nhập." });
+
+            // Anti-IDOR: userId comes from server-side claims, never from the request body.
+            var saved = await _listeningService.SaveProgressAsync(userId, lessonId, dto);
+            return saved
+                ? Json(new { success = true })
+                : NotFound(new { error = "Không tìm thấy bài nghe." });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMyListeningLesson([FromForm] string youtubeUrl, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            if (string.IsNullOrWhiteSpace(youtubeUrl))
+            {
+                return BadRequest(new { success = false, message = "URL không được để trống." });
+            }
+
+            var result = await _listeningService.CreateOwnedLessonAsync(userId, youtubeUrl, ct);
+
+            if (result.RequiresUpgrade)
+            {
+                return StatusCode(403, new { success = false, message = result.ErrorMessage, requiresUpgrade = true });
+            }
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { success = false, message = result.ErrorMessage });
+            }
+
+            return Json(new { success = true, lessonId = result.LessonId });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMyListeningLesson([FromForm] int lessonId)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.DeleteOwnedLessonAsync(userId, lessonId);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return StatusCode(403, new { success = false, message = result.ErrorMessage });
+
+            return Json(new { success = true });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/My/GenerateQuiz")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerateListeningQuiz([FromForm] int lessonId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.GenerateQuizFromTranscriptAsync(lessonId, userId, ct);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return BadRequest(new { success = false, message = result.ErrorMessage ?? "Lỗi tạo quiz." });
+
+            return Ok(new { success = true });
+        }
+
+        [Authorize]
+        [HttpPost("Listening/Translate/{lessonId:int}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TranslateTranscript(int lessonId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+
+            var result = await _listeningService.TranslateTranscriptAsync(lessonId, userId, ct);
+
+            if (result.Status == OperationStatus.NotFound) return NotFound();
+            if (result.Status == OperationStatus.Invalid) return BadRequest(new { success = false, message = result.ErrorMessage ?? "Lỗi dịch transcript." });
+
+            return Ok(new { success = true });
         }
 
         [HttpGet("Grammar")]
@@ -85,18 +216,41 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("Reading")]
-        public IActionResult Reading()
+        public async Task<IActionResult> Reading()
         {
-            return View();
+            if (!TryGetCurrentUserId(out var userId))
+                return RedirectToAction("Login", "Account");
+
+            // Lưu ý: Đảm bảo _context đã được khai báo và inject trong Constructor của StudyController
+            var readings = await _context.ReadingPassages
+                .Where(r => r.IsPublished)
+                .Select(r => new ReadingListViewModel
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    ImageUrl = r.ImageUrl,
+                    Level = r.Level,
+                    // Thêm logic kiểm tra lịch sử học tập
+                    IsCompleted = r.UserReadingHistories
+                        .Any(u => u.UserId == userId && u.IsCompleted),
+                    IsInProgress = r.UserReadingHistories
+                        .Any(u => u.UserId == userId && !u.IsCompleted)
+                })
+                .ToListAsync();
+
+            // Sử dụng tên View cụ thể để tránh nhầm lẫn
+            return View("Reading", readings);
         }
 
+        [Authorize]
         [HttpGet("Writing")]
         public async Task<IActionResult> Writing(string? level = null)
         {
-            var viewModel = await _studyService.GetWritingIndexViewModelAsync(level);
+            var viewModel = await _writingService.GetWritingIndexViewModelAsync(level);
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Exercises")]
         public async Task<IActionResult> WritingExercises(
             string? level = null,
@@ -105,20 +259,117 @@ namespace TCTVocabulary.Controllers
             string? status = null,
             int page = 1)
         {
-            var viewModel = await _studyService.GetWritingExerciseListViewModelAsync(level, contentType, topic, status, page);
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status);
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Exercises/Data")]
         public async Task<IActionResult> WritingExercisesData(
             string? level = null,
             string? contentType = null,
-            string? topic = null)
+            string? topic = null,
+            string? status = null)
         {
-            var data = await _studyService.GetWritingExerciseDataAsync(level, contentType, topic);
+            var userId = TryGetCurrentUserId(out var currentUserId)
+                ? currentUserId
+                : (int?)null;
+            var data = await _writingService.GetWritingExerciseDataAsync(level, contentType, topic, userId, status);
             return Json(data);
         }
 
+        [Authorize]
+        [HttpPost("Writing/Exercises/CreateFromAi")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateWritingExerciseFromAi(
+            [FromBody] WritingCreateFromAiRequestViewModel? request,
+            CancellationToken cancellationToken)
+        {
+            if (request == null)
+            {
+                return BadRequest(new { error = "Thieu du lieu tao bai viet.", errorCode = "request_required" });
+            }
+
+            var result = await _writingService.CreateFromAiAsync(request, GetCurrentUserId(), cancellationToken);
+            if (result.Outcome == WritingCreateFromAiOutcome.Success)
+            {
+                return Json(new
+                {
+                    success = true,
+                    data = new
+                    {
+                        exerciseId = result.ExerciseId,
+                        sentenceCount = result.SentenceCount,
+                        level = result.Level,
+                        contentType = result.ContentType,
+                        isReplay = result.IsReplay
+                    }
+                });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.QuotaExceeded)
+            {
+                if (result.RetryAfterSeconds > 0)
+                {
+                    Response.Headers["Retry-After"] = result.RetryAfterSeconds.ToString();
+                }
+
+                return StatusCode(429, new { error = result.ErrorMessage, errorCode = result.ErrorCode, retryAfterSeconds = result.RetryAfterSeconds });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Forbidden)
+            {
+                return StatusCode(403, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            if (result.Outcome == WritingCreateFromAiOutcome.Invalid)
+            {
+                return BadRequest(new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+            }
+
+            return StatusCode(503, new { error = result.ErrorMessage, errorCode = result.ErrorCode });
+        }
+
+        [Authorize]
+        [HttpPost("Writing/Exercises/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteOwnedWritingExercise(
+            int exerciseId,
+            string? level = null,
+            string? contentType = null,
+            string? topic = null,
+            string? status = null,
+            int page = 1)
+        {
+            var result = await _writingService.DeleteOwnedExerciseAsync(exerciseId, GetCurrentUserId());
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status == OperationStatus.Invalid)
+            {
+                TempData["ErrorMessage"] = result.ErrorMessage ?? "Khong the xoa bai viet luc nay.";
+            }
+            else
+            {
+                TempData["SuccessMessage"] = "Da xoa bai viet cua ban.";
+            }
+
+            return RedirectToAction(nameof(WritingExercises), new
+            {
+                level,
+                contentType,
+                topic,
+                status,
+                page
+            });
+        }
+
+        [Authorize]
         [HttpGet("Writing/Practice")]
         public async Task<IActionResult> WritingPractice(
             string? level = null,
@@ -128,17 +379,24 @@ namespace TCTVocabulary.Controllers
             int page = 1,
             int? exerciseId = null)
         {
-            var viewModel = await _studyService.GetWritingPracticeViewModelAsync(
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var viewModel = await _writingService.GetWritingPracticeViewModelAsync(
                 level,
                 contentType,
                 topic,
-                status,
                 page,
-                exerciseId);
+                exerciseId,
+                userId,
+                status);
 
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Data")]
         public async Task<IActionResult> WritingPracticeData(int exerciseId)
         {
@@ -147,10 +405,16 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingPracticeDataAsync(exerciseId);
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var data = await _writingService.GetWritingPracticeDataAsync(exerciseId, userId);
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpGet("Writing/Practice/Hint")]
         public async Task<IActionResult> WritingHint(int exerciseId, int sentenceId)
         {
@@ -159,10 +423,22 @@ namespace TCTVocabulary.Controllers
                 return BadRequest();
             }
 
-            var data = await _studyService.GetWritingSentenceHintAsync(exerciseId, sentenceId);
+            var userId = GetCurrentUserId();
+            if (!_writingRequestRateLimiter.TryConsumeHint(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang yeu cau goi y qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var data = await _writingService.GetWritingSentenceHintAsync(exerciseId, sentenceId, userId);
             return data == null ? NotFound() : Json(data);
         }
 
+        [Authorize]
         [HttpPost("Writing/Practice/Evaluate")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EvaluateWritingSentence([FromBody] WritingSentenceEvaluationRequestViewModel? request)
@@ -177,15 +453,31 @@ namespace TCTVocabulary.Controllers
                 return BadRequest(new { error = "Cần cung cấp bài tập và câu hợp lệ." });
             }
 
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized(new { error = "Bạn cần đăng nhập để luyện viết." });
+            }
+
             if (string.IsNullOrWhiteSpace(request.UserAnswer))
             {
                 return BadRequest(new { error = "Vui lòng nhập một câu tiếng Anh trước khi gửi bài." });
             }
 
-            var evaluation = await _studyService.EvaluateWritingSentenceAsync(
+            if (!_writingRequestRateLimiter.TryConsumeEvaluation(
+                    userId,
+                    HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    out var retryAfterSeconds))
+            {
+                return BuildWritingRateLimitResult(
+                    "Ban dang gui bai qua nhanh. Vui long thu lai sau.",
+                    retryAfterSeconds);
+            }
+
+            var evaluation = await _writingService.EvaluateWritingSentenceAsync(
                 request.ExerciseId,
                 request.SentenceId,
-                request.UserAnswer);
+                request.UserAnswer,
+                userId);
 
             if (evaluation == null)
             {
@@ -234,6 +526,16 @@ namespace TCTVocabulary.Controllers
             }
 
             return View(viewName, viewModel);
+        }
+
+        private IActionResult BuildWritingRateLimitResult(string errorMessage, int retryAfterSeconds)
+        {
+            Response.Headers["Retry-After"] = retryAfterSeconds.ToString();
+            return StatusCode(429, new
+            {
+                error = errorMessage,
+                retryAfterSeconds
+            });
         }
     }
 

@@ -1,0 +1,170 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.ListeningLessonIndexViewModel
+@{
+    ViewData["Title"] = "Quản lý bài nghe";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0 text-gray-800">Listening Lessons</h1>
+            <p class="text-muted small">Quản lý nội dung luyện nghe, transcripts và bài tập.</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-1"></i> Tạo bài mới
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-1"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- Filtering -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Index" method="get" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold">Tìm kiếm</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" placeholder="Tiêu đề hoặc chủ đề..." />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Cấp độ</label>
+                    <select name="level" class="form-select">
+                        <option value="All" selected="@(string.IsNullOrEmpty(Model.LevelFilter) || Model.LevelFilter == "All")">Tất cả</option>
+                        <option value="A1" selected="@(Model.LevelFilter == "A1")">A1 - Beginner</option>
+                        <option value="A2" selected="@(Model.LevelFilter == "A2")">A2 - Elementary</option>
+                        <option value="B1" selected="@(Model.LevelFilter == "B1")">B1 - Intermediate</option>
+                        <option value="B2" selected="@(Model.LevelFilter == "B2")">B2 - Upper-Int</option>
+                        <option value="C1" selected="@(Model.LevelFilter == "C1")">C1 - Advanced</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-dark w-100">
+                        <i class="bi bi-filter"></i> Lọc
+                    </button>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.SearchToken) || (!string.IsNullOrEmpty(Model.LevelFilter) && Model.LevelFilter != "All"))
+                {
+                    <div class="col-md-2">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100">Xóa lọc</a>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-sm overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Lesson</th>
+                        <th>Level/Topic</th>
+                        <th>Stats</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Lessons.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5 text-muted">
+                                <i class="bi bi-file-earmark-x fs-1 d-block mb-2"></i>
+                                Không tìm thấy bài học nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model.Lessons)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-bold text-dark">@item.Title</div>
+                                @if (!string.IsNullOrEmpty(item.YoutubeId))
+                                {
+                                    <div class="small text-muted">
+                                        <i class="fab fa-youtube text-danger"></i> @item.YoutubeId
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3">@item.Level</span>
+                                <div class="small text-muted mt-1">@item.Topic</div>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-3 small">
+                                    <span title="Transcript"><i class="bi bi-file-text me-1"></i> @item.TranscriptCount</span>
+                                    <span title="Quiz Questions"><i class="bi bi-patch-question me-1"></i> @item.QuizCount</span>
+                                    <span title="Vocabulary"><i class="bi bi-book me-1"></i> @item.VocabCount</span>
+                                </div>
+                            </td>
+                            <td>
+                                @if (item.IsPublished)
+                                {
+                                    <span class="badge bg-success"><i class="bi bi-eye-fill"></i> Public</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary"><i class="bi bi-eye-slash-fill"></i> Draft</span>
+                                }
+                            </td>
+                            <td class="small text-muted">@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="text-end pe-4">
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                                        <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil me-2"></i> Edit Basics</a></li>
+                                        <li><a class="dropdown-item" asp-action="ManageTranscript" asp-route-id="@item.Id"><i class="bi bi-file-text me-2"></i> Manage Transcript</a></li>
+                                        <li><a class="dropdown-item" asp-action="ManageQuiz" asp-route-id="@item.Id"><i class="bi bi-patch-question me-2"></i> Manage Quiz</a></li>
+                                        <li><a class="dropdown-item" asp-action="ManageVocab" asp-route-id="@item.Id"><i class="bi bi-book me-2"></i> Manage Vocabulary</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form asp-action="Delete" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài học này không?')">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i> Delete</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        @if (Model.TotalPages > 1)
+        {
+            <div class="card-footer bg-white border-top-0 py-3">
+                <nav>
+                    <ul class="pagination pagination-sm justify-content-center mb-0">
+                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" asp-route-q="@Model.SearchToken" asp-route-level="@Model.LevelFilter">Previous</a>
+                        </li>
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-q="@Model.SearchToken" asp-route-level="@Model.LevelFilter">@i</a>
+                            </li>
+                        }
+                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" asp-route-q="@Model.SearchToken" asp-route-level="@Model.LevelFilter">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+</div>

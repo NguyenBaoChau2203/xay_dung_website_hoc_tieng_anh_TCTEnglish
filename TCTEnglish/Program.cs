@@ -37,7 +37,13 @@ builder.Services.AddScoped<IStreakService, StreakService>();
 builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
+builder.Services.AddScoped<IWritingService, WritingService>();
+builder.Services.AddScoped<IWritingAiEvaluationService, WritingAiEvaluationService>();
+builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimiter>();
+builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Services.ListeningService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
+builder.Services.AddScoped<IVocabSuggestService, VocabSuggestService>();
 builder.Services.AddOptions<AiOptions>()
     .Configure<IConfiguration>((options, configuration) =>
     {
@@ -71,6 +77,7 @@ builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
 builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();
 builder.Services.AddSingleton<IAiStreamingService, AiStreamingService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
+builder.Services.AddHostedService<NotificationWorker>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -160,6 +167,16 @@ catch (Exception ex)
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "JsonVocabularySeeder: Lỗi không mong đợi khi seed từ JSON.");
+}
+
+try
+{
+    await TCTVocabulary.Models.ListeningLessonSeedData.SeedAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "ListeningLessonSeedData: Lỗi không mong đợi khi seed dữ liệu luyện nghe.");
 }
 
 app.Run();

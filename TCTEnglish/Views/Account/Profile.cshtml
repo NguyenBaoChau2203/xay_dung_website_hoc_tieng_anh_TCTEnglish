@@ -1,4 +1,5 @@
 @model TCTVocabulary.ViewModels.UpdateProfileViewModel
+@using TCTEnglish.ViewModels
 
 @{
     ViewData["Title"] = "Hồ sơ của tôi";
@@ -88,28 +89,83 @@
 
                         <div class="my-5 border-top border-light-subtle"></div>
 
-                        <div class="row g-0 rounded-3 border border-secondary-subtle bg-light shadow-sm">
-                            <div class="col-6 border-end border-secondary-subtle">
-                                <div class="p-4 text-center">
-                                    <div class="mb-1 text-warning"><i class="fas fa-fire fa-lg"></i></div>
-                                    <div class="fw-bold fs-3 text-dark mb-0">@Model.StreakDays</div>
-                                    <div class="text-muted small fw-medium">Ngày liên tiếp</div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="p-4 text-center">
-                                    <div class="mb-1 text-success"><i class="fas fa-book fa-lg"></i></div>
-                                    <div class="fw-bold fs-3 text-dark mb-0">@Model.SavedWordsCount</div>
-                                    <div class="text-muted small fw-medium">Từ đã lưu</div>
-                                </div>
+                        <div class="rounded-3 border border-secondary-subtle bg-light shadow-sm">
+                            <div class="p-4 text-center">
+                                <div class="mb-1 text-warning"><i class="fas fa-fire fa-lg"></i></div>
+                                <div class="fw-bold fs-3 text-dark mb-0">@Model.StreakDays</div>
+                                <div class="text-muted small fw-medium">Ngày liên tiếp</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Badges Showcase -->
+                <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm overflow-hidden mb-4">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div>
+                                <h5 class="fw-semibold text-dark mb-1">
+                                    <i class="fas fa-trophy text-warning me-2"></i>Danh hiệu đạt được
+                                </h5>
+                                <p class="text-muted small mb-0">
+                                    @if (Model.EarnedBadges.Count > 0)
+                                    {
+                                        <span>Bạn đã mở khóa <strong>@Model.EarnedBadges.Count</strong> danh hiệu.</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Hoàn thành mục tiêu để mở khóa danh hiệu.</span>
+                                    }
+                                </p>
+                            </div>
+                            <a asp-controller="Goals" asp-action="Index" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                <i class="fas fa-bullseye me-1"></i> Xem mục tiêu
+                            </a>
+                        </div>
+
+                        @if (Model.EarnedBadges.Count > 0)
+                        {
+                            <div class="row g-3">
+                                @foreach (var badge in Model.EarnedBadges)
+                                {
+                                    <div class="col-6 col-md-4">
+                                        <div class="badge-card h-100 p-3 rounded-3 border border-secondary-subtle shadow-sm text-center">
+                                            <div class="badge-icon-wrap mx-auto mb-3">
+                                                <i class="@badge.IconClass badge-icon"></i>
+                                            </div>
+                                            <div class="fw-semibold text-dark small mb-1">@badge.Name</div>
+                                            <div class="badge-desc">@badge.Description</div>
+                                            @if (badge.AwardedAt.HasValue)
+                                            {
+                                                <div class="mt-auto pt-2">
+                                                    <span class="badge bg-success-subtle text-success rounded-pill" style="font-size: 0.65rem;">
+                                                        <i class="fas fa-check me-1"></i>@badge.AwardedAt.Value.ToString("dd/MM/yyyy")
+                                                    </span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center py-4">
+                                <div class="badge-empty-icon mx-auto mb-3">
+                                    <i class="fas fa-medal text-muted" style="font-size: 2.5rem; opacity: 0.35;"></i>
+                                </div>
+                                <p class="text-muted mb-3">Bạn chưa đạt danh hiệu nào.</p>
+                                <a asp-controller="Goals" asp-action="Index" class="btn btn-primary btn-sm rounded-pill px-4">
+                                    <i class="fas fa-rocket me-1"></i> Bắt đầu học để mở khóa!
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
                 <div class="text-center">
                     <a asp-action="Settings" class="btn btn-link text-decoration-none text-muted small fw-medium">
-                        <i class="fas fa-shield-halved me-1"></i> Bảo mật tài khoản & Cài đặt nâng cao
+                        <i class="fas fa-shield-halved me-1"></i> Bảo mật tài khoản &amp; Cài đặt nâng cao
                     </a>
                 </div>
 

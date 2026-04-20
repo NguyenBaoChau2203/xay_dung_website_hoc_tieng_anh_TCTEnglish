@@ -1,0 +1,226 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.CreateAnnouncementViewModel
+@{
+    ViewData["Title"] = "Gửi thông báo hệ thống";
+    Layout = "_AdminLayout";
+}
+
+@* ── TempData alerts ── *@
+@if (TempData["Success"] is string successMsg)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>@successMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] is string errorMsg)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>@errorMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h1 class="h4 mb-0 fw-bold">
+            <i class="fas fa-bullhorn text-primary me-2"></i>Gửi thông báo hệ thống
+        </h1>
+        <p class="text-muted small mt-1 mb-0">
+            Thông báo sẽ được gửi tới <strong>tất cả người dùng</strong> đang hoạt động.
+        </p>
+    </div>
+    <a asp-action="History" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-clock-history me-1"></i> Lịch sử
+    </a>
+</div>
+
+<div class="row g-4">
+    @* ── Left: Form ── *@
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-bottom py-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="bi bi-pencil-square me-2 text-primary"></i>Soạn thông báo
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <form id="announcementForm" method="post" asp-action="Create" novalidate>
+                    @Html.AntiForgeryToken()
+                    <div class="mb-4">
+                        <label asp-for="Title" class="form-label fw-semibold">
+                            Tiêu đề <span class="text-danger">*</span>
+                        </label>
+                        <input asp-for="Title"
+                               id="titleInput"
+                               class="form-control"
+                               placeholder="VD: Cập nhật tính năng mới"
+                               maxlength="200"
+                               autocomplete="off" />
+                        <div class="d-flex justify-content-between mt-1">
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                            <span class="text-muted small">
+                                <span id="titleCount">0</span>/200
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Message" class="form-label fw-semibold">
+                            Nội dung <span class="text-danger">*</span>
+                        </label>
+                        <textarea asp-for="Message"
+                                  id="messageInput"
+                                  class="form-control"
+                                  rows="5"
+                                  placeholder="Nhập nội dung thông báo..."
+                                  maxlength="1000"></textarea>
+                        <div class="d-flex justify-content-between mt-1">
+                            <span asp-validation-for="Message" class="text-danger small"></span>
+                            <span class="text-muted small">
+                                <span id="messageCount">0</span>/1000
+                            </span>
+                        </div>
+                    </div>
+
+                    @* Confirm button — triggers Bootstrap modal *@
+                    <button type="button"
+                            class="btn btn-primary w-100"
+                            id="openConfirmBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#confirmModal">
+                        <i class="fas fa-paper-plane me-2"></i>Gửi thông báo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @* ── Right: Preview ── *@
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-bottom py-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="bi bi-eye me-2 text-secondary"></i>Xem trước
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-muted small mb-3">
+                    Thông báo sẽ xuất hiện như thế này trong dropdown của người dùng:
+                </p>
+
+                @* Notification preview card *@
+                <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-light border">
+                    <div class="flex-shrink-0 d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary"
+                         style="width:42px;height:42px;">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="fw-semibold text-truncate" id="previewTitle" style="font-size:13px;">
+                            <span class="text-secondary fst-italic">Tiêu đề thông báo</span>
+                        </div>
+                        <div class="text-muted" id="previewMessage"
+                             style="font-size:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">
+                            <span class="fst-italic">Nội dung thông báo…</span>
+                        </div>
+                        <div class="text-muted mt-1" style="font-size:11px;">vừa xong</div>
+                    </div>
+                    <div class="flex-shrink-0 rounded-circle bg-primary"
+                         style="width:8px;height:8px;margin-top:4px;"></div>
+                </div>
+
+                <p class="text-muted small mt-3 mb-0">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Thông báo sẽ gửi đến <i>tất cả người dùng</i> không bị khóa. Không thể
+                    thu hồi sau khi gửi.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Confirm Modal ── *@
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title" id="confirmModalLabel">
+                    <i class="fas fa-paper-plane text-primary me-2"></i>Xác nhận gửi thông báo
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body py-3">
+                <div class="alert alert-warning d-flex gap-2 mb-3">
+                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 mt-1"></i>
+                    <div>
+                        Thông báo này sẽ được gửi tới <strong>tất cả người dùng</strong>
+                        đang hoạt động. Hành động này <strong>không thể thu hồi</strong>.
+                    </div>
+                </div>
+
+                <div class="bg-light rounded-3 p-3 border">
+                    <div class="fw-semibold mb-1" id="modalPreviewTitle" style="font-size:14px;"></div>
+                    <div class="text-muted" id="modalPreviewMessage" style="font-size:13px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-lg me-1"></i>Huỷ
+                </button>
+                <button type="button" class="btn btn-primary" id="confirmSendBtn">
+                    <i class="fas fa-paper-plane me-1"></i>Xác nhận gửi
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            const elTitle      = document.getElementById('titleInput');
+            const elMessage    = document.getElementById('messageInput');
+            const elTitleCount = document.getElementById('titleCount');
+            const elMsgCount   = document.getElementById('messageCount');
+            const elPrevTitle  = document.getElementById('previewTitle');
+            const elPrevMsg    = document.getElementById('previewMessage');
+            const elModalTitle = document.getElementById('modalPreviewTitle');
+            const elModalMsg   = document.getElementById('modalPreviewMessage');
+            const elForm       = document.getElementById('announcementForm');
+            const elConfirmBtn = document.getElementById('confirmSendBtn');
+
+            function updateCounts() {
+                elTitleCount.textContent = elTitle.value.length;
+                elMsgCount.textContent   = elMessage.value.length;
+            }
+
+            function updatePreview() {
+                const t = elTitle.value.trim();
+                const m = elMessage.value.trim();
+                elPrevTitle.innerHTML  = t ? escHtml(t) : '<span class="text-secondary fst-italic">Tiêu đề thông báo</span>';
+                elPrevMsg.innerHTML    = m ? escHtml(m) : '<span class="fst-italic">Nội dung thông báo…</span>';
+                elModalTitle.textContent = t;
+                elModalMsg.textContent   = m;
+            }
+
+            function escHtml(s) {
+                const d = document.createElement('div');
+                d.appendChild(document.createTextNode(s));
+                return d.innerHTML;
+            }
+
+            elTitle.addEventListener('input', function () { updateCounts(); updatePreview(); });
+            elMessage.addEventListener('input', function () { updateCounts(); updatePreview(); });
+
+            // "Confirm Send" button inside modal actually submits the form
+            elConfirmBtn.addEventListener('click', function () {
+                bootstrap.Modal.getInstance(document.getElementById('confirmModal'))?.hide();
+                elForm.submit();
+            });
+
+            // Initialise counts from any pre-filled values
+            updateCounts();
+            updatePreview();
+        })();
+    </script>
+}

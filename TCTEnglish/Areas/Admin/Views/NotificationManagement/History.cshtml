@@ -1,0 +1,133 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.AnnouncementHistoryViewModel
+@{
+    ViewData["Title"] = "Lịch sử thông báo";
+    Layout = "_AdminLayout";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h1 class="h4 mb-0 fw-bold">
+            <i class="bi bi-clock-history text-primary me-2"></i>Lịch sử thông báo
+        </h1>
+        <p class="text-muted small mt-1 mb-0">
+            Tất cả thông báo toàn hệ thống đã được gửi.
+        </p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary btn-sm">
+        <i class="fas fa-paper-plane me-1"></i> Gửi thông báo mới
+    </a>
+</div>
+
+@if (TempData["Success"] is string successMsg)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>@successMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        @if (!Model.Items.Any())
+        {
+            @* ── Empty state ── *@
+            <div class="text-center py-5 text-muted">
+                <i class="bi bi-megaphone fs-1 d-block mb-3 opacity-25"></i>
+                <h5 class="mb-1">Chưa có thông báo nào</h5>
+                <p class="mb-3 small">Gửi thông báo đầu tiên của bạn để bắt đầu.</p>
+                <a asp-action="Create" class="btn btn-primary btn-sm">
+                    <i class="fas fa-paper-plane me-1"></i> Gửi thông báo mới
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width:25%;">Tiêu đề</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col" style="width:160px;">Thời gian</th>
+                            <th scope="col" style="width:120px;">Người gửi</th>
+                            <th scope="col" class="text-center" style="width:110px;">Số người nhận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold" style="font-size:13px;">
+                                        @item.Title
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="text-muted" style="font-size:13px;
+                                                 display:-webkit-box;
+                                                 -webkit-line-clamp:2;
+                                                 -webkit-box-orient:vertical;
+                                                 overflow:hidden;">
+                                        @item.Message
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="text-muted small">
+                                        @item.CreatedAt.AddHours(7).ToString("dd/MM/yyyy HH:mm")
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary">
+                                        <i class="bi bi-shield-lock-fill me-1"></i>@item.CreatedByName
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-secondary-subtle text-secondary px-3">
+                                        @item.RecipientCount
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @* ── Pagination ── *@
+            @if (Model.TotalPages > 1)
+            {
+                <div class="d-flex justify-content-center py-3">
+                    <nav aria-label="Phân trang lịch sử thông báo">
+                        <ul class="pagination pagination-sm mb-0">
+                            @* Previous *@
+                            <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="History"
+                                   asp-route-page="@(Model.CurrentPage - 1)">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+
+                            @for (int p = 1; p <= Model.TotalPages; p++)
+                            {
+                                <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
+                                    <a class="page-link"
+                                       asp-action="History"
+                                       asp-route-page="@p">@p</a>
+                                </li>
+                            }
+
+                            @* Next *@
+                            <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="History"
+                                   asp-route-page="@(Model.CurrentPage + 1)">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            }
+        }
+    </div>
+</div>

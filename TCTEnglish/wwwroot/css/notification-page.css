@@ -1,0 +1,211 @@
+/* =============================================================
+   notification-page.css — Full-page notification list
+   Complements notifications.css (dropdown styles).
+   ============================================================= */
+
+/* ── Page wrapper ───────────────────────────────────────────── */
+.notif-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 16px 48px;
+}
+
+/* ── Page header ────────────────────────────────────────────── */
+.notif-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.notif-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.notif-page-title i { color: #6366f1; margin-right: 8px; }
+
+/* ── Filter tabs ────────────────────────────────────────────── */
+.notif-filter-tabs {
+    display: flex;
+    gap: 4px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.notif-filter-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.notif-filter-tab:hover { color: #374151; background: #e5e7eb; }
+
+.notif-filter-tab.active {
+    background: #ffffff;
+    color: #6366f1;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.notif-filter-tab .badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #6366f1;
+    color: #fff;
+    margin-left: 6px;
+}
+
+/* ── Card list ──────────────────────────────────────────────── */
+.notif-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* ── Page notification item ─────────────────────────────────── */
+.notif-page-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+    transition: background 0.12s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.notif-page-item:last-child { border-bottom: none; }
+.notif-page-item:hover      { background: #f9f7ff; }
+
+.notif-page-item.is-unread  { background: #faf5ff; }
+.notif-page-item.is-unread:hover { background: #f3ebff; }
+
+/* ── Icon ───────────────────────────────────────────────────── */
+.notif-page-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: #ede9fe;
+    color: #7c3aed;
+    margin-top: 2px;
+}
+
+.notif-page-icon--streak { background: #fff7ed; color: #ea580c; }
+.notif-page-icon--goal   { background: #ecfdf5; color: #059669; }
+.notif-page-icon--badge  { background: #fefce8; color: #ca8a04; }
+.notif-page-icon--admin  { background: #f0f9ff; color: #0284c7; }
+
+/* ── Body ───────────────────────────────────────────────────── */
+.notif-page-body { flex: 1; min-width: 0; }
+
+.notif-page-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 3px;
+}
+
+.notif-page-item-msg {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.notif-page-item-time {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* ── Unread indicator ───────────────────────────────────────── */
+.notif-page-dot {
+    flex-shrink: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6366f1;
+    margin-top: 6px;
+}
+
+/* ── Actions bar ────────────────────────────────────────────── */
+.notif-page-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.notif-mark-all-page-btn {
+    font-size: 13px;
+    color: #6366f1;
+    font-weight: 500;
+    background: none;
+    border: 1px solid #e0e7ff;
+    border-radius: 7px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+
+.notif-mark-all-page-btn:hover {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+.notif-page-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #9ca3af;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+
+.notif-page-empty i  { font-size: 48px; margin-bottom: 16px; display: block; opacity: 0.4; }
+.notif-page-empty h4 { font-size: 17px; color: #374151; margin-bottom: 6px; }
+.notif-page-empty p  { font-size: 13px; margin: 0; }
+
+/* ── Loading skeleton ───────────────────────────────────────── */
+.notif-page-skeleton { padding: 16px 20px; display: flex; gap: 14px; }
+
+/* reuse existing .skeleton-circle / .skeleton-line from notifications.css */
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.notif-pagination { margin-top: 24px; }
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 575.98px) {
+    .notif-page { padding: 16px 8px 40px; }
+    .notif-page-item { padding: 13px 14px; }
+    .notif-page-icon { width: 38px; height: 38px; font-size: 15px; }
+    .notif-filter-tab { padding: 7px 12px; font-size: 13px; }
+}
