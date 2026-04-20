@@ -143,6 +143,24 @@
             }
         });
 
+        // Handle quick action buttons click
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.js-quick-action');
+            if (!btn) return;
+            const question = btn.getAttribute('data-question') || btn.textContent.trim();
+            // Fill the input and trigger submit
+            if (elInput && !elSendBtn.disabled) {
+                elInput.value = question;
+                elForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                
+                // hide quick actions
+                const quickActionsDiv = btn.closest('.ai-quick-actions');
+                if (quickActionsDiv) {
+                    quickActionsDiv.classList.add('d-none');
+                }
+            }
+        });
+
         elForm.addEventListener('submit', async function (event) {
             event.preventDefault();
 

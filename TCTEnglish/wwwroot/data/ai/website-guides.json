@@ -179,6 +179,38 @@
       "body": "Bạn có thể tìm kiếm bộ từ vựng trên TCT English:\n1. Sử dụng thanh tìm kiếm ở đầu trang.\n2. Nhập từ khoá tên bộ từ hoặc từ vựng bạn muốn tìm.\n3. Kết quả hiển thị danh sách bộ từ khớp với từ khoá.\nNgoài ra trong trang **Bộ từ vựng** có thể lọc và sắp xếp các bộ từ của bạn.",
       "route": "/Home/Search",
       "topic": "vocabulary"
+    },
+    {
+      "id": "reading-practice",
+      "title": "Luyện tập Kỹ năng Đọc (Reading)",
+      "keywords": ["luyện đọc", "reading", "bài đọc", "reading comprehension", "trắc nghiệm đọc"],
+      "body": "Tính năng Reading giúp bạn luyện kỹ năng đọc hiểu qua các đoạn văn bản:\n- Chế độ **Study**: Đọc đoạn văn kết hợp hình ảnh minh họa.\n- Chế độ **Quiz**: Trả lời các câu hỏi Multiple Choice dựa trên nội dung đã đọc.\nHệ thống sẽ lưu lại lịch sử làm bài để tính điểm kinh nghiệm (XP) cho bạn.",
+      "route": "/Study/ReadingList",
+      "topic": "reading"
+    },
+    {
+      "id": "writing-practice",
+      "title": "Luyện tập Kỹ năng Viết (Writing)",
+      "keywords": ["luyện viết", "writing", "dịch câu", "ai chấm điểm", "sửa lỗi ngữ pháp"],
+      "body": "Tính năng Writing cung cấp các bài tập viết tập trung vào dịch câu và viết tự do.\nĐặc biệt, hệ thống sử dụng **AI tích hợp (Premium)** để chấm điểm chi tiết bài viết của bạn theo 4 tiêu chí: Ngữ nghĩa, Ngữ pháp, Độ tự nhiên và Từ vựng. Bạn cũng sẽ nhận được gợi ý viết lại (Rewrite) sao cho tự nhiên như người bản xứ.",
+      "route": "/Study/WritingList",
+      "topic": "writing"
+    },
+    {
+      "id": "listening-practice",
+      "title": "Luyện tập Kỹ năng Nghe (Listening)",
+      "keywords": ["luyện nghe", "listening", "nghe audio", "transcript", "bài nghe"],
+      "body": "Với tính năng Listening, bạn có thể luyện nghe qua các bài học âm thanh (Audio) đi kèm:\n- **Transcript**: Theo dõi kịch bản bài nghe.\n- **Từ vựng nổi bật**: Hệ thống bôi đậm từ khóa khó trong bài.\n- **Focus Listening**: Nhấn vào từng phần văn bản để nghe đi nghe lại nghe chính xác đoạn đó.",
+      "route": "/Study/ListeningList",
+      "topic": "listening"
+    },
+    {
+      "id": "contact-support",
+      "title": "Liên hệ hỗ trợ và Các thông tin khác",
+      "keywords": ["liên hệ", "hỗ trợ", "contact", "support", "thông báo", "landing page", "về chúng tôi"],
+      "body": "TCT English cung cấp hệ thống học tiếng Anh toàn diện cho nội bộ.\n- **Thông báo**: Xem ở biểu tượng quả chuông trên góc phải màn hình.\n- **Khám phá tổng quan**: Xem tại trang Dashboard và Navigation bên trái.\n- **Liên hệ hỗ trợ**: Nếu gặp lỗi hoặc có thắc mắc trong quá trình học, vui lòng nhấn mục **Contact** ở cuối trang để được hỗ trợ trực tiếp từ quản trị viên bằng Email hoặc SĐT.",
+      "route": "/Home/Contact",
+      "topic": "support"
     }
   ]
 }
