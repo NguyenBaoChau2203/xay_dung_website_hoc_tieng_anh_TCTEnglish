@@ -71,6 +71,7 @@ builder.Services.AddScoped<IKnowledgeRetriever, LearningProgressRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, CardLookupRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, SpeakingRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, ClassRetriever>();
+builder.Services.AddScoped<IKnowledgeRetriever, StudyRecommendationRetriever>();
 builder.Services.AddScoped<IAiProviderClient, InternalKnowledgeProvider>();
 builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
 builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
