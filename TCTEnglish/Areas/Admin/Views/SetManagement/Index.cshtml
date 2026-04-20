@@ -1,0 +1,184 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.SetManagementIndexViewModel
+@{
+    ViewData["Title"] = "Quản lý Vocabulary Sets";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    bool hasFilter = !string.IsNullOrEmpty(Model.SearchToken) || Model.FolderFilter.HasValue || (Model.OwnerFilter != null && Model.OwnerFilter != "all");
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0 text-gray-800">Vocabulary Sets</h1>
+            <p class="text-muted small">Quản lý các bộ từ vựng trong hệ thống.</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-1"></i> Tạo Set mới
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-1"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- Filtering -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Index" method="get" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold">Tìm kiếm</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" placeholder="Tên set hoặc mô tả..." />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Folder</label>
+                    <select name="folderId" class="form-select">
+                        <option value="">Tất cả</option>
+                        @foreach (var folder in Model.Folders)
+                        {
+                            <option value="@folder.FolderId" selected="@(Model.FolderFilter == folder.FolderId)">@folder.FolderName (@folder.OwnerName)</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Loại</label>
+                    <select name="ownerFilter" class="form-select">
+                        <option value="all" selected="@(Model.OwnerFilter == "all")">Tất cả</option>
+                        <option value="system" selected="@(Model.OwnerFilter == "system")">System</option>
+                        <option value="user" selected="@(Model.OwnerFilter == "user")">User</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-dark w-100">
+                        <i class="bi bi-filter"></i> Lọc
+                    </button>
+                </div>
+                @if (hasFilter)
+                {
+                    <div class="col-md-2">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100">Xóa lọc</a>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-sm overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Set</th>
+                        <th>Owner</th>
+                        <th>Folder</th>
+                        <th class="text-center">Cards</th>
+                        <th class="text-center">Views</th>
+                        <th>Created At</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Sets.Any())
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                <i class="bi bi-file-earmark-x fs-1 d-block mb-2"></i>
+                                Không tìm thấy học phần nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model.Sets)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-bold text-dark">@item.SetName</div>
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <div class="small text-muted text-truncate" style="max-width: 250px;" title="@item.Description">
+                                        @item.Description
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <div class="small fw-medium">@item.OwnerName</div>
+                                @if (item.IsSystemSet)
+                                {
+                                    <span class="badge bg-info-subtle text-info border border-info-subtle" style="font-size: 0.7rem;">System</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary-subtle text-secondary" style="font-size: 0.7rem;">User</span>
+                                }
+                            </td>
+                            <td>@(item.FolderName ?? "—")</td>
+                            <td class="text-center">
+                                <span class="badge bg-light text-dark border">@item.CardCount</span>
+                            </td>
+                            <td class="text-center small">@item.ViewCount.ToString("N0")</td>
+                            <td class="small text-muted">@item.CreatedAt?.ToString("dd/MM/yyyy")</td>
+                            <td class="text-end pe-4">
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                                        <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.SetId"><i class="bi bi-pencil me-2"></i> Edit</a></li>
+                                        <li><a class="dropdown-item" asp-action="Cards" asp-route-id="@item.SetId"><i class="bi bi-card-list me-2"></i> Manage Cards</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form asp-action="Delete" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa học phần này?')">
+                                                <input type="hidden" name="id" value="@item.SetId" />
+                                                <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i> Delete</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        @if (Model.TotalPages > 1)
+        {
+            <div class="card-footer bg-white border-top-0 py-3">
+                <nav>
+                    <ul class="pagination pagination-sm justify-content-center mb-0">
+                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" 
+                               asp-route-page="@(Model.CurrentPage - 1)" 
+                               asp-route-q="@Model.SearchToken" 
+                               asp-route-folderId="@Model.FolderFilter"
+                               asp-route-ownerFilter="@Model.OwnerFilter">Previous</a>
+                        </li>
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                                <a class="page-link" asp-action="Index" 
+                                   asp-route-page="@i" 
+                                   asp-route-q="@Model.SearchToken"
+                                   asp-route-folderId="@Model.FolderFilter"
+                                   asp-route-ownerFilter="@Model.OwnerFilter">@i</a>
+                            </li>
+                        }
+                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" 
+                               asp-route-page="@(Model.CurrentPage + 1)" 
+                               asp-route-q="@Model.SearchToken"
+                               asp-route-folderId="@Model.FolderFilter"
+                               asp-route-ownerFilter="@Model.OwnerFilter">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+</div>
