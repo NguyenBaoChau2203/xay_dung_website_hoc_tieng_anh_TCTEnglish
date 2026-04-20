@@ -1,0 +1,85 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.SetCreateEditViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Chỉnh sửa Vocabulary Set";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <a asp-action="Index" class="text-decoration-none mb-3 d-inline-block">
+        <i class="bi bi-arrow-left me-1"></i> Vocabulary Sets
+    </a>
+
+    <h1 class="h3 mb-4">Chỉnh sửa Vocabulary Set</h1>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="SetId" />
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" 
+                             style="display:none;"></div>
+
+                        <!-- SetName -->
+                        <div class="mb-3">
+                            <label asp-for="SetName" class="form-label fw-bold">
+                                Tên học phần <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="SetName" class="form-control" 
+                                   placeholder="Nhập tên học phần..." />
+                            <span asp-validation-for="SetName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Mô tả</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"
+                                      placeholder="Mô tả ngắn về học phần..."></textarea>
+                        </div>
+
+                        <!-- OwnerId (Read-only for Edit) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Người sở hữu</label>
+                            @{
+                                var ownerDisplay = Model.AvailableOwners?.FirstOrDefault(o => o.UserId == Model.OwnerId);
+                            }
+                            <input type="text" class="form-control" readonly 
+                                   value="@(ownerDisplay?.DisplayName ?? "N/A")" />
+                            <input type="hidden" asp-for="OwnerId" />
+                            <div class="form-text">Không thể thay đổi người sở hữu.</div>
+                        </div>
+
+                        <!-- FolderId -->
+                        <div class="mb-3">
+                            <label asp-for="FolderId" class="form-label fw-bold">Folder</label>
+                            <select asp-for="FolderId" class="form-select">
+                                <option value="">Không thuộc folder nào</option>
+                                @foreach (var folder in Model.AvailableFolders)
+                                {
+                                    <option value="@folder.FolderId" selected="@(Model.FolderId == folder.FolderId)">
+                                        @folder.FolderName (@folder.OwnerName)
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check me-1"></i> Cập nhật
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Hủy</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
