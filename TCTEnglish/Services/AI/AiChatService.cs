@@ -11,7 +11,7 @@ namespace TCTEnglish.Services.AI;
 
 public sealed class AiChatService : IAiChatService
 {
-    private const string DefaultSystemPrompt = "Bạn là trợ lý học tiếng Anh cho người Việt.";
+    private static readonly string DefaultSystemPrompt = AiSystemPrompts.PlatformGuide;
 
     private static readonly string[] BlockedContentPatterns =
     {
