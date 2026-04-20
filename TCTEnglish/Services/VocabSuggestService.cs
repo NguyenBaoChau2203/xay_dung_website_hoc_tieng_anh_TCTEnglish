@@ -123,7 +123,7 @@ Make sure to provide up to 3 definitions if applicable. Do not include markdown 
                 RequestTimeoutSeconds = 10
             };
 
-            var reply = await _aiClient.GenerateReplyAsync(messages, ct, options);
+            var reply = await _aiClient.GenerateReplyAsync(0, messages, ct, options);
 
             var json = reply.Text.Trim();
             if (json.StartsWith("```json", StringComparison.OrdinalIgnoreCase))

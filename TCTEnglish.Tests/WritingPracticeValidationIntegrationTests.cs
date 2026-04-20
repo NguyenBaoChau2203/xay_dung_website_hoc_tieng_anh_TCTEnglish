@@ -133,7 +133,7 @@ public sealed class WritingPracticeValidationIntegrationTests
         return new TestWebApplicationFactory(services =>
         {
             services.RemoveAll<IAiProviderClient>();
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _) => handler()));
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, _) => handler()));
         });
     }
 

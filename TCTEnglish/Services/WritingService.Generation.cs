@@ -175,6 +175,7 @@ public partial class WritingService
             try
             {
                 aiReply = await _aiProviderClient.GenerateReplyAsync(
+                    userId,
                     messages,
                     ct,
                     new AiProviderRequestOptions

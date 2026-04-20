@@ -364,7 +364,7 @@ public sealed class PremiumWritingGenerationIntegrationTests
         return new TestWebApplicationFactory(services =>
         {
             services.RemoveAll<IAiProviderClient>();
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient(handler));
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, msgs, ct) => handler(msgs, ct)));
             additionalConfiguration?.Invoke(services);
         });
     }
@@ -376,7 +376,7 @@ public sealed class PremiumWritingGenerationIntegrationTests
         return new TestWebApplicationFactory(services =>
         {
             services.RemoveAll<IAiProviderClient>();
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient(handler));
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, msgs, opts, ct) => handler(msgs, opts, ct)));
             additionalConfiguration?.Invoke(services);
         });
     }

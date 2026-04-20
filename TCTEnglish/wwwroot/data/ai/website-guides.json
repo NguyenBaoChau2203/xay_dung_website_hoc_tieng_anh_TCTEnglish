@@ -1,0 +1,216 @@
+{
+  "_comment": "TCT English — Website Guide Knowledge Base",
+  "_version": "1.0.0",
+  "_generated": "2026-04-13",
+  "_usage": "Loaded by WebsiteGuideRetriever at startup. All entries must map to real website features only.",
+  "guides": [
+    {
+      "id": "create-set",
+      "title": "Tạo bộ từ vựng (Set)",
+      "keywords": ["tạo set", "tạo bộ từ", "tạo vocabulary", "bộ từ mới", "set mới", "tạo flashcard", "thêm set"],
+      "body": "Để tạo bộ từ vựng mới trên TCT English:\n1. Đăng nhập và vào trang **Bộ từ vựng**.\n2. Nhấn nút **Tạo bộ từ mới**.\n3. Nhập tên bộ từ và mô tả (tuỳ chọn).\n4. Thêm thẻ từ: mỗi thẻ gồm Từ (Term), Định nghĩa (Definition), Phiên âm và Ví dụ.\n5. Nhấn **Lưu** để hoàn thành.",
+      "route": "/Set/Create",
+      "topic": "vocabulary"
+    },
+    {
+      "id": "add-card",
+      "title": "Thêm thẻ từ (Card) vào bộ từ",
+      "keywords": ["thêm thẻ", "thêm từ", "add card", "thêm card", "tạo thẻ mới"],
+      "body": "Để thêm thẻ từ vào một bộ từ đã có:\n1. Mở bộ từ cần chỉnh sửa.\n2. Nhấn **Chỉnh sửa bộ từ** hoặc **Thêm thẻ**.\n3. Điền nội dung thẻ: Từ, Định nghĩa, Phiên âm (không bắt buộc), Ví dụ (không bắt buộc).\n4. Nhấn **Lưu thẻ**.",
+      "route": "/Set/Edit/{id}",
+      "topic": "vocabulary"
+    },
+    {
+      "id": "edit-delete-set",
+      "title": "Chỉnh sửa và xoá bộ từ vựng",
+      "keywords": ["chỉnh sửa set", "sửa bộ từ", "xóa set", "xóa bộ từ", "edit set", "delete set"],
+      "body": "Để chỉnh sửa bộ từ: vào trang chi tiết bộ từ → nhấn **Chỉnh sửa**. Bạn có thể đổi tên, mô tả và quản lý các thẻ bên trong.\nĐể xóa bộ từ: vào trang chi tiết → nhấn **Xóa bộ từ** và xác nhận. Lưu ý: thao tác này không thể hoàn tác.",
+      "route": "/Set/Edit/{id}",
+      "topic": "vocabulary"
+    },
+    {
+      "id": "create-folder",
+      "title": "Tạo thư mục (Folder)",
+      "keywords": ["tạo thư mục", "tạo folder", "folder mới", "tổ chức set"],
+      "body": "Thư mục giúp sắp xếp các bộ từ vựng theo nhóm (tối đa 3 cấp lồng nhau).\n1. Vào trang **Thư mục**.\n2. Nhấn **Tạo thư mục mới**.\n3. Nhập tên thư mục.\n4. Chọn thư mục cha nếu muốn tạo thư mục con.\n5. Nhấn **Lưu**.\nSau đó bạn có thể di chuyển set vào thư mục từ trang chi tiết set.",
+      "route": "/Folder",
+      "topic": "vocabulary"
+    },
+    {
+      "id": "study-flashcard",
+      "title": "Học bằng chế độ Flashcard",
+      "keywords": ["flashcard", "học flashcard", "lật thẻ", "chế độ flashcard", "ôn flashcard"],
+      "body": "Chế độ Flashcard hiển thị thẻ từ lần lượt. Nhấn vào thẻ để lật và xem định nghĩa.\nSau khi xem, bạn đánh dấu **Đã biết** hoặc **Chưa biết** để hệ thống ghi nhận tiến độ.\nThẻ chưa biết sẽ xuất hiện lại trong lần ôn tiếp theo.\nTruy cập: Vào chi tiết bộ từ → Chọn **Flashcard**.",
+      "route": "/Study/Flashcard/{setId}",
+      "topic": "study"
+    },
+    {
+      "id": "study-quiz",
+      "title": "Học bằng chế độ Quiz",
+      "keywords": ["quiz", "câu hỏi trắc nghiệm", "chế độ quiz", "ôn quiz", "test từ vựng"],
+      "body": "Chế độ Quiz đưa ra câu hỏi trắc nghiệm 4 đáp án. Hệ thống tự tạo câu hỏi từ thẻ trong bộ từ.\nKết quả hiển thị ngay sau mỗi câu. Thẻ trả lời đúng ghi nhận tiến độ Mastered.\nTruy cập: Vào chi tiết bộ từ → Chọn **Quiz**.",
+      "route": "/Study/Quiz/{setId}",
+      "topic": "study"
+    },
+    {
+      "id": "study-write",
+      "title": "Học bằng chế độ Write (Viết)",
+      "keywords": ["write mode", "chế độ viết", "nhập từ", "gõ từ", "luyện viết từ"],
+      "body": "Chế độ Write yêu cầu bạn gõ chính xác từ vựng từ gợi ý định nghĩa.\nHệ thống chấm điểm theo kết quả khớp (có thể bỏ qua hoa/thường).\nThích hợp cho giai đoạn ôn tập sâu và kiểm tra trí nhớ.\nTruy cập: Vào chi tiết bộ từ → Chọn **Write**.",
+      "route": "/Study/Write/{setId}",
+      "topic": "study"
+    },
+    {
+      "id": "study-matching",
+      "title": "Học bằng chế độ Matching (Nối từ)",
+      "keywords": ["matching", "nối từ", "chế độ matching", "kéo thả", "ghép từ"],
+      "body": "Chế độ Matching hiển thị tối đa 8 cặp thẻ. Bạn kéo thả hoặc nhấn chọn để ghép từ với định nghĩa tương ứng.\nMỗi cặp ghép đúng sẽ được đánh dấu và tính điểm.\nTruy cập: Vào chi tiết bộ từ → Chọn **Matching**.",
+      "route": "/Study/Matching/{setId}",
+      "topic": "study"
+    },
+    {
+      "id": "study-read",
+      "title": "Học bằng chế độ Read (Đọc)",
+      "keywords": ["read mode", "chế độ đọc", "xem thẻ", "duyệt thẻ"],
+      "body": "Chế độ Read hiển thị toàn bộ thẻ từ ở dạng danh sách để đọc lướt thụ động.\nPhù hợp để làm quen lần đầu với nội dung của bộ từ.\nTruy cập: Vào chi tiết bộ từ → Chọn **Read**.",
+      "route": "/Study/Reading/{setId}",
+      "topic": "study"
+    },
+    {
+      "id": "create-class",
+      "title": "Tạo lớp học (Class)",
+      "keywords": ["tạo lớp", "lập lớp học", "tạo class", "lớp học mới", "mở lớp"],
+      "body": "Để tạo lớp học:\n1. Vào trang **Lớp học**.\n2. Nhấn **Tạo lớp mới**.\n3. Nhập tên lớp, mô tả (tuỳ chọn).\n4. Đặt mật khẩu nếu muốn giới hạn người tham gia.\n5. Nhấn **Tạo lớp**.\nLớp vừa tạo sẽ hiển thị trong danh sách và bạn là **Chủ lớp (Owner)**.",
+      "route": "/Class/Create",
+      "topic": "class"
+    },
+    {
+      "id": "join-class",
+      "title": "Tham gia lớp học",
+      "keywords": ["tham gia lớp", "join lớp", "mã mời", "vào lớp", "tìm lớp", "nhập lớp"],
+      "body": "Để tham gia lớp học:\n1. Vào trang **Lớp học**.\n2. Nhấn **Tham gia lớp** hoặc tìm lớp theo tên/mã.\n3. Nhập mật khẩu lớp nếu được yêu cầu.\n4. Nhấn **Tham gia**.\nSau khi tham gia, bạn là **Thành viên (Member)** và có thể xem tài liệu trong lớp.",
+      "route": "/Class",
+      "topic": "class"
+    },
+    {
+      "id": "share-folder-to-class",
+      "title": "Chia sẻ thư mục vào lớp học",
+      "keywords": ["chia sẻ folder", "chia sẻ thư mục", "gửi set vào lớp", "share vào lớp"],
+      "body": "Chủ lớp có thể chia sẻ thư mục từ vựng vào lớp để thành viên cùng học:\n1. Vào trang chi tiết lớp học.\n2. Nhấn **Chia sẻ thư mục**.\n3. Chọn thư mục cần chia sẻ.\n4. Nhấn **Xác nhận**.\nThành viên lớp sẽ thấy và học được tài liệu đã chia sẻ.",
+      "route": "/Class/Detail/{id}",
+      "topic": "class"
+    },
+    {
+      "id": "leave-class",
+      "title": "Rời khỏi lớp học",
+      "keywords": ["rời lớp", "thoát lớp", "rời khỏi lớp", "leave lớp"],
+      "body": "Để rời lớp học:\n1. Vào trang chi tiết lớp học.\n2. Nhấn **Rời khỏi lớp**.\n3. Xác nhận hành động.\nLưu ý: Chủ lớp (Owner) không thể tự rời lớp. Cần chuyển quyền sở hữu trước.",
+      "route": "/Class/Detail/{id}",
+      "topic": "class"
+    },
+    {
+      "id": "speaking-playlist",
+      "title": "Luyện Speaking — Tìm và chọn playlist",
+      "keywords": ["speaking playlist", "tìm playlist", "xem playlist", "danh sách speaking", "bài nói"],
+      "body": "Trang **Speaking** tập hợp các playlist video luyện nói tiếng Anh.\n1. Vào trang **Speaking**.\n2. Lọc theo **Level** (A1 → C2) hoặc **Chủ đề** (Career, Meeting, Email, Office, Customer, Technical, Grammar).\n3. Chọn playlist để xem danh sách video bên trong.\n4. Nhấn vào video để bắt đầu luyện tập.",
+      "route": "/Speaking",
+      "topic": "speaking"
+    },
+    {
+      "id": "speaking-practice",
+      "title": "Luyện Speaking — Shadowing, Dictation, Listening",
+      "keywords": ["shadowing", "dictation", "listening", "luyện nói", "luyện nghe", "bài nói", "practice speaking"],
+      "body": "Mỗi video speaking hỗ trợ 3 chế độ luyện tập:\n- **Shadowing**: Nghe và lặp lại theo từng câu. Dừng video ở điểm cần thiết để luyện phát âm.\n- **Dictation**: Gõ lại những gì bạn nghe được. Hệ thống chấm điểm tự động.\n- **Listening**: Trả lời câu hỏi về nội dung bài nghe.\nTruy cập: Chọn video → chọn chế độ luyện tập mong muốn.",
+      "route": "/Speaking/Practice/{videoId}",
+      "topic": "speaking"
+    },
+    {
+      "id": "set-daily-goal",
+      "title": "Đặt mục tiêu học hàng ngày (Goal)",
+      "keywords": ["mục tiêu", "goal", "target", "học mỗi ngày", "đặt goal", "mục tiêu hàng ngày"],
+      "body": "Bạn có thể đặt mục tiêu số thẻ cần học mỗi ngày:\n1. Vào **Hồ sơ cá nhân** hoặc trang **Cài đặt**.\n2. Tìm phần **Mục tiêu học hàng ngày**.\n3. Chọn số thẻ mong muốn (ví dụ: 10, 20, 30 thẻ/ngày).\n4. Nhấn **Lưu**.\nStreak của bạn tăng khi bạn hoàn thành mục tiêu mỗi ngày liên tiếp.",
+      "route": "/Account/Profile",
+      "topic": "account"
+    },
+    {
+      "id": "view-streak",
+      "title": "Xem Streak học tập",
+      "keywords": ["streak", "học liên tục", "chuỗi ngày học", "ngày học liên tiếp", "xem streak"],
+      "body": "Streak là số ngày học liên tiếp của bạn. Streak được tính khi bạn hoàn thành ít nhất số thẻ theo mục tiêu hằng ngày.\nBạn có thể xem streak hiện tại ở:\n- Dashboard trang chủ (sau khi đăng nhập)\n- Trang Hồ sơ cá nhân\nNếu bỏ một ngày, streak sẽ bị reset về 0.",
+      "route": "/Home/Dashboard",
+      "topic": "account"
+    },
+    {
+      "id": "account-profile",
+      "title": "Hồ sơ cá nhân và cài đặt tài khoản",
+      "keywords": ["hồ sơ", "profile", "cài đặt tài khoản", "đổi tên", "ảnh đại diện", "thông tin cá nhân"],
+      "body": "Vào **Hồ sơ cá nhân** để:\n- Cập nhật tên hiển thị, ảnh đại diện.\n- Xem thống kê học tập cá nhân.\n- Đặt hoặc đổi mục tiêu học hàng ngày.\n- Quản lý bảo mật tài khoản (đổi mật khẩu).\nTruy cập: Nhấn vào ảnh đại diện ở góc trên bên phải → chọn **Hồ sơ**.",
+      "route": "/Account/Profile",
+      "topic": "account"
+    },
+    {
+      "id": "change-password",
+      "title": "Đổi mật khẩu tài khoản",
+      "keywords": ["đổi mật khẩu", "thay mật khẩu", "password", "bảo mật tài khoản"],
+      "body": "Để đổi mật khẩu:\n1. Vào **Hồ sơ cá nhân** → chọn tab **Bảo mật**.\n2. Nhập mật khẩu hiện tại.\n3. Nhập mật khẩu mới và xác nhận.\n4. Nhấn **Lưu thay đổi**.\nNếu quên mật khẩu, dùng chức năng **Quên mật khẩu** ở trang đăng nhập để nhận email đặt lại.",
+      "route": "/Account/Security",
+      "topic": "account"
+    },
+    {
+      "id": "login-google-facebook",
+      "title": "Đăng nhập bằng Google hoặc Facebook",
+      "keywords": ["google login", "facebook login", "đăng nhập google", "đăng nhập facebook", "oauth"],
+      "body": "Bạn có thể đăng nhập TCT English bằng tài khoản Google hoặc Facebook:\n1. Vào trang **Đăng nhập**.\n2. Nhấn nút **Tiếp tục với Google** hoặc **Tiếp tục với Facebook**.\n3. Xác nhận quyền truy cập trên trang của Google/Facebook.\n4. Hệ thống tự tạo hoặc kết nối tài khoản TCT English của bạn.",
+      "route": "/Account/Login",
+      "topic": "account"
+    },
+    {
+      "id": "ai-chatbox-usage",
+      "title": "Cách sử dụng Chatbox AI Trợ lý",
+      "keywords": ["dùng chatbox", "hỏi chatbot", "chatbox ai", "trợ lý ai", "chat với ai", "hỏi trợ lý"],
+      "body": "Chatbox AI Trợ lý của TCT English hỗ trợ các câu hỏi liên quan đến:\n- Bộ từ vựng của bạn (xem, tìm kiếm)\n- Tiến độ học (streak, thẻ đã thuộc)\n- Thông tin lớp học\n- Gợi ý bài speaking\n- Cách sử dụng website\n- Gợi ý kế hoạch học tập\n\nGhí chú: Trợ lý **chỉ trả lời** các câu hỏi liên quan đến dữ liệu và tính năng của TCT English. Các câu hỏi về ngữ pháp tiếng Anh tổng quát hoặc kiến thức ngoài website sẽ được từ chối lịch sự.",
+      "route": "/Ai/Chat",
+      "topic": "ai"
+    },
+    {
+      "id": "search-set",
+      "title": "Tìm kiếm bộ từ vựng",
+      "keywords": ["tìm set", "tìm bộ từ", "search set", "tìm kiếm"],
+      "body": "Bạn có thể tìm kiếm bộ từ vựng trên TCT English:\n1. Sử dụng thanh tìm kiếm ở đầu trang.\n2. Nhập từ khoá tên bộ từ hoặc từ vựng bạn muốn tìm.\n3. Kết quả hiển thị danh sách bộ từ khớp với từ khoá.\nNgoài ra trong trang **Bộ từ vựng** có thể lọc và sắp xếp các bộ từ của bạn.",
+      "route": "/Home/Search",
+      "topic": "vocabulary"
+    },
+    {
+      "id": "reading-practice",
+      "title": "Luyện tập Kỹ năng Đọc (Reading)",
+      "keywords": ["luyện đọc", "reading", "bài đọc", "reading comprehension", "trắc nghiệm đọc"],
+      "body": "Tính năng Reading giúp bạn luyện kỹ năng đọc hiểu qua các đoạn văn bản:\n- Chế độ **Study**: Đọc đoạn văn kết hợp hình ảnh minh họa.\n- Chế độ **Quiz**: Trả lời các câu hỏi Multiple Choice dựa trên nội dung đã đọc.\nHệ thống sẽ lưu lại lịch sử làm bài để tính điểm kinh nghiệm (XP) cho bạn.",
+      "route": "/Study/ReadingList",
+      "topic": "reading"
+    },
+    {
+      "id": "writing-practice",
+      "title": "Luyện tập Kỹ năng Viết (Writing)",
+      "keywords": ["luyện viết", "writing", "dịch câu", "ai chấm điểm", "sửa lỗi ngữ pháp"],
+      "body": "Tính năng Writing cung cấp các bài tập viết tập trung vào dịch câu và viết tự do.\nĐặc biệt, hệ thống sử dụng **AI tích hợp (Premium)** để chấm điểm chi tiết bài viết của bạn theo 4 tiêu chí: Ngữ nghĩa, Ngữ pháp, Độ tự nhiên và Từ vựng. Bạn cũng sẽ nhận được gợi ý viết lại (Rewrite) sao cho tự nhiên như người bản xứ.",
+      "route": "/Study/WritingList",
+      "topic": "writing"
+    },
+    {
+      "id": "listening-practice",
+      "title": "Luyện tập Kỹ năng Nghe (Listening)",
+      "keywords": ["luyện nghe", "listening", "nghe audio", "transcript", "bài nghe"],
+      "body": "Với tính năng Listening, bạn có thể luyện nghe qua các bài học âm thanh (Audio) đi kèm:\n- **Transcript**: Theo dõi kịch bản bài nghe.\n- **Từ vựng nổi bật**: Hệ thống bôi đậm từ khóa khó trong bài.\n- **Focus Listening**: Nhấn vào từng phần văn bản để nghe đi nghe lại nghe chính xác đoạn đó.",
+      "route": "/Study/ListeningList",
+      "topic": "listening"
+    },
+    {
+      "id": "contact-support",
+      "title": "Liên hệ hỗ trợ và Các thông tin khác",
+      "keywords": ["liên hệ", "hỗ trợ", "contact", "support", "thông báo", "landing page", "về chúng tôi"],
+      "body": "TCT English cung cấp hệ thống học tiếng Anh toàn diện cho nội bộ.\n- **Thông báo**: Xem ở biểu tượng quả chuông trên góc phải màn hình.\n- **Khám phá tổng quan**: Xem tại trang Dashboard và Navigation bên trái.\n- **Liên hệ hỗ trợ**: Nếu gặp lỗi hoặc có thắc mắc trong quá trình học, vui lòng nhấn mục **Contact** ở cuối trang để được hỗ trợ trực tiếp từ quản trị viên bằng Email hoặc SĐT.",
+      "route": "/Home/Contact",
+      "topic": "support"
+    }
+  ]
+}

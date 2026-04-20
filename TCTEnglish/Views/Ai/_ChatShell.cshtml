@@ -80,7 +80,13 @@
             @if (Model.Messages.Count == 0)
             {
                 <div class="ai-chat-empty-state" data-chat-empty-state>
-                    Hãy bắt đầu cuộc trò chuyện với AI.
+                    <div class="mb-3">Hãy bắt đầu cuộc trò chuyện với AI.</div>
+                    <div class="ai-quick-actions d-flex flex-wrap justify-content-center gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Làm bài Reading như thế nào?">Làm bài Reading ntn?</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Tính năng Writing hoạt động ra sao?">Tính năng Writing</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Cách liên hệ hỗ trợ?">Liên hệ hỗ trợ</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Gợi ý cho tôi học gì hôm nay?">Gợi ý lộ trình</button>
+                    </div>
                 </div>
             }
             else

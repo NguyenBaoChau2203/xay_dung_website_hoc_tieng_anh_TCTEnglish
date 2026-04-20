@@ -81,7 +81,7 @@ public sealed class WritingPracticePersistenceIntegrationTests
         return new TestWebApplicationFactory(services =>
         {
             services.RemoveAll<IAiProviderClient>();
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _) =>
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, _) =>
                 Task.FromResult(new AiProviderReply(
                     """
                     {

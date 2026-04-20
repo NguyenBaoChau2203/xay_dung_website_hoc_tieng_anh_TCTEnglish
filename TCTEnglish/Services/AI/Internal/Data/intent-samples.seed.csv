@@ -1,0 +1,553 @@
+Text,Label
+# ─────────────────────────────────────────────────────────────
+# TCT English — Intent Classification Seed Dataset
+# Format  : Text,Label
+# Intents : MyVocabulary | MyProgress | CardLookup |
+#           SpeakingSuggestion | ClassInfo | WebsiteGuide |
+#           StudyRecommendation | OutOfScope | Greeting
+# Rules   :
+#   - ≥50 samples per intent
+#   - All Vietnamese, mixed with some common English shorthand
+#   - Varied phrasing (formal, casual, typo-tolerant variants)
+#   - OutOfScope MUST include strong general-English-tutoring coverage
+#   - Comments (lines starting with #) are stripped by the trainer
+# ─────────────────────────────────────────────────────────────
+
+# ═══════════════════════════════════════
+# Intent: MyVocabulary
+# Domain: User's own sets and flashcards
+# ═══════════════════════════════════════
+Tôi có những bộ từ vựng nào?,MyVocabulary
+Các bộ từ của tôi là gì?,MyVocabulary
+Cho tôi xem danh sách set từ vựng,MyVocabulary
+Tôi tạo được bao nhiêu bộ từ rồi?,MyVocabulary
+Liệt kê bộ từ vựng của tôi,MyVocabulary
+Hiển thị set từ của tôi,MyVocabulary
+Tôi đang có bao nhiêu set?,MyVocabulary
+Set từ vựng nào quan trọng nhất?,MyVocabulary
+Bộ từ vựng gần đây nhất của tôi là gì?,MyVocabulary
+Tôi có bao nhiêu thẻ từ tổng cộng?,MyVocabulary
+Xem bộ từ của tôi đi,MyVocabulary
+Bộ thẻ TOEIC của tôi có bao nhiêu từ?,MyVocabulary
+Danh sách flashcard của tôi,MyVocabulary
+Tôi có bộ từ nào chưa hoàn thành?,MyVocabulary
+Có bao nhiêu từ trong bộ Business English của tôi?,MyVocabulary
+Bộ từ nào tôi tạo gần đây nhất?,MyVocabulary
+Tôi muốn xem set từ vựng của mình,MyVocabulary
+Có bao nhiêu thẻ trong bộ từ của tôi?,MyVocabulary
+Set từ nào nhiều thẻ nhất?,MyVocabulary
+Hiện tại tôi lưu bao nhiêu bộ từ?,MyVocabulary
+Bộ từ mới nhất tôi thêm vào là gì?,MyVocabulary
+Tôi có bộ từ vựng nào chưa học?,MyVocabulary
+Tên các bộ từ vựng của tôi là gì?,MyVocabulary
+Xem tất cả bộ từ vựng tôi đã tạo,MyVocabulary
+Bộ flashcard của tôi,MyVocabulary
+Tôi học từ vựng thông qua những bộ nào?,MyVocabulary
+Danh sách các set mà tôi đang có,MyVocabulary
+Set nào tôi chưa ôn lại lần nào?,MyVocabulary
+Tôi có tổng cộng bao nhiêu bộ từ vựng?,MyVocabulary
+Cho tôi biết các set từ vựng của tôi,MyVocabulary
+Bộ từ vựng nào đang có ít thẻ nhất?,MyVocabulary
+Xem set từ gần đây của tôi,MyVocabulary
+Những bộ từ tôi đã lưu là gì?,MyVocabulary
+Các tập flashcard của tôi,MyVocabulary
+Tôi muốn kiểm tra bộ từ của mình,MyVocabulary
+Set nào có nhiều thẻ nhất trong bộ sưu tập của tôi?,MyVocabulary
+Danh sách set từ vựng đang có của tôi,MyVocabulary
+Bộ từ vựng tôi đang học,MyVocabulary
+Tôi lưu set từ ở đâu?,MyVocabulary
+Số lượng thẻ trong mỗi bộ từ của tôi là bao nhiêu?,MyVocabulary
+Bộ thẻ Daily English của tôi có gì?,MyVocabulary
+Set mà tôi hay học nhất là set nào?,MyVocabulary
+Xem vocabulary của tôi,MyVocabulary
+Có bộ nào tôi chưa hoàn thành không?,MyVocabulary
+Tôi có folder nào chứa set từ không?,MyVocabulary
+Set của tôi,MyVocabulary
+Xem flashcard,MyVocabulary
+Bộ từ vụ của tôi là gì?,MyVocabulary
+Các set tôi đã tạo,MyVocabulary
+Liệt kê tất cả set của tôi,MyVocabulary
+Từ vựng của mình đang ở đâu?,MyVocabulary
+Bộ từ tôi còn gì?,MyVocabulary
+Set TOEIC của tôi,MyVocabulary
+
+# ═══════════════════════════════════════
+# Intent: MyProgress
+# Domain: Learning progress, streak, mastery
+# ═══════════════════════════════════════
+Tiến độ học của tôi như thế nào?,MyProgress
+Tôi đã học được bao nhiêu rồi?,MyProgress
+Streak của tôi là bao nhiêu ngày?,MyProgress
+Tôi học liên tục bao nhiêu ngày rồi?,MyProgress
+Hôm nay tôi học được gì rồi?,MyProgress
+Bao nhiêu thẻ tôi đã thành thạo?,MyProgress
+Có bao nhiêu từ tôi đã mastered?,MyProgress
+Tiến độ ôn tập của tôi là bao nhiêu phần trăm?,MyProgress
+Tôi còn bao nhiêu từ cần học?,MyProgress
+Kết quả học tập của tôi là gì?,MyProgress
+Tổng số thẻ tôi đã học xong,MyProgress
+Tôi đang ở trạng thái học như thế nào?,MyProgress
+Báo cáo học tập của tôi,MyProgress
+Thống kê học tập của tôi,MyProgress
+Tôi học tốt không?,MyProgress
+Tỷ lệ thẻ đã thuộc của tôi?,MyProgress
+Tôi đang học đến đâu rồi?,MyProgress
+Mục tiêu học hàng ngày của tôi là gì?,MyProgress
+Tôi đạt goal chưa?,MyProgress
+Thẻ nào tôi đang ở trạng thái learning?,MyProgress
+Số thẻ new của tôi là bao nhiêu?,MyProgress
+Tôi còn bao nhiêu thẻ chưa bắt đầu học?,MyProgress
+Hôm nay tôi học được bao nhiêu thẻ?,MyProgress
+Tôi đạt được mục tiêu ngày hôm nay chưa?,MyProgress
+Tôi có streak bao nhiêu?,MyProgress
+Ngày mai tôi phải học gì?,MyProgress
+Số ngày học liên tiếp của tôi,MyProgress
+Tôi hoàn thành bao nhiêu phần học rồi?,MyProgress
+Hiện tại tôi có bao nhiêu từ đã thuộc?,MyProgress
+Quá trình học tập của tôi,MyProgress
+Tiến trình từ vựng của tôi,MyProgress
+Bao nhiêu thẻ tôi đang ở mức learning?,MyProgress
+Tôi đang làm tốt đến mức nào?,MyProgress
+Có bao nhiêu phần trăm tôi đã hoàn thành?,MyProgress
+Thẻ nào cần ôn lại ngay?,MyProgress
+Tôi đã học được bao nhiêu từ thành thạo?,MyProgress
+Tôi học tiếng Anh được bao lâu rồi?,MyProgress
+Lịch sử học tập của tôi,MyProgress
+Tôi đã ôn được bao nhiêu phần?,MyProgress
+Bao nhiêu thẻ chờ ôn tập?,MyProgress
+Số thẻ mastered trong bộ TOEIC của tôi?,MyProgress
+Ngày hôm nay tôi cần học gì?,MyProgress
+Tôi đang có mấy thẻ cần ôn?,MyProgress
+Kiểm tra tiến độ học của tôi,MyProgress
+Tôi học hiệu quả không?,MyProgress
+Tình hình học tập hôm nay,MyProgress
+Tôi đã đạt được gì trong tuần này?,MyProgress
+Thống kê streak học tập,MyProgress
+Tôi đang còn thiếu bao nhiêu thẻ?,MyProgress
+Xem quá trình học của mình,MyProgress
+Tiến độ của tôi hiện tại,MyProgress
+Bao giờ tôi thuộc hết bộ từ này?,MyProgress
+Tôi đang học đến đâu?,MyProgress
+
+# ═══════════════════════════════════════
+# Intent: CardLookup
+# Domain: Look up a specific word/card in user's sets
+# ═══════════════════════════════════════
+Từ "apple" có trong bộ từ của tôi không?,CardLookup
+Cho tôi tra nghĩa từ "meeting" trong hệ thống,CardLookup
+"Business" có trong bộ thẻ của tôi không?,CardLookup
+Tìm từ "deadline" trong bộ từ của tôi,CardLookup
+Nghĩa của từ "efficient" trong bộ thẻ tôi là gì?,CardLookup
+Tôi có lưu từ "presentation" chưa?,CardLookup
+Tìm bộ thẻ chứa từ "salary",CardLookup
+Từ "negotiate" có nghĩa là gì trong hệ thống?,CardLookup
+Có thẻ nào liên quan đến từ "schedule" không?,CardLookup
+Tôi có lưu từ "email" chưa?,CardLookup
+Tra nghĩa từ "report" trong bộ từ của mình,CardLookup
+Tìm từ "client" trong tập thẻ,CardLookup
+Từ "interview" có trong bộ nào của tôi không?,CardLookup
+Định nghĩa từ "colleague" trong bộ thẻ tôi là gì?,CardLookup
+Kiểm tra xem tôi có từ "profit" chưa,CardLookup
+Tìm từ "feedback" trong bộ flashcard của tôi,CardLookup
+Bộ thẻ nào chứa từ "strategy"?,CardLookup
+Tôi đã học từ "communication" chưa?,CardLookup
+Thẻ có từ "performance" trong bộ của tôi,CardLookup
+Tìm định nghĩa từ "teamwork" trong hệ thống,CardLookup
+Từ "budget" trong bộ nào của tôi?,CardLookup
+Có thẻ nào về từ "revenue" không?,CardLookup
+Từ "market" tôi đã học chưa?,CardLookup
+Tìm nghĩa "quarterly" trong tập thẻ,CardLookup
+Từ "invoice" có trong set nào?,CardLookup
+Thẻ từ "contract" tôi lưu ở đâu?,CardLookup
+Tôi có lưu từ "overtime" không?,CardLookup
+Nghĩa từ "project" trong bộ thẻ tôi,CardLookup
+Tra từ "proposal" trong hệ thống,CardLookup
+Bộ thẻ có từ "conference" của tôi,CardLookup
+Tìm từ "agenda" trong tập thẻ,CardLookup
+Từ "target" tôi đã học chưa?,CardLookup
+"Sales" có trong bộ từ tôi không?,CardLookup
+Xem định nghĩa từ "leadership" của tôi,CardLookup
+Tôi muốn tìm từ "productivity",CardLookup
+Tra nghĩa "stakeholder" trong bộ từ tôi,CardLookup
+Từ "entrepreneur" có trong bộ nào?,CardLookup
+Thẻ "innovation" có trong set của tôi không?,CardLookup
+Tìm từ "milestone" trong tập flashcard của tôi,CardLookup
+Kiểm tra từ "negotiation" trong bộ thẻ,CardLookup
+Tôi học từ "objective" qua bộ nào?,CardLookup
+Tìm từ "partnership" trong set của mình,CardLookup
+Từ "efficiency" trong bộ thẻ của tôi,CardLookup
+Có thẻ "workflow" trong bộ từ của tôi không?,CardLookup
+Tìm từ "analysis" trong hệ thống,CardLookup
+Bộ flashcard có từ "framework" của tôi,CardLookup
+Từ này có trong set của tôi không: "benchmark"?,CardLookup
+Cho tôi xem thẻ từ vựng "feasibility",CardLookup
+"Delegation" trong bộ thẻ nào?,CardLookup
+Tôi có thẻ chứa từ "mentoring" không?,CardLookup
+Tìm từ "portfolio" trong bộ của tôi,CardLookup
+Từ "resilience" tôi đã lưu chưa?,CardLookup
+
+# ═══════════════════════════════════════
+# Intent: SpeakingSuggestion
+# Domain: Suggest speaking videos/playlists
+# ═══════════════════════════════════════
+Gợi ý bài speaking cho tôi,SpeakingSuggestion
+Tôi nên luyện speaking video nào?,SpeakingSuggestion
+Có video speaking nào phù hợp với trình độ của tôi không?,SpeakingSuggestion
+Tìm video luyện nói tiếng Anh cho tôi,SpeakingSuggestion
+Bài speaking nào tôi chưa làm?,SpeakingSuggestion
+Gợi ý playlist speaking cho người mới,SpeakingSuggestion
+Video speaking level B1 nào tốt?,SpeakingSuggestion
+Tôi muốn luyện speaking về chủ đề công sở,SpeakingSuggestion
+Gợi ý bài nói về Business English,SpeakingSuggestion
+Video speaking nào phù hợp cho tôi?,SpeakingSuggestion
+Playlist speaking nào tôi nên bắt đầu?,SpeakingSuggestion
+Bài nói nào có level phù hợp với tôi?,SpeakingSuggestion
+Gợi ý video để luyện phát âm,SpeakingSuggestion
+Tôi muốn xem danh sách video speaking,SpeakingSuggestion
+Có bài nói về cuộc họp không?,SpeakingSuggestion
+Gợi ý video cho người học trình độ A2,SpeakingSuggestion
+Cho tôi bài speaking về phỏng vấn xin việc,SpeakingSuggestion
+Speaking playlist nào phù hợp trình độ B2?,SpeakingSuggestion
+Có video shadowing nào tốt không?,SpeakingSuggestion
+Tôi muốn practice speaking hôm nay,SpeakingSuggestion
+Bài nói nào tôi đã hoàn thành rồi?,SpeakingSuggestion
+Gợi ý bài speaking về giao tiếp văn phòng,SpeakingSuggestion
+Có playlist speaking về Customer Service không?,SpeakingSuggestion
+Xem các bài speaking tôi chưa làm,SpeakingSuggestion
+Tôi muốn luyện dictation từ video nào?,SpeakingSuggestion
+Bài nói về chủ đề Email thì chọn video nào?,SpeakingSuggestion
+Video speaking mới nhất là gì?,SpeakingSuggestion
+Gợi ý bài nói cho level C1,SpeakingSuggestion
+Tôi nên luyện speaking chủ đề gì?,SpeakingSuggestion
+Cho tôi bài speaking dễ trước,SpeakingSuggestion
+Tôi đã xem bài speaking nào rồi?,SpeakingSuggestion
+Gợi ý bài speaking ngắn để luyện hàng ngày,SpeakingSuggestion
+Bài speaking về Technical English ở đâu?,SpeakingSuggestion
+Tôi muốn học bài nói cho buổi họp,SpeakingSuggestion
+Có video shadowing chủ đề career không?,SpeakingSuggestion
+Gợi ý bài speaking chủ đề Grammar,SpeakingSuggestion
+Tôi muốn tìm bài nói phù hợp với mình,SpeakingSuggestion
+Playlist nào phù hợp với người B1?,SpeakingSuggestion
+Bài speaking nào tôi hay xem nhất?,SpeakingSuggestion
+Tôi muốn thực hành listening từ video nào?,SpeakingSuggestion
+Gợi ý bài nói về chủ đề email công việc,SpeakingSuggestion
+Có video speaking về phỏng vấn không?,SpeakingSuggestion
+Tôi cần tìm playlist speaking phù hợp,SpeakingSuggestion
+Bài speaking mức A1 dành cho người mới,SpeakingSuggestion
+Gợi ý video speaking chủ đề Office,SpeakingSuggestion
+Speaking practice hôm nay,SpeakingSuggestion
+Tôi muốn luyện nói về cuộc họp,SpeakingSuggestion
+Có bài nào về Career development không?,SpeakingSuggestion
+Cho tôi những bài speaking tôi chưa xong,SpeakingSuggestion
+Tôi nên bắt đầu luyện speaking từ đâu?,SpeakingSuggestion
+Speaking video nào đang nổi bật?,SpeakingSuggestion
+Tôi muốn practice bài nói tiếng Anh công sở,SpeakingSuggestion
+Có playlist nào hay cho B2 không?,SpeakingSuggestion
+
+# ═══════════════════════════════════════
+# Intent: ClassInfo
+# Domain: User's classes, members, ownership
+# ═══════════════════════════════════════
+Tôi đang tham gia lớp nào?,ClassInfo
+Các lớp tôi đã vào là gì?,ClassInfo
+Tôi có lớp học nào không?,ClassInfo
+Danh sách lớp học của tôi,ClassInfo
+Lớp nào tôi là chủ lớp?,ClassInfo
+Cho tôi xem thông tin lớp học của tôi,ClassInfo
+Tôi là thành viên của lớp nào?,ClassInfo
+Lớp học TOEIC của tôi có bao nhiêu người?,ClassInfo
+Thông tin lớp Marketing Team là gì?,ClassInfo
+Lớp tôi tham gia có bao nhiêu thành viên?,ClassInfo
+Tôi có phải chủ lớp không?,ClassInfo
+Thành viên trong lớp của tôi là ai?,ClassInfo
+Tôi đang học lớp nào?,ClassInfo
+Có bao nhiêu người trong lớp của tôi?,ClassInfo
+Lớp nào tôi vừa tham gia gần đây?,ClassInfo
+Tôi muốn xem thông tin lớp học,ClassInfo
+Lớp học tôi đang quản lý là gì?,ClassInfo
+Danh sách thành viên lớp tôi,ClassInfo
+Lớp tôi có folder từ vựng gì?,ClassInfo
+Tôi vào lớp này lúc nào?,ClassInfo
+Thông tin về lớp học của tôi,ClassInfo
+Tôi có quyền gì trong lớp này?,ClassInfo
+Lớp học nào tôi đã tạo?,ClassInfo
+Bao nhiêu thành viên đang trong lớp tôi?,ClassInfo
+Lớp học của mình,ClassInfo
+Xem lớp học tôi đang tham gia,ClassInfo
+Tôi thuộc lớp nào?,ClassInfo
+Tên lớp tôi đang trong đó là gì?,ClassInfo
+Lớp Business English có bao nhiêu người?,ClassInfo
+Ai là chủ lớp trong lớp tôi đang học?,ClassInfo
+Tôi tham gia được bao nhiêu lớp?,ClassInfo
+Lớp nào tôi mới vào nhất?,ClassInfo
+Có bao nhiêu set trong lớp tôi?,ClassInfo
+Lớp học của tôi đang có set từ vựng gì?,ClassInfo
+Xem danh sách thành viên lớp,ClassInfo
+Tôi là owner của lớp nào?,ClassInfo
+Lớp học mà tôi tạo,ClassInfo
+Thông tin chi tiết lớp học của tôi,ClassInfo
+Tôi có thể xem bài học gì trong lớp?,ClassInfo
+Mấy người đang trong lớp tôi?,ClassInfo
+Lớp nào tôi hay vào nhất?,ClassInfo
+Tôi muốn kiểm tra thông tin lớp học,ClassInfo
+Tôi đang học mấy lớp?,ClassInfo
+Lớp nào tôi vừa được mời vào?,ClassInfo
+Hiển thị thông tin lớp học của mình,ClassInfo
+Có lớp nào thú vị không?,ClassInfo
+Khi nào lớp tôi được tạo?,ClassInfo
+Lớp nào tôi đã rời?,ClassInfo
+Tôi có lớp nào đang active không?,ClassInfo
+Số lượng lớp tôi đang tham gia,ClassInfo
+Thông tin lớp mới nhất tôi vào,ClassInfo
+Tôi đang tham gia mấy nhóm học?,ClassInfo
+Xem lớp học của tôi đi,ClassInfo
+
+# ═══════════════════════════════════════
+# Intent: WebsiteGuide
+# Domain: How to use TCT English website features
+# ═══════════════════════════════════════
+Cách tạo bộ từ vựng mới?,WebsiteGuide
+Làm sao tạo lớp học?,WebsiteGuide
+Hướng dẫn tạo set từ vựng,WebsiteGuide
+Cách thêm thẻ vào bộ từ?,WebsiteGuide
+Làm thế nào để tham gia lớp học?,WebsiteGuide
+Hướng dẫn sử dụng chế độ flashcard,WebsiteGuide
+Cách học bằng quiz mode?,WebsiteGuide
+Làm sao dùng chế độ write?,WebsiteGuide
+Cách luyện matching mode như thế nào?,WebsiteGuide
+Hướng dẫn dùng tính năng speaking,WebsiteGuide
+Làm sao để đặt mật khẩu lớp?,WebsiteGuide
+Cách thêm thành viên vào lớp học?,WebsiteGuide
+Làm thế nào để tạo folder?,WebsiteGuide
+Cách di chuyển set vào thư mục?,WebsiteGuide
+Làm sao đổi mật khẩu tài khoản?,WebsiteGuide
+Hướng dẫn cài đặt hồ sơ cá nhân,WebsiteGuide
+Cách xem tiến độ học tập,WebsiteGuide
+Làm sao đăng ký tài khoản?,WebsiteGuide
+Hướng dẫn đăng nhập bằng Google,WebsiteGuide
+Cách luyện speaking video như thế nào?,WebsiteGuide
+Làm sao tìm bài speaking?,WebsiteGuide
+Hướng dẫn dùng chế độ shadowing,WebsiteGuide
+Làm sao thực hiện dictation?,WebsiteGuide
+Cách xem lịch sử hội thoại AI?,WebsiteGuide
+Làm thế nào để chia sẻ bộ từ?,WebsiteGuide
+Cách xuất set từ vựng?,WebsiteGuide
+Hướng dẫn nhập từ vựng hàng loạt,WebsiteGuide
+Làm sao đặt mục tiêu học hàng ngày?,WebsiteGuide
+Cách bật/tắt thông báo?,WebsiteGuide
+Làm thế nào để xóa thẻ từ?,WebsiteGuide
+Cách chỉnh sửa nội dung thẻ?,WebsiteGuide
+Làm sao để xóa bộ từ vựng?,WebsiteGuide
+Hướng dẫn tham gia lớp bằng mã mời,WebsiteGuide
+Cách rời khỏi lớp học?,WebsiteGuide
+Làm thế nào để liên hệ hỗ trợ?,WebsiteGuide
+Tính năng matching mode hoạt động như thế nào?,WebsiteGuide
+Cách dùng read mode?,WebsiteGuide
+Làm sao để ôn tập flashcard hiệu quả?,WebsiteGuide
+Hướng dẫn sử dụng website TCT English,WebsiteGuide
+Website có những tính năng gì?,WebsiteGuide
+Làm sao chia sẻ folder vào lớp học?,WebsiteGuide
+Cách lưu bộ từ vào thư mục?,WebsiteGuide
+Hướng dẫn cách dùng chatbox AI,WebsiteGuide
+Làm sao biết được mình học streak bao nhiêu?,WebsiteGuide
+Cách kết nối Facebook để đăng nhập?,WebsiteGuide
+Làm thế nào để thêm thẻ mới vào set?,WebsiteGuide
+Cách sắp xếp bộ từ vựng?,WebsiteGuide
+Hướng dẫn dùng tính năng quiz,WebsiteGuide
+Tính năng speaking playlist dùng như thế nào?,WebsiteGuide
+Cách tìm kiếm set từ vựng?,WebsiteGuide
+Hướng dẫn toàn bộ các chế độ học,WebsiteGuide
+Làm sao để bắt đầu học trên TCT English?,WebsiteGuide
+Tôi cần hướng dẫn dùng trang web,WebsiteGuide
+Hỏi về cách sử dụng website,WebsiteGuide
+
+# ═══════════════════════════════════════
+# Intent: StudyRecommendation
+# Domain: What to study next / study advice
+# ═══════════════════════════════════════
+Tôi nên học gì hôm nay?,StudyRecommendation
+Gợi ý bài học phù hợp cho tôi,StudyRecommendation
+Tôi nên ôn bộ từ nào trước?,StudyRecommendation
+Đề xuất kế hoạch học tập cho tôi,StudyRecommendation
+Tôi nên tập trung vào phần nào?,StudyRecommendation
+Bộ từ nào tôi cần ưu tiên học?,StudyRecommendation
+Tôi nên học từ vựng hay speaking trước?,StudyRecommendation
+Gợi ý set nào để ôn tập?,StudyRecommendation
+Để đạt mục tiêu thì tôi cần làm gì?,StudyRecommendation
+Tôi nên tiếp tục từ đâu?,StudyRecommendation
+Mình nên học như thế nào hôm nay?,StudyRecommendation
+Cho tôi lịch học phù hợp,StudyRecommendation
+Bộ từ nào cần ôn ngay hôm nay?,StudyRecommendation
+Tôi học gì tiếp theo?,StudyRecommendation
+Đề xuất bộ từ cần luyện gấp,StudyRecommendation
+Gợi ý lộ trình học cho tôi,StudyRecommendation
+Tôi nên bắt đầu từ đâu?,StudyRecommendation
+Có bộ từ nào đang cần ôn không?,StudyRecommendation
+Nên dùng chế độ học nào hôm nay?,StudyRecommendation
+Tôi nên làm quiz hay flashcard?,StudyRecommendation
+Tôi hỏi về kế hoạch học tập,StudyRecommendation
+Giúp tôi lên kế hoạch ôn tập,StudyRecommendation
+Set nào tôi bị yếu nhất?,StudyRecommendation
+Bộ từ nào nên học lại?,StudyRecommendation
+Tôi nên ưu tiên học gì hôm nay?,StudyRecommendation
+Học từ vựng hay luyện speaking hôm nay?,StudyRecommendation
+Gợi ý hướng học tiếp theo,StudyRecommendation
+Tôi muốn cải thiện kỹ năng từ vựng của mình,StudyRecommendation
+Nên ôn lại những gì hôm nay?,StudyRecommendation
+Có thể giúp tôi lên plan học không?,StudyRecommendation
+Tôi nên dành bao nhiêu thời gian học?,StudyRecommendation
+Kế hoạch ôn tập cho tuần này,StudyRecommendation
+Tôi muốn học hiệu quả hơn,StudyRecommendation
+Cho tôi gợi ý học tập,StudyRecommendation
+Tôi nên học thêm gì để cải thiện?,StudyRecommendation
+Bộ từ nào tôi đang bị quên nhiều nhất?,StudyRecommendation
+Tôi cần luyện phần nào nhất?,StudyRecommendation
+Đề xuất cho tôi cách học hiệu quả trên website,StudyRecommendation
+Tôi muốn tăng streak hôm nay,StudyRecommendation
+Cần học gì để đạt goal?,StudyRecommendation
+Tôi nên ôn lại flashcard hay làm quiz?,StudyRecommendation
+Gợi ý cho tôi một bài học phù hợp,StudyRecommendation
+Tôi cần ôn lại gì hôm nay?,StudyRecommendation
+Học từ nào trước hôm nay?,StudyRecommendation
+Bộ từ nào gần hoàn thành nhất?,StudyRecommendation
+Mình nên làm gì tiếp theo?,StudyRecommendation
+Tôi nên học mode gì bây giờ?,StudyRecommendation
+Cho tôi biết nên bắt đầu học từ bộ nào,StudyRecommendation
+Gợi ý học tập cho ngày hôm nay,StudyRecommendation
+Tôi nên làm bài tập gì?,StudyRecommendation
+Kế hoạch học tập của tôi nên như thế nào?,StudyRecommendation
+
+# ═══════════════════════════════════════
+# Intent: Greeting
+# Domain: Hello, intro, "what can you do"
+# ═══════════════════════════════════════
+Xin chào,Greeting
+Hello,Greeting
+Hi bạn,Greeting
+Chào,Greeting
+Hey,Greeting
+Chào buổi sáng,Greeting
+Good morning,Greeting
+Chào buổi tối,Greeting
+Chào buổi chiều,Greeting
+Bạn là ai?,Greeting
+Bạn có thể làm gì?,Greeting
+Bạn giúp được gì cho tôi?,Greeting
+Tôi cần trợ giúp,Greeting
+Xin hỏi,Greeting
+Chào chatbot,Greeting
+Trợ lý ơi,Greeting
+Tôi cần giúp đỡ,Greeting
+Bắt đầu thôi,Greeting
+Mình cần hỏi một chút,Greeting
+Có ai ở đây không?,Greeting
+Bạn ổn không?,Greeting
+Hôm nay bận không?,Greeting
+Cho tôi hỏi nhé,Greeting
+Mình muốn hỏi,Greeting
+Chào trợ lý,Greeting
+Hello TCT English,Greeting
+Bạn tên là gì?,Greeting
+Mình có thể hỏi gì?,Greeting
+Bạn hỗ trợ về gì?,Greeting
+Bạn làm được những việc gì?,Greeting
+Bắt đầu cuộc hội thoại,Greeting
+Chào mừng,Greeting
+Hi there,Greeting
+Good evening,Greeting
+Xin chào trợ lý AI,Greeting
+Trợ lý AI ơi chào,Greeting
+Giúp tôi với,Greeting
+Tôi muốn dùng chatbot,Greeting
+Mở chatbot lên,Greeting
+Mình mới dùng web này,Greeting
+Bạn có thể nói chuyện không?,Greeting
+Hỏi thăm bạn,Greeting
+Hello mình cần hỏi,Greeting
+Xin chào bạn,Greeting
+Alo,Greeting
+Ê chatbot,Greeting
+Bạn hoạt động không?,Greeting
+Bạn có đang online không?,Greeting
+Mình đang cần tư vấn,Greeting
+Chào TCT English,Greeting
+Tôi cần hỏi thông tin,Greeting
+
+# ═══════════════════════════════════════
+# Intent: OutOfScope
+# Domain: Anything NOT about TCT English features
+# Emphasis: General English tutoring, grammar explanations,
+#           translation requests, off-topic queries
+# ═══════════════════════════════════════
+Giải thích thì present perfect cho tôi,OutOfScope
+Present perfect và past simple khác nhau thế nào?,OutOfScope
+Dịch đoạn văn này sang tiếng Anh,OutOfScope
+Viết essay giúp tôi,OutOfScope
+Sửa lỗi ngữ pháp bài viết của tôi,OutOfScope
+Giải thích cách dùng câu điều kiện loại 2,OutOfScope
+Tôi muốn học phát âm tiếng Anh,OutOfScope
+Hôm nay thời tiết thế nào?,OutOfScope
+Giúp tôi tìm việc làm bằng tiếng Anh,OutOfScope
+Dịch email này sang tiếng Việt,OutOfScope
+Viết email xin việc bằng tiếng Anh,OutOfScope
+Cách học tiếng Anh hiệu quả nhất là gì?,OutOfScope
+Thì hiện tại đơn dùng khi nào?,OutOfScope
+Giải thích passive voice,OutOfScope
+Cho tôi một bài đọc tiếng Anh ngẫu nhiên,OutOfScope
+Bài IELTS Writing Task 2 mẫu là gì?,OutOfScope
+Cách cải thiện điểm TOEIC,OutOfScope
+Giải IELTS listening cho tôi,OutOfScope
+Dịch bài báo này sang tiếng Việt,OutOfScope
+Giải thích cấu trúc reported speech,OutOfScope
+Cách học từ vựng nhanh theo phương pháp nào?,OutOfScope
+Bạn biết AI gì tốt để học tiếng Anh không?,OutOfScope
+Dùng ChatGPT để học tiếng Anh được không?,OutOfScope
+Kể cho tôi nghe một câu chuyện tiếng Anh,OutOfScope
+Giải thích idiom "break a leg",OutOfScope
+Bài đọc về môi trường bằng tiếng Anh,OutOfScope
+Tôi muốn biết thêm về lịch sử nước Mỹ,OutOfScope
+Giải thích "subjunctive mood",OutOfScope
+Tính toán chi phí học tiếng Anh,OutOfScope
+Bạn có thể chơi game tiếng Anh với tôi không?,OutOfScope
+Hôm nay có bóng đá không?,OutOfScope
+Tỷ giá USD hôm nay là bao nhiêu?,OutOfScope
+Chatbox này có giỏi không?,OutOfScope
+Giải thích ngữ pháp tiếng Anh cho trẻ em,OutOfScope
+Dịch Wikipedia tiếng Anh,OutOfScope
+Cho tôi bài tập điền vào chỗ trống,OutOfScope
+Có sách tiếng Anh nào hay không?,OutOfScope
+Phim nào giúp học tiếng Anh tốt?,OutOfScope
+Hướng dẫn luyện thi IELTS,OutOfScope
+Bạn nghĩ gì về ChatGPT?,OutOfScope
+Cách nói chuyện với người nước ngoài,OutOfScope
+Bài văn mẫu TOEFL,OutOfScope
+Giải thích cách đọc số lớn bằng tiếng Anh,OutOfScope
+Cách viết thư tay bằng tiếng Anh,OutOfScope
+Tôi muốn luyện phỏng vấn tiếng Anh tổng quát,OutOfScope
+Giải thích trạng từ trong tiếng Anh,OutOfScope
+Dạy tôi từ vựng tiếng Anh Mỹ,OutOfScope
+Có khóa học tiếng Anh online tốt không?,OutOfScope
+Bài hát tiếng Anh nào hay?,OutOfScope
+Tôi muốn biết tin tức tiếng Anh hôm nay,OutOfScope
+Giải nghĩa thành ngữ "bite the bullet",OutOfScope
+Tôi muốn học grammar từ đầu,OutOfScope
+Cách ôn TOEIC 900 điểm,OutOfScope
+Giải thích tất cả các thì tiếng Anh,OutOfScope
+Cách phát âm đúng chữ "th",OutOfScope
+Bạn có thể làm bài quiz tiếng Anh không?,OutOfScope
+Viết một cover letter cho tôi,OutOfScope
+Chatbot này từng gặp ai chưa?,OutOfScope
+Cho tôi trò chơi học từ vựng ngẫu nhiên,OutOfScope
+2 + 2 bằng mấy?,OutOfScope
+Thủ đô của nước Anh là gì?,OutOfScope
+Làm bài tập Reading ở đâu?,WebsiteGuide
+Cách chấm điểm Writing ra sao?,WebsiteGuide
+AI chấm bài Writing như thế nào?,WebsiteGuide
+Tính năng Listening gồm những phần nào?,WebsiteGuide
+Nghe transcript bài Listening ở đâu?,WebsiteGuide
+Thông tin liên hệ quản trị viên là gì?,WebsiteGuide
+Liên hệ hỗ trợ khi gặp lỗi?,WebsiteGuide
+Tôi có thể xem thông báo ở đâu?,WebsiteGuide
+Giới thiệu chung về hệ thống TCT English?,WebsiteGuide
+Tính năng Reading là gì?,WebsiteGuide
+Gợi ý dịch câu Writing?,WebsiteGuide

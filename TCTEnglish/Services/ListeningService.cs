@@ -566,7 +566,7 @@ Chỉ trả JSON, không giải thích thêm";
                     RequestTimeoutSeconds = 20
                 };
 
-                var reply = await _aiProvider.GenerateReplyAsync(messages, ct, aiOptions);
+                var reply = await _aiProvider.GenerateReplyAsync(userId, messages, ct, aiOptions);
                 var parsedQuestions = ParseQuizJson(reply.Text);
 
                 if (parsedQuestions.Count == 0)
@@ -685,7 +685,7 @@ Chỉ trả JSON array of strings, không giải thích thêm.
                     var messages = new List<AiContextMessage> { new AiContextMessage("user", promptText) };
                     var options = new AiProviderRequestOptions { MaxOutputTokens = 1500, Temperature = 0.2f, RequestTimeoutSeconds = 30 };
 
-                    var reply = await _aiProvider.GenerateReplyAsync(messages, ct, options);
+                    var reply = await _aiProvider.GenerateReplyAsync(userId, messages, ct, options);
                     var translations = ParseStringArrayJson(reply.Text);
 
                     if (translations.Count == batch.Count)

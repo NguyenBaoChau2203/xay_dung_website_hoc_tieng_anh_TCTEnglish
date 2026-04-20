@@ -246,7 +246,7 @@ public sealed class WritingAiEvaluationIntegrationTests
         return new TestWebApplicationFactory(services =>
         {
             services.RemoveAll<IAiProviderClient>();
-            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient(handler));
+            services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, msgs, ct) => handler(msgs, ct)));
         });
     }
 

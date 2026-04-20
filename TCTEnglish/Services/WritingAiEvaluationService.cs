@@ -53,7 +53,7 @@ namespace TCTVocabulary.Services
             AiProviderReply reply;
             try
             {
-                reply = await _providerClient.GenerateReplyAsync(BuildMessages(request), ct);
+                reply = await _providerClient.GenerateReplyAsync(0, BuildMessages(request), ct);
             }
             catch (AiProviderException ex)
             {

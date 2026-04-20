@@ -57,6 +57,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var result = await provider.GenerateReplyAsync(
+            1,
             [
                 new AiContextMessage("system", "You are a tutor"),
                 new AiContextMessage("user", "Hi"),
@@ -105,6 +106,7 @@ public sealed class GeminiProviderClientTests
         var provider = CreateClient(handler);
 
         _ = await provider.GenerateReplyAsync(
+            1,
             [
                 new AiContextMessage("system", "System rule"),
                 new AiContextMessage("user", "First"),
@@ -138,7 +140,7 @@ public sealed class GeminiProviderClientTests
         var provider = CreateClient(handler);
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeEmptyResponse, ex.ErrorCode);
         Assert.False(ex.IsTransient);
@@ -163,7 +165,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeAuthentication, ex.ErrorCode);
         Assert.False(ex.IsTransient);
@@ -186,7 +188,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeRateLimited, ex.ErrorCode);
         Assert.True(ex.IsTransient);
@@ -209,7 +211,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeProviderUnavailable, ex.ErrorCode);
         Assert.True(ex.IsTransient);
@@ -235,7 +237,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeTimeout, ex.ErrorCode);
         Assert.True(ex.IsTransient);
@@ -255,7 +257,7 @@ public sealed class GeminiProviderClientTests
         });
 
         var ex = await Assert.ThrowsAsync<AiProviderException>(() =>
-            provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None));
+            provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None));
 
         Assert.Equal(AiProviderException.ErrorCodeNetwork, ex.ErrorCode);
         Assert.True(ex.IsTransient);
@@ -289,7 +291,7 @@ public sealed class GeminiProviderClientTests
             RequestTimeoutSeconds = 5
         });
 
-        _ = await provider.GenerateReplyAsync([new AiContextMessage("user", "hello")], CancellationToken.None);
+        _ = await provider.GenerateReplyAsync(1, [new AiContextMessage("user", "hello")], CancellationToken.None);
 
         Assert.NotNull(capturedRequestUri);
         Assert.Contains("models/gemini-2.5-flash-lite:generateContent", capturedRequestUri!.ToString());

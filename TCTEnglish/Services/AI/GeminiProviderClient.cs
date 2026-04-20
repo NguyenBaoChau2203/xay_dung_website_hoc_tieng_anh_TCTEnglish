@@ -33,6 +33,7 @@ public sealed class GeminiProviderClient : IAiProviderClient
     }
 
     public async Task<AiProviderReply> GenerateReplyAsync(
+        int userId,
         IReadOnlyList<AiContextMessage> messages,
         CancellationToken ct,
         AiProviderRequestOptions? requestOptions = null)
