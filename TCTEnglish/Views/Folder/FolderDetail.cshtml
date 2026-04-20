@@ -4,6 +4,12 @@
 }
 
 <div class="folder-detail-container">
+    <div class="back-to-folder">
+        <a asp-controller="Folder" asp-action="Folder">
+            <i class="fas fa-arrow-left"></i>
+            <span>Quay lại</span>
+        </a>
+    </div>
     <div class="folder-header-section">
         <div class="header-main-info">
             <div class="brand-icon-large">
@@ -75,13 +81,11 @@
     </div>
 
     <div class="folder-tabs-centered">
-        <button class="tab-link active">Tất cả</button>
-        <button class="tab-link">Học phần</button>
-        <button class="tab-link">Thành viên</button>
+        <button class="tab-link active">Tất cả học phần</button>
     </div>
 
     @* ===== CHỈ OWNER MỚI ĐƯỢC THÊM HỌC PHẦN ===== *@
-    @if (Model.CanManage)
+    @if (Model.CanManage && Model.Sets.Any())
     {
         <div class="action-bar-centered">
             <button class="btn-add-new"
@@ -97,10 +101,28 @@
     <div class="set-list-modern">
         @if (!Model.Sets.Any())
         {
-            <div class="empty-placeholder">
-                <i class="fas fa-clone"></i>
-                <h3>Thư mục trống</h3>
-                <p>Bắt đầu thêm các học phần để ôn tập ngay hôm nay.</p>
+            <div class="empty-placeholder modern-empty">
+                @if (Model.CanManage)
+                {
+                    <div class="empty-icon owner">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <h3>Thư mục của bạn đang trống</h3>
+                    <p>Bắt đầu thêm học phần để tổ chức việc học của bạn.</p>
+
+                    <button class="btn-add-empty"
+                            onclick="location.href='@Url.Action("CreateSet", "Set", new { folderId = Model.Folder.FolderId })'">
+                        <i class="fas fa-plus"></i> Thêm học phần đầu tiên
+                    </button>
+                }
+                else
+                {
+                    <div class="empty-icon viewer">
+                        <i class="fas fa-folder-minus"></i>
+                    </div>
+                    <h3>Thư mục chưa có học phần</h3>
+                    <p>Người tạo chưa thêm nội dung nào vào thư mục này.</p>
+                }
             </div>
         }
         else
@@ -303,30 +325,56 @@
 
     .modal-card {
         background: white;
-        padding: 30px;
+        padding: 28px 30px;
         border-radius: 20px;
         width: 100%;
-        max-width: 450px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        max-width: 460px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        display: flex;
+        flex-direction: column;
+        gap: 18px; /* tạo khoảng cách giữa các block */
     }
 
+    /* header */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+    /* input */
     .form-input-large {
         width: 100%;
-        padding: 12px 16px;
+        padding: 14px 16px;
         border: 2px solid #edeff4;
         border-radius: 10px;
         font-size: 16px;
         outline: none;
+        margin-top: 6px;
     }
 
         .form-input-large:focus {
             border-color: #4255ff;
         }
+    /* footer buttons */
+    .modal-footer-btns {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 10px;
+    }
 
     .close-x {
         background: none;
         border: none;
-        font-size: 24px;
+        font-size: 22px;
         color: #6b7280;
         cursor: pointer;
     }
@@ -521,7 +569,84 @@
         .btn-icon-more i {
             color: #555;
         }
+    /* Empty state */
+    .modern-empty {
+        text-align: center;
+        padding: 60px 20px;
+        border: 2px dashed #e5e7eb;
+        border-radius: 18px;
+        background: linear-gradient(180deg,#fafbff,#ffffff);
+    }
 
+    .empty-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 18px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+    }
+
+        .empty-icon.owner {
+            background: #eef2ff;
+            color: #4255ff;
+        }
+
+        .empty-icon.viewer {
+            background: #f3f4f6;
+            color: #9ca3af;
+        }
+
+    .modern-empty h3 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        color: #1f2937;
+    }
+
+    .modern-empty p {
+        color: #6b7280;
+        margin-bottom: 20px;
+    }
+
+    .btn-add-empty {
+        background: #4255ff;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .btn-add-empty:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66,85,255,0.3);
+        }
+
+    .back-to-folder {
+        margin-bottom: 18px;
+    }
+
+        .back-to-folder a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+            .back-to-folder a:hover {
+                background: #f3f4f6;
+                color: #111827;
+            }
 </style>
 
 <script>

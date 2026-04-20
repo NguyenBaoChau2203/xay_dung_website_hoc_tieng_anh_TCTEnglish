@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.innerHTML = isShowing ?
             '<i class="bi bi-translate"></i> Dịch toàn bài' :
             '<i class="bi bi-eye-slash"></i> Ẩn bản dịch';
-
         for (const block of blocks) {
             const transEl = block.querySelector(".translation");
             if (!transEl) continue;
@@ -61,30 +60,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 continue;
             }
 
+            const originalText = block.querySelector(".passage-text").innerText.trim();
+            if (originalText.length < 3) {
+                transEl.classList.add("d-none");
+                continue;
+            }
+
             transEl.classList.remove("d-none");
             if (transEl.dataset.loaded) continue;
 
-            const originalText = block.querySelector(".passage-text").innerText;
-            transEl.innerHTML = '<small class="text-primary mt-2 d-block"><span class="spinner-border spinner-border-sm"></span> Đang dịch từng câu...</small>';
+            transEl.innerHTML = '<small class="text-primary mt-2 d-block"><span class="spinner-border spinner-border-sm"></span> Đang dịch...</small>';
 
             try {
-                // Tách đoạn văn thành mảng các câu để né limit 500 ký tự của API
+                // 1. Tách đoạn văn thành các câu
                 const sentences = originalText.match(/[^.!?]+[.!?]+/g) || [originalText];
-                let fullTranslation = "";
 
-                for (let sentence of sentences) {
-                    const cleanSentence = sentence.trim();
-                    if (cleanSentence.length < 2) continue;
+                // 2. TẠO DANH SÁCH CÁC REQUEST CHẠY CÙNG LÚC (Gán ở đây)
+                const translationPromises = sentences.map(async (sentence) => {
+                    const clean = sentence.trim();
+                    if (clean.length < 2) return "";
 
-                    const res = await fetch(`/Reading/Translate?text=${encodeURIComponent(cleanSentence)}`);
-                    const data = await res.json();
-                    if (data.translation) fullTranslation += data.translation + " ";
+                    try {
+                        const res = await fetch(`/Reading/Translate?text=${encodeURIComponent(clean)}`);
+                        const data = await res.json();
+                        return data.translation || "";
+                    } catch {
+                        return ""; // Nếu một câu lỗi thì bỏ qua câu đó
+                    }
+                });
+
+                // 3. ĐỢI TẤT CẢ CÁC CÂU DỊCH XONG CÙNG MỘT LÚC
+                const results = await Promise.all(translationPromises);
+                const fullTranslation = results.filter(t => t !== "").join(" ");
+
+                if (fullTranslation.trim().length > 0) {
+                    transEl.innerText = fullTranslation;
+                    transEl.dataset.loaded = "true";
+                } else {
+                    transEl.innerText = "Không thể dịch đoạn này.";
                 }
-
-                transEl.innerText = fullTranslation || "Không thể dịch đoạn này.";
-                transEl.dataset.loaded = "true";
             } catch (err) {
-                transEl.innerText = "Lỗi kết nối API.";
+                console.error(err);
+                transEl.innerText = "Lỗi kết nối.";
             }
         }
     });
