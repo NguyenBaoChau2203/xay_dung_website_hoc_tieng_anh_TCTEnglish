@@ -1,8 +1,4 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TCTEnglish.Services.AI.Internal;
 using TCTVocabulary.Models;
 
 namespace TCTEnglish.Services.AI.Internal.Retrievers;
@@ -37,11 +33,16 @@ public sealed class StudyRecommendationRetriever : IKnowledgeRetriever
             streakDays = user.Streak ?? 0;
         }
 
-        // Just a simple approximation for recommendation since we don't track intraday card counts easily here
-        int cardsMetToday = 0;
+        var today = DateTime.UtcNow.Date;
+        var cardsMetToday = await _context.UserDailyActivities
+            .AsNoTracking()
+            .Where(activity => activity.UserId == userId && activity.ActivityDate == today)
+            .Select(activity => (int?)activity.CardsReviewed)
+            .FirstOrDefaultAsync(ct) ?? 0;
+
         int goalRemaining = Math.Max(0, goalCount - cardsMetToday);
 
-        var recommendationSet = await _context.Sets
+        var ownedSets = await _context.Sets
             .AsNoTracking()
             .Where(x => x.OwnerId == userId)
             .OrderByDescending(x => x.CreatedAt)
@@ -49,17 +50,65 @@ public sealed class StudyRecommendationRetriever : IKnowledgeRetriever
             {
                 s.SetId,
                 Title = s.SetName,
-                TotalCards = s.Cards.Count,
-                MasteredCards = _context.LearningProgresses.Count(p => p.Card.SetId == s.SetId && p.UserId == userId && p.Status == "mastered")
+                s.CreatedAt,
+                TotalCards = s.Cards.Count
             })
-            .FirstOrDefaultAsync(ct);
+            .ToListAsync(ct);
 
-        if (recommendationSet is null || recommendationSet.TotalCards == 0)
+        if (ownedSets.Count == 0)
         {
             return [];
         }
 
-        var remainingCount = Math.Max(0, recommendationSet.TotalCards - recommendationSet.MasteredCards);
+        var masteredProgressItems = await _context.LearningProgresses
+            .AsNoTracking()
+            .Where(progress => progress.UserId == userId)
+            .Join(
+                _context.Cards.AsNoTracking(),
+                progress => progress.CardId,
+                card => card.CardId,
+                (progress, card) => new
+                {
+                    progress.Status,
+                    card.SetId
+                })
+            .Join(
+                _context.Sets.AsNoTracking().Where(set => set.OwnerId == userId),
+                item => item.SetId,
+                set => set.SetId,
+                (item, set) => item)
+            .ToListAsync(ct);
+
+        var masteredCountsBySet = masteredProgressItems
+            .Where(item => IsMastered(item.Status))
+            .GroupBy(item => item.SetId)
+            .ToDictionary(group => group.Key, group => group.Count());
+
+        var recommendationSet = ownedSets
+            .Select(set =>
+            {
+                masteredCountsBySet.TryGetValue(set.SetId, out var masteredCards);
+                var remainingCount = Math.Max(0, set.TotalCards - masteredCards);
+
+                return new
+                {
+                    set.Title,
+                    set.CreatedAt,
+                    set.TotalCards,
+                    RemainingCount = remainingCount
+                };
+            })
+            .Where(set => set.TotalCards > 0 && set.RemainingCount > 0)
+            .OrderByDescending(set => set.CreatedAt ?? DateTime.MinValue)
+            .ThenBy(set => set.Title)
+            .FirstOrDefault();
+
+        if (recommendationSet is null)
+        {
+            return [];
+        }
+
+        var remainingCount = recommendationSet.RemainingCount;
 
         var body = $"remainingCount={remainingCount} | streakDays={streakDays} | goalRemaining={goalRemaining}";
 
@@ -73,4 +122,8 @@ public sealed class StudyRecommendationRetriever : IKnowledgeRetriever
             )
         ];
     }
+
+    private static bool IsMastered(string? status)
+        => string.Equals(status, "Mastered", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(status, "Learned", StringComparison.OrdinalIgnoreCase);
 }

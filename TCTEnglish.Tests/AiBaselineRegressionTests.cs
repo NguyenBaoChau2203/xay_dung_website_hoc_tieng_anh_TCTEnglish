@@ -105,7 +105,7 @@ public sealed class AiBaselineRegressionTests
 
         var reply = await SendAsync(context, PrimaryUserId, "cach tao lop hoc");
 
-        Assert.Contains("/Class/Create", reply.Text);
+        Assert.Contains("/Home/CreateClass", reply.Text);
         Assert.Contains("Tạo lớp", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -115,13 +115,35 @@ public sealed class AiBaselineRegressionTests
         await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_ReturnsRecommendation));
         await SeedUsersAsync(context, primaryUserGoal: 5, primaryUserStreak: 4, lastStudyDateUtc: DateTime.UtcNow.Date);
         await SeedVocabularyAsync(context);
+
+        var travelPack = await context.Sets.FirstAsync(set => set.SetId == 202);
+        travelPack.CreatedAt = DateTime.UtcNow.AddMinutes(5);
+        await context.SaveChangesAsync();
+
         await SeedLearningProgressAsync(context, includePrimaryUserProgress: true);
 
         var reply = await SendAsync(context, PrimaryUserId, "toi nen hoc gi tiep theo");
 
         Assert.Contains("Business Core", reply.Text);
+        Assert.DoesNotContain("Travel Pack", reply.Text);
         Assert.Contains("Flashcard", reply.Text);
         Assert.Contains("Quiz", reply.Text);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_StudyRecommendation_WithOwnedSetsButNoLearningProgress_ReturnsRecommendation()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_WithOwnedSetsButNoLearningProgress_ReturnsRecommendation));
+        await SeedUsersAsync(context, primaryUserGoal: 5, primaryUserStreak: 2);
+        await SeedVocabularyAsync(context);
+
+        var reply = await SendAsync(context, PrimaryUserId, "toi nen hoc gi tiep");
+
+        Assert.Contains("Business Core", reply.Text);
+        Assert.Contains("còn 3 thẻ", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Flashcard", reply.Text);
+        Assert.Contains("Quiz", reply.Text);
+        Assert.DoesNotContain("Outsider Set", reply.Text);
     }
 
     [Fact]
@@ -194,14 +216,64 @@ public sealed class AiBaselineRegressionTests
     }
 
     [Fact]
-    public async Task GenerateReplyAsync_StudyRecommendation_WhenNoProgress_ReturnsEmptyState()
+    public async Task GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsEmptyState()
     {
-        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_WhenNoProgress_ReturnsEmptyState));
+        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_WhenNoSets_ReturnsEmptyState));
         await SeedUsersAsync(context);
 
         var reply = await SendAsync(context, EmptyUserId, "toi nen hoc gi tiep");
 
         Assert.Contains("chưa có đủ dữ liệu học", reply.Text, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_StudyRecommendation_DoesNotLeakAnotherUsersSetsCardsOrProgress()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_StudyRecommendation_DoesNotLeakAnotherUsersSetsCardsOrProgress));
+        await SeedUsersAsync(context);
+
+        context.Sets.Add(new Set
+        {
+            SetId = 211,
+            OwnerId = SecondaryUserId,
+            SetName = "Outsider Study Plan",
+            CreatedAt = DateTime.UtcNow
+        });
+
+        context.Cards.Add(new Card
+        {
+            CardId = 311,
+            SetId = 211,
+            Term = "outsider-term",
+            Definition = "outsider definition"
+        });
+
+        context.LearningProgresses.Add(new LearningProgress
+        {
+            ProgressId = 411,
+            UserId = SecondaryUserId,
+            CardId = 311,
+            Status = "Learning",
+            LastReviewedDate = DateTime.UtcNow
+        });
+
+        context.LearningProgresses.Add(new LearningProgress
+        {
+            ProgressId = 412,
+            UserId = PrimaryUserId,
+            CardId = 311,
+            Status = "Learning",
+            LastReviewedDate = DateTime.UtcNow
+        });
+
+        await context.SaveChangesAsync();
+
+        var reply = await SendAsync(context, PrimaryUserId, "toi nen hoc gi tiep");
+
+        Assert.Contains("chưa có đủ dữ liệu học", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Outsider Study Plan", reply.Text);
+        Assert.DoesNotContain("outsider-term", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("outsider definition", reply.Text, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -247,6 +319,7 @@ public sealed class AiBaselineRegressionTests
                 new WebsiteGuideRetriever(GetGuideFilePath()),
                 new UserVocabularyRetriever(context),
                 new LearningProgressRetriever(context),
+                new StudyRecommendationRetriever(context),
                 new CardLookupRetriever(context),
                 new SpeakingRetriever(context),
                 new ClassRetriever(context)

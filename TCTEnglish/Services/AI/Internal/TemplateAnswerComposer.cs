@@ -276,7 +276,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
             ]);
         }
 
-        if (string.IsNullOrWhiteSpace(guide.Route))
+        if (string.IsNullOrWhiteSpace(guide.Route) || IsTemplateRoute(guide.Route))
         {
             return guide.Body.Trim();
         }
@@ -288,9 +288,15 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         ]);
     }
 
+    private static bool IsTemplateRoute(string route)
+    {
+        return route.Contains('{', StringComparison.Ordinal)
+            || route.Contains('}', StringComparison.Ordinal);
+    }
+
     private static string ComposeStudyRecommendation(IReadOnlyList<KnowledgeSnippet> snippets)
     {
-        var recommendation = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.StudyRecommendation);
+        var recommendation = SelectStudyRecommendation(snippets);
         if (recommendation is null)
         {
             return string.Join(Environment.NewLine, [
@@ -323,6 +329,24 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         lines.Add(string.Empty);
         lines.Add("Chế độ ôn tập phù hợp: Flashcard hoặc Quiz.");
         return string.Join(Environment.NewLine, lines);
+    }
+
+    private static KnowledgeSnippet? SelectStudyRecommendation(IReadOnlyList<KnowledgeSnippet> snippets)
+    {
+        var candidates = snippets
+            .Where(x => x.Source == KnowledgeSnippetSources.StudyRecommendation)
+            .ToList();
+
+        if (candidates.Count == 0)
+        {
+            return null;
+        }
+
+        return candidates
+            .OrderByDescending(candidate => candidate.Priority)
+            .ThenByDescending(candidate => GetIntValue(candidate, "remainingCount"))
+            .ThenBy(candidate => candidate.Title, StringComparer.OrdinalIgnoreCase)
+            .First();
     }
 
     private static string ComposeOutOfScope()

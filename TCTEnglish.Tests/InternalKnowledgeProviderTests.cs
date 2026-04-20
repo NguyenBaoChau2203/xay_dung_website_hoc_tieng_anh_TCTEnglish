@@ -60,6 +60,27 @@ public sealed class InternalKnowledgeProviderTests
     }
 
     [Fact]
+    public async Task GenerateReplyAsync_WhenMultipleRetrieversMatch_AggregatesSnippetsInRegistrationOrder()
+    {
+        var classifier = new FakeClassifier(new IntentClassification(UserIntent.StudyRecommendation, 0.99f, "keyword"));
+        var firstRetriever = new FakeRetriever(UserIntent.StudyRecommendation, [new KnowledgeSnippet("Progress Set", "remainingCount=2", "progress")]);
+        var secondRetriever = new FakeRetriever(UserIntent.StudyRecommendation, [new KnowledgeSnippet("Fallback Set", "remainingCount=5", "fallback")]);
+        var composer = new FakeComposer();
+        var provider = new InternalKnowledgeProvider(classifier, [firstRetriever, secondRetriever], composer);
+
+        var reply = await provider.GenerateReplyAsync(
+            42,
+            [new AiContextMessage("user", "toi nen hoc gi tiep")],
+            CancellationToken.None);
+
+        Assert.Equal(42, firstRetriever.CapturedUserId);
+        Assert.Equal(42, secondRetriever.CapturedUserId);
+        Assert.Equal(2, composer.LastSnippetCount);
+        Assert.Equal(["Progress Set", "Fallback Set"], composer.LastSnippetTitles);
+        Assert.Equal("intent:StudyRecommendation snippets:2", reply.Text);
+    }
+
+    [Fact]
     public async Task GenerateReplyAsync_WhenNoRetrieverAvailable_ComposesWithEmptySnippets()
     {
         var classifier = new FakeClassifier(new IntentClassification(UserIntent.ClassInfo, 1.0f, "keyword"));
@@ -138,10 +159,13 @@ public sealed class InternalKnowledgeProviderTests
 
         public int LastSnippetCount { get; private set; }
 
+        public IReadOnlyList<string> LastSnippetTitles { get; private set; } = [];
+
         public Task<string> ComposeAsync(UserIntent intent, string userMessage, IReadOnlyList<KnowledgeSnippet> snippets, CancellationToken ct)
         {
             LastIntent = intent;
             LastSnippetCount = snippets.Count;
+            LastSnippetTitles = snippets.Select(snippet => snippet.Title).ToList();
             return Task.FromResult($"intent:{intent} snippets:{snippets.Count}");
         }
     }

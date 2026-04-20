@@ -117,12 +117,32 @@ public sealed class TemplateAnswerComposerTests
                     "Tạo lớp học",
                     "1. Vào trang Lớp học.\n2. Nhấn Tạo lớp mới.",
                     KnowledgeSnippetSources.WebsiteGuide,
-                    "/Class/Create")
+                    "/Home/CreateClass")
             ],
             CancellationToken.None);
 
         Assert.Contains("1. Vào trang Lớp học.", result);
-        Assert.Contains("Bạn có thể truy cập ngay tại: /Class/Create", result);
+        Assert.Contains("Bạn có thể truy cập ngay tại: /Home/CreateClass", result);
+    }
+
+    [Fact]
+    public async Task ComposeAsync_WebsiteGuide_TemplateRoute_DoesNotRenderRouteLine()
+    {
+        var result = await _composer.ComposeAsync(
+            UserIntent.WebsiteGuide,
+            "chinh sua set",
+            [
+                new KnowledgeSnippet(
+                    "Chỉnh sửa bộ từ",
+                    "1. Mở bộ từ cần chỉnh sửa.",
+                    KnowledgeSnippetSources.WebsiteGuide,
+                    "/Home/EditSet/{id}")
+            ],
+            CancellationToken.None);
+
+        Assert.Contains("1. Mở bộ từ cần chỉnh sửa.", result);
+        Assert.DoesNotContain("Bạn có thể truy cập ngay tại", result);
+        Assert.DoesNotContain("{id}", result);
     }
 
     [Fact]
@@ -142,6 +162,30 @@ public sealed class TemplateAnswerComposerTests
         Assert.Contains("Dựa trên dữ liệu học của bạn, mình gợi ý:", result);
         Assert.Contains("**Daily English**", result);
         Assert.Contains("Cần thêm 4 thẻ.", result);
+    }
+
+    [Fact]
+    public async Task ComposeAsync_StudyRecommendation_PrefersHigherPrioritySnippet()
+    {
+        var result = await _composer.ComposeAsync(
+            UserIntent.StudyRecommendation,
+            "tôi nên học gì",
+            [
+                new KnowledgeSnippet(
+                    "Low Priority Set",
+                    "remainingCount=8|streakDays=1|goalRemaining=2",
+                    KnowledgeSnippetSources.StudyRecommendation,
+                    Priority: 1),
+                new KnowledgeSnippet(
+                    "High Priority Set",
+                    "remainingCount=3|streakDays=2|goalRemaining=1",
+                    KnowledgeSnippetSources.StudyRecommendation,
+                    Priority: 5)
+            ],
+            CancellationToken.None);
+
+        Assert.Contains("**High Priority Set**", result);
+        Assert.DoesNotContain("Low Priority Set", result);
     }
 
     [Fact]

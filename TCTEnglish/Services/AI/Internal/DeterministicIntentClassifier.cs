@@ -16,6 +16,11 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             return Create(UserIntent.Greeting, 1.0f);
         }
 
+        if (IsClearlyOutOfScope(normalizedMessage))
+        {
+            return Create(UserIntent.OutOfScope, 0.3f);
+        }
+
         if (IsWebsiteGuide(normalizedMessage))
         {
             return Create(UserIntent.WebsiteGuide, 0.96f);
@@ -77,6 +82,50 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             && AiTextNormalizer.ContainsAny(normalizedMessage, "ban la ai", "ai day", "tro ly", "co o do khong");
     }
 
+    private static bool IsClearlyOutOfScope(string normalizedMessage)
+    {
+        if (AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "present perfect",
+            "past simple",
+            "passive voice",
+            "viet essay",
+            "viet doan van",
+            "cover letter",
+            "giup toi lam bai",
+            "lam bai nay",
+            "lam bai reading nay",
+            "tra loi bai reading",
+            "giai bai reading",
+            "thoi tiet",
+            "thu do",
+            "random fact"))
+        {
+            return true;
+        }
+
+        var hasPlatformFeatureContext = AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "reading",
+            "writing",
+            "listening",
+            "tct english",
+            "website",
+            "trang web",
+            "chatbox",
+            "he thong");
+
+        return !hasPlatformFeatureContext
+            && AiTextNormalizer.ContainsAny(
+                normalizedMessage,
+                "giai thich",
+                "ngu phap",
+                "grammar",
+                "dich giup",
+                "dich cau",
+                "dich doan");
+    }
+
     private static bool IsWebsiteGuide(string normalizedMessage)
     {
         var hasGuideVerb = AiTextNormalizer.ContainsAny(
@@ -84,8 +133,17 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "cach",
             "huong dan",
             "lam sao",
+            "lam bai",
             "how to",
             "su dung",
+            "tinh nang",
+            "hoat dong",
+            "ra sao",
+            "nhu the nao",
+            "gom",
+            "o dau",
+            "bat dau",
+            "gioi thieu",
             "tao",
             "them",
             "chinh sua",
@@ -106,14 +164,51 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "playlist",
             "shadowing",
             "dictation",
+            "reading",
+            "read mode",
+            "writing",
+            "listening",
             "quiz",
             "flashcard",
             "matching",
             "write",
             "goal",
+            "goals",
+            "muc tieu",
+            "huy hieu",
+            "badge",
+            "daily challenge",
+            "thu thach",
+            "cau hoi moi ngay",
             "streak",
             "tai khoan",
             "profile",
+            "mat khau",
+            "contact",
+            "support",
+            "lien he",
+            "ho tro",
+            "chat lop",
+            "class chat",
+            "nhan tin",
+            "gui anh",
+            "sap xep",
+            "to chuc",
+            "di chuyen set",
+            "thong bao",
+            "notification",
+            "bell",
+            "chuong",
+            "website",
+            "trang web",
+            "tct english",
+            "tong quan",
+            "overview",
+            "navigation",
+            "dieu huong",
+            "menu",
+            "dashboard",
+            "about",
             "chatbox",
             "ai");
 
