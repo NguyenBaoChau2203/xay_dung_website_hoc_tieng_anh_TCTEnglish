@@ -41,7 +41,10 @@
     border-left: 3px solid #0d6efd;
     margin-bottom: 15px;
 }
-
+    /* Thêm dòng này: Nếu thẻ không có nội dung thì không hiển thị */
+    .translation:empty {
+        display: none !important;
+    }
 /* Question Nav */
 .nav-btn {
     width: 38px;
