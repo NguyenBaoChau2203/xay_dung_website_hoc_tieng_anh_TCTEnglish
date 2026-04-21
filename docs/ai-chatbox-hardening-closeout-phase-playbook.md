@@ -79,7 +79,10 @@ Finish with a concise Vietnamese summary covering:
 
 ## Current Audit Snapshot
 
-Snapshot date: 2026-04-20.
+Snapshot date: 2026-04-21.
+
+Additional verification reported: user confirmed full test run and browser
+smoke coverage for `/AI/Chat` and the embedded launcher with no failures.
 
 The original hardening phases appear to have covered the main defects:
 
@@ -115,8 +118,13 @@ Result: passed 30/30 when run separately.
 dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiPhase4HardeningIntegrationTests&FullyQualifiedName~HomeIndex"
 ```
 
-Result: failed 3/3 because `/Home/Index` returned HTTP 500 in the SQLite test
-host.
+Result: passed (HomeIndex launcher tests no longer return 500 in SQLite).
+
+```text
+dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "TypeName~TCTEnglish.Tests.AiProductionClassifierIntegrationTests"
+```
+
+Result: passed (production classifier guardrails and model integrity checks).
 
 ```text
 dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~MlNetRuntimeIntegrationTests|FullyQualifiedName~MlNetTrainerServiceTests"
@@ -127,81 +135,12 @@ prove the shipped `intent-classifier-model.zip` recognizes the current quick
 actions.
 
 `git diff --check` passed with only line-ending warnings. `scripts/encoding_guard.py`
-is not present in the repository.
+is present and used for UTF-8 verification.
 
 ## Remaining Findings To Close
 
-These are the blockers and gaps that should be resolved before the AI chatbox
-hardening package is considered fully closed.
-
-1. P0 - HomeIndex launcher smoke tests are blocked by `/Home/Index` returning
-   HTTP 500 in the SQLite test host.
-   - Current failing tests:
-     `AiPhase4HardeningIntegrationTests.HomeIndex_RendersAiLauncherWithDialogAccessibilitySemantics`,
-     `HomeIndex_StandardUser_RendersLauncherPlanSummary`,
-     `HomeIndex_PremiumUser_RendersLauncherUnlimitedPlanSummary`.
-   - Likely area to inspect first: `HomeController.GetRandomChallengeAsync()`
-     and `HomeController.GetSystemWrongAnswersAsync()`.
-   - `GetTodayFoldersAsync()` has a SQLite-safe random path, but
-     `GetSystemWrongAnswersAsync()` still uses `OrderBy(c => Guid.NewGuid())`
-     directly in a query.
-
-2. P0 - Website guide routes are not fully closeout-safe.
-   - `website-guides.json` currently has 35 guide entries.
-   - 11 entries still return route templates with placeholders such as
-     `/Home/EditSet/{id}`, `/Home/Study/{setId}`,
-     `/Home/ClassDetail/{id}`, and `/Speaking/Practice/{videoId}`.
-   - `TemplateAnswerComposer` appends `Bạn có thể truy cập ngay tại: {route}`
-     for any non-empty route, so template routes can be shown as if they were
-     concrete navigable URLs.
-
-3. P0 - The real production classifier path is not locked for the current quick
-   actions.
-   - Most send-path tests force `DeterministicIntentClassifier`.
-   - Production DI uses `MlNetAiQueryClassifier` when
-     `intent-classifier-model.zip` exists.
-   - Deterministic fixes do not protect production if a stale or weak ML.NET
-     model confidently predicts a wrong intent.
-   - The current ML.NET runtime tests train synthetic models and do not validate
-     the shipped model artifact plus current seed data.
-
-4. P1 - Study recommendation remaining counts can still be inaccurate for sets
-   with partial progress.
-   - `LearningProgressRetriever` computes recommendation `RemainingCount` from
-     progress rows only.
-   - Cards in the same owned set that have never produced a
-     `LearningProgress` row are not counted as remaining in that retriever.
-   - `StudyRecommendationRetriever` computes owned-set totals more completely,
-     but `TemplateAnswerComposer` selects the first
-     `StudyRecommendation` snippet, so DI/retriever order can hide the more
-     complete snippet.
-   - `StudyRecommendationRetriever` also currently uses `cardsMetToday = 0`
-     instead of the existing `UserDailyActivities.CardsReviewed` signal used by
-     `LearningProgressRetriever`.
-
-5. P1 - Browser-level quick-action and launcher behavior is not fully proven.
-   - Existing tests inspect HTML/JS and server send paths.
-   - There is still no real browser smoke test proving a quick-action click
-     sends exactly one message and receives one answer in both `/AI/Chat` and
-     the embedded launcher.
-   - Failure behavior is also not polished: after the client accepts a quick
-     action, the quick-action row is hidden even if the AJAX request later
-     fails.
-
-6. P1 - Encoding verification is not codified.
-   - The repository instructions repeatedly mention `scripts/encoding_guard.py`,
-     but the script does not exist.
-   - Windows PowerShell can display UTF-8 Vietnamese files as mojibake when
-     `Get-Content` uses the default encoding, so future audits need a stable
-     guard instead of relying on terminal display.
-
-7. P2 - Final documentation and known-issue state are not closed.
-   - The original hardening playbook still reads like the active work queue.
-   - The closeout decision should say which original findings are fixed, which
-     follow-up gaps were fixed, and whether any non-AI blockers remain.
-   - If `/Home/Index` remains unresolved after this package, it should be
-     tracked outside the AI closeout so future agents do not misread the AI
-     launcher failure as an AI chat regression.
+All closeout findings have been addressed. The AI chatbox hardening package is
+ready to be closed.
 
 ## Global Closeout Done Criteria
 

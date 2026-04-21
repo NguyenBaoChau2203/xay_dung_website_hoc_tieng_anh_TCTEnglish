@@ -74,6 +74,11 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
         IntentClassification deterministic,
         IntentClassification mlNetClassification)
     {
+        if (deterministic.Confidence < 0.3f)
+        {
+            return false;
+        }
+
         if (deterministic.Intent is not (UserIntent.WebsiteGuide
             or UserIntent.StudyRecommendation
             or UserIntent.OutOfScope))

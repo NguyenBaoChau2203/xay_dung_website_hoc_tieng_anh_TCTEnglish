@@ -753,7 +753,8 @@ public sealed class AiPhase4HardeningIntegrationTests
         using var requestTwo = CreateSendRequest(conversationId, "second", antiForgeryTokenTwo);
         using var secondResponse = await clientTwo.SendAsync(requestTwo);
 
-        Assert.Equal(HttpStatusCode.Conflict, secondResponse.StatusCode);
+        var errorRaw = await secondResponse.Content.ReadAsStringAsync();
+        Assert.True(secondResponse.StatusCode == HttpStatusCode.Conflict, $"Expected Conflict but got {secondResponse.StatusCode}. Content: {errorRaw}");
 
         gate.SetResult();
         using var firstResponse = await firstResponseTask;
