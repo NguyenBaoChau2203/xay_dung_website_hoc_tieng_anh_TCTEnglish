@@ -63,6 +63,14 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
     public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
     public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
+
+    // ─── Billing & Subscriptions ────────────────────────────────────────────────
+    public virtual DbSet<PremiumPlan> PremiumPlans { get; set; }
+    public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
+    public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
+    public virtual DbSet<PaymentEvent> PaymentEvents { get; set; }
+    public virtual DbSet<PaymentAdminAction> PaymentAdminActions { get; set; }
+
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -1161,6 +1169,108 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Notifications_Users");
+        });
+
+        // ─── PremiumPlan ──────────────────────────────────────────────────────────
+        modelBuilder.Entity<PremiumPlan>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Code).HasMaxLength(50).IsRequired();
+            entity.Property(e => e.Name).HasMaxLength(100).IsRequired();
+            entity.Property(e => e.Description).HasMaxLength(500).IsRequired();
+            entity.Property(e => e.PriceVnd).HasColumnType("decimal(18,2)").IsRequired();
+            entity.Property(e => e.DurationDays).IsRequired();
+            entity.Property(e => e.IsActive).IsRequired();
+            entity.HasIndex(e => e.Code).IsUnique().HasDatabaseName("IX_PremiumPlans_Code");
+        });
+
+        // ─── UserSubscription ─────────────────────────────────────────────────────
+        modelBuilder.Entity<UserSubscription>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Status).HasMaxLength(30).IsRequired();
+            entity.HasIndex(e => new { e.UserId, e.Status, e.EndsAtUtc })
+                .HasDatabaseName("IX_UserSubscriptions_UserId_Status_EndsAtUtc");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.Plan).WithMany(p => p.UserSubscriptions)
+                .HasForeignKey(e => e.PlanId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // ─── PaymentOrder ─────────────────────────────────────────────────────────
+        modelBuilder.Entity<PaymentOrder>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.OrderCode).HasMaxLength(60).IsRequired();
+            entity.Property(e => e.Provider).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.AmountVnd).HasColumnType("decimal(18,2)").IsRequired();
+            entity.Property(e => e.Currency).HasMaxLength(10).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.ProviderTransactionId).HasMaxLength(100);
+            entity.Property(e => e.ProviderRequestId).HasMaxLength(100);
+            entity.Property(e => e.ProviderPaymentUrl).HasMaxLength(1000);
+            entity.Property(e => e.ProviderDeepLink).HasMaxLength(1000);
+            entity.Property(e => e.ProviderQrCodePayload).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.ProviderResponseCode).HasMaxLength(20);
+            entity.Property(e => e.ProviderTransactionStatus).HasMaxLength(20);
+            entity.Property(e => e.BankCode).HasMaxLength(50);
+            entity.Property(e => e.BankTransactionNo).HasMaxLength(100);
+            entity.Property(e => e.CardType).HasMaxLength(50);
+            entity.Property(e => e.PayType).HasMaxLength(50);
+            entity.Property(e => e.RawStatus).HasMaxLength(100);
+            entity.Property(e => e.FailureMessage).HasMaxLength(500);
+            entity.Property(e => e.ReturnPayloadJson).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.IpnPayloadJson).HasColumnType("nvarchar(max)");
+            entity.HasIndex(e => e.OrderCode).IsUnique().HasDatabaseName("IX_PaymentOrders_OrderCode");
+            entity.HasIndex(e => new { e.UserId, e.Status, e.CreatedAtUtc })
+                .HasDatabaseName("IX_PaymentOrders_UserId_Status_CreatedAt");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.Plan).WithMany(p => p.PaymentOrders)
+                .HasForeignKey(e => e.PlanId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // ─── PaymentEvent ─────────────────────────────────────────────────────────
+        modelBuilder.Entity<PaymentEvent>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Provider).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.EventType).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.EventKey).HasMaxLength(200).IsRequired();
+            entity.Property(e => e.ResultCode).HasMaxLength(20);
+            entity.Property(e => e.PayloadJson).HasColumnType("nvarchar(max)").IsRequired();
+            entity.Property(e => e.ProcessingStatus).HasMaxLength(20).IsRequired();
+            entity.Property(e => e.ProcessingMessage).HasMaxLength(500);
+            entity.HasIndex(e => new { e.Provider, e.EventType, e.EventKey })
+                .IsUnique()
+                .HasDatabaseName("IX_PaymentEvents_Provider_EventType_EventKey");
+            entity.HasOne(e => e.PaymentOrder)
+                .WithMany(o => o.PaymentEvents)
+                .HasForeignKey(e => e.PaymentOrderId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        // ─── PaymentAdminAction ───────────────────────────────────────────────────
+        modelBuilder.Entity<PaymentAdminAction>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.ActionType).HasMaxLength(60).IsRequired();
+            entity.Property(e => e.Reason).HasMaxLength(1000).IsRequired();
+            entity.Property(e => e.OldStatus).HasMaxLength(50);
+            entity.Property(e => e.NewStatus).HasMaxLength(50);
+            entity.Property(e => e.IpAddress).HasMaxLength(50);
+            entity.Property(e => e.UserAgent).HasMaxLength(500);
+            entity.Property(e => e.PayloadJson).HasColumnType("nvarchar(max)");
+            entity.HasIndex(e => e.AdminUserId).HasDatabaseName("IX_PaymentAdminActions_AdminUserId");
+            entity.HasIndex(e => e.PaymentOrderId).HasDatabaseName("IX_PaymentAdminActions_PaymentOrderId");
+            entity.HasIndex(e => e.CreatedAtUtc).HasDatabaseName("IX_PaymentAdminActions_CreatedAtUtc");
+            entity.HasOne(e => e.AdminUser).WithMany()
+                .HasForeignKey(e => e.AdminUserId).OnDelete(DeleteBehavior.NoAction);
+            entity.HasOne(e => e.PaymentOrder).WithMany()
+                .HasForeignKey(e => e.PaymentOrderId).IsRequired(false).OnDelete(DeleteBehavior.NoAction);
+            entity.HasOne(e => e.Subscription).WithMany()
+                .HasForeignKey(e => e.SubscriptionId).IsRequired(false).OnDelete(DeleteBehavior.NoAction);
         });
 
         OnModelCreatingPartial(modelBuilder);

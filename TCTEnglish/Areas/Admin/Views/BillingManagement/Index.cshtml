@@ -1,0 +1,231 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminBillingIndexViewModel
+@{
+    ViewData["Title"] = "Quản lý thanh toán";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var hasFilter = !string.IsNullOrEmpty(Model.ProviderFilter)
+        || !string.IsNullOrEmpty(Model.StatusFilter)
+        || !string.IsNullOrEmpty(Model.SearchQuery);
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <h1 class="h4 fw-bold mb-1">
+            <i class="bi bi-credit-card-2-front-fill text-primary me-2"></i>Quản lý thanh toán
+        </h1>
+        <p class="text-muted small mb-0">
+            Theo dõi đơn thanh toán Premium, trạng thái provider và lịch sử callback.
+        </p>
+    </div>
+    <a asp-area="Admin"
+       asp-controller="BillingManagement"
+       asp-action="Subscriptions"
+       class="btn btn-outline-primary">
+        <i class="bi bi-gem me-1"></i> Quản lý subscription
+    </a>
+    <div class="d-flex gap-2">
+        <a asp-area="Admin"
+           asp-controller="BillingManagement"
+           asp-action="Health"
+           class="btn btn-outline-danger">
+            <i class="bi bi-heart-pulse-fill me-1"></i> Provider Health
+        </a>
+        <form asp-area="Admin" asp-controller="BillingManagement" asp-action="CleanupExpiredPending" method="post"
+              onsubmit="return confirm('Dọn tất cả đơn pending đã quá hạn và chuyển sang expired?');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-warning">
+                <i class="bi bi-broom me-1"></i> Dọn pending quá hạn
+            </button>
+        </form>
+    </div>
+</div>
+
+@if (TempData["Success"] is string successMessage)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>@successMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+}
+
+@if (TempData["Error"] is string errorMessage)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>@errorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+}
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <form method="get"
+              asp-area="Admin"
+              asp-controller="BillingManagement"
+              asp-action="Index"
+              class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold">Tìm kiếm</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text"
+                           name="q"
+                           value="@Model.SearchQuery"
+                           class="form-control"
+                           placeholder="Order code, email, transaction id..." />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold">Provider</label>
+                <select name="provider" class="form-select">
+                    <option value="">Tất cả</option>
+                    @foreach (var provider in Model.Providers)
+                    {
+                        <option value="@provider" selected="@(Model.ProviderFilter == provider ? "selected" : null)">
+                            @provider
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold">Trạng thái</label>
+                <select name="status" class="form-select">
+                    <option value="">Tất cả</option>
+                    @foreach (var status in Model.Statuses)
+                    {
+                        <option value="@status" selected="@(Model.StatusFilter == status ? "selected" : null)">
+                            @status
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    <i class="bi bi-funnel me-1"></i>Lọc
+                </button>
+                @if (hasFilter)
+                {
+                    <a asp-area="Admin"
+                       asp-controller="BillingManagement"
+                       asp-action="Index"
+                       class="btn btn-outline-secondary"
+                       title="Xóa bộ lọc">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+        <h2 class="h6 fw-semibold mb-0">
+            Danh sách payment orders
+            <span class="badge bg-secondary ms-2">@Model.TotalFilteredCount</span>
+        </h2>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Order</th>
+                        <th>Người dùng</th>
+                        <th>Gói</th>
+                        <th>Provider</th>
+                        <th class="text-end">Số tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th class="text-end pe-4">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Orders.Any())
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-5">
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                Không tìm thấy đơn thanh toán nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-semibold">@order.OrderCode</div>
+                                @if (!string.IsNullOrEmpty(order.ProviderTransactionId))
+                                {
+                                    <small class="text-muted">@order.ProviderTransactionId</small>
+                                }
+                            </td>
+                            <td>
+                                <div class="fw-medium">@order.UserDisplayName</div>
+                                <small class="text-muted">#@order.UserId - @order.UserEmail</small>
+                            </td>
+                            <td>@order.PlanName</td>
+                            <td>
+                                <span class="badge bg-light text-dark border">@order.Provider</span>
+                            </td>
+                            <td class="text-end">@order.AmountVnd.ToString("N0") @order.Currency</td>
+                            <td>
+                                <span class="@order.StatusBadgeClass">@order.Status</span>
+                            </td>
+                            <td>
+                                <span class="text-muted small">@order.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-area="Admin"
+                                   asp-controller="BillingManagement"
+                                   asp-action="Details"
+                                   asp-route-id="@order.Id"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye me-1"></i>Chi tiết
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @if (Model.TotalPages > 1)
+    {
+        <div class="card-footer bg-white border-top py-3">
+            <nav aria-label="Phân trang payment orders">
+                <ul class="pagination pagination-sm justify-content-center mb-0">
+                    <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-provider="@Model.ProviderFilter"
+                           asp-route-status="@Model.StatusFilter"
+                           asp-route-q="@Model.SearchQuery"
+                           asp-route-page="@(Model.CurrentPage - 1)">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                    @for (var pageNumber = Math.Max(1, Model.CurrentPage - 2); pageNumber <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); pageNumber++)
+                    {
+                        <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="Index"
+                               asp-route-provider="@Model.ProviderFilter"
+                               asp-route-status="@Model.StatusFilter"
+                               asp-route-q="@Model.SearchQuery"
+                               asp-route-page="@pageNumber">@pageNumber</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-provider="@Model.ProviderFilter"
+                           asp-route-status="@Model.StatusFilter"
+                           asp-route-q="@Model.SearchQuery"
+                           asp-route-page="@(Model.CurrentPage + 1)">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+</div>
