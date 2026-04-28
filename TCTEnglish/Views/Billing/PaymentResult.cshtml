@@ -1,0 +1,100 @@
+﻿@model TCTEnglish.ViewModels.Billing.PaymentResultViewModel
+@{
+    ViewData["Title"] = "Kết quả thanh toán";
+}
+
+@section Styles {
+    <style>
+        .payment-result-icon {
+            width: 5rem;
+            height: 5rem;
+        }
+    </style>
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div class="payment-result-icon @Model.IconContainerClass rounded-circle d-inline-flex align-items-center justify-content-center mb-4">
+                        <i class="@Model.IconClass fs-1"></i>
+                    </div>
+
+                    <span class="@Model.StatusBadgeClass mb-3">@Model.StatusDisplayName</span>
+                    <h1 class="h3 mt-3 fw-bold">@Model.Title</h1>
+                    <p class="text-muted mb-4">@Model.Message</p>
+
+                    @if (Model.CanShowOrderSummary)
+                    {
+                        <div class="bg-light rounded-3 p-4 text-start mb-4">
+                            <div class="d-flex justify-content-between mb-2 gap-3">
+                                <span class="text-muted">Mã đơn hàng:</span>
+                                <span class="fw-medium text-break text-end">@Model.OrderCode</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 gap-3">
+                                <span class="text-muted">Dịch vụ:</span>
+                                <span class="fw-medium text-end">@Model.PlanName</span>
+                            </div>
+                            <div class="d-flex justify-content-between gap-3">
+                                <span class="text-muted">Tổng tiền:</span>
+                                <span class="fw-bold text-primary text-end">@Model.AmountVnd.ToString("N0") ₫</span>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="d-grid gap-2">
+                        @if (Model.IsPaid)
+                        {
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="btn btn-primary py-3 fw-bold rounded-pill shadow-sm">
+                                Bắt đầu học ngay
+                            </a>
+                        }
+                        else if (Model.CanRetry)
+                        {
+                            <a asp-action="Pricing"
+                               class="btn btn-primary py-3 fw-bold rounded-pill shadow-sm">
+                                Tạo đơn thanh toán mới
+                            </a>
+                        }
+                        else if (Model.IsPending)
+                        {
+                            <a asp-action="History"
+                               class="btn btn-outline-primary py-3 fw-bold rounded-pill">
+                                Theo dõi trạng thái đơn hàng
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="Pricing"
+                               class="btn btn-primary py-3 fw-bold rounded-pill shadow-sm">
+                                Quay lại gói Premium
+                            </a>
+                        }
+
+                        <a asp-action="History" class="btn btn-link text-decoration-none">
+                            Xem lịch sử giao dịch
+                        </a>
+                    </div>
+
+                    @if (Model.IsPaid)
+                    {
+                        <div class="alert alert-info mt-4 mb-0 small">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Trạng thái thành công ở trang này chỉ phản ánh đơn hàng đã được IPN xác nhận trong hệ thống.
+                        </div>
+                    }
+                    else if (Model.IsPending)
+                    {
+                        <div class="alert alert-warning mt-4 mb-0 small text-start">
+                            <i class="bi bi-clock-history me-1"></i>
+                            Trang quay lại không kích hoạt Premium. Hệ thống chỉ mở quyền sau khi IPN hợp lệ cập nhật đơn hàng.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

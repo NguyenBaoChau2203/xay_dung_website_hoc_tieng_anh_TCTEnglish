@@ -7,6 +7,7 @@ using TCTEnglish.Hubs;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Services.AI.Internal.Retrievers;
+using TCTEnglish.Services.Billing;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.Workers;
@@ -44,6 +45,30 @@ builder.Services.AddScoped<TCTEnglish.Services.IListeningService, TCTEnglish.Ser
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IYoutubeTranscriptService, YoutubeTranscriptService>();
 builder.Services.AddScoped<IVocabSuggestService, VocabSuggestService>();
+builder.Services.AddScoped<IPremiumAccessService, PremiumAccessService>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<IBillingService, BillingService>();
+builder.Services.AddOptions<TCTEnglish.Services.Billing.VnPay.VnPayOptions>()
+    .BindConfiguration(TCTEnglish.Services.Billing.VnPay.VnPayOptions.SectionName)
+    .ValidateOnStart();
+builder.Services.AddOptions<TCTEnglish.Services.Billing.MoMo.MoMoOptions>()
+    .BindConfiguration(TCTEnglish.Services.Billing.MoMo.MoMoOptions.SectionName)
+    .ValidateOnStart();
+builder.Services.AddScoped<IPaymentGateway, TCTEnglish.Services.Billing.VnPay.VnPayGateway>();
+builder.Services.AddHttpClient<TCTEnglish.Services.Billing.MoMo.MoMoGateway>();
+builder.Services.AddScoped<IPaymentGateway>(sp =>
+    sp.GetRequiredService<TCTEnglish.Services.Billing.MoMo.MoMoGateway>());
+builder.Services.AddScoped<IIpnService, IpnService>();
+builder.Services.AddSingleton<IPaymentProviderHealthService, PaymentProviderHealthService>();
+builder.Services.AddScoped<IPaymentAuditService, PaymentAuditService>();
+// Reconciliation
+builder.Services.AddScoped<IPaymentReconciliationService, PaymentReconciliationService>();
+builder.Services.AddHttpClient<IVnPayQueryClient, TCTEnglish.Services.Billing.VnPay.VnPayQueryClient>();
+builder.Services.AddOptions<TCTEnglish.Workers.ReconciliationWorkerOptions>()
+    .BindConfiguration("ReconciliationWorker");
+builder.Services.AddHostedService<TCTEnglish.Workers.PaymentReconciliationWorker>();
+builder.Services.AddHostedService<TCTEnglish.Workers.PendingPaymentCleanupWorker>();
+builder.Services.AddHostedService<TCTEnglish.Workers.PremiumExpiryWorker>();
 builder.Services.AddOptions<AiOptions>()
     .Configure<IConfiguration>((options, configuration) =>
     {
@@ -72,7 +97,8 @@ builder.Services.AddScoped<IKnowledgeRetriever, CardLookupRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, SpeakingRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, ClassRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, StudyRecommendationRetriever>();
-builder.Services.AddScoped<IAiProviderClient, InternalKnowledgeProvider>();
+builder.Services.AddScoped<InternalKnowledgeProvider>();
+builder.Services.AddScoped<IAiProviderClient, GeminiProviderClient>();
 builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
 builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
 builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();
@@ -94,8 +120,12 @@ builder.Services.AddAuthentication(options =>
 .AddCookie("ExternalCookie")
 .AddGoogle(options =>
 {
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? "dummy-client-id";
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "dummy-client-secret";
+    options.ClientId = string.IsNullOrWhiteSpace(builder.Configuration["Authentication:Google:ClientId"])
+        ? "dummy-client-id"
+        : builder.Configuration["Authentication:Google:ClientId"]!;
+    options.ClientSecret = string.IsNullOrWhiteSpace(builder.Configuration["Authentication:Google:ClientSecret"])
+        ? "dummy-client-secret"
+        : builder.Configuration["Authentication:Google:ClientSecret"]!;
     options.Scope.Add("profile");
     options.Events.OnCreatingTicket = ctx =>
     {
@@ -116,8 +146,12 @@ builder.Services.AddAuthentication(options =>
 })
 .AddFacebook(options =>
 {
-    options.AppId = builder.Configuration["Authentication:Facebook:AppId"] ?? "dummy-app-id";
-    options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"] ?? "dummy-app-secret";
+    options.AppId = string.IsNullOrWhiteSpace(builder.Configuration["Authentication:Facebook:AppId"])
+        ? "dummy-app-id"
+        : builder.Configuration["Authentication:Facebook:AppId"]!;
+    options.AppSecret = string.IsNullOrWhiteSpace(builder.Configuration["Authentication:Facebook:AppSecret"])
+        ? "dummy-app-secret"
+        : builder.Configuration["Authentication:Facebook:AppSecret"]!;
     options.Events.OnRemoteFailure = ctx =>
     {
         ctx.Response.Redirect("/Account/Login");
@@ -178,6 +212,16 @@ catch (Exception ex)
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "ListeningLessonSeedData: Lỗi không mong đợi khi seed dữ liệu luyện nghe.");
+}
+
+try
+{
+    await TCTEnglish.Models.BillingSeedData.SeedAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "BillingSeedData: Loi khi seed goi Premium.");
 }
 
 app.Run();

@@ -334,15 +334,44 @@ namespace TCTVocabulary.Controllers
                 .Where(c => c.CardId != excludedCardId && c.Set.Owner.Role == "System");
 
             // Lấy ngẫu nhiên 3 định nghĩa từ System
-            return await eligibleCards
-                .OrderBy(c => Guid.NewGuid())
-                .Take(3)
+            if (_context.Database.IsSqlServer())
+            {
+                return await eligibleCards
+                    .OrderBy(_ => Guid.NewGuid())
+                    .Take(3)
+                    .Select(c => new AnswerOption
+                    {
+                        CardId = c.CardId,
+                        Definition = c.Definition
+                    })
+                    .ToListAsync();
+            }
+
+            var randomCardIds = await TakeRandomIdsAsync(
+                eligibleCards
+                    .OrderBy(c => c.CardId)
+                    .Select(c => c.CardId),
+                3);
+
+            if (randomCardIds.Count == 0)
+            {
+                return new List<AnswerOption>();
+            }
+
+            var options = await eligibleCards
+                .Where(c => randomCardIds.Contains(c.CardId))
                 .Select(c => new AnswerOption
                 {
                     CardId = c.CardId,
                     Definition = c.Definition
                 })
                 .ToListAsync();
+
+            var optionsById = options.ToDictionary(x => x.CardId);
+            return randomCardIds
+                .Where(optionsById.ContainsKey)
+                .Select(id => optionsById[id])
+                .ToList();
         }
 
         // 3. Thêm Action mới để trả về Partial View cho AJAX

@@ -1,0 +1,326 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminSubscriptionsViewModel
+@{
+    ViewData["Title"] = "Quản lý Premium";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var hasFilter = !string.IsNullOrEmpty(Model.StatusFilter)
+        || !string.IsNullOrEmpty(Model.SearchQuery);
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <h1 class="h4 fw-bold mb-1">
+            <i class="bi bi-gem text-primary me-2"></i>Quản lý Premium
+        </h1>
+        <p class="text-muted small mb-0">
+            Theo dõi subscription và cấp hoặc thu hồi Premium thủ công khi cần.
+        </p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-area="Admin"
+           asp-controller="BillingManagement"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+            <i class="bi bi-credit-card me-1"></i> Payment orders
+        </a>
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#grantPremiumModal">
+            <i class="bi bi-plus-circle me-1"></i> Cấp Premium
+        </button>
+    </div>
+</div>
+
+@if (TempData["Success"] is string successMessage)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>@successMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+}
+
+@if (TempData["Error"] is string errorMessage)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>@errorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+}
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <form method="get"
+              asp-area="Admin"
+              asp-controller="BillingManagement"
+              asp-action="Subscriptions"
+              class="row g-3 align-items-end">
+            <div class="col-md-6">
+                <label class="form-label small fw-semibold">Tìm kiếm</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text"
+                           name="q"
+                           value="@Model.SearchQuery"
+                           class="form-control"
+                           placeholder="Email, tên, user ID hoặc order code..." />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold">Trạng thái</label>
+                <select name="status" class="form-select">
+                    <option value="">Tất cả</option>
+                    @foreach (var status in Model.Statuses)
+                    {
+                        <option value="@status" selected="@(Model.StatusFilter == status ? "selected" : null)">
+                            @status
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    <i class="bi bi-funnel me-1"></i>Lọc
+                </button>
+                @if (hasFilter)
+                {
+                    <a asp-area="Admin"
+                       asp-controller="BillingManagement"
+                       asp-action="Subscriptions"
+                       class="btn btn-outline-secondary"
+                       title="Xóa bộ lọc">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+        <h2 class="h6 fw-semibold mb-0">
+            Danh sách subscriptions
+            <span class="badge bg-secondary ms-2">@Model.TotalFilteredCount</span>
+        </h2>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Người dùng</th>
+                        <th>Gói</th>
+                        <th>Nguồn</th>
+                        <th>Thời hạn</th>
+                        <th>Trạng thái</th>
+                        <th class="text-end pe-4">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Subscriptions.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-5">
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                Không tìm thấy subscription nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var sub in Model.Subscriptions)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-semibold">@sub.UserDisplayName</div>
+                                <small class="text-muted">#@sub.UserId - @sub.UserEmail</small>
+                            </td>
+                            <td>
+                                <div>@sub.PlanName</div>
+                                <small class="text-muted">@sub.PlanCode</small>
+                            </td>
+                            <td>
+                                @if (sub.IsManualGrant)
+                                {
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">
+                                        Manual grant
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-light text-dark border">@sub.ActivatedByOrderCode</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="small">@sub.StartsAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</div>
+                                <div class="small text-muted">đến @sub.EndsAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</div>
+                            </td>
+                            <td>
+                                <span class="@sub.StatusBadgeClass">@sub.Status</span>
+                                @if (!string.IsNullOrWhiteSpace(sub.CancelReason))
+                                {
+                                    <div class="small text-muted text-truncate">@sub.CancelReason</div>
+                                }
+                            </td>
+                            <td class="text-end pe-4">
+                                @if (sub.IsActive)
+                                {
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#revokeSubscriptionModal-@sub.Id">
+                                        <i class="bi bi-x-circle me-1"></i>Thu hồi
+                                    </button>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">Không khả dụng</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @if (Model.TotalPages > 1)
+    {
+        <div class="card-footer bg-white border-top py-3">
+            <nav aria-label="Phân trang subscriptions">
+                <ul class="pagination pagination-sm justify-content-center mb-0">
+                    <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Subscriptions"
+                           asp-route-status="@Model.StatusFilter"
+                           asp-route-q="@Model.SearchQuery"
+                           asp-route-page="@(Model.CurrentPage - 1)">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                    @for (var pageNumber = Math.Max(1, Model.CurrentPage - 2); pageNumber <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); pageNumber++)
+                    {
+                        <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="Subscriptions"
+                               asp-route-status="@Model.StatusFilter"
+                               asp-route-q="@Model.SearchQuery"
+                               asp-route-page="@pageNumber">@pageNumber</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Subscriptions"
+                           asp-route-status="@Model.StatusFilter"
+                           asp-route-q="@Model.SearchQuery"
+                           asp-route-page="@(Model.CurrentPage + 1)">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="grantPremiumModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <form asp-area="Admin" asp-controller="BillingManagement" asp-action="Grant" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header border-bottom">
+                    <h2 class="modal-title h5 fw-semibold">
+                        <i class="bi bi-gem me-2"></i>Cấp Premium thủ công
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="UserLookup">Người dùng</label>
+                        <input id="UserLookup"
+                               name="UserLookup"
+                               class="form-control"
+                               placeholder="Email hoặc user ID" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="PlanId">Gói Premium</label>
+                        <select id="PlanId" name="PlanId" class="form-select">
+                            <option value="">Chọn gói</option>
+                            @foreach (var plan in Model.Plans)
+                            {
+                                <option value="@plan.Id">
+                                    @plan.Name - @plan.DurationDays ngày - @plan.PriceVnd.ToString("N0") VND
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="DurationDays">Thời hạn tùy chỉnh</label>
+                        <input id="DurationDays"
+                               name="DurationDays"
+                               type="number"
+                               min="1"
+                               max="3650"
+                               class="form-control"
+                               placeholder="Để trống để dùng thời hạn của gói" />
+                    </div>
+                    <div class="mb-0">
+                        <label class="form-label fw-semibold" for="GrantReason">Lý do</label>
+                        <textarea id="GrantReason"
+                                  name="Reason"
+                                  rows="3"
+                                  maxlength="500"
+                                  class="form-control"
+                                  placeholder="Nhập lý do cấp Premium thủ công"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Để sau</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-1"></i>Cấp Premium
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@foreach (var sub in Model.Subscriptions.Where(s => s.IsActive))
+{
+    <div class="modal fade" id="revokeSubscriptionModal-@sub.Id" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <form asp-area="Admin" asp-controller="BillingManagement" asp-action="Revoke" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="UserId" value="@sub.UserId" />
+                    <div class="modal-header border-bottom bg-danger bg-opacity-10">
+                        <h2 class="modal-title h5 fw-semibold text-danger">
+                            <i class="bi bi-x-circle-fill me-2"></i>Thu hồi Premium
+                        </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-3">
+                            Bạn đang thu hồi Premium của
+                            <strong>@sub.UserDisplayName</strong>
+                            <span class="text-muted">(@sub.UserEmail)</span>.
+                        </p>
+                        <div class="alert alert-warning small">
+                            Hành động này sẽ thu hồi toàn bộ subscription active còn hạn của người dùng này.
+                        </div>
+                        <label class="form-label fw-semibold">Lý do thu hồi</label>
+                        <textarea name="Reason"
+                                  rows="3"
+                                  maxlength="500"
+                                  class="form-control"
+                                  placeholder="Nhập lý do thu hồi Premium"
+                                  required></textarea>
+                    </div>
+                    <div class="modal-footer border-top">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Để sau</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-x-circle me-1"></i>Thu hồi Premium
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
