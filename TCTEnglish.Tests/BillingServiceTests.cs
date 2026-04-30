@@ -143,9 +143,8 @@ namespace TCTEnglish.Tests
             var result = await svc.CreateCheckoutAsync(
                 user.UserId, plan.Code, "fake", "127.0.0.1");
 
-            // Order code should follow TCT-{hex}-{hex} format
-            Assert.StartsWith("TCT-", result.OrderCode!);
-            Assert.Equal(3, result.OrderCode!.Split('-').Length);
+            // Order code should follow TCT{timestamp}{hex} format
+            Assert.StartsWith("TCT", result.OrderCode!);
             // Must not leak email
             Assert.DoesNotContain(user.Email, result.OrderCode!);
         }

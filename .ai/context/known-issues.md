@@ -203,3 +203,4 @@ proposing follow-up work so they do not optimize already-completed items.
 | Goals phase-5 documentation closeout | Resolved by removing stale placeholder descriptions from backlog/instruction docs and aligning known-issues with real Goals state |
 | Goals phase-7 closure and reward hardening | Resolved with atomic speaking/writing completion transitions, removal of request-time writing migration, new replay regression coverage, and an explicit rollout close decision |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |
+| CI/CD test suite 14 failures (billing, speaking, DI, writing, AI host) | Resolved across 5 root cause groups; full suite verified green at 449/449 (2026-04-30) |

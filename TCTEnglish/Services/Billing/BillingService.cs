@@ -319,7 +319,7 @@ namespace TCTEnglish.Services.Billing
         {
             var timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
             var randomHex = Convert.ToHexString(RandomNumberGenerator.GetBytes(4));
-            return $"TCT{timestamp}{randomHex}";
+            return $"TCT-{timestamp}-{randomHex}";
         }
 
         private static string SerializeSafePayload(IDictionary<string, string> queryParams)

@@ -28,7 +28,7 @@ namespace TCTEnglish.Services.Billing
             => new() { RspCode = "02", Message = "Order already confirmed" };
 
         public static IpnProcessingResult InvalidOrder()
-            => new() { RspCode = "01", Message = "Order Not Found" };
+            => new() { RspCode = "01", Message = "Order not found" };
 
         public static IpnProcessingResult UnknownError()
             => new() { RspCode = "99", Message = "Unknown error" };

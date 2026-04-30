@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TCTEnglish.Services.AI;
+using TCTEnglish.Services.AI.Internal;
 using TCTVocabulary.Models;
 using TCTVocabulary.Workers;
 
@@ -82,6 +84,13 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                     TestAuthenticationHandler.SchemeName,
                     _ => { });
 
+            // Keep test runs deterministic by default while production DI
+            // continues to choose the real provider in Program.cs.
+            services.RemoveAll<IAiQueryClassifier>();
+            services.AddSingleton<IAiQueryClassifier>(sp => sp.GetRequiredService<DeterministicIntentClassifier>());
+            services.RemoveAll<IAiProviderClient>();
+            services.AddScoped<IAiProviderClient>(sp => sp.GetRequiredService<InternalKnowledgeProvider>());
+
             _configureTestServices?.Invoke(services);
         });
     }
@@ -91,8 +100,10 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         using var scope = Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
+        await context.Database.OpenConnectionAsync();
         await context.Database.EnsureDeletedAsync();
         await context.Database.EnsureCreatedAsync();
+        await EnsureUsersTableExistsAsync(context);
 
         await SeedAsync(context);
     }
@@ -324,5 +335,34 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             });
 
         await context.SaveChangesAsync();
+    }
+
+    private static async Task EnsureUsersTableExistsAsync(DbflashcardContext context)
+    {
+        for (var attempt = 0; attempt < 3; attempt++)
+        {
+            if (await TableExistsAsync(context, "Users"))
+            {
+                return;
+            }
+
+            await context.Database.EnsureCreatedAsync();
+        }
+
+        throw new InvalidOperationException("SQLite test schema did not create the Users table.");
+    }
+
+    private static async Task<bool> TableExistsAsync(DbflashcardContext context, string tableName)
+    {
+        await using var command = context.Database.GetDbConnection().CreateCommand();
+        command.CommandText = "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = $name LIMIT 1;";
+
+        var parameter = command.CreateParameter();
+        parameter.ParameterName = "$name";
+        parameter.Value = tableName;
+        command.Parameters.Add(parameter);
+
+        var result = await command.ExecuteScalarAsync();
+        return result is not null && result != DBNull.Value;
     }
 }

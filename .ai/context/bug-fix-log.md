@@ -42,6 +42,42 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### CI/CD test suite 14 failures across 5 root cause groups — 2026-04-30
+
+**Symptom**: CI/CD pipeline `dotnet test` reported 14 failures out of 449 total tests. Failures spanned billing order code format, speaking route 404s, DI constructor regression, writing completion/goals progress, and AI deterministic test host provider selection.
+
+**Root Cause**: Five distinct root cause groups:
+1. **Billing format**: `GenerateOrderCode()` produced `TCT{timestamp}{hex}` but tests expected `TCT-{timestamp}-{hex}`. IPN message casing mismatch (`Order Not Found` vs `Order not found`).
+2. **Speaking routes**: Integration tests called `/Speaking/Practice?id=701` and `/Speaking/Index` but controller lacked explicit route aliases for these legacy URL patterns.
+3. **DI regression**: `Sprint2SmokeTests` expected `IStreakService` in `HomeController` constructor but architecture had moved to `IGoalsService`.
+4. **Writing progress**: `WritingService.EvaluateWritingSentenceAsync` did not call `IGoalsService` for writing completion XP awards; test seed only populated progress tables without backing `UserWritingAttempts`.
+5. **AI test host**: `TestWebApplicationFactory` did not override `IAiQueryClassifier` and `IAiProviderClient` to deterministic internal providers, causing AI baseline tests to fail. SQLite schema init flake (`no such table: Users`) appeared in full suite runs.
+
+**Solution**:
+1. Changed `BillingService.GenerateOrderCode()` to `TCT-{timestamp}-{hex}` format. Updated `IIpnService.InvalidOrder()` message casing.
+2. Added `[HttpGet("/Speaking/Index")]` and `[HttpGet("/Speaking/Practice")]` route aliases on `SpeakingController`.
+3. Renamed smoke test to `GoalsConsumers_RequireConstructorInjectedService` and updated assertion to check `IGoalsService`.
+4. Injected `IGoalsService` into `WritingService`, added writing progress upsert helper and goal award on first exercise completion. Updated test seed to include `UserWritingAttempts`.
+5. Added `RemoveAll<IAiQueryClassifier>` / `AddSingleton<DeterministicIntentClassifier>` and `RemoveAll<IAiProviderClient>` / `AddScoped<InternalKnowledgeProvider>` overrides in `TestWebApplicationFactory`. Added SQLite schema guard with `EnsureUsersTableExistsAsync` helper.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/SpeakingController.cs` — added route aliases for legacy speaking URLs
+- `TCTEnglish/Services/Billing/BillingService.cs` — fixed order code format to `TCT-{timestamp}-{hex}`
+- `TCTEnglish/Services/Billing/IIpnService.cs` — fixed IPN message casing
+- `TCTEnglish/Services/WritingService.cs` — added `IGoalsService` dependency and writing progress/goal award flow
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` — AI provider overrides and SQLite schema guard
+- `TCTEnglish.Tests/Sprint2SmokeTests.cs` — updated DI smoke test to match current architecture
+- `TCTEnglish.Tests/GoalsPhase7IntegrationTests.cs` — updated seed to include `UserWritingAttempts`
+- `TCTEnglish.Tests/SpeakingLegacyNullMetadataIntegrationTests.cs` — added missing schema columns and updated assertion
+
+**Verification**: 
+- Targeted test run (8 test classes, 95 tests): `Passed: 95, Failed: 0`
+- Full test suite: `Passed: 449, Failed: 0, Skipped: 0, Total: 449, Duration: 50s`
+
+**Commit**: Not created.
+
+**Notes**: The fix preserves all pre-existing worktree changes (AdminBillingManagementTests CancellationToken updates, test project package version downgrades, BillingServiceTests lenient assertions, StudyController AllowAnonymous changes). The SQLite schema guard addresses a flaky `no such table: Users` error that appeared during full suite runs after the main logic fixes were applied.
+
 ### VNPay sandbox checkout still failed with code 70 and callback hardening gaps - 2026-04-28
 
 **Symptom**: Redirect to VNPay sandbox could still fail at provider entry with `Error.html?code=70` (`Sai chữ ký`), while callback/IPN handling and config safety still had gaps (sensitive VNPay sandbox credentials present in development config, non-standardized IPN JSON response shape).

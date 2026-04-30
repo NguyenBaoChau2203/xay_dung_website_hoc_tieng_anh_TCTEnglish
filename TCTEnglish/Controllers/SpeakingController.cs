@@ -36,6 +36,7 @@ namespace TCTVocabulary.Controllers
         }
 
         [HttpGet("/Speaking")]
+        [HttpGet("/Speaking/Index")]
         public async Task<IActionResult> Index()
         {
             var currentUserId = TryGetCurrentUserId(out var userId) ? userId : (int?)null;
@@ -44,6 +45,7 @@ namespace TCTVocabulary.Controllers
             return View(viewModel);
         }
 
+        [HttpGet("/Speaking/Practice")]
         [HttpGet("/Speaking/Practice/{id:int}")]
         public async Task<IActionResult> Practice(int id)
         {

@@ -33,10 +33,12 @@ namespace TCTVocabulary.Services
         private const int SuggestedRewriteMaxLength = 1000;
         private readonly DbflashcardContext _context;
         private readonly IWritingAiEvaluationService _writingAiEvaluationService;
+        private readonly IGoalsService _goalsService;
 
         public WritingService(
             DbflashcardContext context,
             IWritingAiEvaluationService writingAiEvaluationService,
+            IGoalsService goalsService,
             IAiProviderClient aiProviderClient,
             IAiTokenCounter aiTokenCounter,
             IOptions<AiOptions> aiOptions,
@@ -44,6 +46,7 @@ namespace TCTVocabulary.Services
         {
             _context = context;
             _writingAiEvaluationService = writingAiEvaluationService;
+            _goalsService = goalsService;
             _aiProviderClient = aiProviderClient;
             _aiTokenCounter = aiTokenCounter;
             _aiOptions = aiOptions.Value;
@@ -192,6 +195,27 @@ namespace TCTVocabulary.Services
             await PersistWritingAttemptAsync(userId, exerciseId, sentence, normalizedAnswer, evaluationViewModel);
 
             var progressSummary = await LoadWritingExerciseProgressSummaryAsync(exerciseId, userId, sentences.Count);
+            var firstTimeExerciseCompletion = await UpsertWritingProgressAsync(
+                userId,
+                exerciseId,
+                sentence.Id,
+                normalizedAnswer,
+                evaluationViewModel.Passed,
+                progressSummary,
+                sentences.Count);
+
+            if (firstTimeExerciseCompletion)
+            {
+                var activityUpdate = _goalsService.BuildWritingCompletionActivityUpdate();
+                var activityResult = await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+                if (activityResult.Status == OperationStatus.NotFound)
+                {
+                    _logger.LogWarning(
+                        "Writing completion activity record skipped because user {userId} was not found",
+                        userId);
+                }
+            }
+
             evaluationViewModel.SentenceAttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id);
             evaluationViewModel.ExerciseAttemptCount = progressSummary.AttemptCount;
             evaluationViewModel.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
@@ -919,6 +943,90 @@ namespace TCTVocabulary.Services
             });
 
             await _context.SaveChangesAsync();
+        }
+
+        private async Task<bool> UpsertWritingProgressAsync(
+            int userId,
+            int exerciseId,
+            int sentenceId,
+            string normalizedAnswer,
+            bool passed,
+            WritingExerciseProgressSummary progressSummary,
+            int totalSentenceCount)
+        {
+            var utcNow = DateTime.UtcNow;
+            var sentenceProgress = await _context.UserWritingSentenceProgresses
+                .FirstOrDefaultAsync(progress =>
+                    progress.UserId == userId
+                    && progress.SentenceId == sentenceId);
+
+            if (sentenceProgress == null)
+            {
+                sentenceProgress = new UserWritingSentenceProgress
+                {
+                    UserId = userId,
+                    WritingExerciseId = exerciseId,
+                    SentenceId = sentenceId,
+                    AttemptCount = 1,
+                    IsPassed = passed,
+                    AcceptedAnswer = passed ? normalizedAnswer : null,
+                    LastAttemptAt = utcNow,
+                    PassedAt = passed ? utcNow : null
+                };
+                _context.UserWritingSentenceProgresses.Add(sentenceProgress);
+            }
+            else
+            {
+                sentenceProgress.AttemptCount += 1;
+                sentenceProgress.LastAttemptAt = utcNow;
+
+                if (passed)
+                {
+                    sentenceProgress.IsPassed = true;
+                    sentenceProgress.AcceptedAnswer = normalizedAnswer;
+                    sentenceProgress.PassedAt ??= utcNow;
+                }
+            }
+
+            var exerciseProgress = await _context.UserWritingExerciseProgresses
+                .FirstOrDefaultAsync(progress =>
+                    progress.UserId == userId
+                    && progress.WritingExerciseId == exerciseId);
+
+            var wasCompleted = exerciseProgress?.IsCompleted ?? false;
+            var isCompleted = totalSentenceCount > 0
+                && progressSummary.CompletedSentenceCount >= totalSentenceCount;
+
+            if (exerciseProgress == null)
+            {
+                exerciseProgress = new UserWritingExerciseProgress
+                {
+                    UserId = userId,
+                    WritingExerciseId = exerciseId,
+                    TotalSentenceCount = totalSentenceCount,
+                    PassedSentenceCount = progressSummary.CompletedSentenceCount,
+                    AttemptCount = progressSummary.AttemptCount,
+                    IsCompleted = isCompleted,
+                    LastAttemptAt = progressSummary.LastAttemptedAtUtc ?? utcNow,
+                    CompletedAt = isCompleted ? utcNow : null
+                };
+                _context.UserWritingExerciseProgresses.Add(exerciseProgress);
+            }
+            else
+            {
+                exerciseProgress.TotalSentenceCount = totalSentenceCount;
+                exerciseProgress.PassedSentenceCount = progressSummary.CompletedSentenceCount;
+                exerciseProgress.AttemptCount = progressSummary.AttemptCount;
+                exerciseProgress.IsCompleted = isCompleted;
+                exerciseProgress.LastAttemptAt = progressSummary.LastAttemptedAtUtc ?? utcNow;
+                exerciseProgress.CompletedAt = isCompleted
+                    ? exerciseProgress.CompletedAt ?? utcNow
+                    : null;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return !wasCompleted && isCompleted;
         }
 
         private async Task<WritingExerciseProgressSummary> LoadWritingExerciseProgressSummaryAsync(
