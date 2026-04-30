@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using TCTEnglish.Hubs;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
@@ -21,14 +22,10 @@ builder.Services.AddRazorPages()
             System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<DbflashcardContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        sqlOptions =>
-        {
-            sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-            sqlOptions.CommandTimeout(60);
-        }));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();

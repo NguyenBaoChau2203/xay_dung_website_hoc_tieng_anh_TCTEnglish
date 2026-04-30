@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+using MySqlConnector;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
@@ -334,8 +334,9 @@ namespace TCTVocabulary.Controllers
 
         private static bool IsUniqueConstraintViolation(DbUpdateException exception)
         {
-            var sqlException = FindException<SqlException>(exception);
-            if (sqlException is { Number: 2601 or 2627 })
+            // MySQL/MariaDB error 1062 = Duplicate entry for key
+            var mysqlException = FindException<MySqlException>(exception);
+            if (mysqlException is { Number: 1062 })
             {
                 return true;
             }

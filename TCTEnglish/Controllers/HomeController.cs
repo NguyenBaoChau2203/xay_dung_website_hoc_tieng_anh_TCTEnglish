@@ -281,7 +281,7 @@ namespace TCTVocabulary.Controllers
                 .AsNoTracking()
                 .Where(f => f.UserId != userId);
 
-            if (_context.Database.IsSqlServer())
+            if (_context.Database.IsMySql())
             {
                 return await eligibleFolders
                     .OrderBy(_ => Guid.NewGuid())
@@ -334,7 +334,7 @@ namespace TCTVocabulary.Controllers
                 .Where(c => c.CardId != excludedCardId && c.Set.Owner.Role == "System");
 
             // Lấy ngẫu nhiên 3 định nghĩa từ System
-            if (_context.Database.IsSqlServer())
+            if (_context.Database.IsMySql())
             {
                 return await eligibleCards
                     .OrderBy(_ => Guid.NewGuid())

@@ -122,7 +122,7 @@ public partial class DbflashcardContext : DbContext
                   .HasMaxLength(1000);
 
             entity.Property(e => e.CreatedAt)
-                  .HasDefaultValueSql("(getdate())")
+                  .HasDefaultValueSql("(CURRENT_TIMESTAMP)")
                   .HasColumnType("datetime");
 
             // ===== OWNER =====
@@ -214,7 +214,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.ProgressId).HasColumnName("ProgressID");
             entity.Property(e => e.CardId).HasColumnName("CardID");
             entity.Property(e => e.LastReviewedDate)
-                .HasDefaultValueSql("(getdate())")
+                .HasDefaultValueSql("(CURRENT_TIMESTAMP)")
                 .HasColumnType("datetime");
             entity.Property(e => e.NextReviewDate)
                 .HasColumnType("datetime");
@@ -241,7 +241,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasKey(e => e.SetId).HasName("PK__Sets__7E08473D47BDA11E");
             entity.Property(e => e.SetId).HasColumnName("SetID");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
+                .HasDefaultValueSql("(CURRENT_TIMESTAMP)")
                 .HasColumnType("datetime");
             entity.Property(e => e.FolderId).HasColumnName("FolderID");
             entity.Property(e => e.OwnerId).HasColumnName("OwnerID");
@@ -297,7 +297,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534362A84D8").IsUnique();
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
+                .HasDefaultValueSql("(CURRENT_TIMESTAMP)")
                 .HasColumnType("datetime");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
@@ -309,7 +309,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.Streak).HasDefaultValue(0);
             entity.Property(e => e.LongestStreak).HasDefaultValue(0);
             entity.Property(e => e.AvatarUrl)
-                .HasColumnType("nvarchar(max)")
+                .HasColumnType("longtext")
                 .IsRequired(false);
             entity.Property(e => e.Status)
                 .HasDefaultValue(UserStatus.Offline);
@@ -317,7 +317,7 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(1000)
                 .IsRequired(false);
             entity.Property(e => e.LockExpiry)
-                .HasColumnType("datetime2")
+                .HasColumnType("datetime(6)")
                 .IsRequired(false);
         });
 
@@ -378,12 +378,12 @@ public partial class DbflashcardContext : DbContext
                 .HasDefaultValue(true);
 
             entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserGoals)
@@ -413,10 +413,10 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.AttemptCount).HasDefaultValue(0);
 
             entity.Property(e => e.LastAttemptAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.Property(e => e.CompletedAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.HasOne(e => e.User)
                 .WithMany(u => u.UserWritingExerciseProgresses)
@@ -456,10 +456,10 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(1000);
 
             entity.Property(e => e.LastAttemptAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.Property(e => e.PassedAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.HasOne(e => e.User)
                 .WithMany(u => u.UserWritingSentenceProgresses)
@@ -532,8 +532,8 @@ public partial class DbflashcardContext : DbContext
                 .HasColumnName("BadgeID");
 
             entity.Property(e => e.AwardedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserBadges)
@@ -569,7 +569,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.SourceType).IsRequired().HasMaxLength(50).HasDefaultValue("admin");
             entity.Property(e => e.TranscriptSource).HasMaxLength(50);
             entity.Property(e => e.ImportStatus).IsRequired().HasMaxLength(50).HasDefaultValue("ready");
-            entity.Property(e => e.CreatedAt).HasColumnType("datetime2").HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime(6)").HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.OwnerUserId, e.CreatedAt })
                 .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_CreatedAt");
@@ -577,7 +577,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasIndex(e => new { e.OwnerUserId, e.YoutubeId })
                 .IsUnique()
                 .HasDatabaseName("IX_SpeakingVideos_OwnerUserId_YoutubeId")
-                .HasFilter("[OwnerUserId] IS NOT NULL");
+                .HasFilter("(`OwnerUserId` IS NOT NULL)");
 
             entity.HasOne(d => d.SpeakingPlaylist)
                 .WithMany(p => p.SpeakingVideos)
@@ -613,7 +613,7 @@ public partial class DbflashcardContext : DbContext
                   .IsRequired();
 
             entity.Property(e => e.AddedAt)
-                  .HasDefaultValueSql("getutcdate()");
+                  .HasDefaultValueSql("(UTC_TIMESTAMP)");
 
             // ===== RELATIONS =====
 
@@ -694,8 +694,8 @@ public partial class DbflashcardContext : DbContext
                 .HasDefaultValue(false);
 
             entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasOne(e => e.User)
                 .WithMany(u => u.WritingExercises)
@@ -775,8 +775,8 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(1000);
 
             entity.Property(e => e.CreatedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserWritingAttempts)
@@ -813,7 +813,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasKey(e => e.Id);
             
             entity.Property(e => e.PracticedAt)
-                .HasDefaultValueSql("GETDATE()");
+                .HasDefaultValueSql("(CURRENT_TIMESTAMP)");
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserSpeakingProgresses)
@@ -842,12 +842,12 @@ public partial class DbflashcardContext : DbContext
                 .IsRequired();
 
             entity.Property(e => e.CreatedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.Property(e => e.UpdatedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.UserId, e.UpdatedAtUtc })
                 .HasDatabaseName("IX_AiConversations_UserId_UpdatedAtUtc");
@@ -876,8 +876,8 @@ public partial class DbflashcardContext : DbContext
                 .HasConversion<int>();
 
             entity.Property(e => e.CreatedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.ConversationId, e.CreatedAtUtc })
                 .HasDatabaseName("IX_AiMessages_ConversationId_CreatedAtUtc");
@@ -905,8 +905,8 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(100);
 
             entity.Property(e => e.RequestedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.UserId, e.RequestedAtUtc })
                 .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
@@ -944,8 +944,8 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(100);
 
             entity.Property(e => e.RequestedAtUtc)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.UserId, e.RequestedAtUtc })
                 .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestedAtUtc");
@@ -978,11 +978,11 @@ public partial class DbflashcardContext : DbContext
                 .HasColumnName("VideoID");
 
             entity.Property(e => e.CompletedAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.Property(e => e.LastEvaluatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserSpeakingVideoCompletions)
@@ -1026,8 +1026,8 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.IsPublished).HasDefaultValue(false);
 
             entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.HasIndex(e => new { e.IsPublished, e.Level, e.Topic })
                 .HasDatabaseName("IX_ListeningLessons_Published_Level_Topic");
@@ -1112,11 +1112,11 @@ public partial class DbflashcardContext : DbContext
                 .HasDatabaseName("IX_UserListeningProgress_UserId_LessonId");
 
             entity.Property(e => e.LastAccessedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.Property(e => e.CompletedAt)
-                .HasColumnType("datetime2");
+                .HasColumnType("datetime(6)");
 
             entity.HasOne(d => d.User)
                 .WithMany()
@@ -1157,8 +1157,8 @@ public partial class DbflashcardContext : DbContext
                 .HasDefaultValue(false);
 
             entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("SYSUTCDATETIME()");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             // Composite index: query by user → filter unread → sort by date
             entity.HasIndex(e => new { e.UserId, e.IsRead, e.CreatedAt })
@@ -1210,7 +1210,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.ProviderRequestId).HasMaxLength(100);
             entity.Property(e => e.ProviderPaymentUrl).HasMaxLength(1000);
             entity.Property(e => e.ProviderDeepLink).HasMaxLength(1000);
-            entity.Property(e => e.ProviderQrCodePayload).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.ProviderQrCodePayload).HasColumnType("longtext");
             entity.Property(e => e.ProviderResponseCode).HasMaxLength(20);
             entity.Property(e => e.ProviderTransactionStatus).HasMaxLength(20);
             entity.Property(e => e.BankCode).HasMaxLength(50);
@@ -1219,8 +1219,8 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.PayType).HasMaxLength(50);
             entity.Property(e => e.RawStatus).HasMaxLength(100);
             entity.Property(e => e.FailureMessage).HasMaxLength(500);
-            entity.Property(e => e.ReturnPayloadJson).HasColumnType("nvarchar(max)");
-            entity.Property(e => e.IpnPayloadJson).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.ReturnPayloadJson).HasColumnType("longtext");
+            entity.Property(e => e.IpnPayloadJson).HasColumnType("longtext");
             entity.HasIndex(e => e.OrderCode).IsUnique().HasDatabaseName("IX_PaymentOrders_OrderCode");
             entity.HasIndex(e => new { e.UserId, e.Status, e.CreatedAtUtc })
                 .HasDatabaseName("IX_PaymentOrders_UserId_Status_CreatedAt");
@@ -1238,7 +1238,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.EventType).HasMaxLength(30).IsRequired();
             entity.Property(e => e.EventKey).HasMaxLength(200).IsRequired();
             entity.Property(e => e.ResultCode).HasMaxLength(20);
-            entity.Property(e => e.PayloadJson).HasColumnType("nvarchar(max)").IsRequired();
+            entity.Property(e => e.PayloadJson).HasColumnType("longtext").IsRequired();
             entity.Property(e => e.ProcessingStatus).HasMaxLength(20).IsRequired();
             entity.Property(e => e.ProcessingMessage).HasMaxLength(500);
             entity.HasIndex(e => new { e.Provider, e.EventType, e.EventKey })
@@ -1261,7 +1261,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.NewStatus).HasMaxLength(50);
             entity.Property(e => e.IpAddress).HasMaxLength(50);
             entity.Property(e => e.UserAgent).HasMaxLength(500);
-            entity.Property(e => e.PayloadJson).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.PayloadJson).HasColumnType("longtext");
             entity.HasIndex(e => e.AdminUserId).HasDatabaseName("IX_PaymentAdminActions_AdminUserId");
             entity.HasIndex(e => e.PaymentOrderId).HasDatabaseName("IX_PaymentAdminActions_PaymentOrderId");
             entity.HasIndex(e => e.CreatedAtUtc).HasDatabaseName("IX_PaymentAdminActions_CreatedAtUtc");
