@@ -189,6 +189,62 @@ public sealed class TemplateAnswerComposerTests
     }
 
     [Fact]
+    public async Task ComposeAsync_WebsiteGuide_WithBillingSnippets_ReturnsSafeBillingSummary()
+    {
+        var result = await _composer.ComposeAsync(
+            UserIntent.WebsiteGuide,
+            "gói premium của tôi",
+            [
+                new KnowledgeSnippet(
+                    "billing-summary",
+                    "isPremium=true|planName=Monthly Premium|endsAtUtc=2026-05-30|pendingOrderCount=0|activePlanCount=2",
+                    KnowledgeSnippetSources.BillingSummary,
+                    "/Premium"),
+                new KnowledgeSnippet(
+                    "TCT-PAID-001",
+                    "provider=vnpay|status=paid|amountVnd=99000|createdAtUtc=2026-04-30|planName=Monthly Premium",
+                    KnowledgeSnippetSources.BillingOrderItem,
+                    "/Billing/History")
+            ],
+            CancellationToken.None);
+
+        Assert.Contains("Monthly Premium", result);
+        Assert.Contains("TCT-PAID-001", result);
+        Assert.Contains("không hiển thị URL thanh toán", result);
+    }
+
+    [Fact]
+    public async Task ComposeAsync_MyProgress_WithGoalsSnippets_ReturnsGoalsSummary()
+    {
+        var result = await _composer.ComposeAsync(
+            UserIntent.MyProgress,
+            "mục tiêu hôm nay của tôi",
+            [
+                new KnowledgeSnippet("goal-summary", "activeGoalCount=1|todayXp=20|totalXp=120|badgeCount=1", KnowledgeSnippetSources.GoalSummary),
+                new KnowledgeSnippet("Vocabulary", "target=10|completed=6|remaining=4", KnowledgeSnippetSources.GoalAreaItem),
+                new KnowledgeSnippet("Starter Badge", "awardedAt=2026-04-30", KnowledgeSnippetSources.BadgeItem)
+            ],
+            CancellationToken.None);
+
+        Assert.Contains("Goals hôm nay", result);
+        Assert.Contains("Vocabulary: 6/10", result);
+        Assert.Contains("Starter Badge", result);
+    }
+
+    [Fact]
+    public async Task ComposeAsync_OutOfScope_WithSecurityPolicy_ReturnsSecurityRefusal()
+    {
+        var result = await _composer.ComposeAsync(
+            UserIntent.OutOfScope,
+            "api key",
+            [new KnowledgeSnippet("security-policy", "reason=sensitive-platform-data", KnowledgeSnippetSources.SecurityPolicy)],
+            CancellationToken.None);
+
+        Assert.Contains("dữ liệu nhạy cảm", result);
+        Assert.Contains("API key", result);
+    }
+
+    [Fact]
     public async Task ComposeAsync_OutOfScope_ReturnsCanonicalRefusal()
     {
         var result = await _composer.ComposeAsync(UserIntent.OutOfScope, "giải thích ngữ pháp", [], CancellationToken.None);

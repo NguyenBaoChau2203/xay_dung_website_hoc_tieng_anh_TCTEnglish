@@ -179,6 +179,10 @@ public sealed class AiDeterministicBaselineIntegrationTests
     [InlineData("Daily challenge ở đâu?", "/Home/Index")]
     [InlineData("Cách gửi ảnh trong chat lớp học?", "/Home/Class")]
     [InlineData("Làm sao đưa set vào folder?", "/Home/Folder")]
+    [InlineData("Premium có gì?", "/Premium")]
+    [InlineData("Cách xem lịch sử thanh toán?", "/Billing/History")]
+    [InlineData("Trang Grammar ở đâu?", "/Home/Grammar")]
+    [InlineData("Xem chính sách bảo mật ở đâu?", "/Home/Privacypolicy")]
     public async Task Send_QuickActionGuidePrompts_ReturnExpectedCurrentRoutes(string message, string expectedRoute)
     {
         await using var factory = CreateDeterministicFactory();
@@ -211,6 +215,10 @@ public sealed class AiDeterministicBaselineIntegrationTests
     [InlineData("/Home/Listening")]
     [InlineData("/Home/Contact")]
     [InlineData("/Notification/Index")]
+    [InlineData("/Premium")]
+    [InlineData("/Billing/History")]
+    [InlineData("/Home/Grammar")]
+    [InlineData("/Home/Privacypolicy")]
     public async Task QuickActionGuideRoutes_ResolveToCurrentAppEndpoints(string route)
     {
         await using var factory = CreateDeterministicFactory();

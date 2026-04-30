@@ -84,6 +84,11 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
 
     private static bool IsClearlyOutOfScope(string normalizedMessage)
     {
+        if (IsSensitiveSecurityQuestion(normalizedMessage))
+        {
+            return true;
+        }
+
         if (AiTextNormalizer.ContainsAny(
             normalizedMessage,
             "present perfect",
@@ -92,6 +97,8 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "viet essay",
             "viet doan van",
             "cover letter",
+            "homework",
+            "do my english homework",
             "giup toi lam bai",
             "lam bai nay",
             "lam bai reading nay",
@@ -109,6 +116,7 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "reading",
             "writing",
             "listening",
+            "grammar",
             "tct english",
             "website",
             "trang web",
@@ -128,6 +136,13 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
 
     private static bool IsWebsiteGuide(string normalizedMessage)
     {
+        if (IsBillingQuestion(normalizedMessage)
+            || IsNotificationQuestion(normalizedMessage)
+            || IsAdminFeatureQuestion(normalizedMessage))
+        {
+            return true;
+        }
+
         var hasGuideVerb = AiTextNormalizer.ContainsAny(
             normalizedMessage,
             "cach",
@@ -141,6 +156,8 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "ra sao",
             "nhu the nao",
             "gom",
+            "co gi",
+            "bao gom",
             "o dau",
             "bat dau",
             "gioi thieu",
@@ -148,6 +165,9 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "them",
             "chinh sua",
             "xoa",
+            "mua",
+            "nang cap",
+            "thanh toan",
             "doi mat khau",
             "roi");
 
@@ -188,6 +208,23 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "support",
             "lien he",
             "ho tro",
+            "premium",
+            "goi premium",
+            "thanh toan",
+            "billing",
+            "payment",
+            "vnpay",
+            "momo",
+            "lich su thanh toan",
+            "subscription",
+            "privacy",
+            "chinh sach",
+            "dieu khoan",
+            "terms",
+            "grammar",
+            "admin",
+            "quan tri",
+            "quan ly",
             "chat lop",
             "class chat",
             "nhan tin",
@@ -334,5 +371,141 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "on tap",
             "on tap gi",
             "recommend");
+    }
+
+    private static bool IsBillingQuestion(string normalizedMessage)
+    {
+        var hasBillingKeyword = AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "premium",
+            "goi premium",
+            "goi tra phi",
+            "nang cap",
+            "thanh toan",
+            "billing",
+            "payment",
+            "lich su thanh toan",
+            "don hang",
+            "hoa don",
+            "subscription",
+            "vnpay",
+            "momo");
+
+        if (!hasBillingKeyword)
+        {
+            return false;
+        }
+
+        return AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "cach",
+            "huong dan",
+            "mua",
+            "gia",
+            "co gi",
+            "bao gom",
+            "cua toi",
+            "dang dung",
+            "con han",
+            "het han",
+            "trang thai",
+            "lich su",
+            "da thanh toan",
+            "chua thanh toan",
+            "thanh cong",
+            "that bai",
+            "cho xu ly",
+            "pending");
+    }
+
+    private static bool IsNotificationQuestion(string normalizedMessage)
+    {
+        var hasNotificationKeyword = AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "thong bao",
+            "notification",
+            "notifications",
+            "bell",
+            "chuong");
+
+        if (!hasNotificationKeyword)
+        {
+            return false;
+        }
+
+        return AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "cua toi",
+            "xem",
+            "o dau",
+            "chua doc",
+            "da doc",
+            "moi nhat",
+            "gan day",
+            "bao nhieu",
+            "co thong bao");
+    }
+
+    private static bool IsAdminFeatureQuestion(string normalizedMessage)
+    {
+        return AiTextNormalizer.ContainsAny(
+                normalizedMessage,
+                "admin",
+                "quan tri",
+                "quan ly nguoi dung",
+                "quan ly billing",
+                "quan ly thanh toan",
+                "quan ly reading",
+                "quan ly listening",
+                "quan ly writing",
+                "quan ly speaking",
+                "quan ly set")
+            && AiTextNormalizer.ContainsAny(
+                normalizedMessage,
+                "cach",
+                "huong dan",
+                "tinh nang",
+                "co gi",
+                "lam sao",
+                "o dau");
+    }
+
+    private static bool IsSensitiveSecurityQuestion(string normalizedMessage)
+    {
+        return AiTextNormalizer.ContainsAny(
+            normalizedMessage,
+            "connection string",
+            "appsettings",
+            "api key",
+            "apikey",
+            "secret",
+            "hash secret",
+            "oauth secret",
+            "smtp password",
+            "database password",
+            "mat khau cua nguoi khac",
+            "password cua nguoi khac",
+            "password user",
+            "reset token",
+            "cookie",
+            "session",
+            "jwt",
+            "ma nguon",
+            "source code",
+            "backend logic",
+            "route admin",
+            "admin route",
+            "duong dan admin",
+            "bang users",
+            "du lieu nguoi khac",
+            "tai khoan nguoi khac",
+            "email nguoi khac",
+            "hack",
+            "bypass",
+            "vuot quyen",
+            "leo quyen",
+            "doi role admin",
+            "cap quyen admin",
+            "grant admin");
     }
 }

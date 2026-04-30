@@ -37,6 +37,10 @@ public sealed class WebsiteGuideRetrieverTests
     [InlineData("Cách liên hệ hỗ trợ?", "/Home/Contact")]
     [InlineData("Tôi có thể xem thông báo ở đâu?", "/Notification/Index")]
     [InlineData("Website có những tính năng gì?", "/Home/Index")]
+    [InlineData("Premium có gì?", "/Premium")]
+    [InlineData("Cách xem lịch sử thanh toán?", "/Billing/History")]
+    [InlineData("Trang Grammar ở đâu?", "/Home/Grammar")]
+    [InlineData("Xem chính sách bảo mật ở đâu?", "/Home/Privacypolicy")]
     public async Task RetrieveAsync_FindsQuickActionGuideRoutes(string message, string expectedRoute)
     {
         var retriever = new WebsiteGuideRetriever(GetGuideFilePath());

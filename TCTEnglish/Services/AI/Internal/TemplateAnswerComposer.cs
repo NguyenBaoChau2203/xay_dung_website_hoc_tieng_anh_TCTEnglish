@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace TCTEnglish.Services.AI.Internal;
 
 public sealed class TemplateAnswerComposer : IAnswerComposer
@@ -20,7 +22,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
             UserIntent.ClassInfo => ComposeClassInfo(snippets),
             UserIntent.WebsiteGuide => ComposeWebsiteGuide(snippets),
             UserIntent.StudyRecommendation => ComposeStudyRecommendation(snippets),
-            _ => ComposeOutOfScope()
+            _ => ComposeOutOfScope(snippets)
         };
 
         return Task.FromResult(answer);
@@ -80,6 +82,18 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
     private static string ComposeMyProgress(IReadOnlyList<KnowledgeSnippet> snippets)
     {
+        var goalSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.GoalSummary);
+        if (goalSummary is not null)
+        {
+            return ComposeGoalsSummary(snippets);
+        }
+
+        var learningAreaSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.LearningAreaSummary);
+        if (learningAreaSummary is not null)
+        {
+            return ComposeLearningAreaProgress(snippets);
+        }
+
         var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.ProgressSummary);
         if (summary is null)
         {
@@ -265,6 +279,30 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
     private static string ComposeWebsiteGuide(IReadOnlyList<KnowledgeSnippet> snippets)
     {
+        var billingSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.BillingSummary);
+        if (billingSummary is not null)
+        {
+            return ComposeBillingStatus(snippets);
+        }
+
+        var notificationSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.NotificationSummary);
+        if (notificationSummary is not null)
+        {
+            return ComposeNotificationSummary(snippets);
+        }
+
+        var goalSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.GoalSummary);
+        if (goalSummary is not null)
+        {
+            return ComposeGoalsSummary(snippets);
+        }
+
+        var learningAreaSummary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.LearningAreaSummary);
+        if (learningAreaSummary is not null)
+        {
+            return ComposeLearningAreaProgress(snippets);
+        }
+
         var guide = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.WebsiteGuide);
         if (guide is null)
         {
@@ -349,8 +387,176 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
             .First();
     }
 
-    private static string ComposeOutOfScope()
+    private static string ComposeLearningAreaProgress(IReadOnlyList<KnowledgeSnippet> snippets)
     {
+        var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.LearningAreaSummary);
+        if (summary is null)
+        {
+            return "Mình chưa tìm thấy dữ liệu tiến độ cho các kỹ năng Reading, Writing, Listening hoặc Speaking của bạn.";
+        }
+
+        var lines = new List<string>
+        {
+            "Tổng quan học tập của bạn:",
+            $"- Hôm nay: {GetIntValue(summary, "todayVocabulary")} thẻ Vocabulary, {GetIntValue(summary, "todaySpeaking")} Speaking, {GetIntValue(summary, "todayWriting")} Writing, {GetIntValue(summary, "todayReading")} Reading, {GetIntValue(summary, "todayListening")} Listening.",
+            $"- Tổng hoàn thành: Reading {GetIntValue(summary, "readingCompleted")}, Writing {GetIntValue(summary, "writingCompleted")}, Listening {GetIntValue(summary, "listeningCompleted")}, Speaking {GetIntValue(summary, "speakingCompleted")}.",
+            $"- Nội dung đang có: Reading {GetIntValue(summary, "availableReading")}, Writing {GetIntValue(summary, "availableWriting")}, Listening {GetIntValue(summary, "availableListening")}, Speaking {GetIntValue(summary, "availableSpeaking")}.",
+            string.Empty,
+            "Bạn có thể tiếp tục từ Dashboard hoặc mở từng mục trong Courses để học tiếp phần còn thiếu."
+        };
+
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private static string ComposeGoalsSummary(IReadOnlyList<KnowledgeSnippet> snippets)
+    {
+        var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.GoalSummary);
+        if (summary is null)
+        {
+            return "Mình chưa tìm thấy dữ liệu Goals của bạn. Hãy mở trang Goals để đặt mục tiêu học hằng ngày.";
+        }
+
+        var goalItems = snippets
+            .Where(x => x.Source == KnowledgeSnippetSources.GoalAreaItem)
+            .OrderByDescending(x => x.Priority)
+            .ThenBy(x => x.Title)
+            .ToList();
+        var badgeItems = snippets
+            .Where(x => x.Source == KnowledgeSnippetSources.BadgeItem)
+            .Take(3)
+            .ToList();
+
+        var lines = new List<string>
+        {
+            "Goals hôm nay của bạn:",
+            $"- XP hôm nay: {GetIntValue(summary, "todayXp")}; tổng XP đã ghi nhận: {GetIntValue(summary, "totalXp")}.",
+            $"- Huy hiệu đã nhận: {GetIntValue(summary, "badgeCount")}."
+        };
+
+        if (goalItems.Count == 0)
+        {
+            lines.Add("- Bạn chưa đặt mục tiêu active nào. Mở trang Goals để tạo mục tiêu cho Vocabulary, Speaking, Writing, Reading hoặc Listening.");
+        }
+        else
+        {
+            foreach (var item in goalItems)
+            {
+                var target = GetIntValue(item, "target");
+                var completed = GetIntValue(item, "completed");
+                var remaining = GetIntValue(item, "remaining");
+                lines.Add($"- {DisplayGoalArea(item.Title)}: {completed}/{target} hoàn thành, còn {remaining}.");
+            }
+        }
+
+        if (badgeItems.Count > 0)
+        {
+            lines.Add(string.Empty);
+            lines.Add("Huy hiệu gần đây:");
+            foreach (var badge in badgeItems)
+            {
+                var awardedAt = GetStringValue(badge, "awardedAt");
+                lines.Add($"- {badge.Title} ({awardedAt})");
+            }
+        }
+
+        lines.Add(string.Empty);
+        lines.Add("Bạn có thể xem chi tiết tại: /Goals");
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private static string ComposeNotificationSummary(IReadOnlyList<KnowledgeSnippet> snippets)
+    {
+        var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.NotificationSummary);
+        if (summary is null)
+        {
+            return "Mình chưa tìm thấy dữ liệu thông báo của bạn.";
+        }
+
+        var items = snippets
+            .Where(x => x.Source == KnowledgeSnippetSources.NotificationItem)
+            .Take(3)
+            .ToList();
+
+        var lines = new List<string>
+        {
+            $"Bạn có {GetIntValue(summary, "unreadCount")} thông báo chưa đọc trên tổng {GetIntValue(summary, "totalCount")} thông báo."
+        };
+
+        if (items.Count > 0)
+        {
+            lines.Add(string.Empty);
+            lines.Add("Thông báo gần đây:");
+            foreach (var item in items)
+            {
+                var isRead = GetBoolValue(item, "isRead") ? "đã đọc" : "chưa đọc";
+                var createdAt = GetStringValue(item, "createdAt");
+                lines.Add($"- {item.Title} ({isRead}, {createdAt})");
+            }
+        }
+
+        lines.Add(string.Empty);
+        lines.Add("Bạn có thể mở trang thông báo tại: /Notification/Index");
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private static string ComposeBillingStatus(IReadOnlyList<KnowledgeSnippet> snippets)
+    {
+        var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.BillingSummary);
+        if (summary is null)
+        {
+            return "Mình chưa tìm thấy dữ liệu thanh toán của bạn. Bạn có thể xem gói Premium tại: /Premium";
+        }
+
+        var isPremium = GetBoolValue(summary, "isPremium");
+        var planName = GetStringValue(summary, "planName");
+        var endsAtUtc = GetStringValue(summary, "endsAtUtc");
+        var orders = snippets
+            .Where(x => x.Source == KnowledgeSnippetSources.BillingOrderItem)
+            .Take(3)
+            .ToList();
+
+        var lines = new List<string>
+        {
+            isPremium
+                ? $"Tài khoản của bạn đang có quyền Premium{(string.IsNullOrWhiteSpace(planName) ? string.Empty : $" với gói {planName}")}{(string.IsNullOrWhiteSpace(endsAtUtc) ? "." : $" đến {endsAtUtc}.")}"
+                : "Tài khoản của bạn hiện chưa có Premium active.",
+            $"- Số gói Premium đang mở bán: {GetIntValue(summary, "activePlanCount")}.",
+            $"- Đơn cần theo dõi: {GetIntValue(summary, "pendingOrderCount")}."
+        };
+
+        if (orders.Count > 0)
+        {
+            lines.Add(string.Empty);
+            lines.Add("Đơn thanh toán gần đây:");
+            foreach (var order in orders)
+            {
+                var status = GetStringValue(order, "status");
+                var provider = GetStringValue(order, "provider");
+                var amount = FormatVnd(GetDecimalValue(order, "amountVnd"));
+                var createdAt = GetStringValue(order, "createdAtUtc");
+                lines.Add($"- {order.Title}: {status}, {provider}, {amount}, tạo ngày {createdAt}.");
+            }
+        }
+
+        lines.Add(string.Empty);
+        lines.Add("Để bảo mật, mình không hiển thị URL thanh toán, mã giao dịch gateway, token hoặc thông tin cấu hình thanh toán trong chat.");
+        lines.Add("Bạn có thể xem gói tại /Premium và lịch sử tại /Billing/History.");
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private static string ComposeOutOfScope(IReadOnlyList<KnowledgeSnippet> snippets)
+    {
+        if (snippets.Any(x => x.Source == KnowledgeSnippetSources.SecurityPolicy))
+        {
+            return string.Join(Environment.NewLine, [
+                "Mình không thể hỗ trợ truy cập hoặc suy đoán dữ liệu nhạy cảm của hệ thống.",
+                string.Empty,
+                "Các nội dung mình sẽ từ chối gồm: mật khẩu, token, API key, connection string, dữ liệu người dùng khác, route/admin nội bộ, mã nguồn, hoặc cách vượt quyền.",
+                string.Empty,
+                "Nếu bạn cần thao tác an toàn, mình có thể hướng dẫn đổi mật khẩu trong tài khoản, xem lịch sử thanh toán của chính bạn, hoặc liên hệ hỗ trợ TCT English."
+            ]);
+        }
+
         return string.Join(Environment.NewLine, [
             "Hiện tại mình chỉ hỗ trợ câu hỏi liên quan đến dữ liệu và tính năng của TCT English như bộ từ vựng, tiến độ học, lớp học, speaking và cách sử dụng website.",
             string.Empty,
@@ -384,6 +590,32 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
     {
         var value = GetStringValue(snippet, key);
         return bool.TryParse(value, out var parsedValue) && parsedValue;
+    }
+
+    private static decimal GetDecimalValue(KnowledgeSnippet snippet, string key)
+    {
+        var value = GetStringValue(snippet, key);
+        return decimal.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var parsedValue)
+            ? parsedValue
+            : 0m;
+    }
+
+    private static string FormatVnd(decimal amount)
+        => amount <= 0m
+            ? "0 VND"
+            : string.Format(CultureInfo.InvariantCulture, "{0:N0} VND", amount);
+
+    private static string DisplayGoalArea(string area)
+    {
+        return area switch
+        {
+            "Vocabulary" => "Vocabulary",
+            "Speaking" => "Speaking",
+            "Writing" => "Writing",
+            "Reading" => "Reading",
+            "Listening" => "Listening",
+            _ => area
+        };
     }
 
     private static string GetStringValue(KnowledgeSnippet snippet, string key)

@@ -277,6 +277,54 @@
       "topic": "vocabulary"
     },
     {
+      "id": "premium-pricing",
+      "title": "Premium và thanh toán",
+      "keywords": ["premium", "gói premium", "mua premium", "nâng cấp", "thanh toán", "payment", "billing", "vnpay", "momo", "pricing"],
+      "body": "Trang Premium hiển thị các gói đang mở bán, thời hạn sử dụng và phương thức thanh toán được hỗ trợ. Để nâng cấp: mở trang **Premium**, chọn gói phù hợp, chọn cổng thanh toán như VNPay hoặc MoMo nếu đang khả dụng, rồi hoàn tất trên cổng thanh toán. Không chia sẻ API key, mã giao dịch gateway, link thanh toán riêng hoặc thông tin cấu hình trong chat.",
+      "route": "/Premium",
+      "topic": "billing"
+    },
+    {
+      "id": "payment-history",
+      "title": "Lịch sử thanh toán",
+      "keywords": ["lịch sử thanh toán", "payment history", "billing history", "đơn hàng", "trạng thái thanh toán", "hóa đơn", "order status"],
+      "body": "Bạn có thể xem các đơn thanh toán của chính mình tại trang **Lịch sử thanh toán**. Trang này hiển thị gói đã chọn, số tiền, nhà cung cấp thanh toán và trạng thái xử lý. Nếu đơn đang chờ hoặc cần kiểm tra thủ công, hãy liên hệ hỗ trợ thay vì gửi thông tin bí mật qua chat.",
+      "route": "/Billing/History",
+      "topic": "billing"
+    },
+    {
+      "id": "premium-feature-access",
+      "title": "Tính năng Premium",
+      "keywords": ["premium có gì", "tính năng premium", "premium bao gồm", "khóa premium", "premium feature", "ai premium"],
+      "body": "Premium mở các tính năng nâng cao như tạo bài Writing bằng AI, chấm Writing chi tiết, nhập video YouTube cho Speaking/Listening và các thao tác AI tốn tài nguyên hơn. Nếu bạn chưa có Premium, hệ thống sẽ hiển thị modal khóa tính năng và đường dẫn đến trang nâng cấp.",
+      "route": "/Premium",
+      "topic": "billing"
+    },
+    {
+      "id": "grammar-page",
+      "title": "Grammar",
+      "keywords": ["grammar", "ngữ pháp", "trang grammar", "học grammar", "courses grammar"],
+      "body": "Trang Grammar nằm trong nhóm Courses và dành cho nội dung ngữ pháp trên nền tảng. Chatbox chỉ hướng dẫn cách mở và sử dụng trang Grammar; nếu bạn yêu cầu giải bài ngữ pháp ngoài hệ thống, chatbox sẽ từ chối lịch sự.",
+      "route": "/Home/Grammar",
+      "topic": "study"
+    },
+    {
+      "id": "privacy-terms",
+      "title": "Chính sách và điều khoản",
+      "keywords": ["privacy", "chính sách", "bảo mật", "terms", "điều khoản", "quy định sử dụng"],
+      "body": "Bạn có thể xem thông tin chính sách quyền riêng tư và điều khoản sử dụng trên các trang công khai của TCT English. Chatbox không cung cấp hoặc suy đoán thông tin bí mật như connection string, OAuth secret, SMTP credential, token, cookie hoặc dữ liệu của người dùng khác.",
+      "route": "/Home/Privacypolicy",
+      "topic": "support"
+    },
+    {
+      "id": "admin-management-overview",
+      "title": "Khu vực quản trị",
+      "keywords": ["admin", "quản trị", "quản lý user", "quản lý billing", "quản lý thanh toán", "quản lý reading", "quản lý listening", "quản lý writing", "quản lý speaking", "quản lý set"],
+      "body": "Khu vực Admin chỉ dành cho tài khoản có vai trò Admin. Các nhóm quản lý chính gồm dashboard, người dùng, thông báo, AI, billing/premium, vocabulary set, Reading, Listening, Writing và Speaking. Vì lý do bảo mật, chatbox không cung cấp route nội bộ, cách vượt quyền, token, credential hay logic backend; hãy đăng nhập đúng vai trò và dùng menu Admin trong giao diện.",
+      "route": null,
+      "topic": "admin"
+    },
+    {
       "id": "contact-support",
       "title": "Liên hệ hỗ trợ và Các thông tin khác",
       "keywords": ["liên hệ", "hỗ trợ", "contact", "support", "thông báo", "landing page", "về chúng tôi"],

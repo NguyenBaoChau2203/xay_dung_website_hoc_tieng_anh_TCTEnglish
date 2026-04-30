@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Tests.Infrastructure;
 using TCTVocabulary.Models;
@@ -15,7 +16,7 @@ public sealed class AiProductionClassifierIntegrationTests
     [Fact]
     public async Task Send_WithProductionClassifier_UsesWebsiteGuideRoutesForQuickActions()
     {
-        await using var factory = new TestWebApplicationFactory();
+        await using var factory = CreateProductionClassifierFactory();
         await factory.InitializeAsync();
 
         EnsureMlNetClassifierRegistered(factory);
@@ -43,7 +44,7 @@ public sealed class AiProductionClassifierIntegrationTests
     [Fact]
     public async Task Send_WithProductionClassifier_UsesStudyRecommendationForQuickAction()
     {
-        await using var factory = new TestWebApplicationFactory();
+        await using var factory = CreateProductionClassifierFactory();
         await factory.InitializeAsync();
 
         EnsureMlNetClassifierRegistered(factory);
@@ -60,7 +61,7 @@ public sealed class AiProductionClassifierIntegrationTests
     [InlineData("Tell me a random fact about Mars")]
     public async Task Send_WithProductionClassifier_RefusesOutOfScopePrompts(string message)
     {
-        await using var factory = new TestWebApplicationFactory();
+        await using var factory = CreateProductionClassifierFactory();
         await factory.InitializeAsync();
 
         EnsureMlNetClassifierRegistered(factory);
@@ -89,7 +90,16 @@ public sealed class AiProductionClassifierIntegrationTests
         Assert.True(File.Exists(seedPath), $"Missing seed dataset at {seedPath}.");
 
         Assert.Equal("1E642396EBD6331A3BB3D046A9C79935A91DB3D745A8C89C37985F564EA74ECC", ComputeSha256(modelPath));
-        Assert.Equal("1C94D8A3BFA32E85FB22A5DBA9F5EAB9EC18D72F0BA0E073C4C112A1CE808F66", ComputeSha256(seedPath));
+        Assert.Equal("C24D0196DFB51F2CE6E781329B01DF713A6DF9774EFE5C0B5C3B92AB65A2A371", ComputeSha256(seedPath));
+    }
+
+    private static TestWebApplicationFactory CreateProductionClassifierFactory()
+    {
+        return new TestWebApplicationFactory(services =>
+        {
+            services.RemoveAll<IAiQueryClassifier>();
+            services.AddSingleton<IAiQueryClassifier, MlNetAiQueryClassifier>();
+        });
     }
 
     private static string ComputeSha256(string path)

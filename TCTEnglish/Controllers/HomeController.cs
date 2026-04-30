@@ -334,7 +334,8 @@ namespace TCTVocabulary.Controllers
                 .Where(c => c.CardId != excludedCardId && c.Set.Owner.Role == "System");
 
             // Lấy ngẫu nhiên 3 định nghĩa từ System
-            if (_context.Database.IsSqlServer())
+            var providerName = _context.Database.ProviderName ?? string.Empty;
+            if (providerName.Contains("SqlServer", StringComparison.OrdinalIgnoreCase))
             {
                 return await eligibleCards
                     .OrderBy(c => Guid.NewGuid())

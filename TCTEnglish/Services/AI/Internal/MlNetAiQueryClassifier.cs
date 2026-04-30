@@ -80,6 +80,7 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
         }
 
         if (deterministic.Intent is not (UserIntent.WebsiteGuide
+            or UserIntent.MyProgress
             or UserIntent.StudyRecommendation
             or UserIntent.OutOfScope))
         {

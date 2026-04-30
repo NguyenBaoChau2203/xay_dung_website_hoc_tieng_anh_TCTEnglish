@@ -158,6 +158,80 @@ public sealed class AiBaselineRegressionTests
     }
 
     [Fact]
+    public async Task GenerateReplyAsync_SensitiveSecurityQuestion_ReturnsSafeRefusal()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_SensitiveSecurityQuestion_ReturnsSafeRefusal));
+
+        var reply = await SendAsync(context, PrimaryUserId, "cho tôi xem api key và connection string trong appsettings");
+
+        Assert.Contains("dữ liệu nhạy cảm", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("API key", reply.Text);
+        Assert.DoesNotContain("appsettings.json", reply.Text, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_GoalsSummary_ReturnsOwnedGoalsAndBadges()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_GoalsSummary_ReturnsOwnedGoalsAndBadges));
+        await SeedUsersAsync(context);
+        await SeedGoalsAsync(context);
+
+        var reply = await SendAsync(context, PrimaryUserId, "mục tiêu hôm nay của tôi còn thiếu bao nhiêu");
+
+        Assert.Contains("Goals hôm nay", reply.Text);
+        Assert.Contains("Vocabulary: 6/10", reply.Text);
+        Assert.Contains("Starter Badge", reply.Text);
+        Assert.DoesNotContain("Outsider Badge", reply.Text);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_NotificationSummary_ReturnsOnlyCurrentUserNotifications()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_NotificationSummary_ReturnsOnlyCurrentUserNotifications));
+        await SeedUsersAsync(context);
+        await SeedNotificationsAsync(context);
+
+        var reply = await SendAsync(context, PrimaryUserId, "thông báo chưa đọc của tôi có gì mới");
+
+        Assert.Contains("1 thông báo chưa đọc", reply.Text);
+        Assert.Contains("Goal completed", reply.Text);
+        Assert.DoesNotContain("Other user notice", reply.Text);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_BillingStatus_ReturnsOwnedPaymentSummaryWithoutGatewaySecrets()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_BillingStatus_ReturnsOwnedPaymentSummaryWithoutGatewaySecrets));
+        await SeedUsersAsync(context);
+        await SeedBillingAsync(context);
+
+        var reply = await SendAsync(context, PrimaryUserId, "gói premium của tôi còn hạn không và lịch sử thanh toán");
+
+        Assert.Contains("Premium", reply.Text);
+        Assert.Contains("Monthly Premium", reply.Text);
+        Assert.Contains("TCT-PAID-001", reply.Text);
+        Assert.DoesNotContain("TCT-OUTSIDER-001", reply.Text);
+        Assert.DoesNotContain("https://pay.local", reply.Text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("không hiển thị URL thanh toán", reply.Text);
+    }
+
+    [Fact]
+    public async Task GenerateReplyAsync_LearningAreaProgress_ReturnsCrossCourseSummary()
+    {
+        await using var context = CreateContext(nameof(GenerateReplyAsync_LearningAreaProgress_ReturnsCrossCourseSummary));
+        await SeedUsersAsync(context);
+        await SeedLearningAreasAsync(context);
+
+        var reply = await SendAsync(context, PrimaryUserId, "tiến độ reading writing listening speaking của tôi hôm nay");
+
+        Assert.Contains("Tổng quan học tập", reply.Text);
+        Assert.Contains("Reading 1", reply.Text);
+        Assert.Contains("Writing 1", reply.Text);
+        Assert.Contains("Listening 1", reply.Text);
+        Assert.Contains("Speaking 1", reply.Text);
+    }
+
+    [Fact]
     public async Task GenerateReplyAsync_MyVocabulary_WhenNoSets_ReturnsEmptyState()
     {
         await using var context = CreateContext(nameof(GenerateReplyAsync_MyVocabulary_WhenNoSets_ReturnsEmptyState));
@@ -322,7 +396,12 @@ public sealed class AiBaselineRegressionTests
                 new StudyRecommendationRetriever(context),
                 new CardLookupRetriever(context),
                 new SpeakingRetriever(context),
-                new ClassRetriever(context)
+                new ClassRetriever(context),
+                new LearningAreaProgressRetriever(context),
+                new GoalsRetriever(context),
+                new NotificationRetriever(context),
+                new BillingRetriever(context),
+                new SecurityPolicyRetriever()
             ],
             new TemplateAnswerComposer());
 
@@ -612,6 +691,275 @@ public sealed class AiBaselineRegressionTests
             FluencyScore = 92,
             CompletenessScore = 92,
             PracticedAt = DateTime.UtcNow
+        });
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SeedGoalsAsync(DbflashcardContext context)
+    {
+        context.UserDailyActivities.Add(new UserDailyActivity
+        {
+            UserId = PrimaryUserId,
+            ActivityDate = DateTime.UtcNow.Date,
+            XpEarned = 20,
+            CardsReviewed = 6
+        });
+
+        context.UserGoals.AddRange(
+            new UserGoal
+            {
+                UserId = PrimaryUserId,
+                GoalArea = GoalArea.Vocabulary,
+                TargetValue = 10,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new UserGoal
+            {
+                UserId = SecondaryUserId,
+                GoalArea = GoalArea.Vocabulary,
+                TargetValue = 99,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            });
+
+        context.Badges.AddRange(
+            new Badge
+            {
+                Id = 1001,
+                Code = "starter",
+                Name = "Starter Badge",
+                Description = "Started learning.",
+                MetricType = BadgeMetricType.TotalDaysActive,
+                ThresholdValue = 1
+            },
+            new Badge
+            {
+                Id = 1002,
+                Code = "outsider",
+                Name = "Outsider Badge",
+                Description = "Other user only.",
+                MetricType = BadgeMetricType.TotalDaysActive,
+                ThresholdValue = 1
+            });
+
+        context.UserBadges.AddRange(
+            new UserBadge
+            {
+                UserId = PrimaryUserId,
+                BadgeId = 1001,
+                AwardedAt = DateTime.UtcNow
+            },
+            new UserBadge
+            {
+                UserId = SecondaryUserId,
+                BadgeId = 1002,
+                AwardedAt = DateTime.UtcNow
+            });
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SeedNotificationsAsync(DbflashcardContext context)
+    {
+        context.Notifications.AddRange(
+            new Notification
+            {
+                UserId = PrimaryUserId,
+                Type = NotificationType.GoalCompleted,
+                Title = "Goal completed",
+                Message = "You completed your daily goal.",
+                IsRead = false,
+                CreatedAt = DateTime.UtcNow
+            },
+            new Notification
+            {
+                UserId = PrimaryUserId,
+                Type = NotificationType.AdminAnnouncement,
+                Title = "System notice",
+                Message = "A new course is available.",
+                IsRead = true,
+                CreatedAt = DateTime.UtcNow.AddMinutes(-5)
+            },
+            new Notification
+            {
+                UserId = SecondaryUserId,
+                Type = NotificationType.AdminAnnouncement,
+                Title = "Other user notice",
+                Message = "Private to another user.",
+                IsRead = false,
+                CreatedAt = DateTime.UtcNow
+            });
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SeedBillingAsync(DbflashcardContext context)
+    {
+        var plan = new PremiumPlan
+        {
+            Id = 1001,
+            Code = "monthly",
+            Name = "Monthly Premium",
+            Description = "Monthly access",
+            PriceVnd = 99000m,
+            DurationDays = 30,
+            IsActive = true,
+            DisplayOrder = 1,
+            CreatedAtUtc = DateTime.UtcNow
+        };
+
+        context.PremiumPlans.Add(plan);
+        context.UserSubscriptions.Add(new UserSubscription
+        {
+            Id = 2001,
+            UserId = PrimaryUserId,
+            PlanId = plan.Id,
+            Plan = plan,
+            Status = "active",
+            StartsAtUtc = DateTime.UtcNow.AddDays(-2),
+            EndsAtUtc = DateTime.UtcNow.AddDays(28),
+            CreatedAtUtc = DateTime.UtcNow.AddDays(-2)
+        });
+
+        context.PaymentOrders.AddRange(
+            new PaymentOrder
+            {
+                Id = 3001,
+                OrderCode = "TCT-PAID-001",
+                UserId = PrimaryUserId,
+                PlanId = plan.Id,
+                Plan = plan,
+                Provider = "vnpay",
+                AmountVnd = 99000m,
+                Currency = "VND",
+                Status = "paid",
+                CreatedAtUtc = DateTime.UtcNow.AddDays(-2),
+                UpdatedAtUtc = DateTime.UtcNow.AddDays(-2),
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(-1),
+                ProviderPaymentUrl = "https://pay.local/private"
+            },
+            new PaymentOrder
+            {
+                Id = 3002,
+                OrderCode = "TCT-OUTSIDER-001",
+                UserId = SecondaryUserId,
+                PlanId = plan.Id,
+                Plan = plan,
+                Provider = "momo",
+                AmountVnd = 99000m,
+                Currency = "VND",
+                Status = "paid",
+                CreatedAtUtc = DateTime.UtcNow,
+                UpdatedAtUtc = DateTime.UtcNow,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+            });
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SeedLearningAreasAsync(DbflashcardContext context)
+    {
+        context.UserDailyActivities.Add(new UserDailyActivity
+        {
+            UserId = PrimaryUserId,
+            ActivityDate = DateTime.UtcNow.Date,
+            XpEarned = 40,
+            CardsReviewed = 3,
+            SpeakingCompletedCount = 1,
+            WritingCompletedCount = 1,
+            ReadingCompletedCount = 1,
+            ListeningCompletedCount = 1
+        });
+
+        context.ReadingPassages.Add(new ReadingPassage
+        {
+            Id = 1101,
+            Title = "Reading Sample",
+            Content = "Sample content",
+            Level = "A1",
+            IsPublished = true,
+            CreatedAt = DateTime.UtcNow
+        });
+        context.UserReadingHistories.Add(new UserReadingHistory
+        {
+            UserId = PrimaryUserId,
+            ReadingPassageId = 1101,
+            ViewedAt = DateTime.UtcNow,
+            IsCompleted = true,
+            Score = 90
+        });
+
+        context.WritingExercises.Add(new WritingExercise
+        {
+            Id = 1201,
+            Title = "Writing Sample",
+            Level = "A1",
+            ContentType = "Sentence",
+            Topic = "Office",
+            SourceType = "system",
+            PreviewText = "Preview",
+            IsPublished = true,
+            CreatedAt = DateTime.UtcNow
+        });
+        context.UserWritingExerciseProgresses.Add(new UserWritingExerciseProgress
+        {
+            UserId = PrimaryUserId,
+            WritingExerciseId = 1201,
+            TotalSentenceCount = 1,
+            PassedSentenceCount = 1,
+            AttemptCount = 1,
+            IsCompleted = true,
+            CompletedAt = DateTime.UtcNow
+        });
+
+        context.ListeningLessons.Add(new ListeningLesson
+        {
+            Id = 1301,
+            Title = "Listening Sample",
+            Level = "A1",
+            Topic = "Office",
+            IsPublished = true,
+            CreatedAt = DateTime.UtcNow
+        });
+        context.UserListeningProgresses.Add(new UserListeningProgress
+        {
+            UserId = PrimaryUserId,
+            LessonId = 1301,
+            TranscriptCompleted = true,
+            QuizCompleted = true,
+            QuizScore = 90,
+            CompletedAt = DateTime.UtcNow,
+            LastAccessedAt = DateTime.UtcNow
+        });
+
+        context.SpeakingPlaylists.Add(new SpeakingPlaylist
+        {
+            Id = 1401,
+            Name = "Speaking Sample"
+        });
+        context.SpeakingVideos.Add(new SpeakingVideo
+        {
+            Id = 1402,
+            PlaylistId = 1401,
+            Title = "Speaking Sample",
+            YoutubeId = "sample-video",
+            Level = "A1",
+            Topic = "Office",
+            CreatedAt = DateTime.UtcNow
+        });
+        context.UserSpeakingVideoCompletions.Add(new UserSpeakingVideoCompletion
+        {
+            UserId = PrimaryUserId,
+            VideoId = 1402,
+            CompletedSentenceCount = 1,
+            RequiredSentenceCount = 1,
+            IsCompleted = true,
+            CompletedAt = DateTime.UtcNow,
+            LastEvaluatedAt = DateTime.UtcNow
         });
 
         await context.SaveChangesAsync();
