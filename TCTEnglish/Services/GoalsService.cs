@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+using MySqlConnector;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
@@ -1134,7 +1134,7 @@ VALUES ({string.Join(", ", values)})";
 
         private async Task<HashSet<string>> LoadUserDailyActivityColumnNamesAsync()
         {
-            if (_context.Database.IsSqlServer())
+            if (_context.Database.IsMySql())
             {
                 return await WithDbConnectionAsync(async (connection, transaction) =>
                 {
@@ -1315,8 +1315,9 @@ WHERE TABLE_NAME = 'UserDailyActivities'";
 
         private static bool IsUniqueConstraintViolation(Exception exception)
         {
-            var sqlException = FindException<SqlException>(exception);
-            if (sqlException is { Number: 2601 or 2627 })
+            // MySQL/MariaDB error 1062 = Duplicate entry for key
+            var mysqlException = FindException<MySqlException>(exception);
+            if (mysqlException is { Number: 1062 })
             {
                 return true;
             }

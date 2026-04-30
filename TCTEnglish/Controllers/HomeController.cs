@@ -281,7 +281,7 @@ namespace TCTVocabulary.Controllers
                 .AsNoTracking()
                 .Where(f => f.UserId != userId);
 
-            if (_context.Database.IsSqlServer())
+            if (_context.Database.IsMySql())
             {
                 return await eligibleFolders
                     .OrderBy(_ => Guid.NewGuid())
@@ -347,19 +347,32 @@ namespace TCTVocabulary.Controllers
                     .ToListAsync();
             }
 
-            var cardIds = await TakeRandomIdsAsync(
+            if (_context.Database.IsMySql())
+            {
+                return await eligibleCards
+                    .OrderBy(_ => Guid.NewGuid())
+                    .Take(3)
+                    .Select(c => new AnswerOption
+                    {
+                        CardId = c.CardId,
+                        Definition = c.Definition
+                    })
+                    .ToListAsync();
+            }
+
+            var randomCardIds = await TakeRandomIdsAsync(
                 eligibleCards
                     .OrderBy(c => c.CardId)
                     .Select(c => c.CardId),
                 3);
 
-            if (cardIds.Count == 0)
+            if (randomCardIds.Count == 0)
             {
                 return new List<AnswerOption>();
             }
 
-            var cards = await eligibleCards
-                .Where(c => cardIds.Contains(c.CardId))
+            var options = await eligibleCards
+                .Where(c => randomCardIds.Contains(c.CardId))
                 .Select(c => new AnswerOption
                 {
                     CardId = c.CardId,
@@ -367,10 +380,10 @@ namespace TCTVocabulary.Controllers
                 })
                 .ToListAsync();
 
-            var cardsById = cards.ToDictionary(c => c.CardId);
-            return cardIds
-                .Where(cardsById.ContainsKey)
-                .Select(id => cardsById[id])
+            var optionsById = options.ToDictionary(x => x.CardId);
+            return randomCardIds
+                .Where(optionsById.ContainsKey)
+                .Select(id => optionsById[id])
                 .ToList();
         }
 

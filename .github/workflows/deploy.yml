@@ -1,0 +1,156 @@
+# =============================================================================
+# TCT English - CI/CD Pipeline
+# =============================================================================
+# Tự động build, test và deploy lên NhanHoa hosting mỗi khi push vào main.
+#
+# Yêu cầu GitHub Secrets:
+#   FTP: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_REMOTE_DIR
+#   App: PRODUCTION_DB_CONNECTION, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,
+#        FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, SMTP_EMAIL, SMTP_PASSWORD,
+#        GEMINI_API_KEY, PIXABAY_API_KEY
+# =============================================================================
+
+name: Build & Deploy TCT English
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '9.0.x'
+  PROJECT_PATH: 'TCTEnglish/TCTEnglish.csproj'
+  TEST_PROJECT_PATH: 'TCTEnglish.Tests/TCTEnglish.Tests.csproj'
+  PUBLISH_DIR: './publish-output'
+
+jobs:
+  # ===== JOB 1: BUILD & TEST (CI) =====
+  build:
+    name: 🔨 Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 📦 Restore packages
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: 🏗️ Build
+        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+
+      - name: 🧪 Run tests
+        run: |
+          if [ -f "${{ env.TEST_PROJECT_PATH }}" ]; then
+            dotnet test ${{ env.TEST_PROJECT_PATH }} --configuration Release --verbosity normal
+          else
+            echo "⚠️ No test project found, skipping"
+          fi
+
+      - name: 📤 Publish (self-contained, win-x64)
+        run: |
+          dotnet publish ${{ env.PROJECT_PATH }} \
+            --configuration Release \
+            --runtime win-x64 \
+            --self-contained true \
+            --output ${{ env.PUBLISH_DIR }}
+
+      - name: 📁 Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tctenglish-publish
+          path: ${{ env.PUBLISH_DIR }}
+          retention-days: 3
+
+  # ===== JOB 2: DEPLOY (CD) =====
+  deploy:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: 📥 Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tctenglish-publish
+          path: ${{ env.PUBLISH_DIR }}
+
+      - name: 🔐 Create appsettings.Production.json
+        run: |
+          cat > ${{ env.PUBLISH_DIR }}/appsettings.Production.json << 'EOF'
+          {
+            "Logging": {
+              "LogLevel": {
+                "Default": "Warning",
+                "Microsoft.AspNetCore": "Warning"
+              }
+            },
+            "AllowedHosts": "*",
+            "ConnectionStrings": {
+              "DefaultConnection": "${{ secrets.PRODUCTION_DB_CONNECTION }}"
+            },
+            "Authentication": {
+              "Google": {
+                "ClientId": "${{ secrets.GOOGLE_CLIENT_ID }}",
+                "ClientSecret": "${{ secrets.GOOGLE_CLIENT_SECRET }}"
+              },
+              "Facebook": {
+                "AppId": "${{ secrets.FACEBOOK_APP_ID }}",
+                "AppSecret": "${{ secrets.FACEBOOK_APP_SECRET }}"
+              }
+            },
+            "SmtpSettings": {
+              "Host": "smtp.gmail.com",
+              "Port": 587,
+              "SenderEmail": "${{ secrets.SMTP_EMAIL }}",
+              "SenderName": "TCT English",
+              "Password": "${{ secrets.SMTP_PASSWORD }}"
+            },
+            "AI": {
+              "BaseUrl": "https://generativelanguage.googleapis.com/v1beta",
+              "ApiKey": "${{ secrets.GEMINI_API_KEY }}",
+              "Model": "gemini-2.5-flash-lite"
+            },
+            "Pixabay": {
+              "ApiKey": "${{ secrets.PIXABAY_API_KEY }}"
+            },
+            "Billing": {
+              "PendingPaymentCleanupWorkerEnabled": true,
+              "PremiumExpiryWorkerEnabled": true
+            }
+          }
+          EOF
+
+      - name: 🛑 Put App Offline (IIS)
+        run: |
+          echo "<html><body><h1 style='text-align:center;margin-top:50px;'>Hệ thống đang được cập nhật. Vui lòng quay lại sau ít phút...</h1></body></html>" > app_offline.htm
+          curl -T app_offline.htm ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_REMOTE_DIR }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          sleep 5 # Chờ IIS nhả file locks
+
+      - name: 📤 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ${{ env.PUBLISH_DIR }}/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/appsettings.Development.json
+
+      - name: 🟢 Bring App Online
+        if: always() # Luôn chạy để mở lại web dù deploy lỗi hay thành công
+        run: |
+          curl -Q "-DELE ${{ secrets.FTP_REMOTE_DIR }}app_offline.htm" ftp://${{ secrets.FTP_SERVER }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+
+      - name: ✅ Done
+        run: |
+          echo "🎉 Deployed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🔖 Commit: ${{ github.sha }}"

@@ -1,0 +1,156 @@
+﻿@model TCTEnglish.ViewModels.Billing.MoMoQrViewModel
+@{
+    ViewData["Title"] = "Thanh toán MoMo QR";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <h1 class="h3 fw-bold text-center mb-3">Thanh toán MoMo QR</h1>
+                    <p class="text-muted text-center mb-4">
+                        Quét mã QR bằng ứng dụng MoMo để hoàn tất đơn hàng.
+                    </p>
+
+                    <div class="bg-light rounded-3 p-3 mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Mã đơn:</span>
+                            <span class="fw-semibold">@Model.OrderCode</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Gói:</span>
+                            <span class="fw-semibold">@Model.PlanName</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Số tiền:</span>
+                            <span class="fw-bold text-danger">@Model.AmountVnd.ToString("N0") ₫</span>
+                        </div>
+                    </div>
+
+                    @if (Model.IsMockMode)
+                    {
+                        <div class="alert alert-warning small text-start">
+                            MoMo đang chạy ở chế độ mock (Development). Không gọi giao dịch thật.
+                        </div>
+                    }
+
+                    @if (Model.IsPaid)
+                    {
+                        <div class="alert alert-success text-center">
+                            Đơn hàng đã được thanh toán thành công.
+                        </div>
+                    }
+                    else if (Model.IsExpired)
+                    {
+                        <div class="alert alert-warning text-center">
+                            Đơn hàng đã hết hạn. Vui lòng tạo đơn mới.
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center mb-4">
+                            <div id="qr-container" class="d-inline-block bg-white p-3 rounded border"></div>
+                            @if (string.IsNullOrWhiteSpace(Model.ProviderQrCodePayload))
+                            {
+                                <p class="small text-danger mt-2 mb-0">Không có dữ liệu QR từ MoMo.</p>
+                            }
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            @if (!string.IsNullOrWhiteSpace(Model.ProviderDeepLink))
+                            {
+                                <a href="@Model.ProviderDeepLink" class="btn btn-danger rounded-pill">
+                                    Mở ứng dụng MoMo
+                                </a>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(Model.ProviderPaymentUrl))
+                            {
+                                <a href="@Model.ProviderPaymentUrl" target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-pill">
+                                    Thanh toán qua trang MoMo
+                                </a>
+                            }
+
+                            @if (Model.IsMockMode)
+                            {
+                                <form asp-action="MoMoMockConfirm" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="orderCode" value="@Model.OrderCode" />
+                                    <button type="submit" class="btn btn-success rounded-pill">
+                                        Xác nhận thanh toán giả lập (Dev)
+                                    </button>
+                                </form>
+                            }
+                        </div>
+                    }
+
+                    <div id="status-box" class="alert alert-info small mt-4 mb-0 text-start">
+                        Hệ thống đang chờ IPN từ MoMo để xác nhận và kích hoạt Premium.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+        (function () {
+            const orderCode = '@Model.OrderCode';
+            const qrPayload = @Html.Raw(Json.Serialize(Model.ProviderQrCodePayload ?? string.Empty));
+            const qrContainer = document.getElementById('qr-container');
+            const statusBox = document.getElementById('status-box');
+
+            if (qrContainer && qrPayload) {
+                new QRCode(qrContainer, {
+                    text: qrPayload,
+                    width: 260,
+                    height: 260,
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            }
+
+            async function pollStatus() {
+                try {
+                    const response = await fetch(`/Billing/OrderStatus?orderCode=${encodeURIComponent(orderCode)}`, {
+                        headers: { "Accept": "application/json" }
+                    });
+                    if (!response.ok) {
+                        window.setTimeout(pollStatus, 4000);
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (data.paid) {
+                        statusBox.className = "alert alert-success small mt-4 mb-0 text-start";
+                        statusBox.textContent = "Thanh toán thành công. Đang chuyển tới lịch sử giao dịch...";
+                        window.setTimeout(function () {
+                            window.location.href = "/Billing/History";
+                        }, 1200);
+                        return;
+                    }
+
+                    if (data.expired || data.status === "expired") {
+                        statusBox.className = "alert alert-warning small mt-4 mb-0 text-start";
+                        statusBox.textContent = "Đơn thanh toán đã hết hạn. Vui lòng tạo đơn mới.";
+                        return;
+                    }
+
+                    if (data.status === "failed" || data.status === "cancelled") {
+                        statusBox.className = "alert alert-danger small mt-4 mb-0 text-start";
+                        statusBox.textContent = "Thanh toán không thành công hoặc đã bị hủy.";
+                        return;
+                    }
+                } catch (e) {
+                    // Ignore transient polling errors.
+                }
+
+                window.setTimeout(pollStatus, 4000);
+            }
+
+            window.setTimeout(pollStatus, 4000);
+        })();
+    </script>
+}

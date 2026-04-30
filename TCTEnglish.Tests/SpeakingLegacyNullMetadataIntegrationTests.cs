@@ -21,7 +21,7 @@ public sealed class SpeakingLegacyNullMetadataIntegrationTests
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.True(response.StatusCode == HttpStatusCode.OK, body);
-        Assert.Contains("Goals Speaking Video", body, StringComparison.Ordinal);
+        Assert.Contains("Learn English with Videos", body, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -67,18 +67,52 @@ public sealed class SpeakingLegacyNullMetadataIntegrationTests
             CREATE TABLE SpeakingVideos_Legacy (
                 Id INTEGER NOT NULL CONSTRAINT PK_SpeakingVideos PRIMARY KEY,
                 PlaylistId INTEGER NULL,
+                OwnerUserId INTEGER NULL,
                 Title TEXT NOT NULL,
                 YoutubeId TEXT NOT NULL,
                 Level TEXT NULL,
                 Topic TEXT NULL,
                 ThumbnailUrl TEXT NULL,
-                Duration TEXT NULL
+                Duration TEXT NULL,
+                SourceUrl TEXT NULL,
+                SourceType TEXT NOT NULL DEFAULT 'admin',
+                TranscriptSource TEXT NULL,
+                ImportStatus TEXT NOT NULL DEFAULT 'ready',
+                CreatedAt TEXT NOT NULL
             );
             """);
         await context.Database.ExecuteSqlRawAsync(
             """
-            INSERT INTO SpeakingVideos_Legacy (Id, PlaylistId, Title, YoutubeId, Level, Topic, ThumbnailUrl, Duration)
-            SELECT Id, PlaylistId, Title, YoutubeId, Level, Topic, ThumbnailUrl, Duration
+            INSERT INTO SpeakingVideos_Legacy (
+                Id,
+                PlaylistId,
+                OwnerUserId,
+                Title,
+                YoutubeId,
+                Level,
+                Topic,
+                ThumbnailUrl,
+                Duration,
+                SourceUrl,
+                SourceType,
+                TranscriptSource,
+                ImportStatus,
+                CreatedAt)
+            SELECT
+                Id,
+                PlaylistId,
+                OwnerUserId,
+                Title,
+                YoutubeId,
+                Level,
+                Topic,
+                ThumbnailUrl,
+                Duration,
+                SourceUrl,
+                SourceType,
+                TranscriptSource,
+                ImportStatus,
+                CreatedAt
             FROM SpeakingVideos;
             """);
         await context.Database.ExecuteSqlRawAsync("DROP TABLE SpeakingVideos;");

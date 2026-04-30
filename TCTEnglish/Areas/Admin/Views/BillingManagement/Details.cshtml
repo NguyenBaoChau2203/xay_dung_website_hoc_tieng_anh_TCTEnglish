@@ -1,0 +1,334 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.Billing.AdminPaymentOrderDetailsViewModel
+@{
+    ViewData["Title"] = "Chi tiết thanh toán";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <h1 class="h4 fw-bold mb-1">
+            <i class="bi bi-receipt-cutoff text-primary me-2"></i>Chi tiết payment order
+        </h1>
+        <p class="text-muted small mb-0">@Model.OrderCode</p>
+    </div>
+    <a asp-area="Admin"
+       asp-controller="BillingManagement"
+       asp-action="Index"
+       class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Quay lại
+    </a>
+</div>
+
+<div class="alert alert-info border-info-subtle" role="alert">
+    <i class="bi bi-info-circle me-1"></i>
+    Hoan tien tu dong chua duoc ho tro trong he thong admin.
+    Neu can refund, vui long xu ly truc tiep tren cong thanh toan (VNPay/MoMo),
+    sau do cap nhat ghi chu va audit theo quy trinh van hanh.
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Trạng thái</p>
+                <span class="@Model.StatusBadgeClass">@Model.Status</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Số tiền</p>
+                <div class="fw-bold">@Model.AmountVnd.ToString("N0") @Model.Currency</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Provider</p>
+                <span class="badge bg-light text-dark border">@Model.Provider</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Paid at</p>
+                <div class="fw-medium">
+                    @(Model.PaidAtUtc.HasValue ? Model.PaidAtUtc.Value.AddHours(7).ToString("dd/MM/yyyy HH:mm") : "Chưa thanh toán")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h2 class="h6 fw-semibold mb-0">Thông tin order</h2>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted">Order code</dt>
+                    <dd class="col-sm-8">@Model.OrderCode</dd>
+
+                    <dt class="col-sm-4 text-muted">Created</dt>
+                    <dd class="col-sm-8">@Model.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4 text-muted">Expires</dt>
+                    <dd class="col-sm-8">@Model.ExpiresAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4 text-muted">Transaction</dt>
+                    <dd class="col-sm-8">@(Model.ProviderTransactionId ?? "N/A")</dd>
+
+                    <dt class="col-sm-4 text-muted">Response</dt>
+                    <dd class="col-sm-8">@(Model.ProviderResponseCode ?? "N/A")</dd>
+
+                    <dt class="col-sm-4 text-muted">Provider status</dt>
+                    <dd class="col-sm-8">@(Model.ProviderTransactionStatus ?? "N/A")</dd>
+
+                    <dt class="col-sm-4 text-muted">Failure</dt>
+                    <dd class="col-sm-8">@(Model.FailureMessage ?? "N/A")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h2 class="h6 fw-semibold mb-0">Người dùng và gói</h2>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted">User</dt>
+                    <dd class="col-sm-8">
+                        <div class="fw-medium">@Model.UserDisplayName</div>
+                        <small class="text-muted">#@Model.UserId - @Model.UserEmail</small>
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted">Plan</dt>
+                    <dd class="col-sm-8">
+                        <div class="fw-medium">@Model.PlanName</div>
+                        <small class="text-muted">@Model.PlanCode - @Model.PlanDurationDays ngày</small>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mt-4">
+    <div class="card-header bg-white">
+        <h2 class="h6 fw-semibold mb-0">Payload callback</h2>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-lg-6">
+                <h3 class="h6">Return payload</h3>
+                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.ReturnPayloadJson ?? "N/A")</pre>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="h6">IPN payload</h3>
+                <pre class="bg-light border rounded p-3 small text-break mb-0">@(Model.IpnPayloadJson ?? "N/A")</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mt-4">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h2 class="h6 fw-semibold mb-0">Payment events</h2>
+        <span class="badge bg-secondary">@Model.Events.Count</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Event</th>
+                        <th>Signature</th>
+                        <th>Processing</th>
+                        <th>Received</th>
+                        <th class="pe-4">Payload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Events.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                Chưa có payment event nào.
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var evt in Model.Events)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-semibold">@evt.EventKey</div>
+                                <small class="text-muted">@evt.Provider</small>
+                            </td>
+                            <td>
+                                @if (evt.SignatureValid)
+                                {
+                                    <span class="badge bg-success">Valid</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Invalid</span>
+                                }
+                            </td>
+                            <td>
+                                <div>@evt.ProcessingStatus</div>
+                                @if (!string.IsNullOrEmpty(evt.ProcessingMessage))
+                                {
+                                    <small class="text-muted">@evt.ProcessingMessage</small>
+                                }
+                            </td>
+                            <td>
+                                <span class="text-muted small">@evt.ReceivedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</span>
+                            </td>
+                            <td class="pe-4">
+                                <details>
+                                    <summary class="small text-primary">Xem payload</summary>
+                                    <pre class="bg-light border rounded p-2 small text-break mt-2 mb-0">@evt.PayloadJson</pre>
+                                </details>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* ── Audit History ───────────────────────────────────────────────────────── *@
+<div class="card border-0 shadow-sm mt-4">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h2 class="h6 fw-semibold mb-0"><i class="bi bi-shield-check me-1 text-warning"></i>Lịch sử hành động Admin</h2>
+        <span class="badge bg-secondary">@Model.AuditHistory.Count</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Hành động</th>
+                        <th>Lý do</th>
+                        <th>Trạng thái</th>
+                        <th>Admin</th>
+                        <th>Thời gian</th>
+                        <th class="pe-4">IP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.AuditHistory.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">Chưa có hành động admin nào.</td>
+                        </tr>
+                    }
+                    @foreach (var audit in Model.AuditHistory)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <span class="@audit.ActionBadgeClass">@audit.ActionType</span>
+                            </td>
+                            <td class="small">@audit.Reason</td>
+                            <td class="small">
+                                @if (!string.IsNullOrEmpty(audit.OldStatus))
+                                {
+                                    <span class="text-muted">@audit.OldStatus</span>
+                                    <i class="bi bi-arrow-right mx-1"></i>
+                                }
+                                @if (!string.IsNullOrEmpty(audit.NewStatus))
+                                {
+                                    <span class="fw-medium">@audit.NewStatus</span>
+                                }
+                            </td>
+                            <td class="small">
+                                <div class="fw-medium">@audit.AdminDisplayName</div>
+                                <small class="text-muted">@audit.AdminEmail</small>
+                            </td>
+                            <td class="small text-muted">@audit.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="pe-4 small text-muted">@(audit.IpAddress ?? "N/A")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* ── Admin Actions ───────────────────────────────────────────────────────── *@
+@if (Model.Status != "manual_review")
+{
+    <div class="card border-warning shadow-sm mt-4">
+        <div class="card-header bg-warning-subtle py-3">
+            <h2 class="h6 fw-semibold mb-0 text-warning-emphasis">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i>Đánh dấu Manual Review
+            </h2>
+        </div>
+        <div class="card-body">
+            <p class="small text-muted mb-3">
+                Đánh dấu order này để yêu cầu kiểm tra thủ công. Thao tác sẽ được ghi vào audit log.
+                <strong>Bắt buộc nhập lý do.</strong>
+            </p>
+            <form asp-action="MarkManualReview" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="PaymentOrderId" value="@Model.Id" />
+                <div class="row g-2 align-items-end">
+                    <div class="col-md-9">
+                        <label class="form-label small fw-medium">Lý do <span class="text-danger">*</span></label>
+                        <input type="text" name="Reason" class="form-control form-control-sm"
+                               placeholder="Mô tả lý do cần kiểm tra thủ công..." maxlength="1000" required />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-warning btn-sm w-100">
+                            <i class="bi bi-flag-fill me-1"></i>Mark Manual Review
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card border-primary shadow-sm mt-4">
+        <div class="card-header bg-primary-subtle py-3">
+            <h2 class="h6 fw-semibold mb-0 text-primary-emphasis">
+                <i class="bi bi-check2-square me-1"></i>Xu ly Manual Review
+            </h2>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <form asp-action="ResolveManualReviewConfirmPaid" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PaymentOrderId" value="@Model.Id" />
+                        <label class="form-label small fw-medium">Ly do confirm paid <span class="text-danger">*</span></label>
+                        <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
+                        <button type="submit" class="btn btn-success btn-sm mt-2">
+                            <i class="bi bi-check-circle me-1"></i>Confirm Paid
+                        </button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form asp-action="ResolveManualReviewReject" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PaymentOrderId" value="@Model.Id" />
+                        <label class="form-label small fw-medium">Ly do reject <span class="text-danger">*</span></label>
+                        <textarea name="Reason" class="form-control form-control-sm" rows="3" maxlength="1000" required></textarea>
+                        <button type="submit" class="btn btn-danger btn-sm mt-2">
+                            <i class="bi bi-x-circle me-1"></i>Reject
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

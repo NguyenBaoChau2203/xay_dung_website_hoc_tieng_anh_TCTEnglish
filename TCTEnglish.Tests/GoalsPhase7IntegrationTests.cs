@@ -122,6 +122,22 @@ public sealed class GoalsPhase7IntegrationTests
                 PassedAt = seededAt
             }));
 
+        context.UserWritingAttempts.AddRange(sentenceIds
+            .Skip(1)
+            .Select(sentenceId => new UserWritingAttempt
+            {
+                UserId = TestDataIds.UserId,
+                WritingExerciseId = exerciseId,
+                WritingExerciseSentenceId = sentenceId,
+                SubmittedAnswer = $"Accepted sentence {sentenceId}",
+                Passed = true,
+                UsedAi = false,
+                EvaluationSource = "rule-based",
+                SummaryTitle = "Seeded completion",
+                SummaryText = "Seeded completion",
+                CreatedAtUtc = seededAt
+            }));
+
         context.UserWritingExerciseProgresses.Add(new UserWritingExerciseProgress
         {
             UserId = TestDataIds.UserId,

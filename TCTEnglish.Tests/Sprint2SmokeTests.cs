@@ -325,9 +325,9 @@ public sealed class Sprint2SmokeTests
     }
 
     [Fact]
-    public void StreakConsumers_RequireConstructorInjectedService()
+    public void GoalsConsumers_RequireConstructorInjectedService()
     {
-        AssertRequiresNonOptionalService(typeof(HomeController), typeof(IStreakService));
+        AssertRequiresNonOptionalService(typeof(HomeController), typeof(IGoalsService));
         AssertRequiresNonOptionalService(typeof(LearningApiController), typeof(IGoalsService));
     }
 

@@ -166,7 +166,8 @@ namespace TCTVocabulary.Services
                 .Select(cm => new ClassMemberItemViewModel
                 {
                     UserId = cm.UserId,
-                    FullName = cm.User.FullName ?? string.Empty
+                    FullName = cm.User.FullName ?? string.Empty,
+                    AvatarUrl = cm.User.AvatarUrl
                 })
                 .ToListAsync();
 

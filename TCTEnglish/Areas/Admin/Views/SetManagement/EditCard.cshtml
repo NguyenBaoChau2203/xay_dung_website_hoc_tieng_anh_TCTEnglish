@@ -1,0 +1,92 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.CardCreateEditViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thẻ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <a asp-action="Cards" asp-route-id="@Model.SetId" class="text-decoration-none mb-3 d-inline-block">
+        <i class="bi bi-arrow-left me-1"></i> Cards — @Model.SetName
+    </a>
+
+    <h1 class="h3 mb-4">Chỉnh sửa thẻ</h1>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="EditCard" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="SetId" />
+                        <input type="hidden" asp-for="CardId" />
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:none;"></div>
+
+                        <!-- Term -->
+                        <div class="mb-3">
+                            <label asp-for="Term" class="form-label fw-bold">
+                                Thuật ngữ <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Term" class="form-control" placeholder="VD: Apple" />
+                            <span asp-validation-for="Term" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Definition -->
+                        <div class="mb-3">
+                            <label asp-for="Definition" class="form-label fw-bold">
+                                Định nghĩa <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Definition" class="form-control" placeholder="VD: Quả táo" />
+                            <span asp-validation-for="Definition" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Phonetic -->
+                        <div class="mb-3">
+                            <label asp-for="Phonetic" class="form-label fw-bold">Phiên âm</label>
+                            <input asp-for="Phonetic" class="form-control" placeholder="VD: /ˈæp.əl/" />
+                        </div>
+
+                        <!-- Example -->
+                        <div class="mb-3">
+                            <label asp-for="Example" class="form-label fw-bold">Câu ví dụ</label>
+                            <textarea asp-for="Example" class="form-control" rows="2"
+                                      placeholder="VD: I eat an apple every day."></textarea>
+                        </div>
+
+                        <!-- ExampleTranslation -->
+                        <div class="mb-3">
+                            <label asp-for="ExampleTranslation" class="form-label fw-bold">Dịch câu ví dụ</label>
+                            <textarea asp-for="ExampleTranslation" class="form-control" rows="2"
+                                      placeholder="VD: Tôi ăn một quả táo mỗi ngày."></textarea>
+                        </div>
+
+                        <!-- Topic -->
+                        <div class="mb-3">
+                            <label asp-for="Topic" class="form-label fw-bold">Chủ đề</label>
+                            <input asp-for="Topic" class="form-control" placeholder="VD: Food (Thực phẩm)" />
+                        </div>
+
+                        <!-- ImageUrl -->
+                        <div class="mb-3">
+                            <label asp-for="ImageUrl" class="form-label fw-bold">URL hình ảnh</label>
+                            <input asp-for="ImageUrl" class="form-control" placeholder="https://... hoặc /images/..." />
+                            <div class="form-text">Nhập URL ảnh minh họa (tùy chọn).</div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check me-1"></i> Cập nhật thẻ
+                            </button>
+                            <a asp-action="Cards" asp-route-id="@Model.SetId"
+                               class="btn btn-outline-secondary">Hủy</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

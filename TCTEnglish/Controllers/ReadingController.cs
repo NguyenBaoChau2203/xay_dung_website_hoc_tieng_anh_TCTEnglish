@@ -120,49 +120,32 @@ namespace TCTEnglish.Controllers
             return claim != null && int.TryParse(claim.Value, out userId);
         }
         [HttpGet]
-
         public async Task<IActionResult> Translate(string text)
-
         {
-
             if (string.IsNullOrEmpty(text))
-
                 return Json(new { translation = "" });
 
+            try
+            {
+                using var client = new HttpClient();
+                // Thêm User-Agent để tránh bị API chặn
+                client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
 
+                var url = $"https://api.mymemory.translated.net/get?q={Uri.EscapeDataString(text)}&langpair=en|vi";
+                var response = await client.GetStringAsync(url);
 
-            using var client = new HttpClient();
+                using JsonDocument doc = JsonDocument.Parse(response);
+                var responseData = doc.RootElement.GetProperty("responseData");
 
+                // MyMemory có thể trả về thông báo giới hạn nếu gọi quá nhanh
+                var translated = responseData.GetProperty("translatedText").GetString();
 
-
-            var url =
-
-            $"https://api.mymemory.translated.net/get?q={Uri.EscapeDataString(text)}&langpair=en|vi";
-
-
-
-            var response = await client.GetStringAsync(url);
-
-
-
-            using JsonDocument doc = JsonDocument.Parse(response);
-
-
-
-            var translated =
-
-            doc.RootElement
-
-            .GetProperty("responseData")
-
-            .GetProperty("translatedText")
-
-            .GetString();
-
-
-
-            return Json(new { translation = translated });
-
+                return Json(new { translation = translated });
+            }
+            catch
+            {
+                return Json(new { translation = "" });
+            }
         }
     }
 }

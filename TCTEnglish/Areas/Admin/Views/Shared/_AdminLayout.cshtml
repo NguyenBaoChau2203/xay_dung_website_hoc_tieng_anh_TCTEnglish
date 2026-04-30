@@ -155,6 +155,12 @@
                         <i class="bi bi-robot me-2"></i> AI Management
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="BillingManagement" asp-action="PremiumUsers"
+                       class="nav-link text-white rounded-2 px-3 py-2 @(currentController == "BillingManagement" && (currentAction == "PremiumUsers" || currentAction == "PremiumUserDetails") ? "active" : "")">
+                        <i class="bi bi-gem me-2"></i> Quản lý Premium
+                    </a>
+                </li>
             </ul>
         </nav>
 

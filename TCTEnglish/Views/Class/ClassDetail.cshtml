@@ -172,29 +172,41 @@ else
     </div>
 
     <!-- ===== MEMBERS ===== -->
-    <div id="tab-members" class="tab-content">
-        <ul class="member-list">
-            @foreach (var u in Model.Members)
-            {
-                    <li class="member-row">
-
-                        <div class="member-left">
-                            <i class="fas fa-user"></i>
-                            @u.FullName
+        <div id="tab-members" class="tab-content">
+            <div class="member-list">
+                @foreach (var member in Model.Members)
+                {
+                    <div class="member-item">
+                        <div class="member-info-left">
+                            <img src="@(string.IsNullOrEmpty(member.AvatarUrl) ? "/images/default-avatar.png" : member.AvatarUrl)"
+                                 class="member-avatar-circle"
+                                 alt="Avatar" />
+                            <span class="member-name-text">@member.FullName</span>
                         </div>
 
-                        @if (Model.CanManageClass && u.UserId != Model.CurrentUserId)
-                        {
-                            <button class="btn-kick"
-                                    onclick="kickMember(@u.UserId)">
-                                Kick
-                            </button>
-                        }
-
-                    </li>
-            }
-        </ul>
-    </div>
+                        <div class="member-actions-right">
+                            <div class="dropdown-member">
+                                <button class="three-dots-btn" onclick="toggleMemberDropdown(event, @member.UserId)">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div id="dropdown-@member.UserId" class="dropdown-content-member">
+                                    @if (Model.CanManageClass && member.UserId != Model.Class.OwnerId)
+                                    {
+                                        <button type="button" class="delete-member-btn" onclick="kickMember(@member.UserId)">
+                                            <i class="fas fa-user-minus"></i> Xóa khỏi lớp
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="no-action">Không có hành động</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
 
     <!-- ===== ABOUT ===== -->
     <div id="tab-about" class="tab-content">
@@ -1112,6 +1124,112 @@ else
 .btn-kick:hover{
     background:#fecaca;
 }
+            /* Member List Styles */
+            .member-list {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 10px;
+            }
+
+            .member-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                transition: background 0.2s;
+            }
+
+                .member-item:hover {
+                    background: #f9fafb;
+                }
+
+            .member-info-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .member-avatar-circle {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%; /* Tạo hình tròn */
+                object-fit: cover;
+                border: 1px solid #eee;
+            }
+
+            .member-name-text {
+                font-weight: 600;
+                color: #1f2937;
+                font-size: 15px;
+            }
+
+            /* Dropdown Menu */
+            .dropdown-member {
+                position: relative;
+            }
+
+            .three-dots-btn {
+                background: none;
+                border: none;
+                color: #9ca3af;
+                cursor: pointer;
+                padding: 8px;
+                font-size: 18px;
+                border-radius: 50%;
+                transition: background 0.2s, color 0.2s;
+            }
+
+                .three-dots-btn:hover {
+                    background: #f3f4f6;
+                    color: #4b5563;
+                }
+
+            .dropdown-content-member {
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 100%;
+                background: white;
+                min-width: 160px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border-radius: 8px;
+                z-index: 100;
+                padding: 4px;
+                border: 1px solid #eee;
+            }
+
+                .dropdown-content-member.show {
+                    display: block;
+                }
+
+            .delete-member-btn {
+                width: 100%;
+                text-align: left;
+                padding: 10px 12px;
+                background: none;
+                border: none;
+                color: #dc2626;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                border-radius: 6px;
+            }
+
+                .delete-member-btn:hover {
+                    background: #fef2f2;
+                }
+
+            .no-action {
+                display: block;
+                padding: 10px 12px;
+                font-size: 13px;
+                color: #9ca3af;
+                font-style: italic;
+            }
     </style>
 @section Scripts {
     @if (canViewContent)
@@ -1304,5 +1422,41 @@ function kickMember(userId) {
     });
 }
 </script>
+            <script>
+                function toggleMemberDropdown(event, userId) {
+                // Ngăn chặn sự kiện click lan ra ngoài
+                event.preventDefault();
+                event.stopPropagation();
+
+                const dropdownId = `dropdown-${userId}`;
+                const dropdown = document.getElementById(dropdownId);
+    
+                console.log("Đang mở dropdown cho user:", userId); // Debug: Kiểm tra xem hàm có chạy không
+
+                if (!dropdown) {
+                console.error("Không tìm thấy phần tử:", dropdownId);
+                return;
+                }
+
+                // Đóng tất cả các dropdown khác đang mở
+                document.querySelectorAll('.dropdown-content-member').forEach(d => {
+                if (d.id !== dropdownId) {
+                d.classList.remove('show');
+                }
+                });
+
+                // Bật/Tắt class show
+                dropdown.classList.toggle('show');
+                }
+
+                // Click ra ngoài để đóng menu
+                document.addEventListener('click', function (event) {
+                if (!event.target.closest('.dropdown-member')) {
+                document.querySelectorAll('.dropdown-content-member').forEach(d => {
+                d.classList.remove('show');
+                });
+                }
+                });
+                </script>
     }
 }
