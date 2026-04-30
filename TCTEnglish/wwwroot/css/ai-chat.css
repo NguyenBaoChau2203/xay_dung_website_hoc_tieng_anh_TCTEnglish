@@ -190,6 +190,10 @@
     text-transform: uppercase;
 }
 
+.ai-chat-plan-badge {
+    font-size: 0.75rem;
+}
+
 .ai-chat-shell-title {
     color: #1f2a56;
     font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2.2rem);
@@ -495,6 +499,18 @@
     padding: 0.35rem 0.15rem;
 }
 
+.ai-quick-actions {
+    width: 100%;
+}
+
+.ai-quick-action-btn {
+    line-height: 1.25;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: center;
+    white-space: normal;
+}
+
 .ai-chat-form {
     margin-top: 0;
 }
@@ -696,5 +712,9 @@
     .ai-chat-send-btn,
     .ai-chat-stop-btn {
         flex: 1 1 auto;
+    }
+
+    .ai-quick-action-btn {
+        width: 100%;
     }
 }

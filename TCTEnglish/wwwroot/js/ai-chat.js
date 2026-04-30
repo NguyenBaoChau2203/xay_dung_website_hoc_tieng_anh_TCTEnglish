@@ -20,6 +20,8 @@
         const elMetricErrorRate = document.getElementById('aiMetricErrorRate');
         const elMetricLatency = document.getElementById('aiMetricLatency');
         const elMetricTokenToday = document.getElementById('aiMetricTokenToday');
+        const elChatShell = elForm.closest('[data-ai-chat-shell]') || document.querySelector('[data-ai-chat-shell]');
+        const elQuickActions = elChatShell?.querySelector('[data-ai-quick-actions]');
         const elHistoryRoot = document.querySelector('[data-ai-history-root]');
         const historyElements = {
             list: document.querySelector('[data-ai-history-list]'),
@@ -143,30 +145,52 @@
             }
         });
 
-        // Handle quick action buttons click
-        document.addEventListener('click', function (e) {
-            const btn = e.target.closest('.js-quick-action');
-            if (!btn) return;
-            const question = btn.getAttribute('data-question') || btn.textContent.trim();
-            // Fill the input and trigger submit
-            if (elInput && !elSendBtn.disabled) {
-                elInput.value = question;
-                elForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-                
-                // hide quick actions
-                const quickActionsDiv = btn.closest('.ai-quick-actions');
-                if (quickActionsDiv) {
-                    quickActionsDiv.classList.add('d-none');
+        if (elQuickActions) {
+            elQuickActions.addEventListener('click', function (event) {
+                const btn = event.target.closest('[data-ai-quick-action]');
+                if (!btn || btn.disabled) {
+                    return;
                 }
-            }
-        });
+
+                if (elSendBtn.disabled || elForm.dataset.quickActionPending === 'true') {
+                    return;
+                }
+
+                const question = (btn.getAttribute('data-question') || btn.textContent || '').trim();
+                if (!question) {
+                    return;
+                }
+
+                elInput.value = question;
+                hideStatus(elStatus);
+                elForm.dataset.quickActionPending = 'true';
+                setQuickActionsBusy(elQuickActions, true);
+
+                if (typeof elForm.requestSubmit === 'function') {
+                    elForm.requestSubmit();
+                } else {
+                    elForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                }
+            });
+        }
 
         elForm.addEventListener('submit', async function (event) {
             event.preventDefault();
 
+            const quickActionPending = elForm.dataset.quickActionPending === 'true';
+            const quickActionTriggered = quickActionPending;
             const text = (elInput.value || '').trim();
             if (!text) {
+                if (quickActionPending) {
+                    elForm.dataset.quickActionPending = 'false';
+                    setQuickActionsBusy(elQuickActions, false);
+                }
+
                 return;
+            }
+
+            if (quickActionPending) {
+                elForm.dataset.quickActionPending = 'false';
             }
 
             appendMessage(elChatWindow, 'user', text, elScrollToBottomBtn);
@@ -181,11 +205,13 @@
                 const streamed = await trySendWithStreaming(runtime, text, currentConversationId, elChatWindow, elForm, elSendBtn, elStopBtn, elTyping, elStatus);
 
                 if (!streamed) {
+                    const antiForgeryToken = elForm.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
                     const payload = await sendWithRetry(runtime.sendUrl, {
                         conversationId: currentConversationId || null,
                         message: text
                     }, {
-                        allowRetry: Boolean(currentConversationId)
+                        allowRetry: Boolean(currentConversationId),
+                        antiForgeryToken: antiForgeryToken
                     });
 
                     updateConversationContext(
@@ -205,11 +231,19 @@
 
                 notifyLauncherQuotaConsumed();
 
+                if (quickActionTriggered) {
+                    markQuickActionsAccepted(elQuickActions);
+                }
+
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
                 setUiState('error', elForm, elSendBtn, elStopBtn, elTyping, false);
                 showStatus(elStatus, error?.message || 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
                 appendMessage(elChatWindow, 'system', 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.', elScrollToBottomBtn);
+
+                if (quickActionTriggered && !getConversationIdValue(elConversationId)) {
+                    restoreQuickActions(elQuickActions, elChatWindow);
+                }
             } finally {
                 if (elForm.dataset.state !== 'error') {
                     setUiState('idle', elForm, elSendBtn, elStopBtn, elTyping, false);
@@ -487,14 +521,14 @@
 
     async function sendWithRetry(sendUrl, payload, options) {
         const maxAttempts = options?.allowRetry === false ? 1 : 2;
+        const antiForgeryToken = options?.antiForgeryToken || '';
 
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-            const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
             const response = await fetch(sendUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'RequestVerificationToken': antiForgeryToken || ''
+                    'RequestVerificationToken': antiForgeryToken
                 },
                 body: JSON.stringify(payload)
             });
@@ -647,10 +681,16 @@
     }
 
     function removeEmptyState(elChatWindow) {
-        const emptyStateElement = elChatWindow.querySelector('[data-chat-empty-state]');
-        if (emptyStateElement?.parentElement) {
-            emptyStateElement.parentElement.removeChild(emptyStateElement);
+        setEmptyStateVisibility(elChatWindow, false);
+    }
+
+    function setEmptyStateVisibility(elChatWindow, isVisible) {
+        const emptyStateElement = elChatWindow?.querySelector('[data-chat-empty-state]');
+        if (!emptyStateElement) {
+            return;
         }
+
+        emptyStateElement.classList.toggle('d-none', !isVisible);
     }
 
     function getMessageContainerClassName(role) {
@@ -706,6 +746,38 @@
 
         elStopBtn.classList.toggle('d-none', !isStreaming);
         elStopBtn.disabled = !isStreaming;
+    }
+
+    function setQuickActionsBusy(elQuickActions, isBusy) {
+        if (!elQuickActions) {
+            return;
+        }
+
+        elQuickActions.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+        elQuickActions.querySelectorAll('[data-ai-quick-action]').forEach(function (button) {
+            button.disabled = isBusy;
+        });
+    }
+
+    function markQuickActionsAccepted(elQuickActions) {
+        if (!elQuickActions) {
+            return;
+        }
+
+        setQuickActionsBusy(elQuickActions, false);
+        elQuickActions.classList.add('d-none');
+        elQuickActions.setAttribute('aria-hidden', 'true');
+    }
+
+    function restoreQuickActions(elQuickActions, elChatWindow) {
+        if (!elQuickActions) {
+            return;
+        }
+
+        setEmptyStateVisibility(elChatWindow, true);
+        setQuickActionsBusy(elQuickActions, false);
+        elQuickActions.classList.remove('d-none');
+        elQuickActions.setAttribute('aria-hidden', 'false');
     }
 
     function scrollToBottom(elChatWindow, smooth, scrollButton) {

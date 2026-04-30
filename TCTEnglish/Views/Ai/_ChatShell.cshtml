@@ -20,7 +20,7 @@
                     TCT AI
                     @if (Model.IsStandardPlan)
                     {
-                        <span class="badge bg-secondary ms-2 fw-normal" style="font-size: 0.75rem;">Gói Standard: 15 câu/ngày</span>
+                        <span class="badge bg-secondary ms-2 fw-normal ai-chat-plan-badge">Gói Standard: 15 câu/ngày</span>
                     }
                 </div>
                 <h1 class="ai-chat-shell-title">Trợ lý học tiếng Anh</h1>
@@ -81,11 +81,14 @@
             {
                 <div class="ai-chat-empty-state" data-chat-empty-state>
                     <div class="mb-3">Hãy bắt đầu cuộc trò chuyện với AI.</div>
-                    <div class="ai-quick-actions d-flex flex-wrap justify-content-center gap-2">
-                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Làm bài Reading như thế nào?">Làm bài Reading ntn?</button>
-                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Tính năng Writing hoạt động ra sao?">Tính năng Writing</button>
-                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Cách liên hệ hỗ trợ?">Liên hệ hỗ trợ</button>
-                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action" data-question="Gợi ý cho tôi học gì hôm nay?">Gợi ý lộ trình</button>
+                    <div class="ai-quick-actions d-flex flex-wrap justify-content-center gap-2"
+                         data-ai-quick-actions
+                         role="group"
+                         aria-label="Gợi ý câu hỏi nhanh">
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action ai-quick-action-btn" data-ai-quick-action data-question="Làm bài Reading như thế nào?">Làm bài Reading như thế nào?</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action ai-quick-action-btn" data-ai-quick-action data-question="Tính năng Writing hoạt động ra sao?">Tính năng Writing</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action ai-quick-action-btn" data-ai-quick-action data-question="Cách liên hệ hỗ trợ?">Liên hệ hỗ trợ</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill js-quick-action ai-quick-action-btn" data-ai-quick-action data-question="Gợi ý cho tôi học gì hôm nay?">Gợi ý lộ trình</button>
                     </div>
                 </div>
             }

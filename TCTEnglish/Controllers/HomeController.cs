@@ -334,6 +334,20 @@ namespace TCTVocabulary.Controllers
                 .Where(c => c.CardId != excludedCardId && c.Set.Owner.Role == "System");
 
             // Lấy ngẫu nhiên 3 định nghĩa từ System
+            var providerName = _context.Database.ProviderName ?? string.Empty;
+            if (providerName.Contains("SqlServer", StringComparison.OrdinalIgnoreCase))
+            {
+                return await eligibleCards
+                    .OrderBy(c => Guid.NewGuid())
+                    .Take(3)
+                    .Select(c => new AnswerOption
+                    {
+                        CardId = c.CardId,
+                        Definition = c.Definition
+                    })
+                    .ToListAsync();
+            }
+
             if (_context.Database.IsMySql())
             {
                 return await eligibleCards

@@ -72,15 +72,42 @@ public sealed class WebsiteGuideRetriever : IKnowledgeRetriever
             score += 8;
         }
 
-        score += AiTextNormalizer.CountMatches(normalizedMessage, guide.Keywords) * 6;
+        score += ScoreKeywordMatches(guide.Keywords, normalizedMessage);
 
         var guideTokens = AiTextNormalizer.Tokenize(guide.Title);
+        guideTokens.UnionWith(AiTextNormalizer.Tokenize(guide.Topic));
         foreach (var keyword in guide.Keywords)
         {
             guideTokens.UnionWith(AiTextNormalizer.Tokenize(keyword));
         }
 
+        var normalizedTopic = AiTextNormalizer.Normalize(guide.Topic);
+        if (!string.IsNullOrWhiteSpace(normalizedTopic)
+            && queryTokens.Contains(normalizedTopic))
+        {
+            score += 4;
+        }
+
         score += queryTokens.Count(guideTokens.Contains);
+        return score;
+    }
+
+    private static int ScoreKeywordMatches(IEnumerable<string> keywords, string normalizedMessage)
+    {
+        var score = 0;
+        foreach (var keyword in keywords)
+        {
+            var normalizedKeyword = AiTextNormalizer.Normalize(keyword);
+            if (string.IsNullOrWhiteSpace(normalizedKeyword)
+                || !$" {normalizedMessage} ".Contains($" {normalizedKeyword} ", StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            var keywordTokenCount = AiTextNormalizer.Tokenize(keyword).Count;
+            score += 6 + Math.Min(keywordTokenCount, 4);
+        }
+
         return score;
     }
 
@@ -110,5 +137,7 @@ public sealed class WebsiteGuideRetriever : IKnowledgeRetriever
         public string Body { get; set; } = string.Empty;
 
         public string? Route { get; set; }
+
+        public string Topic { get; set; } = string.Empty;
     }
 }

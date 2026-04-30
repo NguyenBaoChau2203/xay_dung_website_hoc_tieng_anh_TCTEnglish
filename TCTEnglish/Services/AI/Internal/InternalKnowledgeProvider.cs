@@ -42,10 +42,12 @@ public sealed class InternalKnowledgeProvider : IAiProviderClient
             ? rawClassification with { Intent = UserIntent.OutOfScope }
             : rawClassification;
 
-        var retriever = _retrievers.FirstOrDefault(x => x.CanHandle(classification.Intent));
-        var snippets = retriever is null
-            ? []
-            : await retriever.RetrieveAsync(userId, userMessage, ct);
+        var snippets = new List<KnowledgeSnippet>();
+        foreach (var retriever in _retrievers.Where(x => x.CanHandle(classification.Intent)))
+        {
+            var retrievedSnippets = await retriever.RetrieveAsync(userId, userMessage, ct);
+            snippets.AddRange(retrievedSnippets);
+        }
 
         var answer = await _composer.ComposeAsync(classification.Intent, userMessage, snippets, ct);
         if (string.IsNullOrWhiteSpace(answer))

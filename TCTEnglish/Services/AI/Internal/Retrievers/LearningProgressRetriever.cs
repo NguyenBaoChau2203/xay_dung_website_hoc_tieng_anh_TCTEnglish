@@ -47,7 +47,7 @@ public sealed class LearningProgressRetriever : IKnowledgeRetriever
                     card.SetId
                 })
             .Join(
-                _context.Sets.AsNoTracking(),
+                _context.Sets.AsNoTracking().Where(set => set.OwnerId == userId),
                 item => item.SetId,
                 set => set.SetId,
                 (item, set) => new
@@ -63,6 +63,17 @@ public sealed class LearningProgressRetriever : IKnowledgeRetriever
         {
             return [];
         }
+
+        var progressSetIds = progressItems
+            .Select(item => item.SetId)
+            .Distinct()
+            .ToList();
+
+        var ownedSetCardCounts = await _context.Sets
+            .AsNoTracking()
+            .Where(set => set.OwnerId == userId && progressSetIds.Contains(set.SetId))
+            .Select(set => new { set.SetId, TotalCards = set.Cards.Count })
+            .ToDictionaryAsync(set => set.SetId, set => set.TotalCards, ct);
 
         var today = DateTime.UtcNow.Date;
         var cardsReviewedToday = await _context.UserDailyActivities
@@ -102,10 +113,18 @@ public sealed class LearningProgressRetriever : IKnowledgeRetriever
             .Select(group => new
             {
                 group.Key.SetName,
-                RemainingCount = group.Count(item => !IsMastered(item.Status)),
+                TotalCards = ownedSetCardCounts.TryGetValue(group.Key.SetId, out var totalCards) ? totalCards : 0,
+                MasteredCount = group.Count(item => IsMastered(item.Status)),
                 LatestReviewAt = group.Max(item => item.LastReviewedDate)
             })
-            .Where(group => group.RemainingCount > 0)
+            .Select(group => new
+            {
+                group.SetName,
+                group.LatestReviewAt,
+                group.TotalCards,
+                RemainingCount = Math.Max(0, group.TotalCards - group.MasteredCount)
+            })
+            .Where(group => group.TotalCards > 0 && group.RemainingCount > 0)
             .OrderByDescending(group => group.RemainingCount)
             .ThenByDescending(group => group.LatestReviewAt ?? DateTime.MinValue)
             .ThenBy(group => group.SetName)
@@ -116,7 +135,8 @@ public sealed class LearningProgressRetriever : IKnowledgeRetriever
             snippets.Add(new KnowledgeSnippet(
                 recommendation.SetName,
                 $"remainingCount={recommendation.RemainingCount}|streakDays={streakDays}|goalRemaining={remainingGoal}",
-                KnowledgeSnippetSources.StudyRecommendation));
+                KnowledgeSnippetSources.StudyRecommendation,
+                Priority: 4));
         }
 
         return snippets;

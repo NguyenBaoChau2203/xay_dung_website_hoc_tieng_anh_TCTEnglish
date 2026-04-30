@@ -154,6 +154,26 @@ public sealed class AiPhase4HardeningIntegrationTests
     }
 
     [Fact]
+    public async Task AiChatScript_QuickActions_AreScopedAndGuardedAgainstDuplicateSubmit()
+    {
+        await using var factory = CreateFactory(_ =>
+            Task.FromResult(new AiProviderReply("ignored", 0, 0, 0, "test-model", "req-quick-action-hardening-js")));
+        await factory.InitializeAsync();
+
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var response = await client.GetAsync("/js/ai-chat.js");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        var js = await response.Content.ReadAsStringAsync();
+        Assert.Contains("elForm.closest('[data-ai-chat-shell]')", js);
+        Assert.Contains("elChatShell?.querySelector('[data-ai-quick-actions]')", js);
+        Assert.Contains("elForm.dataset.quickActionPending === 'true'", js);
+        Assert.Contains("setQuickActionsBusy(elQuickActions, true)", js);
+        Assert.Contains("markQuickActionsAccepted(elQuickActions)", js);
+    }
+
+    [Fact]
     public async Task AiLauncherScript_HandlesQuotaSyncMessageForStandardPlan()
     {
         await using var factory = CreateFactory(_ =>
@@ -372,6 +392,9 @@ public sealed class AiPhase4HardeningIntegrationTests
         Assert.Contains("ai-chat-typing-bubble", html);
         Assert.Contains("data-user-initial=\"U\"", html);
         Assert.Contains("data-ai-avatar=\"/images/ai/tct-ai-launcher.png\"", html);
+        Assert.Contains("data-ai-quick-actions", html);
+        Assert.Contains("data-ai-quick-action", html);
+        Assert.Contains("aria-label=\"Gợi ý câu hỏi nhanh\"", html);
         Assert.Contains("aria-describedby=\"chatStatus\"", html);
         Assert.Contains("id=\"chatStatus\" class=\"alert alert-warning ai-chat-status d-none mb-0\" role=\"status\" aria-live=\"assertive\"", html);
     }
@@ -730,7 +753,8 @@ public sealed class AiPhase4HardeningIntegrationTests
         using var requestTwo = CreateSendRequest(conversationId, "second", antiForgeryTokenTwo);
         using var secondResponse = await clientTwo.SendAsync(requestTwo);
 
-        Assert.Equal(HttpStatusCode.Conflict, secondResponse.StatusCode);
+        var errorRaw = await secondResponse.Content.ReadAsStringAsync();
+        Assert.True(secondResponse.StatusCode == HttpStatusCode.Conflict, $"Expected Conflict but got {secondResponse.StatusCode}. Content: {errorRaw}");
 
         gate.SetResult();
         using var firstResponse = await firstResponseTask;

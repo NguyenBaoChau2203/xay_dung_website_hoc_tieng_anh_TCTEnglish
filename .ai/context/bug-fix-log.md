@@ -42,6 +42,267 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### AI chatbox closeout Phase 6 encoding guard script - 2026-04-21
+
+**Symptom**: UTF-8/mojibake validation for Vietnamese AI chat assets was manual and inconsistent, depending on terminal display behavior.
+
+**Root Cause**: The repository referenced `scripts/encoding_guard.py`, but the script did not exist, so there was no repeatable encoding guard.
+
+**Solution**: Added a repo-local `scripts/encoding_guard.py` that scans key AI chat and guide files for invalid UTF-8 bytes, replacement characters, and common mojibake markers. The script targets the files required by the closeout phase and exits non-zero on failures.
+
+**Files Changed**:
+- `scripts/encoding_guard.py` — added a UTF-8/mojibake guard for AI chat assets and the bug-fix log.
+- `.ai/context/bug-fix-log.md` — appended this closeout entry.
+
+**Verification**: `python scripts/encoding_guard.py`
+
+**Commit**: Not created.
+
+**Notes**: The guard checks for invalid UTF-8 bytes, replacement characters, and mojibake markers including `U+00C3`, `U+00C4`, `U+00C2`, sequences like `U+00E2 0x80 0x99` / `U+00E2 0x80 0x9C` / `U+00E2 0x80 0x9D`, and patterns like `U+00C2 U+00A0`.
+
+### AI chat quick-action recovery and form-scoped antiforgery token - 2026-04-21
+
+**Symptom**: Quick-action buttons were hidden after click even when the AI request failed, and the send path could read the wrong antiforgery token when multiple forms existed on the page.
+
+**Root Cause**: The client code accepted and hid quick actions before request success, and the AJAX send logic read the antiforgery token from the document instead of the active chat form.
+
+**Solution**: Delayed quick-action acceptance until a successful response, restored quick actions after failed sends when no conversation was created, and scoped the antiforgery token lookup to the chat form. Also removed an inline badge style and clarified the Reading quick-action label.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js` — defer quick-action acceptance, restore on failed new conversations, and use form-scoped antiforgery tokens.
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml` — remove inline badge style and update Reading quick-action label.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — add `ai-chat-plan-badge` styling.
+
+**Verification**: Not run (manual/browser smoke testing pending in this phase).
+
+**Commit**: Not created.
+
+**Notes**: The quick-action restore triggers only when a new conversation was not created, keeping existing-thread behavior unchanged.
+
+### AI chatbox closeout Phase 4 production classifier guardrails and coverage - 2026-04-20
+
+**Symptom**: Production DI uses `MlNetAiQueryClassifier` when the model artifact is present, but there was no coverage proving quick-action prompts and out-of-scope refusals behave correctly with the shipped model. A stale or weak ML.NET prediction could override deterministic guide/out-of-scope safeguards.
+
+**Root Cause**: Existing send-path tests forced the deterministic classifier and ML.NET runtime tests used synthetic models, so the real model artifact plus default DI path were not verified and guardrails between ML and deterministic intents were not explicit.
+
+**Solution**: Added deterministic guardrails in `MlNetAiQueryClassifier` so guide/study-recommendation/out-of-scope intents override weak or mismatched ML predictions. Added production classifier integration tests that exercise the default DI path for quick-action guide prompts, study recommendation, and out-of-scope refusals. Added a stability check that asserts the model and seed dataset exist and match expected SHA-256 hashes.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Internal/MlNetAiQueryClassifier.cs` — prefer deterministic intent for guide/study-recommendation/out-of-scope when ML predictions are weak or disagree.
+- `TCTEnglish.Tests/AiProductionClassifierIntegrationTests.cs` — new integration coverage for production classifier path and model artifact stability.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.AiProductionClassifierIntegrationTests`.
+
+**Commit**: Not created.
+
+**Notes**: The new tests confirm the shipped model artifact is present and aligned with the seed data hash; update the hash expectations if the model is retrained intentionally.
+
+### AI chatbox closeout Phase 3 study recommendation accuracy and arbitration - 2026-04-20
+
+**Symptom**: Study recommendation answers could undercount remaining cards when a set had unstarted cards, goal remaining could ignore daily activity counts, and the chosen recommendation depended on retriever registration order.
+
+**Root Cause**: `LearningProgressRetriever` computed remaining counts only from progress rows, `StudyRecommendationRetriever` used a hardcoded `cardsMetToday = 0`, and `TemplateAnswerComposer` selected the first recommendation snippet instead of a deterministic priority-based choice.
+
+**Solution**: Count total cards per owned set in `LearningProgressRetriever` to include unstarted cards, use `UserDailyActivities.CardsReviewed` for goal remaining in `StudyRecommendationRetriever`, and select study recommendations by priority (then remaining count) in the composer. Added targeted tests for partial progress, goal remaining, and priority selection.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Internal/Retrievers/LearningProgressRetriever.cs` — compute remaining counts from owned set totals and set higher recommendation priority.
+- `TCTEnglish/Services/AI/Internal/Retrievers/StudyRecommendationRetriever.cs` — use daily activity cards reviewed for goal remaining.
+- `TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs` — select recommendations deterministically by priority.
+- `TCTEnglish.Tests/LearningProgressRetrieverTests.cs` — cover partial-progress remaining counts.
+- `TCTEnglish.Tests/StudyRecommendationRetrieverTests.cs` — cover owned-set/no-progress recommendation and daily goal remaining.
+- `TCTEnglish.Tests/TemplateAnswerComposerTests.cs` — cover priority-based recommendation selection.
+- `TCTEnglish.Tests/AiDeterministicBaselineIntegrationTests.cs` — align remaining count expectation for progress-based recommendations.
+
+**Verification**: `run_tests` with `TypeName=TCTEnglish.Tests.LearningProgressRetrieverTests`, `TypeName=TCTEnglish.Tests.StudyRecommendationRetrieverTests`, `TypeName=TCTEnglish.Tests.TemplateAnswerComposerTests`, and `TypeName=TCTEnglish.Tests.AiDeterministicBaselineIntegrationTests`.
+
+**Commit**: Not created.
+
+**Notes**: Progress-summary behavior remains unchanged; study recommendation arbitration now favors the explicit priority contract rather than DI order.
+
+### AI chatbox closeout Phase 2 website guide route contracts - 2026-04-20
+
+**Symptom**: Website guide answers could surface placeholder template routes (for example `/Home/EditSet/{id}` or `/Speaking/Practice/{videoId}`) as direct URLs, which are not navigable in real use and could confuse learners.
+
+**Root Cause**: `website-guides.json` still contained route templates for set study, class detail, and speaking practice, while `TemplateAnswerComposer` blindly appended any non-empty route string to the response.
+
+**Solution**: Replaced all template routes in `website-guides.json` with concrete landing routes (for example `/Home/Folder`, `/Home/Class`, `/Speaking`) and updated guide copy to match the new entry points. Added a guard in `TemplateAnswerComposer` to skip route rendering if a placeholder is present. Added tests to prevent template routes in the guide data, verify that all guide routes resolve against the app endpoints, and confirm the composer does not render template routes.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` — replaced template routes with concrete landing pages and aligned guide copy.
+- `TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs` — skipped rendering template routes.
+- `TCTEnglish.Tests/WebsiteGuideRetrieverTests.cs` — updated route expectations and added guide-route placeholder guard.
+- `TCTEnglish.Tests/TemplateAnswerComposerTests.cs` — added template-route suppression regression.
+- `TCTEnglish.Tests/AiDeterministicBaselineIntegrationTests.cs` — updated class-chat expected route and added route-resolution coverage for all guides.
+
+**Verification**: `python -c "import codecs; paths=['TCTEnglish/wwwroot/data/ai/website-guides.json']; [codecs.open(p,'r','utf-8').read() for p in paths]; print('utf8-ok')"` (utf8-ok). `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~TemplateAnswerComposerTests|FullyQualifiedName~AiDeterministicBaselineIntegrationTests"`.
+
+**Commit**: Not created.
+
+**Notes**: `scripts/encoding_guard.py` is not present in this repository; a UTF-8 read check was used instead. Guide routes were normalized to concrete landing pages rather than adding new controller actions.
+
+### HomeIndex SQLite daily challenge wrong-answer randomization fails - 2026-04-20
+
+**Symptom**: `/Home/Index` returned HTTP 500 in the SQLite test host during the AI launcher integration tests that render the dashboard with the daily challenge.
+
+**Root Cause**: `HomeController.GetSystemWrongAnswersAsync()` used `OrderBy(c => Guid.NewGuid())` directly in the EF query, which SQLite cannot translate.
+
+**Solution**: Added a SQL Server-only `Guid.NewGuid()` randomization path and reused the provider-safe random id/offset pattern (already used by `GetTodayFoldersAsync()`) for non-SQL Server providers.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/HomeController.cs` — guarded daily-challenge wrong-answer randomization for SQLite using provider-safe random IDs.
+
+**Verification**: `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiPhase4HardeningIntegrationTests&FullyQualifiedName~HomeIndex"`
+
+**Commit**: Not created.
+
+**Notes**: The same SQL Server behavior is preserved; only the SQLite-safe path is new.
+
+### AI chatbox hardening Phase 6 answer-quality guide expansion - 2026-04-20
+
+**Symptom**: After the core AI chatbox hardening fixes, website-guide answers still had several quality gaps: high-value learner topics such as Goals, Daily Challenge, class chat, and folder organization were missing or weakly covered, and several older guide routes still pointed at pre-refactor controller paths.
+
+**Root Cause**: `website-guides.json` had grown across multiple refactor phases without a full answer-quality pass over post-refactor routes. `WebsiteGuideRetriever` scored all keyword phrase matches equally, so broad one-word matches could compete too closely with more specific multi-word guide topics. Deterministic guide fallback also did not explicitly recognize some platform terms introduced in the expanded guide coverage.
+
+**Solution**: Corrected stale guide routes to current post-refactor routes, added concise Vietnamese guides for Goals, Daily Challenge, class chat, and organizing sets in folders, expanded deterministic website-guide feature keywords for those platform topics, and improved guide scoring by rewarding specific keyword phrase matches plus topic matches.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` - corrected stale guide routes and added Phase 6 guide entries for Goals, Daily Challenge, class chat, and folder organization.
+- `TCTEnglish/Services/AI/Internal/Retrievers/WebsiteGuideRetriever.cs` - added topic-aware scoring and a more specific keyword-match score.
+- `TCTEnglish/Services/AI/Internal/DeterministicIntentClassifier.cs` - recognized the new platform guide terms while preserving the existing out-of-scope guard.
+- `TCTEnglish.Tests/WebsiteGuideRetrieverTests.cs` - covered new guide retrieval, current post-refactor routes, and class-chat ranking.
+- `TCTEnglish.Tests/DeterministicIntentClassifierTests.cs` - covered the new Phase 6 guide prompts as `WebsiteGuide`.
+- `TCTEnglish.Tests/AiDeterministicBaselineIntegrationTests.cs` - covered the new guide prompts through the deterministic send path.
+- `TCTEnglish.Tests/AiBaselineRegressionTests.cs` and `TCTEnglish.Tests/TemplateAnswerComposerTests.cs` - aligned website-guide route expectations with current routes.
+- `.ai/context/bug-fix-log.md` - appended this Phase 6 closeout entry.
+
+**Verification**: `TCTEnglish/wwwroot/data/ai/website-guides.json` parsed successfully with `ConvertFrom-Json` and now contains 35 guides. `git diff --check` passed with only Git line-ending warnings. `scripts/encoding_guard.py` is not present. `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~TemplateAnswerComposerTests|FullyQualifiedName~AiBaselineRegressionTests|FullyQualifiedName~AiDeterministicBaselineIntegrationTests"` passed (120/120). The broader AI regression slice `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiBaselineRegressionTests|FullyQualifiedName~AiDeterministicBaselineIntegrationTests|FullyQualifiedName~AiContextBuilderTests|FullyQualifiedName~AiConversationServiceTests|FullyQualifiedName~AiChatServiceTests|FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~TemplateAnswerComposerTests|FullyQualifiedName~InternalKnowledgeProviderTests|FullyQualifiedName~StudyRecommendationRetrieverTests|FullyQualifiedName~MlNetIntentClassifierAssetResolverTests|FullyQualifiedName~MlNetAiQueryClassifierTests|FullyQualifiedName~MlNetIntentDatasetLoaderTests"` passed (166/166).
+
+**Commit**: Not created.
+
+**Notes**: This phase stayed inside the current internal-knowledge architecture and did not modify `Program.cs`, `appsettings.json`, project files, auth, billing, migrations, or unrelated controllers. `.ai/context/known-issues.md` was not updated because these answer-quality items were not listed as known unresolved bugs. The next verification pass should first re-check route behavior for any future website-guide entries before adding more topics.
+
+### AI chatbox hardening Phase 5 verification closeout - 2026-04-20
+
+**Symptom**: The AI chatbox hardening package needed final closeout after the retriever, deterministic fallback, website guide, quick-action UI, and regression-test phases. Final verification also needed to separate AI hardening results from broader repo test failures that are outside the Phase 5 scope.
+
+**Root Cause**: Earlier phases intentionally left the worktree with AI service, guide, UI, and test changes plus phase bug-log entries. The repository does not currently contain `scripts/encoding_guard.py`, and the broad `FullyQualifiedName~Ai` test filter can match unrelated test names such as `DailyChallenge` and `RemainsHidden`, which obscures the AI-specific signal.
+
+**Solution**: Inspected the final diff, confirmed no `Program.cs`, `appsettings.json`, or project-file changes were introduced by the AI hardening package, checked that the encoding guard script is unavailable, parsed the guide JSON, ran focused AI test slices, and ran the full test project once to document remaining unrelated blockers.
+
+**Files Changed**:
+- `.ai/context/bug-fix-log.md` - appended this Phase 5 verification closeout entry.
+
+**Verification**: `Test-Path scripts\encoding_guard.py` returned `False` because the script/folder is unavailable. `git diff --check` passed with only Git line-ending warnings. `TCTEnglish/wwwroot/data/ai/website-guides.json` parsed successfully with `ConvertFrom-Json`. `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiBaselineRegressionTests|FullyQualifiedName~AiDeterministicBaselineIntegrationTests|FullyQualifiedName~AiContextBuilderTests|FullyQualifiedName~AiConversationServiceTests|FullyQualifiedName~AiChatServiceTests|FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~TemplateAnswerComposerTests|FullyQualifiedName~InternalKnowledgeProviderTests|FullyQualifiedName~StudyRecommendationRetrieverTests|FullyQualifiedName~MlNetIntentClassifierAssetResolverTests|FullyQualifiedName~MlNetAiQueryClassifierTests|FullyQualifiedName~MlNetIntentDatasetLoaderTests"` passed (146/146). `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiPhase4HardeningIntegrationTests&FullyQualifiedName!~HomeIndex&FullyQualifiedName!~AiLauncher_"` passed (30/30). A class-focused AI run including HomeIndex launcher checks passed 176 tests and failed 5 launcher/HomeIndex checks due `/Home/Index` returning 500 from the known SQLite `Guid.NewGuid()` translation blocker. Full `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore` ran and failed with 341 passed / 27 failed across dashboard/HomeIndex, goals/speaking/writing, and admin-writing/auth fixtures; these were not fixed in Phase 5.
+
+**Commit**: Not created.
+
+**Notes**: `.ai/context/known-issues.md` was not updated because the fixed AI chat issues are not listed there. Browser smoke testing against a live app was not completed in this phase; integration coverage for `/AI/Chat`, embedded chat, quick-action hooks, guide routes, and send-path behavior passed in the focused AI slices. The next phase should first verify or fix the non-AI `/Home/Index` SQLite `Guid.NewGuid()` blocker before relying on launcher/HomeIndex smoke tests.
+
+### AI Phase 4 regression pack expanded for real send-path composition and guide/out-of-scope coverage - 2026-04-20
+
+**Symptom**: Existing AI regressions were spread across unit/integration files, but the baseline send-path integration suite did not directly lock enough Phase 4 behavior around study recommendation edge cases, quick-action guide routes, and out-of-scope refusals under the real `/AI/Chat/Send` path. The notification guide route also used `/Notification`, which does not resolve with the current default MVC route.
+
+**Root Cause**: `AiDeterministicBaselineIntegrationTests` had limited baseline assertions (vocabulary/guide/class/card) and did not include dedicated integration checks for owned-set/no-progress recommendation behavior, no-set empty state, mastered-status variant effect on remaining counts, quick-action route prompts, real endpoint resolution, or unrelated refusal prompts in one focused phase suite. Since `Program.cs` defaults missing actions to `Landing`, the real notification page route is `/Notification/Index`.
+
+**Solution**: Expanded `AiDeterministicBaselineIntegrationTests` with focused integration coverage for StudyRecommendation (owned set with no progress, no-set empty state, mastered-status variants + non-leakage), quick-action guide prompts with expected current routes, route endpoint resolution, and out-of-scope prompt refusal including homework/random-fact prompts. Added deterministic classifier override in the test host setup for this suite so assertions remain stable and behavior-focused instead of ML-model-artifact dependent. Corrected the notification guide route to `/Notification/Index`.
+
+**Files Changed**:
+- `TCTEnglish.Tests/AiDeterministicBaselineIntegrationTests.cs` - added Phase 4-focused integration scenarios, route endpoint resolution checks, homework refusal coverage, and deterministic classifier test-host override helper.
+- `TCTEnglish.Tests/DeterministicIntentClassifierTests.cs` - added explicit homework out-of-scope fallback coverage.
+- `TCTEnglish.Tests/WebsiteGuideRetrieverTests.cs` - updated notification quick-action route expectation.
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` - corrected the notification guide route to the real MVC endpoint.
+- `.ai/context/bug-fix-log.md` - updated this incident record.
+
+**Verification**: `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiDeterministicBaselineIntegrationTests|FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~AiBaselineRegressionTests|FullyQualifiedName~StudyRecommendationRetrieverTests|FullyQualifiedName~InternalKnowledgeProviderTests"` passed (101/101). `TCTEnglish/wwwroot/data/ai/website-guides.json` parsed successfully with `ConvertFrom-Json`. `scripts/encoding_guard.py` is not present.
+
+**Commit**: Not created.
+
+**Notes**: This Phase 4 pass reuses earlier Phase 1/2 hardening expectations (study recommendation semantics + quick-action guide routing) and anchors them on the integration send path. A broad `FullyQualifiedName~Ai` filter still pulls in unrelated dashboard/writing/speaking tests in this project; that broad run is blocked by pre-existing non-Phase-4 failures around `/Home/Index` SQLite `Guid.NewGuid()` translation and unrelated route/auth cases. Phase 5 should first verify the full intended AI/UI smoke slice after deciding whether to fix those unrelated blockers.
+
+### AI quick actions could double-submit and used global click handling across chat shells - 2026-04-20
+
+**Symptom**: Empty-state quick-action buttons in AI chat used a document-level click listener and immediately hid the quick-action row before submit acceptance. Under rapid clicks, this could race and create duplicate submit attempts, and the listener scope was broader than the initialized chat shell.
+
+**Root Cause**: `ai-chat.js` attached quick-action handling with `document.addEventListener('click', ...)`, so button behavior was not explicitly bound to the active shell/form instance. There was no quick-action pending guard to lock repeated clicks between click and submit-state transition.
+
+**Solution**: Scoped quick-action handling to the initialized chat shell (`[data-ai-chat-shell]` -> `[data-ai-quick-actions]`), added a `quickActionPending` guard plus temporary button disable (`aria-busy`) to block duplicate clicks, and changed the hide timing so quick actions are hidden only after submit is accepted by the form flow. Added compact button wrapping styles for small screens and regression assertions for new quick-action hooks/script guards.
+
+**Files Changed**:
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml` - added scoped quick-action data hooks and accessibility group metadata.
+- `TCTEnglish/wwwroot/js/ai-chat.js` - replaced global quick-action click handling with shell-scoped handling and duplicate-submit guard.
+- `TCTEnglish/wwwroot/css/ai-chat.css` - added minimal quick-action label wrapping behavior for narrow widths.
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` - added/updated assertions for quick-action hooks and script hardening behavior.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `run_build` passed. `run_tests` with `TypeName=TCTEnglish.Tests.DeterministicIntentClassifierTests`, `TypeName=TCTEnglish.Tests.WebsiteGuideRetrieverTests`, and `TypeName=TCTEnglish.Tests.AiBaselineRegressionTests` passed (67/67). `run_tests` with `MethodName=AiChatScript_QuickActions_AreScopedAndGuardedAgainstDuplicateSubmit` passed (1/1). A broader AI phase hardening slice still has pre-existing `/Home/Index` integration failures returning `500` in this workspace.
+
+**Commit**: Not created.
+
+**Notes**: This follows the Phase 2 note to verify quick-action submission behavior across `/AI/Chat` and embedded flows. `scripts/encoding_guard.py` is not present in this repository.
+
+### AI Phase 2 deterministic OutOfScope random-fact regression coverage - 2026-04-20
+
+**Symptom**: Phase 2 deterministic fallback already handled most quick-action and out-of-scope prompts, but random-fact refusal was not explicitly locked by a dedicated classifier regression input.
+
+**Root Cause**: `DeterministicIntentClassifierTests` lacked an explicit random-fact sample even though production fallback contains `random fact` rejection keywords.
+
+**Solution**: Added a direct deterministic classifier regression case (`Tell me a random fact about Mars`) to assert fallback remains `OutOfScope` and prevent accidental future broadening of website-guide matching.
+
+**Files Changed**:
+- `TCTEnglish.Tests/DeterministicIntentClassifierTests.cs` - added random-fact out-of-scope inline test data.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~AiBaselineRegressionTests"` passed (67/67). `website-guides.json` successfully parsed with `ConvertFrom-Json`.
+
+**Commit**: Not created.
+
+**Notes**: Route verification remains aligned with current attribute routing (`StudyController` uses `[Route("Home")]`, so Reading/Writing/Listening valid guide routes stay `/Home/...`). `scripts/encoding_guard.py` is not present in this repository.
+
+### AI quick-action guide fallback and route correction - 2026-04-20
+
+**Symptom**: AI quick-action prompts for Reading, Writing, Listening, support/contact, notifications, and overview/navigation could fall through deterministic fallback as `OutOfScope` unless an ML.NET model had already been retrained and loaded. Some guide answers also pointed learners to stale `/Study/*List` routes that do not exist in the current attribute-routed app.
+
+**Root Cause**: `DeterministicIntentClassifier.IsWebsiteGuide` only recognized a narrow set of guide verbs and feature keywords, missing common quick-action phrasing such as "Làm bài Reading như thế nào?", "Tính năng Writing hoạt động ra sao?", and notification/support questions. `website-guides.json` still carried the pre-route-verification Reading/Writing/Listening URLs, and notification/overview wording was grouped into the contact-support guide instead of having route-specific guide entries.
+
+**Solution**: Expanded deterministic website-guide fallback keywords for Reading, Writing, Listening, contact/support, notifications, and overview/navigation prompts while adding an explicit guard for clearly unrelated homework, translation, grammar, and random-fact requests. Corrected Reading/Writing/Listening guide routes to the verified legacy `/Home/...` paths, added route-specific notification and overview/navigation guide entries, and added focused classifier/retriever regressions for the Phase 2 quick-action prompts.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Internal/DeterministicIntentClassifier.cs` - recognizes Phase 2 quick-action guide phrasing and preserves out-of-scope protection for unrelated homework/translation/grammar prompts.
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` - corrects Reading/Writing/Listening routes and adds notification plus overview/navigation guide entries.
+- `TCTEnglish.Tests/DeterministicIntentClassifierTests.cs` - covers required quick-action prompts as `WebsiteGuide` and additional unrelated prompts as `OutOfScope`.
+- `TCTEnglish.Tests/WebsiteGuideRetrieverTests.cs` - covers expected guide routes for Reading, Writing, Listening, support/contact, notifications, and overview/navigation prompts.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~DeterministicIntentClassifierTests|FullyQualifiedName~WebsiteGuideRetrieverTests|FullyQualifiedName~AiBaselineRegressionTests"` passed (66/66) with `DOTNET_CLI_HOME` redirected to the workspace. `website-guides.json` parsed successfully with `ConvertFrom-Json`. `git diff --check` passed for the Phase 2 touched files with only Windows line-ending warnings. `scripts/encoding_guard.py` was not present.
+
+**Commit**: Not created.
+
+**Notes**: `Program.cs`, `appsettings.json`, and project files were not changed. `.ai/context/known-issues.md` was not updated because this AI quick-action fallback issue was not listed there. Phase 3 should first verify quick-action UI submission behavior in both `/AI/Chat` and the embedded launcher so each click sends exactly one message.
+
+### AI StudyRecommendation fallback unreachable and mastered counts incorrect - 2026-04-20
+
+**Symptom**: AI study recommendation could return the empty-state answer for users who already had owned vocabulary sets but had not generated any learning progress yet. The fallback recommendation path also treated only exact lowercase `mastered` progress as mastered, inflating remaining-card counts for statuses such as `Mastered` and `Learned`.
+
+**Root Cause**: `InternalKnowledgeProvider` selected only the first retriever whose `CanHandle` matched the classified intent. `LearningProgressRetriever` also handles `StudyRecommendation` and is registered before `StudyRecommendationRetriever`, so the set-based fallback retriever was unreachable in normal provider composition. In `StudyRecommendationRetriever`, mastered counting used a case-sensitive `p.Status == "mastered"` predicate.
+
+**Solution**: Updated `InternalKnowledgeProvider` to aggregate snippets from all matching retrievers in registration order, preserving progress-based recommendations before the set fallback. Reworked `StudyRecommendationRetriever` to read owned sets with `OwnerId == userId`, read progress with `UserId == userId`, join through owned cards/sets, and count `Mastered`, `mastered`, and `Learned` case-insensitively. Tightened `LearningProgressRetriever` set joins to owned sets so progress rows cannot surface another user's set in StudyRecommendation output.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Internal/InternalKnowledgeProvider.cs` - aggregates all matching retriever snippets instead of stopping at the first match.
+- `TCTEnglish/Services/AI/Internal/Retrievers/LearningProgressRetriever.cs` - scopes progress set joins to owned sets.
+- `TCTEnglish/Services/AI/Internal/Retrievers/StudyRecommendationRetriever.cs` - scopes fallback set/progress reads and fixes mastered-status semantics.
+- `TCTEnglish.Tests/AiBaselineRegressionTests.cs` - covers progress recommendation precedence, set fallback with no progress, no-set empty state, and cross-user non-leakage.
+- `TCTEnglish.Tests/InternalKnowledgeProviderTests.cs` - covers aggregation order for multiple matching retrievers.
+- `TCTEnglish.Tests/StudyRecommendationRetrieverTests.cs` - covers mastered status variants and fallback ownership/progress isolation.
+- `.ai/context/bug-fix-log.md` - added this incident record.
+
+**Verification**: `dotnet test TCTEnglish.Tests\TCTEnglish.Tests.csproj --no-restore --filter "FullyQualifiedName~AiBaselineRegressionTests|FullyQualifiedName~InternalKnowledgeProviderTests|FullyQualifiedName~TemplateAnswerComposerTests|FullyQualifiedName~StudyRecommendationRetrieverTests"` passed (38/38) with `DOTNET_CLI_HOME` redirected to the workspace. `git diff --check` passed with only Windows line-ending warnings. `scripts/encoding_guard.py` was not present.
+
+**Commit**: Not created.
+
+**Notes**: `Program.cs` was not changed. `.ai/context/known-issues.md` was not updated because these AI StudyRecommendation findings were not listed there. Phase 2 should first verify deterministic quick-action fallback classification and the real Reading/Writing/Listening/support/notification guide routes.
+
 ### CI/CD test suite 14 failures across 5 root cause groups — 2026-04-30
 
 **Symptom**: CI/CD pipeline `dotnet test` reported 14 failures out of 449 total tests. Failures spanned billing order code format, speaking route 404s, DI constructor regression, writing completion/goals progress, and AI deterministic test host provider selection.
@@ -70,7 +331,7 @@ This is a historical record of actual fixes — not a list of pending issues (se
 - `TCTEnglish.Tests/GoalsPhase7IntegrationTests.cs` — updated seed to include `UserWritingAttempts`
 - `TCTEnglish.Tests/SpeakingLegacyNullMetadataIntegrationTests.cs` — added missing schema columns and updated assertion
 
-**Verification**: 
+**Verification**:
 - Targeted test run (8 test classes, 95 tests): `Passed: 95, Failed: 0`
 - Full test suite: `Passed: 449, Failed: 0, Skipped: 0, Total: 449, Duration: 50s`
 
@@ -156,7 +417,6 @@ This is a historical record of actual fixes — not a list of pending issues (se
 **Commit**: Not created.
 
 **Notes**: This matches the provider-compatibility pattern already used for dashboard random sampling; the fix reuses that pattern for daily challenge distractors.
-
 ### Notification entity missing from migration snapshot and database — 2026-04-15
 
 **Symptom**: Two sequential errors after the Notification feature was added:

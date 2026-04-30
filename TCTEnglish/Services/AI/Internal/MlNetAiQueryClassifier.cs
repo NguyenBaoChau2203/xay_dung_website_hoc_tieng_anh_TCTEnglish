@@ -39,10 +39,12 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
             return _fallbackClassifier.Classify(userMessage);
         }
 
+        var deterministicClassification = _fallbackClassifier.Classify(userMessage);
+
         var runtime = GetOrLoadRuntime();
         if (runtime is null)
         {
-            return _fallbackClassifier.Classify(userMessage);
+            return deterministicClassification;
         }
 
         try
@@ -53,16 +55,40 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
                 _logger.LogWarning(
                     "ML.NET predicted an unknown intent label '{Label}'. Falling back to deterministic classifier.",
                     prediction.Label);
-                return _fallbackClassifier.Classify(userMessage);
+                return deterministicClassification;
             }
 
-            return new IntentClassification(intent, prediction.Confidence, "mlnet");
+            var mlNetClassification = new IntentClassification(intent, prediction.Confidence, "mlnet");
+            return ShouldPreferDeterministic(deterministicClassification, mlNetClassification)
+                ? deterministicClassification
+                : mlNetClassification;
         }
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "ML.NET prediction failed. Falling back to deterministic classifier.");
-            return _fallbackClassifier.Classify(userMessage);
+            return deterministicClassification;
         }
+    }
+
+    private static bool ShouldPreferDeterministic(
+        IntentClassification deterministic,
+        IntentClassification mlNetClassification)
+    {
+        if (deterministic.Confidence < 0.3f)
+        {
+            return false;
+        }
+
+        if (deterministic.Intent is not (UserIntent.WebsiteGuide
+            or UserIntent.MyProgress
+            or UserIntent.StudyRecommendation
+            or UserIntent.OutOfScope))
+        {
+            return false;
+        }
+
+        return mlNetClassification.Intent != deterministic.Intent
+            || mlNetClassification.Confidence < 0.75f;
     }
 
     private ModelRuntime? GetOrLoadRuntime()
