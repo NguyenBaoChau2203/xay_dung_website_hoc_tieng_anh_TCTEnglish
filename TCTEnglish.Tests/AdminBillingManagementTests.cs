@@ -67,7 +67,7 @@ namespace TCTEnglish.Tests
             await ctx.SaveChangesAsync();
 
             var mockSubSvc = new Mock<ISubscriptionService>();
-            mockSubSvc.Setup(s => s.GrantManualAsync(user.UserId, 1, 30, "Bonus"))
+            mockSubSvc.Setup(s => s.GrantManualAsync(user.UserId, 1, 30, "Bonus", default))
                       .ReturnsAsync(OperationResult.Success());
 
             var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
@@ -97,7 +97,7 @@ namespace TCTEnglish.Tests
 
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal(nameof(BillingManagementController.Subscriptions), redirectResult.ActionName);
-            mockSubSvc.Verify(s => s.GrantManualAsync(user.UserId, 1, 30, "Bonus"), Times.Once);
+            mockSubSvc.Verify(s => s.GrantManualAsync(user.UserId, 1, 30, "Bonus", default), Times.Once);
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace TCTEnglish.Tests
             var ctx = GetInMemoryContext(Guid.NewGuid().ToString());
             var userId = 200;
             var mockSubSvc = new Mock<ISubscriptionService>();
-            mockSubSvc.Setup(s => s.RevokeAsync(userId, "Violated terms"))
+            mockSubSvc.Setup(s => s.RevokeAsync(userId, "Violated terms", default))
                       .ReturnsAsync(OperationResult.Success());
 
             var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
@@ -133,7 +133,7 @@ namespace TCTEnglish.Tests
 
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal(nameof(BillingManagementController.Subscriptions), redirectResult.ActionName);
-            mockSubSvc.Verify(s => s.RevokeAsync(userId, "Violated terms"), Times.Once);
+            mockSubSvc.Verify(s => s.RevokeAsync(userId, "Violated terms", default), Times.Once);
         }
 
         [Fact]
