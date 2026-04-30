@@ -126,6 +126,12 @@ jobs:
           }
           EOF
 
+      - name: 🛑 Put App Offline (IIS)
+        run: |
+          echo "<html><body><h1 style='text-align:center;margin-top:50px;'>Hệ thống đang được cập nhật. Vui lòng quay lại sau ít phút...</h1></body></html>" > app_offline.htm
+          curl -T app_offline.htm ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_REMOTE_DIR }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          sleep 5 # Chờ IIS nhả file locks
+
       - name: 📤 Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -138,6 +144,11 @@ jobs:
             **/.git*
             **/.git*/**
             **/appsettings.Development.json
+
+      - name: 🟢 Bring App Online
+        if: always() # Luôn chạy để mở lại web dù deploy lỗi hay thành công
+        run: |
+          curl -Q "-DELE ${{ secrets.FTP_REMOTE_DIR }}app_offline.htm" ftp://${{ secrets.FTP_SERVER }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
 
       - name: ✅ Done
         run: |
