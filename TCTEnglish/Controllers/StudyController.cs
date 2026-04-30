@@ -242,7 +242,7 @@ namespace TCTVocabulary.Controllers
             return View("Reading", readings);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("Writing")]
         public async Task<IActionResult> Writing(string? level = null)
         {
@@ -250,7 +250,7 @@ namespace TCTVocabulary.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("Writing/Exercises")]
         public async Task<IActionResult> WritingExercises(
             string? level = null,
@@ -266,7 +266,7 @@ namespace TCTVocabulary.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("Writing/Exercises/Data")]
         public async Task<IActionResult> WritingExercisesData(
             string? level = null,
