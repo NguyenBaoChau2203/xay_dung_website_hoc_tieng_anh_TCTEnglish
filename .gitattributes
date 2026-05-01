@@ -4,6 +4,12 @@
 * text=auto
 
 ###############################################################################
+# Keep ML.NET classifier assets stable across Windows and Linux CI.
+###############################################################################
+TCTEnglish/Services/AI/Internal/Data/intent-samples.seed.csv text eol=lf
+TCTEnglish/Services/AI/Internal/Data/intent-classifier-model.zip binary
+
+###############################################################################
 # Set default behavior for command prompt diff.
 #
 # This is need for earlier builds of msysgit that does not have it on by

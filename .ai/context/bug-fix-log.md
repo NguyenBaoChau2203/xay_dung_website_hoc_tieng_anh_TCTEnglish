@@ -1542,3 +1542,25 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Not created.
 
 **Notes**: Existing unrelated nullable warnings remain in the solution and were not part of this ticket.
+### CI ML.NET classifier seed hash failed on Linux checkout - 2026-05-01
+
+**Symptom**: GitHub Actions failed `AiProductionClassifierIntegrationTests.MlNetClassifierAssets_ArePresentAndStable` even though the local Windows run passed. The only failing assertion compared the expected SHA256 for `intent-samples.seed.csv` with the actual Linux CI hash.
+
+**Root Cause**: The test hashed the raw seed CSV bytes while `.gitattributes` used `* text=auto`. Windows checked out the seed file as CRLF and matched the stored expected hash, but Ubuntu Actions checked it out as LF and produced a different hash for the same logical dataset.
+
+**Solution**: Updated the asset-stability test to hash the seed CSV as normalized UTF-8 text with LF line endings, while keeping the model zip hashed as raw binary. Added explicit `.gitattributes` entries so the seed CSV stays LF and the model zip is treated as binary.
+
+**Files Changed**:
+- `.gitattributes` - pinned ML.NET seed CSV to LF and model zip to binary.
+- `TCTEnglish.Tests/AiProductionClassifierIntegrationTests.cs` - normalized text line endings before hashing the seed dataset and updated the expected normalized hash.
+- `.ai/context/bug-fix-log.md` - documented the CI-only line-ending failure pattern.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --configuration Release --no-restore --filter "FullyQualifiedName~AiProductionClassifierIntegrationTests.MlNetClassifierAssets_ArePresentAndStable"` passed locally.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --configuration Release --no-restore --filter "FullyQualifiedName~AiProductionClassifierIntegrationTests"` passed locally (6/6).
+- Full local `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --configuration Release --no-restore` reached 551/552 passing, with an unrelated local SQLite `ObjectDisposedException` in `Sprint3SmokeTests.VocabularyPages_RenderSystemVocabularyForAuthenticatedUser`; rerunning that single test passed.
+- `git diff --check` passed, with only line-ending conversion warnings from local `core.autocrlf=true`.
+
+**Commit**: Not created.
+
+**Notes**: This was a cross-platform checkout/hash issue, not a classifier behavior regression. Existing nullable warnings remain unrelated.
