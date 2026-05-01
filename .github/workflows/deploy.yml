@@ -1,13 +1,15 @@
 # =============================================================================
 # TCT English - CI/CD Pipeline
 # =============================================================================
-# Tự động build, test và deploy lên NhanHoa hosting mỗi khi push vào main.
+# Tu dong build, test va deploy len NhanHoa hosting moi khi push vao main.
 #
-# Yêu cầu GitHub Secrets:
+# Yeu cau GitHub Secrets:
 #   FTP: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_REMOTE_DIR
 #   App: PRODUCTION_DB_CONNECTION, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,
 #        FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, SMTP_EMAIL, SMTP_PASSWORD,
 #        GEMINI_API_KEY, PIXABAY_API_KEY
+#   VNPay: VNPay__Enabled, VNPay__TmnCode, VNPay__HashSecret,
+#          VNPay__BaseUrl, VNPay__ReturnUrl, VNPay__IpnUrl
 # =============================================================================
 
 name: Build & Deploy TCT English
@@ -26,32 +28,32 @@ env:
 jobs:
   # ===== JOB 1: BUILD & TEST (CI) =====
   build:
-    name: 🔨 Build & Test
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup .NET ${{ env.DOTNET_VERSION }}
+      - name: Setup .NET ${{ env.DOTNET_VERSION }}
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: 📦 Restore packages
+      - name: Restore packages
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
-      - name: 🏗️ Build
+      - name: Build
         run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
-      - name: 🧪 Run tests
+      - name: Run tests
         run: |
           if [ -f "${{ env.TEST_PROJECT_PATH }}" ]; then
             dotnet test ${{ env.TEST_PROJECT_PATH }} --configuration Release --verbosity normal
           else
-            echo "⚠️ No test project found, skipping"
+            echo "No test project found, skipping"
           fi
 
-      - name: 📤 Publish (self-contained, win-x64)
+      - name: Publish (self-contained, win-x64)
         run: |
           dotnet publish ${{ env.PROJECT_PATH }} \
             --configuration Release \
@@ -59,7 +61,7 @@ jobs:
             --self-contained true \
             --output ${{ env.PUBLISH_DIR }}
 
-      - name: 📁 Upload artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: tctenglish-publish
@@ -68,19 +70,19 @@ jobs:
 
   # ===== JOB 2: DEPLOY (CD) =====
   deploy:
-    name: 🚀 Deploy to Production
+    name: Deploy to Production
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: 📥 Download artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: tctenglish-publish
           path: ${{ env.PUBLISH_DIR }}
 
-      - name: 🔐 Create appsettings.Production.json
+      - name: Create appsettings.Production.json
         run: |
           cat > ${{ env.PUBLISH_DIR }}/appsettings.Production.json << 'EOF'
           {
@@ -119,6 +121,22 @@ jobs:
             "Pixabay": {
               "ApiKey": "${{ secrets.PIXABAY_API_KEY }}"
             },
+            "VNPay": {
+              "Enabled": "${{ secrets['VNPay__Enabled'] || secrets['VNPAY__ENABLED'] || 'false' }}",
+              "Version": "2.1.0",
+              "Command": "pay",
+              "TmnCode": "${{ secrets['VNPay__TmnCode'] || secrets['VNPAY__TMNCODE'] }}",
+              "HashSecret": "${{ secrets['VNPay__HashSecret'] || secrets['VNPAY__HASHSECRET'] }}",
+              "BaseUrl": "${{ secrets['VNPay__BaseUrl'] || secrets['VNPAY__BASEURL'] || 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html' }}",
+              "ReturnUrl": "${{ secrets['VNPay__ReturnUrl'] || secrets['VNPAY__RETURNURL'] }}",
+              "IpnUrl": "${{ secrets['VNPay__IpnUrl'] || secrets['VNPAY__IPNURL'] }}",
+              "QueryDrUrl": "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction",
+              "QueryIpAddress": "127.0.0.1",
+              "QueryDrCommand": "querydr",
+              "Locale": "vn",
+              "Currency": "VND",
+              "OrderType": "other"
+            },
             "Billing": {
               "PendingPaymentCleanupWorkerEnabled": true,
               "PremiumExpiryWorkerEnabled": true
@@ -126,13 +144,13 @@ jobs:
           }
           EOF
 
-      - name: 🛑 Put App Offline (IIS)
+      - name: Put App Offline (IIS)
         run: |
-          echo "<html><body><h1 style='text-align:center;margin-top:50px;'>Hệ thống đang được cập nhật. Vui lòng quay lại sau ít phút...</h1></body></html>" > app_offline.htm
+          echo "<html><body><h1 style='text-align:center;margin-top:50px;'>He thong dang duoc cap nhat. Vui long quay lai sau it phut...</h1></body></html>" > app_offline.htm
           curl -T app_offline.htm ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_REMOTE_DIR }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
-          sleep 5 # Chờ IIS nhả file locks
+          sleep 5 # Cho IIS nha file locks
 
-      - name: 📤 Deploy via FTP
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -145,12 +163,12 @@ jobs:
             **/.git*/**
             **/appsettings.Development.json
 
-      - name: 🟢 Bring App Online
-        if: always() # Luôn chạy để mở lại web dù deploy lỗi hay thành công
+      - name: Bring App Online
+        if: always() # Luon chay de mo lai web du deploy loi hay thanh cong
         run: |
           curl -Q "-DELE ${{ secrets.FTP_REMOTE_DIR }}app_offline.htm" ftp://${{ secrets.FTP_SERVER }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
 
-      - name: ✅ Done
+      - name: Done
         run: |
-          echo "🎉 Deployed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo "🔖 Commit: ${{ github.sha }}"
+          echo "Deployed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Commit: ${{ github.sha }}"
