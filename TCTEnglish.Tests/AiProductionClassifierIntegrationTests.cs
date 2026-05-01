@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TCTEnglish.Services.AI.Internal;
@@ -90,7 +91,7 @@ public sealed class AiProductionClassifierIntegrationTests
         Assert.True(File.Exists(seedPath), $"Missing seed dataset at {seedPath}.");
 
         Assert.Equal("1E642396EBD6331A3BB3D046A9C79935A91DB3D745A8C89C37985F564EA74ECC", ComputeSha256(modelPath));
-        Assert.Equal("C24D0196DFB51F2CE6E781329B01DF713A6DF9774EFE5C0B5C3B92AB65A2A371", ComputeSha256(seedPath));
+        Assert.Equal("59C2D38DB7DDB09595089BEB2AADB82E255D4F51D510271B6D0ED570B98B494F", ComputeNormalizedTextSha256(seedPath));
     }
 
     private static TestWebApplicationFactory CreateProductionClassifierFactory()
@@ -106,6 +107,16 @@ public sealed class AiProductionClassifierIntegrationTests
     {
         using var stream = File.OpenRead(path);
         var hash = SHA256.HashData(stream);
+        return Convert.ToHexString(hash);
+    }
+
+    private static string ComputeNormalizedTextSha256(string path)
+    {
+        var text = File.ReadAllText(path, Encoding.UTF8)
+            .Replace("\r\n", "\n", StringComparison.Ordinal)
+            .Replace("\r", "\n", StringComparison.Ordinal);
+
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(text));
         return Convert.ToHexString(hash);
     }
 
