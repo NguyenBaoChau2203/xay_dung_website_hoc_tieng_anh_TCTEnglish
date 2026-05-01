@@ -1564,3 +1564,24 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Not created.
 
 **Notes**: This was a cross-platform checkout/hash issue, not a classifier behavior regression. Existing nullable warnings remain unrelated.
+### Production AI management page could not find ML.NET dataset/model after deploy - 2026-05-01
+
+**Symptom**: After deployment, the admin AI management page showed `Chua co model` and `Khong tim thay` for `intent-samples.seed.csv`, even though the dataset and model files existed locally and CI tests passed.
+
+**Root Cause**: `intent-samples.seed.csv` and `intent-classifier-model.zip` were stored under `Services/AI/Internal/Data`, but the project file did not mark that directory for output/publish copying. Tests read the files from the source tree, while the production app resolves them under the deployed content root, where they were missing.
+
+**Solution**: Updated the app project file to copy all ML.NET classifier data assets to both build output and publish output. Added a smoke test that locks this project-file contract so future changes do not accidentally remove the publish rule.
+
+**Files Changed**:
+- `TCTEnglish/TCTEnglish.csproj` - added copy metadata for `Services/AI/Internal/Data/**/*` using `CopyToOutputDirectory` and `CopyToPublishDirectory`.
+- `TCTEnglish.Tests/Sprint4SmokeTests.cs` - added a regression smoke test for the classifier asset publish rule.
+- `.ai/context/bug-fix-log.md` - documented the deployment-only missing asset failure.
+
+**Verification**:
+- `dotnet publish TCTEnglish/TCTEnglish.csproj --configuration Release --no-restore --output .tmp/publish-ai-assets-*` copied `intent-classifier-model.zip` and `intent-samples.seed.csv` into `Services/AI/Internal/Data` in the publish output.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --configuration Release --no-restore --filter "FullyQualifiedName~Sprint4SmokeTests.ProjectFile_PublishesMlNetClassifierAssets"` passed locally.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --configuration Release --no-restore --filter "FullyQualifiedName~AiProductionClassifierIntegrationTests"` passed locally (6/6).
+
+**Commit**: Not created.
+
+**Notes**: The web guide JSON knowledge base was already a static web asset under `wwwroot`; this fix covers the separate ML.NET classifier dataset/model assets used by the admin training flow.

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using TCTVocabulary.Areas.Admin.Controllers;
@@ -28,6 +29,24 @@ public sealed class Sprint4SmokeTests
         Assert.True(File.Exists(Path.Combine(normalizedFolder, "StudyViewModel.cs")));
         Assert.True(File.Exists(Path.Combine(normalizedFolder, "VocabularyPageViewModels.cs")));
         Assert.False(File.Exists(Path.Combine(workspaceRoot, "TCTEnglish", "Models", "UpdateProfileViewModel.cs")));
+    }
+
+    [Fact]
+    public void ProjectFile_PublishesMlNetClassifierAssets()
+    {
+        var projectPath = Path.Combine(GetWorkspaceRoot(), "TCTEnglish", "TCTEnglish.csproj");
+        var project = XDocument.Load(projectPath);
+
+        var assetItem = project.Descendants("None")
+            .SingleOrDefault(element =>
+                string.Equals(
+                    element.Attribute("Update")?.Value,
+                    @"Services\AI\Internal\Data\**\*",
+                    StringComparison.OrdinalIgnoreCase));
+
+        Assert.NotNull(assetItem);
+        Assert.Equal("PreserveNewest", assetItem!.Element("CopyToOutputDirectory")?.Value);
+        Assert.Equal("PreserveNewest", assetItem.Element("CopyToPublishDirectory")?.Value);
     }
 
     [Fact]
