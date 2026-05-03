@@ -29,5 +29,19 @@
             = new List<ClassFolder>();
         public virtual ICollection<ClassMember> ClassMembers { get; set; }
     = new List<ClassMember>();
+        // Khóa chat toàn bộ thành viên (chỉ Trưởng/Phó được chat)
+        public bool IsChatLocked { get; set; } = false;
+
+        // Cho phép thành viên tự do thêm Folder hay không
+        public bool AllowMemberToPost { get; set; } = false;
+
+        // Danh sách đen
+        public virtual ICollection<ClassBlacklist> BlacklistedUsers { get; set; } = new List<ClassBlacklist>();
+        // Tùy chọn: Phải được duyệt mới được vào lớp
+        public bool RequiresApproval { get; set; } = false;
+
+        // Navigation tới các yêu cầu đang chờ
+        public virtual ICollection<ClassJoinRequest> JoinRequests { get; set; }
+            = new List<ClassJoinRequest>();
     }
 }

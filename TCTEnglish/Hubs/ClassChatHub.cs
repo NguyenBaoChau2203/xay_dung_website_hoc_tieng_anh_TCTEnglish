@@ -71,20 +71,55 @@ namespace TCTEnglish.Hubs
         public async Task JoinClass(int classId)
         {
             var userId = TryGetCurrentUserId();
+
             if (!userId.HasValue)
             {
-                _logger.LogWarning("Anonymous connection attempted to join class {classId}", classId);
+                _logger.LogWarning(
+                    "Anonymous connection attempted to join class {classId}",
+                    classId);
+
                 return;
             }
 
-            if (!await _classService.CanAccessClassAsync(classId, userId.Value, Context.User?.IsInRole(Roles.Admin) == true))
+            var isAdmin = Context.User?.IsInRole(Roles.Admin) == true;
+
+            // kiểm tra quyền truy cập lớp
+            if (!await _classService.CanAccessClassAsync(
+                    classId,
+                    userId.Value,
+                    isAdmin))
             {
-                _logger.LogWarning("Access denied when user {userId} tried to join class {classId}", userId.Value, classId);
+                _logger.LogWarning(
+                    "Access denied when user {userId} tried to join class {classId}",
+                    userId.Value,
+                    classId);
+
                 throw new HubException("Không có quyền truy cập lớp.");
             }
 
-            await Groups.AddToGroupAsync(Context.ConnectionId, $"class-{classId}");
-            _logger.LogInformation("User {userId} joined class group {classId}", userId.Value, classId);
+            // kiểm tra mute -> vẫn được vào room để đọc chat
+            // nhưng sẽ không được gửi message (check ở SendMessage)
+            var member = await _context.ClassMembers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x =>
+                    x.ClassId == classId &&
+                    x.UserId == userId.Value);
+
+            if (member != null && member.IsMuted)
+            {
+                await Clients.Caller.SendAsync(
+                    "ReceiveSystemMessage",
+                    "Bạn đang bị mute và chỉ có thể xem tin nhắn.");
+            }
+
+            await Groups.AddToGroupAsync(
+                Context.ConnectionId,
+                $"class-{classId}");
+
+            _logger.LogInformation(
+                "User {userId} joined class group {classId}",
+                userId.Value,
+                classId);
         }
 
         public async Task SendMessage(int classId, string content)

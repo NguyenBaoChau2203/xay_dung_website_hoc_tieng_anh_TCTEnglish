@@ -69,16 +69,30 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         [HttpPost("EditClass")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditClass(int classId, string className, string? description)
+        public async Task<IActionResult> EditClass(
+    int classId,
+    string className,
+    string? description,
+    bool requiresApproval,
+    bool isChatLocked,
+    bool allowMemberToPost)
         {
-            if (!TryGetCurrentUserId(out var userId))
-            {
-                _logger.LogWarning("Unauthorized class edit attempt for class {classId}", classId);
-                return Unauthorized();
-            }
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
 
-            var result = await _classService.UpdateClassAsync(classId, className, description, userId, IsAdminUser());
-            return result.Status == OperationStatus.Success ? Ok() : NotFound(result.ErrorMessage);
+            // Truyền đầy đủ 8 tham số vào Service[cite: 1, 14]
+            var result = await _classService.UpdateClassAsync(
+                classId,
+                className,
+                description,
+                requiresApproval,
+                isChatLocked,
+                allowMemberToPost,
+                userId,
+                IsAdminUser());
+
+            return result.Status == OperationStatus.Success
+                ? Ok()
+                : BadRequest(result.ErrorMessage);
         }
 
         [Authorize]
@@ -229,6 +243,150 @@ namespace TCTVocabulary.Controllers
 
             await _classService.LeaveClassAsync(classId, userId);
             return Ok();
+        }
+        // ===== THÊM CÁC ACTION MỚI VÀO ClassController =====
+
+        [Authorize]
+        [HttpPost("ChangeMemberRole")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeMemberRole(int classId, int targetUserId, string role)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.ChangeMemberRoleAsync(
+                classId,
+                targetUserId,
+                role,
+                currentUserId,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
+        }
+
+        [Authorize]
+        [HttpPost("MuteMember")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MuteMember(int classId, int targetUserId)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.ToggleMuteMemberAsync(
+                classId,
+                targetUserId,
+                currentUserId,
+                true,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
+        }
+
+        [Authorize]
+        [HttpPost("UnMuteMember")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnMuteMember(int classId, int targetUserId)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.ToggleMuteMemberAsync(
+                classId,
+                targetUserId,
+                currentUserId,
+                false,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
+        }
+
+        [Authorize]
+        [HttpPost("BlockMember")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BlockMember(int classId, int targetUserId)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _classService.BlockMemberAsync(
+                classId,
+                targetUserId,
+                currentUserId,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                _ => NotFound(result.ErrorMessage)
+            };
+        }
+
+        [Authorize]
+        [HttpPost("ApproveJoinRequest")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ApproveJoinRequest([FromForm] int requestId)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+                return Unauthorized();
+
+            var result = await _classService.ApproveJoinRequestAsync(
+                requestId,
+                currentUserId,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                OperationStatus.NotFound => NotFound(result.ErrorMessage),
+                _ => BadRequest("Có lỗi xảy ra.")
+            };
+        }
+
+        [Authorize]
+        [HttpPost("DeclineJoinRequest")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeclineJoinRequest([FromForm] int requestId)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+                return Unauthorized();
+
+            var result = await _classService.DeclineJoinRequestAsync(
+                requestId,
+                currentUserId,
+                IsAdminUser());
+
+            return result.Status switch
+            {
+                OperationStatus.Success => Ok(),
+                OperationStatus.Invalid => BadRequest(result.ErrorMessage),
+                OperationStatus.NotFound => NotFound(result.ErrorMessage),
+                _ => BadRequest("Có lỗi xảy ra.")
+            };
         }
     }
 }

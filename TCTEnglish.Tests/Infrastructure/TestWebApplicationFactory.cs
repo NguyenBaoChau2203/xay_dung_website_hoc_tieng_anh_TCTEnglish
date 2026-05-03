@@ -167,6 +167,17 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             CreatedAt = DateTime.UtcNow
         };
 
+        var assistantUser = new User
+        {
+            UserId = TestDataIds.AssistantUserId,
+            Email = "assistant@test.local",
+            PasswordHash = "hash",
+            FullName = "Sprint Two Assistant",
+            Role = Roles.Standard,
+            Status = UserStatus.Online,
+            CreatedAt = DateTime.UtcNow
+        };
+
         var systemUser = new User
         {
             Email = "system@tct.local",
@@ -177,7 +188,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             CreatedAt = DateTime.UtcNow
         };
 
-        context.Users.AddRange(standardUser, adminUser, outsiderUser, memberUser, systemUser);
+        context.Users.AddRange(standardUser, adminUser, outsiderUser, memberUser, assistantUser, systemUser);
         await context.SaveChangesAsync();
 
         if (!await context.Badges.AnyAsync())
