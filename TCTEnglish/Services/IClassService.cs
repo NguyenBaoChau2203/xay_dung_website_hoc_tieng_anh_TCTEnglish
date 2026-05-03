@@ -6,7 +6,7 @@ namespace TCTVocabulary.Services
     {
         Task<ClassPageViewModel> GetClassPageAsync(int userId);
         Task<int> CreateClassAsync(CreateClassViewModel model, int userId);
-        Task<OperationResult> UpdateClassAsync(int classId, string className, string? description, int userId, bool isAdmin);
+        Task<OperationResult> UpdateClassAsync(int classId, string className, string? description, bool requiresApproval, bool isChatLocked, bool allowMemberToPost, int userId, bool isAdmin);
         Task<OperationResult> DeleteClassAsync(int classId, int userId, bool isAdmin);
         Task<ClassDetailViewModel?> GetClassDetailAsync(int classId, int userId, bool isAdmin);
         Task<OperationResult> AddFolderToClassAsync(int classId, int folderId, int userId, bool isAdmin);
@@ -16,5 +16,11 @@ namespace TCTVocabulary.Services
         Task<OperationResult> JoinClassAsync(int classId, string? password, int userId);
         Task LeaveClassAsync(int classId, int userId);
         Task<bool> CanAccessClassAsync(int classId, int userId, bool isAdmin);
+        Task<OperationResult> ChangeMemberRoleAsync(int classId, int targetUserId, string role, int currentUserId, bool isAdmin);
+        Task<OperationResult> ToggleMuteMemberAsync(int classId, int targetUserId, int currentUserId, bool isMute, bool isAdmin);
+        Task<OperationResult> BlockMemberAsync(int classId, int targetUserId, int currentUserId, bool isAdmin);
+        Task<OperationResult> ApproveJoinRequestAsync(int requestId,int currentUserId,bool isAdmin);
+        Task<OperationResult> DeclineJoinRequestAsync(int requestId, int currentUserId, bool isAdmin);
+
     }
 }

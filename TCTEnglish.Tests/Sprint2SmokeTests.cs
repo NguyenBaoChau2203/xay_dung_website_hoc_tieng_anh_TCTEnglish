@@ -158,6 +158,127 @@ public sealed class Sprint2SmokeTests
     }
 
     [Fact]
+    public async Task JoinRequest_OwnerCanApprovePendingRequest()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        var requestId = await SeedJoinRequestAsync(factory, TestDataIds.OutsiderUserId);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Home/ClassDetail/{TestDataIds.ClassId}");
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/ApproveJoinRequest")
+        {
+            Content = new StringContent(
+                $"requestId={requestId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+        using var response = await client.SendAsync(request);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(1, await CountClassMembershipsAsync(factory, TestDataIds.ClassId, TestDataIds.OutsiderUserId));
+        Assert.Equal(0, await CountPendingJoinRequestsAsync(factory, requestId));
+        Assert.Equal(1, await CountJoinRequestsByStatusAsync(factory, requestId, JoinRequestStatus.Approved));
+    }
+
+    [Fact]
+    public async Task JoinRequest_AssistantCanDeclinePendingRequest()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        await SeedAssistantMembershipAsync(factory);
+        var requestId = await SeedJoinRequestAsync(factory, TestDataIds.OutsiderUserId);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AssistantUserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Home/ClassDetail/{TestDataIds.ClassId}");
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/DeclineJoinRequest")
+        {
+            Content = new StringContent(
+                $"requestId={requestId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+        using var response = await client.SendAsync(request);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(0, await CountClassMembershipsAsync(factory, TestDataIds.ClassId, TestDataIds.OutsiderUserId));
+        Assert.Equal(0, await CountPendingJoinRequestsAsync(factory, requestId));
+        Assert.Equal(1, await CountJoinRequestsByStatusAsync(factory, requestId, JoinRequestStatus.Declined));
+    }
+
+    [Fact]
+    public async Task ClassManagement_AssistantCanKickRegularMember()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        await SeedAssistantMembershipAsync(factory);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.AssistantUserId, Roles.Standard);
+
+        var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Home/ClassDetail/{TestDataIds.ClassId}");
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/Home/KickMember")
+        {
+            Content = new StringContent(
+                $"classId={TestDataIds.ClassId}&userId={TestDataIds.MemberUserId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
+
+        using var response = await client.SendAsync(request);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(0, await CountClassMembershipsAsync(factory, TestDataIds.ClassId, TestDataIds.MemberUserId));
+    }
+
+    [Fact]
+    public async Task ClassManagement_OwnerCanBlockMember_AndBlockedUserCannotRejoin()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+
+        using var ownerClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        var ownerToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(ownerClient, $"/Home/ClassDetail/{TestDataIds.ClassId}");
+        using var blockRequest = new HttpRequestMessage(HttpMethod.Post, "/Home/BlockMember")
+        {
+            Content = new StringContent(
+                $"classId={TestDataIds.ClassId}&targetUserId={TestDataIds.MemberUserId}",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        blockRequest.Headers.Add("RequestVerificationToken", ownerToken);
+
+        using var blockResponse = await ownerClient.SendAsync(blockRequest);
+
+        Assert.Equal(HttpStatusCode.OK, blockResponse.StatusCode);
+        Assert.Equal(0, await CountClassMembershipsAsync(factory, TestDataIds.ClassId, TestDataIds.MemberUserId));
+        Assert.Equal(1, await CountClassBlacklistEntriesAsync(factory, TestDataIds.ClassId, TestDataIds.MemberUserId));
+
+        using var blockedClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.MemberUserId, Roles.Standard);
+        var joinToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(blockedClient, "/Home/Class");
+        using var joinRequest = new HttpRequestMessage(HttpMethod.Post, "/Home/JoinClass")
+        {
+            Content = new StringContent(
+                $"classId={TestDataIds.ClassId}&password=correct-password",
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded")
+        };
+        joinRequest.Headers.Add("RequestVerificationToken", joinToken);
+
+        using var joinResponse = await blockedClient.SendAsync(joinRequest);
+        var joinBody = await joinResponse.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.BadRequest, joinResponse.StatusCode);
+        Assert.Contains("chan", joinBody, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public async Task ChatUpload_OutsiderGetsNotFound()
     {
         await using var factory = new TestWebApplicationFactory();
@@ -360,6 +481,77 @@ public sealed class Sprint2SmokeTests
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
         return await context.ClassFolders.CountAsync(cf => cf.ClassId == classId && cf.FolderId == folderId);
+    }
+
+    private static async Task<int> CountClassBlacklistEntriesAsync(
+        TestWebApplicationFactory factory,
+        int classId,
+        int userId)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+
+        return await context.ClassBlacklists.CountAsync(x => x.ClassId == classId && x.UserId == userId);
+    }
+
+    private static async Task<int> SeedJoinRequestAsync(TestWebApplicationFactory factory, int userId)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+
+        var joinRequest = new ClassJoinRequest
+        {
+            ClassId = TestDataIds.ClassId,
+            UserId = userId,
+            Status = JoinRequestStatus.Pending,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        context.ClassJoinRequests.Add(joinRequest);
+        await context.SaveChangesAsync();
+
+        return joinRequest.RequestId;
+    }
+
+    private static async Task SeedAssistantMembershipAsync(TestWebApplicationFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+
+        context.ClassMembers.Add(new ClassMember
+        {
+            ClassId = TestDataIds.ClassId,
+            UserId = TestDataIds.AssistantUserId,
+            Role = ClassRole.Assistant,
+            JoinedAt = DateTime.UtcNow
+        });
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task<int> CountPendingJoinRequestsAsync(
+        TestWebApplicationFactory factory,
+        int requestId)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+
+        return await context.ClassJoinRequests.CountAsync(x =>
+            x.RequestId == requestId &&
+            x.Status == JoinRequestStatus.Pending);
+    }
+
+    private static async Task<int> CountJoinRequestsByStatusAsync(
+        TestWebApplicationFactory factory,
+        int requestId,
+        JoinRequestStatus status)
+    {
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+
+        return await context.ClassJoinRequests.CountAsync(x =>
+            x.RequestId == requestId &&
+            x.Status == status);
     }
 
     private static async Task<(HttpStatusCode StatusCode, string Payload, string? ImageUrl)> UploadChatImageAsync(

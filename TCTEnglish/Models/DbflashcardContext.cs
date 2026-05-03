@@ -70,6 +70,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
     public virtual DbSet<PaymentEvent> PaymentEvents { get; set; }
     public virtual DbSet<PaymentAdminAction> PaymentAdminActions { get; set; }
+    public virtual DbSet<ClassJoinRequest> ClassJoinRequests { get; set; }
+    public virtual DbSet<ClassBlacklist> ClassBlacklists { get; set; }
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -635,6 +637,38 @@ public partial class DbflashcardContext : DbContext
             // ===== UNIQUE =====
             entity.HasIndex(e => new { e.ClassId, e.FolderId })
                   .IsUnique();
+        });
+        // Cấu hình cho ClassBlacklist
+        modelBuilder.Entity<ClassBlacklist>(entity =>
+        {
+            // Thiết lập khóa chính hỗn hợp (ClassId + UserId)
+            entity.HasKey(e => new { e.ClassId, e.UserId });
+
+            entity.HasOne(d => d.Class)
+                  .WithMany(p => p.BlacklistedUsers)
+                  .HasForeignKey(d => d.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.User)
+                  .WithMany()
+                  .HasForeignKey(d => d.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        // Cấu hình cho ClassJoinRequest (Nếu bạn chưa làm)
+        modelBuilder.Entity<ClassJoinRequest>(entity =>
+        {
+            entity.HasKey(e => e.RequestId); // Class này đã có RequestId nên chỉ cần chỉ định rõ
+
+            entity.HasOne(d => d.Class)
+                  .WithMany(p => p.JoinRequests)
+                  .HasForeignKey(d => d.ClassId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.User)
+                  .WithMany()
+                  .HasForeignKey(d => d.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
         modelBuilder.Entity<SpeakingSentence>(entity =>
         {

@@ -6,6 +6,7 @@ public static class TestDataIds
     public const int AdminUserId = 102;
     public const int OutsiderUserId = 103;
     public const int MemberUserId = 104;
+    public const int AssistantUserId = 105;
     public const int UserFolderId = 201;
     public const int DeletableUserFolderId = 203;
     public const int UserSetId = 301;
