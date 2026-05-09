@@ -1,256 +1,347 @@
-﻿:root {
-    --primary-blue: #2563eb;
-    --accent-purple: #7c3aed;
-    --text-dark: #1e293b;
-    --text-gray: #64748b;
-    --white: #ffffff;
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+/* =====================================================
+   TCT English – Gamified Dashboard CSS
+   Layout: Bootstrap row/col  |  Visual: custom
+   Palette: #4255ff · #ffcd1f · #f6f7fb · #fff
+   ===================================================== */
+
+:root {
+    --brand:       #4255ff;
+    --brand-dark:  #2f3fe0;
+    --brand-light: #eef2ff;
+    --accent:      #ffcd1f;
+    --surface:     #f6f7fb;
+    --border:      rgba(66,85,255,0.10);
+    --shadow-sm:   0 2px 12px rgba(66,85,255,0.06);
+    --shadow-md:   0 6px 28px rgba(66,85,255,0.12);
+    --radius:      18px;
+    --text-head:   #1e293b;
+    --text-muted:  #64748b;
 }
 
-.dashboard {
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    background: #f6f7fb; /* Giữ nguyên màu nền */
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    margin-bottom: 32px;
-}
-/* ===== SECTION SPACING ===== */
-.hero-section {
-    margin-bottom: 36px;
-}
-
-.features {
-    margin-bottom: 36px;
-}
-
-.today-learning {
-    margin-bottom: 36px;
-}
-
-.challenge {
-    margin-bottom: 36px;
-}
-/* =========================
-           WELCOME / HERO SECTION
-        ========================= */
-.welcome-card {
-    background: linear-gradient(135deg, #1e40af, #3b82f6);
-    border-radius: 24px;
-    padding: 40px;
-    color: #fff;
-    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 36px;
-}
-
-    /* Thêm một chút trang trí nền cho welcome card */
-    .welcome-card::after {
-        content: "";
-        position: absolute;
-        top: -50px;
-        right: -50px;
-        width: 200px;
-        height: 200px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-    }
-
-.welcome-title {
-    font-size: 36px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-}
-
-.welcome-subtitle {
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 32px;
-    font-weight: 400;
-}
-
-/* STATS tinh chỉnh Glassmorphism */
-.welcome-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-}
-
-.stat-item {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 18px;
-    padding: 16px 20px;
+/* ── GREETING ──────────────────────────────────────── */
+.db-greeting {
     display: flex;
     align-items: center;
-    gap: 14px;
-    backdrop-filter: blur(12px);
-    transition: transform 0.2s;
-}
-
-    .stat-item:hover {
-        transform: translateY(-3px);
-    }
-
-.stat-icon {
-    font-size: 24px;
-}
-
-.stat-value {
-    font-size: 22px;
-    font-weight: 800;
-    display: block;
-}
-
-.stat-label {
-    font-size: 13px;
-    font-weight: 500;
-    opacity: 0.8;
-}
-
-/* =========================
-           FEATURES (Thêm icon và hover)
-        ========================= */
-.section-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-dark);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
+}
+.db-greeting__sub  { font-size: 13px; color: var(--text-muted); margin: 0; }
+.db-greeting__title { font-size: 22px; font-weight: 800; color: var(--text-head); margin: 2px 0 0; }
+.db-greeting__name  { color: var(--brand); }
+
+.db-badge-level {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--brand-light);
+    color: var(--brand);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(66,85,255,0.15);
+}
+
+.db-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand), #6366f1);
+    color: #fff;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ── BASE CARD ─────────────────────────────────────── */
+.db-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.db-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(66,85,255,0.22);
+}
+
+/* ── SHARED HELPERS ────────────────────────────────── */
+.db-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.db-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--brand-light);
+    color: var(--brand);
+}
+.db-link-sm {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brand);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.db-link-sm:hover { text-decoration: underline; }
+
+.db-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 3px;
+}
+.db-dot--green  { background: #10b981; }
+.db-dot--yellow { background: #f59e0b; }
+.db-dot--blue   { background: var(--brand); }
+
+/* ── XP BAR ────────────────────────────────────────── */
+.db-xp-current { font-size: 22px; font-weight: 900; color: var(--text-head); }
+.db-xp-unit    { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+.db-xp-max     { font-size: 13px; color: var(--text-muted); }
+.db-xp-hint    { font-size: 12px; color: var(--text-muted); }
+
+.db-xp-track {
+    width: 100%;
+    height: 10px;
+    background: #f1f5f9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.db-xp-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--brand), #818cf8);
+    animation: fillXP 1.4s cubic-bezier(.4,0,.2,1) 0.4s both;
+}
+@keyframes fillXP { from { width: 0 } }
+
+/* ── MINI STATS ────────────────────────────────────── */
+.db-mini-stat {
+    border-radius: 12px;
+    padding: 12px 8px;
+}
+.db-mini-stat--blue   { background: var(--brand-light); }
+.db-mini-stat--green  { background: #ecfdf5; }
+.db-mini-stat--yellow { background: #fffbeb; }
+.db-mini-stat__val { display: block; font-size: 20px; font-weight: 900; color: var(--text-head); }
+.db-mini-stat__lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ── STREAK ────────────────────────────────────────── */
+.db-flame {
+    font-size: 46px;
+    line-height: 1;
+    display: inline-block;
+    animation: pulseFlame 2s ease-in-out infinite;
+}
+@keyframes pulseFlame {
+    0%,100% { filter: drop-shadow(0 0 4px #f97316); }
+    50%      { filter: drop-shadow(0 0 14px #fb923c); }
+}
+.db-streak-num   { font-size: 44px; font-weight: 900; color: var(--text-head); line-height: 1; margin: 4px 0; }
+.db-streak-label { font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 0; }
+
+.db-week-dots { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.db-day-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.db-day-dot--on    { background: #f97316; color: #fff; }
+.db-day-dot--today { outline: 2px solid #f97316; outline-offset: 2px; }
+
+
+/* ── CTA CARD ──────────────────────────────────────── */
+.db-card--cta {
+    background: linear-gradient(135deg, var(--brand) 0%, #6366f1 100%) !important;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border: none !important;
+}
+.db-card--cta:hover { border-color: transparent !important; }
+
+.db-cta-deco {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    pointer-events: none;
+}
+.db-cta-deco--top { width: 130px; height: 130px; top: -40px; right: -40px; }
+.db-cta-deco--bot { width: 100px; height: 100px; bottom: -28px; left: -28px; }
+
+.db-cta-tag   { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; display: block; }
+.db-cta-title { font-size: 24px; font-weight: 900; line-height: 1.25; margin: 6px 0 8px; }
+.db-cta-sub   { font-size: 13px; opacity: 0.82; margin: 0; }
+
+.db-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #1a1238;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(255,205,31,0.4);
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin-top: 18px;
+}
+.db-cta-btn:hover {
+    box-shadow: 0 6px 26px rgba(255,205,31,0.6);
+    transform: translateY(-2px);
+    color: #1a1238;
+}
+.db-cta-btn--sm { margin-top: 8px; font-size: 13px; padding: 8px 16px; }
+
+/* ── QUICK ACCESS ──────────────────────────────────── */
+.db-quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 6px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+    background: var(--surface);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-head);
+    transition: all 0.2s ease;
+    text-align: center;
+    min-height: 72px;
+}
+.db-quick-item i { font-size: 20px; }
+.db-quick-item--blue   { color: var(--brand); }
+.db-quick-item--green  { color: #10b981; }
+.db-quick-item--yellow { color: #f59e0b; }
+.db-quick-item--purple { color: #8b5cf6; }
+.db-quick-item:hover {
+    background: var(--brand-light);
+    border-color: rgba(66,85,255,0.25);
+    transform: translateY(-3px);
+    color: var(--brand);
+}
+
+/* ── TODAY FOLDERS ─────────────────────────────────── */
+.db-folder-item {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.features {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 28px;
-    box-shadow: var(--shadow-sm);
-}
-
-.feature-list {
-    display: grid;
-    /* auto-fit giúp các cột co lại khi ít item, 180px là độ rộng cố định */
-    grid-template-columns: repeat(auto-fit, 180px);
-    gap: 16px;
-    justify-content: center; /* Bây giờ dòng này mới có tác dụng */
-}
-
-.feature {
-    background: #f8fafc;
-    border: 1px solid #f1f5f9;
-    border-radius: 14px;
-    padding: 18px;
-    text-align: center;
-    font-weight: 700;
-    color: var(--primary-blue);
+    padding: 11px 12px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid transparent;
     text-decoration: none;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-head);
+    transition: all 0.2s;
 }
-
-    .feature:hover {
-        background: var(--primary-blue);
-        color: white;
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        transform: translateY(-4px);
-    }
-
-    .feature.speaking {
-        color: var(--accent-purple);
-        border-color: #f5f3ff;
-    }
-
-        .feature.speaking:hover {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-        }
-
-/* =========================
-           TODAY LEARNING (Grid mượt hơn)
-        ========================= */
-.today-learning {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 28px;
-    box-shadow: var(--shadow-sm);
+.db-folder-item:hover {
+    background: var(--brand-light);
+    border-color: rgba(66,85,255,0.2);
+    color: var(--brand);
 }
-
-    .today-learning h3 {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 24px;
-    }
-
-.today-folder-list {
-    display: grid;
-    /* Giới hạn card trong khoảng từ 280px đến 320px */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
-    gap: 20px;
-    justify-content: center; /* Căn toàn bộ cụm grid vào giữa */
+.db-folder-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--brand-light);
+    color: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
 }
+.db-folder-info  { flex: 1; min-width: 0; }
+.db-folder-name  { display: block; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.db-folder-meta  { font-size: 11px; color: var(--text-muted); }
+.db-folder-arrow { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
 
-.today-folder-card {
-    background: var(--white);
-    border-radius: 18px;
-    padding: 20px;
-    border: 1px solid #edf2f7;
-    transition: all 0.3s ease;
+.db-empty {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-
-    .today-folder-card:hover {
-        border-color: var(--primary-blue);
-        box-shadow: var(--shadow-md);
-    }
-
-    .today-folder-card h4 {
-        font-size: 18px;
-        color: var(--text-dark);
-        margin-bottom: 8px;
-    }
-
-    .today-folder-card p {
-        color: var(--text-gray);
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-.learn-btn {
-    width: fit-content;
-    padding: 10px 20px;
-    background: var(--primary-blue);
-    color: white;
-    border-radius: 10px;
-    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
     font-size: 14px;
-    text-decoration: none;
-    transition: opacity 0.2s;
 }
+.db-empty i { font-size: 28px; color: #d1d5db; display: block; margin-bottom: 8px; }
 
-/* =========================
-           DAILY CHALLENGE (Giao diện Quiz)
-        ========================= */
-.challenge {
-    background: linear-gradient(135deg, #fff9c4, #ffecb3);
-    border-radius: 24px;
-    padding: 32px;
-    border: 1px solid rgba(251, 191, 36, 0.3);
+/* ── CONTINUE READING ──────────────────────────────── */
+.db-card--continue { border-left: 4px solid var(--brand) !important; }
+
+.db-continue-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.db-continue-title { font-size: 18px; font-weight: 800; color: var(--text-head); margin: 0 0 6px; }
+.db-continue-meta  { font-size: 13px; color: var(--text-muted); margin: 0 0 16px; }
+.db-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+.db-continue-btn:hover { background: var(--brand-dark); transform: translateY(-2px); color: #fff; }
+
+/* ── DAILY CHALLENGE ───────────────────────────────── */
+.db-card--challenge {
+    background: linear-gradient(135deg, #fffdf0, #fef9e7) !important;
+    border: 1px solid rgba(255,205,31,0.25) !important;
 }
 
 #challenge-term {
-    font-size: 32px;
+    font-size: 26px;
+    font-weight: 900;
     text-align: center;
-    margin: 20px 0 32px;
+    margin: 14px 0 18px;
     color: #92400e;
     text-transform: capitalize;
 }
@@ -258,138 +349,64 @@
 .answers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 10px;
+}
+@media (max-width: 500px) {
+    .answers { grid-template-columns: 1fr; }
 }
 
 .answer-btn {
-    padding: 18px;
-    border-radius: 16px;
-    border: 2px solid white;
-    background: rgba(255, 255, 255, 0.6);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    background: rgba(255,255,255,0.65);
     font-weight: 600;
-    color: var(--text-dark);
+    font-size: 14px;
+    color: var(--text-head);
+    cursor: pointer;
     transition: all 0.2s;
+    width: 100%;
+    text-align: left;
+}
+.answer-btn:hover       { background: #fff; border-color: var(--brand); transform: scale(1.01); }
+.answer-btn.correct     { background: #dcfce7; border-color: #22c55e; color: #166534; }
+.answer-btn.wrong       { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+.answer-btn.correct:hover,
+.answer-btn.wrong:hover { transform: none; cursor: default; }
+
+/* ── SKELETON LOADER ───────────────────────────────── */
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+.db-chart-skeleton {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.6s infinite linear;
 }
 
-    .answer-btn:hover {
-        background: white;
-        border-color: var(--primary-blue);
-        transform: scale(1.02);
-    }
-    /* =========================
-       DAILY CHALLENGE STATES
-    ========================= */
-
-    .answer-btn.correct {
-        background: #dcfce7; /* xanh nhạt */
-        border-color: #22c55e;
-        color: #166534;
-        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
-    }
-
-    .answer-btn.wrong {
-        background: #fee2e2; /* đỏ nhạt */
-        border-color: #ef4444;
-        color: #7f1d1d;
-        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
-    }
-
-        /* Disable hover sau khi chọn */
-        .answer-btn.correct:hover,
-        .answer-btn.wrong:hover {
-            transform: none;
-            cursor: default;
-        }
-
-    /* Optional: icon đổi màu theo trạng thái */
-    .answer-btn.correct i {
-        color: #16a34a;
-    }
-
-    .answer-btn.wrong i {
-        color: #dc2626;
-    }
-/* =========================
-       RESPONSIVE OPTIMIZATION
-    ========================= */
-
-/* Màn hình lớn (Desktop Wide): Giới hạn độ rộng tối đa để nội dung không bị trải quá dài */
-@media (min-width: 1400px) {
-    .dashboard {
-        max-width: 1300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+/* ── EMPTY TEXT (Daily Challenge) ──────────────────── */
+.empty-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    border: 1px dashed rgba(66,85,255,0.2);
+    text-align: center;
+}
+.empty-text i {
+    color: #f59e0b;
+    font-size: 18px;
+    flex-shrink: 0;
 }
 
-/* Tablet & iPad (Dưới 1024px) */
-@media (max-width: 1024px) {
-    .dashboard {
-        padding: 20px;
-        gap: 24px;
-    }
-
-    .welcome-card {
-        padding: 30px;
-    }
-
-    .welcome-title {
-        font-size: 28px;
-    }
-
-    .welcome-stats {
-        grid-template-columns: repeat(2, 1fr); /* Chia 2 cột cho gọn */
-    }
-}
-
-/* Mobile (Dưới 768px) */
-@media (max-width: 768px) {
-    .dashboard {
-        padding: 16px;
-    }
-
-    .welcome-card {
-        padding: 24px;
-        border-radius: 16px;
-    }
-
-    .welcome-title {
-        font-size: 24px;
-    }
-
-    .welcome-stats {
-        grid-template-columns: 1fr; /* Một cột duy nhất */
-        gap: 12px;
-    }
-
-    .stat-item {
-        padding: 12px 16px;
-    }
-
-    .feature-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 cột cho mobile */
-    }
-
-    .today-folder-list {
-        grid-template-columns: 1fr; /* Danh sách folder dọc */
-    }
-
-    .answers {
-        grid-template-columns: 1fr; /* Quiz đáp án dọc */
-    }
-
-    #challenge-term {
-        font-size: 24px;
-    }
-}
-
-/* Mobile nhỏ (Dưới 480px) */
-@media (max-width: 480px) {
-    .feature-list {
-        grid-template-columns: 1fr; /* 1 cột cho các nút tính năng */
-    }
-
-    .welcome-title {
-        font-size: 20px;
-    }
-}

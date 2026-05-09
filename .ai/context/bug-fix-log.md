@@ -41,6 +41,26 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Dashboard quick links and metrics drift after UI refresh - 2026-05-06
+
+**Symptom**: New dashboard quick-access buttons pointed to non-existent actions (`/Home/Flashcard`, `/Home/Quiz`), memory/heatmap widgets showed placeholder numbers, and a prototype preview file under `wwwroot` risked being publicly served.
+
+**Root Cause**: UI refresh introduced route targets not backed by `StudyController` actions, while chart values were hard-coded/randomized in the Razor view instead of using persisted user progress/activity data. The temporary preview artifact was committed under deployable static assets.
+
+**Solution**: Repointed quick links to valid routes, added real dashboard progress/heatmap fields to `DashboardViewModel`, populated those fields from `LearningProgress` and `UserDailyActivities` in `HomeController`, replaced chart data sources in `Views/Home/Index.cshtml`, removed the preview file from `wwwroot`, and updated dashboard regression assertion to match the new markup contract.
+
+**Files Changed**:
+- `TCTEnglish/ViewModels/DashboardViewModel.cs` - added mastered/learning/new counters and heatmap cell view-model.
+- `TCTEnglish/Controllers/HomeController.cs` - computed real progress counters and 4-week heatmap data for the authenticated user.
+- `TCTEnglish/Views/Home/Index.cshtml` - switched quick links to valid actions and bound radial/heatmap charts to server-provided data.
+- `TCTEnglish/wwwroot/dashboard-preview.html` - removed prototype file from public static root.
+- `TCTEnglish.Tests/GoalsPhase1IntegrationTests.cs` - updated dashboard goal assertion for the refreshed UI markup.
+
+**Verification**: `dotnet build TCTEnglish/TCTEnglish.csproj` and targeted dashboard goals tests (phase 1) after view/controller updates.
+
+**Commit**: Not created.
+
+**Notes**: This fix follows the same goals/dashboard contract hardening pattern used in previous entries by keeping dashboard values model-driven instead of rendering placeholder client values.
 
 ### Class detail tab state was lost after member/folder actions - 2026-05-03
 

@@ -80,9 +80,28 @@ namespace TCTVocabulary.Controllers
 
             var setIds = user.Sets.Select(s => s.SetId).ToList();
 
-            var cardCount = await _context.Cards
+            var ownedCardIds = await _context.Cards
                 .AsNoTracking()
-                .CountAsync(c => setIds.Contains(c.SetId));
+                .Where(c => setIds.Contains(c.SetId))
+                .Select(c => c.CardId)
+                .ToListAsync();
+
+            var cardCount = ownedCardIds.Count;
+
+            var progressStatuses = await _context.LearningProgresses
+                .AsNoTracking()
+                .Where(lp => lp.UserId == userId && ownedCardIds.Contains(lp.CardId))
+                .Select(lp => lp.Status)
+                .ToListAsync();
+
+            var masteredCount = progressStatuses.Count(status =>
+                string.Equals(status, "Mastered", StringComparison.OrdinalIgnoreCase));
+            var learningCount = progressStatuses.Count(status =>
+                string.Equals(status, "Learning", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(status, "Reviewing", StringComparison.OrdinalIgnoreCase));
+            var newCount = Math.Max(0, cardCount - masteredCount - learningCount);
+
+            var heatmapCells = await BuildDashboardHeatmapAsync(userId);
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
@@ -111,11 +130,123 @@ namespace TCTVocabulary.Controllers
                 FolderCount = user.Folders.Count,
                 SetCount = user.Sets.Count,
                 CardCount = cardCount,
+                MasteredCount = masteredCount,
+                LearningCount = learningCount,
+                NewCount = newCount,
                 DailyChallenge = await GetRandomChallengeAsync(),
                 TodayFolders = todayFolders,
-                // Gán dữ liệu vào ViewModel
+                HeatmapCells = heatmapCells,
+                FeatureTimeBreakdown = await BuildFeatureTimeBreakdownAsync(userId),
                 RecentInProcessReading = recentReading
             };
+        }
+
+        private async Task<List<DashboardHeatmapCellViewModel>> BuildDashboardHeatmapAsync(int userId)
+        {
+            var today = BusinessDateHelper.Today;
+            var startDate = today.AddDays(-27);
+
+            var activityByDate = await _context.UserDailyActivities
+                .AsNoTracking()
+                .Where(a => a.UserId == userId && a.ActivityDate >= startDate && a.ActivityDate <= today)
+                .Select(a => new { a.ActivityDate, a.CardsReviewed })
+                .ToListAsync();
+
+            var activityByDateLookup = activityByDate
+                .GroupBy(x => x.ActivityDate.Date)
+                .ToDictionary(g => g.Key, g => g.Sum(x => x.CardsReviewed));
+
+            var cells = new List<DashboardHeatmapCellViewModel>(capacity: 28);
+            for (var i = 0; i < 28; i++)
+            {
+                var date = startDate.AddDays(i);
+                var weekIndex = (i / 7) + 1;
+                var dayLabel = date.DayOfWeek switch
+                {
+                    DayOfWeek.Monday => "T2",
+                    DayOfWeek.Tuesday => "T3",
+                    DayOfWeek.Wednesday => "T4",
+                    DayOfWeek.Thursday => "T5",
+                    DayOfWeek.Friday => "T6",
+                    DayOfWeek.Saturday => "T7",
+                    _ => "CN"
+                };
+
+                cells.Add(new DashboardHeatmapCellViewModel
+                {
+                    WeekLabel = $"Tuần {weekIndex}",
+                    DayLabel = dayLabel,
+                    ReviewedCards = activityByDateLookup.TryGetValue(date, out var value) ? value : 0
+                });
+            }
+
+            return cells;
+        }
+
+        /// <summary>
+        /// Trả về thời gian học (phút) theo từng tính năng trong tuần hiện tại (Từ T2 đến CN).
+        /// </summary>
+        private async Task<List<DailyFeatureTimeViewModel>> BuildFeatureTimeBreakdownAsync(int userId)
+        {
+            var today = BusinessDateHelper.Today;
+            int daysSinceMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
+            if (daysSinceMonday < 0)
+            {
+                daysSinceMonday += 7;
+            }
+            var startDate = today.AddDays(-daysSinceMonday); // Thứ 2 của tuần hiện tại
+
+            var logs = await _context.UserFeatureTimeLogs
+                .AsNoTracking()
+                .Where(l => l.UserId == userId
+                         && l.LoggedDate >= startDate
+                         && l.LoggedDate <= startDate.AddDays(6))
+                .GroupBy(l => new { l.LoggedDate, l.Feature })
+                .Select(g => new
+                {
+                    g.Key.LoggedDate,
+                    g.Key.Feature,
+                    TotalSeconds = g.Sum(l => l.DurationSeconds)
+                })
+                .ToListAsync();
+
+            var lookup = logs.ToDictionary(
+                l => (l.LoggedDate.Date, l.Feature),
+                l => (int)Math.Round(l.TotalSeconds / 60.0));
+
+            var result = new List<DailyFeatureTimeViewModel>(7);
+            for (var i = 0; i < 7; i++)
+            {
+                var date = startDate.AddDays(i);
+                var dayLabel = date.DayOfWeek switch
+                {
+                    DayOfWeek.Monday    => "T2",
+                    DayOfWeek.Tuesday   => "T3",
+                    DayOfWeek.Wednesday => "T4",
+                    DayOfWeek.Thursday  => "T5",
+                    DayOfWeek.Friday    => "T6",
+                    DayOfWeek.Saturday  => "T7",
+                    _                   => "CN"
+                };
+
+                int Get(string feature) => lookup.TryGetValue((date.Date, feature), out var v) ? v : 0;
+
+                result.Add(new DailyFeatureTimeViewModel
+                {
+                    DayLabel        = dayLabel,
+                    FullDate        = date.ToString("dd/MM"),
+                    IsToday         = date == today,
+                    FlashcardMinutes = Get("Flashcard"),
+                    QuizMinutes      = Get("Quiz"),
+                    SpeakingMinutes  = Get("Speaking"),
+                    ReadingMinutes   = Get("Reading"),
+                    ListeningMinutes = Get("Listening"),
+                    WritingMinutes   = Get("Writing"),
+                    GrammarMinutes   = Get("Grammar"),
+                });
+            }
+
+            return result;
         }
 
         [HttpPost]
