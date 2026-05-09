@@ -109,6 +109,9 @@ public partial class User
     public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
     public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();
 
+    // ─── Reading Translations ─────────────────────────────────────────────────
+    public virtual ICollection<ReadingUserTranslation> ReadingUserTranslations { get; set; } = new List<ReadingUserTranslation>();
+
     // ─── Notifications ────────────────────────────────────────────────────────
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 }

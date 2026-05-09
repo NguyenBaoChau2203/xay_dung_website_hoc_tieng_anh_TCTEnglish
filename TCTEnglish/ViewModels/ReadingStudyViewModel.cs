@@ -1,4 +1,4 @@
-﻿namespace TCTEnglish.ViewModels
+namespace TCTEnglish.ViewModels
 {
     public class ReadingStudyViewModel
     {
@@ -15,5 +15,12 @@
         public bool IsCompleted { get; set; }
 
         public List<QuestionViewModel> Questions { get; set; }
+
+        // ─── Bản dịch nổi bật ────────────────────────────────────────────────
+        public List<ReadingTranslationCardViewModel> FeaturedTranslations { get; set; }
+            = new();
+
+        /// <summary>Id bản dịch của user hiện tại (null = chưa có)</summary>
+        public int? CurrentUserTranslationId { get; set; }
     }
-}
+}

@@ -1,4 +1,4 @@
-﻿body {
+body {
     background-color: #f4f7f9;
 }
 
@@ -29,8 +29,39 @@
     font-size: 1.1rem;
     line-height: 1.8;
     color: #2c3e50;
-    text-align: justify;
-    margin-bottom: 5px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.sentence-block {
+    display: inline;
+}
+
+.translation-wrapper,
+.user-translation-input {
+    display: none;
+}
+
+/* Khi chế độ dịch được kích hoạt */
+.translation-mode-active .sentence-block {
+    display: block !important;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+}
+
+.translation-mode-active .translation-wrapper,
+.translation-mode-active .user-translation-input {
+    display: block !important;
+}
+
+.translation-mode-active .passage-text {
+    display: block !important;
+    font-weight: 500;
+    margin-bottom: 8px;
+    cursor: default;
 }
 
 .translation {
@@ -39,7 +70,7 @@
     background: #f8f9fa;
     padding: 10px;
     border-left: 3px solid #0d6efd;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
     /* Thêm dòng này: Nếu thẻ không có nội dung thì không hiển thị */
     .translation:empty {
@@ -122,3 +153,142 @@
     position: sticky;
     top: 80px;
 }
+
+/* ─── Featured Translations Section ─── */
+.translation-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.translation-card {
+    background: #fff;
+    border: 1px solid #eef2f6;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.translation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: #0d6efd;
+}
+
+.tc-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eef2f6;
+}
+
+.tc-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.tc-author {
+    font-size: 0.95rem;
+    color: #2c3e50;
+}
+
+.tc-date {
+    font-size: 0.8rem;
+}
+
+.tc-votes {
+    display: flex;
+    gap: 12px;
+}
+
+.vote-badge {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f8f9fa;
+    color: #6c757d;
+    transition: all 0.2s;
+}
+
+.vote-badge.like.active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.vote-badge.dislike.active {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* AI Evaluation Card */
+.ai-eval-card {
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 5px solid #0d6efd;
+    background: #f8fbff;
+}
+
+.ai-eval-card.approved {
+    border-left-color: #198754;
+    background: #f4faf6;
+}
+
+.ai-eval-card.failed {
+    border-left-color: #dc3545;
+    background: #fffafa;
+}
+
+.ai-score-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 3px solid currentColor;
+}
+
+/* Modal View Detail */
+.view-translation-content {
+    white-space: pre-line;
+    line-height: 1.7;
+    color: #2c3e50;
+    font-size: 1.05rem;
+}
+
+.vote-btn {
+    border-radius: 25px;
+    padding: 6px 16px;
+    min-width: 80px;
+}
+
+/* Inline Translation Input */
+.translation-input {
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    padding: 8px 12px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.translation-input:focus {
+    background-color: #ffffff;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+

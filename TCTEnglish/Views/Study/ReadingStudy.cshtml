@@ -1,18 +1,29 @@
 @model TCTEnglish.ViewModels.ReadingStudyViewModel
+@using TCTEnglish.ViewModels
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="~/css/reading-study.css" />
+
+@* Anti-forgery token cho AJAX *@
+@Html.AntiForgeryToken()
+<input type="hidden" id="passageId" value="@Model.Id" />
+<input type="hidden" id="myTranslationId" value="@(Model.CurrentUserTranslationId?.ToString() ?? "")" />
 
 <div class="reading-toolbar shadow-sm">
     <div class="container-fluid d-flex align-items-center justify-content-between">
         <button class="btn btn-light border btn-sm hover-elevate" onclick="history.back()">
             <i class="bi bi-arrow-left"></i> Quay lại
         </button>
-        
+
         <div class="d-flex gap-2">
             <button class="btn btn-primary btn-sm px-4 d-flex align-items-center gap-2" id="toggleTranslation">
                 <i class="bi bi-translate"></i>
                 <span>Dịch toàn bài</span>
+            </button>
+            <button class="btn btn-outline-primary btn-sm px-4 d-flex align-items-center gap-2"
+                    id="btnToggleInlineTranslation" onclick="toggleInlineTranslationMode()">
+                <i class="bi bi-pencil-square"></i>
+                <span>@(Model.CurrentUserTranslationId.HasValue ? "Bản dịch của tôi" : "Thêm bản dịch")</span>
             </button>
         </div>
     </div>
@@ -20,10 +31,14 @@
 
 <div class="container-fluid py-4">
     <div class="reading-grid">
-        
+
         <div class="passage-container">
             <div class="card border-0 shadow-sm p-4">
-                <h2 class="passage-title mb-4">@Model.Title</h2>
+                <h2 class="passage-title mb-2">@Model.Title</h2>
+                <div class="user-translation-input mt-2 mb-4 p-3 bg-light rounded-3 border" id="titleTranslationContainer">
+                    <label class="form-label small fw-bold text-primary mb-1"><i class="bi bi-pencil-fill me-1"></i> Dịch tiêu đề bài đọc:</label>
+                    <input type="text" class="form-control text-primary fw-bold" id="titleTranslationInput" placeholder="Nhập bản dịch cho tiêu đề tại đây..." />
+                </div>
 
                 @if (!string.IsNullOrEmpty(Model.ImageUrl))
                 {
@@ -34,16 +49,110 @@
 
                 <div class="passage-content">
                     @{
-                        var paragraphs = Model.Content?.Split("\n");
+                        var paragraphs = Model.Content?.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+                        int sentenceIndex = 0;
                     }
-                    @foreach (var p in paragraphs)
+                    @if (paragraphs != null)
                     {
-                        <div class="paragraph-block">
-                            <p class="passage-text">@p</p>
-                            <p class="translation d-none text-muted"></p>
-                        </div>
+                        foreach (var p in paragraphs)
+                        {
+                            <div class="paragraph-block mb-3">
+                                @{
+                                    // Tách câu (có thể cải thiện thêm, hiện tại tách theo ., !, ?)
+                                    var sentences = System.Text.RegularExpressions.Regex.Split(p.Trim(), @"(?<=[.!?])\s+(?=[A-Z0-9""'])|(?<=[.!?])\s*$");
+                                }
+                                @foreach (var s in sentences)
+                                {
+                                    if (string.IsNullOrWhiteSpace(s)) continue;
+                                    <div class="sentence-block" data-sentence-index="@sentenceIndex">
+                                        <div class="passage-text text-dark" style="display:inline">@s</div>
+                                        <div class="translation-wrapper">
+                                            <p class="translation text-muted mb-1 border-start border-3 border-primary ps-2 bg-light p-2 small"></p>
+                                            <div class="user-translation-input mt-2">
+                                                <input type="text" class="form-control form-control-sm text-primary translation-input" placeholder="Nhập bản dịch..." data-index="@sentenceIndex" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    sentenceIndex++;
+                                }
+                            </div>
+                        }
                     }
                 </div>
+                
+                <div id="inlineTranslationActions" class="mt-4 pt-3 border-top d-none d-flex justify-content-end gap-2 flex-wrap">
+                    <div id="inlineAiResult" class="w-100 d-none"></div>
+                    <button class="btn btn-outline-danger btn-sm px-3 d-none me-auto" id="btnDeleteInlineTranslation" onclick="deleteInlineTranslation()">
+                        <i class="bi bi-trash"></i> Xóa
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm px-3" onclick="toggleInlineTranslationMode()">Đóng</button>
+                    <button class="btn btn-primary btn-sm px-4" id="btnSaveInlineTranslation" onclick="saveInlineTranslation()">
+                        <i class="bi bi-check-circle me-1"></i> Hoàn thành
+                    </button>
+                    <button class="btn btn-success btn-sm px-4 d-none" id="btnPublishInlineTranslation" onclick="publishInlineTranslation()">
+                        <i class="bi bi-globe me-1"></i> Public bản dịch
+                    </button>
+                </div>
+            </div>
+
+            @* ──────── SECTION: Những bản dịch nổi bật ──────── *@
+            <div class="card border-0 shadow-sm p-4 mt-4" id="featuredTranslationsSection">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-stars text-warning me-2"></i>Những bản dịch nổi bật
+                    </h5>
+                    <button class="btn btn-primary btn-sm d-flex align-items-center gap-1"
+                            onclick="toggleInlineTranslationMode()" title="Thêm bản dịch">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </div>
+
+                @if (!Model.FeaturedTranslations.Any())
+                {
+                    <div class="text-center text-muted py-4" id="noTranslationMsg">
+                        <i class="bi bi-translate fs-2 d-block mb-2 opacity-50"></i>
+                        <p class="mb-0">Chưa có bản dịch nào. Hãy là người đầu tiên!</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="translation-cards-list" id="translationCardsList">
+                        @foreach (var t in Model.FeaturedTranslations)
+                        {
+                            <a href="/Reading/Translation/View/@t.Id" class="text-decoration-none">
+                                <div class="card translation-card border mb-3 hover-elevate">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <div class="d-flex align-items-center gap-2">
+                                                @if (!string.IsNullOrEmpty(t.AuthorAvatar))
+                                                {
+                                                    <img src="@t.AuthorAvatar" class="tc-avatar shadow-sm" alt="@t.AuthorName" />
+                                                }
+                                                else
+                                                {
+                                                    <div class="tc-avatar-placeholder shadow-sm">
+                                                        @(t.AuthorName?.Length > 0 ? t.AuthorName[0].ToString().ToUpper() : "?")
+                                                    </div>
+                                                }
+                                                <div>
+                                                    <div class="tc-author fw-bold">@t.AuthorName</div>
+                                                    <div class="tc-date text-muted">@t.CreatedAtUtc.ToLocalTime().ToString("dd/MM/yyyy")</div>
+                                                </div>
+                                            </div>
+                                            <div class="tc-votes">
+                                                <span class="vote-badge like active"><i class="bi bi-hand-thumbs-up-fill"></i> @t.LikeCount</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-muted small mb-0 text-truncate-2">
+                                            @t.TranslatedContent
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                }
             </div>
         </div>
 
@@ -74,7 +183,6 @@
                                 var q = Model.Questions[i];
                                 <div class="question-panel @(i == 0 ? "" : "d-none")" id="q-panel-@i" data-q-id="@q.Id">
                                     <h6 class="mb-3 fw-bold">Câu @(i + 1): @q.QuestionText</h6>
-                                    
                                     <div class="options-list">
                                         @foreach (var opt in q.Options)
                                         {
@@ -109,6 +217,8 @@
 </div>
 
 <div id="wordPopup" class="word-popup d-none shadow-lg"></div>
+
+@* No view translation modal needed anymore *@
 
 @section Scripts {
     <script src="~/js/time-tracker.js" data-feature="Reading" defer></script>

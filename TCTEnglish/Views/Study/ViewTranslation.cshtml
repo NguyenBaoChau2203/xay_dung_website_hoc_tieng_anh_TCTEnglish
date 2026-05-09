@@ -1,0 +1,246 @@
+@model TCTEnglish.ViewModels.ReadingTranslationDetailViewModel
+@using TCTEnglish.ViewModels
+@using TCTVocabulary.Models
+@{
+    ViewData["Title"] = "Bản dịch: " + (Model.TranslatedTitle ?? "Không có tiêu đề");
+    var passage = ViewBag.OriginalPassage as ReadingPassage;
+    var featuredTranslations = ViewBag.FeaturedTranslations as List<ReadingTranslationCardViewModel>;
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="~/css/reading-study.css" />
+
+<style>
+    body {
+        background-color: #f4f6f9; /* Nền xám nhạt như hình 2 */
+    }
+    .translation-box {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: #495057;
+        background-color: #ffffff;
+    }
+    .btn-circle-plus {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+    }
+</style>
+
+@Html.AntiForgeryToken()
+
+<div class="container py-4" style="max-width: 1200px;">
+    <!-- Top Bar: Back Button -->
+    <div class="mb-3">
+        <button class="btn btn-light bg-white border btn-sm px-3 hover-elevate shadow-sm rounded-3" onclick="history.back()">
+            <i class="bi bi-chevron-left me-1"></i> Quay lại
+        </button>
+    </div>
+
+    @if (passage != null)
+    {
+        <!-- Passage Card -->
+        <div class="card border-0 shadow-sm mb-4 rounded-4 overflow-hidden">
+            <div class="card-body p-0 d-flex flex-column flex-md-row align-items-center">
+                @if (!string.IsNullOrEmpty(passage.ImageUrl))
+                {
+                    <img src="@passage.ImageUrl" style="width: 250px; height: 140px; object-fit: cover;" alt="@passage.Title" />
+                }
+                else
+                {
+                    <div style="width: 250px; height: 140px; background-color: #e9ecef; display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-image text-muted fs-1"></i>
+                    </div>
+                }
+                <div class="p-4 flex-grow-1">
+                    <h5 class="fw-bold mb-0">@passage.Title</h5>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row g-4">
+        <!-- Main Column (Left) -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <h4 class="fw-bold mb-2">Bản dịch của @Model.AuthorName</h4>
+                            <div class="tc-votes">
+                                <button class="btn p-0 text-muted me-3 border-0 @(Model.CurrentUserVote == 1 ? "text-primary fw-bold" : "")" onclick="voteFromDetail(this, 'like', @Model.Id)">
+                                    <i class="bi bi-hand-thumbs-up"></i> <span>@Model.LikeCount</span>
+                                </button>
+                                <button class="btn p-0 text-muted border-0 @(Model.CurrentUserVote == -1 ? "text-danger fw-bold" : "")" onclick="voteFromDetail(this, 'dislike', @Model.Id)">
+                                    <i class="bi bi-hand-thumbs-down"></i> <span>@Model.DislikeCount</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @if (Model.AiFeedback != null)
+                    {
+                        <div class="mb-4 p-3 rounded-3 d-flex gap-3 align-items-start" style="background-color: #f0fdf4; border: 1px solid #dcfce7;">
+                            <i class="bi bi-robot fs-3 text-success"></i>
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <span class="fw-bold text-success">AI Feedback:</span>
+                                    <span class="badge bg-@(Model.IsAiApproved == true ? "success" : "danger") rounded-pill">Đạt @Model.AiScore điểm</span>
+                                </div>
+                                <div class="small text-muted mb-0">@Model.AiFeedback</div>
+                            </div>
+                        </div>
+                    }
+
+                    @{
+                        var paragraphs = passage?.Content?.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+                        var transLines = Model.TranslatedContent?.Split("\n");
+                        int sentenceIndex = 0;
+                    }
+
+                    @if (passage != null && paragraphs != null)
+                    {
+                        <!-- Tiêu đề báo -->
+                        <div class="translation-section mb-4">
+                            <h5 class="fw-bold mb-3">Tiêu đề báo</h5>
+                            <div class="mb-3">
+                                <p class="passage-text mb-2 text-dark">@passage.Title</p>
+                                <div class="translation-box shadow-sm">
+                                    @if (!string.IsNullOrWhiteSpace(Model.TranslatedTitle))
+                                    {
+                                        @Model.TranslatedTitle
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted opacity-50 italic">@passage.Title (Bản dịch tiêu đề trống)</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nội dung báo -->
+                        <div class="translation-section">
+                            <h5 class="fw-bold mb-3">Nội dung báo</h5>
+                            <div class="card bg-light border-0 rounded-4 p-3">
+                                @foreach (var p in paragraphs)
+                                {
+                                    var sentences = System.Text.RegularExpressions.Regex.Split(p.Trim(), @"(?<=[.!?])\s+(?=[A-Z0-9""'])|(?<=[.!?])\s*$");
+                                    foreach (var s in sentences)
+                                    {
+                                        if (string.IsNullOrWhiteSpace(s)) continue;
+                                        var t = (transLines != null && sentenceIndex < transLines.Length) ? transLines[sentenceIndex] : "";
+                                        
+                                        <div class="mb-4">
+                                            <p class="passage-text mb-2 fw-medium text-dark">@s</p>
+                                            @if (!string.IsNullOrWhiteSpace(t))
+                                            {
+                                                <div class="translation-box shadow-sm">
+                                                    @t
+                                                </div>
+                                            }
+                                        </div>
+                                        sentenceIndex++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Right) -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 sticky-top" style="top: 20px;">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="fw-bold mb-0">Những bản dịch nổi bật</h5>
+                    <a href="/Reading/Study/@passage?.Id" class="btn btn-primary btn-circle-plus">
+                        <i class="bi bi-plus-lg"></i>
+                    </a>
+                </div>
+
+                @if (featuredTranslations != null && featuredTranslations.Any())
+                {
+                    <div class="d-flex flex-column gap-3">
+                        @foreach (var ft in featuredTranslations)
+                        {
+                            <a href="/Reading/Translation/View/@ft.Id" class="text-decoration-none">
+                                <div class="card border rounded-3 hover-elevate bg-white @(ft.Id == Model.Id ? "border-primary" : "")">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            @if (!string.IsNullOrEmpty(ft.AuthorAvatar))
+                                            {
+                                                <img src="@ft.AuthorAvatar" class="tc-avatar" style="width:30px; height:30px;" alt="@ft.AuthorName" />
+                                            }
+                                            <div class="fw-medium text-dark text-truncate">@ft.AuthorName</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-2 text-muted small">
+                                            <div class="tc-votes">
+                                                <span class="me-2"><i class="bi bi-hand-thumbs-up"></i> @ft.LikeCount</span>
+                                                <span><i class="bi bi-hand-thumbs-down"></i> @ft.DislikeCount</span>
+                                            </div>
+                                            <div>@ft.CreatedAtUtc.ToLocalTime().ToString("yyyy-MM-dd")</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center text-muted py-3">
+                        <small>Chưa có bản dịch nào khác.</small>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function getCsrfToken() {
+            return document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+        }
+
+        async function voteFromDetail(btn, type, id) {
+            try {
+                const res = await fetch('/Reading/Translation/Vote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getCsrfToken()
+                    },
+                    body: JSON.stringify({ translationId: parseInt(id), voteType: type })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    const parent = btn.parentElement;
+                    const btnLike = parent.children[0];
+                    const btnDislike = parent.children[1];
+
+                    btnLike.querySelector('span').innerText = data.likeCount;
+                    btnDislike.querySelector('span').innerText = data.dislikeCount;
+                    
+                    btnLike.classList.toggle('text-primary', data.currentVote === 1);
+                    btnLike.classList.toggle('fw-bold', data.currentVote === 1);
+                    
+                    btnDislike.classList.toggle('text-danger', data.currentVote === -1);
+                    btnDislike.classList.toggle('fw-bold', data.currentVote === -1);
+                } else {
+                    alert(data.error || "Lỗi vote");
+                }
+            } catch (err) {
+                alert("Lỗi kết nối");
+            }
+        }
+    </script>
+}

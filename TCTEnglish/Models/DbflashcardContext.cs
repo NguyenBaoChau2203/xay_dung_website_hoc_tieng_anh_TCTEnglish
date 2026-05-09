@@ -64,6 +64,10 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
     public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
 
+    // ─── Reading User Translations ───────────────────────────────────────────
+    public virtual DbSet<ReadingUserTranslation> ReadingUserTranslations { get; set; }
+    public virtual DbSet<ReadingTranslationVote> ReadingTranslationVotes { get; set; }
+
     // ─── Billing & Subscriptions ────────────────────────────────────────────────
     public virtual DbSet<PremiumPlan> PremiumPlans { get; set; }
     public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
@@ -192,6 +196,72 @@ public partial class DbflashcardContext : DbContext
             .WithMany(q => q.Options)
             .HasForeignKey(o => o.QuestionId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // ─── ReadingUserTranslation ──────────────────────────────────────────
+        modelBuilder.Entity<ReadingUserTranslation>(entity =>
+        {
+            entity.ToTable("ReadingUserTranslations");
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.TranslatedTitle).HasMaxLength(500);
+            entity.Property(e => e.TranslatedContent).IsRequired();
+            entity.Property(e => e.AiFeedback).HasColumnType("text");
+            entity.Property(e => e.LikeCount).HasDefaultValue(0);
+            entity.Property(e => e.DislikeCount).HasDefaultValue(0);
+            entity.Property(e => e.IsPublic).HasDefaultValue(false);
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+            entity.Property(e => e.UpdatedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+            // Index: mỗi user chỉ có 1 bản dịch / 1 bài (cho phép tạo lại)
+            entity.HasIndex(e => new { e.ReadingPassageId, e.UserId })
+                .HasDatabaseName("IX_ReadingUserTranslations_PassageId_UserId");
+
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.UserTranslations)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ReadingUserTranslations_ReadingPassages");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.ReadingUserTranslations)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ReadingUserTranslations_Users");
+        });
+
+        // ─── ReadingTranslationVote ──────────────────────────────────────────
+        modelBuilder.Entity<ReadingTranslationVote>(entity =>
+        {
+            entity.ToTable("ReadingTranslationVotes");
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.VoteType).HasConversion<int>();
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+            // 1 user chỉ vote 1 lần / 1 bản dịch
+            entity.HasIndex(e => new { e.TranslationId, e.UserId })
+                .IsUnique()
+                .HasDatabaseName("IX_ReadingTranslationVotes_TranslationId_UserId");
+
+            entity.HasOne(e => e.Translation)
+                .WithMany(t => t.Votes)
+                .HasForeignKey(e => e.TranslationId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ReadingTranslationVotes_ReadingUserTranslations");
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ReadingTranslationVotes_Users");
+        });
+
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__Folders__ACD7109F2ECFF2AF");
