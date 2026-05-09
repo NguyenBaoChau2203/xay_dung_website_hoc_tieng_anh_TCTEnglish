@@ -10,10 +10,16 @@ namespace TCTVocabulary.ViewModels
         [Display(Name = "Họ và tên")]
         public string FullName { get; set; } = null!;
 
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
+        [Display(Name = "Email")]
+        public string Email { get; set; } = null!;
+
         public string? CurrentAvatarUrl { get; set; }
 
         [Display(Name = "Ảnh đại diện mới")]
         public IFormFile? Avatar { get; set; }
+
+        public string Role { get; set; } = "Standard";
 
         // Stats displayed on profile page
         public int StreakDays { get; set; }

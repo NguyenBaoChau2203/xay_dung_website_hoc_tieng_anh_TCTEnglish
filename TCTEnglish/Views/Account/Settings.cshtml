@@ -2,197 +2,406 @@
 
 @{
     ViewData["Title"] = "Cài đặt & Bảo mật";
+    ViewData["HideSidebar"] = true;
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 }
 
-<div class="account-page bg-light min-vh-100 py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-7">
+<div class="account-dashboard">
 
-                <!-- Header -->
-                <div class="mb-5 text-center">
-                    <h3 class="fw-semibold text-dark">Cài đặt & Bảo mật</h3>
-                    <p class="text-muted small">Cập nhật mật khẩu và quản lý quyền riêng tư tài khoản.</p>
+    <!-- Mobile sidebar toggle -->
+    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="account-sidebar" id="accountSidebar">
+        <!-- Collapse toggle: pinned to right edge of sidebar -->
+        <button class="account-sidebar-toggle" id="accountSidebarToggle" aria-label="An/hien menu">
+            <i class="fas fa-chevron-left" id="accountSidebarToggleIcon"></i>
+        </button>
+
+        <div class="sidebar-brand">
+            <div class="sidebar-brand-icon">TCT</div>
+            <div class="sidebar-brand-text">
+                <h2>TCT English</h2>
+                <p>Học tập chủ động</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/Account/Profile" class="sidebar-nav-item">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+                <span>Hồ sơ</span>
+            </a>
+            <a href="/Account/Settings" class="sidebar-nav-item active">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Cài đặt</span>
+            </a>
+            <a href="/Account/Profile?tab=subscription" class="sidebar-nav-item">
+                <span class="material-symbols-outlined">workspace_premium</span>
+                <span>Gói dịch vụ</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a asp-action="Logout" class="sidebar-logout-btn">
+                Đăng xuất
+            </a>
+        </div>
+    </aside>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="account-main">
+
+        <!-- Alert Notifications -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="stitch-alert stitch-alert-success" role="alert">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>@TempData["SuccessMessage"]</span>
+                <button type="button" class="stitch-alert-close" onclick="this.closest('.stitch-alert').remove()" aria-label="Close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="stitch-alert stitch-alert-error" role="alert">
+                <span class="material-symbols-outlined">error</span>
+                <span>@TempData["ErrorMessage"]</span>
+                <button type="button" class="stitch-alert-close" onclick="this.closest('.stitch-alert').remove()" aria-label="Close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        }
+
+        <!-- Page Header -->
+        <div class="section-header">
+            <h1 class="settings-page-title">Cài đặt tài khoản</h1>
+            <p>Quản lý các thiết lập bảo mật và tùy chỉnh trải nghiệm học tập của bạn.</p>
+        </div>
+
+        <!-- Settings Grid: left nav + main content -->
+        <div class="settings-layout-grid">
+
+            <!-- Left Section Nav -->
+            <div class="settings-section-nav">
+                <div class="settings-section-nav-inner">
+                    <button class="settings-section-nav-item active" data-section="security" id="navSecurity">
+                        <span class="material-symbols-outlined">shield</span>
+                        <span>Bảo mật</span>
+                    </button>
+                    <button class="settings-section-nav-item" data-section="notifications" id="navNotifications">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span>Thông báo</span>
+                    </button>
+                    <button class="settings-section-nav-item" data-section="linked" id="navLinked">
+                        <span class="material-symbols-outlined">link</span>
+                        <span>Tài khoản liên kết</span>
+                    </button>
+                    <button class="settings-section-nav-item" data-section="danger" id="navDanger">
+                        <span class="material-symbols-outlined text-danger">warning</span>
+                        <span>Vùng nguy hiểm</span>
+                    </button>
                 </div>
+            </div>
 
-                <!-- Alert Notifications -->
-                @if (TempData["SuccessMessage"] != null)
-                {
-                    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-check-circle me-2"></i>
-                            <div>@TempData["SuccessMessage"]</div>
+            <!-- Main Settings Content -->
+            <div class="settings-main-content">
+
+                <!-- ── Security & Password ── -->
+                <section class="stitch-card settings-section-block" id="section-security">
+                    <div class="settings-section-header">
+                        <div class="settings-section-icon bg-primary-soft">
+                            <span class="material-symbols-outlined">lock</span>
                         </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <h2 class="settings-section-title">Bảo mật &amp; Mật khẩu</h2>
                     </div>
-                }
 
-                @if (TempData["ErrorMessage"] != null)
-                {
-                    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-exclamation-circle me-2"></i>
-                            <div>@TempData["ErrorMessage"]</div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                }
-
-                <form asp-controller="Account" asp-action="UpdateEmail" method="post">
-                    @Html.AntiForgeryToken()
-                    <!-- Email Settings Card -->
-                    <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
-                        <div class="card-body p-4">
-                            <h6 class="fw-semibold text-dark mb-4 d-flex align-items-center">
-                                <i class="fas fa-envelope-open text-muted me-2 small"></i> Liên hệ
-                            </h6>
-                            <div class="mb-2">
-                                <label asp-for="Email" class="form-label small fw-medium text-secondary">Địa chỉ email</label>
-                                <input asp-for="Email" class="form-control border-secondary-subtle py-2 px-3" placeholder="name@example.com" />
-                                <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
+                    <!-- Email -->
+                    <form asp-controller="Account" asp-action="UpdateEmail" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="security-row">
+                            <div class="security-text mb-3 mb-md-0">
+                                <h4>Địa chỉ email</h4>
+                                <p>Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
                             </div>
-                            <p class="text-muted small mb-0">Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
+                            <div class="d-flex align-items-center gap-2">
+                                <input name="Email" value="@Model?.Email" class="stitch-input" placeholder="name@example.com" style="max-width: 250px;" />
+                                <button type="submit" class="stitch-btn-primary">
+                                    Cập nhật
+                                </button>
+                            </div>
                         </div>
-                        <div class="card-footer bg-light border-top border-secondary-subtle p-3 px-4 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary py-2 px-4 shadow-sm border-0 fw-medium">
-                                <i class="fas fa-save me-2"></i> Cập nhật email
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
 
-                <form asp-controller="Account" asp-action="ChangePassword" method="post">
-                    @Html.AntiForgeryToken()
-                    <!-- Password Settings Card -->
-                    <div class="card bg-white border-secondary-subtle rounded-3 shadow-sm mb-4">
-                        <div class="card-body p-4">
-                            <h6 class="fw-semibold text-dark mb-4 d-flex align-items-center">
-                                <i class="fas fa-shield-halved text-muted me-2 small"></i> Đổi mật khẩu
-                            </h6>
-
-                            <div class="alert bg-light border-0 small text-muted mb-4 p-3 d-flex align-items-start">
-                                <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
-                                <span>Mật khẩu của bạn nên dài ít nhất 8 ký tự. Chỉ nhập vào các ô bên dưới nếu bạn thực sự muốn thay đổi mật khẩu hiện tại.</span>
+                    <!-- Change Password -->
+                    <form asp-controller="Account" asp-action="ChangePassword" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="security-row flex-column align-items-stretch">
+                            <div class="security-text mb-3">
+                                <h4>Thay đổi mật khẩu</h4>
+                                <p>Mật khẩu nên dài ít nhất 8 ký tự. Chỉ nhập nếu bạn muốn thay đổi mật khẩu hiện tại.</p>
                             </div>
 
-                            <div class="mb-4">
-                                <label asp-for="CurrentPassword" class="form-label small fw-medium text-secondary">Mật khẩu hiện tại</label>
-                                <div class="input-group">
-                                    <input asp-for="CurrentPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập mật khẩu hiện nay" />
-                                    <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
-                                            tabindex="-1" aria-label="Hiện/ẩn mật khẩu hiện tại">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                                <span asp-validation-for="CurrentPassword" class="text-danger small mt-1 d-block"></span>
-                            </div>
-
-                            <div class="row g-4">
-                                <div class="col-md-6">
-                                    <label asp-for="NewPassword" class="form-label small fw-medium text-secondary">Mật khẩu mới</label>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-4">
+                                    <label class="stitch-form-label">Mật khẩu hiện tại</label>
                                     <div class="input-group">
-                                        <input asp-for="NewPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Tối thiểu 8 ký tự" />
-                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
-                                                tabindex="-1" aria-label="Hiện/ẩn mật khẩu mới">
+                                        <input asp-for="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" />
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span asp-validation-for="CurrentPassword" class="text-danger small mt-1 d-block"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="stitch-form-label">Mật khẩu mới</label>
+                                    <div class="input-group">
+                                        <input asp-for="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" />
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     <span asp-validation-for="NewPassword" class="text-danger small mt-1 d-block"></span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label asp-for="ConfirmPassword" class="form-label small fw-medium text-secondary">Xác nhận mật khẩu</label>
+                                <div class="col-md-4">
+                                    <label class="stitch-form-label">Xác nhận mật khẩu</label>
                                     <div class="input-group">
-                                        <input asp-for="ConfirmPassword" class="form-control border-secondary-subtle py-2 px-3" placeholder="Nhập lại mật khẩu mới" />
-                                        <button class="btn btn-outline-secondary border-secondary-subtle px-3 toggle-pwd" type="button"
-                                                tabindex="-1" aria-label="Hiện/ẩn xác nhận mật khẩu">
+                                        <input asp-for="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" />
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="stitch-btn-primary">
+                                    Đổi mật khẩu
+                                </button>
+                            </div>
                         </div>
-                        <div class="card-footer bg-light border-top border-secondary-subtle p-3 px-4 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary py-2 px-4 shadow-sm border-0 fw-medium">
-                                <i class="fas fa-save me-2"></i> Đổi mật khẩu
-                            </button>
+                    </form>
+                </section>
+
+                <!-- ── Linked Accounts ── -->
+                <section class="stitch-card settings-section-block" id="section-linked">
+                    <div class="settings-section-header">
+                        <div class="settings-section-icon bg-secondary-soft">
+                            <span class="material-symbols-outlined">link</span>
+                        </div>
+                        <h2 class="settings-section-title">Tài khoản liên kết</h2>
+                    </div>
+                    <div class="linked-accounts-grid">
+                        <!-- Google -->
+                        <div class="linked-account-item">
+                            <div class="linked-account-info">
+                                <div class="linked-account-icon">
+                                    <span class="material-symbols-outlined" style="color:#EA4335;">mail</span>
+                                </div>
+                                <div>
+                                    <p class="linked-account-name">Google</p>
+                                    @if (Model.IsGoogleLinked)
+                                    {
+                                        <p class="linked-account-status connected">Đã kết nối</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="linked-account-status">Chưa kết nối</p>
+                                    }
+                                </div>
+                            </div>
+                            @if (Model.IsGoogleLinked)
+                            {
+                                <span class="linked-badge linked-badge-connected">Đã kết nối</span>
+                            }
+                            else
+                            {
+                                <a href="/Account/LinkGoogle" class="linked-badge linked-badge-connect">Kết nối</a>
+                            }
+                        </div>
+                        <!-- Facebook -->
+                        <div class="linked-account-item">
+                            <div class="linked-account-info">
+                                <div class="linked-account-icon">
+                                    <span class="material-symbols-outlined" style="color:#1877F2;">group</span>
+                                </div>
+                                <div>
+                                    <p class="linked-account-name">Facebook</p>
+                                    @if (Model.IsFacebookLinked)
+                                    {
+                                        <p class="linked-account-status connected">Đã kết nối</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="linked-account-status">Chưa kết nối</p>
+                                    }
+                                </div>
+                            </div>
+                            @if (Model.IsFacebookLinked)
+                            {
+                                <span class="linked-badge linked-badge-connected">Đã kết nối</span>
+                            }
+                            else
+                            {
+                                <a href="/Account/LinkFacebook" class="linked-badge linked-badge-connect">Kết nối</a>
+                            }
                         </div>
                     </div>
-                </form>
+                </section>
 
-                <!-- Danger Zone -->
-                <div class="card bg-white border-danger-subtle rounded-3 shadow-sm mb-5">
-                    <div class="card-body p-4">
-                        <h6 class="fw-semibold text-danger mb-4 d-flex align-items-center">
-                            <i class="fas fa-triangle-exclamation me-2 small"></i> Vùng nguy hiểm
-                        </h6>
-                        
-                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-3 rounded-3 bg-danger-subtle border border-danger-subtle bg-opacity-10">
-                            <div class="mb-3 mb-md-0">
-                                <div class="fw-semibold text-danger">Xóa tài khoản vĩnh viễn</div>
-                                <div class="text-danger small">Hành động này không thể hoàn tác. Mọi dữ liệu học tập sẽ bị mất.</div>
-                            </div>
-                            <button type="button" class="btn btn-danger px-4 py-2 shadow-sm fw-medium border-0"
-                                    data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                                <i class="fas fa-trash-can me-2"></i> Xóa ngay
-                            </button>
+                <!-- ── Notifications ── -->
+                <section class="stitch-card settings-section-block" id="section-notifications">
+                    <div class="settings-section-header">
+                        <div class="settings-section-icon bg-yellow-soft">
+                            <span class="material-symbols-outlined">notifications_active</span>
                         </div>
+                        <h2 class="settings-section-title">Thông báo</h2>
                     </div>
-                </div>
+                    <div class="notifications-list">
+                        <label class="notification-item">
+                            <div class="notification-checkbox-wrap">
+                                <input type="checkbox" class="notification-checkbox" checked />
+                            </div>
+                            <div>
+                                <p class="notification-label">Thông báo đẩy (Push)</p>
+                                <p class="notification-desc">Nhận thông báo về lịch học và nhắc nhở ôn tập trên thiết bị.</p>
+                            </div>
+                        </label>
+                        <label class="notification-item">
+                            <div class="notification-checkbox-wrap">
+                                <input type="checkbox" class="notification-checkbox" checked />
+                            </div>
+                            <div>
+                                <p class="notification-label">Email định kỳ</p>
+                                <p class="notification-desc">Bản tin học tập hàng tuần và báo cáo tiến độ qua email.</p>
+                            </div>
+                        </label>
+                    </div>
+                </section>
 
-                <!-- Delete Account Confirmation Modal -->
-                <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content border-0 shadow">
-                            <div class="modal-header bg-danger bg-opacity-10 border-bottom">
-                                <h5 class="modal-title fw-semibold text-danger" id="deleteAccountModalLabel">
-                                    <i class="fas fa-triangle-exclamation me-2"></i> Xác nhận xóa tài khoản
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-muted">Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng, và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.</p>
-                                <p class="text-muted small mb-0">Hành động này không thể hoàn tác.</p>
-                            </div>
-                            <div class="modal-footer border-top">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-danger fw-medium">
-                                        <i class="fas fa-trash-can me-1"></i> Xóa vĩnh viễn
-                                    </button>
-                                </form>
-                            </div>
+                <!-- ── Danger Zone ── -->
+                <section class="danger-zone settings-section-block" id="section-danger">
+                    <div class="danger-zone-header">
+                        <span class="material-symbols-outlined">warning</span>
+                        <h2>Vùng nguy hiểm</h2>
+                    </div>
+                    <div class="danger-box">
+                        <div>
+                            <h4 class="mb-1 fw-bold text-dark" style="font-size: 0.95rem;">Xóa tài khoản vĩnh viễn</h4>
+                            <p class="text-muted small mb-0">Một khi đã xóa, tất cả dữ liệu học tập của bạn sẽ không thể khôi phục.</p>
                         </div>
+                        <button type="button" class="stitch-btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                            Xóa tài khoản
+                        </button>
                     </div>
-                </div>
-
-                <div class="text-center">
-                    <a asp-action="Profile" class="btn btn-link text-decoration-none text-muted small fw-medium">
-                        <i class="fas fa-arrow-left me-1"></i> Quay lại trang Hồ sơ của tôi
-                    </a>
-                </div>
+                </section>
 
             </div>
         </div>
-    </div>
+
+        <!-- Delete Account Confirmation Modal -->
+        <div class="modal fade confirm-modal" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger bg-opacity-10">
+                        <h5 class="modal-title fw-bold text-danger" id="deleteAccountModalLabel">
+                            <i class="fas fa-triangle-exclamation me-2"></i> Xác nhận xóa tài khoản
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted mb-0">Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng, và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.</p>
+                        <p class="text-muted small mb-0 mt-1">Hành động này không thể hoàn tác.</p>
+
+                        <div class="confirm-input-wrap">
+                            <label for="deleteConfirmInput">Gõ <strong>CONFIRM</strong> để tiếp tục:</label>
+                            <input type="text" id="deleteConfirmInput" class="form-control" placeholder="CONFIRM" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" id="deleteAccountBtn" class="btn btn-danger fw-medium" disabled>
+                                <i class="fas fa-trash-can me-1"></i> Xóa vĩnh viễn
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        // Toggle Password Visibility
-        document.querySelectorAll('.toggle-pwd').forEach(function(button) {
-            button.addEventListener('click', function() {
-                let input = this.closest('.input-group')?.querySelector('.form-control');
-                if (!input) return;
+        // ── Sidebar mobile toggle ──────────────────────────────────────
+        (function() {
+            var sidebar = document.getElementById('accountSidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var toggleBtn = document.getElementById('sidebarMobileToggle');
 
-                let icon = this.querySelector('i');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function() {
+                    var isOpen = sidebar.classList.toggle('open');
+                    if (overlay) overlay.classList.toggle('show', isOpen);
+                });
+            }
+            if (overlay) {
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('show');
+                });
+            }
+        })();
+
+        // ── Settings section nav smooth scroll ────────────────────────
+        (function() {
+            var navItems = document.querySelectorAll('.settings-section-nav-item');
+            navItems.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    navItems.forEach(function(n) { n.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var sectionId = 'section-' + btn.getAttribute('data-section');
+                    var target = document.getElementById(sectionId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Highlight nav item based on scroll
+            var sections = document.querySelectorAll('.settings-section-block');
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                sections.forEach(function(section) {
+                    if (section.offsetTop <= scrollY && section.offsetTop + section.offsetHeight > scrollY) {
+                        var id = section.id.replace('section-', '');
+                        navItems.forEach(function(n) {
+                            n.classList.toggle('active', n.getAttribute('data-section') === id);
+                        });
+                    }
+                });
+            }, { passive: true });
+        })();
+
+        // ── Password Toggle Visibility ─────────────────────────────────
+        document.querySelectorAll('.toggle-pwd').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var input = this.closest('.input-group').querySelector('input');
+                if (!input) return;
+                var icon = this.querySelector('i');
                 if (input.type === 'password') {
                     input.type = 'text';
                     icon.classList.remove('fa-eye');
@@ -205,13 +414,44 @@
             });
         });
 
-        // Tự động ẩn thông báo sau 5 giây
-        setTimeout(function () {
-            var alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function (alert) {
-                var bsAlert = new bootstrap.Alert(alert);
-                bsAlert.close();
+        // ── Delete Account: Type CONFIRM to enable ────────────────────
+        (function() {
+            var confirmInput = document.getElementById('deleteConfirmInput');
+            var deleteBtn = document.getElementById('deleteAccountBtn');
+            if (confirmInput && deleteBtn) {
+                confirmInput.addEventListener('input', function() {
+                    deleteBtn.disabled = (this.value.trim() !== 'CONFIRM');
+                });
+            }
+        })();
+
+        // ── Auto-dismiss alerts ────────────────────────────────────────
+        setTimeout(function() {
+            document.querySelectorAll('.stitch-alert').forEach(function(el) {
+                el.style.transition = 'opacity 0.5s ease';
+                el.style.opacity = '0';
+                setTimeout(function() { el.remove(); }, 500);
             });
         }, 5000);
+
+        // ── Sidebar Collapse Toggle ────────────────────────────────────────
+        (function() {
+            var sidebar   = document.getElementById('accountSidebar');
+            var toggleBtn = document.getElementById('accountSidebarToggle');
+            var icon      = document.getElementById('accountSidebarToggleIcon');
+            if (!sidebar || !toggleBtn) return;
+
+            var collapsed = localStorage.getItem('accountSidebarCollapsed') === 'true';
+            if (collapsed) {
+                sidebar.classList.add('sidebar-collapsed');
+                icon.style.transform = 'rotate(180deg)';
+            }
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = sidebar.classList.toggle('sidebar-collapsed');
+                icon.style.transform = isCollapsed ? 'rotate(180deg)' : '';
+                localStorage.setItem('accountSidebarCollapsed', isCollapsed);
+            });
+        })();
     </script>
 }

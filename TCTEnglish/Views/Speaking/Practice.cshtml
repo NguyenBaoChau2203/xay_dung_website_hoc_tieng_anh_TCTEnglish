@@ -1,372 +1,463 @@
 @model TCTVocabulary.ViewModels.SpeakingPracticeViewModel
 @{
-    ViewData["Title"] = "Luyện phát âm — " + Model.Title;
+    ViewData["Title"] = $"Practice: {Model.Title} — TCT English";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int totalCount = Model.Sentences.Count;
-    int practicedCount = Model.Sentences.Count(s => s.IsPracticed);
-    int progressPct = totalCount > 0 ? (int)Math.Round((double)practicedCount / totalCount * 100) : 0;
+    var sentencesJson = System.Text.Json.JsonSerializer.Serialize(
+        Model.Sentences.Select(s => new
+        {
+            id = s.Id,
+            start = s.StartTime,
+            end = s.EndTime,
+            text = s.Text,
+            vi = s.VietnameseMeaning,
+            totalScore = s.TotalScore,
+            accuracyScore = s.AccuracyScore,
+            fluencyScore = s.FluencyScore,
+            completenessScore = s.CompletenessScore,
+            isPracticed = s.IsPracticed
+        }));
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
 }
 
-<div class="spk-page">
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <!-- ══════════ TOP NAV BAR ══════════ -->
-    <div class="spk-topnav">
-        <a asp-controller="Speaking" asp-action="Index" class="spk-back-btn" title="Quay lại">
-            <i class="fas fa-arrow-left"></i>
-        </a>
+<div class="spk-practice-wrapper">
 
-        <!-- Pill Menu -->
-        <div class="spk-pill-menu">
-            <button class="spk-pill-btn spk-pill-active" id="tab-pronunciation">
-                <i class="fas fa-microphone"></i> Phát âm
-            </button>
-            <button class="spk-pill-btn" id="tab-dictation">
-                <i class="fas fa-headphones"></i> Chép chính tả
-            </button>
-        </div>
-
-        <div class="spk-topnav-right">
-            @if (Model.IsPrivate)
-            {
-                <span class="spk-private-badge" title="Video riêng tư của bạn">
-                    <i class="fas fa-user-shield"></i> Riêng tư
-                </span>
-            }
-        </div>
-    </div>
-
-    <!-- ══════════ MAIN 2-COLUMN GRID ══════════ -->
-    <div class="spk-main-row">
-
-        <!-- ╔══════════════════════════════════╗
-             ║  LEFT COLUMN — Video + Progress  ║
-             ╚══════════════════════════════════╝ -->
-        <div class="spk-left-col">
-
-            <!-- Video Player (16:9) -->
-            <div class="spk-video-frame">
-                <iframe src="https://www.youtube.com/embed/@Model.YoutubeId?enablejsapi=1"
-                        id="youtube-player"
-                        title="@Model.Title"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                <!-- Black overlay — hides subtitles while keeping audio (toggled by Ẩn video button) -->
-                <div class="spk-vid-overlay d-none" id="video-overlay"></div>
-            </div>
-
-            <!-- Overall Progress Bar -->
-            <div class="spk-progress-card">
-                <div class="spk-progress-header">
-                    <span class="spk-progress-label">
-                        Đã hoàn thành
-                        <strong id="prog-text">@practicedCount / @totalCount</strong>
+    @* ── TOP BAR ─────────────────────────────────────────────── *@
+    <header class="spk-practice-topbar">
+        <div class="spk-practice-topbar-left">
+            <a href="@Url.Action("Index", "Speaking")" class="spk-btn spk-btn--ghost spk-btn--sm spk-btn--back">
+                <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+                <span class="d-none d-sm-inline">Trở lại</span>
+            </a>
+            <div class="spk-practice-breadcrumb">
+                <span class="material-symbols-outlined" style="color:var(--stitch-primary);font-size:18px;">record_voice_over</span>
+                <span class="spk-breadcrumb-text">@Model.Title</span>
+                @if (Model.IsPrivate)
+                {
+                    <span class="spk-badge spk-badge--surface">
+                        <span class="material-symbols-outlined" style="font-size:12px;">lock</span> Riêng tư
                     </span>
-                    <span class="spk-progress-pct" id="prog-pct">@progressPct%</span>
-                </div>
-                <div class="spk-progress-track">
-                    <div class="spk-progress-fill"
-                         id="prog-bar"
-                         style="width: @progressPct%"
-                         role="progressbar"
-                         aria-valuenow="@progressPct"
-                         aria-valuemin="0"
-                         aria-valuemax="100"></div>
-                </div>
+                }
             </div>
-
         </div>
-        <!-- /LEFT COLUMN -->
 
-        <!-- ╔══════════════════════════════════════════════════════╗
-             ║  RIGHT COLUMN — Pronunciation Practice & Scoring    ║
-             ╚══════════════════════════════════════════════════════╝ -->
-        <div class="spk-right-col">
+        <div class="spk-practice-tabs" role="tablist">
+            <button class="spk-practice-tab spk-practice-tab--active" id="tab-pronunciation"
+                    data-bs-toggle="pill" data-bs-target="#pronunciation-content" type="button" role="tab">
+                <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">mic</span>
+                Phát âm
+            </button>
+            <button class="spk-practice-tab" id="tab-dictation"
+                    data-bs-toggle="pill" data-bs-target="#dictation-content" type="button" role="tab">
+                <span class="material-symbols-outlined" style="font-size:16px;">keyboard</span>
+                Nghe chép
+            </button>
+        </div>
+    </header>
 
-            <!-- ─── PRONUNCIATION TAB ─── -->
-            <div id="pronunciation-content" class="spk-right-pane">
+    @* ── TAB CONTENT ─────────────────────────────────────────── *@
+    <div class="tab-content spk-practice-content" id="practiceTabsContent">
 
-                <!-- Pane header -->
-                <div class="spk-pane-header">
-                    <span class="spk-pane-title">Luyện phát âm</span>
-                    <span class="spk-pane-counter" id="sent-indicator">(Câu hỏi 1/@totalCount)</span>
-                </div>
+        @* ====================================================
+           TAB 1: PHÁT ÂM (PRONUNCIATION)
+           ==================================================== *@
+        <div class="tab-pane fade show active" id="pronunciation-content" role="tabpanel">
+            <div class="spk-practice-body">
 
-                <!-- 1. Sentence Slider / Pagination -->
-                <div class="spk-slider-wrapper">
-                    <button class="spk-slider-arrow" id="btn-slider-prev" aria-label="Cuộn trái">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="spk-slider-track" id="sentence-scroll-container">
+                @* CENTER: Main Workspace *@
+                <section class="spk-practice-workspace spk-scrollbar">
+
+                    @* Progress bar (compact) *@
+                    <div class="spk-progress-card spk-glass-card">
+                        <div class="spk-progress-header">
+                            <span class="spk-progress-label">
+                                <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
+                                Tiến độ luyện tập
+                            </span>
+                            <span class="spk-progress-count" id="prog-text">0 / @Model.Sentences.Count</span>
+                        </div>
+                        <div class="spk-progress-track">
+                            <div class="spk-progress-bar" id="prog-bar" role="progressbar"
+                                 style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="spk-progress-pct" id="prog-pct">0%</div>
+                    </div>
+
+                    @* Video Player *@
+                    <div class="spk-player-wrap">
+                        <div class="spk-player-inner">
+                            <div id="youtube-player"></div>
+                            <div id="video-overlay" class="spk-video-overlay d-none">
+                                <span class="material-symbols-outlined" style="font-size:48px;opacity:.45;">visibility_off</span>
+                                <p class="mb-0 fw-bold" style="opacity:.45;">Video đã ẩn</p>
+                            </div>
+                            <div class="spk-subtitle-bar" id="spk-subtitle-bar"></div>
+                        </div>
+                    </div>
+
+                    @* Sentence Slider *@
+                    <div class="spk-slider-section spk-glass-card">
+                        <div class="spk-slider-header">
+                            <h4 class="spk-panel-label">Danh sách câu</h4>
+                        </div>
+                        <div class="spk-slider-wrap">
+                            <button class="spk-slider-arrow spk-slider-arrow--left" id="btn-slider-prev" aria-label="Cuộn trái">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <div class="spk-slider-track" id="sentence-scroll-container">
+                                @for (int i = 0; i < Model.Sentences.Count; i++)
+                                {
+                                    var s = Model.Sentences[i];
+                                    <button class="spk-sent-chip spk-sent-btn @(s.IsPracticed ? "spk-sent-btn--done" : "")"
+                                            data-index="@i"
+                                            onclick="selectSentence(@i)">
+                                        @(i + 1)
+                                        @if (s.IsPracticed)
+                                        {
+                                            <span class="spk-sent-done-mark material-symbols-outlined">check</span>
+                                        }
+                                    </button>
+                                }
+                            </div>
+                            <button class="spk-slider-arrow spk-slider-arrow--right" id="btn-slider-next" aria-label="Cuộn phải">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    @* Current Sentence Card *@
+                    <div class="spk-sentence-card">
+                        <div class="spk-sentence-accent-bar"></div>
+                        <div class="spk-sentence-card-body">
+                            <div class="spk-sentence-card-top">
+                                <span class="spk-sentence-badge" id="sent-indicator">Câu 1/...</span>
+                                <button class="spk-btn spk-btn--ghost spk-btn--sm" id="btn-hide-text" onclick="toggleText()">
+                                    <span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span>
+                                    <span class="d-none d-sm-inline">Ẩn text</span>
+                                </button>
+                            </div>
+                            <p class="spk-sentence-en" id="current-transcript-en" style="min-height:72px;">...</p>
+                            <p class="spk-sentence-vi" id="current-transcript-vi">...</p>
+
+                            <hr class="spk-divider" />
+
+                            @* Score + Controls *@
+                            <div class="spk-score-controls-row">
+
+                                @* Score Board *@
+                                <div class="spk-score-section">
+                                    <div class="spk-score-ring-wrap">
+                                        <div class="spk-score-ring">
+                                            <svg class="spk-ring" viewBox="0 0 36 36">
+                                                <path class="spk-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                                <path class="spk-ring-fill" id="ring-total" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            </svg>
+                                            <div class="spk-ring-label">
+                                                <span class="spk-ring-val" id="score-total">0</span>
+                                                <span class="spk-ring-sub">SCORE</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="spk-score-bars">
+                                        <div class="spk-score-row">
+                                            <span class="spk-score-name">Chính xác</span>
+                                            <div class="spk-score-bar-track">
+                                                <div class="spk-score-bar-fill spk-score-bar-fill--blue" id="bar-accuracy" style="width:0%"></div>
+                                            </div>
+                                            <span class="spk-score-num" id="score-accuracy">0</span>
+                                        </div>
+                                        <div class="spk-score-row">
+                                            <span class="spk-score-name">Lưu loát</span>
+                                            <div class="spk-score-bar-track">
+                                                <div class="spk-score-bar-fill spk-score-bar-fill--amber" id="bar-fluency" style="width:0%"></div>
+                                            </div>
+                                            <span class="spk-score-num" id="score-fluency">0</span>
+                                        </div>
+                                        <div class="spk-score-row">
+                                            <span class="spk-score-name">Hoàn thiện</span>
+                                            <div class="spk-score-bar-track">
+                                                <div class="spk-score-bar-fill spk-score-bar-fill--purple" id="bar-complete" style="width:0%"></div>
+                                            </div>
+                                            <span class="spk-score-num" id="score-complete">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @* Interaction Controls *@
+                                <div class="spk-controls-section">
+                                    <div class="spk-nav-btns">
+                                        <button class="spk-icon-btn" id="btn-prev" title="Câu trước">
+                                            <span class="material-symbols-outlined">arrow_back</span>
+                                        </button>
+                                        <button class="spk-icon-btn spk-icon-btn--volume" id="btn-replay" title="Phát lại">
+                                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">volume_up</span>
+                                        </button>
+                                        <button class="spk-icon-btn" id="btn-next" title="Câu tiếp">
+                                            <span class="material-symbols-outlined">arrow_forward</span>
+                                        </button>
+                                    </div>
+                                    <button class="spk-btn spk-btn--record spk-btn--full spk-record-btn" id="btn-record">
+                                        <span class="material-symbols-outlined" id="record-icon" style="font-variation-settings:'FILL' 1">mic</span>
+                                        <span id="record-label">Kiểm tra phát âm</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                @* RIGHT: Transcript Panel *@
+                <aside class="spk-transcript-panel" id="spk-transcript-panel">
+                    <div class="spk-transcript-header">
+                        <div class="spk-transcript-header-left">
+                            <h3 class="spk-transcript-title">Kịch bản bài học</h3>
+                            <span class="spk-count-badge" id="spk-transcript-count">0 / @Model.Sentences.Count</span>
+                        </div>
+                        <button class="spk-transcript-collapse-btn d-md-none" id="btn-collapse-transcript"
+                                onclick="toggleTranscriptPanel()" aria-label="Thu gọn kịch bản">
+                            <span class="material-symbols-outlined" style="font-size:18px;">keyboard_arrow_down</span>
+                        </button>
+                    </div>
+                    <div class="spk-transcript-list spk-scrollbar" id="spk-transcript-list">
                         @for (int i = 0; i < Model.Sentences.Count; i++)
                         {
                             var s = Model.Sentences[i];
-                            var activeClass = i == 0 ? "spk-sent-btn--active" : "";
-                            var practicedClass = s.IsPracticed ? "spk-sent-btn--done" : "";
-                            <button type="button"
-                                    class="spk-sent-btn @activeClass @practicedClass"
-                                    data-index="@i"
-                                    data-start="@s.StartTime"
-                                    data-end="@s.EndTime"
-                                    title="Câu @(i + 1)">
-                                <span>@(i + 1)</span>
-                                @if (s.IsPracticed)
-                                {
-                                    <i class="fas fa-check spk-done-check"></i>
-                                }
-                            </button>
+                            <div class="spk-transcript-item @(s.IsPracticed ? "spk-transcript-item--done" : "spk-transcript-item--pending")"
+                                 data-trans-index="@i"
+                                 onclick="selectSentence(@i)" role="button" tabindex="0"
+                                 aria-label="Câu @(i + 1)">
+                                <div class="spk-transcript-icon">
+                                    @if (s.IsPracticed)
+                                    {
+                                        <span class="material-symbols-outlined spk-transcript-check"
+                                              style="font-variation-settings:'FILL' 1;">check_circle</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="spk-transcript-num">@(i + 1)</span>
+                                    }
+                                </div>
+                                <div class="spk-transcript-item-body">
+                                    <p class="spk-transcript-item-en">@s.Text</p>
+                                    @if (!string.IsNullOrEmpty(s.VietnameseMeaning))
+                                    {
+                                        <p class="spk-transcript-item-vi">@s.VietnameseMeaning</p>
+                                    }
+                                </div>
+                            </div>
                         }
                     </div>
-                    <button class="spk-slider-arrow" id="btn-slider-next" aria-label="Cuộn phải">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <!-- 2. Transcript Card -->
-                <div class="spk-transcript-card">
-                    <div class="spk-transcript-label">CÂU HIỆN TẠI</div>
-                    <button class="spk-hide-text-btn" id="btn-hide-text">Ẩn</button>
-                    <div class="spk-transcript-text" id="current-transcript-en" style="min-height: 56px;">
-                        Chọn một câu để bắt đầu luyện tập
-                    </div>
-                    <div class="spk-transcript-vi d-none" id="current-transcript-vi"></div>
-                </div>
-
-                <!-- 3. Action Buttons Row -->
-                <div class="spk-action-row">
-                    <!-- Prev -->
-                    <div class="spk-action-col">
-                        <button class="spk-btn spk-btn--nav" id="btn-prev" title="Câu trước (Shift+←)">
-                            <i class="fas fa-chevron-left"></i>
-                            <span>Trước</span>
+                    <div class="spk-transcript-footer">
+                        <button class="spk-btn spk-btn--ai-suggest spk-btn--full" type="button"
+                                onclick="this.classList.toggle('spk-btn--active')">
+                            <span class="material-symbols-outlined" style="font-size:16px;">auto_awesome</span>
+                            Gợi ý cải thiện từ AI
                         </button>
-                        <span class="spk-shortcut">Shift+←</span>
                     </div>
-
-                    <!-- Center: Replay + Record -->
-                    <div class="spk-action-col spk-action-col--center">
-                        <div class="spk-center-btns">
-                            <div class="spk-center-btn-wrap">
-                                <button class="spk-btn spk-btn--replay" id="btn-replay" title="Phát lại (Space)">
-                                    <i class="fas fa-volume-up"></i>
-                                </button>
-                                <span class="spk-shortcut">Space</span>
-                            </div>
-                            <div class="spk-center-btn-wrap">
-                                <button class="spk-btn spk-btn--record" id="btn-record" title="Kiểm tra phát âm (Enter)">
-                                    <i class="fas fa-microphone" id="record-icon"></i>
-                                    <span id="record-label">Kiểm tra phát âm</span>
-                                </button>
-                                <span class="spk-shortcut">Enter</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Next -->
-                    <div class="spk-action-col">
-                        <button class="spk-btn spk-btn--nav spk-btn--nav-next" id="btn-next" title="Câu tiếp (Tab)">
-                            <span>Tiếp</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <span class="spk-shortcut">Tab / →</span>
-                    </div>
-                </div>
-
-                <!-- 4. Score Panel (2×2 grid with circular mini-progress) -->
-                <div class="spk-score-panel">
-                    <div class="spk-score-grid">
-
-                        <div class="spk-score-cell spk-score-cell--border-right spk-score-cell--border-bottom">
-                            <div class="spk-score-content">
-                                <div class="spk-score-ring-wrap">
-                                    <svg class="spk-ring" viewBox="0 0 36 36" aria-hidden="true">
-                                        <circle class="spk-ring-bg" cx="18" cy="18" r="15.9"/>
-                                        <circle class="spk-ring-fill" id="ring-total" cx="18" cy="18" r="15.9"
-                                                stroke-dasharray="0, 100"/>
-                                    </svg>
-                                    <span class="spk-score-val" id="score-total">0.0</span>
-                                </div>
-                                <div class="spk-score-info">
-                                    <div class="spk-score-name">Điểm phát âm</div>
-                                    <div class="spk-score-bar-track">
-                                        <div class="spk-score-bar-fill" id="bar-total" style="width:0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="spk-score-cell spk-score-cell--border-bottom">
-                            <div class="spk-score-content">
-                                <div class="spk-score-ring-wrap">
-                                    <svg class="spk-ring" viewBox="0 0 36 36" aria-hidden="true">
-                                        <circle class="spk-ring-bg" cx="18" cy="18" r="15.9"/>
-                                        <circle class="spk-ring-fill spk-ring-fill--blue" id="ring-accuracy" cx="18" cy="18" r="15.9"
-                                                stroke-dasharray="0, 100"/>
-                                    </svg>
-                                    <span class="spk-score-val" id="score-accuracy">0.0</span>
-                                </div>
-                                <div class="spk-score-info">
-                                    <div class="spk-score-name">Độ chính xác</div>
-                                    <div class="spk-score-bar-track">
-                                        <div class="spk-score-bar-fill spk-score-bar-fill--blue" id="bar-accuracy" style="width:0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="spk-score-cell spk-score-cell--border-right">
-                            <div class="spk-score-content">
-                                <div class="spk-score-ring-wrap">
-                                    <svg class="spk-ring" viewBox="0 0 36 36" aria-hidden="true">
-                                        <circle class="spk-ring-bg" cx="18" cy="18" r="15.9"/>
-                                        <circle class="spk-ring-fill spk-ring-fill--amber" id="ring-fluency" cx="18" cy="18" r="15.9"
-                                                stroke-dasharray="0, 100"/>
-                                    </svg>
-                                    <span class="spk-score-val" id="score-fluency">0.0</span>
-                                </div>
-                                <div class="spk-score-info">
-                                    <div class="spk-score-name">Độ trôi chảy</div>
-                                    <div class="spk-score-bar-track">
-                                        <div class="spk-score-bar-fill spk-score-bar-fill--amber" id="bar-fluency" style="width:0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="spk-score-cell">
-                            <div class="spk-score-content">
-                                <div class="spk-score-ring-wrap">
-                                    <svg class="spk-ring" viewBox="0 0 36 36" aria-hidden="true">
-                                        <circle class="spk-ring-bg" cx="18" cy="18" r="15.9"/>
-                                        <circle class="spk-ring-fill spk-ring-fill--purple" id="ring-complete" cx="18" cy="18" r="15.9"
-                                                stroke-dasharray="0, 100"/>
-                                    </svg>
-                                    <span class="spk-score-val" id="score-complete">0.0</span>
-                                </div>
-                                <div class="spk-score-info">
-                                    <div class="spk-score-name">Độ hoàn thiện</div>
-                                    <div class="spk-score-bar-track">
-                                        <div class="spk-score-bar-fill spk-score-bar-fill--purple" id="bar-complete" style="width:0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div><!-- /spk-score-grid -->
-                </div><!-- /spk-score-panel -->
-
-            </div><!-- /pronunciation-content -->
-
-            <!-- ─── DICTATION TAB ─── -->
-            <div id="dictation-content" class="spk-right-pane d-none">
-
-                <!-- Pane header -->
-                <div class="spk-pane-header">
-                    <span class="spk-pane-title">Chép chính tả</span>
-                    <span class="spk-pane-counter" id="dic-sent-indicator">(Câu hỏi 1/@totalCount)</span>
-                </div>
-
-                <!-- Ẩn video quick control -->
-                <div class="spk-dic-quick-row">
-                    <button class="spk-vid-ctrl-btn" id="btn-dic-hide-video">
-                        <i class="fas fa-eye-slash"></i> Ẩn video
-                    </button>
-                </div>
-
-                <!-- Sentence slider -->
-                <div class="spk-slider-wrapper">
-                    <button class="spk-slider-arrow" id="btn-dic-slider-prev" aria-label="Cuộn trái">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="spk-slider-track" id="dic-sentence-scroll-container">
-                        @for (int j = 0; j < Model.Sentences.Count; j++)
-                        {
-                            var dicSent = Model.Sentences[j];
-                            var dicActive = j == 0 ? "spk-sent-btn--active" : "";
-                            <button type="button"
-                                    class="spk-sent-btn spk-sent-btn--wide @dicActive"
-                                    data-dic-index="@j"
-                                    data-start="@dicSent.StartTime"
-                                    data-end="@dicSent.EndTime"
-                                    title="Câu @(j + 1)">
-                                Câu: @(j + 1)
-                            </button>
-                        }
-                    </div>
-                    <button class="spk-slider-arrow" id="btn-dic-slider-next" aria-label="Cuộn phải">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <!-- Typing area -->
-                <textarea class="spk-dic-input"
-                          id="dic-input"
-                          placeholder="Nhập những gì bạn nghe được..."
-                          autocomplete="off"
-                          autocorrect="off"
-                          autocapitalize="off"
-                          spellcheck="false"
-                          rows="3"></textarea>
-
-                <!-- Real-time masked feedback (JS populates this dynamically) -->
-                <div class="spk-dic-feedback" id="dic-feedback">
-                    <!-- Rendered by renderDictationFeedback() in speaking.js -->
-                </div>
-
-                <!-- Bottom action bar: [Hint] [Play/Pause] [Next] -->
-                <div class="spk-dic-action-bar">
-                    <button class="spk-dic-hint-btn" id="btn-dic-hint" title="Gợi ý (H)">
-                        <i class="fas fa-lightbulb"></i>
-                    </button>
-                    <button class="spk-dic-play-btn" id="btn-dic-play" title="Phát / Dừng (Space)">
-                        <i class="fas fa-play" id="dic-play-icon"></i>
-                        <span id="dic-play-label">Phát lại</span>
-                    </button>
-                    <button class="spk-btn spk-btn--nav spk-btn--nav-next spk-dic-next-btn" id="btn-dic-next" title="Câu tiếp (Tab)">
-                        <span>Tiếp</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+                </aside>
 
             </div>
-
         </div>
-        <!-- /RIGHT COLUMN -->
+
+        @* ====================================================
+           TAB 2: NGHE CHÉP (DICTATION)
+           ==================================================== *@
+        <div class="tab-pane fade h-100" id="dictation-content" role="tabpanel">
+            <div class="spk-dictation-layout">
+                <div class="spk-dictation-card spk-glass-card">
+
+                    <div class="spk-dictation-header">
+                        <h3 class="spk-panel-label">
+                            <span class="material-symbols-outlined" style="color:var(--stitch-primary)">keyboard</span>
+                            Nghe chép chính tả
+                        </h3>
+                        <div class="d-flex gap-2 align-items-center">
+                            <button class="spk-btn spk-btn--ghost spk-btn--sm" id="btn-dic-hide-video" onclick="toggleVideo()">
+                                <span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span> Ẩn video
+                            </button>
+                            <span class="spk-sentence-badge" id="dic-sent-indicator">Câu 1/...</span>
+                        </div>
+                    </div>
+
+                    @* Sentence Slider (Dictation) *@
+                    <div class="spk-slider-wrap mb-4">
+                        <button class="spk-slider-arrow spk-slider-arrow--left" id="btn-dic-slider-prev">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <div class="spk-slider-track" id="dic-sentence-scroll-container">
+                            @for (int i = 0; i < Model.Sentences.Count; i++)
+                            {
+                                <button class="spk-sent-chip spk-sent-btn"
+                                        data-dic-index="@i"
+                                        onclick="selectSentence(@i)">@(i + 1)</button>
+                            }
+                        </div>
+                        <button class="spk-slider-arrow spk-slider-arrow--right" id="btn-dic-slider-next">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+
+                    @* Type Area *@
+                    <div class="spk-dic-input-area">
+                        <textarea class="spk-dic-textarea" id="dic-input"
+                                  placeholder="Nghe và gõ lại câu bạn nghe được..."></textarea>
+                        <div class="spk-dic-feedback" id="dic-feedback">
+                            @* Real-time char feedback rendered by JS *@
+                        </div>
+                    </div>
+
+                    @* Controls *@
+                    <div class="spk-dic-controls">
+                        <div class="spk-dic-controls-left">
+                            <button class="spk-btn spk-btn--warning" id="btn-dic-hint">
+                                <span class="material-symbols-outlined" style="font-size:16px;">lightbulb</span> Đáp án
+                            </button>
+                        </div>
+                        <div class="spk-dic-controls-right">
+                            <button class="spk-icon-btn" id="btn-dic-slow-play" title="Nghe chậm (0.5x)">
+                                <span class="material-symbols-outlined">slow_motion_video</span>
+                            </button>
+                            <button class="spk-btn spk-btn--primary" id="btn-dic-play">
+                                <span class="material-symbols-outlined" id="dic-play-icon" style="font-size:16px;">play_arrow</span>
+                                <span id="dic-play-label">Phát lại</span>
+                            </button>
+                            <button class="spk-icon-btn" id="btn-dic-next">
+                                <span class="material-symbols-outlined">skip_next</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
-    <!-- /row -->
-
 </div>
-<!-- /spk-page -->
 
-<!-- Toast -->
-<div class="spk-toast" id="spk-toast"></div>
+@* Global Toast Notification *@
+<div id="spk-toast" class="spk-toast" aria-live="polite"></div>
 
 @section Scripts {
     <script>
-        // ── Data bridge (Razor → JS) ──────────────────────────────
-        window.SPK_VIDEO_ID  = '@Model.YoutubeId';
-        window.SPK_SENTENCES = @Html.Raw(
-            System.Text.Json.JsonSerializer.Serialize(
-                Model.Sentences.Select(s => new {
-                    id                = s.Id,
-                    start             = s.StartTime,
-                    end               = s.EndTime,
-                    text              = s.Text,
-                    vi                = s.VietnameseMeaning,
-                    totalScore        = s.TotalScore,
-                    accuracyScore     = s.AccuracyScore,
-                    fluencyScore      = s.FluencyScore,
-                    completenessScore = s.CompletenessScore,
-                    isPracticed       = s.IsPracticed
-                })
-            )
-        );
+        window.SPK_VIDEO_ID = '@Model.YoutubeId';
+        window.SPK_SENTENCES = @Html.Raw(sentencesJson);
+
+        /* ── toggleText: Ẩn / hiện văn bản câu hiện tại ── */
+        function toggleText() {
+            const el = document.getElementById('current-transcript-en');
+            const btn = document.getElementById('btn-hide-text');
+            if (el.textContent === '••••••••••••••••') {
+                el.textContent = el.dataset.original;
+                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span> <span class="d-none d-sm-inline">Ẩn text</span>';
+            } else {
+                el.dataset.original = el.textContent;
+                el.textContent = '••••••••••••••••';
+                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility</span> <span class="d-none d-sm-inline">Hiện text</span>';
+            }
+        }
+
+        /* ── toggleVideo: Ẩn / hiện video trong tab nghe chép ── */
+        function toggleVideo() {
+            const overlay = document.getElementById('video-overlay');
+            const btn = document.getElementById('btn-dic-hide-video');
+            if (overlay.classList.contains('d-none')) {
+                overlay.classList.remove('d-none');
+                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility</span> Hiện video';
+                btn.classList.add('spk-btn--secondary');
+            } else {
+                overlay.classList.add('d-none');
+                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span> Ẩn video';
+                btn.classList.remove('spk-btn--secondary');
+            }
+        }
+
+        /* ── toggleTranscriptPanel: Collapsible trên mobile ── */
+        function toggleTranscriptPanel() {
+            const panel = document.getElementById('spk-transcript-panel');
+            const btn   = document.getElementById('btn-collapse-transcript');
+            const list  = document.getElementById('spk-transcript-list');
+            if (!panel) return;
+            const isCollapsed = panel.classList.toggle('spk-transcript-panel--collapsed');
+            if (btn) {
+                btn.querySelector('.material-symbols-outlined').textContent =
+                    isCollapsed ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+            }
+        }
+
+        /* ── updateTranscriptPanel: Sync active/done states ── */
+        function updateTranscriptPanel(activeIdx) {
+            const items  = document.querySelectorAll('.spk-transcript-item');
+            const sents  = window.SPK_SENTENCES || [];
+            let doneCount = 0;
+
+            items.forEach(function(item, idx) {
+                const isDone    = sents[idx] && sents[idx].isPracticed;
+                const isActive  = idx === activeIdx;
+
+                /* Active state */
+                item.classList.toggle('spk-transcript-item--active', isActive);
+
+                /* Icon update */
+                const iconWrap = item.querySelector('.spk-transcript-icon');
+                if (iconWrap) {
+                    if (isDone) {
+                        iconWrap.innerHTML = '<span class="material-symbols-outlined spk-transcript-check" style="font-variation-settings:\' FILL\' 1;">check_circle</span>';
+                        item.classList.add('spk-transcript-item--done');
+                        item.classList.remove('spk-transcript-item--pending');
+                    } else if (isActive) {
+                        iconWrap.innerHTML = '<span class="material-symbols-outlined spk-transcript-active-icon">play_circle</span>';
+                        item.classList.remove('spk-transcript-item--done', 'spk-transcript-item--pending');
+                    } else {
+                        iconWrap.innerHTML = '<span class="spk-transcript-num">' + (idx + 1) + '</span>';
+                        item.classList.remove('spk-transcript-item--done');
+                        item.classList.add('spk-transcript-item--pending');
+                    }
+                }
+
+                if (isDone) doneCount++;
+            });
+
+            /* Update count badge */
+            const badge = document.getElementById('spk-transcript-count');
+            if (badge) badge.textContent = doneCount + ' / ' + sents.length;
+
+            /* Auto-scroll active item into view */
+            const activeItem = document.querySelector('.spk-transcript-item--active');
+            if (activeItem) {
+                activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        }
+
+        /* Hook into speaking.js: intercept selectSentence to update transcript panel */
+        (function() {
+            var _origSelect = window.selectSentence;
+            window.selectSentence = function(idx) {
+                if (typeof _origSelect === 'function') _origSelect(idx);
+                /* Delay slightly so SPK_SENTENCES.isPracticed may have updated */
+                setTimeout(function() { updateTranscriptPanel(idx); }, 50);
+            };
+
+            /* Initial sync after speaking.js loads */
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function() {
+                    var idx = (typeof window.activeSentIdx !== 'undefined') ? window.activeSentIdx : 0;
+                    updateTranscriptPanel(idx);
+                }, 400);
+            });
+        })();
+
+        document.getElementById('dic-input').addEventListener('input', function (e) {
+            if (typeof window.renderDictationFeedback === 'function' && typeof window.activeSentIdx !== 'undefined' && window.activeSentIdx >= 0) {
+                const expectedText = window.SPK_SENTENCES[window.activeSentIdx].text;
+                window.renderDictationFeedback(e.target.value, expectedText);
+            }
+        });
     </script>
     <script src="~/js/speaking.js" asp-append-version="true"></script>
 }

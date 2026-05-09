@@ -8,8 +8,8 @@
 
     var activeSentence = Model.Sentences.FirstOrDefault(sentence => sentence.Id == Model.ResumeSentenceId)
         ?? Model.Sentences.FirstOrDefault();
-    var hintEndpoint     = Url.Action("WritingHint",              "Study") ?? string.Empty;
-    var evaluateEndpoint = Url.Action("EvaluateWritingSentence",  "Study") ?? string.Empty;
+    var hintEndpoint     = Url.Action("WritingHint",             "Study") ?? string.Empty;
+    var evaluateEndpoint = Url.Action("EvaluateWritingSentence", "Study") ?? string.Empty;
     var initialProgressPercent = Model.TotalSentenceCount == 0
         ? 0
         : Math.Round(Model.CompletedSentenceCount / (double)Model.TotalSentenceCount * 100, 2);
@@ -62,288 +62,293 @@
 
         @Html.AntiForgeryToken()
 
-        <div class="writing-practice-header">
-            <a id="backToExercisesLink"
-               asp-controller="Study"
-               asp-action="WritingExercises"
-               asp-route-level="@Model.SelectedLevelKey"
-               asp-route-contentType="@Model.SelectedContentTypeKey"
-               asp-route-topic="@Model.SelectedTopic"
-               asp-route-status="@Model.SelectedStatus"
-               asp-route-page="@Model.SelectedPage"
-               class="btn-close-writing"
-               aria-label="Quay lại danh sách bài tập">
-                <i class="fas fa-arrow-left"></i>
-            </a>
+        @* ── Top Bar ──────────────────────────────────────────── *@
+        <div class="writing-top-bar">
+            <div class="writing-breadcrumb">
+                <a id="backToExercisesLink"
+                   asp-controller="Study"
+                   asp-action="WritingExercises"
+                   asp-route-level="@Model.SelectedLevelKey"
+                   asp-route-contentType="@Model.SelectedContentTypeKey"
+                   asp-route-topic="@Model.SelectedTopic"
+                   asp-route-status="@Model.SelectedStatus"
+                   asp-route-page="@Model.SelectedPage"
+                   aria-label="Quay lại danh sách bài tập">
+                    <i class="fas fa-arrow-left"></i> Danh sách
+                </a>
+                <span>/</span>
+                <span class="active">Thực hành</span>
+            </div>
 
-            <div class="writing-progress-card" role="region" aria-label="Tiến độ bài tập">
-                <div class="writing-progress-copy">
-                    <span class="writing-progress-label">Tiến độ</span>
-                    <strong id="progressText">@Model.CompletedSentenceCount/@Model.TotalSentenceCount câu đã xong</strong>
+            <div class="writing-stats">
+                <div class="stat-pill">
+                    <i class="fas fa-layer-group" aria-hidden="true"></i>
+                    @Model.SelectedLevelTitle
                 </div>
+                <div class="stat-pill">
+                    <i class="fas fa-flag-checkered" aria-hidden="true"></i>
+                    @Model.StatusLabel
+                </div>
+                <div class="stat-pill">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    @Model.AttemptCount lượt gửi
+                </div>
+                <div class="stat-pill">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span id="progressText">@Model.CompletedSentenceCount/@Model.TotalSentenceCount câu đã xong</span>
+                </div>
+                @* Hidden progress fill so JS doesn't break *@
                 <div class="progress-wrapper" aria-hidden="true">
                     <div class="progress-fill" id="progressFill" style="width: @initialProgressPercent%"></div>
                 </div>
             </div>
         </div>
 
-        <div class="writing-context" aria-label="Thông tin bài tập">
-            <span class="writing-context-chip">
-                <i class="fas fa-layer-group" aria-hidden="true"></i>
-                @Model.SelectedLevelTitle
-            </span>
-            <span class="writing-context-chip">
-                <i class="fas fa-pen-nib" aria-hidden="true"></i>
-                @Model.SelectedContentTypeTitle
-            </span>
-            <span class="writing-context-chip">
-                <i class="fas fa-tag" aria-hidden="true"></i>
-                @Model.ExerciseTopic
-            </span>
-            <span class="writing-context-chip writing-context-chip--status">
-                <i class="fas fa-flag-checkered" aria-hidden="true"></i>
-                @Model.StatusLabel
-            </span>
-            <span class="writing-context-chip">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                @Model.AttemptCount lượt gửi
-            </span>
-            @if (!string.IsNullOrWhiteSpace(Model.LastAttemptedAtDisplay))
-            {
-                <span class="writing-context-chip">
-                    <i class="fas fa-clock-rotate-left" aria-hidden="true"></i>
-                    @Model.LastAttemptedAtDisplay
-                </span>
-            }
-        </div>
+        @* ── Two-Column Grid ──────────────────────────────────── *@
+        <div class="writing-grid">
 
-        @if (Model.RecentAttempts.Any())
-        {
-            <div class="writing-history-strip" aria-label="Lịch sử gần đây">
-                <div class="writing-history-header">
-                    <span class="writing-history-title">Lần làm gần đây</span>
-                    <span class="writing-history-summary">@Model.CompletedSentenceCount/@Model.TotalSentenceCount câu đạt</span>
-                </div>
-                <div class="writing-history-list">
-                    @foreach (var attempt in Model.RecentAttempts)
-                    {
-                        <div class="writing-history-item">
-                            <span class="writing-history-item-label">Câu @attempt.SentenceNumber</span>
-                            <span class="writing-history-item-status @(attempt.Passed ? "is-success" : "is-warning")">@attempt.StatusLabel</span>
-                            <span class="writing-history-item-preview">@attempt.SubmittedAnswerPreview</span>
-                            <span class="writing-history-item-time">@attempt.TimestampDisplay</span>
+            @* ── Left Column: Prompt & Feedback ──────────────── *@
+            <div class="writing-col-left">
+
+                @* Recent Attempts *@
+                @if (Model.RecentAttempts.Any())
+                {
+                    <div class="w-card" aria-label="Lịch sử gần đây">
+                        <div class="w-card-header">
+                            <div class="w-card-icon"><i class="fas fa-history"></i></div>
+                            <h2 class="w-card-title">Lần làm gần đây</h2>
                         </div>
-                    }
+                        <div class="w-card-body">
+                            <div class="writing-history-list">
+                                @foreach (var attempt in Model.RecentAttempts)
+                                {
+                                    <div class="writing-history-item">
+                                        <div class="wh-item-top">
+                                            <span class="wh-item-label">Câu @attempt.SentenceNumber</span>
+                                            <span class="badge @(attempt.Passed ? "bg-success" : "bg-warning text-dark")">@attempt.StatusLabel</span>
+                                            <span class="wh-item-time">@attempt.TimestampDisplay</span>
+                                        </div>
+                                        <p class="wh-item-text">@attempt.SubmittedAnswerPreview</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @* Prompt Panel *@
+                <div class="w-card">
+                    <div class="w-card-header">
+                        <div class="w-card-icon"><i class="fas fa-book-open"></i></div>
+                        <h2 class="w-card-title">Đề bài</h2>
+                    </div>
+                    <div class="w-card-body">
+                        <div class="prompt-box">
+                            <h3>@Model.ExerciseTitle</h3>
+                            <p>@Model.ExercisePreviewText</p>
+                        </div>
+
+                        <div class="writing-email-body" id="emailBody" role="region" aria-label="Toàn văn bài tập">
+                            @for (var index = 0; index < Model.Sentences.Count; index++)
+                            {
+                                var sentence = Model.Sentences[index];
+                                var isParagraphStart = index == 0 || Model.Sentences[index - 1].BreakAfter;
+                                var isParagraphEnd   = sentence.BreakAfter || index == Model.Sentences.Count - 1;
+                                var hasPendingRevision = sentence.HasAccepted
+                                    && !string.IsNullOrWhiteSpace(sentence.LastSubmittedAnswer)
+                                    && !string.Equals(sentence.LastSubmittedAnswer, sentence.AcceptedAnswer, StringComparison.Ordinal);
+                                var sentenceClass = "writing-inline-sentence";
+
+                                if (sentence.Id == activeSentence?.Id) { sentenceClass += " is-active"; }
+                                if (hasPendingRevision) { sentenceClass += " is-editing"; }
+                                else if (sentence.HasAccepted) { sentenceClass += " is-completed"; }
+                                else if (sentence.LastEvaluationPassed == false) { sentenceClass += " is-retry"; }
+
+                                var displayText = sentence.HasAccepted ? sentence.AcceptedAnswer : sentence.VietnameseText;
+
+                                if (isParagraphStart) { @Html.Raw("<p class=\"writing-text-paragraph\">") }
+
+                                <button class="@sentenceClass"
+                                        type="button"
+                                        data-sentence-item
+                                        data-sentence-id="@sentence.Id"
+                                        data-sentence-number="@sentence.Number"
+                                        aria-label="Câu @sentence.Number">
+                                    <span data-sentence-id="@sentence.Id" data-sentence-text>@displayText</span>
+                                </button>
+
+                                if (!isParagraphEnd) { <text> </text> }
+                                if (isParagraphEnd) { @Html.Raw("</p>") }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* AI Feedback Panel *@
+                <div class="w-card" id="feedbackCard" role="region" aria-label="Khu vực phản hồi">
+                    <div class="w-card-header">
+                        <div class="w-card-icon" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h2 class="w-card-title">Gợi ý AI &amp; Đánh giá</h2>
+                    </div>
+
+                    <div class="writing-feedback-banner is-info" id="feedbackBanner" aria-live="polite">
+                        <div class="writing-feedback-banner-icon">
+                            <i class="fas fa-circle-info" id="feedbackIcon" aria-hidden="true"></i>
+                        </div>
+                        <div class="writing-feedback-banner-copy">
+                            <h3 id="feedbackTitle">Đang chờ câu hiện tại</h3>
+                            <p id="feedbackText">Hãy dịch câu đang chọn rồi nhấn Gửi bài để nhận phản hồi.</p>
+                        </div>
+                    </div>
+
+                    <div class="w-card-body" style="padding-top:0;">
+                        <p class="feedback-source-note" id="feedbackSourceNote" hidden></p>
+
+                        <div id="sessionExpiredPrompt" hidden class="mb-3">
+                            <button class="btn-action btn-secondary" id="btnReload" type="button">
+                                <i class="fas fa-rotate-right" aria-hidden="true"></i> Tải lại trang để đăng nhập lại
+                            </button>
+                        </div>
+
+                        <div class="writing-feedback-section" id="feedbackSentenceSection">
+                            <span class="writing-feedback-section-label">
+                                <i class="fas fa-language" aria-hidden="true"></i> Câu đang chấm
+                            </span>
+                            <p class="writing-feedback-section-text text-muted mb-1" id="feedbackSentenceMeta">
+                                @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
+                            </p>
+                            <p class="writing-feedback-section-text fw-bold" id="feedbackSourceText">
+                                @(activeSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
+                            </p>
+                        </div>
+
+                        <div class="writing-feedback-section">
+                            <span class="writing-feedback-section-label">
+                                <i class="fas fa-feather-pointed" aria-hidden="true"></i> Câu tiếng Anh của bạn
+                            </span>
+                            <p class="writing-feedback-section-text" id="feedbackSubmissionText">
+                                @(string.IsNullOrWhiteSpace(activeSentence?.LastSubmittedAnswer)
+                                    ? "Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây."
+                                    : activeSentence.LastSubmittedAnswer)
+                            </p>
+                        </div>
+
+                        <div class="writing-feedback-section">
+                            <span class="writing-feedback-section-label">
+                                <i class="fas fa-list-check" aria-hidden="true"></i> Chi tiết đánh giá
+                            </span>
+                            <p class="writing-feedback-section-text" id="feedbackReviewText">
+                                Hãy gửi câu đang chọn để nhận phản hồi chi tiết tại đây.
+                            </p>
+                        </div>
+
+                        <div class="writing-feedback-section">
+                            <span class="writing-feedback-section-label">
+                                <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Câu gợi ý chỉnh lại
+                            </span>
+                            <p class="writing-feedback-section-text" id="feedbackReferenceText">
+                                Câu gợi ý chỉnh lại sẽ xuất hiện tại đây nếu câu của bạn cần sửa.
+                            </p>
+                        </div>
+
+                        <div class="writing-feedback-section">
+                            <span class="writing-feedback-section-label">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i> Gợi ý
+                            </span>
+                            <p class="writing-feedback-section-text" id="feedbackHintText">
+                                Nhấn nút Gợi ý để hiện bản dịch tiếng Anh của câu đang chọn.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            @* ── Right Column: Editor ─────────────────────────── *@
+            <div class="writing-col-right">
+                <div class="w-card editor-card">
+
+                    @* Editor Toolbar *@
+                    <div class="editor-header">
+                        <div class="editor-toolbar">
+                            <button type="button" class="editor-toolbar-btn" title="In đậm">
+                                <i class="fas fa-bold" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="editor-toolbar-btn" title="In nghiêng">
+                                <i class="fas fa-italic" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="editor-toolbar-btn" title="Gạch chân">
+                                <i class="fas fa-underline" aria-hidden="true"></i>
+                            </button>
+                            <div class="editor-toolbar-divider"></div>
+                            <button type="button" class="editor-toolbar-btn" title="Danh sách">
+                                <i class="fas fa-list-ul" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="editor-toolbar-btn" title="Danh sách số">
+                                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="editor-toolbar-right">
+                            <h2 id="selectedSentenceCounter">
+                                @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
+                            </h2>
+                            <div class="draft-indicator" id="draftIndicator" aria-live="polite">
+                                <i class="fas fa-check" aria-hidden="true"></i> Đã lưu nháp
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Source sentence display *@
+                    <div class="editor-source">
+                        <p id="selectedSentenceText" aria-live="polite" style="margin:0;">
+                            @(activeSentence?.VietnameseText ?? "Chọn một câu bên trên để bắt đầu.")
+                        </p>
+                    </div>
+
+                    @* Textarea *@
+                    <div class="editor-textarea-wrap">
+                        <textarea class="writing-input"
+                                  id="answerInput"
+                                  placeholder="@(activeSentence?.Placeholder ?? "Chọn câu rồi bắt đầu nhập...")"
+                                  autocomplete="off"
+                                  spellcheck="false"
+                                  aria-describedby="selectionNote">@(activeSentence?.LastSubmittedAnswer ?? string.Empty)</textarea>
+                    </div>
+
+                    @* Editor Footer *@
+                    <div class="editor-footer">
+                        <p class="selection-note" id="selectionNote" aria-live="polite">
+                            Chỉ có câu đang chọn mới có thể chỉnh sửa. Nhấn <kbd>Ctrl+Enter</kbd> để gửi nhanh.
+                        </p>
+
+                        <div class="editor-actions">
+                            <div class="nav-actions">
+                                <button class="btn-action btn-secondary" id="btnPrevious" type="button" aria-label="Câu trước">
+                                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Trước
+                                </button>
+                                <button class="btn-action btn-secondary" id="btnNext" type="button" aria-label="Câu tiếp theo">
+                                    Sau <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <div class="primary-actions">
+                                <button class="btn-action btn-hint" id="btnHint" type="button" aria-label="Xem gợi ý cho câu hiện tại">
+                                    <i class="fas fa-lightbulb" aria-hidden="true"></i> Gợi ý
+                                </button>
+                                <button class="btn-action btn-submit" id="btnSubmit" type="button" aria-label="Gửi câu để hệ thống chấm">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    <span id="btnSubmitText">Gửi bài</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        }
 
-        <div class="writing-exercise-card">
-            <div class="prompt-label">Đoạn gốc</div>
-            <h1 class="writing-exercise-title">@Model.ExerciseTitle</h1>
-            <p class="writing-exercise-summary">@Model.ExercisePreviewText</p>
-
-            <div class="writing-reading-strip">
-                <div class="writing-reading-label">
-                    <i class="fas fa-book-open" aria-hidden="true"></i>
-                    Toàn văn - nhấn vào câu để chọn
-                </div>
-
-                <div class="writing-email-body" id="emailBody" role="region" aria-label="Toàn văn bài tập">
-                    @for (var index = 0; index < Model.Sentences.Count; index++)
-                    {
-                        var sentence = Model.Sentences[index];
-                        var isParagraphStart = index == 0 || Model.Sentences[index - 1].BreakAfter;
-                        var isParagraphEnd = sentence.BreakAfter || index == Model.Sentences.Count - 1;
-                        var hasPendingRevision = sentence.HasAccepted
-                            && !string.IsNullOrWhiteSpace(sentence.LastSubmittedAnswer)
-                            && !string.Equals(sentence.LastSubmittedAnswer, sentence.AcceptedAnswer, StringComparison.Ordinal);
-                        var sentenceClass = "writing-inline-sentence";
-
-                        if (sentence.Id == activeSentence?.Id)
-                        {
-                            sentenceClass += " is-active";
-                        }
-
-                        if (hasPendingRevision)
-                        {
-                            sentenceClass += " is-editing";
-                        }
-                        else if (sentence.HasAccepted)
-                        {
-                            sentenceClass += " is-completed";
-                        }
-                        else if (sentence.LastEvaluationPassed == false)
-                        {
-                            sentenceClass += " is-retry";
-                        }
-
-                        var displayText = sentence.HasAccepted ? sentence.AcceptedAnswer : sentence.VietnameseText;
-
-                        if (isParagraphStart)
-                        {
-                            @:<p class="writing-text-paragraph">
-                        }
-
-                        <button class="@sentenceClass"
-                                type="button"
-                                data-sentence-item
-                                data-sentence-id="@sentence.Id"
-                                data-sentence-number="@sentence.Number"
-                                aria-label="Câu @sentence.Number">
-                            <span class="writing-email-text"
-                                  data-sentence-id="@sentence.Id"
-                                  data-sentence-text>@displayText</span>
-                        </button>
-
-                        if (!isParagraphEnd)
-                        {
-                            <text> </text>
-                        }
-
-                        if (isParagraphEnd)
-                        {
-                            @:</p>
-                        }
-                    }
-                </div>
-            </div>
         </div>
-
-        <div class="writing-compose-card">
-            <div class="writing-sentence-header">
-                <h2 class="writing-selected-counter" id="selectedSentenceCounter">
-                    @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
-                </h2>
-                <span class="writing-compose-badge">Gửi từng câu một</span>
-            </div>
-
-            <div class="writing-selected-text" id="selectedSentenceText" aria-live="polite">
-                @(activeSentence?.VietnameseText ?? "Chọn một câu bên trên để bắt đầu.")
-            </div>
-
-            <div>
-                <label class="writing-input-label" for="answerInput">Câu tiếng Anh của bạn</label>
-                <textarea class="writing-input"
-                          id="answerInput"
-                          placeholder="@(activeSentence?.Placeholder ?? "Chọn câu rồi bắt đầu nhập...")"
-                          autocomplete="off"
-                          spellcheck="false"
-                          aria-describedby="selectionNote">@(activeSentence?.LastSubmittedAnswer ?? string.Empty)</textarea>
-
-                <div class="writing-draft-indicator" id="draftIndicator" aria-live="polite">
-                    <i class="fas fa-floppy-disk" aria-hidden="true"></i>
-                    Bản nháp đã lưu
-                </div>
-            </div>
-
-            <p class="writing-selection-note" id="selectionNote" aria-live="polite">
-                Chỉ có câu đang chọn mới có thể chỉnh sửa. Nhấn <kbd>Ctrl+Enter</kbd> để gửi nhanh.
-            </p>
-
-            <div class="writing-editor-actions">
-                <div class="writing-nav-actions">
-                    <button class="btn-action btn-secondary" id="btnPrevious" type="button"
-                            aria-label="Câu trước">
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i> Trước
-                    </button>
-                    <button class="btn-action btn-secondary" id="btnNext" type="button"
-                            aria-label="Câu tiếp theo">
-                        Sau <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-                <div class="writing-primary-actions">
-                    <button class="btn-action btn-hint" id="btnHint" type="button"
-                            aria-label="Xem gợi ý cho câu hiện tại">
-                        <i class="fas fa-lightbulb" aria-hidden="true"></i> Gợi ý
-                    </button>
-                    <button class="btn-action btn-submit" id="btnSubmit" type="button"
-                            aria-label="Gửi câu để hệ thống chấm">
-                        <span id="btnSubmitText">Gửi bài</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="writing-feedback-card" id="feedbackCard" role="region" aria-label="Khu vực phản hồi">
-            <div class="writing-feedback-banner is-info" id="feedbackBanner" aria-live="polite">
-                <div class="writing-feedback-banner-icon">
-                    <i class="fas fa-circle-info" id="feedbackIcon" aria-hidden="true"></i>
-                </div>
-                <div class="writing-feedback-banner-copy">
-                    <h3 id="feedbackTitle">Đang chờ câu hiện tại</h3>
-                    <p id="feedbackText">Hãy dịch câu đang chọn rồi nhấn Gửi bài để nhận phản hồi.</p>
-                </div>
-            </div>
-
-            <div class="writing-feedback-body">
-                <p class="writing-feedback-source-note" id="feedbackSourceNote" hidden></p>
-
-                <div id="sessionExpiredPrompt" hidden>
-                    <button class="writing-reload-link" id="btnReload" type="button">
-                        <i class="fas fa-rotate-right" aria-hidden="true"></i>
-                        Tải lại trang để đăng nhập lại
-                    </button>
-                </div>
-
-                <div class="writing-feedback-section" id="feedbackSentenceSection">
-                    <span class="writing-feedback-section-label">
-                        <i class="fas fa-language" aria-hidden="true"></i>
-                        Câu đang chấm
-                    </span>
-                    <p class="writing-feedback-section-meta" id="feedbackSentenceMeta">
-                        @(activeSentence == null ? "Chưa chọn câu" : $"Câu {activeSentence.Number} / {Model.TotalSentenceCount}")
-                    </p>
-                    <p class="writing-feedback-section-text" id="feedbackSourceText">
-                        @(activeSentence?.VietnameseText ?? "Chọn một câu để bắt đầu.")
-                    </p>
-                </div>
-
-                <div class="writing-feedback-section">
-                    <span class="writing-feedback-section-label">
-                        <i class="fas fa-feather-pointed" aria-hidden="true"></i>
-                        Câu tiếng Anh của bạn
-                    </span>
-                    <p class="writing-feedback-section-text" id="feedbackSubmissionText">
-                        @(string.IsNullOrWhiteSpace(activeSentence?.LastSubmittedAnswer)
-                            ? "Hãy gửi câu đang chọn để hiện câu tiếng Anh tại đây."
-                            : activeSentence.LastSubmittedAnswer)
-                    </p>
-                </div>
-
-                <div class="writing-feedback-section">
-                    <span class="writing-feedback-section-label">
-                        <i class="fas fa-list-check" aria-hidden="true"></i>
-                        Chi tiết đánh giá
-                    </span>
-                    <p class="writing-feedback-section-text" id="feedbackReviewText">
-                        Hãy gửi câu đang chọn để nhận phản hồi chi tiết tại đây.
-                    </p>
-                </div>
-
-                <div class="writing-feedback-section">
-                    <span class="writing-feedback-section-label">
-                        <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        Câu gợi ý chỉnh lại
-                    </span>
-                    <p class="writing-feedback-section-text" id="feedbackReferenceText">
-                        Câu gợi ý chỉnh lại sẽ xuất hiện tại đây nếu câu của bạn cần sửa.
-                    </p>
-                </div>
-
-                <div class="writing-feedback-section">
-                    <span class="writing-feedback-section-label">
-                        <i class="fas fa-lightbulb" aria-hidden="true"></i>
-                        Gợi ý
-                    </span>
-                    <p class="writing-feedback-section-text" id="feedbackHintText">
-                        Nhấn nút Gợi ý để hiện bản dịch tiếng Anh của câu đang chọn.
-                    </p>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

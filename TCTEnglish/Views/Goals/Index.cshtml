@@ -1,20 +1,20 @@
 @model TCTEnglish.ViewModels.GoalsViewModel
 @using TCTEnglish.ViewModels
 @{
-    ViewData["Title"] = "Mục tiêu học tập";
+    ViewData["Title"] = "Mục tiêu & Tiến độ";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/goals.css" asp-append-version="true" />
 }
 
-<div class="container-fluid goals-container">
+<div class="goals-page">
     @if (TempData["SuccessMessage"] is string successMessage)
     {
         <div class="goals-toast-region" aria-live="polite" aria-atomic="true">
             <div class="goals-feedback-toast" id="goalUpdateToast" role="status">
                 <div class="goals-feedback-toast__icon" aria-hidden="true">
-                    <i class="fas fa-check"></i>
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                 </div>
                 <div class="goals-feedback-toast__content">
                     <p class="goals-feedback-toast__title mb-1" data-testid="goal-toast-title">Đã lưu mục tiêu ngày</p>
@@ -25,251 +25,396 @@
         </div>
     }
 
-    <div class="row align-items-center g-3 mb-5 mt-2">
-        <div class="col-12 col-lg-6">
-            <h2 class="section-title fw-bold m-0">Mục tiêu của tôi</h2>
+    <!-- Header Section -->
+    <div class="goals-header">
+        <div>
+            <h1 class="font-display-md text-on-surface mb-1">Mục tiêu &amp; Tiến độ</h1>
+            <p class="text-body-md text-on-surface-variant m-0">Chào mừng bạn trở lại! Hãy cùng duy trì thói quen học tập hôm nay.</p>
         </div>
-        <div class="col-12 col-lg-6 text-lg-end">
-            <button type="button"
-                    class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm btn-edit-goals"
-                    data-testid="goal-header-cta"
-                    data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")"
-                    data-bs-toggle="modal"
-                    data-bs-target="#goalEditorModal">
-                <i class="fas fa-pencil-alt me-2"></i>@Model.GoalHeaderActionText
-            </button>
-        </div>
+        <button type="button"
+                class="btn-stitch-primary goals-header-btn d-flex align-items-center justify-content-center gap-2 btn-edit-goals"
+                data-testid="goal-header-cta"
+                data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")"
+                data-bs-toggle="modal"
+                data-bs-target="#goalEditorModal">
+            <span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+            <span>@Model.GoalHeaderActionText</span>
+        </button>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-md-6 mb-3 mb-md-0">
-            <div class="card h-100 shadow-sm border-0 goal-card">
-                <div class="card-body d-flex align-items-center">
-                    <div class="fire-icon-wrapper me-4">
-                        <i class="fas fa-fire fire-icon"></i>
-                    </div>
-                    <div>
-                        <h1 class="display-4 fw-bold mb-0">@Model.CurrentStreak ngày</h1>
-                        <p class="text-muted mb-1">@Model.StreakMessage</p>
-                        <p class="streak-meta mb-0">Kỷ lục tốt nhất: <strong>@Model.LongestStreak ngày</strong></p>
-                    </div>
+    <!-- Row 1: Streak + Daily Goal (Bento) -->
+    <div class="row g-4 mb-4">
+        <!-- Streak Card -->
+        <div class="col-md-4">
+            <div class="goals-card goals-streak-card h-100 position-relative overflow-hidden">
+                <!-- Background icon -->
+                <div class="goals-streak-bg-icon" aria-hidden="true">
+                    <span class="material-symbols-outlined" style="font-size: 120px; font-variation-settings: 'FILL' 1;">trending_up</span>
                 </div>
-            </div>
-        </div>
+                <div class="position-relative" style="z-index: 1;">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="goals-label-tag">Chuỗi học tập</span>
+                        <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1; font-size: 24px;">local_fire_department</span>
+                    </div>
+                    <div class="font-display-md text-primary mb-2">@Model.CurrentStreak ngày</div>
+                    <p class="text-body-md text-on-surface-variant mb-3">@Model.StreakMessage</p>
+                    <p class="font-label-sm text-outline mb-0">Kỷ lục tốt nhất: <span class="fw-bold">@Model.LongestStreak ngày</span></p>
 
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 goal-card">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold mb-3">Mục tiêu theo kỹ năng</h5>
-                    @if (Model.HasDeferredGoalAreas)
+                    <!-- 7-day mini streak bar -->
+                    @if (Model.HasWeeklyActivity)
                     {
-                        <div class="alert alert-warning py-2 px-3 small" role="status">
-                            @(string.Join(", ", Model.DeferredGoalAreaLabels)) hiện đang tạm hoãn vì chưa có tín hiệu hoàn thành đáng tin cậy trên server.
-                        </div>
-                    }
-                    @if (Model.HasGoalCards)
-                    {
-                        <div class="d-flex flex-column gap-3">
-                            @foreach (var goal in Model.GoalCards)
+                        <div class="goals-mini-streak mt-4">
+                            @foreach (var day in Model.WeeklyActivity)
                             {
-                                <div class="border rounded-3 p-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <strong>@goal.AreaLabel</strong>
-                                        <span class="text-muted small">@goal.TargetLabel</span>
-                                    </div>
-                                    <div class="progress mb-2" role="progressbar" aria-valuenow="@goal.ProgressPercent" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar" style="width: @goal.ProgressPercent%;">@goal.ProgressPercent%</div>
-                                    </div>
-                                    <p class="mb-0 text-muted small">@goal.ProgressLabel</p>
+                                var isActive = day.ActivityCount > 0;
+                                var dayBarClass = day.IsToday ? "goals-mini-bar--today" : (isActive ? "goals-mini-bar--active" : "goals-mini-bar--empty");
+                                var dayTextClass = day.IsToday ? "text-primary fw-bold" : "text-outline";
+                                <div class="goals-mini-bar-col">
+                                    <span class="goals-mini-label @dayTextClass">@day.DayLabel</span>
+                                    <div class="goals-mini-bar @dayBarClass"></div>
                                 </div>
                             }
                         </div>
                     }
-                    else
-                    {
-                        <p class="mb-3">Bạn chưa có mục tiêu nào theo kỹ năng.</p>
-                        <button type="button"
-                                class="btn btn-outline-primary rounded-pill px-4 progress-empty-action"
-                                data-testid="goal-empty-state-cta"
-                                data-goal-mode="create"
-                                data-bs-toggle="modal"
-                                data-bs-target="#goalEditorModal">
-                            @Model.GoalEmptyStateActionText
-                        </button>
-                    }
                 </div>
+            </div>
+        </div>
+
+        <!-- Daily Goal Card -->
+        <div class="col-md-8">
+            <div class="goals-card h-100">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                    <div>
+                        <h3 class="font-headline-md text-on-surface mb-1">Mục tiêu hàng ngày</h3>
+                        @if (Model.HasDeferredGoalAreas)
+                        {
+                            <div class="alert alert-warning py-2 px-3 small mb-0 mt-2" role="status">
+                                @(string.Join(", ", Model.DeferredGoalAreaLabels)) hiện đang tạm hoãn vì chưa có tín hiệu hoàn thành đáng tin cậy trên server.
+                            </div>
+                        }
+                    </div>
+                    <div class="goals-bolt-icon">
+                        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                </div>
+
+                @if (Model.HasGoalCards)
+                {
+                    <p class="text-body-md text-on-surface-variant mb-4">Bạn đã hoàn thành @Model.ProgressPercent% mục tiêu ngày hôm nay. Cố gắng lên!</p>
+                    <div class="d-flex flex-column flex-md-row gap-4 align-items-md-center">
+                        <div class="flex-grow-1 d-flex flex-column gap-3">
+                            @foreach (var goal in Model.GoalCards)
+                            {
+                                <div>
+                                    <div class="d-flex justify-content-between font-label-md mb-2">
+                                        <span class="fw-bold">@goal.AreaLabel</span>
+                                        <span class="text-primary fw-bold">@goal.TodayProgressValue/@goal.TargetValue @goal.UnitLabel</span>
+                                    </div>
+                                    <div class="goals-progress-track" role="progressbar" aria-valuenow="@goal.ProgressPercent" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="goals-progress-fill" style="width: @goal.ProgressPercent%"></div>
+                                    </div>
+                                    <p class="mb-0 mt-1 text-outline font-label-sm fw-normal">@goal.ProgressLabel</p>
+                                </div>
+                            }
+                        </div>
+                        <!-- Circular Progress -->
+                        <div class="goals-circle-progress-wrap flex-shrink-0 mx-auto mx-md-0">
+                            <div class="position-relative d-flex align-items-center justify-content-center" style="width: 96px; height: 96px;">
+                                <svg class="w-100 h-100" style="transform: rotate(-90deg); width:96px; height:96px;">
+                                    <circle class="text-surface-container-high" cx="48" cy="48" fill="none" r="40" stroke="currentColor" stroke-width="8"></circle>
+                                    <circle class="text-primary" cx="48" cy="48" fill="none" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="@(251.2 - (251.2 * Model.ProgressPercent / 100.0))" stroke-width="8" style="transition: stroke-dashoffset 1s ease-out;"></circle>
+                                </svg>
+                                <span class="position-absolute font-headline-lg text-primary">@Model.ProgressPercent%</span>
+                            </div>
+                            <span class="font-label-sm fw-bold text-on-surface text-center d-block mt-2">Tổng tiến độ</span>
+                        </div>
+                    </div>
+
+                    <!-- Weekly day dots -->
+                    @if (Model.HasWeeklyActivity)
+                    {
+                        <div class="goals-day-dots mt-4">
+                            @foreach (var day in Model.WeeklyActivity)
+                            {
+                                var isActive = day.ActivityCount > 0;
+                                if (day.IsToday)
+                                {
+                                    <div class="goals-day-dot goals-day-dot--today">
+                                        <span class="goals-day-dot__label text-primary fw-bold">@day.DayLabel</span>
+                                        <div class="goals-day-dot__dot bg-primary rounded-circle" style="width:8px;height:8px;"></div>
+                                    </div>
+                                }
+                                else if (isActive)
+                                {
+                                    <div class="goals-day-dot goals-day-dot--done">
+                                        <span class="goals-day-dot__label text-on-surface-variant">@day.DayLabel</span>
+                                        <span class="material-symbols-outlined text-success" style="font-size:18px; color:#22c55e;">check_circle</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="goals-day-dot goals-day-dot--empty">
+                                        <span class="goals-day-dot__label text-on-surface-variant">@day.DayLabel</span>
+                                        <div class="goals-day-dot__dot bg-outline-variant rounded-circle" style="width:8px;height:8px;"></div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-body-md text-on-surface-variant mb-3">Bạn chưa có mục tiêu nào theo kỹ năng.</p>
+                    <button type="button"
+                            class="btn-stitch-outline-primary progress-empty-action"
+                            data-testid="goal-empty-state-cta"
+                            data-goal-mode="create"
+                            data-bs-toggle="modal"
+                            data-bs-target="#goalEditorModal">
+                        @Model.GoalEmptyStateActionText
+                    </button>
+                }
             </div>
         </div>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card shadow-sm border-0 goal-card">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold mb-2">Hoạt động 7 ngày gần nhất</h5>
-                    <p class="chart-caption mb-4">@Model.WeeklyActivityMessage</p>
+    <!-- Row 2: Skill Progress Cards -->
+    <section class="mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h2 class="font-headline-md text-on-surface m-0">Tiến độ kỹ năng</h2>
+        </div>
+        <div class="row g-3">
+            <!-- Vocabulary Skill -->
+            <div class="col-12 col-sm-4">
+                <a asp-controller="Vocabulary" asp-action="Index" class="goals-skill-card d-flex align-items-center gap-3 text-decoration-none">
+                    <div class="goals-skill-icon goals-skill-icon--vocab">
+                        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">translate</span>
+                    </div>
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="d-flex justify-content-between align-items-end mb-1">
+                            <h4 class="font-label-md fw-bold text-on-surface mb-0">Từ vựng</h4>
+                            <span class="font-label-sm text-on-surface-variant">Flashcard</span>
+                        </div>
+                        <div class="goals-skill-track">
+                            <div class="goals-skill-fill goals-skill-fill--vocab" style="width: @(Model.HasGoalCards ? Math.Min(Model.GoalCards.FirstOrDefault(g => g.AreaLabel.Contains("vựng") || g.AreaLabel.Contains("Vocab", StringComparison.OrdinalIgnoreCase))?.ProgressPercent ?? 0, 100) : 0)%"></div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant goals-skill-arrow">arrow_forward_ios</span>
+                </a>
+            </div>
+            <!-- Speaking Skill -->
+            <div class="col-12 col-sm-4">
+                <a asp-controller="Speaking" asp-action="Index" class="goals-skill-card d-flex align-items-center gap-3 text-decoration-none">
+                    <div class="goals-skill-icon goals-skill-icon--speaking">
+                        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">record_voice_over</span>
+                    </div>
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="d-flex justify-content-between align-items-end mb-1">
+                            <h4 class="font-label-md fw-bold text-on-surface mb-0">Luyện nói</h4>
+                            <span class="font-label-sm text-on-surface-variant">Speaking</span>
+                        </div>
+                        <div class="goals-skill-track">
+                            <div class="goals-skill-fill goals-skill-fill--speaking" style="width: @(Model.HasGoalCards ? Math.Min(Model.GoalCards.FirstOrDefault(g => g.AreaLabel.Contains("nói") || g.AreaLabel.Contains("Speaking", StringComparison.OrdinalIgnoreCase))?.ProgressPercent ?? 0, 100) : 0)%"></div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant goals-skill-arrow">arrow_forward_ios</span>
+                </a>
+            </div>
+            <!-- Writing Skill -->
+            <div class="col-12 col-sm-4">
+                <a asp-controller="Home" asp-action="Writing" class="goals-skill-card d-flex align-items-center gap-3 text-decoration-none">
+                    <div class="goals-skill-icon goals-skill-icon--writing">
+                        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">edit_note</span>
+                    </div>
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="d-flex justify-content-between align-items-end mb-1">
+                            <h4 class="font-label-md fw-bold text-on-surface mb-0">Kỹ năng viết</h4>
+                            <span class="font-label-sm text-on-surface-variant">Writing</span>
+                        </div>
+                        <div class="goals-skill-track">
+                            <div class="goals-skill-fill goals-skill-fill--writing" style="width: @(Model.HasGoalCards ? Math.Min(Model.GoalCards.FirstOrDefault(g => g.AreaLabel.Contains("viết") || g.AreaLabel.Contains("Writ", StringComparison.OrdinalIgnoreCase))?.ProgressPercent ?? 0, 100) : 0)%"></div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant goals-skill-arrow">arrow_forward_ios</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                    @if (Model.HasWeeklyActivity)
-                    {
-                        <div class="chart-container" role="list" aria-label="Biểu đồ hoạt động 7 ngày">
-                            @for (var dayIndex = 0; dayIndex < Model.WeeklyActivity.Count; dayIndex++)
-                            {
-                                var day = Model.WeeklyActivity[dayIndex];
-                                var chartBarClass = day.IsToday ? "chart-bar active" : "chart-bar";
-                                if (day.ActivityCount > 0)
+    <!-- Row 3: Weekly Activity Chart (col-8) + Badges compact (col-4) -->
+    <div class="row g-4">
+        <!-- Weekly Activity Chart -->
+        <div class="col-lg-8">
+            <div class="goals-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3 class="font-headline-md m-0">Hoạt động hàng tuần</h3>
+                </div>
+                <p class="text-body-md text-on-surface-variant mb-4">@Model.WeeklyActivityMessage</p>
+
+                @if (Model.HasWeeklyActivity)
+                {
+                    <div class="goals-chart-area" role="list" aria-label="Biểu đồ hoạt động 7 ngày">
+                        @for (var dayIndex = 0; dayIndex < Model.WeeklyActivity.Count; dayIndex++)
+                        {
+                            var day = Model.WeeklyActivity[dayIndex];
+                            var chartBarClass = day.IsToday ? "goals-chart-bar--today" : (day.ActivityCount > 0 ? "goals-chart-bar--active" : "goals-chart-bar--empty");
+                            var textClass = day.IsToday ? "text-primary fw-bold" : "text-outline";
+                            var tooltipText = $"{day.FullLabel}: {day.ActivityCount} thẻ đã ôn";
+                            var tooltipId = $"goals-chart-tooltip-{dayIndex}";
+
+                            <div class="goals-chart-col chart-column"
+                                 tabindex="0"
+                                 role="listitem"
+                                 aria-label="@tooltipText"
+                                 aria-describedby="@tooltipId">
+                                <span id="@tooltipId" class="visually-hidden">@tooltipText</span>
+                                @if (day.ActivityCount > 0)
                                 {
-                                    chartBarClass += " has-activity";
+                                    <span class="font-label-sm text-on-surface mb-1">@day.ActivityCount</span>
                                 }
-
-                                var tooltipText = $"{day.FullLabel}: {day.ActivityCount} thẻ đã ôn";
-                                var tooltipId = $"goals-chart-tooltip-{dayIndex}";
-
-                                <div class="@chartBarClass"
-                                     style="--height: @day.HeightPercent%;"
-                                     data-day="@day.DayLabel"
-                                     data-tooltip="@tooltipText"
-                                     tabindex="0"
-                                     role="listitem"
-                                     aria-label="@tooltipText"
-                                     aria-describedby="@tooltipId">
-                                    <span id="@tooltipId" class="visually-hidden">@tooltipText</span>
-                                    @if (day.ActivityCount > 0)
+                                <div class="goals-chart-bar @chartBarClass chart-bar-anim"
+                                     style="height: @day.HeightPercent%; min-height: @(day.ActivityCount > 0 ? "15%" : "5%");"
+                                     data-tooltip="@tooltipText">
+                                    @if (day.IsToday)
                                     {
-                                        <span class="chart-value">@day.ActivityCount</span>
+                                        <div class="goals-chart-bar-overlay"></div>
+                                    }
+                                </div>
+                                <span class="font-label-sm @textClass">@day.DayLabel</span>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5 chart-empty-state">
+                        <div class="goals-empty-icon mx-auto mb-3">
+                            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:32px;">bar_chart</span>
+                        </div>
+                        <p class="font-label-md fw-bold text-on-surface mb-1">Biểu đồ sẽ sáng dần khi bạn bắt đầu ôn thẻ</p>
+                        <p class="text-body-md text-on-surface-variant mb-4">@Model.WeeklyActivityMessage</p>
+                        <a asp-controller="Vocabulary" asp-action="Index" class="btn-stitch-primary px-4">
+                            Bắt đầu ôn thẻ
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Badges Compact Grid -->
+        <div class="col-lg-4">
+            <div class="goals-card h-100 d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="font-headline-md m-0">Huy hiệu</h3>
+                    <span class="goals-badge-count-tag">@Model.UnlockedBadgeCount / @Model.Badges.Count</span>
+                </div>
+
+                @if (Model.HasRecentlyUnlockedBadges)
+                {
+                    <div class="goals-new-badge-banner mb-3" role="status">
+                        <div class="goals-new-badge-icon">
+                            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        </div>
+                        <div>
+                            <p class="font-label-md fw-bold text-on-surface mb-0">Mở khóa mới hôm nay!</p>
+                            <p class="font-label-sm text-on-surface-variant mb-0">@Model.RecentlyUnlockedBadgeCount huy hiệu vừa được mở.</p>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.HasBadges)
+                {
+                    <div class="goals-badge-grid flex-grow-1">
+                        @foreach (var badge in Model.Badges)
+                        {
+                            if (badge.IsUnlocked)
+                            {
+                                var recentTag = badge.IsRecentlyUnlocked ? "<span class=\"goals-badge-recent-dot\" title=\"Mở khóa hôm nay\"></span>" : "";
+                                <div class="goals-badge-tile goals-badge-tile--unlocked" data-badge-code="@badge.Code" title="@badge.Name">
+                                    <div class="goals-badge-icon-wrap goals-badge-icon-wrap--unlocked">
+                                        <i class="@badge.IconClass" style="font-size: 16px;"></i>
+                                    </div>
+                                    <span class="goals-badge-name">@badge.Name</span>
+                                    @if (badge.IsRecentlyUnlocked)
+                                    {
+                                        <span class="goals-badge-recent-dot" title="Mở khóa hôm nay"></span>
                                     }
                                 </div>
                             }
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="chart-empty-state text-center py-4">
-                            <div class="badge-icon locked mb-3">
-                                <i class="fas fa-chart-column"></i>
-                            </div>
-                            <p class="mb-1 fw-semibold">Biểu đồ sẽ sáng dần khi bạn bắt đầu ôn thẻ</p>
-                            <p class="mb-3">@Model.WeeklyActivityMessage</p>
-                            <a asp-controller="Vocabulary" asp-action="Index" class="btn btn-outline-primary rounded-pill px-4">
-                                Bắt đầu ôn thẻ
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow-sm border-0 goal-card">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold mb-2">Huy hiệu</h5>
-                    @if (Model.HasRecentlyUnlockedBadges)
-                    {
-                        <div class="goals-insight-banner mb-4" role="status">
-                            <div class="goals-insight-banner__icon" aria-hidden="true">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <div>
-                                <p class="mb-1 fw-semibold">Mở khóa mới trong hôm nay</p>
-                                <p class="mb-0">Bạn vừa mở khóa @Model.RecentlyUnlockedBadgeCount huy hiệu từ hoạt động học tập thật của mình.</p>
-                            </div>
-                        </div>
-                    }
-                    <p class="badge-summary mb-4">Đã mở khóa @Model.UnlockedBadgeCount/@Model.Badges.Count huy hiệu.</p>
-
-                    @if (Model.HasBadges)
-                    {
-                        <div class="row g-3">
-                            @foreach (var badge in Model.Badges)
+                            else
                             {
-                                var badgeCardClass = badge.IsUnlocked ? "goals-badge-card is-unlocked" : "goals-badge-card is-locked";
-                                if (badge.IsRecentlyUnlocked)
-                                {
-                                    badgeCardClass += " is-recently-unlocked";
-                                }
-                                var badgeStatusClass = badge.IsUnlocked ? "goals-badge-status unlocked" : "goals-badge-status locked";
-                                var badgeIconClass = badge.IsUnlocked ? "badge-icon unlocked mb-0" : "badge-icon locked mb-0";
-
-                                <div class="col-md-6 col-xl-4">
-                                    <article class="@badgeCardClass" data-badge-code="@badge.Code" style="--badge-progress:@badge.ProgressPercent%;">
-                                        <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
-                                            <div class="@badgeIconClass">
-                                                <i class="@badge.IconClass"></i>
-                                            </div>
-                                            <div class="d-flex flex-column align-items-end gap-2">
-                                                @if (badge.IsRecentlyUnlocked)
-                                                {
-                                                    <span class="goals-badge-highlight">Mở khóa hôm nay</span>
-                                                }
-                                                <span class="@badgeStatusClass">@badge.StatusText</span>
-                                            </div>
-                                        </div>
-
-                                        <h6 class="goals-badge-title mb-2">@badge.Name</h6>
-                                        <p class="goals-badge-description mb-3">@badge.Description</p>
-
-                                        <div class="goals-badge-progress">
-                                            <div class="goals-badge-progress-track" aria-hidden="true">
-                                                <span class="goals-badge-progress-fill"></span>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center gap-2 mt-2">
-                                                <span class="goals-badge-progress-label">@badge.ProgressLabel</span>
-                                                <span class="goals-badge-metric">@badge.MetricLabel</span>
-                                            </div>
-                                        </div>
-                                    </article>
+                                <div class="goals-badge-tile goals-badge-tile--locked" data-badge-code="@badge.Code" title="@badge.Name — @badge.Description">
+                                    <div class="goals-badge-icon-wrap goals-badge-icon-wrap--locked">
+                                        <span class="material-symbols-outlined text-outline-variant" style="font-size:18px;">lock</span>
+                                    </div>
+                                    <span class="goals-badge-name goals-badge-name--locked">@badge.Name</span>
                                 </div>
                             }
-                        </div>
-                    }
-                    else
+                        }
+                    </div>
+
+                    <!-- Next badge hint -->
+                    @if (Model.Badges.Any(b => !b.IsUnlocked))
                     {
-                        <div class="badge-placeholder text-center py-4">
-                            <div class="badge-icon locked mb-3">
-                                <i class="fas fa-award"></i>
+                        var nextBadge = Model.Badges.First(b => !b.IsUnlocked);
+                        <div class="goals-next-badge mt-3">
+                            <p class="font-label-sm fw-bold text-on-surface-variant mb-1">Nhiệm vụ tiếp theo</p>
+                            <p class="font-label-sm text-outline mb-2">@nextBadge.Description</p>
+                            <div class="goals-next-badge-track">
+                                <div class="goals-next-badge-fill" style="width: @nextBadge.ProgressPercent%;"></div>
                             </div>
-                            <p class="mb-1 fw-semibold">Chưa có huy hiệu để hiển thị</p>
-                            <p class="text-muted mb-0">Khi dữ liệu huy hiệu sẵn sàng, tiến độ mở khóa sẽ xuất hiện tại đây.</p>
                         </div>
                     }
-                </div>
+                }
+                else
+                {
+                    <div class="text-center py-4">
+                        <div class="goals-empty-icon mx-auto mb-3">
+                            <i class="fas fa-award text-on-surface-variant" style="font-size:28px;"></i>
+                        </div>
+                        <p class="font-label-md fw-bold text-on-surface mb-1">Chưa có huy hiệu</p>
+                        <p class="text-body-md text-on-surface-variant m-0">Khi dữ liệu huy hiệu sẵn sàng, tiến độ sẽ xuất hiện tại đây.</p>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
 
+<!-- Goal Editor Modal -->
 <div class="modal fade goal-editor-modal" id="goalEditorModal" data-open-on-load="@(Model.ShowGoalEditor ? "true" : "false")" tabindex="-1" aria-labelledby="goalEditorModalLabel" aria-describedby="goalEditorModalHelp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
+        <div class="modal-content border-0 shadow-lg p-2">
             <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title fw-bold" id="goalEditorModalLabel" data-testid="goal-modal-title" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorTitle</h5>
+                <h5 class="font-headline-md m-0" id="goalEditorModalLabel" data-testid="goal-modal-title" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorTitle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
             <form asp-controller="Goals" asp-action="UpdateGoal" method="post">
-                <div class="modal-body pt-2">
+                <div class="modal-body pt-3">
                     @Html.AntiForgeryToken()
                     <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
                     <div class="mb-3">
-                        <label asp-for="GoalEditor.GoalArea" class="form-label fw-semibold"></label>
+                        <label asp-for="GoalEditor.GoalArea" class="form-label font-label-md"></label>
                         <select asp-for="GoalEditor.GoalArea" asp-items="Model.GoalAreaOptions" class="form-select form-select-lg goal-input"></select>
                         <span asp-validation-for="GoalEditor.GoalArea" class="text-danger small"></span>
                     </div>
-                    <div class="mb-3">
-                        <label asp-for="GoalEditor.TargetValue" class="form-label fw-semibold"></label>
+                    <div class="mb-4">
+                        <label asp-for="GoalEditor.TargetValue" class="form-label font-label-md"></label>
                         <input asp-for="GoalEditor.TargetValue"
                                class="form-control form-control-lg goal-input"
                                min="@UpdateGoalInputViewModel.MinTargetValue"
                                max="@UpdateGoalInputViewModel.MaxTargetValue" />
                         <span asp-validation-for="GoalEditor.TargetValue" class="text-danger small"></span>
                     </div>
-                    <p class="text-muted small mb-0" id="goalEditorModalHelp">
-                        Chọn kỹ năng có luồng hoàn thành thật trên server và đặt chỉ tiêu mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinTargetValue đến @UpdateGoalInputViewModel.MaxTargetValue và thay đổi bất kỳ lúc nào.
-                    </p>
+                    <div class="p-3 bg-surface-container-low rounded-xl border border-primary-subtle">
+                        <p class="text-label-sm text-on-surface-variant m-0" id="goalEditorModalHelp">
+                            Chọn kỹ năng có luồng hoàn thành thật trên server và đặt chỉ tiêu mỗi ngày. Bạn có thể đặt từ @UpdateGoalInputViewModel.MinTargetValue đến @UpdateGoalInputViewModel.MaxTargetValue và thay đổi bất kỳ lúc nào.
+                        </p>
+                    </div>
                 </div>
-                <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary rounded-pill px-4" data-testid="goal-modal-submit" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorSubmitText</button>
+                <div class="modal-footer border-0 pt-0 gap-2 flex-nowrap">
+                    <button type="button" class="btn-stitch-outline-secondary flex-grow-1" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn-stitch-primary flex-grow-1" data-testid="goal-modal-submit" data-goal-mode="@(Model.IsCreatingGoal ? "create" : "edit")">@Model.GoalEditorSubmitText</button>
                 </div>
             </form>
         </div>

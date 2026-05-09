@@ -1,398 +1,345 @@
 /* =========================================================
-   writing.css – Practice UI (Phase 4 Overhaul)
-   Single-column, focused learner experience.
+   writing.css – Writing Practice Page (Stitch Redesign)
+   Two-column bento grid layout with Material You colors
    ========================================================= */
 
-/* ----------------------------------------------------------
-   Design tokens
-   ---------------------------------------------------------- */
+:root {
+    --w-primary:           #2136e7;
+    --w-primary-soft:      #dfe0ff;
+    --w-on-primary-soft:   #000965;
+    --w-primary-container: #4255ff;
+    --w-secondary:         #745b00;
+    --w-secondary-soft:    #ffe08c;
+    --w-secondary-container: #fdcc1d;
+    --w-surface:           #f9f9ff;
+    --w-surface-bright:    #f9f9ff;
+    --w-surface-lowest:    #ffffff;
+    --w-surface-low:       #f0f3ff;
+    --w-surface-variant:   #d8e3fb;
+    --w-surface-container: #e7eeff;
+    --w-on-surface:        #111c2d;
+    --w-on-surface-variant:#444656;
+    --w-outline:           #757688;
+    --w-outline-variant:   rgba(197, 197, 217, 0.4);
+    --w-success:           #16a34a;
+    --w-success-bg:        rgba(22, 163, 74, 0.08);
+    --w-error:             #ba1a1a;
+    --w-error-bg:          rgba(186, 26, 26, 0.08);
+    --w-warning:           #d97706;
+    --w-warning-bg:        rgba(217, 119, 6, 0.08);
+    --w-shadow:            0 2px 12px rgba(66, 85, 255, 0.06);
+}
+
+/* ─── Page Shell ─────────────────────────────────────── */
 .writing-practice-page {
-    --wp-primary:        #4255ff;
-    --wp-primary-strong: #2f3fe0;
-    --wp-primary-soft:   rgba(66, 85, 255, 0.10);
-    --wp-primary-ring:   rgba(66, 85, 255, 0.22);
-
-    --wp-surface:        #ffffff;
-    --wp-surface-alt:    #f6f7ff;
-    --wp-surface-soft:   #edf0ff;
-    --wp-border:         rgba(66, 85, 255, 0.14);
-    --wp-border-strong:  rgba(66, 85, 255, 0.26);
-
-    --wp-text:           #1f2a44;
-    --wp-text-strong:    #111827;
-    --wp-muted:          #64748b;
-
-    --wp-success:        #16a34a;
-    --wp-success-soft:   rgba(22, 163, 74, 0.10);
-    --wp-warning:        #d97706;
-    --wp-warning-soft:   rgba(217, 119, 6, 0.10);
-    --wp-danger:         #dc2626;
-    --wp-danger-soft:    rgba(220, 38, 38, 0.09);
-    --wp-hint:           #7c3aed;
-    --wp-hint-soft:      rgba(124, 58, 237, 0.10);
-
-    position: relative;
-    min-height: calc(100vh - 180px);
-    padding: 1.25rem 0 4rem;
-    color: var(--wp-text);
-    background: linear-gradient(170deg, #f5f7ff 0%, #eef1ff 100%);
-    font-family: inherit;
+    font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
+    color: var(--w-on-surface);
+    padding: 1.5rem 0 4rem;
+    min-height: calc(100vh - 64px);
+    background-color: var(--w-surface);
 }
 
-/* subtle radial glow */
-.writing-practice-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(ellipse 60% 30% at 50% -4%, rgba(66, 85, 255, 0.12), transparent),
-        radial-gradient(ellipse 40% 20% at 20% 90%, rgba(47, 63, 224, 0.07), transparent);
-}
-
-/* ----------------------------------------------------------
-   Shell / centred column
-   ---------------------------------------------------------- */
 .writing-practice-shell {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+/* ─── Top Bar (Breadcrumb + Stats) ───────────────────── */
+.writing-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.writing-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--w-on-surface-variant);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.writing-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.writing-breadcrumb a:hover {
+    color: var(--w-primary);
+}
+
+.writing-breadcrumb .active {
+    color: var(--w-on-surface);
+    font-weight: 700;
+}
+
+.writing-stats {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--w-surface-lowest);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--w-outline-variant);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--w-on-surface);
+    white-space: nowrap;
+}
+
+.stat-pill i {
+    color: var(--w-primary);
+    font-size: 0.9rem;
+}
+
+/* ─── Layout Grid ────────────────────────────────────── */
+.writing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .writing-grid {
+        grid-template-columns: 4fr 8fr;
+    }
+}
+
+.writing-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.writing-col-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ─── Cards ──────────────────────────────────────────── */
+.w-card {
+    background: var(--w-surface-lowest);
+    border-radius: 0.75rem;
+    border: 1px solid var(--w-outline-variant);
+    box-shadow: var(--w-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.w-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--w-outline-variant);
+    background: var(--w-surface-lowest);
+}
+
+.w-card-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--w-primary-soft);
+    color: var(--w-primary);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.w-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--w-on-surface);
+}
+
+.w-card-action {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--w-primary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.w-card-action:hover {
+    opacity: 0.8;
+    color: var(--w-primary);
+}
+
+.w-card-body {
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-/* ----------------------------------------------------------
-   Sticky header bar
-   ---------------------------------------------------------- */
-.writing-practice-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 0.65rem 0;
-    background: rgba(245, 247, 255, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--wp-border);
-    margin: -1.25rem -1.25rem 0;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-}
-
-.btn-close-writing {
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 13px;
-    border: 1px solid var(--wp-border);
-    background: var(--wp-surface);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--wp-primary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.08);
-    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.btn-close-writing:hover {
-    transform: translateY(-1px);
-    border-color: var(--wp-primary-ring);
-    box-shadow: 0 8px 20px rgba(66, 85, 255, 0.14);
-    color: var(--wp-primary-strong);
-}
-
-/* Progress inside header */
-.writing-progress-card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-}
-
-.writing-progress-copy {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-}
-
-.writing-progress-label {
-    color: var(--wp-muted);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-}
-
-.writing-progress-copy strong {
-    font-size: 0.82rem;
-    color: var(--wp-primary-strong);
-    font-weight: 700;
-}
-
-.progress-wrapper {
-    width: 100%;
-    height: 7px;
-    background: rgba(66, 85, 255, 0.12);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    width: 0;
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--wp-primary) 0%, #7889ff 100%);
-    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ----------------------------------------------------------
-   Context chips
-   ---------------------------------------------------------- */
-.writing-context {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-top: 0.25rem;
-}
-
-.writing-context-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.44rem 0.78rem;
-    border-radius: 999px;
-    border: 1px solid var(--wp-border);
-    background: var(--wp-surface);
-    color: var(--wp-text);
-    font-size: 0.8rem;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(66, 85, 255, 0.05);
-}
-
-.writing-context-chip i {
-    color: var(--wp-primary);
-    font-size: 0.76rem;
-}
-
-.writing-context-chip--status {
-    background: var(--wp-primary-soft);
-    border-color: rgba(66, 85, 255, 0.18);
-}
-
-/* ----------------------------------------------------------
-   History strip
-   ---------------------------------------------------------- */
-.writing-history-strip {
-    background: var(--wp-surface);
-    border: 1px solid var(--wp-border);
-    border-radius: 14px;
-    padding: 0.95rem 1rem;
-    box-shadow: 0 6px 20px rgba(31, 42, 68, 0.06);
-}
-
-.writing-history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.75rem;
-}
-
-.writing-history-title {
-    color: var(--wp-text-strong);
-    font-size: 0.84rem;
-    font-weight: 800;
-}
-
-.writing-history-summary {
-    color: var(--wp-muted);
-    font-size: 0.78rem;
-    font-weight: 700;
-}
-
+/* ─── Recent Attempts History ────────────────────────── */
 .writing-history-list {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
 }
 
 .writing-history-item {
-    display: grid;
-    grid-template-columns: auto auto minmax(0, 1fr) auto;
-    gap: 0.6rem;
-    align-items: center;
-    padding: 0.6rem 0.72rem;
-    border-radius: 12px;
-    background: var(--wp-surface-alt);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--w-outline-variant);
 }
 
-.writing-history-item-label,
-.writing-history-item-time {
-    color: var(--wp-muted);
-    font-size: 0.75rem;
+.writing-history-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.wh-item-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wh-item-label {
+    font-size: 0.8125rem;
     font-weight: 700;
-}
-
-.writing-history-item-status {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 1.7rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 800;
+    color: var(--w-on-surface);
     white-space: nowrap;
 }
 
-.writing-history-item-status.is-success {
-    background: var(--wp-success-soft);
-    color: var(--wp-success);
+.wh-item-top .badge {
+    font-size: 0.6875rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.375rem;
 }
 
-.writing-history-item-status.is-warning {
-    background: var(--wp-warning-soft);
-    color: var(--wp-warning);
+.wh-item-time {
+    margin-left: auto;
+    font-size: 0.72rem;
+    color: var(--w-outline);
+    white-space: nowrap;
 }
 
-.writing-history-item-preview {
-    color: var(--wp-text);
-    font-size: 0.83rem;
-    line-height: 1.5;
-    min-width: 0;
+.wh-item-text {
+    margin: 0.25rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--w-on-surface-variant);
+    line-height: 1.4;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-/* ----------------------------------------------------------
-   Exercise card (title + callout)
-   ---------------------------------------------------------- */
-.writing-exercise-card {
-    background: var(--wp-surface);
-    border: 1px solid var(--wp-border);
-    border-radius: 20px;
-    padding: 1.25rem 1.4rem;
-    box-shadow: 0 8px 28px rgba(31, 42, 68, 0.07);
+/* ─── Prompt Box ─────────────────────────────────────── */
+.prompt-box {
+    background: var(--w-surface-low);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(197, 197, 217, 0.2);
 }
 
-.prompt-label {
-    margin-bottom: 0.35rem;
-    color: var(--wp-muted);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-}
-
-.writing-exercise-title {
-    margin: 0 0 0.4rem;
-    color: var(--wp-text-strong);
-    font-size: clamp(1.15rem, 2vw, 1.5rem);
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-.writing-exercise-summary {
-    margin: 0 0 1rem;
-    color: var(--wp-muted);
-    font-size: 0.9rem;
-    line-height: 1.55;
-}
-
-/* ----------------------------------------------------------
-   Full-text reading strip
-   ---------------------------------------------------------- */
-.writing-reading-strip {
-    border-top: 1px solid var(--wp-border);
-    padding-top: 0.9rem;
-}
-
-.writing-reading-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin-bottom: 0.7rem;
-    color: var(--wp-text);
-    font-size: 0.82rem;
+.prompt-box h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
     font-weight: 700;
+    color: var(--w-on-surface);
 }
 
-.writing-reading-label i {
-    color: var(--wp-primary);
+.prompt-box p {
+    margin: 0;
+    color: var(--w-on-surface-variant);
+    line-height: 1.6;
+    font-size: 0.9375rem;
 }
 
+/* Tags */
+.prompt-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.prompt-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(197, 197, 217, 0.3);
+    color: var(--w-on-surface-variant);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ─── Full Text / Email Body ─────────────────────────── */
 .writing-email-body {
-    max-height: min(30vh, 16rem);
+    max-height: 250px;
     overflow-y: auto;
-    padding-right: 0.25rem;
-    color: var(--wp-text);
+    padding-right: 0.5rem;
+    color: var(--w-on-surface);
 }
 
-.writing-email-body::-webkit-scrollbar {
-    width: 6px;
-}
-
+.writing-email-body::-webkit-scrollbar { width: 6px; }
 .writing-email-body::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    background: rgba(66, 85, 255, 0.18);
-}
-
-.writing-email-body::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--w-outline-variant);
 }
 
 .writing-text-paragraph {
-    margin: 0;
-    color: var(--wp-text);
-    font-size: 0.95rem;
-    line-height: 1.85;
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+    font-size: 0.9375rem;
 }
 
-.writing-text-paragraph + .writing-text-paragraph {
-    margin-top: 0.9rem;
-}
-
-/* Inline sentence buttons */
+/* ─── Inline Sentences ───────────────────────────────── */
 .writing-inline-sentence {
-    display: inline;
-    margin: 0;
-    padding: 0.15rem 0.45rem;
-    border: none;
-    border-radius: 999px;
     background: transparent;
-    color: inherit;
-    font: inherit;
-    line-height: inherit;
-    text-align: inherit;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    border: none;
+    padding: 0.1rem 0.25rem;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    transition: background 0.2s, color 0.2s;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    display: inline;
 }
 
 .writing-inline-sentence:hover {
-    background: rgba(66, 85, 255, 0.09);
+    background: var(--w-surface-variant);
 }
 
 .writing-inline-sentence:focus-visible {
-    outline: none;
-    background: rgba(66, 85, 255, 0.11);
-    box-shadow: 0 0 0 2px rgba(66, 85, 255, 0.2);
+    outline: 2px solid var(--w-primary);
+    outline-offset: 2px;
 }
 
 .writing-inline-sentence.is-active {
-    background: rgba(66, 85, 255, 0.15);
-    color: var(--wp-primary-strong);
+    background: var(--w-primary-soft);
+    color: var(--w-on-primary-soft);
     font-weight: 600;
 }
 
@@ -407,436 +354,536 @@
 }
 
 .writing-inline-sentence.is-retry {
-    background: rgba(220, 38, 38, 0.10);
+    background: rgba(186, 26, 26, 0.1);
     color: #b91c1c;
 }
 
-.writing-email-text {
-    color: inherit;
-    font: inherit;
-    line-height: inherit;
-    word-break: break-word;
+/* ─── AI Hints Panel ─────────────────────────────────── */
+.ai-hint-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
 }
 
-/* ----------------------------------------------------------
-   Compose card
-   ---------------------------------------------------------- */
-.writing-compose-card {
-    background: var(--wp-surface);
-    border: 1px solid var(--wp-border);
-    border-radius: 20px;
-    padding: 1.25rem 1.4rem;
-    box-shadow: 0 8px 28px rgba(31, 42, 68, 0.07);
+.ai-hint-item--primary {
+    background: rgba(33, 54, 231, 0.08);
+}
+
+.ai-hint-item--default {
+    background: var(--w-surface-low);
+}
+
+.ai-hint-item-icon {
+    color: var(--w-primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.ai-hint-item-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--w-on-surface);
+    margin: 0 0 0.25rem;
+}
+
+.ai-hint-item-text {
+    font-size: 0.8125rem;
+    color: var(--w-on-surface-variant);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.ai-vocab-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.ai-vocab-chip {
+    font-size: 0.8125rem;
+    color: var(--w-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+/* ─── Editor (Right Panel) ───────────────────────────── */
+.editor-card {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
 }
 
-/* Current sentence header */
-.writing-sentence-header {
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: var(--w-surface-bright);
+    border-bottom: 1px solid var(--w-outline-variant);
+}
+
+.editor-toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    gap: 0.25rem;
 }
 
-.writing-selected-counter {
+.editor-toolbar-btn {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--w-on-surface-variant);
+    transition: background 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor-toolbar-btn:hover {
+    background: rgba(197, 197, 217, 0.25);
+}
+
+.editor-toolbar-divider {
+    width: 1px;
+    height: 1.5rem;
+    background: rgba(197, 197, 217, 0.5);
+    margin: 0 0.5rem;
+}
+
+.editor-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.editor-toolbar-action {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--w-on-surface-variant);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: inherit;
+    padding: 0.25rem 0;
+}
+
+.editor-toolbar-action:hover {
+    color: var(--w-primary);
+}
+
+.editor-header h2 {
     margin: 0;
-    color: var(--wp-text-strong);
-    font-size: 0.95rem;
-    font-weight: 800;
-}
-
-.writing-compose-badge {
-    padding: 0.38rem 0.72rem;
-    border-radius: 999px;
-    background: var(--wp-primary-soft);
-    color: var(--wp-primary-strong);
-    font-size: 0.74rem;
+    font-size: 1rem;
     font-weight: 700;
-    white-space: nowrap;
+    color: var(--w-on-surface);
 }
 
-/* Vietnamese sentence display */
-.writing-selected-text {
-    padding: 0.8rem 1rem;
-    border-radius: 14px;
-    background: var(--wp-surface-soft);
-    border: 1px solid rgba(66, 85, 255, 0.10);
-    color: var(--wp-text);
-    line-height: 1.65;
-    font-size: 0.97rem;
-    min-height: 58px;
+.draft-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--w-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-/* Answer textarea */
-.writing-input-label {
-    display: block;
-    margin-bottom: 0.4rem;
-    color: var(--wp-text);
-    font-size: 0.88rem;
-    font-weight: 700;
+.draft-indicator.is-visible {
+    opacity: 1;
+}
+
+.editor-source {
+    padding: 1rem 1.25rem;
+    background: var(--w-surface-low);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--w-on-surface);
+    border-bottom: 1px solid var(--w-outline-variant);
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.editor-textarea-wrap {
+    position: relative;
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 440px;
 }
 
 .writing-input {
     width: 100%;
-    min-height: 110px;
-    resize: vertical;
-    border-radius: 14px;
-    border: 1.5px solid var(--wp-border);
-    background: var(--wp-surface);
-    color: var(--wp-text-strong);
-    font-size: 0.96rem;
-    line-height: 1.65;
-    padding: 0.8rem 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box;
-}
-
-.writing-input::placeholder {
-    color: #94a3b8;
+    flex-grow: 1;
+    min-height: 250px;
+    border: none;
+    resize: none;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--w-on-surface);
+    background: transparent;
+    font-family: inherit;
 }
 
 .writing-input:focus {
     outline: none;
-    border-color: rgba(66, 85, 255, 0.4);
-    box-shadow: 0 0 0 4px rgba(66, 85, 255, 0.08);
 }
 
-/* Draft-saved indicator */
-.writing-draft-indicator {
+.writing-input::placeholder {
+    color: var(--w-outline);
+}
+
+.writing-input::-webkit-scrollbar { width: 6px; }
+.writing-input::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--w-outline-variant);
+}
+
+/* ─── Editor Footer ──────────────────────────────────── */
+.editor-footer {
+    padding: 1rem 1.25rem;
+    background: var(--w-surface-low);
+    border-top: 1px solid var(--w-outline-variant);
     display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--wp-primary);
-    font-size: 0.78rem;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.editor-progress-wrap {
+    flex: 1;
+    max-width: 28rem;
+}
+
+.editor-progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.editor-progress-label {
+    font-size: 0.75rem;
     font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    height: 1rem; /* keep space reserved */
+    color: var(--w-on-surface-variant);
 }
 
-.writing-draft-indicator.is-visible {
-    opacity: 1;
+.editor-progress-pct {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--w-primary);
 }
 
-.writing-draft-indicator i {
-    font-size: 0.72rem;
+.editor-progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    background: rgba(197, 197, 217, 0.4);
+    border-radius: 999px;
+    overflow: hidden;
 }
 
-/* Selection / validation note */
-.writing-selection-note {
+.editor-progress-fill {
+    height: 100%;
+    background: var(--w-primary);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+}
+
+.selection-note {
+    font-size: 0.85rem;
+    color: var(--w-on-surface-variant);
     margin: 0;
-    color: var(--wp-muted);
-    font-size: 0.86rem;
-    line-height: 1.5;
-    min-height: 1.2em;
 }
 
-.writing-selection-note.is-warning {
-    color: var(--wp-warning);
+.selection-note.is-warning {
+    color: var(--w-warning);
+    font-weight: 600;
 }
 
-/* Action row */
-.writing-editor-actions {
+.editor-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.writing-nav-actions,
-.writing-primary-actions {
+.editor-actions-right {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-/* ----------------------------------------------------------
-   Buttons
-   ---------------------------------------------------------- */
+.nav-actions, .primary-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ─── Action Buttons ─────────────────────────────────── */
 .btn-action {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
     border: 1px solid transparent;
-    border-radius: 13px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.38rem;
-    min-height: 40px;
-    padding: 0.65rem 0.95rem;
-    font-size: 0.88rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: transform 0.18s ease, border-color 0.18s ease,
-                background-color 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-    white-space: nowrap;
-}
-
-.btn-action i {
-    font-size: 0.8rem;
-}
-
-.btn-action:hover:not(:disabled) {
-    transform: translateY(-1px);
-}
-
-.btn-action:active:not(:disabled) {
-    transform: translateY(0);
+    gap: 0.4rem;
+    font-family: inherit;
 }
 
 .btn-action:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
-    opacity: 0.48;
     transform: none !important;
-    box-shadow: none !important;
 }
 
 .btn-secondary {
-    border-color: var(--wp-border);
-    background: var(--wp-surface);
-    color: var(--wp-text);
+    background: var(--w-surface-lowest);
+    border-color: var(--w-outline-variant);
+    color: var(--w-on-surface-variant);
 }
 
 .btn-secondary:hover:not(:disabled) {
-    border-color: var(--wp-border-strong);
-    background: var(--wp-surface-alt);
+    background: var(--w-surface-variant);
+    color: var(--w-on-surface);
 }
 
 .btn-hint {
-    border-color: rgba(124, 58, 237, 0.18);
-    background: rgba(124, 58, 237, 0.07);
-    color: var(--wp-hint);
+    background: var(--w-secondary-soft);
+    color: var(--w-secondary);
+    border-color: transparent;
 }
 
 .btn-hint:hover:not(:disabled) {
-    background: rgba(124, 58, 237, 0.12);
-    border-color: rgba(124, 58, 237, 0.28);
+    filter: brightness(0.95);
 }
 
 .btn-submit {
-    background: linear-gradient(135deg, var(--wp-primary) 0%, #6478ff 100%);
+    background: var(--w-primary-container);
     color: #ffffff;
-    box-shadow: 0 6px 18px rgba(66, 85, 255, 0.22);
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.2);
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
 }
 
 .btn-submit:hover:not(:disabled) {
-    box-shadow: 0 10px 24px rgba(66, 85, 255, 0.32);
+    background: var(--w-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(33, 54, 231, 0.25);
 }
 
-/* ----------------------------------------------------------
-   Feedback card
-   ---------------------------------------------------------- */
-.writing-feedback-card {
-    background: var(--wp-surface);
-    border: 1px solid var(--wp-border);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 28px rgba(31, 42, 68, 0.07);
+.btn-save-draft {
+    background: transparent;
+    border: 1px solid var(--w-primary);
+    color: var(--w-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-/* Banner */
+.btn-save-draft:hover:not(:disabled) {
+    background: rgba(33, 54, 231, 0.06);
+}
+
+/* ─── Feedback Banner ────────────────────────────────── */
 .writing-feedback-banner {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.8rem;
     padding: 1rem 1.25rem;
-    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
     border-bottom: 1px solid transparent;
+    transition: background-color 0.3s;
 }
 
 .writing-feedback-banner-icon {
-    width: 2.1rem;
-    height: 2.1rem;
-    flex-shrink: 0;
-    border-radius: 999px;
-    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
-    transition: background-color 0.25s ease;
+    flex-shrink: 0;
+    font-size: 1rem;
 }
 
 .writing-feedback-banner-copy h3 {
-    margin: 0;
-    font-size: 0.92rem;
-    font-weight: 800;
-    line-height: 1.3;
+    margin: 0 0 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
 }
 
 .writing-feedback-banner-copy p {
-    margin: 0.22rem 0 0;
-    font-size: 0.87rem;
-    line-height: 1.5;
-    opacity: 0.85;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
-/* Banner state colours */
-.writing-feedback-banner.is-info {
-    background: var(--wp-primary-soft);
-    border-bottom-color: rgba(66, 85, 255, 0.12);
-    color: var(--wp-primary-strong);
-}
-.writing-feedback-banner.is-info .writing-feedback-banner-icon {
-    background: rgba(66, 85, 255, 0.14);
-}
+/* Banner States */
+.is-info    { background: var(--w-surface-low);    color: var(--w-primary);   border-bottom-color: var(--w-outline-variant); }
+.is-info    .writing-feedback-banner-icon { background: var(--w-primary-soft); }
 
-.writing-feedback-banner.is-success {
-    background: var(--wp-success-soft);
-    border-bottom-color: rgba(22, 163, 74, 0.15);
-    color: #15803d;
-}
-.writing-feedback-banner.is-success .writing-feedback-banner-icon {
-    background: rgba(22, 163, 74, 0.14);
-}
+.is-success { background: var(--w-success-bg);     color: #15803d;            border-bottom-color: rgba(22,163,74,0.15); }
+.is-success .writing-feedback-banner-icon { background: rgba(22,163,74,0.15); }
 
-.writing-feedback-banner.is-warning {
-    background: var(--wp-warning-soft);
-    border-bottom-color: rgba(217, 119, 6, 0.15);
-    color: #92400e;
-}
-.writing-feedback-banner.is-warning .writing-feedback-banner-icon {
-    background: rgba(217, 119, 6, 0.14);
-}
+.is-warning { background: var(--w-warning-bg);     color: #92400e;            border-bottom-color: rgba(217,119,6,0.15); }
+.is-warning .writing-feedback-banner-icon { background: rgba(217,119,6,0.15); }
 
-.writing-feedback-banner.is-hint {
-    background: var(--wp-hint-soft);
-    border-bottom-color: rgba(124, 58, 237, 0.15);
-    color: var(--wp-hint);
-}
-.writing-feedback-banner.is-hint .writing-feedback-banner-icon {
-    background: rgba(124, 58, 237, 0.12);
-}
+.is-hint    { background: var(--w-secondary-soft); color: var(--w-secondary); border-bottom-color: rgba(116,91,0,0.15); }
+.is-hint    .writing-feedback-banner-icon { background: rgba(116,91,0,0.15); }
 
-.writing-feedback-banner.is-error {
-    background: var(--wp-danger-soft);
-    border-bottom-color: rgba(220, 38, 38, 0.14);
-    color: #991b1b;
-}
-.writing-feedback-banner.is-error .writing-feedback-banner-icon {
-    background: rgba(220, 38, 38, 0.12);
-}
+.is-error,
+.is-session-expired { background: var(--w-error-bg); color: #991b1b; border-bottom-color: rgba(220,38,38,0.15); }
+.is-error .writing-feedback-banner-icon,
+.is-session-expired .writing-feedback-banner-icon { background: rgba(220,38,38,0.15); }
 
-/* Loading state */
-.writing-feedback-banner.is-loading {
-    background: rgba(66, 85, 255, 0.05);
-    border-bottom-color: rgba(66, 85, 255, 0.10);
-    color: var(--wp-muted);
-}
-.writing-feedback-banner.is-loading .writing-feedback-banner-icon {
-    background: rgba(66, 85, 255, 0.08);
-}
+.is-loading { background: rgba(66,85,255,0.05); color: var(--w-on-surface-variant); border-bottom-color: var(--w-outline-variant); }
+.is-loading .writing-feedback-banner-icon { background: rgba(66,85,255,0.1); }
 
-/* Rate-limit state */
-.writing-feedback-banner.is-rate-limit {
-    background: rgba(217, 119, 6, 0.08);
-    border-bottom-color: rgba(217, 119, 6, 0.14);
-    color: #92400e;
-}
-.writing-feedback-banner.is-rate-limit .writing-feedback-banner-icon {
-    background: rgba(217, 119, 6, 0.13);
-}
+.is-rate-limit { background: var(--w-warning-bg); color: #92400e; border-bottom-color: rgba(217,119,6,0.15); }
+.is-rate-limit .writing-feedback-banner-icon { background: rgba(217,119,6,0.15); }
 
-/* Session-expired state */
-.writing-feedback-banner.is-session-expired {
-    background: rgba(220, 38, 38, 0.07);
-    border-bottom-color: rgba(220, 38, 38, 0.12);
-    color: #991b1b;
-}
-.writing-feedback-banner.is-session-expired .writing-feedback-banner-icon {
-    background: rgba(220, 38, 38, 0.10);
-}
-
-/* Inline-loading spinner */
+/* ─── Spinner ────────────────────────────────────────── */
 .writing-spinner {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
     border: 2px solid rgba(66, 85, 255, 0.2);
-    border-top-color: var(--wp-primary);
+    border-top-color: var(--w-primary);
     border-radius: 50%;
     animation: wp-spin 0.7s linear infinite;
-    vertical-align: middle;
 }
 
-@keyframes wp-spin {
-    to { transform: rotate(360deg); }
-}
+@keyframes wp-spin { to { transform: rotate(360deg); } }
 
-/* Feedback body sections */
-.writing-feedback-body {
-    padding: 1rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-}
-
+/* ─── Feedback Sections ──────────────────────────────── */
 .writing-feedback-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--w-outline-variant);
 }
 
-.writing-feedback-section + .writing-feedback-section {
-    border-top: 1px solid var(--wp-border);
-    padding-top: 0.85rem;
+.writing-feedback-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .writing-feedback-section-label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.45rem;
-    color: var(--wp-muted);
-    font-size: 0.71rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
+    color: var(--w-on-surface-variant);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.06em;
 }
 
 .writing-feedback-section-label i {
-    color: var(--wp-primary);
-    font-size: 0.74rem;
+    color: var(--w-primary);
+    font-size: 0.8rem;
 }
 
 .writing-feedback-section-text {
     margin: 0;
-    color: var(--wp-text);
-    font-size: 0.89rem;
-    line-height: 1.6;
     white-space: pre-wrap;
+    font-size: 0.9375rem;
+    color: var(--w-on-surface);
+    line-height: 1.6;
 }
 
-.writing-feedback-section-meta {
-    margin: 0;
-    color: var(--wp-primary-strong);
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-/* Fallback source note */
-.writing-feedback-source-note {
+.feedback-source-note {
     margin: 0;
     padding: 0.65rem 0.9rem;
     border: 1px dashed rgba(66, 85, 255, 0.18);
     border-radius: 12px;
-    background: rgba(66, 85, 255, 0.05);
-    color: var(--wp-muted);
+    background: rgba(66, 85, 255, 0.04);
+    color: var(--w-on-surface-variant);
     font-size: 0.8rem;
     line-height: 1.5;
 }
 
-.writing-feedback-source-note[hidden] {
-    display: none !important;
+.feedback-source-note[hidden] { display: none !important; }
+
+/* ─── Structure Panel ────────────────────────────────── */
+.structure-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-/* Session-expired reload link */
+.structure-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.25rem 0;
+}
+
+.structure-item-label {
+    color: var(--w-on-surface-variant);
+}
+
+.structure-item-status {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+}
+
+.structure-item-status--done {
+    color: #15803d;
+}
+
+.structure-item-status--active {
+    color: var(--w-primary);
+}
+
+.structure-item-status--pending {
+    color: var(--w-on-surface-variant);
+    opacity: 0.6;
+}
+
+/* ─── Recent History ─────────────────────────────────── */
+.writing-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.writing-history-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+}
+
+/* ─── Session-expired reload ─────────────────────────── */
 .writing-reload-link {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
     margin-top: 0.5rem;
-    color: var(--wp-danger);
+    color: var(--w-error);
     font-size: 0.85rem;
     font-weight: 700;
     text-decoration: none;
@@ -844,15 +891,30 @@
     background: none;
     border: none;
     padding: 0;
+    font-family: inherit;
 }
 
-.writing-reload-link:hover {
-    text-decoration: underline;
+.writing-reload-link:hover { text-decoration: underline; }
+
+/* ─── Progress wrapper (hidden but JS-accessible) ────── */
+.progress-wrapper {
+    position: absolute;
+    left: -9999px;
+    width: 100%;
+    height: 2px;
+    background: var(--w-outline-variant);
+    border-radius: 999px;
+    overflow: hidden;
 }
 
-/* ----------------------------------------------------------
-   Responsive
-   ---------------------------------------------------------- */
+.progress-fill {
+    height: 100%;
+    background: var(--w-primary);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 767.98px) {
     .writing-practice-page {
         padding-top: 0;
@@ -863,32 +925,22 @@
         padding: 0 0.9rem;
     }
 
-    .writing-practice-header {
-        margin-left: -0.9rem;
-        margin-right: -0.9rem;
-        padding-left: 0.9rem;
-        padding-right: 0.9rem;
-    }
-
-    .writing-exercise-card,
-    .writing-compose-card,
-    .writing-feedback-card {
-        border-radius: 16px;
-        padding: 1rem 1.1rem;
-    }
-
-    .writing-editor-actions {
+    .editor-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .writing-nav-actions,
-    .writing-primary-actions {
+    .nav-actions,
+    .primary-actions,
+    .editor-actions-right {
         width: 100%;
     }
 
-    .btn-action {
+    .btn-action,
+    .btn-save-draft,
+    .btn-submit {
         flex: 1 1 0;
+        justify-content: center;
     }
 
     .writing-email-body {
@@ -897,29 +949,19 @@
         padding-right: 0;
     }
 
-    .writing-context-chip {
-        font-size: 0.77rem;
-    }
-
-    .writing-sentence-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .writing-history-item {
         grid-template-columns: 1fr;
         align-items: flex-start;
     }
 
-    .writing-history-item-preview {
-        white-space: normal;
+    .stat-pill {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
-    .writing-exercise-card,
-    .writing-compose-card,
-    .writing-feedback-card {
-        border-radius: 14px;
+    .editor-textarea-wrap {
+        min-height: 300px;
     }
 }

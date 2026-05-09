@@ -1,0 +1,99 @@
+/* 
+    TCT English Design System (Stitch)
+    Shared tokens and utilities
+*/
+
+:root {
+    /* Colors */
+    --tct-bg-light: #f6f7fb;
+    --tct-white: #ffffff;
+    
+    --tct-primary-blue: #4255ff;
+    --tct-primary-blue-hover: #2f3fe0;
+    --tct-soft-blue: #eef2ff;
+    --tct-yellow-accent: #ffcd1f;
+    --tct-green-success: #10b981;
+    
+    --tct-text-main: #111c2d;
+    --tct-text-muted: #64748b;
+    --tct-border-subtle: rgba(66, 85, 255, 0.10);
+    --tct-border-input: #e2e8f0;
+    
+    /* Shadows */
+    --tct-shadow-soft: 0 2px 12px rgba(66, 85, 255, 0.06);
+    
+    /* Radii */
+    --tct-radius-card: 18px;
+    --tct-radius-btn: 12px;
+    --tct-radius-pill: 9999px;
+    
+    /* Typography */
+    --tct-font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
+}
+
+/* 
+    Scoped Utilities
+    Use these classes in target pages to avoid breaking global styles
+*/
+
+.tct-page-bg {
+    background-color: var(--tct-bg-light);
+    color: var(--tct-text-main);
+    font-family: var(--tct-font-family);
+    min-height: 100vh;
+}
+
+.tct-card {
+    background-color: var(--tct-white);
+    border: 1px solid var(--tct-border-subtle);
+    border-radius: var(--tct-radius-card);
+    box-shadow: var(--tct-shadow-soft);
+}
+
+.tct-btn-primary {
+    background-color: var(--tct-primary-blue);
+    color: var(--tct-white);
+    border: none;
+    border-radius: var(--tct-radius-btn);
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.tct-btn-primary:hover, .tct-btn-primary:focus {
+    background-color: var(--tct-primary-blue-hover);
+    color: var(--tct-white);
+}
+
+.tct-btn-secondary {
+    background-color: var(--tct-soft-blue);
+    color: var(--tct-primary-blue);
+    border: none;
+    border-radius: var(--tct-radius-btn);
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.tct-btn-secondary:hover, .tct-btn-secondary:focus {
+    background-color: #e0e6ff;
+    color: var(--tct-primary-blue);
+}
+
+.tct-input {
+    background-color: var(--tct-white);
+    border: 1px solid var(--tct-border-input);
+    border-radius: var(--tct-radius-btn);
+    padding: 12px 16px;
+    color: var(--tct-text-main);
+    transition: border-color 0.2s ease-in-out;
+}
+
+.tct-input:focus {
+    border-color: var(--tct-primary-blue);
+    outline: none;
+}
+
+.tct-text-muted {
+    color: var(--tct-text-muted);
+}

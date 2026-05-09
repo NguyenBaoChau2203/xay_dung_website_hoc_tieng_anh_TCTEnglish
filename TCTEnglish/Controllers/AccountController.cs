@@ -292,6 +292,69 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: /Account/LinkFacebook
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public IActionResult LinkFacebook()
+        {
+            var redirectUrl = Url.Action("LinkExternalCallback", "Account", null, Request.Scheme);
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            // Ensure select_account to allow user to pick the correct account
+            properties.Items["prompt"] = "select_account";
+            return Challenge(properties, "Facebook");
+        }
+
+        // GET: /Account/LinkGoogle
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public IActionResult LinkGoogle()
+        {
+            var redirectUrl = Url.Action("LinkExternalCallback", "Account", null, Request.Scheme);
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            properties.Items["prompt"] = "select_account";
+            return Challenge(properties, "Google");
+        }
+
+        // GET: /Account/LinkExternalCallback
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> LinkExternalCallback()
+        {
+            var result = await HttpContext.AuthenticateAsync("ExternalCookie");
+            if (result?.Succeeded != true || result.Principal == null)
+            {
+                TempData["ErrorMessage"] = "Không thể kết nối với tài khoản xã hội.";
+                return RedirectToAction("Settings");
+            }
+
+            var emailClaim = result.Principal.FindFirst(ClaimTypes.Email)?.Value
+                             ?? result.Principal.FindFirst("email")?.Value;
+
+            // Xóa external cookie tạm
+            await HttpContext.SignOutAsync("ExternalCookie");
+
+            if (string.IsNullOrEmpty(emailClaim))
+            {
+                TempData["ErrorMessage"] = "Không thể lấy Email từ tài khoản xã hội để liên kết.";
+                return RedirectToAction("Settings");
+            }
+
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            
+            if (user == null) return RedirectToAction("Login");
+
+            if (!string.Equals(user.Email, emailClaim, StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["ErrorMessage"] = $"Email tài khoản xã hội ({emailClaim}) không khớp với email hiện tại của bạn. Hãy đảm bảo dùng chung email.";
+                return RedirectToAction("Settings");
+            }
+
+            // Thành công, email khớp. Vì DB không lưu GoogleId riêng lẻ mà match qua email,
+            // chỉ cần thông báo cho user biết là account đã liên kết thành công.
+            TempData["SuccessMessage"] = "Xác nhận liên kết thành công! Bạn có thể dùng tài khoản xã hội này để đăng nhập.";
+            return RedirectToAction("Settings");
+        }
+
         private async Task SignInUserAsync(User user)
         {
             var normalizedRole = Roles.Normalize(user.Role);
@@ -376,7 +439,9 @@ namespace TCTVocabulary.Controllers
             var model = new UpdateProfileViewModel
             {
                 FullName = user.FullName ?? string.Empty,
+                Email = user.Email ?? string.Empty,
                 CurrentAvatarUrl = user.AvatarUrl,
+                Role = user.Role ?? Roles.Standard,
                 StreakDays = user.Streak ?? 0,
                 EarnedBadges = goalsData?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new()
             };
@@ -408,6 +473,7 @@ namespace TCTVocabulary.Controllers
                     {
                         TempData["ErrorMessage"] = ex.Message;
                         model.CurrentAvatarUrl = user.AvatarUrl;
+                        model.Email = user.Email ?? string.Empty;
                         model.StreakDays = user.Streak ?? 0;
                         var goalsDataOnError = await _goalsService.GetGoalsAsync(userId);
                         model.EarnedBadges = goalsDataOnError?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new();
@@ -445,7 +511,10 @@ namespace TCTVocabulary.Controllers
 
             var model = new SecuritySettingsViewModel
             {
-                Email = user.Email
+                Email = user.Email,
+                // Currently only checking SOCIAL_LOGIN_ prefix as a basic proxy for Google login.
+                IsGoogleLinked = user.PasswordHash != null && user.PasswordHash.StartsWith("SOCIAL_LOGIN_"),
+                IsFacebookLinked = false // Facebook login not yet fully integrated/identifiable
             };
 
             return View("~/Views/Account/Settings.cshtml", model);

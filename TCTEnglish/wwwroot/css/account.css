@@ -1,115 +1,1357 @@
 /* =================================================================
-   account.css  —  Shared styles for Account pages (Profile, Settings)
+   account.css  —  Stitch Redesign for Profile & Settings
    ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
 
-/* ── Brand color overrides ─────────────────────────────────────── */
-.account-page .btn-primary {
-    background-color: #4255ff;
-    border-color: #4255ff;
+:root {
+    --brand-blue: #2136e7;
+    --brand-blue-hover: #1b2cc2;
+    --primary-container: #4255ff;
+    --on-primary: #ffffff;
+    --surface: #f9f9ff;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f0f3ff;
+    --surface-variant: #d8e3fb;
+    --on-surface: #111c2d;
+    --on-surface-variant: #444656;
+    --outline: #757688;
+    --outline-variant: #c5c5d9;
+    --secondary-container: #fdcc1d;
+    --on-secondary-container: #6e5700;
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+    --sidebar-width: 260px;
 }
 
-.account-page .btn-primary:hover,
-.account-page .btn-primary:focus {
-    background-color: #2f3fe0;
-    border-color: #2f3fe0;
+body {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 
-.account-page .text-primary {
-    color: #4255ff;
+/* ── Page Wrapper ───────────────────────────────────────────────── */
+.account-dashboard {
+    margin: -32px -32px 0 -32px;
+    min-height: calc(100vh - 72px);
+    display: flex;
+    position: relative;
+    background-color: var(--surface);
 }
 
-/* ── Avatar ────────────────────────────────────────────────────── */
-.account-avatar-wrapper {
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
-}
-
-.account-avatar-camera {
-    width: 32px;
-    height: 32px;
-    transform: translate(10%, 10%);
-}
-
-/* ── Admin KPI icon containers (reusable) ──────────────────────── */
-.admin-kpi-icon {
-    width: 56px;
-    height: 56px;
-}
-
-.admin-kpi-icon-sm {
-    width: 48px;
-    height: 48px;
-}
-
-/* ── Admin avatar placeholder ──────────────────────────────────── */
-.admin-avatar-placeholder {
-    width: 36px;
-    height: 36px;
-}
-
-/* ── Admin table thumbnail ─────────────────────────────────────── */
-.admin-video-thumb {
-    width: 100px;
-    height: 56px;
-    object-fit: cover;
-}
-
-.admin-video-thumb-lg {
-    width: 180px;
-    height: 101px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-.admin-title-truncate {
-    max-width: 300px;
-}
-
-/* ── Badge cards on Profile page ───────────────────────────────── */
-.badge-card {
-    background: #ffffff;
+/* ── SIDEBAR ────────────────────────────────────────────────────── */
+.account-sidebar {
+    width: var(--sidebar-width);
+    min-height: calc(100vh - 72px);
+    background: var(--surface-container-lowest);
+    border-right: 1px solid rgba(197, 197, 217, 0.3); /* outline-variant */
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 72px;
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Sidebar user summary (Hidden in Stitch sidebar, but we keep the TCT logo instead) */
+.sidebar-brand {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    display: flex;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: default;
+    gap: 0.75rem;
 }
 
-.badge-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(66, 85, 255, 0.12) !important;
-}
-
-.badge-icon-wrap {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.sidebar-brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--brand-blue);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
-.badge-icon {
-    font-size: 1.4rem;
-    color: #ffffff;
-    /* Ensure icon color never inherits into sibling elements */
+.sidebar-brand-text h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brand-blue);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.sidebar-brand-text p {
+    font-size: 0.75rem;
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+
+/* Sidebar nav items */
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0;
+}
+
+.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 8px;
+    color: var(--on-surface-variant);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: transparent;
+    text-align: left;
+}
+
+.sidebar-nav-item:hover {
+    background: var(--surface-container-low);
+    transform: translateX(4px);
+    color: var(--on-surface);
+}
+
+.sidebar-nav-item.active {
+    background: var(--surface-variant);
+    color: var(--brand-blue);
+    font-weight: 600;
+}
+
+.sidebar-nav-item i, .sidebar-nav-item .material-symbols-outlined {
+    font-size: 1.25rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Logout button */
+.sidebar-bottom {
+    padding: 1rem 1.5rem 0;
+}
+
+.sidebar-logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    color: var(--error);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: 1px solid rgba(186, 26, 26, 0.2);
+    width: 100%;
+}
+
+.sidebar-logout-btn:hover {
+    background: rgba(186, 26, 26, 0.05);
+    transform: scale(0.98);
+    color: var(--error);
+}
+
+/* ── MOBILE SIDEBAR TOGGLE ──────────────────────────────────────── */
+.sidebar-mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--outline-variant);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9;
+    backdrop-filter: blur(2px);
+}
+
+/* ── MAIN CONTENT ───────────────────────────────────────────────── */
+.account-main {
+    flex: 1;
+    min-width: 0;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ── Tab Pane Animation ─────────────────────────────────────────── */
+.account-tab-pane {
+    display: none;
+    animation: tabFadeIn 0.35s ease;
+}
+
+.account-tab-pane.active {
     display: block;
 }
 
-.badge-desc {
-    font-size: 0.72rem;
-    color: #6c757d;
-    line-height: 1.4;
+@keyframes tabFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Unique gradient per common badge icon colors */
-.badge-icon-wrap:has(.fa-fire)          { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
-.badge-icon-wrap:has(.fa-star)          { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
-.badge-icon-wrap:has(.fa-award)         { background: linear-gradient(135deg, #4255ff 0%, #764ba2 100%); }
-.badge-icon-wrap:has(.fa-trophy)        { background: linear-gradient(135deg, #f7971e 0%, #ff6b6b 100%); }
-.badge-icon-wrap:has(.fa-medal)         { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.badge-icon-wrap:has(.fa-graduation-cap){ background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-.badge-icon-wrap:has(.fa-bolt)          { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.badge-icon-wrap:has(.fa-gem)           { background: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%); }
+/* ── Section Header ─────────────────────────────────────────────── */
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.section-header h3 {
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--on-surface);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.section-header p {
+    color: var(--on-surface-variant);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ── Stitch Cards ───────────────────────────────────────────────── */
+.stitch-card {
+    background: var(--surface-container-lowest);
+    border-radius: 16px;
+    border: 1px solid rgba(66, 85, 255, 0.1);
+    box-shadow: 0 2px 12px rgba(66, 85, 255, 0.04);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ── User Summary Card (Stitch) ─────────────────────────────────── */
+.user-summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .user-summary-card {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.user-avatar-wrap {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    flex-shrink: 0;
+}
+
+.user-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface-variant);
+    padding: 4px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.user-avatar-edit-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--brand-blue);
+    color: var(--on-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.user-avatar-edit-btn:hover {
+    transform: scale(1.05);
+}
+
+.user-info-wrap {
+    flex: 1;
+}
+
+.user-info-title-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .user-info-title-row {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.user-info-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--on-surface);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.user-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.user-info-subtitle {
+    font-size: 1rem;
+    color: var(--outline);
+    margin-bottom: 1rem;
+}
+
+.user-info-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.user-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand-blue);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* ── Membership Card ────────────────────────────────────────────── */
+.membership-card {
+    background: #263143; /* inverse-surface */
+    color: #edecff; /* on-primary-container */
+    padding: 1.5rem;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.membership-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #bdc2ff; /* inverse-primary */
+    margin-bottom: 0.25rem;
+}
+
+.membership-card-subtitle {
+    font-size: 0.875rem;
+    color: #c5c5d9; /* outline-variant */
+    margin-bottom: 1.5rem;
+}
+
+.membership-card-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.mem-stat-label {
+    font-size: 0.75rem;
+    color: #c5c5d9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.mem-stat-val {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.mem-stat-val.active {
+    color: #f1c106; /* secondary-fixed-dim */
+}
+
+.membership-bg-glow {
+    position: absolute;
+    bottom: -3rem;
+    right: -3rem;
+    width: 12rem;
+    height: 12rem;
+    background: var(--brand-blue);
+    opacity: 0.2;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+/* ── Dashboard Stats ────────────────────────────────────────────── */
+.dash-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .dash-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.dash-stat-item {
+    background: var(--surface-container-lowest);
+    padding: 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(197, 197, 217, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dash-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.icon-streak { background: rgba(33, 54, 231, 0.1); color: var(--brand-blue); }
+.icon-badge { background: rgba(253, 204, 29, 0.2); color: #745b00; }
+
+.dash-stat-label {
+    font-size: 0.75rem;
+    color: var(--outline);
+    margin-bottom: 0.125rem;
+    font-weight: 600;
+}
+
+.dash-stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--on-surface);
+    line-height: 1;
+}
+
+/* ── Forms ──────────────────────────────────────────────────────── */
+.stitch-form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.stitch-input {
+    background: var(--surface);
+    border: 1px solid var(--outline-variant);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--on-surface);
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.stitch-input:focus {
+    border-color: var(--brand-blue);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--brand-blue);
+    background: var(--surface-container-lowest);
+}
+
+.stitch-btn-primary {
+    background: var(--brand-blue);
+    color: var(--on-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.625rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.stitch-btn-primary:hover {
+    background: var(--brand-blue-hover);
+    transform: translateY(-1px);
+}
+
+.stitch-btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* ── Security & Password ────────────────────────────────────────── */
+.security-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(197, 197, 217, 0.3);
+}
+
+@media (min-width: 768px) {
+    .security-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.security-row:last-child {
+    border-bottom: none;
+}
+
+.security-text h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--on-surface);
+    margin-bottom: 0.25rem;
+}
+
+.security-text p {
+    font-size: 0.75rem;
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+
+/* ── Danger Zone ────────────────────────────────────────────────── */
+.danger-zone {
+    background: rgba(186, 26, 26, 0.05); /* error-container/10 */
+    border: 1px solid rgba(186, 26, 26, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.danger-zone-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--error);
+    margin-bottom: 1rem;
+}
+
+.danger-zone-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.danger-box {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .danger-box {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.stitch-btn-danger {
+    background: transparent;
+    color: var(--error);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--error);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.stitch-btn-danger:hover {
+    background: var(--error);
+    color: #fff;
+}
+
+/* Toggle Password button inside input group */
+.input-group .stitch-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn-outline-secondary {
+    border-color: var(--outline-variant);
+    border-left: none;
+    color: var(--outline);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* ── Confirm Delete Modal ───────────────────────────────────────── */
+.confirm-modal .modal-content {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.confirm-modal .modal-header {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.5rem 1.75rem;
+}
+
+.confirm-modal .modal-body {
+    padding: 1.5rem 1.75rem;
+}
+
+.confirm-modal .modal-footer {
+    padding: 1rem 1.75rem 1.5rem;
+    border-top: none;
+}
+
+.confirm-input-wrap {
+    margin-top: 1rem;
+}
+
+.confirm-input-wrap label {
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--error);
+    margin-bottom: 0.4rem;
+}
+
+.confirm-input-wrap input {
+    border: 2px solid rgba(186, 26, 26, 0.2);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    font-family: monospace;
+    letter-spacing: 2px;
+}
+
+.confirm-input-wrap input:focus {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.15);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .account-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        min-height: 100vh;
+        transform: translateX(-100%);
+        box-shadow: none;
+        z-index: 50;
+        padding-top: 72px;
+    }
+
+    .account-sidebar.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .sidebar-mobile-toggle {
+        display: flex;
+    }
+
+    .account-main {
+        padding: 1rem;
+        padding-top: 4rem;
+    }
+
+    .account-dashboard {
+        margin: -32px -12px 0 -12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-dashboard {
+        margin: -32px -12px 0 -12px;
+    }
+
+    .account-main {
+        padding: 0.75rem;
+        padding-top: 4rem;
+    }
+}
+
+/* =================================================================
+   STITCH REDESIGN — NEW COMPONENTS (Profile & Settings)
+   ================================================================= */
+
+/* ── Stitch Alert (replaces Bootstrap alert) ────────────────────── */
+.stitch-alert {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    animation: tabFadeIn 0.3s ease;
+    position: relative;
+}
+
+.stitch-alert-success {
+    background: rgba(33, 54, 231, 0.06);
+    border: 1px solid rgba(33, 54, 231, 0.15);
+    color: var(--brand-blue);
+}
+
+.stitch-alert-error {
+    background: rgba(186, 26, 26, 0.06);
+    border: 1px solid rgba(186, 26, 26, 0.18);
+    color: var(--error);
+}
+
+.stitch-alert-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.stitch-alert-close:hover { opacity: 1; }
+
+/* ── Profile Bento Grid (header user card + membership) ─────────── */
+.profile-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+@media (min-width: 992px) {
+    .profile-bento-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Profile user card (left bento cell) */
+.profile-user-card {
+    background: var(--surface-container-lowest);
+    border-radius: 16px;
+    border: 1px solid rgba(66, 85, 255, 0.1);
+    box-shadow: 0 2px 12px rgba(66, 85, 255, 0.06);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .profile-user-card {
+        flex-direction: row;
+    }
+}
+
+/* ── Profile Form Grid ──────────────────────────────────────────── */
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+    .profile-form-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.profile-form-card {
+    margin-bottom: 0 !important;
+}
+
+.profile-form-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-form-header-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(33, 54, 231, 0.08);
+    color: var(--brand-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-form-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+.profile-form-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .profile-form-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.profile-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.stitch-field-hint {
+    font-size: 0.75rem;
+    color: var(--outline);
+    margin-top: 0.25rem;
+}
+
+.profile-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(197, 197, 217, 0.3);
+}
+
+.stitch-btn-ghost {
+    background: transparent;
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--outline-variant);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.stitch-btn-ghost:hover {
+    background: var(--surface-container-low);
+}
+
+.stitch-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+/* ── Side Info Panel ────────────────────────────────────────────── */
+.profile-side-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.profile-side-info .stitch-card {
+    margin-bottom: 0 !important;
+}
+
+.side-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--on-surface);
+    margin-bottom: 1rem;
+}
+
+.side-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.side-progress-item {
+    background: rgba(33, 54, 231, 0.04);
+    border: 1px solid rgba(33, 54, 231, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.side-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.side-progress-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+}
+
+.side-progress-pct {
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.text-primary { color: var(--brand-blue) !important; }
+.text-secondary { color: #745b00 !important; }
+
+.side-progress-bar-wrap {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-variant);
+    overflow: hidden;
+}
+
+.side-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.side-progress-bar-primary { background: var(--brand-blue); }
+.side-progress-bar-secondary { background: #fdcc1d; }
+
+.side-card-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--brand-blue);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.side-card-link:hover {
+    gap: 0.5rem;
+    color: var(--brand-blue-hover);
+}
+
+.side-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.side-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side-info-label {
+    font-size: 0.875rem;
+    color: var(--on-surface-variant);
+}
+
+.side-info-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+/* ── Settings Page Layout ───────────────────────────────────────── */
+.settings-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--on-surface);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.settings-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (min-width: 992px) {
+    .settings-layout-grid {
+        grid-template-columns: 220px 1fr;
+    }
+}
+
+/* Left Section Nav */
+.settings-section-nav {
+    position: sticky;
+    top: calc(72px + 1rem);
+}
+
+.settings-section-nav-inner {
+    background: var(--surface-container-lowest);
+    border-radius: 14px;
+    border: 1px solid rgba(66, 85, 255, 0.08);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    overflow-x: auto;
+}
+
+@media (min-width: 992px) {
+    .settings-section-nav-inner {
+        flex-direction: column;
+    }
+}
+
+.settings-section-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.settings-section-nav-item:hover {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+}
+
+.settings-section-nav-item.active {
+    background: var(--surface-container-low);
+    color: var(--brand-blue);
+    font-weight: 600;
+}
+
+.settings-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.settings-section-block {
+    scroll-margin-top: calc(72px + 1rem);
+}
+
+/* Settings Section Header */
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(197, 197, 217, 0.25);
+}
+
+.settings-section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bg-primary-soft {
+    background: rgba(33, 54, 231, 0.08);
+    color: var(--brand-blue);
+}
+
+.bg-secondary-soft {
+    background: rgba(116, 91, 0, 0.1);
+    color: #745b00;
+}
+
+.bg-yellow-soft {
+    background: rgba(253, 204, 29, 0.2);
+    color: #745b00;
+}
+
+.settings-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+/* ── Linked Accounts ────────────────────────────────────────────── */
+.linked-accounts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .linked-accounts-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.linked-account-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    background: var(--surface-container-low);
+    border-radius: 12px;
+    border: 1px solid rgba(197, 197, 217, 0.25);
+    transition: background 0.2s ease;
+}
+
+.linked-account-item:hover {
+    background: var(--surface-variant);
+}
+
+.linked-account-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.linked-account-icon {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(197, 197, 217, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.linked-account-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+.linked-account-status {
+    font-size: 0.75rem;
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+
+.linked-account-status.connected {
+    color: #2d7a3a;
+}
+
+.linked-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.linked-badge-connected {
+    background: rgba(45, 122, 58, 0.1);
+    color: #2d7a3a;
+    cursor: default;
+}
+
+.linked-badge-connect {
+    background: rgba(33, 54, 231, 0.08);
+    color: var(--brand-blue);
+}
+
+.linked-badge-connect:hover {
+    background: var(--brand-blue);
+    color: #fff;
+}
+
+/* ── Notifications ──────────────────────────────────────────────── */
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.875rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.notification-item:hover {
+    background: var(--surface-container-low);
+}
+
+.notification-checkbox-wrap {
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+
+.notification-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--brand-blue);
+    cursor: pointer;
+}
+
+.notification-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--on-surface);
+    margin: 0 0 0.25rem;
+}
+
+.notification-desc {
+    font-size: 0.78rem;
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.password-input-wrapper .stitch-input {
+    padding-right: 40px; /* space for icon */
+    width: 100%;
+}
+.password-input-wrapper .toggle-pwd {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--outline);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* bo tr�n */
+    transition: background-color 0.2s, color 0.2s;
+}
+.password-input-wrapper .toggle-pwd:hover {
+    background-color: var(--surface-variant);
+    color: var(--on-surface);
+}
+
+/* -- Sidebar Collapse Toggle ---------------------------------------- */
+.account-sidebar {
+    transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible;
+    position: sticky;
+}
+
+.account-sidebar-toggle {
+    position: absolute;
+    top: 1.2rem;
+    right: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(197,197,217,0.5);
+    background: #ffffff;
+    color: #444656;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.account-sidebar-toggle:hover {
+    background: #f0f3ff;
+    color: #2136e7;
+    box-shadow: 0 4px 14px rgba(33,54,231,0.15);
+}
+
+.account-sidebar.sidebar-collapsed {
+    width: 0 !important;
+    padding: 0 !important;
+    border-right: none;
+    overflow: visible;
+}
+
+.account-sidebar.sidebar-collapsed .sidebar-brand,
+.account-sidebar.sidebar-collapsed .sidebar-nav,
+.account-sidebar.sidebar-collapsed .sidebar-bottom {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.account-sidebar.sidebar-collapsed .account-sidebar-toggle {
+    right: -28px;
+}
+
+.account-sidebar.sidebar-collapsed .account-sidebar-toggle i {
+    transform: rotate(180deg);
+}
