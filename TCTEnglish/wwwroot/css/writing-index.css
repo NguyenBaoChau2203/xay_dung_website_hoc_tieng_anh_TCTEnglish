@@ -1,247 +1,466 @@
+/* =========================================================
+   writing-index.css – Writing Skill Landing Page (Stitch Redesign)
+   Bento Grid, Material You color palette
+   ========================================================= */
+
 :root {
-    --writing-primary: #4255ff;
-    --writing-primary-strong: #2f3fe0;
-    --writing-primary-soft: rgba(66, 85, 255, 0.12);
-    --writing-primary-soft-strong: rgba(66, 85, 255, 0.18);
-    --writing-surface: #ffffff;
-    --writing-surface-soft: #f5f7ff;
-    --writing-line: rgba(66, 85, 255, 0.16);
-    --writing-text: #1f2a44;
-    --writing-text-muted: #667085;
+    --wi-primary: #2136e7;
+    --wi-primary-container: #4255ff;
+    --wi-primary-fixed: #dfe0ff;
+    --wi-on-primary: #ffffff;
+    --wi-on-primary-fixed: #000965;
+    --wi-secondary: #745b00;
+    --wi-secondary-container: #fdcc1d;
+    --wi-on-secondary-container: #6e5700;
+    --wi-tertiary: #4f545e;
+    --wi-surface: #f9f9ff;
+    --wi-surface-lowest: #ffffff;
+    --wi-surface-low: #f0f3ff;
+    --wi-surface-container: #e7eeff;
+    --wi-surface-variant: #d8e3fb;
+    --wi-on-surface: #111c2d;
+    --wi-on-surface-variant: #444656;
+    --wi-outline: #757688;
+    --wi-outline-variant: rgba(197, 197, 217, 0.4);
+    --wi-shadow: 0 2px 12px rgba(66, 85, 255, 0.06);
+    --wi-error: #ba1a1a;
 }
 
+/* ─── Page Shell ─────────────────────────────────────── */
 .writing-index-page {
-    position: relative;
     min-height: calc(100vh - 180px);
-    padding: 2.75rem 0 4rem;
-    color: var(--writing-text);
-    background: linear-gradient(180deg, #fafbff 0%, #f2f5ff 100%);
-}
-
-.writing-index-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at top center, rgba(66, 85, 255, 0.12), transparent 26%),
-        radial-gradient(circle at left 12% bottom 18%, rgba(47, 63, 224, 0.08), transparent 22%);
+    padding: 2.5rem 0 4rem;
+    background-color: var(--wi-surface);
+    color: var(--wi-on-surface);
+    font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
 }
 
 .writing-index-shell {
-    position: relative;
-    z-index: 1;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-.writing-hero {
-    text-align: center;
-    margin-bottom: 2.75rem;
+/* ─── Header ─────────────────────────────────────────── */
+.writing-header {
+    margin-bottom: 2rem;
 }
 
-.writing-hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.68rem 1.05rem;
-    border: 1px solid var(--writing-line);
-    border-radius: 999px;
-    background: var(--writing-surface);
-    color: var(--writing-primary);
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 1.15rem;
-    box-shadow: 0 12px 24px rgba(66, 85, 255, 0.08);
+.writing-header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--wi-on-surface);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
-.writing-hero-title {
-    margin: 0;
-    color: var(--writing-primary);
-    font-size: clamp(2.15rem, 4vw, 3.6rem);
-    font-weight: 900;
-    letter-spacing: 0.02em;
-    font-family: "Arial Black", "Trebuchet MS", "Segoe UI", sans-serif;
-}
-
-.writing-hero-subtitle {
-    max-width: 640px;
-    margin: 0.85rem auto 0;
-    color: var(--writing-text-muted);
+.writing-header-subtitle {
     font-size: 1rem;
-    line-height: 1.65;
-}
-
-.writing-section + .writing-section {
-    margin-top: 2.7rem;
-}
-
-.writing-section-heading {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
-}
-
-.writing-section-heading h2 {
+    color: var(--wi-on-surface-variant);
+    max-width: 42rem;
+    line-height: 1.6;
     margin: 0;
-    color: var(--writing-text);
-    font-size: clamp(1.45rem, 2vw, 1.9rem);
-    font-weight: 800;
 }
 
-.writing-section-heading p {
-    margin: 0;
-    color: var(--writing-text-muted);
-    font-size: 0.96rem;
-}
-
-.writing-level-grid,
-.writing-content-grid {
+/* ─── Continue Learning Bento Card ───────────────────── */
+.writing-bento-grid {
     display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 1.25rem;
+    margin-bottom: 2.5rem;
 }
 
-.writing-level-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.writing-content-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.writing-card-option {
+.writing-continue-card {
+    grid-column: span 8;
+    background: var(--wi-surface-lowest);
+    border: 1px solid var(--wi-outline-variant);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--wi-shadow);
     display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.writing-continue-card:hover .writing-continue-img {
+    transform: scale(1.05);
+}
+
+.writing-continue-body {
+    flex: 1;
+    z-index: 1;
+}
+
+.writing-continue-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(33, 54, 231, 0.1);
+    color: var(--wi-primary);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.writing-continue-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--wi-on-surface);
+    margin: 0 0 0.5rem;
+}
+
+.writing-continue-desc {
+    font-size: 0.9375rem;
+    color: var(--wi-on-surface-variant);
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+}
+
+.writing-continue-progress-wrap {
+    display: flex;
+    align-items: center;
     gap: 1rem;
-    min-height: 208px;
-    padding: 1.45rem;
-    border-radius: 1.35rem;
-    border: 1px solid var(--writing-line);
-    background: var(--writing-surface);
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 16px 34px rgba(31, 42, 68, 0.07);
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-    animation: writing-card-enter 0.55s ease both;
+    margin-bottom: 2rem;
 }
 
-.writing-card-option:hover {
-    transform: translateY(-4px);
-    border-color: rgba(66, 85, 255, 0.28);
-    box-shadow: 0 18px 38px rgba(31, 42, 68, 0.11);
-    color: inherit;
-}
-
-.writing-card-option.is-selected {
-    border-color: rgba(66, 85, 255, 0.34);
-    box-shadow: 0 0 0 1px rgba(66, 85, 255, 0.12), 0 18px 38px rgba(31, 42, 68, 0.11);
-}
-
-.writing-card-option--content {
-    min-height: 150px;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 1.65rem 1.35rem;
-}
-
-.writing-card-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.8rem;
-    height: 3.8rem;
-    border-radius: 1.15rem;
-    background: var(--writing-primary-soft);
-    color: var(--writing-primary);
-    font-size: 1.45rem;
-    flex-shrink: 0;
-}
-
-.writing-card-icon--content {
-    width: 3.4rem;
-    height: 3.4rem;
-    margin: 0 auto;
-    border-radius: 1rem;
-}
-
-.writing-card-copy {
-    display: flex;
+.writing-continue-progress-bar {
     flex: 1;
-    flex-direction: column;
+    height: 0.5rem;
+    background: var(--wi-surface-container);
+    border-radius: 999px;
+    overflow: hidden;
 }
 
-.writing-card-copy--center {
-    align-items: center;
+.writing-continue-progress-fill {
+    height: 100%;
+    background: var(--wi-primary);
+    border-radius: 999px;
+    transition: width 0.5s ease;
 }
 
-.writing-card-title {
-    font-size: 1.28rem;
-    font-weight: 800;
-    margin-bottom: 0.72rem;
-    color: var(--writing-text);
+.writing-continue-progress-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--wi-primary);
+    white-space: nowrap;
 }
 
-.writing-card-description {
-    color: var(--writing-text-muted);
-    line-height: 1.65;
-    margin: 0;
-    flex: 1;
-}
-
-.writing-card-meta {
+.writing-continue-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1rem;
-    color: var(--writing-primary);
-    font-size: 0.92rem;
+    background: var(--wi-primary);
+    color: var(--wi-on-primary);
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
     font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-@keyframes writing-card-enter {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
+.writing-continue-btn:hover {
+    background: var(--wi-primary-container);
+    color: var(--wi-on-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 54, 231, 0.2);
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+.writing-continue-btn:active {
+    transform: scale(0.97);
+}
+
+.writing-continue-img-wrap {
+    width: 33%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.writing-continue-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    min-height: 12rem;
+}
+
+/* ─── Stats Cards ────────────────────────────────────── */
+.writing-stats-column {
+    grid-column: span 4;
+    display: grid;
+    grid-rows: 2;
+    gap: 1.25rem;
+}
+
+.writing-stat-card {
+    background: var(--wi-surface-lowest);
+    border: 1px solid var(--wi-outline-variant);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: var(--wi-shadow);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.writing-stat-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}
+
+.writing-stat-icon--streak {
+    background: rgba(116, 91, 0, 0.1);
+    color: var(--wi-secondary);
+}
+
+.writing-stat-icon--words {
+    background: rgba(79, 84, 94, 0.1);
+    color: var(--wi-tertiary);
+}
+
+.writing-stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--wi-on-surface-variant);
+    margin: 0 0 0.25rem;
+}
+
+.writing-stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--wi-on-surface);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* ─── Section Headings ───────────────────────────────── */
+.writing-section {
+    margin-bottom: 2.5rem;
+}
+
+.writing-section-heading {
+    margin-bottom: 1rem;
+}
+
+.writing-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--wi-on-surface);
+    margin: 0;
+}
+
+.writing-section-subtitle {
+    font-size: 0.875rem;
+    color: var(--wi-on-surface-variant);
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+/* ─── Level Grid ─────────────────────────────────────── */
+.writing-level-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.writing-card-level {
+    display: flex;
+    flex-direction: column;
+    background: var(--wi-surface-lowest);
+    border: 1px solid var(--wi-outline-variant);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--wi-shadow);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.writing-card-level:hover {
+    box-shadow: 0 4px 16px rgba(66, 85, 255, 0.1);
+    transform: translateY(-2px);
+    color: inherit;
+}
+
+.writing-card-level.is-selected {
+    background: rgba(33, 54, 231, 0.06);
+    border: 2px solid var(--wi-primary);
+    padding: calc(1.5rem - 1px);
+}
+
+.writing-card-level-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: var(--wi-surface-low);
+    color: var(--wi-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.writing-card-level.is-selected .writing-card-level-icon {
+    background: rgba(66, 85, 255, 0.15);
+}
+
+.writing-card-level-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--wi-on-surface);
+}
+
+.writing-card-level-desc {
+    font-size: 0.875rem;
+    color: var(--wi-on-surface-variant);
+    margin-bottom: 1rem;
+    flex: 1;
+    line-height: 1.5;
+}
+
+.writing-card-level-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--wi-primary);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+/* ─── Content Topic Grid ─────────────────────────────── */
+.writing-content-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.writing-card-content {
+    display: flex;
+    flex-direction: column;
+    background: var(--wi-surface-lowest);
+    border: 1px solid var(--wi-outline-variant);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--wi-shadow);
+    transition: all 0.2s ease;
+}
+
+.writing-card-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(66, 85, 255, 0.1);
+    color: inherit;
+}
+
+.writing-card-content-icon-wrap {
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--writing-accent, var(--wi-primary)) 8%, transparent);
+}
+
+.writing-card-content-icon-wrap i {
+    color: var(--writing-accent, var(--wi-primary));
+}
+
+.writing-card-content-icon-wrap i.z-10 {
+    font-size: 3rem;
+    z-index: 10;
+}
+
+.writing-card-content-icon-wrap i.opacity-20 {
+    font-size: 3rem;
+    opacity: 0.15;
+    position: absolute;
+    transform: scale(1.5) rotate(15deg);
+}
+
+.writing-card-content-body {
+    padding: 1rem;
+}
+
+.writing-card-content-title {
+    font-weight: 700;
+    color: var(--wi-on-surface);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.writing-card-content-desc {
+    font-size: 0.75rem;
+    color: var(--wi-on-surface-variant);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .writing-continue-card {
+        grid-column: span 12;
+    }
+    .writing-stats-column {
+        grid-column: span 12;
+        grid-template-columns: repeat(2, 1fr);
+        grid-rows: auto;
+    }
+    .writing-content-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 1199.98px) {
-    .writing-level-grid,
+@media (max-width: 768px) {
+    .writing-bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .writing-continue-card {
+        grid-column: span 1;
+        flex-direction: column;
+    }
+    .writing-continue-img-wrap {
+        width: 100%;
+        height: 12rem;
+    }
+    .writing-stats-column {
+        grid-column: span 1;
+        grid-template-columns: 1fr 1fr;
+    }
+    .writing-level-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .writing-content-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 767.98px) {
-    .writing-index-page {
-        padding-top: 2rem;
+@media (max-width: 480px) {
+    .writing-level-grid {
+        grid-template-columns: 1fr;
     }
-
-    .writing-index-shell {
-        padding: 0 1rem;
-    }
-
-    .writing-section-heading {
-        flex-direction: column;
-        align-items: start;
-    }
-
-    .writing-level-grid,
     .writing-content-grid {
         grid-template-columns: 1fr;
     }
-
-    .writing-card-option {
-        min-height: auto;
+    .writing-stats-column {
+        grid-template-columns: 1fr;
+    }
+    .writing-header-title {
+        font-size: 1.75rem;
     }
 }

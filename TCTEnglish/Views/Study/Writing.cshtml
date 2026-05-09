@@ -1,6 +1,6 @@
 @model TCTEnglish.ViewModels.WritingIndexViewModel
 @{
-    ViewData["Title"] = "Luyện viết đoạn";
+    ViewData["Title"] = "Kỹ năng Viết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,27 +10,84 @@
 
 <div class="writing-index-page">
     <div class="writing-index-shell">
-        <header class="writing-hero">
-            <div class="writing-hero-badge">
-                <i class="fas fa-pen-fancy"></i>
-                Phòng luyện viết
-            </div>
-            <h1 class="writing-hero-title">Luyện viết đoạn văn</h1>
-            <p class="writing-hero-subtitle">
-                Chọn trình độ, chọn dạng bài và bắt đầu luyện viết từng bước thật rõ ràng.
+
+        @* ── Header ──────────────────────────────────────────── *@
+        <header class="writing-header">
+            <h1 class="writing-header-title">Kỹ năng Viết</h1>
+            <p class="writing-header-subtitle">
+                Hoàn thiện khả năng diễn đạt ý tưởng qua văn bản với các bài tập chuyên sâu từ email công việc đến báo cáo phân tích.
             </p>
         </header>
 
+        @* ── Bento Top Grid (Continue + Stats) ───────────────── *@
+        <div class="writing-bento-grid">
+
+            @* Continue Learning Card *@
+            <div class="writing-continue-card">
+                <div class="writing-continue-body">
+                    <span class="writing-continue-badge">Tiếp tục học</span>
+                    <h3 class="writing-continue-title">Viết Email Chuyên Nghiệp</h3>
+                    <p class="writing-continue-desc">
+                        Bạn đã hoàn thành 65% bài học này. Tiếp tục để làm chủ cấu trúc email trang trọng.
+                    </p>
+                    <div class="writing-continue-progress-wrap">
+                        <div class="writing-continue-progress-bar">
+                            <div class="writing-continue-progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="writing-continue-progress-label">65%</span>
+                    </div>
+                    <a asp-controller="Study"
+                       asp-action="WritingExercises"
+                       asp-route-level="@Model.SelectedLevelKey"
+                       class="writing-continue-btn">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        Bắt đầu ngay
+                    </a>
+                </div>
+                <div class="writing-continue-img-wrap" aria-hidden="true">
+                    <img class="writing-continue-img"
+                         src="/images/writing-banner.jpg"
+                         alt="Bàn làm việc học tập"
+                         onerror="this.style.display='none'" />
+                </div>
+            </div>
+
+            @* Stats Column *@
+            <div class="writing-stats-column">
+                <div class="writing-stat-card">
+                    <div class="writing-stat-icon writing-stat-icon--streak">
+                        <i class="fas fa-fire" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <p class="writing-stat-label">Chuỗi ngày học</p>
+                        <p class="writing-stat-value">12 Ngày</p>
+                    </div>
+                </div>
+                <div class="writing-stat-card">
+                    <div class="writing-stat-icon writing-stat-icon--words">
+                        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <p class="writing-stat-label">Tổng số từ đã viết</p>
+                        <p class="writing-stat-value">4,250 Từ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* ── Level Selection ──────────────────────────────────── *@
         <section class="writing-section">
             <div class="writing-section-heading">
-                <h2>Chọn trình độ</h2>
-                <p>Bắt đầu ở mức phù hợp với sự tự tin của bạn hôm nay.</p>
+                <h2 class="writing-section-title">Chọn cấp độ của bạn</h2>
+                <p class="writing-section-subtitle" data-writing-selected-level-copy>
+                    Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.
+                </p>
             </div>
 
             <div class="writing-level-grid" data-writing-level-grid>
                 @foreach (var level in Model.Levels)
                 {
-                    <a class="writing-card-option writing-card-option--level @(level.IsSelected ? "is-selected" : string.Empty)"
+                    <a class="writing-card-level @(level.IsSelected ? "is-selected" : string.Empty)"
                        asp-controller="Study"
                        asp-action="Writing"
                        asp-route-level="@level.Key"
@@ -39,32 +96,30 @@
                        data-level-title="@level.Title"
                        aria-current="@(level.IsSelected ? "true" : "false")"
                        style="--writing-accent: @level.AccentColor;">
-                        <div class="writing-card-icon" aria-hidden="true">
+                        <div class="writing-card-level-icon" aria-hidden="true">
                             <i class="@level.IconClass"></i>
                         </div>
-                        <div class="writing-card-copy">
-                            <div class="writing-card-title">@level.Title</div>
-                            <p class="writing-card-description">@level.Description</p>
-                            <div class="writing-card-meta">
-                                <i class="far fa-clock"></i>
-                                <span>@level.DurationText</span>
-                            </div>
+                        <h3 class="writing-card-level-title">@level.Title</h3>
+                        <p class="writing-card-level-desc">@level.Description</p>
+                        <div class="writing-card-level-meta">
+                            <span>@level.DurationText</span>
+                            <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
                         </div>
                     </a>
                 }
             </div>
         </section>
 
+        @* ── Content Topics ───────────────────────────────────── *@
         <section class="writing-section">
             <div class="writing-section-heading">
-                <h2>Chọn dạng nội dung</h2>
-                <p data-writing-selected-level-copy>Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.</p>
+                <h2 class="writing-section-title">Chủ đề viết phổ biến</h2>
             </div>
 
             <div class="writing-content-grid">
                 @foreach (var contentType in Model.ContentTypes)
                 {
-                    <a class="writing-card-option writing-card-option--content"
+                    <a class="writing-card-content"
                        asp-controller="Study"
                        asp-action="WritingExercises"
                        asp-route-level="@Model.SelectedLevelKey"
@@ -72,17 +127,19 @@
                        data-writing-content-link
                        data-content-type-key="@contentType.Key"
                        style="--writing-accent: @contentType.AccentColor;">
-                        <div class="writing-card-icon writing-card-icon--content" aria-hidden="true">
-                            <i class="@contentType.IconClass"></i>
+                        <div class="writing-card-content-icon-wrap" aria-hidden="true">
+                            <i class="@contentType.IconClass opacity-20"></i>
+                            <i class="@contentType.IconClass z-10"></i>
                         </div>
-                        <div class="writing-card-copy writing-card-copy--center">
-                            <div class="writing-card-title">@contentType.Title</div>
-                            <p class="writing-card-description">@contentType.Description</p>
+                        <div class="writing-card-content-body">
+                            <h4 class="writing-card-content-title">@contentType.Title</h4>
+                            <p class="writing-card-content-desc">@contentType.Description</p>
                         </div>
                     </a>
                 }
             </div>
         </section>
+
     </div>
 </div>
 

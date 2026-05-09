@@ -22,5 +22,8 @@ namespace TCTVocabulary.ViewModels
         [DataType(DataType.Password)]
         [Compare("NewPassword", ErrorMessage = "Mật khẩu xác nhận không khớp")]
         public string? ConfirmPassword { get; set; }
+
+        public bool IsGoogleLinked { get; set; }
+        public bool IsFacebookLinked { get; set; }
     }
 }

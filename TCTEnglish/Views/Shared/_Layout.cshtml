@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -122,8 +123,14 @@
         </div>
     </header>
 
-    <div class="layout">
+    @{
+        bool hideSidebar = ViewData["HideSidebar"] as bool? == true;
+        string layoutClass = hideSidebar ? "layout sidebar-collapsed" : "layout";
+    }
+    <div class="@layoutClass">
         <!-- ================= SIDEBAR ================= -->
+        @if (!hideSidebar)
+        {
         <aside class="sidebar">
             <nav>
                 <div class="nav-dropdown" id="coursesDropdown">
@@ -260,6 +267,7 @@
                 Tận dụng Flashcards để ghi nhớ kiến thức nhanh hơn 3 lần.
             </div>
         </aside>
+        }
 
         <!-- ================= MAIN ================= -->
         <main class="main">

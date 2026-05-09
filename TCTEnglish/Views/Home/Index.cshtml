@@ -143,7 +143,7 @@
             <div class="db-cta-deco db-cta-deco--bot"></div>
             <a asp-controller="Goals" asp-action="Index" style="position:relative;z-index:1;text-decoration:none;color:inherit;">
                 <span class="db-cta-tag">Mục tiêu hôm nay</span>
-                <h2 class="db-cta-title">Mục tiêu: <strong>@Model.Goal từ</strong><br><span style="font-size:16px;opacity:0.9">cần ôn mỗi ngày</span></h2>
+                <h2 class="db-cta-title">Mục tiêu: <strong>@Model.Goal @Html.Raw("từ")<br>@Html.Raw("cần")</strong> <span style="font-size:16px;opacity:0.9">ôn mỗi ngày</span></h2>
                 <p class="db-cta-sub">Hãy bắt đầu ngay để không gián đoạn streak!</p>
             </a>
             @if (Model.TodayFolders.Any())

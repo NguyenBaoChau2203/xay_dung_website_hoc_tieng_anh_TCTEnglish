@@ -1,602 +1,720 @@
+/* ============================================================
+   goals.css — Stitch Design System for Goals & Progress page
+   ============================================================ */
+
+/* --- Design Tokens --- */
 :root {
-    --primary-color: #4255ff;
-    --warning-color: #ffcd1f;
-    --text-primary: #303545;
-    --bg-color: #f6f7fb;
+  --md-sys-color-primary: #2136e7;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #4255ff;
+  --md-sys-color-on-primary-container: #edecff;
+  --md-sys-color-secondary: #745b00;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #fdcc1d;
+  --md-sys-color-on-secondary-container: #6e5700;
+  --md-sys-color-tertiary: #4f545e;
+  --md-sys-color-tertiary-fixed: #dee2ef;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-surface: #f9f9ff;
+  --md-sys-color-on-surface: #111c2d;
+  --md-sys-color-surface-variant: #d8e3fb;
+  --md-sys-color-on-surface-variant: #444656;
+  --md-sys-color-outline: #757688;
+  --md-sys-color-outline-variant: #c5c5d9;
+  --md-sys-color-surface-container-highest: #d8e3fb;
+  --md-sys-color-surface-container-high: #dee8ff;
+  --md-sys-color-surface-container: #e7eeff;
+  --md-sys-color-surface-container-low: #f0f3ff;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-background: #f9f9ff;
+  --md-sys-color-on-background: #111c2d;
+
+  --stitch-shadow: 0 2px 12px rgba(66, 85, 255, 0.06);
+  --stitch-shadow-hover: 0 8px 24px rgba(66, 85, 255, 0.12);
+  --stitch-radius-sm: 0.25rem;
+  --stitch-radius-md: 0.5rem;
+  --stitch-radius-lg: 0.75rem;
+  --stitch-radius-xl: 1rem;
+  --stitch-radius-2xl: 1.5rem;
 }
 
-/* Cac class quan trong de hien thi dung giao dien */
-.goals-container {
-    padding: 2rem;
+/* --- Typography Scale --- */
+.font-display-lg  { font-size: 40px; line-height: 48px; font-weight: 700; letter-spacing: -0.02em; }
+.font-display-md  { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.01em; }
+.font-headline-lg { font-size: 24px; line-height: 32px; font-weight: 700; }
+.font-headline-md { font-size: 20px; line-height: 28px; font-weight: 600; }
+.font-body-lg     { font-size: 18px; line-height: 28px; font-weight: 400; }
+.font-body-md     { font-size: 16px; line-height: 24px; font-weight: 400; }
+.font-label-md    { font-size: 14px; line-height: 20px; font-weight: 500; }
+.font-label-sm    { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.02em; }
+
+/* --- Semantic color utilities --- */
+.text-primary           { color: var(--md-sys-color-primary) !important; }
+.text-secondary         { color: var(--md-sys-color-secondary) !important; }
+.text-on-surface        { color: var(--md-sys-color-on-surface) !important; }
+.text-on-surface-variant{ color: var(--md-sys-color-on-surface-variant) !important; }
+.text-outline           { color: var(--md-sys-color-outline) !important; }
+.text-outline-variant   { color: var(--md-sys-color-outline-variant) !important; }
+
+.bg-surface                   { background-color: var(--md-sys-color-surface) !important; }
+.bg-surface-container-lowest  { background-color: var(--md-sys-color-surface-container-lowest) !important; }
+.bg-surface-container-low     { background-color: var(--md-sys-color-surface-container-low) !important; }
+.bg-surface-container         { background-color: var(--md-sys-color-surface-container) !important; }
+.bg-surface-container-high    { background-color: var(--md-sys-color-surface-container-high) !important; }
+.bg-surface-container-highest { background-color: var(--md-sys-color-surface-container-highest) !important; }
+.bg-primary                   { background-color: var(--md-sys-color-primary) !important; }
+.bg-primary-container         { background-color: var(--md-sys-color-primary-container) !important; }
+.bg-secondary-container       { background-color: var(--md-sys-color-secondary-container) !important; }
+.bg-outline-variant           { background-color: var(--md-sys-color-outline-variant) !important; }
+
+.text-on-primary-container    { color: var(--md-sys-color-on-primary-container) !important; }
+.text-on-secondary-container  { color: var(--md-sys-color-on-secondary-container) !important; }
+
+.border-primary-subtle   { border-color: rgba(66, 85, 255, 0.1) !important; }
+.border-outline-variant  { border-color: var(--md-sys-color-outline-variant) !important; }
+.rounded-xl              { border-radius: var(--stitch-radius-xl) !important; }
+.rounded-2xl             { border-radius: var(--stitch-radius-2xl) !important; }
+
+/* ============================================================
+   Page Layout
+   ============================================================ */
+.goals-page {
+  padding: 2rem 0;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-.section-title {
-    color: #282e3e;
+/* --- Header --- */
+.goals-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.goals-toast-region {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    z-index: 1080;
-}
-
-.goals-feedback-toast {
-    width: min(360px, calc(100vw - 2rem));
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-    padding: 1rem 1rem 1rem 1.1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(66, 85, 255, 0.14);
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
-    opacity: 0;
-    transform: translateY(-12px) scale(0.98);
-    transition: opacity 0.24s ease, transform 0.24s ease;
-    backdrop-filter: blur(10px);
-}
-
-.goals-feedback-toast.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.goals-feedback-toast__icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(66, 85, 255, 0.15), rgba(125, 140, 255, 0.22));
-    color: var(--primary-color);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-.goals-feedback-toast__content {
-    min-width: 0;
-}
-
-.goals-feedback-toast__title {
-    color: var(--text-primary);
-    font-size: 0.95rem;
-}
-
-.goals-feedback-toast__message {
-    color: #6b7280;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.goals-feedback-toast__close {
-    margin-left: auto;
-    flex-shrink: 0;
-}
-
-.goal-editor-modal .modal-footer {
-    gap: 0.65rem;
-}
-
-/* Streak Fire Icon */
-.fire-icon-wrapper {
-    width: 64px;
-    height: 64px;
-    background-color: #fffbeb;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.fire-icon {
-    color: var(--warning-color);
-    font-size: 2rem;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.goal-card {
-    border-radius: 20px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
-    padding: 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.goal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08) !important;
-}
-
-.streak-meta {
-    color: #6b7280;
-    font-size: 0.95rem;
-}
-
-/* Circular Chart */
-.circular-chart {
-    width: 132px;
-    height: 132px;
-    display: block;
-    margin: 0 auto;
-}
-
-.circle-bg {
-    fill: none;
-    stroke: #eee;
-    stroke-width: 2.5;
-}
-
-.circle {
-    fill: none;
-    stroke: var(--primary-color);
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    animation: progress 1.5s ease-out forwards;
-}
-
-.circular-progress {
-    position: relative;
-    display: inline-flex;
-    width: 132px;
-    height: 132px;
-}
-
-.percentage-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 92px;
-    max-width: calc(100% - 18px);
-}
-
-.goal-progress-card-body {
-    text-align: center;
-}
-
-.goal-progress-value {
-    display: block;
-    color: var(--text-primary);
-    font-size: 1.55rem;
-    line-height: 1.1;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.goal-progress-meta {
-    display: block;
-    margin-top: 0.15rem;
-    color: #6b7280;
-    font-size: 0.78rem;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-.progress-caption {
-    color: #6b7280;
-    text-align: center;
-    max-width: 280px;
-}
-
-.progress-empty-action {
-    margin-top: 1rem;
-}
-
-@keyframes progress {
-    0% {
-        stroke-dasharray: 0 100;
-    }
-}
-
-/* Bar Chart */
-.chart-container {
-    display: flex;
-    justify-content: space-between;
+@media (min-width: 768px) {
+  .goals-header {
+    flex-direction: row;
     align-items: flex-end;
-    height: 200px;
-    padding-top: 20px;
+    justify-content: space-between;
+  }
 }
 
-.chart-bar {
-    width: 10%;
-    background-color: #e5e7eb;
-    border-radius: 8px 8px 0 0;
-    height: var(--height);
-    position: relative;
-    cursor: default;
-    transition: height 0.5s ease;
+.goals-header-btn {
+  flex-shrink: 0;
 }
 
-    .chart-bar.has-activity {
-        min-height: 18px;
-    }
-
-    .chart-bar.active {
-        background-color: var(--primary-color);
-        box-shadow: 0 0 10px rgba(66, 85, 255, 0.3);
-    }
-
-    .chart-bar::after {
-        content: attr(data-day);
-        position: absolute;
-        bottom: -25px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #9ca3af;
-    }
-
-    .chart-bar::before {
-        content: attr(data-tooltip);
-        position: absolute;
-        left: 50%;
-        bottom: calc(100% + 0.85rem);
-        transform: translate(-50%, 8px);
-        min-width: max-content;
-        max-width: 180px;
-        width: max-content;
-        padding: 0.45rem 0.7rem;
-        border-radius: 12px;
-        background: rgba(48, 53, 69, 0.96);
-        color: #fff;
-        font-size: 0.78rem;
-        font-weight: 600;
-        line-height: 1.4;
-        text-align: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .chart-bar:hover {
-        background-color: #d1d5db;
-    }
-
-    .chart-bar.active:hover {
-        background-color: #2f3fe0;
-    }
-
-    .chart-bar:hover::before,
-    .chart-bar:focus-visible::before {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-
-    .chart-bar:focus-visible {
-        outline: 3px solid rgba(66, 85, 255, 0.18);
-        outline-offset: 4px;
-    }
-
-.chart-value {
-    position: absolute;
-    top: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
+/* ============================================================
+   Card Base
+   ============================================================ */
+.goals-card {
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid rgba(66, 85, 255, 0.1);
+  border-radius: var(--stitch-radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--stitch-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.chart-caption,
-.chart-empty-state {
-    color: #6b7280;
+.goals-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--stitch-shadow-hover);
 }
 
-.chart-empty-state .btn {
-    min-width: 172px;
+/* ============================================================
+   Streak Card
+   ============================================================ */
+.goals-streak-card {
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid rgba(66, 85, 255, 0.1);
+  border-radius: var(--stitch-radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--stitch-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Badges */
-.badge-summary {
-    color: #6b7280;
+.goals-streak-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--stitch-shadow-hover);
 }
 
-.goals-insight-banner {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.95rem;
-    padding: 1rem 1.1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(66, 85, 255, 0.12);
-    background: linear-gradient(135deg, rgba(238, 242, 255, 0.9), rgba(255, 251, 235, 0.92));
-    color: var(--text-primary);
+.goals-streak-bg-icon {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+  color: var(--md-sys-color-primary);
 }
 
-.goals-insight-banner__icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--primary-color);
-    font-size: 1.1rem;
-    box-shadow: inset 0 0 0 1px rgba(66, 85, 255, 0.08);
-    flex-shrink: 0;
+.goals-label-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-sys-color-on-surface-variant);
 }
 
-.badge-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    font-size: 2rem;
-    border: 4px solid #f3f4f6;
+/* Mini streak week bars */
+.goals-mini-streak {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
 }
 
-    .badge-icon.unlocked {
-        background-color: #eef2ff;
-        color: var(--primary-color);
-        box-shadow: inset 0 0 0 2px rgba(66, 85, 255, 0.1);
-    }
-
-    .badge-icon.locked {
-        background-color: #f9fafb;
-        color: #d1d5db;
-        border-color: #e5e7eb;
-    }
-
-.goals-badge-card {
-    --badge-progress: 0%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 22px;
-    border: 1px solid #e5e7eb;
-    background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
-    padding: 1.5rem;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+.goals-mini-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
-.goals-badge-card.is-locked {
-    background: linear-gradient(180deg, #fbfbfd 0%, #f4f5f7 100%);
+.goals-mini-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--md-sys-color-outline);
 }
 
-.goals-badge-card.is-unlocked {
-    border-color: rgba(66, 85, 255, 0.18);
+.goals-mini-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 99px;
 }
 
-.goals-badge-card.is-recently-unlocked {
-    border-color: rgba(66, 85, 255, 0.28);
-    box-shadow: 0 14px 34px rgba(66, 85, 255, 0.12);
+.goals-mini-bar--today   { background-color: var(--md-sys-color-primary-container); }
+.goals-mini-bar--active  { background-color: var(--md-sys-color-secondary-container); }
+.goals-mini-bar--empty   { background-color: var(--md-sys-color-surface-container-high); }
+
+/* ============================================================
+   Daily Goal bolt icon
+   ============================================================ */
+.goals-bolt-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(66, 85, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.goals-badge-card.is-recently-unlocked::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgba(66, 85, 255, 0.12);
-    opacity: 0;
-    pointer-events: none;
-    animation: badgeUnlockGlow 1.8s ease-out 1;
+/* ============================================================
+   Progress bars (goal cards)
+   ============================================================ */
+.goals-progress-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+  background-color: var(--md-sys-color-surface-container);
 }
 
-.goals-badge-status {
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.4rem 0.75rem;
-    white-space: nowrap;
+.goals-progress-fill {
+  height: 100%;
+  background-color: var(--md-sys-color-primary-container);
+  border-radius: 99px;
+  transition: width 0.8s ease-out;
 }
 
-.goals-badge-status.unlocked {
-    background-color: rgba(66, 85, 255, 0.12);
-    color: var(--primary-color);
+/* Circular progress wrapper */
+.goals-circle-progress-wrap {
+  text-align: center;
 }
 
-.goals-badge-status.locked {
-    background-color: #f3f4f6;
-    color: #6b7280;
+/* Day dots row */
+.goals-day-dots {
+  display: flex;
+  gap: 6px;
 }
 
-.goals-badge-highlight {
-    border-radius: 999px;
-    padding: 0.3rem 0.7rem;
-    background: linear-gradient(135deg, rgba(255, 205, 31, 0.18), rgba(255, 176, 31, 0.28));
-    color: #9a6300;
-    font-size: 0.72rem;
-    font-weight: 700;
-    white-space: nowrap;
-    letter-spacing: 0.01em;
+.goals-day-dot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+  border-radius: var(--stitch-radius-md);
+  border: 1px solid transparent;
 }
 
-.goals-badge-title {
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-weight: 700;
+.goals-day-dot--today {
+  background-color: rgba(66, 85, 255, 0.05);
+  border-color: rgba(66, 85, 255, 0.2);
 }
 
-.goals-badge-description {
-    color: #6b7280;
-    min-height: 3rem;
+.goals-day-dot--done {
+  background-color: var(--md-sys-color-surface-container-low);
+  border-color: rgba(66, 85, 255, 0.08);
 }
 
-.goals-badge-progress-track {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    border-radius: 999px;
-    overflow: hidden;
-    background-color: #e5e7eb;
+.goals-day-dot--empty {
+  opacity: 0.45;
 }
 
-.goals-badge-progress-fill {
-    display: block;
-    width: var(--badge-progress);
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #4255ff 0%, #7d8cff 100%);
+.goals-day-dot__label {
+  font-size: 11px;
+  font-weight: 600;
 }
 
-.goals-badge-progress-label {
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    font-weight: 700;
+/* ============================================================
+   Skill Progress Section
+   ============================================================ */
+.goals-skill-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid rgba(66, 85, 255, 0.1);
+  border-radius: var(--stitch-radius-xl);
+  padding: 1rem;
+  box-shadow: var(--stitch-shadow);
+  transition: background-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  color: inherit;
 }
 
-.goals-badge-metric {
-    color: #9ca3af;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+.goals-skill-card:hover {
+  background-color: var(--md-sys-color-surface-container-low);
+  transform: translateX(4px);
+  box-shadow: var(--stitch-shadow-hover);
+  color: inherit;
 }
 
-.badge-placeholder {
-    color: #4b5563;
+.goals-skill-card:hover .goals-skill-arrow {
+  color: var(--md-sys-color-primary) !important;
 }
 
+.goals-skill-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--stitch-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.goals-skill-icon--vocab   { background-color: #ede9fe; color: #7c3aed; }
+.goals-skill-icon--speaking { background-color: #fef9c3; color: var(--md-sys-color-secondary); }
+.goals-skill-icon--writing  { background-color: #dbeafe; color: var(--md-sys-color-primary); }
+
+.goals-skill-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background-color: var(--md-sys-color-surface-container);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.goals-skill-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.8s ease-out;
+}
+
+.goals-skill-fill--vocab   { background-color: #7c3aed; }
+.goals-skill-fill--speaking { background-color: var(--md-sys-color-secondary-container); }
+.goals-skill-fill--writing  { background-color: var(--md-sys-color-primary-container); }
+
+.goals-skill-arrow {
+  font-size: 16px !important;
+  transition: color 0.2s;
+}
+
+/* ============================================================
+   Weekly Activity Chart
+   ============================================================ */
+.goals-chart-area {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1rem 0.5rem 0;
+  height: 220px;
+}
+
+.goals-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  justify-content: flex-end;
+  outline: none;
+}
+
+.goals-chart-col:focus-visible .goals-chart-bar {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 4px;
+}
+
+.goals-chart-bar {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  cursor: pointer;
+  min-height: 4px;
+  transition: filter 0.15s;
+}
+
+.goals-chart-bar--today  { background-color: var(--md-sys-color-primary-container); }
+.goals-chart-bar--active { background-color: var(--md-sys-color-secondary-container); }
+.goals-chart-bar--empty  { background-color: var(--md-sys-color-surface-container-low); }
+
+.goals-chart-bar:hover,
+.goals-chart-col:hover .goals-chart-bar {
+  filter: brightness(0.9);
+}
+
+.goals-chart-bar-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(66, 85, 255, 0.2);
+  border-radius: 6px 6px 0 0;
+}
+
+.goals-chart-bar::after {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--md-sys-color-on-surface);
+  color: var(--md-sys-color-surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.goals-chart-bar:hover::after,
+.goals-chart-col:focus-visible .goals-chart-bar::after {
+  display: block;
+}
+
+/* Empty state icon */
+.goals-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   Badges Compact Grid
+   ============================================================ */
+.goals-badge-count-tag {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.goals-new-badge-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: var(--md-sys-color-surface-container-low);
+  border: 1px solid rgba(66, 85, 255, 0.12);
+  border-radius: var(--stitch-radius-lg);
+  padding: 10px 12px;
+}
+
+.goals-new-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Badge grid: auto-fit with min 72px per cell → 3 cols in narrow sidebar */
+.goals-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow: hidden;
+}
+
+.goals-badge-tile {
+  aspect-ratio: 1;
+  border-radius: var(--stitch-radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+  gap: 4px;
+  position: relative;
+  transition: transform 0.2s ease;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.goals-badge-tile:hover {
+  transform: scale(1.04);
+}
+
+.goals-badge-tile--unlocked {
+  background-color: var(--md-sys-color-surface-container-low);
+  border: 1px solid rgba(66, 85, 255, 0.1);
+}
+
+.goals-badge-tile--locked {
+  background-color: rgba(197, 197, 217, 0.15);
+  border: 1.5px dashed rgba(197, 197, 217, 0.4);
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.goals-badge-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.goals-badge-icon-wrap--unlocked {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: var(--md-sys-color-primary);
+}
+
+.goals-badge-icon-wrap--locked {
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.goals-badge-name {
+  font-size: 9px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--md-sys-color-on-surface-variant);
+  word-break: break-word;
+}
+
+.goals-badge-name--locked {
+  color: var(--md-sys-color-outline);
+}
+
+/* Recently unlocked dot */
+.goals-badge-recent-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-primary);
+  border: 2px solid white;
+}
+
+/* Next badge progress hint */
+.goals-next-badge {
+  background-color: var(--md-sys-color-surface-container-low);
+  border: 1px solid rgba(197, 197, 217, 0.3);
+  border-radius: var(--stitch-radius-lg);
+  padding: 12px;
+}
+
+.goals-next-badge-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.goals-next-badge-fill {
+  height: 100%;
+  background-color: var(--md-sys-color-primary);
+  border-radius: 99px;
+  transition: width 0.8s ease-out;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-stitch-primary {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: var(--stitch-radius-lg);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-stitch-primary:hover  { background-color: #2f3fe0; color: var(--md-sys-color-on-primary); }
+.btn-stitch-primary:active { transform: scale(0.95); }
+
+.btn-stitch-outline-primary {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-primary);
+  border-radius: var(--stitch-radius-lg);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-stitch-outline-primary:hover {
+  background-color: rgba(66, 85, 255, 0.05);
+  color: var(--md-sys-color-primary);
+}
+
+.btn-stitch-outline-secondary {
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--stitch-radius-lg);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-stitch-outline-secondary:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+/* ============================================================
+   Modal
+   ============================================================ */
 .goal-editor-modal .modal-content {
-    border-radius: 24px;
+  border-radius: 24px;
+  background-color: var(--md-sys-color-surface-container-lowest);
 }
 
 .goal-input {
-    border-radius: 16px;
+  border-radius: 12px;
+  border-color: var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container-lowest);
+  color: var(--md-sys-color-on-surface);
 }
 
-@keyframes badgeUnlockGlow {
-    0% {
-        opacity: 0.9;
-        box-shadow: inset 0 0 0 1px rgba(66, 85, 255, 0.18), 0 0 0 0 rgba(66, 85, 255, 0.18);
-    }
-
-    100% {
-        opacity: 0;
-        box-shadow: inset 0 0 0 1px rgba(66, 85, 255, 0.06), 0 0 0 18px rgba(66, 85, 255, 0);
-    }
+.goal-input:focus {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 4px rgba(66, 85, 255, 0.1);
 }
 
-@media (max-width: 575.98px) {
-    .goals-container {
-        padding: 1rem;
-    }
-
-    .btn-edit-goals {
-        width: 100%;
-    }
-
-    .goals-toast-region {
-        top: auto;
-        bottom: 1rem;
-        right: 1rem;
-        left: 1rem;
-    }
-
-    .badge-icon {
-        width: 64px;
-        height: 64px;
-        font-size: 1.5rem;
-    }
-
-    .goals-badge-card {
-        padding: 1.25rem;
-    }
-
-    .goals-feedback-toast {
-        width: 100%;
-    }
-
-    .goal-editor-modal .modal-footer {
-        flex-wrap: wrap;
-    }
-
-    .goal-editor-modal .modal-footer .btn {
-        width: 100%;
-    }
-
-    .chart-container {
-        gap: 0.35rem;
-        padding-top: 16px;
-        height: 188px;
-    }
-
-    .chart-bar {
-        width: calc((100% - 2.1rem) / 7);
-    }
-
-    .chart-bar::before {
-        min-width: 120px;
-        max-width: 140px;
-        white-space: normal;
-    }
-
-    .chart-bar::after {
-        font-size: 0.75rem;
-        bottom: -22px;
-    }
-
-    .goal-progress-value {
-        font-size: 1.35rem;
-    }
-
-    .goal-progress-meta {
-        font-size: 0.72rem;
-    }
+/* ============================================================
+   Toast
+   ============================================================ */
+.goals-toast-region {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1080;
 }
 
-@media (max-width: 374.98px) {
-    .circular-chart,
-    .circular-progress {
-        width: 116px;
-        height: 116px;
-    }
-
-    .percentage-label {
-        width: 82px;
-    }
-
-    .goal-progress-value {
-        font-size: 1.2rem;
-    }
-
-    .goals-insight-banner {
-        align-items: center;
-    }
-
-    .goals-insight-banner__icon {
-        width: 40px;
-        height: 40px;
-    }
+.goals-feedback-toast {
+  width: min(360px, calc(100vw - 2rem));
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1rem 1rem 1.1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(66, 85, 255, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  backdrop-filter: blur(10px);
 }
 
-@media (max-width: 767.98px) {
-    .goal-card:hover {
-        transform: none;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
-    }
+.goals-feedback-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .fire-icon,
-    .circle,
-    .goals-feedback-toast,
-    .goal-card,
-    .chart-bar,
-    .chart-bar::before,
-    .goals-badge-card.is-recently-unlocked::after {
-        animation: none !important;
-        transition: none !important;
-    }
+.goals-feedback-toast__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(66, 85, 255, 0.15), rgba(125, 140, 255, 0.22));
+  color: var(--md-sys-color-primary);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.goals-feedback-toast__content { min-width: 0; }
+
+.goals-feedback-toast__title {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.goals-feedback-toast__message {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Chart animation aliases (keep for JS compatibility)
+   ============================================================ */
+.chart-column { outline: none; }
+.chart-bar-anim { position: relative; cursor: pointer; min-height: 4px; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  .goals-page { padding: 1rem; }
+
+  .goals-toast-region {
+    top: auto;
+    bottom: 1.5rem;
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .goals-feedback-toast { width: 100%; }
+
+  .goals-chart-area { height: 160px; gap: 6px; }
+
+  .goals-badge-grid { grid-template-columns: repeat(4, 1fr); }
 }
