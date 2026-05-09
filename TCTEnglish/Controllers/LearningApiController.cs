@@ -151,6 +151,37 @@ namespace TCTVocabulary.Controllers
                 xpEarned = activityUpdate.XpEarned
             });
         }
+
+        // ── Track time per feature ─────────────────────────────────────────
+        [HttpPost("track-time")]
+        [IgnoreAntiforgeryToken] // sendBeacon không gửi được header CSRF
+        public async Task<IActionResult> TrackFeatureTime([FromBody] TrackFeatureTimeRequest request)
+        {
+            if (!User.TryGetUserId(out var currentUserId))
+                return Unauthorized();
+
+            var allowed = new[] { "Flashcard", "Quiz", "Speaking", "Reading", "Listening", "Writing", "Grammar" };
+            if (string.IsNullOrWhiteSpace(request.Feature) || !allowed.Contains(request.Feature))
+            {
+                _logger.LogWarning("Invalid feature '{Feature}' from user {UserId}", request.Feature, currentUserId);
+                return BadRequest("Invalid feature name.");
+            }
+
+            // Tối thiểu 10s, tối đa 3600s (1 giờ) — tránh data rác
+            var duration = Math.Clamp(request.DurationSeconds, 10, 3600);
+
+            _context.UserFeatureTimeLogs.Add(new TCTVocabulary.Models.UserFeatureTimeLog
+            {
+                UserId = currentUserId,
+                Feature = request.Feature,
+                DurationSeconds = duration,
+                LoggedDate = BusinessDateHelper.Today
+            });
+            await _context.SaveChangesAsync();
+
+            _logger.LogDebug("Time logged: user {UserId}, {Feature}, {Duration}s", currentUserId, request.Feature, duration);
+            return Ok(new { success = true });
+        }
     }
 
     public class LearningRecordRequest
@@ -158,5 +189,12 @@ namespace TCTVocabulary.Controllers
         public int CardId { get; set; }
         public string MasteryLevel { get; set; } = null!;
         public DateTime Timestamp { get; set; }
+    }
+
+    public class TrackFeatureTimeRequest
+    {
+        public string Feature { get; set; } = string.Empty;
+        /// <summary>Thời gian học tính bằng giây.</summary>
+        public int DurationSeconds { get; set; }
     }
 }

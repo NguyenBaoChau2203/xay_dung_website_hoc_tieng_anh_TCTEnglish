@@ -73,6 +73,9 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ClassJoinRequest> ClassJoinRequests { get; set; }
     public virtual DbSet<ClassBlacklist> ClassBlacklists { get; set; }
 
+    // ─── Learning time tracking ──────────────────────────────────────────────
+    public virtual DbSet<UserFeatureTimeLog> UserFeatureTimeLogs { get; set; }
+
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -653,6 +656,31 @@ public partial class DbflashcardContext : DbContext
                   .WithMany()
                   .HasForeignKey(d => d.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<UserFeatureTimeLog>(entity =>
+        {
+            entity.ToTable("UserFeatureTimeLogs");
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Feature)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.DurationSeconds)
+                .HasDefaultValue(0);
+
+            entity.Property(e => e.LoggedDate)
+                .HasColumnType("date");
+
+            entity.HasIndex(e => new { e.UserId, e.LoggedDate })
+                .HasDatabaseName("IX_UserFeatureTimeLogs_UserId_LoggedDate");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserFeatureTimeLogs_Users");
         });
 
         // Cấu hình cho ClassJoinRequest (Nếu bạn chưa làm)

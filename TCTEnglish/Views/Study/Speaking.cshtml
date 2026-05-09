@@ -498,6 +498,7 @@ kbd {
 }
 
 @section Scripts {
+<script src="~/js/time-tracker.js" data-feature="Speaking" defer></script>
 <script>
     // DATA INITIALIZATION
     const cards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model?.Cards ?? new global::System.Collections.Generic.List<TCTVocabulary.ViewModels.VocabularyCardItemViewModel>()));

@@ -181,9 +181,7 @@ public sealed class GoalsPhase1IntegrationTests
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Matches(
-            new Regex(@"fa-bullseye.*?<span class=""stat-value"">18</span>", RegexOptions.Singleline),
-            body);
+        Assert.Matches(new Regex(@"18\s+t[^\s<]*\s*<br>\s*c[^\s<]*n", RegexOptions.IgnoreCase), body);
     }
 
     private static async Task SeedGoalDataAsync(
