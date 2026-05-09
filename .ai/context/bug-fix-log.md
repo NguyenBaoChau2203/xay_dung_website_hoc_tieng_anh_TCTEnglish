@@ -41,6 +41,24 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Dashboard goal integration test brittle regex failure - 2026-05-09
+
+**Symptom**: CI/CD pipeline failed with `Assert.Matches() Failure: Pattern not found in value` for the `Dashboard_RendersGoalFromUserState` test.
+
+**Root Cause**: The integration test used a brittle regex `18\s+t[^\s<]*\s*<br>\s*c[^\s<]*n` that was sensitive to exact whitespace and HTML tag formatting (e.g., `<br>` vs `<br />`). Differences in the rendering environment (GitHub Actions vs local) caused the match to fail.
+
+**Solution**: Updated the regex in `TCTEnglish.Tests/GoalsPhase1IntegrationTests.cs` to be more robust by allowing optional whitespace and variations of the `<br>` tag (using `<br\s*/?>`). Added `RegexOptions.Singleline` to ensure the regex handles potential newline characters correctly.
+
+**Files Changed**:
+- `TCTEnglish.Tests/GoalsPhase1IntegrationTests.cs` — line 184: updated dashboard goal regex assertion.
+
+**Verification**: `dotnet test --filter GoalsPhase1IntegrationTests.Dashboard_RendersGoalFromUserState` passed locally. Full phase 1 goals suite passed (7/7).
+
+**Commit**: `fix(tests): harden dashboard goal integration test regex`
+
+**Notes**: This follows the pattern of keeping test contracts aligned with UI refresh markup. No changes were made to the `HomeController` or `Index.cshtml` view.
+
+
 ### Dashboard quick links and metrics drift after UI refresh - 2026-05-06
 
 **Symptom**: New dashboard quick-access buttons pointed to non-existent actions (`/Home/Flashcard`, `/Home/Quiz`), memory/heatmap widgets showed placeholder numbers, and a prototype preview file under `wwwroot` risked being publicly served.
