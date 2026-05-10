@@ -122,6 +122,23 @@
     @{
         bool hideSidebar = ViewData["HideSidebar"] as bool? == true;
         string layoutClass = hideSidebar ? "layout sidebar-collapsed" : "layout";
+
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+        string currentArea = ViewContext.RouteData.Values["area"]?.ToString() ?? "";
+
+        string IsActive(string c, string a = null, string area = null)
+        {
+            bool match = string.Equals(currentController, c, StringComparison.OrdinalIgnoreCase);
+            if (!string.IsNullOrEmpty(a))
+                match = match && string.Equals(currentAction, a, StringComparison.OrdinalIgnoreCase);
+            if (!string.IsNullOrEmpty(area))
+                match = match && string.Equals(currentArea, area, StringComparison.OrdinalIgnoreCase);
+            else
+                match = match && string.IsNullOrEmpty(currentArea);
+
+            return match ? "active" : "";
+        }
     }
     <div class="@layoutClass">
         <!-- ================= SIDEBAR ================= -->
@@ -129,128 +146,121 @@
         {
         <aside class="sidebar">
             <nav>
+                <div class="workspace-title">Menu chính</div>
+                <a class="nav-item @IsActive("Home", "Index")" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home" style="color: #3b82f6;"></i>
+                    <span>Trang chủ</span>
+                </a>
                 <div class="nav-dropdown" id="coursesDropdown">
                     <div class="nav-dropdown-item" id="coursesDropdownBtn">
                         <div class="nav-dropdown-title">
-                            <i class="fas fa-book-open"></i>
-                            <span>Courses</span>
+                            <i class="fas fa-book-open" style="color: #8b5cf6;"></i>
+                            <span>Khóa học</span>
                         </div>
                         <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </div>
                     
                     <div class="nav-dropdown-menu" id="coursesDropdownMenu">      
-                        <a class="nav-sub-item" asp-controller="Study" asp-action="Listening">
-                            <span>Listening</span>
+                        <a class="nav-sub-item @IsActive("Vocabulary")" asp-controller="Vocabulary" asp-action="Index">
+                            <i class="fas fa-language" style="color: #6366f1;"></i>
+                            <span>Từ vựng</span>
                         </a>
-                        <a class="nav-sub-item" asp-controller="Study" asp-action="Reading">
-                            <span>Reading</span>
+                        <a class="nav-sub-item @IsActive("Study", "Listening")" asp-controller="Study" asp-action="Listening">
+                            <i class="fas fa-headphones" style="color: #06b6d4;"></i>
+                            <span>Nghe</span>
                         </a>
-                        <a class="nav-sub-item" asp-controller="Study" asp-action="Writing">
-                            <span>Writing <i class="fas fa-fire" style="color:#f97316; font-size:14px; margin-left:6px;"></i></span>
+                        <a class="nav-sub-item @IsActive("Study", "Reading")" asp-controller="Study" asp-action="Reading">
+                            <i class="fas fa-book-reader" style="color: #14b8a6;"></i>
+                            <span>Đọc</span>
                         </a>
-                        <a class="nav-sub-item" asp-controller="Speaking" asp-action="Index">
-                            <span>Speaking</span>
+                        <a class="nav-sub-item @IsActive("Study", "Writing")" asp-controller="Study" asp-action="Writing">
+                            <i class="fas fa-pen-nib" style="color: #f59e0b;"></i>
+                            <span style="display: flex; align-items: center; gap: 6px;">
+                                Viết <i class="fas fa-fire" style="color:#f97316; font-size:12px;"></i>
+                            </span>
+                        </a>
+                        <a class="nav-sub-item @IsActive("Speaking")" asp-controller="Speaking" asp-action="Index">
+                            <i class="fas fa-microphone" style="color: #8b5cf6;"></i>
+                            <span>Nói</span>
                         </a>
                     </div>
                 </div>
 
-                <hr style="margin: 10px 0;" />
-
-                <a class="nav-item">
-                    <i class="fas fa-layer-group"></i>
-                    <span>Your library</span>
+                <a class="nav-item @IsActive("Goals")" asp-controller="Goals" asp-action="Index">
+                    <i class="fas fa-bullseye" style="color: #10b981;"></i>
+                    <span>Mục tiêu</span>
                 </a>
 
-            
-                <a class="nav-item" asp-controller="Goals" asp-action="Index">
-                    <i class="fas fa-bullseye"></i>
-                    <span>Goals</span>
-                </a>
-
-                <a class="nav-item" asp-controller="Notification" asp-action="Index">
-                    <i class="fas fa-bell"></i>
+                <a class="nav-item @IsActive("Notification", "Index")" asp-controller="Notification" asp-action="Index">
+                    <i class="fas fa-bell" style="color: #f43f5e;"></i>
                     <span>Thông báo</span>
                     <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" style="display:none;position:static;margin-left:auto;font-size:10px;min-width:18px;"></span>
                 </a>
 
-                <a class="nav-item" asp-controller="Vocabulary" asp-action="Index">
-                    <i class="fas fa-book"></i>
-                    <span>Vocabulary</span>
-                </a>
+                <hr />
 
-
-
-                <div class="nav-dropdown" id="classDropdown">
-
-                    <div class="nav-dropdown-item" id="classDropdownBtn">
-                        <div class="nav-dropdown-title">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Classes</span>
-                        </div>
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </div>
-
-                    <div class="nav-dropdown-menu" id="classDropdownMenu">
-
-                        <a class="nav-sub-item"
-                           asp-controller="Class"
-                           asp-action="CreateClass">
-
-                            <span class="icon-circle small">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            New class
-                        </a>
-
-                        <a class="nav-sub-item"
-                           asp-controller="Class"
-                           asp-action="Class">
-
-                            <i class="fas fa-users"></i>
-                            My classes
-
-                        </a>
-
-                    </div>
-                </div>
+                <div class="workspace-title">Thư viện của bạn</div>
 
                 <div class="nav-dropdown" id="folderDropdown">
-
-                    <div class="nav-dropdown-item" id="folderDropdownBtn">
+                    <div class="nav-dropdown-item @IsActive("Folder")" id="folderDropdownBtn">
                         <div class="nav-dropdown-title">
-                            <i class="fas fa-folder"></i>
-                            <span>Folders</span>
+                            <i class="fas fa-folder" style="color: #f59e0b;"></i>
+                            <span>Thư mục</span>
                         </div>
                         <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </div>
 
                     <div class="nav-dropdown-menu" id="folderDropdownMenu">
-
                         <button class="nav-sub-item" id="newFolderBtn">
-                            <span class="icon-circle small">
+                            <span class="icon-circle small" style="color: #10b981; border-color: rgba(16, 185, 129, 0.2);">
                                 <i class="fas fa-plus"></i>
                             </span>
-                            New folder
+                            Tạo thư mục mới
                         </button>
-
-                        <a class="nav-sub-item" asp-controller="Folder" asp-action="Folder">
-                            <i class="fas fa-folder-open"></i>
-                            My folders
+                        <a class="nav-sub-item @IsActive("Folder", "Folder")" asp-controller="Folder" asp-action="Folder">
+                            <i class="fas fa-folder-open" style="color: #f59e0b;"></i>
+                            Thư mục của tôi
                         </a>
-
                     </div>
                 </div>
 
-                <a class="nav-item" asp-controller="Home" asp-action="Contact">
-                    <i class="fas fa-envelope"></i>
+                <div class="nav-dropdown" id="classDropdown">
+                    <div class="nav-dropdown-item @IsActive("Class")" id="classDropdownBtn">
+                        <div class="nav-dropdown-title">
+                            <i class="fas fa-chalkboard-teacher" style="color: #6366f1;"></i>
+                            <span>Lớp học</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+
+                    <div class="nav-dropdown-menu" id="classDropdownMenu">
+                        <a class="nav-sub-item @IsActive("Class", "CreateClass")" asp-controller="Class" asp-action="CreateClass">
+                            <span class="icon-circle small" style="color: #3b82f6; border-color: rgba(59, 130, 246, 0.2);">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            Tạo lớp học mới
+                        </a>
+                        <a class="nav-sub-item @IsActive("Class", "Class")" asp-controller="Class" asp-action="Class">
+                            <i class="fas fa-users" style="color: #6366f1;"></i>
+                            Lớp học của tôi
+                        </a>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="workspace-title">Hỗ trợ</div>
+                <a class="nav-item @IsActive("Home", "Contact")" asp-controller="Home" asp-action="Contact">
+                    <i class="fas fa-envelope" style="color: #ec4899;"></i>
                     <span>Liên hệ</span>
                 </a>
+
 
                 @if (User.IsInRole("Admin"))
                 {
                 <hr style="margin: 10px 0;" />
-                <a class="nav-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                    <i class="fas fa-shield-alt"></i>
+                <a class="nav-item @IsActive("Dashboard", null, "Admin")" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <i class="fas fa-shield-alt" style="color: #64748b;"></i>
                     <span>Admin Panel</span>
                 </a>
                 }
@@ -383,8 +393,6 @@
         </div>
     </div>
     @{
-        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
         var showAiLauncher = !string.Equals(currentController, "Ai", System.StringComparison.OrdinalIgnoreCase)
             || !string.Equals(currentAction, "Chat", System.StringComparison.OrdinalIgnoreCase);
     }
