@@ -125,6 +125,7 @@ namespace TCTVocabulary.Controllers
             return new DashboardViewModel
             {
                 FullName = user.FullName,
+                Role = user.Role,
                 Streak = user.Streak ?? 0,
                 Goal = user.Goal ?? 0,
                 FolderCount = user.Folders.Count,

@@ -12,6 +12,7 @@ namespace TCTVocabulary.ViewModels
         public int MasteredCount { get; set; }
         public int LearningCount { get; set; }
         public int NewCount { get; set; }
+        public string? Role { get; set; }
 
         public DailyChallengeViewModel? DailyChallenge { get; set; }
         public List<TodayFolderViewModel> TodayFolders { get; set; } = new();

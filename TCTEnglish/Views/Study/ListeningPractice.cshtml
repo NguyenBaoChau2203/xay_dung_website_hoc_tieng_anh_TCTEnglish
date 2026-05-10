@@ -281,7 +281,7 @@
 
                             <div class="lp-transcript-line"
                                  data-line-id="@line.Id"
-                                 @(hasTimes ? $"data-start=\"{line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)}\" data-end=\"{line.EndTime?.ToString("F2", CultureInfo.InvariantCulture) ?? (line.StartTime.GetValueOrDefault() + 5).ToString("F2", CultureInfo.InvariantCulture)}\"" : "")>
+                                 @Html.Raw(hasTimes ? $"data-start=\"{line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)}\" data-end=\"{line.EndTime?.ToString("F2", CultureInfo.InvariantCulture) ?? (line.StartTime.GetValueOrDefault() + 5).ToString("F2", CultureInfo.InvariantCulture)}\"" : "")>
 
                                 <div class="lp-line-inner">
                                     <span class="lp-line-speaker @speakerClass">@line.Speaker</span>
@@ -395,21 +395,39 @@
                             <div class="lp-mode-header-desc">Điền các từ còn thiếu vào chỗ trống.</div>
                         </div>
                         <div class="lp-mode-header-actions">
-                            <div class="lp-fillin-score">
-                                <span class="lp-fillin-score-num" id="fillin-correct-count">0</span>
-                                <span class="lp-fillin-score-sep">/</span>
-                                <span class="lp-fillin-score-num" id="fillin-total-count">0</span>
-                                <span class="lp-fillin-score-label">từ đúng</span>
+                            <div class="lp-progress-ring" id="fillin-ring">
+                                <svg width="52" height="52" viewBox="0 0 60 60">
+                                    <circle class="lp-ring-track" cx="30" cy="30" r="24"/>
+                                    <circle class="lp-ring-progress" id="fillin-ring-progress" cx="30" cy="30" r="24"
+                                            stroke-dasharray="150.796" stroke-dashoffset="150.796"/>
+                                </svg>
+                                <div class="lp-ring-label">
+                                    <span class="lp-ring-pct" id="fillin-ring-pct">0%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lp-progress-bar">
-                        <div class="lp-progress-fill" id="fillin-progress-fill"></div>
-                    </div>
-
                     <!-- Fill-in items rendered by JS -->
                     <div id="fillin-lines" class="lp-items-list"></div>
+
+                    <!-- Summary (shown when done) -->
+                    <div class="lp-dict-summary" id="fillin-summary">
+                        <div class="lp-dict-summary-title">🎉 Kết quả Điền từ</div>
+                        <div class="lp-dict-summary-stats">
+                            <div class="lp-dict-stat correct">
+                                <span class="lp-dict-stat-num" id="fillin-stat-correct">0</span>
+                                <span class="lp-dict-stat-label">Đúng</span>
+                            </div>
+                            <div class="lp-dict-stat wrong">
+                                <span class="lp-dict-stat-num" id="fillin-stat-wrong">0</span>
+                                <span class="lp-dict-stat-label">Sai</span>
+                            </div>
+                        </div>
+                        <button class="lp-mode-done-btn" id="btn-fillin-retry-summary">
+                            <i class="fas fa-redo"></i> Làm lại
+                        </button>
+                    </div>
 
                     <div class="lp-fillin-footer" id="fillin-footer" style="display:none">
                         <button class="lp-btn-check-all" id="btn-fillin-check">
