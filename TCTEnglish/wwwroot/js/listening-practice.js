@@ -47,16 +47,19 @@
     // 3. PLAYER — YouTube IFrame API or HTML5 Audio
     // ══════════════════════════════════════════════════════════════
     let ytPlayer          = null;
+    let ytReady            = false;
     let audioEl           = document.getElementById('lp-audio');
     let transcriptPolling = null;
 
     // ── YouTube IFrame API ────────────────────────────────────────
     if (youtubeId) {
         window.onYouTubeIframeAPIReady = function () {
-            ytPlayer = new YT.Player('youtube-player', {
+            new YT.Player('youtube-player', {
                 events: {
                     onReady: function (event) {
-                        window.ytPlayer = event.target;
+                        ytPlayer = event.target;        // true player instance with seekTo/playVideo
+                        window.ytPlayer = event.target; // expose globally
+                        ytReady = true;
                         startTranscriptHighlight();
                     },
                     onStateChange: function (e) {
@@ -88,12 +91,18 @@
 
     // ── Seek helpers ──────────────────────────────────────────────
     function seekTo(seconds) {
-        if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
-            ytPlayer.seekTo(seconds, true);
-            ytPlayer.playVideo();
+        console.log('[LP] seekTo called:', seconds, 'ytReady:', ytReady, 'ytPlayer:', ytPlayer, 'audioEl:', audioEl);
+        const yt = ytReady ? (ytPlayer || window.ytPlayer) : null;
+        if (yt && typeof yt.seekTo === 'function') {
+            console.log('[LP] Using YouTube player to seek');
+            yt.seekTo(seconds, true);
+            yt.playVideo();
         } else if (audioEl) {
+            console.log('[LP] Using HTML5 audio to seek');
             audioEl.currentTime = seconds;
             audioEl.play().catch(() => {});
+        } else {
+            console.warn('[LP] seekTo: no player available!');
         }
     }
     window.seekTo = seekTo; // Expose for dynamically generated HTML
@@ -162,6 +171,11 @@
     // 6. TRANSCRIPT (MODE 1)
     // ══════════════════════════════════════════════════════════════
     const transcriptLines = document.querySelectorAll('.lp-transcript-line');
+    console.log('[LP] Found transcript lines in DOM:', transcriptLines.length);
+    if (transcriptLines.length > 0) {
+        const firstLine = transcriptLines[0];
+        console.log('[LP] First line data-start:', firstLine.dataset.start, 'parsed:', parseFloat(firstLine.dataset.start));
+    }
 
     // ── Click to seek ─────────────────────────────────────────────
     transcriptLines.forEach(line => {
@@ -499,19 +513,23 @@
             });
 
             const item = document.createElement('div');
-            item.className = 'lp-fillin-item';
+            item.className = 'lp-dictation-item';
             item.innerHTML = `
-                <div class="lp-fillin-item-header">
-                    <span class="lp-fillin-num">${lineIdx + 1}</span>
-                    <span class="lp-fillin-speaker ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null ? `<button class="lp-fillin-play-btn" data-start="${line.startTime}"><i class="fas fa-play"></i></button>` : ''}
+                <div class="lp-dict-item-header">
+                    <span class="lp-dict-num">${lineIdx + 1}</span>
+                    <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
+                    ${line.startTime != null ? `<button class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
                 </div>
-                <div class="lp-fillin-text" style="line-height:2.2">${lineHtml}</div>
+                <div class="lp-fillin-text" style="line-height:2.2; margin-top:15px; margin-bottom:15px;">${lineHtml}</div>
+                <div class="lp-dict-answer" style="display:none; margin-top:5px; color:var(--lp-muted); font-size:0.9rem">
+                    <strong>Đáp án:</strong> ${escHtml(line.text)}
+                </div>
+                <div style="margin-top:10px"><button class="lp-fillin-check-btn lp-dict-check-btn">Kiểm tra</button></div>
             `;
             container.appendChild(item);
 
             // Bind click to play button
-            const playBtn = item.querySelector('.lp-fillin-play-btn');
+            const playBtn = item.querySelector('.lp-dict-listen-btn');
             if (playBtn) {
                 playBtn.addEventListener('click', function () {
                     seekTo(parseFloat(this.dataset.start));
@@ -530,19 +548,32 @@
                     if (this.value.trim()) checkSingleBlank(this);
                 });
             });
+
+            // Bind check button
+            const checkBtn = item.querySelector('.lp-fillin-check-btn');
+            if (checkBtn) {
+                checkBtn.addEventListener('click', () => {
+                    item.querySelectorAll('.lp-fillin-blank').forEach(input => {
+                        checkSingleBlank(input);
+                    });
+                    const answerEl = item.querySelector('.lp-dict-answer');
+                    if (answerEl) answerEl.style.display = 'block';
+                    checkBtn.disabled = true;
+                });
+            }
         });
 
-        const totalCountEl = document.getElementById('fillin-total-count');
-        if (totalCountEl) totalCountEl.textContent = fillinBlanks.length;
-        
-        const correctCountEl = document.getElementById('fillin-correct-count');
-        if (correctCountEl) correctCountEl.textContent = '0';
+        // Reset ring
+        const ringPctEl = document.getElementById('fillin-ring-pct');
+        const ringProg  = document.getElementById('fillin-ring-progress');
+        if (ringPctEl) ringPctEl.textContent = '0%';
+        if (ringProg) {
+            ringProg.style.strokeDashoffset = 150.796;
+            ringProg.style.stroke = 'var(--lp-error)';
+        }
 
         if (footer) footer.style.display = 'flex';
 
-        // Re-init bar
-        const bar = document.getElementById('fillin-progress-fill');
-        if (bar) bar.style.width = '0%';
         const progressText = document.getElementById('fillin-progress-text');
         if (progressText) progressText.textContent = '';
 
@@ -584,15 +615,19 @@
         });
         
         const total = fillinBlanks.length;
-        const pct = total > 0 ? Math.round((filled / total) * 100) : 0;
-        const bar = document.getElementById('fillin-progress-fill');
-        if (bar) bar.style.width = pct + '%';
+        const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+        
+        const ringPctEl = document.getElementById('fillin-ring-pct');
+        const ringProg  = document.getElementById('fillin-ring-progress');
+        if (ringPctEl) ringPctEl.textContent = pct + '%';
+        if (ringProg) {
+            const offset = 150.796 - (pct / 100) * 150.796;
+            ringProg.style.strokeDashoffset = offset;
+            ringProg.style.stroke = pct >= 70 ? 'var(--lp-success)' : pct >= 40 ? 'var(--lp-warning)' : 'var(--lp-error)';
+        }
 
         const progressText = document.getElementById('fillin-progress-text');
         if (progressText) progressText.textContent = correct + ' / ' + total + ' từ đúng';
-        
-        const correctCount = document.getElementById('fillin-correct-count');
-        if (correctCount) correctCount.textContent = correct;
     }
 
     // Check all button
@@ -633,8 +668,13 @@
             const progressText = document.getElementById('fillin-progress-text');
             if (progressText) progressText.textContent = correct + ' / ' + total + ' từ đúng';
             
-            const bar = document.getElementById('fillin-progress-fill');
-            if (bar) bar.style.width = pct + '%';
+            // Show summary
+            const summaryEl = document.getElementById('fillin-summary');
+            if (summaryEl) {
+                document.getElementById('fillin-stat-correct').textContent = correct;
+                document.getElementById('fillin-stat-wrong').textContent = total - correct;
+                summaryEl.classList.add('show');
+            }
 
             if (fillinRetryBtn) fillinRetryBtn.style.display = 'inline-flex';
             fillinCheckBtn.disabled = true;
@@ -647,6 +687,17 @@
         fillinRetryBtn.onclick = function () {
             fillinInited = false;
             fillinRetryBtn.style.display = 'none';
+            if (fillinCheckBtn) fillinCheckBtn.disabled = false;
+            initFillIn();
+        };
+    }
+
+    const retrySummaryBtn = document.getElementById('btn-fillin-retry-summary');
+    if (retrySummaryBtn) {
+        retrySummaryBtn.onclick = function () {
+            const summaryEl = document.getElementById('fillin-summary');
+            if (summaryEl) summaryEl.classList.remove('show');
+            fillinInited = false;
             if (fillinCheckBtn) fillinCheckBtn.disabled = false;
             initFillIn();
         };

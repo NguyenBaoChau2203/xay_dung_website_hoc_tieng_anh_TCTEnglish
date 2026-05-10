@@ -33,14 +33,27 @@
 <!-- ════════════════════════════════════
      GREETING
 ═══════════════════════════════════════ -->
-<div class="db-greeting">
+<div class="db-greeting d-flex justify-content-between align-items-center">
     <div>
         <p class="db-greeting__sub">@greetingText</p>
         <h1 class="db-greeting__title">
             Xin chào, <span class="db-greeting__name">@userName</span>!
         </h1>
     </div>
-
+    <div class="db-greeting__role">
+        @if (Model.Role == "Admin")
+        {
+            <span class="badge bg-danger" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Admin</span>
+        }
+        else if (Model.Role == "Premium")
+        {
+            <span class="badge bg-warning text-dark" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Premium</span>
+        }
+        else
+        {
+            <span class="badge bg-secondary" style="font-size: 0.9rem; padding: 0.5em 0.8em; border-radius: 8px;">Standard</span>
+        }
+    </div>
 </div>
 
 <!-- ════════════════════════════════════
