@@ -1,4 +1,4 @@
-﻿body {
+body {
     background-color: #f4f7f9;
 }
 
@@ -121,4 +121,72 @@
 .sticky-card {
     position: sticky;
     top: 80px;
+}
+
+/* ─── Translation Mode ─────────────────────────────────────────────────── */
+.sentence-translation-block {
+    transition: all 0.2s ease;
+}
+
+.sentence-translation-block:hover {
+    transform: translateX(3px);
+}
+
+.sentence-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+    border-color: #198754;
+}
+
+.translation-edit-block textarea:focus {
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+    border-color: #198754;
+}
+
+/* AI Score Circle */
+.ai-score-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: 4px solid #dee2e6;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.ai-score-circle.approved {
+    border-color: #198754;
+    color: #198754;
+    background: #f0fdf4;
+}
+
+.ai-score-circle.rejected {
+    border-color: #dc3545;
+    color: #dc3545;
+    background: #fdf0f0;
+}
+
+/* Community Translations List */
+.translation-list-item {
+    background: #f8f9fa;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.translation-list-item:hover {
+    background: #e7f1ff;
+    border-color: #0d6efd;
+    transform: translateX(3px);
+}
+
+/* Translation Pair (Detail Page) */
+.translation-pair {
+    transition: all 0.2s ease;
+}
+
+.translation-pair:hover {
+    transform: translateX(2px);
 }

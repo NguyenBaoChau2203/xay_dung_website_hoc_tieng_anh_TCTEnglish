@@ -1,25 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.Json;
+using TCTEnglish.Models;
+using TCTEnglish.ViewModels;
+using TCTVocabulary.Controllers;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
-using TCTEnglish.ViewModels;
-using System.Text.Json;
 
 namespace TCTEnglish.Controllers
 {
-    public class ReadingController : Controller
+    public class ReadingController : BaseController
     {
         private readonly DbflashcardContext _context;
         private readonly IGoalsService _goalsService;
+        private readonly IReadingTranslationService _translationService;
 
-        public ReadingController(DbflashcardContext context, IGoalsService goalsService)
+        public ReadingController(
+            DbflashcardContext context,
+            IGoalsService goalsService,
+            IReadingTranslationService translationService)
         {
             _context = context;
             _goalsService = goalsService;
+            _translationService = translationService;
         }
 
-        // Trang học chi tiết
+        // ─── Trang học chi tiết ───────────────────────────────────────────────
         [HttpGet("Reading/Study/{id}")]
         public async Task<IActionResult> Study(int id)
         {
@@ -64,7 +72,7 @@ namespace TCTEnglish.Controllers
             return View("~/Views/Study/ReadingStudy.cshtml", model);
         }
 
-        // Xử lý nộp bài AJAX
+        // ─── Xử lý nộp bài AJAX ──────────────────────────────────────────────
         [HttpPost("Reading/SubmitReading")]
         public async Task<IActionResult> SubmitReading(int passageId, Dictionary<int, int> answers)
         {
@@ -113,12 +121,7 @@ namespace TCTEnglish.Controllers
             return Json(new { success = true, correctCount, totalCount = questions.Count, details });
         }
 
-        private bool TryGetCurrentUserId(out int userId)
-        {
-            userId = 0;
-            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            return claim != null && int.TryParse(claim.Value, out userId);
-        }
+        // ─── Dịch Google ──────────────────────────────────────────────────────
         [HttpGet]
         public async Task<IActionResult> Translate(string text)
         {
@@ -147,5 +150,122 @@ namespace TCTEnglish.Controllers
                 return Json(new { translation = "" });
             }
         }
+
+        // ─── Translation API: Lấy bản dịch hiện tại của user ─────────────────
+        [Authorize]
+        [HttpGet("Reading/MyTranslation/{passageId}")]
+        public async Task<IActionResult> MyTranslation(int passageId)
+        {
+            var userId = GetCurrentUserId();
+            var translation = await _translationService.GetMyTranslationAsync(userId, passageId);
+
+            if (translation == null)
+                return Json(new { exists = false });
+
+            return Json(new
+            {
+                exists = true,
+                id = translation.Id,
+                translatedTitle = translation.TranslatedTitle,
+                translatedContent = translation.TranslatedContent,
+                aiScore = translation.AiScore,
+                aiFeedback = translation.AiFeedback,
+                isAiApproved = translation.IsAiApproved,
+                isPublic = translation.IsPublic
+            });
+        }
+
+        // ─── Translation API: Danh sách bản dịch public ──────────────────────
+        [HttpGet("Reading/Translations/{passageId}")]
+        public async Task<IActionResult> Translations(int passageId)
+        {
+            var translations = await _translationService.GetPublicTranslationsAsync(passageId);
+            return Json(new { items = translations });
+        }
+
+        // ─── Translation API: Submit bản dịch ────────────────────────────────
+        [Authorize]
+        [HttpPost("Reading/SubmitTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitTranslation([FromBody] SubmitTranslationRequest request)
+        {
+            if (request == null || string.IsNullOrWhiteSpace(request.TranslatedContent))
+                return BadRequest(new { success = false, message = "Dữ liệu không hợp lệ." });
+
+            var userId = GetCurrentUserId();
+            var result = await _translationService.SubmitTranslationAsync(
+                userId, request.PassageId, request.TranslatedTitle, request.TranslatedContent);
+
+            return Json(result);
+        }
+
+        // ─── Translation API: Publish/Unpublish ──────────────────────────────
+        [Authorize]
+        [HttpPost("Reading/PublishTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PublishTranslation([FromBody] PublishTranslationRequest request)
+        {
+            var userId = GetCurrentUserId();
+            var result = await _translationService.PublishTranslationAsync(userId, request.TranslationId);
+            return Json(result);
+        }
+
+        // ─── Translation API: Delete ─────────────────────────────────────────
+        [Authorize]
+        [HttpPost("Reading/DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteTranslation([FromBody] DeleteTranslationRequest request)
+        {
+            var userId = GetCurrentUserId();
+            var result = await _translationService.DeleteTranslationAsync(userId, request.TranslationId);
+            return Json(result);
+        }
+
+        // ─── Translation API: Vote ───────────────────────────────────────────
+        [Authorize]
+        [HttpPost("Reading/VoteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VoteTranslation([FromBody] VoteTranslationRequest request)
+        {
+            var userId = GetCurrentUserId();
+            var result = await _translationService.VoteTranslationAsync(
+                userId, request.TranslationId, request.VoteType);
+            return Json(result);
+        }
+
+        // ─── Trang xem chi tiết bản dịch cộng đồng ──────────────────────────
+        [HttpGet("Reading/CommunityTranslation/{id}")]
+        public async Task<IActionResult> CommunityTranslation(int id)
+        {
+            TryGetCurrentUserId(out var userId);
+            var detail = await _translationService.GetTranslationDetailAsync(id, userId > 0 ? userId : null);
+            if (detail == null) return NotFound();
+
+            return View("~/Views/Reading/CommunityTranslation.cshtml", detail);
+        }
+    }
+
+    // ─── Request DTOs ─────────────────────────────────────────────────────────
+    public class SubmitTranslationRequest
+    {
+        public int PassageId { get; set; }
+        public string? TranslatedTitle { get; set; }
+        public string TranslatedContent { get; set; } = null!;
+    }
+
+    public class PublishTranslationRequest
+    {
+        public int TranslationId { get; set; }
+    }
+
+    public class DeleteTranslationRequest
+    {
+        public int TranslationId { get; set; }
+    }
+
+    public class VoteTranslationRequest
+    {
+        public int TranslationId { get; set; }
+        public TranslationVoteType VoteType { get; set; }
     }
 }

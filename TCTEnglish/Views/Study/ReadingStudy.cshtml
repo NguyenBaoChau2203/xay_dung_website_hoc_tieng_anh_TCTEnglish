@@ -5,15 +5,22 @@
 
 <div class="reading-toolbar shadow-sm">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-        <button class="btn btn-light border btn-sm hover-elevate" onclick="history.back()">
+        <a href="/Home/Reading" class="btn btn-light border btn-sm hover-elevate">
             <i class="bi bi-arrow-left"></i> Quay lại
-        </button>
+        </a>
         
         <div class="d-flex gap-2">
             <button class="btn btn-primary btn-sm px-4 d-flex align-items-center gap-2" id="toggleTranslation">
                 <i class="bi bi-translate"></i>
                 <span>Dịch toàn bài</span>
             </button>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <button class="btn btn-outline-success btn-sm px-4 d-flex align-items-center gap-2" id="btnMyTranslation">
+                    <i class="bi bi-pencil-square"></i>
+                    <span>Bản dịch của tôi</span>
+                </button>
+            }
         </div>
     </div>
 </div>
@@ -23,7 +30,7 @@
         
         <div class="passage-container">
             <div class="card border-0 shadow-sm p-4">
-                <h2 class="passage-title mb-4">@Model.Title</h2>
+                <h2 class="passage-title mb-4" id="passageTitle">@Model.Title</h2>
 
                 @if (!string.IsNullOrEmpty(Model.ImageUrl))
                 {
@@ -32,7 +39,7 @@
                     </div>
                 }
 
-                <div class="passage-content">
+                <div class="passage-content" id="passageContent">
                     @{
                         var paragraphs = Model.Content?.Split("\n");
                     }
@@ -43,6 +50,27 @@
                             <p class="translation d-none text-muted"></p>
                         </div>
                     }
+                </div>
+            </div>
+
+            @* ─── Khu vực Bản dịch nổi bật ─── *@
+            <div class="card border-0 shadow-sm p-4 mt-4" id="communityTranslationsCard">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-star-fill text-warning me-2"></i>Những bản dịch nổi bật
+                    </h5>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <button class="btn btn-sm btn-outline-primary rounded-circle p-0 d-flex align-items-center justify-content-center"
+                                style="width:32px;height:32px;" id="btnAddTranslation" title="Thêm bản dịch">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    }
+                </div>
+                <div id="translationsList">
+                    <div class="text-center text-muted py-3">
+                        <span class="spinner-border spinner-border-sm"></span> Đang tải...
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,7 +138,35 @@
 
 <div id="wordPopup" class="word-popup d-none shadow-lg"></div>
 
+@* ─── Modal AI Feedback ─── *@
+<div class="modal fade" id="aiFeedbackModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-robot me-2"></i>Kết quả chấm AI
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="aiScoreDisplay" class="text-center mb-3">
+                    <div class="ai-score-circle mx-auto mb-2">
+                        <span id="aiScoreValue">--</span>
+                    </div>
+                    <div id="aiApprovalBadge"></div>
+                </div>
+                <div id="aiFeedbackText" class="bg-light rounded p-3 mb-3"></div>
+                <div id="aiActions" class="d-flex gap-2 justify-content-center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="passageId" value="@Model.Id" />
+@Html.AntiForgeryToken()
+
 @section Scripts {
     <script src="~/js/time-tracker.js" data-feature="Reading" defer></script>
     <script src="~/js/reading-study.js"></script>
+    <script src="~/js/reading-translation.js"></script>
 }

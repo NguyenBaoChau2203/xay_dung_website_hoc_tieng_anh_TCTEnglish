@@ -64,6 +64,10 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
     public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
 
+    // ─── Reading translations ────────────────────────────────────────────────
+    public virtual DbSet<ReadingUserTranslation> ReadingUserTranslations { get; set; }
+    public virtual DbSet<ReadingTranslationVote> ReadingTranslationVotes { get; set; }
+
     // ─── Billing & Subscriptions ────────────────────────────────────────────────
     public virtual DbSet<PremiumPlan> PremiumPlans { get; set; }
     public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
@@ -192,6 +196,44 @@ public partial class DbflashcardContext : DbContext
             .WithMany(q => q.Options)
             .HasForeignKey(o => o.QuestionId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // ─── ReadingUserTranslation ──────────────────────────────────────────
+        modelBuilder.Entity<ReadingUserTranslation>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.UserId, e.ReadingPassageId })
+                .IsUnique();
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.UserTranslations)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        // ─── ReadingTranslationVote ──────────────────────────────────────────
+        modelBuilder.Entity<ReadingTranslationVote>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => new { e.TranslationId, e.UserId })
+                .IsUnique();
+
+            entity.HasOne(e => e.Translation)
+                .WithMany(t => t.Votes)
+                .HasForeignKey(e => e.TranslationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+        });
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__Folders__ACD7109F2ECFF2AF");
