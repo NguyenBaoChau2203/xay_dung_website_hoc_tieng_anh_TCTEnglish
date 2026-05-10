@@ -129,17 +129,32 @@
     const tabBtns   = document.querySelectorAll('.lp-tab-btn');
     const tabPanels = document.querySelectorAll('.lp-tab-panel');
 
+    function setActiveTab(target) {
+        tabBtns.forEach(b => {
+            const isActive = b.dataset.tab === target;
+            b.classList.toggle('lp-tab-active', isActive);
+            b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        tabPanels.forEach(p => {
+            const isActive = p.id === ('panel-' + target);
+            p.classList.toggle('lp-panel-active', isActive);
+            if (isActive) {
+                p.removeAttribute('hidden');
+            } else {
+                p.setAttribute('hidden', 'hidden');
+            }
+        });
+    }
+
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function () {
-            const target = this.dataset.tab;
-            tabBtns.forEach(b => b.classList.remove('lp-tab-active'));
-            tabPanels.forEach(p => p.classList.remove('lp-panel-active'));
-
-            this.classList.add('lp-tab-active');
-            const panel = document.getElementById('panel-' + target);
-            if (panel) panel.classList.add('lp-panel-active');
+            setActiveTab(this.dataset.tab);
         });
     });
+
+    const initialActiveBtn = document.querySelector('.lp-tab-btn.lp-tab-active');
+    setActiveTab(initialActiveBtn ? initialActiveBtn.dataset.tab : 'transcript');
 
     // ══════════════════════════════════════════════════════════════
     // 5. MODE SELECTOR
@@ -350,14 +365,14 @@
                 <div class="lp-dict-item-header">
                     <span class="lp-dict-num">${idx + 1}</span>
                     <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null ? `<button class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
+                    ${line.startTime != null ? `<button type="button" class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
                 </div>
                 <textarea class="lp-dict-textarea" rows="2" placeholder="Nhập những gì bạn nghe được…"></textarea>
-                <div class="lp-dict-feedback" style="display:none; margin-top:10px; line-height:1.6"></div>
-                <div class="lp-dict-answer" style="display:none; margin-top:5px; color:var(--lp-muted); font-size:0.9rem">
+                <div class="lp-dict-feedback"></div>
+                <div class="lp-dict-answer">
                     <strong>Đáp án:</strong> ${escHtml(line.text)}
                 </div>
-                <div style="margin-top:10px"><button class="lp-dict-check-btn">Kiểm tra</button></div>
+                <div class="lp-dict-check-wrap"><button type="button" class="lp-dict-check-btn">Kiểm tra</button></div>
             `;
             container.appendChild(item);
             const ta = item.querySelector('.lp-dict-textarea');
@@ -518,13 +533,13 @@
                 <div class="lp-dict-item-header">
                     <span class="lp-dict-num">${lineIdx + 1}</span>
                     <span class="lp-dict-speaker-tag ${spClass}">${escHtml(line.speaker)}</span>
-                    ${line.startTime != null ? `<button class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
+                    ${line.startTime != null ? `<button type="button" class="lp-dict-listen-btn" data-start="${line.startTime}"><i class="fas fa-play"></i> Nghe</button>` : ''}
                 </div>
-                <div class="lp-fillin-text" style="line-height:2.2; margin-top:15px; margin-bottom:15px;">${lineHtml}</div>
-                <div class="lp-dict-answer" style="display:none; margin-top:5px; color:var(--lp-muted); font-size:0.9rem">
+                <div class="lp-fillin-text">${lineHtml}</div>
+                <div class="lp-dict-answer">
                     <strong>Đáp án:</strong> ${escHtml(line.text)}
                 </div>
-                <div style="margin-top:10px"><button class="lp-fillin-check-btn lp-dict-check-btn">Kiểm tra</button></div>
+                <div class="lp-dict-check-wrap"><button type="button" class="lp-fillin-check-btn lp-dict-check-btn">Kiểm tra</button></div>
             `;
             container.appendChild(item);
 

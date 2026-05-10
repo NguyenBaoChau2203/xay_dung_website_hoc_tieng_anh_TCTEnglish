@@ -190,8 +190,8 @@
         <!-- ══════════════════════════════════════════════════════════
              PILL TABS
         ══════════════════════════════════════════════════════════ -->
-        <div class="lp-tabs" role="tablist">
-            <button class="lp-tab-btn lp-tab-active" data-tab="transcript" role="tab" aria-selected="true">
+        <div class="lp-tabs" role="tablist" aria-label="Listening practice tabs">
+            <button type="button" id="tab-transcript" class="lp-tab-btn lp-tab-active" data-tab="transcript" role="tab" aria-selected="true" aria-controls="panel-transcript">
                 <i class="fas fa-file-alt"></i>
                 Transcript
                 @if (transcriptCount > 0)
@@ -203,7 +203,7 @@
                     <i class="fas fa-check-circle text-success small"></i>
                 }
             </button>
-            <button class="lp-tab-btn" data-tab="quiz" role="tab" aria-selected="false">
+            <button type="button" id="tab-quiz" class="lp-tab-btn" data-tab="quiz" role="tab" aria-selected="false" aria-controls="panel-quiz">
                 <i class="fas fa-question-circle"></i>
                 Quiz
                 @if (quizCount > 0)
@@ -215,14 +215,12 @@
                     <i class="fas fa-check-circle text-success small"></i>
                 }
             </button>
-                }
-            </button>
         </div>
 
         <!-- ══════════════════════════════════════════════════════════
              TAB PANEL: TRANSCRIPT
         ══════════════════════════════════════════════════════════ -->
-        <div id="panel-transcript" class="lp-tab-panel lp-panel-active">
+        <div id="panel-transcript" class="lp-tab-panel lp-panel-active" role="tabpanel" aria-labelledby="tab-transcript">
             @if (transcriptCount == 0)
             {
                 <div class="lp-empty">
@@ -262,7 +260,7 @@
                             <div class="lp-mode-header-desc">Click vào dòng hoặc nút ▶ để nghe lại từng câu.</div>
                         </div>
                         <div class="lp-mode-header-actions">
-                            <button class="lp-action-btn" id="btn-toggle-all-vi">
+                            <button type="button" class="lp-action-btn" id="btn-toggle-all-vi">
                                 <i class="fas fa-language"></i> Xem tất cả bản dịch
                             </button>
                         </div>
@@ -317,7 +315,7 @@
                     </div>
 
                     <!-- Mark transcript done -->
-                    <button class="lp-mode-done-btn" id="btn-mark-transcript-read"
+                    <button type="button" class="lp-mode-done-btn" id="btn-mark-transcript-read"
                             @(Model.TranscriptCompleted ? "disabled" : "")>
                         @if (Model.TranscriptCompleted)
                         {
@@ -377,7 +375,7 @@
                                 <span class="lp-dict-stat-label">Sai</span>
                             </div>
                         </div>
-                        <button class="lp-mode-done-btn" id="btn-dict-retry">
+                        <button type="button" class="lp-mode-done-btn" id="btn-dict-retry">
                             <i class="fas fa-redo"></i> Làm lại
                         </button>
                     </div>
@@ -424,16 +422,16 @@
                                 <span class="lp-dict-stat-label">Sai</span>
                             </div>
                         </div>
-                        <button class="lp-mode-done-btn" id="btn-fillin-retry-summary">
+                        <button type="button" class="lp-mode-done-btn" id="btn-fillin-retry-summary">
                             <i class="fas fa-redo"></i> Làm lại
                         </button>
                     </div>
 
-                    <div class="lp-fillin-footer" id="fillin-footer" style="display:none">
-                        <button class="lp-btn-check-all" id="btn-fillin-check">
+                    <div class="lp-fillin-footer" id="fillin-footer">
+                        <button type="button" class="lp-btn-check-all" id="btn-fillin-check">
                             <i class="fas fa-check-double"></i> Kiểm tra tất cả
                         </button>
-                        <button class="lp-mode-done-btn" id="btn-fillin-retry">
+                        <button type="button" class="lp-mode-done-btn" id="btn-fillin-retry">
                             <i class="fas fa-redo"></i> Làm lại
                         </button>
                         <div id="fillin-progress-text" class="lp-fillin-result-text"></div>
@@ -446,7 +444,7 @@
         <!-- ══════════════════════════════════════════════════════════
              TAB PANEL: QUIZ
         ══════════════════════════════════════════════════════════ -->
-        <div id="panel-quiz" class="lp-tab-panel">
+        <div id="panel-quiz" class="lp-tab-panel" role="tabpanel" aria-labelledby="tab-quiz">
             @if (quizCount == 0)
             {
                 <div class="lp-empty">
@@ -456,7 +454,7 @@
                     @if (isPremiumUser)
                     {
                         <div class="mt-4">
-                            <button class="btn btn-primary" id="btnGenerateQuiz" data-lesson-id="@Model.LessonId">
+                            <button type="button" class="btn btn-primary" id="btnGenerateQuiz" data-lesson-id="@Model.LessonId">
                                 <i class="fas fa-magic"></i> Tạo quiz bằng AI
                             </button>
                         </div>
@@ -528,13 +526,13 @@
                 <div class="lp-quiz-footer">
                     @if (!Model.QuizCompleted)
                     {
-                        <button class="lp-submit-btn" id="btn-submit-quiz">
+                        <button type="button" class="lp-submit-btn" id="btn-submit-quiz">
                             <i class="fas fa-paper-plane"></i> Nộp bài
                         </button>
                     }
                     else
                     {
-                        <button class="lp-submit-btn" id="btn-submit-quiz" disabled>
+                        <button type="button" class="lp-submit-btn" id="btn-submit-quiz" disabled>
                             <i class="fas fa-check-circle"></i> Đã hoàn thành
                             @if (Model.QuizScore.HasValue)
                             {
@@ -566,15 +564,12 @@
                         </div>
                         <div class="mt-2 small text-muted" id="result-pct"></div>
                         <div class="mt-3">
-                            <button class="btn btn-outline-primary btn-sm" id="btn-retry-quiz">
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="btn-retry-quiz">
                                 <i class="fas fa-redo"></i> Làm lại quiz
                             </button>
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-
             }
         </div>
 
