@@ -809,25 +809,23 @@
 }
 
 .listening-index-page .li-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
+    position: relative;
     margin-bottom: 0.75rem;
 }
 
-.listening-index-page .li-card-visual {
-    width: 42px;
-    height: 42px;
+.listening-index-page .li-card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 12px;
-    display: grid;
-    place-items: center;
-    color: #0f766e;
-    background: #dbfbff;
-    font-size: 1.05rem;
+    border: 1px solid #e7eeff;
+    background: #f7faff;
 }
 
 .listening-index-page .li-status-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
     border-radius: 999px;
     padding: 0.2rem 0.5rem;
     font-size: 0.66rem;

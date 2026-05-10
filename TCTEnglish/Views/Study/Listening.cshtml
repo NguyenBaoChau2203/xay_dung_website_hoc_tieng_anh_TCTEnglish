@@ -136,9 +136,11 @@
                     <div class="my-videos-grid" id="my-videos-grid">
                         @foreach (var v in Model.MyLessons)
                         {
-                            var thumb = string.IsNullOrEmpty(v.ThumbnailUrl)
-                                ? "https://placehold.co/600x400?text=No+Thumbnail"
-                                : v.ThumbnailUrl;
+                            var thumb = !string.IsNullOrWhiteSpace(v.ThumbnailUrl)
+                                ? v.ThumbnailUrl
+                                : (!string.IsNullOrWhiteSpace(v.YoutubeId)
+                                    ? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg"
+                                    : "https://placehold.co/600x400?text=No+Thumbnail");
 
                             string statusLabel;
                             string statusCls;
@@ -265,15 +267,19 @@
                         <div class="li-card-grid">
                             @foreach (var item in lessons)
                             {
+                                var lessonThumb = !string.IsNullOrWhiteSpace(item.ThumbnailUrl)
+                                    ? item.ThumbnailUrl
+                                    : (!string.IsNullOrWhiteSpace(item.YoutubeId)
+                                        ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg"
+                                        : "https://placehold.co/600x400?text=No+Thumbnail");
+
                                 <div class="li-card-col card-visible" 
                                      data-title="@item.Title" 
                                      data-topic="@item.Topic" 
                                      data-level="@item.Level">
                                     <a asp-controller="Study" asp-action="ListeningPractice" asp-route-id="@item.Id" class="li-card">
                                         <div class="li-card-top">
-                                            <div class="li-card-visual">
-                                                <i class="fas fa-wave-square"></i>
-                                            </div>
+                                            <img src="@lessonThumb" alt="@item.Title" class="li-card-thumb" loading="lazy" />
                                             @if (item.QuizCompleted == true)
                                             {
                                                 <span class="li-status-badge badge-completed">
