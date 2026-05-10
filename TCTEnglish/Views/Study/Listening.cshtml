@@ -39,7 +39,7 @@
 
             <div class="li-search-container">
                 <i class="fas fa-search li-search-icon"></i>
-                <input type="text" id="li-search" class="li-search-input" placeholder="Tìm kiếm bài nghe hoặc chủ đề..." autocomplete="off" />
+                <input type="text" id="li-search" class="li-search-input" placeholder="Tìm kiếm bài nghe hoặc chủ đề..." autocomplete="off" aria-label="Tìm kiếm bài nghe" />
             </div>
         </header>
 
@@ -48,7 +48,7 @@
             <span class="li-stat-chip"><i class="fas fa-play-circle"></i> <span id="li-total-count">@totalLessons bài học</span></span>
             <span class="li-stat-chip"><i class="fas fa-layer-group"></i> @Model.Levels.Count cấp độ</span>
             <span class="li-stat-chip"><i class="fas fa-tags"></i> @Model.Topics.Count chủ đề</span>
-            <span class="li-stat-chip" style="background: #ecfdf5; border-color: #d1fae5; color: #047857;"><i class="fas fa-check-circle" style="color: #10b981;"></i> Update hàng tuần</span>
+            <span class="li-stat-chip li-stat-chip--fresh"><i class="fas fa-check-circle"></i> Update hàng tuần</span>
         </div>
 
         @if (User.Identity?.IsAuthenticated == true)
@@ -60,7 +60,7 @@
                 <div class="mip-inner">
                     <div class="mip-left">
                         <span class="mip-yt-chip">
-                            <i class="fab fa-youtube" style="color:#ff4444;"></i> YouTube
+                            <i class="fab fa-youtube mip-yt-icon"></i> YouTube
                         </span>
                         <h2 class="mip-heading">
                             Luyện nghe với<br>video YouTube của bạn
@@ -73,7 +73,7 @@
                     <div class="mip-right">
                         <div class="mip-form-area">
                             <div class="mip-input-wrap">
-                                <i class="fab fa-youtube mip-input-icon" style="color:#ff4444;"></i>
+                                <i class="fab fa-youtube mip-input-icon mip-yt-icon"></i>
                                 <input type="url"
                                        id="mip-url-input"
                                        class="mip-input"
@@ -98,7 +98,7 @@
             @* ─────────────────────────────────────────────────────────── *@
             @* ── BÀI NGHE CỦA TÔI ─────────────────────────────────────── *@
             @* ─────────────────────────────────────────────────────────── *@
-            <section class="my-videos-section" id="my-videos-section" aria-label="Bài nghe của tôi" style="margin-bottom: 3.5rem;">
+            <section class="my-videos-section" id="my-videos-section" aria-label="Bài nghe của tôi">
                 <div class="my-sec-head">
                     <div class="my-sec-title-wrap">
                         <h2 class="my-sec-title">
@@ -202,20 +202,20 @@
         @* ── FILTERS ──────────────────────────────────────────────── *@
         <section class="li-filters">
             <div class="li-filter-tabs">
-                <button class="btn-tab active" data-level="all">Tất cả trình độ</button>
+                <button type="button" class="btn-tab active" data-level="all" aria-pressed="true">Tất cả trình độ</button>
                 @foreach (var level in Model.Levels)
                 {
-                    <button class="btn-tab" data-level="@level.Key">@level.Key @level.Title</button>
+                    <button type="button" class="btn-tab" data-level="@level.Key" aria-pressed="false">@level.Key @level.Title</button>
                 }
             </div>
 
             @if (Model.Topics.Any())
             {
                 <div class="li-topic-pills">
-                    <button class="pill-topic active" data-topic="all">Tất cả chủ đề</button>
+                    <button type="button" class="pill-topic active" data-topic="all" aria-pressed="true">Tất cả chủ đề</button>
                     @foreach (var topic in Model.Topics)
                     {
-                        <button class="pill-topic" data-topic="@topic">@topic</button>
+                        <button type="button" class="pill-topic" data-topic="@topic" aria-pressed="false">@topic</button>
                     }
                 </div>
             }
@@ -244,7 +244,7 @@
 
                     <section class="li-level-section" data-level="@level.Key">
                         <header class="li-level-header">
-                            <div class="li-level-icon-wrapper" style="background-color: var(--@meta.ColorClass);">
+                            <div class="li-level-icon-wrapper @meta.ColorClass">
                                 <i class="@meta.Icon"></i>
                             </div>
                             <div class="li-level-info">
@@ -297,7 +297,7 @@
                                                 <i class="fas fa-user-friends"></i>
                                                 <span class="li-speaker-name">@item.Speaker1Name</span>
                                             </div>
-                                            <div class="ms-auto" style="opacity: 0.5;">
+                                            <div class="li-card-arrow ms-auto">
                                                 <i class="fas fa-arrow-right"></i>
                                             </div>
                                         </div>
@@ -313,7 +313,7 @@
         </div>
 
         @* ── NO RESULTS STATE ──────────────────────────────────── *@
-        <div id="li-no-results" class="li-empty" style="display:none;">
+        <div id="li-no-results" class="li-empty li-no-results">
             <i class="fas fa-search"></i>
             <h3>Không tìm thấy kết quả</h3>
             <p>Hãy thử từ khóa khác hoặc xóa bớt các bộ lọc.</p>
