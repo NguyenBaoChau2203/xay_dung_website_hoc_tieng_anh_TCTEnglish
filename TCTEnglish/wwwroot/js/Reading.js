@@ -1,68 +1,114 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('readingSearch');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const statusBtns = document.querySelectorAll('.filter-status');
-    const items = document.querySelectorAll('.reading-item');
-    const noResults = document.getElementById('noResults');
+/**
+ * Reading Practice Index Page Logic
+ * Handles searching and filtering (Level, Status)
+ */
+(function() {
+    "use strict";
 
-    let currentLevel = 'all';
-    let currentStatus = 'all'; // all, completed, inprogress
-    let searchText = '';
+    // Define reset function in global scope immediately
+    window.resetFilters = function() {
+        const searchInput = document.getElementById('readingSearch');
+        if (searchInput) searchInput.value = '';
+        
+        const filterBtns = document.querySelectorAll('.filter-chip');
+        filterBtns.forEach(b => b.classList.remove('active'));
+        if (filterBtns[0]) filterBtns[0].classList.add('active');
+        
+        const statusBtns = document.querySelectorAll('.status-btn');
+        statusBtns.forEach(b => b.classList.remove('active'));
 
-    function filterItems() {
-        let visibleCount = 0;
+        // Trigger filter update
+        window.dispatchEvent(new CustomEvent('tct:filter-reset'));
+    };
 
-        items.forEach(item => {
-            const title = item.getAttribute('data-title');
-            const level = item.getAttribute('data-level');
-            const isCompleted = item.getAttribute('data-completed') === 'true';
-            const isInProgress = item.getAttribute('data-inprogress') === 'true';
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('readingSearch');
+        const filterBtns = document.querySelectorAll('.filter-chip');
+        const statusBtns = document.querySelectorAll('.status-btn');
+        const items = document.querySelectorAll('.reading-item-container');
+        const noResults = document.getElementById('noResults');
 
-            const matchesSearch = title.includes(searchText.toLowerCase());
-            const matchesLevel = currentLevel === 'all' || level === currentLevel;
+        let currentLevel = 'all';
+        let currentStatus = 'all'; 
+        let searchText = '';
 
-            let matchesStatus = true;
-            if (currentStatus === 'completed') matchesStatus = isCompleted;
-            if (currentStatus === 'inprogress') matchesStatus = isInProgress;
+        function filterItems() {
+            let visibleCount = 0;
+            const term = (searchInput ? searchInput.value : '').toLowerCase().trim();
 
-            if (matchesSearch && matchesLevel && matchesStatus) {
-                item.classList.remove('d-none');
-                visibleCount++;
-            } else {
-                item.classList.add('d-none');
+            items.forEach(item => {
+                const title = item.getAttribute('data-title') || '';
+                const level = item.getAttribute('data-level') || '';
+                const isCompleted = item.getAttribute('data-completed') === 'true';
+                const isInProgress = item.getAttribute('data-inprogress') === 'true';
+
+                const matchesSearch = title.includes(term);
+                const matchesLevel = currentLevel === 'all' || level === currentLevel;
+
+                let matchesStatus = true;
+                if (currentStatus === 'completed') matchesStatus = isCompleted;
+                if (currentStatus === 'inprogress') matchesStatus = isInProgress;
+
+                if (matchesSearch && matchesLevel && matchesStatus) {
+                    item.style.setProperty('display', 'block', 'important');
+                    visibleCount++;
+                } else {
+                    item.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            if (noResults) {
+                if (visibleCount > 0) {
+                    noResults.classList.add('d-none');
+                } else {
+                    noResults.classList.remove('d-none');
+                }
             }
+        }
+
+        // Search event
+        if (searchInput) {
+            searchInput.addEventListener('input', filterItems);
+        }
+
+        // Level filter event
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLevel = this.getAttribute('data-filter') || 'all';
+                filterItems();
+            });
         });
 
-        noResults.classList.toggle('d-none', visibleCount > 0);
-    }
+        // Status filter event (Toggle)
+        statusBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const status = this.getAttribute('data-status');
+                
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                    currentStatus = 'all';
+                } else {
+                    statusBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentStatus = status;
+                }
+                
+                filterItems();
+            });
+        });
 
-    // Search event
-    searchInput.addEventListener('input', (e) => {
-        searchText = e.target.value;
+        // Listen for internal reset event
+        window.addEventListener('tct:filter-reset', () => {
+            currentLevel = 'all';
+            currentStatus = 'all';
+            filterItems();
+        });
+
+        // Initial filter run (in case search box has persistent value)
         filterItems();
     });
-
-    // Level filter event
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentLevel = btn.getAttribute('data-filter');
-            filterItems();
-        });
-    });
-
-    // Status filter event (Toggle)
-    statusBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const status = btn.getAttribute('data-status');
-            if (currentStatus === status) {
-                currentStatus = 'all';
-                btn.classList.remove('ring-active'); // Bạn có thể thêm css class để highlight
-            } else {
-                currentStatus = status;
-            }
-            filterItems();
-        });
-    });
-});
+})();
