@@ -124,6 +124,21 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
         });
 
+        // AI Score display (if already graded)
+        if (existingData?.exists && existingData.aiScore != null) {
+            const approved = existingData.isAiApproved;
+            html += `
+                <div class="ai-inline-result mt-4 p-3 rounded ${approved ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'}">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-robot ${approved ? 'text-success' : 'text-danger'}"></i>
+                        <span class="fw-bold small">Đánh giá của AI</span>
+                        <span class="badge ${approved ? 'bg-success' : 'bg-danger'} ms-auto">${existingData.aiScore}/100</span>
+                    </div>
+                    ${existingData.aiFeedback ? `<p class="mb-0 small text-muted">${escapeHtml(existingData.aiFeedback)}</p>` : ''}
+                </div>
+            `;
+        }
+
         // Status bar
         html += `
             <div class="d-flex justify-content-between align-items-center mt-4 p-3 bg-light rounded">
@@ -140,7 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         <i class="bi bi-trash"></i> Xóa bản dịch
                     </button>
             `;
-            if (existingData.isAiApproved) {
+            // Only show publish/hide button when AI has approved the translation
+            if (existingData.isAiApproved === true) {
                 html += `
                     <button class="btn btn-${existingData.isPublic ? 'warning' : 'info'} btn-sm" id="btnPublishTranslation" data-id="${existingData.id}">
                         <i class="bi bi-${existingData.isPublic ? 'eye-slash' : 'globe'}"></i>
@@ -230,6 +246,9 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // Reload sidebar list because translation might have changed
             loadCommunityTranslations();
+
+            // Update inline AI result and publish button to reflect new state
+            refreshInlineAiAndButtons(result);
         } catch (err) {
             showToast('Lỗi kết nối. Vui lòng thử lại.', 'danger');
         } finally {
@@ -300,6 +319,61 @@ document.addEventListener("DOMContentLoaded", function () {
             showToast('Lỗi kết nối.', 'danger');
         } finally {
             btn.disabled = false;
+        }
+    }
+
+    // ─── Refresh inline AI result + publish button after submit ───────────
+    function refreshInlineAiAndButtons(result) {
+        // Update or insert inline AI result
+        let aiBlock = document.querySelector('.ai-inline-result');
+        const approved = result.isAiApproved === true;
+        const aiHtml = `
+            <div class="ai-inline-result mt-4 p-3 rounded ${approved ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'}">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    <i class="bi bi-robot ${approved ? 'text-success' : 'text-danger'}"></i>
+                    <span class="fw-bold small">Đánh giá của AI</span>
+                    <span class="badge ${approved ? 'bg-success' : 'bg-danger'} ms-auto">${result.aiScore ?? '--'}/100</span>
+                </div>
+                ${result.aiFeedback ? `<p class="mb-0 small text-muted">${escapeHtml(result.aiFeedback)}</p>` : ''}
+            </div>
+        `;
+
+        if (aiBlock) {
+            aiBlock.outerHTML = aiHtml;
+        } else {
+            // Insert before the status bar
+            const statusBar = document.querySelector('.d-flex.justify-content-between.align-items-center.mt-4.p-3.bg-light.rounded');
+            if (statusBar) {
+                statusBar.insertAdjacentHTML('beforebegin', aiHtml);
+            }
+        }
+
+        // Update publish button
+        const existingPublishBtn = document.getElementById('btnPublishTranslation');
+        if (approved && result.translationId) {
+            const isPublic = result.isPublic === true;
+            const publishHtml = `
+                <button class="btn btn-${isPublic ? 'warning' : 'info'} btn-sm" id="btnPublishTranslation" data-id="${result.translationId}">
+                    <i class="bi bi-${isPublic ? 'eye-slash' : 'globe'}"></i>
+                    ${isPublic ? 'Ẩn khỏi cộng đồng' : 'Chia sẻ cho cộng đồng'}
+                </button>
+            `;
+            if (existingPublishBtn) {
+                existingPublishBtn.outerHTML = publishHtml;
+            } else {
+                // Insert before the submit button
+                const submitBtn = document.getElementById('btnSubmitTranslation');
+                if (submitBtn) {
+                    submitBtn.insertAdjacentHTML('beforebegin', publishHtml);
+                }
+            }
+            // Re-attach event listener
+            document.getElementById('btnPublishTranslation')?.addEventListener('click', publishTranslation);
+        } else {
+            // AI did not approve: remove publish button if it exists
+            if (existingPublishBtn) {
+                existingPublishBtn.remove();
+            }
         }
     }
 
