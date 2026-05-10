@@ -132,22 +132,12 @@
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function () {
             const target = this.dataset.tab;
-            tabBtns.forEach(b => {
-                b.classList.remove('lp-tab-active');
-                b.setAttribute('aria-selected', 'false');
-            });
-            tabPanels.forEach(p => {
-                p.classList.remove('lp-panel-active');
-                p.setAttribute('hidden', 'hidden');
-            });
+            tabBtns.forEach(b => b.classList.remove('lp-tab-active'));
+            tabPanels.forEach(p => p.classList.remove('lp-panel-active'));
 
             this.classList.add('lp-tab-active');
-            this.setAttribute('aria-selected', 'true');
             const panel = document.getElementById('panel-' + target);
-            if (panel) {
-                panel.classList.add('lp-panel-active');
-                panel.removeAttribute('hidden');
-            }
+            if (panel) panel.classList.add('lp-panel-active');
         });
     });
 

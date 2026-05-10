@@ -42,12 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
         levelTabs.forEach(tab => {
             tab.addEventListener('click', function() {
                 const level = this.dataset.level;
-                levelTabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.setAttribute('aria-pressed', 'false');
-                });
+                levelTabs.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                this.setAttribute('aria-pressed', 'true');
                 activeLevel = level;
                 applyFilters();
             });
@@ -56,12 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
         topicPills.forEach(pill => {
             pill.addEventListener('click', function() {
                 const topic = this.dataset.topic;
-                topicPills.forEach(p => {
-                    p.classList.remove('active');
-                    p.setAttribute('aria-pressed', 'false');
-                });
+                topicPills.forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-                this.setAttribute('aria-pressed', 'true');
                 activeTopic = topic;
                 applyFilters();
             });
@@ -159,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (totalPages > 1) {
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
-                btn.type = 'button';
                 btn.className = 'page-link';
                 btn.textContent = i;
                 btn.dataset.page = i;
@@ -187,6 +178,14 @@ document.addEventListener('DOMContentLoaded', function () {
             timeout = setTimeout(() => func.apply(context, args), wait);
         };
     }
+
+    // Add CSS for filtering
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .card-filtered-out { display: none !important; }
+        .card-visible { display: block; }
+    `;
+    document.head.appendChild(style);
 
     init();
 });
