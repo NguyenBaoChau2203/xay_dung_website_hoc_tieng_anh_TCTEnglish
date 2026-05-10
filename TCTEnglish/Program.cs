@@ -107,6 +107,7 @@ builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecu
 builder.Services.AddSingleton<IAiStreamingService, AiStreamingService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 builder.Services.AddHostedService<NotificationWorker>();
+builder.Services.AddScoped<IReadingTranslationService, ReadingTranslationService>();
 
 builder.Services.AddAuthentication(options =>
 {

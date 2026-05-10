@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using TCTEnglish.Models;
 
 namespace TCTVocabulary.Models
 {
@@ -25,5 +26,8 @@ namespace TCTVocabulary.Models
 
         public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; }
             = new List<UserReadingHistory>();
+
+        public virtual ICollection<ReadingUserTranslation> UserTranslations { get; set; }
+            = new List<ReadingUserTranslation>();
     }
 }

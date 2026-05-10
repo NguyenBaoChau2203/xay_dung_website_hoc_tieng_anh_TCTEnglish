@@ -1,0 +1,203 @@
+@model TCTVocabulary.Services.ReadingTranslationDetailDto
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="~/css/reading-study.css" />
+
+<div class="reading-toolbar shadow-sm">
+    <div class="container-fluid d-flex align-items-center">
+        <a href="/Reading/Study/@Model.PassageId" class="btn btn-light border btn-sm hover-elevate">
+            <i class="bi bi-arrow-left"></i> Quay lại
+        </a>
+    </div>
+</div>
+
+<div class="container py-4" style="max-width: 900px;">
+    @* ─── Header: Bài đọc gốc ─── *@
+    <div class="card border-0 shadow-sm mb-4 overflow-hidden">
+        <div class="card-body d-flex align-items-center gap-3 bg-light p-3">
+            @if (!string.IsNullOrEmpty(Model.PassageImageUrl))
+            {
+                <img src="@Model.PassageImageUrl" class="rounded" style="width:80px;height:56px;object-fit:cover;" />
+            }
+            <div class="fw-bold" style="font-size:1.05rem;">@Model.PassageTitle</div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        @* ─── Cột trái: Nội dung bản dịch ─── *@
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <h5 class="fw-bold mb-0">
+                            Bản dịch của @Model.UserFullName
+                        </h5>
+                    </div>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm @(Model.CurrentUserVote == 1 ? "btn-primary" : "btn-outline-primary") vote-btn" data-vote="1" data-id="@Model.Id">
+                                <i class="bi bi-hand-thumbs-up@(Model.CurrentUserVote == 1 ? "-fill" : "")"></i> @Model.LikeCount
+                            </button>
+                            <button class="btn btn-sm @(Model.CurrentUserVote == -1 ? "btn-danger" : "btn-outline-danger") vote-btn" data-vote="-1" data-id="@Model.Id">
+                                <i class="bi bi-hand-thumbs-down@(Model.CurrentUserVote == -1 ? "-fill" : "")"></i> @Model.DislikeCount
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex gap-2">
+                            <span class="btn btn-sm btn-outline-secondary disabled">
+                                <i class="bi bi-hand-thumbs-up"></i> @Model.LikeCount
+                            </span>
+                            <span class="btn btn-sm btn-outline-secondary disabled">
+                                <i class="bi bi-hand-thumbs-down"></i> @Model.DislikeCount
+                            </span>
+                        </div>
+                    }
+                </div>
+
+                @* ─── Tiêu đề ─── *@
+                @if (!string.IsNullOrWhiteSpace(Model.TranslatedTitle))
+                {
+                    <div class="translation-section mb-4">
+                        <div class="section-label fw-semibold text-secondary small mb-2">Tiêu đề</div>
+                        <div class="original-sentence p-3 bg-light rounded mb-2" style="line-height:1.8;">
+                            @Model.PassageTitle
+                        </div>
+                        <div class="translated-sentence p-3 rounded" style="border-left:3px solid #198754; background:#f0fdf4; line-height:1.8;">
+                            @Model.TranslatedTitle
+                        </div>
+                    </div>
+                }
+
+                @* ─── Nội dung bài dịch ─── *@
+                <div class="section-label fw-semibold text-secondary small mb-2">Nội dung bài dịch</div>
+                @{
+                    try
+                    {
+                        var options = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                        var sentences = System.Text.Json.JsonSerializer.Deserialize<List<TranslationSentence>>(Model.TranslatedContent, options);
+                        if (sentences != null)
+                        {
+                            foreach (var sentence in sentences)
+                            {
+                                <div class="translation-pair mb-3">
+                                    <div class="original-sentence p-3 bg-light rounded mb-1" style="line-height:1.8;">
+                                        @sentence.Original
+                                    </div>
+                                    <div class="translated-sentence p-3 rounded" style="border-left:3px solid #198754; background:#f0fdf4; line-height:1.8;">
+                                        @sentence.Translated
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        <p class="text-muted">Không thể hiển thị nội dung bản dịch.</p>
+                    }
+                }
+
+                @* ─── AI Score ─── *@
+                @if (Model.AiScore.HasValue)
+                {
+                    <div class="mt-4 p-3 rounded bg-light">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-robot text-primary"></i>
+                            <span class="fw-bold small">Đánh giá của AI</span>
+                            <span class="badge @(Model.IsAiApproved == true ? "bg-success" : "bg-danger") ms-auto">
+                                @(Model.AiScore)/100
+                            </span>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(Model.AiFeedback))
+                        {
+                            <p class="mb-0 small text-muted">@Model.AiFeedback</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        @* ─── Cột phải: Sidebar ─── *@
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm p-3 sticky-card">
+                <h6 class="fw-bold mb-3">
+                    <i class="bi bi-star-fill text-warning me-1"></i> Những bản dịch nổi bật
+                </h6>
+                <div id="sidebarTranslationsList">
+                    <div class="text-center text-muted py-3">
+                        <span class="spinner-border spinner-border-sm"></span> Đang tải...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="passageId" value="@Model.PassageId" />
+<input type="hidden" id="currentTranslationId" value="@Model.Id" />
+@Html.AntiForgeryToken()
+
+@section Scripts {
+    <script>
+        // Load sidebar translations
+        document.addEventListener('DOMContentLoaded', async function() {
+            const passageId = @Model.PassageId;
+            const currentId = @Model.Id;
+            try {
+                const res = await fetch(`/Reading/Translations/${passageId}`);
+                const data = await res.json();
+                const container = document.getElementById('sidebarTranslationsList');
+                if (!data.items || data.items.length === 0) {
+                    container.innerHTML = '<p class="text-muted small">Chưa có bản dịch nào.</p>';
+                    return;
+                }
+                container.innerHTML = data.items.map(t => `
+                    <a href="/Reading/CommunityTranslation/${t.id}" 
+                       class="d-block p-2 rounded mb-2 text-decoration-none ${t.id === currentId ? 'bg-primary bg-opacity-10 border border-primary' : 'bg-light'}"
+                       style="transition:all .2s;">
+                        <div class="fw-semibold text-dark small">${t.userFullName}</div>
+                        <div class="d-flex align-items-center gap-3 text-muted" style="font-size:0.8rem;">
+                            <span><i class="bi bi-hand-thumbs-up-fill text-primary"></i> ${t.likeCount}</span>
+                            <span><i class="bi bi-hand-thumbs-down-fill text-danger"></i> ${t.dislikeCount}</span>
+                            <span class="ms-auto">${new Date(t.createdAtUtc).toLocaleDateString('vi-VN')}</span>
+                        </div>
+                    </a>
+                `).join('');
+            } catch {
+                document.getElementById('sidebarTranslationsList').innerHTML = '<p class="text-muted small">Lỗi tải dữ liệu.</p>';
+            }
+
+            // Vote buttons
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const translationId = parseInt(this.dataset.id);
+                    const voteType = parseInt(this.dataset.vote);
+                    const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                    try {
+                        const res = await fetch('/Reading/VoteTranslation', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'RequestVerificationToken': token },
+                            body: JSON.stringify({ translationId, voteType })
+                        });
+                        const result = await res.json();
+                        if (result.success) {
+                            location.reload();
+                        }
+                    } catch(err) {
+                        console.error(err);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+@functions {
+    public class TranslationSentence
+    {
+        public string Original { get; set; } = "";
+        public string Translated { get; set; } = "";
+    }
+}
