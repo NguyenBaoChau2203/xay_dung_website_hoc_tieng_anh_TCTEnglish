@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <!-- Content Grid -->
+        <!-- Content Groups -->
         @if (Model == null || !Model.Any())
         {
             <div class="text-center py-5">
@@ -54,63 +54,91 @@
         }
         else
         {
-            <div class="reading-grid" id="readingGrid">
-                @foreach (var item in Model)
+            var levels = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
+            
+            <div class="reading-groups-container" id="readingGrid">
+                @foreach (var lvl in levels)
                 {
-                    <div class="reading-item-container"
-                         data-title="@item.Title.ToLower()"
-                         data-level="@item.Level"
-                         data-completed="@item.IsCompleted.ToString().ToLower()"
-                         data-inprogress="@item.IsInProgress.ToString().ToLower()">
-                        
-                        <a asp-controller="Reading" asp-action="Study" asp-route-id="@item.Id" class="reading-card-item">
-                            <div class="card-thumb-wrap">
-                                @if (!string.IsNullOrEmpty(item.ImageUrl))
-                                {
-                                    <img src="@item.ImageUrl" class="card-img" alt="@item.Title" loading="lazy" />
-                                }
-                                else
-                                {
-                                    <div class="thumb-placeholder-new">
-                                        <i class="bi bi-journal-text"></i>
-                                        <span class="fw-bold small text-uppercase">Reading</span>
+                    var itemsInLevel = Model.Where(x => x.Level == lvl).ToList();
+                    if (itemsInLevel.Any())
+                    {
+                        <section class="level-group" data-group-level="@lvl">
+                            <div class="level-group-header">
+                                <div class="level-title-wrap">
+                                    <div class="level-badge-large lvl-@lvl-bg">@lvl</div>
+                                    <div class="level-group-info">
+                                        <h3>Các bài đọc @lvl</h3>
+                                        <p>Nâng cao kỹ năng đọc hiểu trình độ @lvl</p>
                                     </div>
-                                }
-                                <span class="level-tag lvl-@item.Level">@item.Level</span>
-                            </div>
-
-                            <div class="card-content">
-                                <h5 class="card-title">@item.Title</h5>
-                                
-                                <div class="card-footer p-0 bg-transparent border-0">
-                                    <div class="status-indicator">
-                                        @if (item.IsCompleted)
-                                        {
-                                            <span class="status-completed">
-                                                <i class="bi bi-check-circle-fill"></i> Hoàn thành
-                                            </span>
-                                        }
-                                        else if (item.IsInProgress)
-                                        {
-                                            <span class="status-inprogress">
-                                                <i class="bi bi-play-circle-fill"></i> Đang học
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-muted small">
-                                                <i class="bi bi-circle"></i> Chưa học
-                                            </span>
-                                        }
-                                    </div>
-                                    
-                                    <span class="start-btn">
-                                        Học ngay <i class="bi bi-arrow-right"></i>
-                                    </span>
+                                </div>
+                                <div class="scroll-hint d-none d-md-block text-muted small">
+                                    <i class="bi bi-arrow-left-right me-1"></i> Cuộn sang ngang để xem thêm
                                 </div>
                             </div>
-                        </a>
-                    </div>
+
+                            <div class="scroll-container-outer">
+                                <div class="scroll-container">
+                                    @foreach (var item in itemsInLevel)
+                                    {
+                                        <div class="reading-item-container"
+                                             data-title="@item.Title.ToLower()"
+                                             data-level="@item.Level"
+                                             data-completed="@item.IsCompleted.ToString().ToLower()"
+                                             data-inprogress="@item.IsInProgress.ToString().ToLower()">
+                                            
+                                            <a asp-controller="Reading" asp-action="Study" asp-route-id="@item.Id" class="reading-card-item">
+                                                <div class="card-thumb-wrap">
+                                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                    {
+                                                        <img src="@item.ImageUrl" class="card-img" alt="@item.Title" loading="lazy" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="thumb-placeholder-new">
+                                                            <i class="bi bi-journal-text"></i>
+                                                            <span class="fw-bold small text-uppercase">Reading</span>
+                                                        </div>
+                                                    }
+                                                    <span class="level-tag lvl-@item.Level">@item.Level</span>
+                                                </div>
+
+                                                <div class="card-content">
+                                                    <h5 class="card-title">@item.Title</h5>
+                                                    
+                                                    <div class="card-footer p-0 bg-transparent border-0">
+                                                        <div class="status-indicator">
+                                                            @if (item.IsCompleted)
+                                                            {
+                                                                <span class="status-completed">
+                                                                    <i class="bi bi-check-circle-fill"></i> Hoàn thành
+                                                                </span>
+                                                            }
+                                                            else if (item.IsInProgress)
+                                                            {
+                                                                <span class="status-inprogress">
+                                                                    <i class="bi bi-play-circle-fill"></i> Đang học
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="text-muted small">
+                                                                    <i class="bi bi-circle"></i> Chưa học
+                                                                </span>
+                                                            }
+                                                        </div>
+                                                        
+                                                        <span class="start-btn">
+                                                            Học <i class="bi bi-arrow-right"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </section>
+                    }
                 }
             </div>
             

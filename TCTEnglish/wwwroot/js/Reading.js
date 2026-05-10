@@ -36,6 +36,7 @@
             let visibleCount = 0;
             const term = (searchInput ? searchInput.value : '').toLowerCase().trim();
 
+            // First pass: Filter all items
             items.forEach(item => {
                 const title = item.getAttribute('data-title') || '';
                 const level = item.getAttribute('data-level') || '';
@@ -54,6 +55,22 @@
                     visibleCount++;
                 } else {
                     item.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            // Second pass: Toggle level groups based on child visibility
+            const groups = document.querySelectorAll('.level-group');
+            groups.forEach(group => {
+                const groupLevel = group.getAttribute('data-group-level');
+                const visibleInGroup = group.querySelectorAll('.reading-item-container[style*="display: block"]').length;
+                
+                // If filtering by a specific level, hide other groups even if they have items
+                const levelMatchesFilter = currentLevel === 'all' || groupLevel === currentLevel;
+
+                if (visibleInGroup > 0 && levelMatchesFilter) {
+                    group.classList.remove('d-none');
+                } else {
+                    group.classList.add('d-none');
                 }
             });
 
