@@ -11,27 +11,44 @@
     </div>
 </div>
 
-<div class="container py-4" style="max-width: 900px;">
+<div class="container-fluid py-4 px-4 px-lg-5">
     @* ─── Header: Bài đọc gốc ─── *@
     <div class="card border-0 shadow-sm mb-4 overflow-hidden">
-        <div class="card-body d-flex align-items-center gap-3 bg-light p-3">
+        <div class="card-body d-flex align-items-center gap-3 p-3" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
             @if (!string.IsNullOrEmpty(Model.PassageImageUrl))
             {
-                <img src="@Model.PassageImageUrl" class="rounded" style="width:80px;height:56px;object-fit:cover;" />
+                <img src="@Model.PassageImageUrl" class="rounded shadow-sm" style="width:80px;height:56px;object-fit:cover;" />
             }
-            <div class="fw-bold" style="font-size:1.05rem;">@Model.PassageTitle</div>
+            <div>
+                <div class="fw-bold" style="font-size:1.15rem;">@Model.PassageTitle</div>
+                <div class="text-muted small mt-1">
+                    <i class="bi bi-book me-1"></i> Bài đọc gốc
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="row g-4">
         @* ─── Cột trái: Nội dung bản dịch ─── *@
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <div class="card border-0 shadow-sm p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div>
-                        <h5 class="fw-bold mb-0">
-                            Bản dịch của @Model.UserFullName
-                        </h5>
+                    <div class="d-flex align-items-center gap-3">
+                        @if (!string.IsNullOrEmpty(Model.UserAvatarUrl))
+                        {
+                            <img src="@Model.UserAvatarUrl" class="rounded-circle" style="width:44px;height:44px;object-fit:cover;" />
+                        }
+                        else
+                        {
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:44px;height:44px;background:#e9ecef;">
+                                <i class="bi bi-person text-secondary"></i>
+                            </div>
+                        }
+                        <div>
+                            <h5 class="fw-bold mb-0">
+                                Bản dịch của @Model.UserFullName
+                            </h5>
+                        </div>
                     </div>
                     @if (User.Identity?.IsAuthenticated == true)
                     {
@@ -61,7 +78,9 @@
                 @if (!string.IsNullOrWhiteSpace(Model.TranslatedTitle))
                 {
                     <div class="translation-section mb-4">
-                        <div class="section-label fw-semibold text-secondary small mb-2">Tiêu đề</div>
+                        <div class="section-label fw-semibold text-secondary small mb-2">
+                            <i class="bi bi-type-h1 me-1"></i> Tiêu đề
+                        </div>
                         <div class="original-sentence p-3 bg-light rounded mb-2" style="line-height:1.8;">
                             @Model.PassageTitle
                         </div>
@@ -72,7 +91,9 @@
                 }
 
                 @* ─── Nội dung bài dịch ─── *@
-                <div class="section-label fw-semibold text-secondary small mb-2">Nội dung bài dịch</div>
+                <div class="section-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-text-paragraph me-1"></i> Nội dung bài dịch
+                </div>
                 @{
                     try
                     {
@@ -102,9 +123,9 @@
                 @* ─── AI Score ─── *@
                 @if (Model.AiScore.HasValue)
                 {
-                    <div class="mt-4 p-3 rounded bg-light">
+                    <div class="mt-4 p-3 rounded @(Model.IsAiApproved == true ? "bg-success bg-opacity-10 border border-success border-opacity-25" : "bg-danger bg-opacity-10 border border-danger border-opacity-25")">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <i class="bi bi-robot text-primary"></i>
+                            <i class="bi bi-robot @(Model.IsAiApproved == true ? "text-success" : "text-danger")"></i>
                             <span class="fw-bold small">Đánh giá của AI</span>
                             <span class="badge @(Model.IsAiApproved == true ? "bg-success" : "bg-danger") ms-auto">
                                 @(Model.AiScore)/100
@@ -120,7 +141,7 @@
         </div>
 
         @* ─── Cột phải: Sidebar ─── *@
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card border-0 shadow-sm p-3 sticky-card">
                 <h6 class="fw-bold mb-3">
                     <i class="bi bi-star-fill text-warning me-1"></i> Những bản dịch nổi bật
