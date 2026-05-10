@@ -51,6 +51,7 @@ namespace TCTEnglish.ViewModels
         public string Title { get; set; } = string.Empty;
         public string Level { get; set; } = string.Empty;
         public string Topic { get; set; } = string.Empty;
+        public string? YoutubeId { get; set; }
         public string? ThumbnailUrl { get; set; }
         public string? Duration { get; set; }
         public string? Speaker1Name { get; set; }

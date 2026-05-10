@@ -41,6 +41,27 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Listening cards from Admin did not show thumbnail on Study/Listening - 2026-05-10
+
+**Symptom**: On the Listening page, lessons imported from YouTube in "My Lessons" showed an image thumbnail, but lessons created from Admin with the same YouTube link rendered without image in the public level cards.
+
+**Root Cause**: Public level cards in `Views/Study/Listening.cshtml` rendered a static icon block (`li-card-visual`) instead of binding to `ThumbnailUrl`. In addition, Admin create/edit used `model.ThumbnailUrl ?? ...` fallback logic, so whitespace values could bypass the YouTube thumbnail fallback and persist an empty thumbnail.
+
+**Solution**: Updated the listening card view model/service mapping to include `YoutubeId` for robust fallback rendering. Changed public level card UI to render real thumbnail images with fallback to YouTube thumbnail (`img.youtube.com`) and then placeholder image. Updated Admin create/edit thumbnail assignment to treat null/whitespace as empty and apply the YouTube fallback URL.
+
+**Files Changed**:
+- `TCTEnglish/ViewModels/ListeningViewModels.cs` - added `YoutubeId` to `ListeningLessonCardViewModel`.
+- `TCTEnglish/Services/ListeningService.cs` - mapped `YoutubeId` for both published lessons and user-owned lessons.
+- `TCTEnglish/Views/Study/Listening.cshtml` - rendered thumbnail images for level cards and improved fallback logic for "My Lessons".
+- `TCTEnglish/wwwroot/css/listening-index.css` - added thumbnail styles for level cards and adjusted status badge positioning.
+- `TCTEnglish/Areas/Admin/Controllers/ListeningManagementController.cs` - fixed thumbnail fallback logic for whitespace input on create/update.
+
+**Verification**: `dotnet build TCTEnglish/TCTEnglish.csproj --no-restore` succeeded (0 errors, existing warnings unchanged).
+
+**Commit**: Not created.
+
+**Notes**: This fix keeps existing ownership/auth boundaries unchanged and only affects thumbnail mapping/rendering behavior.
+
 ### ListeningPractice Razor tab markup mismatch and extra closing tokens - 2026-05-10
 
 **Symptom**: The Listening practice page tab area rendered with broken DOM around the Quiz tab, causing malformed markup and Razor parse instability before CSS redesign.

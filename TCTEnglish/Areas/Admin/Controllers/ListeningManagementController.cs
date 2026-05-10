@@ -129,7 +129,9 @@ public class ListeningManagementController : Controller
                 Topic = model.Topic.Trim(),
                 YoutubeId = model.YoutubeId,
                 AudioUrl = model.AudioUrl,
-                ThumbnailUrl = model.ThumbnailUrl ?? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg"),
+                ThumbnailUrl = string.IsNullOrWhiteSpace(model.ThumbnailUrl)
+                    ? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg")
+                    : model.ThumbnailUrl.Trim(),
                 Duration = model.Duration,
                 Speaker1Name = model.Speaker1Name,
                 Speaker1Country = model.Speaker1Country,
@@ -155,7 +157,9 @@ public class ListeningManagementController : Controller
             lesson.Topic = model.Topic.Trim();
             lesson.YoutubeId = model.YoutubeId;
             lesson.AudioUrl = model.AudioUrl;
-            lesson.ThumbnailUrl = model.ThumbnailUrl ?? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg");
+            lesson.ThumbnailUrl = string.IsNullOrWhiteSpace(model.ThumbnailUrl)
+                ? (string.IsNullOrEmpty(model.YoutubeId) ? null : $"https://img.youtube.com/vi/{model.YoutubeId}/hqdefault.jpg")
+                : model.ThumbnailUrl.Trim();
             lesson.Duration = model.Duration;
             lesson.Speaker1Name = model.Speaker1Name;
             lesson.Speaker1Country = model.Speaker1Country;
