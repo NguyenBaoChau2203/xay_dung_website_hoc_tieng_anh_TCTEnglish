@@ -41,6 +41,23 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### ListeningPractice Razor tab markup mismatch and extra closing tokens - 2026-05-10
+
+**Symptom**: The Listening practice page tab area rendered with broken DOM around the Quiz tab, causing malformed markup and Razor parse instability before CSS redesign.
+
+**Root Cause**: `Views/Study/ListeningPractice.cshtml` contained stray markup in the `.lp-tabs` block: an extra Razor closing brace and duplicate `</button>`, plus an additional stray `}` and closing `</div>` after the quiz panel block.
+
+**Solution**: Removed the stray closing brace/button after the Quiz tab and removed the extra trailing `}`/`</div>` after the tab panels, keeping only two tab buttons (`Transcript`, `Quiz`) and preserving existing tab/panel CSS/JS class contracts.
+
+**Files Changed**:
+- `TCTEnglish/Views/Study/ListeningPractice.cshtml` — cleaned malformed tab/button/panel closing markup around `.lp-tabs` and quiz panel close.
+
+**Verification**: `dotnet build xay_dung_website_hoc_tu_vung_tieng_anh_TCT.sln` succeeded after the fix (no Razor errors).
+
+**Commit**: Not created.
+
+**Notes**: No backend logic, data models, migrations, appsettings, Program.cs, or csproj files were changed.
+
 ### Dashboard goal integration test brittle regex failure - 2026-05-09
 
 **Symptom**: CI/CD pipeline failed with `Assert.Matches() Failure: Pattern not found in value` for the `Dashboard_RendersGoalFromUserState` test.
