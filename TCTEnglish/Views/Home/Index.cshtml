@@ -277,57 +277,21 @@
 </div>
 
 <!-- ════════════════════════════════════
-     ROW 4 : Continue Reading | Daily Challenge
+     ROW 4 : Daily Challenge
 ═══════════════════════════════════════ -->
 <div class="row g-3 mb-3">
-
-    @if (Model.RecentInProcessReading != null)
-    {
-        <div class="col-12 col-lg-6">
-            <div class="db-card db-card--continue h-100">
-                <span class="db-continue-badge">
-                    <i class="fa-solid fa-clock-rotate-left"></i> Đang học dở
+    <div class="col-12">
+        <div class="db-card db-card--challenge">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="db-label">
+                    <i class="fa-solid fa-bolt" style="color:#4255ff"></i> Daily Challenge
                 </span>
-                <h3 class="db-continue-title">@Model.RecentInProcessReading.Title</h3>
-                <p class="db-continue-meta">
-                    <i class="fa-solid fa-tag"></i> @Model.RecentInProcessReading.Topic
-                    &nbsp;·&nbsp;
-                    <i class="fa-solid fa-layer-group"></i> Level @Model.RecentInProcessReading.Level
-                </p>
-                <a asp-controller="Study" asp-action="Reading"
-                   class="db-continue-btn">
-                    Tiếp tục học <i class="fa-solid fa-play ms-1"></i>
-                </a>
+            </div>
+            <div id="daily-challenge-content">
+                <partial name="_DailyChallenge" model="Model.DailyChallenge" />
             </div>
         </div>
-        <div class="col-12 col-lg-6">
-            <div class="db-card db-card--challenge h-100">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="db-label">
-                        <i class="fa-solid fa-bolt" style="color:#4255ff"></i> Daily Challenge
-                    </span>
-                </div>
-                <div id="daily-challenge-content">
-                    <partial name="_DailyChallenge" model="Model.DailyChallenge" />
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="col-12">
-            <div class="db-card db-card--challenge">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="db-label">
-                        <i class="fa-solid fa-bolt" style="color:#4255ff"></i> Daily Challenge
-                    </span>
-                </div>
-                <div id="daily-challenge-content">
-                    <partial name="_DailyChallenge" model="Model.DailyChallenge" />
-                </div>
-            </div>
-        </div>
-    }
+    </div>
 </div>
 
 <!-- ════════════════════════════════════

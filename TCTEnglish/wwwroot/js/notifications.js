@@ -44,8 +44,10 @@
             if (count > 0) {
                 elBadge.textContent = count > 99 ? '99+' : String(count);
                 elBadge.style.display = 'inline-block';
+                if (elBell) elBell.classList.add('has-notif');
             } else {
                 elBadge.style.display = 'none';
+                if (elBell) elBell.classList.remove('has-notif');
             }
         }
         // Sidebar badge
