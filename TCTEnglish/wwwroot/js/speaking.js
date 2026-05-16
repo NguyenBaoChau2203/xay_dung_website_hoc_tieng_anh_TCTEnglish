@@ -428,12 +428,24 @@
 
         rec.onresult = function (event) {
             let final = '';
+            let interim = '';
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 if (event.results[i].isFinal) final += event.results[i][0].transcript;
-                else currentInterim = event.results[i][0].transcript;
+                else interim += event.results[i][0].transcript;
             }
+            
+            if (interim) {
+                currentInterim = interim;
+                if (recordLabel) {
+                    // Show a snippet of what is being heard
+                    let displayTex = interim.length > 25 ? '...' + interim.substring(interim.length - 25) : interim;
+                    recordLabel.textContent = `Nghe: ${displayTex}`;
+                }
+            }
+
             if (final) {
                 currentInterim = ''; // clear it because we got a final result
+                if (recordLabel) recordLabel.textContent = 'Đang phân tích...';
                 const sim = levenshteinSimilarity(normalizeText(final), normalizeText(expected));
                 applyRecordingFeedback(sim, final);
             }
