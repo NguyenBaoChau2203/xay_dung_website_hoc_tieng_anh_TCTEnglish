@@ -472,6 +472,7 @@
                     applyRecordingFeedback(sim, currentInterim);
                     currentInterim = '';
                 } else {
+                    showToast('⚠️ Không nghe rõ, bạn hãy đọc to và rõ hơn nhé!', 'warning');
                     setRecordUIState(false);
                 }
             }
