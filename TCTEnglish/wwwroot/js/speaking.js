@@ -437,18 +437,32 @@
             if (interim) {
                 currentInterim = interim;
                 if (recordLabel) {
-                    // Show a snippet of what is being heard
                     let displayTex = interim.length > 25 ? '...' + interim.substring(interim.length - 25) : interim;
                     recordLabel.textContent = `Nghe: ${displayTex}`;
                 }
             }
 
             if (final) {
-                currentInterim = ''; // clear it because we got a final result
+                currentInterim = ''; 
                 if (recordLabel) recordLabel.textContent = 'Đang phân tích...';
                 const sim = levenshteinSimilarity(normalizeText(final), normalizeText(expected));
                 applyRecordingFeedback(sim, final);
             }
+        };
+
+        // Bắt các sự kiện vòng đời để debug và cải thiện UX
+        rec.onsoundstart = function() {
+            console.log('🎙️ Đã bắt được âm thanh (sound start)');
+            if (recordLabel && !currentInterim) recordLabel.textContent = 'Đang ghi âm (có tiếng)...';
+        };
+
+        rec.onspeechstart = function() {
+            console.log('🗣️ Đã phát hiện giọng nói (speech start)');
+        };
+
+        rec.onnomatch = function(event) {
+            console.warn('❌ Có giọng nói nhưng không thể nhận diện được chữ nào (nomatch)');
+            showToast('⚠️ Giọng nói không rõ hoặc quá ồn, không thể nhận diện!', 'warning');
         };
 
         rec.onerror = function (evt) {
