@@ -456,11 +456,17 @@
         if (!btnRecord) return;
         if (recording) {
             btnRecord.classList.add('is-recording');
-            if (recordIcon) recordIcon.className = 'fas fa-stop-circle';
+            if (recordIcon) {
+                recordIcon.className = 'material-symbols-outlined';
+                recordIcon.textContent = 'stop_circle';
+            }
             if (recordLabel) recordLabel.textContent = 'Đang ghi âm...';
         } else {
             btnRecord.classList.remove('is-recording');
-            if (recordIcon) recordIcon.className = 'fas fa-microphone';
+            if (recordIcon) {
+                recordIcon.className = 'material-symbols-outlined';
+                recordIcon.textContent = 'mic';
+            }
             if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
         }
     }
@@ -470,12 +476,18 @@
         if (scoring) {
             btnRecord.classList.add('is-scoring');
             btnRecord.disabled = true;
-            if (recordIcon) recordIcon.className = 'fas fa-spinner fa-spin';
+            if (recordIcon) {
+                recordIcon.className = 'fas fa-spinner fa-spin';
+                recordIcon.textContent = '';
+            }
             if (recordLabel) recordLabel.textContent = 'Đang chấm điểm...';
         } else {
             btnRecord.classList.remove('is-scoring');
             btnRecord.disabled = false;
-            if (recordIcon) recordIcon.className = 'fas fa-microphone';
+            if (recordIcon) {
+                recordIcon.className = 'material-symbols-outlined';
+                recordIcon.textContent = 'mic';
+            }
             if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
         }
     }
@@ -697,7 +709,10 @@
     function setDictationPlayState(isPlaying) {
         if (!btnDicPlay) return;
         btnDicPlay.classList.toggle('is-playing', isPlaying);
-        if (dicPlayIcon) dicPlayIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+        if (dicPlayIcon) {
+            dicPlayIcon.className = 'material-symbols-outlined';
+            dicPlayIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+        }
         if (dicPlayLabel) dicPlayLabel.textContent = isPlaying ? 'Tạm dừng' : 'Phát lại';
     }
 
@@ -967,7 +982,10 @@
 
         if (loading) {
             if (btnLabel) btnLabel.textContent = 'Đang xử lý...';
-            if (btnIcon)  btnIcon.className    = 'fas fa-spinner fa-spin';
+            if (btnIcon) {
+                btnIcon.className = 'fas fa-spinner fa-spin';
+                btnIcon.textContent = '';
+            }
 
             // Show skeleton card in my-videos grid
             if (loadingCard && myVideosGrid) {
@@ -976,7 +994,10 @@
             }
         } else {
             if (btnLabel) btnLabel.textContent = 'Thêm video';
-            if (btnIcon)  btnIcon.className    = 'fas fa-plus';
+            if (btnIcon) {
+                btnIcon.className = 'material-symbols-outlined';
+                btnIcon.textContent = 'add_circle';
+            }
 
             if (loadingCard) loadingCard.classList.add('d-none');
         }
