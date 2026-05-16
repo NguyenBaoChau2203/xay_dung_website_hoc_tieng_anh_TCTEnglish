@@ -390,6 +390,8 @@
     // ────────────────────────────────────────────────────────────────
     const SpeechRecog = global.SpeechRecognition || global.webkitSpeechRecognition;
     let activeRecognition = null;
+    let isScoring = false;
+    let currentInterim = '';
 
     function startRecording() {
         if (activeSentIdx === -1) {
@@ -415,6 +417,7 @@
 
         isRecording = true;
         setRecordUIState(true);
+        currentInterim = '';
 
         const expected = SENTENCES[activeSentIdx]?.text || '';
         const rec = new SpeechRecog();
@@ -427,8 +430,10 @@
             let final = '';
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 if (event.results[i].isFinal) final += event.results[i][0].transcript;
+                else currentInterim = event.results[i][0].transcript;
             }
             if (final) {
+                currentInterim = ''; // clear it because we got a final result
                 const sim = levenshteinSimilarity(normalizeText(final), normalizeText(expected));
                 applyRecordingFeedback(sim, final);
             }
@@ -446,7 +451,18 @@
         rec.onend = function () {
             activeRecognition = null;
             isRecording = false;
-            setRecordUIState(false);
+            
+            // If the user stopped it manually, we might not have received a final result.
+            // Use the last interim result if available.
+            if (!isScoring) {
+                if (currentInterim) {
+                    const sim = levenshteinSimilarity(normalizeText(currentInterim), normalizeText(expected));
+                    applyRecordingFeedback(sim, currentInterim);
+                    currentInterim = '';
+                } else {
+                    setRecordUIState(false);
+                }
+            }
         };
 
         rec.start();
@@ -530,14 +546,18 @@
             completenessScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5)))
         };
 
+        isScoring = true;
         // Hiện trạng thái "Đang chấm điểm..."
         setScoringUIState(true);
 
         // Lưu lên server trước — chỉ cập nhật UI khi thành công
         const result = await saveSpeakingProgress(s.id, scores);
 
+        isScoring = false;
         // Tắt trạng thái chấm điểm
         setScoringUIState(false);
+        // Trả lại trạng thái icon micro ban đầu
+        setRecordUIState(false);
 
         if (result && result.success) {
             s.totalScore = scores.totalScore;
