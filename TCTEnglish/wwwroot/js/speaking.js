@@ -406,6 +406,7 @@
         }
 
         if (isRecording) {
+            // User pressed stop manually
             if (activeRecognition) activeRecognition.stop();
             return;
         }
@@ -419,80 +420,113 @@
         setRecordUIState(true);
         currentInterim = '';
 
+        // Accumulate ALL final transcript fragments across multiple result events
+        let accumulatedFinal = '';
+        let manualStop = false;
+        let recordTimeout = null;
+
         const expected = SENTENCES[activeSentIdx]?.text || '';
         const rec = new SpeechRecog();
         rec.lang = 'en-US';
         rec.interimResults = true;
+        rec.continuous = true;       // ← KEY FIX: keep listening until user stops
         rec.maxAlternatives = 3;
         activeRecognition = rec;
 
+        // Auto-stop after 15 seconds to prevent infinite recording
+        recordTimeout = setTimeout(() => {
+            if (activeRecognition) {
+                console.log('⏱️ Auto-stop after 15s timeout');
+                manualStop = true;
+                activeRecognition.stop();
+            }
+        }, 15000);
+
         rec.onresult = function (event) {
-            let final = '';
+            let latestFinal = '';
             let interim = '';
             for (let i = event.resultIndex; i < event.results.length; i++) {
-                if (event.results[i].isFinal) final += event.results[i][0].transcript;
-                else interim += event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    latestFinal += event.results[i][0].transcript;
+                } else {
+                    interim += event.results[i][0].transcript;
+                }
             }
-            
+
+            // Accumulate final results (continuous mode can fire multiple final chunks)
+            if (latestFinal) {
+                accumulatedFinal += latestFinal;
+                currentInterim = '';
+                console.log('✅ Final fragment:', latestFinal, '| Total:', accumulatedFinal);
+            }
+
             if (interim) {
                 currentInterim = interim;
                 if (recordLabel) {
-                    let displayTex = interim.length > 25 ? '...' + interim.substring(interim.length - 25) : interim;
-                    recordLabel.textContent = `Nghe: ${displayTex}`;
+                    let display = interim.length > 25 ? '...' + interim.substring(interim.length - 25) : interim;
+                    recordLabel.textContent = `Nghe: ${display}`;
                 }
             }
+        };
 
-            if (final) {
-                currentInterim = ''; 
-                if (recordLabel) recordLabel.textContent = 'Đang phân tích...';
-                const sim = levenshteinSimilarity(normalizeText(final), normalizeText(expected));
-                applyRecordingFeedback(sim, final);
+        rec.onsoundstart = function () {
+            console.log('🎙️ Đã bắt được âm thanh (sound start)');
+            if (recordLabel && !currentInterim && !accumulatedFinal) {
+                recordLabel.textContent = 'Đang ghi âm (có tiếng)...';
             }
         };
 
-        // Bắt các sự kiện vòng đời để debug và cải thiện UX
-        rec.onsoundstart = function() {
-            console.log('🎙️ Đã bắt được âm thanh (sound start)');
-            if (recordLabel && !currentInterim) recordLabel.textContent = 'Đang ghi âm (có tiếng)...';
-        };
-
-        rec.onspeechstart = function() {
+        rec.onspeechstart = function () {
             console.log('🗣️ Đã phát hiện giọng nói (speech start)');
         };
 
-        rec.onnomatch = function(event) {
-            console.warn('❌ Có giọng nói nhưng không thể nhận diện được chữ nào (nomatch)');
-            showToast('⚠️ Giọng nói không rõ hoặc quá ồn, không thể nhận diện!', 'warning');
+        rec.onnomatch = function () {
+            console.warn('❌ nomatch: có giọng nói nhưng không nhận diện được');
         };
 
         rec.onerror = function (evt) {
+            console.error('🔴 SpeechRecognition error:', evt.error);
+            // 'aborted' fires when we call .stop() — not a real error
+            if (evt.error === 'aborted') return;
             const msgs = {
                 'no-speech': 'Không phát hiện giọng nói — thử lại',
-                'not-allowed': 'Truy cập mic bị từ chối',
-                'audio-capture': 'Không tìm thấy mic'
+                'not-allowed': 'Truy cập mic bị từ chối — kiểm tra quyền mic',
+                'audio-capture': 'Không tìm thấy mic — kiểm tra kết nối',
+                'network': 'Lỗi mạng — kiểm tra kết nối Internet'
             };
-            showToast('⚠️ ' + (msgs[evt.error] || evt.error), 'error');
+            showToast('⚠️ ' + (msgs[evt.error] || 'Lỗi ghi âm: ' + evt.error), 'error');
         };
 
         rec.onend = function () {
+            clearTimeout(recordTimeout);
             activeRecognition = null;
             isRecording = false;
-            
-            // If the user stopped it manually, we might not have received a final result.
-            // Use the last interim result if available.
-            if (!isScoring) {
-                if (currentInterim) {
-                    const sim = levenshteinSimilarity(normalizeText(currentInterim), normalizeText(expected));
-                    applyRecordingFeedback(sim, currentInterim);
-                    currentInterim = '';
-                } else {
-                    showToast('⚠️ Không nghe rõ, bạn hãy đọc to và rõ hơn nhé!', 'warning');
-                    setRecordUIState(false);
-                }
+
+            // Combine final + remaining interim for best possible transcript
+            const bestTranscript = accumulatedFinal || currentInterim;
+            currentInterim = '';
+
+            console.log('🏁 Recording ended. bestTranscript:', bestTranscript);
+
+            if (!isScoring && bestTranscript) {
+                if (recordLabel) recordLabel.textContent = 'Đang phân tích...';
+                const sim = levenshteinSimilarity(normalizeText(bestTranscript), normalizeText(expected));
+                applyRecordingFeedback(sim, bestTranscript);
+            } else if (!isScoring) {
+                showToast('⚠️ Không nhận diện được giọng nói — hãy nói rõ hơn hoặc kiểm tra mic!', 'warning');
+                setRecordUIState(false);
             }
         };
 
-        rec.start();
+        try {
+            rec.start();
+            console.log('🟢 SpeechRecognition started (continuous mode)');
+        } catch (e) {
+            console.error('Failed to start SpeechRecognition:', e);
+            showToast('❌ Không thể bật ghi âm — thử tải lại trang (F5)', 'error');
+            isRecording = false;
+            setRecordUIState(false);
+        }
     }
 
     function setRecordUIState(recording) {
