@@ -108,6 +108,34 @@ lives in feature controllers.
 - RBAC: use `[Authorize(Roles = "Admin")]` for admin-only, `[Authorize]` for authenticated users.
 - Return `NotFound()` for IDOR violations; never `Forbid()`.
 
+## Development Intelligence & Methodology (CodeGraph & Superpowers)
+
+### Autonomous Trigger Matrix
+Whenever the user writes a request, the agent MUST automatically evaluate and invoke the corresponding skills and tools before writing or modifying code:
+
+| User Intent / Scenario | Mandatory Tool / Skill Call | Flow & Action |
+|---|---|---|
+| **New Feature / UI / Workflow** ("thêm tính năng X", "làm trang Y") | Skills: `superpowers:brainstorming` → `superpowers:writing-plans` + Domain Skills (`feature-scaffold`, `ui-component`, `vocabulary-feature`, `speaking-feature`) | Brainstorm specs with user, create task checklist artifact, then implement step-by-step. |
+| **Bug Fix / Test Failure** ("bị lỗi X", "fix bug Y", "không chạy được") | Tool: `codegraph_explore`<br>Skill: `superpowers:systematic-debugging`<br>Context: `.ai/context/bug-fix-log.md` | Explore affected symbols with CodeGraph, diagnose root cause with evidence before editing code. |
+| **Code Exploration / Architecture** ("luồng X hoạt động thế nào", "class Y liên kết với ai") | Tool: MCP `codegraph_explore` | Query CodeGraph directly to retrieve verbatim source and call chain. Never rely on manual grep loops. |
+| **API Endpoints** ("tạo API", "viết endpoint AJAX") | Skill: `api-endpoint` | Enforce anti-IDOR (`GetCurrentUserId()`), Anti-CSRF, and standard JSON response envelope. |
+| **Database Changes** ("tạo migration", "thêm cột/bảng") | Skill: `ef-migration` | Impact assessment, nullable/reversible migration check, never DROP without explicit approval. |
+| **Verification & Handoff** (before declaring ANY task complete) | Skill: `superpowers:verification-before-completion` | Run `dotnet build` and relevant tests. Evidence before assertions. Output Vietnamese summary. |
+
+### CodeGraph
+- The codebase is indexed with CodeGraph (`.codegraph/`).
+- **Always reach for CodeGraph FIRST**: Call the `codegraph_explore` MCP tool (or run `codegraph explore "<query>"`) before using `grep_search` or manual read loops.
+- CodeGraph provides verbatim source, dependency chains, and blast radius (callers and affected flows) in a single round-trip.
+- Re-index or status check: `codegraph status` / `codegraph init`.
+
+### Superpowers Methodology
+- Follow the Superpowers workflow for disciplined feature and bug-fix development:
+  - **Brainstorming first**: For new features or behavioral changes, clarify intent and outline specs before writing code.
+  - **Writing & Executing Plans**: Create clear implementation plans with task artifacts (`write_to_file` with `IsArtifact: true` and `ArtifactMetadata.ArtifactType: "task"`).
+  - **Systematic Debugging**: For bugs, find root cause with evidence before touching code (follow `.ai/context/bug-fix-log.md`).
+  - **Test-Driven Development (TDD)**: Write failing tests before implementation when writing unit tests.
+  - **Verification Before Completion**: Run automated tests (`dotnet test`) and verify outputs before declaring a task complete.
+
 ## Bug Fix Memory
 
 - If the task is a bug fix, read `.ai/context/bug-fix-log.md` and `.ai/context/known-issues.md` before editing code.
