@@ -1,0 +1,9 @@
+#!/bin/sh
+# Enabled locally by setup. A plain pull on a fresh clone cannot install hooks.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+if command -v node >/dev/null 2>&1; then
+    exec node scripts/agent-tools.cjs setup
+fi
+echo 'TCT tools: install Node.js 22+, then open SETUP-AGENTS.cmd.' >&2
+exit 1

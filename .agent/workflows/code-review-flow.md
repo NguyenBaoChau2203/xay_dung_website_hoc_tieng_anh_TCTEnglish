@@ -1,43 +1,17 @@
 ---
-description: Full PR review checklist covering security, correctness, performance, and architecture
+description: Evidence-based inline code review
 ---
 
-# Workflow: Code Review — Pull Request Process
+# Evidence-based inline code review
 
-## Phase 1 — Context
-Understand: purpose of change, files changed, expected user flow, roles involved.
 
-## Phase 2 — Security Review (🔴 Priority 1)
-- Anti-IDOR: ownership check on all parameterized queries
-- CSRF: `[ValidateAntiForgeryToken]` on all POST/DELETE
-- Auth: `[Authorize]` on sensitive actions, Admin area protected
-- File upload: MIME type + extension + size validated
-
-## Phase 3 — Correctness (🔴 Priority 2)
-- All `FirstOrDefaultAsync()` results null-checked
-- No `.Single()` unless expecting exactly one row
-- Navigation properties `.Include()`-ed before access
-- Async chain consistent (no sync calls in async context)
-
-## Phase 4 — Performance (🟡 Priority 3)
-- No LINQ queries inside loops (N+1)
-- `.AsNoTracking()` on read-only queries
-- List views have pagination
-- Search/filter in LINQ, not in-memory
-
-## Phase 5 — Architecture (🟡 Priority 4)
-- Controller ≤25 lines logic
-- No ViewBag for complex data
-- New services registered in `Program.cs`
-
-## Phase 6 — Code Quality (🟢 Priority 5)
-- Naming conventions followed
-- No `Console.WriteLine()` in production
-- Bootstrap 5 classes used
-
-## Report Template
-```markdown
-## Code Review: [Target]
-### 🔴 CRITICAL | 🟡 WARNINGS | 🟢 SUGGESTIONS | ✅ What's Done Well
-### Verdict: APPROVED / CHANGES REQUESTED / NEEDS DISCUSSION
-```
+1. Read AGENTS.md, the request and complete diff; use tct-engineering.
+2. Review as the same agent using .ai/roles/implementer.md and the relevant UI or
+   security lens. Do not spawn a reviewer or hardcode a model.
+3. Trace access scope, antiforgery, validation, async behavior and contracts.
+   Read callers before reporting missing checks; projections may avoid Include.
+4. Check null handling, duplicate submissions, query shape, pagination and states.
+5. Use tct-ui-review for rendered interface changes and tct-tooling-review for
+   imported skills, hooks or MCP. Keep review within the requested scope.
+6. Report findings with priority, exact file/line, trigger, impact and correction.
+   Separate observed failures, plausible risks and checks that were not run.

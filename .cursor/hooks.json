@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook cursor SessionStart",
+        "timeout": 30
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook cursor PreToolUse",
+        "timeout": 30,
+        "matcher": "^(Task|Agent)$"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook cursor PostToolUse",
+        "timeout": 30
+      }
+    ],
+    "stop": [
+      {
+        "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook cursor Stop",
+        "timeout": 30
+      }
+    ],
+    "subagentStart": [
+      {
+        "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook cursor PreToolUse",
+        "timeout": 30
+      }
+    ]
+  }
+}

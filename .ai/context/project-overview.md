@@ -10,9 +10,9 @@ improve speaking skills
 
 | Layer | Technology | Version |
 |---|---|---|
-| Framework | ASP.NET Core MVC | .NET 10 |
+| Framework | ASP.NET Core MVC | .NET 9 |
 | Language | C# | 11+ |
-| ORM | Entity Framework Core | 10.0.2 |
+| ORM | Entity Framework Core | 9.0.4 |
 | Database | Microsoft SQL Server | current |
 | Frontend CSS | Bootstrap | 5.3 |
 | Frontend JS | jQuery + Vanilla JS | current |

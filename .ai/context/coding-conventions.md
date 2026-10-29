@@ -76,7 +76,12 @@ public async Task<IActionResult> CreateSet(CreateSetViewModel model)
     if (!ModelState.IsValid) return View(model);
     var userId = GetCurrentUserId();
     var result = await _setService.CreateAsync(model, userId);
-    if (!result.Success) { ModelState.AddModelError("", result.Error); return View(model); }
+    if (result.Status == OperationStatus.NotFound) return NotFound();
+    if (result.Status != OperationStatus.Success)
+    {
+        ModelState.AddModelError("", result.ErrorMessage ?? "Unable to save.");
+        return View(model);
+    }
     return RedirectToAction(nameof(Index));
 }
 
@@ -89,6 +94,11 @@ public async Task<IActionResult> CreateSet(CreateSetViewModel model)
 ```
 
 ### Dependency Injection Pattern
+
+The shared OperationResult currently lives in a verified legacy
+TCTVocabulary.Services namespace; use its Status/ErrorMessage API and resolve
+existing namespaces through CodeGraph before copying an example. Do not generate
+a duplicate result wrapper. New feature code uses the canonical TCTEnglish root.
 
 ```csharp
 // Constructor injection (preferred):

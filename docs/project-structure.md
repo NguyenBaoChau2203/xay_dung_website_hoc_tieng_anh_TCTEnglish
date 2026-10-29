@@ -21,7 +21,21 @@ context; this file describes the structure we intend to keep.
 | `scripts/` | Local helper scripts such as encoding or validation utilities |
 | `.ai/context/` | Project-specific architecture, conventions, glossary, and bug history |
 | `.agent/workflows/` | Repo workflows used to guide implementation and review passes |
-| `.agent/skills/` | Repo-specific skills for feature and audit tasks |
+| `.agents/skills/` | Canonical discoverable TCT project skills |
+| `.agent/skills/` | Antigravity adapters pointing to canonical skills |
+| `.claude/skills/`, `CLAUDE.md` | Claude Code adapters and shared rules imports |
+| `.cursor/`, `.mcp.json`, `.agents/*config.json`, `.agents/hooks.json` | Host-native MCP and lifecycle hook definitions |
+| `SETUP-AGENTS.cmd`, `.vscode/tasks.json` | Click/folder-open team setup; see docs/team-agent-setup.md |
+| `.ai/roles/` | Review lenses applied inline by the same agent |
+| `.ai/vendor/` | Selected attributed upstream references, not auto-loaded plugins |
+| `.ai/tooling/` | Source lock and archived replaced guidance |
+| `.codex/config.toml` | Project-scoped single-agent and Git MCP configuration |
+| `.codex/hooks.json` | Project lifecycle definitions; require host review/trust |
+| `.githooks/` | Staged tooling checks; enable with scripts/install-agent-hooks.ps1 |
+| `tooling/mcp/` | Isolated locked Python dependencies for the Git MCP reference server |
+| `tooling/codegraph/` | Pinned CodeGraph package/lock and read-only MCP adapter |
+| `tooling/.runtime/` | Ignored local bootstrap binaries, locks and install fingerprints |
+| `DESIGN.md` | Existing visual identity and UI guidance |
 
 ## Main Application Layout
 

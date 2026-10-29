@@ -1,0 +1,15 @@
+#!/bin/sh
+# Validate the index. Never format, stage or change files during a commit.
+set -eu
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+if command -v node >/dev/null 2>&1 && [ -f scripts/agent-tools.cjs ]; then
+    exec node scripts/agent-tools.cjs validate --staged
+elif command -v uv >/dev/null 2>&1; then
+    exec uv run --no-project python scripts/agent_tooling.py --staged
+elif command -v python3 >/dev/null 2>&1; then
+    exec python3 scripts/agent_tooling.py --staged
+else
+    echo "Tooling check needs uv or Python 3.11+. See docs/agent-tooling.md." >&2
+    exit 1
+fi

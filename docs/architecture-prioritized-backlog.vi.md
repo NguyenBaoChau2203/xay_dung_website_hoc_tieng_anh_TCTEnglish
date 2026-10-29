@@ -9,7 +9,7 @@ Mục tiêu chính:
 - Chỉ sau đó mới mở rộng sang payment, AI, và các module học mới
 
 Ảnh chụp nhanh codebase hiện tại:
-- Ứng dụng ASP.NET Core MVC trên .NET 10, có các ranh giới hữu ích như
+- Ứng dụng ASP.NET Core MVC trên .NET 9, có các ranh giới hữu ích như
   `Areas/Admin`, `Hubs`, `Workers`, `Services`
 - `HomeController` giờ chỉ còn dashboard và các trang public
 - Các route legacy `/Home/*` vẫn được giữ, nhưng logic class/folder/set/study/chat

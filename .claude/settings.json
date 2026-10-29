@@ -1,0 +1,50 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook claude SessionStart",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook claude PreToolUse",
+            "timeout": 30
+          }
+        ],
+        "matcher": "^(Agent|Task)$"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook claude PostToolUse",
+            "timeout": 30
+          }
+        ],
+        "matcher": "^(Bash|Edit|Write)$"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});\" hook claude Stop",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

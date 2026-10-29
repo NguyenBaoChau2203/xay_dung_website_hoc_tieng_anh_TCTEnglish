@@ -1,46 +1,17 @@
 ---
-description: Profile and optimize application performance across database, server, and frontend layers
+description: Measured performance review
 ---
 
-# Workflow: Performance Audit
+# Measured performance review
 
-## Phase 1 — Identify the Bottleneck
-Never optimize blindly. Measure first.
-- Browser DevTools → Network tab: total load time, largest files, slowest requests
-- EF Core SQL logging: `Microsoft.EntityFrameworkCore.Database.Command: Information`
-- `query.ToQueryString()` to inspect generated SQL
 
-## Phase 2 — Database Optimization (Highest Impact)
-
-### N+1 Queries
-```csharp
-// BAD: var sets = await _context.Sets.ToListAsync(); // then loop accessing Cards
-// GOOD: var sets = await _context.Sets.Include(s => s.Cards).AsNoTracking().ToListAsync();
-```
-
-### Missing `.AsNoTracking()` — all read-only queries need it
-
-### SELECT Projection — use `.Select(s => new ViewModel { ... })` instead of loading full entities
-
-### Database Indexes — check high-traffic columns: `Sets.OwnerId`, `LearningProgress.UserId`, `SpeakingVideo.Level`
-
-### Pagination — any list without `.Skip().Take()` is a performance risk
-
-## Phase 3 — Server-Side Optimization
-- Response caching for public/rarely-changing pages
-- Remove sync blocking: no `.Result` or `.Wait()`
-- Background work offloading for non-critical tasks (email)
-
-## Phase 4 — Frontend Optimization
-- Move page-specific JS to `@section Scripts { }` (not global `_Layout.cshtml`)
-- Debounce search inputs (300-500ms)
-- AJAX instead of full page reload for single-item updates
-- Lazy load media content (YouTube players)
-
-## Phase 5 — Audit Report
-```markdown
-## Performance Audit: [Target]
-| # | Layer | Issue | Severity | Expected Impact |
-### Optimization Plan (ordered by impact)
-### After Metrics (fill after applying fixes)
-```
+1. Identify the actual slow route/interaction and measure before changing code.
+   Read AGENTS.md; use tct-engineering and CodeGraph to trace the relevant flow.
+2. Inspect EF query count/shape, projection, pagination, tracking and access scope.
+   Do not add Include when a projection already selects the needed data.
+3. For browser work inspect network, layout shifts and rendering. Use tct-ui-motion
+   for animation jank; do not add a framework or motion library by default.
+4. Change the demonstrated bottleneck within scope. Schema indexes, caching,
+   background jobs or protected config changes need actual task authority.
+5. Compare before/after measurements, check correctness and review inline.
+   Record device/runtime, dataset and limitations instead of promising universal gains.

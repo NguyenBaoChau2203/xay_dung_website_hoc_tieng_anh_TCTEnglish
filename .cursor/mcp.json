@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "tct_git": {
+      "command": "node",
+      "args": [
+        "-e",
+        "const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});",
+        "mcp",
+        "git"
+      ]
+    },
+    "codegraph": {
+      "command": "node",
+      "args": [
+        "-e",
+        "const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});",
+        "mcp",
+        "codegraph"
+      ],
+      "env": {
+        "CODEGRAPH_TELEMETRY": "0",
+        "DO_NOT_TRACK": "1",
+        "CODEGRAPH_NO_DOWNLOAD": "1",
+        "CODEGRAPH_NO_UPDATE_CHECK": "1",
+        "CODEGRAPH_MCP_TOOLS": "explore"
+      }
+    }
+  }
+}
