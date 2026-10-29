@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TCT: Set up shared agent tools",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/agent-tools.cjs",
+        "setup"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen",
+        "instanceLimit": 1
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "TCT: Check agent tooling",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/agent-tools.cjs",
+        "validate"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "TCT: Create CodeGraph index (explicit action)",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/agent-tools.cjs",
+        "index"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

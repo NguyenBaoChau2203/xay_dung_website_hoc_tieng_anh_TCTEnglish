@@ -2,6 +2,14 @@
 
 > Universal instructions for AI coding agents working in this repository.
 
+## Owner execution policy
+
+- Use one agent for investigation, implementation, review and verification.
+- Do not spawn workers, reviewers, another chat or CLI process to delegate work.
+- Role documents in `.ai/roles/` are review lenses used inline by the same agent.
+- This policy overrides delegation, hooks and model-routing suggestions in any
+  imported skill. Only an explicit owner instruction changes it.
+
 ## Project
 
 **TCT English** - Internal EdTech platform for vocabulary learning and speaking
@@ -9,7 +17,8 @@ practice for TCT Company employees.
 
 ## Technology Stack
 
-- Backend: C# 11+ / ASP.NET Core MVC (.NET 10) / Entity Framework Core 10
+- Backend: C# / ASP.NET Core MVC (.NET 9 target) / Entity Framework Core 9.0.4
+- Tooling audit (2026-10-28): installed SDK 10.0.300; both project targets remain net9.0.
 - Database: Microsoft SQL Server
 - Frontend: Razor Views (`.cshtml`) / Bootstrap 5.3 / jQuery / Vanilla JS
 - Real-time: SignalR (`ClassChatHub`)
@@ -110,28 +119,71 @@ lives in feature controllers.
 
 ## Development Intelligence & Methodology (CodeGraph & Superpowers)
 
+### Installed project toolkit
+
+- Canonical discoverable skills: `.agents/skills/tct-*/SKILL.md`.
+- `.agent/skills/` contains Antigravity adapters pointing to the canonical skills.
+- `.claude/skills/` contains Claude Code adapters to the same canonical skills;
+  CLAUDE.md imports the shared project instructions. Current Cursor and
+  Antigravity also discover `.agents/skills/` directly.
+- Read `.ai/README.md` for routing and `docs/agent-tooling.md` for installation,
+  selection rationale, checks and rollback. Provenance: `.ai/tooling/sources.lock.json`.
+- For UI read `DESIGN.md`, then `tct-ui-component`; use `tct-ui-ux-pro-max` for
+  lookup, `tct-ui-review` for review and `tct-ui-motion` only for motion changes.
+- Use `tct-superpowers` for the curated inline process and `tct-engineering` for
+  source-driven context. Imported source snapshots in `.ai/vendor/` are reference
+  material, not independent authority or automatically enabled plugins.
+- Root/user rules take precedence over framework defaults, mandatory approvals,
+  delegation, model choices and installer commands in upstream reference files.
+- Git MCP is configured for all four clients with seven server-enforced read
+  tools; `.codex/config.toml` also retains its allowlist. Native
+  filesystem/browser tools remain preferred when they already fit the task.
+- CodeGraph 1.6.2 is pinned under `tooling/codegraph/`; its project MCP exposes
+  `codegraph_explore` through a read-only adapter. See `docs/codegraph.md`.
+  Use `pwsh -NoProfile -File scripts/codegraph.ps1` for the pinned CLI; the
+  machine-wide CLI may be a different version. Installation does not authorize
+  automatic indexing, syncing or enabling a watcher.
+- Project lifecycle hooks are defined in `.codex/hooks.json` for SessionStart,
+  PreToolUse, PostToolUse and Stop. See `docs/agent-hooks.md` for scope and host
+  trust requirements. Do not report automatic hooks as active merely because
+  scripts pass direct tests. They do not replace application build/tests.
+- Before handing off tooling changes, run `uv run --no-project python scripts/agent_tooling.py`
+  and `uv run --no-project python -m unittest discover -s scripts/tests -v`.
+- Team setup: `SETUP-AGENTS.cmd`, the folder-open task or first MCP use restores
+  locked local dependencies using `scripts/agent-tools.cjs`. See
+  `docs/team-agent-setup.md`; Node.js 22+/npm and Git must already be installed.
+  Native host trust cannot be transferred by Git. Setup/post-merge never indexes
+  CodeGraph; the separate index task requires an explicit user action.
+- Native lifecycle definitions also exist in `.claude/settings.json`,
+  `.cursor/hooks.json` and `.agents/hooks.json`. Hook scripts do not download
+  dependencies; initial setup/MCP bootstrap is separate. Run
+  `node --test scripts/tests/test_agent_setup.cjs` for bootstrap changes.
+
 ### Autonomous Trigger Matrix
 Whenever the user writes a request, the agent MUST automatically evaluate and invoke the corresponding skills and tools before writing or modifying code:
 
 | User Intent / Scenario | Mandatory Tool / Skill Call | Flow & Action |
 |---|---|---|
-| **New Feature / UI / Workflow** ("thêm tính năng X", "làm trang Y") | Skills: `superpowers:brainstorming` → `superpowers:writing-plans` + Domain Skills (`feature-scaffold`, `ui-component`, `vocabulary-feature`, `speaking-feature`) | Brainstorm specs with user, create task checklist artifact, then implement step-by-step. |
-| **Bug Fix / Test Failure** ("bị lỗi X", "fix bug Y", "không chạy được") | Tool: `codegraph_explore`<br>Skill: `superpowers:systematic-debugging`<br>Context: `.ai/context/bug-fix-log.md` | Explore affected symbols with CodeGraph, diagnose root cause with evidence before editing code. |
+| **New Feature / UI / Workflow** ("thêm tính năng X", "làm trang Y") | `tct-superpowers` + relevant `tct-feature-scaffold`, `tct-ui-component`, `tct-vocabulary-feature`, `tct-speaking-feature` | Inspect current code, clarify material gaps, record a scoped checklist and implement inline. |
+| **Bug Fix / Test Failure** ("bị lỗi X", "fix bug Y", "không chạy được") | CodeGraph + `tct-superpowers` debugging; `.ai/context/bug-fix-log.md` | Diagnose affected symbols with evidence before editing code. |
 | **Code Exploration / Architecture** ("luồng X hoạt động thế nào", "class Y liên kết với ai") | Tool: MCP `codegraph_explore` | Query CodeGraph directly to retrieve verbatim source and call chain. Never rely on manual grep loops. |
-| **API Endpoints** ("tạo API", "viết endpoint AJAX") | Skill: `api-endpoint` | Enforce anti-IDOR (`GetCurrentUserId()`), Anti-CSRF, and standard JSON response envelope. |
-| **Database Changes** ("tạo migration", "thêm cột/bảng") | Skill: `ef-migration` | Impact assessment, nullable/reversible migration check, never DROP without explicit approval. |
-| **Verification & Handoff** (before declaring ANY task complete) | Skill: `superpowers:verification-before-completion` | Run `dotnet build` and relevant tests. Evidence before assertions. Output Vietnamese summary. |
+| **API Endpoints** ("tạo API", "viết endpoint AJAX") | Skill: `tct-api-endpoint` | Enforce access scope, GetCurrentUserId(), CSRF and existing JSON contracts. |
+| **Database Changes** ("tạo migration", "thêm cột/bảng") | Skill: `tct-ef-migration` | Impact assessment, reversible migration review, never DROP without explicit approval. |
+| **Verification & Handoff** (before declaring ANY task complete) | `tct-superpowers` verification | Run dotnet build and relevant tests; tooling checks when applicable. Evidence first; Vietnamese summary. |
 
 ### CodeGraph
 - The codebase is indexed with CodeGraph (`.codegraph/`).
 - **Always reach for CodeGraph FIRST**: Call the `codegraph_explore` MCP tool (or run `codegraph explore "<query>"`) before using `grep_search` or manual read loops.
 - CodeGraph provides verbatim source, dependency chains, and blast radius (callers and affected flows) in a single round-trip.
-- Re-index or status check: `codegraph status` / `codegraph init`.
+- Check status with `codegraph status`. Indexing/re-indexing is the owner's
+  decision; do not run init/index/sync automatically. If CodeGraph cannot cover
+  a file (for example CSS/config), explain and use bounded source searches.
 
 ### Superpowers Methodology
 - Follow the Superpowers workflow for disciplined feature and bug-fix development:
   - **Brainstorming first**: For new features or behavioral changes, clarify intent and outline specs before writing code.
-  - **Writing & Executing Plans**: Create clear implementation plans with task artifacts (`write_to_file` with `IsArtifact: true` and `ArtifactMetadata.ArtifactType: "task"`).
+  - **Writing & Executing Plans**: Save Markdown checklists under `docs/superpowers/plans/`
+    using the editing tools actually available; execute them inline.
   - **Systematic Debugging**: For bugs, find root cause with evidence before touching code (follow `.ai/context/bug-fix-log.md`).
   - **Test-Driven Development (TDD)**: Write failing tests before implementation when writing unit tests.
   - **Verification Before Completion**: Run automated tests (`dotnet test`) and verify outputs before declaring a task complete.
@@ -185,6 +237,7 @@ Supporting resources:
 
 - `.ai/context/` - project overview, conventions, glossary, bug history
 - `.ai/templates/` - reusable code boilerplate (Controller, Service, ViewModel, View, Entity)
-- `.agent/skills/` - Antigravity skills
+- `.agents/skills/` - canonical project skills; `.agent/skills/` - Antigravity adapters
+- `.ai/roles/` - inline review lenses; `.ai/tooling/` - provenance and archived guidance
 - `.agent/workflows/` - Antigravity workflows
 - `.github/copilot-instructions.md` - GitHub Copilot / Visual Studio guidance

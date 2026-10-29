@@ -1,0 +1,9 @@
+{
+  "name": "tct-english-codegraph-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Project-local pinned CodeGraph CLI and MCP runtime",
+  "dependencies": {
+    "@colbymchenry/codegraph": "1.6.2"
+  }
+}

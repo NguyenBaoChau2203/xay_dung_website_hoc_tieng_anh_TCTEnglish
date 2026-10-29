@@ -1,0 +1,24 @@
+name: Agent tooling checks
+
+on:
+  pull_request:
+    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
+  push:
+    branches: [master]
+    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Validate skills, sources and MCP configuration
+        run: python3 scripts/agent_tooling.py
+      - name: Test tooling checks
+        run: python3 -m unittest discover -s scripts/tests -v
+      - name: Test setup integrity, retry and concurrent startup behavior
+        run: node --test scripts/tests/test_agent_setup.cjs

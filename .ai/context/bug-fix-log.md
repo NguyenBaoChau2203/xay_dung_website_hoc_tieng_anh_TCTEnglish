@@ -41,6 +41,85 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Team setup timed out during CodeGraph package extraction — 2026-10-29
+
+**Symptom**: A simulated fresh Windows checkout installed pinned uv/Python, then
+stopped at the 180-second npm deadline while restoring CodeGraph.
+
+**Root Cause**: The initial installer deadline was too short for that observed
+package extraction. The npm log showed cache hits and an incomplete bundle
+(446 entries versus 1,381 in a completed bundle), without a completed install.
+The exact host I/O slowdown was not established; a later clean run was faster.
+
+**Solution**: Allow up to 600 seconds for npm and bound concurrent setup waiting
+accordingly. A timeout is reported as incomplete and retryable; no completed
+fingerprint is written after failure. Keep exact pins, integrity and no scripts.
+
+**Files Changed**:
+- `scripts/agent-tools.cjs` — bounded installation/wait timeouts and retry message.
+- `scripts/tests/test_agent_setup.cjs` — failure/retry, concurrency and interrupted
+  lock recovery checks alongside archive integrity and path boundary regressions.
+
+**Verification**: The interrupted fixture completed on retry. A second clean
+checkout without uv in PATH completed setup in 30.1 seconds, then repeated it
+offline without downloading/restoring dependencies. No CodeGraph index was made.
+
+**Commit**: Not created.
+
+**Notes**: The measured setup time is one Windows run, not a performance promise
+for teammates. Native MCP timeouts can still require retry after first setup.
+
+### CodeGraph smoke check treated an empty WAL as an index modification — 2026-10-29
+
+**Symptom**: A successful read-only MCP source query intermittently failed the
+physical database/WAL fingerprint check.
+
+**Root Cause**: The smoke check compared sidecar presence as well as data. A
+read-only SQLite connection can create an empty WAL and shared-memory sidecar
+without changing the main database. A standalone SQLite WAL fixture reproduced
+the absent-to-empty transition while the main database SHA-256 stayed identical.
+
+**Solution**: Normalize absent/empty WAL in the shared fingerprint helper. Keep
+hashing the main database and every nonempty WAL; shared-memory locks are excluded.
+The CodeGraph read-only engine configuration was retained.
+
+**Files Changed**:
+- `scripts/agent_tooling.py` — add sqlite_data_fingerprint.
+- `scripts/check_codegraph_mcp.py` — use the data-bearing file fingerprint.
+- `scripts/tests/test_codegraph_tooling.py` — real read-only SQLite fixture and
+  negative cases for changed main database/nonempty WAL contents.
+
+**Verification**: Tooling tests and actual CodeGraph MCP initialize/list/explore
+checks pass after normalization. No index/sync/rebuild command was run.
+
+**Commit**: Not created.
+
+**Notes**: This corrects a verification false positive, not a TCT application
+database defect. It does not disable checking data-bearing WAL content.
+
+### Git MCP smoke check used the old SDK result property — 2026-10-28
+
+**Symptom**: The new tooling smoke check initialized MCP and called git_status,
+then raised AttributeError while inspecting the result.
+
+**Root Cause**: The pinned MCP Python SDK 2.3.0 exposes CallToolResult.is_error;
+the initial smoke check used the older wire-style isError property.
+
+**Solution**: Read the installed SDK implementation and use is_error in the
+dedicated tooling smoke check. No application code or dependency was changed.
+
+**Files Changed**:
+- `scripts/check_git_mcp.py` — use the actual SDK result property.
+
+**Verification**: The configured PowerShell launcher, MCP initialization,
+tool discovery and git_status all passed; seven configured read tools were found.
+
+**Commit**: Not created.
+
+**Notes**: This was found and corrected during the agent-tooling installation.
+It is unrelated to the two existing .NET regression failures recorded in
+docs/agent-tooling.md.
+
 ### Listening cards from Admin did not show thumbnail on Study/Listening - 2026-05-10
 
 **Symptom**: On the Listening page, lessons imported from YouTube in "My Lessons" showed an image thumbnail, but lessons created from Admin with the same YouTube link rendered without image in the public level cards.

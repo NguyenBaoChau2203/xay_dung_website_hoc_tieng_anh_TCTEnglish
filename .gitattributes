@@ -3,6 +3,23 @@
 ###############################################################################
 * text=auto
 
+# Tool source hashes and shell launchers must be stable across Windows/Linux.
+.agents/** text eol=lf
+.agent/** text eol=lf
+.ai/** text eol=lf
+.codex/** text eol=lf
+.githooks/** text eol=lf
+tooling/** text eol=lf
+scripts/*.py text eol=lf
+scripts/*.ps1 text eol=lf
+scripts/tests/*.py text eol=lf
+.claude/** text eol=lf
+.cursor/** text eol=lf
+.vscode/*.json text eol=lf
+scripts/*.cjs text eol=lf
+scripts/tests/*.cjs text eol=lf
+*.cmd text eol=crlf
+
 ###############################################################################
 # Keep ML.NET classifier assets stable across Windows and Linux CI.
 ###############################################################################

@@ -48,6 +48,12 @@ Thumbs.db
 # Node (nếu có)
 # ===============================
 node_modules/
+.venv/
+__pycache__/
+*.pyc
+tooling/.runtime/
+.claude/settings.local.json
+CLAUDE.local.md
 
 # ===============================
 # SQL Server

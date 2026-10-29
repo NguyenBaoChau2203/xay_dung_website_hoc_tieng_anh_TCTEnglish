@@ -7,7 +7,7 @@
 //   2. Configure in OnModelCreating if needed (indexes, constraints)
 //   3. Run: Add-Migration Add{EntityName} -Context DbflashcardContext
 //   4. Review the migration file for safety
-//   5. Run: Update-Database
+//   5. Apply only to an authorized isolated database; shared/production updates require separate authority
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

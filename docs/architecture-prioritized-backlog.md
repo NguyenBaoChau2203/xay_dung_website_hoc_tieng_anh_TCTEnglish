@@ -12,7 +12,7 @@ Primary goal:
 - Only then move into larger roadmap work such as payments, AI, and new modules
 
 Current codebase snapshot:
-- ASP.NET Core MVC monolith on .NET 10 with useful boundaries:
+- ASP.NET Core MVC monolith on .NET 9 with useful boundaries:
   `Areas/Admin`, `Hubs`, `Workers`, `Services`
 - `HomeController` is now limited to dashboard/public pages
 - Legacy `/Home/*` URLs are preserved, but class/folder/set/study/chat logic now

@@ -1,0 +1,28 @@
+# Project-scoped. Codex loads this for trusted projects.
+[features]
+multi_agent = false
+hooks = true
+
+[mcp_servers.tct_git]
+command = "node"
+# Locate the repository from any working subdirectory. No machine-specific paths.
+args = ["-e", "const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});", "mcp", "git"]
+enabled = true
+startup_timeout_sec = 120
+tool_timeout_sec = 30
+enabled_tools = ["git_status", "git_diff_unstaged", "git_diff_staged", "git_diff", "git_log", "git_show", "git_branch"]
+
+[mcp_servers.codegraph]
+command = "node"
+args = ["-e", "const cp=require('node:child_process');const p=require('node:path');const r=cp.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8',windowsHide:true}).trim();require(p.join(r,'scripts/agent-tools.cjs')).main(process.argv.slice(1)).then(c=>{process.exitCode=c;}).catch(e=>{console.error('TCT tools: '+(process.argv[1]==='hook'?'Hook could not run; check local setup.':e.message));process.exitCode=1;});", "mcp", "codegraph"]
+enabled = true
+startup_timeout_sec = 120
+tool_timeout_sec = 60
+enabled_tools = ["codegraph_explore"]
+
+[mcp_servers.codegraph.env]
+CODEGRAPH_TELEMETRY = "0"
+DO_NOT_TRACK = "1"
+CODEGRAPH_NO_DOWNLOAD = "1"
+CODEGRAPH_NO_UPDATE_CHECK = "1"
+CODEGRAPH_MCP_TOOLS = "explore"
