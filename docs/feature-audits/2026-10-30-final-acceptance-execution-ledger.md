@@ -25,8 +25,8 @@ Release app `bin/Release` locked by running TCTEnglish PID; tests used Debug lay
 | C4 | G03 MariaDB | Done (partial scope) | Isolated `tctenglish-mariadb-acceptance-2930` :3308; `MariaDbCompletionConcurrencyTests` ×3 | One credit under dual completion barrier | — | Did **not** touch `tctenglish-local-mariadb-data`. Notification/import lease races: Not run this pass |
 | C5 | G01/G02 engine+corpus | Partial | Writing corpus theory; ASR notes | G02 corpus automated pass; G01 engine **Not run** | — | `docs/feature-audits/2026-10-30-asr-engine-acceptance.md` |
 | C6 | G04 UI 25 views | Not run | — | Matrix draft only | — | Port 5110 not started; owner 5100 untouched |
-| C7 | G05 full suite + CI | In progress | Debug suite **695 passed / 0 failed**; Python 51 OK; Node behavior OK | Expect CI on feature SHA; release skipped | — | Release bin lock → Debug |
-| C8 | G06 release drill + handoff | Partial | Disabled deploy preflight tests pass | Full enabled Windows staging drill **Not run**; production **Blocked** (gate false, no creds rotation) | — | No Plesk/SQL hosting writes |
+| C7 | G05 full suite + CI | Done (code/local + Linux CI) | Debug suite **695 passed / 0 failed**; Python 51 OK; Node OK; CI run 41085699736 | headSha `ff7f703…`; conclusion **success**; release job **skipped** | ff7f703 | `PLESK_DEPLOYMENT_ENABLED=false`; no merge |
+| C8 | G06 release drill + handoff | Partial | Disabled deploy preflight tests pass | Full enabled Windows staging drill **Not run**; production **Blocked** (gate false, no creds rotation) | ff7f703 | No Plesk/SQL hosting writes |
 
 ## Acceptance summary
 
