@@ -200,6 +200,10 @@ namespace TCTEnglish.ViewModels
         public bool CanAutoAdvance { get; set; }
         public bool UsedAi { get; set; }
         public string EvaluationSource { get; set; } = string.Empty;
+        /// <summary>Accepted | NeedsRevision | NeedsReview</summary>
+        public string AssessmentStatus { get; set; } = string.Empty;
+        public string AssessmentSource { get; set; } = string.Empty;
+        public bool ReviewRequired { get; set; }
         public string SummaryTitle { get; set; } = string.Empty;
         public string SummaryText { get; set; } = string.Empty;
         public string ReviewText { get; set; } = string.Empty;
@@ -208,6 +212,8 @@ namespace TCTEnglish.ViewModels
         public string NaturalnessFeedback { get; set; } = string.Empty;
         public string WordChoiceFeedback { get; set; } = string.Empty;
         public string SuggestedRewrite { get; set; } = string.Empty;
+        public string OptionalFeedbackSource { get; set; } = string.Empty;
+        public string OptionalFeedbackText { get; set; } = string.Empty;
         public int SentenceAttemptCount { get; set; }
         public int ExerciseAttemptCount { get; set; }
         public int CompletedSentenceCount { get; set; }

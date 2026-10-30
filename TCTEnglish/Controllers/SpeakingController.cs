@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TCTEnglish.Services.Speaking;
 using TCTVocabulary.Services;
 using TCTVocabulary.Models;
 
@@ -19,19 +21,28 @@ namespace TCTVocabulary.Controllers
 
         private readonly DbflashcardContext _context;
         private readonly ISpeakingService _speakingService;
+        private readonly ISpeakingAssessmentService _speakingAssessmentService;
         private readonly IGoalsService _goalsService;
+        private readonly TCTEnglish.Services.Learning.ICompletionCreditService _completionCreditService;
+        private readonly ISpeakingImportJobService _speakingImportJobService;
         private readonly ILogger<SpeakingController> _logger;
 
         public SpeakingController(
             DbflashcardContext context,
             IYoutubeTranscriptService transcriptService,
             ILogger<SpeakingService> speakingServiceLogger,
+            ISpeakingAssessmentService speakingAssessmentService,
             IGoalsService goalsService,
+            TCTEnglish.Services.Learning.ICompletionCreditService completionCreditService,
+            ISpeakingImportJobService speakingImportJobService,
             ILogger<SpeakingController> logger)
         {
             _context = context;
             _speakingService = new SpeakingService(context, transcriptService, speakingServiceLogger);
+            _speakingAssessmentService = speakingAssessmentService;
             _goalsService = goalsService;
+            _completionCreditService = completionCreditService;
+            _speakingImportJobService = speakingImportJobService;
             _logger = logger;
         }
 
@@ -89,6 +100,111 @@ namespace TCTVocabulary.Controllers
             });
         }
 
+        /// <summary>Async import when captions fetch may be slow — returns 202 + job status URL.</summary>
+        [HttpPost("/api/speaking/imports")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EnqueueSpeakingImport([FromForm] string youtubeUrl, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            var enqueue = await _speakingImportJobService.EnqueueYoutubeImportAsync(userId, youtubeUrl, ct);
+            if (enqueue.RequiresUpgrade)
+            {
+                return BadRequest(new { error = enqueue.ErrorMessage, code = "premium_required" });
+            }
+
+            if (enqueue.IsConflict)
+            {
+                return Conflict(new { error = enqueue.ErrorMessage, code = "source_conflict" });
+            }
+
+            if (enqueue.IsInvalid)
+            {
+                return BadRequest(new { error = enqueue.ErrorMessage });
+            }
+
+            return Accepted(new
+            {
+                success = true,
+                jobId = enqueue.JobPublicId,
+                statusUrl = enqueue.StatusUrl
+            });
+        }
+
+        [HttpPost("/api/speaking/imports/subtitles")]
+        [ValidateAntiForgeryToken]
+        [RequestSizeLimit(2 * 1024 * 1024)]
+        public async Task<IActionResult> EnqueueSpeakingSubtitleImport(
+            [FromForm] string youtubeUrl,
+            IFormFile? subtitle,
+            CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            if (subtitle == null || subtitle.Length <= 0)
+            {
+                return BadRequest(new { error = "Thiếu file phụ đề." });
+            }
+
+            if (subtitle.Length > 1024 * 1024)
+            {
+                return BadRequest(new { error = "Subtitle vượt quá 1 MiB." });
+            }
+
+            string text;
+            using (var reader = new StreamReader(subtitle.OpenReadStream(), Encoding.UTF8, detectEncodingFromByteOrderMarks: true))
+            {
+                text = await reader.ReadToEndAsync(ct);
+            }
+
+            var enqueue = await _speakingImportJobService.EnqueueSubtitleImportAsync(userId, youtubeUrl, text, ct);
+            if (enqueue.RequiresUpgrade)
+            {
+                return BadRequest(new { error = enqueue.ErrorMessage, code = "premium_required" });
+            }
+
+            if (enqueue.IsConflict)
+            {
+                return Conflict(new { error = enqueue.ErrorMessage, code = "source_conflict" });
+            }
+
+            if (enqueue.IsInvalid)
+            {
+                return BadRequest(new { error = enqueue.ErrorMessage });
+            }
+
+            return Accepted(new
+            {
+                success = true,
+                jobId = enqueue.JobPublicId,
+                statusUrl = enqueue.StatusUrl
+            });
+        }
+
+        [HttpGet("/api/speaking/imports/{jobId:guid}")]
+        public async Task<IActionResult> GetSpeakingImportStatus(Guid jobId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập." });
+
+            var job = await _speakingImportJobService.GetOwnedJobAsync(userId, jobId, ct);
+            if (job == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new
+            {
+                success = true,
+                jobId = job.PublicId,
+                status = job.Status,
+                videoId = job.ResultVideoId,
+                error = job.LastError
+            });
+        }
+
         [HttpPost("/Speaking/My/Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteMyVideo([FromForm] int id)
@@ -111,25 +227,69 @@ namespace TCTVocabulary.Controllers
         }
 
         // ────────────────────────────────────────────────────────────
-        //  API — Save Speaking Progress (Upsert: giữ điểm cao nhất)
+        //  API — Server assessment (multipart WAV) then commit via progress
+        // ────────────────────────────────────────────────────────────
+        [HttpPost("api/speaking/{sentenceId}/assess")]
+        [ValidateAntiForgeryToken]
+        [RequestSizeLimit(2 * 1024 * 1024)]
+        public async Task<IActionResult> AssessSpeaking(int sentenceId, IFormFile? audio, CancellationToken cancellationToken)
+        {
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Chưa đăng nhập.", code = "unauthorized" });
+
+            if (audio == null || audio.Length <= 0)
+            {
+                return BadRequest(new { error = "Thiếu file âm thanh.", code = "missing_audio" });
+            }
+
+            await using var stream = audio.OpenReadStream();
+            var outcome = await _speakingAssessmentService.AssessAsync(
+                userId,
+                sentenceId,
+                stream,
+                audio.ContentType,
+                cancellationToken);
+
+            if (!outcome.Success)
+            {
+                if (outcome.RetryAfterSeconds is int retryAfter)
+                {
+                    Response.Headers.RetryAfter = retryAfter.ToString();
+                }
+
+                return StatusCode(outcome.StatusCode, new
+                {
+                    success = false,
+                    error = outcome.Message,
+                    code = outcome.ErrorCode
+                });
+            }
+
+            return Ok(new
+            {
+                success = true,
+                assessmentId = outcome.AssessmentId,
+                status = outcome.Status,
+                textMatchScore = outcome.TextMatchScore,
+                speechDetected = outcome.SpeechDetected,
+                transcriptPreview = outcome.TranscriptPreview,
+                fluencyAvailable = outcome.FluencyAvailable,
+                completenessAvailable = outcome.CompletenessAvailable,
+                canCommitProgress = outcome.CanCommitProgress,
+                message = outcome.Message
+            });
+        }
+
+        // ────────────────────────────────────────────────────────────
+        //  API — Save Speaking Progress (requires server assessment receipt)
         // ────────────────────────────────────────────────────────────
         [HttpPost("api/speaking/{sentenceId}/progress")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveSpeakingProgress(int sentenceId, [FromBody] SpeakingProgressDto dto)
+        public async Task<IActionResult> SaveSpeakingProgress(int sentenceId, [FromBody] SpeakingProgressDto dto, CancellationToken cancellationToken)
         {
             if (!TryGetCurrentUserId(out var userId))
                 return Unauthorized(new { error = "Chưa đăng nhập." });
 
-            // 2. Validate điểm số (0–100)
-            if (dto.TotalScore < 0 || dto.TotalScore > 100 ||
-                dto.AccuracyScore < 0 || dto.AccuracyScore > 100 ||
-                dto.FluencyScore < 0 || dto.FluencyScore > 100 ||
-                dto.CompletenessScore < 0 || dto.CompletenessScore > 100)
-            {
-                return BadRequest(new { error = "Điểm số phải từ 0 đến 100." });
-            }
-
-            // 3. Kiểm tra câu tồn tại, quyền truy cập video cha, và VideoId
             var sentenceAccess = await _context.SpeakingSentences
                 .AsNoTracking()
                 .Where(s => s.Id == sentenceId)
@@ -139,7 +299,7 @@ namespace TCTVocabulary.Controllers
                     s.VideoId,
                     OwnerUserId = s.SpeakingVideo.OwnerUserId
                 })
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
 
             if (sentenceAccess == null)
                 return NotFound(new { error = "Câu không tồn tại." });
@@ -153,50 +313,85 @@ namespace TCTVocabulary.Controllers
                     .AsNoTracking()
                     .Where(user => user.UserId == userId)
                     .Select(user => user.Role)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(cancellationToken);
 
                 if (Roles.Normalize(role) == Roles.Standard)
                     return NotFound();
             }
 
-            // 4. Upsert — giữ điểm cao nhất
+            if (dto.AssessmentId == Guid.Empty)
+            {
+                return Conflict(new
+                {
+                    success = false,
+                    error = "Cần assessment phía server trước khi lưu tiến độ.",
+                    code = "assessment_required"
+                });
+            }
+
+            var assessment = await _speakingAssessmentService.GetUsableAssessmentAsync(
+                userId,
+                sentenceId,
+                dto.AssessmentId,
+                cancellationToken);
+
+            if (assessment == null)
+            {
+                return Conflict(new
+                {
+                    success = false,
+                    error = "Assessment không hợp lệ, hết hạn hoặc không thuộc câu này.",
+                    code = "assessment_invalid"
+                });
+            }
+
+            // Client-issued numeric scores are ignored; server assessment is authoritative.
+            var totalScore = assessment.TextMatchScore;
+            var accuracyScore = assessment.TextMatchScore;
+            const double fluencyScore = 0d;
+            const double completenessScore = 0d;
+
+            await using var completionTransaction = await _context.Database.BeginTransactionAsync(cancellationToken);
+            try
+            {
             var existing = await _context.UserSpeakingProgresses
-                .FirstOrDefaultAsync(p => p.UserId == userId && p.SentenceId == sentenceId);
+                .FirstOrDefaultAsync(p => p.UserId == userId && p.SentenceId == sentenceId, cancellationToken);
 
             var utcNow = DateTime.UtcNow;
 
             if (existing != null)
             {
-                // Chỉ cập nhật nếu điểm mới cao hơn
-                if (dto.TotalScore > existing.TotalScore)
+                if (totalScore > existing.TotalScore)
                 {
-                    existing.TotalScore = dto.TotalScore;
-                    existing.AccuracyScore = dto.AccuracyScore;
-                    existing.FluencyScore = dto.FluencyScore;
-                    existing.CompletenessScore = dto.CompletenessScore;
+                    existing.TotalScore = totalScore;
+                    existing.AccuracyScore = accuracyScore;
+                    existing.FluencyScore = fluencyScore;
+                    existing.CompletenessScore = completenessScore;
                     existing.PracticedAt = utcNow;
                 }
             }
             else
             {
-                var progress = new UserSpeakingProgress
+                _context.UserSpeakingProgresses.Add(new UserSpeakingProgress
                 {
                     UserId = userId,
                     SentenceId = sentenceId,
-                    TotalScore = dto.TotalScore,
-                    AccuracyScore = dto.AccuracyScore,
-                    FluencyScore = dto.FluencyScore,
-                    CompletenessScore = dto.CompletenessScore,
+                    TotalScore = totalScore,
+                    AccuracyScore = accuracyScore,
+                    FluencyScore = fluencyScore,
+                    CompletenessScore = completenessScore,
                     PracticedAt = utcNow
-                };
-                _context.UserSpeakingProgresses.Add(progress);
+                });
             }
 
-            await _context.SaveChangesAsync();
+            assessment.Consumed = true;
+            assessment.ConsumedAtUtc = utcNow;
+
+            await _context.SaveChangesAsync(cancellationToken);
 
             var totalSentenceCount = await _context.SpeakingSentences
                 .AsNoTracking()
-                .CountAsync(s => s.VideoId == sentenceAccess.VideoId);
+                .CountAsync(s => s.VideoId == sentenceAccess.VideoId, cancellationToken);
 
             var requiredSentenceCount = Math.Max(1, (int)Math.Ceiling(totalSentenceCount * SpeakingVideoCompletionRatio));
 
@@ -207,7 +402,7 @@ namespace TCTVocabulary.Controllers
                     && p.TotalScore >= SpeakingSentencePassScore)
                 .Select(p => p.SentenceId)
                 .Distinct()
-                .CountAsync();
+                .CountAsync(cancellationToken);
 
             var reachedVideoCompletion = passedSentenceCount >= requiredSentenceCount;
             var firstTimeVideoCompletion = await UpsertSpeakingVideoCompletionAsync(
@@ -223,31 +418,42 @@ namespace TCTVocabulary.Controllers
             if (firstTimeVideoCompletion)
             {
                 var speakingRewardUpdate = _goalsService.BuildSpeakingCompletionActivityUpdate();
-                var rewardResult = await _goalsService.RecordLearningActivityAsync(userId, speakingRewardUpdate);
-                if (rewardResult.Status == OperationStatus.Success)
+                var creditResult = await _completionCreditService.TryApplySpeakingVideoCompletionAsync(
+                    userId,
+                    sentenceAccess.VideoId,
+                    speakingRewardUpdate,
+                    cancellationToken);
+                if (creditResult.Applied)
                 {
-                    speakingXpEarned = speakingRewardUpdate.XpEarned;
-                    currentStreak = rewardResult.Streak;
+                    speakingXpEarned = creditResult.XpEarned;
+                    currentStreak = creditResult.Streak;
                 }
-                else
+                else if (!creditResult.Replay && creditResult.Status != OperationStatus.Success)
                 {
-                    _logger.LogWarning(
-                        "Speaking completion reward failed for user {userId}, video {videoId}, status {status}",
-                        userId,
-                        sentenceAccess.VideoId,
-                        rewardResult.Status);
+                    await completionTransaction.RollbackAsync(cancellationToken);
+                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    {
+                        success = false,
+                        code = "completion_persist_failed",
+                        error = "Không lưu được phần thưởng hoàn thành. Hãy thử lại."
+                    });
                 }
             }
 
+            await completionTransaction.CommitAsync(cancellationToken);
             return Ok(new
             {
                 success = true,
                 sentenceId,
                 videoId = sentenceAccess.VideoId,
-                totalScore = dto.TotalScore,
-                accuracyScore = dto.AccuracyScore,
-                fluencyScore = dto.FluencyScore,
-                completenessScore = dto.CompletenessScore,
+                assessmentId = assessment.PublicId,
+                totalScore,
+                accuracyScore,
+                fluencyScore,
+                completenessScore,
+                fluencyAvailable = false,
+                completenessAvailable = false,
+                assessmentSource = "server-text-match",
                 passedSentenceCount,
                 requiredSentenceCount,
                 isVideoCompleted = reachedVideoCompletion,
@@ -255,6 +461,18 @@ namespace TCTVocabulary.Controllers
                 xpEarned = speakingXpEarned,
                 streak = currentStreak
             });
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                await completionTransaction.RollbackAsync(CancellationToken.None);
+                _logger.LogError(ex, "Speaking completion unit failed for user {UserId} sentence {SentenceId}", userId, sentenceId);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    code = "completion_persist_failed",
+                    error = "Không lưu được tiến độ. Hãy thử lại."
+                });
+            }
         }
 
         private async Task<bool> UpsertSpeakingVideoCompletionAsync(
@@ -396,6 +614,10 @@ namespace TCTVocabulary.Controllers
     // ── DTO ──────────────────────────────────────────────────────────
     public class SpeakingProgressDto
     {
+        /// <summary>Server assessment receipt. Required. Client scores are ignored.</summary>
+        public Guid AssessmentId { get; set; }
+
+        // Legacy fields ignored when AssessmentId is present (kept for JSON shape compatibility).
         public double TotalScore { get; set; }
         public double AccuracyScore { get; set; }
         public double FluencyScore { get; set; }

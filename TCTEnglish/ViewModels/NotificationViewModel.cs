@@ -17,6 +17,7 @@ public class NotificationListViewModel
 {
     public List<NotificationViewModel> Items { get; set; } = new();
     public int UnreadCount { get; set; }
+    public int TotalCount { get; set; }
     public int CurrentPage { get; set; }
     public int TotalPages { get; set; }
     public bool HasMore { get; set; }

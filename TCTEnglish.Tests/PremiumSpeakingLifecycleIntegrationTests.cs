@@ -52,10 +52,13 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
         using var nonEnglishCreate = await PostCreateAsync(client, "https://www.youtube.com/watch?v=zzz999yyy88");
         Assert.Equal(HttpStatusCode.BadRequest, nonEnglishCreate.StatusCode);
         var nonEnglishPayload = await nonEnglishCreate.Content.ReadAsStringAsync();
-        Assert.Contains("transcript tiếng Anh", nonEnglishPayload, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("caption tiếng Anh", nonEnglishPayload, StringComparison.OrdinalIgnoreCase);
 
+        // L5: Gemini fallback is no longer accepted for learner Speaking import.
         using var fallbackCreate = await PostCreateAsync(client, "https://www.youtube.com/watch?v=fbk111AAA22");
-        Assert.Equal(HttpStatusCode.OK, fallbackCreate.StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, fallbackCreate.StatusCode);
+        var fallbackPayload = await fallbackCreate.Content.ReadAsStringAsync();
+        Assert.Contains("Gemini", fallbackPayload, StringComparison.OrdinalIgnoreCase);
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -67,7 +70,7 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
             .ToListAsync();
 
         Assert.Contains(created, item => item.YoutubeId == "abc123DEF45" && item.TranscriptSource == "youtube-captions");
-        Assert.Contains(created, item => item.YoutubeId == "fbk111AAA22" && item.TranscriptSource == "gemini-fallback");
+        Assert.DoesNotContain(created, item => item.YoutubeId == "fbk111AAA22");
     }
 
     [Fact]
@@ -355,6 +358,18 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
                 : new YoutubeTranscriptResult(new List<SpeakingSentence>(), false, null);
 
             return Task.FromResult(result);
+        }
+
+        public Task<YoutubeTranscriptResult> GetEnglishCaptionsOnlyAsync(string youtubeId, CancellationToken ct = default)
+        {
+            if (_transcripts.TryGetValue(youtubeId, out var transcript)
+                && transcript.IsEnglishUsable
+                && string.Equals(transcript.TranscriptSource, "youtube-captions", StringComparison.Ordinal))
+            {
+                return Task.FromResult(transcript);
+            }
+
+            return Task.FromResult(new YoutubeTranscriptResult(new List<SpeakingSentence>(), false, null));
         }
 
         public Task<string?> GetVideoDurationAsync(string youtubeId)

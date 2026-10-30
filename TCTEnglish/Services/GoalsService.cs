@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using System.Data.Common;
 using TCTVocabulary.Models;
+using TCTEnglish.Services.Learning;
 using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Services
@@ -28,6 +29,7 @@ namespace TCTVocabulary.Services
         private readonly DbflashcardContext _context;
         private readonly IStreakService _streakService;
         private readonly INotificationService _notificationService;
+        private readonly DirectNotificationGate _directNotificationGate;
         private readonly ILogger<GoalsService> _logger;
         private UserDailyActivityColumnSupport? _userDailyActivityColumnSupport;
 
@@ -35,11 +37,13 @@ namespace TCTVocabulary.Services
             DbflashcardContext context,
             IStreakService streakService,
             INotificationService notificationService,
+            DirectNotificationGate directNotificationGate,
             ILogger<GoalsService> logger)
         {
             _context = context;
             _streakService = streakService;
             _notificationService = notificationService;
+            _directNotificationGate = directNotificationGate;
             _logger = logger;
         }
 
@@ -269,25 +273,35 @@ namespace TCTVocabulary.Services
             }
 
             var streakResult = await UpdateStreakAndRewardsAsync(userId);
-            var unlockedBadgeCount = await RefreshUserBadgesAsync(userId);
+            var unlockedBadgeIds = await RefreshUserBadgesAsync(userId);
 
             _logger.LogDebug(
                 "Recorded learning activity for user {userId}, streak {streak}, streakXpAwarded {streakXpAwarded}, unlockedBadges {unlockedBadgeCount}",
                 userId,
                 streakResult.CurrentStreak,
                 streakResult.StreakXpAwarded,
-                unlockedBadgeCount);
+                unlockedBadgeIds.Count);
 
-            // ── Notification: goal progress / completion ─────────────────
-            var activityRecordResult = GoalsActivityRecordResult.Success(streakResult.CurrentStreak);
-            try
+            var activityRecordResult = GoalsActivityRecordResult.Success(
+                streakResult.CurrentStreak,
+                new LearningActivityTransition
+                {
+                    CurrentStreak = streakResult.CurrentStreak,
+                    PreviousLongestStreak = streakResult.PreviousLongestStreak,
+                    DidIncrease = streakResult.DidIncrease,
+                    NewlyAwardedBadgeIds = unlockedBadgeIds
+                });
+            if (!_directNotificationGate.SuppressDirect)
             {
-                await _notificationService.GenerateGoalNotificationsAsync(userId, activityRecordResult);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning(ex,
-                    "Failed to generate goal notification for user {UserId}", userId);
+                try
+                {
+                    await _notificationService.GenerateGoalNotificationsAsync(userId, activityRecordResult);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex,
+                        "Failed to generate goal notification for user {UserId}", userId);
+                }
             }
 
             return activityRecordResult;
@@ -307,7 +321,8 @@ namespace TCTVocabulary.Services
             {
                 CurrentStreak = streakResult.CurrentStreak,
                 DidIncrease = streakResult.DidIncrease,
-                StreakXpAwarded = streakXpAwarded
+                StreakXpAwarded = streakXpAwarded,
+                PreviousLongestStreak = streakResult.PreviousLongestStreak
             };
         }
 
@@ -498,12 +513,12 @@ namespace TCTVocabulary.Services
             };
         }
 
-        private async Task<int> RefreshUserBadgesAsync(int userId, GoalsBadgeMetrics? existingMetrics = null)
+        private async Task<IReadOnlyList<int>> RefreshUserBadgesAsync(int userId, GoalsBadgeMetrics? existingMetrics = null)
         {
             var metrics = existingMetrics ?? await BuildBadgeMetricsAsync(userId);
             if (metrics == null)
             {
-                return 0;
+                return Array.Empty<int>();
             }
 
             var badgeCatalog = await _context.Badges
@@ -514,7 +529,7 @@ namespace TCTVocabulary.Services
 
             if (badgeCatalog.Count == 0)
             {
-                return 0;
+                return Array.Empty<int>();
             }
 
             var existingBadgeIds = await _context.UserBadges
@@ -531,7 +546,7 @@ namespace TCTVocabulary.Services
 
             if (badgesToAward.Count == 0)
             {
-                return 0;
+                return Array.Empty<int>();
             }
 
             var awardedAt = DateTime.UtcNow;
@@ -576,21 +591,24 @@ namespace TCTVocabulary.Services
                 string.Join(", ", badgesToAward.Select(badge => badge.Code)));
 
             // ── Notification: badge earned ───────────────────────────────
-            foreach (var awardedBadge in badgesToAward)
+            if (!_directNotificationGate.SuppressDirect)
             {
-                try
+                foreach (var awardedBadge in badgesToAward)
                 {
-                    await _notificationService.GenerateBadgeNotificationAsync(userId, awardedBadge.Id);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogWarning(ex,
-                        "Failed to generate badge notification for user {UserId}, badge {BadgeId}",
-                        userId, awardedBadge.Id);
+                    try
+                    {
+                        await _notificationService.GenerateBadgeNotificationAsync(userId, awardedBadge.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex,
+                            "Failed to generate badge notification for user {UserId}, badge {BadgeId}",
+                            userId, awardedBadge.Id);
+                    }
                 }
             }
 
-            return badgesToAward.Count;
+            return badgesToAward.Select(badge => badge.Id).ToList();
         }
 
         private static GoalsBadgeViewModel BuildBadgeViewModel(
@@ -1300,7 +1318,7 @@ WHERE TABLE_NAME = 'UserDailyActivities'";
                 return 0;
             }
 
-            return await RefreshUserBadgesAsync(userId);
+            return (await RefreshUserBadgesAsync(userId)).Count;
         }
 
         private static bool IsUserDailyActivityUniqueConflict(Exception exception)

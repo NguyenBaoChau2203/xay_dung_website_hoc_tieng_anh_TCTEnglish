@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Speaking;
 using TCTVocabulary.Models;
 using TCTVocabulary.ViewModels;
 
@@ -189,81 +190,256 @@ public sealed class SpeakingService : ISpeakingService
             return SpeakingImportResult.UpgradeRequired(UpgradeRequiredMessage);
         }
 
-        var normalizedYoutubeId = YoutubeUrlHelper.NormalizeYoutubeId(youtubeUrl);
-        if (normalizedYoutubeId is null)
+        var preparation = await PrepareYoutubeCaptionsAsync(userId, youtubeUrl, ct);
+        if (!preparation.IsSuccess || preparation.Prepared == null)
         {
-            return SpeakingImportResult.Invalid("YouTube URL không hợp lệ.");
+            return preparation.Failure ?? SpeakingImportResult.Invalid("Không chuẩn bị được import.");
         }
 
         var duplicateExists = await _context.SpeakingVideos
             .AsNoTracking()
-            .AnyAsync(v => v.OwnerUserId == userId && v.YoutubeId == normalizedYoutubeId, ct);
-
+            .AnyAsync(v => v.OwnerUserId == userId && v.YoutubeId == preparation.Prepared.YoutubeId, ct);
         if (duplicateExists)
         {
             return SpeakingImportResult.Invalid("Video này đã có trong mục Bài nói của tôi.");
         }
 
-        var transcriptResult = await _youtubeTranscriptService.GetTranscriptForSpeakingImportAsync(normalizedYoutubeId, ct);
+        return await PublishPreparedImportAsync(userId, preparation.Prepared, reuseMatchingSource: false, ct);
+    }
+
+    public async Task<LearnerImportPreparation> PrepareYoutubeCaptionsAsync(int userId, string youtubeUrl, CancellationToken ct = default)
+    {
+        var normalizedYoutubeId = YoutubeUrlHelper.NormalizeYoutubeId(youtubeUrl);
+        if (normalizedYoutubeId is null)
+        {
+            return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid("YouTube URL không hợp lệ."));
+        }
+
+        var transcriptResult = await _youtubeTranscriptService.GetEnglishCaptionsOnlyAsync(normalizedYoutubeId, ct);
         if (!transcriptResult.IsEnglishUsable || transcriptResult.Sentences.Count == 0)
         {
-            return SpeakingImportResult.Invalid("Không thể lấy transcript tiếng Anh hợp lệ từ video này.");
+            return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid(
+                "Không có caption tiếng Anh hợp lệ (có timestamp). Import Speaking không dùng Gemini fallback."));
         }
 
         var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);
         if (metadata == null || string.IsNullOrWhiteSpace(metadata.Title))
         {
-            return SpeakingImportResult.Invalid("Không thể tải metadata của video YouTube.");
+            return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid("Không thể tải metadata của video YouTube."));
         }
 
-        var title = metadata.Title.Trim();
-        if (title.Length > 255)
+        var duration = await _youtubeTranscriptService.GetVideoDurationAsync(normalizedYoutubeId);
+        var cues = transcriptResult.Sentences
+            .Select(sentence => new LearnerImportCue
+            {
+                StartTime = sentence.StartTime,
+                EndTime = sentence.EndTime,
+                Text = sentence.Text
+            })
+            .ToList();
+
+        return LearnerImportPreparation.Ready(BuildPrepared(
+            normalizedYoutubeId,
+            youtubeUrl,
+            metadata.Title,
+            metadata.ThumbnailUrl,
+            duration,
+            transcriptResult.TranscriptSource ?? "youtube-captions",
+            cues));
+    }
+
+    public async Task<LearnerImportPreparation> PrepareSubtitleImportAsync(
+        int userId,
+        string youtubeUrl,
+        string subtitleText,
+        CancellationToken ct = default)
+    {
+        var normalizedYoutubeId = YoutubeUrlHelper.NormalizeYoutubeId(youtubeUrl);
+        if (normalizedYoutubeId is null)
         {
-            title = title[..255];
+            return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid("YouTube URL không hợp lệ."));
+        }
+
+        var parsed = SpeakingSubtitleParser.Parse(subtitleText ?? string.Empty);
+        if (!parsed.Ok)
+        {
+            return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid(parsed.Error ?? "Phụ đề không hợp lệ."));
+        }
+
+        string title = normalizedYoutubeId;
+        string? thumbnail = YoutubeUrlHelper.BuildDefaultThumbnailUrl(normalizedYoutubeId);
+        try
+        {
+            var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);
+            if (!string.IsNullOrWhiteSpace(metadata?.Title))
+            {
+                title = metadata.Title;
+                thumbnail = metadata.ThumbnailUrl ?? thumbnail;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogInformation(ex, "Subtitle import continues without YouTube metadata for {YoutubeId}.", normalizedYoutubeId);
+        }
+
+        var cues = parsed.Sentences
+            .Select(sentence => new LearnerImportCue
+            {
+                StartTime = sentence.StartTime,
+                EndTime = sentence.EndTime,
+                Text = sentence.Text
+            })
+            .ToList();
+        var duration = cues.Count == 0 ? null : TimeSpan.FromSeconds(cues[^1].EndTime).ToString(@"mm\:ss", System.Globalization.CultureInfo.InvariantCulture);
+
+        return LearnerImportPreparation.Ready(BuildPrepared(
+            normalizedYoutubeId,
+            youtubeUrl,
+            title,
+            thumbnail,
+            duration,
+            "user-subtitle",
+            cues));
+    }
+
+    public async Task<SpeakingImportResult> PublishPreparedImportAsync(
+        int userId,
+        PreparedLearnerImport prepared,
+        bool reuseMatchingSource,
+        CancellationToken ct = default)
+    {
+        var role = await GetNormalizedRoleAsync(userId);
+        if (role is not (Roles.Admin or Roles.Premium))
+        {
+            return SpeakingImportResult.UpgradeRequired(UpgradeRequiredMessage);
+        }
+
+        if (_context.Database.CurrentTransaction != null)
+        {
+            return await PublishCoreAsync(userId, prepared, reuseMatchingSource, ct);
         }
 
         var strategy = _context.Database.CreateExecutionStrategy();
-        var createdVideoId = 0;
-
+        SpeakingImportResult created = SpeakingImportResult.Invalid("Import failed.");
         await strategy.ExecuteAsync(async () =>
         {
             await using var transaction = await _context.Database.BeginTransactionAsync(ct);
-
-            var video = new SpeakingVideo
+            created = await PublishCoreAsync(userId, prepared, reuseMatchingSource, ct);
+            if (created.IsSuccess)
             {
-                OwnerUserId = userId,
-                PlaylistId = null,
-                Title = title,
-                YoutubeId = normalizedYoutubeId,
-                Level = null,
-                Topic = null,
-                ThumbnailUrl = metadata.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(normalizedYoutubeId),
-                Duration = await _youtubeTranscriptService.GetVideoDurationAsync(normalizedYoutubeId),
-                SourceUrl = youtubeUrl.Trim(),
-                SourceType = PremiumUserSourceType,
-                TranscriptSource = transcriptResult.TranscriptSource,
-                ImportStatus = "ready",
-                CreatedAt = DateTime.UtcNow
-            };
-
-            _context.SpeakingVideos.Add(video);
-            await _context.SaveChangesAsync(ct);
-
-            foreach (var sentence in transcriptResult.Sentences)
-            {
-                sentence.VideoId = video.Id;
-                sentence.VietnameseMeaning = string.Empty;
+                await transaction.CommitAsync(ct);
             }
-
-            _context.SpeakingSentences.AddRange(transcriptResult.Sentences);
-            await _context.SaveChangesAsync(ct);
-            await transaction.CommitAsync(ct);
-
-            createdVideoId = video.Id;
+            else
+            {
+                await transaction.RollbackAsync(ct);
+            }
         });
 
-        _logger.LogInformation("User {UserId} imported private speaking video {VideoId} ({YoutubeId}).", userId, createdVideoId, normalizedYoutubeId);
-        return SpeakingImportResult.Success(createdVideoId);
+        return created;
+    }
+
+    private async Task<SpeakingImportResult> PublishCoreAsync(
+        int userId,
+        PreparedLearnerImport prepared,
+        bool reuseMatchingSource,
+        CancellationToken ct)
+    {
+        var existing = await _context.SpeakingVideos
+            .FirstOrDefaultAsync(v => v.OwnerUserId == userId && v.YoutubeId == prepared.YoutubeId, ct);
+        if (existing != null)
+        {
+            if (!reuseMatchingSource)
+            {
+                return SpeakingImportResult.Invalid("Video này đã có trong mục Bài nói của tôi.");
+            }
+
+            var existingHash = await HashVideoAsync(existing.Id, ct);
+            if (string.Equals(existingHash, prepared.ContentHash, StringComparison.Ordinal))
+            {
+                return SpeakingImportResult.Success(existing.Id);
+            }
+
+            return SpeakingImportResult.SourceConflict(
+                "Video đã có transcript khác. Không ghi đè nội dung đã lưu.");
+        }
+
+        var video = new SpeakingVideo
+        {
+            OwnerUserId = userId,
+            PlaylistId = null,
+            Title = prepared.Title,
+            YoutubeId = prepared.YoutubeId,
+            Level = null,
+            Topic = null,
+            ThumbnailUrl = prepared.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(prepared.YoutubeId),
+            Duration = prepared.Duration,
+            SourceUrl = prepared.SourceUrl,
+            SourceType = PremiumUserSourceType,
+            TranscriptSource = prepared.TranscriptSource,
+            ImportStatus = "ready",
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _context.SpeakingVideos.Add(video);
+        await _context.SaveChangesAsync(ct);
+
+        var sentences = prepared.Cues.Select(cue => new SpeakingSentence
+        {
+            VideoId = video.Id,
+            StartTime = cue.StartTime,
+            EndTime = cue.EndTime,
+            Text = cue.Text,
+            VietnameseMeaning = string.Empty
+        }).ToList();
+        _context.SpeakingSentences.AddRange(sentences);
+        await _context.SaveChangesAsync(ct);
+
+        _logger.LogInformation(
+            "User {UserId} published private speaking video {VideoId} ({YoutubeId}) from {TranscriptSource}.",
+            userId,
+            video.Id,
+            prepared.YoutubeId,
+            prepared.TranscriptSource);
+        return SpeakingImportResult.Success(video.Id);
+    }
+
+    private static PreparedLearnerImport BuildPrepared(
+        string youtubeId,
+        string youtubeUrl,
+        string title,
+        string? thumbnailUrl,
+        string? duration,
+        string transcriptSource,
+        IReadOnlyList<LearnerImportCue> cues)
+    {
+        var trimmed = title.Trim();
+        if (trimmed.Length > 255)
+        {
+            trimmed = trimmed[..255];
+        }
+
+        return new PreparedLearnerImport
+        {
+            YoutubeId = youtubeId,
+            Title = trimmed,
+            ThumbnailUrl = thumbnailUrl,
+            Duration = duration,
+            SourceUrl = youtubeUrl.Trim(),
+            TranscriptSource = transcriptSource,
+            ContentHash = SpeakingImportFingerprints.ContentHash(cues.Select(cue => cue.Text)),
+            Cues = cues
+        };
+    }
+
+    private async Task<string> HashVideoAsync(int videoId, CancellationToken ct)
+    {
+        var texts = await _context.SpeakingSentences.AsNoTracking()
+            .Where(sentence => sentence.VideoId == videoId)
+            .OrderBy(sentence => sentence.StartTime)
+            .ThenBy(sentence => sentence.Id)
+            .Select(sentence => sentence.Text)
+            .ToListAsync(ct);
+        return SpeakingImportFingerprints.ContentHash(texts);
     }
 
     public async Task<OperationResult> DeleteOwnedVideoAsync(int userId, int videoId)

@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.Learning;
+using TCTEnglish.Services.Writing;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 
@@ -34,22 +36,34 @@ namespace TCTVocabulary.Services
         private readonly DbflashcardContext _context;
         private readonly IWritingAiEvaluationService _writingAiEvaluationService;
         private readonly IGoalsService _goalsService;
+        private readonly ICompletionCreditService _completionCreditService;
+        private readonly WritingEvaluationOptions _writingEvaluationOptions;
+        private readonly ILocalGrammarChecker _localGrammarChecker;
+        private readonly ILocalWritingModel _localWritingModel;
 
         public WritingService(
             DbflashcardContext context,
             IWritingAiEvaluationService writingAiEvaluationService,
             IGoalsService goalsService,
+            ICompletionCreditService completionCreditService,
             IAiProviderClient aiProviderClient,
             IAiTokenCounter aiTokenCounter,
             IOptions<AiOptions> aiOptions,
+            IOptions<WritingEvaluationOptions> writingEvaluationOptions,
+            ILocalGrammarChecker localGrammarChecker,
+            ILocalWritingModel localWritingModel,
             ILogger<WritingService> logger)
         {
             _context = context;
+            _completionCreditService = completionCreditService;
+            _localGrammarChecker = localGrammarChecker;
+            _localWritingModel = localWritingModel;
             _writingAiEvaluationService = writingAiEvaluationService;
             _goalsService = goalsService;
             _aiProviderClient = aiProviderClient;
             _aiTokenCounter = aiTokenCounter;
             _aiOptions = aiOptions.Value;
+            _writingEvaluationOptions = writingEvaluationOptions.Value;
             _logger = logger;
         }
 
@@ -143,7 +157,8 @@ namespace TCTVocabulary.Services
             int exerciseId,
             int sentenceId,
             string userAnswer,
-            int userId)
+            int userId,
+            CancellationToken cancellationToken = default)
         {
             var exercise = await ResolveWritingExerciseAccessAsync(exerciseId, userId);
             if (exercise == null)
@@ -159,39 +174,63 @@ namespace TCTVocabulary.Services
             }
 
             var sentence = sentences[sentenceIndex];
-            var normalizedAnswer = CollapseWhitespace(userAnswer);
+            var normalizedAnswer = WritingAssessmentPolicy.CollapseWhitespace(userAnswer);
             var scopeValidationFailure = TryBuildOutOfScopeSubmissionFailure(
                 exerciseId,
                 sentence,
                 sentences,
                 normalizedAnswer);
-            var ruleEvaluation = scopeValidationFailure
-                ?? EvaluateWritingSentenceRuleBased(
-                    exerciseId,
-                    sentence,
-                    sentenceIndex,
-                    sentences.Count,
-                    normalizedAnswer);
 
             WritingSentenceEvaluationViewModel evaluationViewModel;
+            using var optionalBudget = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            optionalBudget.CancelAfter(TimeSpan.FromSeconds(3));
 
-            if (ruleEvaluation.IsHardFailure)
+            if (scopeValidationFailure != null)
             {
-                evaluationViewModel = BuildWritingSentenceEvaluationViewModel(ruleEvaluation);
+                evaluationViewModel = BuildWritingSentenceEvaluationViewModel(scopeValidationFailure);
+                evaluationViewModel.AssessmentStatus = WritingAssessmentStatus.NeedsRevision.ToString();
+                evaluationViewModel.AssessmentSource = "local-scope";
+                evaluationViewModel.ReviewRequired = false;
             }
             else
             {
-                var aiEvaluation = await _writingAiEvaluationService.TryEvaluateSentenceAsync(
-                    new WritingAiEvaluationRequest(
-                        sentence.Id,
-                        sentence.VietnameseText,
+                var decision = WritingAssessmentPolicy.Assess(sentence.EnglishMeaning, normalizedAnswer);
+                evaluationViewModel = BuildWritingSentenceEvaluationViewModelFromDecision(
+                    exerciseId,
+                    sentence,
+                    decision);
+
+                // Optional cloud feedback never flips pass/XP in Local mode.
+                if (_writingEvaluationOptions.CloudEnhancementEnabled
+                    && decision.Status != WritingAssessmentStatus.NeedsRevision)
+                {
+                    await TryApplyOptionalCloudFeedbackAsync(
+                        evaluationViewModel,
+                        sentence,
+                        normalizedAnswer,
+                        optionalBudget.Token,
+                        cancellationToken);
+                }
+
+                if (!string.IsNullOrWhiteSpace(sentence.EnglishMeaning)
+                    && decision.Status != WritingAssessmentStatus.Accepted)
+                {
+                    evaluationViewModel.SuggestedRewrite = ResolveSuggestedRewrite(
                         sentence.EnglishMeaning,
-                        normalizedAnswer));
-                evaluationViewModel = aiEvaluation == null
-                    ? BuildWritingSentenceEvaluationViewModel(ruleEvaluation, sentence.EnglishMeaning)
-                    : BuildWritingSentenceEvaluationViewModel(exerciseId, sentence, aiEvaluation);
+                        evaluationViewModel.Passed,
+                        evaluationViewModel.SuggestedRewrite);
+                }
             }
 
+            await ApplyOptionalEngineFeedbackAsync(
+                evaluationViewModel,
+                normalizedAnswer,
+                optionalBudget.Token,
+                cancellationToken);
+
+            await using var writingUnit = await _context.Database.BeginTransactionAsync(cancellationToken);
+            try
+            {
             await PersistWritingAttemptAsync(userId, exerciseId, sentence, normalizedAnswer, evaluationViewModel);
 
             var progressSummary = await LoadWritingExerciseProgressSummaryAsync(exerciseId, userId, sentences.Count);
@@ -207,22 +246,122 @@ namespace TCTVocabulary.Services
             if (firstTimeExerciseCompletion)
             {
                 var activityUpdate = _goalsService.BuildWritingCompletionActivityUpdate();
-                var activityResult = await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
-                if (activityResult.Status == OperationStatus.NotFound)
+                var creditResult = await _completionCreditService.TryApplyWritingExerciseCompletionAsync(
+                    userId,
+                    exerciseId,
+                    activityUpdate,
+                    cancellationToken);
+                if (!creditResult.Applied && !creditResult.Replay && creditResult.Status != OperationStatus.Success)
                 {
-                    _logger.LogWarning(
-                        "Writing completion activity record skipped because user {userId} was not found",
-                        userId);
+                    await writingUnit.RollbackAsync(cancellationToken);
+                    throw new InvalidOperationException(creditResult.ErrorMessage ?? "Writing completion credit failed.");
                 }
             }
 
+            await writingUnit.CommitAsync(cancellationToken);
             evaluationViewModel.SentenceAttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id);
             evaluationViewModel.ExerciseAttemptCount = progressSummary.AttemptCount;
             evaluationViewModel.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
             evaluationViewModel.ExerciseStatusKey = progressSummary.StatusKey;
             evaluationViewModel.ExerciseStatusLabel = progressSummary.StatusLabel;
+            }
+            catch
+            {
+                if (_context.Database.CurrentTransaction != null)
+                {
+                    await writingUnit.RollbackAsync(CancellationToken.None);
+                }
+
+                throw;
+            }
 
             return evaluationViewModel;
+        }
+
+        private async Task ApplyOptionalEngineFeedbackAsync(
+            WritingSentenceEvaluationViewModel evaluationViewModel,
+            string normalizedAnswer,
+            CancellationToken budgetToken,
+            CancellationToken requestToken)
+        {
+            var passed = evaluationViewModel.Passed;
+            var canAutoAdvance = evaluationViewModel.CanAutoAdvance;
+            var reviewRequired = evaluationViewModel.ReviewRequired;
+            try
+            {
+                if (!budgetToken.IsCancellationRequested)
+                {
+                    var grammar = await _localGrammarChecker.CheckAsync(normalizedAnswer, budgetToken);
+                    if (grammar.Available && grammar.Findings.Count > 0)
+                    {
+                        var findingText = string.Join("; ", grammar.Findings.Select(f => SanitizeFeedback(f.Message)));
+                        evaluationViewModel.GrammarFeedback = SanitizeFeedback("languagetool: " + findingText);
+                        evaluationViewModel.OptionalFeedbackSource = AppendFeedbackSource(evaluationViewModel.OptionalFeedbackSource, "languagetool");
+                    }
+                }
+
+                if (!budgetToken.IsCancellationRequested)
+                {
+                    var model = await _localWritingModel.GetFeedbackAsync(normalizedAnswer, budgetToken);
+                    if (model.Available && !string.IsNullOrWhiteSpace(model.Summary))
+                    {
+                        evaluationViewModel.ReviewText = SanitizeFeedback(model.Summary);
+                        if (model.Suggestions.Count > 0)
+                        {
+                            evaluationViewModel.OptionalFeedbackText = SanitizeFeedback(string.Join(" ", model.Suggestions));
+                        }
+
+                        evaluationViewModel.OptionalFeedbackSource = AppendFeedbackSource(evaluationViewModel.OptionalFeedbackSource, "ollama");
+                    }
+                }
+            }
+            catch (OperationCanceledException) when (!requestToken.IsCancellationRequested)
+            {
+                _logger.LogInformation("Optional writing feedback budget elapsed; local assessment kept.");
+            }
+
+            evaluationViewModel.Passed = passed;
+            evaluationViewModel.CanAutoAdvance = canAutoAdvance;
+            evaluationViewModel.ReviewRequired = reviewRequired;
+        }
+
+        private static string AppendFeedbackSource(string? current, string source)
+        {
+            if (string.IsNullOrWhiteSpace(current))
+            {
+                return source;
+            }
+
+            return current.Split('+', StringSplitOptions.RemoveEmptyEntries).Contains(source, StringComparer.Ordinal)
+                ? current
+                : current + "+" + source;
+        }
+
+        private static string SanitizeFeedback(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            var builder = new StringBuilder(value.Length);
+            foreach (var ch in value)
+            {
+                if (ch is '<' or '>')
+                {
+                    continue;
+                }
+
+                if (char.IsControl(ch) && ch is not '\n' and not '\r' and not '\t')
+                {
+                    continue;
+                }
+
+                builder.Append(ch);
+            }
+
+            var cleaned = builder.ToString().Trim();
+            return cleaned.Length > 2000 ? cleaned[..2000] : cleaned;
         }
 
         public async Task<WritingPracticeViewModel?> GetWritingPracticeViewModelAsync(
@@ -1477,6 +1616,11 @@ namespace TCTVocabulary.Services
                 CanAutoAdvance = evaluation.CanAutoAdvance,
                 UsedAi = evaluation.UsedAi,
                 EvaluationSource = evaluation.EvaluationSource,
+                AssessmentStatus = evaluation.Passed
+                    ? WritingAssessmentStatus.Accepted.ToString()
+                    : WritingAssessmentStatus.NeedsRevision.ToString(),
+                AssessmentSource = evaluation.EvaluationSource,
+                ReviewRequired = false,
                 SummaryTitle = evaluation.SummaryTitle,
                 SummaryText = evaluation.SummaryText,
                 ReviewText = BuildReviewText(
@@ -1491,6 +1635,117 @@ namespace TCTVocabulary.Services
                 WordChoiceFeedback = evaluation.WordChoiceFeedback,
                 SuggestedRewrite = suggestedRewrite
             };
+        }
+
+        private static WritingSentenceEvaluationViewModel BuildWritingSentenceEvaluationViewModelFromDecision(
+            int exerciseId,
+            WritingSentenceLookupRow sentence,
+            WritingAssessmentDecision decision)
+        {
+            return new WritingSentenceEvaluationViewModel
+            {
+                ExerciseId = exerciseId,
+                SentenceId = sentence.Id,
+                SentenceNumber = sentence.SortOrder,
+                Passed = decision.Passed,
+                CanAutoAdvance = decision.CanAutoAdvance,
+                UsedAi = false,
+                EvaluationSource = decision.Source,
+                AssessmentStatus = decision.Status.ToString(),
+                AssessmentSource = decision.Source,
+                ReviewRequired = decision.ReviewRequired,
+                SummaryTitle = decision.SummaryTitle,
+                SummaryText = decision.SummaryText,
+                ReviewText = BuildReviewText(
+                    decision.SummaryText,
+                    decision.MeaningFeedback,
+                    decision.GrammarFeedback,
+                    decision.NaturalnessFeedback,
+                    decision.WordChoiceFeedback),
+                MeaningFeedback = decision.MeaningFeedback,
+                GrammarFeedback = decision.GrammarFeedback,
+                NaturalnessFeedback = decision.NaturalnessFeedback,
+                WordChoiceFeedback = decision.WordChoiceFeedback,
+                SuggestedRewrite = decision.SuggestedRewrite
+            };
+        }
+
+        private async Task TryApplyOptionalCloudFeedbackAsync(
+            WritingSentenceEvaluationViewModel evaluationViewModel,
+            WritingSentenceLookupRow sentence,
+            string normalizedAnswer,
+            CancellationToken budgetToken,
+            CancellationToken requestToken)
+        {
+            try
+            {
+                var aiEvaluation = await _writingAiEvaluationService.TryEvaluateSentenceAsync(
+                    new WritingAiEvaluationRequest(
+                        sentence.Id,
+                        sentence.VietnameseText,
+                        sentence.EnglishMeaning,
+                        normalizedAnswer),
+                    budgetToken);
+
+                if (aiEvaluation == null)
+                {
+                    return;
+                }
+
+                // Local mode: AI is labeled supplemental feedback only — never change pass/XP.
+                evaluationViewModel.UsedAi = true;
+                evaluationViewModel.EvaluationSource = _writingEvaluationOptions.IsLocalMode
+                    ? "local+ai-feedback"
+                    : "ai";
+                evaluationViewModel.AssessmentSource = evaluationViewModel.EvaluationSource;
+                evaluationViewModel.OptionalFeedbackSource = AppendFeedbackSource(evaluationViewModel.OptionalFeedbackSource, "cloud");
+                evaluationViewModel.MeaningFeedback = SanitizeFeedback(aiEvaluation.MeaningFeedback);
+                evaluationViewModel.GrammarFeedback = SanitizeFeedback(aiEvaluation.GrammarFeedback);
+                evaluationViewModel.NaturalnessFeedback = SanitizeFeedback(aiEvaluation.NaturalnessFeedback);
+                evaluationViewModel.WordChoiceFeedback = SanitizeFeedback(aiEvaluation.WordChoiceFeedback);
+                evaluationViewModel.ReviewText = SanitizeFeedback(BuildReviewText(
+                    aiEvaluation.OverallFeedback,
+                    aiEvaluation.MeaningFeedback,
+                    aiEvaluation.GrammarFeedback,
+                    aiEvaluation.NaturalnessFeedback,
+                    aiEvaluation.WordChoiceFeedback));
+
+                if (!_writingEvaluationOptions.IsLocalMode)
+                {
+                    evaluationViewModel.Passed = aiEvaluation.Passed;
+                    evaluationViewModel.CanAutoAdvance = aiEvaluation.Passed;
+                    evaluationViewModel.AssessmentStatus = aiEvaluation.Passed
+                        ? WritingAssessmentStatus.Accepted.ToString()
+                        : WritingAssessmentStatus.NeedsRevision.ToString();
+                    evaluationViewModel.ReviewRequired = false;
+                    evaluationViewModel.SuggestedRewrite = ResolveSuggestedRewrite(
+                        sentence.EnglishMeaning,
+                        aiEvaluation.Passed,
+                        aiEvaluation.SuggestedRewrite);
+                    evaluationViewModel.SummaryTitle = aiEvaluation.Passed ? "Câu đạt yêu cầu" : "Hãy sửa lại câu này";
+                    evaluationViewModel.SummaryText = aiEvaluation.Passed
+                        ? "Hệ thống đã chấp nhận câu dịch này. Bạn có thể chuyển sang câu tiếp theo."
+                        : "Ý nghĩa hoặc cách diễn đạt của câu này vẫn cần chỉnh thêm trước khi được đánh dấu hoàn thành.";
+                }
+                else if (!string.IsNullOrWhiteSpace(aiEvaluation.SuggestedRewrite)
+                         && !evaluationViewModel.Passed)
+                {
+                    evaluationViewModel.SuggestedRewrite = ResolveSuggestedRewrite(
+                        sentence.EnglishMeaning,
+                        false,
+                        aiEvaluation.SuggestedRewrite);
+                }
+            }
+            catch (OperationCanceledException) when (!requestToken.IsCancellationRequested)
+            {
+                _logger.LogInformation(
+                    "Optional writing cloud enhancement stopped by the shared 3s budget for sentence {SentenceId}",
+                    sentence.Id);
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
         }
 
         private static string BuildReviewText(
