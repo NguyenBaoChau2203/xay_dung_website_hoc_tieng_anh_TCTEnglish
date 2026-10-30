@@ -129,12 +129,49 @@ public static class WritingAssessmentPolicy
         var collapsed = CollapseWhitespace(value).ToLowerInvariant();
         var buffer = new StringBuilder(collapsed.Length);
 
-        foreach (var character in collapsed)
+        for (var index = 0; index < collapsed.Length; index++)
         {
-            buffer.Append(char.IsLetterOrDigit(character) || char.IsWhiteSpace(character) ? character : ' ');
+            var character = collapsed[index];
+            if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character))
+            {
+                buffer.Append(character);
+                continue;
+            }
+
+            if (character is '−' or '–')
+            {
+                buffer.Append('-');
+                continue;
+            }
+
+            if (IsMeaningBearingSymbol(character))
+            {
+                buffer.Append(character);
+                continue;
+            }
+
+            // Keep decimal separators that sit between digits (2.5 / 2,5).
+            if ((character == '.' || character == ',')
+                && index > 0
+                && index + 1 < collapsed.Length
+                && char.IsDigit(collapsed[index - 1])
+                && char.IsDigit(collapsed[index + 1]))
+            {
+                buffer.Append('.');
+                continue;
+            }
+
+            // Decorative punctuation only — never strip currency, signs, or percent.
+            buffer.Append(' ');
         }
 
         return CollapseWhitespace(buffer.ToString());
+    }
+
+    private static bool IsMeaningBearingSymbol(char character)
+    {
+        return character is '$' or '€' or '£' or '¥' or '%' or '+' or '-' or '−' or '±'
+            || char.GetUnicodeCategory(character) == System.Globalization.UnicodeCategory.CurrencySymbol;
     }
 
     private static List<string> ExtractTokens(string value)

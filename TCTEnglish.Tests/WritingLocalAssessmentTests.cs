@@ -67,4 +67,34 @@ public sealed class WritingLocalAssessmentTests
         Assert.Equal(WritingAssessmentStatus.NeedsReview, decision.Status);
         Assert.False(decision.Passed);
     }
+
+    [Theory]
+    [InlineData("The temperature is -5 degrees.", "The temperature is 5 degrees.")]
+    [InlineData("The temperature is −5 degrees.", "The temperature is 5 degrees.")]
+    [InlineData("I paid $50.", "I paid €50.")]
+    [InlineData("I paid $50.", "I paid £50.")]
+    [InlineData("The discount is 5%.", "The discount is 5.")]
+    [InlineData("Add 2.5 grams.", "Add 25 grams.")]
+    [InlineData("I like tea.", "I do not like tea.")]
+    public void MeaningBearingNumberOrSignChanges_AreNotAccepted(string reference, string answer)
+    {
+        var decision = WritingAssessmentPolicy.Assess(reference, answer);
+
+        Assert.NotEqual(WritingAssessmentStatus.Accepted, decision.Status);
+        Assert.False(decision.Passed);
+        Assert.False(decision.CanAutoAdvance);
+    }
+
+    [Theory]
+    [InlineData("The temperature is -5 degrees.", "The temperature is -5 degrees")]
+    [InlineData("I paid $50.", "i paid $50")]
+    [InlineData("The discount is 5%.", "The discount is 5%.")]
+    public void MeaningPreservingFormatting_StillAccepted(string reference, string answer)
+    {
+        var decision = WritingAssessmentPolicy.Assess(reference, answer);
+
+        Assert.Equal(WritingAssessmentStatus.Accepted, decision.Status);
+        Assert.True(decision.Passed);
+        Assert.True(decision.CanAutoAdvance);
+    }
 }
