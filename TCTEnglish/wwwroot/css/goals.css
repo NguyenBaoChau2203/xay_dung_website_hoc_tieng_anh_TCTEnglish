@@ -718,3 +718,9 @@
 
   .goals-badge-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+@media (max-width: 480px) {
+  .goals-badge-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .goals-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .goals-header-btn { width: 100%; justify-content: center; }
+}

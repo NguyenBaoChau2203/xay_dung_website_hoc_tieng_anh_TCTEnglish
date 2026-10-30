@@ -105,7 +105,8 @@
 
             <div class="mb-3">
                 <label asp-for="Message" class="form-label">Nội dung <span class="text-danger">*</span></label>
-                <textarea asp-for="Message" class="form-control" placeholder="Mô tả chi tiết vấn đề của bạn..."></textarea>
+                <textarea asp-for="Message" class="form-control" rows="5" maxlength="2000" placeholder="Mô tả chi tiết câu hỏi hoặc góp ý của bạn..."></textarea>
+                <div class="form-text text-muted small mt-1">Tối đa 2.000 ký tự. Phản hồi trong vòng 24 giờ làm việc.</div>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
 

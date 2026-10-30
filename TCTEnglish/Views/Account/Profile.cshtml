@@ -250,7 +250,7 @@
                             </div>
                         </div>
                         <a asp-controller="Goals" asp-action="Index" class="side-card-link">
-                            Điều chỉnh mục tiêu
+                            Xem &amp; điều chỉnh mục tiêu
                             <span class="material-symbols-outlined" style="font-size: 1rem;">chevron_right</span>
                         </a>
                     </div>
@@ -280,7 +280,7 @@
 
             <div class="section-header">
                 <h3>Bảo mật &amp; Mật khẩu</h3>
-                <p>Cập nhật email, mật khẩu và quản lý tài khoản của bạn.</p>
+                <p>Cập nhật email, mật khẩu và quản lý tài khoản của bạn. Để cài đặt thông báo và liên kết tài khoản, vui lòng mở <a href="/Account/Settings" class="text-primary fw-medium text-decoration-none">Cài đặt tài khoản</a>.</p>
             </div>
 
             <!-- Security & Password Card -->
@@ -321,7 +321,7 @@
                             <div class="col-md-4">
                                 <label class="stitch-form-label">Mật khẩu hiện tại</label>
                                 <div class="input-group">
-                                    <input name="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" />
+                                    <input name="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" autocomplete="current-password" />
                                     <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                         <i class="fas fa-eye"></i>
                                     </button>
@@ -330,7 +330,7 @@
                             <div class="col-md-4">
                                 <label class="stitch-form-label">Mật khẩu mới</label>
                                 <div class="input-group">
-                                    <input name="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" />
+                                    <input name="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" />
                                     <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                         <i class="fas fa-eye"></i>
                                     </button>
@@ -339,7 +339,7 @@
                             <div class="col-md-4">
                                 <label class="stitch-form-label">Xác nhận mật khẩu</label>
                                 <div class="input-group">
-                                    <input name="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" />
+                                    <input name="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
                                     <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                         <i class="fas fa-eye"></i>
                                     </button>

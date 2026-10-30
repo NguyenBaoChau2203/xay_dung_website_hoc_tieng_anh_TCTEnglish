@@ -43,7 +43,7 @@
                     <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-layer-group me-1"></i> Lọc theo Trình độ
                     </label>
-                    <select id="filterLevel" class="form-select form-select-sm">
+                    <select id="filterLevel" class="form-select form-select-sm" aria-label="Lọc video theo trình độ">
                         <option value="">Tất cả trình độ</option>
                         @foreach (var level in levels)
                         {
@@ -55,7 +55,7 @@
                     <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-tag me-1"></i> Lọc theo Chủ đề
                     </label>
-                    <select id="filterTopic" class="form-select form-select-sm">
+                    <select id="filterTopic" class="form-select form-select-sm" aria-label="Lọc video theo chủ đề">
                         <option value="">Tất cả chủ đề</option>
                         @foreach (var topic in topics)
                         {

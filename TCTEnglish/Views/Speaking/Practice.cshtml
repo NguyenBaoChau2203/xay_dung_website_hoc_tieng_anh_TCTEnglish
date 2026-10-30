@@ -185,19 +185,20 @@
                                             <span class="spk-score-num" id="score-complete">0</span>
                                         </div>
                                     </div>
+                                    <p id="spk-assessment-status" class="small text-muted mb-0 mt-2" aria-live="polite"></p>
                                 </div>
 
                                 @* Interaction Controls *@
                                 <div class="spk-controls-section">
                                     <div class="spk-nav-btns">
-                                        <button class="spk-icon-btn" id="btn-prev" title="Câu trước">
-                                            <span class="material-symbols-outlined">arrow_back</span>
+                                        <button class="spk-icon-btn" id="btn-prev" title="Câu trước" aria-label="Câu trước">
+                                            <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
                                         </button>
-                                        <button class="spk-icon-btn spk-icon-btn--volume" id="btn-replay" title="Phát lại">
-                                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">volume_up</span>
+                                        <button class="spk-icon-btn spk-icon-btn--volume" id="btn-replay" title="Phát lại" aria-label="Phát lại câu hiện tại">
+                                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1" aria-hidden="true">volume_up</span>
                                         </button>
-                                        <button class="spk-icon-btn" id="btn-next" title="Câu tiếp">
-                                            <span class="material-symbols-outlined">arrow_forward</span>
+                                        <button class="spk-icon-btn" id="btn-next" title="Câu tiếp" aria-label="Câu tiếp">
+                                            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                                         </button>
                                     </div>
                                     <button class="spk-btn spk-btn--record spk-btn--full spk-record-btn" id="btn-record">
@@ -306,7 +307,8 @@
                     @* Type Area *@
                     <div class="spk-dic-input-area">
                         <textarea class="spk-dic-textarea" id="dic-input"
-                                  placeholder="Nghe và gõ lại câu bạn nghe được..."></textarea>
+                                  placeholder="Nghe và gõ lại câu bạn nghe được..."
+                                  aria-label="Nội dung nghe chép chính tả"></textarea>
                         <div class="spk-dic-feedback" id="dic-feedback">
                             @* Real-time char feedback rendered by JS *@
                         </div>
@@ -320,15 +322,15 @@
                             </button>
                         </div>
                         <div class="spk-dic-controls-right">
-                            <button class="spk-icon-btn" id="btn-dic-slow-play" title="Nghe chậm (0.5x)">
-                                <span class="material-symbols-outlined">slow_motion_video</span>
+                            <button class="spk-icon-btn" id="btn-dic-slow-play" title="Nghe chậm (0.5x)" aria-label="Nghe chậm tốc độ 0.5x">
+                                <span class="material-symbols-outlined" aria-hidden="true">slow_motion_video</span>
                             </button>
-                            <button class="spk-btn spk-btn--primary" id="btn-dic-play">
-                                <span class="material-symbols-outlined" id="dic-play-icon" style="font-size:16px;">play_arrow</span>
+                            <button class="spk-btn spk-btn--primary" id="btn-dic-play" aria-label="Phát lại âm thanh">
+                                <span class="material-symbols-outlined" id="dic-play-icon" style="font-size:16px;" aria-hidden="true">play_arrow</span>
                                 <span id="dic-play-label">Phát lại</span>
                             </button>
-                            <button class="spk-icon-btn" id="btn-dic-next">
-                                <span class="material-symbols-outlined">skip_next</span>
+                            <button class="spk-icon-btn" id="btn-dic-next" title="Câu tiếp theo" aria-label="Chuyển sang câu tiếp theo">
+                                <span class="material-symbols-outlined" aria-hidden="true">skip_next</span>
                             </button>
                         </div>
                     </div>
@@ -459,5 +461,6 @@
             }
         });
     </script>
+    <script src="~/js/speech-recorder.js" asp-append-version="true"></script>
     <script src="~/js/speaking.js" asp-append-version="true"></script>
 }

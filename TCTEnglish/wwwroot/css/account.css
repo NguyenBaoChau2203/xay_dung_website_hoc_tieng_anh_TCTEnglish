@@ -23,7 +23,8 @@
     --sidebar-width: 260px;
 }
 
-body {
+body:has(.account-dashboard),
+.account-dashboard {
     background-color: var(--surface);
     color: var(--on-surface);
     font-family: 'Be Vietnam Pro', sans-serif;
@@ -1290,7 +1291,7 @@ body {
     justify-content: center;
     width: 32px;
     height: 32px;
-    border-radius: 50%; /* bo tròn */
+    border-radius: 50%; /* bo trÃ²n */
     transition: background-color 0.2s, color 0.2s;
 }
 .password-input-wrapper .toggle-pwd:hover {

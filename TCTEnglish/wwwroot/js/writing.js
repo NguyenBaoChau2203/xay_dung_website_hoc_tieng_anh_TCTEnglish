@@ -170,6 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
             summaryTitle: collapseWhitespace(value.summaryTitle || ''),
             summaryText: collapseWhitespace(value.summaryText || ''),
             reviewText: String(value.reviewText || '').trim(),
+            optionalFeedbackSource: collapseWhitespace(value.optionalFeedbackSource || ''),
+            optionalFeedbackText: collapseWhitespace(value.optionalFeedbackText || ''),
             meaningFeedback: collapseWhitespace(value.meaningFeedback || ''),
             grammarFeedback: collapseWhitespace(value.grammarFeedback || ''),
             naturalnessFeedback: collapseWhitespace(value.naturalnessFeedback || ''),
@@ -389,17 +391,35 @@ document.addEventListener('DOMContentLoaded', function () {
     function syncFeedbackSourceNote(sentence) {
         const ev = sentence && sentence.lastEvaluation ? sentence.lastEvaluation : null;
 
-        if (!ev || ev.usedAi) {
+        if (!ev) {
             elFeedbackSourceNote.hidden      = true;
             elFeedbackSourceNote.textContent = '';
             return;
         }
 
-        // Rule-based fallback was used (not AI) – label this honestly
+        if (ev.optionalFeedbackText) {
+            elFeedbackSourceNote.hidden = false;
+            const source = ev.optionalFeedbackSource ? ' (' + ev.optionalFeedbackSource + ')' : '';
+            elFeedbackSourceNote.textContent = 'Phản hồi bổ sung' + source + ': ' + ev.optionalFeedbackText;
+            return;
+        }
+
+        if (ev.usedAi) {
+            elFeedbackSourceNote.hidden      = true;
+            elFeedbackSourceNote.textContent = '';
+            return;
+        }
+
+        // Local / non-AI assessment — label honestly
         elFeedbackSourceNote.hidden      = false;
-        elFeedbackSourceNote.textContent = ev.passed
-            ? 'Hệ thống đã dùng đánh giá tự động (không dùng AI). Câu này đủ điều kiện để tiếp tục.'
-            : 'Hệ thống đã dùng đánh giá tự động (không dùng AI). Hãy chỉnh sửa và gửi lại câu này.';
+        if (String(ev.assessmentStatus || '').toLowerCase() === 'needsreview' || ev.reviewRequired) {
+            elFeedbackSourceNote.textContent =
+                'Đánh giá nội bộ: cần xem lại. Không tự khẳng định sai nghĩa; hãy dùng gợi ý để chỉnh.';
+        } else {
+            elFeedbackSourceNote.textContent = ev.passed
+                ? 'Hệ thống đã dùng đánh giá nội bộ (không chờ cloud). Câu này đủ điều kiện để tiếp tục.'
+                : 'Hệ thống đã dùng đánh giá nội bộ (không chờ cloud). Hãy chỉnh sửa và gửi lại câu này.';
+        }
     }
 
     function getEvaluationBannerCopy(evaluation) {
@@ -407,9 +427,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return { title: 'Câu đạt yêu cầu', text: 'Hệ thống đã chấp nhận câu này.' };
         }
 
+        const status = String(evaluation.assessmentStatus || '').toLowerCase();
+        if (status === 'needsreview' || evaluation.reviewRequired) {
+            return {
+                title: evaluation.summaryTitle || 'Cần xem lại câu này',
+                text: evaluation.summaryText
+                    || 'Câu chưa khớp đáp án đã duyệt. Hệ thống không tự khẳng định sai nghĩa — hãy so sánh gợi ý rồi chỉnh lại.'
+            };
+        }
+
         if (!evaluation.usedAi) {
             return evaluation.passed
-                ? { title: 'Câu đạt yêu cầu',      text: 'Đánh giá nhanh của hệ thống đã chấp nhận câu này, bạn có thể tiếp tục.' }
+                ? { title: 'Câu đạt yêu cầu',      text: 'Đánh giá nội bộ đã chấp nhận câu này, bạn có thể tiếp tục.' }
                 : { title: 'Hãy thử lại câu này',   text: 'Câu này chưa sẵn sàng để thay thế dòng tiếng Việt.' };
         }
 
@@ -463,7 +492,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (evaluation) {
             const copy = getEvaluationBannerCopy(evaluation);
-            setBanner(evaluation.passed ? 'success' : 'warning', copy.title, copy.text);
+            const bannerKind = evaluation.passed
+                ? 'success'
+                : ((String(evaluation.assessmentStatus || '').toLowerCase() === 'needsreview' || evaluation.reviewRequired)
+                    ? 'info'
+                    : 'warning');
+            setBanner(bannerKind, copy.title, copy.text);
             return;
         }
 

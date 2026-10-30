@@ -105,6 +105,10 @@
                     <span id="mip-btn-label">Thêm video</span>
                 </button>
             </div>
+            <div class="spk-hero-input-block">
+                <label for="mip-subtitle-input" class="spk-hero-feature-pill">Phụ đề SRT/VTT (tùy chọn)</label>
+                <input id="mip-subtitle-input" name="subtitle" type="file" accept=".srt,.vtt,text/vtt" />
+            </div>
 
             <div id="mip-feedback" class="spk-hero-feedback" aria-live="polite" role="alert"></div>
 
@@ -374,14 +378,12 @@
                        id="vi-search"
                        class="spk-search-input"
                        placeholder="Tìm kiếm video..."
+                       aria-label="Tìm kiếm video luyện nói"
                        autocomplete="off" />
             </div>
-            <div class="spk-view-toggle">
-                <button class="spk-view-btn spk-view-btn--active" title="Lưới">
-                    <span class="material-symbols-outlined">grid_view</span>
-                </button>
-                <button class="spk-view-btn" title="Danh sách" style="opacity:0.5;">
-                    <span class="material-symbols-outlined">view_list</span>
+            <div class="spk-view-toggle d-none d-md-flex" title="Chế độ xem lưới">
+                <button type="button" class="spk-view-btn spk-view-btn--active" title="Lưới" aria-label="Chế độ xem lưới" disabled>
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
                 </button>
             </div>
         </div>
