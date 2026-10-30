@@ -36,6 +36,12 @@ public class Notification
     [MaxLength(100)]
     public string? IconClass { get; set; }    // VD: "fas fa-fire", "fas fa-trophy"
 
+    /// <summary>
+    /// Idempotency key for auto-generated events. Null for legacy/broadcast rows.
+    /// </summary>
+    [MaxLength(160)]
+    public string? EventKey { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public virtual User User { get; set; } = null!;
