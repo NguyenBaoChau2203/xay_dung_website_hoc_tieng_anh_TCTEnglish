@@ -1,0 +1,18 @@
+---
+description: TCT English mandatory database, migration, PR and release rules
+alwaysApply: true
+---
+
+Follow @AGENTS.md, especially "Database, PR and Release Rules (Automatic)".
+Apply it even when the feature prompt omits database or deployment requirements.
+
+- Assess persisted EF entity/DbContext/mapping changes automatically. Use
+  `.agents/skills/tct-ef-migration/SKILL.md` when schema may change.
+- Include needed reviewed migrations, generated metadata and snapshot in the
+  same feature PR; validate on disposable MariaDB and preserve existing data.
+- The owner reviews/merges feature PRs unless separately authorized. CI success
+  does not authorize merge, changing the deployment gate or bypassing the pipeline.
+- Verify the actual release job, deployment gate, public commit marker and
+  readiness before reporting production updated. A skipped release is not a deploy.
+
+AGENTS.md owns the complete policy; this is the Cursor always-applied adapter.

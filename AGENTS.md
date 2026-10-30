@@ -19,7 +19,7 @@ practice for TCT Company employees.
 
 - Backend: C# / ASP.NET Core MVC (.NET 9 target) / Entity Framework Core 9.0.4
 - Tooling audit (2026-10-28): installed SDK 10.0.300; both project targets remain net9.0.
-- Database: Microsoft SQL Server
+- Database: MySQL via Pomelo.EntityFrameworkCore.MySql 9.0.0 (verify current source before choosing provider documentation)
 - Frontend: Razor Views (`.cshtml`) / Bootstrap 5.3 / jQuery / Vanilla JS
 - Real-time: SignalR (`ClassChatHub`)
 - Auth: Cookie-based + Google OAuth + Facebook OAuth + BCrypt password hashing
@@ -117,6 +117,53 @@ lives in feature controllers.
 - RBAC: use `[Authorize(Roles = "Admin")]` for admin-only, `[Authorize]` for authenticated users.
 - Return `NotFound()` for IDOR violations; never `Forbid()`.
 
+## Database, PR and Release Rules (Automatic)
+
+Apply these rules to every feature or fix even when the prompt does not mention
+the database, migrations, CI/CD or deployment.
+
+1. **Assess schema impact automatically.** When persisted EF entities,
+   `DbflashcardContext`, relationships or mappings change, use `tct-ef-migration`
+   and determine whether tables, columns, indexes, constraints or stored data
+   must change. A ViewModel-only change does not require a schema migration.
+2. **Ship schema with its feature.** If a schema change is needed, create and
+   review the EF migration using the repository-local tool. Include the migration,
+   generated Designer metadata and updated model snapshot in the **same PR** as
+   the dependent code. Do not leave migration generation to the reviewer or deploy
+   job. If a persisted-model change needs no migration, explain why in the PR.
+3. **Preserve existing data/history.** Never edit an already-applied/published
+   migration, invent/delete history rows, or copy a local database over hosting.
+   Review Up/Down, rename/backfill behavior and FK/index order; replacement FK
+   support indexes must exist before old ones are removed. DROP/destructive
+   operations still require the owner's explicit approval.
+4. **Verify before handing off a PR.** Run build/relevant tests and check for
+   pending model changes. For schema changes also test upgrade and repeat
+   execution on disposable MariaDB matching hosting; check preservation of affected
+   data. SQLite-only tests do not prove a MariaDB migration works. Record exact
+   checks, schema impact, compatibility/data risks and any blockers in the PR.
+5. **Use the team review flow.** Work on a feature branch, prepare the PR when
+   requested, and leave review/merge to the owner unless explicitly authorized
+   otherwise. CI success alone does not grant merge or production-deploy authority.
+6. **Deploy through the release pipeline.** Source releases target `master`.
+   After CI succeeds, an enabled release backs up the hosting database, applies
+   committed pending migrations, deploys the published IIS app and checks
+   readiness. Do not generate migrations during deploy, run ad hoc production
+   schema changes, or add another deploy path that bypasses this sequence.
+7. **Report CI and production separately.** Inspect the actual GitHub run and
+   `PLESK_DEPLOYMENT_ENABLED` before claiming a release happened. A false gate or
+   skipped release job means the hosting app/schema were not deployed by that run.
+   Claim success only after the release job succeeds and the public commit marker
+   and `/health/ready` confirm the expected release. Never enable the gate or
+   change Plesk deployment settings without explicit owner authorization.
+8. **Keep environments separate.** Develop/test against Docker MariaDB and local
+   User Secrets; keep credentials, SQL backups and runtime uploads out of Git/PRs.
+   Normal schema deployment preserves production user data; seed/data changes
+   need an explicit, reviewed plan.
+
+Operational details: [local setup](docs/operations/local-development-quickstart.md)
+and [Plesk release/recovery](docs/operations/plesk-cicd-runbook.md). Read the needed
+section when relevant; do not preload both runbooks on every task.
+
 ## Development Intelligence & Methodology (CodeGraph & Superpowers)
 
 ### Installed project toolkit
@@ -141,8 +188,10 @@ lives in feature controllers.
 - CodeGraph 1.6.2 is pinned under `tooling/codegraph/`; its project MCP exposes
   `codegraph_explore` through a read-only adapter. See `docs/codegraph.md`.
   Use `pwsh -NoProfile -File scripts/codegraph.ps1` for the pinned CLI; the
-  machine-wide CLI may be a different version. Installation does not authorize
-  automatic indexing, syncing or enabling a watcher.
+  machine-wide CLI may be a different version. Default checkouts remain read-only.
+  Owner-approved `.ai/codegraph.local.json` enables incremental catch-up/watcher
+  sync only for its bound checkout/version. The file and index are ignored by Git;
+  installation does not grant approval or authorize automatic init/full rebuild.
 - Project lifecycle hooks are defined in `.codex/hooks.json` for SessionStart,
   PreToolUse, PostToolUse and Stop. See `docs/agent-hooks.md` for scope and host
   trust requirements. Do not report automatic hooks as active merely because
@@ -168,7 +217,7 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 | **Bug Fix / Test Failure** ("bị lỗi X", "fix bug Y", "không chạy được") | CodeGraph + `tct-superpowers` debugging; `.ai/context/bug-fix-log.md` | Diagnose affected symbols with evidence before editing code. |
 | **Code Exploration / Architecture** ("luồng X hoạt động thế nào", "class Y liên kết với ai") | Tool: MCP `codegraph_explore` | Query CodeGraph directly to retrieve verbatim source and call chain. Never rely on manual grep loops. |
 | **API Endpoints** ("tạo API", "viết endpoint AJAX") | Skill: `tct-api-endpoint` | Enforce access scope, GetCurrentUserId(), CSRF and existing JSON contracts. |
-| **Database Changes** ("tạo migration", "thêm cột/bảng") | Skill: `tct-ef-migration` | Impact assessment, reversible migration review, never DROP without explicit approval. |
+| **Database Changes**, including persisted entity/DbContext/mapping changes even if the prompt omits migrations | Skill: `tct-ef-migration` | Assess schema impact; include needed migration/metadata/snapshot with the feature PR; validate on MariaDB; never DROP without explicit approval. |
 | **Verification & Handoff** (before declaring ANY task complete) | `tct-superpowers` verification | Run dotnet build and relevant tests; tooling checks when applicable. Evidence first; Vietnamese summary. |
 
 ### CodeGraph
@@ -176,8 +225,31 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 - **Always reach for CodeGraph FIRST**: Call the `codegraph_explore` MCP tool (or run `codegraph explore "<query>"`) before using `grep_search` or manual read loops.
 - CodeGraph provides verbatim source, dependency chains, and blast radius (callers and affected flows) in a single round-trip.
 - Check status with `codegraph status`. Indexing/re-indexing is the owner's
-  decision; do not run init/index/sync automatically. If CodeGraph cannot cover
+  decision; do not run init/index or CLI sync automatically. Incremental server
+  sync is allowed only with a valid owner-approved `.ai/codegraph.local.json`.
+  Other checkouts default to read-only. If CodeGraph cannot cover
   a file (for example CSS/config), explain and use bounded source searches.
+
+### Focused context and MCP routing
+
+- Reuse current instructions, plan excerpts and source already present in this
+  chat; do not reopen unchanged content merely because another skill names it.
+- Load the active plan step, relevant finding and needed skill. Historical plans,
+  full ledgers, role catalogs and vendor references are on-demand, not a startup
+  reading bundle. Roles are inline lenses, not additional agents or preload lists.
+- For CodeGraph start with exact affected symbols and `maxFiles: 1..3` when
+  supported; expand only for a named dependency or unresolved question. Fresh
+  verbatim source returned by CodeGraph counts as read. Use bounded direct reads
+  for stale/unindexed files, an edit needing fresh text or a concrete missing gap;
+  do not repeat unrelated queries when a requested file is outside the index.
+- Context7, when its tools are actually available, supplies external library/API
+  documentation, not local source or private plans. Resolve a library once,
+  reuse its ID, request the project's actual version and a focused API question.
+  Do not invoke it for every file or send repository code, secrets or private logs.
+  If unavailable, state that once and use official documentation when needed;
+  do not pretend an MCP call occurred or silently install another server.
+- Briefly state why a wider read is needed. These are progressive-loading rules,
+  not a hard file cap: correctness, ownership checks and relevant tests still apply.
 
 ### Superpowers Methodology
 - Follow the Superpowers workflow for disciplined feature and bug-fix development:
@@ -190,7 +262,7 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 
 ## Bug Fix Memory
 
-- If the task is a bug fix, read `.ai/context/bug-fix-log.md` and `.ai/context/known-issues.md` before editing code.
+- If the task is a bug fix, read the newest and symptom-relevant sections of `.ai/context/bug-fix-log.md` and `.ai/context/known-issues.md` before editing code; do not preload both complete histories.
 - Check newest bug log entries first and search for matching symptoms, stack traces, controllers, entities, or regression patterns.
 - Reuse a previous fix pattern only after verifying the current bug has the same root cause.
 - After resolving a bug, append a new entry to `.ai/context/bug-fix-log.md` using the file's required format and update `.ai/context/known-issues.md` if that issue was listed there.
@@ -199,6 +271,16 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 
 - After completing any task, include a concise summary in Vietnamese.
 - The Vietnamese summary should cover outcome, files changed, checks run, and any remaining risks or blockers.
+- Owner review handoff preference: whenever a review finds actionable defects,
+  automatically provide a detailed repair plan under `docs/superpowers/plans/`,
+  a Markdown execution prompt under `.ai/prompts/`, and a short copy-paste chat
+  message that references the review, plan and prompt for the requested client
+  (currently Cursor). Include affected files, priorities, dependencies,
+  meaningful regression checks, acceptance criteria and remaining blockers.
+- Scale that handoff to the findings and state the requested analysis/execution
+  mode and existing authority clearly. A review request alone does not authorize
+  implementing fixes. If there are no actionable findings, report that outcome
+  without creating an empty repair plan or inventing work.
 
 ## Key File Locations
 
@@ -222,7 +304,9 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 
 ## Extended Context - Doc Hierarchy
 
-Read these documents in priority order when starting a task:
+Use these documents in priority order when their information is needed. This is
+a lookup hierarchy, not a requirement to read every document at startup. Reuse
+current excerpts already in the chat and load only the relevant section:
 
 | Doc | Purpose | Trust level |
 |---|---|---|

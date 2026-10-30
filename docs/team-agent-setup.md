@@ -2,6 +2,11 @@
 
 Ngày cập nhật: 29/10/2026. Đây là hướng dẫn hiện tại cho các checkout mới.
 
+Cập nhật 30/10: CodeGraph mặc định vẫn read-only. Chủ dự án đã bật incremental
+auto-sync riêng checkout của mình qua `.ai/codegraph.local.json` được Git bỏ qua;
+pull tooling không bật chế độ đó trên máy đồng đội. Xem [CodeGraph](codegraph.md)
+để biết phạm vi, kiểm chứng và cách tắt. Setup/folder-open/post-merge không index.
+
 ## Đồng đội cần làm gì
 
 1. Pull/checkout nhánh có đầy đủ các file nâng cấp và mở **thư mục gốc repo**.

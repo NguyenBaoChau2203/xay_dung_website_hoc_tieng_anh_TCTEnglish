@@ -286,7 +286,7 @@ async function main(args) {
     try { installGitHook(ROOT); } catch (error) { log(error.message); }
     return rest[0] === 'git'
       ? start(setup.python, [path.join(ROOT, 'tooling', 'mcp', 'git_readonly.py')], { env: { ...process.env, PYTHONUTF8: '1' } })
-      : start(process.execPath, [path.join(ROOT, 'tooling', 'codegraph', 'launch.cjs'), '--mcp-readonly']);
+      : start(process.execPath, [path.join(ROOT, 'tooling', 'codegraph', 'launch.cjs'), '--mcp-project']);
   }
   if (action === 'index' && rest.length === 0) {
     await setup.ensureCodegraph();

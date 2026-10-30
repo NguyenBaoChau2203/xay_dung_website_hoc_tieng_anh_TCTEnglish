@@ -27,6 +27,8 @@ obj/
 *.log
 *.cache
 .appdata/
+.playwright-cli/
+output/playwright/
 .tmp/
 .tmp-tests/
 .dotnet-home/
@@ -52,6 +54,8 @@ node_modules/
 __pycache__/
 *.pyc
 tooling/.runtime/
+/.ai/codegraph.local.json
+/.codegraph/
 .claude/settings.local.json
 CLAUDE.local.md
 
@@ -71,21 +75,14 @@ TCTEnglish/wwwroot/images/cards/*
 !TCTEnglish/wwwroot/images/cards/.gitkeep
 TCTEnglish/wwwroot/images/avatars/*
 !TCTEnglish/wwwroot/images/avatars/.gitkeep
+TCTEnglish/wwwroot/images/classes/*
+!TCTEnglish/wwwroot/images/classes/.gitkeep
 
 # ===============================
 # Ignored artifacts
 # ===============================
 .nuget/
 publish/
+release/
 *.zip
 *.sql
-
-.playwright-cli/
-
-output/playwright/
-
-release/
-
-TCTEnglish/wwwroot/images/classes/*
-
-!TCTEnglish/wwwroot/images/classes/.gitkeep
