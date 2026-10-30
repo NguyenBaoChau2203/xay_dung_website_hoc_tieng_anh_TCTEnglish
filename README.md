@@ -1,8 +1,8 @@
 # 🚀 TCT English - Nền Tảng Học Từ Vựng & Luyện Nói Tiếng Anh Doanh Nghiệp
 
-[![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
+[![.NET 9](https://img.shields.io/badge/.NET-9.0-512BD4?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
 [![C# 11](https://img.shields.io/badge/C%23-11.0-239120?style=for-the-badge&logo=c-sharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![MS SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927?style=for-the-badge&logo=microsoft-sql-server)](https://www.microsoft.com/en-us/sql-server/)
+[![MariaDB](https://img.shields.io/badge/MariaDB-10.5-003545?style=for-the-badge&logo=mariadb)](https://mariadb.org/)
 [![SignalR](https://img.shields.io/badge/SignalR-Real--time-orange?style=for-the-badge&logo=signalr)](#)
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com/)
 [![Gemini AI](https://img.shields.io/badge/Gemini%20AI-LLM-blue?style=for-the-badge&logo=google-gemini)](#)
@@ -27,8 +27,8 @@ Trong môi trường doanh nghiệp hiện đại, việc sử dụng thành th�
 Dự án được xây dựng dựa trên kiến trúc **Feature-Oriented MVC** sạch sẽ, tách biệt rõ ràng các ranh giới nghiệp vụ giúp hệ thống dễ dàng mở rộng và bảo trì.
 
 ### 1. Technology Stack
-*   **Backend:** ASP.NET Core MVC (.NET 10) / C# 11+ / Entity Framework Core 10 (Code First).
-*   **Database:** Microsoft SQL Server 2022.
+*   **Backend:** ASP.NET Core MVC (.NET 9 target) / Entity Framework Core 9.0.4.
+*   **Database:** MariaDB qua Pomelo 9.0.0; môi trường local dùng Docker.
 *   **Frontend:** Razor Pages (`.cshtml`), Bootstrap 5.3, jQuery, Vanilla JS, CSS3 Custom Tokens.
 *   **Real-time Communication:** SignalR Core (`ClassChatHub`) cho hệ thống chat lớp học thời gian thực.
 *   **Generative AI:** Tích hợp Google Gemini API qua luồng xử lý AI Chatbot.
@@ -141,7 +141,7 @@ Dưới đây là chi tiết phân công công việc và đóng góp cụ thể
 
 ### 📑 Điều kiện tiên quyết (Prerequisites)
 1.  **Cài đặt .NET SDK 10:** Tải phiên bản .NET 10 SDK mới nhất tại trang chủ của Microsoft.
-2.  **Cài đặt Microsoft SQL Server:** Phiên bản SQL Server 2019 hoặc mới hơn (kèm SSMS để quản lý DB).
+2.  **Docker Desktop:** bật Linux containers để chạy MariaDB local; không cần SQL Server/SSMS.
 3.  **Visual Studio 2022 (v17.8 trở lên):** Đảm bảo đã chọn gói tải công việc *ASP.NET and web development*.
 
 ### 🚀 Quy trình thực hiện (Step-by-step Setup)
@@ -153,32 +153,36 @@ cd xay_dung_website_hoc_tieng_anh_TCTEnglish
 ```
 
 **Bước 2: Cấu hình chuỗi kết nối Database**
-Mở file [TCTEnglish/appsettings.json](file:///d:/repo/TCTEnglish/appsettings.json) và cấu hình lại chuỗi kết nối SQL Server tại mục `ConnectionStrings` phù hợp với máy của bạn:
-```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=Dbflashcard;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
-}
+Chạy script bằng PowerShell 7 để tạo MariaDB Docker, mật khẩu dev riêng và User Secrets:
+```powershell
+pwsh -NoProfile -File scripts/start-local.ps1
 ```
+Database chỉ mở tại `127.0.0.1:3307`; web ở `http://localhost:5100`.
+Để restore backup vào database dev mới, thêm `-BackupZip 'C:/path/to/backup.zip'`.
+Script giữ nguyên database đã có dữ liệu. Xem [hướng dẫn local](docs/operations/local-development-quickstart.md).
 
 **Bước 3: Cấu hình API Keys & SMTP (Nếu cần chạy tính năng Email & AI Chatbot)**
-Cấu hình các khóa bí mật trong `appsettings.json` hoặc sử dụng `User Secrets` của .NET:
-*   `Gemini:ApiKey`: Khóa API Google Gemini để chạy Chatbot AI.
-*   `EmailSettings`: Cấu hình máy chủ SMTP Gmail (Host, Port, Username, AppPassword) để gửi email.
+Cấu hình khóa dev bằng .NET User Secrets, ngoài Git:
+*   `AI:ApiKey`: Khóa API Google Gemini để chạy Chatbot AI.
+*   `SmtpSettings`: Cấu hình SMTP riêng cho development.
 *   `Authentication:Google` / `Authentication:Facebook`: Client ID và Secret để kích hoạt đăng nhập OAuth.
 
 **Bước 4: Tạo Cơ sở dữ liệu và Chạy Seed Data**
 Chạy migration để khởi tạo cấu trúc bảng CSDL tự động:
 ```bash
-dotnet ef database update --project TCTEnglish
+dotnet tool restore
+dotnet ef database update --project TCTEnglish --startup-project TCTEnglish
 ```
-*(Hệ thống sẽ tự động chạy các bộ Seed dữ liệu có sẵn trong `Models/` để nạp kho từ vựng ban đầu và tạo tài khoản Admin/Teacher demo)*
+Seed dữ liệu là tùy chọn `Database:SeedOnStartup`; bản restore được giữ nguyên mặc định.
 
 **Bước 5: Khởi chạy dự án**
 Sử dụng Visual Studio nhấn **F5** hoặc chạy trực tiếp bằng dòng lệnh:
 ```bash
 dotnet run --project TCTEnglish
 ```
-Truy cập ứng dụng tại đường dẫn mặc định: `https://localhost:7198` hoặc `http://localhost:5081` (cấu hình trong `launchSettings.json`).
+Truy cập `http://localhost:5100`. Chế độ Development chặn database từ xa để tránh ghi nhầm hosting.
+CI kiểm tra ứng dụng và migration MariaDB; production dùng GitHub release và Plesk post-deployment.
+Xem [runbook CI/CD](docs/operations/plesk-cicd-runbook.md).
 
 ---
 

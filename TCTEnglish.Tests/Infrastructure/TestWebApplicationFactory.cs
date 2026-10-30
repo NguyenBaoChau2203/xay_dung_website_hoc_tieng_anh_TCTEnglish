@@ -31,6 +31,8 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
+        builder.UseSetting("Testing:DisableRuntimeCompilation", "true");
+        builder.UseSetting("hostBuilder:reloadConfigOnChange", "false");
         builder.UseContentRoot(Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "TCTEnglish")));
         builder.ConfigureLogging(logging =>

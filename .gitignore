@@ -79,3 +79,13 @@ TCTEnglish/wwwroot/images/avatars/*
 publish/
 *.zip
 *.sql
+
+.playwright-cli/
+
+output/playwright/
+
+release/
+
+TCTEnglish/wwwroot/images/classes/*
+
+!TCTEnglish/wwwroot/images/classes/.gitkeep
