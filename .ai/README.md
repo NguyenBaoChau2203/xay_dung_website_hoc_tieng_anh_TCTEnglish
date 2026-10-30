@@ -28,6 +28,12 @@ The application/tests target .NET 9 / EF Core 9.0.4; the installed SDK is newer.
 Load only the relevant skill; do not load all sixteen for every task. For UI read
 DESIGN.md first. Match the real page's framework, icon family and behavior.
 
+AGENTS.md's automatic database/PR/release rules apply even when the prompt omits
+them. Persisted EF entity/DbContext/mapping changes trigger tct-ef-migration;
+needed migrations ship in the same feature PR. Cursor also has the short
+always-applied adapter `.cursor/rules/database-pr-release.mdc`; Claude imports
+the canonical rules through CLAUDE.md. CI success is not proof of production deploy.
+
 ## Files and compatibility
 
 - .agents/skills/: canonical discoverable skills for Codex and compatible clients.

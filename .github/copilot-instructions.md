@@ -66,6 +66,10 @@ logic, however, lives in the dedicated feature controllers above, not in
 - ViewModels only: never pass raw EF entities to Razor views.
 - AsNoTracking: use it on display-only EF queries.
 - Ownership violations should return `NotFound()`, not `Forbid()`.
+- Apply AGENTS.md's automatic database/PR/release rules even if the prompt omits
+  them: assess persisted EF model/mapping changes, include needed migrations and
+  snapshot in the same PR, and validate on MariaDB. CI success alone is not a
+  production release or authorization to merge/change the deployment gate.
 
 ## Security Boundaries
 
