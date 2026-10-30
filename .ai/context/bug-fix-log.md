@@ -41,6 +41,24 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### S01 sentinel + MariaDB dual-completion deadlock — 2026-10-30
+
+**Symptom**: Acceptance factory stamped sentinel before verify. Dual speaking completion on MariaDB deadlocked (`1213`) or double-applied daily XP. SQLite `Progress_CreditInsertFailure` returned OK because RAISE FAIL was misread as credit-key replay.
+
+**Root Cause**: Ensure/UPSERT before identity check; concurrent credit+daily insert lock order; `IsDuplicateCreditKey` treated any SqliteErrorCode 19 whose message mentioned `CreditKey` as a unique replay.
+
+**Solution**: Verify-before-write fixture + labeled bootstrap INSERT; retry deadlock/lock-wait and recover daily increment; require UNIQUE/Duplicate signal for credit-key replay.
+
+**Files Changed**:
+- `MariaDbAcceptanceConnectionGuard.cs`, `MariaDbAcceptanceFactory.cs`, orchestration/recording tests, `bootstrap-mariadb-acceptance.ps1`
+- `CompletionCreditService.cs`, `GoalsService.cs`, `MariaDbCompletionConcurrencyTests.cs`
+
+**Verification**: Orchestration + dual-completion ×5 on `:3308`; full Debug suite 718/718 with `TCT_ACCEPTANCE_*` set; whisper-server tiny.en E2E; `:5110` UI matrix.
+
+**Commit**: pending sentinel group commits
+
+**Notes**: G06 enabled staging still needs Plesk `mariadb-dump`; no production gate/merge.
+
 ### Final acceptance round 2 CR01–CR05 — 2026-10-30
 
 **Symptom**: Writing still accepted `<5` vs `>5` and `1,000` vs `1.000`. MariaDB acceptance factory could DELETE after any env string. Dual-completion Barrier timed out before the second worker started. Publisher reused releases without tag SHA/digest proof and treated same-commit old run markers as ready.

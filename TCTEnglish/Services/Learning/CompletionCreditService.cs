@@ -88,6 +88,45 @@ public sealed class CompletionCreditService : ICompletionCreditService
         }
 
         var creditKey = $"{userId}:{feature}:{contentKey}";
+        const int maxAttempts = 3;
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            try
+            {
+                return await ApplyOnceAsync(userId, feature, contentKey, creditKey, activityUpdate, cancellationToken);
+            }
+            catch (Exception ex) when (CreditKeyConflict.IsDeadlock(ex) && attempt < maxAttempts)
+            {
+                _logger.LogWarning(
+                    ex,
+                    "Deadlock applying completion credit {CreditKey}; retry {Attempt}/{MaxAttempts}",
+                    creditKey,
+                    attempt,
+                    maxAttempts);
+
+                var alreadyApplied = await _context.LearningCompletionCredits
+                    .AsNoTracking()
+                    .AnyAsync(c => c.CreditKey == creditKey, cancellationToken);
+                if (alreadyApplied)
+                {
+                    return new CompletionCreditApplyResult { Applied = false, Replay = true, XpEarned = 0, Streak = 0 };
+                }
+
+                await Task.Delay(TimeSpan.FromMilliseconds(15 * attempt), cancellationToken);
+            }
+        }
+
+        return await ApplyOnceAsync(userId, feature, contentKey, creditKey, activityUpdate, cancellationToken);
+    }
+
+    private async Task<CompletionCreditApplyResult> ApplyOnceAsync(
+        int userId,
+        string feature,
+        string contentKey,
+        string creditKey,
+        GoalsActivityUpdate activityUpdate,
+        CancellationToken cancellationToken)
+    {
         var ownsTransaction = _context.Database.CurrentTransaction == null;
         var transaction = ownsTransaction
             ? await _context.Database.BeginTransactionAsync(cancellationToken)
@@ -239,10 +278,18 @@ internal static class CreditKeyConflict
     public static bool IsDuplicateCreditKey(DbUpdateException exception)
     {
         var message = exception.ToString();
-        var mentionsCredit = message.Contains("CreditKey", StringComparison.OrdinalIgnoreCase)
+        // Require a uniqueness signal — do not treat arbitrary INSERT failures
+        // (e.g. SQLite RAISE FAIL test triggers) as credit-key replays.
+        var looksLikeUniqueViolation =
+            message.Contains("Duplicate", StringComparison.OrdinalIgnoreCase)
+            || message.Contains("UNIQUE constraint failed", StringComparison.OrdinalIgnoreCase)
             || message.Contains("IX_LearningCompletionCredits_CreditKey", StringComparison.OrdinalIgnoreCase);
 
-        if (!mentionsCredit)
+        var mentionsCreditKey =
+            message.Contains("CreditKey", StringComparison.OrdinalIgnoreCase)
+            || message.Contains("IX_LearningCompletionCredits_CreditKey", StringComparison.OrdinalIgnoreCase);
+
+        if (!looksLikeUniqueViolation || !mentionsCreditKey)
         {
             return false;
         }
@@ -259,6 +306,21 @@ internal static class CreditKeyConflict
             {
                 var code = current.GetType().GetProperty("SqliteErrorCode")?.GetValue(current);
                 return code is int sqlite && sqlite == 19;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool IsDeadlock(Exception exception)
+    {
+        for (Exception? current = exception; current != null; current = current.InnerException)
+        {
+            if (current.GetType().Name == "MySqlException")
+            {
+                var number = current.GetType().GetProperty("Number")?.GetValue(current);
+                // 1213 = deadlock; 1205 = lock wait timeout (treat as retryable contention).
+                return number is int mysql && mysql is 1213 or 1205;
             }
         }
 

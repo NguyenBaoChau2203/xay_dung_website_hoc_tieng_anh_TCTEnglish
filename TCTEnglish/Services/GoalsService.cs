@@ -392,7 +392,7 @@ namespace TCTVocabulary.Services
             {
                 await InsertUserDailyActivityAsync(userId, activityDate, update, streakXpAwarded: 0);
             }
-            catch (Exception ex) when (IsUserDailyActivityUniqueConflict(ex))
+            catch (Exception ex) when (IsUserDailyActivityUniqueConflict(ex) || IsMysqlDeadlockOrLockWait(ex))
             {
                 var recoveredRows = await IncrementExistingActivityAsync(userId, activityDate, update);
                 if (recoveredRows == 0)
@@ -1324,6 +1324,12 @@ WHERE TABLE_NAME = 'UserDailyActivities'";
         private static bool IsUserDailyActivityUniqueConflict(Exception exception)
         {
             return IsUniqueConstraintViolation(exception);
+        }
+
+        private static bool IsMysqlDeadlockOrLockWait(Exception exception)
+        {
+            var mysqlException = FindException<MySqlException>(exception);
+            return mysqlException is { Number: 1213 or 1205 };
         }
 
         private static bool IsUserBadgeUniqueConflict(Exception exception)
