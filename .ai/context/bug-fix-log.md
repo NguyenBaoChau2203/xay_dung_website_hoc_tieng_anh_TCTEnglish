@@ -41,6 +41,31 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Learning reliability round 2 — RR01–RR07 and test fixture — 2026-10-30
+
+**Symptom**: A failed speaking import could not be submitted again because the unique fingerprint rejected a new row. One duplicate notification in a batch dropped the rest and the job was still marked succeeded. Changing a speaking sentence left the PCM recorder running. ASR timeout started only after a queue slot was acquired. Touching an old streak record was announced as a new record. Writing cloud feedback could run outside the 3-second optional budget. The AI conflict test and SQLite factory could hang or fail during init/dispose.
+
+**Root Cause**: Import retry inserted a second row for the same owner and video. The notification worker treated every database error as a duplicate, detached the unsaved batch, and advanced a cursor that was not fenced by the lease token. The practice page cancelled Web Speech only. The transcriber created its timeout after `AcquireAsync`. The outbox writer inferred a record from `Streak == LongestStreak` and recent badge timestamps. Cloud enhancement used its own timeout before the shared grammar/model budget. The conflict test waited on a fixed delay and released its gate only on the success path. The SQLite fixture called `EnsureDeleted` on one shared in-memory connection.
+
+**Solution**: Requeue the existing import row, keep the unique index, and publish the video, sentences and job result in one transaction. Notification batches pre-check event keys, commit the cursor only with a matching lease token, and process one batch per poll. The practice page disposes the PCM recorder and aborts the in-flight assessment when the sentence changes. Queue wait and HTTP share one deadline. Streak and badge intents use the transition captured by the operation. Cloud, grammar and the local model share one 3-second budget, and engine payloads must match the expected schema. The conflict test waits until the provider is entered and always releases the gate. Each test factory keeps a shared-cache SQLite database open without `EnsureDeleted`.
+
+**Files Changed**:
+- `TCTEnglish/Services/Speaking/SpeakingImportJobService.cs` — retry and unique conflict
+- `TCTEnglish/Workers/SpeakingImportWorker.cs` — lease and atomic publish
+- `TCTEnglish/Workers/NotificationWorker.cs` — checkpoint, lease and batch
+- `TCTEnglish/wwwroot/js/speaking.js` — recorder/HTTP cancel and import polling
+- `TCTEnglish/Services/Speaking/WhisperHttpTranscriber.cs` — shared deadline
+- `TCTEnglish/Services/Learning/LearningNotificationIntentWriter.cs` — transition metadata
+- `TCTEnglish/Services/WritingService.cs` — shared optional budget
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` — SQLite lifetime
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` — conflict gate
+
+**Verification**: Focused .NET regressions for import, notifications, inference, transitions, writing and the AI conflict test passed. The conflict test passed on five separate runs. Node recorder, speaking and import tests passed. Migration `20261030113000_LearningImportSourceHash` was not applied to a real database. MySQL, browser microphone, whisper.cpp, LanguageTool and Ollama were not run.
+
+**Commit**: not committed in this session
+
+**Notes**: ASR-for-import stays deferred. The process speech limiter is not a cluster cap. SQLite results are not MySQL concurrency proof.
+
 ### Team setup timed out during CodeGraph package extraction — 2026-10-29
 
 **Symptom**: A simulated fresh Windows checkout installed pinned uv/Python, then
@@ -1782,6 +1807,27 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 
 **Notes**: The web guide JSON knowledge base was already a static web asset under `wwwroot`; this fix covers the separate ML.NET classifier dataset/model assets used by the admin training flow.
 
+### Learning completion could persist without reward; outbox mislabeled goals — 2026-10-30
+
+**Symptom**: A failed credit insert still returned success after Speaking video completion was saved. Replaying did not restore XP. Completion notifications were stored as GoalCompleted with a future timestamp.
+
+**Root Cause**: Progress/completion committed before `CompletionCreditService`, and every `DbUpdateException` was treated as a duplicate. The outbox dispatcher mapped every completion event to `NotificationType.GoalCompleted` and set `CreatedAt` from business date plus 12 hours.
+
+**Solution**: Speaking and Writing now open one transaction around progress, completion, credit, and outbox intents. Only a duplicate credit key is treated as replay. Direct goal/streak/badge inserts are suppressed on that path and replaced with payload v2 intents that keep the real occurrence time. Legacy payloads are marked needs-review instead of guessed as goal completion.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/SpeakingController.cs` — completion unit transaction and retryable 500.
+- `TCTEnglish/Services/WritingService.cs` — same unit around attempt/progress/credit.
+- `TCTEnglish/Services/Learning/CompletionCreditService.cs` — joins the caller transaction; does not swallow unrelated DB errors.
+- `TCTEnglish/Services/Learning/LearningNotificationIntentWriter.cs` — typed outbox intents.
+- `TCTEnglish/Services/Notifications/LearningOutboxDispatcher.cs` — v2 dispatch and occurrence timestamp.
+
+**Verification**: `Progress_CreditInsertFailure_RollsBackCompletion` and `SpeakingCompletionCredit_AppliesOnce_AndEnqueuesOutbox` passed in the focused learning filter (146 passed / 0 failed on the last focused run). SQLite only. MySQL not run.
+
+**Commit**: Not created.
+
+**Notes**: Does not backfill historical missing XP. Does not prove multi-connection races on MySQL.
+
 ### Local startup used remote database; Linux CI watchers/SQLite host races; Plesk GET webhook rejected — 2026-10-30
 
 **Symptom**: Local startup could access the hosting database and apply migrations/seeders. Linux CI failed from exhausted inotify instances and intermittent SQLite host initialization races. Calling the Plesk webhook with GET returned 404.
@@ -1800,3 +1846,21 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Setup PR #120; feature changes remain separate in the owner's working tree.
 
 **Notes**: Removed secrets remain in public Git history until rotated at providers. Production deployment gate stays false pending rotation and full staging failure/recovery drills. SQL backups, credentials and browser profile are ignored private local files.
+
+### Unpublished October migrations dropped foreign-key support indexes too early — 2026-10-30
+
+**Symptom**: Upgrading the restored MariaDB backup failed when a migration dropped an index still needed by a foreign key.
+
+**Root Cause**: The October L4-L6 migration dropped the UserId index before creating its replacement composite index. ReviewRemediation similarly changed FK support indexes before replacements existed, including a same-name owner/fingerprint index becoming unique.
+
+**Solution**: Create compatible replacement indexes first; use a temporary owner FK index while rebuilding the same-name unique index. Apply the corresponding ordering in Down without generating or executing destructive migrations. Only the owner's unpublished October files were edited; the already-applied May migration/history was preserved.
+
+**Files Changed**:
+- `TCTEnglish/Migrations/20261029181904_LearningReliabilityL4ThroughL6.cs`.
+- `TCTEnglish/Migrations/20261030012638_LearningReviewRemediation.cs`.
+
+**Verification**: Both the September backup and a fresh 30/10 production dump restored into isolated MariaDB 10.5.23 upgraded through all four October migrations. Counts/checksums of users, sets, cards, classes, readingusertranslations and readingtranslationvotes stayed unchanged; repeated upgrade was a no-op. Fresh baseline upgrade smoke also passed. Down was reviewed, not executed on user data.
+
+**Commit**: Not committed; these files belong with the owner's pending learning feature, outside setup PR #120.
+
+**Notes**: Live hosting still has five old history IDs and was not migrated. Do not edit published migrations or delete the extra historical May9 migration ID to force a count match.
