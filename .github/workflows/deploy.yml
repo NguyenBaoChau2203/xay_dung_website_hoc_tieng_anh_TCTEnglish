@@ -1,174 +1,113 @@
-# =============================================================================
-# TCT English - CI/CD Pipeline
-# =============================================================================
-# Tu dong build, test va deploy len NhanHoa hosting moi khi push vao main.
-#
-# Yeu cau GitHub Secrets:
-#   FTP: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_REMOTE_DIR
-#   App: PRODUCTION_DB_CONNECTION, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,
-#        FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, SMTP_EMAIL, SMTP_PASSWORD,
-#        GEMINI_API_KEY, PIXABAY_API_KEY
-#   VNPay: VNPay__Enabled, VNPay__TmnCode, VNPay__HashSecret,
-#          VNPay__BaseUrl, VNPay__ReturnUrl, VNPay__IpnUrl
-# =============================================================================
-
-name: Build & Deploy TCT English
+name: Build, test and release TCT English
 
 on:
+  pull_request:
   push:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
-  DOTNET_VERSION: '9.0.x'
-  PROJECT_PATH: 'TCTEnglish/TCTEnglish.csproj'
-  TEST_PROJECT_PATH: 'TCTEnglish.Tests/TCTEnglish.Tests.csproj'
-  PUBLISH_DIR: './publish-output'
+  DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+  DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE: 'false'
+  Testing__DisableRuntimeCompilation: 'true'
+  DOTNET_ENVIRONMENT: Development
+  ASPNETCORE_ENVIRONMENT: Development
+  Database__ServerVersion: 10.5.23-mariadb
+  ConnectionStrings__DefaultConnection: Server=127.0.0.1;Port=33307;Database=tct_ci;User=tct_ci;Password=CiDisposableOnly;SslMode=None;
 
 jobs:
-  # ===== JOB 1: BUILD & TEST (CI) =====
   build:
-    name: Build & Test
+    name: Build, tests and MariaDB migrations
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup .NET ${{ env.DOTNET_VERSION }}
-        uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Restore packages
-        run: dotnet restore ${{ env.PROJECT_PATH }}
-
-      - name: Build
-        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
-
-      - name: Run tests
+          dotnet-version: 9.0.x
+      - name: Restore and build
         run: |
-          if [ -f "${{ env.TEST_PROJECT_PATH }}" ]; then
-            dotnet test ${{ env.TEST_PROJECT_PATH }} --configuration Release --verbosity normal
-          else
-            echo "No test project found, skipping"
-          fi
-
-      - name: Publish (self-contained, win-x64)
+          dotnet tool restore
+          dotnet restore TCTEnglish.Tests/TCTEnglish.Tests.csproj
+          dotnet build TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --no-restore
+      - name: Run application tests
+        run: dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --no-build --no-restore --logger "trx;LogFileName=tests.trx" --results-directory test-results
+      - name: Check artifact guards and Plesk webhook protocol
+        run: python3 -m unittest discover -s scripts/tests -p test_deploy_tools.py -v
+      - name: Start disposable MariaDB matching hosting
+        shell: bash
         run: |
-          dotnet publish ${{ env.PROJECT_PATH }} \
-            --configuration Release \
-            --runtime win-x64 \
-            --self-contained true \
-            --output ${{ env.PUBLISH_DIR }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+          docker run -d --name tct-ci-mariadb \
+            -p 127.0.0.1:33307:3306 \
+            -e MARIADB_ROOT_PASSWORD=CiDisposableOnly \
+            -e MARIADB_DATABASE=tct_ci -e MARIADB_USER=tct_ci \
+            -e MARIADB_PASSWORD=CiDisposableOnly \
+            mariadb:10.5.23@sha256:6122f729893e286a3cfc789fb546dd041cf244e4de84272ab5727028ca107730 \
+            --lower-case-table-names=1 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+          for attempt in {1..60}; do
+            if docker exec tct-ci-mariadb sh -c 'MYSQL_PWD="$MARIADB_ROOT_PASSWORD" mariadb --protocol=tcp -h127.0.0.1 -uroot -e "SELECT 1"' >/dev/null 2>&1; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'MariaDB did not become ready.' >&2
+          exit 1
+      - name: Check baseline upgrade, FK indexes and repeat execution
+        shell: pwsh
+        run: ./scripts/verify-mariadb.ps1
+      - name: Publish Windows app and migration bundle
+        shell: bash
+        run: |
+          dotnet publish TCTEnglish/TCTEnglish.csproj -c Release -r win-x64 --self-contained true -o release/app
+          python3 scripts/prepare-publish.py release/app
+          mkdir -p release/migration
+          dotnet ef migrations bundle --project TCTEnglish --startup-project TCTEnglish --configuration Release --self-contained --target-runtime win-x64 --output release/migration/efbundle.exe
+          dotnet ef migrations script --project TCTEnglish --startup-project TCTEnglish --configuration Release --no-build --idempotent --output release/migration/migrations.sql
+          cd release
+          zip -qr ../tctenglish-release.zip app migration
+      - name: Upload release artifact without credentials
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: tctenglish-publish
-          path: ${{ env.PUBLISH_DIR }}
-          retention-days: 3
+          name: tctenglish-release
+          path: |
+            tctenglish-release.zip
+            scripts/deploy-plesk.ps1
+          retention-days: 14
+          if-no-files-found: error
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: test-results
+          path: test-results
+          if-no-files-found: warn
+      - name: Remove disposable database
+        if: always()
+        run: docker rm -f -v tct-ci-mariadb || true
 
-  # ===== JOB 2: DEPLOY (CD) =====
-  deploy:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
+  release:
+    name: Publish approved release and trigger Plesk
     needs: build
-    if: github.ref == 'refs/heads/master'
-
+    if: github.ref == 'refs/heads/master' && vars.PLESK_DEPLOYMENT_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    concurrency:
+      group: tctenglish-production
+      cancel-in-progress: false
+    permissions:
+      contents: write
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
-          name: tctenglish-publish
-          path: ${{ env.PUBLISH_DIR }}
-
-      - name: Create appsettings.Production.json
-        run: |
-          cat > ${{ env.PUBLISH_DIR }}/appsettings.Production.json << 'EOF'
-          {
-            "Logging": {
-              "LogLevel": {
-                "Default": "Warning",
-                "Microsoft.AspNetCore": "Warning"
-              }
-            },
-            "AllowedHosts": "*",
-            "ConnectionStrings": {
-              "DefaultConnection": "${{ secrets.PRODUCTION_DB_CONNECTION }}"
-            },
-            "Authentication": {
-              "Google": {
-                "ClientId": "${{ secrets.GOOGLE_CLIENT_ID }}",
-                "ClientSecret": "${{ secrets.GOOGLE_CLIENT_SECRET }}"
-              },
-              "Facebook": {
-                "AppId": "${{ secrets.FACEBOOK_APP_ID }}",
-                "AppSecret": "${{ secrets.FACEBOOK_APP_SECRET }}"
-              }
-            },
-            "SmtpSettings": {
-              "Host": "smtp.gmail.com",
-              "Port": 587,
-              "SenderEmail": "${{ secrets.SMTP_EMAIL }}",
-              "SenderName": "TCT English",
-              "Password": "${{ secrets.SMTP_PASSWORD }}"
-            },
-            "AI": {
-              "BaseUrl": "https://generativelanguage.googleapis.com/v1beta",
-              "ApiKey": "${{ secrets.GEMINI_API_KEY }}",
-              "Model": "gemini-2.5-flash-lite"
-            },
-            "Pixabay": {
-              "ApiKey": "${{ secrets.PIXABAY_API_KEY }}"
-            },
-            "VNPay": {
-              "Enabled": "${{ secrets['VNPay__Enabled'] || secrets['VNPAY__ENABLED'] || 'false' }}",
-              "Version": "2.1.0",
-              "Command": "pay",
-              "TmnCode": "${{ secrets['VNPay__TmnCode'] || secrets['VNPAY__TMNCODE'] }}",
-              "HashSecret": "${{ secrets['VNPay__HashSecret'] || secrets['VNPAY__HASHSECRET'] }}",
-              "BaseUrl": "${{ secrets['VNPay__BaseUrl'] || secrets['VNPAY__BASEURL'] || 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html' }}",
-              "ReturnUrl": "${{ secrets['VNPay__ReturnUrl'] || secrets['VNPAY__RETURNURL'] }}",
-              "IpnUrl": "${{ secrets['VNPay__IpnUrl'] || secrets['VNPAY__IPNURL'] }}",
-              "QueryDrUrl": "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction",
-              "QueryIpAddress": "127.0.0.1",
-              "QueryDrCommand": "querydr",
-              "Locale": "vn",
-              "Currency": "VND",
-              "OrderType": "other"
-            },
-            "Billing": {
-              "PendingPaymentCleanupWorkerEnabled": true,
-              "PremiumExpiryWorkerEnabled": true
-            }
-          }
-          EOF
-
-      - name: Put App Offline (IIS)
-        run: |
-          echo "<html><body><h1 style='text-align:center;margin-top:50px;'>He thong dang duoc cap nhat. Vui long quay lai sau it phut...</h1></body></html>" > app_offline.htm
-          curl -T app_offline.htm ftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_REMOTE_DIR }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
-          sleep 5 # Cho IIS nha file locks
-
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ${{ env.PUBLISH_DIR }}/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/appsettings.Development.json
-
-      - name: Bring App Online
-        if: always() # Luon chay de mo lai web du deploy loi hay thanh cong
-        run: |
-          curl -Q "-DELE ${{ secrets.FTP_REMOTE_DIR }}app_offline.htm" ftp://${{ secrets.FTP_SERVER }} --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
-
-      - name: Done
-        run: |
-          echo "Deployed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo "Commit: ${{ github.sha }}"
+          name: tctenglish-release
+          path: release-artifact
+      - name: Create immutable release, update deployment manifest and notify Plesk
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PLESK_WEBHOOK_URL: ${{ secrets.PLESK_WEBHOOK_URL }}
+        run: python3 scripts/publish-plesk-release.py release-artifact/tctenglish-release.zip

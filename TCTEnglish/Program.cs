@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using TCTEnglish.Hubs;
+using TCTEnglish.Infrastructure;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Services.AI.Internal.Retrievers;
@@ -21,11 +22,17 @@ builder.Services.AddRazorPages()
         options.JsonSerializerOptions.ReferenceHandler =
             System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var mvc = builder.Services.AddControllersWithViews();
+if (builder.Environment.IsDevelopment()
+    && !builder.Configuration.GetValue<bool>("Testing:DisableRuntimeCompilation"))
+{
+    mvc.AddRazorRuntimeCompilation();
+}
 builder.Services.AddDbContext<DbflashcardContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+{
+    var settings = DatabaseSettings.Read(builder.Configuration, builder.Environment.IsDevelopment());
+    options.UseMySql(settings.ConnectionString, settings.ServerVersion);
+});
 
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
@@ -165,10 +172,12 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment()
+    && builder.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup"))
 {
+    using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-    dbContext.Database.Migrate();
+    await dbContext.Database.MigrateAsync();
 }
 
 if (!app.Environment.IsDevelopment())
@@ -183,6 +192,22 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ClassChatHub>("/classChatHub");
+app.MapGet("/health/ready", async (DbflashcardContext db, CancellationToken cancellationToken) =>
+{
+    try
+    {
+        if (!await db.Database.CanConnectAsync(cancellationToken))
+            return Results.StatusCode(StatusCodes.Status503ServiceUnavailable);
+        var pending = await db.Database.GetPendingMigrationsAsync(cancellationToken);
+        return pending.Any()
+            ? Results.StatusCode(StatusCodes.Status503ServiceUnavailable)
+            : Results.Ok(new { status = "ready" });
+    }
+    catch (Exception)
+    {
+        return Results.StatusCode(StatusCodes.Status503ServiceUnavailable);
+    }
+});
 
 app.MapControllerRoute(
     name: "admin-speaking-management-legacy",
@@ -197,34 +222,37 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Landing}/{id?}");
 
-try
+if (builder.Configuration.GetValue<bool>("Database:SeedOnStartup"))
 {
-    await TCTVocabulary.Models.JsonVocabularySeeder.SeedFromJsonAsync(app.Services);
-}
-catch (Exception ex)
-{
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "JsonVocabularySeeder: Lỗi không mong đợi khi seed từ JSON.");
-}
+    try
+    {
+        await TCTVocabulary.Models.JsonVocabularySeeder.SeedFromJsonAsync(app.Services);
+    }
+    catch (Exception ex)
+    {
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "JsonVocabularySeeder: Lỗi không mong đợi khi seed từ JSON.");
+    }
 
-try
-{
-    await TCTVocabulary.Models.ListeningLessonSeedData.SeedAsync(app.Services);
-}
-catch (Exception ex)
-{
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "ListeningLessonSeedData: Lỗi không mong đợi khi seed dữ liệu luyện nghe.");
-}
+    try
+    {
+        await TCTVocabulary.Models.ListeningLessonSeedData.SeedAsync(app.Services);
+    }
+    catch (Exception ex)
+    {
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "ListeningLessonSeedData: Lỗi không mong đợi khi seed dữ liệu luyện nghe.");
+    }
 
-try
-{
-    await TCTEnglish.Models.BillingSeedData.SeedAsync(app.Services);
-}
-catch (Exception ex)
-{
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "BillingSeedData: Loi khi seed goi Premium.");
+    try
+    {
+        await TCTEnglish.Models.BillingSeedData.SeedAsync(app.Services);
+    }
+    catch (Exception ex)
+    {
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "BillingSeedData: Loi khi seed goi Premium.");
+    }
 }
 
 app.Run();

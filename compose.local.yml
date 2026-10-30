@@ -1,0 +1,27 @@
+name: tctenglish-local
+
+services:
+  db:
+    image: mariadb:10.5.23@sha256:6122f729893e286a3cfc789fb546dd041cf244e4de84272ab5727028ca107730
+    container_name: tctenglish-mariadb-local
+    restart: unless-stopped
+    env_file:
+      - .appdata/local/database.env
+    command:
+      - --lower-case-table-names=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MARIADB_ROOT_PASSWORD mariadb --protocol=tcp -h127.0.0.1 -uroot --execute='SELECT 1' --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+volumes:
+  mariadb-data:
+    name: tctenglish-local-mariadb-data

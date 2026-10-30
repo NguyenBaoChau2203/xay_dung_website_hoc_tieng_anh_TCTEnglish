@@ -21,7 +21,8 @@ namespace TCTEnglish.Tests.Infrastructure;
 public class TestWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly Action<IServiceCollection>? _configureTestServices;
-    private SqliteConnection? _sqliteConnection;
+    private SqliteConnection? _keeper;
+    private string? _sqliteConnectionString;
 
     public TestWebApplicationFactory(Action<IServiceCollection>? configureTestServices = null)
     {
@@ -31,6 +32,8 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
+        builder.UseSetting("Testing:DisableRuntimeCompilation", "true");
+        builder.UseSetting("hostBuilder:reloadConfigOnChange", "false");
         builder.UseContentRoot(Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "TCTEnglish")));
         builder.ConfigureLogging(logging =>
@@ -40,6 +43,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
 
         builder.ConfigureServices(services =>
         {
+            services.AddSingleton<IStartupFilter, TestAssetStartupFilter>();
             var dataProtectionDirectory = new DirectoryInfo(
                 Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".appdata", "DataProtection-Keys"));
             dataProtectionDirectory.Create();
@@ -48,9 +52,14 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.RemoveAll<DbflashcardContext>();
             services.RemoveAll<IDbContextOptionsConfiguration<DbflashcardContext>>();
 
-            _sqliteConnection?.Dispose();
-            _sqliteConnection = new SqliteConnection("Data Source=:memory:");
-            _sqliteConnection.Open();
+            if (_keeper is null)
+            {
+                _sqliteConnectionString = $"Data Source=file:tct{Guid.NewGuid():N}?mode=memory&cache=shared;Pooling=False";
+                _keeper = new SqliteConnection(_sqliteConnectionString);
+                _keeper.Open();
+            }
+            var connectionString = _sqliteConnectionString
+                ?? throw new InvalidOperationException("SQLite test connection was not initialized.");
 
             var hostedServiceDescriptors = services
                 .Where(descriptor => descriptor.ServiceType == typeof(IHostedService)
@@ -64,7 +73,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
 
             services.AddDbContext<DbflashcardContext>(options =>
             {
-                options.UseSqlite(_sqliteConnection);
+                options.UseSqlite(connectionString);
                 options.ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>();
                 options.ReplaceService<IMigrator, NoOpMigrator>();
                 options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
@@ -101,7 +110,6 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
         await context.Database.OpenConnectionAsync();
-        await context.Database.EnsureDeletedAsync();
         await context.Database.EnsureCreatedAsync();
         await EnsureUsersTableExistsAsync(context);
 
@@ -117,8 +125,13 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             return;
         }
 
-        _sqliteConnection?.Dispose();
-        _sqliteConnection = null;
+        var keeper = _keeper;
+        _keeper = null;
+        if (keeper is not null)
+        {
+            try { keeper.Close(); keeper.Dispose(); }
+            catch (Exception exception) when (exception is ObjectDisposedException or NullReferenceException) { }
+        }
     }
 
     private static async Task SeedAsync(DbflashcardContext context)
