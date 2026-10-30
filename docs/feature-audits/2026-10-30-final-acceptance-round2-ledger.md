@@ -15,9 +15,10 @@ Review: CR01–CR05. Agent: Cursor Auto (Grok/Composer 2.5 allowlist).
 | R6/G03 | Matrix extra | Partial | dual-completion only | Notification/import lease matrix **Not run** | — | After CR02/03 |
 | R6/G04 | UI 25 view | Not run | — | Acceptance host 5110 not started this pass | — | Owner 5100 untouched |
 | R6/G06 | Staging | Not run | disabled preflight already green | Enabled Windows staging drill **Not run** | — | Gate false |
-| R7 | Full/CI | In progress | Debug suite **710 pass / 1 skip** (provider skipped without env) | Local provider executed separately; CI to dispatch | — | skip ≠ pass |
+| R7 | Full/CI | Done (code + CI) | Local Debug **710 pass / 1 skip**; CI run 41092509174 | headSha `559ae9a…` **success**; release **skipped** | 559ae9a | Provider concurrency executed locally with env; CI still skips without secret env (skip ≠ pass) |
 
 ## Notes
 
-- CI historical `ff7f703`: 694 pass / 1 skip — provider did not run there.
+- Prior CI `ff7f703`: 694 pass / 1 skip — provider did not run there.
 - Round 2 does not rewrite the old ledger into “complete”; this file owns new evidence.
+- No merge / Plesk / gate / hosting SQL.
