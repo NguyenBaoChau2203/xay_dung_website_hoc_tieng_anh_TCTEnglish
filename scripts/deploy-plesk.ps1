@@ -162,7 +162,11 @@ try {
     $pendingMarkerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.pending.json')
     $markerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.json')
     # Pending marker is not the public success document; promote only after readiness.
-    Write-Json $pendingMarkerPath @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
+    $markerPayload = @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
+    if ($null -ne $manifest.sha256 -and "$($manifest.sha256)".Length -gt 0) {
+        $markerPayload.sha256 = [string]$manifest.sha256
+    }
+    Write-Json $pendingMarkerPath $markerPayload
     Remove-Item -LiteralPath $offlinePath
     $ready = $false
     for ($attempt=0; $attempt -lt 24; $attempt++) {

@@ -26,12 +26,11 @@ class PleskWebhookTests(unittest.TestCase):
             self.assertEqual(json.loads(request.data), {})
             self.assertEqual(request.get_header('Content-type'), 'application/json')
 
-    def test_webhook_failure_never_exposes_its_private_url(self):
+    def test_webhook_failure_returns_ambiguous_without_exposing_url(self):
         marker = 'private-webhook-token'
         with mock.patch.object(self.publisher.urllib.request, 'urlopen', side_effect=OSError(marker)):
-            with self.assertRaises(SystemExit) as error:
-                self.publisher.notify_plesk('https://plesk.example.test/?uuid=' + marker)
-            self.assertNotIn(marker, str(error.exception))
+            status = self.publisher.notify_plesk('https://plesk.example.test/?uuid=' + marker)
+        self.assertEqual(status, 'ambiguous')
 
 
 class PublishReleaseIdempotencyTests(unittest.TestCase):
@@ -39,6 +38,16 @@ class PublishReleaseIdempotencyTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('plesk_publisher', ROOT / 'scripts/publish-plesk-release.py')
         self.publisher = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(self.publisher)
+
+    def _env(self, sha, run_id, run_number):
+        return {
+            'GITHUB_SHA': sha,
+            'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
+            'GITHUB_RUN_ID': run_id,
+            'GITHUB_RUN_NUMBER': str(run_number),
+            'GH_TOKEN': 'test-token',
+            'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
+        }
 
     def test_existing_matching_release_is_reused_without_create(self):
         artifact = tempfile.NamedTemporaryFile(delete=False)
@@ -48,36 +57,65 @@ class PublishReleaseIdempotencyTests(unittest.TestCase):
             sha = 'a' * 40
             digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
             tag = 'deploy-99-' + sha[:12]
-            env = {
-                'GITHUB_SHA': sha,
-                'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
-                'GITHUB_RUN_ID': '99',
-                'GITHUB_RUN_NUMBER': '7',
-                'GH_TOKEN': 'test-token',
-                'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
-            }
             existing = {
                 'tag_name': tag,
-                'target_commitish': sha,
-                'assets': [{'name': 'tctenglish-release.zip', 'browser_download_url': 'https://example.test/' + tag}],
+                'target_commitish': 'master',
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                    'browser_download_url': 'https://example.test/' + tag,
+                }],
             }
-
             create_calls = []
 
             def fake_run(args, check=True):
                 create_calls.append(list(args))
                 raise AssertionError('gh release create must not run for matching existing release')
 
-            with mock.patch.dict(os.environ, env, clear=False), \
+            with mock.patch.dict(os.environ, self._env(sha, '99', 7), clear=False), \
                     mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
-                    mock.patch.object(self.publisher, 'asset_sha256', return_value=digest), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
                     mock.patch.object(self.publisher.subprocess, 'run', side_effect=fake_run), \
-                    mock.patch.object(self.publisher, 'update_branch'), \
-                    mock.patch.object(self.publisher, 'notify_plesk'), \
-                    mock.patch.object(self.publisher, 'wait_for_deployed_commit', return_value=True):
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk', return_value='accepted'), \
+                    mock.patch.object(self.publisher, 'wait_for_deployed_release', return_value=True) as wait:
                 self.publisher.main_with_artifact(artifact.name)
 
             self.assertEqual(create_calls, [])
+            update.assert_called_once()
+            wait.assert_called_once()
+            self.assertEqual(wait.call_args.args[0], sha)
+            self.assertEqual(wait.call_args.args[1], 7)
+            self.assertEqual(wait.call_args.args[2], digest)
+        finally:
+            os.unlink(artifact.name)
+
+    def test_missing_remote_digest_without_downloadable_proof_stops_before_webhook(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'c' * 40
+            tag = 'deploy-101-' + sha[:12]
+            existing = {
+                'tag_name': tag,
+                'target_commitish': 'master',
+                'assets': [{'name': 'tctenglish-release.zip', 'state': 'uploaded'}],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '101', 9), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher, 'download_and_hash_asset', side_effect=SystemExit('Release asset URL is missing or not HTTPS; refusing to reuse.')), \
+                    mock.patch.object(self.publisher.subprocess, 'run') as create, \
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('refusing', str(error.exception).lower())
+            create.assert_not_called()
+            update.assert_not_called()
+            notify.assert_not_called()
         finally:
             os.unlink(artifact.name)
 
@@ -88,22 +126,18 @@ class PublishReleaseIdempotencyTests(unittest.TestCase):
             artifact.close()
             sha = 'b' * 40
             tag = 'deploy-100-' + sha[:12]
-            env = {
-                'GITHUB_SHA': sha,
-                'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
-                'GITHUB_RUN_ID': '100',
-                'GITHUB_RUN_NUMBER': '8',
-                'GH_TOKEN': 'test-token',
-                'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
-            }
             existing = {
                 'tag_name': tag,
                 'target_commitish': sha,
-                'assets': [{'name': 'tctenglish-release.zip'}],
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + ('0' * 64),
+                }],
             }
-            with mock.patch.dict(os.environ, env, clear=False), \
+            with mock.patch.dict(os.environ, self._env(sha, '100', 8), clear=False), \
                     mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
-                    mock.patch.object(self.publisher, 'asset_sha256', return_value='0' * 64), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
                     mock.patch.object(self.publisher.subprocess, 'run') as create, \
                     mock.patch.object(self.publisher, 'notify_plesk') as notify:
                 with self.assertRaises(SystemExit) as error:
@@ -111,6 +145,73 @@ class PublishReleaseIdempotencyTests(unittest.TestCase):
             self.assertIn('digest', str(error.exception).lower())
             create.assert_not_called()
             notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+    def test_branch_target_without_resolved_tag_sha_is_rejected(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'd' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            existing = {
+                'tag_name': 'deploy-102-' + sha[:12],
+                'target_commitish': 'master',
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                }],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '102', 10), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value='e' * 40), \
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('different commit', str(error.exception).lower())
+            update.assert_not_called()
+            notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+    def test_marker_match_requires_run_and_digest(self):
+        sha = 'f' * 40
+        digest = 'a' * 64
+        self.assertFalse(self.publisher.marker_matches({'commit': sha, 'runNumber': 1}, sha, 2, digest))
+        self.assertFalse(self.publisher.marker_matches({'commit': sha, 'runNumber': 2}, sha, 2, digest))
+        self.assertTrue(self.publisher.marker_matches(
+            {'commit': sha, 'runNumber': 2, 'sha256': digest}, sha, 2, digest))
+
+    def test_webhook_ambiguous_reconciles_instead_of_blind_retry(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = '1' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            existing = {
+                'tag_name': 'deploy-103-' + sha[:12],
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                    'browser_download_url': 'https://example.test/asset',
+                }],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '103', 11), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher, 'update_branch'), \
+                    mock.patch.object(self.publisher, 'notify_plesk', return_value='ambiguous'), \
+                    mock.patch.object(self.publisher, 'wait_for_deployed_release', return_value=False):
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            message = str(error.exception).lower()
+            self.assertIn('ambiguous', message)
+            self.assertIn('migrations', message)
         finally:
             os.unlink(artifact.name)
 
