@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import os
 from pathlib import Path
 import shutil
@@ -6,8 +7,31 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+class PleskWebhookTests(unittest.TestCase):
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location('plesk_publisher', ROOT / 'scripts/publish-plesk-release.py')
+        self.publisher = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.publisher)
+
+    def test_uses_post_for_the_plesk_webhook(self):
+        with mock.patch.object(self.publisher.urllib.request, 'urlopen') as send:
+            self.publisher.notify_plesk('https://plesk.example.test/web-hook.php?uuid=test')
+            request = send.call_args.args[0]
+            self.assertEqual(request.get_method(), 'POST')
+            self.assertEqual(json.loads(request.data), {})
+            self.assertEqual(request.get_header('Content-type'), 'application/json')
+
+    def test_webhook_failure_never_exposes_its_private_url(self):
+        marker = 'private-webhook-token'
+        with mock.patch.object(self.publisher.urllib.request, 'urlopen', side_effect=OSError(marker)):
+            with self.assertRaises(SystemExit) as error:
+                self.publisher.notify_plesk('https://plesk.example.test/?uuid=' + marker)
+            self.assertNotIn(marker, str(error.exception))
 
 
 class PublishArtifactTests(unittest.TestCase):

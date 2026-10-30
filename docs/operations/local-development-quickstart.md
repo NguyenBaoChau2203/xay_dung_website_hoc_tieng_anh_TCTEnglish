@@ -61,3 +61,18 @@ riêng nếu muốn hiển thị đầy đủ; SQL backup không chứa các fil
 
 Production không chạy migration khi khởi động; seeding mặc định tắt. Xem
 [runbook Plesk](plesk-cicd-runbook.md) để phát hành bằng pipeline.
+
+## Trạng thái máy đã thiết lập ngày 30/10/2026
+
+Local `tctenglish_dev` đang dùng ZIP backup ngày 26/09: 57 tài khoản gốc,
+36 bộ từ, 162 thẻ, đã nâng đủ bốn migration tháng 10. Có thêm một admin local
+`admin@tct.local`; mật khẩu ngẫu nhiên lưu ở `.appdata/local/access.json`.
+SSMS không cần cho database MariaDB này. Có thể dùng DBeaver/MySQL Workbench
+hoặc MariaDB client, host `127.0.0.1`, port `3307`, database `tctenglish_dev`;
+credential chỉ xem trong `.appdata/local/database.env` hoặc User Secrets.
+
+Database hosting lúc kiểm tra ngày 30/10 có 59 tài khoản và 52 bảng. Bản sao mới
+được lưu riêng ở `.appdata/local/hosting-backup-20261030.sql`, đối chiếu SHA256
+với hosting, restore vào database kiểm tra rồi nâng bốn migration thành công.
+Checksum sáu bảng được giữ nguyên và chạy lại không thay history. Bản kiểm tra
+này không thay bản local bạn đang làm việc và không thay dữ liệu trên hosting.

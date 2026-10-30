@@ -15,6 +15,8 @@ Job tạo GitHub release bất biến và cập nhật **chỉ hai file** trên 
 `codex/production-release`: `release.json`, `deploy-plesk.ps1`. Plesk Git pull
 nhánh đó vào `\private\tctenglish-release`, không kéo source master vào web root.
 Post action chạy script bên trong hosting, không cần GitHub kết nối DB qua mạng.
+Publisher gọi webhook bằng HTTPS **POST** với JSON rỗng; GET trả 404 trên Plesk
+hiện tại. Không gắn webhook trực tiếp cho mọi push source để tránh bỏ qua CI.
 
 ## Cấu hình Plesk một lần
 
@@ -82,3 +84,28 @@ xác nhận có bản backup độc lập có thể restore; script không tự 
 
 Việc Git pull/post action hoạt động hoặc CI xanh chưa tự chứng minh đã có
 restore drill production hay credentials đã rotate. Ghi riêng bằng chứng này.
+
+## Bằng chứng cấu hình ngày 30/10/2026
+
+- Plesk repo `tctenglish-release.git` đã nhận nhánh `codex/production-release`
+  vào `\private\tctenglish-release`, post action PowerShell hoạt động.
+- `preflight.json` xác nhận private state ghi được, backup client tồn tại;
+  bootstrap có `enabled=false`, không thay website/schema.
+- Probe `scripts/test-plesk-database.ps1` dùng credential sẵn trên hosting và
+  kết nối loopback, chỉ đọc metadata/SHOW GRANTS và tạo dump private. MariaDB
+  10.5.23, case=1, 52 bảng, 59 users, 5 history IDs. Có quyền DDL theo grants.
+- Dump mới `verified-backup-20261030-123354.sql`: 1.406.414 bytes,
+  SHA256 `FDC9A3838E0345A723DAA98D2C5911429FE4794CDCC9E9DFBDD445257F38E53C`.
+  Tải về qua Plesk HTTPS, đối chiếu hash, restore Docker và nâng bốn migration
+  thành công; sáu table checksums giữ nguyên, chạy lại không thay dữ liệu/history.
+- Secret `PLESK_WEBHOOK_URL` đã lưu trên GitHub. Plesk đặt Automatic cho nhánh
+  release riêng; thử POST bootstrap trả HTTP 204. Manifest vẫn disabled và
+  `PLESK_DEPLOYMENT_ENABLED=false`, nên production CD chưa được bật.
+- Full workspace tests 620/620; setup PR riêng Linux tests 563/563; CI đã build
+  và tạo Windows app, EF bundle, SQL idempotent thành công. Không trộn feature
+  chưa commit của owner vào PR setup.
+
+Còn trước lần phát hành thật: rotate DB/OAuth/SMTP credentials từng nằm trong
+public Git history, xác minh config hosting với credentials mới, và diễn tập
+release/failure recovery trên staging. Chưa chạy full release lên website thật.
+MariaDB 10.5 và .NET 9 cần kế hoạch nâng phiên bản riêng theo lịch hỗ trợ.

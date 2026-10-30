@@ -37,6 +37,16 @@ def update_branch(files):
         api('/git/refs', {'ref': 'refs/heads/' + BRANCH, 'sha': commit['sha']})
 
 
+def notify_plesk(webhook):
+    # The Plesk handler returns 404 for GET, even with a valid webhook UUID.
+    request = urllib.request.Request(webhook, data=b'{}', headers={'Content-Type': 'application/json'}, method='POST')
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            response.read(4096)
+    except Exception:
+        raise SystemExit('Plesk webhook failed; its private URL has not been logged.') from None
+
+
 def main():
     artifact = Path(sys.argv[1]).resolve()
     sha = os.environ['GITHUB_SHA']
@@ -52,11 +62,7 @@ def main():
         'runNumber': int(os.environ['GITHUB_RUN_NUMBER']), 'sha256': hashlib.file_digest(artifact.open('rb'), 'sha256').hexdigest(),
         'artifactUrl': 'https://github.com/' + REPOSITORY + '/releases/download/' + tag + '/tctenglish-release.zip'}
     update_branch({'release.json': json.dumps(manifest, indent=2), 'deploy-plesk.ps1': Path('scripts/deploy-plesk.ps1').read_text(encoding='utf-8')})
-    try:
-        with urllib.request.urlopen(webhook, timeout=30) as response:
-            response.read(4096)
-    except Exception:
-        raise SystemExit('Plesk webhook failed; its private URL has not been logged.') from None
+    notify_plesk(webhook)
     for _ in range(48):
         try:
             with urllib.request.urlopen('https://tctenglish.site/tct-release.json', timeout=10) as response:

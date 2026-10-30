@@ -1781,3 +1781,22 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Not created.
 
 **Notes**: The web guide JSON knowledge base was already a static web asset under `wwwroot`; this fix covers the separate ML.NET classifier dataset/model assets used by the admin training flow.
+
+### Local startup used remote database; Linux CI watchers/SQLite host races; Plesk GET webhook rejected — 2026-10-30
+
+**Symptom**: Local startup could access the hosting database and apply migrations/seeders. Linux CI failed from exhausted inotify instances and intermittent SQLite host initialization races. Calling the Plesk webhook with GET returned 404.
+
+**Root Cause**: Configuration contained production credentials, server autodetection and unconditional startup migration/seeding. Repeated integration hosts watched JSON/Razor/static assets; the test fixture reset or shared SQLite connection state between contexts. The Plesk handler accepts POST and rejects GET.
+
+**Solution**: Use an isolated Docker MariaDB and User Secrets; reject non-loopback development connections before network access; explicit server version and development migration opt-in, seeding opt-in, design-time factory. Keep per-host SQLite databases alive with an anchor connection and independent context connections; disable unused test watchers including asset providers. Use HTTPS POST for the Plesk webhook and conceal its private URL on failure. Production release is a gated backup/migration/artifact/readiness sequence.
+
+**Files Changed**:
+- `TCTEnglish/Infrastructure/DatabaseSettings.cs`, `DbflashcardContextFactory.cs`, `TCTEnglish/Program.cs`, `appsettings.json`, `TCTEnglish.csproj`.
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs`, `TestAssetStartupFilter.cs`, `DatabaseSettingsTests.cs`.
+- `.github/workflows/deploy.yml`, `compose.local.yml`, local/release scripts and deployment regression checks.
+
+**Verification**: Full workspace 620/620 tests passed. Setup-only Linux CI 41054422274 passed 563/563 tests, real MariaDB baseline/repeat checks, Windows self-contained publish, EF bundle and SQL generation. Deployment script checks 8/8 passed locally, including Windows PowerShell 5.1. Actual Plesk POST bootstrap returned 204 and wrote private preflight; no production schema/application release was run. A fresh 30/10 dump (59 users) was hash-verified, restored in disposable MariaDB and upgraded; six table checksums and repeat history stayed unchanged.
+
+**Commit**: Setup PR #120; feature changes remain separate in the owner's working tree.
+
+**Notes**: Removed secrets remain in public Git history until rotated at providers. Production deployment gate stays false pending rotation and full staging failure/recovery drills. SQL backups, credentials and browser profile are ignored private local files.
