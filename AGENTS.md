@@ -117,6 +117,53 @@ lives in feature controllers.
 - RBAC: use `[Authorize(Roles = "Admin")]` for admin-only, `[Authorize]` for authenticated users.
 - Return `NotFound()` for IDOR violations; never `Forbid()`.
 
+## Database, PR and Release Rules (Automatic)
+
+Apply these rules to every feature or fix even when the prompt does not mention
+the database, migrations, CI/CD or deployment.
+
+1. **Assess schema impact automatically.** When persisted EF entities,
+   `DbflashcardContext`, relationships or mappings change, use `tct-ef-migration`
+   and determine whether tables, columns, indexes, constraints or stored data
+   must change. A ViewModel-only change does not require a schema migration.
+2. **Ship schema with its feature.** If a schema change is needed, create and
+   review the EF migration using the repository-local tool. Include the migration,
+   generated Designer metadata and updated model snapshot in the **same PR** as
+   the dependent code. Do not leave migration generation to the reviewer or deploy
+   job. If a persisted-model change needs no migration, explain why in the PR.
+3. **Preserve existing data/history.** Never edit an already-applied/published
+   migration, invent/delete history rows, or copy a local database over hosting.
+   Review Up/Down, rename/backfill behavior and FK/index order; replacement FK
+   support indexes must exist before old ones are removed. DROP/destructive
+   operations still require the owner's explicit approval.
+4. **Verify before handing off a PR.** Run build/relevant tests and check for
+   pending model changes. For schema changes also test upgrade and repeat
+   execution on disposable MariaDB matching hosting; check preservation of affected
+   data. SQLite-only tests do not prove a MariaDB migration works. Record exact
+   checks, schema impact, compatibility/data risks and any blockers in the PR.
+5. **Use the team review flow.** Work on a feature branch, prepare the PR when
+   requested, and leave review/merge to the owner unless explicitly authorized
+   otherwise. CI success alone does not grant merge or production-deploy authority.
+6. **Deploy through the release pipeline.** Source releases target `master`.
+   After CI succeeds, an enabled release backs up the hosting database, applies
+   committed pending migrations, deploys the published IIS app and checks
+   readiness. Do not generate migrations during deploy, run ad hoc production
+   schema changes, or add another deploy path that bypasses this sequence.
+7. **Report CI and production separately.** Inspect the actual GitHub run and
+   `PLESK_DEPLOYMENT_ENABLED` before claiming a release happened. A false gate or
+   skipped release job means the hosting app/schema were not deployed by that run.
+   Claim success only after the release job succeeds and the public commit marker
+   and `/health/ready` confirm the expected release. Never enable the gate or
+   change Plesk deployment settings without explicit owner authorization.
+8. **Keep environments separate.** Develop/test against Docker MariaDB and local
+   User Secrets; keep credentials, SQL backups and runtime uploads out of Git/PRs.
+   Normal schema deployment preserves production user data; seed/data changes
+   need an explicit, reviewed plan.
+
+Operational details: [local setup](docs/operations/local-development-quickstart.md)
+and [Plesk release/recovery](docs/operations/plesk-cicd-runbook.md). Read the needed
+section when relevant; do not preload both runbooks on every task.
+
 ## Development Intelligence & Methodology (CodeGraph & Superpowers)
 
 ### Installed project toolkit
@@ -168,7 +215,7 @@ Whenever the user writes a request, the agent MUST automatically evaluate and in
 | **Bug Fix / Test Failure** ("bị lỗi X", "fix bug Y", "không chạy được") | CodeGraph + `tct-superpowers` debugging; `.ai/context/bug-fix-log.md` | Diagnose affected symbols with evidence before editing code. |
 | **Code Exploration / Architecture** ("luồng X hoạt động thế nào", "class Y liên kết với ai") | Tool: MCP `codegraph_explore` | Query CodeGraph directly to retrieve verbatim source and call chain. Never rely on manual grep loops. |
 | **API Endpoints** ("tạo API", "viết endpoint AJAX") | Skill: `tct-api-endpoint` | Enforce access scope, GetCurrentUserId(), CSRF and existing JSON contracts. |
-| **Database Changes** ("tạo migration", "thêm cột/bảng") | Skill: `tct-ef-migration` | Impact assessment, reversible migration review, never DROP without explicit approval. |
+| **Database Changes**, including persisted entity/DbContext/mapping changes even if the prompt omits migrations | Skill: `tct-ef-migration` | Assess schema impact; include needed migration/metadata/snapshot with the feature PR; validate on MariaDB; never DROP without explicit approval. |
 | **Verification & Handoff** (before declaring ANY task complete) | `tct-superpowers` verification | Run dotnet build and relevant tests; tooling checks when applicable. Evidence first; Vietnamese summary. |
 
 ### CodeGraph
