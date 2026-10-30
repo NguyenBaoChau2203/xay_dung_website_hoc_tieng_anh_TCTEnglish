@@ -5,13 +5,13 @@ Review: S01. Agent: Cursor Auto (Grok/Composer 2.5 allowlist).
 
 | ID | Area | Status | Command / evidence | Expected / Actual | SHA | Limit |
 | --- | --- | --- | --- | --- | --- | --- |
-| S0 | Baseline + red orchestration | Done | `MariaDbAcceptanceOrchestrationTests` | Missing/wrong sentinel/run reject with 0 writes | (pending push) | No real DELETE probe |
-| S1/S01 | Verify-before-write + bootstrap | Done | Factory `PrepareFixtureAsync` verify-first; `scripts/bootstrap-mariadb-acceptance.ps1` INSERT-only recreate on labeled container | No Ensure/UPSERT before verify; foreign purpose not overwritten | (pending push) | Acceptance DB only |
-| S2 | Provider matrix | Done | Dual-completion ×5 on `tct_acceptance_2930` + daily XP/outbox; `NotificationWorkerBatchTests` 201/450; import lifecycle; recovery | Pass 20 focused; deadlock retry added after MariaDB red | (pending push) | Isolated MariaDB 3308 |
-| S3/G01 | ASR loopback | Done | whisper-server b5454 + tiny.en HASH_OK; silence WAV cold/warm 200 | Engine E2E probe pass; WS≈164 MiB | — | Hosting ASR still owner |
-| S3/G04 | UI `:5110` | Partial pass | App + `tct_acceptance_ui5110`; browser login desk/mobile; HTTP matrix | Public/auth shell + unauth 302 matrix; no bcrypt login deep flows | — | Owner `:5100` untouched |
-| S3/G06 | Staging enabled | Blocked (exact) | `deploy-plesk.ps1` enabled against `.tmp/staging-acceptance-s4` | Throws `A database backup client is required` (no Plesk `mariadb-dump`); disabled preflight exit 0 | — | No Plesk/gate/prod |
-| S4 | Full/CI | In progress | Full suite + commit groups + push + workflow on SHA | Skip counted separately from local provider | (pending) | No merge/gate |
+| S0 | Baseline + red orchestration | Done | `MariaDbAcceptanceOrchestrationTests` | Missing/wrong sentinel/run reject with 0 writes | `b4dd98a` | No real DELETE probe |
+| S1/S01 | Verify-before-write + bootstrap | Done | Factory `PrepareFixtureAsync` verify-first; `scripts/bootstrap-mariadb-acceptance.ps1` INSERT-only recreate on labeled container | No Ensure/UPSERT before verify; foreign purpose not overwritten | `b4dd98a` | Acceptance DB only |
+| S2 | Provider matrix | Done | Dual-completion ×5 on `tct_acceptance_2930` + daily XP/outbox; `NotificationWorkerBatchTests` 201/450; import lifecycle; recovery | Local provider executed; deadlock retry in `de8c714` | `de8c714` | Isolated MariaDB 3308 |
+| S3/G01 | ASR loopback | Done | whisper-server b5454 + tiny.en HASH_OK; silence WAV cold/warm 200 | Engine E2E probe pass; WS≈164 MiB | `7575362` | Hosting ASR still owner |
+| S3/G04 | UI `:5110` | Partial pass | App + `tct_acceptance_ui5110`; browser login desk/mobile; HTTP matrix | Public/auth shell + unauth 302 matrix; no bcrypt login deep flows | `7575362` | Owner `:5100` untouched |
+| S3/G06 | Staging enabled | Blocked (exact) | `deploy-plesk.ps1` enabled against `.tmp/staging-acceptance-s4` | Throws `A database backup client is required` (no Plesk `mariadb-dump`); disabled preflight exit 0 | `7575362` | No Plesk/gate/prod |
+| S4 | Full/CI | Done local; CI below | Debug suite **718/718** with `TCT_ACCEPTANCE_*`; `py -3` scripts/tests 55 OK | Tip `7575362` (+ ledger tip after push) | `7575362` | No merge/gate |
 
 ## Product fix from S2 red
 

@@ -77,13 +77,13 @@ harness acceptance nếu cần. Không đổi connection guard của ứng dụn
 
 ## S4 — Verify, ledger và handoff
 
-- [ ] Build + focused + full suite; tests dùng layout bin chuẩn. Python/Node liên
+- [x] Build + focused + full suite; tests dùng layout bin chuẩn. Python/Node liên
   quan và Windows 5.1 guards. Tests mới phải vào suite; không sửa expected để xanh.
-- [ ] Nếu owner cho commit/push/CI: commit đúng nhóm, push feature, chạy đúng SHA;
+- [x] Nếu owner cho commit/push/CI: commit đúng nhóm, push feature, chạy đúng SHA;
   job provider phải executed, local/CI skip được đếm riêng. Không auto merge.
-- [ ] Cập nhật ledger với commit thật thay pending push; đánh CR02 đóng chỉ sau
+- [x] Cập nhật ledger với commit thật thay pending push; đánh CR02 đóng chỉ sau
   negative orchestration tests + positive provider pass. Ghi rõ G01/G03/G04/G06.
-- [ ] Kết thúc: files/commits/commands/pass/fail/skip/blocked, không dùng CI xanh
+- [x] Kết thúc: files/commits/commands/pass/fail/skip/blocked, không dùng CI xanh
   để khẳng định engine/browser/staging đã chạy. Không sửa review cũ thành xong.
 
 > G06 enabled drill attempted locally: blocked on missing Plesk `mariadb-dump`
