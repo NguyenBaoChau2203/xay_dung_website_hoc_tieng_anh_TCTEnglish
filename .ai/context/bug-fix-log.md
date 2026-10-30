@@ -41,6 +41,23 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Final acceptance round 2 CR01–CR05 — 2026-10-30
+
+**Symptom**: Writing still accepted `<5` vs `>5` and `1,000` vs `1.000`. MariaDB acceptance factory could DELETE after any env string. Dual-completion Barrier timed out before the second worker started. Publisher reused releases without tag SHA/digest proof and treated same-commit old run markers as ready.
+
+**Root Cause**: Separator collapsing and incomplete meaning-bearing allowlist; offline identity guards missing; sync Barrier misuse inside async Task.WhenAll; soft digest checks and commit-only readiness.
+
+**Solution**: Keep compare operators and distinct numeric separators; parse/validate loopback acceptance DB + sentinel before DML; async TCS rendezvous with overlap/replay/XP asserts; resolve tag SHA and require digest/bytes before webhook; readiness needs commit+run+digest with ambiguous-webhook reconcile.
+
+**Files Changed**:
+- `WritingAssessmentPolicy.cs`, MariaDB guard/factory/tests, `publish-plesk-release.py`, `deploy-plesk.ps1`, deploy tests
+
+**Verification**: Focused CR tests green; MariaDB concurrency on :3308; Debug 710 pass/1 skip; tiny.en SHA verified; ASR E2E blocked (no server binary).
+
+**Commit**: pending round2 group commits
+
+**Notes**: Does not enable production gate.
+
 ### Final acceptance REV01–REV04 — 2026-10-30
 
 **Symptom**: Writing auto-passed answers that only differed by minus/currency/percent after punctuation stripping. Public `/tct-release.json` 404'd because deploy wrote the marker outside wwwroot. Whisper HTTP responses with wrong JSON types threw or looked like no speech. Publisher reruns died recreating an existing release tag.
