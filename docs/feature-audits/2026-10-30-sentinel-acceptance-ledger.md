@@ -11,7 +11,7 @@ Review: S01. Agent: Cursor Auto (Grok/Composer 2.5 allowlist).
 | S3/G01 | ASR loopback | Done | whisper-server b5454 + tiny.en HASH_OK; silence WAV cold/warm 200 | Engine E2E probe pass; WS≈164 MiB | `7575362` | Hosting ASR still owner |
 | S3/G04 | UI `:5110` | Partial pass | App + `tct_acceptance_ui5110`; browser login desk/mobile; HTTP matrix | Public/auth shell + unauth 302 matrix; no bcrypt login deep flows | `7575362` | Owner `:5100` untouched |
 | S3/G06 | Staging enabled | Blocked (exact) | `deploy-plesk.ps1` enabled against `.tmp/staging-acceptance-s4` | Throws `A database backup client is required` (no Plesk `mariadb-dump`); disabled preflight exit 0 | `7575362` | No Plesk/gate/prod |
-| S4 | Full/CI | Done local; CI below | Debug suite **718/718** with `TCT_ACCEPTANCE_*`; `py -3` scripts/tests 55 OK | Tip `7575362` (+ ledger tip after push) | `7575362` | No merge/gate |
+| S4 | Full/CI | Done | Local Debug **718/718** (provider executed); CI run [41099068127](https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish/actions/runs/41099068127) on `dc92bcc` → **717 pass / 1 skip** (`MariaDbCompletionConcurrency` skipped without `TCT_ACCEPTANCE_MARIADB`); release/Plesk job **skipped** (gate false) | `dc92bcc` | No merge/gate/prod |
 
 ## Product fix from S2 red
 
