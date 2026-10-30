@@ -41,6 +41,27 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Final acceptance REV01–REV04 — 2026-10-30
+
+**Symptom**: Writing auto-passed answers that only differed by minus/currency/percent after punctuation stripping. Public `/tct-release.json` 404'd because deploy wrote the marker outside wwwroot. Whisper HTTP responses with wrong JSON types threw or looked like no speech. Publisher reruns died recreating an existing release tag.
+
+**Root Cause**: `NormalizeForComparison` replaced every non-letter/digit with spaces. Deploy wrote `tct-release.json` at the site content root while static files only serve wwwroot. `MapVerboseJson` called `GetString`/`TryGetDouble` without ValueKind checks and treated `{}`/error objects as silence. `publish-plesk-release.py` always ran `gh release create`.
+
+**Solution**: Keep meaning-bearing symbols and decimal separators; map Unicode minus to ASCII. Write/promote the marker under wwwroot after readiness, with no-store headers via static-file prepare + narrow endpoint. Validate ASR schema into `invalid_schema`. Reuse matching release tags by SHA/digest without clobber.
+
+**Files Changed**:
+- `TCTEnglish/Services/Writing/WritingAssessmentPolicy.cs` — meaning-preserving normalize
+- `TCTEnglish/Services/Speaking/WhisperHttpTranscriber.cs` — schema validation
+- `TCTEnglish/Program.cs` — marker Cache-Control path
+- `scripts/deploy-plesk.ps1` — wwwroot pending→promote marker
+- `scripts/publish-plesk-release.py` — idempotent release reuse
+
+**Verification**: Debug suite 695/695; focused REV regressions; MariaDB dual-completion on isolated container port 3308; Python deploy/idempotency tests; Node behavior tests. Real ASR engine, browser 25-view matrix, and production release remain Not run/Blocked.
+
+**Commit**: pending feature-branch group commits
+
+**Notes**: Does not authorize Plesk gate enablement or production deploy.
+
 ### Learning reliability round 2 — RR01–RR07 and test fixture — 2026-10-30
 
 **Symptom**: A failed speaking import could not be submitted again because the unique fingerprint rejected a new row. One duplicate notification in a batch dropped the rest and the job was still marked succeeded. Changing a speaking sentence left the PCM recorder running. ASR timeout started only after a queue slot was acquired. Touching an old streak record was announced as a new record. Writing cloud feedback could run outside the 3-second optional budget. The AI conflict test and SQLite factory could hang or fail during init/dispose.
