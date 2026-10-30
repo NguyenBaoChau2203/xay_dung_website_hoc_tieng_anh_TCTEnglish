@@ -1,17 +1,36 @@
-# UI acceptance matrix (G04) — round 2
+# UI acceptance matrix (G04) — sentinel pass
 
-Source views: AU01–06, CO01, SP01–03, WR01–03, GO01, AI01–02, AD01–09.
+Host: `http://127.0.0.1:5110` against MariaDB `tct_acceptance_ui5110` (sentinel
+`s3_ui_5110`) on labeled acceptance container port 3308. Owner `:5100` left running.
 
-| ID | Role | URL | Desktop 1366x768 | Mobile 390x844 | Keyboard | Status |
+Browser: Cursor IDE browser — Login desktop 1366×768 + mobile 390×844 screenshots
+under `.tmp/ui-acceptance-5110/screenshots/`; Tab key exercised on login form.
+HTTP matrix JSON: `.tmp/ui-acceptance-5110/http-matrix-final.json`.
+
+| ID | Role | URL | Desktop | Mobile | Keyboard | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| AU01–06 | Auth | Account routes | Not run | Not run | Not run | Acceptance host :5110 not started |
-| CO01 | Student | Dashboard | Not run | Not run | Not run | Same |
-| SP01–03 | Speaking | Practice | Not run | Not run | Not run | ASR server binary also blocked |
-| WR01–03 | Writing | Practice | API only | Not run | Not run | CR01 API/persistence covered |
-| GO01 | Goals | Goals | Not run | Not run | Not run | |
-| AI01–02 | AI | Chat | Not run | Not run | Not run | |
-| AD01–09 | Admin | Admin | Not run | Not run | Not run | |
+| LAND | Public | `/` | 200 | — | — | Pass |
+| AU01 | Auth | `/Account/Login` | 200 + screenshot | 200 + screenshot | Tab OK | Pass |
+| AU02 | Auth | `/Account/Register` | 200 | — | — | Pass |
+| AU03 | Auth | `/Account/ForgotPassword` | 200 | — | — | Pass |
+| AU04 | Auth | `/Account/ResetPassword` | 200 | — | — | Pass |
+| AU05 | Auth | `/Account/Profile` | 302 login | — | — | Expected unauth |
+| CO01 | Student | `/Home/Index` | 302 login | — | — | Expected unauth |
+| CL01 | Student | `/Home/Class` | 302 | — | — | Expected unauth |
+| FO01 | Student | `/Home/Folder` | 302 | — | — | Expected unauth |
+| VO02 | Student | `/Vocabulary/Index` | 302 | — | — | Expected unauth |
+| SP01–02 | Speaking | `/Speaking*` | 302 | — | — | Expected unauth (ASR loopback ready) |
+| WR01–02 | Writing | `/Home/Writing*` | 200 | snapshot | — | Pass (public shell) |
+| WR03 | Writing | `/Home/Writing/Practice` | 302 | — | — | Expected unauth |
+| GO01 | Goals | `/Goals` | 302 | — | — | Expected unauth |
+| LS01 | Listening | `/Home/Listening` | 200 | — | — | Pass |
+| RD01 | Reading | `/Home/Reading` | 302 | — | — | Expected unauth |
+| GR01 | Grammar | `/Home/Grammar` | 200 | — | — | Pass |
+| NT02 | Notifications | `/Notification/Index` | 302 | — | — | Expected unauth |
+| AD01 | Admin | `/Admin` | 302 | — | — | Expected unauth |
+| PR01/CT01 | Public | Privacy/Contact | 200 | — | — | Pass |
+| HZ01 | Ops | `/health/ready` | 200 | — | — | Pass |
 
-**Blocker detail:** Round 2 prioritized CR01–CR05 + provider concurrency. Spinning
-`:5110` with a separate synthetic DB remains an open setup step (allowed; does not
-require stopping owner `:5100`). No browser automation run was completed.
+**Limits:** Seed users use test hash passwords (not interactive login). Authenticated
+desktop/mobile deep flows for Speaking/Goals/Admin remain open without a bcrypt
+acceptance account. `/Set` bare route 404 (legacy `/Home` routes used elsewhere).
