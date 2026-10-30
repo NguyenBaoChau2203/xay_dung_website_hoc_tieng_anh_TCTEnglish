@@ -16,6 +16,8 @@ public sealed class WritingNormalizationPersistenceIntegrationTests
     [InlineData("The temperature is -5 degrees.", "The temperature is 5 degrees.")]
     [InlineData("I paid $50.", "I paid €50.")]
     [InlineData("The discount is 5%.", "The discount is 5.")]
+    [InlineData("The value is <5.", "The value is >5.")]
+    [InlineData("The distance is 1,000 meters.", "The distance is 1.000 meters.")]
     public async Task MeaningChangingNormalizedAnswers_DoNotPassOrGrantCompletionCredit(
         string reference,
         string answer)

@@ -150,18 +150,19 @@ public static class WritingAssessmentPolicy
                 continue;
             }
 
-            // Keep decimal separators that sit between digits (2.5 / 2,5).
+            // Keep numeric separators between digits WITHOUT collapsing locale forms.
+            // English 1,000 must not equal 1.000; unapproved 1,5 vs 1.5 stays distinct.
             if ((character == '.' || character == ',')
                 && index > 0
                 && index + 1 < collapsed.Length
                 && char.IsDigit(collapsed[index - 1])
                 && char.IsDigit(collapsed[index + 1]))
             {
-                buffer.Append('.');
+                buffer.Append(character);
                 continue;
             }
 
-            // Decorative punctuation only — never strip currency, signs, or percent.
+            // Decorative punctuation only — never strip currency, signs, compare ops, or percent.
             buffer.Append(' ');
         }
 
@@ -171,7 +172,9 @@ public static class WritingAssessmentPolicy
     private static bool IsMeaningBearingSymbol(char character)
     {
         return character is '$' or '€' or '£' or '¥' or '%' or '+' or '-' or '−' or '±'
-            || char.GetUnicodeCategory(character) == System.Globalization.UnicodeCategory.CurrencySymbol;
+            or '<' or '>' or '=' or '≤' or '≥' or '≠' or '/' or ':' or '*'
+            || char.GetUnicodeCategory(character) == System.Globalization.UnicodeCategory.CurrencySymbol
+            || char.GetUnicodeCategory(character) == System.Globalization.UnicodeCategory.MathSymbol;
     }
 
     private static List<string> ExtractTokens(string value)

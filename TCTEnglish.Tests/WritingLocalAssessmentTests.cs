@@ -76,6 +76,11 @@ public sealed class WritingLocalAssessmentTests
     [InlineData("The discount is 5%.", "The discount is 5.")]
     [InlineData("Add 2.5 grams.", "Add 25 grams.")]
     [InlineData("I like tea.", "I do not like tea.")]
+    [InlineData("The value is <5.", "The value is >5.")]
+    [InlineData("The value is ≤5.", "The value is ≥5.")]
+    [InlineData("The distance is 1,000 meters.", "The distance is 1.000 meters.")]
+    [InlineData("Mix 1,5 liters.", "Mix 1.5 liters.")]
+    [InlineData("Ratio 3:1.", "Ratio 3/1.")]
     public void MeaningBearingNumberOrSignChanges_AreNotAccepted(string reference, string answer)
     {
         var decision = WritingAssessmentPolicy.Assess(reference, answer);

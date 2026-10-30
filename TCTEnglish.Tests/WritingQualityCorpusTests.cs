@@ -59,7 +59,8 @@ public sealed class WritingQualityCorpusTests
         data.Add("The temperature is −5 degrees.", "The temperature is −5 degrees.", "Accepted");
         data.Add("The temperature is −5 degrees.", "The temperature is -5 degrees.", "Accepted");
         data.Add("Pay ¥100.", "Pay ¥100", "Accepted");
-        data.Add("Mix 1,5 liters.", "Mix 1.5 liters.", "Accepted");
+        // Unapproved locale mapping: do not treat 1,5 as 1.5 (would also equate 1,000/1.000).
+        data.Add("Mix 1,5 liters.", "Mix 1.5 liters.", "NeedsReview");
         data.Add("Score +5 points.", "Score +5 points", "Accepted");
 
         return data;
