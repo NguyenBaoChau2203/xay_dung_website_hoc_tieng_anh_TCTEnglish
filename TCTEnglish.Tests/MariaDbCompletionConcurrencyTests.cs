@@ -20,10 +20,11 @@ public sealed class MariaDbCompletionConcurrencyTests
     public async Task DualSpeakingCompletion_SameUserContent_AppliesOneCredit()
     {
         var connectionString = Environment.GetEnvironmentVariable("TCT_ACCEPTANCE_MARIADB")!;
+        var runId = Environment.GetEnvironmentVariable("TCT_ACCEPTANCE_RUN_ID");
 
-        for (var attempt = 0; attempt < 3; attempt++)
+        for (var attempt = 0; attempt < 5; attempt++)
         {
-            await using var factory = new MariaDbAcceptanceFactory(connectionString);
+            await using var factory = new MariaDbAcceptanceFactory(connectionString, runId);
             await factory.InitializeAsync();
 
             var ready = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -96,10 +97,20 @@ public sealed class MariaDbCompletionConcurrencyTests
                     .Where(item => item.UserId == TestDataIds.UserId && item.Feature == "Speaking")
                     .SumAsync(item => item.XpAwarded));
 
+            // User/daily activity must land once (speaking XP + optional single streak XP).
+            var daily = await db.UserDailyActivities.AsNoTracking()
+                .SingleAsync(item => item.UserId == TestDataIds.UserId);
+            Assert.Equal(applied[0].XpEarned + daily.StreakXpAwarded, daily.XpEarned);
+            Assert.True(daily.StreakXpAwarded is 0 or 10);
+            Assert.Equal(1, await db.UserDailyActivities.CountAsync(item => item.UserId == TestDataIds.UserId));
+
             var outbox = await db.LearningNotificationOutboxEvents.AsNoTracking()
                 .Where(item => item.UserId == TestDataIds.UserId)
                 .ToListAsync();
             Assert.NotEmpty(outbox);
+            Assert.Equal(
+                outbox.Count,
+                outbox.Select(item => item.NotificationEventKey).Distinct().Count());
         }
     }
 }

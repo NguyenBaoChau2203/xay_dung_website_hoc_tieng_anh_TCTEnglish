@@ -9,17 +9,19 @@ namespace TCTEnglish.Tests.Infrastructure;
 
 /// <summary>
 /// Isolated MariaDB-backed factory for G03 acceptance. Requires a loopback
-/// acceptance database with sentinel identity; never targets dev/hosting DBs.
+/// acceptance database whose sentinel was bootstrapped out-of-band for this run.
 /// </summary>
 public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 {
     private readonly string _connectionString;
     private readonly MariaDbAcceptanceConnectionGuard.ParsedTarget _target;
+    private readonly string _runId;
 
-    public MariaDbAcceptanceFactory(string connectionString)
+    public MariaDbAcceptanceFactory(string connectionString, string? runId = null)
         : base(null)
     {
         _target = MariaDbAcceptanceConnectionGuard.ParseAndValidateOffline(connectionString);
+        _runId = MariaDbAcceptanceConnectionGuard.RequireRunId(runId);
         _connectionString = connectionString;
     }
 
@@ -47,31 +49,32 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         var connection = context.Database.GetDbConnection();
         await connection.OpenAsync();
 
-        await MariaDbAcceptanceConnectionGuard.EnsureSentinelAsync(connection);
-        await MariaDbAcceptanceConnectionGuard.VerifyOnlineIdentityAsync(connection, _target.Database);
-
-        var foreignKeysDisabled = false;
-        try
-        {
-            await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=0;");
-            foreignKeysDisabled = true;
-
-            // Truncate only known acceptance tables; any failure fails the run.
-            foreach (var table in AcceptanceTables)
+        await MariaDbAcceptanceConnectionGuard.PrepareFixtureAsync(
+            connection,
+            _target.Database,
+            _runId,
+            async cancellationToken =>
             {
-                await context.Database.ExecuteSqlRawAsync($"DELETE FROM `{table}`;");
-            }
-        }
-        finally
-        {
-            if (foreignKeysDisabled)
-            {
-                await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=1;");
-            }
-        }
+                var foreignKeysDisabled = false;
+                try
+                {
+                    await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=0;", cancellationToken);
+                    foreignKeysDisabled = true;
+                    foreach (var table in AcceptanceTables)
+                    {
+                        await context.Database.ExecuteSqlRawAsync($"DELETE FROM `{table}`;", cancellationToken);
+                    }
+                }
+                finally
+                {
+                    if (foreignKeysDisabled)
+                    {
+                        await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=1;", cancellationToken);
+                    }
+                }
 
-        await MariaDbAcceptanceConnectionGuard.VerifyOnlineIdentityAsync(connection, _target.Database);
-        await SeedAsync(context);
+                await SeedAsync(context);
+            });
     }
 
     private static readonly string[] AcceptanceTables =
@@ -83,6 +86,7 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         "UserWritingExerciseProgresses",
         "UserWritingSentenceProgresses",
         "UserSpeakingVideoCompletions",
+        "UserDailyActivities",
         "SpeakingSentences",
         "SpeakingVideos",
         "SpeakingPlaylists",
