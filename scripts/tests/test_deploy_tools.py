@@ -34,6 +34,87 @@ class PleskWebhookTests(unittest.TestCase):
             self.assertNotIn(marker, str(error.exception))
 
 
+class PublishReleaseIdempotencyTests(unittest.TestCase):
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location('plesk_publisher', ROOT / 'scripts/publish-plesk-release.py')
+        self.publisher = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.publisher)
+
+    def test_existing_matching_release_is_reused_without_create(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'a' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            tag = 'deploy-99-' + sha[:12]
+            env = {
+                'GITHUB_SHA': sha,
+                'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
+                'GITHUB_RUN_ID': '99',
+                'GITHUB_RUN_NUMBER': '7',
+                'GH_TOKEN': 'test-token',
+                'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
+            }
+            existing = {
+                'tag_name': tag,
+                'target_commitish': sha,
+                'assets': [{'name': 'tctenglish-release.zip', 'browser_download_url': 'https://example.test/' + tag}],
+            }
+
+            create_calls = []
+
+            def fake_run(args, check=True):
+                create_calls.append(list(args))
+                raise AssertionError('gh release create must not run for matching existing release')
+
+            with mock.patch.dict(os.environ, env, clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'asset_sha256', return_value=digest), \
+                    mock.patch.object(self.publisher.subprocess, 'run', side_effect=fake_run), \
+                    mock.patch.object(self.publisher, 'update_branch'), \
+                    mock.patch.object(self.publisher, 'notify_plesk'), \
+                    mock.patch.object(self.publisher, 'wait_for_deployed_commit', return_value=True):
+                self.publisher.main_with_artifact(artifact.name)
+
+            self.assertEqual(create_calls, [])
+        finally:
+            os.unlink(artifact.name)
+
+    def test_existing_release_digest_mismatch_stops_without_clobber(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'b' * 40
+            tag = 'deploy-100-' + sha[:12]
+            env = {
+                'GITHUB_SHA': sha,
+                'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
+                'GITHUB_RUN_ID': '100',
+                'GITHUB_RUN_NUMBER': '8',
+                'GH_TOKEN': 'test-token',
+                'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
+            }
+            existing = {
+                'tag_name': tag,
+                'target_commitish': sha,
+                'assets': [{'name': 'tctenglish-release.zip'}],
+            }
+            with mock.patch.dict(os.environ, env, clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'asset_sha256', return_value='0' * 64), \
+                    mock.patch.object(self.publisher.subprocess, 'run') as create, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('digest', str(error.exception).lower())
+            create.assert_not_called()
+            notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+
 class PublishArtifactTests(unittest.TestCase):
     def prepare(self, root):
         return subprocess.run([sys.executable, str(ROOT / 'scripts/prepare-publish.py'), str(root)], capture_output=True, text=True)

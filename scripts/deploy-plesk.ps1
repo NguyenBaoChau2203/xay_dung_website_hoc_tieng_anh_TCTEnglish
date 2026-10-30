@@ -157,7 +157,12 @@ try {
 
     $filesChanged = $true
     Copy-Tree $application $SiteRoot
-    Write-Json (Join-Path $SiteRoot 'tct-release.json') @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
+    $wwwRoot = Assert-ChildPath $SiteRoot (Join-Path $SiteRoot 'wwwroot')
+    [IO.Directory]::CreateDirectory($wwwRoot) | Out-Null
+    $pendingMarkerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.pending.json')
+    $markerPath = Assert-ChildPath $wwwRoot (Join-Path $wwwRoot 'tct-release.json')
+    # Pending marker is not the public success document; promote only after readiness.
+    Write-Json $pendingMarkerPath @{ commit=$manifest.commit; runNumber=$manifest.runNumber }
     Remove-Item -LiteralPath $offlinePath
     $ready = $false
     for ($attempt=0; $attempt -lt 24; $attempt++) {
@@ -168,6 +173,8 @@ try {
         Start-Sleep -Seconds 5
     }
     if (-not $ready) { throw 'Application readiness failed after release.' }
+    [IO.File]::Copy($pendingMarkerPath, $markerPath, $true)
+    [IO.File]::Delete($pendingMarkerPath)
     Write-Json $statePath @{ commit=$manifest.commit; runNumber=$manifest.runNumber; completedAtUtc=[DateTime]::UtcNow.ToString('O'); backupDirectory=$runRoot }
     [IO.File]::Delete($optionsPath)
     Write-Output ('Release completed: ' + $manifest.commit)

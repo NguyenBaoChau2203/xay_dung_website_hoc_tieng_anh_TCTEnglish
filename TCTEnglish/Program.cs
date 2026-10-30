@@ -232,7 +232,20 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = static context =>
+    {
+        if (!string.Equals(context.File.Name, "tct-release.json", StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        context.Context.Response.ContentType = "application/json; charset=utf-8";
+        context.Context.Response.Headers.CacheControl = "no-store, no-cache, max-age=0";
+        context.Context.Response.Headers.Pragma = "no-cache";
+    }
+});
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -252,6 +265,25 @@ app.MapGet("/health/ready", async (DbflashcardContext db, CancellationToken canc
     {
         return Results.StatusCode(StatusCodes.Status503ServiceUnavailable);
     }
+});
+
+// Narrow JSON marker endpoint when the wwwroot file is absent or static files skipped.
+app.MapGet("/tct-release.json", async (HttpContext http, IWebHostEnvironment env) =>
+{
+    var markerPath = Path.GetFullPath(Path.Combine(env.WebRootPath, "tct-release.json"));
+    var webRoot = Path.GetFullPath(env.WebRootPath)
+        .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+        + Path.DirectorySeparatorChar;
+    if (!markerPath.StartsWith(webRoot, StringComparison.OrdinalIgnoreCase)
+        || !System.IO.File.Exists(markerPath))
+    {
+        return Results.NotFound();
+    }
+
+    var bytes = await System.IO.File.ReadAllBytesAsync(markerPath);
+    http.Response.Headers.CacheControl = "no-store, no-cache, max-age=0";
+    http.Response.Headers.Pragma = "no-cache";
+    return Results.Bytes(bytes, "application/json; charset=utf-8");
 });
 
 app.MapControllerRoute(
