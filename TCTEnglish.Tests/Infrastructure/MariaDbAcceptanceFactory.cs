@@ -8,16 +8,18 @@ using TCTVocabulary.Models;
 namespace TCTEnglish.Tests.Infrastructure;
 
 /// <summary>
-/// Isolated MariaDB-backed factory for G03 acceptance. Does not reuse the local
-/// Docker volume or hosting database. Requires TCT_ACCEPTANCE_MARIADB.
+/// Isolated MariaDB-backed factory for G03 acceptance. Requires a loopback
+/// acceptance database with sentinel identity; never targets dev/hosting DBs.
 /// </summary>
 public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 {
     private readonly string _connectionString;
+    private readonly MariaDbAcceptanceConnectionGuard.ParsedTarget _target;
 
     public MariaDbAcceptanceFactory(string connectionString)
         : base(null)
     {
+        _target = MariaDbAcceptanceConnectionGuard.ParseAndValidateOffline(connectionString);
         _connectionString = connectionString;
     }
 
@@ -42,42 +44,57 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
     {
         using var scope = Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=0;");
-        foreach (var table in new[]
-                 {
-                     "LearningCompletionCredits",
-                     "LearningNotificationOutbox",
-                     "UserSpeakingProgresses",
-                     "UserWritingAttempts",
-                     "UserWritingExerciseProgresses",
-                     "UserWritingSentenceProgresses",
-                     "UserSpeakingVideoCompletions",
-                     "SpeakingSentences",
-                     "SpeakingVideos",
-                     "SpeakingPlaylists",
-                     "WritingExerciseSentences",
-                     "WritingExercises",
-                     "ClassMessages",
-                     "ClassFolders",
-                     "ClassMembers",
-                     "Classes",
-                     "Cards",
-                     "Sets",
-                     "Folders",
-                     "Users"
-                 })
+        var connection = context.Database.GetDbConnection();
+        await connection.OpenAsync();
+
+        await MariaDbAcceptanceConnectionGuard.EnsureSentinelAsync(connection);
+        await MariaDbAcceptanceConnectionGuard.VerifyOnlineIdentityAsync(connection, _target.Database);
+
+        var foreignKeysDisabled = false;
+        try
         {
-            try
+            await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=0;");
+            foreignKeysDisabled = true;
+
+            // Truncate only known acceptance tables; any failure fails the run.
+            foreach (var table in AcceptanceTables)
             {
                 await context.Database.ExecuteSqlRawAsync($"DELETE FROM `{table}`;");
             }
-            catch (Exception)
+        }
+        finally
+        {
+            if (foreignKeysDisabled)
             {
-                // Table may not exist on a fresh partial schema; migrations should have created it.
+                await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=1;");
             }
         }
 
-        await context.Database.ExecuteSqlRawAsync("SET FOREIGN_KEY_CHECKS=1;");
+        await MariaDbAcceptanceConnectionGuard.VerifyOnlineIdentityAsync(connection, _target.Database);
         await SeedAsync(context);
     }
+
+    private static readonly string[] AcceptanceTables =
+    [
+        "LearningCompletionCredits",
+        "LearningNotificationOutbox",
+        "UserSpeakingProgresses",
+        "UserWritingAttempts",
+        "UserWritingExerciseProgresses",
+        "UserWritingSentenceProgresses",
+        "UserSpeakingVideoCompletions",
+        "SpeakingSentences",
+        "SpeakingVideos",
+        "SpeakingPlaylists",
+        "WritingExerciseSentences",
+        "WritingExercises",
+        "ClassMessages",
+        "ClassFolders",
+        "ClassMembers",
+        "Classes",
+        "Cards",
+        "Sets",
+        "Folders",
+        "Users"
+    ];
 }
