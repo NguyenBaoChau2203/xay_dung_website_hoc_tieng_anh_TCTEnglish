@@ -62,8 +62,8 @@ jobs:
           dotnet publish TCTEnglish/TCTEnglish.csproj -c Release -r win-x64 --self-contained true -o release/app
           python3 scripts/prepare-publish.py release/app
           mkdir -p release/migration
-          dotnet ef migrations bundle --project TCTEnglish --startup-project TCTEnglish -c Release --self-contained --target-runtime win-x64 --output release/migration/efbundle.exe
-          dotnet ef migrations script --project TCTEnglish --startup-project TCTEnglish -c Release --no-build --idempotent --output release/migration/migrations.sql
+          dotnet ef migrations bundle --project TCTEnglish --startup-project TCTEnglish --configuration Release --self-contained --target-runtime win-x64 --output release/migration/efbundle.exe
+          dotnet ef migrations script --project TCTEnglish --startup-project TCTEnglish --configuration Release --no-build --idempotent --output release/migration/migrations.sql
           cd release
           zip -qr ../tctenglish-release.zip app migration
       - name: Upload release artifact without credentials
