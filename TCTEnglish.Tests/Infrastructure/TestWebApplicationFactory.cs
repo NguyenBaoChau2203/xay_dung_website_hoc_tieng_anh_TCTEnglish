@@ -118,7 +118,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         });
     }
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         using var scope = Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -162,7 +162,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         }
     }
 
-    private static async Task SeedAsync(DbflashcardContext context)
+    protected static async Task SeedAsync(DbflashcardContext context)
     {
         var standardUser = new User
         {
