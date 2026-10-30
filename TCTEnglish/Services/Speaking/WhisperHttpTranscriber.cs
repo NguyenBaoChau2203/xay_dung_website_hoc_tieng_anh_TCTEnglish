@@ -143,25 +143,65 @@ public sealed class WhisperHttpTranscriber : ISpeechTranscriber
 
     private SpeechTranscriptionResult MapVerboseJson(JsonElement root)
     {
-        var text = root.TryGetProperty("text", out var textProp)
-            ? textProp.GetString() ?? string.Empty
-            : string.Empty;
+        if (root.ValueKind != JsonValueKind.Object)
+        {
+            return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+        }
+
+        // Error payloads and non-transcript objects must not look like silence.
+        if (root.TryGetProperty("error", out _))
+        {
+            return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+        }
+
+        var hasText = root.TryGetProperty("text", out var textProp);
+        var hasSegments = root.TryGetProperty("segments", out var segmentsProp);
+        if (!hasText && !hasSegments)
+        {
+            return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+        }
+
+        string? text = null;
+        if (hasText)
+        {
+            if (textProp.ValueKind == JsonValueKind.String)
+            {
+                text = textProp.GetString() ?? string.Empty;
+            }
+            else
+            {
+                return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+            }
+        }
 
         var segments = new List<SpeechSegment>();
-        if (root.TryGetProperty("segments", out var segmentsProp) && segmentsProp.ValueKind == JsonValueKind.Array)
+        if (hasSegments)
         {
+            if (segmentsProp.ValueKind != JsonValueKind.Array)
+            {
+                return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+            }
+
             foreach (var item in segmentsProp.EnumerateArray())
             {
-                var segText = item.TryGetProperty("text", out var st) ? st.GetString() ?? string.Empty : string.Empty;
-                var start = item.TryGetProperty("start", out var ss) && ss.TryGetDouble(out var startVal) ? startVal : 0d;
-                var end = item.TryGetProperty("end", out var es) && es.TryGetDouble(out var endVal) ? endVal : start;
-                segments.Add(new SpeechSegment
+                if (item.ValueKind != JsonValueKind.Object)
                 {
-                    StartSeconds = start,
-                    EndSeconds = end,
-                    Text = segText.Trim()
-                });
+                    return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+                }
+
+                if (!TryReadSegment(item, out var segment))
+                {
+                    return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
+                }
+
+                segments.Add(segment);
             }
+        }
+
+        // Silence requires an explicit string text field. Segment-only empty payloads are invalid.
+        if (text is null && segments.Count == 0)
+        {
+            return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
         }
 
         var collapsed = Collapse(text);
@@ -194,6 +234,69 @@ public sealed class WhisperHttpTranscriber : ISpeechTranscriber
             EngineName = "whisper.cpp",
             ModelIdentity = _options.ModelIdentity
         };
+    }
+
+    private static bool TryReadSegment(JsonElement item, out SpeechSegment segment)
+    {
+        segment = default!;
+
+        string segText;
+        if (!item.TryGetProperty("text", out var textNode))
+        {
+            segText = string.Empty;
+        }
+        else if (textNode.ValueKind == JsonValueKind.String)
+        {
+            segText = textNode.GetString() ?? string.Empty;
+        }
+        else if (textNode.ValueKind == JsonValueKind.Null)
+        {
+            segText = string.Empty;
+        }
+        else
+        {
+            return false;
+        }
+
+        var start = 0d;
+        if (item.TryGetProperty("start", out var startNode)
+            && !TryReadFiniteNumber(startNode, out start))
+        {
+            return false;
+        }
+
+        var end = start;
+        if (item.TryGetProperty("end", out var endNode)
+            && !TryReadFiniteNumber(endNode, out end))
+        {
+            return false;
+        }
+
+        if (end < start)
+        {
+            return false;
+        }
+
+        segment = new SpeechSegment
+        {
+            StartSeconds = start,
+            EndSeconds = end,
+            Text = segText.Trim()
+        };
+        return true;
+    }
+
+    private static bool TryReadFiniteNumber(JsonElement node, out double value)
+    {
+        value = 0d;
+        if (node.ValueKind != JsonValueKind.Number)
+        {
+            return false;
+        }
+
+        return node.TryGetDouble(out value)
+            && !double.IsNaN(value)
+            && !double.IsInfinity(value);
     }
 
     private static string Collapse(string? value)
