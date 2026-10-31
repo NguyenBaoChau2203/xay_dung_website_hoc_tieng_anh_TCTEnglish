@@ -17,8 +17,11 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
     private readonly MariaDbAcceptanceConnectionGuard.ParsedTarget _target;
     private readonly string _runId;
 
-    public MariaDbAcceptanceFactory(string connectionString, string? runId = null)
-        : base(null)
+    public MariaDbAcceptanceFactory(
+        string connectionString,
+        string? runId = null,
+        Action<IServiceCollection>? configureTestServices = null)
+        : base(configureTestServices)
     {
         _target = MariaDbAcceptanceConnectionGuard.ParseAndValidateOffline(connectionString);
         _runId = MariaDbAcceptanceConnectionGuard.RequireRunId(runId);
@@ -112,6 +115,8 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
     [
         "LearningCompletionCredits",
         "LearningNotificationOutbox",
+        "Notifications",
+        "NotificationJobRuns",
         "UserSpeakingProgresses",
         "UserWritingAttempts",
         "UserWritingExerciseProgresses",

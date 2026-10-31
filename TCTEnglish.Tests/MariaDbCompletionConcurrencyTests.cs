@@ -13,6 +13,7 @@ namespace TCTEnglish.Tests;
 /// G03 MariaDB concurrency. Requires TCT_ACCEPTANCE_MARIADB against an isolated
 /// acceptance DB (guarded). Does not reuse tctenglish-local-mariadb-data.
 /// </summary>
+[Collection("MariaDbAcceptance")]
 [Trait("Category", "MariaDbAcceptance")]
 public sealed class MariaDbCompletionConcurrencyTests
 {
