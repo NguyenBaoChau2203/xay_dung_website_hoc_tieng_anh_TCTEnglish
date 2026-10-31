@@ -50,6 +50,32 @@ public sealed class WhisperHttpTranscriberTests
         Assert.Equal("no_speech", result.ErrorCode);
     }
 
+    [Theory]
+    [InlineData("{\"text\":\"[BLANK_AUDIO]\",\"segments\":[],\"no_speech_prob\":0.905}")]
+    [InlineData("{\"text\":\" [BLANK_AUDIO] \",\"segments\":[]}")]
+    [InlineData("{\"text\":\"\",\"segments\":[{\"start\":0,\"end\":1,\"text\":\"[BLANK_AUDIO]\"}]}")]
+    [InlineData("{\"text\":\"[BLANK_AUDIO]\",\"segments\":[{\"start\":0,\"end\":1,\"text\":\"[BLANK_AUDIO]\"}]}")]
+    public async Task EngineBlankAudioMarkerOnly_IsNoSpeech(string body)
+    {
+        var result = await TranscribeBodyAsync(body);
+
+        Assert.Equal(SpeechTranscriptionStatus.NoSpeech, result.Status);
+        Assert.Equal("no_speech", result.ErrorCode);
+        Assert.Equal(string.Empty, result.Transcript);
+        Assert.DoesNotContain("BLANK_AUDIO", result.Transcript, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task MixedSpeechAndBlankAudioMarker_KeepsSpeechOk()
+    {
+        var result = await TranscribeBodyAsync(
+            "{\"text\":\"Hello [BLANK_AUDIO]\",\"segments\":[{\"start\":0,\"end\":0.5,\"text\":\"Hello\"},{\"start\":0.5,\"end\":1,\"text\":\"[BLANK_AUDIO]\"}]}");
+
+        Assert.Equal(SpeechTranscriptionStatus.Ok, result.Status);
+        Assert.Contains("Hello", result.Transcript, StringComparison.Ordinal);
+        Assert.DoesNotContain("BLANK_AUDIO", result.Transcript, StringComparison.OrdinalIgnoreCase);
+    }
+
     [Fact]
     public async Task ValidText_IsOk()
     {

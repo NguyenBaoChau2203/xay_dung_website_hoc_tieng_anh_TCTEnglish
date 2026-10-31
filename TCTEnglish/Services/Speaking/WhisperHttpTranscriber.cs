@@ -204,37 +204,43 @@ public sealed class WhisperHttpTranscriber : ISpeechTranscriber
             return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.");
         }
 
-        var collapsed = Collapse(text);
+        var collapsed = CollapseSpeech(text);
         if (string.IsNullOrWhiteSpace(collapsed) && segments.Count == 0)
         {
-            return new SpeechTranscriptionResult
-            {
-                Status = SpeechTranscriptionStatus.NoSpeech,
-                Transcript = string.Empty,
-                Segments = segments,
-                EngineName = "whisper.cpp",
-                ModelIdentity = _options.ModelIdentity,
-                ErrorCode = "no_speech",
-                Message = "Chưa nhận được lời nói."
-            };
+            return NoSpeechResult(segments);
         }
 
         if (string.IsNullOrWhiteSpace(collapsed))
         {
-            collapsed = Collapse(string.Join(' ', segments.Select(s => s.Text)));
+            collapsed = CollapseSpeech(string.Join(' ', segments.Select(s => s.Text)));
+        }
+
+        if (string.IsNullOrWhiteSpace(collapsed))
+        {
+            return NoSpeechResult(segments);
         }
 
         return new SpeechTranscriptionResult
         {
-            Status = string.IsNullOrWhiteSpace(collapsed)
-                ? SpeechTranscriptionStatus.NoSpeech
-                : SpeechTranscriptionStatus.Ok,
+            Status = SpeechTranscriptionStatus.Ok,
             Transcript = collapsed,
             Segments = segments,
             EngineName = "whisper.cpp",
             ModelIdentity = _options.ModelIdentity
         };
     }
+
+    private SpeechTranscriptionResult NoSpeechResult(IReadOnlyList<SpeechSegment> segments)
+        => new()
+        {
+            Status = SpeechTranscriptionStatus.NoSpeech,
+            Transcript = string.Empty,
+            Segments = segments,
+            EngineName = "whisper.cpp",
+            ModelIdentity = _options.ModelIdentity,
+            ErrorCode = "no_speech",
+            Message = "Chưa nhận được lời nói."
+        };
 
     private static bool TryReadSegment(JsonElement item, out SpeechSegment segment)
     {
@@ -299,13 +305,30 @@ public sealed class WhisperHttpTranscriber : ISpeechTranscriber
             && !double.IsInfinity(value);
     }
 
-    private static string Collapse(string? value)
+    /// <summary>
+    /// Collapse whitespace and strip engine-only silence markers (e.g. whisper.cpp [BLANK_AUDIO]).
+    /// Marker-only payloads become empty → NoSpeech; real speech tokens are preserved.
+    /// </summary>
+    private static string CollapseSpeech(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return string.Empty;
         }
 
-        return string.Join(' ', value.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
+        var tokens = value
+            .Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+            .Where(token => !IsEngineNonSpeechMarker(token));
+
+        return string.Join(' ', tokens);
+    }
+
+    private static bool IsEngineNonSpeechMarker(string token)
+    {
+        var trimmed = token.Trim().Trim(',', '.', '!', '?', ';', ':');
+        return trimmed.Equals("[BLANK_AUDIO]", StringComparison.OrdinalIgnoreCase)
+            || trimmed.Equals("BLANK_AUDIO", StringComparison.OrdinalIgnoreCase)
+            || trimmed.Equals("[NO_SPEECH]", StringComparison.OrdinalIgnoreCase)
+            || trimmed.Equals("[SILENCE]", StringComparison.OrdinalIgnoreCase);
     }
 }
