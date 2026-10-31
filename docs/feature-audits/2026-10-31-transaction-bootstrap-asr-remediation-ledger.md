@@ -34,7 +34,7 @@ Do not rewrite historical review ledgers. Record actual provider/command/result 
 | T4 G01 ASR E2E | Partial | whisper-server 8091 + adapter | silence→NoSpeech→no commit | adapter+assessment stub NoSpeech | live silence marker + unit/assessment NoSpeech; full WAV→receipt→credit on app not fully timed | model SHA `921E4CF8…`, zip `6BA69E34…` |
 | T4 G04 UI | Partial | `:5110` + bcrypt synthetic | authenticated AU/CO/SP/GO… | login + deep views | Login browser OK; auth HTTP 200 for Home/Goals/Speaking/Vocabulary/Notification/Writing/Profile; Admin 302 for student | `.tmp/ui-acceptance-5110/*` |
 | T4 G06 staging | Partial/blocked | official mariadb-dump client | enabled deploy path | client provenance + dump | ZIP+dump hashed; dump OK with `--ssl=false` to acceptance DB; **cannot** install to `C:\Program Files (x86)\Plesk\MySQL\bin` (Access denied) so `deploy-plesk.ps1` enabled drill still blocked on hardcoded path | `.tmp/staging-acceptance-sa1031/` |
-| T5 verify/CI | pending | build + suite + gh | | | | |
+| T5 verify/CI | Done (local+CI) | local 729/729 + bootstrap 6/6; CI [41156950080](https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish/actions/runs/41156950080) on `f03aba0` success; release job **skipped** (gate false) | pass | pass | no merge/deploy |
 
 ## Pins / provenance
 
