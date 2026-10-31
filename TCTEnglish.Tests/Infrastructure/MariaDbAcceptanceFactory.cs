@@ -74,7 +74,38 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
                 }
 
                 await SeedAsync(context);
+                await SeedAcceptanceGoalsAsync(context);
             });
+    }
+
+    /// <summary>
+    /// MariaDB acceptance only: active speaking/writing goals so completion credits
+    /// produce observable outbox intents without changing SQLite suites that assert
+    /// create-mode Goals UI when no goals exist.
+    /// </summary>
+    private static async Task SeedAcceptanceGoalsAsync(DbflashcardContext context)
+    {
+        var now = DateTime.UtcNow;
+        context.UserGoals.AddRange(
+            new UserGoal
+            {
+                UserId = TestDataIds.UserId,
+                GoalArea = GoalArea.Speaking,
+                TargetValue = 1,
+                IsActive = true,
+                CreatedAt = now,
+                UpdatedAt = now
+            },
+            new UserGoal
+            {
+                UserId = TestDataIds.UserId,
+                GoalArea = GoalArea.Writing,
+                TargetValue = 1,
+                IsActive = true,
+                CreatedAt = now,
+                UpdatedAt = now
+            });
+        await context.SaveChangesAsync();
     }
 
     private static readonly string[] AcceptanceTables =
@@ -87,6 +118,7 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         "UserWritingSentenceProgresses",
         "UserSpeakingVideoCompletions",
         "UserDailyActivities",
+        "UserGoals",
         "SpeakingSentences",
         "SpeakingVideos",
         "SpeakingPlaylists",
