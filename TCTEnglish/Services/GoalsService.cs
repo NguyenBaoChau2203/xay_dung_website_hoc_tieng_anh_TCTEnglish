@@ -392,8 +392,10 @@ namespace TCTVocabulary.Services
             {
                 await InsertUserDailyActivityAsync(userId, activityDate, update, streakXpAwarded: 0);
             }
-            catch (Exception ex) when (IsUserDailyActivityUniqueConflict(ex) || IsMysqlDeadlockOrLockWait(ex))
+            catch (Exception ex) when (IsUserDailyActivityUniqueConflict(ex))
             {
+                // Unique races are recoverable. Deadlock (1213) / lock-wait (1205) must
+                // propagate so the ambient unit owner can roll back and retry cleanly.
                 var recoveredRows = await IncrementExistingActivityAsync(userId, activityDate, update);
                 if (recoveredRows == 0)
                 {

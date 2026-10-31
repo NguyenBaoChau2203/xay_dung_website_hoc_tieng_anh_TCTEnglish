@@ -88,6 +88,14 @@ public sealed class CompletionCreditService : ICompletionCreditService
         }
 
         var creditKey = $"{userId}:{feature}:{contentKey}";
+
+        // Participating in a caller-owned transaction: never retry or query after
+        // InnoDB rolled the ambient unit back. Propagate so the owner can abort/retry whole.
+        if (_context.Database.CurrentTransaction != null)
+        {
+            return await ApplyOnceAsync(userId, feature, contentKey, creditKey, activityUpdate, cancellationToken);
+        }
+
         const int maxAttempts = 3;
         for (var attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -113,6 +121,12 @@ public sealed class CompletionCreditService : ICompletionCreditService
                 }
 
                 await Task.Delay(TimeSpan.FromMilliseconds(15 * attempt), cancellationToken);
+            }
+            catch (Exception ex) when (CreditKeyConflict.IsLockWaitTimeout(ex))
+            {
+                // Lock-wait left the owned transaction unusable; do not treat like deadlock retry.
+                _logger.LogWarning(ex, "Lock wait timeout applying completion credit {CreditKey}", creditKey);
+                throw;
             }
         }
 
@@ -233,6 +247,10 @@ public sealed class CompletionCreditService : ICompletionCreditService
             {
                 await ResetTrackerAfterRollbackAsync();
             }
+            else
+            {
+                DetachAddedCredits();
+            }
 
             throw;
         }
@@ -313,14 +331,19 @@ internal static class CreditKeyConflict
     }
 
     public static bool IsDeadlock(Exception exception)
+        => HasMysqlNumber(exception, 1213);
+
+    public static bool IsLockWaitTimeout(Exception exception)
+        => HasMysqlNumber(exception, 1205);
+
+    private static bool HasMysqlNumber(Exception exception, int number)
     {
         for (Exception? current = exception; current != null; current = current.InnerException)
         {
             if (current.GetType().Name == "MySqlException")
             {
-                var number = current.GetType().GetProperty("Number")?.GetValue(current);
-                // 1213 = deadlock; 1205 = lock wait timeout (treat as retryable contention).
-                return number is int mysql && mysql is 1213 or 1205;
+                var value = current.GetType().GetProperty("Number")?.GetValue(current);
+                return value is int mysql && mysql == number;
             }
         }
 
