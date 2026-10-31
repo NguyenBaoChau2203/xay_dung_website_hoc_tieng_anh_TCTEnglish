@@ -9,8 +9,9 @@
     'use strict';
 
     // ── Constants ─────────────────────────────────────────────
-    const POLL_INTERVAL_MS = 60_000;   // auto-poll every 60 s
+    const POLL_INTERVAL_MS = 60_000;   // auto-poll every 60 s when visible
     const PAGE_SIZE        = 10;
+    const POLL_BACKOFF_MAX_MS = 5 * 60_000;
 
     // ── DOM Elements ──────────────────────────────────────────
     const elBell          = document.getElementById('notificationBtn');
@@ -24,12 +25,16 @@
     // Guard — if layout has no bell, bail out silently
     if (!elBell || !elPanel) return;
 
+    const TEST_MODE = !!(typeof window !== 'undefined' && window.TCT_NOTIFICATIONS_TEST_MODE);
+
     // ── State ─────────────────────────────────────────────────
     let currentPage   = 1;
     let isOpen        = false;
     let isFetching    = false;
     let hasMore       = false;
     let pollTimerId   = null;
+    let unreadInFlight = false;
+    let pollDelayMs   = POLL_INTERVAL_MS;
 
     // ── CSRF Token helper ─────────────────────────────────────
     function getCsrfToken() {
@@ -64,12 +69,30 @@
 
     // ── Fetch unread count (polling) ──────────────────────────
     async function fetchUnreadCount() {
+        if (unreadInFlight) return;
+        if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+
+        unreadInFlight = true;
         try {
             const res  = await fetch('/api/notifications/unread-count', { credentials: 'same-origin' });
-            if (!res.ok) return;
+            if (!res.ok) throw new Error('unread-count-http');
             const data = await res.json();
             updateBadge(data.count ?? 0);
-        } catch (_) { /* network error — silent */ }
+            pollDelayMs = POLL_INTERVAL_MS;
+        } catch (_) {
+            pollDelayMs = Math.min(POLL_BACKOFF_MAX_MS, Math.max(POLL_INTERVAL_MS * 2, pollDelayMs * 2));
+        } finally {
+            unreadInFlight = false;
+            scheduleNextPoll();
+        }
+    }
+
+    function scheduleNextPoll() {
+        if (TEST_MODE) return;
+        if (pollTimerId) clearTimeout(pollTimerId);
+        pollTimerId = setTimeout(() => {
+            fetchUnreadCount();
+        }, pollDelayMs);
     }
 
     // ── Fetch notification list ───────────────────────────────
@@ -199,41 +222,65 @@
         elLoadMoreBtn.style.display = show ? 'block' : 'none';
     }
 
+    function restoreUnreadItem(elItem) {
+        elItem.classList.add('is-unread');
+        if (!elItem.querySelector('.notif-unread-dot')) {
+            const dot = document.createElement('div');
+            dot.classList.add('notif-unread-dot');
+            elItem.appendChild(dot);
+        }
+    }
+
     // ── Mark single item as read ──────────────────────────────
     async function handleItemClick(n, elItem) {
-        // Optimistically remove unread indicator
+        if (n.isRead) {
+            if (n.relatedUrl) window.location.href = n.relatedUrl;
+            return;
+        }
+
+        // Optimistic UI with full rollback on failure
         elItem.classList.remove('is-unread');
         const dot = elItem.querySelector('.notif-unread-dot');
         if (dot) dot.remove();
 
-        if (!n.isRead) {
-            // Fire & forget — update badge afterward
-            try {
-                await fetch(`/api/notifications/${n.id}/mark-read`, {
-                    method : 'POST',
-                    headers: { 'RequestVerificationToken': getCsrfToken() },
-                    credentials: 'same-origin'
-                });
-            } catch (_) { /* silent */ }
+        try {
+            const res = await fetch(`/api/notifications/${n.id}/mark-read`, {
+                method : 'POST',
+                headers: { 'RequestVerificationToken': getCsrfToken() },
+                credentials: 'same-origin'
+            });
+            if (!res.ok) throw new Error('mark-read-http');
+
+            const body = await res.json().catch(() => ({}));
+            if (body && body.success === false) throw new Error('mark-read-payload');
 
             n.isRead = true;
             await fetchUnreadCount();
-        }
 
-        if (n.relatedUrl) {
-            window.location.href = n.relatedUrl;
+            if (n.relatedUrl) {
+                window.location.href = n.relatedUrl;
+            }
+        } catch (_) {
+            restoreUnreadItem(elItem);
+            n.isRead = false;
+            // Do not navigate / claim read when the request failed.
         }
     }
 
     // ── Mark all as read ──────────────────────────────────────
     async function handleMarkAllClick() {
+        if (elMarkAllBtn) elMarkAllBtn.disabled = true;
+
         try {
             const res = await fetch('/api/notifications/mark-all-read', {
                 method : 'POST',
                 headers: { 'RequestVerificationToken': getCsrfToken() },
                 credentials: 'same-origin'
             });
-            if (!res.ok) return;
+            if (!res.ok) {
+                if (elMarkAllBtn) elMarkAllBtn.disabled = false;
+                return;
+            }
 
             // Remove all unread indicators in DOM
             elList.querySelectorAll('.notif-item.is-unread').forEach(el => {
@@ -243,7 +290,9 @@
             });
 
             updateBadge(0);
-        } catch (_) { /* silent */ }
+        } catch (_) {
+            if (elMarkAllBtn) elMarkAllBtn.disabled = false;
+        }
     }
 
     // ── Load More (next page) ─────────────────────────────────
@@ -298,11 +347,34 @@
     if (elMarkAllBtn)  elMarkAllBtn.addEventListener('click',  handleMarkAllClick);
     if (elLoadMoreBtn) elLoadMoreBtn.addEventListener('click', handleLoadMoreClick);
 
-    // ── Bootstrap: initial poll + schedule repeat ─────────────
+    // ── Bootstrap: initial poll + visibility-aware schedule ───
     fetchUnreadCount();
-    pollTimerId = setInterval(fetchUnreadCount, POLL_INTERVAL_MS);
+    if (!TEST_MODE) {
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                pollDelayMs = POLL_INTERVAL_MS;
+                fetchUnreadCount();
+            } else if (pollTimerId) {
+                clearTimeout(pollTimerId);
+                pollTimerId = null;
+            }
+        });
+        window.addEventListener('beforeunload', () => {
+            if (pollTimerId) clearTimeout(pollTimerId);
+        });
+    }
 
-    // Stop polling when page unloads (SPA nav or tab close)
-    window.addEventListener('beforeunload', () => clearInterval(pollTimerId));
+    if (TEST_MODE) {
+        window.TctNotifications = {
+            handleItemClick,
+            handleMarkAllClick,
+            updateBadge,
+            fetchUnreadCount,
+            stopPolling() {
+                if (pollTimerId) clearTimeout(pollTimerId);
+                pollTimerId = null;
+            },
+        };
+    }
 
 })();

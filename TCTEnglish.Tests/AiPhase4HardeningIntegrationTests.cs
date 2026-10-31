@@ -731,10 +731,12 @@ public sealed class AiPhase4HardeningIntegrationTests
     [Fact]
     public async Task Send_WhenConversationAlreadyProcessing_ReturnsConflict()
     {
+        var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var gate = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        await using var factory = CreateFactory(async _ =>
+        await using var factory = CreateFactory(async ct =>
         {
-            await gate.Task;
+            entered.TrySetResult();
+            await gate.Task.WaitAsync(ct);
             return new AiProviderReply("done", 1, 1, 2, "test-model", "req-conflict");
         });
         await factory.InitializeAsync();
@@ -747,18 +749,39 @@ public sealed class AiPhase4HardeningIntegrationTests
 
         using var requestOne = CreateSendRequest(conversationId, "first", antiForgeryTokenOne);
         var firstResponseTask = clientOne.SendAsync(requestOne);
+        HttpResponseMessage? firstResponse = null;
+        try
+        {
+            await entered.Task.WaitAsync(TimeSpan.FromSeconds(5));
 
-        await Task.Delay(50);
+            using var requestTwo = CreateSendRequest(conversationId, "second", antiForgeryTokenTwo);
+            using var secondResponse = await clientTwo.SendAsync(requestTwo).WaitAsync(TimeSpan.FromSeconds(5));
+            var errorRaw = await secondResponse.Content.ReadAsStringAsync();
+            Assert.True(
+                secondResponse.StatusCode == HttpStatusCode.Conflict,
+                $"Expected Conflict but got {secondResponse.StatusCode}. Content: {errorRaw}");
 
-        using var requestTwo = CreateSendRequest(conversationId, "second", antiForgeryTokenTwo);
-        using var secondResponse = await clientTwo.SendAsync(requestTwo);
+            gate.TrySetResult();
+            firstResponse = await firstResponseTask.WaitAsync(TimeSpan.FromSeconds(5));
+            Assert.Equal(HttpStatusCode.OK, firstResponse.StatusCode);
+        }
+        finally
+        {
+            gate.TrySetResult();
+            if (firstResponse == null)
+            {
+                try
+                {
+                    firstResponse = await firstResponseTask.WaitAsync(TimeSpan.FromSeconds(5));
+                }
+                catch (Exception)
+                {
+                    // Keep the original assertion failure; still release the in-flight request.
+                }
+            }
 
-        var errorRaw = await secondResponse.Content.ReadAsStringAsync();
-        Assert.True(secondResponse.StatusCode == HttpStatusCode.Conflict, $"Expected Conflict but got {secondResponse.StatusCode}. Content: {errorRaw}");
-
-        gate.SetResult();
-        using var firstResponse = await firstResponseTask;
-        Assert.Equal(HttpStatusCode.OK, firstResponse.StatusCode);
+            firstResponse?.Dispose();
+        }
     }
 
     private static TestWebApplicationFactory CreateFactory(

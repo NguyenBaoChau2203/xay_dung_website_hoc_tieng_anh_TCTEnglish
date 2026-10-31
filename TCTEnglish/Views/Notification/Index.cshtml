@@ -197,31 +197,50 @@
             return el ? el.value : '';
         }
 
-        // ── Mark single item as read ──
+        function restoreUnreadPageItem(el) {
+            el.classList.add('is-unread');
+            if (!el.querySelector('.notif-page-dot')) {
+                const dot = document.createElement('div');
+                dot.classList.add('notif-page-dot');
+                el.appendChild(dot);
+            }
+        }
+
+        // ── Mark single item as read (only confirm after HTTP success) ──
         async function markAsRead(notifId) {
-            try {
-                await fetch(`/api/notifications/${notifId}/mark-read`, {
-                    method : 'POST',
-                    headers: { 'RequestVerificationToken': getCsrfToken() },
-                    credentials: 'same-origin'
-                });
-            } catch (_) { /* silent — don't block navigation */ }
+            const res = await fetch(`/api/notifications/${notifId}/mark-read`, {
+                method : 'POST',
+                headers: { 'RequestVerificationToken': getCsrfToken() },
+                credentials: 'same-origin'
+            });
+            if (!res.ok) throw new Error('mark-read-http');
+            const body = await res.json().catch(function () { return {}; });
+            if (body && body.success === false) throw new Error('mark-read-payload');
+            return true;
         }
 
         // ── Item click handler ──
         document.querySelectorAll('.notif-page-item').forEach(function (el) {
-            function handleClick() {
+            async function handleClick() {
                 const id  = parseInt(el.dataset.id, 10);
                 const url = el.dataset.url;
+                const wasUnread = el.classList.contains('is-unread');
 
-                // Optimistically remove unread styling
-                el.classList.remove('is-unread');
-                const dot = el.querySelector('.notif-page-dot');
-                if (dot) dot.remove();
+                if (wasUnread) {
+                    el.classList.remove('is-unread');
+                    const dot = el.querySelector('.notif-page-dot');
+                    if (dot) dot.remove();
+                }
 
-                markAsRead(id).then(function () {
+                try {
+                    if (wasUnread) {
+                        await markAsRead(id);
+                    }
                     if (url) window.location.href = url;
-                });
+                } catch (_) {
+                    if (wasUnread) restoreUnreadPageItem(el);
+                    // Do not claim read or navigate when mark-read failed.
+                }
             }
 
             el.addEventListener('click', handleClick);
@@ -241,20 +260,22 @@
                         headers: { 'RequestVerificationToken': getCsrfToken() },
                         credentials: 'same-origin'
                     });
-                    if (res.ok) {
-                        // Remove all unread indicators
-                        document.querySelectorAll('.notif-page-item.is-unread').forEach(function (el) {
-                            el.classList.remove('is-unread');
-                            const dot = el.querySelector('.notif-page-dot');
-                            if (dot) dot.remove();
-                        });
-                        // Update badge in header
-                        const badge = document.getElementById('notificationBadge');
-                        if (badge) badge.style.display = 'none';
-                        // Hide tab badge
-                        document.querySelectorAll('.notif-filter-tab .badge').forEach(function(b){ b.remove(); });
-                        elMarkAll.textContent = 'Đã đọc tất cả ✓';
+                    if (!res.ok) {
+                        elMarkAll.disabled = false;
+                        return;
                     }
+                    // Remove all unread indicators
+                    document.querySelectorAll('.notif-page-item.is-unread').forEach(function (el) {
+                        el.classList.remove('is-unread');
+                        const dot = el.querySelector('.notif-page-dot');
+                        if (dot) dot.remove();
+                    });
+                    // Update badge in header
+                    const badge = document.getElementById('notificationBadge');
+                    if (badge) badge.style.display = 'none';
+                    // Hide tab badge
+                    document.querySelectorAll('.notif-filter-tab .badge').forEach(function(b){ b.remove(); });
+                    elMarkAll.textContent = 'Đã đọc tất cả ✓';
                 } catch (_) {
                     elMarkAll.disabled = false;
                 }

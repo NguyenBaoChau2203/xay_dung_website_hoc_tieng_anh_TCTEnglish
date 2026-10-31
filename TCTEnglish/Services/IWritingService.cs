@@ -29,7 +29,8 @@ namespace TCTVocabulary.Services
             int exerciseId,
             int sentenceId,
             string userAnswer,
-            int userId);
+            int userId,
+            CancellationToken cancellationToken = default);
         Task<WritingPracticeViewModel?> GetWritingPracticeViewModelAsync(
             string? selectedLevel,
             string? contentType,

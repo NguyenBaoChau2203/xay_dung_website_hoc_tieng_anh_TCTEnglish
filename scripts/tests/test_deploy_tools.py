@@ -26,12 +26,194 @@ class PleskWebhookTests(unittest.TestCase):
             self.assertEqual(json.loads(request.data), {})
             self.assertEqual(request.get_header('Content-type'), 'application/json')
 
-    def test_webhook_failure_never_exposes_its_private_url(self):
+    def test_webhook_failure_returns_ambiguous_without_exposing_url(self):
         marker = 'private-webhook-token'
         with mock.patch.object(self.publisher.urllib.request, 'urlopen', side_effect=OSError(marker)):
-            with self.assertRaises(SystemExit) as error:
-                self.publisher.notify_plesk('https://plesk.example.test/?uuid=' + marker)
-            self.assertNotIn(marker, str(error.exception))
+            status = self.publisher.notify_plesk('https://plesk.example.test/?uuid=' + marker)
+        self.assertEqual(status, 'ambiguous')
+
+
+class PublishReleaseIdempotencyTests(unittest.TestCase):
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location('plesk_publisher', ROOT / 'scripts/publish-plesk-release.py')
+        self.publisher = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.publisher)
+
+    def _env(self, sha, run_id, run_number):
+        return {
+            'GITHUB_SHA': sha,
+            'GITHUB_REPOSITORY': self.publisher.REPOSITORY,
+            'GITHUB_RUN_ID': run_id,
+            'GITHUB_RUN_NUMBER': str(run_number),
+            'GH_TOKEN': 'test-token',
+            'PLESK_WEBHOOK_URL': 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?uuid=test',
+        }
+
+    def test_existing_matching_release_is_reused_without_create(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'a' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            tag = 'deploy-99-' + sha[:12]
+            existing = {
+                'tag_name': tag,
+                'target_commitish': 'master',
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                    'browser_download_url': 'https://example.test/' + tag,
+                }],
+            }
+            create_calls = []
+
+            def fake_run(args, check=True):
+                create_calls.append(list(args))
+                raise AssertionError('gh release create must not run for matching existing release')
+
+            with mock.patch.dict(os.environ, self._env(sha, '99', 7), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher.subprocess, 'run', side_effect=fake_run), \
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk', return_value='accepted'), \
+                    mock.patch.object(self.publisher, 'wait_for_deployed_release', return_value=True) as wait:
+                self.publisher.main_with_artifact(artifact.name)
+
+            self.assertEqual(create_calls, [])
+            update.assert_called_once()
+            wait.assert_called_once()
+            self.assertEqual(wait.call_args.args[0], sha)
+            self.assertEqual(wait.call_args.args[1], 7)
+            self.assertEqual(wait.call_args.args[2], digest)
+        finally:
+            os.unlink(artifact.name)
+
+    def test_missing_remote_digest_without_downloadable_proof_stops_before_webhook(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'c' * 40
+            tag = 'deploy-101-' + sha[:12]
+            existing = {
+                'tag_name': tag,
+                'target_commitish': 'master',
+                'assets': [{'name': 'tctenglish-release.zip', 'state': 'uploaded'}],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '101', 9), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher, 'download_and_hash_asset', side_effect=SystemExit('Release asset URL is missing or not HTTPS; refusing to reuse.')), \
+                    mock.patch.object(self.publisher.subprocess, 'run') as create, \
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('refusing', str(error.exception).lower())
+            create.assert_not_called()
+            update.assert_not_called()
+            notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+    def test_existing_release_digest_mismatch_stops_without_clobber(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'b' * 40
+            tag = 'deploy-100-' + sha[:12]
+            existing = {
+                'tag_name': tag,
+                'target_commitish': sha,
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + ('0' * 64),
+                }],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '100', 8), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher.subprocess, 'run') as create, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('digest', str(error.exception).lower())
+            create.assert_not_called()
+            notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+    def test_branch_target_without_resolved_tag_sha_is_rejected(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = 'd' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            existing = {
+                'tag_name': 'deploy-102-' + sha[:12],
+                'target_commitish': 'master',
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                }],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '102', 10), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value='e' * 40), \
+                    mock.patch.object(self.publisher, 'update_branch') as update, \
+                    mock.patch.object(self.publisher, 'notify_plesk') as notify:
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            self.assertIn('different commit', str(error.exception).lower())
+            update.assert_not_called()
+            notify.assert_not_called()
+        finally:
+            os.unlink(artifact.name)
+
+    def test_marker_match_requires_run_and_digest(self):
+        sha = 'f' * 40
+        digest = 'a' * 64
+        self.assertFalse(self.publisher.marker_matches({'commit': sha, 'runNumber': 1}, sha, 2, digest))
+        self.assertFalse(self.publisher.marker_matches({'commit': sha, 'runNumber': 2}, sha, 2, digest))
+        self.assertTrue(self.publisher.marker_matches(
+            {'commit': sha, 'runNumber': 2, 'sha256': digest}, sha, 2, digest))
+
+    def test_webhook_ambiguous_reconciles_instead_of_blind_retry(self):
+        artifact = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            artifact.write(b'release-bytes')
+            artifact.close()
+            sha = '1' * 40
+            digest = __import__('hashlib').sha256(b'release-bytes').hexdigest()
+            existing = {
+                'tag_name': 'deploy-103-' + sha[:12],
+                'assets': [{
+                    'name': 'tctenglish-release.zip',
+                    'state': 'uploaded',
+                    'digest': 'sha256:' + digest,
+                    'browser_download_url': 'https://example.test/asset',
+                }],
+            }
+            with mock.patch.dict(os.environ, self._env(sha, '103', 11), clear=False), \
+                    mock.patch.object(self.publisher, 'find_release_by_tag', return_value=existing), \
+                    mock.patch.object(self.publisher, 'resolve_tag_commit_sha', return_value=sha), \
+                    mock.patch.object(self.publisher, 'update_branch'), \
+                    mock.patch.object(self.publisher, 'notify_plesk', return_value='ambiguous'), \
+                    mock.patch.object(self.publisher, 'wait_for_deployed_release', return_value=False):
+                with self.assertRaises(SystemExit) as error:
+                    self.publisher.main_with_artifact(artifact.name)
+            message = str(error.exception).lower()
+            self.assertIn('ambiguous', message)
+            self.assertIn('migrations', message)
+        finally:
+            os.unlink(artifact.name)
 
 
 class PublishArtifactTests(unittest.TestCase):
@@ -110,6 +292,84 @@ class PleskPreflightTests(unittest.TestCase):
                 '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(root / 'outside-private')], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertEqual(list(site.iterdir()), [])
+
+    def test_backup_client_override_rejected_outside_tmp_staging(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'
+            site.mkdir()
+            state = root / 'private/state'
+            state.mkdir(parents=True)
+            manifest = root / 'release.json'
+            manifest.write_text('{"enabled": false}')
+            fake_dump = root / 'mariadb-dump.exe'
+            fake_dump.write_bytes(b'MZ')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(state),
+                '-BackupClientPath', str(fake_dump),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn('BackupClientPath override is only allowed', result.stdout + result.stderr)
+
+    def test_backup_client_override_allowed_under_tmp_staging_preflight(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory) / 'site'
+            site = root / 'httpdocs'
+            site.mkdir(parents=True)
+            state = root / 'private' / 'state'
+            state.mkdir(parents=True)
+            manifest = root / 'release.json'
+            manifest.write_text('{"enabled": false}')
+            (root / '.tct-staging.json').write_text(json.dumps({
+                'schemaVersion': 1, 'purpose': 'tct-plesk-preflight', 'runId': 'preflight_test',
+            }))
+            fake_dump = root / 'mariadb-dump.exe'
+            fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(state),
+                '-BackupClientPath', str(fake_dump), '-ValidateOnly',
+            ], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            preflight = json.loads((state / 'preflight.json').read_text(encoding='utf-8'))
+            self.assertTrue(preflight['BackupClientExists'])
+            self.assertEqual(Path(preflight['BackupClientPath']), fake_dump.resolve())
+
+    def test_backup_override_requires_owned_workspace_marker(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'; site.mkdir()
+            manifest = root / 'release.json'; manifest.write_text('{"enabled": false}')
+            fake_dump = root / 'mariadb-dump.exe'; fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(root / 'private/state'),
+                '-BackupClientPath', str(fake_dump), '-ValidateOnly',
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertFalse((root / 'private/state').exists(), 'reject before state writes')
+
+    def test_backup_override_cannot_enter_enabled_release(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'; site.mkdir()
+            manifest = root / 'release.json'; manifest.write_text('{"enabled": true}')
+            (root / '.tct-staging.json').write_text(json.dumps({
+                'schemaVersion': 1, 'purpose': 'tct-plesk-preflight', 'runId': 'preflight_test',
+            }))
+            fake_dump = root / 'mariadb-dump.exe'; fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(root / 'private/state'),
+                '-BackupClientPath', str(fake_dump),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('-ValidateOnly', result.stdout + result.stderr)
+            self.assertFalse((root / 'private/state').exists())
 
 
 if __name__ == '__main__':

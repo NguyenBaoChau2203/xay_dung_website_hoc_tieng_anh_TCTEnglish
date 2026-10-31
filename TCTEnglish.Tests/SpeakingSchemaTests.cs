@@ -8,6 +8,24 @@ namespace TCTEnglish.Tests;
 public sealed class SpeakingSchemaTests
 {
     [Fact]
+    public void ImportHashMigration_ContainsCompleteTargetModel()
+    {
+        var migration = new TCTEnglish.Migrations.LearningImportSourceHash
+        {
+            ActiveProvider = "Pomelo.EntityFrameworkCore.MySql"
+        };
+
+        Assert.NotEmpty(migration.TargetModel.GetEntityTypes());
+        var importJob = migration.TargetModel.FindEntityType(typeof(SpeakingImportJob).FullName!);
+        Assert.NotNull(importJob);
+        var hash = importJob.FindProperty("SourceContentHash");
+        Assert.NotNull(hash);
+        Assert.True(hash.IsNullable);
+        Assert.Equal(64, hash.GetMaxLength());
+        Assert.NotEmpty(importJob.GetForeignKeys());
+    }
+
+    [Fact]
     public void SpeakingVideo_OwnerForeignKey_UsesNoActionDeleteBehavior()
     {
         var options = new DbContextOptionsBuilder<DbflashcardContext>()

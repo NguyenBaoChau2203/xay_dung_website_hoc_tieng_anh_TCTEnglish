@@ -38,10 +38,55 @@ builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
 builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddSingleton<TCTEnglish.Services.Notifications.LearningBusinessClock>();
+builder.Services.AddScoped<TCTEnglish.Services.Learning.DirectNotificationGate>();
+builder.Services.AddScoped<TCTEnglish.Services.Learning.ILearningNotificationIntentWriter, TCTEnglish.Services.Learning.LearningNotificationIntentWriter>();
 builder.Services.AddScoped<IStreakService, StreakService>();
 builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IStudyService, StudyService>();
+builder.Services.AddOptions<TCTEnglish.Services.Writing.WritingEvaluationOptions>()
+    .BindConfiguration(TCTEnglish.Services.Writing.WritingEvaluationOptions.SectionName);
+builder.Services.AddOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>()
+    .BindConfiguration(TCTEnglish.Services.Speaking.SpeechProcessingOptions.SectionName);
+builder.Services.AddSingleton<TCTEnglish.Services.Speaking.ISpeechInferenceLimiter, TCTEnglish.Services.Speaking.SpeechInferenceLimiter>();
+builder.Services.AddHttpClient<TCTEnglish.Services.Speaking.ISpeechTranscriber, TCTEnglish.Services.Speaking.WhisperHttpTranscriber>((sp, client) =>
+{
+    var speechOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>>().Value;
+    if (speechOptions.IsConfigured
+        && Uri.TryCreate(speechOptions.WhisperHttpBaseUrl.TrimEnd('/') + "/", UriKind.Absolute, out var baseAddress))
+    {
+        client.BaseAddress = baseAddress;
+    }
+
+    client.Timeout = TimeSpan.FromSeconds(Math.Clamp(speechOptions.InferenceTimeoutSeconds, 1, 60) + 2);
+});
+builder.Services.AddScoped<TCTEnglish.Services.Speaking.ISpeakingAssessmentService, TCTEnglish.Services.Speaking.SpeakingAssessmentService>();
+builder.Services.AddScoped<TCTEnglish.Services.Speaking.ISpeakingImportJobService, TCTEnglish.Services.Speaking.SpeakingImportJobService>();
+builder.Services.AddScoped<TCTEnglish.Services.Learning.ICompletionCreditService, TCTEnglish.Services.Learning.CompletionCreditService>();
+builder.Services.AddScoped<TCTEnglish.Services.Notifications.ILearningOutboxDispatcher, TCTEnglish.Services.Notifications.LearningOutboxDispatcher>();
+builder.Services.AddOptions<TCTEnglish.Services.Writing.LocalWritingEngineOptions>()
+    .BindConfiguration(TCTEnglish.Services.Writing.LocalWritingEngineOptions.SectionName);
+builder.Services.AddHttpClient<TCTEnglish.Services.Writing.ILocalGrammarChecker, TCTEnglish.Services.Writing.LanguageToolGrammarChecker>((sp, client) =>
+{
+    var opts = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<TCTEnglish.Services.Writing.LocalWritingEngineOptions>>().Value;
+    if (!string.IsNullOrWhiteSpace(opts.LanguageToolBaseUrl)
+        && Uri.TryCreate(opts.LanguageToolBaseUrl.TrimEnd('/') + "/", UriKind.Absolute, out var baseAddress))
+    {
+        client.BaseAddress = baseAddress;
+    }
+});
+builder.Services.AddHttpClient<TCTEnglish.Services.Writing.ILocalWritingModel, TCTEnglish.Services.Writing.OllamaWritingModel>((sp, client) =>
+{
+    var opts = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<TCTEnglish.Services.Writing.LocalWritingEngineOptions>>().Value;
+    if (!string.IsNullOrWhiteSpace(opts.OllamaBaseUrl)
+        && Uri.TryCreate(opts.OllamaBaseUrl.TrimEnd('/') + "/", UriKind.Absolute, out var baseAddress))
+    {
+        client.BaseAddress = baseAddress;
+    }
+});
+builder.Services.AddHostedService<SpeakingImportWorker>();
 builder.Services.AddScoped<IWritingService, WritingService>();
 builder.Services.AddScoped<IWritingAiEvaluationService, WritingAiEvaluationService>();
 builder.Services.AddSingleton<IWritingRequestRateLimiter, WritingRequestRateLimiter>();
@@ -187,7 +232,20 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = static context =>
+    {
+        if (!string.Equals(context.File.Name, "tct-release.json", StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        context.Context.Response.ContentType = "application/json; charset=utf-8";
+        context.Context.Response.Headers.CacheControl = "no-store, no-cache, max-age=0";
+        context.Context.Response.Headers.Pragma = "no-cache";
+    }
+});
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -207,6 +265,25 @@ app.MapGet("/health/ready", async (DbflashcardContext db, CancellationToken canc
     {
         return Results.StatusCode(StatusCodes.Status503ServiceUnavailable);
     }
+});
+
+// Narrow JSON marker endpoint when the wwwroot file is absent or static files skipped.
+app.MapGet("/tct-release.json", async (HttpContext http, IWebHostEnvironment env) =>
+{
+    var markerPath = Path.GetFullPath(Path.Combine(env.WebRootPath, "tct-release.json"));
+    var webRoot = Path.GetFullPath(env.WebRootPath)
+        .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+        + Path.DirectorySeparatorChar;
+    if (!markerPath.StartsWith(webRoot, StringComparison.OrdinalIgnoreCase)
+        || !System.IO.File.Exists(markerPath))
+    {
+        return Results.NotFound();
+    }
+
+    var bytes = await System.IO.File.ReadAllBytesAsync(markerPath);
+    http.Response.Headers.CacheControl = "no-store, no-cache, max-age=0";
+    http.Response.Headers.Pragma = "no-cache";
+    return Results.Bytes(bytes, "application/json; charset=utf-8");
 });
 
 app.MapControllerRoute(

@@ -154,7 +154,7 @@
                                 <div class="col-md-4">
                                     <label class="stitch-form-label">Mật khẩu hiện tại</label>
                                     <div class="input-group">
-                                        <input asp-for="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" />
+                                        <input asp-for="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" autocomplete="current-password" />
                                         <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                             <i class="fas fa-eye"></i>
                                         </button>
@@ -164,7 +164,7 @@
                                 <div class="col-md-4">
                                     <label class="stitch-form-label">Mật khẩu mới</label>
                                     <div class="input-group">
-                                        <input asp-for="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" />
+                                        <input asp-for="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" />
                                         <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                             <i class="fas fa-eye"></i>
                                         </button>
@@ -174,7 +174,7 @@
                                 <div class="col-md-4">
                                     <label class="stitch-form-label">Xác nhận mật khẩu</label>
                                     <div class="input-group">
-                                        <input asp-for="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" />
+                                        <input asp-for="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
                                         <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
                                             <i class="fas fa-eye"></i>
                                         </button>

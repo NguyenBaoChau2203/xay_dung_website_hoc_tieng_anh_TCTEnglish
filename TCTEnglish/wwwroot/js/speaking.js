@@ -186,6 +186,9 @@
     // ── Data from Razor ─────────────────────────────────────────────
     const VIDEO_ID = global.SPK_VIDEO_ID;
     const SENTENCES = global.SPK_SENTENCES || [];
+    const TEST_MODE = !!global.TCT_SPEAKING_TEST_MODE;
+    /** Browser Web Speech is preview-only until L4 server assessment. */
+    const BROWSER_SCORE_PREVIEW_ONLY = true;
 
     // ── DOM utilities ────────────────────────────────────────────────
     const $ = id => document.getElementById(id);
@@ -237,7 +240,11 @@
     let isVideoHidden = false;
     let playbackTimer = null;
     let toastTimer = null;
+    let recordTimeout = null;
     let isDictationAnswerRevealed = false;
+    let recordingEpoch = 0;
+    let activeRecordingSnapshot = null;
+    let activeAssessController = null;
 
     // ────────────────────────────────────────────────────────────────
     //  YOUTUBE IFRAME API
@@ -292,8 +299,45 @@
     // ────────────────────────────────────────────────────────────────
     //  SENTENCE SELECTION
     // ────────────────────────────────────────────────────────────────
+    function abortActiveRecognition(reason) {
+        recordingEpoch += 1;
+        activeRecordingSnapshot = null;
+        if (recordTimeout) {
+            clearTimeout(recordTimeout);
+            recordTimeout = null;
+        }
+        if (activeAssessController) {
+            try { activeAssessController.abort(); } catch (_) { /* ignore */ }
+            activeAssessController = null;
+        }
+        if (activeRecognition) {
+            try {
+                if (typeof activeRecognition.abort === 'function') activeRecognition.abort();
+                else activeRecognition.stop();
+            } catch (_) { /* ignore */ }
+            activeRecognition = null;
+        }
+        const recorder = activePcmRecorder;
+        activePcmRecorder = null;
+        if (recorder && typeof recorder.dispose === 'function') {
+            try { recorder.dispose(); } catch (_) { /* ignore */ }
+        }
+        isRecording = false;
+        isScoring = false;
+        setRecordUIState(false);
+        setScoringUIState(false);
+        if (reason === 'sentence-change') {
+            setAssessmentStatus('Đã hủy ghi âm vì đổi câu — kết quả cũ không được gắn sang câu mới.');
+        }
+    }
+
     function selectSentence(idx, autoPlay = true) {
         if (idx < 0 || idx >= SENTENCES.length) return;
+
+        if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+            abortActiveRecognition(activeSentIdx !== idx ? 'sentence-change' : 'reselect');
+        }
+
         activeSentIdx = idx;
         const s = SENTENCES[idx];
 
@@ -351,22 +395,65 @@
         { val: 'completenessScore', id: 'score-complete', ringId: 'ring-complete', barId: 'bar-complete' },
     ];
 
-    function updateScoreBoard(sentence) {
+    function setAssessmentStatus(message) {
+        const el = $('spk-assessment-status');
+        if (el) el.textContent = message || '';
+    }
+
+    function formatScoreDisplay(value, { unavailable = false } = {}) {
+        if (unavailable) return '—';
+        const pct = (value && value > 0) ? Math.round(value) : 0;
+        return pct > 0 ? `${pct}` : '0';
+    }
+
+    function updateScoreBoard(sentence, previewMatchPct = null) {
+        const hasStored = !!(sentence && sentence.isPracticed && sentence.totalScore > 0);
+        const isPreview = previewMatchPct != null;
+
         SCORE_METRICS.forEach(m => {
-            const raw = sentence[m.val];
-            const pct = (raw && raw > 0) ? Math.round(raw) : 0;
+            let display;
+            let barPct = 0;
+            let unavailable = false;
+
+            if (isPreview) {
+                if (m.val === 'totalScore' || m.val === 'accuracyScore') {
+                    barPct = Math.max(0, Math.min(100, Math.round(previewMatchPct)));
+                    display = String(barPct);
+                } else {
+                    // Fluency / completeness are not measured by edit-distance preview.
+                    unavailable = true;
+                    display = '—';
+                    barPct = 0;
+                }
+            } else if (hasStored) {
+                const raw = sentence[m.val];
+                barPct = (raw && raw > 0) ? Math.round(raw) : 0;
+                display = formatScoreDisplay(raw);
+            } else {
+                display = '0';
+                barPct = 0;
+            }
 
             const valEl = $(m.id);
-            if (valEl) valEl.textContent = pct > 0 ? `${pct}` : '0';
+            if (valEl) {
+                valEl.textContent = display;
+                valEl.title = unavailable ? 'Chưa đánh giá' : '';
+            }
 
-            // SVG ring: stroke-dasharray = "filled, 100"
             const ringEl = $(m.ringId);
-            if (ringEl) ringEl.setAttribute('stroke-dasharray', `${pct}, 100`);
+            if (ringEl) ringEl.setAttribute('stroke-dasharray', `${barPct}, 100`);
 
-            // Mini bar
             const barEl = $(m.barId);
-            if (barEl) barEl.style.width = pct + '%';
+            if (barEl) barEl.style.width = barPct + '%';
         });
+
+        if (isPreview) {
+            setAssessmentStatus('Xem trước khớp lời nói — chưa lưu tiến độ / XP (chờ chấm phía máy chủ).');
+        } else if (hasStored) {
+            setAssessmentStatus('');
+        } else {
+            setAssessmentStatus('Chưa có điểm đã lưu cho câu này.');
+        }
     }
 
     // ────────────────────────────────────────────────────────────────
@@ -386,10 +473,11 @@
     }
 
     // ────────────────────────────────────────────────────────────────
-    //  RECORDING — Web Speech API
+    //  RECORDING — server WAV assess (preferred) / Web Speech preview
     // ────────────────────────────────────────────────────────────────
     const SpeechRecog = global.SpeechRecognition || global.webkitSpeechRecognition;
     let activeRecognition = null;
+    let activePcmRecorder = null;
     let isScoring = false;
     let currentInterim = '';
 
@@ -399,50 +487,77 @@
             return;
         }
 
-        if (!SpeechRecog) {
-            showToast('⚠️ Trình duyệt chưa hỗ trợ ghi âm — hiển thị demo', 'error');
-            simulateFeedback();
-            return;
-        }
+        if (isScoring) return;
 
         if (isRecording) {
-            // User pressed stop manually
+            if (activePcmRecorder) {
+                finishPcmRecording();
+                return;
+            }
             if (activeRecognition) activeRecognition.stop();
             return;
         }
 
         // Pause video during recording
-        if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+        if (player && typeof player.getPlayerState === 'function'
+            && global.YT && player.getPlayerState() === global.YT.PlayerState.PLAYING) {
             player.pauseVideo();
+        }
+
+        const sentence = SENTENCES[activeSentIdx];
+        if (!sentence) return;
+
+        const epoch = ++recordingEpoch;
+        const snapshot = {
+            epoch,
+            sentenceId: sentence.id,
+            sentenceIndex: activeSentIdx,
+            expectedText: sentence.text || ''
+        };
+        activeRecordingSnapshot = snapshot;
+
+        if (global.TctSpeechRecorder && global.TctSpeechRecorder.isSupported()) {
+            startPcmRecording(snapshot);
+            return;
+        }
+
+        if (!SpeechRecog) {
+            showToast('⚠️ Trình duyệt chưa hỗ trợ thu âm. Bạn vẫn có thể nghe và luyện; chưa lưu điểm.', 'error');
+            setAssessmentStatus('Thu âm không khả dụng — chưa đánh giá, không lưu tiến độ.');
+            updateScoreBoard(SENTENCES[activeSentIdx], null);
+            const fluencyEl = $('score-fluency');
+            const completeEl = $('score-complete');
+            if (fluencyEl) { fluencyEl.textContent = '—'; fluencyEl.title = 'Chưa đánh giá'; }
+            if (completeEl) { completeEl.textContent = '—'; completeEl.title = 'Chưa đánh giá'; }
+            return;
         }
 
         isRecording = true;
         setRecordUIState(true);
         currentInterim = '';
+        setAssessmentStatus('Đang ghi âm — Web Speech chỉ xem trước, chưa lưu XP (cần thu PCM + ASR máy chủ).');
 
         // Accumulate ALL final transcript fragments across multiple result events
         let accumulatedFinal = '';
-        let manualStop = false;
-        let recordTimeout = null;
 
-        const expected = SENTENCES[activeSentIdx]?.text || '';
         const rec = new SpeechRecog();
         rec.lang = 'en-US';
         rec.interimResults = true;
-        rec.continuous = true;       // ← KEY FIX: keep listening until user stops
+        rec.continuous = true;
         rec.maxAlternatives = 3;
         activeRecognition = rec;
 
         // Auto-stop after 15 seconds to prevent infinite recording
         recordTimeout = setTimeout(() => {
-            if (activeRecognition) {
+            if (activeRecognition && activeRecordingSnapshot && activeRecordingSnapshot.epoch === epoch) {
                 console.log('⏱️ Auto-stop after 15s timeout');
-                manualStop = true;
                 activeRecognition.stop();
             }
         }, 15000);
 
         rec.onresult = function (event) {
+            if (!activeRecordingSnapshot || activeRecordingSnapshot.epoch !== epoch) return;
+
             let latestFinal = '';
             let interim = '';
             for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -453,7 +568,6 @@
                 }
             }
 
-            // Accumulate final results (continuous mode can fire multiple final chunks)
             if (latestFinal) {
                 accumulatedFinal += latestFinal;
                 currentInterim = '';
@@ -470,6 +584,7 @@
         };
 
         rec.onsoundstart = function () {
+            if (!activeRecordingSnapshot || activeRecordingSnapshot.epoch !== epoch) return;
             console.log('🎙️ Đã bắt được âm thanh (sound start)');
             if (recordLabel && !currentInterim && !accumulatedFinal) {
                 recordLabel.textContent = 'Đang ghi âm (có tiếng)...';
@@ -486,7 +601,7 @@
 
         rec.onerror = function (evt) {
             console.error('🔴 SpeechRecognition error:', evt.error);
-            // 'aborted' fires when we call .stop() — not a real error
+            // 'aborted' fires when we call .stop()/.abort() — not a real error
             if (evt.error === 'aborted') return;
             const msgs = {
                 'no-speech': 'Không phát hiện giọng nói — thử lại',
@@ -495,25 +610,45 @@
                 'network': 'Lỗi mạng — kiểm tra kết nối Internet'
             };
             showToast('⚠️ ' + (msgs[evt.error] || 'Lỗi ghi âm: ' + evt.error), 'error');
+            setAssessmentStatus('Không có kết quả nhận dạng — chưa lưu tiến độ.');
+            // Do not POST / invent scores on recognition errors.
         };
 
         rec.onend = function () {
-            clearTimeout(recordTimeout);
+            if (recordTimeout) {
+                clearTimeout(recordTimeout);
+                recordTimeout = null;
+            }
             activeRecognition = null;
             isRecording = false;
 
-            // Combine final + remaining interim for best possible transcript
             const bestTranscript = accumulatedFinal || currentInterim;
             currentInterim = '';
 
             console.log('🏁 Recording ended. bestTranscript:', bestTranscript);
 
+            const snapshotStillValid = activeRecordingSnapshot
+                && activeRecordingSnapshot.epoch === epoch
+                && SENTENCES[activeSentIdx]
+                && SENTENCES[activeSentIdx].id === snapshot.sentenceId;
+
+            activeRecordingSnapshot = null;
+
+            if (!snapshotStillValid) {
+                setRecordUIState(false);
+                return;
+            }
+
             if (!isScoring && bestTranscript) {
                 if (recordLabel) recordLabel.textContent = 'Đang phân tích...';
-                const sim = levenshteinSimilarity(normalizeText(bestTranscript), normalizeText(expected));
-                applyRecordingFeedback(sim, bestTranscript);
+                const sim = levenshteinSimilarity(
+                    normalizeText(bestTranscript),
+                    normalizeText(snapshot.expectedText)
+                );
+                applyRecordingFeedback(sim, bestTranscript, snapshot);
             } else if (!isScoring) {
                 showToast('⚠️ Không nhận diện được giọng nói — hãy nói rõ hơn hoặc kiểm tra mic!', 'warning');
+                setAssessmentStatus('Không nhận được lời nói — chưa đánh giá, chưa lưu tiến độ.');
                 setRecordUIState(false);
             }
         };
@@ -525,6 +660,11 @@
             console.error('Failed to start SpeechRecognition:', e);
             showToast('❌ Không thể bật ghi âm — thử tải lại trang (F5)', 'error');
             isRecording = false;
+            activeRecordingSnapshot = null;
+            if (recordTimeout) {
+                clearTimeout(recordTimeout);
+                recordTimeout = null;
+            }
             setRecordUIState(false);
         }
     }
@@ -569,8 +709,167 @@
         }
     }
 
-    // ── API — Save progress to backend ─────────────────────────────
-    async function saveSpeakingProgress(sentenceId, scores) {
+    async function startPcmRecording(snapshot) {
+        const recorder = global.TctSpeechRecorder.create({
+            onComplete: function (blob) {
+                if (!blob) return;
+                if (recordingEpoch !== snapshot.epoch) return;
+                const current = activeRecordingSnapshot;
+                if (!current || current.epoch !== snapshot.epoch || current.sentenceId !== snapshot.sentenceId) {
+                    return;
+                }
+                isRecording = false;
+                setRecordUIState(false);
+                assessAndCommitFromWav(snapshot, blob);
+            },
+            onError: function () {
+                if (recordingEpoch !== snapshot.epoch) return;
+                setAssessmentStatus('Thu âm lỗi — chưa lưu tiến độ.');
+            }
+        });
+        activePcmRecorder = recorder;
+        isRecording = true;
+        setRecordUIState(true);
+        setAssessmentStatus('Đang thu PCM — sẽ gửi máy chủ chấm (không dùng điểm trình duyệt).');
+        try {
+            await recorder.start();
+            if (recordingEpoch !== snapshot.epoch || activePcmRecorder !== recorder) {
+                return;
+            }
+        } catch (ex) {
+            console.error(ex);
+            if (activePcmRecorder === recorder) {
+                activePcmRecorder = null;
+            }
+            try { recorder.dispose(); } catch (_) { /* ignore */ }
+            if (recordingEpoch !== snapshot.epoch) {
+                return;
+            }
+            isRecording = false;
+            activeRecordingSnapshot = null;
+            setRecordUIState(false);
+            showToast('Không mở được micro — kiểm tra quyền mic/HTTPS.', 'error');
+            setAssessmentStatus('Mic bị từ chối hoặc không khả dụng — chưa lưu tiến độ.');
+        }
+    }
+
+    async function finishPcmRecording() {
+        const recorder = activePcmRecorder;
+        isRecording = false;
+        if (!recorder) {
+            setRecordUIState(false);
+            return;
+        }
+
+        try {
+            await recorder.stop();
+        } catch (ex) {
+            console.error(ex);
+            showToast('Bản thu không hợp lệ.', 'error');
+            setAssessmentStatus('Audio không hợp lệ — chưa lưu tiến độ.');
+            setRecordUIState(false);
+        }
+    }
+
+    async function assessAndCommitFromWav(snapshot, wavBlob) {
+        if (recordingEpoch !== snapshot.epoch) {
+            setRecordUIState(false);
+            return;
+        }
+        const s = SENTENCES.find(item => item.id === snapshot.sentenceId) || SENTENCES[activeSentIdx];
+        if (!s || s.id !== snapshot.sentenceId) {
+            setRecordUIState(false);
+            return;
+        }
+
+        const controller = new AbortController();
+        activeAssessController = controller;
+        isScoring = true;
+        setScoringUIState(true);
+        setAssessmentStatus('Đang gửi máy chủ nhận dạng...');
+
+        try {
+            const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (!tokenEl) {
+                showToast('Thiếu anti-forgery token.', 'error');
+                return;
+            }
+
+            const form = new FormData();
+            form.append('audio', wavBlob, 'speech.wav');
+            const assessResponse = await fetch(`/api/speaking/${snapshot.sentenceId}/assess`, {
+                method: 'POST',
+                headers: { 'RequestVerificationToken': tokenEl.value },
+                body: form,
+                signal: controller.signal
+            });
+            if (recordingEpoch !== snapshot.epoch || activeSentIdx < 0 || SENTENCES[activeSentIdx]?.id !== snapshot.sentenceId) {
+                return;
+            }
+            const assessBody = await assessResponse.json().catch(() => ({}));
+            if (recordingEpoch !== snapshot.epoch) return;
+            if (!assessResponse.ok || !assessBody.success) {
+                const code = assessBody.code || '';
+                showToast(assessBody.error || 'ASR máy chủ chưa sẵn sàng.', 'warning');
+                setAssessmentStatus(assessBody.error || 'Engine chưa sẵn sàng — nghe/thu được nhưng chưa lưu XP.');
+                return;
+            }
+
+            if (!assessBody.canCommitProgress || !assessBody.assessmentId) {
+                showToast(assessBody.message || 'Chưa nhận được lời nói.', 'warning');
+                setAssessmentStatus(assessBody.message || 'Chưa nhận được lời nói — chưa lưu tiến độ.');
+                updateScoreBoard(s, null);
+                return;
+            }
+
+            updateScoreBoard(s, Math.round(assessBody.textMatchScore || 0));
+            const progress = await saveSpeakingProgress(snapshot.sentenceId, {
+                assessmentId: assessBody.assessmentId
+            }, controller.signal);
+            if (recordingEpoch !== snapshot.epoch || SENTENCES[activeSentIdx]?.id !== snapshot.sentenceId) {
+                return;
+            }
+            if (!progress || !progress.success) {
+                showToast('Đã chấm nhưng chưa lưu được tiến độ.', 'warning');
+                setAssessmentStatus('Assessment hợp lệ nhưng commit tiến độ thất bại.');
+                return;
+            }
+
+            s.isPracticed = true;
+            s.totalScore = progress.totalScore;
+            s.accuracyScore = progress.accuracyScore;
+            s.fluencyScore = progress.fluencyScore;
+            s.completenessScore = progress.completenessScore;
+            updateScoreBoard(s, null);
+            updateProgressUI();
+            markSentenceDone(snapshot.sentenceIndex);
+            setAssessmentStatus('Đã lưu mức khớp lời nói (server). Fluency/prosody chưa đo.');
+            showToast(`Đã lưu ~${Math.round(progress.totalScore)}% khớp lời nói`, 'success');
+            if (progress.firstTimeVideoCompletion && progress.xpEarned > 0) {
+                showToast(`Hoàn thành bài — +${progress.xpEarned} XP`, 'success');
+            }
+        } catch (ex) {
+            if (ex && ex.name === 'AbortError') {
+                return;
+            }
+            console.error(ex);
+            if (recordingEpoch !== snapshot.epoch) return;
+            showToast('Lỗi khi gửi bản thu.', 'error');
+            setAssessmentStatus('Lỗi mạng/máy chủ — chưa lưu tiến độ.');
+        } finally {
+            if (activeAssessController === controller) {
+                activeAssessController = null;
+            }
+            if (recordingEpoch === snapshot.epoch) {
+                isScoring = false;
+                setScoringUIState(false);
+                setRecordUIState(false);
+            }
+        }
+    }
+
+    // ── API — Save progress (assessmentId required) ─
+    async function saveSpeakingProgress(sentenceId, payload, signal) {
         try {
             const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
             if (!tokenEl) { console.warn('Anti-forgery token not found'); return null; }
@@ -581,7 +880,8 @@
                     'Content-Type': 'application/json',
                     'RequestVerificationToken': tokenEl.value
                 },
-                body: JSON.stringify(scores)
+                body: JSON.stringify(payload),
+                signal
             });
 
             if (!response.ok) {
@@ -591,90 +891,37 @@
             }
             return await response.json();
         } catch (ex) {
+            if (ex && ex.name === 'AbortError') return null;
             console.error('Save progress error:', ex);
             return null;
         }
     }
 
-    async function applyRecordingFeedback(similarity, heard) {
+    /**
+     * Browser recognition feedback remains preview-only (not a score source).
+     */
+    async function applyRecordingFeedback(similarity, heard, snapshot) {
         const pct = Math.round(similarity * 100);
         const s = SENTENCES[activeSentIdx];
 
-        const scores = {
-            totalScore: pct,
-            accuracyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
-            fluencyScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5))),
-            completenessScore: Math.min(100, Math.max(0, pct + Math.round(Math.random() * 10 - 5)))
-        };
+        if (!s || !snapshot || s.id !== snapshot.sentenceId) {
+            setRecordUIState(false);
+            return;
+        }
 
         isScoring = true;
-        // Hiện trạng thái "Đang chấm điểm..."
         setScoringUIState(true);
 
-        // Lưu lên server trước — chỉ cập nhật UI khi thành công
-        const result = await saveSpeakingProgress(s.id, scores);
-
+        updateScoreBoard(s, pct);
         isScoring = false;
-        // Tắt trạng thái chấm điểm
         setScoringUIState(false);
-        // Trả lại trạng thái icon micro ban đầu
         setRecordUIState(false);
 
-        if (result && result.success) {
-            s.totalScore = scores.totalScore;
-            s.accuracyScore = scores.accuracyScore;
-            s.fluencyScore = scores.fluencyScore;
-            s.completenessScore = scores.completenessScore;
-            s.isPracticed = true;
-
-            updateScoreBoard(s);
-            updateProgressUI();
-            markSentenceDone(activeSentIdx);
-
-            if (similarity >= 0.8) showToast(`✅ Tuyệt vời! Độ chính xác: ${pct}%`, 'success');
-            else showToast(`🔁 Thử lại! Bạn nói: "${heard}" (${pct}%)`, 'warning');
+        if (similarity >= 0.8) {
+            showToast(`👀 Xem trước: khớp ~${pct}% — chưa lưu tiến độ`, 'success');
         } else {
-            showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
+            showToast(`👀 Xem trước: "${heard}" (~${pct}%) — chưa lưu tiến độ`, 'warning');
         }
-    }
-
-    function simulateFeedback() {
-        isRecording = true;
-        setRecordUIState(true);
-        setTimeout(async () => {
-            isRecording = false;
-            setRecordUIState(false);
-            const s = SENTENCES[activeSentIdx];
-
-            const scores = {
-                totalScore: Math.floor(Math.random() * 20) + 78,
-                accuracyScore: Math.floor(Math.random() * 20) + 78,
-                fluencyScore: Math.floor(Math.random() * 20) + 78,
-                completenessScore: Math.floor(Math.random() * 20) + 78
-            };
-
-            // Hiện trạng thái "Đang chấm điểm..."
-            setScoringUIState(true);
-
-            const result = await saveSpeakingProgress(s.id, scores);
-
-            // Tắt trạng thái chấm điểm
-            setScoringUIState(false);
-
-            if (result && result.success) {
-                s.totalScore = scores.totalScore;
-                s.accuracyScore = scores.accuracyScore;
-                s.fluencyScore = scores.fluencyScore;
-                s.completenessScore = scores.completenessScore;
-                s.isPracticed = true;
-                updateScoreBoard(s);
-                updateProgressUI();
-                markSentenceDone(activeSentIdx);
-                showToast(`✅ Demo: Điểm ${scores.totalScore}%`, 'success');
-            } else {
-                showToast('❌ Lỗi khi lưu điểm — thử lại sau', 'error');
-            }
-        }, 2500);
     }
 
     function markSentenceDone(idx) {
@@ -995,13 +1242,39 @@
     }
 
     // ────────────────────────────────────────────────────────────────
-    //  INIT
+    //  INIT / DISPOSE
     // ────────────────────────────────────────────────────────────────
+    function dispose() {
+        abortActiveRecognition('dispose');
+        if (playbackTimer) {
+            clearInterval(playbackTimer);
+            playbackTimer = null;
+        }
+        if (toastTimer) {
+            clearTimeout(toastTimer);
+            toastTimer = null;
+        }
+        document.removeEventListener('keydown', onKeyDown);
+        isScoring = false;
+    }
+
     function init() {
         bindEvents();
+        if (TEST_MODE) {
+            if (SENTENCES.length > 0) selectSentence(0, false);
+            return;
+        }
         loadYouTubeAPI();
         showToast('⌨️  Space=Play  Shift+←/→=Câu  Enter=Ghi âm', 'info');
     }
+
+    global.TctSpeakingPractice = {
+        startRecording,
+        selectSentence,
+        dispose,
+        applyRecordingFeedback,
+        isPreviewOnly: BROWSER_SCORE_PREVIEW_ONLY,
+    };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -1022,8 +1295,8 @@
     const submitBtn = document.getElementById('mip-submit-btn');
     if (!submitBtn) return;
 
-    // ── DOM refs ───────────────────────────────────────────────────
     const urlInput      = document.getElementById('mip-url-input');
+    const subtitleInput = document.getElementById('mip-subtitle-input');
     const feedback      = document.getElementById('mip-feedback');
     const btnLabel      = document.getElementById('mip-btn-label');
     const btnIcon       = document.getElementById('mip-btn-icon');
@@ -1098,10 +1371,113 @@
         }
     }
 
-    // ── Import submit ──────────────────────────────────────────────
-    submitBtn.addEventListener('click', async () => {
-        const url = (urlInput ? urlInput.value : '').trim();
+    const testCfg = window.TctSpeakingImportTest || {};
+    const initialDelayMs = Number.isFinite(testCfg.initialDelayMs) ? testCfg.initialDelayMs : 5000;
+    const maxDelayMs = Number.isFinite(testCfg.maxDelayMs) ? testCfg.maxDelayMs : 30000;
+    const giveUpMs = Number.isFinite(testCfg.giveUpMs) ? testCfg.giveUpMs : 5 * 60 * 1000;
+    const reloadDelayMs = Number.isFinite(testCfg.reloadDelayMs) ? testCfg.reloadDelayMs : 800;
+    let activeWatch = 0;
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function rememberJob(jobId) {
+        try { sessionStorage.setItem('tct-speaking-import-job', String(jobId)); } catch (_) { /* ignore */ }
+    }
+
+    function statusLabel(status) {
+        if (status === 'queued') return 'Đang chờ xử lý';
+        if (status === 'running') return 'Đang tạo bài';
+        if (status === 'succeeded') return 'Đã xong';
+        if (status === 'failed') return 'Thất bại';
+        if (status === 'cancelled') return 'Đã hủy';
+        return status || 'Đang theo dõi';
+    }
+
+    async function watchJob(jobId, statusUrl) {
+        const watchId = ++activeWatch;
+        const started = Date.now();
+        let delayMs = initialDelayMs;
+        rememberJob(jobId);
+        showFeedback(
+            '<i class="fas fa-spinner fa-spin"></i> ' + escHtml('Đã nhận job ' + jobId + '. Đang theo dõi trạng thái.'),
+            'mip-feedback-success'
+        );
+
+        while (watchId === activeWatch && Date.now() - started < giveUpMs) {
+            const hidden = typeof document.hidden === 'boolean' && document.hidden;
+            const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+            if (hidden || offline) {
+                showFeedback(
+                    '<i class="fas fa-pause-circle"></i> ' + escHtml('Tạm dừng theo dõi job ' + jobId + ' khi ẩn trang hoặc mất mạng. Job trên máy chủ vẫn chạy.'),
+                    'mip-feedback-error'
+                );
+                await sleep(delayMs);
+                continue;
+            }
+
+            await sleep(delayMs);
+            if (watchId !== activeWatch) return;
+            let res;
+            let data = {};
+            try {
+                res = await fetch(statusUrl, { headers: { 'Accept': 'application/json' } });
+                data = await res.json().catch(() => ({}));
+            } catch (_) {
+                delayMs = Math.min(maxDelayMs, Math.round(delayMs * 1.5) || initialDelayMs);
+                continue;
+            }
+
+            if (!res.ok) {
+                showFeedback(
+                    '<i class="fas fa-exclamation-circle"></i> ' + escHtml(data.error || 'Không đọc được trạng thái job.'),
+                    'mip-feedback-error'
+                );
+                setLoading(false);
+                return;
+            }
+
+            const status = data.status;
+            if (status === 'succeeded' && data.videoId) {
+                showFeedback(
+                    '<i class="fas fa-check-circle"></i> Đã tạo bài. Đang tải lại trang...',
+                    'mip-feedback-success'
+                );
+                try { sessionStorage.removeItem('tct-speaking-import-job'); } catch (_) { /* ignore */ }
+                setTimeout(() => window.location.reload(), reloadDelayMs);
+                return;
+            }
+
+            if (status === 'failed' || status === 'cancelled') {
+                showFeedback(
+                    '<i class="fas fa-exclamation-circle"></i> '
+                    + escHtml((data.error || statusLabel(status)) + ' Bạn có thể gửi lại cùng URL.'),
+                    'mip-feedback-error'
+                );
+                setLoading(false);
+                return;
+            }
+
+            showFeedback(
+                '<i class="fas fa-spinner fa-spin"></i> ' + escHtml(statusLabel(status) + ' — job ' + jobId),
+                'mip-feedback-success'
+            );
+            delayMs = Math.min(maxDelayMs, Math.round(delayMs * 1.5) || maxDelayMs);
+        }
+
+        if (watchId !== activeWatch) return;
+        showFeedback(
+            '<i class="fas fa-clock"></i> '
+            + escHtml('Đã theo dõi 5 phút. Job ' + jobId + ' vẫn có thể đang chạy. Mở lại trang hoặc bấm Thêm video để theo dõi tiếp. Không hủy job.'),
+            'mip-feedback-error'
+        );
+        setLoading(false);
+        window.TctSpeakingImport.lastJobId = jobId;
+    }
+
+    async function submitImport() {
+        const url = (urlInput ? urlInput.value : '').trim();
         if (!url) {
             showFeedback(
                 '<i class="fas fa-exclamation-circle"></i> Vui lòng nhập YouTube URL.',
@@ -1113,27 +1489,23 @@
 
         clearFeedback();
         setLoading(true);
-
         try {
             const formData = new FormData();
             formData.append('youtubeUrl', url);
             formData.append('__RequestVerificationToken', getToken());
+            const file = subtitleInput && subtitleInput.files && subtitleInput.files[0];
+            const endpoint = file ? '/api/speaking/imports/subtitles' : '/api/speaking/imports';
+            if (file) formData.append('subtitle', file, file.name || 'subtitles.vtt');
 
-            const res  = await fetch('/Speaking/My/Create', { method: 'POST', body: formData });
+            const res = await fetch(endpoint, { method: 'POST', body: formData });
             const data = await res.json().catch(() => ({}));
-
-            if (res.ok && data.success) {
-                urlInput.value = '';
-                showFeedback(
-                    '<i class="fas fa-check-circle"></i> Thêm thành công! Đang tải lại trang...',
-                    'mip-feedback-success'
-                );
-                // Short delay so the user sees the success message, then reload
-                setTimeout(() => window.location.reload(), 1400);
-                return; // keep loading state while reloading
+            if (res.status === 202 && data.jobId && data.statusUrl) {
+                if (urlInput) urlInput.value = '';
+                if (subtitleInput) subtitleInput.value = '';
+                await watchJob(data.jobId, data.statusUrl);
+                return;
             }
 
-            // Premium gate
             if (data.code === 'premium_required') {
                 showFeedback(
                     '<i class="fas fa-crown"></i> '
@@ -1145,13 +1517,11 @@
                 return;
             }
 
-            // Generic / validation error
             showFeedback(
                 '<i class="fas fa-exclamation-circle"></i> '
                 + escHtml(data.error || 'Đã xảy ra lỗi — vui lòng thử lại.'),
                 'mip-feedback-error'
             );
-
         } catch (_err) {
             showFeedback(
                 '<i class="fas fa-exclamation-circle"></i> Lỗi kết nối — vui lòng thử lại sau.',
@@ -1160,7 +1530,19 @@
         }
 
         setLoading(false);
-    });
+    }
+
+    submitBtn.addEventListener('click', () => { submitImport(); });
+
+    window.TctSpeakingImport = {
+        submit: submitImport,
+        resume(jobId) {
+            const id = jobId || window.TctSpeakingImport.lastJobId;
+            if (!id) return;
+            setLoading(true);
+            watchJob(id, '/api/speaking/imports/' + id);
+        }
+    };
 
     // Allow Enter key in URL input to trigger submit
     if (urlInput) {
@@ -1249,4 +1631,4 @@
     // ── Initial count sync ─────────────────────────────────────────
     updateCount();
 
-})();
+})();

@@ -6,6 +6,12 @@ alwaysApply: true
 Follow @AGENTS.md, especially "Database, PR and Release Rules (Automatic)".
 Apply it even when the feature prompt omits database or deployment requirements.
 
+- Current stabilization phase (owner, 2026-10-31): work/review/test locally first.
+  Do not push, create/update PRs, dispatch remote CI, merge, change Plesk, enable
+  the gate or deploy without an explicit owner request for that stage. This newer
+  instruction supersedes push/CI grants in older execution prompts. Keep CI and
+  release guards; distinguish local checks, CI artifacts and production deploy.
+
 - Assess persisted EF entity/DbContext/mapping changes automatically. Use
   `.agents/skills/tct-ef-migration/SKILL.md` when schema may change.
 - Include needed reviewed migrations, generated metadata and snapshot in the

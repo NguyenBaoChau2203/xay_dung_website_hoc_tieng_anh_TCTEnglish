@@ -87,7 +87,8 @@ public sealed class GoalsPhase3IntegrationTests
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(
             client,
             $"/Speaking/Practice?id={TestDataIds.SpeakingVideoId}");
-        using var request = CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 78);
+        using var request = await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.UserId, TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 78);
 
         using var response = await client.SendAsync(request);
 
@@ -116,17 +117,20 @@ public sealed class GoalsPhase3IntegrationTests
             client,
             $"/Speaking/Practice?id={TestDataIds.SpeakingVideoId}");
 
-        using (var sentenceOneResponse = await client.SendAsync(CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 85)))
+        using (var sentenceOneResponse = await client.SendAsync(await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.UserId, TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 85)))
         {
             Assert.Equal(HttpStatusCode.OK, sentenceOneResponse.StatusCode);
         }
 
-        using (var sentenceTwoResponse = await client.SendAsync(CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceTwoId, antiForgeryToken, 88)))
+        using (var sentenceTwoResponse = await client.SendAsync(await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.UserId, TestDataIds.SpeakingSentenceTwoId, antiForgeryToken, 88)))
         {
             Assert.Equal(HttpStatusCode.OK, sentenceTwoResponse.StatusCode);
         }
 
-        using var completionResponse = await client.SendAsync(CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceThreeId, antiForgeryToken, 92));
+        using var completionResponse = await client.SendAsync(await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.UserId, TestDataIds.SpeakingSentenceThreeId, antiForgeryToken, 92));
         var completionBody = await completionResponse.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, completionResponse.StatusCode);
 
@@ -136,7 +140,8 @@ public sealed class GoalsPhase3IntegrationTests
             Assert.Equal(20, payload.RootElement.GetProperty("xpEarned").GetInt32());
         }
 
-        using var replayResponse = await client.SendAsync(CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceThreeId, antiForgeryToken, 95));
+        using var replayResponse = await client.SendAsync(await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.UserId, TestDataIds.SpeakingSentenceThreeId, antiForgeryToken, 95));
         var replayBody = await replayResponse.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, replayResponse.StatusCode);
 
@@ -174,7 +179,8 @@ public sealed class GoalsPhase3IntegrationTests
             outsiderClient,
             $"/Speaking/Practice?id={TestDataIds.SpeakingVideoId}");
 
-        using var response = await outsiderClient.SendAsync(CreateSpeakingProgressRequest(TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 90));
+        using var response = await outsiderClient.SendAsync(await SpeakingAssessmentTestHelper.CreateSpeakingProgressRequestAsync(
+            factory, TestDataIds.OutsiderUserId, TestDataIds.SpeakingSentenceOneId, antiForgeryToken, 90));
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -322,25 +328,6 @@ public sealed class GoalsPhase3IntegrationTests
                 $$"""{"cardId":401,"masteryLevel":"{{masteryLevel}}","timestamp":"2026-03-28T00:00:00Z"}""",
                 Encoding.UTF8,
                 "application/json")
-        };
-        request.Headers.Add("RequestVerificationToken", antiForgeryToken);
-        return request;
-    }
-
-    private static HttpRequestMessage CreateSpeakingProgressRequest(int sentenceId, string antiForgeryToken, int totalScore)
-    {
-        var payload = $$"""
-        {
-          "totalScore": {{totalScore}},
-          "accuracyScore": {{totalScore}},
-          "fluencyScore": {{totalScore}},
-          "completenessScore": {{totalScore}}
-        }
-        """;
-
-        var request = new HttpRequestMessage(HttpMethod.Post, $"/api/speaking/{sentenceId}/progress")
-        {
-            Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
         request.Headers.Add("RequestVerificationToken", antiForgeryToken);
         return request;

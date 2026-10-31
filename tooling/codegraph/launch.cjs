@@ -19,9 +19,16 @@ try {
   const runtime = path.join(bundle, process.platform === 'win32' ? 'node.exe' : 'node');
   const project = path.resolve(__dirname, '..', '..');
   const supplied = process.argv.slice(2);
-  const readOnly = supplied[0] === '--mcp-readonly';
-  const entry = readOnly ? path.join(__dirname, 'mcp-readonly.cjs') : path.join(bundle, 'lib', 'dist', 'bin', 'codegraph.js');
-  const args = readOnly ? [bundle, project] : supplied.length ? supplied : ['--help'];
+  const projectMode = supplied[0] === '--mcp-project';
+  const policy = projectMode ? require('./project-policy.cjs').readLocalPolicy(project, expected) : { autoSync: false };
+  const readOnly = supplied[0] === '--mcp-readonly' || (projectMode && !policy.autoSync);
+  const entry = readOnly ? path.join(__dirname, 'mcp-readonly.cjs')
+    : projectMode ? path.join(__dirname, 'mcp-autosync.cjs')
+    : path.join(bundle, 'lib', 'dist', 'bin', 'codegraph.js');
+  const args = readOnly ? [bundle, project]
+    : projectMode ? [bundle, project]
+    : supplied.length ? supplied : ['--help'];
+  if (policy.autoSync) process.stderr.write(`TCT CodeGraph: checkout auto-sync enabled (${expected}; ${policy.debounceMs}ms debounce).\n`);
   const result = spawnSync(runtime, ['--liftoff-only', '--disable-warning=ExperimentalWarning', entry, ...args], {
     cwd: project,
     stdio: 'inherit',
@@ -33,6 +40,7 @@ try {
       CODEGRAPH_NO_DOWNLOAD: '1',
       CODEGRAPH_NO_UPDATE_CHECK: '1',
       CODEGRAPH_MCP_TOOLS: 'explore',
+      ...(policy.autoSync ? { CODEGRAPH_WATCH_DEBOUNCE_MS: String(policy.debounceMs), CODEGRAPH_NO_DAEMON: '0' } : {}),
     },
   });
   if (result.error) throw result.error;

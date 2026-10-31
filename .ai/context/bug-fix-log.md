@@ -41,6 +41,122 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Missing import hash historical target model — 2026-10-31
+
+**Symptom**: LearningImportSourceHash was discoverable and its explicit SQL ran, but Migration.TargetModel was empty and its Designer metadata was absent.
+
+**Root Cause**: The handwritten additive migration contained discovery attributes and Up/Down but no BuildTargetModel partial.
+
+**Solution**: Restore the Designer partial from the existing EF9 final snapshot. Keep original migration source/attributes, Up/Down and snapshot unchanged. Add regression coverage for the historical import job/hash/relationship model.
+
+**Files Changed**: `20261030113000_LearningImportSourceHash.Designer.cs`, `SpeakingSchemaTests.cs`; closeout review and executed plan/prompt.
+
+**Verification**: Schema4/4; complete local Release746/746 with actual disposable MariaDB10.5.23 and loopback Whisper, no skips; pending-model check passes; generated SQL remains nullable hash ADD only. No new migration, hosting SQL or migration-history mutation.
+
+**Commit**: `fix(db): restore import hash migration target metadata`.
+
+**Notes**: Discovery attributes remain in the original partial; do not duplicate them in the Designer. Production gate stays false.
+
+### Acceptance discovery, bootstrap SQL mode and preflight ownership — 2026-10-31
+
+**Symptom**: Live ASR discovery performed synchronous HTTP and required an ignored WAV file. BackupClientPath accepted any path containing .tmp without ownership and could enter the enabled release path. Bootstrap escaped backslashes but assumed the server SQL mode.
+
+**Root Cause**: Network availability was used to choose skips during discovery; local filenames and a path substring substituted for explicit test configuration/ownership. SQL escaping lacked an invocation-specific mode contract.
+
+**Solution**: Explicit loopback-only ASR opt-in with offline validation; generate synthetic PCM silence in memory and fail opted-in engine failures. Restrict backup-client override to explicit ValidateOnly under this workspace's physical .tmp with ownership marker; reject before state writes and never override enabled production deployment. Establish backslash mode per bootstrap client session without changing global mode. Finish the new owner's worker phases before asserting stale-token checkpoint preservation.
+
+**Files Changed**:
+- `AsrLiveAcceptanceFactAttribute.cs`, `AsrLiveAcceptanceConfigurationTests.cs`, `WhisperLiveSilenceAcceptanceTests.cs`.
+- `scripts/deploy-plesk.ps1`, `scripts/tests/test_deploy_tools.py`.
+- `scripts/bootstrap-mariadb-acceptance.ps1`, bootstrap script tests, MariaDB notification acceptance tests.
+
+**Verification**: Red→green staging/discovery/mode regressions. Full local Release745/745 with real disposable MariaDB and loopback whisper, no skips. Three original passwords logged in on a disposable server defaulting to NO_BACKSLASH_ESCAPES; global mode stayed unchanged. Final script/tooling counts are recorded in the closeout report/PR.
+
+**Commit**: Grouped closeout commits in the owner-authorized PR; hosting release excluded.
+
+**Notes**: Preflight is not an enabled staging release/restore drill. Production gate remains false; broader UI/import/outbox/app-ASR acceptance remains separately recorded, not inferred from this suite.
+
+### S01 sentinel + MariaDB dual-completion deadlock — 2026-10-30
+
+**Symptom**: Acceptance factory stamped sentinel before verify. Dual speaking completion on MariaDB deadlocked (`1213`) or double-applied daily XP. SQLite `Progress_CreditInsertFailure` returned OK because RAISE FAIL was misread as credit-key replay.
+
+**Root Cause**: Ensure/UPSERT before identity check; concurrent credit+daily insert lock order; `IsDuplicateCreditKey` treated any SqliteErrorCode 19 whose message mentioned `CreditKey` as a unique replay.
+
+**Solution**: Verify-before-write fixture + labeled bootstrap INSERT; retry deadlock/lock-wait and recover daily increment; require UNIQUE/Duplicate signal for credit-key replay.
+
+**Files Changed**:
+- `MariaDbAcceptanceConnectionGuard.cs`, `MariaDbAcceptanceFactory.cs`, orchestration/recording tests, `bootstrap-mariadb-acceptance.ps1`
+- `CompletionCreditService.cs`, `GoalsService.cs`, `MariaDbCompletionConcurrencyTests.cs`
+
+**Verification**: Orchestration + dual-completion ×5 on `:3308`; full Debug suite 718/718 with `TCT_ACCEPTANCE_*` set; whisper-server tiny.en E2E; `:5110` UI matrix.
+
+**Commit**: pending sentinel group commits
+
+**Notes**: G06 enabled staging still needs Plesk `mariadb-dump`; no production gate/merge.
+
+### Final acceptance round 2 CR01–CR05 — 2026-10-30
+
+**Symptom**: Writing still accepted `<5` vs `>5` and `1,000` vs `1.000`. MariaDB acceptance factory could DELETE after any env string. Dual-completion Barrier timed out before the second worker started. Publisher reused releases without tag SHA/digest proof and treated same-commit old run markers as ready.
+
+**Root Cause**: Separator collapsing and incomplete meaning-bearing allowlist; offline identity guards missing; sync Barrier misuse inside async Task.WhenAll; soft digest checks and commit-only readiness.
+
+**Solution**: Keep compare operators and distinct numeric separators; parse/validate loopback acceptance DB + sentinel before DML; async TCS rendezvous with overlap/replay/XP asserts; resolve tag SHA and require digest/bytes before webhook; readiness needs commit+run+digest with ambiguous-webhook reconcile.
+
+**Files Changed**:
+- `WritingAssessmentPolicy.cs`, MariaDB guard/factory/tests, `publish-plesk-release.py`, `deploy-plesk.ps1`, deploy tests
+
+**Verification**: Focused CR tests green; MariaDB concurrency on :3308; Debug 710 pass/1 skip; tiny.en SHA verified; ASR E2E blocked (no server binary).
+
+**Commit**: pending round2 group commits
+
+**Notes**: Does not enable production gate.
+
+### Final acceptance REV01–REV04 — 2026-10-30
+
+**Symptom**: Writing auto-passed answers that only differed by minus/currency/percent after punctuation stripping. Public `/tct-release.json` 404'd because deploy wrote the marker outside wwwroot. Whisper HTTP responses with wrong JSON types threw or looked like no speech. Publisher reruns died recreating an existing release tag.
+
+**Root Cause**: `NormalizeForComparison` replaced every non-letter/digit with spaces. Deploy wrote `tct-release.json` at the site content root while static files only serve wwwroot. `MapVerboseJson` called `GetString`/`TryGetDouble` without ValueKind checks and treated `{}`/error objects as silence. `publish-plesk-release.py` always ran `gh release create`.
+
+**Solution**: Keep meaning-bearing symbols and decimal separators; map Unicode minus to ASCII. Write/promote the marker under wwwroot after readiness, with no-store headers via static-file prepare + narrow endpoint. Validate ASR schema into `invalid_schema`. Reuse matching release tags by SHA/digest without clobber.
+
+**Files Changed**:
+- `TCTEnglish/Services/Writing/WritingAssessmentPolicy.cs` — meaning-preserving normalize
+- `TCTEnglish/Services/Speaking/WhisperHttpTranscriber.cs` — schema validation
+- `TCTEnglish/Program.cs` — marker Cache-Control path
+- `scripts/deploy-plesk.ps1` — wwwroot pending→promote marker
+- `scripts/publish-plesk-release.py` — idempotent release reuse
+
+**Verification**: Debug suite 695/695; focused REV regressions; MariaDB dual-completion on isolated container port 3308; Python deploy/idempotency tests; Node behavior tests. Real ASR engine, browser 25-view matrix, and production release remain Not run/Blocked.
+
+**Commit**: pending feature-branch group commits
+
+**Notes**: Does not authorize Plesk gate enablement or production deploy.
+
+### Learning reliability round 2 — RR01–RR07 and test fixture — 2026-10-30
+
+**Symptom**: A failed speaking import could not be submitted again because the unique fingerprint rejected a new row. One duplicate notification in a batch dropped the rest and the job was still marked succeeded. Changing a speaking sentence left the PCM recorder running. ASR timeout started only after a queue slot was acquired. Touching an old streak record was announced as a new record. Writing cloud feedback could run outside the 3-second optional budget. The AI conflict test and SQLite factory could hang or fail during init/dispose.
+
+**Root Cause**: Import retry inserted a second row for the same owner and video. The notification worker treated every database error as a duplicate, detached the unsaved batch, and advanced a cursor that was not fenced by the lease token. The practice page cancelled Web Speech only. The transcriber created its timeout after `AcquireAsync`. The outbox writer inferred a record from `Streak == LongestStreak` and recent badge timestamps. Cloud enhancement used its own timeout before the shared grammar/model budget. The conflict test waited on a fixed delay and released its gate only on the success path. The SQLite fixture called `EnsureDeleted` on one shared in-memory connection.
+
+**Solution**: Requeue the existing import row, keep the unique index, and publish the video, sentences and job result in one transaction. Notification batches pre-check event keys, commit the cursor only with a matching lease token, and process one batch per poll. The practice page disposes the PCM recorder and aborts the in-flight assessment when the sentence changes. Queue wait and HTTP share one deadline. Streak and badge intents use the transition captured by the operation. Cloud, grammar and the local model share one 3-second budget, and engine payloads must match the expected schema. The conflict test waits until the provider is entered and always releases the gate. Each test factory keeps a shared-cache SQLite database open without `EnsureDeleted`.
+
+**Files Changed**:
+- `TCTEnglish/Services/Speaking/SpeakingImportJobService.cs` — retry and unique conflict
+- `TCTEnglish/Workers/SpeakingImportWorker.cs` — lease and atomic publish
+- `TCTEnglish/Workers/NotificationWorker.cs` — checkpoint, lease and batch
+- `TCTEnglish/wwwroot/js/speaking.js` — recorder/HTTP cancel and import polling
+- `TCTEnglish/Services/Speaking/WhisperHttpTranscriber.cs` — shared deadline
+- `TCTEnglish/Services/Learning/LearningNotificationIntentWriter.cs` — transition metadata
+- `TCTEnglish/Services/WritingService.cs` — shared optional budget
+- `TCTEnglish.Tests/Infrastructure/TestWebApplicationFactory.cs` — SQLite lifetime
+- `TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs` — conflict gate
+
+**Verification**: Focused .NET regressions for import, notifications, inference, transitions, writing and the AI conflict test passed. The conflict test passed on five separate runs. Node recorder, speaking and import tests passed. Migration `20261030113000_LearningImportSourceHash` was not applied to a real database. MySQL, browser microphone, whisper.cpp, LanguageTool and Ollama were not run.
+
+**Commit**: not committed in this session
+
+**Notes**: ASR-for-import stays deferred. The process speech limiter is not a cluster cap. SQLite results are not MySQL concurrency proof.
+
 ### Team setup timed out during CodeGraph package extraction — 2026-10-29
 
 **Symptom**: A simulated fresh Windows checkout installed pinned uv/Python, then
@@ -1782,6 +1898,27 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 
 **Notes**: The web guide JSON knowledge base was already a static web asset under `wwwroot`; this fix covers the separate ML.NET classifier dataset/model assets used by the admin training flow.
 
+### Learning completion could persist without reward; outbox mislabeled goals — 2026-10-30
+
+**Symptom**: A failed credit insert still returned success after Speaking video completion was saved. Replaying did not restore XP. Completion notifications were stored as GoalCompleted with a future timestamp.
+
+**Root Cause**: Progress/completion committed before `CompletionCreditService`, and every `DbUpdateException` was treated as a duplicate. The outbox dispatcher mapped every completion event to `NotificationType.GoalCompleted` and set `CreatedAt` from business date plus 12 hours.
+
+**Solution**: Speaking and Writing now open one transaction around progress, completion, credit, and outbox intents. Only a duplicate credit key is treated as replay. Direct goal/streak/badge inserts are suppressed on that path and replaced with payload v2 intents that keep the real occurrence time. Legacy payloads are marked needs-review instead of guessed as goal completion.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/SpeakingController.cs` — completion unit transaction and retryable 500.
+- `TCTEnglish/Services/WritingService.cs` — same unit around attempt/progress/credit.
+- `TCTEnglish/Services/Learning/CompletionCreditService.cs` — joins the caller transaction; does not swallow unrelated DB errors.
+- `TCTEnglish/Services/Learning/LearningNotificationIntentWriter.cs` — typed outbox intents.
+- `TCTEnglish/Services/Notifications/LearningOutboxDispatcher.cs` — v2 dispatch and occurrence timestamp.
+
+**Verification**: `Progress_CreditInsertFailure_RollsBackCompletion` and `SpeakingCompletionCredit_AppliesOnce_AndEnqueuesOutbox` passed in the focused learning filter (146 passed / 0 failed on the last focused run). SQLite only. MySQL not run.
+
+**Commit**: Not created.
+
+**Notes**: Does not backfill historical missing XP. Does not prove multi-connection races on MySQL.
+
 ### Local startup used remote database; Linux CI watchers/SQLite host races; Plesk GET webhook rejected — 2026-10-30
 
 **Symptom**: Local startup could access the hosting database and apply migrations/seeders. Linux CI failed from exhausted inotify instances and intermittent SQLite host initialization races. Calling the Plesk webhook with GET returned 404.
@@ -1800,3 +1937,21 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Setup PR #120; feature changes remain separate in the owner's working tree.
 
 **Notes**: Removed secrets remain in public Git history until rotated at providers. Production deployment gate stays false pending rotation and full staging failure/recovery drills. SQL backups, credentials and browser profile are ignored private local files.
+
+### Unpublished October migrations dropped foreign-key support indexes too early — 2026-10-30
+
+**Symptom**: Upgrading the restored MariaDB backup failed when a migration dropped an index still needed by a foreign key.
+
+**Root Cause**: The October L4-L6 migration dropped the UserId index before creating its replacement composite index. ReviewRemediation similarly changed FK support indexes before replacements existed, including a same-name owner/fingerprint index becoming unique.
+
+**Solution**: Create compatible replacement indexes first; use a temporary owner FK index while rebuilding the same-name unique index. Apply the corresponding ordering in Down without generating or executing destructive migrations. Only the owner's unpublished October files were edited; the already-applied May migration/history was preserved.
+
+**Files Changed**:
+- `TCTEnglish/Migrations/20261029181904_LearningReliabilityL4ThroughL6.cs`.
+- `TCTEnglish/Migrations/20261030012638_LearningReviewRemediation.cs`.
+
+**Verification**: Both the September backup and a fresh 30/10 production dump restored into isolated MariaDB 10.5.23 upgraded through all four October migrations. Counts/checksums of users, sets, cards, classes, readingusertranslations and readingtranslationvotes stayed unchanged; repeated upgrade was a no-op. Fresh baseline upgrade smoke also passed. Down was reviewed, not executed on user data.
+
+**Commit**: Not committed; these files belong with the owner's pending learning feature, outside setup PR #120.
+
+**Notes**: Live hosting still has five old history IDs and was not migrated. Do not edit published migrations or delete the extra historical May9 migration ID to force a count match.

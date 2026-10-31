@@ -35,6 +35,16 @@ The validator checks skills, references, source hashes, MCP config and reviewed
 lifecycle definitions. Application changes still need build/tests from AGENTS.md.
 Unchanged read-only operations remain quiet.
 
+The SessionStart pointer now asks agents to reuse instructions already present,
+load only the active plan step and count fresh CodeGraph source as read.
+Context7 is routed conditionally to external-library documentation, not private
+repository context. This is guidance, not a tool-call interceptor: hooks do not
+force an agent to use an MCP or guarantee fewer billed tokens. The pointer is
+shared through the existing native host output translations; no hook definition,
+trust record, automatic index or remote server was added.
+Owner-approved CodeGraph incremental auto-sync is selected separately by the
+checkout-local policy in docs/codegraph.md; lifecycle hooks do not run CLI sync.
+
 The Node fast guard denies direct delegation before Python is installed. Other
 validation remains pending until setup/MCP bootstrap prepares the environment.
 Cursor also has a native subagentStart denial gate. Antigravity PostToolUse returns

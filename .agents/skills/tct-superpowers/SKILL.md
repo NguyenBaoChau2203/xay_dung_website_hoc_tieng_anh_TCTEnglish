@@ -12,6 +12,12 @@ same agent for planning, implementation, review and verification.
 
 Choose only the needed process:
 
+Reuse instructions and evidence already current in this chat. Load the active
+plan step and needed skill; the reference links below are optional lookups for
+a missing technique, not a mandatory reading list. Do not preload old plans,
+full bug histories or all roles. Follow tct-engineering for CodeGraph/Context7
+routing; fresh graph source counts as read. Expand context for a specific gap.
+
 | Situation | Reference | Project adaptation |
 | --- | --- | --- |
 | New behavior | [brainstorming](../../../.ai/vendor/superpowers/brainstorming.md) | Inspect current code; clarify material missing requirements. Detailed owner instructions authorize routine implementation choices. |

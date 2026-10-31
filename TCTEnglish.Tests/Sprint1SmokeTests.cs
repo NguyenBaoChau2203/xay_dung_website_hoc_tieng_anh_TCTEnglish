@@ -295,7 +295,10 @@ public sealed class Sprint1SmokeTests
         Assert.Equal(1, data.GetProperty("sentenceId").GetInt32());
         Assert.True(data.GetProperty("passed").GetBoolean());
         Assert.True(data.GetProperty("canAutoAdvance").GetBoolean());
-        Assert.Equal("rule-based", data.GetProperty("evaluationSource").GetString());
+        Assert.Equal("local-exact", data.GetProperty("evaluationSource").GetString());
+        Assert.Equal("Accepted", data.GetProperty("assessmentStatus").GetString());
+        Assert.Equal("local-exact", data.GetProperty("assessmentSource").GetString());
+        Assert.False(data.GetProperty("reviewRequired").GetBoolean());
         Assert.False(data.TryGetProperty("englishMeaning", out _));
         Assert.False(string.IsNullOrWhiteSpace(data.GetProperty("summaryTitle").GetString()));
     }

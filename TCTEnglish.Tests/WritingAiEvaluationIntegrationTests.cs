@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.Writing;
 using TCTEnglish.Tests.Infrastructure;
 using TCTEnglish.Tests.TestHelpers;
 using TCTVocabulary.Models;
@@ -174,7 +176,7 @@ public sealed class WritingAiEvaluationIntegrationTests
         using var json = JsonDocument.Parse(body);
         var data = json.RootElement.GetProperty("data");
         Assert.False(data.GetProperty("usedAi").GetBoolean());
-        Assert.Equal("rule-based", data.GetProperty("evaluationSource").GetString());
+        Assert.StartsWith("local-", data.GetProperty("evaluationSource").GetString());
     }
 
     [Fact]
@@ -193,7 +195,7 @@ public sealed class WritingAiEvaluationIntegrationTests
         using var json = JsonDocument.Parse(body);
         var data = json.RootElement.GetProperty("data");
         Assert.False(data.GetProperty("usedAi").GetBoolean());
-        Assert.Equal("rule-based", data.GetProperty("evaluationSource").GetString());
+        Assert.StartsWith("local-", data.GetProperty("evaluationSource").GetString());
     }
 
     [Fact]
@@ -235,7 +237,7 @@ public sealed class WritingAiEvaluationIntegrationTests
         using var json = JsonDocument.Parse(body);
         var data = json.RootElement.GetProperty("data");
         Assert.False(data.GetProperty("usedAi").GetBoolean());
-        Assert.Equal("rule-based", data.GetProperty("evaluationSource").GetString());
+        Assert.StartsWith("local-", data.GetProperty("evaluationSource").GetString());
         Assert.Equal(referenceAnswer, data.GetProperty("suggestedRewrite").GetString());
         Assert.DoesNotContain("Use the teacher answer", data.GetProperty("reviewText").GetString(), StringComparison.Ordinal);
     }
@@ -247,6 +249,14 @@ public sealed class WritingAiEvaluationIntegrationTests
         {
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, msgs, ct) => handler(msgs, ct)));
+            // Opt-in cloud writing path for AI contract tests (does not change production Local default).
+            services.AddSingleton<IOptions<WritingEvaluationOptions>>(
+                Options.Create(new WritingEvaluationOptions
+                {
+                    EvaluationMode = "Cloud",
+                    CloudEnhancementEnabled = true,
+                    CloudEnhancementTimeoutSeconds = 3
+                }));
         });
     }
 

@@ -41,6 +41,10 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<UserBadge> UserBadges { get; set; }
     public virtual DbSet<UserGoal> UserGoals { get; set; }
     public virtual DbSet<UserSpeakingProgress> UserSpeakingProgresses { get; set; }
+    public virtual DbSet<SpeakingAssessment> SpeakingAssessments { get; set; }
+    public virtual DbSet<SpeakingImportJob> SpeakingImportJobs { get; set; }
+    public virtual DbSet<LearningCompletionCredit> LearningCompletionCredits { get; set; }
+    public virtual DbSet<LearningNotificationOutbox> LearningNotificationOutboxEvents { get; set; }
     public virtual DbSet<AiConversation> AiConversations { get; set; }
     public virtual DbSet<AiMessage> AiMessages { get; set; }
     public virtual DbSet<AiRequestLog> AiRequestLogs { get; set; }
@@ -58,6 +62,7 @@ public partial class DbflashcardContext : DbContext
 
     // ─── Notifications ───────────────────────────────────────────────────────
     public virtual DbSet<Notification> Notifications { get; set; }
+    public virtual DbSet<NotificationJobRun> NotificationJobRuns { get; set; }
 
     public virtual DbSet<ReadingPassage> ReadingPassages { get; set; }
     public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
@@ -919,6 +924,10 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.PracticedAt)
                 .HasDefaultValueSql("(CURRENT_TIMESTAMP)");
 
+            entity.HasIndex(e => new { e.UserId, e.SentenceId })
+                .IsUnique()
+                .HasDatabaseName("IX_UserSpeakingProgresses_UserId_SentenceId");
+
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserSpeakingProgresses)
                 .HasForeignKey(d => d.UserId)
@@ -930,6 +939,101 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.SentenceId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserSpeakingProgress_SpeakingSentences");
+        });
+
+        modelBuilder.Entity<SpeakingAssessment>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.PublicId).IsRequired();
+            entity.Property(e => e.EngineName).HasMaxLength(64).IsRequired();
+            entity.Property(e => e.ModelIdentity).HasMaxLength(128).IsRequired();
+            entity.Property(e => e.TranscriptText).HasMaxLength(2000).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(32).IsRequired();
+
+            entity.HasIndex(e => e.PublicId)
+                .IsUnique()
+                .HasDatabaseName("IX_SpeakingAssessments_PublicId");
+
+            entity.HasIndex(e => new { e.UserId, e.SentenceId, e.CreatedAtUtc })
+                .HasDatabaseName("IX_SpeakingAssessments_UserId_SentenceId_CreatedAtUtc");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.SpeakingSentence)
+                .WithMany()
+                .HasForeignKey(d => d.SentenceId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<SpeakingImportJob>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.YoutubeId).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.SourceUrl).HasMaxLength(500).IsRequired();
+            entity.Property(e => e.RequestFingerprint).HasMaxLength(64).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.LeaseOwner).HasMaxLength(64);
+            entity.Property(e => e.LastError).HasMaxLength(500);
+
+            entity.Property(e => e.LeaseToken).HasMaxLength(64);
+            entity.Property(e => e.SourceKind).HasMaxLength(32);
+            entity.Property(e => e.SourceContentHash).HasMaxLength(64);
+            entity.Property(e => e.SubtitlePayload).HasMaxLength(1_000_000);
+
+            entity.HasIndex(e => e.PublicId).IsUnique().HasDatabaseName("IX_SpeakingImportJobs_PublicId");
+            entity.HasIndex(e => new { e.OwnerUserId, e.RequestFingerprint })
+                .IsUnique()
+                .HasDatabaseName("IX_SpeakingImportJobs_OwnerUserId_RequestFingerprint");
+
+            entity.HasOne(d => d.OwnerUser)
+                .WithMany()
+                .HasForeignKey(d => d.OwnerUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<LearningCompletionCredit>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Feature).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.ContentKey).HasMaxLength(128).IsRequired();
+            entity.Property(e => e.CreditKey).HasMaxLength(160).IsRequired();
+            entity.Property(e => e.BusinessDate).HasColumnType("date");
+
+            entity.HasIndex(e => e.CreditKey).IsUnique().HasDatabaseName("IX_LearningCompletionCredits_CreditKey");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<LearningNotificationOutbox>(entity =>
+        {
+            entity.ToTable("LearningNotificationOutbox");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.EventType).HasMaxLength(64).IsRequired();
+            entity.Property(e => e.ContentKey).HasMaxLength(128);
+            entity.Property(e => e.BadgeId).HasMaxLength(64);
+            entity.Property(e => e.PayloadJson).HasMaxLength(4000).IsRequired();
+            entity.Property(e => e.LastError).HasMaxLength(500);
+            entity.Property(e => e.NotificationEventKey).HasMaxLength(160);
+            entity.Property(e => e.BusinessDate).HasColumnType("date");
+
+            entity.HasIndex(e => e.EventId).IsUnique().HasDatabaseName("IX_LearningNotificationOutbox_EventId");
+            entity.HasIndex(e => new { e.UserId, e.NotificationEventKey })
+                .IsUnique()
+                .HasDatabaseName("IX_LearningNotificationOutbox_UserId_NotificationEventKey");
+            entity.HasIndex(e => new { e.ProcessedAtUtc, e.NextAttemptAtUtc })
+                .HasDatabaseName("IX_LearningNotificationOutbox_Processed_NextAttempt");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<AiConversation>(entity =>
@@ -1254,6 +1358,9 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.IconClass)
                 .HasMaxLength(100);
 
+            entity.Property(e => e.EventKey)
+                .HasMaxLength(160);
+
             entity.Property(e => e.Type)
                 .HasConversion<int>();
 
@@ -1268,11 +1375,47 @@ public partial class DbflashcardContext : DbContext
             entity.HasIndex(e => new { e.UserId, e.IsRead, e.CreatedAt })
                 .HasDatabaseName("IX_Notifications_UserId_IsRead_CreatedAt");
 
+            entity.HasIndex(e => new { e.UserId, e.EventKey })
+                .IsUnique()
+                .HasDatabaseName("IX_Notifications_UserId_EventKey");
+
             entity.HasOne(e => e.User)
                 .WithMany(u => u.Notifications)
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Notifications_Users");
+        });
+
+        modelBuilder.Entity<NotificationJobRun>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.JobName)
+                .HasMaxLength(64)
+                .IsRequired();
+
+            entity.Property(e => e.Status)
+                .HasMaxLength(32)
+                .IsRequired();
+
+            entity.Property(e => e.LeaseOwner)
+                .HasMaxLength(64);
+
+            entity.Property(e => e.LastError)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.Phase)
+                .HasMaxLength(32);
+
+            entity.Property(e => e.LeaseToken)
+                .HasMaxLength(64);
+
+            entity.Property(e => e.BusinessDate)
+                .HasColumnType("date");
+
+            entity.HasIndex(e => new { e.JobName, e.BusinessDate })
+                .IsUnique()
+                .HasDatabaseName("IX_NotificationJobRuns_JobName_BusinessDate");
         });
 
         // ─── PremiumPlan ──────────────────────────────────────────────────────────

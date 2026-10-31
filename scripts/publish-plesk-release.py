@@ -12,6 +12,8 @@ from pathlib import Path
 
 REPOSITORY = 'NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish'
 BRANCH = 'codex/production-release'
+RELEASE_ASSET = 'tctenglish-release.zip'
+SHA_RE = re.compile(r'^[0-9a-f]{40}$')
 
 
 def api(path, body=None, method=None):
@@ -20,6 +22,121 @@ def api(path, body=None, method=None):
         headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json'}, method=method)
     with urllib.request.urlopen(request, timeout=30) as response:
         return json.load(response)
+
+
+def find_release_by_tag(tag):
+    try:
+        return api('/releases/tags/' + tag)
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            return None
+        raise
+
+
+def resolve_tag_commit_sha(tag, depth_limit=5):
+    """Resolve refs/tags/<tag> to an actual commit SHA (handles annotated tags)."""
+    try:
+        ref = api('/git/ref/tags/' + tag)
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            raise SystemExit('Release tag ref was not found; refusing to reuse without SHA proof.') from None
+        raise
+    object_sha = ref['object']['sha']
+    object_type = ref['object']['type']
+    seen = set()
+    for _ in range(depth_limit):
+        if object_sha in seen:
+            raise SystemExit('Release tag resolution detected a cycle.')
+        seen.add(object_sha)
+        if object_type == 'commit' and SHA_RE.fullmatch(object_sha):
+            return object_sha
+        if object_type != 'tag':
+            raise SystemExit('Release tag does not resolve to a commit SHA.')
+        tag_object = api('/git/tags/' + object_sha)
+        object_sha = tag_object['object']['sha']
+        object_type = tag_object['object']['type']
+    raise SystemExit('Release tag resolution exceeded depth limit.')
+
+
+def normalize_sha256(value):
+    if not value:
+        return None
+    digest = str(value).strip().lower().replace('sha256:', '')
+    if not re.fullmatch(r'[0-9a-f]{64}', digest):
+        return None
+    return digest
+
+
+def select_release_asset(release, artifact_name=RELEASE_ASSET):
+    matches = [asset for asset in (release.get('assets') or []) if asset.get('name') == artifact_name]
+    if len(matches) != 1:
+        return None
+    asset = matches[0]
+    state = (asset.get('state') or 'uploaded').lower()
+    if state not in ('uploaded', 'available'):
+        return None
+    return asset
+
+
+def download_and_hash_asset(asset):
+    url = asset.get('browser_download_url') or asset.get('url')
+    if not url or not str(url).startswith('https://'):
+        raise SystemExit('Release asset URL is missing or not HTTPS; refusing to reuse.')
+    request = urllib.request.Request(url, headers={
+        'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+        'Accept': 'application/octet-stream',
+    })
+    digest = hashlib.sha256()
+    with urllib.request.urlopen(request, timeout=60) as response:
+        while True:
+            chunk = response.read(1024 * 1024)
+            if not chunk:
+                break
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def resolve_asset_sha256(release, local_digest):
+    asset = select_release_asset(release)
+    if asset is None:
+        raise SystemExit('Existing release is missing a single uploaded expected asset; refusing to reuse.')
+    remote = normalize_sha256(asset.get('digest') or asset.get('sha256'))
+    if remote is None:
+        remote = download_and_hash_asset(asset)
+    if remote != local_digest:
+        raise SystemExit('Existing release asset digest mismatch; refusing to clobber.')
+    return remote
+
+
+def ensure_release(tag, artifact, sha):
+    """Create the release or reuse an existing one with proven SHA + digest."""
+    local_digest = file_sha256(artifact)
+    existing = find_release_by_tag(tag)
+    if existing is not None:
+        tag_sha = resolve_tag_commit_sha(tag)
+        if tag_sha != sha:
+            raise SystemExit('Existing release tag points at a different commit; refusing to clobber.')
+        remote_digest = resolve_asset_sha256(existing, local_digest)
+        return existing, remote_digest, False
+
+    subprocess.run(
+        ['gh', 'release', 'create', tag, str(artifact) + '#' + RELEASE_ASSET, '--repo', REPOSITORY,
+         '--target', sha, '--title', 'TCT English ' + sha[:12],
+         '--notes', 'Application and migration bundle from a successful CI run.'],
+        check=True)
+    created = find_release_by_tag(tag)
+    if created is None:
+        raise SystemExit('Release create completed but tag lookup failed.')
+    tag_sha = resolve_tag_commit_sha(tag)
+    if tag_sha != sha:
+        raise SystemExit('Created release tag does not resolve to the expected commit.')
+    remote_digest = resolve_asset_sha256(created, local_digest)
+    return created, remote_digest, True
+
+
+def file_sha256(path):
+    with open(path, 'rb') as handle:
+        return hashlib.file_digest(handle, 'sha256').hexdigest()
 
 
 def update_branch(files):
@@ -43,39 +160,83 @@ def notify_plesk(webhook):
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             response.read(4096)
+        return 'accepted'
     except Exception:
-        raise SystemExit('Plesk webhook failed; its private URL has not been logged.') from None
+        # Ambiguous: remote may have accepted the POST. Caller must reconcile.
+        return 'ambiguous'
 
 
-def main():
-    artifact = Path(sys.argv[1]).resolve()
+def marker_matches(deployed, sha, run_number, digest):
+    if deployed.get('commit') != sha:
+        return False
+    if int(deployed.get('runNumber', -1)) != int(run_number):
+        return False
+    marker_digest = normalize_sha256(deployed.get('sha256') or deployed.get('digest'))
+    if marker_digest is None or marker_digest != digest:
+        return False
+    return True
+
+
+def wait_for_deployed_release(sha, run_number, digest, attempts=48, delay_seconds=5):
+    for _ in range(attempts):
+        try:
+            with urllib.request.urlopen('https://tctenglish.site/tct-release.json', timeout=10) as response:
+                headers = {name.lower(): value for name, value in response.headers.items()}
+                deployed = json.load(response)
+            with urllib.request.urlopen('https://tctenglish.site/health/ready', timeout=10) as response:
+                ready = response.status == 200
+            cache_control = headers.get('cache-control', '')
+            cache_ok = ('no-store' in cache_control) or ('no-cache' in cache_control)
+            if ready and marker_matches(deployed, sha, run_number, digest) and cache_ok:
+                print('Plesk deployed the expected commit/run/digest and readiness passed.')
+                return True
+        except Exception:
+            pass
+        time.sleep(delay_seconds)
+    return False
+
+
+def main_with_artifact(artifact_path):
+    artifact = Path(artifact_path).resolve()
     sha = os.environ['GITHUB_SHA']
-    if not re.fullmatch(r'[0-9a-f]{40}', sha) or os.environ['GITHUB_REPOSITORY'] != REPOSITORY:
+    if not SHA_RE.fullmatch(sha) or os.environ['GITHUB_REPOSITORY'] != REPOSITORY:
         raise SystemExit('Unexpected release identity.')
     webhook = os.environ.get('PLESK_WEBHOOK_URL', '')
     if not webhook.startswith('https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?'):
         raise SystemExit('Configure the verified HTTPS Plesk webhook before enabling deployment.')
+    run_number = int(os.environ['GITHUB_RUN_NUMBER'])
     tag = 'deploy-' + os.environ['GITHUB_RUN_ID'] + '-' + sha[:12]
-    subprocess.run(['gh', 'release', 'create', tag, str(artifact) + '#tctenglish-release.zip', '--repo', REPOSITORY,
-        '--target', sha, '--title', 'TCT English ' + sha[:12], '--notes', 'Application and migration bundle from a successful CI run.'], check=True)
-    manifest = {'enabled': True, 'repository': REPOSITORY, 'commit': sha,
-        'runNumber': int(os.environ['GITHUB_RUN_NUMBER']), 'sha256': hashlib.file_digest(artifact.open('rb'), 'sha256').hexdigest(),
-        'artifactUrl': 'https://github.com/' + REPOSITORY + '/releases/download/' + tag + '/tctenglish-release.zip'}
+    release, digest, created = ensure_release(tag, artifact, sha)
+    artifact_url = 'https://github.com/' + REPOSITORY + '/releases/download/' + tag + '/' + RELEASE_ASSET
+    asset = select_release_asset(release)
+    if asset and asset.get('browser_download_url'):
+        artifact_url = asset['browser_download_url']
+    manifest = {
+        'enabled': True,
+        'repository': REPOSITORY,
+        'commit': sha,
+        'runNumber': run_number,
+        'sha256': digest,
+        'artifactUrl': artifact_url,
+        'releaseReused': not created,
+    }
     update_branch({'release.json': json.dumps(manifest, indent=2), 'deploy-plesk.ps1': Path('scripts/deploy-plesk.ps1').read_text(encoding='utf-8')})
-    notify_plesk(webhook)
-    for _ in range(48):
-        try:
-            with urllib.request.urlopen('https://tctenglish.site/tct-release.json', timeout=10) as response:
-                deployed = json.load(response)
-            with urllib.request.urlopen('https://tctenglish.site/health/ready', timeout=10) as response:
-                ready = response.status == 200
-            if deployed.get('commit') == sha and ready:
-                print('Plesk deployed the expected commit and database readiness passed.')
-                return
-        except Exception:
-            pass
-        time.sleep(5)
-    raise SystemExit('Plesk release did not reach readiness; inspect private release status and backup before retrying.')
+    webhook_status = notify_plesk(webhook)
+    if wait_for_deployed_release(sha, run_number, digest):
+        return
+    if webhook_status == 'ambiguous':
+        raise SystemExit(
+            'Plesk webhook response was ambiguous and the expected commit/run/digest marker was not observed. '
+            'Reconcile hosting state manually; do not re-run migrations blindly.')
+    raise SystemExit(
+        'Plesk release did not reach readiness for this run identity; inspect private release status and backup before retrying. '
+        'Do not re-run migrations blindly if hosting state is unclear.')
+
+
+def main():
+    if len(sys.argv) < 2:
+        raise SystemExit('Usage: publish-plesk-release.py <artifact.zip>')
+    main_with_artifact(sys.argv[1])
 
 
 if __name__ == '__main__':

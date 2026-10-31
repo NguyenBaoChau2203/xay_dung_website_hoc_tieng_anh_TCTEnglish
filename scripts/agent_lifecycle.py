@@ -16,14 +16,16 @@ HOSTS = {"codex", "claude", "cursor", "antigravity"}
 DELEGATION_TOOLS = {"spawn_agent", "Agent", "Task", "followup_task", "collaboration.spawn_agent", "collaboration.followup_task", "invoke_subagent", "define_subagent"}
 EDIT_TOOLS = {"Bash", "Shell", "exec_command", "apply_patch", "Edit", "Write", "run_command", "write_to_file", "replace_file_content", "multi_replace_file_content"}
 CONTEXT = (
-    "TCT English project context: read AGENTS.md and .ai/README.md; use only the "
-    "relevant .agents/skills/tct-* skill. One agent implements and reviews. "
-    "Use CodeGraph first when indexed; do not re-index automatically. Read "
-    "DESIGN.md for UI work and current project files for actual framework versions. "
-    "Protected config changes require authority from the user's task. Before "
-    "completion verify changed behavior, build/relevant tests and report evidence "
-    "in Vietnamese. Lifecycle checks validate tooling only; they do not prove "
-    "application tests or browser behavior passed."
+    "TCT English project context: one agent implements and reviews. Reuse current "
+    "AGENTS.md/.ai/README.md context; load only the active plan step and needed "
+    "skill. CodeGraph first for indexed source; fresh verbatim output counts as "
+    "read. Use bounded reads for stale/missing files or a concrete gap; no automatic "
+    "init/rebuild. Incremental sync needs owner-approved checkout-local opt-in. "
+    "Context7, if available, is for versioned external-library docs, "
+    "not private source or secrets. Read DESIGN.md for UI work. Preserve protected "
+    "config authority; verify changed behavior/build/relevant tests and report "
+    "evidence in Vietnamese. Hook checks certify tooling only, not app tests or "
+    "browser behavior."
 )
 
 

@@ -7,6 +7,11 @@ public interface INotificationService
     // === CRUD ===
     Task<int> GetUnreadCountAsync(int userId);
     Task<List<NotificationViewModel>> GetNotificationsAsync(int userId, int page = 1, int pageSize = 20);
+    Task<NotificationListViewModel> GetNotificationsPageAsync(
+        int userId,
+        int page = 1,
+        int pageSize = 20,
+        bool unreadOnly = false);
     Task<OperationResult> MarkAsReadAsync(int notificationId, int userId);
     Task<OperationResult> MarkAllAsReadAsync(int userId);
 

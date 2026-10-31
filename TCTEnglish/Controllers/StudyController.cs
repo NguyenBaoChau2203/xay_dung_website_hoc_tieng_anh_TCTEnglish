@@ -477,7 +477,8 @@ namespace TCTVocabulary.Controllers
                 request.ExerciseId,
                 request.SentenceId,
                 request.UserAnswer,
-                userId);
+                userId,
+                HttpContext.RequestAborted);
 
             if (evaluation == null)
             {

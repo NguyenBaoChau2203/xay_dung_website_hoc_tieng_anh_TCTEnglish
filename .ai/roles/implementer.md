@@ -3,7 +3,8 @@
 Used by the same agent already working on the task. This does not define or
 authorize a spawned agent, separate chat or model process.
 
-- Read AGENTS.md, current affected code and relevant tests.
+- Reuse current AGENTS.md context and fresh CodeGraph source; load only affected
+  code/tests needed by the active step. Other roles and old plans are on-demand.
 - Establish the outcome, scope, files and validation.
 - Preserve MVC/service/ViewModel boundaries and feature ownership.
 - Enforce access scope, antiforgery, async I/O and encoded user text.

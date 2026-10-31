@@ -186,7 +186,7 @@ class RepositoryFiles:
                              if p.is_file() and ".venv" not in p.parts and "__pycache__" not in p.parts)
         paths.update(p for p in ("AGENTS.md", "DESIGN.md") if (self.root / p).is_file())
         paths.update(p for p in ("CLAUDE.md", ".mcp.json", ".agents/hooks.json", ".agents/mcp_config.json", ".claude/settings.json", ".cursor/hooks.json", ".cursor/mcp.json", ".vscode/tasks.json", "SETUP-AGENTS.cmd") if (self.root / p).is_file())
-        paths.update(p for p in ("tooling/codegraph/package.json", "tooling/codegraph/package-lock.json", "tooling/codegraph/launch.cjs", "tooling/codegraph/mcp-readonly.cjs") if (self.root / p).is_file())
+        paths.update(p for p in ("tooling/codegraph/package.json", "tooling/codegraph/package-lock.json", "tooling/codegraph/launch.cjs", "tooling/codegraph/mcp-readonly.cjs", "tooling/codegraph/project-policy.cjs", "tooling/codegraph/mcp-autosync.cjs") if (self.root / p).is_file())
         return paths
 
     def read(self, path: str) -> bytes:
@@ -303,7 +303,7 @@ def validate(view: RepositoryFiles) -> list[str]:
         errors.extend(check_codegraph_config(config["mcp_servers"].get("codegraph", {}),
                                             json.loads(view.text("tooling/codegraph/package.json")),
                                             json.loads(view.text("tooling/codegraph/package-lock.json"))))
-        for path in ("tooling/codegraph/launch.cjs", "tooling/codegraph/mcp-readonly.cjs", "scripts/codegraph.ps1", "scripts/start-codegraph-mcp.ps1"):
+        for path in ("tooling/codegraph/launch.cjs", "tooling/codegraph/mcp-readonly.cjs", "tooling/codegraph/project-policy.cjs", "tooling/codegraph/mcp-autosync.cjs", "scripts/codegraph.ps1", "scripts/start-codegraph-mcp.ps1"):
             view.text(path)
     project = tomllib.loads(view.text("tooling/mcp/pyproject.toml"))
     errors.extend(check_dependencies(project["project"]["dependencies"]))

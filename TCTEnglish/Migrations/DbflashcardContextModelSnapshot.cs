@@ -194,6 +194,10 @@ namespace TCTEnglish.Migrations
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
+                    b.Property<string>("EventKey")
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)");
+
                     b.Property<string>("IconClass")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -225,10 +229,75 @@ namespace TCTEnglish.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId", "EventKey")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Notifications_UserId_EventKey");
+
                     b.HasIndex("UserId", "IsRead", "CreatedAt")
                         .HasDatabaseName("IX_Notifications_UserId_IsRead_CreatedAt");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.NotificationJobRun", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BusinessDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("CompletedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("LastError")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int?>("LastUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LeaseOwner")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("LeaseToken")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime?>("LeaseUntilUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Phase")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime?>("StartedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobName", "BusinessDate")
+                        .IsUnique()
+                        .HasDatabaseName("IX_NotificationJobRuns_JobName_BusinessDate");
+
+                    b.ToTable("NotificationJobRuns");
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.PaymentAdminAction", b =>
@@ -1137,6 +1206,129 @@ namespace TCTEnglish.Migrations
                     b.ToTable("Folders");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.LearningCompletionCredit", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("BusinessDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("ContentKey")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreditKey")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)");
+
+                    b.Property<string>("Feature")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("XpAwarded")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreditKey")
+                        .IsUnique()
+                        .HasDatabaseName("IX_LearningCompletionCredits_CreditKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LearningCompletionCredits");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.LearningNotificationOutbox", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BadgeId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime>("BusinessDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("ContentKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("LastError")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime?>("NextAttemptAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NotificationEventKey")
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)");
+
+                    b.Property<DateTime?>("OccurredAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PayloadJson")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("varchar(4000)");
+
+                    b.Property<int>("PayloadVersion")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ProcessedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_LearningNotificationOutbox_EventId");
+
+                    b.HasIndex("ProcessedAtUtc", "NextAttemptAtUtc")
+                        .HasDatabaseName("IX_LearningNotificationOutbox_Processed_NextAttempt");
+
+                    b.HasIndex("UserId", "NotificationEventKey")
+                        .IsUnique()
+                        .HasDatabaseName("IX_LearningNotificationOutbox_UserId_NotificationEventKey");
+
+                    b.ToTable("LearningNotificationOutbox", (string)null);
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.LearningProgress", b =>
                 {
                     b.Property<int>("ProgressId")
@@ -1559,6 +1751,170 @@ namespace TCTEnglish.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Sets");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.SpeakingAssessment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<bool>("Consumed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ConsumedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("EngineName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModelIdentity")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("SentenceId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SpeechDetected")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<double>("TextMatchScore")
+                        .HasColumnType("double");
+
+                    b.Property<string>("TranscriptText")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SpeakingAssessments_PublicId");
+
+                    b.HasIndex("SentenceId");
+
+                    b.HasIndex("UserId", "SentenceId", "CreatedAtUtc")
+                        .HasDatabaseName("IX_SpeakingAssessments_UserId_SentenceId_CreatedAtUtc");
+
+                    b.ToTable("SpeakingAssessments");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.SpeakingImportJob", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CompletedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LastError")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("LeaseOwner")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("LeaseToken")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime?>("LeaseUntilUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("MaxAttempts")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("NextAttemptAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("OwnerUserId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("RequestFingerprint")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int?>("ResultVideoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SourceContentHash")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("SourceKind")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("SourceUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime?>("StartedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("SubtitlePayload")
+                        .HasMaxLength(1000000)
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("YoutubeId")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SpeakingImportJobs_PublicId");
+
+                    b.HasIndex("OwnerUserId", "RequestFingerprint")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SpeakingImportJobs_OwnerUserId_RequestFingerprint");
+
+                    b.ToTable("SpeakingImportJobs");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingPlaylist", b =>
@@ -2079,7 +2435,9 @@ namespace TCTEnglish.Migrations
 
                     b.HasIndex("SentenceId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId", "SentenceId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserSpeakingProgresses_UserId_SentenceId");
 
                     b.ToTable("UserSpeakingProgresses");
                 });
@@ -2746,6 +3104,28 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.LearningCompletionCredit", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.LearningNotificationOutbox", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.LearningProgress", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.Card", "Card")
@@ -2868,6 +3248,36 @@ namespace TCTEnglish.Migrations
                     b.Navigation("Folder");
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.SpeakingAssessment", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.SpeakingSentence", "SpeakingSentence")
+                        .WithMany()
+                        .HasForeignKey("SentenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SpeakingSentence");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.SpeakingImportJob", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "OwnerUser")
+                        .WithMany()
+                        .HasForeignKey("OwnerUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OwnerUser");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingSentence", b =>

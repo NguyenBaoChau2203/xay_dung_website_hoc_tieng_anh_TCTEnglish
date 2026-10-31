@@ -5,7 +5,9 @@ using System.Text.Json;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Services.Writing;
 using TCTEnglish.Tests.Infrastructure;
 using TCTEnglish.Tests.TestHelpers;
 using TCTVocabulary.Models;
@@ -80,6 +82,13 @@ public sealed class WritingPracticePersistenceIntegrationTests
     {
         return new TestWebApplicationFactory(services =>
         {
+            services.AddSingleton<IOptions<WritingEvaluationOptions>>(
+                Options.Create(new WritingEvaluationOptions
+                {
+                    EvaluationMode = "Cloud",
+                    CloudEnhancementEnabled = true,
+                    CloudEnhancementTimeoutSeconds = 3
+                }));
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, _) =>
                 Task.FromResult(new AiProviderReply(

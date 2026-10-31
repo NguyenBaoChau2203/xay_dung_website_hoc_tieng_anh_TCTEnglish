@@ -39,7 +39,7 @@ proposing follow-up work so they do not optimize already-completed items.
   `LockExpiry` data before enabling the worker broadly.
 - **Status**: Confirmed unresolved / operational gap.
 
-### BUG-008: Startup seeding always performs a full JSON sync
+### BUG-008: Startup seeding always performs a full JSON sync — resolved 2026-10-30
 - **Symptom**: Application startup still reads and synchronizes
   `wwwroot/data/system-vocabulary.json` on every boot, increasing startup cost
   and mutating the database during normal app launch.
@@ -48,7 +48,9 @@ proposing follow-up work so they do not optimize already-completed items.
 - **When it triggers**: Every application startup.
 - **Recommended fix**: Gate seeding by environment/flag, or add a cheap
   change-detection guard before the expensive sync path.
-- **Status**: Confirmed unresolved / operational gap.
+- **Status**: Resolved by the explicit `Database:SeedOnStartup` gate (default false).
+  Local restore keeps seeding off in User Secrets; release migration uses the
+  design-time factory and does not start the web host or seeders.
 
 ---
 

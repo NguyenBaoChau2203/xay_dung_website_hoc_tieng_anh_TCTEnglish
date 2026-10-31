@@ -29,6 +29,9 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         _configureTestServices = configureTestServices;
     }
 
+    /// <summary>Add before the host is built. Used to fail a specific SaveChanges without sharing one SQLite connection.</summary>
+    public List<IInterceptor> SaveInterceptors { get; } = new();
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
@@ -52,18 +55,25 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.RemoveAll<DbflashcardContext>();
             services.RemoveAll<IDbContextOptionsConfiguration<DbflashcardContext>>();
 
-            if (_keeper is null)
+            // One shared-cache memory database per factory. Each DbContext opens its own
+            // connection so concurrent scopes are not serialized on a single SqliteConnection.
+            // A keeper connection keeps the database alive. EnsureDeleted is not used: it
+            // closes the in-memory database and has disposed statements/handles mid-init.
+            if (_keeper == null)
             {
                 _sqliteConnectionString = $"Data Source=file:tct{Guid.NewGuid():N}?mode=memory&cache=shared;Pooling=False";
                 _keeper = new SqliteConnection(_sqliteConnectionString);
                 _keeper.Open();
             }
+
             var connectionString = _sqliteConnectionString
-                ?? throw new InvalidOperationException("SQLite test connection was not initialized.");
+                ?? throw new InvalidOperationException("SQLite test connection was not opened.");
 
             var hostedServiceDescriptors = services
                 .Where(descriptor => descriptor.ServiceType == typeof(IHostedService)
-                    && descriptor.ImplementationType == typeof(AutoUnlockWorker))
+                    && (descriptor.ImplementationType == typeof(AutoUnlockWorker)
+                        || descriptor.ImplementationType == typeof(SpeakingImportWorker)
+                        || descriptor.ImplementationType == typeof(NotificationWorker)))
                 .ToList();
 
             foreach (var descriptor in hostedServiceDescriptors)
@@ -77,6 +87,10 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                 options.ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>();
                 options.ReplaceService<IMigrator, NoOpMigrator>();
                 options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+                if (SaveInterceptors.Count > 0)
+                {
+                    options.AddInterceptors(SaveInterceptors.ToArray());
+                }
             });
 
             services.AddDataProtection()
@@ -104,13 +118,18 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         });
     }
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         using var scope = Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
-        await context.Database.OpenConnectionAsync();
         await context.Database.EnsureCreatedAsync();
+        var connection = context.Database.GetDbConnection();
+        if (connection.State != System.Data.ConnectionState.Open)
+        {
+            await connection.OpenAsync();
+        }
+
         await EnsureUsersTableExistsAsync(context);
 
         await SeedAsync(context);
@@ -127,14 +146,23 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
 
         var keeper = _keeper;
         _keeper = null;
-        if (keeper is not null)
+        if (keeper == null)
         {
-            try { keeper.Close(); keeper.Dispose(); }
-            catch (Exception exception) when (exception is ObjectDisposedException or NullReferenceException) { }
+            return;
+        }
+
+        try
+        {
+            keeper.Close();
+            keeper.Dispose();
+        }
+        catch (Exception ex) when (ex is ObjectDisposedException or NullReferenceException)
+        {
+            // The host or a previous close can already have released the native handle.
         }
     }
 
-    private static async Task SeedAsync(DbflashcardContext context)
+    protected static async Task SeedAsync(DbflashcardContext context)
     {
         var standardUser = new User
         {
@@ -379,6 +407,10 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
     private static async Task<bool> TableExistsAsync(DbflashcardContext context, string tableName)
     {
         await using var command = context.Database.GetDbConnection().CreateCommand();
+        if (command.Connection!.State != System.Data.ConnectionState.Open)
+        {
+            await command.Connection.OpenAsync();
+        }
         command.CommandText = "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = $name LIMIT 1;";
 
         var parameter = command.CreateParameter();
