@@ -1,5 +1,10 @@
 # Cursor Auto — transaction, bootstrap và ASR sau review31/10
 
+> Owner update 31/10/2026: giai đoạn hiện tại làm và nghiệm thu local trước.
+> Không tự push, tạo/cập nhật PR, dispatch CI từ xa, merge hoặc deploy. Quyền
+> push/CI trong bản prompt trước đã được thay bằng chỉ dẫn mới này; chỉ thực hiện
+> từng bước từ xa khi owner yêu cầu rõ. Giữ CI/gate/Plesk hiện có nguyên trạng.
+
 Dùng một Cursor Agent, Auto trong allowlist Grok/Composer2.5 của owner. Không
 agent phụ hoặc AI CLI khác. Reuse AGENTS.md/.ai/README.md, tct-engineering và
 tct-superpowers; CodeGraph trước source indexed, không rebuild index tự động.
@@ -30,7 +35,8 @@ synthetic local thay vì yêu cầu account thật. G06 chưa vượt backup-cli
 chuẩn bị client/harness local có provenance, không cần Plesk thật. Ghi đúng
 partial/blocked nếu thực sự không thể chạy. Không đóng checkbox vượt evidence.
 
-Phạm vi sửa/commit/push/CI theo chat thực thi owner. Cho phép setup local đã giao:
+Phạm vi sửa local theo chat thực thi owner. Các bước từ xa cần owner giao riêng.
+Cho phép setup local đã giao:
 Docker loopback/DB synthetic riêng, ASR English<=500MiB có pin/hash/license, app
 5110 riêng, local backup client/harness có provenance. Không dùng DB/volume dev,
 hosting, real credentials/PII hoặc paid API. Không đổi app package/target/provider,
@@ -40,8 +46,8 @@ Không merge master, đổi Plesk, bật gate/deploy production. Không bypass t
 Khi được giao thực thi, làm hết phần độc lập còn được phép trong cùng lượt. Không
 dừng sau ba unit fixes nếu provider/browser/staging còn làm được. Chỉ hỏi đầu vào
 thật sự thiếu; không xin lại quyền local chung. Build/full/relevant script tests,
-provider assertions, cập nhật ledger đúng SHA/pass/fail/skip/blocked. Nếu được giao,
-commit theo nhóm, push feature và kiểm CI đúng SHA; báo release riêng.
+provider assertions, cập nhật ledger đúng SHA/pass/fail/skip/blocked. Bàn giao local
+cho owner review; không tự push hoặc chạy CI từ xa sau khi tests xanh.
 
 ## Chat copy
 
@@ -49,5 +55,5 @@ commit theo nhóm, push feature và kiểm CI đúng SHA; báo release riêng.
 Dùng Cursor Agent, Auto trong allowlist Grok/Composer 2.5, một agent duy nhất.
 Đọc .ai/prompts/cursor-auto-transaction-bootstrap-asr-remediation.md và review docs/feature-audits/2026-10-31-cursor-sentinel-acceptance-review.md. Tôi giao thực thi T0–T5 trong docs/superpowers/plans/2026-10-31-transaction-bootstrap-asr-remediation-plan.md.
 Sửa SA01–SA03 bằng regression đỏ trước; làm tiếp acceptance local đã giao, tạo user bcrypt synthetic, chuẩn bị client/harness staging có provenance. Cho phép Docker/DB riêng và ASR English <=500 MiB có pin/hash/license theo plan; giữ DB/volume dev và hosting nguyên vẹn.
-Khi checks pass, commit theo nhóm, push feature và chạy CI đúng SHA. Không merge, đổi Plesk, bật gate hoặc deploy production; không bypass tool policy. Báo actual evidence/provider và blockers, không đánh Done bằng SQLite/curl/302 thay acceptance thật. Không dừng sau một fix hoặc hỏi lại quyền local vừa giao.
+Chỉ thực hiện và kiểm tra local, báo kết quả để tôi review. Không tự commit/push, tạo PR, chạy CI từ xa, merge, đổi Plesk, bật gate hoặc deploy production; không bypass tool policy. Báo actual evidence/provider và blockers, không đánh Done bằng SQLite/curl/302 thay acceptance thật. Không dừng sau một fix hoặc hỏi lại quyền local vừa giao.
 ```

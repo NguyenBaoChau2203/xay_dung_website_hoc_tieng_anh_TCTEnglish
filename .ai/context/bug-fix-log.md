@@ -41,6 +41,25 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Acceptance discovery, bootstrap SQL mode and preflight ownership — 2026-10-31
+
+**Symptom**: Live ASR discovery performed synchronous HTTP and required an ignored WAV file. BackupClientPath accepted any path containing .tmp without ownership and could enter the enabled release path. Bootstrap escaped backslashes but assumed the server SQL mode.
+
+**Root Cause**: Network availability was used to choose skips during discovery; local filenames and a path substring substituted for explicit test configuration/ownership. SQL escaping lacked an invocation-specific mode contract.
+
+**Solution**: Explicit loopback-only ASR opt-in with offline validation; generate synthetic PCM silence in memory and fail opted-in engine failures. Restrict backup-client override to explicit ValidateOnly under this workspace's physical .tmp with ownership marker; reject before state writes and never override enabled production deployment. Establish backslash mode per bootstrap client session without changing global mode. Finish the new owner's worker phases before asserting stale-token checkpoint preservation.
+
+**Files Changed**:
+- `AsrLiveAcceptanceFactAttribute.cs`, `AsrLiveAcceptanceConfigurationTests.cs`, `WhisperLiveSilenceAcceptanceTests.cs`.
+- `scripts/deploy-plesk.ps1`, `scripts/tests/test_deploy_tools.py`.
+- `scripts/bootstrap-mariadb-acceptance.ps1`, bootstrap script tests, MariaDB notification acceptance tests.
+
+**Verification**: Red→green staging/discovery/mode regressions. Full local Release745/745 with real disposable MariaDB and loopback whisper, no skips. Three original passwords logged in on a disposable server defaulting to NO_BACKSLASH_ESCAPES; global mode stayed unchanged. Final script/tooling counts are recorded in the closeout report/PR.
+
+**Commit**: Grouped closeout commits in the owner-authorized PR; hosting release excluded.
+
+**Notes**: Preflight is not an enabled staging release/restore drill. Production gate remains false; broader UI/import/outbox/app-ASR acceptance remains separately recorded, not inferred from this suite.
+
 ### S01 sentinel + MariaDB dual-completion deadlock — 2026-10-30
 
 **Symptom**: Acceptance factory stamped sentinel before verify. Dual speaking completion on MariaDB deadlocked (`1213`) or double-applied daily XP. SQLite `Progress_CreditInsertFailure` returned OK because RAISE FAIL was misread as credit-key replay.
