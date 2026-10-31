@@ -252,7 +252,7 @@ async function main(args) {
       return 0;
     }
     if (name === 'SessionStart') {
-      const message = 'TCT English: read AGENTS.md and .ai/README.md; one agent implements and reviews. Setup is pending: allow the TCT folder-open task or double-click SETUP-AGENTS.cmd. MCP first use also restores dependencies. Do not index CodeGraph automatically.';
+      const message = 'TCT English: reuse AGENTS.md; one agent implements and reviews. Read .ai/README.md only for routing/setup questions. Setup is pending: allow the TCT folder-open task or double-click SETUP-AGENTS.cmd. MCP first use restores locked dependencies. Do not index CodeGraph automatically.';
       const output = host === 'cursor' ? { additional_context: message } : host === 'antigravity'
         ? { injectSteps: [{ ephemeralMessage: message }] } : { hookSpecificOutput: { hookEventName: name, additionalContext: message } };
       process.stdout.write(JSON.stringify(output));
@@ -264,6 +264,10 @@ async function main(args) {
     return 0;
   }
   const setup = createSetup();
+  if (action === 'doctor' && rest.every(arg => arg === '--json')) {
+    if (!fs.existsSync(setup.python)) throw new Error('Doctor needs the locked project Python runtime. Run SETUP-AGENTS.cmd first; doctor never installs it.');
+    return start(setup.python, [path.join(ROOT, 'scripts', 'agent_doctor.py'), ...rest], { env: { ...process.env, PYTHONUTF8: '1' } });
+  }
   if (action === 'setup') {
     await setup.ensurePython();
     await setup.ensureCodegraph();
@@ -293,7 +297,7 @@ async function main(args) {
     log('Explicit index action selected. Rebuilding this checkout\'s CodeGraph index.');
     return start(process.execPath, [path.join(ROOT, 'tooling', 'codegraph', 'launch.cjs'), 'index', ROOT]);
   }
-  throw new Error('Choose setup, validate [--staged], mcp git, mcp codegraph, or explicit index.');
+  throw new Error('Choose doctor [--json], setup, validate [--staged], mcp git, mcp codegraph, or explicit index.');
 }
 
 module.exports = { downloadVerified, withLock, installGitHook, fastHook, createSetup, main };

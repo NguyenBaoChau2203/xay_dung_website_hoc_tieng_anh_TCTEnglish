@@ -1,11 +1,12 @@
 @AGENTS.md
-@.ai/README.md
 
 Apply AGENTS.md's "Database, PR and Release Rules (Automatic)" even when the
 feature prompt omits database/deploy work. Schema changes need their migration
 in the same PR; CI success is distinct from a verified production release.
 
-The imported files are the canonical project rules and routing table. Project
+The imported AGENTS.md is the canonical project policy. Read `.ai/README.md`
+only for a concrete skill-routing or setup question; do not import its full
+contents at every startup. Project
 skills under .claude/skills are small discovery adapters to .agents/skills/tct-*.
 Read the canonical skill before following its scripts or relative references.
 Use .ai/roles as inline review lenses with the same agent. Never delegate to

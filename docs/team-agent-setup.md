@@ -37,7 +37,7 @@ dùng file bấm đúp. Không chỉnh user settings để ép quyền tự ch�
 | Client | Rules / skills | Native hooks | Native MCP |
 | --- | --- | --- | --- |
 | Codex | AGENTS.md, .agents/skills/tct-* | .codex/hooks.json | .codex/config.toml |
-| Claude Code | CLAUDE.md import AGENTS.md và .ai/README.md; 16 adapter .claude/skills/tct-* | .claude/settings.json | .mcp.json |
+| Claude Code | CLAUDE.md import AGENTS.md; README đọc theo nhu cầu; 16 adapter .claude/skills/tct-* | .claude/settings.json | .mcp.json |
 | Cursor | AGENTS.md, .agents/skills/tct-* | .cursor/hooks.json | .cursor/mcp.json |
 | Antigravity | AGENTS.md, .agents/skills/tct-*; .agent/skills còn cho bản cũ | .agents/hooks.json | .agents/mcp_config.json |
 
@@ -99,6 +99,30 @@ không phải dependency của folder-open/setup/post-merge. Không chạy nó c
 biến mất cảnh báo. Index cũ cũng có thể stale; xem docs/codegraph.md.
 
 ## Kiểm tra và bảo trì
+
+Chẩn đoán chỉ đọc cho cả bốn client (31/10/2026):
+
+```text
+node scripts/agent-tools.cjs doctor
+node scripts/agent-tools.cjs doctor --json
+```
+
+Doctor dùng Python runtime đã khóa của project; nếu thiếu sẽ báo cần setup,
+không tự cài. Nó đọc cấu hình project và metadata liên quan của profile cá nhân,
+không in env/header/token/arguments cá nhân, không khởi chạy model/MCP/index,
+không sửa file hoặc trust. Các route global trùng tên là **candidate** cần kiểm
+trong host, không phải bằng chứng chúng đang override cấu hình project.
+
+`project_mcp_matches`/`project_hooks_match` xác nhận native definitions khớp
+launcher chung. `native_status=unverified` giữ riêng cho tới khi đã quan sát UI/
+log của client. Có thể kiểm MCP/Rules/Skills/Hooks trong client hiện có rồi
+reload/reconnect đúng server nếu cần; không cần mở thêm tác vụ AI để kiểm.
+
+Luôn nạp core policy từ AGENTS.md; skill/domain docs và README routing đọc theo
+nhu cầu. Không nhân bản AGENTS thành bốn file dài hoặc xóa adapter tương thích
+chỉ vì một client có nhiều discovery paths. Native catalog có thể tự deduplicate;
+kiểm actual catalog trước. Không thay model allowlist hoặc cấu hình global của
+các project khác để làm tối ưu này.
 
 Các lệnh sau dành cho người bảo trì; đồng đội dùng nút/file setup ở trên:
 

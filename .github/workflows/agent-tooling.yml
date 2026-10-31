@@ -20,5 +20,7 @@ jobs:
         run: python3 scripts/agent_tooling.py
       - name: Test tooling checks
         run: python3 -m unittest discover -s scripts/tests -v
+      - name: Inventory four client configurations without activating them
+        run: python3 scripts/agent_doctor.py --json
       - name: Test setup integrity, retry and concurrent startup behavior
-        run: node --test scripts/tests/test_agent_setup.cjs
+        run: node --test scripts/tests/test_agent_setup.cjs scripts/tests/test_codegraph_policy.cjs
