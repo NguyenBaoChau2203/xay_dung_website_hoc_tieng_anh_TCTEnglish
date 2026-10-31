@@ -1,9 +1,10 @@
-"""SA02: actual PowerShell bootstrap must refuse foreign/missing identity without DROP/INSERT overwrite."""
+"""SA02 + LB01: actual PowerShell bootstrap identity guards and SQL literal encoding."""
 
 from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -15,13 +16,32 @@ ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / 'scripts' / 'bootstrap-mariadb-acceptance.ps1'
 
 
+def mariadb_escape_literal(value: str) -> str:
+    """MariaDB default string-literal escaping (no NO_BACKSLASH_ESCAPES): \\ then '."""
+    return value.replace('\\', '\\\\').replace("'", "''")
+
+
+def extract_identified_by_literals(sql: str) -> list[str]:
+    # MariaDB literals escape quote as '' and backslash as \\ (default sql_mode).
+    return re.findall(r"IDENTIFIED BY '((?:''|\\.|[^'\\])*)'", sql, flags=re.IGNORECASE)
+
+
 @unittest.skipUnless(os.name == 'nt' and shutil.which('powershell.exe'), 'Windows PowerShell 5.1 host check')
 class BootstrapMariadbAcceptanceScriptTests(unittest.TestCase):
-    def run_bootstrap(self, bin_dir: Path, *, run_id: str, host_port: int = 3310,
-                      container: str = 'tctenglish-mariadb-acceptance-sa02') -> subprocess.CompletedProcess[str]:
+    def run_bootstrap(
+        self,
+        bin_dir: Path,
+        *,
+        run_id: str,
+        host_port: int = 3310,
+        container: str = 'tctenglish-mariadb-acceptance-sa02',
+        user_password: str = 'local-only-acc-pass',
+    ) -> subprocess.CompletedProcess[str]:
         env = os.environ.copy()
         env['PATH'] = str(bin_dir) + os.pathsep + env.get('PATH', '')
-        env['TCT_ACCEPTANCE_DB_PASSWORD'] = 'local-only-acc-pass'
+        # Prefer explicit -UserPassword so backslash cases are not rewritten by the shell env.
+        if 'TCT_ACCEPTANCE_DB_PASSWORD' in env:
+            del env['TCT_ACCEPTANCE_DB_PASSWORD']
         return subprocess.run(
             [
                 'powershell.exe',
@@ -35,6 +55,7 @@ class BootstrapMariadbAcceptanceScriptTests(unittest.TestCase):
                 '-RunId', run_id,
                 '-RootPassword', 'unused-local-only',
                 '-HostPort', str(host_port),
+                '-UserPassword', user_password,
             ],
             capture_output=True,
             text=True,
@@ -217,6 +238,66 @@ class BootstrapMariadbAcceptanceScriptTests(unittest.TestCase):
                 sql = sql_log.read_text(encoding='utf-8', errors='ignore').upper()
                 self.assertNotIn('DROP TABLE', sql)
                 self.assertNotIn('INSERT INTO `__TCT_ACCEPTANCE_SENTINEL`', sql.replace('`', ''))
+
+    def _bootstrap_new_db_sql(self, *, run_id: str, host_port: int, user_password: str) -> str:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            sql_log = root / 'sql.txt'
+            labels = {
+                'tct.acceptance': '1',
+                'tct.purpose': 'final-acceptance-g03',
+                'tct.run': run_id,
+            }
+            self.write_fake_docker(
+                root,
+                labels=labels,
+                host_ip='127.0.0.1',
+                host_port=host_port,
+                sql_log=sql_log,
+                schema_exists=False,
+            )
+            result = self.run_bootstrap(
+                root,
+                run_id=run_id,
+                host_port=host_port,
+                user_password=user_password,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn('Bootstrapped', result.stdout)
+            self.assertTrue(sql_log.exists(), 'create path must write SQL through docker exec')
+            # Do not echo password/SQL into unittest stdout.
+            return sql_log.read_text(encoding='utf-8', errors='surrogateescape')
+
+    def test_password_backslash_n_keeps_literal_bytes_in_identified_by(self):
+        # Synthetic LB01 case: Aa + backslash + n + Bb. Expected SQL escape doubles backslash.
+        password = 'Aa\\nBb'
+        sql = self._bootstrap_new_db_sql(run_id='pwd_bsn', host_port=3316, user_password=password)
+        literals = extract_identified_by_literals(sql)
+        self.assertGreaterEqual(len(literals), 1, 'IDENTIFIED BY missing from generated SQL')
+        expected = mariadb_escape_literal(password)
+        self.assertEqual(literals[0], expected)
+        # Bug shape before fix: single backslash left in SQL becomes newline under default sql_mode.
+        self.assertNotEqual(literals[0], password)
+        self.assertIn('\\\\n', literals[0])
+
+    def test_each_sql_session_establishes_backslash_contract(self):
+        sql = self._bootstrap_new_db_sql(run_id='pwd_mode', host_port=3316, user_password=r'Aa\nBb')
+        self.assertIn('SET SESSION sql_mode', sql)
+        self.assertIn('NO_BACKSLASH_ESCAPES', sql)
+
+    def test_password_quote_and_backslash_quote_escape_in_identified_by(self):
+        cases = {
+            "pwd_quote": ("O'Brien", 3317),
+            "pwd_bs_q": ("a\\b'c", 3318),
+            "pwd_ws": ("pass word", 3319),
+            "pwd_uni": ("päss✓", 3320),
+        }
+        for run_id, (password, port) in cases.items():
+            with self.subTest(run_id=run_id):
+                sql = self._bootstrap_new_db_sql(run_id=run_id, host_port=port, user_password=password)
+                literals = extract_identified_by_literals(sql)
+                self.assertGreaterEqual(len(literals), 1)
+                self.assertEqual(literals[0], mariadb_escape_literal(password))
 
 
 if __name__ == '__main__':

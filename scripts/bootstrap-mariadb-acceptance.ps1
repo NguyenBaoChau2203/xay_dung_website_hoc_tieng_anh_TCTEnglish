@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)][string]$ContainerName,
@@ -62,6 +62,10 @@ function Invoke-DockerText {
     try {
         $quoted = ($DockerArgs | ForEach-Object { Quote-CmdArg $_ }) -join ' '
         if ($null -ne $StdInText) {
+            # Establish this invocation's literal contract even if the disposable
+            # server defaults to NO_BACKSLASH_ESCAPES. Never change global mode.
+            $modeSql = "SET SESSION sql_mode = REPLACE(REPLACE(REPLACE(@@SESSION.sql_mode, 'NO_BACKSLASH_ESCAPES,', ''), ',NO_BACKSLASH_ESCAPES', ''), 'NO_BACKSLASH_ESCAPES', '');"
+            $StdInText = $modeSql + "`n" + $StdInText
             $stdinFile = [System.IO.Path]::GetTempFileName()
             # UTF8 no BOM keeps mariadb client happy with ASCII SQL.
             $utf8NoBom = New-Object System.Text.UTF8Encoding $false
@@ -133,7 +137,14 @@ function Escape-SqlIdent([string]$value) {
     return ($value -replace '`', '``')
 }
 function Escape-SqlLiteral([string]$value) {
-    return ($value -replace "'", "''")
+    # MariaDB default sql_mode treats \ as an escape inside string literals
+    # (e.g. \n → newline). Escape backslash first, then single quotes.
+    # PowerShell -replace replacement '\\' yields two backslash characters for one match.
+    # Do not change global/server sql_mode; each IDENTIFIED BY / literal uses this.
+    if ($null -eq $value) {
+        return ''
+    }
+    return (($value -replace '\\', '\\') -replace "'", "''")
 }
 
 $dbIdent = Escape-SqlIdent $Database
