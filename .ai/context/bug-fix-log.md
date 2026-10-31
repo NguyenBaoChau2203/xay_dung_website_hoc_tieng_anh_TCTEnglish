@@ -41,6 +41,22 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Missing import hash historical target model — 2026-10-31
+
+**Symptom**: LearningImportSourceHash was discoverable and its explicit SQL ran, but Migration.TargetModel was empty and its Designer metadata was absent.
+
+**Root Cause**: The handwritten additive migration contained discovery attributes and Up/Down but no BuildTargetModel partial.
+
+**Solution**: Restore the Designer partial from the existing EF9 final snapshot. Keep original migration source/attributes, Up/Down and snapshot unchanged. Add regression coverage for the historical import job/hash/relationship model.
+
+**Files Changed**: `20261030113000_LearningImportSourceHash.Designer.cs`, `SpeakingSchemaTests.cs`; closeout review and executed plan/prompt.
+
+**Verification**: Schema4/4; complete local Release746/746 with actual disposable MariaDB10.5.23 and loopback Whisper, no skips; pending-model check passes; generated SQL remains nullable hash ADD only. No new migration, hosting SQL or migration-history mutation.
+
+**Commit**: `fix(db): restore import hash migration target metadata`.
+
+**Notes**: Discovery attributes remain in the original partial; do not duplicate them in the Designer. Production gate stays false.
+
 ### Acceptance discovery, bootstrap SQL mode and preflight ownership — 2026-10-31
 
 **Symptom**: Live ASR discovery performed synchronous HTTP and required an ignored WAV file. BackupClientPath accepted any path containing .tmp without ownership and could enter the enabled release path. Bootstrap escaped backslashes but assumed the server SQL mode.

@@ -49,7 +49,7 @@ session. Config/contract checks do not prove every open IDE has reloaded.
 - Auto-sync fixture: pass; add/edit/delete, debounce, catch-up, shared daemon,
   path/tool scope and return to read-only; fixture cleanup kept app/main index.
 - Final Python suite72/72 and tooling validator passed, including the reviewed
-  acceptance scripts; application suite745/745 passed separately with live local
+  acceptance scripts; final application suite746/746 passed separately with live local
   ASR/disposable MariaDB. Tooling checks do not certify those application results.
 
 Artifacts are ignored under .tmp/session-closeout. Team usage and doctor limits

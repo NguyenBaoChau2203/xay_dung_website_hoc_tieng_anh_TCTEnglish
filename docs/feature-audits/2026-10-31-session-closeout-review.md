@@ -15,6 +15,7 @@ inline. Original uncommitted files were backed up privately before edits.
 | MariaDB fixture/collection/theory | Offline/online identity guard retained; notification tables reset in owned disposable DB; provider tests serialized;201/450 recipients and stale-token behavior checked |
 | Stale notification lease | Test now completes the new worker's phases before old token resumes and asserts succeeded/complete plus unique recipients; no production worker change was needed |
 | Live ASR | Removed sync HTTP during discovery and ignored-WAV dependency; explicit loopback-only opt-in, in-memory synthetic PCM WAV; opted-in engine failure fails instead of skipping |
+| Final migration metadata check | Restored missing LearningImportSourceHash Designer target model from the existing EF9 final snapshot; original Up/Down, discovery attributes and snapshot unchanged; historical hash/relationship contract now has a regression test |
 
 Regression evidence: staging tests initially failed for missing ownership/enabled
 override; ASR config tests failed before offline parser existed; SQL-mode contract
@@ -26,11 +27,11 @@ that every production acceptance gate has passed.
 
 | Check | Result |
 | --- | --- |
-| Full local Release suite | **745 passed,0 failed,0 skipped** |
+| Full local Release suite | **746 passed,0 failed,0 skipped** after the final metadata fix |
 | MariaDB | New review-owned10.5.23 container, loopback3331, fresh migrations and synthetic data; completion race ×5, notification201/450 and expired lease executed |
 | ASR | Pinned existing whisper binary/model on owned loopback8092; live synthetic silence through actual adapter returned NoSpeech |
 | SQL-mode/password fixture | Disposable server with global NO_BACKSLASH_ESCAPES; backslash, quote+backslash and Unicode original passwords all logged in; rerun succeeded and global mode unchanged |
-| Pending model changes | No changes since last migration; no new migration needed |
+| Pending model changes | No changes since last migration; no new migration needed; generated hash SQL still only adds the nullable column |
 | Windows Python scripts | **72/72 pass** |
 | Node setup/policy | **19/19 pass** |
 | Tooling/staged validator | Pass |
@@ -55,6 +56,12 @@ ran one new-worker phase; completing those phases corrected the test expectation
 - `f825bd5` — provider/live ASR acceptance and offline discovery guards.
 - Documentation closeout commit follows these source checkpoints. CI evidence
   belongs to the actual PR head/runtime tree and is reported in the PR/final handoff.
+- Final metadata fix is a separate commit after documentation. Plan/prompt:
+  `docs/superpowers/plans/2026-10-31-migration-metadata-closeout.md` and
+  `.ai/prompts/migration-metadata-closeout.md`. The regression asserts a nonempty
+  historical target model, nullable hash length64 and relationships; four schema
+  tests pass. The complete provider/ASR rerun passes746/746 in2m15s. No migration
+  operations or history rows were changed, and no new schema migration was added.
 
 The PR also integrates the existing feature-branch work reviewed during previous
 sessions: learning reliability, schema migrations, feature UI and earlier final
