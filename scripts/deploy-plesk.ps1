@@ -4,7 +4,9 @@ param(
     [Parameter(Mandatory=$true)][string]$ManifestPath,
     [Parameter(Mandatory=$true)][string]$SiteRoot,
     [Parameter(Mandatory=$true)][string]$StateRoot,
-    [switch]$ValidateOnly
+    [switch]$ValidateOnly,
+    # Local preflight only; never changes the enabled production release client.
+    [string]$BackupClientPath = ''
 )
 $ErrorActionPreference = 'Stop'
 $utf8 = New-Object Text.UTF8Encoding($false)
@@ -51,16 +53,56 @@ function Db-Value($Builder, [string[]]$Keys) {
     foreach ($key in $Keys) { if ($Builder.ContainsKey($key)) { return [string]$Builder[$key] } }
     return ''
 }
+function Assert-NoReparsePath([string]$Path) {
+    $cursor = [IO.Path]::GetFullPath($Path)
+    while ($cursor) {
+        if ((Test-Path -LiteralPath $cursor) -and ((Get-Item -LiteralPath $cursor -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+            throw 'Local preflight paths must not traverse reparse points.'
+        }
+        $parent = Split-Path -Parent $cursor
+        if ($parent -eq $cursor) { break }
+        $cursor = $parent
+    }
+}
 
 if ((Split-Path -Leaf $SiteRoot) -ne 'httpdocs' -or -not (Test-Path -LiteralPath $SiteRoot -PathType Container)) { throw 'Expected the existing Plesk httpdocs directory.' }
 Assert-ChildPath $privateRoot $StateRoot | Out-Null
+$defaultBackupClient = 'C:\Program Files (x86)\Plesk\MySQL\bin\mariadb-dump.exe'
+$backupClient = $defaultBackupClient
+if (-not [string]::IsNullOrWhiteSpace($BackupClientPath)) {
+    if (-not $ValidateOnly) {
+        throw 'BackupClientPath override is only allowed for owned local preflight with -ValidateOnly.'
+    }
+    $resolvedClient = [IO.Path]::GetFullPath($BackupClientPath)
+    $workspaceTmp = Join-Path (Split-Path -Parent $PSScriptRoot) '.tmp'
+    foreach ($path in @($SiteRoot, $StateRoot, $resolvedClient)) {
+        Assert-ChildPath $workspaceTmp $path | Out-Null
+        Assert-NoReparsePath $path
+    }
+    $ownershipPath = Join-Path $subscriptionRoot '.tct-staging.json'
+    if (-not (Test-Path -LiteralPath $ownershipPath -PathType Leaf)) {
+        throw 'Local preflight requires an owned .tct-staging.json marker.'
+    }
+    Assert-NoReparsePath $ownershipPath
+    $ownership = Get-Content -Raw -LiteralPath $ownershipPath | ConvertFrom-Json
+    if ($ownership.schemaVersion -ne 1 -or $ownership.purpose -ne 'tct-plesk-preflight' -or [string]$ownership.runId -cnotmatch '^[a-z0-9_]{4,64}$') {
+        throw 'Invalid local preflight ownership marker.'
+    }
+    if ((Split-Path -Leaf $resolvedClient) -ne 'mariadb-dump.exe') {
+        throw 'BackupClientPath must point to mariadb-dump.exe.'
+    }
+    if (-not (Test-Path -LiteralPath $resolvedClient -PathType Leaf)) {
+        throw 'BackupClientPath does not exist.'
+    }
+    $backupClient = $resolvedClient
+}
 [IO.Directory]::CreateDirectory($StateRoot) | Out-Null
-$backupClient = 'C:\Program Files (x86)\Plesk\MySQL\bin\mariadb-dump.exe'
 $manifest = Get-Content -Raw -LiteralPath $ManifestPath | ConvertFrom-Json
 if ($ValidateOnly -or -not $manifest.enabled) {
     Write-Json (Join-Path $StateRoot 'preflight.json') @{
         CheckedAtUtc = [DateTime]::UtcNow.ToString('O'); PowerShellVersion = $PSVersionTable.PSVersion.ToString()
         SiteExists = $true; BackupClientExists = (Test-Path -LiteralPath $backupClient)
+        BackupClientPath = $backupClient
         HasProductionConfig = (Test-Path -LiteralPath (Join-Path $SiteRoot 'appsettings.Production.json'))
         DeploymentEnabled = $false; DatabaseOrWebsiteChanged = $false
     }

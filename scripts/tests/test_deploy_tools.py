@@ -293,6 +293,84 @@ class PleskPreflightTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertEqual(list(site.iterdir()), [])
 
+    def test_backup_client_override_rejected_outside_tmp_staging(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'
+            site.mkdir()
+            state = root / 'private/state'
+            state.mkdir(parents=True)
+            manifest = root / 'release.json'
+            manifest.write_text('{"enabled": false}')
+            fake_dump = root / 'mariadb-dump.exe'
+            fake_dump.write_bytes(b'MZ')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(state),
+                '-BackupClientPath', str(fake_dump),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn('BackupClientPath override is only allowed', result.stdout + result.stderr)
+
+    def test_backup_client_override_allowed_under_tmp_staging_preflight(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory) / 'site'
+            site = root / 'httpdocs'
+            site.mkdir(parents=True)
+            state = root / 'private' / 'state'
+            state.mkdir(parents=True)
+            manifest = root / 'release.json'
+            manifest.write_text('{"enabled": false}')
+            (root / '.tct-staging.json').write_text(json.dumps({
+                'schemaVersion': 1, 'purpose': 'tct-plesk-preflight', 'runId': 'preflight_test',
+            }))
+            fake_dump = root / 'mariadb-dump.exe'
+            fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(state),
+                '-BackupClientPath', str(fake_dump), '-ValidateOnly',
+            ], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            preflight = json.loads((state / 'preflight.json').read_text(encoding='utf-8'))
+            self.assertTrue(preflight['BackupClientExists'])
+            self.assertEqual(Path(preflight['BackupClientPath']), fake_dump.resolve())
+
+    def test_backup_override_requires_owned_workspace_marker(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'; site.mkdir()
+            manifest = root / 'release.json'; manifest.write_text('{"enabled": false}')
+            fake_dump = root / 'mariadb-dump.exe'; fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(root / 'private/state'),
+                '-BackupClientPath', str(fake_dump), '-ValidateOnly',
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertFalse((root / 'private/state').exists(), 'reject before state writes')
+
+    def test_backup_override_cannot_enter_enabled_release(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory)
+            site = root / 'httpdocs'; site.mkdir()
+            manifest = root / 'release.json'; manifest.write_text('{"enabled": true}')
+            (root / '.tct-staging.json').write_text(json.dumps({
+                'schemaVersion': 1, 'purpose': 'tct-plesk-preflight', 'runId': 'preflight_test',
+            }))
+            fake_dump = root / 'mariadb-dump.exe'; fake_dump.write_bytes(b'MZfake')
+            result = subprocess.run([
+                'powershell.exe', '-NoProfile', '-NonInteractive', '-File', str(ROOT / 'scripts/deploy-plesk.ps1'),
+                '-ManifestPath', str(manifest), '-SiteRoot', str(site), '-StateRoot', str(root / 'private/state'),
+                '-BackupClientPath', str(fake_dump),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('-ValidateOnly', result.stdout + result.stderr)
+            self.assertFalse((root / 'private/state').exists())
+
 
 if __name__ == '__main__':
     unittest.main()
