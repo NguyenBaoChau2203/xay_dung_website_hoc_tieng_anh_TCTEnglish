@@ -26,7 +26,7 @@ public partial class WritingService
     private const int MaxWritingGenerationTopicLength = 100;
     private const int MaxWritingGenerationPreviewTextLength = 1000;
     private const int WritingGenerationRequestTokenBudget = 12000;
-    private const int WritingGenerationMaxOutputTokens = 2400;
+    private const int WritingGenerationMaxOutputTokens = 6144;
     private const int WritingGenerationTimeoutSeconds = 90;
     private static readonly TimeSpan WritingGenerationReplayWindow = TimeSpan.FromMinutes(5);
     private static readonly string[] AllowedWritingGenerationLevels = ["beginner", "intermediate", "advanced"];
@@ -677,14 +677,7 @@ public partial class WritingService
 
     private static string ResolveWritingGenerationProviderErrorMessage(string errorCode)
     {
-        return errorCode switch
-        {
-            AiProviderException.ErrorCodeTimeout => "AI dang mat nhieu thoi gian hon du kien. Vui long thu lai sau.",
-            AiProviderException.ErrorCodeRateLimited => "AI dang ban. Vui long cho mot chut roi thu lai.",
-            AiProviderException.ErrorCodeProviderUnavailable => "AI tam thoi khong san sang. Vui long thu lai sau.",
-            AiProviderException.ErrorCodeAuthentication => "He thong AI dang gap loi cau hinh. Vui long lien he quan tri vien.",
-            _ => "Khong the tao bai viet bang AI luc nay. Vui long thu lai sau."
-        };
+        return AiProviderErrorMessages.For(errorCode);
     }
 
     private static string TruncateText(string value, int maxLength)

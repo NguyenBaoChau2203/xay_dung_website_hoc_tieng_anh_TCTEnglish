@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "version": "8.1.1-essentials_build",
+  "platform": "win-x64",
+  "license": "GPL-3.0-or-later",
+  "source": "https://github.com/FFmpeg/FFmpeg/commit/239f2c733de417201d7ad3b3b8b0d9b63285b2b1",
+  "release": "https://github.com/GyanD/codexffmpeg/releases/tag/8.1.1",
+  "archive": {
+    "url": "https://github.com/GyanD/codexffmpeg/releases/download/8.1.1/ffmpeg-8.1.1-essentials_build.zip",
+    "sha256": "6f58ce889f59c311410f7d2b18895b33c03456463486f3b1ebc93d97a0f54541",
+    "bytes": 109282242
+  },
+  "files": [
+    {
+      "entry": "ffmpeg-8.1.1-essentials_build/bin/ffmpeg.exe",
+      "name": "ffmpeg.exe",
+      "sha256": "228d7a8556258de907fdb55f36850078ebc7680b84ec30d84ea02e99bec1d1eb"
+    },
+    {
+      "entry": "ffmpeg-8.1.1-essentials_build/LICENSE",
+      "name": "LICENSE.ffmpeg.txt",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    }
+  ]
+}

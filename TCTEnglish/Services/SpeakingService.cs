@@ -219,7 +219,7 @@ public sealed class SpeakingService : ISpeakingService
         if (!transcriptResult.IsEnglishUsable || transcriptResult.Sentences.Count == 0)
         {
             return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid(
-                "Không có caption tiếng Anh hợp lệ (có timestamp). Import Speaking không dùng Gemini fallback."));
+                "Video chưa có phụ đề tiếng Anh với mốc thời gian hợp lệ. Hãy chọn video có phụ đề hoặc tải file SRT/VTT tiếng Anh."));
         }
 
         var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);

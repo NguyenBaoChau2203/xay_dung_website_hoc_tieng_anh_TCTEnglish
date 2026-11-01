@@ -5,10 +5,11 @@ namespace TCTEnglish.Services.AI;
 public class AiOptions
 {
     public string ApiKey { get; set; } = string.Empty;
-    public string BaseUrl { get; set; } = "https://generativelanguage.googleapis.com/v1beta";
-    public string Model { get; set; } = "gemini-2.5-flash-lite";
+    public string BaseUrl { get; set; } = "https://api.openai.com/v1";
+    public string Model { get; set; } = "gpt-6-luna";
+    public string ReasoningEffort { get; set; } = "low";
     public double Temperature { get; set; } = 0.4;
-    public int MaxOutputTokens { get; set; } = 600;
+    public int MaxOutputTokens { get; set; } = 2048;
     public int ModelContextLimit { get; set; } = 128000;
     public int MaxInputChars { get; set; } = 1000;
     public int RequestTokenBudget { get; set; } = 4600;

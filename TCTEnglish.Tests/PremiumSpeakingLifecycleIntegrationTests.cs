@@ -52,13 +52,13 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
         using var nonEnglishCreate = await PostCreateAsync(client, "https://www.youtube.com/watch?v=zzz999yyy88");
         Assert.Equal(HttpStatusCode.BadRequest, nonEnglishCreate.StatusCode);
         var nonEnglishPayload = await nonEnglishCreate.Content.ReadAsStringAsync();
-        Assert.Contains("caption tiếng Anh", nonEnglishPayload, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("phụ đề tiếng Anh", nonEnglishPayload, StringComparison.OrdinalIgnoreCase);
 
-        // L5: Gemini fallback is no longer accepted for learner Speaking import.
+        // Learner Speaking import does not accept the shared Whisper audio fallback.
         using var fallbackCreate = await PostCreateAsync(client, "https://www.youtube.com/watch?v=fbk111AAA22");
         Assert.Equal(HttpStatusCode.BadRequest, fallbackCreate.StatusCode);
         var fallbackPayload = await fallbackCreate.Content.ReadAsStringAsync();
-        Assert.Contains("Gemini", fallbackPayload, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("SRT/VTT", fallbackPayload, StringComparison.OrdinalIgnoreCase);
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -167,9 +167,9 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
                     true,
                     "youtube-captions"),
                 ["fbk111AAA22"] = new YoutubeTranscriptResult(
-                    BuildSentences("Fallback transcript from Gemini should still be valid English for speaking practice."),
+                    BuildSentences("Fallback transcript from Whisper should still be valid English for speaking practice."),
                     true,
-                    "gemini-fallback"),
+                    "whisper-audio"),
                 ["zzz999yyy88"] = new YoutubeTranscriptResult(
                     new List<SpeakingSentence>(),
                     false,

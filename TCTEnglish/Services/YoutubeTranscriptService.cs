@@ -1,5 +1,5 @@
 using System.Text;
-using System.Text.Json;
+using TCTEnglish.Services.Speaking;
 using System.Text.RegularExpressions;
 using YoutubeExplode;
 using YoutubeExplode.Videos.ClosedCaptions;
@@ -11,7 +11,7 @@ public interface IYoutubeTranscriptService
 {
     Task<List<SpeakingSentence>> GetTranscriptAsync(string youtubeId);
     Task<YoutubeTranscriptResult> GetTranscriptForSpeakingImportAsync(string youtubeId, CancellationToken ct = default);
-    /// <summary>English closed captions only — no Gemini/ASR fallback. Used by Speaking learner import (L5).</summary>
+    /// <summary>English closed captions only — no audio/ASR fallback. Used by Speaking learner import (L5).</summary>
     Task<YoutubeTranscriptResult> GetEnglishCaptionsOnlyAsync(string youtubeId, CancellationToken ct = default);
     Task<string?> GetVideoDurationAsync(string youtubeId);
     Task<YoutubeVideoMetadata?> GetVideoMetadataAsync(string youtubeId);
@@ -20,7 +20,10 @@ public interface IYoutubeTranscriptService
 public sealed record YoutubeTranscriptResult(
     List<SpeakingSentence> Sentences,
     bool IsEnglishUsable,
-    string? TranscriptSource);
+    string? TranscriptSource)
+{
+    public string? ErrorCode { get; init; }
+}
 
 public sealed record YoutubeVideoMetadata(
     string Title,
@@ -36,18 +39,15 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
     ];
 
     private readonly YoutubeClient _youtubeClient;
-    private readonly IConfiguration _configuration;
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IAudioTranscriptImporter _audioImporter;
     private readonly ILogger<YoutubeTranscriptService> _logger;
 
     public YoutubeTranscriptService(
-        IConfiguration configuration,
-        IHttpClientFactory httpClientFactory,
+        IAudioTranscriptImporter audioImporter,
         ILogger<YoutubeTranscriptService> logger)
     {
         _youtubeClient = new YoutubeClient();
-        _configuration = configuration;
-        _httpClientFactory = httpClientFactory;
+        _audioImporter = audioImporter;
         _logger = logger;
     }
 
@@ -65,18 +65,24 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
             return captions;
         }
 
-        _logger.LogWarning("No usable English captions found for video {YoutubeId}. Falling back to Gemini.", youtubeId);
-
-        var fallbackSentences = await ProcessAudioWithGeminiAsync(youtubeId, ct);
-        if (IsUsableEnglishTranscript(fallbackSentences))
+        _logger.LogInformation("No usable English captions for video {YoutubeId}. Trying bounded local Whisper import.", youtubeId);
+        var audio = await _audioImporter.TranscribeAsync(youtubeId, ct);
+        if (!audio.Success)
         {
-            return new YoutubeTranscriptResult(fallbackSentences, true, "gemini-fallback");
+            _logger.LogWarning("Audio transcript unavailable for {YoutubeId}: {ErrorCode}.", youtubeId, audio.ErrorCode);
+            return new YoutubeTranscriptResult([], false, null) { ErrorCode = audio.ErrorCode };
         }
-
-        return new YoutubeTranscriptResult(new List<SpeakingSentence>(), false, null);
+        var sentences = audio.Segments.Select(segment => new SpeakingSentence
+        {
+            StartTime = segment.StartSeconds, EndTime = segment.EndSeconds,
+            Text = segment.Text, VietnameseMeaning = string.Empty
+        }).ToList();
+        return IsUsableEnglishTranscript(sentences) && ValidateSentenceTimecodes(sentences)
+            ? new YoutubeTranscriptResult(sentences, true, "whisper-audio")
+            : new YoutubeTranscriptResult([], false, null) { ErrorCode = "unusable_english_transcript" };
     }
 
-    public async Task<YoutubeTranscriptResult> GetEnglishCaptionsOnlyAsync(string youtubeId, CancellationToken ct = default)
+    public virtual async Task<YoutubeTranscriptResult> GetEnglishCaptionsOnlyAsync(string youtubeId, CancellationToken ct = default)
     {
         try
         {
@@ -100,6 +106,7 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
                 }
             }
         }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "Failed to load closed captions for video {YoutubeId}.", youtubeId);
@@ -305,170 +312,6 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
             });
 
             searchFrom = endIdx + 1;
-        }
-
-        return sentences;
-    }
-
-    // =========================================================================
-    // Gemini audio fallback (khi không có caption nào)
-    // =========================================================================
-
-    private async Task<List<SpeakingSentence>> ProcessAudioWithGeminiAsync(string youtubeId, CancellationToken ct)
-    {
-        var apiKey = _configuration["AI:ApiKey"]
-            ?? _configuration["Ai:ApiKey"]
-            ?? _configuration["Gemini:ApiKey"];
-
-        if (string.IsNullOrWhiteSpace(apiKey))
-        {
-            _logger.LogWarning("Gemini API key is missing. Fallback skipped for video {YoutubeId}.", youtubeId);
-            return new List<SpeakingSentence>();
-        }
-
-        var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(youtubeId);
-        var audioStreamInfo = streamManifest.GetAudioOnlyStreams().OrderBy(s => s.Bitrate).FirstOrDefault();
-        if (audioStreamInfo == null)
-        {
-            _logger.LogWarning("No audio streams available for video {YoutubeId}.", youtubeId);
-            return new List<SpeakingSentence>();
-        }
-
-        await using var memoryStream = new MemoryStream();
-        await _youtubeClient.Videos.Streams.CopyToAsync(audioStreamInfo, memoryStream);
-
-        var audioBytes = memoryStream.ToArray();
-        var audioBase64 = Convert.ToBase64String(audioBytes);
-        var mimeType = audioStreamInfo.Container.Name == "mp4" ? "audio/mp4" : "audio/webm";
-
-        var model = _configuration["AI:Model"] ?? "gemini-2.5-flash-lite";
-        var baseUrl = (_configuration["AI:BaseUrl"] ?? "https://generativelanguage.googleapis.com/v1beta").TrimEnd('/');
-        var endpoint = $"{baseUrl}/models/{model}:generateContent?key={Uri.EscapeDataString(apiKey)}";
-
-        var payloadJson = JsonSerializer.Serialize(new
-        {
-            contents = new[]
-            {
-                new
-                {
-                    role = "user",
-                    parts = new object[]
-                    {
-                        new { text = "Transcribe this audio in English only. Return plain transcript text only, no markdown, no translation, no explanation." },
-                        new { inline_data = new { mime_type = mimeType, data = audioBase64 } }
-                    }
-                }
-            },
-            generationConfig = new
-            {
-                temperature = 0.1,
-                maxOutputTokens = 8192
-            }
-        });
-
-        var client = _httpClientFactory.CreateClient();
-        client.Timeout = TimeSpan.FromMinutes(5);
-
-        using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
-        {
-            Content = new StringContent(payloadJson, Encoding.UTF8, "application/json")
-        };
-
-        using var response = await client.SendAsync(request, ct);
-        if (!response.IsSuccessStatusCode)
-        {
-            _logger.LogWarning("Gemini fallback failed for video {YoutubeId} with status {StatusCode}.", youtubeId, (int)response.StatusCode);
-            return new List<SpeakingSentence>();
-        }
-
-        var responseBody = await response.Content.ReadAsStringAsync(ct);
-        var transcriptText = ParseGeminiTranscriptText(responseBody);
-        if (string.IsNullOrWhiteSpace(transcriptText))
-        {
-            return new List<SpeakingSentence>();
-        }
-
-        var durationSeconds = await GetVideoDurationSecondsAsync(youtubeId);
-        return BuildTimedSentences(transcriptText, durationSeconds);
-    }
-
-    private async Task<double> GetVideoDurationSecondsAsync(string youtubeId)
-    {
-        try
-        {
-            var video = await _youtubeClient.Videos.GetAsync(youtubeId);
-            return Math.Max(video.Duration?.TotalSeconds ?? 0, 1);
-        }
-        catch
-        {
-            return 120;
-        }
-    }
-
-    private static string ParseGeminiTranscriptText(string responseBody)
-    {
-        try
-        {
-            using var document = JsonDocument.Parse(responseBody);
-            var root = document.RootElement;
-
-            if (!root.TryGetProperty("candidates", out var candidates) || candidates.GetArrayLength() == 0)
-            {
-                return string.Empty;
-            }
-
-            var parts = candidates[0]
-                .GetProperty("content")
-                .GetProperty("parts")
-                .EnumerateArray()
-                .Select(part => part.TryGetProperty("text", out var textNode) ? textNode.GetString() : null)
-                .Where(text => !string.IsNullOrWhiteSpace(text))
-                .Select(text => text!.Trim())
-                .ToList();
-
-            return string.Join("\n", parts);
-        }
-        catch
-        {
-            return string.Empty;
-        }
-    }
-
-    private static List<SpeakingSentence> BuildTimedSentences(string transcriptText, double durationSeconds)
-    {
-        var segments = Regex.Split(transcriptText, @"(?<=[.!?])\s+")
-            .Select(segment => segment.Trim())
-            .Where(segment => !string.IsNullOrWhiteSpace(segment))
-            .ToList();
-
-        if (segments.Count == 0)
-        {
-            return new List<SpeakingSentence>();
-        }
-
-        var totalWords = segments
-            .Select(segment => segment.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length)
-            .Sum();
-
-        var currentStart = 0d;
-        var sentences = new List<SpeakingSentence>(segments.Count);
-
-        foreach (var segment in segments)
-        {
-            var words = Math.Max(segment.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length, 1);
-            var ratio = totalWords == 0 ? 1d / segments.Count : (double)words / totalWords;
-            var estimatedDuration = Math.Max(durationSeconds * ratio, 1.2);
-            var end = Math.Min(currentStart + estimatedDuration, durationSeconds);
-
-            sentences.Add(new SpeakingSentence
-            {
-                StartTime = currentStart,
-                EndTime = end,
-                Text = segment,
-                VietnameseMeaning = string.Empty
-            });
-
-            currentStart = end;
         }
 
         return sentences;

@@ -51,6 +51,11 @@ builder.Services.AddOptions<TCTEnglish.Services.Writing.WritingEvaluationOptions
 builder.Services.AddOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>()
     .BindConfiguration(TCTEnglish.Services.Speaking.SpeechProcessingOptions.SectionName);
 builder.Services.AddSingleton<TCTEnglish.Services.Speaking.ISpeechInferenceLimiter, TCTEnglish.Services.Speaking.SpeechInferenceLimiter>();
+builder.Services.AddOptions<TCTEnglish.Services.Speaking.AudioImportOptions>()
+    .BindConfiguration(TCTEnglish.Services.Speaking.AudioImportOptions.SectionName);
+builder.Services.AddScoped<TCTEnglish.Services.Speaking.IYoutubeAudioSource, TCTEnglish.Services.Speaking.YoutubeAudioSource>();
+builder.Services.AddScoped<TCTEnglish.Services.Speaking.IAudioPcmDecoder, TCTEnglish.Services.Speaking.FfmpegPcmDecoder>();
+builder.Services.AddScoped<TCTEnglish.Services.Speaking.IAudioTranscriptImporter, TCTEnglish.Services.Speaking.AudioTranscriptImporter>();
 builder.Services.AddHttpClient<TCTEnglish.Services.Speaking.ISpeechTranscriber, TCTEnglish.Services.Speaking.WhisperHttpTranscriber>((sp, client) =>
 {
     var speechOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>>().Value;
@@ -152,7 +157,10 @@ builder.Services.AddScoped<IKnowledgeRetriever, NotificationRetriever>();
 builder.Services.AddScoped<IKnowledgeRetriever, BillingRetriever>();
 builder.Services.AddSingleton<IKnowledgeRetriever, SecurityPolicyRetriever>();
 builder.Services.AddScoped<InternalKnowledgeProvider>();
-builder.Services.AddScoped<IAiProviderClient, GeminiProviderClient>();
+builder.Services.AddHttpClient(OpenAiProviderClient.HttpClientName, client => client.Timeout = Timeout.InfiniteTimeSpan)
+    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false })
+    .RemoveAllLoggers();
+builder.Services.AddScoped<IAiProviderClient, OpenAiProviderClient>();
 builder.Services.AddSingleton<IAiTokenCounter, SimpleAiTokenCounter>();
 builder.Services.AddSingleton<IAiRequestRateLimiter, AiRequestRateLimiter>();
 builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecutionGuard>();

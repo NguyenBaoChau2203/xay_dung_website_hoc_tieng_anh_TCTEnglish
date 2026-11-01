@@ -12,6 +12,11 @@ public sealed class AiProviderException : Exception
     public const string ErrorCodeAuthentication = "authentication";
     public const string ErrorCodeRateLimited = "rate_limited";
     public const string ErrorCodeProviderUnavailable = "provider_unavailable";
+    public const string ErrorCodeIncompleteResponse = "incomplete_response";
+    public const string ErrorCodeInvalidResponse = "invalid_response";
+    public const string ErrorCodeRefusal = "refusal";
+    public const string ErrorCodeQuota = "quota_exhausted";
+    public const string ErrorCodeModelAccess = "model_access";
 
     public AiProviderException(string message, string errorCode, bool isTransient, Exception? innerException = null)
         : base(message, innerException)

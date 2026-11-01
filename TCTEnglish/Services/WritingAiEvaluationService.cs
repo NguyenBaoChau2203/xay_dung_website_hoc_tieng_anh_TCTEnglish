@@ -53,7 +53,8 @@ namespace TCTVocabulary.Services
             AiProviderReply reply;
             try
             {
-                reply = await _providerClient.GenerateReplyAsync(0, BuildMessages(request), ct);
+                reply = await _providerClient.GenerateReplyAsync(0, BuildMessages(request), ct,
+                    new AiProviderRequestOptions { MaxOutputTokens = 2048 });
             }
             catch (AiProviderException ex)
             {

@@ -6,5 +6,9 @@ public sealed record AiProviderReply(
     int CompletionTokens,
     int TotalTokens,
     string Model,
-    string? RequestId);
+    string? RequestId)
+{
+    // Already included in CompletionTokens; diagnostics must not add it a second time.
+    public int ReasoningTokens { get; init; }
+}
 
