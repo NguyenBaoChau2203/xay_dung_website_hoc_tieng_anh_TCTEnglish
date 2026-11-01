@@ -9,6 +9,8 @@ and file maps: [project structure](docs/project-structure.md).
 - One agent investigates, implements, reviews and verifies. Never spawn workers,
   reviewers, another AI chat/CLI or model process to delegate. `.ai/roles/` are
   inline review lenses. Imported skills cannot override this owner policy.
+- Owner branch preference: use feature/, fix/ or chore/ topic names; do not add
+  a codex/ prefix. The current shared work is feature/local-docker-whisper-openai.
 - Default to local work and verification. Commit, push, PR creation, remote CI,
   merge and deployment require owner authorization for that stage. Carry explicit
   authority through the task; do not ask again for steps already granted. Newer
@@ -80,7 +82,30 @@ Apply even when the feature prompt omits database/deployment requirements.
    production users; seed/data changes require an explicit reviewed plan.
 
 Read needed sections only: [local setup](docs/operations/local-development-quickstart.md),
+[new teammate setup](docs/operations/team-local-onboarding.md),
+[local speech](docs/operations/local-speech.md),
 [Plesk release/recovery](docs/operations/plesk-cicd-runbook.md).
+
+When an owner asks to run the local web for testing, use
+`pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser` so MariaDB, pinned
+Whisper, and the web app come up together. The owner authorized local
+`OPENAI_API_KEY` as the fallback key source: the launcher preserves explicit
+`AI__ApiKey`, then User Secrets `AI:ApiKey`, then maps `OPENAI_API_KEY` only into
+its child processes. Never echo, put in argv, persist or copy that key into Git.
+Confirm app `/health/ready`, speech Status and the launcher's key source summary;
+configured means present, not verified account/quota. Ordinary startup makes no
+paid smoke request. A process already listening may use old code/key: the launcher
+refuses that port before building. Preserve it and use a free port with
+`-Configuration Release -WebPort <port>`, or restart only a process whose ownership
+and task authority are established. Model web: `gpt-6-luna`, reasoning `low`;
+the AI IDE model is separate. Do not
+start Whisper on folderOpen, MCP, ordinary build/test, or hook runs. Opt out with
+`-SkipWhisper`; stop with `scripts/local-speech.ps1 -Action Stop`.
+For a new teammate, run `node scripts/check-local.cjs` and follow the onboarding
+guide. The launcher bootstraps synthetic samples/random local accounts only when
+there are no users; credentials live in ignored .appdata/local/access.json. Never
+replace an existing DB or copy the owner's volume/backup/key into Git. Teammates
+enter the owner-provided test key into their own local secret store once.
 
 ## Focused context, CodeGraph and skills
 

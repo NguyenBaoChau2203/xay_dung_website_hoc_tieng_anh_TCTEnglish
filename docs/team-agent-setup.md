@@ -2,6 +2,11 @@
 
 Ngày cập nhật: 29/10/2026. Đây là hướng dẫn hiện tại cho các checkout mới.
 
+Để chạy **cả ứng dụng** (Docker data/Whisper/OpenAI), xem
+[team local onboarding](operations/team-local-onboarding.md). File này hướng dẫn
+toolkit AI; prerequisites của web thêm Docker, .NET, PowerShell7 và VC++ runtime.
+`node scripts/check-local.cjs` kiểm những mục đó; SETUP-LOCAL.cmd chạy local stack.
+
 Cập nhật 30/10: CodeGraph mặc định vẫn read-only. Chủ dự án đã bật incremental
 auto-sync riêng checkout của mình qua `.ai/codegraph.local.json` được Git bỏ qua;
 pull tooling không bật chế độ đó trên máy đồng đội. Xem [CodeGraph](codegraph.md)

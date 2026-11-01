@@ -225,6 +225,19 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+if (args.Contains("--local-bootstrap=true", StringComparer.Ordinal))
+{
+    // Explicit local CLI only: no HTTP listener, hosted workers, cloud calls or production seeds.
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+    var accessPath = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", ".appdata", "local", "access.json"));
+    var created = await LocalDevelopmentBootstrap.RunAsync(db, app.Configuration, app.Environment.IsDevelopment(), accessPath);
+    app.Logger.LogInformation("Local bootstrap: {Status}. Generated accounts, if created, are only in ignored .appdata/local/access.json; read privately.",
+        created ? "sample data created" : "existing users/data preserved, skipped");
+    await app.DisposeAsync();
+    return;
+}
+
 if (app.Environment.IsDevelopment()
     && builder.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup"))
 {
