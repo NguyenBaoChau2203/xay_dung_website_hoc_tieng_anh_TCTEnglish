@@ -5,9 +5,9 @@
 [![MariaDB](https://img.shields.io/badge/MariaDB-10.5-003545?style=for-the-badge&logo=mariadb)](https://mariadb.org/)
 [![SignalR](https://img.shields.io/badge/SignalR-Real--time-orange?style=for-the-badge&logo=signalr)](#)
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com/)
-[![Gemini AI](https://img.shields.io/badge/Gemini%20AI-LLM-blue?style=for-the-badge&logo=google-gemini)](#)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--6%20Luna-blue?style=for-the-badge)](#)
 
-> **TCT English** là nền tảng EdTech học từ vựng và luyện kỹ năng Speaking/Writing trực tuyến, được thiết kế và tối ưu hóa dành riêng cho cán bộ nhân viên Công ty TCT. Hệ thống áp dụng các công nghệ hiện đại như Trí tuệ nhân tạo (LLM Gemini), Truyền tải thời gian thực (SignalR), và các API nhận diện giọng nói (Web Speech API) nhằm đem lại trải nghiệm học tập tương tác cao, cá nhân hóa và bảo mật chuẩn doanh nghiệp.
+> **TCT English** là nền tảng học từ vựng và luyện Speaking/Writing dành cho cán bộ nhân viên Công ty TCT. Hệ thống dùng OpenAI GPT-6 Luna cho văn bản, Whisper local cho nhận dạng giọng nói và SignalR cho tương tác thời gian thực.
 
 ---
 
@@ -17,7 +17,7 @@ Trong môi trường doanh nghiệp hiện đại, việc sử dụng thành th�
 *   **Học thông minh:** Phương pháp Flashcard học từ vựng trực quan, hệ thống thư mục tổ chức đa cấp khoa học.
 *   **Luyện tập đa kỹ năng:** Đầy đủ các phân hệ luyện tập **Listening - Speaking - Reading - Writing** toàn diện.
 *   **Tương tác thời gian thực:** Lớp học ảo tích hợp phòng chat trực tuyến giúp giảng viên và học viên dễ dàng trao đổi.
-*   **Trí tuệ nhân tạo:** Chatbot AI (Gemini API) đóng vai trò như một Mentor hỗ trợ giải đáp ngữ pháp, từ vựng và tư vấn lộ trình học tập 24/7.
+*   **Trí tuệ nhân tạo:** Chatbot AI qua OpenAI Responses hỗ trợ giải đáp ngữ pháp, từ vựng và tư vấn học tập khi cloud provider được cấu hình.
 *   **Trò chơi hóa (Gamification):** Hệ thống mục tiêu hàng ngày (Daily Goals), theo dõi chuỗi ngày học tập (Daily Streak) và phần thưởng huy hiệu (Badges) để duy trì động lực.
 
 ---
@@ -31,9 +31,9 @@ Dự án được xây dựng dựa trên kiến trúc **Feature-Oriented MVC** 
 *   **Database:** MariaDB qua Pomelo 9.0.0; môi trường local dùng Docker.
 *   **Frontend:** Razor Pages (`.cshtml`), Bootstrap 5.3, jQuery, Vanilla JS, CSS3 Custom Tokens.
 *   **Real-time Communication:** SignalR Core (`ClassChatHub`) cho hệ thống chat lớp học thời gian thực.
-*   **Generative AI:** Tích hợp Google Gemini API qua luồng xử lý AI Chatbot.
+*   **Generative AI:** OpenAI Responses API, `gpt-6-luna`, `reasoning.effort=low` cho các tác vụ văn bản.
 *   **Media Processing:** Sử dụng thư viện `YoutubeExplode` để tự động phân tích và trích xuất phụ đề (transcript) từ video YouTube làm học liệu luyện nói.
-*   **Speech Recognition:** Sử dụng HTML5 Web Speech API để ghi âm và nhận diện giọng nói thời gian thực của học viên.
+*   **Speech Recognition:** Thu âm trong trình duyệt và nhận dạng bằng Whisper local; FFmpeg được khóa pin cho shared audio import.
 *   **Security & Infrastructure:** Cookie-based Authentication kết hợp Google/Facebook OAuth; SMTP Mailer cho email hệ thống và khôi phục mật khẩu.
 
 ### 2. Các Ranh Giới Nghiệp Vụ Chính (Controller & View Boundaries)
@@ -78,7 +78,7 @@ Dưới đây là chi tiết phân công công việc và đóng góp cụ thể
 *   **Hệ thống Huy hiệu (Badge Reward System):** Thiết lập cơ chế tự động trao tặng và cập nhật các huy hiệu (Badges) vinh danh khi học viên hoàn thành xuất sắc các cột mốc học tập hoặc đạt chuỗi ngày Streak ấn tượng.
 
 #### 💬 Trợ lý Học tập Trí tuệ Nhân tạo (AI Chatbot Assistant)
-*   **LLM Integration:** Kết nối API mô hình ngôn ngữ lớn (Gemini API) để phát triển hộp thoại Chatbox AI thông minh.
+*   **LLM Integration:** Kết nối OpenAI Responses API cho hộp thoại AI, giữ context và quota trong ứng dụng.
 *   **AI Tutoring & Coaching:** Huấn luyện hệ thống prompt nội bộ để AI đóng vai trò như một gia sư bản xứ chuyên nghiệp, hỗ trợ học viên giải đáp các thắc mắc về từ vựng, ngữ pháp tiếng Anh doanh nghiệp và tư vấn lộ trình học tập tối ưu.
 
 #### 📊 Hệ thống Quản trị Chuyên sâu (Admin Area & System Management)
@@ -153,6 +153,10 @@ cd xay_dung_website_hoc_tieng_anh_TCTEnglish
 ```
 
 **Bước 2: Cấu hình chuỗi kết nối Database**
+Máy thành viên mới xem [hướng dẫn setup nhóm](docs/operations/team-local-onboarding.md),
+chạy `node scripts/check-local.cjs`, SETUP-AGENTS.cmd một lần rồi SETUP-LOCAL.cmd.
+Database Docker và key là riêng trên từng máy; Git cung cấp bootstrap/schema/dữ
+liệu mẫu, không chia sẻ volume hoặc backup thật. Không cần cài SSMS/SQL Server.
 Chạy script bằng PowerShell 7 để tạo MariaDB Docker, mật khẩu dev riêng và User Secrets:
 ```powershell
 pwsh -NoProfile -File scripts/start-local.ps1
@@ -163,9 +167,16 @@ Script giữ nguyên database đã có dữ liệu. Xem [hướng dẫn local](d
 
 **Bước 3: Cấu hình API Keys & SMTP (Nếu cần chạy tính năng Email & AI Chatbot)**
 Cấu hình khóa dev bằng .NET User Secrets, ngoài Git:
-*   `AI:ApiKey`: Khóa API Google Gemini để chạy Chatbot AI.
+*   `AI:ApiKey`: Khóa API OpenAI cho văn bản. Nhập bằng `pwsh -NoProfile -File scripts/set-local-ai-key.ps1` có che ký tự, hoặc dùng `OPENAI_API_KEY` đã đặt trên máy qua launcher. Ưu tiên `AI__ApiKey` → User Secrets → `OPENAI_API_KEY`; không gửi key vào chat hoặc Git.
 *   `SmtpSettings`: Cấu hình SMTP riêng cho development.
 *   `Authentication:Google` / `Authentication:Facebook`: Client ID và Secret để kích hoạt đăng nhập OAuth.
+
+Website mặc định dùng `gpt-6-luna`/`reasoning.effort=low`, độc lập với model Codex/IDE.
+Writing Local và cloud feedback tắt là mặc định. Launcher giữ DB và key từng máy,
+provision Whisper + FFmpeg đã khóa pin dưới `.appdata/local`; lần đầu cần network
+và các prerequisites local hiện hành. Key/account cần credit và quyền model.
+Xem [hướng dẫn OpenAI local](docs/operations/openai-local-setup.md) để biết thứ tự
+ưu tiên env, kiểm thử offline/live và giới hạn media. Source thay đổi chưa deploy production.
 
 **Bước 4: Tạo Cơ sở dữ liệu và Chạy Seed Data**
 Chạy migration để khởi tạo cấu trúc bảng CSDL tự động:

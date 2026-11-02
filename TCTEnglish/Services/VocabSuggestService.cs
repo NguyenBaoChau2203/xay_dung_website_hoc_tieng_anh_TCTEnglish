@@ -51,7 +51,7 @@ namespace TCTVocabulary.Services
             var aiTask = FetchAiSuggestionsAsync(cleanTerm, ct);
             var imageTask = FetchPixabayImagesAsync(cleanTerm, ct);
 
-            await Task.WhenAll(aiTask, imageTask);
+            // Observe both tasks below so a cloud failure still returns an actionable result.
 
             try
             {
@@ -71,6 +71,8 @@ namespace TCTVocabulary.Services
             {
                 _logger.LogWarning(ex, "Failed to fetch AI suggestions for term: {Term}", cleanTerm);
                 result.Success = false; // We can let it be partially successful if images work, but let's just log.
+                result.ErrorMessage = ex is AiProviderException providerError
+                    ? AiProviderErrorMessages.For(providerError.ErrorCode) : "Không thể lấy gợi ý từ vựng lúc này.";
             }
 
             try
@@ -90,7 +92,7 @@ namespace TCTVocabulary.Services
             if (!result.Definitions.Any() && !result.Images.Any())
             {
                 result.Success = false;
-                result.ErrorMessage = "Could not fetch suggestions.";
+                result.ErrorMessage ??= "Could not fetch suggestions.";
             }
 
             return result;
@@ -118,7 +120,7 @@ Make sure to provide up to 3 definitions if applicable. Do not include markdown 
 
             var options = new AiProviderRequestOptions
             {
-                MaxOutputTokens = 300,
+                MaxOutputTokens = 1536,
                 Temperature = 0.2,
                 RequestTimeoutSeconds = 10
             };

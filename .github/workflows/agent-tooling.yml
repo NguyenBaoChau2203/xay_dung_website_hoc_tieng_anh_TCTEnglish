@@ -2,10 +2,10 @@ name: Agent tooling checks
 
 on:
   pull_request:
-    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
+    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'SETUP-LOCAL.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
   push:
     branches: [master]
-    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
+    paths: ['.agents/**', '.agent/**', '.claude/**', '.cursor/**', '.ai/**', '.codex/**', '.githooks/**', '.mcp.json', '.vscode/tasks.json', 'SETUP-AGENTS.cmd', 'SETUP-LOCAL.cmd', 'CLAUDE.md', 'tooling/**', 'scripts/**', 'AGENTS.md', 'DESIGN.md', '.github/workflows/agent-tooling.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,3 +24,16 @@ jobs:
         run: python3 scripts/agent_doctor.py --json
       - name: Test setup integrity, retry and concurrent startup behavior
         run: node --test scripts/tests/test_agent_setup.cjs scripts/tests/test_codegraph_policy.cjs
+
+  local-windows:
+    name: Windows local bootstrap and lifecycle tests
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Validate shared tooling on Windows
+        run: python scripts/agent_tooling.py
+      - name: Exercise native local launcher, media and speech fixtures
+        run: python -m unittest discover -s scripts/tests -v
+      - name: Verify four-client native hook contracts
+        run: python scripts/check_team_hooks.py

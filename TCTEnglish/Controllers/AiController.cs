@@ -146,7 +146,7 @@ public sealed class AiController : BaseController
             _logger.LogWarning(ex, "AI provider failed for conversation {conversationId}", request.ConversationId);
             return StatusCode(StatusCodes.Status503ServiceUnavailable, new
             {
-                error = "Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại."
+                error = AiProviderErrorMessages.For(ex.ErrorCode)
             });
         }
     }

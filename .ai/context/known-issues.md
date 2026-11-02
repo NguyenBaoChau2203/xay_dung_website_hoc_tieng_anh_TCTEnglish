@@ -192,6 +192,25 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Recently Resolved / Verified
 
+Team local bootstrap (01/11/2026): a fresh Docker DB now gets sample accounts and
+learning fixtures through an explicit Development-only CLI; existing users/data
+and credentials are preserved. No real backup/keys/volumes are shipped in Git.
+Prerequisites/onboarding and cold MariaDB/login evidence:
+[team rollout](../../docs/feature-audits/2026-11-01-team-local-rollout.md).
+
+Plan2 (01/11/2026): runtime text provider now OpenAI `gpt-6-luna`/low; shared audio
+fallback uses local Whisper with pinned decode and actual timestamps. Offline
+regressions and bounded synthetic live text/media acceptance passed. Remaining
+live/browser/MariaDB/load gates and exact evidence are in
+[migration ledger](../../docs/feature-audits/2026-11-01-openai-provider-migration-ledger.md).
+This local verification is not a production release or a general quality benchmark.
+
+Plan2 follow-up (01/11/2026): owner-approved OPENAI_API_KEY now works through the
+local launcher when app env/User Secrets have no key. Key source is reported
+without its value; the mapping is child-process-only and cleaned up on failure
+or exit. Occupied ports fail before build so an older web is not reported as
+using new API settings. All four AI clients follow the shared launcher rule.
+
 | Item | Current state |
 |------|---------------|
 | Speaking detail include issue | Fixed in `SpeakingController.Practice` |

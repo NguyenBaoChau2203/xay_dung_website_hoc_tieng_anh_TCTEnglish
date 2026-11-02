@@ -3,14 +3,22 @@
 param(
     [string]$BackupZip,
     [switch]$DatabaseOnly,
-    [switch]$NoBrowser
+    [switch]$NoBrowser,
+    [switch]$SkipWhisper,
+    [ValidateSet('Debug', 'Release')]
+    [string]$Configuration = 'Debug',
+    [ValidateRange(1024, 65535)]
+    [int]$WebPort = 5100
 )
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $localRoot = Join-Path $repoRoot '.appdata/local'
 $composePath = Join-Path $repoRoot 'compose.local.yml'
-$secretPath = Join-Path $env:APPDATA 'Microsoft/UserSecrets/9acc1ae4-070a-4aed-98d7-63b06155d80e/secrets.json'
+Import-Module (Join-Path $PSScriptRoot 'LocalAiConfiguration.psm1') -Force
+$secretPath = Get-LocalUserSecretsPath -ProjectPath (Join-Path $repoRoot 'TCTEnglish/TCTEnglish.csproj')
+Assert-LocalAiEnvironment
+$speechScript = Join-Path $PSScriptRoot 'local-speech.ps1'
 
 function Invoke-Checked {
     param([string]$Executable, [string[]]$Arguments)
@@ -25,8 +33,51 @@ function Invoke-LocalSql {
     return $sqlOutput
 }
 
+function Test-PortListening {
+    param([int]$Port)
+    $client = New-Object System.Net.Sockets.TcpClient
+    try {
+        $async = $client.BeginConnect('127.0.0.1', $Port, $null, $null)
+        if (-not $async.AsyncWaitHandle.WaitOne(500)) { return $false }
+        $client.EndConnect($async)
+        return $true
+    } catch {
+        return $false
+    } finally {
+        $client.Close()
+    }
+}
+
+$localEnvKeys = @(
+    'AI__ApiKey',
+    'ASPNETCORE_ENVIRONMENT',
+    'DOTNET_ENVIRONMENT',
+    'Learning__Speech__WhisperHttpBaseUrl',
+    'Learning__Speech__ModelIdentity',
+    'Learning__Speech__WhisperInferencePath',
+    'Learning__Speech__InferenceTimeoutSeconds'
+)
+$previousLocalEnv = @{}
+foreach ($key in $localEnvKeys) {
+    $previousLocalEnv[$key] = [Environment]::GetEnvironmentVariable($key, 'Process')
+}
+
+function Restore-LocalRuntimeEnv {
+    foreach ($key in $localEnvKeys) {
+        if ($null -eq $previousLocalEnv[$key]) {
+            # PowerShell converts an untyped $null to an empty string at this .NET overload.
+            [Environment]::SetEnvironmentVariable($key, [NullString]::Value, 'Process')
+        } else {
+            [Environment]::SetEnvironmentVariable($key, $previousLocalEnv[$key], 'Process')
+        }
+    }
+}
+
 Push-Location $repoRoot
 try {
+    if (-not $DatabaseOnly -and (Test-PortListening -Port $WebPort)) {
+        throw "Web port $WebPort is already in use. The existing process may have previous code or API settings. Stop its owning launcher or use -Configuration Release -WebPort <free-port>; no process was stopped."
+    }
     New-Item -ItemType Directory -Path $localRoot -Force | Out-Null
     & docker info --format '{{.ServerVersion}}' *> $null
     if ($LASTEXITCODE -ne 0) {
@@ -50,6 +101,7 @@ try {
     }
 
     Invoke-Checked docker @('compose', '-f', $composePath, 'up', '-d', '--wait', '--wait-timeout', '180')
+    Write-Host 'MariaDB: ready (127.0.0.1:3307 / tctenglish_dev)'
     $tableCount = [int](Invoke-LocalSql "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_type='BASE TABLE';")
 
     $storedBackup = Join-Path $localRoot 'backup.zip'
@@ -78,7 +130,9 @@ try {
         Write-Host 'Existing local database preserved; backup import is skipped.'
     }
 
-    $secrets = if (Test-Path -LiteralPath $secretPath) { Get-Content -Raw -LiteralPath $secretPath | ConvertFrom-Json -AsHashtable } else { @{} }
+    Update-LocalSecretStore -SecretPath $secretPath -Update {
+    param($secrets)
+    Convert-LegacyAiSettings $secrets
     $secrets['ConnectionStrings:DefaultConnection'] = "Server=127.0.0.1;Port=3307;Database=tctenglish_dev;User=tct_dev;Password=$($localValues.MARIADB_PASSWORD);SslMode=None;"
     $secrets['Database:ServerVersion'] = '10.5.23-mariadb'
     $secrets['Database:ApplyMigrationsOnStartup'] = 'true'
@@ -87,15 +141,65 @@ try {
     $secrets['Billing:PendingPaymentCleanupWorkerEnabled'] = 'false'
     $secrets['Billing:PremiumExpiryWorkerEnabled'] = 'false'
     $secrets['ReconciliationWorker:Enabled'] = 'false'
-    New-Item -ItemType Directory -Path (Split-Path -Parent $secretPath) -Force | Out-Null
-    $secrets | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $secretPath -Encoding utf8NoBOM
+    }
     Write-Host 'Local connection saved to .NET User Secrets (127.0.0.1:3307 / tctenglish_dev).'
 
-    if ($DatabaseOnly) { return }
+    if ($DatabaseOnly) {
+        Write-Host 'DatabaseOnly: MariaDB ready; Whisper and web were not started.'
+        return
+    }
+
+    $ai = Initialize-LocalAiEnvironment -SecretPath $secretPath
+    if ($ai.Configured) {
+        Write-Host "AI: key configured | source=$($ai.Source) | model=gpt-6-luna | reasoning=low (account access not checked)."
+    } else {
+        Write-Host 'AI: key missing; local learning/Whisper still work. Set OPENAI_API_KEY or use scripts/set-local-ai-key.ps1 for cloud features.'
+    }
+
+    $media = & (Join-Path $PSScriptRoot 'local-media.ps1') -Action Setup
+    if ($media.Status -ne 'verified') { throw 'Pinned FFmpeg setup did not verify.' }
+    Write-Host "FFmpeg: $($media.Version) verified for bounded local audio import."
+    $speechStatus = 'skipped'
+    $speechBaseUrl = ''
+    $speechModel = ''
+    if ($SkipWhisper) {
+        Write-Host 'SkipWhisper: launcher is not ensuring ASR. Web will start without Learning__Speech__WhisperHttpBaseUrl from this script. No fake scores or cloud audio fallback.'
+        $speechStatus = 'skipped-by-flag'
+    } else {
+        if (-not (Test-Path -LiteralPath $speechScript)) {
+            throw "Missing $speechScript"
+        }
+        Write-Host 'Starting local Whisper (tiny.en, loopback)...'
+        # Invoke in-process when already on PS7; avoids WindowsApps pwsh alias quirks.
+        $speechJson = & $speechScript -Action Start
+        if ($LASTEXITCODE -ne 0) { throw "local-speech Start failed (exit $LASTEXITCODE)." }
+        $speech = $speechJson | ConvertFrom-Json
+        $speechStatus = $speech.Status
+        $speechBaseUrl = $speech.BaseUrl
+        $speechModel = $speech.ModelIdentity
+        [Environment]::SetEnvironmentVariable('Learning__Speech__WhisperHttpBaseUrl', $speechBaseUrl, 'Process')
+        [Environment]::SetEnvironmentVariable('Learning__Speech__ModelIdentity', $speechModel, 'Process')
+        [Environment]::SetEnvironmentVariable('Learning__Speech__WhisperInferencePath', '/inference', 'Process')
+        [Environment]::SetEnvironmentVariable('Learning__Speech__InferenceTimeoutSeconds', '15', 'Process')
+        Write-Host "Whisper: $speechStatus at $speechBaseUrl (model $speechModel)"
+        Write-Host 'Whisper stays up across web restarts; stop explicitly with scripts/local-speech.ps1 -Action Stop.'
+    }
+
     Invoke-Checked dotnet @('tool', 'restore')
     $env:ASPNETCORE_ENVIRONMENT = 'Development'
     $env:DOTNET_ENVIRONMENT = 'Development'
-    Invoke-Checked dotnet @('ef', 'database', 'update', '--project', 'TCTEnglish', '--startup-project', 'TCTEnglish')
-    if (-not $NoBrowser) { Start-Process 'http://localhost:5100' }
-    Invoke-Checked dotnet @('run', '--project', 'TCTEnglish', '--launch-profile', 'http')
-} finally { Pop-Location }
+    Invoke-Checked dotnet @('ef', 'database', 'update', '--project', 'TCTEnglish', '--startup-project', 'TCTEnglish', '--configuration', $Configuration)
+    Invoke-Checked dotnet @('run', '--project', 'TCTEnglish', '--launch-profile', 'http', '--configuration', $Configuration, '--no-build', '--', '--local-bootstrap=true')
+
+    if (-not $NoBrowser) { Start-Process "http://localhost:$WebPort" }
+    Write-Host "Summary => MariaDB: ready | Whisper: $speechStatus $speechBaseUrl | Web: starting http://localhost:$WebPort"
+    Write-Host 'Ctrl+C stops this web process only; MariaDB volume and Whisper (if started) keep running.'
+    try {
+        Invoke-Checked dotnet @('run', '--project', 'TCTEnglish', '--launch-profile', 'http', '--configuration', $Configuration, '--no-build', '--', '--urls', "http://localhost:$WebPort")
+    } finally {
+        Restore-LocalRuntimeEnv
+    }
+} finally {
+    Restore-LocalRuntimeEnv
+    Pop-Location
+}

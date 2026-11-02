@@ -51,6 +51,40 @@
         "reveal": "always",
         "panel": "dedicated"
       }
+    },
+    {
+      "label": "TCT: Start local web + Whisper",
+      "type": "shell",
+      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/start-local.ps1\" -NoBrowser",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
+      "label": "TCT: Whisper status",
+      "type": "shell",
+      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/local-speech.ps1\" -Action Status",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "TCT: Stop Whisper",
+      "type": "shell",
+      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/local-speech.ps1\" -Action Stop",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

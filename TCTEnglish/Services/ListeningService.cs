@@ -564,7 +564,7 @@ Chỉ trả JSON, không giải thích thêm";
 
                 var aiOptions = new AiProviderRequestOptions
                 {
-                    MaxOutputTokens = 800,
+                    MaxOutputTokens = 4096,
                     Temperature = 0.3f,
                     RequestTimeoutSeconds = 20
                 };
@@ -596,7 +596,7 @@ Chỉ trả JSON, không giải thích thêm";
             catch (AiProviderException ex)
             {
                 _logger.LogError(ex, "Lỗi từ AI Provider khi sinh quiz cho lesson {LessonId}", lessonId);
-                return OperationResult.Invalid("Lỗi khi kết nối với hệ thống AI sinh câu hỏi.");
+                return OperationResult.Invalid(AiProviderErrorMessages.For(ex.ErrorCode));
             }
             catch (Exception ex)
             {
@@ -675,6 +675,7 @@ Chỉ trả JSON, không giải thích thêm";
                                .Select(x => x.Select(v => v.Value).ToList())
                                .ToList();
 
+            var pendingTranslations = new List<(ListeningTranscriptLine Line, string Translation)>();
             try
             {
                 foreach (var batch in batches)
@@ -686,7 +687,7 @@ Chỉ trả JSON array of strings, không giải thích thêm.
 {englishLines}";
 
                     var messages = new List<AiContextMessage> { new AiContextMessage("user", promptText) };
-                    var options = new AiProviderRequestOptions { MaxOutputTokens = 1500, Temperature = 0.2f, RequestTimeoutSeconds = 30 };
+                    var options = new AiProviderRequestOptions { MaxOutputTokens = 6144, Temperature = 0.2f, RequestTimeoutSeconds = 30 };
 
                     var reply = await _aiProvider.GenerateReplyAsync(userId, messages, ct, options);
                     var translations = ParseStringArrayJson(reply.Text);
@@ -695,22 +696,25 @@ Chỉ trả JSON array of strings, không giải thích thêm.
                     {
                         for (int i = 0; i < batch.Count; i++)
                         {
-                            batch[i].VietnameseMeaning = translations[i];
+                            pendingTranslations.Add((batch[i], translations[i]));
                         }
                     }
                     else
                     {
-                        _logger.LogWarning("Gemini returned {Count} translations for {BatchCount} lines in lesson {Id}", translations.Count, batch.Count, lessonId);
+                        _logger.LogWarning("OpenAI returned {Count} translations for {BatchCount} lines in lesson {Id}", translations.Count, batch.Count, lessonId);
+                        return OperationResult.Invalid("AI trả về thiếu bản dịch. Chưa lưu thay đổi; vui lòng thử lại.");
                     }
                 }
 
+                foreach (var (line, translation) in pendingTranslations)
+                    line.VietnameseMeaning = translation;
                 await _context.SaveChangesAsync(ct);
                 return OperationResult.Success();
             }
             catch (AiProviderException ex)
             {
                 _logger.LogError(ex, "AiProvider error during translation for lesson {Id}", lessonId);
-                return OperationResult.Invalid("Lỗi kết nối tới hệ thống AI dịch vụ. Vui lòng thử lại sau.");
+                return OperationResult.Invalid(AiProviderErrorMessages.For(ex.ErrorCode));
             }
             catch (Exception ex)
             {

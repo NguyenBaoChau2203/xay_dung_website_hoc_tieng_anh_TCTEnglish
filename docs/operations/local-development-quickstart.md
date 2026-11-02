@@ -1,7 +1,10 @@
 # Local development: Docker MariaDB + ASP.NET Core
 
-Target ứng dụng vẫn là net9.0 / EF 9.0.4 / Pomelo 9.0.0. Có thể build bằng
-SDK .NET 10; cần runtime ASP.NET Core/.NET 9 để chạy target hiện tại.
+Target ứng dụng vẫn là net9.0 / EF 9.0.4 / Pomelo 9.0.0. SDK9 là lựa chọn khớp
+target; SDK10/runtime10 cũng chạy được nhờ LatestMajor roll-forward hiện có.
+Máy thành viên mới đọc [team onboarding](team-local-onboarding.md), chạy
+`node scripts/check-local.cjs` và SETUP-AGENTS.cmd một lần; SETUP-LOCAL.cmd gọi
+doctor rồi cùng launcher bên dưới. Không cần SSMS hoặc database server Windows.
 
 ## Khởi động lần đầu
 
@@ -15,6 +18,11 @@ Script khởi động MariaDB 10.5.23 tương thích hosting tại `127.0.0.1:33
 mật khẩu riêng, lưu User Secrets, restore tool EF 9.0.4, áp dụng migration và
 chạy web ở `http://localhost:5100`. Mật khẩu/backup chỉ ở `.appdata/local` và
 User Secrets ngoài Git. Volume riêng tên `tctenglish-local-mariadb-data`.
+Sau migration, CLI bootstrap chỉ tạo sample khi chưa có user: ba tài khoản
+Admin/Standard/Premium với mật khẩu ngẫu nhiên trong `.appdata/local/access.json`,
+vocabulary/Writing/Speaking/Listening/Reading mẫu. DB đã có user không bị seed
+lại hoặc đổi credential. Samples không thay bản backup dữ liệu thật của Châu;
+fixture media/timings phục vụ phát triển, không phải khóa học đã nghiệm thu.
 
 Muốn dùng một backup SQL ZIP cho database dev **đang trống**:
 
@@ -32,16 +40,42 @@ Version 10.5 chỉ dùng để tái hiện hosting cũ; lập kế hoạch nâng
 
 ## Làm việc mỗi ngày
 
-Nếu đã setup một lần, bật Docker Desktop rồi F5 trong IDE hoặc:
+Entrypoint khuyến nghị (MariaDB + Whisper local + web):
+
+```powershell
+pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser
+```
+
+Web: `http://localhost:5100`. Whisper loopback mặc định: `http://127.0.0.1:8092`.
+Launcher dùng `AI__ApiKey` hoặc User Secrets `AI:ApiKey`; nếu hai nguồn này chưa
+có key, tự nối `OPENAI_API_KEY` đã được owner cho phép vào process web. Log chỉ
+báo nguồn/key configured, không in hay lưu lại key. Không cần nhập lại mỗi lần.
+Xem [OpenAI local setup](openai-local-setup.md) cho precedence và live opt-in.
+Opt-out ASR: `-SkipWhisper`. Chỉ DB: `-DatabaseOnly`. Status/Stop:
+
+```powershell
+pwsh -NoProfile -File scripts/local-speech.ps1 -Action Status
+pwsh -NoProfile -File scripts/local-speech.ps1 -Action Stop
+```
+
+Chi tiết pin/artifact: [local speech](local-speech.md). VS Code/Cursor task
+**TCT: Start local web + Whisper** gọi cùng script; không gắn speech vào folderOpen.
+
+Nếu đã setup một lần và không cần Whisper qua launcher, bật Docker Desktop rồi F5
+trong IDE hoặc:
 
 ```powershell
 docker compose -f compose.local.yml up -d
 dotnet watch --project TCTEnglish run --launch-profile http
 ```
 
-Nếu cổng 5100 đang có web đang chạy, dừng instance đó trước khi chạy instance mới.
-Khi sửa model, tạo/review migration bằng EF tool local rồi `dotnet ef database
-update --project TCTEnglish`. Không copy database dev đè production.
+Nếu cổng5100 đã có process, launcher từ chối trước build để không báo nhầm app
+cũ đã nhận code/key mới. Giữ process đó và chọn cổng trống, ví dụ
+`-Configuration Release -WebPort 5102`, hoặc dừng đúng launcher do mình quản lý.
+Chạy F5/dotnet watch không có bước nối OPENAI_API_KEY; dùng launcher khi AI Agent
+được yêu cầu chạy đủ web + Whisper + key. Khi sửa model dữ liệu, tạo/review migration
+bằng EF tool local rồi `dotnet ef database update --project TCTEnglish`. Không
+copy database dev đè production.
 
 ## Kiểm tra
 
@@ -76,3 +110,11 @@ Database hosting lúc kiểm tra ngày 30/10 có 59 tài khoản và 52 bảng. 
 với hosting, restore vào database kiểm tra rồi nâng bốn migration thành công.
 Checksum sáu bảng được giữ nguyên và chạy lại không thay history. Bản kiểm tra
 này không thay bản local bạn đang làm việc và không thay dữ liệu trên hosting.
+
+## Provider văn bản và audio — Plan 2
+
+Default dùng `gpt-6-luna`/`reasoning.effort=low`; audio dùng Whisper. Nhập key
+local có che ký tự bằng `pwsh -NoProfile -File scripts/set-local-ai-key.ps1`,
+rồi chạy `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`.
+Launcher giữ DB/key, normalize đúng override Google cũ và provision FFmpeg pin.
+Không gửi key vào chat. Xem [OpenAI local setup](openai-local-setup.md).

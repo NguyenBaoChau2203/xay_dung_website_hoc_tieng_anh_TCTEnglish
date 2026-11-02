@@ -41,6 +41,130 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Lifecycle containment assertion mixed canonical and aliased temp paths — 2026-11-02
+
+**Symptom**: The new full Windows CI suite passed media/launcher/speech cases but failed the session-state containment assertion on the hosted runner.
+
+**Root Cause**: Runtime resolves the approved root before storing hashed session metadata. The test resolved the resulting file but compared it to an unresolved TemporaryDirectory root; Windows temp aliases/junctions can represent the same directory differently.
+
+**Solution**: Resolve both sides of the test's is_relative_to comparison. Keep the containment/private-payload assertions and the full Windows job; no runtime trust/permission/path guard changed.
+
+**Files Changed**: scripts/tests/test_agent_lifecycle.py.
+
+**Verification**: Windows run41396737860 supplied the failing regression (one failure among108 tests, other native cases passed). Focused local/full suite and subsequent CI are verified before merge.
+
+**Commit**: Owner-authorized PR123 follow-up; production gate false.
+
+### Windows media bootstrap fixtures were scheduled as Linux success cases — 2026-11-02
+
+**Symptom**: PR123 Agent tooling checks failed two FFmpeg bootstrap tests on Ubuntu; the helper correctly rejected its Windows-only artifact profile before extraction.
+
+**Root Cause**: Fixture success/tamper tests had no host annotations, unlike the speech/launcher tests. A negative archive test also passed for the wrong platform reason on Linux.
+
+**Solution**: Mark three native fixture tests as Windows-only, retain the hash/source check on every host and add a distinct non-Windows fail-before-artifact-creation regression. Add a Windows CI job running the complete scripts suite and native hook contracts so the Windows cases remain enforced; do not weaken the runtime platform guard.
+
+**Files Changed**: scripts/tests/test_local_media.py, .github/workflows/agent-tooling.yml.
+
+**Verification**: Initial Ubuntu run41314167871 reproduced failures; subsequent focused/full local and GitHub results are recorded in the PR/run and rollout handoff.
+
+**Commit**: Follow-up fix on the owner-authorized PR123; deployment gate remains false.
+
+### New teammate databases had schema but no local accounts or sample data — 2026-11-01
+
+**Symptom**: A fresh clone could create Docker schema but had no guaranteed account or development fixture; existing-machine setup instructions depended on the owner's private volume/backup.
+
+**Root Cause**: Local launcher applied migrations with startup seeding disabled, and the generated admin described in old notes was provisioned manually only on the owner's machine.
+
+**Solution**: Explicit Development-only CLI bootstrap, restricted to loopback/tctenglish_dev/tct_dev, runs after migrations. If users exist it does nothing; otherwise a transaction creates three random-password accounts and synthetic learning fixtures, with credentials exclusively in ignored access.json. Added read-only prerequisite doctor, SETUP-LOCAL.cmd and shared onboarding/group message; owner branch names use feature/fix/chore without codex/.
+
+**Files Changed**: Infrastructure/LocalDevelopmentBootstrap.cs, Program.cs local CLI, start-local.ps1, LocalDevelopmentBootstrapTests.cs, launcher fixtures, check-local.cjs, setup entrypoint and onboarding docs.
+
+**Verification**: Meaningful red5fail/1pass → green6/6 for environment/target guard, fresh data, password hashes, rerun/edits and credential-file preservation. Disposable MariaDB10.5.23 cold migration/bootstrap/repeat passed, credentials hash unchanged, three users, web readiness200, actual JSON login success and authenticated Profile200. Full release/check evidence in team rollout ledger.
+
+**Commit**: Owner now authorizes grouped commits/push/PR/merge master; deployment remains off.
+
+**Notes**: No schema change or production data export; existing owner database is not seeded/reset. Windows x64 artifacts only; machine prerequisites must be installed on each teammate's own machine. No credentials, backups, native binaries or volumes go into Git.
+
+### Local launcher did not bind the owner's OpenAI key and could report stale web as ready — 2026-11-01
+
+**Symptom**: Owner configured OPENAI_API_KEY, but TCT English AI:ApiKey remained empty. Rerunning the launcher on an occupied port could build against a locked old executable or report an already-running web without proving it had the new provider/key.
+
+**Root Cause**: ASP.NET binds AI__ApiKey, not OPENAI_API_KEY; previous setup deliberately had no fallback mapping. Port check was after the EF build and treated an arbitrary listener as successful reuse. A follow-up regression also exposed PowerShell's untyped null becoming an empty string in SetEnvironmentVariable, leaving an empty override after cleanup.
+
+**Solution**: Owner explicitly authorized OPENAI_API_KEY fallback. Launcher selects explicit app env, then app User Secrets, then global OpenAI env; maps only for its children, reports metadata only, and restores prior env including true unset via NullString.Value on success/failure. Busy port fails before build/native operations without stopping workloads. Shared AGENTS/runbooks route all four AI clients through this launcher.
+
+**Files Changed**: scripts/LocalAiConfiguration.psm1, scripts/start-local.ps1, scripts/tests/test_local_ai_config.py, scripts/tests/test_local_launcher.py, AGENTS.md, .ai/README.md and local setup docs.
+
+**Verification**: Key/precedence12/12 and real-launcher fixtures3/3 passed after red reproductions. Provider/consumer/media focused Release74/74; full application808 passed/0 failed/5 skipped; full scripts107/107; Node9/9; tooling/hooks/EF pending-model pass. Actual launcher5102 health200 and Whisper ready. Old environment key401invalid_api_key; owner supplied replacement, entered via masked helper into User Secrets, then2synthetic OpenAI requests passed actual gpt-6-luna/low. See docs/feature-audits/2026-11-01-openai-migration-review-closeout.md.
+
+**Commit**: Local uncommitted; no remote CI or production action.
+
+**Notes**: No credential value printed/copied into source/argv/log. Ordinary launcher does not make a paid API request. Website remains gpt-6-luna/low; existing User Secrets key is not overwritten. This update supersedes the earlier intentional no-OPENAI_API_KEY-mapping policy for the local launcher.
+
+### OpenAI migration: bounded Responses transport and atomic consumer failures — 2026-11-01
+
+**Symptom**: Gemini text/audio runtime remained in the application; existing retry/body-read deadlines could exceed caller budgets. Vocabulary provider failures escaped before their catch blocks. Listening accepted count mismatches and left earlier batch translations tracked after a later failure. Audio fallback invented timestamps from plain text.
+
+**Root Cause**: Provider-specific Gemini serializer/parser and raw Google audio HTTP were separate paths; timeouts were recreated per attempt and the body used a different token. Vocabulary awaited WhenAll before per-task error handling. Listening mutated EF entities inside the batch loop. Audio timing was estimated by word count.
+
+**Solution**: OpenAI Responses adapter with ordered roles, Luna low, typed output/refusal/incomplete validation, redacted error categories/usage and a single bounded deadline; shared DI with workload caps. Observe vocabulary tasks inside catches. Stage all translations before applying them. Shared audio uses pinned FFmpeg, bounded PCM chunks, real Whisper segment timestamps and the same inference limiter as learner assessment. Masked local key helper merges secrets atomically; launcher preserves existing workloads and supports separate Release/port acceptance.
+
+**Files Changed**: `Services/AI/OpenAiProviderClient.cs`, AI options/reply/errors, Program.cs/provider defaults, text consumers, `Services/Speaking/Audio*`, `FfmpegPcmDecoder.cs`, `YoutubeAudioSource.cs`, `YoutubeTranscriptService.cs`, local key/media helpers and focused regression/acceptance tests.
+
+**Verification**: Provider red (8 failures) → green; later Listening-batch regression red → green. Final Release application suite805 passed/0 failed/8 skipped of813; scripts99/99, Node9/9, tooling/hooks and EF pending-model pass. Explicit live OpenAI smoke + all text consumers passed on gpt-6-luna/low (11 bounded requests); real local download-fixture/decode/ASR plus Plan1 speech/silence3/3 passed. Detailed usage, evidence and unrun gates in `docs/feature-audits/2026-11-01-openai-provider-migration-ledger.md`.
+
+**Commit**: Not created. Plan1 dirty work and local data retained; production unchanged.
+
+**Notes**: Reused Plan1 lifecycle without modifying its runtime or tests. MariaDB acceptance, authenticated cloud browser journeys, real YouTube/mic/load and clean-machine end-to-end remain unverified. Test credential provided later by owner was used only in temporary process environment through masked input, never persisted in source/User Secrets/argv. Existing Debug process lock was preserved; separate Release instance verified then stopped.
+
+### Whisper startup accepted late success beyond readiness deadline — 2026-11-01
+
+**Symptom**: A one-second startup readiness deadline still accepted a valid inference response after2.7seconds.
+
+**Root Cause**: Wait-SpeechReady checked time only before starting a probe; each probe had an independent30second timeout and a5second minimum. HTTP success returned immediately even when the startup deadline had elapsed.
+
+**Solution**: One monotonic stopwatch budget, cap each HTTP probe/retry sleep by remaining time, permit fractional probe deadlines and reject late success. Added a real loopback delayed-response regression and retained fast-success coverage.
+
+**Files Changed**: `scripts/local-speech.ps1`, `scripts/tests/test_speech_readiness_deadline.py`, local-speech runbook. Added `WhisperLiveAppAcceptanceTests.cs` as explicit opt-in integration verification of speech→assessment→progress→one credit→replay/reload with actual Whisper and an isolated SQLite database.
+
+**Verification**: Regression failed before fix (Ready=true after2.717761s with deadline1s), then both deadline tests passed. Full Python88/88, Node9/9, tooling validator pass; Release application suite743 passed /0 failed /3 MariaDB acceptance skipped. Live silence and app speech→credit tests ran with actual Whisper and locally generated Microsoft David speech. Evidence: docs/feature-audits/2026-11-01-whisper-plan1-final-closeout.md.
+
+**Commit**: Local uncommitted, per owner's scope.
+
+**Notes**: Cursor WR01/WR02 fixes retained. No provider migration/hosting/database schema change. Per owner clarification, Plan 2 application target remains GPT-6 Luna low; Codex GPT-6.1 Sol high is the implementation agent choice. Synthetic speech is not human microphone/accuracy acceptance.
+
+### Whisper lifecycle WR01 registry start_time + WR02 JsonDocument probe — 2026-11-01
+
+**Symptom**: Rereview WR01/WR02 — fixture `_kill_registered` ignored recorded `start_time` (same path + stale creation time still requested taskkill); `Test-InferenceResponseBody` via ConvertFrom-Json accepted segments-only empty, primitive segments, end-before-start, and root arrays that the app maps to `invalid_schema`.
+
+**Root Cause**: Registry cleanup compared only PID/path; probe validator lost root JsonValueKind and did not enforce MapVerboseJson/TryReadSegment hard-fail rules (silence needs explicit string text; bad segments invalidate the body).
+
+**Solution**: `_kill_registered` fail-closed on missing/unparseable/mismatched start time (2s skew); rewrite probe validator with System.Text.Json.JsonDocument; ValidateProbeBody action for table tests; fake modes for schema loopback; full tearDown regression without state.pid authority. Table cases also cover end overflow and root `text:null`.
+
+**Files Changed**: `scripts/local-speech.ps1`, `scripts/tests/test_local_speech.py`, `scripts/tests/fixtures/fake_whisper_server.py`, ledger/plan.
+
+**Verification** (fresh round2 handoff run): scripts discover **86 pass** / 0 fail (~154s); node setup **9/9**; agent_tooling pass; focused Whisper/limiter/live Release **27 pass** / 0 fail / 0 skip (live silence on `:8092`); Artifact Verify OK; owner Status **ready** PID **13360** (prior 24532 already stopped before this run — Start restored owned engine, left running); git diff --check clean on untracked speech scripts.
+
+**Commit**: (local uncommitted; round-2 awaiting Codex rereview)
+
+**Notes**: App assess→credit, mic/browser, speech-accuracy benchmarks remain Not run. No schema/migration/OpenAI. WH01/WH04 regressions still green in the same suite.
+
+### Whisper lifecycle ownership/readiness/CPU pin — 2026-11-01
+
+**Symptom**: Review WH01–WH04 — Stop could accept a wrong OS executable when state.commandLine lied; test teardown could taskkill a forged state PID (e.g. System); HTTP 200 with `{"error":...}` counted as ready; CPU backend DLLs were only “present”, not hash-pinned.
+
+**Root Cause**: Ownership used state metadata to override OS path mismatch/missing path; teardown trusted mutable state.json for kill authority; probe.Ok was HTTP-only; lock/assert lacked per-file CPU backend SHA allowlist.
+
+**Solution**: Expected runtime path from verified args only; missing/mismatch OS path fails closed; Stop re-checks start time+path before kill; fixture registry teardown independent of state; shared inference body validator aligned with WhisperHttpTranscriber; pin/hash all ggml-cpu-*.dll and reject extras; Verify action for assert-without-repair; PeakWorkingSet64 sampling renamed correctly.
+
+**Files Changed**: `scripts/local-speech.ps1`, `scripts/tests/test_local_speech.py`, `scripts/tests/fixtures/fake_whisper_server.py`, `tooling/whisper/artifacts.lock.json`, `docs/operations/local-speech.md`, ledger.
+
+**Verification**: `test_local_speech` 11/11; scripts discover 83/83; agent_tooling pass; node setup 9/9; dotnet Release 742 pass / 3 skip; live silence on owner loopback 8092 pass. Owner Whisper PID 24532 preserved.
+
+**Commit**: (local uncommitted; remediation awaiting Codex rereview)
+
+**Notes**: App assess→credit, mic/browser, speech-accuracy benchmarks remain Not run. No schema/migration.
+
 ### Missing import hash historical target model — 2026-10-31
 
 **Symptom**: LearningImportSourceHash was discoverable and its explicit SQL ran, but Migration.TargetModel was empty and its Designer metadata was absent.

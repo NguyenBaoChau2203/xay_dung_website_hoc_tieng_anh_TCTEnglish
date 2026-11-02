@@ -295,7 +295,8 @@ public sealed class ReadingTranslationService : IReadingTranslationService
                 new("user", prompt)
             };
 
-            var reply = await _providerClient.GenerateReplyAsync(0, messages, CancellationToken.None);
+            var reply = await _providerClient.GenerateReplyAsync(0, messages, CancellationToken.None,
+                new AiProviderRequestOptions { MaxOutputTokens = 2048 });
 
             if (string.IsNullOrWhiteSpace(reply.Text))
             {
@@ -308,7 +309,7 @@ public sealed class ReadingTranslationService : IReadingTranslationService
         catch (AiProviderException ex)
         {
             _logger.LogWarning(ex, "AI evaluation failed for passage {PassageId}: {ErrorCode}", passage.Id, ex.ErrorCode);
-            return (null, "Hệ thống AI tạm thời không khả dụng. Vui lòng thử lại sau.", null);
+            return (null, AiProviderErrorMessages.For(ex.ErrorCode), null);
         }
         catch (Exception ex)
         {

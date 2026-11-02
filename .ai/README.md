@@ -5,6 +5,13 @@ Use AGENTS.md already in context; read it once if missing or changed. Look up
 docs/project-structure.md only for a boundary question and load relevant sections.
 The application/tests target .NET 9 / EF Core 9.0.4; the installed SDK is newer.
 
+Local web requests from the owner use `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`
+for all four clients. This ensures MariaDB, pinned Whisper and the web together;
+the launcher uses app key env/User Secrets before the owner-approved
+`OPENAI_API_KEY` fallback. See AGENTS.md and docs/operations/openai-local-setup.md
+for key source/status and occupied-port handling. Do not print credentials or
+start paid API tests, web or Whisper on ordinary folder-open/tooling hooks.
+
 ## Routing
 
 | Task | Canonical skill under .agents/skills/ |

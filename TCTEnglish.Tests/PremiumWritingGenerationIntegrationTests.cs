@@ -154,7 +154,7 @@ public sealed class PremiumWritingGenerationIntegrationTests
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(capturedRequestOptions);
-        Assert.Equal(2400, capturedRequestOptions!.MaxOutputTokens);
+        Assert.Equal(6144, capturedRequestOptions!.MaxOutputTokens);
         Assert.Equal(90, capturedRequestOptions.RequestTimeoutSeconds);
     }
 

@@ -559,8 +559,8 @@ public sealed class AiPhase4HardeningIntegrationTests
         {
             services.PostConfigure<AiOptions>(options =>
             {
-                options.ApiKey = "test-gemini-key";
-                options.Model = "gemini-2.5-flash-lite";
+                options.ApiKey = "test-openai-key";
+                options.Model = "gpt-6-luna";
             });
         });
 
@@ -573,28 +573,28 @@ public sealed class AiPhase4HardeningIntegrationTests
     }
 
     [Fact]
-    public async Task Send_WhenProviderConfiguredAsGemini_AndFakeProviderReturnsReply_ReturnsOk()
+    public async Task Send_WhenProviderConfiguredAsOpenAi_AndFakeProviderReturnsReply_ReturnsOk()
     {
         await using var factory = CreateFactory(
-            _ => Task.FromResult(new AiProviderReply("Gemini success", 8, 12, 20, "gemini-2.5-flash-lite", "req-gemini-ok")));
+            _ => Task.FromResult(new AiProviderReply("OpenAI success", 8, 12, 20, "gpt-6-luna", "req-openai-ok")));
         await factory.InitializeAsync();
 
         var conversationId = await SeedConversationAsync(factory, TestDataIds.UserId);
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/AI/Chat?conversationId={conversationId}");
 
-        using var request = CreateSendRequest(conversationId, "gemini happy path", antiForgeryToken);
+        using var request = CreateSendRequest(conversationId, "openai happy path", antiForgeryToken);
         using var response = await client.SendAsync(request);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
         var responseBody = await response.Content.ReadAsStringAsync();
-        Assert.Contains("Gemini success", responseBody);
-        Assert.Contains("gemini-2.5-flash-lite", responseBody);
+        Assert.Contains("OpenAI success", responseBody);
+        Assert.Contains("gpt-6-luna", responseBody);
     }
 
     [Fact]
-    public async Task Send_WhenProviderConfiguredAsGemini_AndFakeProviderFails_ReturnsServiceUnavailable()
+    public async Task Send_WhenProviderConfiguredAsOpenAi_AndFakeProviderFails_ReturnsServiceUnavailable()
     {
         await using var factory = CreateFactory(
             _ => Task.FromException<AiProviderReply>(new AiProviderException("AI provider request failed.", AiProviderException.ErrorCodeProviderUnavailable, true)));
@@ -604,7 +604,7 @@ public sealed class AiPhase4HardeningIntegrationTests
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/AI/Chat?conversationId={conversationId}");
 
-        using var request = CreateSendRequest(conversationId, "gemini fail path", antiForgeryToken);
+        using var request = CreateSendRequest(conversationId, "openai fail path", antiForgeryToken);
         using var response = await client.SendAsync(request);
 
         Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
