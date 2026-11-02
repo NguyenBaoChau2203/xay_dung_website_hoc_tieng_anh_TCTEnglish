@@ -2,6 +2,7 @@
 import hashlib
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
@@ -33,6 +34,7 @@ class LocalMediaTests(unittest.TestCase):
     def invoke(self, media, archive, lock, action="Setup"):
         return subprocess.run([_find_pwsh(), "-NoProfile", "-File", str(REPO / "scripts/local-media.ps1"), "-Action", action, "-Offline", "-MediaRoot", str(media), "-ArchivePath", str(archive), "-LockPath", str(lock)], capture_output=True, text=True, timeout=20)
 
+    @unittest.skipUnless(sys.platform.startswith('win'), 'Windows x64 media bootstrap; exercised by the Windows CI job')
     def test_cold_setup_repeat_verify_and_no_unlisted_zip_extraction(self):
         with tempfile.TemporaryDirectory(prefix="tct-media-") as directory:
             media, archive, lock = self.fixture(directory)
@@ -42,6 +44,7 @@ class LocalMediaTests(unittest.TestCase):
             self.assertEqual({"ffmpeg.exe", "LICENSE.ffmpeg.txt", "setup.lock"}, {p.name for p in media.iterdir()})
             self.assertFalse((Path(directory) / "outside.exe").exists())
 
+    @unittest.skipUnless(sys.platform.startswith('win'), 'Windows x64 media bootstrap; exercised by the Windows CI job')
     def test_tampered_executable_refused_without_overwrite(self):
         with tempfile.TemporaryDirectory(prefix="tct-media-") as directory:
             media, archive, lock = self.fixture(directory)
@@ -51,6 +54,7 @@ class LocalMediaTests(unittest.TestCase):
             self.assertNotEqual(0, result.returncode)
             self.assertEqual(b"tampered", (media / "ffmpeg.exe").read_bytes())
 
+    @unittest.skipUnless(sys.platform.startswith('win'), 'Windows x64 media bootstrap; exercised by the Windows CI job')
     def test_bad_archive_and_missing_offline_dependency_are_actionable(self):
         for missing in (False, True):
             with self.subTest(missing=missing), tempfile.TemporaryDirectory(prefix="tct-media-") as directory:
@@ -62,6 +66,15 @@ class LocalMediaTests(unittest.TestCase):
                 result = self.invoke(media, archive, lock)
                 self.assertNotEqual(0, result.returncode)
                 self.assertFalse((media / "ffmpeg.exe").exists())
+
+    @unittest.skipIf(sys.platform.startswith('win'), 'Non-Windows rejection contract')
+    def test_unsupported_platform_is_rejected_before_creating_artifacts(self):
+        with tempfile.TemporaryDirectory(prefix='tct-media-unsupported-') as directory:
+            media, archive, lock = self.fixture(directory)
+            result = self.invoke(media, archive, lock)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn('supports Windows x64 only', result.stdout + result.stderr)
+            self.assertFalse(media.exists())
 
     def test_runtime_hash_and_lock_match_and_ordinary_setup_never_starts_asr(self):
         pin = json.loads((REPO / "tooling/media/artifacts.lock.json").read_text())

@@ -46,6 +46,13 @@ Full app lượt đầu phát hiện CLI dùng Console.WriteLine trái rule hi�
 Năm skip: hai cloud live (không bật paid API trong full), ba MariaDB application
 acceptance. Cold bootstrap provider đã chạy thật; không đổi ba skip thành pass.
 
+CI follow-up02/11/2026: Ubuntu run41314167871 exposed two Windows-media fixture
+tests incorrectly scheduled as Linux success cases. Runtime guard stays intact;
+three native cases are now Windows-only, a Linux rejection regression checks no
+artifact creation, and the full scripts/native-hook suite also runs on Windows CI.
+Platform-independent lock/source checks remain on both hosts. Original107local
+pass above is historical; the revised suite contains108tests with host-specific skips.
+
 Container disposable chỉ xóa sau kiểm label runId; volume dev và các project
 Docker khác giữ nguyên. Account fixture lưu private dưới .tmp, không commit.
 App cũ Debug5100 giữ nguyên; Release review-owned được restart khi cần rebuild.

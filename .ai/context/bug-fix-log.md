@@ -41,6 +41,20 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Windows media bootstrap fixtures were scheduled as Linux success cases — 2026-11-02
+
+**Symptom**: PR123 Agent tooling checks failed two FFmpeg bootstrap tests on Ubuntu; the helper correctly rejected its Windows-only artifact profile before extraction.
+
+**Root Cause**: Fixture success/tamper tests had no host annotations, unlike the speech/launcher tests. A negative archive test also passed for the wrong platform reason on Linux.
+
+**Solution**: Mark three native fixture tests as Windows-only, retain the hash/source check on every host and add a distinct non-Windows fail-before-artifact-creation regression. Add a Windows CI job running the complete scripts suite and native hook contracts so the Windows cases remain enforced; do not weaken the runtime platform guard.
+
+**Files Changed**: scripts/tests/test_local_media.py, .github/workflows/agent-tooling.yml.
+
+**Verification**: Initial Ubuntu run41314167871 reproduced failures; subsequent focused/full local and GitHub results are recorded in the PR/run and rollout handoff.
+
+**Commit**: Follow-up fix on the owner-authorized PR123; deployment gate remains false.
+
 ### New teammate databases had schema but no local accounts or sample data — 2026-11-01
 
 **Symptom**: A fresh clone could create Docker schema but had no guaranteed account or development fixture; existing-machine setup instructions depended on the owner's private volume/backup.
