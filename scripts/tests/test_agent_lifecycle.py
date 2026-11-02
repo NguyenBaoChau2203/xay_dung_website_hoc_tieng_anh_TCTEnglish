@@ -59,7 +59,9 @@ class LifecycleTests(unittest.TestCase):
         self.assertNotIn("C:/private", output)
         files = list((self.root / ".tmp/agent-hooks").glob("*.json"))
         self.assertEqual(1, len(files))
-        self.assertTrue(files[0].resolve().is_relative_to(self.root))
+        # Windows runner temp directories may use aliases/junctions. Compare both
+        # canonical paths while retaining the containment assertion.
+        self.assertTrue(files[0].resolve().is_relative_to(self.root.resolve()))
 
     def test_direct_delegation_denied_without_approving_other_tools(self):
         for name in ("spawn_agent", "Agent", "collaboration.spawn_agent", "followup_task"):

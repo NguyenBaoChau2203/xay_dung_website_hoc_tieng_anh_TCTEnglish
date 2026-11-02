@@ -41,6 +41,20 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Lifecycle containment assertion mixed canonical and aliased temp paths — 2026-11-02
+
+**Symptom**: The new full Windows CI suite passed media/launcher/speech cases but failed the session-state containment assertion on the hosted runner.
+
+**Root Cause**: Runtime resolves the approved root before storing hashed session metadata. The test resolved the resulting file but compared it to an unresolved TemporaryDirectory root; Windows temp aliases/junctions can represent the same directory differently.
+
+**Solution**: Resolve both sides of the test's is_relative_to comparison. Keep the containment/private-payload assertions and the full Windows job; no runtime trust/permission/path guard changed.
+
+**Files Changed**: scripts/tests/test_agent_lifecycle.py.
+
+**Verification**: Windows run41396737860 supplied the failing regression (one failure among108 tests, other native cases passed). Focused local/full suite and subsequent CI are verified before merge.
+
+**Commit**: Owner-authorized PR123 follow-up; production gate false.
+
 ### Windows media bootstrap fixtures were scheduled as Linux success cases — 2026-11-02
 
 **Symptom**: PR123 Agent tooling checks failed two FFmpeg bootstrap tests on Ubuntu; the helper correctly rejected its Windows-only artifact profile before extraction.

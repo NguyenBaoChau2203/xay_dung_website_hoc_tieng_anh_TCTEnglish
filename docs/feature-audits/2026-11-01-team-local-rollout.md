@@ -52,6 +52,11 @@ three native cases are now Windows-only, a Linux rejection regression checks no
 artifact creation, and the full scripts/native-hook suite also runs on Windows CI.
 Platform-independent lock/source checks remain on both hosts. Original107local
 pass above is historical; the revised suite contains108tests with host-specific skips.
+The first full Windows job also exposed a pre-existing containment assertion
+comparing a resolved child with an unresolved temp-root alias; both sides now
+resolve before comparison. Runtime path/privacy guards are unchanged. Native
+media, launcher and speech cases passed in that first job; its overall result
+was failure until the test-path fix, not an acceptance pass.
 
 Container disposable chỉ xóa sau kiểm label runId; volume dev và các project
 Docker khác giữ nguyên. Account fixture lưu private dưới .tmp, không commit.
