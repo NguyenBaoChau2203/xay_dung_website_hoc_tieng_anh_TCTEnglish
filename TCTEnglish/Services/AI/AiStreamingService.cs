@@ -36,7 +36,8 @@ public sealed class AiStreamingService : IAiStreamingService
         string message,
         string connectionId,
         string? ipAddress,
-        CancellationToken connectionAborted)
+        CancellationToken connectionAborted,
+        Func<string, Task>? onStreamStarted = null)
     {
         if (!_rateLimiter.TryConsume(userId, ipAddress, out _))
         {
@@ -69,6 +70,12 @@ public sealed class AiStreamingService : IAiStreamingService
 
         try
         {
+            // Publish stream identity before awaiting the provider so StopAiStream can cancel in-flight work.
+            if (onStreamStarted is not null)
+            {
+                await onStreamStarted(streamId);
+            }
+
             using var scope = _scopeFactory.CreateScope();
             var chatService = scope.ServiceProvider.GetRequiredService<IAiChatService>();
             var reply = await chatService.SendAsync(userId, conversationId, message, linkedCts.Token);

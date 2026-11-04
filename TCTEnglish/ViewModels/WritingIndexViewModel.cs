@@ -45,6 +45,9 @@ namespace TCTEnglish.ViewModels
         public int PageSize { get; set; }
         public int StartItemNumber { get; set; }
         public int EndItemNumber { get; set; }
+        public int MyCurrentPage { get; set; }
+        public int MyTotalPages { get; set; }
+        public int MyTotalCount { get; set; }
         public List<WritingFilterOptionViewModel> TopicOptions { get; set; } = new();
         public List<WritingFilterOptionViewModel> StatusOptions { get; set; } = new();
         public List<int?> PageNumbers { get; set; } = new();

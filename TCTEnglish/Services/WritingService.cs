@@ -89,10 +89,10 @@ namespace TCTVocabulary.Services
             string? topic,
             int page,
             int? userId = null,
-            string? status = null)
+            string? status = null,
+            int myPage = 1)
         {
-            var exerciseData = await GetWritingExerciseDataAsync(selectedLevel, contentType, topic, userId, status);
-            return BuildWritingExerciseListViewModel(exerciseData, page);
+            return await LoadPagedWritingCatalogAsync(selectedLevel, contentType, topic, page, userId, status, myPage);
         }
 
         public async Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId)
@@ -373,13 +373,21 @@ namespace TCTVocabulary.Services
             int userId,
             string? status = null)
         {
-            var catalog = await GetWritingExerciseCatalogAsync(selectedLevel, contentType, userId);
-            var exerciseData = BuildWritingExerciseDataViewModel(catalog, topic, status);
-            var exerciseListViewModel = BuildWritingExerciseListViewModel(exerciseData, page);
-            var accessibleExercises = catalog.Exercises
-                .Concat(catalog.MyExercises.Where(item => !item.IsLocked))
-                .ToList();
-            var selectedExerciseId = ResolveSelectedWritingExerciseId(exerciseId, exerciseListViewModel.Exercises, accessibleExercises);
+            var exerciseListViewModel = await GetWritingExerciseListViewModelAsync(selectedLevel, contentType, topic, page, userId, status);
+            int? selectedExerciseId;
+            if (exerciseId.HasValue)
+            {
+                selectedExerciseId = await _context.WritingExercises.AsNoTracking()
+                    .Where(e => e.Id == exerciseId.Value && e.Level == exerciseListViewModel.SelectedLevelKey
+                        && e.ContentType == exerciseListViewModel.SelectedContentTypeKey
+                        && ((e.UserId == null && e.IsPublished) || (e.UserId == userId && !exerciseListViewModel.IsMyExercisesLocked)))
+                    .Select(e => (int?)e.Id).FirstOrDefaultAsync();
+            }
+            else
+            {
+                selectedExerciseId = exerciseListViewModel.Exercises.FirstOrDefault()?.Id
+                    ?? exerciseListViewModel.MyExercises.FirstOrDefault(e => !e.IsLocked)?.Id;
+            }
 
             if (!selectedExerciseId.HasValue)
             {
@@ -564,23 +572,23 @@ namespace TCTVocabulary.Services
             var exerciseIds = exercises
                 .Select(exercise => exercise.Id)
                 .ToList();
-            var attemptRows = await LoadWritingAttemptRowsAsync(userId, exerciseIds);
-            var progressByExerciseId = exerciseIds.ToDictionary(
-                exerciseId => exerciseId,
-                exerciseId => BuildWritingExerciseProgressSummary(
-                    attemptRows.Where(row => row.ExerciseId == exerciseId),
-                    exercises.First(exercise => exercise.Id == exerciseId).SentenceCount));
+            var progressByExerciseId = await _context.UserWritingAttempts.AsNoTracking()
+                .Where(a => a.UserId == userId && exerciseIds.Contains(a.WritingExerciseId))
+                .GroupBy(a => a.WritingExerciseId)
+                .Select(g => new { Id = g.Key, AttemptCount = g.Count(),
+                    Completed = g.Where(a => a.Passed).Select(a => a.WritingExerciseSentenceId).Distinct().Count(),
+                    Last = g.Max(a => a.CreatedAtUtc) })
+                .ToDictionaryAsync(a => a.Id);
 
             foreach (var exercise in exercises)
             {
-                var progressSummary = progressByExerciseId.GetValueOrDefault(exercise.Id)
-                    ?? BuildWritingExerciseProgressSummary(Array.Empty<WritingAttemptRow>(), exercise.SentenceCount);
-                exercise.AttemptCount = progressSummary.AttemptCount;
-                exercise.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
-                exercise.StatusKey = progressSummary.StatusKey;
-                exercise.StatusLabel = progressSummary.StatusLabel;
-                exercise.StartActionLabel = ResolveWritingStartActionLabel(progressSummary.StatusKey);
-                exercise.LastAttemptedAtDisplay = FormatWritingTimestamp(progressSummary.LastAttemptedAtUtc);
+                var progress = progressByExerciseId.GetValueOrDefault(exercise.Id);
+                exercise.AttemptCount = progress?.AttemptCount ?? 0;
+                exercise.CompletedSentenceCount = progress?.Completed ?? 0;
+                exercise.StatusKey = ResolveWritingProgressStatusKey(exercise.AttemptCount, exercise.CompletedSentenceCount, exercise.SentenceCount);
+                exercise.StatusLabel = ResolveWritingProgressStatusLabel(exercise.StatusKey);
+                exercise.StartActionLabel = ResolveWritingStartActionLabel(exercise.StatusKey);
+                exercise.LastAttemptedAtDisplay = FormatWritingTimestamp(progress?.Last);
             }
         }
 

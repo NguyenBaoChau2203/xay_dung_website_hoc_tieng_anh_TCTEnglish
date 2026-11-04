@@ -15,7 +15,12 @@ using TCTVocabulary.Services;
 using TCTVocabulary.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(options =>
+{
+    // Allow StopAiStream to run while StartAiStream awaits the provider on the same connection.
+    // Hub DB work must open its own scope (see ClassChatHub) — never share one DbContext across parallel invocations.
+    options.MaximumParallelInvocationsPerClient = 2;
+});
 builder.Services.AddRazorPages()
     .AddJsonOptions(options =>
     {
@@ -34,6 +39,8 @@ builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseMySql(settings.ConnectionString, settings.ServerVersion);
 });
 
+builder.Services.AddSingleton<ISmtpMailTransport, SmtpClientMailTransport>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
@@ -129,6 +136,8 @@ builder.Services.AddOptions<AiOptions>()
         configuration.GetSection("AI").Bind(options);
     });
 builder.Services.AddScoped<IAiConversationService, AiConversationService>();
+// Isolated scoped DbContext per quota transaction — never flush caller's pending chat entities.
+builder.Services.AddScoped<IAiDailyQuotaReservationService, AiDailyQuotaReservationService>();
 builder.Services.AddScoped<IAiChatService, AiChatService>();
 builder.Services.AddScoped<IAiObservabilityService, AiObservabilityService>();
 builder.Services.AddScoped<IAiContextBuilder, AiContextBuilder>();
@@ -178,6 +187,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 })
 .AddCookie("ExternalCookie")

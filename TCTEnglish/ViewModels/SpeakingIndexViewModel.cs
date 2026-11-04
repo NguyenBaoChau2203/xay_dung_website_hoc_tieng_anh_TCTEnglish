@@ -17,7 +17,21 @@ namespace TCTVocabulary.ViewModels
         public List<SpeakingVideoViewModel> MyVideos { get; set; } = new();
         public bool CanImportPrivateVideos { get; set; }
         public bool IsMyVideosLocked { get; set; }
-        
+
+        public int MyCurrentPage { get; set; } = 1;
+        public int Page { get; set; } = 1;
+        public int PageSize { get; set; } = 24;
+        public string? ActiveLevel { get; set; }
+        public string? ActiveTopic { get; set; }
+        public string? ActiveSearch { get; set; }
+
+        public int PublicTotalCount { get; set; }
+        public bool PublicHasMore { get; set; }
+        public Dictionary<string, int> PublicTotalByLevel { get; set; } = new();
+        public Dictionary<string, bool> PublicHasMoreByLevel { get; set; } = new();
+
+        public int MyVideosTotalCount { get; set; }
+        public bool MyVideosHasMore { get; set; }
     }
 
     public class SpeakingPlaylistViewModel
@@ -27,5 +41,7 @@ namespace TCTVocabulary.ViewModels
         public string? Description { get; set; }
         public string? ThumbnailUrl { get; set; }
         public List<SpeakingVideoViewModel> Videos { get; set; } = new();
+        public int TotalVideoCount { get; set; }
+        public bool HasMoreVideos => TotalVideoCount > Videos.Count;
     }
 }

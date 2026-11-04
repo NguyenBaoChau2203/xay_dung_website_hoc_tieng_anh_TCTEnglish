@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System.IO;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
@@ -31,6 +32,15 @@ namespace TCTVocabulary.Controllers
             _avatarUploadService = avatarUploadService;
             _logger = logger;
             _goalsService = goalsService;
+        }
+
+        // GET: /Account/AccessDenied
+        [HttpGet]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public IActionResult AccessDenied()
+        {
+            Response.StatusCode = StatusCodes.Status403Forbidden;
+            return View("~/Views/Account/AccessDenied.cshtml");
         }
 
         // GET: /Account/Login
@@ -68,10 +78,22 @@ namespace TCTVocabulary.Controllers
         {
             ViewData["ActiveTab"] = "register"; // Keep user on Register tab if error
 
-            // 1. Validate inputs
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            // 1. Validate inputs before hashing / persistence
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(fullName))
             {
                 ViewBag.ErrorMessage = "Vui lòng nhập đầy đủ thông tin.";
+                return View("Auth");
+            }
+
+            if (!IsValidEmailAddress(email))
+            {
+                ViewBag.ErrorMessage = "Email không hợp lệ.";
+                return View("Auth");
+            }
+
+            if (password.Length < 6)
+            {
+                ViewBag.ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự.";
                 return View("Auth");
             }
 
@@ -119,10 +141,9 @@ namespace TCTVocabulary.Controllers
                 return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
             }
 
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
-            if (!isPasswordValid)
+            // Social/legacy/malformed hashes must fail closed without SaltParseException → 500.
+            if (!TryVerifyLocalPassword(password, user.PasswordHash, out var isPasswordValid) || !isPasswordValid)
             {
-                // Return JSON error
                 return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
             }
 
@@ -132,15 +153,15 @@ namespace TCTVocabulary.Controllers
                 // Lazy Auto-Unlock: if lock has expired, reset and allow login
                 if (user.LockExpiry.HasValue && DateTime.UtcNow >= user.LockExpiry.Value)
                 {
-                    user.Status = UserStatus.Offline;
-                    user.LockReason = null;
-                    user.LockExpiry = null;
-                    await _context.SaveChangesAsync();
-
-                    await _emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: true);
+                    var expiry = user.LockExpiry;
+                    var affected = await _context.Users.Where(u => u.UserId == user.UserId && u.Status == UserStatus.Blocked && u.LockExpiry == expiry)
+                        .ExecuteUpdateAsync(s => s.SetProperty(u => u.Status, UserStatus.Offline)
+                            .SetProperty(u => u.LockReason, (string?)null).SetProperty(u => u.LockExpiry, (DateTime?)null));
+                    await _context.Entry(user).ReloadAsync();
+                    if (affected > 0) await _emailSender.TrySendUnlockedNotificationAsync(user.Email, true, HttpContext.RequestAborted);
                     // Fall through to sign-in below
                 }
-                else
+                if (user.Status == UserStatus.Blocked)
                 {
                     // Active Block: populate TempData for the auto-popup modal
                     TempData["IsBlocked"] = true;
@@ -434,7 +455,7 @@ namespace TCTVocabulary.Controllers
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null) return RedirectToAction("Login");
 
-            var goalsData = await _goalsService.GetGoalsAsync(userId);
+            var earnedBadges = await _goalsService.GetEarnedBadgesForProfileAsync(userId);
 
             var model = new UpdateProfileViewModel
             {
@@ -443,7 +464,7 @@ namespace TCTVocabulary.Controllers
                 CurrentAvatarUrl = user.AvatarUrl,
                 Role = user.Role ?? Roles.Standard,
                 StreakDays = user.Streak ?? 0,
-                EarnedBadges = goalsData?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new()
+                EarnedBadges = earnedBadges.ToList()
             };
 
             return View("~/Views/Account/Profile.cshtml", model);
@@ -475,8 +496,7 @@ namespace TCTVocabulary.Controllers
                         model.CurrentAvatarUrl = user.AvatarUrl;
                         model.Email = user.Email ?? string.Empty;
                         model.StreakDays = user.Streak ?? 0;
-                        var goalsDataOnError = await _goalsService.GetGoalsAsync(userId);
-                        model.EarnedBadges = goalsDataOnError?.Badges?.Where(b => b.IsUnlocked).ToList() ?? new();
+                        model.EarnedBadges = (await _goalsService.GetEarnedBadgesForProfileAsync(userId)).ToList();
                         return View("~/Views/Account/Profile.cshtml", model);
                     }
                 }
@@ -512,9 +532,11 @@ namespace TCTVocabulary.Controllers
             var model = new SecuritySettingsViewModel
             {
                 Email = user.Email,
-                // Currently only checking SOCIAL_LOGIN_ prefix as a basic proxy for Google login.
-                IsGoogleLinked = user.PasswordHash != null && user.PasswordHash.StartsWith("SOCIAL_LOGIN_"),
-                IsFacebookLinked = false // Facebook login not yet fully integrated/identifiable
+                // Prefix alone is not proof of a linked Google identity; surface as unconfirmed.
+                IsGoogleLinked = false,
+                IsFacebookLinked = false,
+                HasUnconfirmedSocialLoginMarker = user.PasswordHash != null
+                    && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal)
             };
 
             return View("~/Views/Account/Settings.cshtml", model);
@@ -537,20 +559,25 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Settings");
             }
 
-            if (model.Email != user.Email)
+            var normalizedEmail = model.Email.Trim();
+            if (!IsValidEmailAddress(normalizedEmail))
             {
-                // Ensure new email doesn't exist
-                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                TempData["ErrorMessage"] = "Email không hợp lệ.";
+                return RedirectToAction("Settings");
+            }
+
+            if (!string.Equals(normalizedEmail, user.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == normalizedEmail);
                 if (existingUser != null)
                 {
                     TempData["ErrorMessage"] = "Email này đã được sử dụng bởi người dùng khác.";
                     return RedirectToAction("Settings");
                 }
-                user.Email = model.Email;
-                // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
+
+                user.Email = normalizedEmail;
                 await _context.SaveChangesAsync();
 
-                // Refresh cookies
                 await SignInUserAsync(user);
 
                 TempData["SuccessMessage"] = "Cập nhật Email thành công.";
@@ -576,32 +603,40 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Settings");
             }
 
+            if (model.NewPassword.Length < 6)
+            {
+                TempData["ErrorMessage"] = "Mật khẩu mới phải có ít nhất 6 ký tự.";
+                return RedirectToAction("Settings");
+            }
+
             if (string.IsNullOrEmpty(model.CurrentPassword))
             {
                 TempData["ErrorMessage"] = "Vui lòng nhập Mật khẩu hiện tại để đổi mật khẩu.";
                 return RedirectToAction("Settings");
             }
 
-            if (!user.PasswordHash.StartsWith("SOCIAL_LOGIN_"))
-            {
-                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.PasswordHash);
-                if (!isPasswordValid)
-                {
-                    TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng.";
-                    return RedirectToAction("Settings");
-                }
-
-                // Check if new password is the same as the current password
-                if (BCrypt.Net.BCrypt.Verify(model.NewPassword, user.PasswordHash))
-                {
-                    TempData["ErrorMessage"] = "Mật khẩu mới không được trùng với mật khẩu hiện tại. Vui lòng chọn mật khẩu khác.";
-                    return RedirectToAction("Settings");
-                }
-            }
-
             if (model.NewPassword != model.ConfirmPassword)
             {
                 TempData["ErrorMessage"] = "Mật khẩu xác nhận không khớp.";
+                return RedirectToAction("Settings");
+            }
+
+            var isSocialLoginMarker = user.PasswordHash != null
+                && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal);
+
+            if (isSocialLoginMarker)
+            {
+                // Social sentinel has no local password to verify; allow first local password set.
+            }
+            else if (!TryVerifyLocalPassword(model.CurrentPassword, user.PasswordHash, out var isPasswordValid) || !isPasswordValid)
+            {
+                // Malformed/legacy non-social hashes fail closed — do not bypass current-password check.
+                TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng.";
+                return RedirectToAction("Settings");
+            }
+            else if (TryVerifyLocalPassword(model.NewPassword, user.PasswordHash, out var sameAsCurrent) && sameAsCurrent)
+            {
+                TempData["ErrorMessage"] = "Mật khẩu mới không được trùng với mật khẩu hiện tại. Vui lòng chọn mật khẩu khác.";
                 return RedirectToAction("Settings");
             }
 
@@ -684,32 +719,38 @@ namespace TCTVocabulary.Controllers
                 return View(model);
             }
 
-            // Find user matching both email and token
-            var user = await _context.Users.FirstOrDefaultAsync(
+            // Reject missing/expired before hashing. Concurrent POSTs: only one ExecuteUpdate wins.
+            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(
                 u => u.Email == model.Email && u.ResetPasswordToken == model.Token);
 
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Invalid token or email.");
+                ModelState.AddModelError(nameof(model.Token), "Liên kết đặt lại mật khẩu không hợp lệ.");
                 return View(model);
             }
 
-            // Check if token has expired
-            if (user.ResetPasswordTokenExpiry < DateTime.UtcNow)
+            if (!user.ResetPasswordTokenExpiry.HasValue || user.ResetPasswordTokenExpiry.Value < DateTime.UtcNow)
             {
-                ModelState.AddModelError(string.Empty, "Token has expired.");
+                ModelState.AddModelError(nameof(model.Token), "Liên kết đặt lại mật khẩu đã hết hạn hoặc không hợp lệ.");
                 return View(model);
             }
 
-            // Hash the new password using BCrypt (same as Register action)
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+            var newHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+            var affected = await _context.Users
+                .Where(u => u.UserId == user.UserId
+                    && u.ResetPasswordToken == model.Token
+                    && u.ResetPasswordTokenExpiry != null
+                    && u.ResetPasswordTokenExpiry > DateTime.UtcNow)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(u => u.PasswordHash, newHash)
+                    .SetProperty(u => u.ResetPasswordToken, (string?)null)
+                    .SetProperty(u => u.ResetPasswordTokenExpiry, (DateTime?)null));
 
-            // Invalidate the token to prevent reuse
-            user.ResetPasswordToken = null;
-            user.ResetPasswordTokenExpiry = null;
-
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            if (affected == 0)
+            {
+                ModelState.AddModelError(nameof(model.Token), "Liên kết đặt lại mật khẩu không hợp lệ.");
+                return View(model);
+            }
 
             TempData["SuccessMessage"] = "Đặt lại mật khẩu thành công. Vui lòng đăng nhập.";
             return RedirectToAction("Login");
@@ -1036,6 +1077,79 @@ namespace TCTVocabulary.Controllers
                 {
                     _context.Folders.Remove(folder);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Structural gate only. Prefix/length can still fail at Verify (bad cost/salt) — callers must catch.
+        /// </summary>
+        private static bool LooksLikeLocalBcryptPasswordHash(string? passwordHash)
+        {
+            if (string.IsNullOrWhiteSpace(passwordHash))
+            {
+                return false;
+            }
+
+            if (passwordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            // BCrypt modular crypt: $2a$ / $2b$ / $2y$ + cost + 22-char salt + 31-char checksum ≈ 59–60 chars.
+            if (passwordHash.Length is < 59 or > 60)
+            {
+                return false;
+            }
+
+            return passwordHash.StartsWith("$2a$", StringComparison.Ordinal)
+                || passwordHash.StartsWith("$2b$", StringComparison.Ordinal)
+                || passwordHash.StartsWith("$2y$", StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// Returns false when hash is not verifiable (social/malformed/parse error). Never throws to MVC.
+        /// </summary>
+        private static bool TryVerifyLocalPassword(string password, string? passwordHash, out bool verified)
+        {
+            verified = false;
+            if (!LooksLikeLocalBcryptPasswordHash(passwordHash))
+            {
+                return false;
+            }
+
+            try
+            {
+                verified = BCrypt.Net.BCrypt.Verify(password, passwordHash!);
+                return true;
+            }
+            catch (SaltParseException)
+            {
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                // Invalid work factor / argument rejected by BCrypt.Net
+                return false;
+            }
+        }
+
+        private static bool IsValidEmailAddress(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+
+            try
+            {
+                var parsed = new System.Net.Mail.MailAddress(email.Trim());
+                return string.Equals(parsed.Address, email.Trim(), StringComparison.OrdinalIgnoreCase)
+                    && email.Contains('@', StringComparison.Ordinal)
+                    && parsed.Host.Contains('.', StringComparison.Ordinal);
+            }
+            catch (FormatException)
+            {
+                return false;
             }
         }
     }

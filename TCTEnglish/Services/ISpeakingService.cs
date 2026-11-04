@@ -3,9 +3,19 @@ using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Services;
 
+public sealed class SpeakingCatalogQuery
+{
+    public string? Level { get; init; }
+    public string? Topic { get; init; }
+    public string? Search { get; init; }
+    public bool Mine { get; init; }
+    public int Page { get; init; } = 1;
+    public int PageSize { get; init; } = SpeakingService.DefaultPublicPageSize;
+}
+
 public interface ISpeakingService
 {
-    Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(int? currentUserId);
+    Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(int? currentUserId, SpeakingCatalogQuery? query = null);
     Task<SpeakingPracticeViewModel?> GetSpeakingPracticeViewModelAsync(int videoId, int currentUserId);
     Task<SpeakingImportResult> CreateOwnedVideoAsync(int userId, string youtubeUrl, CancellationToken ct = default);
     Task<LearnerImportPreparation> PrepareYoutubeCaptionsAsync(int userId, string youtubeUrl, CancellationToken ct = default);

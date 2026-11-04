@@ -41,6 +41,8 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
             services.AddDbContext<DbflashcardContext>(options =>
             {
                 options.UseMySql(_connectionString, serverVersion);
+                if (SaveInterceptors.Count > 0)
+                    options.AddInterceptors(SaveInterceptors.ToArray());
             });
         });
     }
@@ -113,6 +115,11 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 
     private static readonly string[] AcceptanceTables =
     [
+        "AiQuotaReservationLedgers",
+        "AiUserDailyQuotas",
+        "AiRequestLogs",
+        "AiMessages",
+        "AiConversations",
         "LearningCompletionCredits",
         "LearningNotificationOutbox",
         "Notifications",

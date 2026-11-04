@@ -9,6 +9,9 @@ public sealed class SpeakingService : ISpeakingService
 {
     private const string PremiumUserSourceType = "premium-user-youtube";
     private const string UpgradeRequiredMessage = "Vui lòng nâng cấp lên Premium để sử dụng tính năng này.";
+    public const int DefaultPublicPageSize = 24;
+    public const int MaxPageSize = 100;
+    public const int PlaylistPreviewVideoCount = 6;
 
     private readonly DbflashcardContext _context;
     private readonly IYoutubeTranscriptService _youtubeTranscriptService;
@@ -24,23 +27,18 @@ public sealed class SpeakingService : ISpeakingService
         _logger = logger;
     }
 
-    public async Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(int? currentUserId)
+    public async Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(
+        int? currentUserId,
+        SpeakingCatalogQuery? query = null)
     {
-        var allVideos = await _context.SpeakingVideos
-            .AsNoTracking()
-            .Where(v => v.OwnerUserId == null)
-            .Select(v => new SpeakingVideoViewModel
-            {
-                Id = v.Id,
-                Title = v.Title,
-                YoutubeId = v.YoutubeId,
-                Level = v.Level ?? string.Empty,
-                Topic = v.Topic ?? string.Empty,
-                Duration = v.Duration,
-                ThumbnailUrl = v.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(v.YoutubeId),
-                SentenceCount = v.SpeakingSentences.Count
-            })
-            .ToListAsync();
+        query ??= new SpeakingCatalogQuery();
+        var pageSize = Math.Clamp(query.PageSize <= 0 ? DefaultPublicPageSize : query.PageSize, 1, MaxPageSize);
+        var page = Math.Clamp(query.Page, 1, int.MaxValue / pageSize);
+        var skip = (page - 1) * pageSize;
+
+        var activeLevel = NormalizeFilter(query.Level)?.ToUpperInvariant();
+        var activeTopic = NormalizeFilter(query.Topic);
+        var activeSearch = string.IsNullOrWhiteSpace(query.Search) ? null : query.Search.Trim();
 
         var topics = await _context.SpeakingVideos
             .AsNoTracking()
@@ -51,21 +49,6 @@ public sealed class SpeakingService : ISpeakingService
             .Cast<string>()
             .ToListAsync();
 
-        var levelOrder = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
-        var videosByLevel = new Dictionary<string, List<SpeakingVideoViewModel>>();
-
-        foreach (var level in levelOrder)
-        {
-            var videosInLevel = allVideos
-                .Where(v => v.Level == level)
-                .ToList();
-
-            if (videosInLevel.Count > 0)
-            {
-                videosByLevel[level] = videosInLevel;
-            }
-        }
-
         var playlists = await _context.SpeakingPlaylists
             .AsNoTracking()
             .Select(p => new SpeakingPlaylistViewModel
@@ -74,8 +57,11 @@ public sealed class SpeakingService : ISpeakingService
                 Name = p.Name,
                 Description = p.Description,
                 ThumbnailUrl = p.ThumbnailUrl,
+                TotalVideoCount = p.SpeakingVideos.Count(v => v.OwnerUserId == null),
                 Videos = p.SpeakingVideos
                     .Where(v => v.OwnerUserId == null)
+                    .OrderBy(v => v.Id)
+                    .Take(PlaylistPreviewVideoCount)
                     .Select(v => new SpeakingVideoViewModel
                     {
                         Id = v.Id,
@@ -90,11 +76,86 @@ public sealed class SpeakingService : ISpeakingService
             })
             .ToListAsync();
 
+        var levelOrder = new[] { "A1", "A2", "B1", "B2", "C1", "C2" };
+        var videosByLevel = new Dictionary<string, List<SpeakingVideoViewModel>>();
+        var publicTotalByLevel = new Dictionary<string, int>();
+        var publicHasMoreByLevel = new Dictionary<string, bool>();
+        var publicTotalCount = 0;
+        var publicHasMore = false;
+
+        if (!query.Mine)
+        {
+            var publicBase = _context.SpeakingVideos
+                .AsNoTracking()
+                .Where(v => v.OwnerUserId == null);
+
+            if (activeTopic is not null)
+            {
+                publicBase = publicBase.Where(v => v.Topic == activeTopic);
+            }
+
+            if (activeSearch is not null)
+            {
+                publicBase = publicBase.Where(v => v.Title.Contains(activeSearch));
+            }
+
+            var levelsToLoad = activeLevel is not null
+                ? levelOrder.Where(l => l == activeLevel)
+                : levelOrder;
+
+            foreach (var level in levelsToLoad)
+            {
+                var levelQuery = publicBase.Where(v => v.Level == level);
+                var total = await levelQuery.CountAsync();
+                if (total == 0)
+                {
+                    continue;
+                }
+
+                publicTotalByLevel[level] = total;
+                publicTotalCount += total;
+
+                var levelSkip = skip;
+                var levelTake = pageSize;
+                var hasMore = total > levelSkip + levelTake;
+                publicHasMoreByLevel[level] = hasMore;
+                publicHasMore = publicHasMore || hasMore;
+
+                var videos = await levelQuery
+                    .OrderBy(v => v.Id)
+                    .Skip(levelSkip)
+                    .Take(levelTake)
+                    .Select(v => new SpeakingVideoViewModel
+                    {
+                        Id = v.Id,
+                        Title = v.Title,
+                        YoutubeId = v.YoutubeId,
+                        Level = v.Level ?? string.Empty,
+                        Topic = v.Topic ?? string.Empty,
+                        Duration = v.Duration,
+                        ThumbnailUrl = v.ThumbnailUrl ?? YoutubeUrlHelper.BuildDefaultThumbnailUrl(v.YoutubeId),
+                        SentenceCount = v.SpeakingSentences.Count
+                    })
+                    .ToListAsync();
+
+                videosByLevel[level] = videos;
+            }
+        }
+
         var viewModel = new SpeakingIndexViewModel
         {
             Playlists = playlists,
             Topics = topics,
-            VideosByLevel = videosByLevel
+            VideosByLevel = videosByLevel,
+            Page = page,
+            PageSize = pageSize,
+            ActiveLevel = activeLevel,
+            ActiveTopic = activeTopic,
+            ActiveSearch = activeSearch,
+            PublicTotalCount = publicTotalCount,
+            PublicHasMore = publicHasMore,
+            PublicTotalByLevel = publicTotalByLevel,
+            PublicHasMoreByLevel = publicHasMoreByLevel
         };
 
         if (!currentUserId.HasValue)
@@ -104,10 +165,21 @@ public sealed class SpeakingService : ISpeakingService
 
         var currentRole = await GetNormalizedRoleAsync(currentUserId.Value);
         var isLocked = currentRole == Roles.Standard;
-        var myVideos = await _context.SpeakingVideos
+        var myQuery = _context.SpeakingVideos
             .AsNoTracking()
-            .Where(v => v.OwnerUserId == currentUserId.Value)
+            .Where(v => v.OwnerUserId == currentUserId.Value);
+
+        if (activeSearch is not null)
+        {
+            myQuery = myQuery.Where(v => v.Title.Contains(activeSearch));
+        }
+
+        var myTotal = await myQuery.CountAsync();
+        var myVideos = await myQuery
             .OrderByDescending(v => v.CreatedAt)
+            .ThenByDescending(v => v.Id)
+            .Skip(query.Mine ? skip : 0)
+            .Take(pageSize)
             .Select(v => new SpeakingVideoViewModel
             {
                 Id = v.Id,
@@ -126,10 +198,24 @@ public sealed class SpeakingService : ISpeakingService
             .ToListAsync();
 
         viewModel.MyVideos = myVideos;
+        viewModel.MyCurrentPage = query.Mine ? page : 1;
+        viewModel.MyVideosTotalCount = myTotal;
+        viewModel.MyVideosHasMore = myTotal > (query.Mine ? skip + pageSize : pageSize);
         viewModel.CanImportPrivateVideos = currentRole is Roles.Admin or Roles.Premium;
         viewModel.IsMyVideosLocked = isLocked;
 
         return viewModel;
+    }
+
+    private static string? NormalizeFilter(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return null;
+        }
+
+        var trimmed = value.Trim();
+        return trimmed.Equals("all", StringComparison.OrdinalIgnoreCase) ? null : trimmed;
     }
 
     public async Task<SpeakingPracticeViewModel?> GetSpeakingPracticeViewModelAsync(int videoId, int currentUserId)

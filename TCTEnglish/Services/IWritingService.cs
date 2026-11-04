@@ -22,7 +22,8 @@ namespace TCTVocabulary.Services
             string? topic,
             int page,
             int? userId = null,
-            string? status = null);
+            string? status = null,
+            int myPage = 1);
         Task<WritingPracticeDataViewModel?> GetWritingPracticeDataAsync(int exerciseId, int userId);
         Task<WritingSentenceHintViewModel?> GetWritingSentenceHintAsync(int exerciseId, int sentenceId, int userId);
         Task<WritingSentenceEvaluationViewModel?> EvaluateWritingSentenceAsync(

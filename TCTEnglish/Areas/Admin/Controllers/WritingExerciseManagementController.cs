@@ -55,11 +55,30 @@ public class WritingExerciseManagementController : BaseController
         _logger = logger;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? search, string? level, string? contentType, string? topic, string? visibility, int page = 1)
     {
-        var exercises = await _context.WritingExercises
-            .AsNoTracking()
+        var all = _context.WritingExercises.AsNoTracking();
+        var topicNames = await all.Select(e => e.Topic).Distinct().OrderBy(t => t).ToListAsync();
+        var totalExercises = await all.CountAsync();
+        var published = await all.CountAsync(e => e.IsPublished);
+        var sentenceTotal = await _context.WritingExerciseSentences.CountAsync();
+        var query = all;
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            search = search.Trim();
+            query = query.Where(e => e.Title.Contains(search) || e.Topic.Contains(search));
+        }
+        if (!string.IsNullOrWhiteSpace(level)) query = query.Where(e => e.Level == level);
+        if (!string.IsNullOrWhiteSpace(contentType)) query = query.Where(e => e.ContentType == contentType);
+        if (!string.IsNullOrWhiteSpace(topic)) query = query.Where(e => e.Topic == topic);
+        if (visibility == "published") query = query.Where(e => e.IsPublished);
+        if (visibility == "hidden") query = query.Where(e => !e.IsPublished);
+        var total = await query.CountAsync();
+        var pages = Math.Max(1, (int)Math.Ceiling(total / 20d));
+        page = Math.Clamp(page, 1, pages);
+        var exercises = await query
             .OrderByDescending(exercise => exercise.Id)
+            .Skip((page - 1) * 20).Take(20)
             .Select(exercise => new
             {
                 exercise.Id,
@@ -77,6 +96,9 @@ public class WritingExerciseManagementController : BaseController
 
         var viewModel = new WritingExerciseIndexViewModel
         {
+            Search = search ?? "", Level = level ?? "", ContentType = contentType ?? "", Topic = topic ?? "", Visibility = visibility ?? "",
+            CurrentPage = page, TotalPages = pages, TotalCount = total, TotalExercises = totalExercises,
+            PublishedCount = published, ActiveTopics = topicNames.Count(t => !string.IsNullOrWhiteSpace(t)), TotalSentences = sentenceTotal,
             Exercises = exercises.Select(exercise => new WritingExerciseListItemViewModel
             {
                 Id = exercise.Id,
@@ -96,7 +118,7 @@ public class WritingExerciseManagementController : BaseController
             }).ToList(),
             LevelOptions = CloneOptions(LevelOptions),
             ContentTypeOptions = CloneOptions(ContentTypeOptions),
-            TopicOptions = BuildTopicOptions(exercises.Select(exercise => exercise.Topic)),
+            TopicOptions = BuildTopicOptions(topicNames),
             VisibilityOptions = CloneOptions(VisibilityOptions)
         };
 

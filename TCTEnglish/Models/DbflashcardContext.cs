@@ -48,6 +48,8 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<AiConversation> AiConversations { get; set; }
     public virtual DbSet<AiMessage> AiMessages { get; set; }
     public virtual DbSet<AiRequestLog> AiRequestLogs { get; set; }
+    public virtual DbSet<AiUserDailyQuota> AiUserDailyQuotas { get; set; }
+    public virtual DbSet<AiQuotaReservationLedger> AiQuotaReservationLedgers { get; set; }
     public virtual DbSet<WritingGenerationLog> WritingGenerationLogs { get; set; }
     public virtual DbSet<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; }
     public virtual DbSet<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; }
@@ -1133,6 +1135,61 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(e => e.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_AiRequestLogs_AiConversations");
+        });
+
+        modelBuilder.Entity<AiUserDailyQuota>(entity =>
+        {
+            entity.ToTable("AiUserDailyQuotas");
+
+            entity.HasKey(e => new { e.UserId, e.DayUtc });
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.DayUtc)
+                .HasColumnType("date");
+
+            entity.Property(e => e.UpdatedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiUserDailyQuotas_Users");
+        });
+
+        modelBuilder.Entity<AiQuotaReservationLedger>(entity =>
+        {
+            entity.ToTable("AiQuotaReservationLedgers");
+
+            entity.HasKey(e => e.RequestId);
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.DayUtc)
+                .HasColumnType("date");
+
+            entity.Property(e => e.Status)
+                .HasConversion<byte>();
+
+            entity.Property(e => e.CreatedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+            entity.Property(e => e.FinalizedAtUtc)
+                .HasColumnType("datetime(6)");
+
+            entity.HasIndex(e => new { e.UserId, e.DayUtc, e.Status })
+                .HasDatabaseName("IX_AiQuotaReservationLedgers_UserId_DayUtc_Status");
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_AiQuotaReservationLedgers_Users");
         });
 
         modelBuilder.Entity<WritingGenerationLog>(entity =>

@@ -47,6 +47,34 @@ namespace TCTVocabulary.Services
             _logger = logger;
         }
 
+        public async Task<IReadOnlyList<GoalsBadgeViewModel>> GetEarnedBadgesForProfileAsync(int userId)
+        {
+            var today = ResolveBusinessDate();
+            var awarded = await (
+                from userBadge in _context.UserBadges.AsNoTracking()
+                join badge in _context.Badges.AsNoTracking() on userBadge.BadgeId equals badge.Id
+                where userBadge.UserId == userId
+                orderby badge.SortOrder, badge.Id
+                select new { badge, userBadge.AwardedAt })
+                .ToListAsync();
+
+            return awarded.Select(row => new GoalsBadgeViewModel
+            {
+                Code = row.badge.Code,
+                Name = row.badge.Name,
+                Description = row.badge.Description ?? string.Empty,
+                IconClass = string.IsNullOrWhiteSpace(row.badge.IconClass) ? "fas fa-award" : row.badge.IconClass,
+                IsUnlocked = true,
+                IsRecentlyUnlocked = row.AwardedAt.Date >= today.AddDays(-7),
+                ProgressValue = row.badge.ThresholdValue,
+                TargetValue = row.badge.ThresholdValue,
+                ProgressPercent = 100,
+                ProgressLabel = "Đã mở khóa",
+                MetricLabel = row.badge.MetricType.ToString(),
+                AwardedAt = row.AwardedAt
+            }).ToList();
+        }
+
         public async Task<GoalsViewModel?> GetGoalsAsync(int userId)
         {
             var user = await _context.Users

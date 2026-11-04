@@ -38,17 +38,50 @@ public sealed class AiController : BaseController
         var userId = GetCurrentUserId();
         IReadOnlyList<AiMessage> messages = [];
         IReadOnlyList<AiConversationSummaryDto> conversations = [];
+        var hasMoreConversations = false;
+        var hasMoreMessages = false;
+        DateTime? oldestConversationUpdatedAtUtc = null;
+        Guid? oldestConversationId = null;
+        DateTime? oldestMessageCreatedAtUtc = null;
+        Guid? oldestMessageId = null;
 
         if (!embed)
         {
-            conversations = await _conversationService.GetConversationsByUserAsync(userId, ct);
+            var conversationPage = await _conversationService.GetConversationsPageAsync(
+                userId,
+                AiConversationService.DefaultConversationPageSize,
+                null,
+                null,
+                ct);
+            conversations = conversationPage.Items;
+            hasMoreConversations = conversationPage.HasMore;
+            if (conversations.Count > 0)
+            {
+                var oldestConversation = conversations[^1];
+                oldestConversationUpdatedAtUtc = oldestConversation.UpdatedAtUtc;
+                oldestConversationId = oldestConversation.Id;
+            }
         }
 
         if (conversationId.HasValue)
         {
             try
             {
-                messages = await _conversationService.GetMessagesByConversationAsync(userId, conversationId.Value, ct);
+                var messagePage = await _conversationService.GetMessagesPageAsync(
+                    userId,
+                    conversationId.Value,
+                    AiConversationService.DefaultMessagePageSize,
+                    null,
+                    null,
+                    ct);
+                messages = messagePage.Items;
+                hasMoreMessages = messagePage.HasMore;
+                if (messages.Count > 0)
+                {
+                    var oldestMessage = messages[0];
+                    oldestMessageCreatedAtUtc = oldestMessage.CreatedAtUtc;
+                    oldestMessageId = oldestMessage.Id;
+                }
             }
             catch (KeyNotFoundException)
             {
@@ -75,7 +108,13 @@ public sealed class AiController : BaseController
             CurrentConversationTitle = currentConversationTitle,
             CurrentConversationStatus = currentConversationStatus,
             IsEmbedded = embed,
-            IsStandardPlan = isStandardPlan
+            IsStandardPlan = isStandardPlan,
+            HasMoreConversations = hasMoreConversations,
+            HasMoreMessages = hasMoreMessages,
+            OldestConversationUpdatedAtUtc = oldestConversationUpdatedAtUtc,
+            OldestConversationId = oldestConversationId,
+            OldestMessageCreatedAtUtc = oldestMessageCreatedAtUtc,
+            OldestMessageId = oldestMessageId
         };
 
         if (embed)
@@ -84,6 +123,59 @@ public sealed class AiController : BaseController
         }
 
         return View(viewModel);
+    }
+
+    [HttpGet("Chat/Conversations")]
+    public async Task<IActionResult> ConversationsPage(
+        [FromQuery] int pageSize = AiConversationService.DefaultConversationPageSize,
+        [FromQuery] DateTime? beforeUpdatedAtUtc = null,
+        [FromQuery] Guid? beforeId = null,
+        CancellationToken ct = default)
+    {
+        var userId = GetCurrentUserId();
+        var page = await _conversationService.GetConversationsPageAsync(
+            userId,
+            pageSize,
+            beforeUpdatedAtUtc,
+            beforeId,
+            ct);
+
+        return Json(new
+        {
+            items = page.Items.Select(MapToConversationSummaryViewModel),
+            hasMore = page.HasMore
+        });
+    }
+
+    [HttpGet("Chat/Messages")]
+    public async Task<IActionResult> MessagesPage(
+        [FromQuery] Guid conversationId,
+        [FromQuery] int pageSize = AiConversationService.DefaultMessagePageSize,
+        [FromQuery] DateTime? beforeCreatedAtUtc = null,
+        [FromQuery] Guid? beforeId = null,
+        CancellationToken ct = default)
+    {
+        var userId = GetCurrentUserId();
+        try
+        {
+            var page = await _conversationService.GetMessagesPageAsync(
+                userId,
+                conversationId,
+                pageSize,
+                beforeCreatedAtUtc,
+                beforeId,
+                ct);
+
+            return Json(new
+            {
+                items = page.Items.Select(MapToViewModel),
+                hasMore = page.HasMore
+            });
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
     }
 
     [HttpPost("Chat/Send")]
