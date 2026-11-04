@@ -41,6 +41,370 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Upgrade vulnerable vendored DOMPurify before publishing the pending diff — 2026-11-04
+
+**Symptom**: Final pre-merge security review found the new local browser bundle
+still pinned DOMPurify3.2.6 while chat renders untrusted Markdown as HTML.
+
+**Root Cause**: Vendoring had retained an older sanitizer. GitHub advisory
+GHSA-v8jm-5vwx-cfxm lists3.2.6 as affected; a generic script/onerror smoke test
+alone does not establish that an old sanitizer version is free of known issues.
+No application-specific exploit of that advisory was claimed or reproduced.
+
+**Solution**: Pin DOMPurify3.4.17 from upstream signed release commit
+a77a3e78b59f72fa4d1c83f22e121ad9cc7d3575, update full/embed asset references,
+license and SHA256 provenance. Preserve upstream vendor bytes across Git
+checkouts and test manifest completeness/hash integrity and Razor asset paths.
+
+**Files Changed**: `TCTEnglish/Views/Ai/{Chat,ChatEmbed}.cshtml`,
+`TCTEnglish/wwwroot/lib/pinned/`, `.gitattributes`,
+`scripts/tests/test_pinned_browser_assets.py`.
+
+**Verification**: GitHub release metadata identifies3.4.17; upstream immutable
+raw asset and npm distribution have identical SHA256. Two asset-integrity tests
+pass. Chromium runs production ai-chat.js hydration with Marked/DOMPurify:
+Vietnamese bold Markdown survives; script/onerror/javascript URL probes are
+removed, no payload execution/page error. This is focused browser evidence,
+not a complete browser acceptance or proof against every possible XSS payload.
+
+**Commit**: `feat(ui): refine learner/admin screens and secure chat assets`.
+
+**Sources**: https://github.com/advisories/GHSA-v8jm-5vwx-cfxm ;
+https://github.com/cure53/DOMPurify/releases/tag/3.4.17 .
+
+### Local cache/temp relocation to D and credential relocation incident — 2026-11-04
+
+**Symptom**: Owner requested project data/cache off nearly-full C. Shared package/
+browser caches occupied about12GiB, and web child temp defaulted to C. During
+bulk relocation I also attempted to move User Secrets, disrupting the local AI key.
+
+**Root Cause**: Default cache/TEMP locations followed the Windows profile. I
+incorrectly treated the credential directory as ordinary movable cache data:
+the moved file is EFS-protected/read-denied to this tool session; C configuration
+now has an empty AI:ApiKey. Exact EFS/projection implementation was not established.
+
+**Solution**: Move caches/temp to private D storage with compatibility junctions
+and supported user cache preferences. Map launcher child TEMP/TMP to checkout
+temp, restore env on exit/failure; preserve global Windows TEMP. Stop credential
+relocation, retain standard C key store and protected D copy; do not weaken EFS/
+ACL or substitute another key. Owner was informed and explicitly chose to enter
+the key later through the existing masked helper. This key step is not complete.
+
+**Files Changed**: scripts/start-local.ps1, scripts/tests/test_local_launcher.py,
+AGENTS.md, quickstart; host-only cache preferences/junctions/manifests outside Git;
+local-storage plan/audit and private README.
+
+**Verification**: 7 directories/146259 files inventory verified,12.026GiB logical;
+C free16.01→~27.83GiB. SQL2 full hashes, cache hash samples. Offline restore from
+D; full890/0/12; scripts Ran99/skipped1; TEMP red3→green4/4; setup9/9; tooling/
+hooks verified. AI metadata correctly reports not-configured pending owner key.
+
+**Commit**: Not created; no push/remote CI/deploy.
+
+**Notes**: Never include OS-protected credentials/auth profiles in bulk cache
+relocation. Standard restore copy was denied; no decryption/security bypass
+attempt. Do not call AI ready from offline tests. Docker VHDX was already on D;
+no DB/hosting data touched. Audit: docs/feature-audits/2026-11-04-local-storage-on-d.md.
+
+### Retire remaining local Whisper helper, prompts and active cache path — 2026-11-04
+
+**Symptom**: Owner wanted to ensure local web no longer starts Whisper. Runtime
+was already migrated, but an unused loopback acceptance helper/test, executable
+historical prompts and 43 cached engine/model artifacts still remained.
+
+**Root Cause**: Provider replacement removed active DI/launcher callers but did
+not retire all test configuration and old prompt instructions or local cache.
+
+**Solution**: Remove unused ASR loopback helper/parser tests; replace with paid
+OpenAI opt-in isolation tests. Poison legacy script/cache/process/download in
+launcher fixtures. Mark old prompts/handoffs superseded; reinforce common agent
+rules and remove stale branch assumption. Permanent deletion was policy-blocked;
+rename the old cache into ignored retired-speech-2026-11-04, preserving audio/logs.
+
+**Files Changed**: AGENTS.md, .ai/README.md, three cursor-auto-whisper prompts,
+two premium Speaking historical docs, local-speech guide; old AsrLiveAcceptance
+files deleted; OpenAiSpeechLiveConfigurationTests and launcher fixtures.
+
+**Verification**: Launcher4/4, Python Ran99/skipped1, setup9/9; source/tasks/rules
+scan; no Whisper Windows process/startup/scheduled task or legacy env/secret key.
+Archive absent from runtime path,43 artifacts/109780875 bytes preserved,6 evidence
+hashes unchanged. Full verification details in retirement audit.
+
+**Commit**: Not created; local cleanup only.
+
+**Notes**: Automatic review rejected permanent cache deletion with 'blocked by
+policy'; no disk-space-reclamation claim. Docker Engine unavailable, so no new
+real web/container acceptance. Historical whisper-audio data/fonts/audits stay.
+Evidence: docs/feature-audits/2026-11-04-whisper-runtime-retirement.md.
+
+### OpenAI Speech follow-up: verify budget payload, launcher authority and status privacy — 2026-11-04
+
+**Symptom**: The R1–R7 repair still allowed malformed/non-16k/duplicate WAV
+payloads through the live-test budget; launcher could override an explicitly
+empty app secret with the global key; metadata status could report invalid
+boolean/file configuration as ready and print credentials inside invalid URLs.
+The fake app test named KeepOneCredit did not assert any persisted credit.
+
+**Root Cause**: Budget divided data bytes by a constant without validating fmt
+or selecting exactly one multipart file. Launcher treated missing/empty alike
+and generated AI:ApiKey="" for fresh stores. Status omitted file layers and
+used truthy fallback plus raw BaseUrl output. App fixture reused the first
+sentence transcript for all sentences and checked only HTTP results.
+
+**Solution**: Validate complete PCM16 mono16k RIFF/chunks and a single file
+before HTTP budget reservation; preserve buffered original content. Only absent
+keys fall back; never create an empty AI key default. Load Development file
+layers, fail invalid bool metadata, redact invalid URLs. Return matching fake
+transcripts and assert credit/XP/video completion before and after replay.
+
+**Files Changed**:
+- `TCTEnglish.Tests/Infrastructure/OpenAiSpeechLiveBudget.cs` and budget tests
+- `scripts/LocalAiConfiguration.psm1`, `scripts/start-local.ps1` and fixture tests
+- `scripts/speech-status.ps1`, `scripts/tests/test_speech_status.py`
+- `TCTEnglish.Tests/OpenAiSpeechAssessmentAppTests.cs`, PCM planner test coverage
+- `docs/operations/local-speech.md`, review/ledger/closeout documents
+
+**Verification**: Red budget6, key1, status3 and credit1 reproduced before fixes.
+Full optimized SpeechReview897 passed/0 failed/12 skipped; JS12/12; Python Ran99,
+skipped1 (98 executed pass); setup9/9; tooling verified; diff check clean.
+Final launcher fixture4/4 includes fresh/missing and existing explicit-empty.
+
+**Commit**: Not created; owner authorized local review/fixes only.
+
+**Notes**: Follow-up to R3/R4/R7 dated03/11, not a new provider/model migration.
+No real key edited, paid call, DB migration, remote CI or release. Shared live
+budget is per test process; repeated runs incur separate budgets. Mic/live
+quality remains unverified. Evidence: docs/feature-audits/2026-11-04-openai-speech-rereview.md.
+
+### OpenAI Speech review-repair R1–R7 — 2026-11-03
+
+**Symptom**: Review REQUEST CHANGES — padded PCM windows overlapped past 10s and
+import charged provider before failing timestamps; varying-amplitude threshold
+could drop all windows; live import lacked shared 8POST/120s budget; shared
+AI empty/invalid keys fell through; stream IOException after 200 became 500;
+admission retained expired users unbounded; speech-status ignored Enabled/Model/
+BaseUrl precedence; Admin Create still said Whisper.
+
+**Root Cause**: MergeWindows refused long unions so padding overlaps survived
+split; importer validated per-window during HTTP loop; threshold used noise×3.5
+above peak; budget lived as private counters on silence live tests only;
+credential FinishExplicit missing on shared AI authorities; response body read
+errors unmapped; admission never evicted empty buckets; status helper read
+partial config; leftover Admin copy.
+
+**Solution**: Union-normalize overlapping padded intervals then hard-split ≤10s;
+pre-validate all windows (0 HTTP on failure); clamp threshold to observed peak;
+process-shared `OpenAiSpeechLiveBudget` DelegatingHandler on all live speech
+clients; explicit fail-closed shared keys + redacted credentials ToString;
+IOException→unavailable; expire+bound admission (capacity refuse); speech-status
+mirrors app precedence; Admin Create OpenAI Speech-to-Text wording.
+
+**Files Changed**:
+- `PcmSpeechWindowPlanner.cs`, `AudioTranscriptImporter.cs` (+ R1/R2 tests)
+- `OpenAiSpeechLiveBudget.cs` / Handler + live acceptance wiring + offline budget tests
+- `OpenAiSpeechCredentialResolver.cs`, `OpenAiSpeechTranscriber.cs`, admission
+- `speech-status.ps1`, Admin `Create.cshtml`, `OpenAiSpeechAssessmentAppTests.cs`
+
+**Verification**: Focused Debug 66/0/1 then admission 4/4; full Debug retest;
+JS 12/12; Python Ran 94 skip 1; agent_tooling + setup 9/9; EF no pending;
+browser Debug :5130 + fake ASR :18765 assess/commit/cancel/replay (transcript
+`hello from fake openai speech`); live paid still off. Ledger updated.
+
+**Commit**: not created (owner forbade commit/push/merge/deploy)
+
+**Notes**: Fake browser is not paid live proof. MaxTrackedUsers=16384 after
+eviction. Old :5112 was CLOSED; new-source evidence is :5130 Debug + fake key.
+
+### Replace active Whisper ASR with OpenAI Speech-to-Text — 2026-11-03
+
+**Symptom**: Local Whisper lifecycle delayed/startup cost and pinned native engine;
+owner chose cloud OpenAI file transcription for all active ASR callers.
+
+**Root Cause**: Active runtime depended on whisper.cpp HTTP (`WhisperHttpTranscriber`,
+`local-speech.ps1`, launcher Start/probe). gpt-transcribe returns text without
+provider word/segment timestamps, so import needed measured PCM windows.
+
+**Solution**: `OpenAiSpeechTranscriber` + credential resolver (speech explicit →
+shared AI key → OPENAI_API_KEY); per-user assessment admission; C# PCM window
+planner for import (`openai-audio-vad`); retire Whisper scripts/lock/fixtures;
+launcher/status/docs/agent tasks for four clients; live opt-in
+`TCT_OPENAI_SPEECH_LIVE=1` only. Text model remains gpt-6-luna/low.
+
+**Files Changed**:
+- `TCTEnglish/Services/Speaking/OpenAiSpeechTranscriber.cs` (+ options/resolver/admission/planner)
+- `AudioTranscriptImporter.cs`, `YoutubeTranscriptService.cs`, `Program.cs`, `appsettings.json`
+- `scripts/start-local.ps1`, `speech-status.ps1`, `agent_clients.py`, ops docs/`AGENTS.md`
+- Removed `WhisperHttpTranscriber.cs`, `local-speech.ps1`, whisper lock/fixtures
+
+**Verification**: Focused speech Debug green; full Debug **870 pass / 0 fail / 12 skip**
+(live speech/text/MariaDB skipped); scripts discover **92 pass / 1 skip**; JS speaking
+**12/12**; agent_tooling pass; EF pending-model none; Release bin locked by preserved
+web PID 7084 on :5112 (old binary — not used as new-source evidence). Live speech
+unverified (flag off). Ledger:
+`docs/feature-audits/2026-11-03-openai-speech-replacement-ledger.md`.
+
+**Notes**: No commit/push/PR/deploy; PLESK gate unchanged. Segment-window timing ≠
+word alignment. Historical `whisper-audio` rows remain readable.
+
+### Plan2 third-review D1–D3 (quota flush on cancel, Speaking Take24, Load-older multipage) — 2026-11-02
+
+**Symptom**: Cancel after provider reply before Save left orphan assistant (0 user / 1 assistant) and Released quota; Speaking Index returned 24/25 public+private with no continuation so tail-only topics listed without cards; second Load-older page inserted between previously loaded pages.
+
+**Root Cause**: Shared scoped DbContext let quota `SaveChanges` flush caller's Added assistant/success log; cancel treated any `replyCommitted=false` as Release even when provider usage was known; Speaking capped with in-memory Take after full ToList (public) / SQL Take without HasMore; `insertBefore(fragment, loadOlderRow)` pushed the anchor below page1.
+
+**Solution**: Quota DI uses isolated scope/`SaveQuotaChangesAsync` suspension; chat lifecycle tracks `providerReplyKnown` vs `replyCommitted`, persists with independent CT, Settles/marks known pending (never Releases known usage), `MarkKnownUsagePending`/`RecoverKnownPending` recovery; Speaking SQL filter+Skip/Take paging + `/Speaking/Videos` continuation + Index query params; Load-older inserts after the control (`insertBefore(fragment, control.nextSibling)`).
+
+**Files Changed**:
+- `AiDailyQuotaReservationService.cs`, `AiChatService.cs`, `Program.cs` (quota + SMTP transport DI)
+- `SpeakingService.cs`, `ISpeakingService.cs`, `SpeakingController.cs`, `SpeakingIndexViewModel.cs`, `Views/Speaking/Index.cshtml`, `wwwroot/js/speaking.js`
+- `wwwroot/js/ai-chat.js`, `SmtpAppEmailSender.cs`, `ISmtpMailTransport.cs`
+- Tests: `ThirdReviewProbeTests.cs`, `SmtpTransportFakeTests.cs`, `test_ai_chat_load_older_order.cjs` (multipage)
+
+**Verification**: ThirdReviewProbeTests 4/4; SmtpTransportFakeTests 4/4; Repair/Cursor focused green; Node submit+order **6/6**; full suite after D1–D3 (see ledger). MariaDB C1 rerun blocked — Docker Linux engine pipe unavailable.
+
+**Commit**: none (local only)
+
+**Notes**: Extends C2/C3/C4/C5; Speaking Writing EXPLAIN/BE0 scale lab/BE7 assets/BE8 browser still open.
+
+### Plan2 re-review C1–C6 (MariaDB simultaneous reserve, Clear/tracking, post-commit settle, Load older order, UpdateEmail) — 2026-11-02
+
+**Symptom**: Simultaneous Serializable reserves deadlocked without recovery; quota `ChangeTracker.Clear` left conversation `UpdatedAt` unsaved; cancel/settle-failure after committed reply Released quota or HTTP500→JS retry double provider; Load older reversed each page; UpdateEmail accepted `not-an-email`.
+
+**Root Cause**: No deadlock retry + Clear detached caller entities; settle used caller CT and Release on OCE after commit; settle exceptions bubbled as 500; per-row `insertBefore(nextSibling)` reversed chronological items; UpdateEmail lacked format validation; ResetPassword lacked atomic consume.
+
+**Solution**: Detach only quota entities; bounded deadlock/lock-wait/duplicate retry with stable requestId; independent finalize token + never Release after replyCommitted (return reply even if settle fails); DocumentFragment insert before load-older control; UpdateEmail validator; ResetPassword `ExecuteUpdate` consume; Profile `GetEarnedBadgesForProfileAsync`; Speaking playlist preview Take(6) + catalog/my Take(24).
+
+**Files Changed**:
+- `AiDailyQuotaReservationService.cs`, `AiChatService.cs`, `AccountController.cs`, `wwwroot/js/ai-chat.js`
+- `GoalsService.cs` / `IGoalsService.cs`, `SpeakingService.cs`, `SpeakingIndexViewModel.cs`
+- Tests: `RepairReviewProbeTests.cs`, `AccountCorrectnessIntegrationTests` concurrent reset, `test_ai_chat_load_older_order.cjs`
+
+**Verification**: RepairReview 4/4; RepairMariaDb simultaneous + prior MariaDB quota 3/3; CursorReviewProbes 9/9; Node 5/5; full `Plan2Be1` after C1–C6 **850/0/5** (pre BE4/BE6 slice); focused post-BE4/6 suite green.
+
+**Commit**: none (local only)
+
+**Notes**: BE4 Writing SQL aggregates / true per-level SQL LIMIT / EXPLAIN still open; BE5 fake SMTP seam, BE7 assets, BE8 browser/ASR unverified.
+
+### Plan2 review-repair R1–R8 (quota ledger, SignalR Stop, history Load older, bcrypt fail-closed) — 2026-11-02
+
+**Symptom**: Review suite had 13 fails; 9 Cursor probes reproduced lost multi-DbContext quota settles, ignored same-day historical usage, SignalR Stop stuck behind Start (parallel=1), cancel orphans after prompt commit, no Load-older path after 30/50 caps, malformed bcrypt 500 / ChangePassword bypass, AiPhase2 InMemory vs transactions.
+
+**Root Cause**: Quota settle mutated stale tracked entities without request identity; empty `AiUserDailyQuotas` row started at 0; hub shared DbContext + `MaximumParallelInvocationsPerClient=1`; cancel cleanup only around provider; history paging without HTTP/UI continuation; structural bcrypt gate still called `Verify` on bad cost/salt; Phase2 tests used EF InMemory which ignores transactions.
+
+**Solution**: `AiQuotaReservationLedgers` + Clear/idempotent finalize + historical log backfill (persist on reject); SignalR parallel=2 with `IServiceScopeFactory` per hub invocation; state-aware cancel after prompt; `Chat/Conversations`+`Chat/Messages` + `data-ai-load-older`; `TryVerifyLocalPassword` + Register email/ChangePassword length; AiPhase2 SQLite shared-memory fixture; official `CursorReviewProbeTests`.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/AiDailyQuotaReservationService.cs`, `Models/AiQuotaReservationLedger.cs`, `Migrations/20261102111404_AddAiQuotaReservationLedger.*`
+- `TCTEnglish/Program.cs`, `Hubs/ClassChatHub.cs`, `Services/AI/AiChatService.cs`
+- `TCTEnglish/Controllers/{AiController,AccountController}.cs`, `Views/Ai/{Chat,_ChatShell}.cshtml`, `wwwroot/js/ai-chat.js`
+- `TCTEnglish.Tests/{CursorReviewProbeTests,AiPhase2ServiceTests,MariaDbAiQuotaConcurrencyTests}.cs`, `Infrastructure/MariaDbAcceptanceFactory.cs`
+
+**Verification**: CursorReviewProbes 9/9; MariaDB disposable migrate+repeat+pending-model clean + quota 2/2; full `dotnet test -c Plan2Be1` **844 pass / 0 fail / 5 skip**; JS submit guard 4/4; `git diff --check` clean.
+
+**Commit**: none (local only per owner)
+
+**Notes**: Supersedes mid-handoff “DONE core” for BE2/BE3. BE4/BE6/BE7 and browser/ASR BE8 still open — see ledger. Disposable acceptance container `tctenglish-mariadb-acceptance-p2rp1102a` left running locally; do not point at `tctenglish_dev`.
+
+### Plan2 BE1–BE3 Account/Chat correctness (L01, L02, L03, L06, L11, AccessDenied, mojibake) — 2026-11-02
+
+**Symptom**: Social/malformed password hashes caused BCrypt `SaltParseException` on local login; AI cancel after save left orphan prompts; Stop could not cancel before `AiStreamStarted`; Standard quota raced across conversations; chat history loaded unbounded; Admin 403 had no page; UserManagement JSON Vietnamese was mojibake.
+
+**Root Cause**: Direct `BCrypt.Verify` without hash shape guard; cancel only handled `AiProviderException`; stream identity published after provider completed; quota counted success logs before call without DB reservation; conversation/message queries materialised full sets; cookie `AccessDeniedPath` lacked view; Admin JSON strings were mis-encoded UTF-8.
+
+**Solution**: BCrypt local-hash gate; AccessDenied 403 view + cookie path; reset null-expiry reject; Settings unconfirmed social marker; cancel cleanup with bounded token + quota release; early `onStreamStarted` before provider; `AiUserDailyQuotas` Serializable reserve/settle/release + additive migration; history paging defaults 30/50 and provider context Take(100); SMTP send bounded by CancellationToken; UserManagement messages re-encoded.
+
+**Files Changed**:
+- `TCTEnglish/Controllers/AccountController.cs`, `Views/Account/AccessDenied.cshtml`, `ResetPassword.cshtml`, `Settings.cshtml`
+- `TCTEnglish/Services/AI/{AiChatService,AiStreamingService,AiConversationService,AiDailyQuotaReservationService}.cs`
+- `TCTEnglish/Hubs/ClassChatHub.cs`, `Program.cs`, `Models/AiUserDailyQuota.cs`, `Migrations/20261102104017_AddAiUserDailyQuota.*`
+- `TCTEnglish/Areas/Admin/Controllers/UserManagementController.cs`, `Services/SmtpAppEmailSender.cs`
+- Tests: `AccountCorrectnessIntegrationTests`, `AiCancelAndStopIntegrationTests`, `AiHistoryPagingIntegrationTests`, `AiQuotaReservationIntegrationTests`
+- Preflight: `_AdminLayout.cshtml` 991.98px; `scripts/tests/test_ai_chat_submit_guard.cjs` behavior harness
+
+**Verification**: `node --test scripts/tests/test_ai_chat_submit_guard.cjs` 4/4; `dotnet test -c Plan2Be1` focused Account+AI cancel/stop/paging/quota **18/18**. Full Release suite / MariaDB multi-instance / browser BE8 chưa chạy.
+
+**Commit**: none (local only per owner)
+
+**Notes**: Migration additive only — apply on disposable/dev locally; not production. Quota SQLite serializable proof is local; MariaDB acceptance still recommended. BE4–BE8 remaining in ledger.
+
+### Plan 1 UI Review Repair (R1 AI submit guard, R2 Avatar preview, R3 Chat short viewport, R4 Sidebar inert/ARIA, R5 Admin skip link) — 2026-11-02
+
+**Symptom**:
+- R1 (P1): Pressing Enter in AI Chat while a request was in-flight wiped the user's draft textarea, appended a duplicate user bubble to the DOM, and sent duplicate requests.
+- R2 (P2): Selecting a new avatar image file on a user with no avatar or a broken avatar URL read the file successfully via FileReader, but the `<img>` remained `display: none` from fallback state and never showed the preview.
+- R3 (P2): In short viewports (390x500 portrait, 844x390 landscape), `min-height: 220px` on `.ai-chat-window` caused it to overflow its flex wrapper (height 127px), clipping the bottom messages and scrollbar by 79.5px so the last line was unreachable.
+- R4 (P2): On mobile, keyboard navigation (Tab) entered 17 focusable links inside the closed sidebar off-screen at x = -226px; Account and Admin mobile toggle buttons did not update `aria-expanded`.
+- R5 (P2): In Admin layout on mobile 390x844, focusing the skip link positioned it at (x: 8, y: 8) with `z-3`, behind the sticky navbar (`z-index: 1020`), making it invisible and blocked from hit-testing.
+
+**Root Cause**:
+- R1: `elForm` submit handler lacked an atomic in-flight guard check before draft extraction and DOM manipulation; keydown handler on Enter called `requestSubmit()` which bypassed button disablement.
+- R2: `previewImage` set `preview.src` but did not reset `preview.style.display = ''` nor hide `fallback.style.display = 'none'`.
+- R3: Media queries `@media (max-width: 767.98px)` and `@media (max-width: 425px)` applied rigid `min-height: 220px` to `.ai-chat-window` inside `.ai-chat-window-wrapper { overflow: hidden; }`.
+- R4: Closed mobile sidebars lacked the `inert` attribute; toggle handlers did not sync `aria-expanded` and lacked Escape return-of-focus.
+- R5: Admin skip link had Bootstrap class `z-3` (`z-index: 3`) which was layered behind the sticky navbar's `z-index: 1020`.
+
+**Solution**:
+- R1: Added synchronous atomic in-flight flag `let isSubmitting = false;` in `ai-chat.js`; guarded submit handler, Enter keydown, and quick-actions against `isSubmitting || elSendBtn.disabled || elForm.dataset.state === 'sending'`; released flag in `finally`.
+- R2: Updated `previewImage` in `Profile.cshtml` to un-hide preview and hide fallback on valid file read; restored fallback on error/invalid file; added `onerror` fallback to initials.
+- R3: Replaced `min-height: 220px` with `min-height: 0; height: 100%` in `ai-chat.css`; added `@media (max-height: 550px)` to compact headers and preserve full scrollability without clipping on short screens.
+- R4: Added `syncSidebarState` helpers in `layout.js`, `Profile.cshtml`, `Settings.cshtml`, and `_AdminLayout.cshtml` using `matchMedia`; applied `inert = !isOpen` and synced `aria-expanded` on mobile; ensured desktop always has `inert = false`; handled Escape and click-outside returning focus to toggle buttons.
+- R5: Defined `.admin-skip-link` with `z-index: 1060 !important` and `position: fixed` when focused in `_AdminLayout.cshtml`.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js`
+- `TCTEnglish/wwwroot/css/ai-chat.css`
+- `TCTEnglish/Views/Account/Profile.cshtml`
+- `TCTEnglish/Views/Account/Settings.cshtml`
+- `TCTEnglish/Views/Shared/_Layout.cshtml`
+- `TCTEnglish/Areas/Admin/Views/Shared/_AdminLayout.cshtml`
+- `TCTEnglish/wwwroot/js/layout.js`
+- `docs/feature-audits/2026-11-02-plan1-ui-repair-ledger.md`
+- `docs/feature-audits/2026-11-02-chau-ui-execution-ledger.md`
+
+**Verification**:
+- R1: Unit regression `scripts/tests/test_ai_chat_submit_guard.cjs` (4/4 passed). Browser DevTools test: draft preserved, no duplicate bubble, sendBtn remains disabled during flight, subsequent send succeeds.
+- R2: Browser DevTools test with DataTransfer 1px PNG: preview toggles from none to inline, fallback from flex to none; onerror restores fallback cleanly.
+- R3: Browser DevTools test at 390x500: `isLastMsgClippedByWrapper: false` (diff -7.28px, was clipped +79.5px); tested 844x390 landscape, 390x844 standard mobile, 1440x900 desktop, 6-line textarea expansion.
+- R4: Browser DevTools test at 390x844: `/Goals` main sidebar has `inert: true`, 0/17 links focusable when closed, `aria-expanded` syncs true/false; verified Profile, Settings, and Admin sidebars. Desktop maintains `inert: false`.
+- R5: Browser DevTools test on Admin at 390x844: skip link focused at (8, 8) has `isSkipLinkHitDirectly: true` (hit element is `A`, not `NAV`), `computedZIndex: "1060"`. Desktop control 1440x900 also verified.
+- R6: Full test suite compiled fresh with isolated configuration `Plan1Review`: `Failed: 0, Passed: 811, Skipped: 8, Total: 819` (TRX: `.tmp/plan1-ui-repair/plan1-ui-repair.trx`). `git diff --check` clean.
+
+**Commit**: (local uncommitted; awaiting owner review)
+
+**Notes**: Local work only. No backend, controller, model, migration, or Program.cs changes made. AccessDenied 404 belongs to Plan 2 (BE1/BE6).
+
+### Plan 1 UI & Mobile layout fixes (Profile U08, AI Chat U05, Speaking U09, Auth U02, Stats U03) — 2026-11-02
+
+**Symptom**: On mobile (390px viewport), Profile `.account-main` squashed to 122px by sticky sidebar; AI Chat message window squashed to 25.78px by 299px metrics panel; Speaking hero overflowed at 417px; Auth card overflowed at 393px; Profile displayed hardcoded 75%/40% progress bars; missing input labels and non-focusable password toggles.
+
+**Root Cause**: CSS media queries cascading incorrectly (`account.css` media 680 override kept sidebar in flex flow); AI Chat observability panel was a 4-card static block occupying 299px without collapsible disclosure; Speaking decorative blobs and topic chips lacked overflow containment; Auth inputs lacked border-box box-sizing; Profile Razor view contained hardcoded percentage integers; Settings inputs lacked `for`/`id` bindings and password toggles had `tabindex="-1"`.
+
+**Solution**:
+1. Scoped sticky sidebar to `@media (min-width: 993px)`; on mobile made sidebar off-canvas, expanding `.account-main` to 382px.
+2. Wrapped AI Chat metrics into `<details class="ai-chat-observability-disclosure">` (collapsed to 33.22px on mobile); wrapped history in disclosure; expanded chat window to 473.98px; converted composer to `<textarea>` multiline auto-grow with IME guard.
+3. Removed hardcoded 75%/40% progress bars in `Profile.cshtml`, replaced with honest empty state and `/Goals` CTA.
+4. Added `box-sizing: border-box` to Auth card, eliminated 3px overflow (`scrollWidth: 390px`).
+5. Contained Speaking hero import and topic chips (`scrollWidth: 390px`).
+6. Linked all `label for` / `id` pairs, made password toggles focusable with `aria-label`/`aria-pressed`, added accessible names across admin tables and switch `IsPublished`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Account/Profile.cshtml`, `Settings.cshtml`, `Auth.cshtml`, `ForgotPassword.cshtml`, `ResetPassword.cshtml`, `ForgotPasswordConfirmation.cshtml`
+- `TCTEnglish/Views/Ai/_ChatShell.cshtml`, `Chat.cshtml`
+- `TCTEnglish/Areas/Admin/Views/WritingExerciseManagement/_ExerciseForm.cshtml`, `Index.cshtml`, `SpeakingVideoManagement/Index.cshtml`, `UserManagement/Index.cshtml`, `Shared/_AdminLayout.cshtml`
+- `TCTEnglish/Views/Shared/_Layout.cshtml`
+- `TCTEnglish/wwwroot/css/account.css`, `ai-chat.css`, `auth-stitch.css`, `layout.css`, `speaking.css`, `writing.css`
+- `TCTEnglish/wwwroot/js/ai-chat.js`, `layout.js`
+
+**Verification**:
+- Headless Chrome DevTools measurements at 390x844: Profile main width 382px (0px overflow), AI chat window 473.98px (metrics 33.22px), Speaking 390px, Auth 390px.
+- Build succeeded: `dotnet build TCTEnglish/TCTEnglish.csproj -c Release --no-restore -o .tmp/build-verify` (0 warnings, 0 errors).
+- Tests passed: `dotnet test TCTEnglish.Tests` (101/101 passed).
+- `git diff --check` passed with exit code 0.
+
+**Commit**: Local changes on `feature/chau-ui-performance-audit` pending owner review (no commit per owner policy).
+
+**Notes**: Preserves all backend APIs, SignalR events, and database state. BE1 (mojibake), BE2 (Stop-before-Started), and BE3 (server paging) are deferred to Plan 2.
+
 ### Lifecycle containment assertion mixed canonical and aliased temp paths — 2026-11-02
 
 **Symptom**: The new full Windows CI suite passed media/launcher/speech cases but failed the session-state containment assertion on the hosted runner.
@@ -2079,3 +2443,119 @@ This is the same class of bug as the WritingExercise snapshot issue documented e
 **Commit**: Not committed; these files belong with the owner's pending learning feature, outside setup PR #120.
 
 **Notes**: Live hosting still has five old history IDs and was not migrated. Do not edit published migrations or delete the extra historical May9 migration ID to force a count match.
+
+### AI unknown transport outcome and reply-save failure; quota recovery — 2026-11-03
+
+**Symptom**: A lost SignalR invocation could send the same intent through HTTP.
+Known provider usage could survive reply persistence failure without a real
+recovery caller; layout quota reads and arbitrary100-message context cap also
+added work or truncated otherwise valid context.
+
+**Root Cause**: Client retry/fallback treated unknown outcome as unprocessed.
+Reply persistence/cleanup and quota settlement did not cover non-cancellation
+save failures. Recovery existed as an API without a normal next-turn caller.
+
+**Solution**: No retry/fallback after dispatch; show an outcome requiring history
+reload. Discard uncommitted reply artifacts, rollback only the owned prompt/draft,
+preserve known pending usage, recover on next reservation. Token-budget keyset
+context replaces arbitrary100 cap. Fetch launcher usage lazily with honest state.
+
+**Files Changed**: Services/AI/AiChatService.cs, AiDailyQuotaReservationService.cs,
+AiContextBuilder.cs, AiProviderErrorMessages.cs; wwwroot/js/ai-chat.js,
+ai-chat-launcher.js; Views/Shared/_AiChatLauncher.cshtml and focused tests.
+
+**Verification**: New unknown-outcome Node red→green; save-failure and next-scope
+recovery tests; MariaDB concurrency7/7; full Release862/0/13.
+
+**Commit**: Not created; local owner-authorized closeout only.
+**Notes**: Not an exactly-once provider billing claim; unknown outcomes remain
+conservative and paid cloud acceptance is off.
+
+### Catalog paging lost dynamic actions/counts; Writing loaded all attempts — 2026-11-03
+
+**Symptom**: Speaking appended cards lost actions; injected thumbnail attributes
+were possible, failed load-more left its button disabled, private count showed24
+for25 videos, and first programmatic activation of a new delete button did nothing.
+Writing lists materialized all attempt feedback. Admin filters covered only
+loaded rows after adding paging unless converted to server filters.
+
+**Root Cause**: HTML interpolation and incomplete dynamic card construction;
+counter derived from first page; nested click replay is suppressed by browsers.
+Writing performed paging after full collection loads. A first SQL rewrite used
+correlated DISTINCT derived tables unsupported by MariaDB10.5.
+
+**Solution**: DOM/textContent cards; complete private controls; error/finally
+states; server total/decrement after successful delete; direct confirmation
+handler for first activation. SQL Writing filters/counts/page6 and owned paging;
+count sentences with EXISTS historical pass. Admin SQL GET filters/page20, full
+topic facets and separate statistics.
+
+**Files Changed**: SpeakingService/ViewModels/Views/JS; WritingService.Catalog.cs,
+WritingService/IWritingService, StudyController and Writing list VM/view; Admin
+Speaking/Writing controllers, list VMs/views and _CatalogPager.
+
+**Verification**: Browser injection/503 probes, real private fixture24→25→delete24;
+Node import/count/delete regression; Writing historical-pass row-count regression;
+Admin red2/2→green; MariaDB benchmark200/2000, EXPLAIN. At2000 Writing rows8001→10,
+mean process allocations21.24MB→0.315MB. No promise of hosting SLA.
+
+**Commit**: Not created.
+**Notes**: All synthetic browser data removed; dev users checksum unchanged.
+Legacy full lightweight Writing data route remains for compatibility.
+
+### Unlock side effects ran before durable state; SMTP cancellation unbounded — 2026-11-03
+
+**Symptom**: Worker notifications could precede the unlock commit; one broadcast/
+recipient failure could prevent later mail. Real stalled SMTP was not bounded
+by a caller-linked deadline.
+
+**Root Cause**: Worker read-modify-send-save ordering and one shared failure path;
+delivery bool was discarded at the public interface and transport cancellation
+did not consistently link workflow timeout/request cancellation.
+
+**Solution**: Conditional ExecuteUpdate commits unlock before mail; only winner
+notifies. Broadcast/mail failures isolated per recipient; lazy login uses same
+conditional transition. Add typed try-send result and linked bounded transport.
+Do not log recipients or mail/reset payloads.
+
+**Files Changed**: Workers/AutoUnlockWorker.cs, Controllers/AccountController.cs,
+Services/IAppEmailSender.cs, SmtpAppEmailSender.cs; fake transport/worker tests.
+
+**Verification**: Fake SMTP stall/caller cancel; worker rerun/broadcast failure/
+mail failure/permanent lock tests; focused workflow28/28; full Release862/0/13.
+
+**Commit**: Not created.
+**Notes**: Worker remains default off. No live email, durable SMTP outbox or
+exactly-once delivery claim across process crash.
+
+### Duplicate quota index and local fixture preparation incident — 2026-11-03
+
+**Symptom**: Quota table had a unique secondary index identical to its composite
+primary key. While preparing another isolated upgrade lab, an operator command
+used the wrong connection environment key and EF reverted the two new quota
+tables on the local dev DB through its design-time User Secrets fallback.
+
+**Root Cause**: Redundant HasIndex configuration; fixture baseline CLI did not
+prove the effective database identity before its target-October migration.
+The mistake was reported to the owner immediately after detection.
+
+**Solution**: New follow-up migration removes only the secondary index, leaving
+the primary key/FK/data intact; applied migrations were not edited. Reapply dev
+schema with the normal local launcher. Upgrade regression now establishes its
+baseline using an explicit acceptance connection, loopback/name/sentinel/runId
+checks and an empty migration history, before any migration runs.
+
+**Files Changed**: Models/DbflashcardContext.cs, new
+20261103141227_RemoveRedundantAiQuotaUniqueIndex + Designer + snapshot,
+QuotaMigrationUpgradeTests.cs.
+
+**Verification**: Fresh guarded MariaDB upgrade/repeat preserves synthetic user
+and pending quota, removes secondary index and retains both primary-key columns
+(1/1). Dev history has all three current migrations, quota tables exist,
+model has no pending changes; Users checksum stays4192988673.
+
+**Commit**: Not created.
+**Notes**: No production access. Dev quota tables are now empty; no snapshot
+immediately before the erroneous rollback exists, so user checksum does not
+prove preservation of any earlier quota row. Existing chat/request-log tables
+were not dropped. No paid cloud request was made in this session.

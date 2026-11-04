@@ -38,6 +38,11 @@ proposing follow-up work so they do not optimize already-completed items.
 - **Recommended fix**: Add environment-specific configuration and validate
   `LockExpiry` data before enabling the worker broadly.
 - **Status**: Confirmed unresolved / operational gap.
+- **Local hardening03/11**: Conditional unlock is committed before email;
+  fake SMTP timeout/cancel and worker retry/batch isolation are verified.
+  Lazy-login uses the same conditional transition. The default-off rollout
+  remains intentional until environment/data validation and owner release
+  authority; this entry is not resolved by tests alone.
 
 ### BUG-008: Startup seeding always performs a full JSON sync — resolved 2026-10-30
 - **Symptom**: Application startup still reads and synchronizes
@@ -192,18 +197,58 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Recently Resolved / Verified
 
+Pre-merge security04/11: pending browser bundle upgraded DOMPurify3.2.6 to
+3.4.17 with immutable upstream source/hash/license and portable vendor bytes.
+Manifest/Razor-path regressions and Chromium production chat hydration pass.
+Known affected dependency removed; no claim of comprehensive XSS assurance.
+Current pre-merge evidence:
+[full diff audit](../../docs/feature-audits/2026-11-04-full-diff-review-and-merge.md).
+
+Local storage04/11: large shared caches and project temp moved to D with C→D
+junctions and supported user environment preferences; C gained~11.8GiB free.
+**Host action pending:** credential move hit protected EFS/read denial, leaving
+standard C AI:ApiKey empty. Owner explicitly deferred key re-entry via
+scripts/set-local-ai-key.ps1. Speech/text cloud is not locally configured until
+then; no claim of key/account readiness. Do not reuse the protected D copy as
+the active store or weaken file protection. See
+[storage audit](../../docs/feature-audits/2026-11-04-local-storage-on-d.md).
+
+UI/logic closeout03/11: local Plan1/2 implemented and verified, including
+MariaDB quota/migration/concurrency, SQL Writing/Admin pagination, Speaking
+dynamic-card safety/actions/counts, AI unknown-outcome handling, SMTP/worker
+ordering, awarded-only Profile badges and lazy launcher usage.
+Evidence and explicit external gates:
+[closeout](../../docs/feature-audits/2026-11-03-plan1-plan2-local-closeout.md).
+This does not resolve whole-controller extraction debt, production release,
+real-microphone quality or clean-PC acceptance.
+
 Team local bootstrap (01/11/2026): a fresh Docker DB now gets sample accounts and
 learning fixtures through an explicit Development-only CLI; existing users/data
 and credentials are preserved. No real backup/keys/volumes are shipped in Git.
 Prerequisites/onboarding and cold MariaDB/login evidence:
 [team rollout](../../docs/feature-audits/2026-11-01-team-local-rollout.md).
 
-Plan2 (01/11/2026): runtime text provider now OpenAI `gpt-6-luna`/low; shared audio
-fallback uses local Whisper with pinned decode and actual timestamps. Offline
-regressions and bounded synthetic live text/media acceptance passed. Remaining
-live/browser/MariaDB/load gates and exact evidence are in
+Plan2 (01/11/2026): runtime text provider OpenAI `gpt-6-luna`/low. **Superseded for
+ASR (03/11/2026):** active Whisper retired; Speaking/import use OpenAI
+`gpt-transcribe` with measured PCM windows (`openai-audio-vad`). Review-repair
+R1–R7 (overlap normalize, shared live budget, credentials/IOException/admission/
+status/Admin copy) closed offline + fake-provider browser; paid live still
+owner opt-in. Reviewer04/11 additionally hardened verified WAV budget,
+launcher missing-vs-empty key handling, status config/privacy and persisted
+completion/replay assertions. Full897/0/12 and script/JS checks verified;
+no new reviewer browser/mic/live run. See
+[rereview](../../docs/feature-audits/2026-11-04-openai-speech-rereview.md) and
+[speech replacement ledger](../../docs/feature-audits/2026-11-03-openai-speech-replacement-ledger.md).
+Earlier OpenAI text migration evidence remains in
 [migration ledger](../../docs/feature-audits/2026-11-01-openai-provider-migration-ledger.md).
-This local verification is not a production release or a general quality benchmark.
+Paid live speech / real-mic acceptance and production release remain owner gates.
+
+Whisper retirement follow-up04/11: unused loopback test helper removed; legacy
+prompts superseded; startup fixture traps retired engines/downloads/processes.
+The old .appdata/local/speech directory is absent. Its artifacts/evidence remain
+in ignored retired-speech-2026-11-04 because permanent deletion was policy-blocked;
+they are not read or started. See
+[retirement audit](../../docs/feature-audits/2026-11-04-whisper-runtime-retirement.md).
 
 Plan2 follow-up (01/11/2026): owner-approved OPENAI_API_KEY now works through the
 local launcher when app env/User Secrets have no key. Key source is reported

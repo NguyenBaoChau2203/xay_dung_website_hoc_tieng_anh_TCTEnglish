@@ -1,5 +1,10 @@
 # Cursor Auto — thực thi Plan 1: Whisper + web local
 
+> **SUPERSEDED — 04/11/2026. Chỉ lưu lịch sử, không thực thi prompt này.**
+> Owner đã bỏ local Whisper. Dùng `scripts/start-local.ps1 -NoBrowser` và
+> `docs/operations/local-speech.md`: MariaDB + web, OpenAI Speech-to-Text.
+> Không khôi phục launcher/model/engine/startup Whisper từ các bước bên dưới.
+
 Bạn là một agent duy nhất trong repo TCT English. Chế độ Cursor Auto; không
 spawn/delegate hoặc gọi AI CLI khác. Đọc AGENTS.md, rồi chỉ plan đang thực thi:
 `docs/superpowers/plans/2026-11-01-whisper-local-lifecycle-plan.md`.

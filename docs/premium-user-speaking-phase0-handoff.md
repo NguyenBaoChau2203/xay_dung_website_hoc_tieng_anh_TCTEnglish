@@ -1,5 +1,10 @@
 # Premium User Speaking — Phase 0 Handoff
 
+> **Historical handoff — speech-provider instructions superseded 04/11/2026.**
+> Do not restore Whisper or Gemini from this old audit. Current learner import
+> uses captions/SRT/VTT; permitted Admin/legacy audio fallback uses OpenAI
+> Speech-to-Text. Follow AGENTS.md and docs/operations/local-speech.md.
+
 ## Phase Handoff
 Phase completed: Phase 0 — Pivot Audit And Salvage Map
 Model used: Claude Opus 4.6 (Thinking) in Antigravity
