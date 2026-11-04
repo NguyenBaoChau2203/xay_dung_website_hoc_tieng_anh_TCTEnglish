@@ -53,7 +53,7 @@
       }
     },
     {
-      "label": "TCT: Start local web + Whisper",
+      "label": "TCT: Start local web",
       "type": "shell",
       "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/start-local.ps1\" -NoBrowser",
       "options": {
@@ -69,18 +69,18 @@
       }
     },
     {
-      "label": "TCT: Whisper status",
+      "label": "TCT: Speech configuration status",
       "type": "shell",
-      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/local-speech.ps1\" -Action Status",
+      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/speech-status.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
     },
     {
-      "label": "TCT: Stop Whisper",
+      "label": "TCT: Setup local media (FFmpeg import)",
       "type": "shell",
-      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/local-speech.ps1\" -Action Stop",
+      "command": "pwsh -NoProfile -File \"${workspaceFolder}/scripts/local-media.ps1\" -Action Setup",
       "options": {
         "cwd": "${workspaceFolder}"
       },

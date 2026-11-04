@@ -1,6 +1,6 @@
-# Thiết lập máy thành viên — Docker, Whisper, OpenAI và AI Agent
+# Thiết lập máy thành viên — Docker, OpenAI speech và AI Agent
 
-Áp dụng cho Windows x64, cập nhật01/11/2026. Pull code cung cấp source/config/
+Áp dụng cho Windows x64, cập nhật03/11/2026. Pull code cung cấp source/config/
 scripts; mỗi máy tự có Docker volume, tài khoản local và key. **Không cần SSMS,
 SQL Server hoặc cài MariaDB riêng trên Windows.** Database chạy MariaDB10.5.23
 trong Docker để tương thích hosting hiện tại; không tự nâng version provider/DB.
@@ -14,7 +14,6 @@ trong Docker để tương thích hosting hiện tại; không tự nâng versio
 | PowerShell | PowerShell7, lệnh pwsh; [Microsoft install](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows) |
 | .NET | SDK9+ và ASP.NET Core runtime9+; [Microsoft .NET](https://dotnet.microsoft.com/download/dotnet/9.0). SDK9 là lựa chọn khớp target; SDK10/runtime10 chạy được nhờ LatestMajor roll-forward hiện có. Không đổi net9.0 chỉ vì SDK mới. |
 | Docker Desktop | [Windows install/WSL2 prerequisites](https://docs.docker.com/desktop/setup/install/windows-install/); mở Docker ở chế độ Linux containers, bật virtualization/WSL2 theo tài liệu |
-| Visual C++ runtime | [Microsoft Visual C++ x64 Redistributable](https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist); dùng cho Whisper native |
 | AI IDE | Codex, Cursor, Claude Code hoặc Antigravity; đăng nhập tài khoản của mình |
 
 Sau khi cài, mở lại terminal/IDE để nhận PATH. Trong thư mục gốc repository:
@@ -25,9 +24,9 @@ node scripts/check-local.cjs
 
 Doctor chỉ đọc trạng thái/versions, không cài phần mềm hoặc dừng/reset Docker.
 Nó báo từng mục OK/MISSING và link cài. Khi Docker đang khởi động, chờ engine
-Linux sẵn sàng rồi kiểm lại. Whisper/FFmpeg pin hiện hỗ trợ **Windows x64**;
-macOS/Linux/Windows ARM cần một profile artifact được kiểm riêng, chưa coi là
-cùng quy trình đã nghiệm thu. Không cần CUDA/GPU cho tiny.en CPU mặc định.
+Linux sẵn sàng rồi kiểm lại. FFmpeg pin (audio import) hiện hỗ trợ **Windows x64**;
+macOS/Linux/Windows ARM cần profile artifact riêng. Speech dùng OpenAI cloud;
+không cần CUDA/GPU/local Whisper.
 
 ## 2. Pull và setup agent một lần
 
@@ -55,9 +54,10 @@ Key nằm trong .NET User Secrets ngoài repo, không sửa appsettings/source v
 đưa key vào lệnh/argv/history/README/PR/GitHub. Launcher ưu tiên **AI__ApiKey →
 User Secrets AI:ApiKey → OPENAI_API_KEY**. Chỉ cần nhập một lần hoặc khi thay key.
 Nếu nhận401/quota, kiểm key/account; không đổi model hoặc quay lại Gemini.
-Website dùng **gpt-6-luna/low**, Whisper cho audio; model AI IDE của thành viên
-là lựa chọn độc lập. Không cần key để chạy Writing Local/Whisper và tính năng
-không dùng cloud. SMTP/OAuth/payment cần credential dev riêng nếu test các phần đó.
+Website dùng **gpt-6-luna/low** cho text và **gpt-transcribe** cho audio; model
+AI IDE của thành viên là lựa chọn độc lập. Không cần key để chạy Writing Local và
+các tính năng không dùng cloud; Speaking ASR báo NotReady rõ khi thiếu key (không
+fake điểm). SMTP/OAuth/payment cần credential dev riêng nếu test các phần đó.
 
 ## 4. Chạy toàn bộ local
 
@@ -67,16 +67,18 @@ Bấm **SETUP-LOCAL.cmd** hoặc yêu cầu AI Agent chạy lệnh:
 pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser
 ```
 
-Script tạo database Docker/volume riêng, lưu connection local, provision Whisper
-và FFmpeg đúng hash, update migration đã commit, bootstrap mẫu khi chưa có user,
-rồi chạy web. Lần đầu cần mạng để tải image/artifact/NuGet; lần sau dùng cache.
+Script tạo database Docker/volume riêng, lưu connection local, update migration
+đã commit, bootstrap mẫu khi chưa có user, rồi chạy web. Ordinary startup **không**
+tải/start local ASR và **không** gọi Speech API trả phí. FFmpeg pin chỉ cần khi
+Admin/legacy audio import: `scripts/local-media.ps1 -Action Setup`.
+Lần đầu cần mạng để tải image/NuGet; lần sau dùng cache.
 Không cài SQL Server/SSMS, không dùng connection database hosting để code local.
 
 | Thành phần | Mặc định |
 | --- | --- |
 | Web | http://localhost:5100 |
 | MariaDB | 127.0.0.1:3307 / tctenglish_dev |
-| Whisper | http://127.0.0.1:8092, tiny.en CPU2threads |
+| Speech | OpenAI `gpt-transcribe` khi key configured; `scripts/speech-status.ps1` |
 | Tài khoản mẫu | admin@tct.local / student@tct.local / premium@tct.local |
 | Mật khẩu mẫu | Sinh ngẫu nhiên riêng mỗi máy trong **.appdata/local/access.json**; mở riêng trên máy, không in/share file |
 
@@ -105,16 +107,16 @@ bản sao riêng. Mật khẩu MariaDB local và key của Châu không đi cùn
 AGENTS.md là quy định chung cho cả4clients. Có thể dùng prompt:
 
 > Đọc AGENTS.md, kiểm prerequisites và chạy web local bằng scripts/start-local.ps1
-> -NoBrowser để có MariaDB, Whisper và key đã lưu trên máy. Xác nhận web readiness,
-> Whisper Status và nguồn key, không in key. Giữ dữ liệu/workload hiện có; chỉ test
+> -NoBrowser để có MariaDB và key đã lưu trên máy. Xác nhận web readiness,
+> speech-status và nguồn key, không in key. Giữ dữ liệu/workload hiện có; chỉ test
 > local, chưa push/deploy. Nếu thiếu prerequisite, báo đúng mục và link cài.
 
-Agent không start web/Whisper hoặc gọi paid API trên folderOpen/build/test/MCP/
+Agent không start web hoặc gọi paid Speech/API trên folderOpen/build/test/MCP/
 hooks thường. Cổng bị chiếm phải kiểm process; không báo app cũ đã nhận key mới,
 không taskkill chung. Nếu cần giữ instance đó, dùng configuration/cổng trống,
 ví dụ Release5102. Chỉ restart đúng instance do task quản lý; đổi key cần web
-process mới. Ctrl+C chỉ dừng web, MariaDB/Whisper tiếp tục chạy; xem
-[speech runbook](local-speech.md) để Status/Stop.
+process mới. Ctrl+C chỉ dừng web; MariaDB volume tiếp tục chạy. Xem
+[speech runbook](local-speech.md) cho status/import/live opt-in.
 
 ## 6. Git/PR/CI và production
 

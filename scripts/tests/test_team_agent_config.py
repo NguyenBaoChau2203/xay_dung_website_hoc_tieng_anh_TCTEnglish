@@ -43,10 +43,14 @@ class TeamConfigurationTests(unittest.TestCase):
             if task.get("args", [None])[-1] == "index"
         ))
         speech_labels = {task["label"] for task in tasks}
-        self.assertIn("TCT: Start local web + Whisper", speech_labels)
-        start_speech = next(task for task in tasks if task["label"] == "TCT: Start local web + Whisper")
+        self.assertIn("TCT: Start local web", speech_labels)
+        self.assertIn("TCT: Speech configuration status", speech_labels)
+        self.assertTrue(all("Whisper" not in label for label in speech_labels))
+        start_speech = next(task for task in tasks if task["label"] == "TCT: Start local web")
         self.assertNotEqual("folderOpen", start_speech.get("runOptions", {}).get("runOn"))
         self.assertIn("start-local.ps1", start_speech["command"])
+        status = next(task for task in tasks if task["label"] == "TCT: Speech configuration status")
+        self.assertIn("speech-status.ps1", status["command"])
 
     def test_lifecycle_inventory_excludes_personal_client_settings(self):
         with tempfile.TemporaryDirectory(prefix="tct private settings ") as directory:

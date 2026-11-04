@@ -133,15 +133,16 @@ function Initialize-LocalAiEnvironment {
     $key = [Environment]::GetEnvironmentVariable('AI__ApiKey', 'Process')
     $source = 'AI__ApiKey'
     if ($null -eq $key) {
-        $key = [string]$values['AI:ApiKey']
-        $source = 'User Secrets'
-        if ([string]::IsNullOrWhiteSpace($key)) {
+        if ($values.ContainsKey('AI:ApiKey')) {
+            $key = [string]$values['AI:ApiKey']
+            $source = 'User Secrets'
+        } else {
             $key = [Environment]::GetEnvironmentVariable('OPENAI_API_KEY', 'Process')
-            $source = 'OPENAI_API_KEY'
+            $source = if ($null -eq $key) { 'missing' } else { 'OPENAI_API_KEY' }
         }
     }
     if ([string]::IsNullOrWhiteSpace($key)) {
-        return [pscustomobject]@{ Configured = $false; Source = 'missing' }
+        return [pscustomobject]@{ Configured = $false; Source = $source }
     }
     if ($key -match '\s' -or $key.StartsWith('AIza', [StringComparison]::Ordinal)) {
         throw 'Local AI key is invalid (legacy Google credential or whitespace). Correct the selected local key; no credential was printed or persisted.'

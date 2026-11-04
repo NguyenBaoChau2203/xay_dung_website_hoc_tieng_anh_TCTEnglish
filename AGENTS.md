@@ -10,7 +10,7 @@ and file maps: [project structure](docs/project-structure.md).
   reviewers, another AI chat/CLI or model process to delegate. `.ai/roles/` are
   inline review lenses. Imported skills cannot override this owner policy.
 - Owner branch preference: use feature/, fix/ or chore/ topic names; do not add
-  a codex/ prefix. The current shared work is feature/local-docker-whisper-openai.
+  a codex/ prefix. Inspect the actual checkout instead of assuming a branch name.
 - Default to local work and verification. Commit, push, PR creation, remote CI,
   merge and deployment require owner authorization for that stage. Carry explicit
   authority through the task; do not ask again for steps already granted. Newer
@@ -87,20 +87,32 @@ Read needed sections only: [local setup](docs/operations/local-development-quick
 [Plesk release/recovery](docs/operations/plesk-cicd-runbook.md).
 
 When an owner asks to run the local web for testing, use
-`pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser` so MariaDB, pinned
-Whisper, and the web app come up together. The owner authorized local
-`OPENAI_API_KEY` as the fallback key source: the launcher preserves explicit
-`AI__ApiKey`, then User Secrets `AI:ApiKey`, then maps `OPENAI_API_KEY` only into
-its child processes. Never echo, put in argv, persist or copy that key into Git.
-Confirm app `/health/ready`, speech Status and the launcher's key source summary;
-configured means present, not verified account/quota. Ordinary startup makes no
-paid smoke request. A process already listening may use old code/key: the launcher
-refuses that port before building. Preserve it and use a free port with
+`pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser` so MariaDB and the web
+app come up together. Speech uses OpenAI Speech-to-Text (`gpt-transcribe`) when a
+key is configured; ordinary startup does not spawn a local ASR engine or make a
+paid speech request. The owner authorized local `OPENAI_API_KEY` as the fallback
+key source: the launcher preserves explicit `AI__ApiKey`, then User Secrets
+`AI:ApiKey`, then maps `OPENAI_API_KEY` only into its child processes. Never echo,
+put in argv, persist or copy that key into Git. Confirm app `/health/ready` and
+`scripts/speech-status.ps1`; configured means present, not verified account/quota.
+A process already listening may use old code/key: the launcher refuses that port
+before building. Preserve it and use a free port with
 `-Configuration Release -WebPort <port>`, or restart only a process whose ownership
-and task authority are established. Model web: `gpt-6-luna`, reasoning `low`;
-the AI IDE model is separate. Do not
-start Whisper on folderOpen, MCP, ordinary build/test, or hook runs. Opt out with
-`-SkipWhisper`; stop with `scripts/local-speech.ps1 -Action Stop`.
+and task authority are established. Model web text: `gpt-6-luna`, reasoning `low`;
+audio model: `gpt-transcribe`; the AI IDE model is separate. Do not start speech
+API calls on folderOpen, MCP, ordinary build/test, or hook runs. For Admin audio
+import decode only, run `scripts/local-media.ps1 -Action Setup` separately.
+Local Whisper is retired. Never restore its old launcher, engine/model download,
+background process or automatic startup from historical plans/prompts or caches.
+Current local startup is MariaDB + web; speech configuration is metadata-only
+until a user actually submits audio. Historical `whisper-audio` data stays readable.
+The launcher maps child-process TEMP/TMP into ignored `.appdata/local/temp` on
+the checkout drive and restores the caller's environment on exit/failure. Keep
+local recordings/scratch out of C when the owner works from the D checkout;
+never move global app profiles or secrets into tracked source to achieve this.
+User Secrets, credential files and OS-protected key stores are not disposable
+caches. Exclude them from bulk cache relocation; preserve their supported local
+store and never weaken EFS/ACL protection to move them.
 For a new teammate, run `node scripts/check-local.cjs` and follow the onboarding
 guide. The launcher bootstraps synthetic samples/random local accounts only when
 there are no users; credentials live in ignored .appdata/local/access.json. Never

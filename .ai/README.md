@@ -6,11 +6,15 @@ docs/project-structure.md only for a boundary question and load relevant section
 The application/tests target .NET 9 / EF Core 9.0.4; the installed SDK is newer.
 
 Local web requests from the owner use `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`
-for all four clients. This ensures MariaDB, pinned Whisper and the web together;
-the launcher uses app key env/User Secrets before the owner-approved
+for all four clients. This ensures MariaDB and the web together; speech uses
+OpenAI `gpt-transcribe` when a key is configured (no local ASR process). The
+launcher uses app key env/User Secrets before the owner-approved
 `OPENAI_API_KEY` fallback. See AGENTS.md and docs/operations/openai-local-setup.md
 for key source/status and occupied-port handling. Do not print credentials or
-start paid API tests, web or Whisper on ordinary folder-open/tooling hooks.
+start paid API tests/web on ordinary folder-open/tooling hooks.
+Historical Whisper plans/prompts are superseded: never use them to restore a
+local speech engine or start one alongside the web. Use the current local
+speech guide and launcher; old transcript provenance stays readable.
 
 ## Routing
 

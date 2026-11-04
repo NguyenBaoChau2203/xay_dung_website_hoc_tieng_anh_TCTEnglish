@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from test_local_speech import _find_pwsh
+from pwsh_util import find_pwsh as _find_pwsh
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -127,6 +127,18 @@ if ($status.Configured -or $env:AI__ApiKey -or $status.Source -ne 'missing') { t
 """)
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertEqual({}, after)
+
+    def test_explicit_empty_secret_does_not_map_lower_global_key(self):
+        initial = {"AI:ApiKey": ""}
+        result, after = self.run_fixture(initial, """
+$env:AI__ApiKey=$null
+$env:OPENAI_API_KEY='fixture-openai-secret'
+$status = Initialize-LocalAiEnvironment -SecretPath $store
+if ($null -ne [Environment]::GetEnvironmentVariable('AI__ApiKey', 'Process')) { throw 'Explicit empty secret fell through to global key.' }
+if ($status.Configured -or $status.Source -ne 'User Secrets') { throw 'Empty explicit secret must remain unconfigured.' }
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(initial, after)
 
     def test_invalid_fallback_key_fails_without_exposing_or_persisting_it(self):
         for key in ("AIza-fixture-openai-secret", "fixture-openai-secret with whitespace"):
