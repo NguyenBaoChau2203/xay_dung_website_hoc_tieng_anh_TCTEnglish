@@ -27,8 +27,8 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YcnS/1WR6zNn36Dg50z5cYkN7fIZFLog7kGr" crossorigin="anonymous" />
 
     <!-- TCT English Redesign Shared UI & Auth Styles -->
-    <link href="~/css/tct-learning-ui.css" rel="stylesheet" />
-    <link href="~/css/auth-stitch.css" rel="stylesheet" />
+    <link href="~/css/tct-learning-ui.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/auth-stitch.css" rel="stylesheet" asp-append-version="true" />
 </head>
 <body class="auth-page">
 
@@ -37,7 +37,7 @@
         <!-- ============================================================
              LEFT COLUMN: Dark Gradient Hero
              ============================================================ -->
-        <div class="auth-col-left">
+        <div class="auth-col-left" aria-hidden="true">
             <!-- Dot-grid pattern overlay -->
             <div class="auth-decoration"></div>
 
@@ -86,27 +86,28 @@
         </div>
 
         <!-- ============================================================
-             RIGHT COLUMN: Auth Card Area
+             RIGHT COLUMN: Auth Card Area (Main Landmark)
              ============================================================ -->
-        <div class="auth-col-right">
-            <button class="auth-close-btn" onclick="window.history.back()" aria-label="Quay lại" id="btn-close-auth">
+        <main class="auth-col-right" id="main-content">
+            <button class="auth-close-btn" onclick="window.history.back()" aria-label="Quay lại" id="btn-close-auth" type="button">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="auth-card">
+                <h1 class="visually-hidden" id="auth-heading">Đăng nhập hoặc Đăng ký tài khoản TCT English</h1>
 
                 <!-- TABS header -->
-                <div class="auth-tabs">
-                    <button class="auth-tab-btn active" onclick="switchTab('register')" id="tab-register">Đăng ký</button>
-                    <button class="auth-tab-btn" onclick="switchTab('login')" id="tab-login">Đăng nhập</button>
+                <div class="auth-tabs" role="tablist" aria-label="Chọn hình thức xác thực">
+                    <button class="auth-tab-btn" type="button" role="tab" id="tab-login" aria-selected="false" aria-controls="form-login" tabindex="-1" onclick="switchTab('login')">Đăng nhập</button>
+                    <button class="auth-tab-btn" type="button" role="tab" id="tab-register" aria-selected="false" aria-controls="form-register" tabindex="-1" onclick="switchTab('register')">Đăng ký</button>
                 </div>
 
-                <!-- Error Message Display -->
+                <!-- Error Message Display from Server -->
                 @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="auth-error-msg">
+                    <div class="auth-error-msg" role="alert" aria-live="polite">
                         <i class="fa-solid fa-circle-exclamation" style="margin-right: 6px;"></i>
-                        @ViewBag.ErrorMessage
+                        <span>@ViewBag.ErrorMessage</span>
                     </div>
                 }
 
@@ -139,69 +140,20 @@
 
                 <div class="auth-separator">hoặc bằng email</div>
 
-                <!-- ==================== REGISTER FORM ==================== -->
-                <form id="form-register" action="@Url.Action("Register", "Account")" method="post" onsubmit="handleRegister(event)">
+                <!-- ==================== LOGIN FORM ==================== -->
+                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" onsubmit="handleLogin(event)" role="tabpanel" aria-labelledby="tab-login" style="display: none;">
                     @Html.AntiForgeryToken()
 
                     <div class="auth-form-group">
-                        <label class="auth-form-label">Ngày sinh <span style="color: var(--tct-text-muted); font-weight: 400;">(không bắt buộc)</span></label>
-                        <div style="display: flex; gap: 8px;">
-                            <input type="text" class="auth-form-input" placeholder="Ngày" aria-label="Ngày sinh" inputmode="numeric" maxlength="2" style="width: 30%">
-                            <input type="text" class="auth-form-input" placeholder="Tháng" aria-label="Tháng sinh" inputmode="numeric" maxlength="2" style="width: 30%">
-                            <input type="text" class="auth-form-input" placeholder="Năm" aria-label="Năm sinh" inputmode="numeric" maxlength="4" style="width: 40%">
-                        </div>
+                        <label class="auth-form-label" for="login-email">Email</label>
+                        <input type="email" name="email" class="auth-form-input" placeholder="Nhập email của bạn" required id="login-email" autocomplete="email">
                     </div>
 
                     <div class="auth-form-group">
-                        <label class="auth-form-label">Email</label>
-                        <input type="email" name="email" class="auth-form-input" placeholder="nhapemail@example.com" required id="register-email">
-                    </div>
-
-                    <div class="auth-form-group">
-                        <label class="auth-form-label">Tên hiển thị</label>
-                        <input type="text" name="fullName" class="auth-form-input" placeholder="Nhập tên của bạn" required id="register-name">
-                    </div>
-
-                    <div class="auth-form-group">
-                        <label class="auth-form-label">Mật khẩu</label>
+                        <label class="auth-form-label" for="login-password">Mật khẩu</label>
                         <div class="auth-password-wrap">
-                            <input type="password" name="password" class="auth-form-input" placeholder="Tối thiểu 6 ký tự" required id="register-password">
-                            <button type="button" class="auth-toggle-password" onclick="togglePassword('register-password', this)" aria-label="Hiện/ẩn mật khẩu">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="auth-checkbox-wrap">
-                        <input type="checkbox" id="terms">
-                        <label for="terms" style="cursor: pointer">
-                            Tôi chấp nhận <strong>Điều khoản dịch vụ</strong> và <strong>Chính sách quyền riêng tư</strong> của TCT English.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="auth-btn-submit" id="btn-register-submit">
-                        <i class="fa-solid fa-user-plus" style="margin-right: 6px;"></i> Đăng ký
-                    </button>
-
-                    <div class="auth-form-footer">
-                        Bạn đã có tài khoản? <button type="button" class="auth-link" onclick="switchTab('login')">Đăng nhập</button>
-                    </div>
-                </form>
-
-                <!-- ==================== LOGIN FORM (Hidden by default) ==================== -->
-                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" onsubmit="handleLogin(event)" style="display: none;">
-                    @Html.AntiForgeryToken()
-
-                    <div class="auth-form-group">
-                        <label class="auth-form-label">Email</label>
-                        <input type="text" name="email" class="auth-form-input" placeholder="Nhập email của bạn" required id="login-email">
-                    </div>
-
-                    <div class="auth-form-group">
-                        <label class="auth-form-label">Mật khẩu</label>
-                        <div class="auth-password-wrap">
-                            <input type="password" name="password" class="auth-form-input" placeholder="••••••••" required id="login-password">
-                            <button type="button" class="auth-toggle-password" onclick="togglePassword('login-password', this)" aria-label="Hiện/ẩn mật khẩu">
+                            <input type="password" name="password" class="auth-form-input" placeholder="••••••••" required id="login-password" autocomplete="current-password">
+                            <button type="button" class="auth-toggle-password" onclick="togglePassword('login-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                         </div>
@@ -209,7 +161,7 @@
                     </div>
 
                     <!-- Blocked Account Alert (hidden by default) -->
-                    <div id="blocked-alert" class="auth-blocked-alert" style="display:none;">
+                    <div id="blocked-alert" class="auth-blocked-alert" role="alert" style="display:none;">
                         <div class="blocked-header">
                             <i class="fa-solid fa-lock"></i>
                             <strong>Tài khoản đã bị khóa</strong>
@@ -230,12 +182,52 @@
                     </div>
                 </form>
 
+                <!-- ==================== REGISTER FORM ==================== -->
+                <form id="form-register" action="@Url.Action("Register", "Account")" method="post" onsubmit="handleRegister(event)" role="tabpanel" aria-labelledby="tab-register" style="display: none;">
+                    @Html.AntiForgeryToken()
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="register-email">Email</label>
+                        <input type="email" name="email" class="auth-form-input" placeholder="nhapemail@example.com" required id="register-email" autocomplete="email">
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="register-name">Tên hiển thị</label>
+                        <input type="text" name="fullName" class="auth-form-input" placeholder="Nhập tên của bạn" required id="register-name" autocomplete="name">
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="register-password">Mật khẩu</label>
+                        <div class="auth-password-wrap">
+                            <input type="password" name="password" class="auth-form-input" placeholder="Tối thiểu 6 ký tự" required id="register-password" autocomplete="new-password">
+                            <button type="button" class="auth-toggle-password" onclick="togglePassword('register-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-checkbox-wrap">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" style="cursor: pointer">
+                            Tôi chấp nhận <strong>Điều khoản dịch vụ</strong> và <strong>Chính sách quyền riêng tư</strong> của TCT English.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="auth-btn-submit" id="btn-register-submit">
+                        <i class="fa-solid fa-user-plus" style="margin-right: 6px;"></i> Đăng ký
+                    </button>
+
+                    <div class="auth-form-footer">
+                        Bạn đã có tài khoản? <button type="button" class="auth-link" onclick="switchTab('login')">Đăng nhập</button>
+                    </div>
+                </form>
+
             </div>
-        </div>
+        </main>
     </div>
 
     <!-- LOADER OVERLAY -->
-    <div id="loader-overlay">
+    <div id="loader-overlay" aria-hidden="true">
         <div class="loader-brand">TCT ENGLISH</div>
 
         <div class="loader-tip-card">
@@ -254,56 +246,76 @@
     <!-- SCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Lấy giá trị từ Controller (login hoặc register)
-            const activeTab = '@ViewData["ActiveTab"]';
-            if (activeTab) {
-                switchTab(activeTab);
-            }
+            // Lấy giá trị từ Controller (login hoặc register), mặc định login nếu không có
+            const activeTab = '@(ViewData["ActiveTab"] ?? "login")';
+            switchTab(activeTab);
+
+            // Tablist keyboard navigation (ArrowLeft / ArrowRight)
+            const tabs = [document.getElementById('tab-login'), document.getElementById('tab-register')];
+            tabs.forEach((tab, index) => {
+                if (!tab) return;
+                tab.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        const nextIndex = (e.key === 'ArrowRight') ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+                        const nextTab = tabs[nextIndex];
+                        if (nextTab) {
+                            nextTab.click();
+                            nextTab.focus();
+                        }
+                    }
+                });
+            });
 
             // Check if redirected due to blocked social login
             @if (TempData["BlockedReason"] != null)
             {
                 <text>
                 switchTab('login');
-                document.getElementById('blocked-reason').textContent = '@Html.Raw(TempData["BlockedReason"])';
-                document.getElementById('blocked-expiry').textContent = '@Html.Raw(TempData["BlockedExpiry"])';
-                document.getElementById('blocked-alert').style.display = 'block';
+                const bReason = document.getElementById('blocked-reason');
+                const bExpiry = document.getElementById('blocked-expiry');
+                if (bReason) bReason.textContent = @Html.Raw(Json.Serialize(TempData["BlockedReason"]));
+                if (bExpiry) bExpiry.textContent = @Html.Raw(Json.Serialize(TempData["BlockedExpiry"]));
+                const bAlert = document.getElementById('blocked-alert');
+                if (bAlert) bAlert.style.display = 'block';
                 </text>
             }
         });
 
-        // Toggle password visibility
+        // Toggle password visibility with aria-label & aria-pressed
         function togglePassword(inputId, btn) {
             const input = document.getElementById(inputId);
+            if (!input || !btn) return;
             const icon = btn.querySelector('i');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            if (icon) {
+                icon.classList.replace(isPassword ? 'fa-eye' : 'fa-eye-slash', isPassword ? 'fa-eye-slash' : 'fa-eye');
             }
+            btn.setAttribute('aria-label', isPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu');
+            btn.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
         }
 
         // Show loader overlay then redirect for external login (Google/Facebook)
         function handleExternalLogin(url) {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                window.location.href = url;
+                return;
+            }
+
             const overlay = document.getElementById('loader-overlay');
             const bar = document.getElementById('loading-fill');
 
-            // Reset progress bar
             bar.style.transition = 'none';
             bar.style.width = '0%';
-
-            // Show overlay immediately
             overlay.classList.add('active');
 
-            // Animate progress bar (indeterminate feel)
             setTimeout(() => {
                 bar.style.transition = 'width 3s ease-out';
                 bar.style.width = '80%';
             }, 50);
 
-            // Redirect to external provider
             setTimeout(() => {
                 window.location.href = url;
             }, 150);
@@ -314,25 +326,26 @@
             const btnLog = document.getElementById('tab-login');
             const formReg = document.getElementById('form-register');
             const formLog = document.getElementById('form-login');
+            if (!btnReg || !btnLog || !formReg || !formLog) return;
 
-            if (tabName === 'register') {
-                btnReg.classList.add('active');
-                btnLog.classList.remove('active');
-                formReg.style.display = 'block';
-                formLog.style.display = 'none';
-            } else {
-                btnLog.classList.add('active');
-                btnReg.classList.remove('active');
-                formLog.style.display = 'block';
-                formReg.style.display = 'none';
-            }
+            const isRegister = tabName === 'register';
+
+            btnReg.classList.toggle('active', isRegister);
+            btnReg.setAttribute('aria-selected', isRegister ? 'true' : 'false');
+            btnReg.setAttribute('tabindex', isRegister ? '0' : '-1');
+
+            btnLog.classList.toggle('active', !isRegister);
+            btnLog.setAttribute('aria-selected', !isRegister ? 'true' : 'false');
+            btnLog.setAttribute('tabindex', !isRegister ? '0' : '-1');
+
+            formReg.style.display = isRegister ? 'block' : 'none';
+            formLog.style.display = !isRegister ? 'block' : 'none';
         }
 
         function handleRegister(e) {
-            e.preventDefault();
-
             const terms = document.getElementById('terms');
-            if (!terms.checked) {
+            if (!terms || !terms.checked) {
+                e.preventDefault();
                 Swal.fire({
                     icon: 'warning',
                     title: 'Điều khoản dịch vụ',
@@ -343,39 +356,74 @@
                 return;
             }
 
-            document.getElementById('form-register').submit();
+            const submitBtn = document.getElementById('btn-register-submit');
+            if (submitBtn) {
+                if (submitBtn.disabled) {
+                    e.preventDefault();
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.setAttribute('aria-busy', 'true');
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Đang đăng ký...';
+            }
+            // Form will submit naturally without preventDefault
         }
 
         function handleLogin(e) {
             e.preventDefault();
 
             const form = document.getElementById('form-login');
+            const submitBtn = document.getElementById('btn-login-submit');
+            if (!form || !submitBtn) return;
+            if (submitBtn.disabled) return;
+
             const formData = new FormData(form);
 
-            // Hide blocked alert on new attempt
-            document.getElementById('blocked-alert').style.display = 'none';
+            // Hide blocked alert and previous error
+            const bAlert = document.getElementById('blocked-alert');
+            if (bAlert) bAlert.style.display = 'none';
+            const errorBox = document.getElementById('login-error-msg');
+            if (errorBox) errorBox.style.display = 'none';
 
-            // AJAX Fetch
+            // Set pending state
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-busy', 'true');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Đang đăng nhập...';
+
             fetch(form.action, {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     showLoaderAndRedirect();
                 } else if (data.blocked) {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-busy');
+                    submitBtn.innerHTML = originalBtnHtml;
                     location.reload();
                 } else {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-busy');
+                    submitBtn.innerHTML = originalBtnHtml;
                     showLoginError(data.message || "Đã có lỗi xảy ra");
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-busy');
+                submitBtn.innerHTML = originalBtnHtml;
                 showLoginError("Lỗi kết nối server.");
             });
         }
 
+        // Safe error display without innerHTML concatenation
         function showLoginError(msg) {
             let errorBox = document.getElementById('login-error-msg');
             if (!errorBox) {
@@ -384,37 +432,30 @@
                 errorBox = document.createElement('div');
                 errorBox.id = 'login-error-msg';
                 errorBox.className = 'auth-error-msg';
+                errorBox.setAttribute('role', 'alert');
+                errorBox.setAttribute('aria-live', 'assertive');
                 form.insertBefore(errorBox, btn);
             }
-            errorBox.innerHTML = '<i class="fa-solid fa-circle-exclamation" style="margin-right: 6px;"></i>' + msg;
+            errorBox.replaceChildren();
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-circle-exclamation';
+            icon.style.marginRight = '6px';
+            errorBox.appendChild(icon);
+            errorBox.appendChild(document.createTextNode(msg));
             errorBox.style.display = 'block';
         }
 
-        function runLoaderAndSubmit(formId) {
-            const overlay = document.getElementById('loader-overlay');
-            const bar = document.getElementById('loading-fill');
-            const form = document.getElementById(formId);
-
-            bar.style.transition = 'none';
-            bar.style.width = '0%';
-            overlay.classList.add('active');
-
-            setTimeout(() => {
-                bar.style.transition = 'width 1.5s linear';
-                bar.style.width = '100%';
-            }, 50);
-
-            setTimeout(() => {
-                form.submit();
-            }, 1550);
-        }
-
         function showLoaderAndRedirect() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                window.location.href = '@Url.Action("Index", "Home")';
+                return;
+            }
+
             const overlay = document.getElementById('loader-overlay');
             const bar = document.getElementById('loading-fill');
-            
             const errorBox = document.getElementById('login-error-msg');
-            if(errorBox) errorBox.style.display = 'none';
+            if (errorBox) errorBox.style.display = 'none';
 
             bar.style.transition = 'none';
             bar.style.width = '0%';
@@ -428,24 +469,6 @@
             setTimeout(() => {
                 window.location.href = '@Url.Action("Index", "Home")';
             }, 1550);
-        }
-
-        function runDemoLogin() {
-            const overlay = document.getElementById('loader-overlay');
-            const bar = document.getElementById('loading-fill');
-
-            bar.style.transition = 'none';
-            bar.style.width = '0%';
-            overlay.classList.add('active');
-
-            setTimeout(() => {
-                bar.style.transition = 'width 3s linear';
-                bar.style.width = '100%';
-            }, 50);
-
-            setTimeout(() => {
-                window.location.href = '@Url.Action("Index", "Home")';
-            }, 3100);
         }
     </script>
 

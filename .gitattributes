@@ -26,6 +26,12 @@ scripts/tests/*.cjs text eol=lf
 TCTEnglish/Services/AI/Internal/Data/intent-samples.seed.csv text eol=lf
 TCTEnglish/Services/AI/Internal/Data/intent-classifier-model.zip binary
 
+# Vendored browser files retain upstream bytes so provenance hashes are portable.
+TCTEnglish/wwwroot/lib/pinned/* -text
+# Upstream licenses retain their original EOF spacing; our manifest uses LF.
+TCTEnglish/wwwroot/lib/pinned/*-LICENSE -whitespace
+TCTEnglish/wwwroot/lib/pinned/provenance.json text eol=lf
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #

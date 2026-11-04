@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Không có quyền truy cập";
+    Layout = "_Layout";
+}
+
+<section class="account-access-denied container py-5" aria-labelledby="access-denied-title">
+    <h1 id="access-denied-title" class="h3 mb-3">Bạn không có quyền truy cập trang này</h1>
+    <p class="mb-4">
+        Tài khoản hiện tại không đủ quyền để mở khu vực quản trị hoặc tài nguyên được bảo vệ.
+        Nếu bạn nghĩ đây là nhầm lẫn, hãy đăng nhập bằng đúng tài khoản hoặc quay lại trang học.
+    </p>
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Quay lại trang chủ</a>
+        <a class="btn btn-outline-secondary" href="@Url.Action("Profile", "Account")">Về hồ sơ của tôi</a>
+    </div>
+</section>

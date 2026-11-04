@@ -965,3 +965,22 @@
         min-height: 300px;
     }
 }
+
+
+/* Mobile task-focused ordering: Editor above history/full prompt */
+@media (max-width: 1023px) {
+    .writing-grid {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .writing-col-right {
+        order: 1 !important;
+        width: 100% !important;
+    }
+
+    .writing-col-left {
+        order: 2 !important;
+        width: 100% !important;
+    }
+}

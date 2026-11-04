@@ -14,7 +14,7 @@
 <div class="account-dashboard">
 
     <!-- Mobile sidebar toggle -->
-    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Toggle menu">
+    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Mở hoặc đóng menu cài đặt" aria-expanded="false" aria-controls="accountSidebar" type="button">
         <i class="fas fa-bars"></i>
     </button>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -22,7 +22,7 @@
     <!-- ====== SIDEBAR ====== -->
     <aside class="account-sidebar" id="accountSidebar">
         <!-- Collapse toggle: pinned to right edge of sidebar -->
-        <button class="account-sidebar-toggle" id="accountSidebarToggle" aria-label="An/hien menu">
+        <button class="account-sidebar-toggle" id="accountSidebarToggle" aria-label="Thu gọn thanh bên" aria-expanded="true" aria-controls="accountSidebar" type="button">
             <i class="fas fa-chevron-left" id="accountSidebarToggleIcon"></i>
         </button>
 
@@ -57,7 +57,7 @@
     </aside>
 
     <!-- ====== MAIN CONTENT ====== -->
-    <main class="account-main">
+    <section class="account-main" aria-label="Cài đặt tài khoản">
 
         <!-- Alert Notifications -->
         @if (TempData["SuccessMessage"] != null)
@@ -93,19 +93,19 @@
             <!-- Left Section Nav -->
             <div class="settings-section-nav">
                 <div class="settings-section-nav-inner">
-                    <button class="settings-section-nav-item active" data-section="security" id="navSecurity">
+                    <button type="button" class="settings-section-nav-item active" data-section="security" id="navSecurity">
                         <span class="material-symbols-outlined">shield</span>
                         <span>Bảo mật</span>
                     </button>
-                    <button class="settings-section-nav-item" data-section="notifications" id="navNotifications">
+                    <button type="button" class="settings-section-nav-item" data-section="notifications" id="navNotifications">
                         <span class="material-symbols-outlined">notifications</span>
                         <span>Thông báo</span>
                     </button>
-                    <button class="settings-section-nav-item" data-section="linked" id="navLinked">
+                    <button type="button" class="settings-section-nav-item" data-section="linked" id="navLinked">
                         <span class="material-symbols-outlined">link</span>
                         <span>Tài khoản liên kết</span>
                     </button>
-                    <button class="settings-section-nav-item" data-section="danger" id="navDanger">
+                    <button type="button" class="settings-section-nav-item" data-section="danger" id="navDanger">
                         <span class="material-symbols-outlined text-danger">warning</span>
                         <span>Vùng nguy hiểm</span>
                     </button>
@@ -133,7 +133,8 @@
                                 <p>Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
                             </div>
                             <div class="d-flex align-items-center gap-2">
-                                <input name="Email" value="@Model?.Email" class="stitch-input" placeholder="name@example.com" style="max-width: 250px;" />
+                                <label for="settingsEmailInput" class="visually-hidden">Địa chỉ email</label>
+                                <input id="settingsEmailInput" name="Email" value="@Model?.Email" class="stitch-input" placeholder="name@example.com" style="max-width: 250px;" autocomplete="email" />
                                 <button type="submit" class="stitch-btn-primary">
                                     Cập nhật
                                 </button>
@@ -152,30 +153,30 @@
 
                             <div class="row g-3 mb-3">
                                 <div class="col-md-4">
-                                    <label class="stitch-form-label">Mật khẩu hiện tại</label>
+                                    <label asp-for="CurrentPassword" class="stitch-form-label">Mật khẩu hiện tại</label>
                                     <div class="input-group">
                                         <input asp-for="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" autocomplete="current-password" />
-                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     <span asp-validation-for="CurrentPassword" class="text-danger small mt-1 d-block"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="stitch-form-label">Mật khẩu mới</label>
+                                    <label asp-for="NewPassword" class="stitch-form-label">Mật khẩu mới</label>
                                     <div class="input-group">
                                         <input asp-for="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" />
-                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     <span asp-validation-for="NewPassword" class="text-danger small mt-1 d-block"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="stitch-form-label">Xác nhận mật khẩu</label>
+                                    <label asp-for="ConfirmPassword" class="stitch-form-label">Xác nhận mật khẩu</label>
                                     <div class="input-group">
                                         <input asp-for="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
-                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
+                                        <button class="btn btn-outline-secondary toggle-pwd" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
@@ -212,6 +213,10 @@
                                     {
                                         <p class="linked-account-status connected">Đã kết nối</p>
                                     }
+                                    else if (Model.HasUnconfirmedSocialLoginMarker)
+                                    {
+                                        <p class="linked-account-status">Có thể đã đăng nhập Google — chưa xác nhận trong hệ thống liên kết</p>
+                                    }
                                     else
                                     {
                                         <p class="linked-account-status">Chưa kết nối</p>
@@ -221,6 +226,10 @@
                             @if (Model.IsGoogleLinked)
                             {
                                 <span class="linked-badge linked-badge-connected">Đã kết nối</span>
+                            }
+                            else if (Model.HasUnconfirmedSocialLoginMarker)
+                            {
+                                <span class="linked-badge">Chưa xác nhận</span>
                             }
                             else
                             {
@@ -339,31 +348,73 @@
             </div>
         </div>
 
-    </main>
+    </section>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        // ── Sidebar mobile toggle ──────────────────────────────────────
+        // ── Sidebar mobile toggle & accessibility ──────────────────────
         (function() {
             var sidebar = document.getElementById('accountSidebar');
             var overlay = document.getElementById('sidebarOverlay');
             var toggleBtn = document.getElementById('sidebarMobileToggle');
+            var accountMql = window.matchMedia('(max-width: 992px)');
 
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function() {
-                    var isOpen = sidebar.classList.toggle('open');
+            function syncAccountSidebar() {
+                if (!sidebar) return;
+                if (accountMql.matches) {
+                    var isOpen = sidebar.classList.contains('open');
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    sidebar.inert = !isOpen;
                     if (overlay) overlay.classList.toggle('show', isOpen);
+                } else {
+                    sidebar.inert = false;
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    if (overlay) overlay.classList.remove('show');
+                }
+            }
+
+            function closeAccountSidebar(returnFocus) {
+                if (!sidebar) return;
+                if (returnFocus && toggleBtn) toggleBtn.focus();
+                sidebar.classList.remove('open');
+                syncAccountSidebar();
+            }
+
+            function openAccountSidebar() {
+                if (!sidebar) return;
+                sidebar.classList.add('open');
+                syncAccountSidebar();
+                var firstItem = sidebar.querySelector('a, button, input');
+                if (firstItem) firstItem.focus();
+            }
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    if (sidebar.classList.contains('open')) {
+                        closeAccountSidebar(true);
+                    } else {
+                        openAccountSidebar();
+                    }
                 });
             }
+
             if (overlay) {
                 overlay.addEventListener('click', function() {
-                    sidebar.classList.remove('open');
-                    overlay.classList.remove('show');
+                    closeAccountSidebar(false);
                 });
             }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && accountMql.matches && sidebar && sidebar.classList.contains('open')) {
+                    closeAccountSidebar(true);
+                }
+            });
+
+            accountMql.addEventListener('change', syncAccountSidebar);
+            syncAccountSidebar();
         })();
 
         // ── Settings section nav smooth scroll ────────────────────────
@@ -406,10 +457,14 @@
                     input.type = 'text';
                     icon.classList.remove('fa-eye');
                     icon.classList.add('fa-eye-slash');
+                    btn.setAttribute('aria-label', 'Ẩn mật khẩu');
+                    btn.setAttribute('aria-pressed', 'true');
                 } else {
                     input.type = 'password';
                     icon.classList.remove('fa-eye-slash');
                     icon.classList.add('fa-eye');
+                    btn.setAttribute('aria-label', 'Hiện mật khẩu');
+                    btn.setAttribute('aria-pressed', 'false');
                 }
             });
         });

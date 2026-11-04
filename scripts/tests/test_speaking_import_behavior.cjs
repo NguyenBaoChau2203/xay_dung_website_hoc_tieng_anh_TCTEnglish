@@ -7,7 +7,7 @@ const { createDocument, loadScript, delay } = require('./dom_fixture.cjs');
 
 const SPEAKING_JS = path.join(__dirname, '..', '..', 'TCTEnglish', 'wwwroot', 'js', 'speaking.js');
 
-function loadImport(fetchImpl) {
+function loadImport(fetchImpl, { privateCatalog = false } = {}) {
   const { document, byId } = createDocument([
     'mip-submit-btn',
     'mip-url-input',
@@ -15,7 +15,12 @@ function loadImport(fetchImpl) {
     'mip-feedback',
     'mip-btn-label',
     'mip-btn-icon',
+    ...(privateCatalog ? ['my-videos-grid', 'my-sec-count', 'my-empty-state', 'deleteVideoModal', 'delete-modal-title'] : []),
   ]);
+  if (privateCatalog) {
+    byId['my-sec-count'].dataset.totalCount = '25';
+    byId['my-videos-grid'].querySelectorAll = () => Array(24).fill({});
+  }
   byId['mip-url-input'].value = '';
   byId['mip-subtitle-input'].files = [];
   const calls = [];
@@ -43,10 +48,28 @@ function loadImport(fetchImpl) {
     setTimeout: globalThis.setTimeout,
     clearTimeout: globalThis.clearTimeout,
     navigator: window.navigator,
+    ...(privateCatalog ? { bootstrap: { Modal: class {
+      show() { window.modalShows = (window.modalShows || 0) + 1; }
+      hide() {}
+    } } } : {}),
   };
   loadScript(SPEAKING_JS, sandbox);
   return { window, byId, calls, document };
 }
+
+test('private catalog preserves server total and opens a newly loaded delete button on its first activation', () => {
+  const { window, byId, document } = loadImport(async () => ({ ok: true }), { privateCatalog: true });
+  assert.equal(byId['my-sec-count'].textContent, '25 bài');
+  const button = document.createElement('button');
+  button.dataset.id = '25';
+  button.dataset.title = 'Loaded private video';
+  button.closest = (selector) => selector === '.my-btn-delete' ? button : {};
+  // Browsers suppress nested click() during an element's activation.
+  button.click = () => { throw new Error('Do not replay a click already in progress'); };
+  byId['my-videos-grid'].dispatchEvent({ type: 'click', target: button });
+  assert.equal(window.modalShows, 1);
+  assert.equal(byId['delete-modal-title'].textContent, 'Loaded private video');
+});
 
 test('import form posts the job api and polls until success', async () => {
   let polls = 0;

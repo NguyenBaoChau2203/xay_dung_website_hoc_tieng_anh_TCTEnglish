@@ -1,0 +1,19 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.AdminCatalogPageViewModel
+@{
+    var routes = Context.Request.Query.ToDictionary(k => k.Key, k => k.Value.ToString());
+}
+<p class="small text-muted mt-3" role="status">Tổng @Model.TotalCount kết quả — Trang @Model.CurrentPage / @Model.TotalPages</p>
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Phân trang danh sách quản trị">
+        <ul class="pagination justify-content-center flex-wrap">
+            @foreach (var number in new[] { 1, Model.CurrentPage - 1, Model.CurrentPage, Model.CurrentPage + 1, Model.TotalPages }.Where(n => n > 0 && n <= Model.TotalPages).Distinct().OrderBy(n => n))
+            {
+                var pageRoutes = new Dictionary<string, string>(routes) { ["page"] = number.ToString() };
+                <li class="page-item @(number == Model.CurrentPage ? "active" : "")">
+                    <a asp-action="Index" asp-all-route-data="pageRoutes" class="page-link" aria-current="@(number == Model.CurrentPage ? "page" : null)" aria-label="Trang @number">@number</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

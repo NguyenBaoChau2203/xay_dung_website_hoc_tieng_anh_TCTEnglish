@@ -5,7 +5,7 @@
     var avatarUrl = User.Claims.FirstOrDefault(c => c.Type == "AvatarUrl")?.Value;
 }
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="vi" data-bs-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,16 +53,29 @@
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
 
-        @@media (max-width: 992px) {
+        @@media (max-width: 991.98px) {
             .admin-sidebar { margin-left: calc(var(--sidebar-width) * -1); position: fixed; z-index: 1050; }
             .admin-sidebar.show { margin-left: 0; }
             .admin-main { margin-left: 0; }
+        }
+
+        .admin-skip-link {
+            z-index: 1060 !important;
+        }
+        .admin-skip-link:focus,
+        .admin-skip-link:focus-visible {
+            position: fixed !important;
+            top: 12px;
+            left: 12px;
+            z-index: 1060 !important;
+            box-shadow: 0 0 0 3px rgba(66, 85, 255, 0.4), 0 4px 12px rgba(0,0,0,0.2) !important;
         }
     </style>
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body class="bg-light">
+    <a href="#admin-main-content" class="visually-hidden-focusable admin-skip-link btn btn-primary position-fixed top-0 start-0 m-2">Chuyển đến nội dung chính</a>
 
     <!-- =============== SIDEBAR =============== -->
     <aside class="admin-sidebar bg-dark text-white position-fixed top-0 start-0 d-flex flex-column" id="adminSidebar">
@@ -178,7 +191,7 @@
         <!-- Top Navbar -->
         <nav class="navbar navbar-expand bg-white shadow-sm px-4 sticky-top">
             <!-- Mobile toggle -->
-            <button class="btn btn-outline-secondary d-lg-none me-3" id="sidebarToggle">
+            <button type="button" class="btn btn-outline-secondary d-lg-none me-3" id="sidebarToggle" aria-label="Mở thanh điều hướng quản trị" aria-controls="adminSidebar" aria-expanded="false">
                 <i class="bi bi-list"></i>
             </button>
 
@@ -222,7 +235,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="flex-grow-1 p-4">
+        <main class="flex-grow-1 p-4" id="admin-main-content">
             @Html.AntiForgeryToken()
             @RenderBody()
         </main>
@@ -238,15 +251,70 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
 
-    <!-- Sidebar Toggle Script -->
+    <!-- Sidebar Toggle Script & Accessibility -->
     <script>
-        document.getElementById('sidebarToggle')?.addEventListener('click', function () {
-            document.getElementById('adminSidebar').classList.toggle('show');
-        });
+        (function() {
+            var sidebar = document.getElementById('adminSidebar');
+            var toggleBtn = document.getElementById('sidebarToggle');
+            if (!sidebar || !toggleBtn) return;
+
+            var adminMql = window.matchMedia('(max-width: 991.98px)');
+
+            function syncAdminSidebarState() {
+                if (adminMql.matches) {
+                    var isOpen = sidebar.classList.contains('show');
+                    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    sidebar.inert = !isOpen;
+                } else {
+                    sidebar.inert = false;
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            function closeAdminSidebar(returnFocus) {
+                if (adminMql.matches && sidebar.classList.contains('show')) {
+                    if (returnFocus) toggleBtn.focus();
+                    sidebar.classList.remove('show');
+                    syncAdminSidebarState();
+                }
+            }
+
+            function openAdminSidebar() {
+                sidebar.classList.add('show');
+                syncAdminSidebarState();
+                var firstItem = sidebar.querySelector('a, button, input');
+                if (firstItem) firstItem.focus();
+            }
+
+            toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (sidebar.classList.contains('show')) {
+                    closeAdminSidebar(true);
+                } else {
+                    openAdminSidebar();
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (adminMql.matches && sidebar.classList.contains('show') &&
+                    !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    closeAdminSidebar(false);
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && adminMql.matches && sidebar.classList.contains('show')) {
+                    closeAdminSidebar(true);
+                }
+            });
+
+            adminMql.addEventListener('change', syncAdminSidebarState);
+            syncAdminSidebarState();
+        })();
     </script>
 
     <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/pinned/sweetalert2-11.26.25.all.min.js" asp-append-version="true"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="~/js/user-activity.js" asp-append-version="true"></script>

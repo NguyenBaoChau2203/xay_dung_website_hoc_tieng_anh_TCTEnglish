@@ -247,6 +247,24 @@
         }
 
         @* ── System Catalog ───────────────────────────────── *@
+        @if (Model.MyTotalPages > 1)
+        {
+            <nav class="d-flex gap-3 mb-4" aria-label="Phân trang bài viết của tôi">
+                @if (Model.MyCurrentPage > 1)
+                {
+                    <a asp-controller="Study" asp-action="WritingExercises" asp-route-level="@Model.SelectedLevelKey"
+                       asp-route-contentType="@Model.SelectedContentTypeKey" asp-route-topic="@Model.SelectedTopic"
+                       asp-route-status="@Model.SelectedStatus" asp-route-page="@Model.CurrentPage" asp-route-myPage="@(Model.MyCurrentPage - 1)">Bài cá nhân trước</a>
+                }
+                <span>Trang @Model.MyCurrentPage / @Model.MyTotalPages (@Model.MyTotalCount bài)</span>
+                @if (Model.MyCurrentPage < Model.MyTotalPages)
+                {
+                    <a asp-controller="Study" asp-action="WritingExercises" asp-route-level="@Model.SelectedLevelKey"
+                       asp-route-contentType="@Model.SelectedContentTypeKey" asp-route-topic="@Model.SelectedTopic"
+                       asp-route-status="@Model.SelectedStatus" asp-route-page="@Model.CurrentPage" asp-route-myPage="@(Model.MyCurrentPage + 1)">Bài cá nhân tiếp</a>
+                }
+            </nav>
+        }
         <h2 class="writing-section-title">Catalog hệ thống</h2>
 
         @if (!Model.Exercises.Any())

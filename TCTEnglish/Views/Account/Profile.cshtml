@@ -1,4 +1,4 @@
-@model TCTVocabulary.ViewModels.UpdateProfileViewModel
+﻿@model TCTVocabulary.ViewModels.UpdateProfileViewModel
 @using TCTEnglish.ViewModels
 
 @{
@@ -15,7 +15,7 @@
 <div class="account-dashboard">
 
     <!-- Mobile sidebar toggle -->
-    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Toggle menu">
+    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Mở hoặc đóng menu hồ sơ" aria-expanded="false" aria-controls="accountSidebar" type="button">
         <i class="fas fa-bars"></i>
     </button>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -58,7 +58,7 @@
     </aside>
 
     <!-- ====== MAIN CONTENT ====== -->
-    <main class="account-main">
+    <section class="account-main" aria-label="Hồ sơ tài khoản">
 
         <!-- Alert Notifications -->
         @if (TempData["SuccessMessage"] != null)
@@ -91,11 +91,21 @@
                 <!-- User Profile Card -->
                 <div class="profile-user-card">
                     @{
-                        var avatarSrc = string.IsNullOrEmpty(Model.CurrentAvatarUrl) ? "/images/default-avatar.png" : Model.CurrentAvatarUrl;
+                        var hasAvatar = !string.IsNullOrEmpty(Model.CurrentAvatarUrl);
+                        var userInitial = string.IsNullOrWhiteSpace(Model.FullName) ? "U" : Model.FullName.Substring(0, 1).ToUpper();
                     }
                     <div class="user-avatar-wrap">
-                        <img id="avatarPreview" src="@avatarSrc" alt="Avatar" class="user-avatar-img" />
-                        <button type="button" class="user-avatar-edit-btn" id="avatarClickTarget" title="Thay đổi ảnh đại diện">
+                        @if (hasAvatar)
+                        {
+                            <img id="avatarPreview" src="@Model.CurrentAvatarUrl" alt="Avatar của @Model.FullName" class="user-avatar-img" onerror="this.style.display='none'; var fb = document.getElementById('avatarFallback'); if (fb) fb.style.display='flex';" />
+                            <div id="avatarFallback" class="user-avatar-fallback" style="display:none;">@userInitial</div>
+                        }
+                        else
+                        {
+                            <div id="avatarFallback" class="user-avatar-fallback">@userInitial</div>
+                            <img id="avatarPreview" src="" alt="Avatar của @Model.FullName" class="user-avatar-img" style="display:none;" onerror="this.style.display='none'; var fb = document.getElementById('avatarFallback'); if (fb) fb.style.display='flex';" />
+                        }
+                        <button type="button" class="user-avatar-edit-btn" id="avatarClickTarget" aria-label="Thay đổi ảnh đại diện" title="Thay đổi ảnh đại diện">
                             <span class="material-symbols-outlined" style="font-size: 1.1rem;">edit</span>
                         </button>
                     </div>
@@ -229,26 +239,7 @@
                     <!-- Learning Goals Mini -->
                     <div class="stitch-card">
                         <h3 class="side-card-title">Mục tiêu học tập</h3>
-                        <div class="side-progress-list">
-                            <div class="side-progress-item">
-                                <div class="side-progress-header">
-                                    <span class="side-progress-label">Kỹ năng viết</span>
-                                    <span class="side-progress-pct text-primary">75%</span>
-                                </div>
-                                <div class="side-progress-bar-wrap">
-                                    <div class="side-progress-bar side-progress-bar-primary" style="width:75%"></div>
-                                </div>
-                            </div>
-                            <div class="side-progress-item">
-                                <div class="side-progress-header">
-                                    <span class="side-progress-label">Kỹ năng nói</span>
-                                    <span class="side-progress-pct text-secondary">40%</span>
-                                </div>
-                                <div class="side-progress-bar-wrap">
-                                    <div class="side-progress-bar side-progress-bar-secondary" style="width:40%"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-muted small mb-3">Theo dõi tiến độ học tập và thiết lập chỉ tiêu cá nhân tại trang Mục tiêu.</p>
                         <a asp-controller="Goals" asp-action="Index" class="side-card-link">
                             Xem &amp; điều chỉnh mục tiêu
                             <span class="material-symbols-outlined" style="font-size: 1rem;">chevron_right</span>
@@ -478,7 +469,7 @@
             </div>
         </div>
 
-    </main>
+    </section>
 </div>
 
 @section Scripts {
@@ -520,24 +511,68 @@
             navItems.forEach(function(item) {
                 item.addEventListener('click', function() {
                     activateTab(this.getAttribute('data-tab'));
-                    if (sidebar) sidebar.classList.remove('open');
-                    if (overlay) overlay.classList.remove('show');
+                    if (accountMql.matches) {
+                        closeAccountSidebar(false);
+                    }
                 });
             });
 
-            // Mobile sidebar toggle
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function() {
-                    var isOpen = sidebar.classList.toggle('open');
+            // Mobile sidebar toggle & accessibility
+            var accountMql = window.matchMedia('(max-width: 992px)');
+
+            function syncAccountSidebar() {
+                if (!sidebar) return;
+                if (accountMql.matches) {
+                    var isOpen = sidebar.classList.contains('open');
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    sidebar.inert = !isOpen;
                     if (overlay) overlay.classList.toggle('show', isOpen);
+                } else {
+                    sidebar.inert = false;
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    if (overlay) overlay.classList.remove('show');
+                }
+            }
+
+            function closeAccountSidebar(returnFocus) {
+                if (!sidebar) return;
+                if (returnFocus && toggleBtn) toggleBtn.focus();
+                sidebar.classList.remove('open');
+                syncAccountSidebar();
+            }
+
+            function openAccountSidebar() {
+                if (!sidebar) return;
+                sidebar.classList.add('open');
+                syncAccountSidebar();
+                var firstItem = sidebar.querySelector('a, button, input');
+                if (firstItem) firstItem.focus();
+            }
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function() {
+                    if (sidebar.classList.contains('open')) {
+                        closeAccountSidebar(true);
+                    } else {
+                        openAccountSidebar();
+                    }
                 });
             }
+
             if (overlay) {
                 overlay.addEventListener('click', function() {
-                    sidebar.classList.remove('open');
-                    overlay.classList.remove('show');
+                    closeAccountSidebar(false);
                 });
             }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && accountMql.matches && sidebar && sidebar.classList.contains('open')) {
+                    closeAccountSidebar(true);
+                }
+            });
+
+            accountMql.addEventListener('change', syncAccountSidebar);
+            syncAccountSidebar();
         })();
 
         // ── Avatar Upload ──────────────────────────────────────────────
@@ -552,12 +587,30 @@
         })();
 
         function previewImage(input) {
-            if (input.files && input.files[0]) {
+            var preview = document.getElementById('avatarPreview');
+            var fallback = document.getElementById('avatarFallback');
+            if (input && input.files && input.files[0]) {
+                var file = input.files[0];
+                if (!file.type || !file.type.startsWith('image/')) {
+                    if (preview) preview.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                    return;
+                }
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('avatarPreview').src = e.target.result;
+                    if (preview) {
+                        preview.src = e.target.result;
+                        preview.style.display = '';
+                    }
+                    if (fallback) {
+                        fallback.style.display = 'none';
+                    }
                 };
-                reader.readAsDataURL(input.files[0]);
+                reader.onerror = function() {
+                    if (preview) preview.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                };
+                reader.readAsDataURL(file);
             }
         }
 
