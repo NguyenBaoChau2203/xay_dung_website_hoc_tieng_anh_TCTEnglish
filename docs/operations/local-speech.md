@@ -1,109 +1,79 @@
-# Local speech / ASR (L4)
+# Local speech (OpenAI Speech-to-Text)
 
-Configuration (`Learning:Speech` — do not put secrets in appsettings committed to git):
+Replaces the retired local Whisper lifecycle. Assessment and Admin audio-import
+fallback call OpenAI file transcription (`gpt-transcribe`) from the server.
+Browser/JS never receives the API key, model URL, or raw provider errors.
+
+## Configuration
 
 | Key | Default | Meaning |
 | --- | --- | --- |
-| `Learning:Speech:WhisperHttpBaseUrl` | empty | Internal whisper.cpp HTTP base. Empty = engine not ready |
-| `Learning:Speech:WhisperInferencePath` | `/inference` | Only `/inference` is used (not `/load`) |
-| `Learning:Speech:ModelIdentity` | `whisper.cpp-unconfigured` | Recorded on assessments |
-| `Learning:Speech:InferenceTimeoutSeconds` | `15` | One budget for queue wait and HTTP/parse. It is not reset after a slot is granted |
-| `Learning:Speech:MaxAudioSeconds` | `15` | Mic clip limit |
-| `Learning:Speech:MaxPayloadBytes` | `2097152` | 2 MiB |
-| `Learning:Speech:AssessmentTtlMinutes` | `10` | Progress receipt lifetime |
+| `Learning:Speech:Enabled` | `true` | When false, speech stays NotReady without network |
+| `Learning:Speech:OpenAI:Model` | `gpt-transcribe` | Official file transcription model |
+| `Learning:Speech:OpenAI:BaseUrl` | `https://api.openai.com/v1/` | Audio API root (not `AI:BaseUrl`) |
+| `Learning:Speech:OpenAI:ApiKey` | omitted | Optional speech-only secret; explicit empty/invalid does not fall through |
+| `Learning:Speech:OpenAI:MaxResponseBytes` | `262144` | Bounded response read |
+| `Learning:Speech:InferenceTimeoutSeconds` | `15` | Queue + HTTP + parse deadline |
+| `Learning:Speech:MaxAudioSeconds` / `MaxPayloadBytes` | `15` / `2MiB` | Learner clip caps |
+| `Learning:Speech:MaxConcurrentInferences` / `MaxQueuedInferences` | `1` / `4` | Process-local admission |
+| `Learning:Speech:MaxAssessmentsPerUserPerMinute` | `10` | Per-user guard after access validation |
+| `Learning:AudioImport:MaxTranscriptionRequests` | `180` | Windowed import POST cap |
 
-## Daily local launcher (preferred)
+Key resolve order: explicit speech env → explicit speech User Secrets →
+`AI__ApiKey` → User Secrets `AI:ApiKey` → `OPENAI_API_KEY`. Text AI stays
+`gpt-6-luna` / `low` and does not send `reasoning.effort` into Audio API.
 
-When an agent or developer needs the web app for speech testing:
+At every key level, explicit empty/invalid stops fallback. Missing and empty are
+different: fresh startup leaves AI:ApiKey absent; an existing empty User Secret
+stays unchanged. To configure that machine, use `scripts/set-local-ai-key.ps1`
+to replace its local override. Keys are never persisted from OPENAI_API_KEY.
+
+## Launcher and status
 
 ```powershell
 pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser
+pwsh -NoProfile -File scripts/speech-status.ps1
 ```
 
-Order: MariaDB → pinned Whisper (`127.0.0.1:8092`, `tiny.en`, 2 threads) → web
-`http://localhost:5100`. The launcher sets process env
-`Learning__Speech__WhisperHttpBaseUrl` / `ModelIdentity` for the child web process
-and restores those keys when it exits. Whisper keeps running across web restarts.
-The same launcher selects `AI__ApiKey`, app User Secrets, then the owner-approved
-`OPENAI_API_KEY` fallback for cloud text. It reports only the key source and
-configured status; see [OpenAI setup](openai-local-setup.md). A busy web port is
-refused before build; an older process is not proof of current speech/key config.
+Ordinary startup: MariaDB + web. No local ASR download/start, no paid speech
+probe. `speech-status.ps1` is metadata-only (`configured` ≠ live-verified).
+It reads local Development appsettings, User Secrets and environment in app
+order. Invalid Enabled configuration reports ConfigurationValid=false;
+invalid endpoint values are redacted rather than printing URL credentials.
 
-| Flag | Behavior |
-| --- | --- |
-| `-NoBrowser` | Still starts Whisper |
-| `-SkipWhisper` | Web/DB only; prints that ASR was not ensured (no fake scores / cloud audio fallback) |
-| `-DatabaseOnly` | MariaDB only; no Whisper download/start and no web |
+Missing key still opens web/DB; Speaking returns NotReady clearly (no fake scores).
 
-Helper commands:
+## Media import (FFmpeg pin)
+
+Browser mic PCM does not need FFmpeg. Admin/legacy audio fallback does:
 
 ```powershell
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Status
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Stop
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Setup
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Benchmark -BenchmarkSeconds 5
+pwsh -NoProfile -File scripts/local-media.ps1 -Action Setup
+pwsh -NoProfile -File scripts/local-media.ps1 -Action Verify
 ```
 
-Pinned metadata (commit): `tooling/whisper/artifacts.lock.json` (whisper.cpp **b5454**
-Windows x64 + `ggml-tiny.en.bin`). Binaries/models live under ignored
-`.appdata/local/speech/`. Setup reuses a hash-matching legacy cache when present;
-hash mismatch refuses execute. Do not start Whisper on folderOpen, MCP, ordinary
-build/test, or lifecycle hooks.
+Import plans measured PCM speech windows (segment-window timing, not word
+alignment), sends each window WAV to OpenAI, and maps transcript → sample
+offsets. New transcript source label: `openai-audio-vad`. Historical
+`whisper-audio` rows remain readable.
 
-Stop only kills a process whose PID + start time + OS executable path + hash +
-port match this checkout (state.commandLine alone cannot authorize Stop).
-Ctrl+C on the web process does not stop MariaDB or Whisper.
+## Live opt-in (paid)
 
-Launcher logs under `.appdata/local/speech/logs/` record runId/pid/cmdline
-markers from the helper. WMI process create does not capture whisper-server
-stderr; treat those files as launcher diagnostics, not full engine console
-output.
-
-Readiness uses one total deadline, including each HTTP probe and retry delay.
-A valid inference response arriving after the deadline does not mark the engine
-ready. The probe timeout is capped by the remaining startup budget.
-
-## Explicit live app acceptance
-
-The speech-through-app test is opt-in and uses an isolated test database. Supply
-a permitted WAV (PCM16 mono16kHz, at most15s) saying **Good morning everyone**:
+Default tests/scripts are offline/fake. Owner-only:
 
 ```powershell
-$env:TCT_ASR_LIVE_BASEURL = 'http://127.0.0.1:8092'
-$env:TCT_ASR_LIVE_SPEECH_WAV = 'C:/path/to/permitted-speech.wav'
-dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --filter FullyQualifiedName~WhisperLiveAppAcceptanceTests
+$env:TCT_OPENAI_SPEECH_LIVE = '1'
+# Shared test budget: ≤8 POSTs and ≤120s verified WAV audio per test process.
+# Each new test process starts a new budget; repeated runs can incur more cost.
 ```
 
-Discovery never calls the engine. Missing opt-in skips the test; an explicitly
-configured missing file, unavailable engine or failed recognition fails it. The
-test goes through app authentication/antiforgery, actual Whisper HTTP, assessment,
-progress, one completion credit, replay and reload. Its SQLite fixture does not
-modify the development or hosting database and does not prove MariaDB races or
-browser microphone permissions. Synthetic offline speech is useful integration
-evidence; it does not measure human pronunciation quality.
+Loopback Whisper flags (`TCT_ASR_LIVE_BASEURL`, etc.) must not enable cloud.
 
-## App contract
+## Retired
 
-Learner audio: WAV mono PCM16 16 kHz only. Client scores are rejected;
-`POST /api/speaking/{id}/progress` requires `assessmentId` from
-`POST /api/speaking/{id}/assess`.
-
-When BaseUrl is empty, assess returns **503** `engine_not_ready` — practice/listen
-still works; no XP from client forgery.
-
-Admission (`SpeechInferenceLimiter`) is **per web process**:
-`MaxConcurrentInferences` running plus `MaxQueuedInferences` waiting. Overflow
-returns **429** + Retry-After. Multiple app instances need a limiter at the ASR
-service; this process cap is not a cluster cap. Rollback: leave
-`WhisperHttpBaseUrl` empty or launch with `-SkipWhisper`. Do not fall back to
-client scores.
-
-`/health/ready` proves DB/app readiness only. Speech status is separate
-(local-speech Status / launcher summary).
-
-## Plan 2: shared audio import
-
-Listening/Admin dùng Whisper khi thiếu captions. Learner Speaking vẫn nhận
-captions/SRT/VTT. Launcher verify FFmpeg8.1.1 bằng `scripts/local-media.ps1`;
-build/test/hook thường không start Whisper hay tải artifacts. Giới hạn media và
-live opt-in: [OpenAI local setup](openai-local-setup.md). Không gửi audio tới Luna.
+`scripts/local-speech.ps1`, `tooling/whisper/artifacts.lock.json`, and fake
+Whisper fixtures are removed from active setup. Existing ignored
+`.appdata/local/speech` caches are never read or started by the launcher. Old
+Whisper prompts are historical and explicitly superseded; do not restore their
+engine download/start instructions. Preserve recordings/logs when an owner asks
+to retire a remaining cache; cleanup must not touch DB data, uploads or API keys.

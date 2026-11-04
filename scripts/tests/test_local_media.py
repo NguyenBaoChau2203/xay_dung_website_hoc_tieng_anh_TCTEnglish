@@ -8,7 +8,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from test_local_speech import _find_pwsh
+from pwsh_util import find_pwsh as _find_pwsh
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -76,11 +76,20 @@ class LocalMediaTests(unittest.TestCase):
             self.assertIn('supports Windows x64 only', result.stdout + result.stderr)
             self.assertFalse(media.exists())
 
-    def test_runtime_hash_and_lock_match_and_ordinary_setup_never_starts_asr(self):
+    def test_runtime_hash_and_lock_match_and_ordinary_web_does_not_auto_setup_media(self):
         pin = json.loads((REPO / "tooling/media/artifacts.lock.json").read_text())
         source = (REPO / "TCTEnglish/Services/Speaking/AudioImportOptions.cs").read_text()
         self.assertIn(pin["files"][0]["sha256"], source)
-        self.assertNotIn("local-media.ps1", (REPO / "scripts/agent_clients.py").read_text())
+        launcher = (REPO / "scripts/start-local.ps1").read_text(encoding="utf-8")
+        # Guidance text may mention the command; ordinary launcher must not invoke it.
+        self.assertNotIn("Join-Path $PSScriptRoot 'local-media.ps1'", launcher)
+        self.assertNotRegex(launcher, r"&\s+\(?\$?.*local-media\.ps1")
+        # Explicit IDE task is allowed; folderOpen must not run media setup.
+        clients = (REPO / "scripts/agent_clients.py").read_text(encoding="utf-8")
+        self.assertIn("local-media.ps1", clients)
+        self.assertIn("TCT: Setup local media (FFmpeg import)", clients)
+        media_task = clients.split("Setup local media", 1)[1].split("}", 1)[0]
+        self.assertNotIn("folderOpen", media_task)
 
 
 if __name__ == "__main__":

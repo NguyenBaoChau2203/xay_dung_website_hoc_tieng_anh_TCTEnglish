@@ -257,12 +257,13 @@ namespace TCTVocabulary.Controllers
             string? contentType = null,
             string? topic = null,
             string? status = null,
-            int page = 1)
+            int page = 1,
+            int myPage = 1)
         {
             var userId = TryGetCurrentUserId(out var currentUserId)
                 ? currentUserId
                 : (int?)null;
-            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status);
+            var viewModel = await _writingService.GetWritingExerciseListViewModelAsync(level, contentType, topic, page, userId, status, myPage);
             return View(viewModel);
         }
 

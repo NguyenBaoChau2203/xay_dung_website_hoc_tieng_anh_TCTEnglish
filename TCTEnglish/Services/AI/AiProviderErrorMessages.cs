@@ -4,6 +4,7 @@ public static class AiProviderErrorMessages
 {
     public static string For(string code) => code switch
     {
+        "reply_persistence_failed" => "AI đã xử lý yêu cầu nhưng chưa lưu được kết quả. Hãy tải lại lịch sử trước khi gửi yêu cầu mới.",
         AiProviderException.ErrorCodeInvalidConfiguration => "OpenAI chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên để kiểm tra cấu hình và API key.",
         AiProviderException.ErrorCodeAuthentication or AiProviderException.ErrorCodeModelAccess => "OpenAI từ chối quyền truy cập. Vui lòng liên hệ quản trị viên để kiểm tra API key và quyền dùng gpt-6-luna.",
         AiProviderException.ErrorCodeQuota => "Tài khoản OpenAI đã hết hạn mức API. Vui lòng liên hệ quản trị viên để kiểm tra số dư và hạn mức.",

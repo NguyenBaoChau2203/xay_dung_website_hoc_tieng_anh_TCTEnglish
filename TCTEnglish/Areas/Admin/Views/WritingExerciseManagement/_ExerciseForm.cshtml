@@ -96,7 +96,8 @@
                                     <div class="text-muted small">Bật để bài viết xuất hiện trong learner flow Writing đúng level và content type đã chọn.</div>
                                 </div>
                                 <div class="form-check form-switch mb-0">
-                                    <input asp-for="IsPublished" class="form-check-input" />
+                                    <input asp-for="IsPublished" class="form-check-input" aria-label="Hiển thị cho learner" />
+                                    <label asp-for="IsPublished" class="form-check-label visually-hidden">Hiển thị cho learner</label>
                                 </div>
                             </div>
                         </div>

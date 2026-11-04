@@ -11,7 +11,7 @@ function read(command, args) {
   catch { return ''; }
 }
 function check(name, ok, help) { checks.push({ name, ok: Boolean(ok), help }); }
-check('Windows x64', process.platform === 'win32' && process.arch === 'x64', 'Whisper/FFmpeg local pins currently support Windows x64.');
+check('Windows x64', process.platform === 'win32' && process.arch === 'x64', 'Pinned FFmpeg media import currently supports Windows x64.');
 check('Node.js 22+', Number(process.versions.node.split('.')[0]) >= 22, 'Install Node.js 22+ with npm: https://nodejs.org/en/download');
 check('Git', read('git', ['--version']), 'Install Git: https://git-scm.com/downloads/win');
 const npmPresent = process.platform === 'win32'
@@ -20,7 +20,6 @@ const npmPresent = process.platform === 'win32'
 check('npm', npmPresent, 'npm is included in the Node.js installer; reopen the IDE after installation.');
 const psVersion = read('pwsh', ['-NoProfile', '-Command', '$PSVersionTable.PSVersion.Major']);
 check('PowerShell 7+', Number(psVersion) >= 7, 'Install PowerShell 7: https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows');
-check('Visual C++ x64 runtime', process.platform === 'win32' && ['vcruntime140.dll', 'vcruntime140_1.dll', 'msvcp140.dll'].every(name => existsSync(join(process.env.SystemRoot || 'C:\\Windows', 'System32', name))), 'Whisper native Windows build needs the Visual C++ x64 Redistributable: https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist');
 const sdks = read('dotnet', ['--list-sdks']);
 const runtimes = read('dotnet', ['--list-runtimes']);
 check('.NET SDK 9+', sdks.split(/\r?\n/).some(line => Number(line.match(/^(\d+)\./)?.[1]) >= 9), 'Install .NET SDK 9+; the app still targets net9.0: https://dotnet.microsoft.com/download/dotnet/9.0');
@@ -29,6 +28,6 @@ check('Docker CLI + Compose', read('docker', ['compose', 'version']), 'Install D
 check('Docker Linux engine', read('docker', ['info', '--format', '{{.OSType}}']) === 'linux', 'Start Docker Desktop with WSL2 / Linux containers, then retry. Do not reset other project containers.');
 for (const item of checks) console.log(`${item.ok ? 'OK' : 'MISSING'} ${item.name}${item.ok ? '' : ': ' + item.help}`);
 if (checks.every(item => item.ok)) {
-  console.log('Prerequisites ready. Run SETUP-AGENTS.cmd once, then SETUP-LOCAL.cmd. Set the app key locally with scripts/set-local-ai-key.ps1.');
+  console.log('Prerequisites ready. Run SETUP-AGENTS.cmd once, then SETUP-LOCAL.cmd. Set the app key locally with scripts/set-local-ai-key.ps1. Speech uses OpenAI gpt-transcribe when configured; FFmpeg setup is separate for audio import.');
 } else console.log('Install/start only the missing prerequisites, reopen the IDE, then run node scripts/check-local.cjs again. SSMS is not required.');
 process.exitCode = checks.every(item => item.ok) ? 0 : 1;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using TCTEnglish.Realtime;
 using TCTEnglish.Services.AI;
 using TCTVocabulary.Models;
@@ -13,18 +14,18 @@ namespace TCTEnglish.Hubs
     {
         public const string AdminPresenceGroupName = "admin-user-management";
 
-        private readonly DbflashcardContext _context;
+        private readonly IServiceScopeFactory _scopeFactory;
         private readonly IClassService _classService;
         private readonly IAiStreamingService _aiStreamingService;
         private readonly ILogger<ClassChatHub> _logger;
 
         public ClassChatHub(
-            DbflashcardContext context,
+            IServiceScopeFactory scopeFactory,
             IClassService classService,
             IAiStreamingService aiStreamingService,
             ILogger<ClassChatHub> logger)
         {
-            _context = context;
+            _scopeFactory = scopeFactory;
             _classService = classService;
             _aiStreamingService = aiStreamingService;
             _logger = logger;
@@ -99,17 +100,21 @@ namespace TCTEnglish.Hubs
 
             // kiểm tra mute -> vẫn được vào room để đọc chat
             // nhưng sẽ không được gửi message (check ở SendMessage)
-            var member = await _context.ClassMembers
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x =>
-                    x.ClassId == classId &&
-                    x.UserId == userId.Value);
-
-            if (member != null && member.IsMuted)
+            await using (var scope = _scopeFactory.CreateAsyncScope())
             {
-                await Clients.Caller.SendAsync(
-                    "ReceiveSystemMessage",
-                    "Bạn đang bị mute và chỉ có thể xem tin nhắn.");
+                var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+                var member = await db.ClassMembers
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x =>
+                        x.ClassId == classId &&
+                        x.UserId == userId.Value);
+
+                if (member != null && member.IsMuted)
+                {
+                    await Clients.Caller.SendAsync(
+                        "ReceiveSystemMessage",
+                        "Bạn đang bị mute và chỉ có thể xem tin nhắn.");
+                }
             }
 
             await Groups.AddToGroupAsync(
@@ -143,36 +148,42 @@ namespace TCTEnglish.Hubs
                 throw new HubException("Không có quyền truy cập lớp.");
             }
 
-            var user = await _context.Users.FindAsync(userId.Value);
-            if (user == null)
-            {
-                _logger.LogWarning("Cannot send message because user {userId} was not found", userId.Value);
-                return;
-            }
-
+            string? fullName;
             var createdAt = DateTime.UtcNow;
-            var message = new ClassMessage
+            await using (var scope = _scopeFactory.CreateAsyncScope())
             {
-                ClassId = classId,
-                UserId = userId.Value,
-                Content = content,
-                CreatedAt = createdAt
-            };
+                var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+                var user = await db.Users.FindAsync(userId.Value);
+                if (user == null)
+                {
+                    _logger.LogWarning("Cannot send message because user {userId} was not found", userId.Value);
+                    return;
+                }
 
-            _context.ClassMessages.Add(message);
-            await _context.SaveChangesAsync();
+                fullName = user.FullName;
+                var message = new ClassMessage
+                {
+                    ClassId = classId,
+                    UserId = userId.Value,
+                    Content = content,
+                    CreatedAt = createdAt
+                };
 
-            _logger.LogInformation(
-                "Message created in class {classId} by user {userId}, messageId {messageId}",
-                classId,
-                userId.Value,
-                message.MessageId);
+                db.ClassMessages.Add(message);
+                await db.SaveChangesAsync();
+
+                _logger.LogInformation(
+                    "Message created in class {classId} by user {userId}, messageId {messageId}",
+                    classId,
+                    userId.Value,
+                    message.MessageId);
+            }
 
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveMessage", new
                 {
                     userId = userId.Value,
-                    fullName = user.FullName,
+                    fullName,
                     content,
                     createdAt
                 });
@@ -199,35 +210,41 @@ namespace TCTEnglish.Hubs
                 throw new HubException("Không có quyền truy cập lớp.");
             }
 
-            var user = await _context.Users.FindAsync(userId.Value);
-            if (user == null)
+            string? fullName;
+            await using (var scope = _scopeFactory.CreateAsyncScope())
             {
-                _logger.LogWarning("Cannot send image because user {userId} was not found", userId.Value);
-                return;
+                var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+                var user = await db.Users.FindAsync(userId.Value);
+                if (user == null)
+                {
+                    _logger.LogWarning("Cannot send image because user {userId} was not found", userId.Value);
+                    return;
+                }
+
+                fullName = user.FullName;
+                var message = new ClassMessage
+                {
+                    ClassId = classId,
+                    UserId = userId.Value,
+                    Content = imageUrl,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                db.ClassMessages.Add(message);
+                await db.SaveChangesAsync();
+
+                _logger.LogInformation(
+                    "Image message created in class {classId} by user {userId}, messageId {messageId}",
+                    classId,
+                    userId.Value,
+                    message.MessageId);
             }
-
-            var message = new ClassMessage
-            {
-                ClassId = classId,
-                UserId = userId.Value,
-                Content = imageUrl,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            _context.ClassMessages.Add(message);
-            await _context.SaveChangesAsync();
-
-            _logger.LogInformation(
-                "Image message created in class {classId} by user {userId}, messageId {messageId}",
-                classId,
-                userId.Value,
-                message.MessageId);
 
             await Clients.Group($"class-{classId}")
                 .SendAsync("ReceiveImage", new
                 {
                     userId = userId.Value,
-                    fullName = user.FullName,
+                    fullName,
                     imageUrl
                 });
         }
@@ -249,11 +266,10 @@ namespace TCTEnglish.Hubs
                     message,
                     Context.ConnectionId,
                     remoteIp,
-                    Context.ConnectionAborted);
-
-                await Clients.Caller.SendAsync(
-                    "AiStreamStarted",
-                    AiStreamStartedMessage.Create(conversationId, streamSession.StreamId));
+                    Context.ConnectionAborted,
+                    onStreamStarted: streamId => Clients.Caller.SendAsync(
+                        "AiStreamStarted",
+                        AiStreamStartedMessage.Create(conversationId, streamId)));
 
                 var chunkIndex = 0;
                 foreach (var chunk in streamSession.Chunks)
@@ -342,25 +358,31 @@ namespace TCTEnglish.Hubs
 
         private async Task UpdatePresenceStatusAsync(int userId, UserStatus requestedStatus)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-            if (user == null)
+            UserStatus previousStatus;
+            UserStatus currentStatus;
+            await using (var scope = _scopeFactory.CreateAsyncScope())
             {
-                _logger.LogWarning("Cannot update presence because user {userId} was not found", userId);
-                return;
+                var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+                var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                if (user == null)
+                {
+                    _logger.LogWarning("Cannot update presence because user {userId} was not found", userId);
+                    return;
+                }
+
+                previousStatus = user.Status;
+                currentStatus = previousStatus == UserStatus.Blocked
+                    ? UserStatus.Blocked
+                    : requestedStatus;
+
+                if (previousStatus == currentStatus)
+                {
+                    return;
+                }
+
+                user.Status = currentStatus;
+                await db.SaveChangesAsync();
             }
-
-            var previousStatus = user.Status;
-            var currentStatus = previousStatus == UserStatus.Blocked
-                ? UserStatus.Blocked
-                : requestedStatus;
-
-            if (previousStatus == currentStatus)
-            {
-                return;
-            }
-
-            user.Status = currentStatus;
-            await _context.SaveChangesAsync();
 
             _logger.LogInformation(
                 "Presence changed for user {userId}: previousStatus {previousStatus}, currentStatus {currentStatus}",

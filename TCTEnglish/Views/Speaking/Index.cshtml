@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "Kỹ năng Nói — TCT English";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int totalVideos = Model.VideosByLevel.Sum(kv => kv.Value.Count);
+    int totalVideos = Model.PublicTotalCount > 0
+        ? Model.PublicTotalCount
+        : Model.VideosByLevel.Sum(kv => kv.Value.Count);
     var levelMeta = new Dictionary<string, (string Label, string Bg, string Fg, string Accent, string Icon)>
     {
         ["A1"] = ("Sơ cấp",     "#dcfce7", "#166534", "#22c55e", "🌱"),
@@ -42,7 +44,7 @@
                         <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">video_library</span>
                     </div>
                     <div>
-                        <div class="spk-index-stat-val" id="vi-video-count">@totalVideos</div>
+                        <div class="spk-index-stat-val" id="vi-video-count" data-total-count="@totalVideos">@totalVideos</div>
                         <div class="spk-index-stat-lbl">Videos</div>
                     </div>
                 </div>
@@ -139,10 +141,14 @@
                             Trình độ
                         </span>
                         <div class="spk-filter-pills">
-                            <button class="level-filter-btn spk-pill-btn spk-pill-btn--active" data-level="all">Tất cả</button>
-                            @foreach (var level in Model.VideosByLevel.Keys)
+                            <a class="level-filter-btn spk-pill-btn @(string.IsNullOrEmpty(Model.ActiveLevel) ? "spk-pill-btn--active" : null)"
+                               data-level="all"
+                               href="@Url.Action("Index", "Speaking", new { topic = Model.ActiveTopic, search = Model.ActiveSearch })">Tất cả</a>
+                            @foreach (var level in new[] { "A1", "A2", "B1", "B2", "C1", "C2" })
                             {
-                                <button class="level-filter-btn spk-pill-btn" data-level="@level">@level</button>
+                                <a class="level-filter-btn spk-pill-btn @(Model.ActiveLevel == level ? "spk-pill-btn--active" : null)"
+                                   data-level="@level"
+                                   href="@Url.Action("Index", "Speaking", new { level, topic = Model.ActiveTopic, search = Model.ActiveSearch })">@level</a>
                             }
                         </div>
                     </div>
@@ -160,10 +166,14 @@
                             Chủ đề
                         </span>
                         <div class="spk-topic-chips spk-scroll-x">
-                            <button class="topic-filter-btn spk-chip spk-chip--active" data-topic="all">Tất cả chủ đề</button>
+                            <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
+                               data-topic="all"
+                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch })">Tất cả chủ đề</a>
                             @foreach (var topic in Model.Topics)
                             {
-                                <button class="topic-filter-btn spk-chip" data-topic="@topic">@topic</button>
+                                <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
+                                   data-topic="@topic"
+                                   href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch })">@topic</a>
                             }
                         </div>
                     </div>
@@ -215,7 +225,7 @@
                 </div>
                 <h2 class="spk-section-title spk-headline-md">
                     Video của tôi
-                    <span class="spk-count-badge" id="my-sec-count">@Model.MyVideos.Count video</span>
+                    <span class="spk-count-badge" id="my-sec-count" data-total-count="@Model.MyVideosTotalCount">@Model.MyVideosTotalCount video</span>
                     @if (Model.IsMyVideosLocked)
                     {
                         <span class="spk-locked-badge"><i class="fas fa-lock"></i> Tính năng đã khóa</span>
@@ -330,6 +340,19 @@
                 </div>
             }
 
+            @if (Model.MyVideosHasMore)
+            {
+                <div class="d-flex justify-content-center mt-3 mb-3 w-100">
+                    <button type="button"
+                            class="spk-btn spk-btn--primary spk-btn--sm spk-load-more-mine"
+                            data-page="@(Model.MyCurrentPage + 1)"
+                            data-page-size="@Model.PageSize"
+                            data-search="@(Model.ActiveSearch ?? "")">
+                        Xem thêm video của tôi
+                    </button>
+                </div>
+            }
+
             @* Empty state placeholder *@
             <div class="spk-my-empty @(Model.MyVideos.Any() ? "d-none" : "")" id="my-empty-state">
                 <div class="spk-my-empty-icon">
@@ -375,7 +398,7 @@
             <div class="spk-search-wrap">
                 <span class="material-symbols-outlined spk-search-icon">search</span>
                 <input type="search"
-                       id="vi-search"
+                       id="vi-search" value="@Model.ActiveSearch"
                        class="spk-search-input"
                        placeholder="Tìm kiếm video..."
                        aria-label="Tìm kiếm video luyện nói"
@@ -425,10 +448,16 @@
                             <span class="spk-level-section-sub">Chuẩn CEFR</span>
                         </div>
                     </div>
-                    <span class="spk-count-badge">@videos.Count video</span>
+                    @{
+                        var levelTotal = Model.PublicTotalByLevel.GetValueOrDefault(level, videos.Count);
+                    }
+                    <span class="spk-count-badge">@levelTotal video</span>
                 </div>
 
-                <div class="spk-bento-grid spk-bento-grid--4" id="track-@level">
+                <div class="spk-bento-grid spk-bento-grid--4" id="track-@level"
+                     data-spk-level="@level"
+                     data-spk-page="@Model.Page"
+                     data-spk-has-more="@(Model.PublicHasMoreByLevel.GetValueOrDefault(level) ? "true" : "false")">
                     @foreach (var item in videos)
                     {
                         var thumb = string.IsNullOrEmpty(item.ThumbnailUrl)
@@ -436,7 +465,7 @@
                             : item.ThumbnailUrl;
 
                         <div class="vi-video-col"
-                             data-title="@item.Title.ToLower()" data-topic="@item.Topic" data-level="@item.Level">
+                             data-video-id="@item.Id" data-title="@item.Title.ToLower()" data-topic="@item.Topic" data-level="@item.Level">
                             <a href="@Url.Action("Practice", "Speaking", new { id = item.Id })" class="text-decoration-none d-block h-100">
                                 <article class="spk-pub-card h-100">
                                     <div class="spk-video-thumb">
@@ -484,6 +513,20 @@
                 </div>
 
                 <div class="numbered-pagination-container d-flex justify-content-center gap-2 mt-4 flex-wrap" data-level="@level"></div>
+                @if (Model.PublicHasMoreByLevel.GetValueOrDefault(level))
+                {
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button"
+                                class="spk-btn spk-btn--primary spk-btn--sm spk-load-more-public"
+                                data-level="@level"
+                                data-topic="@(Model.ActiveTopic ?? "")"
+                                data-search="@(Model.ActiveSearch ?? "")"
+                                data-page="@(Model.Page + 1)"
+                                data-page-size="@Model.PageSize">
+                            Xem thêm video @level
+                        </button>
+                    </div>
+                }
             </section>
         }
     }

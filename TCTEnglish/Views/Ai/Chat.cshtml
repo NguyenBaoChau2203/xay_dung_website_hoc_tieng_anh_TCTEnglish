@@ -11,49 +11,73 @@
                aria-label="Lịch sử hội thoại"
                data-ai-history-root
                data-ai-chat-base-url="@chatPageUrl">
-            <div class="ai-chat-history-header">
-                <h2 class="ai-chat-history-title">Đoạn chat gần đây</h2>
-                <a class="btn btn-outline-primary btn-sm"
-                   asp-controller="Ai"
-                   asp-action="Chat"
-                   data-ai-new-chat-link>
-                    New chat
-                </a>
-            </div>
+            <details class="ai-chat-history-disclosure" id="aiHistoryDisclosure">
+                <summary class="ai-chat-history-header">
+                    <span class="ai-chat-history-title">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Đoạn chat gần đây
+                    </span>
+                    <a class="btn btn-outline-primary btn-sm"
+                       asp-controller="Ai"
+                       asp-action="Chat"
+                       data-ai-new-chat-link
+                       onclick="event.stopPropagation();">
+                        New chat
+                    </a>
+                </summary>
 
-            <div class="ai-chat-history-empty @(Model.Conversations.Count == 0 ? string.Empty : "d-none")"
-                 data-ai-history-empty>
-                Bạn chưa có hội thoại nào.
-            </div>
-
-            <nav class="ai-chat-history-list @(Model.Conversations.Count == 0 ? "d-none" : string.Empty)"
-                 aria-label="Danh sách hội thoại"
-                 data-ai-history-list>
-                @foreach (var conversation in Model.Conversations)
-                {
-                    var isActive = Model.ConversationId.HasValue && Model.ConversationId.Value == conversation.Id;
-                    var updatedLabel = conversation.UpdatedAtUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
-
-                    <div class="ai-chat-history-item-wrapper" data-ai-history-item-wrapper>
-                        <a class="ai-chat-history-item @(isActive ? "active" : string.Empty)"
-                           asp-controller="Ai"
-                           asp-action="Chat"
-                           asp-route-conversationId="@conversation.Id"
-                           aria-current="@(isActive ? "page" : null)"
-                           data-ai-history-item
-                           data-conversation-id="@conversation.Id">
-                            <span class="ai-chat-history-item-title">@conversation.Title</span>
-                            <span class="ai-chat-history-item-time" data-timestamp="@conversation.UpdatedAtUtc.ToString("O")">@updatedLabel</span>
-                        </a>
-                        <button type="button" 
-                                class="ai-chat-history-delete-btn" 
-                                data-ai-history-delete="@conversation.Id"
-                                aria-label="Xóa hội thoại">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                <div class="ai-chat-history-body">
+                    <div class="ai-chat-history-empty @(Model.Conversations.Count == 0 ? string.Empty : "d-none")"
+                         data-ai-history-empty>
+                        Bạn chưa có hội thoại nào.
                     </div>
-                }
-            </nav>
+
+                    <nav class="ai-chat-history-list @(Model.Conversations.Count == 0 ? "d-none" : string.Empty)"
+                         aria-label="Danh sách hội thoại"
+                         data-ai-history-list
+                         data-ai-history-cursor-time="@(Model.OldestConversationUpdatedAtUtc?.ToString("O") ?? string.Empty)"
+                         data-ai-history-cursor-id="@(Model.OldestConversationId?.ToString() ?? string.Empty)">
+                        @foreach (var conversation in Model.Conversations)
+                        {
+                            var isActive = Model.ConversationId.HasValue && Model.ConversationId.Value == conversation.Id;
+                            var updatedLabel = conversation.UpdatedAtUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+
+                            <div class="ai-chat-history-item-wrapper" data-ai-history-item-wrapper>
+                                <a class="ai-chat-history-item @(isActive ? "active" : string.Empty)"
+                                   asp-controller="Ai"
+                                   asp-action="Chat"
+                                   asp-route-conversationId="@conversation.Id"
+                                   aria-current="@(isActive ? "page" : null)"
+                                   data-ai-history-item
+                                   data-conversation-id="@conversation.Id"
+                                   data-updated-at="@conversation.UpdatedAtUtc.ToString("O")">
+                                    <span class="ai-chat-history-item-title">@conversation.Title</span>
+                                    <span class="ai-chat-history-item-time" data-timestamp="@conversation.UpdatedAtUtc.ToString("O")">@updatedLabel</span>
+                                </a>
+                                <button type="button"
+                                        class="ai-chat-history-delete-btn"
+                                        data-ai-history-delete="@conversation.Id"
+                                        aria-label="Xóa hội thoại">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        }
+                    </nav>
+
+                    @if (Model.HasMoreConversations)
+                    {
+                        <button type="button"
+                                class="btn btn-link btn-sm ai-chat-load-older"
+                                data-ai-load-older="conversations"
+                                data-ai-load-older-url="@(Url.Action("ConversationsPage", "Ai") ?? "/AI/Chat/Conversations")">
+                            Tải tin nhắn cũ hơn / Load older
+                        </button>
+                    }
+                </div>
+            </details>
         </aside>
 
         <div class="ai-chat-surface" data-ai-chat-surface>
@@ -97,8 +121,8 @@
 }
 
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+    <script src="~/lib/pinned/marked-18.1.3.umd.js" asp-append-version="true"></script>
+    <script src="~/lib/pinned/purify-3.4.17.min.js" asp-append-version="true"></script>
     <script src="~/js/ai-chat.js" asp-append-version="true"></script>
     <script>
         window.tctAiChat?.init({

@@ -111,7 +111,8 @@
                        asp-controller="UserManagement"
                        asp-action="Index"
                        class="btn btn-outline-secondary"
-                       title="Xóa bộ lọc">
+                       title="Xóa bộ lọc"
+                       aria-label="Xóa bộ lọc">
                         <i class="bi bi-x-lg"></i>
                     </a>
                 </div>
@@ -192,13 +193,15 @@
                                     <div class="btn-group btn-group-sm">
                                         <button class="btn btn-outline-primary btn-edit"
                                                 data-user-id="@user.UserId"
-                                                title="Chỉnh sửa">
+                                                title="Chỉnh sửa"
+                                                aria-label="Chỉnh sửa người dùng @user.FullName">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
                                         <button class="btn btn-outline-warning btn-unlock"
                                                 data-user-id="@user.UserId"
                                                 data-user-name="@user.FullName"
                                                 title="Mở khóa"
+                                                aria-label="Mở khóa người dùng @user.FullName"
                                                 @(user.CanUnlock ? null : "disabled")>
                                             <i class="bi bi-unlock-fill"></i>
                                         </button>
@@ -206,7 +209,8 @@
                                                 data-user-id="@user.UserId"
                                                 data-user-name="@user.FullName"
                                                 data-user-email="@user.Email"
-                                                title="Khóa tài khoản">
+                                                title="Khóa tài khoản"
+                                                aria-label="Khóa tài khoản người dùng @user.FullName">
                                             <i class="bi bi-lock-fill"></i>
                                         </button>
                                     </div>
@@ -224,7 +228,8 @@
                     <ul class="pagination justify-content-center mb-0">
                         <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
                             <a class="page-link"
-                               href="@Url.Action("Index", new { q = Model.SearchQuery, role = Model.RoleFilter, status = Model.StatusFilter, page = Model.CurrentPage - 1 })">
+                               href="@Url.Action("Index", new { q = Model.SearchQuery, role = Model.RoleFilter, status = Model.StatusFilter, page = Model.CurrentPage - 1 })"
+                               aria-label="Trang trước">
                                 <i class="bi bi-chevron-left"></i>
                             </a>
                         </li>
@@ -239,7 +244,8 @@
                         }
                         <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
                             <a class="page-link"
-                               href="@Url.Action("Index", new { q = Model.SearchQuery, role = Model.RoleFilter, status = Model.StatusFilter, page = Model.CurrentPage + 1 })">
+                               href="@Url.Action("Index", new { q = Model.SearchQuery, role = Model.RoleFilter, status = Model.StatusFilter, page = Model.CurrentPage + 1 })"
+                               aria-label="Trang sau">
                                 <i class="bi bi-chevron-right"></i>
                             </a>
                         </li>

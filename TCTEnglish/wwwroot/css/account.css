@@ -1,7 +1,7 @@
 /* =================================================================
    account.css  —  Stitch Redesign for Profile & Settings
    ================================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
 
 :root {
     --brand-blue: #2136e7;
@@ -703,8 +703,13 @@ body:has(.account-dashboard),
     }
 
     .account-main {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
         padding: 1rem;
         padding-top: 4rem;
+        box-sizing: border-box;
     }
 
     .account-dashboard {
@@ -1303,7 +1308,13 @@ body:has(.account-dashboard),
 .account-sidebar {
     transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     overflow: visible;
-    position: sticky;
+}
+
+@media (min-width: 993px) {
+    .account-sidebar {
+        position: sticky;
+        top: 72px;
+    }
 }
 
 .account-sidebar-toggle {
@@ -1355,4 +1366,33 @@ body:has(.account-dashboard),
 
 .account-sidebar.sidebar-collapsed .account-sidebar-toggle i {
     transform: rotate(180deg);
+}
+
+/* Avatar fallback initials */
+.user-avatar-fallback {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4255ff 0%, #6366f1 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.25);
+    flex-shrink: 0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .account-sidebar,
+    .account-sidebar-toggle,
+    .stitch-btn-primary,
+    .stitch-btn-danger,
+    .stitch-input {
+        transition: none !important;
+        animation: none !important;
+    }
 }

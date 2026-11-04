@@ -65,7 +65,7 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
             return captions;
         }
 
-        _logger.LogInformation("No usable English captions for video {YoutubeId}. Trying bounded local Whisper import.", youtubeId);
+        _logger.LogInformation("No usable English captions for video {YoutubeId}. Trying bounded OpenAI audio-window import.", youtubeId);
         var audio = await _audioImporter.TranscribeAsync(youtubeId, ct);
         if (!audio.Success)
         {
@@ -78,7 +78,7 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
             Text = segment.Text, VietnameseMeaning = string.Empty
         }).ToList();
         return IsUsableEnglishTranscript(sentences) && ValidateSentenceTimecodes(sentences)
-            ? new YoutubeTranscriptResult(sentences, true, "whisper-audio")
+            ? new YoutubeTranscriptResult(sentences, true, "openai-audio-vad")
             : new YoutubeTranscriptResult([], false, null) { ErrorCode = "unusable_english_transcript" };
     }
 

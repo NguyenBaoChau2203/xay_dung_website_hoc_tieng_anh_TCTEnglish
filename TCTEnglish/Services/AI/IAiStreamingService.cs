@@ -12,7 +12,8 @@ public interface IAiStreamingService
         string message,
         string connectionId,
         string? ipAddress,
-        CancellationToken connectionAborted);
+        CancellationToken connectionAborted,
+        Func<string, Task>? onStreamStarted = null);
 
     ValueTask StopStreamAsync(string connectionId, string streamId);
 

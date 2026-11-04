@@ -6,12 +6,20 @@ namespace TCTVocabulary.Services
     public class SmtpAppEmailSender : IAppEmailSender
     {
         private readonly IConfiguration _configuration;
+        private readonly ISmtpMailTransport _transport;
         private readonly ILogger<SmtpAppEmailSender> _logger;
+        private readonly IHttpContextAccessor? _requestContext;
 
-        public SmtpAppEmailSender(IConfiguration configuration, ILogger<SmtpAppEmailSender> logger)
+        public SmtpAppEmailSender(
+            IConfiguration configuration,
+            ISmtpMailTransport transport,
+            ILogger<SmtpAppEmailSender> logger,
+            IHttpContextAccessor? requestContext = null)
         {
             _configuration = configuration;
+            _transport = transport;
             _logger = logger;
+            _requestContext = requestContext;
         }
 
         public async Task SendBlockedNotificationAsync(string toEmail, string reason, DateTime? lockExpiry)
@@ -19,6 +27,7 @@ namespace TCTVocabulary.Services
             var expiryText = lockExpiry.HasValue && lockExpiry.Value < DateTime.MaxValue
                 ? lockExpiry.Value.ToString("dd/MM/yyyy HH:mm:ss (UTC)")
                 : "Vĩnh viễn";
+            var safeReason = WebUtility.HtmlEncode(reason ?? string.Empty);
 
             var subject = "Tài khoản của bạn đã bị khóa - TCT English";
             var body = $@"
@@ -29,7 +38,7 @@ namespace TCTVocabulary.Services
                             Tài khoản của bạn trên <strong>TCT English</strong> đã bị khóa bởi quản trị viên.
                         </p>
                         <p style='color: #586380; font-size: 16px; line-height: 1.6;'>
-                            <strong>Lý do:</strong> {reason}
+                            <strong>Lý do:</strong> {safeReason}
                         </p>
                         <p style='color: #586380; font-size: 16px; line-height: 1.6;'>
                             <strong>Thời gian mở khóa:</strong> {expiryText}
@@ -44,6 +53,11 @@ namespace TCTVocabulary.Services
         }
 
         public async Task SendUnlockedNotificationAsync(string toEmail, bool isAutoUnlock)
+        {
+            await TrySendUnlockedNotificationAsync(toEmail, isAutoUnlock, CancellationToken.None);
+        }
+
+        public Task<bool> TrySendUnlockedNotificationAsync(string toEmail, bool isAutoUnlock, CancellationToken ct)
         {
             var unlockType = isAutoUnlock ? "tự động (hết thời hạn khóa)" : "thủ công bởi quản trị viên";
             var subject = "Tài khoản của bạn đã được mở khóa - TCT English";
@@ -60,7 +74,7 @@ namespace TCTVocabulary.Services
                     </div>
                 </div>";
 
-            await SendEmailAsync(toEmail, subject, body);
+            return SendEmailAsync(toEmail, subject, body, cancellationToken: ct);
         }
 
         // REFACTOR: Moved from AccountController.ForgotPassword — email logic belongs in the service layer
@@ -131,7 +145,7 @@ namespace TCTVocabulary.Services
             return await SendEmailAsync(toEmail, mailSubject, body, senderEmail);
         }
 
-        private async Task<bool> SendEmailAsync(string toEmail, string subject, string htmlBody, string? replyToEmail = null)
+        private async Task<bool> SendEmailAsync(string toEmail, string subject, string htmlBody, string? replyToEmail = null, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -168,23 +182,36 @@ namespace TCTVocabulary.Services
                     }
                     catch (FormatException)
                     {
-                        _logger.LogWarning("[Email Warning] Invalid reply-to email '{ReplyToEmail}'.", replyToEmail);
+                        _logger.LogWarning("[Email Warning] Invalid reply-to address.");
                     }
                 }
 
-                using var smtpClient = new SmtpClient(smtpHost, smtpPort)
-                {
-                    Credentials = new NetworkCredential(senderEmail, smtpPassword),
-                    EnableSsl = true
-                };
-                await smtpClient.SendMailAsync(mailMessage);
+                // Bound SMTP wait (.NET 9 SendMailAsync overload with CancellationToken).
+                var timeoutSecondsRaw = _configuration["SmtpSettings:TimeoutSeconds"];
+                var timeoutSeconds = int.TryParse(timeoutSecondsRaw, out var parsedTimeout) && parsedTimeout > 0
+                    ? parsedTimeout
+                    : 30;
+                using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken,
+                    _requestContext?.HttpContext?.RequestAborted ?? CancellationToken.None);
+                timeoutCts.CancelAfter(TimeSpan.FromSeconds(Math.Clamp(timeoutSeconds, 1, 60)));
+                await _transport.SendAsync(
+                    smtpHost,
+                    smtpPort,
+                    senderEmail,
+                    smtpPassword,
+                    mailMessage,
+                    timeoutCts.Token);
 
-                _logger.LogInformation("[Email] Sent '{Subject}' to {Email}", subject, toEmail);
+                _logger.LogInformation("[Email] Sent '{Subject}' to recipient (timeoutBound={TimeoutSeconds}s)", subject, timeoutSeconds);
                 return true;
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[Email Error] Failed to send '{Subject}' to {Email}", subject, toEmail);
+                _logger.LogWarning("[Email Error] Delivery failed ({Category}).", ex.GetType().Name);
                 return false;
             }
         }

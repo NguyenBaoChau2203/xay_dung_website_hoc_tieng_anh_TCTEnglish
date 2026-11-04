@@ -298,10 +298,15 @@ public sealed class AiPhase4HardeningIntegrationTests
         Assert.Contains("data-ai-plan-summary", html);
         Assert.Contains("Gói Standard: 15 câu/ngày", html);
         Assert.Contains("data-ai-plan-quota", html);
-        Assert.Contains("data-ai-plan-quota-used=\"3\"", html);
+        Assert.Contains("data-ai-plan-quota-used=\"\"", html);
         Assert.Contains("data-ai-plan-quota-limit=\"15\"", html);
         Assert.Contains("data-ai-usage-url=\"/AI/Chat/Usage\"", html);
-        Assert.Contains("Đã dùng 3/15", html);
+        Assert.Contains("Đang kiểm tra hạn mức…", html);
+        Assert.DoesNotContain("Đã dùng 0/15", html);
+        var usage = await client.GetFromJsonAsync<AiUsageInfo>("/AI/Chat/Usage");
+        Assert.NotNull(usage);
+        Assert.Equal(3, usage.RequestedToday);
+        Assert.Equal(15, usage.DailyLimit);
         Assert.DoesNotContain("Gói Premium: Không giới hạn", html);
     }
 
@@ -954,7 +959,12 @@ public sealed class AiPhase4HardeningIntegrationTests
         var html = await response.Content.ReadAsStringAsync();
         Assert.Contains("Gói Standard: 15 câu/ngày", html);
         Assert.Contains("data-ai-plan-quota", html);
-        Assert.Contains("Đã dùng 1/15", html);
+        Assert.Contains("Đang kiểm tra hạn mức…", html);
+        Assert.Contains("data-ai-plan-quota-used=\"\"", html);
+        var usage = await client.GetFromJsonAsync<AiUsageInfo>("/AI/Chat/Usage");
+        Assert.NotNull(usage);
+        Assert.Equal(1, usage.RequestedToday);
+        Assert.Equal(15, usage.DailyLimit);
     }
 
     [Fact]

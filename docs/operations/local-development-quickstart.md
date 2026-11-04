@@ -6,6 +6,11 @@ Máy thành viên mới đọc [team onboarding](team-local-onboarding.md), ch�
 `node scripts/check-local.cjs` và SETUP-AGENTS.cmd một lần; SETUP-LOCAL.cmd gọi
 doctor rồi cùng launcher bên dưới. Không cần SSMS hoặc database server Windows.
 
+Launcher đặt TEMP/TMP riêng cho các child process vào ignored
+`.appdata/local/temp` trên cùng ổ với checkout, rồi phục hồi khi thoát/lỗi.
+Checkout ở D sẽ ghi scratch/audio/build temp của phiên web vào D; không thay
+TEMP/TMP toàn cục của Windows. User Secrets và backup luôn ở ngoài Git.
+
 ## Khởi động lần đầu
 
 Cần Docker Desktop ở chế độ Linux containers và PowerShell 7.
@@ -40,29 +45,33 @@ Version 10.5 chỉ dùng để tái hiện hosting cũ; lập kế hoạch nâng
 
 ## Làm việc mỗi ngày
 
-Entrypoint khuyến nghị (MariaDB + Whisper local + web):
+Entrypoint khuyến nghị (MariaDB + web; OpenAI speech khi có key):
 
 ```powershell
 pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser
 ```
 
-Web: `http://localhost:5100`. Whisper loopback mặc định: `http://127.0.0.1:8092`.
-Launcher dùng `AI__ApiKey` hoặc User Secrets `AI:ApiKey`; nếu hai nguồn này chưa
-có key, tự nối `OPENAI_API_KEY` đã được owner cho phép vào process web. Log chỉ
-báo nguồn/key configured, không in hay lưu lại key. Không cần nhập lại mỗi lần.
-Xem [OpenAI local setup](openai-local-setup.md) cho precedence và live opt-in.
-Opt-out ASR: `-SkipWhisper`. Chỉ DB: `-DatabaseOnly`. Status/Stop:
+Web: `http://localhost:5100`. Speech cloud model: `gpt-transcribe` (không còn
+local ASR loopback). Launcher dùng `AI__ApiKey` hoặc User Secrets `AI:ApiKey`;
+nếu hai nguồn này chưa có key, tự nối `OPENAI_API_KEY` đã được owner cho phép vào
+process web. Log chỉ báo nguồn/key configured, không in hay lưu lại key.
+Xem [OpenAI local setup](openai-local-setup.md) và [local speech](local-speech.md).
+Chỉ DB: `-DatabaseOnly`. Status cấu hình speech (không gọi API trả phí):
 
 ```powershell
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Status
-pwsh -NoProfile -File scripts/local-speech.ps1 -Action Stop
+pwsh -NoProfile -File scripts/speech-status.ps1
 ```
 
-Chi tiết pin/artifact: [local speech](local-speech.md). VS Code/Cursor task
-**TCT: Start local web + Whisper** gọi cùng script; không gắn speech vào folderOpen.
+Admin audio import cần FFmpeg pin riêng:
 
-Nếu đã setup một lần và không cần Whisper qua launcher, bật Docker Desktop rồi F5
-trong IDE hoặc:
+```powershell
+pwsh -NoProfile -File scripts/local-media.ps1 -Action Setup
+```
+
+VS Code/Cursor task **TCT: Start local web** gọi cùng script; không gắn speech
+API vào folderOpen.
+
+Nếu đã setup một lần, bật Docker Desktop rồi F5 trong IDE hoặc:
 
 ```powershell
 docker compose -f compose.local.yml up -d
@@ -73,7 +82,7 @@ Nếu cổng5100 đã có process, launcher từ chối trước build để kh�
 cũ đã nhận code/key mới. Giữ process đó và chọn cổng trống, ví dụ
 `-Configuration Release -WebPort 5102`, hoặc dừng đúng launcher do mình quản lý.
 Chạy F5/dotnet watch không có bước nối OPENAI_API_KEY; dùng launcher khi AI Agent
-được yêu cầu chạy đủ web + Whisper + key. Khi sửa model dữ liệu, tạo/review migration
+được yêu cầu chạy đủ web + key. Khi sửa model dữ liệu, tạo/review migration
 bằng EF tool local rồi `dotnet ef database update --project TCTEnglish`. Không
 copy database dev đè production.
 
@@ -113,7 +122,7 @@ này không thay bản local bạn đang làm việc và không thay dữ liệu
 
 ## Provider văn bản và audio — Plan 2
 
-Default dùng `gpt-6-luna`/`reasoning.effort=low`; audio dùng Whisper. Nhập key
+Default dùng `gpt-6-luna`/`reasoning.effort=low`; audio dùng `gpt-transcribe`. Nhập key
 local có che ký tự bằng `pwsh -NoProfile -File scripts/set-local-ai-key.ps1`,
 rồi chạy `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`.
 Launcher giữ DB/key, normalize đúng override Google cũ và provision FFmpeg pin.

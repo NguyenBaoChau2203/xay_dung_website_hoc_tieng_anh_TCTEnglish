@@ -53,7 +53,7 @@ public sealed class AiContextBuilder : IAiContextBuilder
         var selectedHistory = new List<AiContextMessage>();
         var historyTokens = 0;
 
-        foreach (var message in history.OrderByDescending(x => x.CreatedAtUtc))
+        foreach (var message in history.OrderByDescending(x => x.CreatedAtUtc).ThenByDescending(x => x.Id))
         {
             var role = MapRole(message.Role);
             var content = message.Content ?? string.Empty;

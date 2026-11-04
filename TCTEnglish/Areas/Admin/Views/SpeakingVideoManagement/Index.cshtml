@@ -1,9 +1,9 @@
-@model IEnumerable<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>
+@model TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoIndexViewModel
 @{
     ViewData["Title"] = "Quản lý Speaking Video";
-    var videos = Model?.ToList() ?? new List<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>();
-    var levels = videos.Select(v => v.Level).Distinct().OrderBy(l => l).ToList();
-    var topics = videos.Select(v => v.Topic).Distinct().OrderBy(t => t).ToList();
+    var videos = Model?.Videos ?? new List<TCTVocabulary.Areas.Admin.ViewModels.SpeakingVideoListItemViewModel>();
+    var levels = Model.Levels;
+    var topics = Model.Topics;
 }
 
 <div class="container-fluid py-4">
@@ -38,16 +38,16 @@
     @* Filter Section *@
     <div class="card border-0 shadow-sm rounded-4 mb-3">
         <div class="card-body py-3 px-4">
-            <div class="row g-3 align-items-end">
+            <form method="get" asp-action="Index" class="row g-3 align-items-end" id="catalogFilters">
                 <div class="col-md-4">
                     <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-layer-group me-1"></i> Lọc theo Trình độ
                     </label>
-                    <select id="filterLevel" class="form-select form-select-sm" aria-label="Lọc video theo trình độ">
+                    <select id="filterLevel" name="level" class="form-select form-select-sm" aria-label="Lọc video theo trình độ">
                         <option value="">Tất cả trình độ</option>
                         @foreach (var level in levels)
                         {
-                            <option value="@level">@level</option>
+                            <option value="@level" selected="@(Model.Level == level)">@level</option>
                         }
                     </select>
                 </div>
@@ -55,11 +55,11 @@
                     <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-tag me-1"></i> Lọc theo Chủ đề
                     </label>
-                    <select id="filterTopic" class="form-select form-select-sm" aria-label="Lọc video theo chủ đề">
+                    <select id="filterTopic" name="topic" class="form-select form-select-sm" aria-label="Lọc video theo chủ đề">
                         <option value="">Tất cả chủ đề</option>
                         @foreach (var topic in topics)
                         {
-                            <option value="@topic">@topic</option>
+                            <option value="@topic" selected="@(Model.Topic == topic)">@topic</option>
                         }
                     </select>
                 </div>
@@ -67,9 +67,10 @@
                     <button type="button" id="btnResetFilter" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
                         <i class="fa-solid fa-rotate-left me-1"></i> Đặt lại
                     </button>
-                    <span id="filterResultCount" class="text-muted small ms-auto"></span>
+                    <span id="filterResultCount" class="text-muted small ms-auto">@Model.TotalCount kết quả</span>
                 </div>
-            </div>
+            <div class="col-auto"><button type="submit" class="btn btn-primary btn-sm">Lọc</button></div>
+            </form>
         </div>
     </div>
 
@@ -142,13 +143,15 @@
                                     <td class="pe-4 text-center">
                                         <div class="d-flex gap-1 justify-content-center">
                                             <a asp-action="Edit" asp-route-id="@item.Id"
-                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa"
+                                               aria-label="Chỉnh sửa video @item.Title">
                                                 <i class="fa-solid fa-pen"></i>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-outline-danger btn-delete-video"
                                                     data-video-id="@item.Id"
                                                     data-video-title="@item.Title"
-                                                    title="Xóa">
+                                                    title="Xóa"
+                                                    aria-label="Xóa video @item.Title">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </div>
@@ -161,6 +164,7 @@
             </div>
         </div>
     </div>
+    <partial name="_CatalogPager" model="Model" />
 </div>
 @Html.AntiForgeryToken()
 
@@ -196,43 +200,10 @@
 @section Scripts {
     <script>
         (function () {
-            const filterLevel = document.getElementById('filterLevel');
-            const filterTopic = document.getElementById('filterTopic');
-            const btnReset = document.getElementById('btnResetFilter');
-            const resultCount = document.getElementById('filterResultCount');
-            const tbody = document.getElementById('videoTableBody');
-
-            function applyFilters() {
-                const level = filterLevel.value;
-                const topic = filterTopic.value;
-                const rows = tbody.querySelectorAll('tr[data-level]');
-                let visible = 0;
-
-                rows.forEach(function (row) {
-                    const rowLevel = row.getAttribute('data-level');
-                    const rowTopic = row.getAttribute('data-topic');
-                    const matchLevel = !level || rowLevel === level;
-                    const matchTopic = !topic || rowTopic === topic;
-                    const show = matchLevel && matchTopic;
-                    row.style.display = show ? '' : 'none';
-                    if (show) visible++;
-                });
-
-                if (level || topic) {
-                    resultCount.textContent = 'Hiển thị ' + visible + ' / ' + rows.length + ' video';
-                } else {
-                    resultCount.textContent = '';
-                }
-            }
-
-            filterLevel.addEventListener('change', applyFilters);
-            filterTopic.addEventListener('change', applyFilters);
-
-            btnReset.addEventListener('click', function () {
-                filterLevel.value = '';
-                filterTopic.value = '';
-                applyFilters();
+            document.querySelectorAll('#catalogFilters select').forEach(function (select) {
+                select.addEventListener('change', function () { document.getElementById('catalogFilters').requestSubmit(); });
             });
+            document.getElementById('btnResetFilter').addEventListener('click', function () { window.location.href = '@Url.Action("Index")'; });
 
             // Delete video modal binding
             document.querySelectorAll('.btn-delete-video').forEach(function (btn) {

@@ -2,7 +2,6 @@
    TCT English — Auth Page (Stitch Redesign v2)
    Premium dark/light split layout with glassmorphism
    ============================================================ */
-@import url('tct-learning-ui.css');
 
 /* ---- Design Tokens (Auth-specific) ---- */
 :root {
@@ -19,6 +18,13 @@
 }
 
 /* ---- Base Reset ---- */
+body.auth-page,
+body.auth-page *,
+body.auth-page *::before,
+body.auth-page *::after {
+    box-sizing: border-box;
+}
+
 body.auth-page {
     background-color: var(--auth-dark-bg);
     font-family: var(--tct-font-family);
@@ -285,6 +291,9 @@ body.auth-page {
     justify-content: center;
     align-items: center;
     padding: 48px 40px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     position: relative;
 }
 
@@ -321,6 +330,8 @@ body.auth-page {
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 24px;
     box-shadow: var(--auth-card-shadow);
+    min-width: 0;
+    box-sizing: border-box;
     width: 100%;
     max-width: 440px;
     padding: 40px 36px;
@@ -812,21 +823,64 @@ body.auth-page {
     }
 }
 
+/* ---- Busy State ---- */
+.auth-btn-submit[aria-busy="true"] {
+    opacity: 0.85;
+    pointer-events: none;
+    cursor: wait;
+}
+
 @media (max-width: 480px) {
     .auth-col-left {
-        padding: 28px 16px 24px;
+        padding: 20px 16px 16px;
+    }
+
+    .auth-brand-logo {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 8px;
+        font-size: 20px;
     }
 
     .auth-brand-title {
-        font-size: 1.6rem;
+        font-size: 1.35rem;
+        margin-bottom: 4px;
     }
 
+    .auth-brand-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+
+    /* Compact hero <= 480px: hide decorative features so the form appears sooner */
     .auth-features {
-        flex-direction: column;
-        align-items: center;
+        display: none !important;
+    }
+
+    .auth-col-right {
+        padding: 16px 12px 32px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     .auth-card {
-        padding: 24px 18px;
+        padding: 20px 16px;
+        border-radius: 16px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

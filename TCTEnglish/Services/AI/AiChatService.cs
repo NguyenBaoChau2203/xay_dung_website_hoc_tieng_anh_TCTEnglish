@@ -27,8 +27,10 @@ public sealed class AiChatService : IAiChatService
     private readonly IAiContextBuilder _contextBuilder;
     private readonly IAiProviderClient _providerClient;
     private readonly IAiConversationExecutionGuard _conversationExecutionGuard;
+    private readonly IAiDailyQuotaReservationService _quotaReservationService;
     private readonly AiOptions _options;
     private readonly ILogger<AiChatService> _logger;
+    private readonly IAiTokenCounter _historyTokenCounter;
 
     public AiChatService(
         DbflashcardContext context,
@@ -36,16 +38,20 @@ public sealed class AiChatService : IAiChatService
         IAiContextBuilder contextBuilder,
         IAiProviderClient providerClient,
         IAiConversationExecutionGuard conversationExecutionGuard,
+        IAiDailyQuotaReservationService quotaReservationService,
         IOptions<AiOptions> options,
-        ILogger<AiChatService> logger)
+        ILogger<AiChatService> logger,
+        IAiTokenCounter? historyTokenCounter = null)
     {
         _context = context;
         _conversationService = conversationService;
         _contextBuilder = contextBuilder;
         _providerClient = providerClient;
         _conversationExecutionGuard = conversationExecutionGuard;
+        _quotaReservationService = quotaReservationService;
         _options = options.Value;
         _logger = logger;
+        _historyTokenCounter = historyTokenCounter ?? new SimpleAiTokenCounter();
     }
 
     public async Task<ChatReplyDto> SendAsync(int userId, Guid? conversationId, string message, CancellationToken ct)
@@ -67,20 +73,6 @@ public sealed class AiChatService : IAiChatService
         }
 
         var normalizedRole = await GetNormalizedUserRoleAsync(userId, ct);
-        if (normalizedRole == Roles.Standard)
-        {
-            var successfulRequestsToday = await _context.AiRequestLogs
-                .AsNoTracking()
-                .CountAsync(x => x.UserId == userId 
-                    && x.IsSuccess 
-                    && x.RequestedAtUtc >= DateTime.UtcNow.Date, ct);
-
-            if (successfulRequestsToday >= 15)
-            {
-                throw new AiRateLimitException("Bạn đã vượt quá giới hạn 15 câu hỏi AI mỗi ngày của gói Standard.", "daily_question_limit_exceeded");
-            }
-        }
-
         var resolvedConversationId = conversationId.GetValueOrDefault();
         var hasConversationId = conversationId.HasValue && resolvedConversationId != Guid.Empty;
 
@@ -113,48 +105,22 @@ public sealed class AiChatService : IAiChatService
         _context.AiMessages.Add(userMessage);
         await _context.SaveChangesAsync(ct);
 
-        var history = await _context.AiMessages
-            .AsNoTracking()
-            .Where(x => x.ConversationId == resolvedConversationId && x.Id != userMessage.Id)
-            .OrderBy(x => x.CreatedAtUtc)
-            .ToListAsync(ct);
-
-        var contextResult = _contextBuilder.BuildContextMessages(
-            DefaultSystemPrompt,
-            normalizedMessage,
-            history,
-            _options);
-
-        if (_options.RequestTokenBudget > 0 && contextResult.PlannedTotalTokens > _options.RequestTokenBudget)
+        AiQuotaReservation? reservation = null;
+        var stopwatch = Stopwatch.StartNew();
+        var replyCommitted = false;
+        var providerReplyKnown = false;
+        var knownActualTokens = 0;
+        try
         {
-            await SaveRequestLogAsync(new AiRequestLog
-            {
-                Id = Guid.NewGuid(),
-                UserId = userId,
-                ConversationId = resolvedConversationId,
-                IsSuccess = false,
-                ErrorCode = "request_token_budget_exceeded",
-                RequestedAtUtc = DateTime.UtcNow
-            }, ct);
+            var historyNewestFirst = await LoadContextHistoryAsync(resolvedConversationId, userMessage.Id, normalizedMessage, ct);
 
-            if (isDraftConversation)
-            {
-                await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
-            }
+            var contextResult = _contextBuilder.BuildContextMessages(
+                DefaultSystemPrompt,
+                normalizedMessage,
+                historyNewestFirst,
+                _options);
 
-            throw new ArgumentException("Yêu cầu vượt giới hạn token cho mỗi lượt chat.", nameof(message));
-        }
-
-        if (_options.DailyTokenBudgetPerUser > 0)
-        {
-            var usedTokensToday = await _context.AiMessages
-                .AsNoTracking()
-                .Where(x => x.Role == AiMessageRole.Assistant
-                    && x.CreatedAtUtc >= DateTime.UtcNow.Date
-                    && x.Conversation.UserId == userId)
-                .SumAsync(x => (x.PromptTokens ?? 0) + (x.CompletionTokens ?? 0), ct);
-
-            if (usedTokensToday + contextResult.PlannedTotalTokens > _options.DailyTokenBudgetPerUser)
+            if (_options.RequestTokenBudget > 0 && contextResult.PlannedTotalTokens > _options.RequestTokenBudget)
             {
                 await SaveRequestLogAsync(new AiRequestLog
                 {
@@ -162,7 +128,7 @@ public sealed class AiChatService : IAiChatService
                     UserId = userId,
                     ConversationId = resolvedConversationId,
                     IsSuccess = false,
-                    ErrorCode = "daily_token_budget_exceeded",
+                    ErrorCode = "request_token_budget_exceeded",
                     RequestedAtUtc = DateTime.UtcNow
                 }, ct);
 
@@ -170,100 +136,396 @@ public sealed class AiChatService : IAiChatService
                 {
                     await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
                 }
+                else
+                {
+                    await RollbackFailedUserMessageAsync(userMessage.Id, ct);
+                }
 
-                throw new AiRateLimitException("Bạn đã đạt giới hạn sử dụng AI trong ngày.", "daily_token_budget_exceeded");
+                throw new ArgumentException("Yêu cầu vượt giới hạn token cho mỗi lượt chat.", nameof(message));
             }
-        }
 
-        var stopwatch = Stopwatch.StartNew();
-        AiProviderReply aiReply;
+            try
+            {
+                var questionLimit = normalizedRole == Roles.Standard ? 15 : 0;
+                reservation = await _quotaReservationService.ReserveQuestionAsync(
+                    userId,
+                    contextResult.PlannedTotalTokens,
+                    questionLimit,
+                    _options.DailyTokenBudgetPerUser,
+                    ct);
+            }
+            catch (AiRateLimitException)
+            {
+                await SaveRequestLogAsync(new AiRequestLog
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    ConversationId = resolvedConversationId,
+                    IsSuccess = false,
+                    ErrorCode = "daily_quota_exceeded",
+                    RequestedAtUtc = DateTime.UtcNow
+                }, ct);
 
-        try
-        {
-            aiReply = await _providerClient.GenerateReplyAsync(userId, contextResult.Messages, ct);
-        }
-        catch (AiProviderException ex)
-        {
+                if (isDraftConversation)
+                {
+                    await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
+                }
+                else
+                {
+                    await RollbackFailedUserMessageAsync(userMessage.Id, ct);
+                }
+
+                throw;
+            }
+
+            AiProviderReply aiReply;
+            try
+            {
+                aiReply = await _providerClient.GenerateReplyAsync(userId, contextResult.Messages, ct);
+            }
+            catch (AiProviderException ex)
+            {
+                stopwatch.Stop();
+                using var providerCleanupCts = ct.IsCancellationRequested
+                    ? new CancellationTokenSource(TimeSpan.FromSeconds(5))
+                    : null;
+                var providerCleanupToken = providerCleanupCts?.Token ?? ct;
+
+                if (reservation is not null)
+                {
+                    await _quotaReservationService.ReleaseAsync(reservation, providerCleanupToken);
+                    reservation = null;
+                }
+
+                DiscardUncommittedReplyArtifacts();
+                await SaveRequestLogAsync(new AiRequestLog
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    ConversationId = resolvedConversationId,
+                    IsSuccess = false,
+                    ErrorCode = ex.ErrorCode,
+                    LatencyMs = (int)stopwatch.ElapsedMilliseconds,
+                    RequestedAtUtc = DateTime.UtcNow
+                }, providerCleanupToken);
+
+                if (isDraftConversation)
+                {
+                    await RollbackDraftConversationAsync(userId, resolvedConversationId, providerCleanupToken);
+                }
+                else
+                {
+                    await RollbackFailedUserMessageAsync(userMessage.Id, providerCleanupToken);
+                }
+
+                _logger.LogWarning(
+                    ex,
+                    "AI provider request failed for conversation {conversationId}. ErrorCode {errorCode}",
+                    resolvedConversationId,
+                    ex.ErrorCode);
+
+                throw;
+            }
+
             stopwatch.Stop();
-            await SaveRequestLogAsync(new AiRequestLog
+            // Provider returned a known reply — distinct from replyCommitted (DB durable).
+            providerReplyKnown = true;
+            knownActualTokens = aiReply.PromptTokens + aiReply.CompletionTokens;
+
+            var assistantMessage = new AiMessage
+            {
+                Id = Guid.NewGuid(),
+                ConversationId = resolvedConversationId,
+                Role = AiMessageRole.Assistant,
+                Content = aiReply.Text,
+                PromptTokens = aiReply.PromptTokens,
+                CompletionTokens = aiReply.CompletionTokens,
+                ModelName = aiReply.Model,
+                CreatedAtUtc = DateTime.UtcNow
+            };
+
+            _context.AiMessages.Add(assistantMessage);
+            _context.AiRequestLogs.Add(new AiRequestLog
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
                 ConversationId = resolvedConversationId,
-                IsSuccess = false,
-                ErrorCode = ex.ErrorCode,
+                IsSuccess = true,
+                PromptTokens = aiReply.PromptTokens,
+                CompletionTokens = aiReply.CompletionTokens,
+                TotalTokens = aiReply.TotalTokens,
+                ModelName = aiReply.Model,
                 LatencyMs = (int)stopwatch.ElapsedMilliseconds,
                 RequestedAtUtc = DateTime.UtcNow
-            }, ct);
+            });
+            conversation.UpdatedAtUtc = DateTime.UtcNow;
 
-            if (isDraftConversation)
+            // Caller may already be cancelled after provider return; persist with a bounded token.
+            using (var persistCts = new CancellationTokenSource(TimeSpan.FromSeconds(5)))
             {
-                await RollbackDraftConversationAsync(userId, resolvedConversationId, ct);
-            }
-            else
-            {
-                await RollbackFailedUserMessageAsync(userMessage.Id, ct);
+                var persistToken = ct.IsCancellationRequested ? persistCts.Token : ct;
+                await _context.SaveChangesAsync(persistToken);
             }
 
-            _logger.LogWarning(
-                ex,
-                "AI provider request failed for conversation {conversationId}. ErrorCode {errorCode}",
+            replyCommitted = true;
+
+            if (reservation is not null)
+            {
+                // Finalize independent of caller abort — reply is already durable.
+                using var finalizeCts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+                try
+                {
+                    await _quotaReservationService.SettleAsync(
+                        reservation,
+                        knownActualTokens,
+                        finalizeCts.Token);
+                }
+                catch (Exception settleEx)
+                {
+                    // Do not turn a committed reply into HTTP 500 (JS retries same intent).
+                    try
+                    {
+                        await _quotaReservationService.MarkKnownUsagePendingAsync(
+                            reservation,
+                            knownActualTokens,
+                            finalizeCts.Token);
+                    }
+                    catch (Exception markEx)
+                    {
+                        _logger.LogWarning(
+                            markEx,
+                            "Could not mark known usage pending after settle failure for conversation {conversationId}.",
+                            resolvedConversationId);
+                    }
+
+                    _logger.LogWarning(
+                        settleEx,
+                        "Quota settle failed after committed AI reply for conversation {conversationId}; leaving pending for reconciliation.",
+                        resolvedConversationId);
+                }
+
+                reservation = null;
+            }
+
+            var requestId = string.IsNullOrWhiteSpace(aiReply.RequestId)
+                ? Guid.NewGuid().ToString("N")
+                : aiReply.RequestId;
+
+            _logger.LogInformation(
+                "AI chat reply completed for conversation {conversationId}. LatencyMs {latencyMs}. Model {model}. PromptTokens {promptTokens}. CompletionTokens {completionTokens}. TotalTokens {totalTokens}",
                 resolvedConversationId,
-                ex.ErrorCode);
+                stopwatch.ElapsedMilliseconds,
+                aiReply.Model,
+                aiReply.PromptTokens,
+                aiReply.CompletionTokens,
+                aiReply.TotalTokens);
+
+            // If the caller aborted after a durable known reply, still surface the reply (no retry storm).
+            ct.ThrowIfCancellationRequested();
+
+            return new ChatReplyDto(
+                aiReply.Text,
+                resolvedConversationId,
+                conversation.Title,
+                new ChatUsageDto(aiReply.PromptTokens, aiReply.CompletionTokens, aiReply.TotalTokens, aiReply.Model),
+                new ChatMetadataDto(requestId, (int)stopwatch.ElapsedMilliseconds));
+        }
+        catch (OperationCanceledException)
+        {
+            stopwatch.Stop();
+            using var cleanupCts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            var cleanupToken = cleanupCts.Token;
+
+            if (providerReplyKnown && !replyCommitted)
+            {
+                // Persist known reply with independent token, then settle — never Release known usage.
+                try
+                {
+                    await _context.SaveChangesAsync(cleanupToken);
+                    replyCommitted = true;
+                }
+                catch (Exception persistEx)
+                {
+                    DiscardUncommittedReplyArtifacts();
+                    _logger.LogWarning(
+                        persistEx,
+                        "Failed to persist known AI reply for conversation {conversationId} after cancel; discarding uncommitted artifacts.",
+                        resolvedConversationId);
+
+                    if (reservation is not null)
+                    {
+                        try
+                        {
+                            await _quotaReservationService.MarkKnownUsagePendingAsync(
+                                reservation,
+                                knownActualTokens,
+                                cleanupToken);
+                        }
+                        catch (Exception markEx)
+                        {
+                            _logger.LogWarning(
+                                markEx,
+                                "Could not mark known usage pending for reservation {requestId}.",
+                                reservation.RequestId);
+                        }
+
+                        reservation = null;
+                    }
+                }
+            }
+
+            if (reservation is not null)
+            {
+                if (replyCommitted || providerReplyKnown)
+                {
+                    // Known provider outcome — never Release a charged turn.
+                    try
+                    {
+                        await _quotaReservationService.SettleAsync(
+                            reservation,
+                            replyCommitted ? knownActualTokens : 0,
+                            cleanupToken);
+                    }
+                    catch (Exception settleEx)
+                    {
+                        try
+                        {
+                            await _quotaReservationService.MarkKnownUsagePendingAsync(
+                                reservation,
+                                knownActualTokens,
+                                cleanupToken);
+                        }
+                        catch (Exception markEx)
+                        {
+                            _logger.LogWarning(
+                                markEx,
+                                "Post-cancel settle/mark failed for reservation {requestId}; leaving pending.",
+                                reservation.RequestId);
+                            _logger.LogWarning(settleEx, "Original settle failure for reservation {requestId}.", reservation.RequestId);
+                        }
+                    }
+                }
+                else
+                {
+                    await _quotaReservationService.ReleaseAsync(reservation, cleanupToken);
+                }
+
+                reservation = null;
+            }
+
+            if (!replyCommitted && !providerReplyKnown)
+            {
+                DiscardUncommittedReplyArtifacts();
+                await SaveRequestLogAsync(new AiRequestLog
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    ConversationId = resolvedConversationId,
+                    IsSuccess = false,
+                    ErrorCode = "cancelled",
+                    LatencyMs = (int)stopwatch.ElapsedMilliseconds,
+                    RequestedAtUtc = DateTime.UtcNow
+                }, cleanupToken);
+
+                if (isDraftConversation)
+                {
+                    await RollbackDraftConversationAsync(userId, resolvedConversationId, cleanupToken);
+                }
+                else
+                {
+                    await RollbackFailedUserMessageAsync(userMessage.Id, cleanupToken);
+                }
+            }
+            else if (!replyCommitted && providerReplyKnown)
+            {
+                // Persist failed; drop uncommitted assistant but keep user prompt only if we somehow
+                // still have nothing durable — discard artifacts then roll back the user turn.
+                DiscardUncommittedReplyArtifacts();
+                if (isDraftConversation)
+                {
+                    await RollbackDraftConversationAsync(userId, resolvedConversationId, cleanupToken);
+                }
+                else
+                {
+                    await RollbackFailedUserMessageAsync(userMessage.Id, cleanupToken);
+                }
+            }
+
+            _logger.LogInformation(
+                "AI chat request canceled for conversation {conversationId} after {latencyMs}ms (replyCommitted={replyCommitted}, providerReplyKnown={providerReplyKnown})",
+                resolvedConversationId,
+                stopwatch.ElapsedMilliseconds,
+                replyCommitted,
+                providerReplyKnown);
 
             throw;
         }
-
-        stopwatch.Stop();
-
-        var assistantMessage = new AiMessage
+        catch (Exception ex) when (providerReplyKnown && !replyCommitted)
         {
-            Id = Guid.NewGuid(),
-            ConversationId = resolvedConversationId,
-            Role = AiMessageRole.Assistant,
-            Content = aiReply.Text,
-            PromptTokens = aiReply.PromptTokens,
-            CompletionTokens = aiReply.CompletionTokens,
-            ModelName = aiReply.Model,
-            CreatedAtUtc = DateTime.UtcNow
-        };
+            // A storage failure after a known provider reply must not release usage or
+            // leave Added assistant/log entities for a later unrelated SaveChanges.
+            using var cleanup = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            DiscardUncommittedReplyArtifacts();
+            if (reservation is not null)
+            {
+                try { await _quotaReservationService.MarkKnownUsagePendingAsync(reservation, knownActualTokens, cleanup.Token); }
+                catch (Exception markError) { _logger.LogWarning("Unable to preserve known usage ({Category}).", markError.GetType().Name); }
+            }
+            if (isDraftConversation) await RollbackDraftConversationAsync(userId, resolvedConversationId, cleanup.Token);
+            else await RollbackFailedUserMessageAsync(userMessage.Id, cleanup.Token);
+            throw new AiProviderException("AI đã xử lý yêu cầu nhưng chưa lưu được kết quả. Vui lòng tải lại lịch sử trước khi gửi một yêu cầu mới.",
+                "reply_persistence_failed", false, ex);
+        }
+    }
 
-        _context.AiMessages.Add(assistantMessage);
-        _context.AiRequestLogs.Add(new AiRequestLog
+    private async Task<List<AiMessage>> LoadContextHistoryAsync(Guid conversationId, Guid currentMessageId, string message, CancellationToken ct)
+    {
+        var inputBudget = Math.Min(_options.ModelContextLimit, _options.RequestTokenBudget > 0 ? _options.RequestTokenBudget : _options.ModelContextLimit);
+        var remaining = Math.Max(0, inputBudget - _options.MaxOutputTokens
+            - _historyTokenCounter.CountTokens(DefaultSystemPrompt) - _historyTokenCounter.CountTokens(message));
+        var history = new List<AiMessage>(); DateTime? beforeTime = null; Guid beforeId = default;
+        while (remaining > 0)
         {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            ConversationId = resolvedConversationId,
-            IsSuccess = true,
-            PromptTokens = aiReply.PromptTokens,
-            CompletionTokens = aiReply.CompletionTokens,
-            TotalTokens = aiReply.TotalTokens,
-            ModelName = aiReply.Model,
-            LatencyMs = (int)stopwatch.ElapsedMilliseconds,
-            RequestedAtUtc = DateTime.UtcNow
-        });
-        conversation.UpdatedAtUtc = DateTime.UtcNow;
-        await _context.SaveChangesAsync(ct);
+            var query = _context.AiMessages.AsNoTracking().Where(m => m.ConversationId == conversationId && m.Id != currentMessageId);
+            if (beforeTime.HasValue) query = query.Where(m => m.CreatedAtUtc < beforeTime.Value || (m.CreatedAtUtc == beforeTime.Value && m.Id.CompareTo(beforeId) < 0));
+            var batch = await query.OrderByDescending(m => m.CreatedAtUtc).ThenByDescending(m => m.Id).Take(50)
+                .Select(m => new AiMessage { Id = m.Id, CreatedAtUtc = m.CreatedAtUtc, Role = m.Role, Content = m.Content }).ToListAsync(ct);
+            if (batch.Count == 0) break;
+            foreach (var item in batch)
+            {
+                // A small per-message envelope allowance also bounds empty/tiny messages.
+                var cost = Math.Max(1, _historyTokenCounter.CountTokens(item.Content)) + 4;
+                if (cost > remaining) { history.Reverse(); return history; }
+                history.Add(item); remaining -= cost;
+            }
+            beforeTime = batch[^1].CreatedAtUtc; beforeId = batch[^1].Id;
+            if (batch.Count < 50) break;
+        }
+        history.Reverse(); return history;
+    }
 
-        var requestId = string.IsNullOrWhiteSpace(aiReply.RequestId)
-            ? Guid.NewGuid().ToString("N")
-            : aiReply.RequestId;
+    private void DiscardUncommittedReplyArtifacts()
+    {
+        foreach (var entry in _context.ChangeTracker.Entries().ToList())
+        {
+            if (entry.Entity is AiConversation && entry.State == EntityState.Modified)
+            { entry.State = EntityState.Unchanged; continue; }
+            if (entry.State != EntityState.Added)
+            {
+                continue;
+            }
 
-        _logger.LogInformation(
-            "AI chat reply completed for conversation {conversationId}. LatencyMs {latencyMs}. Model {model}. PromptTokens {promptTokens}. CompletionTokens {completionTokens}. TotalTokens {totalTokens}",
-            resolvedConversationId,
-            stopwatch.ElapsedMilliseconds,
-            aiReply.Model,
-            aiReply.PromptTokens,
-            aiReply.CompletionTokens,
-            aiReply.TotalTokens);
+            if (entry.Entity is AiMessage message && message.Role == AiMessageRole.Assistant)
+            {
+                entry.State = EntityState.Detached;
+                continue;
+            }
 
-        return new ChatReplyDto(
-            aiReply.Text,
-            resolvedConversationId,
-            conversation.Title,
-            new ChatUsageDto(aiReply.PromptTokens, aiReply.CompletionTokens, aiReply.TotalTokens, aiReply.Model),
-            new ChatMetadataDto(requestId, (int)stopwatch.ElapsedMilliseconds));
+            if (entry.Entity is AiRequestLog log && log.IsSuccess)
+            {
+                entry.State = EntityState.Detached;
+            }
+        }
     }
 
     private IDisposable AcquireConversationLease(Guid conversationId)
@@ -398,7 +660,11 @@ public sealed class AiChatService : IAiChatService
             };
         }
 
-        var successfulRequestsToday = await _context.AiRequestLogs
+        var day = DateTime.UtcNow.Date;
+        var reservedUsage = await _context.AiUserDailyQuotas.AsNoTracking()
+            .Where(q => q.UserId == userId && q.DayUtc == day)
+            .Select(q => (int?)(q.SettledQuestions + q.PendingQuestions)).FirstOrDefaultAsync(ct);
+        var successfulRequestsToday = reservedUsage ?? await _context.AiRequestLogs
             .AsNoTracking()
             .CountAsync(x => x.UserId == userId
                 && x.IsSuccess

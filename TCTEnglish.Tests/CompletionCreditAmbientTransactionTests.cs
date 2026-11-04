@@ -154,6 +154,9 @@ public sealed class CompletionCreditAmbientTransactionTests
 
         public Task<GoalsViewModel?> GetGoalsAsync(int userId) => Task.FromResult<GoalsViewModel?>(null);
 
+        public Task<IReadOnlyList<GoalsBadgeViewModel>> GetEarnedBadgesForProfileAsync(int userId)
+            => Task.FromResult<IReadOnlyList<GoalsBadgeViewModel>>(Array.Empty<GoalsBadgeViewModel>());
+
         public Task<OperationResult> UpdateGoalAsync(int userId, GoalArea goalArea, int targetValue)
             => Task.FromResult(OperationResult.Success());
 

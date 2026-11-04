@@ -33,6 +33,8 @@
             return;
         }
 
+        let isSubmitting = false;
+
         const runtime = {
             sendUrl: options?.sendUrl || '',
             observabilityUrl: options?.observabilityUrl || '',
@@ -51,6 +53,7 @@
 
         hydrateAssistantMessages(elChatWindow);
         hydrateTimestamps(historyElements);
+        bindLoadOlderControls(elChatWindow, historyElements, elChatShell);
 
         if (historyElements.list) {
             let pendingDeleteBtn = null;
@@ -108,6 +111,43 @@
         scrollToBottom(elChatWindow, false, elScrollToBottomBtn);
         syncHistoryVisibility(historyElements);
         syncScrollAffordance(elChatWindow, elScrollToBottomBtn);
+
+        const elHistoryDisclosure = document.getElementById('aiHistoryDisclosure');
+        if (elHistoryDisclosure && window.innerWidth >= 992) {
+            elHistoryDisclosure.open = true;
+        }
+
+        function adjustTextareaHeight(textarea) {
+            if (!textarea || textarea.tagName !== 'TEXTAREA') return;
+            textarea.style.height = 'auto';
+            const maxHeight = 120;
+            const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+            textarea.style.height = Math.max(newHeight, 46) + 'px';
+            textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
+        }
+
+        adjustTextareaHeight(elInput);
+
+        elInput.addEventListener('input', function () {
+            adjustTextareaHeight(elInput);
+        });
+
+        elInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                if (e.isComposing || e.keyCode === 229) {
+                    return;
+                }
+                e.preventDefault();
+                if (isSubmitting || elSendBtn.disabled || elForm.dataset.state === 'sending') {
+                    return;
+                }
+                if (typeof elForm.requestSubmit === 'function') {
+                    elForm.requestSubmit();
+                } else {
+                    elForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                }
+            }
+        });
         void initializeHub(runtime, elStatus, elForm, elSendBtn, elStopBtn, elTyping);
         void refreshObservability(runtime.observabilityUrl, {
             requestCount: elMetricRequestCount,
@@ -152,7 +192,7 @@
                     return;
                 }
 
-                if (elSendBtn.disabled || elForm.dataset.quickActionPending === 'true') {
+                if (isSubmitting || elSendBtn.disabled || elForm.dataset.state === 'sending' || elForm.dataset.quickActionPending === 'true') {
                     return;
                 }
 
@@ -162,6 +202,7 @@
                 }
 
                 elInput.value = question;
+                adjustTextareaHeight(elInput);
                 hideStatus(elStatus);
                 elForm.dataset.quickActionPending = 'true';
                 setQuickActionsBusy(elQuickActions, true);
@@ -177,6 +218,10 @@
         elForm.addEventListener('submit', async function (event) {
             event.preventDefault();
 
+            if (isSubmitting || elSendBtn.disabled || elForm.dataset.state === 'sending') {
+                return;
+            }
+
             const quickActionPending = elForm.dataset.quickActionPending === 'true';
             const quickActionTriggered = quickActionPending;
             const text = (elInput.value || '').trim();
@@ -189,12 +234,15 @@
                 return;
             }
 
+            isSubmitting = true;
+
             if (quickActionPending) {
                 elForm.dataset.quickActionPending = 'false';
             }
 
             appendMessage(elChatWindow, 'user', text, elScrollToBottomBtn);
             elInput.value = '';
+            adjustTextareaHeight(elInput);
             hideStatus(elStatus);
 
             setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, false);
@@ -245,6 +293,7 @@
                     restoreQuickActions(elQuickActions, elChatWindow);
                 }
             } finally {
+                isSubmitting = false;
                 if (elForm.dataset.state !== 'error') {
                     setUiState('idle', elForm, elSendBtn, elStopBtn, elTyping, false);
                 }
@@ -279,10 +328,10 @@
                 runtime.hubAvailable = false;
                 if (runtime.isStreaming) {
                     finalizeStreaming(runtime);
-                    setUiState('idle', elForm, elSendBtn, elStopBtn, elTyping, false);
+                    resolveStreamCompletion(runtime, false, { message: 'Kết nối bị gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
                 }
 
-                showStatus(elStatus, 'Kết nối realtime đang gián đoạn. Hệ thống sẽ fallback sang AJAX.');
+                showStatus(elStatus, 'Kết nối realtime đang gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.');
             },
             onReconnected: function () {
                 runtime.hubAvailable = true;
@@ -290,6 +339,10 @@
             },
             onClosed: function () {
                 runtime.hubAvailable = false;
+                if (runtime.isStreaming) {
+                    finalizeStreaming(runtime);
+                    resolveStreamCompletion(runtime, false, { message: 'Kết nối đã ngắt. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
+                }
                 showStatus(elStatus, 'Realtime đã ngắt kết nối. Hệ thống sẽ dùng AJAX.');
             }
         });
@@ -409,7 +462,7 @@
                 return;
             }
 
-            const shouldFallback = !runtime.streamChunkCount && (errorCode === 'transport_error' || errorCode === 'stream_conflict');
+            const shouldFallback = false;
 
             finalizeStreaming(runtime);
             resolveStreamCompletion(runtime, false, {
@@ -459,11 +512,10 @@
                     return;
                 }
 
-                const canFallback = runtime.streamChunkCount === 0;
                 finalizeStreaming(runtime);
                 resolveStreamCompletion(runtime, false, {
-                    message: 'Không thể stream realtime. Hệ thống sẽ chuyển sang AJAX.',
-                    shouldFallback: canFallback
+                    message: 'Kết nối bị gián đoạn sau khi gửi. Hãy kiểm tra lịch sử trước khi gửi lại.',
+                    shouldFallback: false
                 });
             });
 
@@ -520,7 +572,9 @@
     }
 
     async function sendWithRetry(sendUrl, payload, options) {
-        const maxAttempts = options?.allowRetry === false ? 1 : 2;
+        // An HTTP error does not prove that the provider did not process the turn.
+        // Retry only through an explicit new user action until transport intent IDs exist.
+        const maxAttempts = 1;
         const antiForgeryToken = options?.antiForgeryToken || '';
 
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -1148,7 +1202,200 @@
         }
     }
 
+    function bindLoadOlderControls(chatWindow, historyElements, chatShell) {
+        document.querySelectorAll('[data-ai-load-older]').forEach((button) => {
+            button.addEventListener('click', async () => {
+                if (button.disabled) {
+                    return;
+                }
+
+                const kind = button.getAttribute('data-ai-load-older');
+                const url = button.getAttribute('data-ai-load-older-url');
+                if (!url) {
+                    return;
+                }
+
+                button.disabled = true;
+                try {
+                    if (kind === 'conversations') {
+                        await loadOlderConversations(button, historyElements);
+                    } else if (kind === 'messages') {
+                        await loadOlderMessages(button, chatWindow, chatShell);
+                    }
+                } finally {
+                    button.disabled = false;
+                }
+            });
+        });
+    }
+
+    async function loadOlderConversations(button, historyElements) {
+        const list = historyElements.list;
+        if (!list) {
+            return;
+        }
+
+        const beforeUpdatedAtUtc = list.getAttribute('data-ai-history-cursor-time') || '';
+        const beforeId = list.getAttribute('data-ai-history-cursor-id') || '';
+        if (!beforeUpdatedAtUtc || !beforeId) {
+            return;
+        }
+
+        const url = new URL(button.getAttribute('data-ai-load-older-url'), window.location.origin);
+        url.searchParams.set('beforeUpdatedAtUtc', beforeUpdatedAtUtc);
+        url.searchParams.set('beforeId', beforeId);
+
+        const response = await fetch(url.toString(), {
+            headers: { 'Accept': 'application/json' },
+            credentials: 'same-origin'
+        });
+        if (!response.ok) {
+            return;
+        }
+
+        const payload = await response.json();
+        const items = Array.isArray(payload.items) ? payload.items : [];
+        const baseUrl = historyElements.chatPageUrl || '/AI/Chat';
+
+        for (const item of items) {
+            if (!item?.id || list.querySelector(`[data-conversation-id="${item.id}"]`)) {
+                continue;
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'ai-chat-history-item-wrapper';
+            wrapper.setAttribute('data-ai-history-item-wrapper', '');
+
+            const link = document.createElement('a');
+            link.className = 'ai-chat-history-item';
+            link.href = `${baseUrl}?conversationId=${encodeURIComponent(item.id)}`;
+            link.setAttribute('data-ai-history-item', '');
+            link.setAttribute('data-conversation-id', item.id);
+            link.setAttribute('data-updated-at', item.updatedAtUtc || '');
+
+            const title = document.createElement('span');
+            title.className = 'ai-chat-history-item-title';
+            title.textContent = item.title || 'Cuộc hội thoại';
+
+            const time = document.createElement('span');
+            time.className = 'ai-chat-history-item-time';
+            time.setAttribute('data-timestamp', item.updatedAtUtc || '');
+            time.textContent = item.updatedAtUtc ? new Date(item.updatedAtUtc).toLocaleString() : '';
+
+            link.appendChild(title);
+            link.appendChild(time);
+            wrapper.appendChild(link);
+            list.appendChild(wrapper);
+        }
+
+        if (items.length > 0) {
+            const oldest = items[items.length - 1];
+            list.setAttribute('data-ai-history-cursor-time', oldest.updatedAtUtc || '');
+            list.setAttribute('data-ai-history-cursor-id', oldest.id || '');
+        }
+
+        if (!payload.hasMore) {
+            button.remove();
+        }
+
+        hydrateTimestamps(historyElements);
+    }
+
+    async function loadOlderMessages(button, chatWindow, chatShell) {
+        const conversationId = button.getAttribute('data-conversation-id') || '';
+        const beforeCreatedAtUtc = button.getAttribute('data-ai-message-cursor-time') || '';
+        const beforeId = button.getAttribute('data-ai-message-cursor-id') || '';
+        if (!conversationId || !beforeCreatedAtUtc || !beforeId) {
+            return;
+        }
+
+        const url = new URL(button.getAttribute('data-ai-load-older-url'), window.location.origin);
+        url.searchParams.set('conversationId', conversationId);
+        url.searchParams.set('beforeCreatedAtUtc', beforeCreatedAtUtc);
+        url.searchParams.set('beforeId', beforeId);
+
+        const previousHeight = chatWindow.scrollHeight;
+        const response = await fetch(url.toString(), {
+            headers: { 'Accept': 'application/json' },
+            credentials: 'same-origin'
+        });
+        if (!response.ok) {
+            return;
+        }
+
+        const payload = await response.json();
+        const items = Array.isArray(payload.items) ? payload.items : [];
+        const insertBefore = button.closest('.ai-chat-load-older-row') || button;
+        const aiAvatar = chatShell?.getAttribute('data-ai-avatar') || '/images/ai/tct-ai-launcher.png';
+        // Insert a chronological fragment once — per-row insertBefore(nextSibling) reverses the page.
+        const fragment = document.createDocumentFragment();
+
+        for (const item of items) {
+            if (!item?.id || chatWindow.querySelector(`[data-message-id="${item.id}"]`)) {
+                continue;
+            }
+
+            const role = (item.role || 'assistant').toLowerCase();
+            const row = document.createElement('div');
+            row.className = `ai-chat-message ai-chat-message-${role}`;
+            row.setAttribute('data-role', role);
+            row.setAttribute('data-message-id', item.id);
+            row.setAttribute('data-created-at', item.createdAtUtc || '');
+
+            if (role === 'assistant' || role === 'system') {
+                const avatar = document.createElement('div');
+                avatar.className = 'ai-chat-avatar ai-chat-avatar-assistant';
+                avatar.setAttribute('aria-hidden', 'true');
+                const img = document.createElement('img');
+                img.src = aiAvatar;
+                img.alt = 'AI Avatar';
+                img.loading = 'lazy';
+                avatar.appendChild(img);
+                row.appendChild(avatar);
+            }
+
+            const bubble = document.createElement('div');
+            bubble.className = `ai-chat-bubble ai-chat-bubble-${role}`;
+            if (role === 'assistant') {
+                const markdown = document.createElement('div');
+                markdown.className = 'js-assistant-markdown';
+                markdown.textContent = item.content || '';
+                bubble.appendChild(markdown);
+            } else {
+                bubble.textContent = item.content || '';
+            }
+
+            row.appendChild(bubble);
+            fragment.appendChild(row);
+        }
+
+        // Keep the load-older control/anchor at the top of history. Insert the
+        // chronological page after the control (before the oldest already-visible message).
+        // Inserting before the control pushed it below page1 so page2 landed between pages.
+        chatWindow.insertBefore(fragment, insertBefore.nextSibling);
+
+        if (items.length > 0) {
+            const oldest = items[0];
+            button.setAttribute('data-ai-message-cursor-time', oldest.createdAtUtc || '');
+            button.setAttribute('data-ai-message-cursor-id', oldest.id || '');
+        }
+
+        if (!payload.hasMore) {
+            const row = button.closest('.ai-chat-load-older-row');
+            if (row) {
+                row.remove();
+            } else {
+                button.remove();
+            }
+        }
+
+        chatWindow.scrollTop = chatWindow.scrollHeight - previousHeight;
+        hydrateAssistantMessages(chatWindow);
+    }
+
     window.tctAiChat = {
-        init: init
+        init: init,
+        // Exported for focused DOM order regression (C4); production still uses bindLoadOlderControls.
+        loadOlderMessages: loadOlderMessages
     };
 })();

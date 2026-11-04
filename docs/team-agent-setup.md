@@ -2,7 +2,7 @@
 
 Ngày cập nhật: 29/10/2026. Đây là hướng dẫn hiện tại cho các checkout mới.
 
-Để chạy **cả ứng dụng** (Docker data/Whisper/OpenAI), xem
+Để chạy **cả ứng dụng** (Docker data/OpenAI speech), xem
 [team local onboarding](operations/team-local-onboarding.md). File này hướng dẫn
 toolkit AI; prerequisites của web thêm Docker, .NET, PowerShell7 và VC++ runtime.
 `node scripts/check-local.cjs` kiểm những mục đó; SETUP-LOCAL.cmd chạy local stack.

@@ -6,6 +6,8 @@ namespace TCTVocabulary.Services
     public interface IGoalsService
     {
         Task<GoalsViewModel?> GetGoalsAsync(int userId);
+        /// <summary>Profile badges only — awarded rows, no GET-time award refresh or full goals graph.</summary>
+        Task<IReadOnlyList<GoalsBadgeViewModel>> GetEarnedBadgesForProfileAsync(int userId);
         Task<OperationResult> UpdateGoalAsync(int userId, GoalArea goalArea, int targetValue);
         Task<OperationResult> RecordActivityAsync(int userId, GoalsActivityUpdate update);
         Task<GoalsActivityRecordResult> RecordLearningActivityAsync(int userId, GoalsActivityUpdate update);

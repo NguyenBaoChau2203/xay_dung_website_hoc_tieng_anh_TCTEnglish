@@ -26,31 +26,43 @@
     let activeTopic = 'all';
     let activeLevel = 'all';
 
-    // ── TOPIC FILTER ─────────────────────────────────────────────
+    // Topic/level filters are server links (SQL filter + paging). Keep click handlers only
+    // for plain buttons that are not navigational anchors.
     filterBtns.forEach(btn => {
+        if (btn.tagName === 'A') return;
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            filterBtns.forEach(b => b.classList.remove('active', 'spk-chip--active'));
+            btn.classList.add('active', 'spk-chip--active');
             activeTopic = btn.dataset.topic;
             if (searchInput) searchInput.value = '';
             applyFilters();
         });
     });
 
-    // ── LEVEL FILTER ─────────────────────────────────────────────
     levelBtns.forEach(btn => {
+        if (btn.tagName === 'A') return;
         btn.addEventListener('click', () => {
-            levelBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            levelBtns.forEach(b => b.classList.remove('active', 'spk-pill-btn--active'));
+            btn.classList.add('active', 'spk-pill-btn--active');
             activeLevel = btn.dataset.level;
             if (searchInput) searchInput.value = '';
             applyFilters();
         });
     });
 
-    // ── SEARCH ───────────────────────────────────────────────────
+    // ── SEARCH (server query on Enter; live filter still narrows current page) ─
     if (searchInput) {
         searchInput.addEventListener('input', () => { applyFilters(); });
+        searchInput.addEventListener('keydown', e => {
+            if (e.key !== 'Enter') return;
+            e.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            const q = searchInput.value.trim();
+            if (q) params.set('search', q); else params.delete('search');
+            params.delete('page');
+            const qs = params.toString();
+            window.location.href = '/Speaking' + (qs ? ('?' + qs) : '');
+        });
 
         document.addEventListener('keydown', e => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -101,7 +113,7 @@
         if (videoCounter) {
             videoCounter.textContent = query || activeTopic !== 'all'
                 ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
-                : `${totalVisibleCount} videos`;
+                : `${videoCounter.dataset.totalCount || totalVisibleCount} videos`;
         }
 
         if (noResultsEl) {
@@ -164,6 +176,155 @@
     });
 
     applyFilters(); // ensure correct state on page load
+
+    function appendPublicCard(track, item) {
+        if (!track || !item || track.querySelector(`[data-video-id="${item.id}"]`)) return;
+        const col = document.createElement('div');
+        col.className = 'vi-video-col';
+        col.dataset.title = (item.title || '').toLowerCase();
+        col.dataset.topic = item.topic || '';
+        col.dataset.level = item.level || '';
+        col.dataset.videoId = String(item.id);
+        const thumb = item.thumbnailUrl
+            || `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`;
+        const link = document.createElement('a');
+        link.href = '/Speaking/Practice/' + encodeURIComponent(item.id);
+        link.className = 'text-decoration-none d-block h-100';
+        const article = document.createElement('article');
+        article.className = 'spk-pub-card h-100';
+        const image = document.createElement('img');
+        image.src = thumb;
+        image.alt = item.title || '';
+        image.loading = 'lazy';
+        image.className = 'spk-thumb-img';
+        const imageWrap = document.createElement('div');
+        imageWrap.className = 'spk-video-thumb';
+        imageWrap.appendChild(image);
+        const body = document.createElement('div');
+        body.className = 'spk-pub-card-body';
+        const topic = document.createElement('span'); topic.className = 'spk-pub-card-topic';
+        const title = document.createElement('h4'); title.className = 'spk-pub-card-title';
+        body.append(topic, title); article.append(imageWrap, body); link.appendChild(article); col.appendChild(link);
+        const topicEl = col.querySelector('.spk-pub-card-topic');
+        if (topicEl) topicEl.textContent = item.topic || '';
+        const titleEl = col.querySelector('.spk-pub-card-title');
+        if (titleEl) titleEl.textContent = item.title || '';
+        track.appendChild(col);
+    }
+
+    function appendPrivateCard(grid, item) {
+        if (!grid || !item || grid.querySelector(`[data-id="${item.id}"]`)) return;
+        const card = document.createElement('div');
+        card.className = 'my-video-card' + (item.isLocked ? ' my-video-card--locked' : '');
+        card.dataset.id = String(item.id); card.dataset.title = item.title || '';
+        const body = document.createElement('div'); body.className = 'spk-my-card';
+        const image = document.createElement('img'); image.className = 'spk-thumb-img';
+        image.src = item.thumbnailUrl || `https://img.youtube.com/vi/${encodeURIComponent(item.youtubeId)}/hqdefault.jpg`;
+        image.alt = item.title || ''; image.loading = 'lazy'; body.appendChild(image);
+        const content = document.createElement('div'); content.className = 'spk-my-card-body';
+        const title = document.createElement('h3'); title.className = 'spk-my-card-title'; title.textContent = item.title || '';
+        content.appendChild(title);
+        const status = document.createElement('p'); status.className = 'small text-muted';
+        status.textContent = item.isLocked ? 'Đã khóa theo gói hiện tại' : item.importStatus === 'processing' ? 'Đang xử lý' : item.importStatus === 'failed' ? 'Xử lý thất bại' : 'Sẵn sàng';
+        content.appendChild(status);
+        const actions = document.createElement('div'); actions.className = 'spk-my-card-actions';
+        if (item.isLocked || item.importStatus === 'ready') {
+            const practice = document.createElement('a'); practice.className = 'spk-btn spk-btn--primary spk-btn--flex';
+            practice.href = item.isLocked ? '/Account/Premium' : '/Speaking/Practice/' + encodeURIComponent(item.id);
+            practice.textContent = item.isLocked ? 'Nâng cấp Premium' : 'Luyện tập'; actions.appendChild(practice);
+        }
+        if (!item.isLocked && item.importStatus !== 'processing') {
+            const remove = document.createElement('button'); remove.type = 'button';
+            remove.className = 'spk-btn spk-btn--danger-outline my-btn-delete';
+            remove.dataset.id = String(item.id); remove.dataset.title = item.title || '';
+            remove.textContent = 'Xóa video'; actions.appendChild(remove);
+        }
+        content.appendChild(actions); body.appendChild(content); card.appendChild(body); grid.appendChild(card);
+    }
+
+    function loadError(button, error) {
+        let message = button.parentElement.querySelector('[data-spk-load-error]');
+        if (!message) {
+            message = document.createElement('p'); message.dataset.spkLoadError = '';
+            message.className = 'small text-danger'; message.setAttribute('role', 'status');
+            button.parentElement.appendChild(message);
+        }
+        message.textContent = error ? 'Không tải được video. Vui lòng thử lại.' : '';
+    }
+
+    document.querySelectorAll('.spk-load-more-public').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            if (btn.disabled) return;
+            btn.disabled = true;
+            loadError(btn, null);
+            try {
+                const page = Number(btn.dataset.page || '2');
+                const params = new URLSearchParams({
+                    level: btn.dataset.level || '',
+                    topic: btn.dataset.topic || '',
+                    search: btn.dataset.search || '',
+                    page: String(page),
+                    pageSize: btn.dataset.pageSize || '24'
+                });
+                const response = await fetch('/Speaking/Videos?' + params.toString(), {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error('Video page request failed');
+                const payload = await response.json();
+                const track = document.getElementById(`track-${btn.dataset.level}`);
+                const items = Array.isArray(payload.items) ? payload.items : [];
+                items.forEach(item => appendPublicCard(track, item));
+                if (payload.hasMore) {
+                    btn.dataset.page = String(page + 1);
+                    btn.disabled = false;
+                } else {
+                    btn.remove();
+                }
+                applyFilters();
+            } catch (error) {
+                loadError(btn, error);
+            } finally {
+                if (btn.isConnected) btn.disabled = false;
+            }
+        });
+    });
+
+    document.querySelectorAll('.spk-load-more-mine').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            if (btn.disabled) return;
+            btn.disabled = true;
+            loadError(btn, null);
+            try {
+                const page = Number(btn.dataset.page || '2');
+                const params = new URLSearchParams({
+                    mine: 'true',
+                    page: String(page),
+                    pageSize: btn.dataset.pageSize || '24',
+                    search: btn.dataset.search || ''
+                });
+                const response = await fetch('/Speaking/Videos?' + params.toString(), {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) throw new Error('Private video page request failed');
+                const payload = await response.json();
+                const grid = document.getElementById('my-videos-grid');
+                const items = Array.isArray(payload.items) ? payload.items : [];
+                items.forEach(item => appendPrivateCard(grid, item));
+                if (payload.hasMore) {
+                    btn.dataset.page = String(page + 1);
+                    btn.disabled = false;
+                } else {
+                    btn.remove();
+                }
+            } catch (error) {
+                loadError(btn, error);
+            } finally {
+                if (btn.isConnected) btn.disabled = false;
+            }
+        });
+    });
 
 })();
 
@@ -1363,7 +1524,9 @@
         const realCards = myVideosGrid.querySelectorAll(
             '.my-video-card:not(.my-video-card--skeleton)'
         );
-        const n = realCards.length;
+        const serverTotal = Number(mySecCount.dataset.totalCount);
+        const n = mySecCount.dataset.totalCount !== undefined && Number.isFinite(serverTotal)
+            ? serverTotal : realCards.length;
         mySecCount.textContent = n + ' bài';
 
         if (myEmptyState) {
@@ -1574,6 +1737,9 @@
 
             if (res.ok) {
                 if (deleteModal) deleteModal.hide();
+                if (mySecCount?.dataset.totalCount !== undefined) {
+                    mySecCount.dataset.totalCount = String(Math.max(0, Number(mySecCount.dataset.totalCount) - 1));
+                }
 
                 // Animate card removal
                 const card = pendingDeleteCard;
@@ -1598,7 +1764,7 @@
         if (btn._deleteHandlerBound) return;
         btn._deleteHandlerBound = true;
 
-        btn.addEventListener('click', () => {
+        const openConfirmation = () => {
             pendingDeleteId   = btn.dataset.id;
             pendingDeleteCard = btn.closest('.my-video-card');
 
@@ -1617,11 +1783,20 @@
                     pendingDeleteCard = null;
                 }
             }
-        });
+        };
+        btn.addEventListener('click', openConfirmation);
+        return openConfirmation;
     }
 
     // Bind existing delete buttons on page load
     document.querySelectorAll('.my-btn-delete').forEach(bindDeleteButton);
+    myVideosGrid?.addEventListener('click', event => {
+        const button = event.target.closest('.my-btn-delete');
+        if (!button || button._deleteHandlerBound) return;
+        // HTML suppresses a nested .click() while the original activation is in
+        // progress. Invoke the new handler directly so the first click works.
+        bindDeleteButton(button)();
+    });
 
     // Wire up modal confirm button
     if (confirmBtn) {

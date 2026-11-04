@@ -1,6 +1,5 @@
 @using TCTVocabulary.Security
 @using TCTEnglish.Services.AI
-@inject IAiChatService AiChatService
 @{
     var chatUrl = Url.Action("Chat", "Ai") ?? "/AI/Chat";
     var embedUrl = Url.Action("Chat", "Ai", new { embed = true }) ?? "/AI/Chat?embed=true";
@@ -11,10 +10,8 @@
     var isPremiumPlan = User.IsInRole(TCTVocabulary.Models.Roles.Premium);
 
     TCTEnglish.ViewModels.AI.AiUsageInfo? usageInfo = null;
-    if (isAuthenticated && User.TryGetUserId(out var userId))
-    {
-        usageInfo = await AiChatService.GetDailyUsageAsync(userId, Context.RequestAborted);
-    }
+    // Usage is fetched when the panel opens. Rendering any authenticated page must
+    // not add quota queries or display a guessed 0/15 before that fetch completes.
 }
 
 <div class="ai-launcher" data-ai-launcher data-ai-usage-url="@(isAuthenticated ? usageUrl : string.Empty)">
@@ -60,8 +57,8 @@
                                 <div class="ai-launcher-panel-plan m-0" data-ai-plan-summary>Gói Standard: 15 câu/ngày</div>
                                 <div class="ai-launcher-panel-plan ai-launcher-panel-quota m-0"
                                      data-ai-plan-quota
-                                     data-ai-plan-quota-used="0"
-                                     data-ai-plan-quota-limit="15">Đã dùng 0/15</div>
+                                     data-ai-plan-quota-used=""
+                                     data-ai-plan-quota-limit="15">Đang kiểm tra hạn mức…</div>
                             </div>
                         }
                     </div>

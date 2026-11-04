@@ -25,5 +25,10 @@ namespace TCTVocabulary.ViewModels
 
         public bool IsGoogleLinked { get; set; }
         public bool IsFacebookLinked { get; set; }
+
+        /// <summary>
+        /// SOCIAL_LOGIN_ marker suggests an external-created account, but is not proof of a linked Google identity.
+        /// </summary>
+        public bool HasUnconfirmedSocialLoginMarker { get; set; }
     }
 }

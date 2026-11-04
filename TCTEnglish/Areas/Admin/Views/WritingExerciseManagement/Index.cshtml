@@ -10,15 +10,11 @@
     var topicOptions = Model?.TopicOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
     var visibilityOptions = Model?.VisibilityOptions ?? new List<TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseOptionViewModel>();
 
-    var totalExercises = exercises.Count;
-    var publishedCount = exercises.Count(item => item.IsPublished);
+    var totalExercises = Model.TotalExercises;
+    var publishedCount = Model.PublishedCount;
     var hiddenCount = totalExercises - publishedCount;
-    var totalAutoSplitSentences = exercises.Sum(item => item.SentenceCount);
-    var activeTopics = exercises
-        .Select(item => item.Topic)
-        .Where(topic => !string.IsNullOrWhiteSpace(topic))
-        .Distinct(StringComparer.OrdinalIgnoreCase)
-        .Count();
+    var totalAutoSplitSentences = Model.TotalSentences;
+    var activeTopics = Model.ActiveTopics;
 }
 
 @section Styles {
@@ -111,13 +107,13 @@
                 </button>
             </div>
 
-            <div class="row g-3 align-items-end">
+            <form method="get" asp-action="Index" class="row g-3 align-items-end" id="catalogFilters">
                 <div class="col-xl-3 col-md-6">
                     <label for="filterSearch" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-magnifying-glass me-1"></i> Tìm nhanh
                     </label>
-                    <input id="filterSearch"
-                           type="search"
+                    <input id="filterSearch" name="search"
+                           type="search" value="@Model.Search"
                            class="form-control"
                            placeholder="Nhập tiêu đề hoặc chủ đề..." />
                 </div>
@@ -126,11 +122,11 @@
                     <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-layer-group me-1"></i> Trình độ
                     </label>
-                    <select id="filterLevel" class="form-select">
+                    <select id="filterLevel" name="level" class="form-select">
                         <option value="">Tất cả trình độ</option>
                         @foreach (var option in levelOptions)
                         {
-                            <option value="@option.Value">@option.Label</option>
+                            <option value="@option.Value" selected="@(Model.Level == option.Value)">@option.Label</option>
                         }
                     </select>
                 </div>
@@ -139,11 +135,11 @@
                     <label for="filterContentType" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-pen-nib me-1"></i> Content type
                     </label>
-                    <select id="filterContentType" class="form-select">
+                    <select id="filterContentType" name="contentType" class="form-select">
                         <option value="">Tất cả loại</option>
                         @foreach (var option in contentTypeOptions)
                         {
-                            <option value="@option.Value">@option.Label</option>
+                            <option value="@option.Value" selected="@(Model.ContentType == option.Value)">@option.Label</option>
                         }
                     </select>
                 </div>
@@ -152,10 +148,10 @@
                     <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-tag me-1"></i> Chủ đề
                     </label>
-                    <select id="filterTopic" class="form-select">
+                    <select id="filterTopic" name="topic" class="form-select">
                         @foreach (var option in topicOptions)
                         {
-                            <option value="@(option.Value == "all" ? string.Empty : option.Value)">@option.Label</option>
+                            <option value="@(option.Value == "all" ? string.Empty : option.Value)" selected="@(Model.Topic == (option.Value == "all" ? string.Empty : option.Value))">@option.Label</option>
                         }
                     </select>
                 </div>
@@ -164,14 +160,15 @@
                     <label for="filterVisibility" class="form-label fw-semibold text-muted small mb-1">
                         <i class="fa-solid fa-eye me-1"></i> Trạng thái hiển thị
                     </label>
-                    <select id="filterVisibility" class="form-select">
+                    <select id="filterVisibility" name="visibility" class="form-select">
                         @foreach (var option in visibilityOptions)
                         {
-                            <option value="@(option.Value == "all" ? string.Empty : option.Value)">@option.Label</option>
+                            <option value="@(option.Value == "all" ? string.Empty : option.Value)" selected="@(Model.Visibility == (option.Value == "all" ? string.Empty : option.Value))">@option.Label</option>
                         }
                     </select>
                 </div>
-            </div>
+                <div class="col-auto"><button type="submit" class="btn btn-primary btn-sm">Lọc</button></div>
+            </form>
 
             <div class="d-flex align-items-center justify-content-between gap-3 mt-3 flex-wrap">
                 <div class="text-muted small">
@@ -180,7 +177,7 @@
                         <span>Danh sách được sắp theo bài mới tạo gần nhất.</span>
                     }
                 </div>
-                <div id="filterResultCount" class="text-muted small fw-semibold"></div>
+                <div id="filterResultCount" class="text-muted small fw-semibold">@Model.TotalCount kết quả</div>
             </div>
         </div>
     </div>
@@ -262,14 +259,16 @@
                                     <td class="pe-4 text-center">
                                         <div class="d-flex gap-1 justify-content-center">
                                             <a asp-action="Edit" asp-route-id="@item.Id"
-                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                               class="btn btn-sm btn-outline-primary" title="Chỉnh sửa"
+                                               aria-label="Chỉnh sửa bài viết @item.Title">
                                                 <i class="fa-solid fa-pen"></i>
                                             </a>
                                             <button type="button"
                                                     class="btn btn-sm btn-outline-danger btn-delete-exercise"
                                                     data-exercise-id="@item.Id"
                                                     data-exercise-title="@item.Title"
-                                                    title="Xóa">
+                                                    title="Xóa"
+                                                    aria-label="Xóa bài viết @item.Title">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </div>
@@ -282,6 +281,7 @@
             </div>
         </div>
     </div>
+    <partial name="_CatalogPager" model="Model" />
 </div>
 
 <div class="modal fade" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
@@ -317,57 +317,10 @@
 @section Scripts {
     <script>
         (function () {
-            const filterSearch = document.getElementById('filterSearch');
-            const filterLevel = document.getElementById('filterLevel');
-            const filterContentType = document.getElementById('filterContentType');
-            const filterTopic = document.getElementById('filterTopic');
-            const filterVisibility = document.getElementById('filterVisibility');
-            const btnReset = document.getElementById('btnResetFilter');
-            const resultCount = document.getElementById('filterResultCount');
-            const tbody = document.getElementById('exerciseTableBody');
-
-            function applyFilters() {
-                const search = (filterSearch.value || '').trim().toLowerCase();
-                const level = filterLevel.value;
-                const contentType = filterContentType.value;
-                const topic = filterTopic.value;
-                const visibility = filterVisibility.value;
-                const rows = tbody.querySelectorAll('tr[data-level]');
-                let visible = 0;
-
-                rows.forEach(function (row) {
-                    const matches =
-                        (!search || row.getAttribute('data-search').includes(search)) &&
-                        (!level || row.getAttribute('data-level') === level) &&
-                        (!contentType || row.getAttribute('data-content-type') === contentType) &&
-                        (!topic || row.getAttribute('data-topic') === topic) &&
-                        (!visibility || row.getAttribute('data-visibility') === visibility);
-
-                    row.style.display = matches ? '' : 'none';
-                    if (matches) {
-                        visible++;
-                    }
-                });
-
-                if (search || level || contentType || topic || visibility) {
-                    resultCount.textContent = 'Hiển thị ' + visible + ' / ' + rows.length + ' bài viết';
-                } else {
-                    resultCount.textContent = '';
-                }
-            }
-
-            [filterSearch, filterLevel, filterContentType, filterTopic, filterVisibility].forEach(function (element) {
-                element.addEventListener(element === filterSearch ? 'input' : 'change', applyFilters);
+            document.querySelectorAll('#catalogFilters select').forEach(function (select) {
+                select.addEventListener('change', function () { document.getElementById('catalogFilters').requestSubmit(); });
             });
-
-            btnReset.addEventListener('click', function () {
-                filterSearch.value = '';
-                filterLevel.value = '';
-                filterContentType.value = '';
-                filterTopic.value = '';
-                filterVisibility.value = '';
-                applyFilters();
-            });
+            document.getElementById('btnResetFilter').addEventListener('click', function () { window.location.href = '@Url.Action("Index")'; });
 
             const deleteModalElement = document.getElementById('deleteExerciseModal');
             if (!deleteModalElement || typeof bootstrap === 'undefined') {

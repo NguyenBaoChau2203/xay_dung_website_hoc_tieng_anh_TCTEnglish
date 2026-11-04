@@ -40,32 +40,45 @@
             </div>
         </div>
 
-        <div class="row g-2 ai-chat-metrics" id="aiObservabilityPanel">
-            <div class="col-md-3">
-                <div class="ai-chat-metric-card">
-                    <div class="ai-chat-metric-label">Requests (7 ngày)</div>
-                    <div id="aiMetricRequestCount" class="ai-chat-metric-value">-</div>
+        <details class="ai-chat-observability-disclosure" id="aiObservabilityDetails">
+            <summary class="ai-chat-observability-summary">
+                <span class="ai-chat-observability-summary-title">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" aria-hidden="true">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    Chỉ số hệ thống AI
+                </span>
+                <span class="ai-chat-observability-summary-hint">Requests, Latency, Quota</span>
+            </summary>
+            <div class="row g-2 ai-chat-metrics mt-2" id="aiObservabilityPanel">
+                <div class="col-6 col-md-3">
+                    <div class="ai-chat-metric-card">
+                        <div class="ai-chat-metric-label">Requests (7 ngày)</div>
+                        <div id="aiMetricRequestCount" class="ai-chat-metric-value">-</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ai-chat-metric-card">
+                        <div class="ai-chat-metric-label">Error rate</div>
+                        <div id="aiMetricErrorRate" class="ai-chat-metric-value">-</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ai-chat-metric-card">
+                        <div class="ai-chat-metric-label">Latency p50/p95</div>
+                        <div id="aiMetricLatency" class="ai-chat-metric-value">-</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ai-chat-metric-card">
+                        <div class="ai-chat-metric-label">Token hôm nay</div>
+                        <div id="aiMetricTokenToday" class="ai-chat-metric-value">-</div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="ai-chat-metric-card">
-                    <div class="ai-chat-metric-label">Error rate</div>
-                    <div id="aiMetricErrorRate" class="ai-chat-metric-value">-</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="ai-chat-metric-card">
-                    <div class="ai-chat-metric-label">Latency p50/p95</div>
-                    <div id="aiMetricLatency" class="ai-chat-metric-value">-</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="ai-chat-metric-card">
-                    <div class="ai-chat-metric-label">Token hôm nay</div>
-                    <div id="aiMetricTokenToday" class="ai-chat-metric-value">-</div>
-                </div>
-            </div>
-        </div>
+        </details>
     }
 
     <div class="ai-chat-window-wrapper" data-ai-chat-panel>
@@ -94,6 +107,20 @@
             }
             else
             {
+                @if (Model.HasMoreMessages)
+                {
+                    <div class="ai-chat-load-older-row">
+                        <button type="button"
+                                class="btn btn-link btn-sm ai-chat-load-older"
+                                data-ai-load-older="messages"
+                                data-ai-load-older-url="@(Url.Action("MessagesPage", "Ai") ?? "/AI/Chat/Messages")"
+                                data-ai-message-cursor-time="@(Model.OldestMessageCreatedAtUtc?.ToString("O") ?? string.Empty)"
+                                data-ai-message-cursor-id="@(Model.OldestMessageId?.ToString() ?? string.Empty)"
+                                data-conversation-id="@(Model.ConversationId?.ToString() ?? string.Empty)">
+                            Tải tin nhắn cũ / Load older
+                        </button>
+                    </div>
+                }
                 @foreach (var message in Model.Messages)
                 {
                     var isUser = string.Equals(message.Role, "user", System.StringComparison.OrdinalIgnoreCase);
@@ -110,7 +137,10 @@
                             ? "ai-chat-bubble ai-chat-bubble-system"
                             : "ai-chat-bubble ai-chat-bubble-assistant";
 
-                    <div class="@messageClass" data-role="@message.Role">
+                    <div class="@messageClass"
+                         data-role="@message.Role"
+                         data-message-id="@message.Id"
+                         data-created-at="@message.CreatedAtUtc.ToString("O")">
                         @if (isAssistant || isSystem)
                         {
                             <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
@@ -181,13 +211,14 @@
                 <label for="messageInput" class="visually-hidden">Nội dung tin nhắn chat</label>
 
                 <div class="ai-chat-composer-main">
-                    <input id="messageInput"
-                           class="form-control ai-chat-input"
-                           maxlength="1000"
-                           placeholder="Nhập câu hỏi của bạn..."
-                           autocomplete="off"
-                           aria-label="Nhập câu hỏi của bạn cho trợ lý AI"
-                           aria-describedby="chatStatus" />
+                    <textarea id="messageInput"
+                              class="form-control ai-chat-input"
+                              maxlength="1000"
+                              rows="1"
+                              placeholder="Nhập câu hỏi của bạn... (Enter gửi, Shift+Enter xuống dòng)"
+                              autocomplete="off"
+                              aria-label="Nhập câu hỏi của bạn cho trợ lý AI"
+                              aria-describedby="chatStatus"></textarea>
 
                     <div class="ai-chat-composer-actions">
                         <button id="sendBtn" class="btn btn-primary ai-chat-send-btn" type="submit">Gửi</button>

@@ -1,5 +1,9 @@
 # Cursor Auto — khép WR01/WR02 của Whisper Plan 1
 
+> **SUPERSEDED — 04/11/2026. Chỉ lưu lịch sử, không thực thi prompt này.**
+> Local Whisper đã được thay bằng OpenAI Speech-to-Text. Xem AGENTS.md và
+> `docs/operations/local-speech.md`; không phục hồi engine hoặc auto-start cũ.
+
 Một agent duy nhất thực thi/review/verify. Đọc AGENTS.md và:
 
 - docs/feature-audits/2026-11-01-cursor-whisper-lifecycle-rereview.md

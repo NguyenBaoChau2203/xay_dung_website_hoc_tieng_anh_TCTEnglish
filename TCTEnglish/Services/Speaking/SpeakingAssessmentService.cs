@@ -41,17 +41,20 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
 {
     private readonly DbflashcardContext _context;
     private readonly ISpeechTranscriber _transcriber;
+    private readonly ISpeakingAssessmentAdmission _admission;
     private readonly SpeechProcessingOptions _options;
     private readonly ILogger<SpeakingAssessmentService> _logger;
 
     public SpeakingAssessmentService(
         DbflashcardContext context,
         ISpeechTranscriber transcriber,
+        ISpeakingAssessmentAdmission admission,
         IOptions<SpeechProcessingOptions> options,
         ILogger<SpeakingAssessmentService> logger)
     {
         _context = context;
         _transcriber = transcriber;
+        _admission = admission;
         _options = options.Value;
         _logger = logger;
     }
@@ -84,6 +87,22 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
         if (!validation.IsValid)
         {
             return Fail(400, validation.ErrorCode ?? "invalid_audio", validation.Message ?? "Audio không hợp lệ.");
+        }
+
+        // Per-user guard after ownership + audio validation, before paid admission/transcribe.
+        if (!_admission.TryAdmit(userId, out var retryAfter))
+        {
+            return new SpeakingAssessmentOutcome
+            {
+                Success = false,
+                StatusCode = 429,
+                ErrorCode = "engine_busy",
+                Message = "Bạn đang gửi đánh giá quá nhanh. Thử lại sau.",
+                RetryAfterSeconds = retryAfter,
+                FluencyAvailable = false,
+                CompletenessAvailable = false,
+                CanCommitProgress = false
+            };
         }
 
         buffer.Position = 0;
@@ -143,8 +162,12 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             SentenceId = sentenceId,
             CreatedAtUtc = now,
             ExpiresAtUtc = now.AddMinutes(Math.Clamp(_options.AssessmentTtlMinutes, 1, 60)),
-            EngineName = string.IsNullOrWhiteSpace(transcription.EngineName) ? "whisper.cpp" : transcription.EngineName,
-            ModelIdentity = transcription.ModelIdentity ?? _options.ModelIdentity,
+            EngineName = string.IsNullOrWhiteSpace(transcription.EngineName)
+                ? OpenAiSpeechTranscriber.EngineName
+                : transcription.EngineName,
+            ModelIdentity = string.IsNullOrWhiteSpace(transcription.ModelIdentity)
+                ? _options.OpenAI.Model
+                : transcription.ModelIdentity,
             TranscriptText = speechDetected ? transcription.Transcript : string.Empty,
             TextMatchScore = Math.Round(textMatch, 2),
             SpeechDetected = speechDetected,

@@ -48,12 +48,83 @@ namespace TCTVocabulary.Controllers
 
         [HttpGet("/Speaking")]
         [HttpGet("/Speaking/Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+            string? level = null,
+            string? topic = null,
+            string? search = null,
+            int page = 1,
+            int pageSize = SpeakingService.DefaultPublicPageSize,
+            bool mine = false)
         {
             var currentUserId = TryGetCurrentUserId(out var userId) ? userId : (int?)null;
-            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId);
+            var query = new SpeakingCatalogQuery
+            {
+                Level = level,
+                Topic = topic,
+                Search = search,
+                Page = page,
+                PageSize = pageSize,
+                Mine = mine
+            };
+            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query);
 
             return View(viewModel);
+        }
+
+        /// <summary>JSON continuation for public/my Speaking catalog paging (SQL LIMIT).</summary>
+        [HttpGet("/Speaking/Videos")]
+        [HttpGet("/api/speaking/videos")]
+        public async Task<IActionResult> Videos(
+            string? level = null,
+            string? topic = null,
+            string? search = null,
+            int page = 1,
+            int pageSize = SpeakingService.DefaultPublicPageSize,
+            bool mine = false)
+        {
+            var currentUserId = TryGetCurrentUserId(out var userId) ? userId : (int?)null;
+            if (mine && currentUserId is null)
+            {
+                return Unauthorized();
+            }
+
+            var query = new SpeakingCatalogQuery
+            {
+                Level = level,
+                Topic = topic,
+                Search = search,
+                Page = Math.Max(1, page),
+                PageSize = pageSize,
+                Mine = mine
+            };
+            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query);
+
+            if (mine)
+            {
+                return Json(new
+                {
+                    items = viewModel.MyVideos,
+                    page = viewModel.Page,
+                    pageSize = viewModel.PageSize,
+                    totalCount = viewModel.MyVideosTotalCount,
+                    hasMore = viewModel.MyVideosHasMore
+                });
+            }
+
+            var items = string.IsNullOrWhiteSpace(level) || level.Equals("all", StringComparison.OrdinalIgnoreCase)
+                ? viewModel.VideosByLevel.SelectMany(kv => kv.Value).ToList()
+                : viewModel.VideosByLevel.GetValueOrDefault(level) ?? [];
+
+            return Json(new
+            {
+                items,
+                page = viewModel.Page,
+                pageSize = viewModel.PageSize,
+                totalCount = viewModel.PublicTotalCount,
+                hasMore = viewModel.PublicHasMore,
+                totalsByLevel = viewModel.PublicTotalByLevel,
+                hasMoreByLevel = viewModel.PublicHasMoreByLevel
+            });
         }
 
         [HttpGet("/Speaking/Practice")]

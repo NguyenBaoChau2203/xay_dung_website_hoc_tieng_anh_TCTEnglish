@@ -46,6 +46,10 @@ namespace TCTVocabulary.Workers
                 {
                     await ProcessExpiredLocksAsync(stoppingToken);
                 }
+                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+                {
+                    break;
+                }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "AutoUnlockWorker encountered an error.");
@@ -57,7 +61,7 @@ namespace TCTVocabulary.Workers
             _logger.LogInformation("AutoUnlockWorker stopped.");
         }
 
-        private async Task ProcessExpiredLocksAsync(CancellationToken stoppingToken)
+        public async Task<int> ProcessExpiredLocksAsync(CancellationToken stoppingToken)
         {
             using var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -65,7 +69,7 @@ namespace TCTVocabulary.Workers
 
             var now = DateTime.UtcNow;
 
-            var expiredUsers = await context.Users
+            var expiredUsers = await context.Users.AsNoTracking()
                 .Where(u => u.Status == UserStatus.Blocked
                          && u.LockExpiry.HasValue
                          && u.LockExpiry.Value <= now
@@ -74,38 +78,49 @@ namespace TCTVocabulary.Workers
 
             if (expiredUsers.Count == 0)
             {
-                return;
+                return 0;
             }
 
             _logger.LogInformation("AutoUnlockWorker: Found {Count} expired lock(s).", expiredUsers.Count);
 
-            var statusChanges = new List<AdminUserStatusChangedMessage>();
+            var unlocked = 0;
 
             foreach (var user in expiredUsers)
             {
-                var previousStatus = user.Status;
-
-                user.Status = UserPresenceTracker.IsUserOnline(user.UserId)
+                stoppingToken.ThrowIfCancellationRequested();
+                var currentStatus = UserPresenceTracker.IsUserOnline(user.UserId)
                     ? UserStatus.Online
                     : UserStatus.Offline;
-                user.LockReason = null;
-                user.LockExpiry = null;
-
-                statusChanges.Add(AdminUserStatusChangedMessage.Create(
-                    user.UserId,
-                    previousStatus,
-                    user.Status));
-
-                await emailSender.SendUnlockedNotificationAsync(user.Email, isAutoUnlock: true);
+                // Only the worker that wins the conditional transition may send a notice.
+                // Commit first; never hold a DB transaction across SMTP.
+                var affected = await context.Users
+                    .Where(u => u.UserId == user.UserId && u.Status == UserStatus.Blocked && u.LockExpiry == user.LockExpiry)
+                    .ExecuteUpdateAsync(s => s.SetProperty(u => u.Status, currentStatus)
+                        .SetProperty(u => u.LockReason, (string?)null).SetProperty(u => u.LockExpiry, (DateTime?)null), stoppingToken);
+                if (affected == 0) continue;
+                unlocked++;
+                try
+                {
+                    await _hubContext.Clients.Group(ClassChatHub.AdminPresenceGroupName)
+                        .SendAsync("UserStatusChanged", AdminUserStatusChangedMessage.Create(user.UserId, UserStatus.Blocked, currentStatus), stoppingToken);
+                }
+                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { throw; }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning("Unlock committed; notification failed for user {UserId} ({Category}).", user.UserId, ex.GetType().Name);
+                }
+                try
+                {
+                    var delivered = await emailSender.TrySendUnlockedNotificationAsync(user.Email, true, stoppingToken);
+                    if (!delivered) _logger.LogWarning("Unlock committed; email delivery failed for user {UserId}.", user.UserId);
+                }
+                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { throw; }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning("Unlock committed; email failed for user {UserId} ({Category}).", user.UserId, ex.GetType().Name);
+                }
             }
-
-            await context.SaveChangesAsync(stoppingToken);
-
-            foreach (var statusChange in statusChanges)
-            {
-                await _hubContext.Clients.Group(ClassChatHub.AdminPresenceGroupName)
-                    .SendAsync("UserStatusChanged", statusChange, stoppingToken);
-            }
+            return unlocked;
         }
     }
 }

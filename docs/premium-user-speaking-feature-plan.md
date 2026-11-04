@@ -1,5 +1,10 @@
 # Kế hoạch chuyển Premium YouTube import sang Speaking
 
+> **Lưu lịch sử — chỉ dẫn speech provider đã được thay thế, 04/11/2026.**
+> Không khôi phục Whisper hoặc Gemini theo kế hoạch cũ này. Learner import hiện
+> dùng captions/SRT/VTT; Admin/legacy audio fallback dùng OpenAI Speech-to-Text.
+> Hướng dẫn hiện tại: AGENTS.md và docs/operations/local-speech.md.
+
 ## 1. Mục tiêu
 
 Chuyển hướng feature đang nghĩ cho `Listening` sang đúng domain `Speaking`, để user có thể thêm video YouTube riêng vào khu luyện nói.

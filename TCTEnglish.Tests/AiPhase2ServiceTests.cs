@@ -1,8 +1,11 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Models;
 using TCTEnglish.Services.AI;
+using TCTEnglish.Tests.Infrastructure;
 using TCTEnglish.Tests.TestHelpers;
 using TCTVocabulary.Models;
 using Xunit;
@@ -428,13 +431,26 @@ public sealed class AiChatServiceTests
         Assert.Equal("success", result.Text);
     }
 
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, SqliteConnection> SqliteKeepers = new();
+
     private static DbflashcardContext CreateContext(string dbName)
     {
+        // Relational fixture required: quota reservation uses real transactions (R8).
+        var connection = SqliteKeepers.GetOrAdd(dbName, static name =>
+        {
+            var keeper = new SqliteConnection($"Data Source=file:{name}?mode=memory&cache=shared");
+            keeper.Open();
+            return keeper;
+        });
+
         var options = new DbContextOptionsBuilder<DbflashcardContext>()
-            .UseInMemoryDatabase(dbName)
+            .UseSqlite(connection)
+            .ReplaceService<IModelCustomizer, SqliteTestModelCustomizer>()
             .Options;
 
-        return new DbflashcardContext(options);
+        var context = new DbflashcardContext(options);
+        context.Database.EnsureCreated();
+        return context;
     }
 
     private static async Task<Guid> SeedUsersAndConversationAsync(DbflashcardContext context, int ownerUserId)
@@ -509,6 +525,7 @@ public sealed class AiChatServiceTests
             new AiContextBuilder(new SimpleAiTokenCounter()),
             providerClient,
             guard ?? new AiConversationExecutionGuard(),
+            AiDailyQuotaReservationService.ForDbContext(context),
             aiOptions,
             NullLogger<AiChatService>.Instance);
     }

@@ -1,7 +1,7 @@
 # Speaking learner import (L5)
 
 - Learner `CreateOwnedVideo` uses **English captions with valid timestamps only**.
-- Shared `GetTranscriptForSpeakingImportAsync` (Listening/Admin) tries captions first, then bounded local Whisper audio import with real ASR timestamps.
+- Shared `GetTranscriptForSpeakingImportAsync` (Listening/Admin) tries captions first, then bounded OpenAI audio-window import (`openai-audio-vad`) with measured PCM sample offsets (segment-window timing, not word alignment).
 - Premium Speaking learner import stays captions/SRT/VTT-only; it does not download media.
 - Optional async jobs: `ISpeakingImportJobService` + `SpeakingImportWorker` (queued/running/succeeded/failed).
 - Subtitle helper: `SpeakingSubtitleParser` for SRT/WebVTT (1 MiB / 2000 cues / 30 min). Rejects invalid/unordered timestamps; never fabricates timecodes.

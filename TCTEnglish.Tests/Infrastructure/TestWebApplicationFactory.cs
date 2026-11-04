@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
+using TCTEnglish.Services.Speaking;
 using TCTVocabulary.Models;
 using TCTVocabulary.Workers;
 
@@ -113,6 +114,10 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.AddSingleton<IAiQueryClassifier>(sp => sp.GetRequiredService<DeterministicIntentClassifier>());
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(sp => sp.GetRequiredService<InternalKnowledgeProvider>());
+
+            // Ordinary tests must not hit OpenAI audio even when the host has OPENAI_API_KEY.
+            services.RemoveAll<IOpenAiSpeechCredentialResolver>();
+            services.AddSingleton<IOpenAiSpeechCredentialResolver>(new BlockedOpenAiSpeechCredentialResolver());
 
             _configureTestServices?.Invoke(services);
         });
@@ -420,5 +425,15 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
 
         var result = await command.ExecuteScalarAsync();
         return result is not null && result != DBNull.Value;
+    }
+}
+
+/// <summary>Default test speech credentials: never configured, never network.</summary>
+internal sealed class BlockedOpenAiSpeechCredentialResolver : IOpenAiSpeechCredentialResolver
+{
+    public bool TryResolve(out OpenAiSpeechCredentials credentials)
+    {
+        credentials = default!;
+        return false;
     }
 }

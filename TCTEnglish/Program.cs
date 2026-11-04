@@ -15,7 +15,12 @@ using TCTVocabulary.Services;
 using TCTVocabulary.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(options =>
+{
+    // Allow StopAiStream to run while StartAiStream awaits the provider on the same connection.
+    // Hub DB work must open its own scope (see ClassChatHub) — never share one DbContext across parallel invocations.
+    options.MaximumParallelInvocationsPerClient = 2;
+});
 builder.Services.AddRazorPages()
     .AddJsonOptions(options =>
     {
@@ -34,6 +39,8 @@ builder.Services.AddDbContext<DbflashcardContext>(options =>
     options.UseMySql(settings.ConnectionString, settings.ServerVersion);
 });
 
+builder.Services.AddSingleton<ISmtpMailTransport, SmtpClientMailTransport>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
@@ -50,22 +57,32 @@ builder.Services.AddOptions<TCTEnglish.Services.Writing.WritingEvaluationOptions
     .BindConfiguration(TCTEnglish.Services.Writing.WritingEvaluationOptions.SectionName);
 builder.Services.AddOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>()
     .BindConfiguration(TCTEnglish.Services.Speaking.SpeechProcessingOptions.SectionName);
+builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddSingleton<TCTEnglish.Services.Speaking.ISpeechInferenceLimiter, TCTEnglish.Services.Speaking.SpeechInferenceLimiter>();
+builder.Services.AddSingleton<TCTEnglish.Services.Speaking.ISpeakingAssessmentAdmission, TCTEnglish.Services.Speaking.SpeakingAssessmentAdmission>();
+builder.Services.AddSingleton<TCTEnglish.Services.Speaking.IOpenAiSpeechCredentialResolver, TCTEnglish.Services.Speaking.OpenAiSpeechCredentialResolver>();
+builder.Services.AddSingleton<TCTEnglish.Services.Speaking.IPcmSpeechWindowPlanner, TCTEnglish.Services.Speaking.PcmSpeechWindowPlanner>();
 builder.Services.AddOptions<TCTEnglish.Services.Speaking.AudioImportOptions>()
     .BindConfiguration(TCTEnglish.Services.Speaking.AudioImportOptions.SectionName);
 builder.Services.AddScoped<TCTEnglish.Services.Speaking.IYoutubeAudioSource, TCTEnglish.Services.Speaking.YoutubeAudioSource>();
 builder.Services.AddScoped<TCTEnglish.Services.Speaking.IAudioPcmDecoder, TCTEnglish.Services.Speaking.FfmpegPcmDecoder>();
 builder.Services.AddScoped<TCTEnglish.Services.Speaking.IAudioTranscriptImporter, TCTEnglish.Services.Speaking.AudioTranscriptImporter>();
-builder.Services.AddHttpClient<TCTEnglish.Services.Speaking.ISpeechTranscriber, TCTEnglish.Services.Speaking.WhisperHttpTranscriber>((sp, client) =>
+builder.Services.AddHttpClient<TCTEnglish.Services.Speaking.ISpeechTranscriber, TCTEnglish.Services.Speaking.OpenAiSpeechTranscriber>((sp, client) =>
 {
     var speechOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<TCTEnglish.Services.Speaking.SpeechProcessingOptions>>().Value;
-    if (speechOptions.IsConfigured
-        && Uri.TryCreate(speechOptions.WhisperHttpBaseUrl.TrimEnd('/') + "/", UriKind.Absolute, out var baseAddress))
+    var baseUrl = string.IsNullOrWhiteSpace(speechOptions.OpenAI.BaseUrl)
+        ? "https://api.openai.com/v1/"
+        : speechOptions.OpenAI.BaseUrl.TrimEnd('/') + "/";
+    if (TCTEnglish.Services.Speaking.OpenAiSpeechCredentialResolver.TryBuildBaseAddress(baseUrl, out var baseAddress))
     {
         client.BaseAddress = baseAddress;
     }
 
     client.Timeout = TimeSpan.FromSeconds(Math.Clamp(speechOptions.InferenceTimeoutSeconds, 1, 60) + 2);
+})
+.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    AllowAutoRedirect = false
 });
 builder.Services.AddScoped<TCTEnglish.Services.Speaking.ISpeakingAssessmentService, TCTEnglish.Services.Speaking.SpeakingAssessmentService>();
 builder.Services.AddScoped<TCTEnglish.Services.Speaking.ISpeakingImportJobService, TCTEnglish.Services.Speaking.SpeakingImportJobService>();
@@ -129,6 +146,8 @@ builder.Services.AddOptions<AiOptions>()
         configuration.GetSection("AI").Bind(options);
     });
 builder.Services.AddScoped<IAiConversationService, AiConversationService>();
+// Isolated scoped DbContext per quota transaction — never flush caller's pending chat entities.
+builder.Services.AddScoped<IAiDailyQuotaReservationService, AiDailyQuotaReservationService>();
 builder.Services.AddScoped<IAiChatService, AiChatService>();
 builder.Services.AddScoped<IAiObservabilityService, AiObservabilityService>();
 builder.Services.AddScoped<IAiContextBuilder, AiContextBuilder>();
@@ -178,6 +197,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 })
 .AddCookie("ExternalCookie")

@@ -7,7 +7,7 @@
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--6%20Luna-blue?style=for-the-badge)](#)
 
-> **TCT English** là nền tảng học từ vựng và luyện Speaking/Writing dành cho cán bộ nhân viên Công ty TCT. Hệ thống dùng OpenAI GPT-6 Luna cho văn bản, Whisper local cho nhận dạng giọng nói và SignalR cho tương tác thời gian thực.
+> **TCT English** là nền tảng học từ vựng và luyện Speaking/Writing dành cho cán bộ nhân viên Công ty TCT. Hệ thống dùng OpenAI GPT-6 Luna cho văn bản, OpenAI Speech-to-Text (`gpt-transcribe`) cho nhận dạng giọng nói và SignalR cho tương tác thời gian thực.
 
 ---
 
@@ -33,7 +33,7 @@ Dự án được xây dựng dựa trên kiến trúc **Feature-Oriented MVC** 
 *   **Real-time Communication:** SignalR Core (`ClassChatHub`) cho hệ thống chat lớp học thời gian thực.
 *   **Generative AI:** OpenAI Responses API, `gpt-6-luna`, `reasoning.effort=low` cho các tác vụ văn bản.
 *   **Media Processing:** Sử dụng thư viện `YoutubeExplode` để tự động phân tích và trích xuất phụ đề (transcript) từ video YouTube làm học liệu luyện nói.
-*   **Speech Recognition:** Thu âm trong trình duyệt và nhận dạng bằng Whisper local; FFmpeg được khóa pin cho shared audio import.
+*   **Speech Recognition:** Thu âm trong trình duyệt và nhận dạng bằng OpenAI `gpt-transcribe` (server-side); FFmpeg được khóa pin cho Admin/legacy audio import.
 *   **Security & Infrastructure:** Cookie-based Authentication kết hợp Google/Facebook OAuth; SMTP Mailer cho email hệ thống và khôi phục mật khẩu.
 
 ### 2. Các Ranh Giới Nghiệp Vụ Chính (Controller & View Boundaries)
@@ -173,7 +173,7 @@ Cấu hình khóa dev bằng .NET User Secrets, ngoài Git:
 
 Website mặc định dùng `gpt-6-luna`/`reasoning.effort=low`, độc lập với model Codex/IDE.
 Writing Local và cloud feedback tắt là mặc định. Launcher giữ DB và key từng máy,
-provision Whisper + FFmpeg đã khóa pin dưới `.appdata/local`; lần đầu cần network
+provision MariaDB local; FFmpeg pin (audio import) chạy riêng qua `local-media.ps1`; lần đầu cần network
 và các prerequisites local hiện hành. Key/account cần credit và quyền model.
 Xem [hướng dẫn OpenAI local](docs/operations/openai-local-setup.md) để biết thứ tự
 ưu tiên env, kiểm thử offline/live và giới hạn media. Source thay đổi chưa deploy production.

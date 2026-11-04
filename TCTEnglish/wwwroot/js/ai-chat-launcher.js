@@ -163,6 +163,7 @@
 
         function openLauncher() {
             ensureFrameLoaded();
+            void refreshQuotaFromServerAsync();
             lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
             root.classList.add('is-open');
             toggleButton.setAttribute('aria-expanded', 'true');

@@ -26,11 +26,19 @@ public class SpeakingVideoManagementController : Controller
     }
 
     // GET: Admin/SpeakingVideoManagement
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? level, string? topic, int page = 1)
     {
-        var videos = await _context.SpeakingVideos
-            .AsNoTracking()
+        var query = _context.SpeakingVideos.AsNoTracking();
+        var levels = await query.Select(v => v.Level ?? "").Distinct().OrderBy(v => v).ToListAsync();
+        var topics = await query.Select(v => v.Topic ?? "").Distinct().OrderBy(v => v).ToListAsync();
+        if (!string.IsNullOrWhiteSpace(level)) query = query.Where(v => v.Level == level);
+        if (!string.IsNullOrWhiteSpace(topic)) query = query.Where(v => v.Topic == topic);
+        var total = await query.CountAsync();
+        var pages = Math.Max(1, (int)Math.Ceiling(total / 20d));
+        page = Math.Clamp(page, 1, pages);
+        var videos = await query
             .OrderByDescending(v => v.Id)
+            .Skip((page - 1) * 20).Take(20)
             .Select(v => new
             {
                 Id = v.Id,
@@ -59,7 +67,11 @@ public class SpeakingVideoManagementController : Controller
             SentenceCount = v.SentenceCount
         }).ToList();
 
-        return View(viewModels);
+        return View(new SpeakingVideoIndexViewModel
+        {
+            Videos = viewModels, Levels = levels, Topics = topics, Level = level ?? "", Topic = topic ?? "",
+            CurrentPage = page, TotalPages = pages, TotalCount = total
+        });
     }
 
 

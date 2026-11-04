@@ -127,6 +127,44 @@ namespace TCTEnglish.Migrations
                     b.ToTable("AiMessages", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.AiQuotaReservationLedger", b =>
+                {
+                    b.Property<Guid>("RequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("ActualTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+                    b.Property<DateTime>("DayUtc")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("FinalizedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ReservedTokens")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.HasKey("RequestId");
+
+                    b.HasIndex("UserId", "DayUtc", "Status")
+                        .HasDatabaseName("IX_AiQuotaReservationLedgers_UserId_DayUtc_Status");
+
+                    b.ToTable("AiQuotaReservationLedgers", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
                 {
                     b.Property<Guid>("Id")
@@ -179,6 +217,37 @@ namespace TCTEnglish.Migrations
                         .HasDatabaseName("IX_AiRequestLogs_UserId_RequestedAtUtc");
 
                     b.ToTable("AiRequestLogs", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiUserDailyQuota", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<DateTime>("DayUtc")
+                        .HasColumnType("date");
+
+                    b.Property<int>("PendingQuestions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PendingTokens")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SettledQuestions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SettledTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
+
+                    b.HasKey("UserId", "DayUtc");
+
+                    b.ToTable("AiUserDailyQuotas", (string)null);
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.Notification", b =>
@@ -2817,6 +2886,18 @@ namespace TCTEnglish.Migrations
                     b.Navigation("Conversation");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.AiQuotaReservationLedger", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_AiQuotaReservationLedgers_Users");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.AiRequestLog", b =>
                 {
                     b.HasOne("TCTEnglish.Models.AiConversation", "Conversation")
@@ -2834,6 +2915,18 @@ namespace TCTEnglish.Migrations
                         .HasConstraintName("FK_AiRequestLogs_Users");
 
                     b.Navigation("Conversation");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AiUserDailyQuota", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_AiUserDailyQuotas_Users");
 
                     b.Navigation("User");
                 });

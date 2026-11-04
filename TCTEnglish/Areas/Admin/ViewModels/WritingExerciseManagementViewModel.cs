@@ -2,8 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TCTVocabulary.Areas.Admin.ViewModels;
 
-public sealed class WritingExerciseIndexViewModel
+public sealed class WritingExerciseIndexViewModel : AdminCatalogPageViewModel
 {
+    public int TotalExercises { get; set; }
+    public int PublishedCount { get; set; }
+    public int ActiveTopics { get; set; }
+    public int TotalSentences { get; set; }
     public List<WritingExerciseListItemViewModel> Exercises { get; set; } = new();
     public List<WritingExerciseOptionViewModel> LevelOptions { get; set; } = new();
     public List<WritingExerciseOptionViewModel> ContentTypeOptions { get; set; } = new();
