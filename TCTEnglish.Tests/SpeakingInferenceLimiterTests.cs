@@ -96,12 +96,13 @@ public sealed class SpeakingInferenceLimiterTests
         services.AddLogging();
         services.Configure<SpeechProcessingOptions>(options =>
         {
-            options.WhisperHttpBaseUrl = string.Empty;
+            options.Enabled = true;
             options.MaxConcurrentInferences = 1;
             options.MaxQueuedInferences = 4;
         });
         services.AddSingleton<ISpeechInferenceLimiter, SpeechInferenceLimiter>();
-        services.AddHttpClient<ISpeechTranscriber, WhisperHttpTranscriber>()
+        services.AddSingleton<IOpenAiSpeechCredentialResolver>(new FixedCredentials(false));
+        services.AddHttpClient<ISpeechTranscriber, OpenAiSpeechTranscriber>()
             .ConfigurePrimaryHttpMessageHandler(() => handler);
         await using var provider = services.BuildServiceProvider();
         using var first = provider.CreateScope();
@@ -116,23 +117,24 @@ public sealed class SpeakingInferenceLimiterTests
         Assert.Equal(0, handler.Calls);
     }
 
-    private static WhisperHttpTranscriber CreateTranscriber(HoldHandler handler, ISpeechInferenceLimiter limiter, int timeoutSeconds)
+    private static OpenAiSpeechTranscriber CreateTranscriber(HoldHandler handler, ISpeechInferenceLimiter limiter, int timeoutSeconds)
     {
         var client = new HttpClient(handler, disposeHandler: false)
         {
-            BaseAddress = new Uri("http://127.0.0.1")
+            BaseAddress = new Uri("https://api.openai.com/v1/")
         };
-        return new WhisperHttpTranscriber(
+        return new OpenAiSpeechTranscriber(
             client,
             Options.Create(new SpeechProcessingOptions
             {
-                WhisperHttpBaseUrl = "http://127.0.0.1",
                 InferenceTimeoutSeconds = timeoutSeconds,
                 MaxConcurrentInferences = 1,
-                MaxQueuedInferences = 4
+                MaxQueuedInferences = 4,
+                OpenAI = new OpenAiSpeechOptions { Model = "gpt-transcribe", BaseUrl = "https://api.openai.com/v1/" }
             }),
+            new FixedCredentials(true),
             limiter,
-            NullLogger<WhisperHttpTranscriber>.Instance);
+            NullLogger<OpenAiSpeechTranscriber>.Instance);
     }
 
     private static MemoryStream EmptyWav() => new(new byte[] { 0, 1, 2, 3 });
@@ -162,8 +164,27 @@ public sealed class SpeakingInferenceLimiterTests
             await Release.Task.WaitAsync(cancellationToken);
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent("{\"text\":\"hello\",\"segments\":[]}")
+                Content = new StringContent("{\"text\":\"ok\"}", System.Text.Encoding.UTF8, "application/json")
             };
+        }
+    }
+
+    private sealed class FixedCredentials(bool configured) : IOpenAiSpeechCredentialResolver
+    {
+        public bool TryResolve(out OpenAiSpeechCredentials credentials)
+        {
+            if (!configured)
+            {
+                credentials = default!;
+                return false;
+            }
+
+            credentials = new OpenAiSpeechCredentials(
+                "test-key",
+                "test",
+                "gpt-transcribe",
+                new Uri("https://api.openai.com/v1/"));
+            return true;
         }
     }
 }

@@ -9,6 +9,8 @@ public sealed class AudioImportOptions
     public const long MaxPcmBytes = MaxSourceSeconds * (long)PcmBytesPerSecond;
     public const int ChunkSeconds = 10;
     public int TotalTimeoutSeconds { get; set; } = 300;
+    /// <summary>Max OpenAI transcription POSTs per import (windowed). Fail closed when exceeded.</summary>
+    public int MaxTranscriptionRequests { get; set; } = 180;
     public string FfmpegPath { get; set; } = Path.Combine("..", ".appdata", "local", "media", "ffmpeg.exe");
     public string FfmpegSha256 { get; set; } = "228d7a8556258de907fdb55f36850078ebc7680b84ec30d84ea02e99bec1d1eb";
 }

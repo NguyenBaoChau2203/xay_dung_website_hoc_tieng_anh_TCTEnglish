@@ -8,7 +8,7 @@ public interface ISpeechInferenceLimiter
 }
 
 /// <summary>
-/// Process-wide admission control for whisper HTTP. Not a cluster limiter.
+/// Process-wide admission control for speech HTTP inference. Not a cluster limiter.
 /// </summary>
 public sealed class SpeechInferenceLimiter : ISpeechInferenceLimiter
 {
