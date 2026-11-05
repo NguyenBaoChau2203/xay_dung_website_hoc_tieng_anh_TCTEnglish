@@ -77,6 +77,17 @@ qua release. Không áp dụng cấu hình này toàn máy hoặc production khi
 
 ## Trạng thái kích hoạt
 
-Source local đã có job/script/regressions; chưa gọi đây là CD đang hoạt động khi
-chưa được owner cho commit/push/merge, tạo branch Plesk, cấu hình secrets/gate và
-quan sát release job thật. Xem audit05/11 cho trạng thái hosting/AI/HTTPS hiện tại.
+CD staging đã được bật riêng sau PR125. Release41965473404 đã chạy backup,
+migration bundle và app commit ef58fda; marker/run/digest và ready200 đã đối chiếu.
+Lần đầu CI chờ ngắn hơn thời gian hosting tải140MB nên báo lỗi trước khi host
+hoàn tất. Sau khi xác minh current.json/backup/marker đúng, rerun failed job đã
+pass và giữ nguyên release/data, không chạy migration lại tùy tiện.
+
+Publisher dùng deadline20phút tính cả thời gian HTTP; job25phút. Host giới hạn
+download15phút và tắt PowerShell progress output khi tải file lớn. Nếu lần sau CI
+timeout, kiểm state/marker và tiến trình hosting trước khi rerun; lỗi CI không
+chứng minh tác vụ hosting đã dừng. Không xóa lock/attempt hoặc gỡ maintenance để
+ép chạy lại.
+
+Owner đã chốt05/11 rằng HTTPS hiện tại đến03/02/2027 đủ cho đợt test/báo cáo;
+tự gia hạn được loại khỏi phạm vi công việc. Không cần gửi yêu cầu hỗ trợ SSL.

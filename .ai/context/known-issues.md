@@ -27,7 +27,7 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
-### STAGING-HTTPS-RENEWAL — operational follow-up05/11/2026
+### STAGING-HTTPS-RENEWAL — owner deferred05/11/2026
 
 - Staging N518 đã chạy https://staging.tctenglish.site với DB/site/pool riêng;
   readiness200 sau Basic Auth, anonymous401, shared Writing/progress isolation
@@ -44,6 +44,9 @@ proposing follow-up work so they do not optimize already-completed items.
   owner đã cho commit/PR/merge và bật riêng staging. Gate production vẫn false.
   Kích hoạt phải đối chiếu run/marker thật; xem [automation](../../docs/operations/staging-automation.md).
 - Exception ACME cần Nhân Hòa xác nhận cấp server; [nội dung hỗ trợ](../../docs/operations/staging-https-support-request.md).
+- **Owner quyết định sau đó05/11:** chứng chỉ hiện tại đến03/02/2027 đủ, không cần
+  làm thêm tự gia hạn hoặc gửi ticket. Không mở lại phần này trong task hiện tại.
+  CD staging/AI/data sharing vẫn hoàn thiện; production gatefalse.
 
 ### WRITING-DRAFT-OWNER: Writing draft keys are shared across accounts [P1] — fixed 04/11/2026
 - **Was**: wwwroot/js/writing.js used wp_draft_ex{exercise}_{sentence} without owner.

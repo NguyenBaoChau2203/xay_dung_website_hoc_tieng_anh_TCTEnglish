@@ -81,7 +81,21 @@ mỗi lần deploy/test. [Quy trình vận hành](../operations/staging-automati
 
 ## Đóng release
 
-Sau merge cần quan sát CI build +staging job, backup/history/data, marker đúng
-merge SHA/run/digest, ready200, key/env và progress còn nguyên. Release production
-phải skipped/gatefalse. Evidence run thực tế sẽ được ghi ở PR và phản hồi hoàn tất;
-không gọi bootstrap/preflight hay local tests là lần app/schema release thành công.
+PR125 đã merge thành ef58fda91c1d1389656c17160cf2bf3a5f38975f. Host hoàn tất
+run41965473404 lúc04:18:09UTC; `/tct-release.json` đúng commit/run/environment và
+digest e25f2ece06a74a5bbbce84049f063d88763ea29d5708748eac3e89bb10309fd2;
+ready200. Backup/migration log tồn tại, archive/stage scratch đã được dọn bởi
+script sau success. Users3/history12/Writing1/goals2/credits1, học liệu/progress giữ.
+
+CI lần đầu verifier hết thời gian trước khi host tải xong140MB; đã đối chiếu
+private current.json +marker +ready trước recovery. Rerun failed job cùng identity
+đã pass (attempt2), không ép xóa lock/attempt hoặc migrate lại. Build/MariaDB và
+staging jobs success, production skipped/gatefalse. Sửa publisher deadline20phút
+tính cả HTTP, job25phút, download15phút và tắt progress output cho lần sau.
+Regression slow-host8phút/deadline có red→green17/17; Python toàn bộ122tests.
+
+Owner đã xác nhận HTTPS hiện tại đến03/02/2027 đủ dùng, không cần tự gia hạn hoặc
+gửi ticket. Đây là phạm vi đã bỏ theo owner, không phải nghiệm thu auto-renew.
+Temporary PHP/network probes không tham gia post-action thường; PHP probe đã gỡ
+khỏi website (404), post-action chuẩn được phục hồi. Không kill process hoặc
+đưa thêm transport/custom deploy endpoint vào ứng dụng.
