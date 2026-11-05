@@ -25,6 +25,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 2
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
         with:
           dotnet-version: 9.0.x
@@ -35,10 +37,16 @@ jobs:
           dotnet build TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --no-restore
       - name: Run application tests
         run: dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --no-build --no-restore --logger "trx;LogFileName=tests.trx" --results-directory test-results
+      - name: Validate shared-data packages and immutable published versions
+        run: |
+          python3 scripts/check-shared-data.py --base HEAD^
+          dotnet run --project TCTEnglish -c Release --no-build --no-launch-profile -- --shared-data=validate --shared-root="${{ github.workspace }}/data/shared"
+          dotnet run --project TCTEnglish -c Release --no-build --no-launch-profile -- --shared-data=validate --shared-target=production --shared-root="${{ github.workspace }}/data/shared"
       - name: Check artifact guards and Plesk webhook protocol
         run: |
           python3 -m unittest discover -s scripts/tests -p test_deploy_tools.py -v
           python3 -m unittest discover -s scripts/tests -p test_staging_release.py -v
+          python3 -m unittest discover -s scripts/tests -p test_shared_data_git.py -v
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
@@ -65,11 +73,20 @@ jobs:
       - name: Check baseline upgrade, FK indexes and repeat execution
         shell: pwsh
         run: ./scripts/verify-mariadb.ps1
+      - name: Rehearse shared data on MariaDB 10.5.23
+        env:
+          TCT_SHARED_MARIADB_TESTS: '1'
+        run: |
+          dotnet run --project TCTEnglish -c Release --no-build --no-launch-profile -- --shared-data=sync --shared-target=ci --shared-root="${{ github.workspace }}/data/shared" --shared-webroot="${{ runner.temp }}/shared-webroot"
+          dotnet run --project TCTEnglish -c Release --no-build --no-launch-profile -- --shared-data=sync --shared-target=ci --shared-root="${{ github.workspace }}/data/shared" --shared-webroot="${{ runner.temp }}/shared-webroot"
+          dotnet test TCTEnglish.Tests -c Release --no-build --filter FullyQualifiedName~SharedDataMariaDbTests --logger "trx;LogFileName=shared-mariadb.trx" --results-directory test-results
       - name: Publish Windows app and migration bundle
         shell: bash
         run: |
           dotnet publish TCTEnglish/TCTEnglish.csproj -c Release -r win-x64 --self-contained true -o release/app
           python3 scripts/prepare-publish.py release/app
+          mkdir -p release/app/App_Data
+          cp -R data/shared release/app/App_Data/shared-data
           mkdir -p release/migration
           dotnet ef migrations bundle --project TCTEnglish --startup-project TCTEnglish --configuration Release --self-contained --target-runtime win-x64 --output release/migration/efbundle.exe
           dotnet ef migrations script --project TCTEnglish --startup-project TCTEnglish --configuration Release --no-build --idempotent --output release/migration/migrations.sql

@@ -67,6 +67,7 @@ class StagingPublisherTests(unittest.TestCase):
         self.assertEqual(set(files), {'release.json', 'deploy-staging.ps1'})
         manifest = json.loads(files['release.json'])
         self.assertEqual(manifest['environment'], 'Staging')
+        self.assertEqual(manifest['sharedDataSchema'], 1)
         self.assertEqual(self.module.common.BRANCH, 'release/staging')
         self.assertNotIn('test-only', json.dumps(files))
 
@@ -179,6 +180,9 @@ public class FakeStageCommand {
  public static int Main(string[] args) {
   var log=Environment.GetEnvironmentVariable("TCT_TEST_TRACE");
   var fail=Environment.GetEnvironmentVariable("TCT_TEST_FAIL");
+  foreach(var arg in args) if(arg=="--shared-data=sync") {
+   File.AppendAllText(log,"shared\n");return fail=="shared"?10:0;
+  }
   foreach(var arg in args) if(arg.StartsWith("--result-file=")) {
    File.AppendAllText(log,"backup\n");
    if(fail=="backup") return 7;
@@ -201,7 +205,7 @@ public class FakeStageCommand {
     def tearDownClass(cls):
         cls.lab.cleanup()
 
-    def drill(self, mode='', traversal=False, repeat=False):
+    def drill(self, mode='', traversal=False, repeat=False, shared=False):
         with tempfile.TemporaryDirectory(dir=self.lab.name) as directory:
             root = Path(directory); site = root / 'staging.tctenglish.site'; site.mkdir()
             state = root / 'private/tctenglish-staging-state'; state.mkdir(parents=True)
@@ -223,11 +227,14 @@ public class FakeStageCommand {
                 'artifactUrl':'https://github.com/NguyenBaoChau2203/xay_dung_website_hoc_tieng_anh_TCTEnglish/releases/download/staging-123456-aaaaaaaaaaaa/tctenglish-release.zip'}))
             artifact = root / 'release.zip'
             with zipfile.ZipFile(artifact,'w') as archive:
-                for name, data in {'TCTEnglish.exe':b'fake-app','TCTEnglish.dll':b'new app',
+                for name, data in {'TCTEnglish.exe':self.fake_exe.read_bytes() if shared else b'fake-app','TCTEnglish.dll':b'new app',
                         'appsettings.json':b'{"ConnectionStrings":{"DefaultConnection":""}}',
                         'web.config':b'<configuration><system.webServer><aspNetCore/></system.webServer></configuration>'}.items():
                     archive.writestr('app/'+name,data)
                 archive.write(self.fake_exe,'migration/efbundle.exe')
+                if shared:
+                    archive.writestr('app/App_Data/shared-data/catalog.json','{}')
+                    archive.writestr('app/App_Data/shared-data/production.json','{}')
                 if traversal:
                     archive.writestr('../escaped.txt',b'must never extract')
             data=json.loads(manifest.read_text()); data['sha256']=__import__('hashlib').sha256(artifact.read_bytes()).hexdigest()
@@ -264,7 +271,7 @@ function Invoke-WebRequest {
             steps=trace.read_text().splitlines() if trace.exists() else []
             if not mode and not traversal:
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+diagnostic)
-                self.assertEqual(steps,['backup','migration'])
+                self.assertEqual(steps,['backup','migration','shared'] if shared else ['backup','migration'])
                 self.assertEqual((site/'TCTEnglish.dll').read_bytes(),b'new app')
                 self.assertIn('private-test-key',(site/'web.config').read_text())
                 self.assertTrue(json.loads((site/'appsettings.Staging.json').read_text())['Learning']['Speech']['Enabled'])
@@ -279,9 +286,9 @@ function Invoke-WebRequest {
                     self.assertEqual(trace.read_text().splitlines(),steps)
             else:
                 self.assertNotEqual(result.returncode,0)
-                self.assertEqual(steps,[] if traversal else ['backup'] if mode=='backup' else ['backup','migration'],diagnostic)
+                self.assertEqual(steps,[] if traversal else ['backup'] if mode=='backup' else ['backup','migration','shared'] if mode=='shared' else ['backup','migration'],diagnostic)
                 self.assertEqual((site/'TCTEnglish.dll').read_bytes(),b'old app')
-                self.assertEqual((site/'app_offline.htm').exists(),mode in ('migration','ready'))
+                self.assertEqual((site/'app_offline.htm').exists(),mode in ('migration','ready','shared'))
                 self.assertFalse((state/'current.json').exists())
                 self.assertFalse((root/'escaped.txt').exists())
 
@@ -299,6 +306,12 @@ function Invoke-WebRequest {
 
     def test_archive_traversal_stops_before_backup_or_migration(self):
         self.drill(traversal=True)
+
+    def test_shared_content_runs_after_backup_and_migration_and_before_readiness(self):
+        self.drill(shared=True,repeat=True)
+
+    def test_shared_conflict_retains_old_app_maintenance_and_backup(self):
+        self.drill(shared=True,mode='shared')
 
 
 if __name__ == '__main__':

@@ -13,6 +13,10 @@
 
 ## 📌 Tổng Quan Dự Án (Project Overview)
 
+Nhóm dùng [quy trình gói dữ liệu chung](docs/operations/shared-data-workflow.md):
+`pwsh -NoProfile -File scripts/pull-local.ps1` cập nhật cả code và học liệu đã
+review vào Docker riêng. Máy mới theo [onboarding](docs/operations/team-local-onboarding.md).
+
 Trong môi trường doanh nghiệp hiện đại, việc sử dụng thành thạo tiếng Anh giao tiếp và từ vựng chuyên ngành là chìa khóa để nâng cao hiệu suất làm việc. **TCT English** được phát triển nhằm giải quyết nhu cầu đó thông qua các phương pháp học tập tương tác:
 *   **Học thông minh:** Phương pháp Flashcard học từ vựng trực quan, hệ thống thư mục tổ chức đa cấp khoa học.
 *   **Luyện tập đa kỹ năng:** Đầy đủ các phân hệ luyện tập **Listening - Speaking - Reading - Writing** toàn diện.

@@ -119,6 +119,10 @@ if (-not (Test-Path -LiteralPath $backupClient)) { throw 'A database backup clie
 $lock = $null
 $offlinePath = Join-Path $SiteRoot 'app_offline.htm'
 $migrationAttempted = $false
+$previousEnvironment = @{}
+foreach ($key in @('DOTNET_ENVIRONMENT','ASPNETCORE_ENVIRONMENT','ConnectionStrings__DefaultConnection','Database__ServerVersion','TCT_SHARED_PRODUCTION_APPROVED')) {
+    $previousEnvironment[$key] = [Environment]::GetEnvironmentVariable($key, 'Process')
+}
 $offlineCreated = $false
 $filesChanged = $false
 $appBackup = $null
@@ -155,6 +159,7 @@ try {
         if (-not (Test-Path -LiteralPath (Join-Path $application $required))) { throw 'The application artifact is incomplete.' }
     }
     if (-not (Test-Path -LiteralPath (Join-Path $migrationRoot 'efbundle.exe'))) { throw 'The migration bundle is missing.' }
+    if ($manifest.sharedDataSchema -eq 1 -and (-not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\catalog.json')) -or -not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\production.json')))) { throw 'Shared-data artifact is incomplete; stopped before backup/migration.' }
     if (Test-Path -LiteralPath (Join-Path $application 'appsettings.Production.json')) { throw 'Production credentials must never come from an artifact.' }
 
     $effective = Get-Content -Raw -LiteralPath (Join-Path $application 'appsettings.json') | ConvertFrom-Json
@@ -197,6 +202,18 @@ try {
     try { & (Join-Path $migrationRoot 'efbundle.exe') *> (Join-Path $runRoot 'migration.log'); if ($LASTEXITCODE -ne 0) { throw 'Database migration failed; maintenance and backup have been retained.' } }
     finally { Pop-Location }
 
+    $sharedRoot = Join-Path $application 'App_Data\shared-data'
+    if (Test-Path -LiteralPath (Join-Path $sharedRoot 'catalog.json')) {
+        $env:ConnectionStrings__DefaultConnection = $builder.get_ConnectionString()
+        $env:Database__ServerVersion = '10.5.23-mariadb'
+        $env:TCT_SHARED_PRODUCTION_APPROVED = 'true'
+        Push-Location $application
+        try {
+            & (Join-Path $application 'TCTEnglish.exe') '--shared-data=sync' '--shared-target=production' "--shared-root=$sharedRoot" "--shared-webroot=$(Join-Path $SiteRoot 'wwwroot')" "--shared-owners=$(Join-Path $StateRoot 'shared-data-owners.json')" *> (Join-Path $runRoot 'shared-data.log')
+            if ($LASTEXITCODE -ne 0) { throw 'Approved shared-data import failed; maintenance and backup retained.' }
+        } finally { Pop-Location; $env:TCT_SHARED_PRODUCTION_APPROVED = $null }
+    } elseif ($manifest.sharedDataSchema -eq 1) { throw 'This release requires the reviewed shared-data artifact.' }
+
     $filesChanged = $true
     Copy-Tree $application $SiteRoot
     $wwwRoot = Assert-ChildPath $SiteRoot (Join-Path $SiteRoot 'wwwroot')
@@ -235,4 +252,7 @@ try {
     }
     Write-Json (Join-Path $StateRoot 'last-failure.json') @{ failedAtUtc=[DateTime]::UtcNow.ToString('O'); migrationAttempted=$migrationAttempted; maintenanceRetained=$migrationAttempted; release=$manifest.commit; recoveryDirectory=$runRoot }
     throw 'Release failed. Inspect the private release logs and backup; no database rollback was attempted.'
-} finally { if ($lock) { $lock.Dispose() } }
+} finally {
+    if ($lock) { $lock.Dispose() }
+    foreach ($key in $previousEnvironment.Keys) { [Environment]::SetEnvironmentVariable($key, $previousEnvironment[$key], 'Process') }
+}

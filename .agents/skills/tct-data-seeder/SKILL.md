@@ -14,6 +14,15 @@ implementation and review. Examples do not authorize changing protected config.
 Use when creating seed data for vocabulary sets, speaking videos, admin users, or any initial data.
 
 ## Critical Rule — IDEMPOTENCY
+
+For incremental shared learning content, use the typed versioned package workflow
+in `docs/operations/shared-data-workflow.md` and `scripts/shared-data.ps1`.
+Export selected roots after authoring, preserve stable keys/version history and
+include the reviewed package in the PR. Never use a full SQL dump for team sync.
+Run `scripts/pull-local.ps1` after an authorized pull request from the owner to
+bring incoming packages into the local Docker; report conflicts without reset.
+This applies to Codex, Cursor, Claude Code and Antigravity through AGENTS.md.
+
 Every seeder MUST have a guard condition:
 ```csharp
 if (await context.SpeakingVideos.AnyAsync()) return;  // Already seeded

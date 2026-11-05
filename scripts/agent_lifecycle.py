@@ -25,7 +25,10 @@ CONTEXT = (
     "not private source or secrets. Read DESIGN.md for UI work. Preserve protected "
     "config authority; verify changed behavior/build/relevant tests and report "
     "evidence in Vietnamese. Hook checks certify tooling only, not app tests or "
-    "browser behavior."
+    "browser behavior. After owner-authorized pulls use scripts/pull-local.ps1 "
+    "to sync versioned shared data into this machine's Docker. Shared-content "
+    "edits require a reviewed export package; follow docs/operations/shared-data-workflow.md. "
+    "Never sync personal data, reset databases or enable production implicitly."
 )
 
 

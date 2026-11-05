@@ -30,6 +30,10 @@ không cần CUDA/GPU/local Whisper.
 
 ## 2. Pull và setup agent một lần
 
+Từ05/11/2026 có [gói dữ liệu dùng chung](shared-data-workflow.md). Sau lần clone
+và setup, dùng `pwsh -NoProfile -File scripts/pull-local.ps1` để pull code và nhập
+gói đã review vào Docker riêng. Không sao chép database/volume/key giữa các máy.
+
 ```powershell
 git switch master
 git pull --ff-only

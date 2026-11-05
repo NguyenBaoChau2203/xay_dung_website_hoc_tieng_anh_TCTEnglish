@@ -200,6 +200,10 @@ try {
     Invoke-Checked dotnet @('ef', 'database', 'update', '--project', 'TCTEnglish', '--startup-project', 'TCTEnglish', '--configuration', $Configuration)
     Invoke-Checked dotnet @('run', '--project', 'TCTEnglish', '--launch-profile', 'http', '--configuration', $Configuration, '--no-build', '--', '--local-bootstrap=true')
 
+    # Catch up approved content even when pull was already up-to-date or native
+    # hooks were not installed yet. No credential-store write or web/ASR spawn.
+    Invoke-Checked pwsh @('-NoProfile','-File',(Join-Path $PSScriptRoot 'shared-data.ps1'),'-Action','Sync','-Configuration',$Configuration,'-SkipBuild','-DatabaseReady')
+
     if (-not $NoBrowser) { Start-Process "http://localhost:$WebPort" }
     Write-Host "Summary => MariaDB: ready | Speech: $speechStatus ($speechSource) | Web: starting http://localhost:$WebPort"
     Write-Host 'Ctrl+C stops this web process only; MariaDB volume keeps running. Ordinary startup does not spawn a local ASR engine or call paid speech APIs.'

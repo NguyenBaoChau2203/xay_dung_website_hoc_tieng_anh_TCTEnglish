@@ -134,6 +134,33 @@ enter the owner-provided test key into their own local secret store once.
 
 ## Focused context, CodeGraph and skills
 
+### Shared content packages (all four AI tools)
+
+- After an owner-authorized pull, run `pwsh -NoProfile -File scripts/pull-local.ps1`
+  (default origin/master). It pulls with `--ff-only` and applies reviewed packages
+  into this checkout's Docker. For another branch pass `-Branch <name>`. A plain
+  Git pull may invoke the installed post-merge hook; the wrapper also handles an
+  already-current checkout and missing hooks. Startup catches up before serving.
+- Changes to supported shared content made through the UI, a seed or a script
+  require `scripts/shared-data.ps1 -Action Export` and package review in the same
+  PR, even if the prompt omits data delivery. Inspect `-Action Status` for stable
+  keys, package ownership and local edits. Follow
+  [shared-data workflow](docs/operations/shared-data-workflow.md) for exact args.
+- Export only selected allowlisted content and curated media into `data/shared`.
+  Never export users, keys, passwords, chat, payments or learner progress. An
+  unsupported entity requires a reviewed typed adapter and regression tests;
+  never substitute a SQL dump or arbitrary-table importer. Keep personal Goals
+  local; shared goal templates would need a separate explicit feature.
+- Published package versions and media are immutable. Add the next version;
+  preserve stable keys and dependencies, review hashes and selected media.
+  Conflicts must stop, preserve data, and be reported. No force/reset/overwrite.
+- Successful code pull is not successful data sync. Require a zero exit code and
+  current ignored `.appdata/local/shared-data/last-sync.json`; report blockers.
+  Do not run database synchronization on folder-open, SessionStart or MCP calls.
+- Staging imports packages after backup/migration. Production uses only reviewed
+  `data/shared/production.json` hashes, deployment gate and environment approval.
+  Merge/staging access never authorizes production or copying its private data.
+
 - Canonical skills: `.agents/skills/tct-*/SKILL.md`. `.claude/skills` and legacy
   `.agent/skills` are discovery adapters to the same procedures, not extra copies
   to read repeatedly. Roles are inline; vendor snapshots are reference material.

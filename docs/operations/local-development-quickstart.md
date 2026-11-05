@@ -1,5 +1,9 @@
 # Local development: Docker MariaDB + ASP.NET Core
 
+Cập nhật cả code và học liệu bằng `pwsh -NoProfile -File scripts/pull-local.ps1`.
+Xem [quy trình gói dữ liệu](shared-data-workflow.md) để xuất nội dung cho nhóm,
+xử lý xung đột và duyệt production; không dùng SQL dump để đồng bộ máy cá nhân.
+
 Target ứng dụng vẫn là net9.0 / EF 9.0.4 / Pomelo 9.0.0. SDK9 là lựa chọn khớp
 target; SDK10/runtime10 cũng chạy được nhờ LatestMajor roll-forward hiện có.
 Máy thành viên mới đọc [team onboarding](team-local-onboarding.md), chạy
