@@ -2773,3 +2773,29 @@ model has no pending changes; Users checksum stays4192988673.
 immediately before the erroneous rollback exists, so user checksum does not
 prove preservation of any earlier quota row. Existing chat/request-log tables
 were not dropped. No paid cloud request was made in this session.
+
+### Staging OpenAI connections time out on hosting — 2026-11-05
+
+**Symptom**: Separate staging key/model metadata worked on the owner's machine,
+but hosted Chat returned503/timeout and Speech504/engine_timeout.
+
+**Root Cause**: Host .NET9 probe resolved IPv4+IPv6; default and noProxy requests
+timed out after6s, while forced IPv4/noProxy returned model metadata200 in846ms.
+The default outbound connection path failed, rather than a missing model/key.
+
+**Solution**: Only staging IIS environment adds DOTNET_SYSTEM_NET_DISABLEIPV6=1
+and NO_PROXY=api.openai.com; keep normal HTTPS/SNI/certificate validation. Saved
+through .NET Toolkit, retained by the staging deploy script's env preservation.
+No production/global networking or local User Secrets changes.
+
+**Verification**: Hosted Chat200/STAGING_OK; hosted speech200/Completed with a
+2.75s synthetic PCM16mono16k WAV, correct transcript,100 text-match and comparison.
+No real-microphone quality claim. Temporary synthetic Speaking fixture/assessment
+removed with exact DB/id/title/source guards; users3/Writing1/credits1 retained.
+Key handoff consumed after live verification; no key printed or committed.
+
+**Notes**: Staging CD adds fixed site/DB/user identity, private backup before EF
+bundle, persistent env/uploads, run/digest readiness and failure recovery.
+15local regressions include actual Windows PS5.1 fake-command failure drills;
+production deployment regressions18/18. IIS ACME auth exception remains a
+provider-level follow-up; valid current TLS does not certify automatic renewal.

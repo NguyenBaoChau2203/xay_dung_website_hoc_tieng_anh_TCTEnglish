@@ -53,6 +53,9 @@ pwsh -NoProfile -File scripts/set-local-ai-key.ps1
 Key nằm trong .NET User Secrets ngoài repo, không sửa appsettings/source và không
 đưa key vào lệnh/argv/history/README/PR/GitHub. Launcher ưu tiên **AI__ApiKey →
 User Secrets AI:ApiKey → OPENAI_API_KEY**. Chỉ cần nhập một lần hoặc khi thay key.
+Mở web không ghi lại User Secrets; connection Docker/worker flags chỉ được truyền
+cho child process và khôi phục khi thoát. Key helper giữ file cũ/protected backup
+nếu thao tác thay file lỗi; không tắt EFS/ACL để sửa quyền.
 Nếu nhận401/quota, kiểm key/account; không đổi model hoặc quay lại Gemini.
 Website dùng **gpt-6-luna/low** cho text và **gpt-transcribe** cho audio; model
 AI IDE của thành viên là lựa chọn độc lập. Không cần key để chạy Writing Local và
@@ -67,7 +70,7 @@ Bấm **SETUP-LOCAL.cmd** hoặc yêu cầu AI Agent chạy lệnh:
 pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser
 ```
 
-Script tạo database Docker/volume riêng, lưu connection local, update migration
+Script tạo database Docker/volume riêng, truyền connection local vào child process, update migration
 đã commit, bootstrap mẫu khi chưa có user, rồi chạy web. Ordinary startup **không**
 tải/start local ASR và **không** gọi Speech API trả phí. FFmpeg pin chỉ cần khi
 Admin/legacy audio import: `scripts/local-media.ps1 -Action Setup`.
@@ -91,7 +94,11 @@ tct_dev; database đã có user không bị seed/đổi role/reset password. Ch�
 edits và file account cũ. Không gọi API cloud/SMTP/payment để bootstrap.
 
 Database/model/key/uploads không tự đồng bộ qua Git. Các máy có cùng schema và
-fixture ban đầu, sau đó dữ liệu phát triển độc lập. Nếu cần giống dữ liệu Châu
+fixture ban đầu, sau đó dữ liệu phát triển độc lập. Web +DB staging chung đã chạy
+tại https://staging.tctenglish.site để kiểm thử tích hợp; xem
+[runbook staging](staging-plesk-runbook.md) và [quy trình database nhóm](database-collaboration.md).
+Châu cấp thông tin truy cập qua kênh riêng; không lấy credentials bằng Git.
+Docker local vẫn độc lập. Goal/tiến độ trên staging thuộc từng tài khoản. Nếu cần giống dữ liệu Châu
 đang có, Châu chuyển **backup riêng** rồi import khi database còn trống:
 
 ```powershell
@@ -126,3 +133,10 @@ deploy**. PLESK_DEPLOYMENT_ENABLED đang false. Chỉ Châu cho phép bật rele
 khi test master ổn định; không sửa Plesk/gate, push deployment branch hoặc gọi
 webhook thủ công để bypass. Schema changes vẫn ship migration/metadata/snapshot
 và provider checks cùng feature, không đẩy database local đè hosting.
+
+Luồng staging được chuẩn bị riêng: sau merge `master`, CI đạt và gate
+`PLESK_STAGING_DEPLOYMENT_ENABLED=true` thì tự backup/migrate/cập nhật
+https://staging.tctenglish.site; production vẫn theo gate riêng đang false.
+Xem [staging automation](staging-automation.md). Admin xuất bản học liệu trên
+staging thì cả nhóm thấy sau khi tải lại, không cần push. Dùng tài khoản app riêng
+để giữ progress/draft riêng; bài AI/private cá nhân không tự trở thành catalog chung.

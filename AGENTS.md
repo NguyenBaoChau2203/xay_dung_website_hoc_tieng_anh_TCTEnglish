@@ -81,6 +81,12 @@ Apply even when the feature prompt omits database/deployment requirements.
 8. Keep environment data/credentials separate. Normal schema release preserves
    production users; seed/data changes require an explicit reviewed plan.
 
+Owner-authorized staging has its own `PLESK_STAGING_DEPLOYMENT_ENABLED` gate,
+GitHub Environment restricted to master, `release/staging` manifest and private
+state; follow docs/operations/staging-automation.md. A staging release never
+grants production authority. Published Admin lessons are shared on staging;
+personal drafts/progress and Docker rows are not synchronized by Git.
+
 Read needed sections only: [local setup](docs/operations/local-development-quickstart.md),
 [new teammate setup](docs/operations/team-local-onboarding.md),
 [local speech](docs/operations/local-speech.md),

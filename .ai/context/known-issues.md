@@ -27,6 +27,85 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### STAGING-HTTPS-RENEWAL — operational follow-up05/11/2026
+
+- Staging N518 đã chạy https://staging.tctenglish.site với DB/site/pool riêng;
+  readiness200 sau Basic Auth, anonymous401, shared Writing/progress isolation
+  và backup/restore/repeat schema đã kiểm. Không còn blocker “chưa có server”.
+- Certificate hiện hợp lệ đến03/02/2027. Root Basic Auth từng chặn HTTP-01;
+  issuance thành công khi app offline và tạm gỡ riêng bảo vệ staging, rồi đã
+  khôi phục. Auto-renew qua auth chưa được nghiệm thu. Cần exception anonymous
+  chỉ path ACME từ Nhân Hòa hoặc maintenance/reissue theo
+  [runbook](../../docs/operations/staging-plesk-runbook.md). Không nới auth prod.
+- Follow-up05/11: owner cấp key staging riêng; Chat200/STAGING_OK và Speech200/
+  Completed/audio tổng hợp2.75s đã đạt sau khi khắc phục outbound IPv6 bằng env
+  chỉ staging. Writing Local +cloud feedback; không copy key local. CD staging có
+  source/job/15regressions, Environment chỉ master, webhook/manifest branch riêng;
+  owner đã cho commit/PR/merge và bật riêng staging. Gate production vẫn false.
+  Kích hoạt phải đối chiếu run/marker thật; xem [automation](../../docs/operations/staging-automation.md).
+- Exception ACME cần Nhân Hòa xác nhận cấp server; [nội dung hỗ trợ](../../docs/operations/staging-https-support-request.md).
+
+### WRITING-DRAFT-OWNER: Writing draft keys are shared across accounts [P1] — fixed 04/11/2026
+- **Was**: wwwroot/js/writing.js used wp_draft_ex{exercise}_{sentence} without owner.
+- **Fix**: server-verified `CurrentOwnerUserId` → `data-owner-user-id`; namespace
+  `wp_draft_u{owner}_ex{exercise}_{sentence}`; legacy unowned keys ignored; missing
+  owner does not persist. Node harness `test_writing_draft_isolation.cjs` green.
+- **Browser verified04–05/11**: Standard draft retained in localStorage; logout→
+  Premium in the same context does not restore it. No owner data was cleared.
+
+### WRITING-REVIEW-STATE: NeedsReview can render as redo [P2] — fixed 04/11/2026
+- **Was**: normalize dropped AssessmentStatus/ReviewRequired; label used “Làm lại”.
+- **Fix**: snapshot/Razor/JS preserve status fields; label “Cần xem lại”; historical
+  rows map via `WritingAssessmentPolicy.ResolveHistoricalStatus` from EvaluationSource.
+- **Follow-up (same day UAT)**: `recentAttempts.statusLabel` also mapped NeedsReview
+  → “Cần xem lại” via `ResolveHistoricalStatusLabel` (was binary “Cần sửa”).
+
+### FINAL-POLISH-FINAL-CHECKS: C1.1 closed; R6 UAT advanced 04/11/2026
+
+- **Owner closeout05/11**: rendered60role/viewport/routes; real Admin stale-form
+  conflict/input preservation; Writing approved/local-exact/NeedsReview+reload;
+  same-profile draft isolation; completion→Goals/badges/notifications +replay.
+  Notifications CSRF400/non-owner404/read-all0; AI full/embed fake503; Speaking
+  recorder/ASR fake, word chips literal-safe, NoSpeech no commit/mic-denied.
+- **Fixed during review**: Speaking init independent of video API/late callback;
+  mobile toast; NoSpeech persistent message; Goals overall percent/editor target
+  for non-Vocabulary goals. New regression red→green. Full .NET929/0/18skip,
+  Node58/0, Goals51/0. Browser Writing1/2→50%, replay unchanged.
+- **Still separate acceptance**: paid API/real mic, broad all-feature owner UAT,
+  hosting/staging provision and production. Web5100 restarted with Local Writing
+  cloud enhancement disabled for fee-free UAT; saved key unchanged/configured.
+  [Owner closeout](../../docs/feature-audits/2026-11-05-chau-final-polish-owner-closeout.md),
+  [database collaboration](../../docs/operations/database-collaboration.md).
+
+- **R1–R5 / RR2 / C1.1**: reviewer-verified; not re-implemented.
+- **R6 advanced (local)**: synthetic Admin/Standard/Premium; Writing #23 Admin
+  variant→Accepted + NeedsReview; Speaking demo **55+44** (53 not demo-approved);
+  cold launcher→ready ~105s; 3-role matrix + A→B draft PASS. Live mic/paid pending.
+  Not B0–B7 production closure.
+- **UAT fix**: `recentAttempts` NeedsReview label was “Cần sửa”; now
+  `ResolveHistoricalStatusLabel` → “Cần xem lại” (unit + live Practice/Data).
+- Evidence: `.tmp/chau-r6-uat-ledger.md`, `.tmp/chau-final-polish-demo-manifest.md`,
+  `.tmp/uat-startup-measure.md`,
+  [final-checks plan](../../docs/superpowers/plans/2026-11-04-chau-final-polish-final-checks.md),
+  [code acceptance](../../docs/feature-audits/2026-11-04-chau-final-polish-code-acceptance.md),
+  [active prompt](../prompts/chau-final-polish-schema-guard-uat.md).
+
+Historical reviewer round2, before final-check fixes (not current status):
+
+Reviewer lần hai04/11 confirms app R1–R5 via .NET913/0/14, Node54/0, guarded
+MariaDB upgrade1pass +HTTP concurrency1pass and extra empty/existing/save-vs-edit
+probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
+
+- Upgrade baseline test still lacks fresh-history/schema guard, so rerun on an
+  upgraded acceptance target can run Down/drop variants. Dry-run confirmed SQL;
+  reviewer did not execute downgrade.
+- Render-twice test edits fixture DOM itself instead of invoking production
+  renderer. Actual renderer passed reviewer fake assess/commit flow, but tracked
+  regression must run that behavior; strengthen concurrency barrier coverage too.
+- R6 browser/demo/measurement remains pending. [Rereview](../../docs/feature-audits/2026-11-04-chau-final-polish-rereview.md),
+  [focused plan](../../docs/superpowers/plans/2026-11-04-chau-final-polish-final-checks.md),
+  [Cursor prompt](../prompts/chau-final-polish-final-checks.md).
+
 ### BUG-007: AutoUnlockWorker is disabled by default in the current config
 - **Symptom**: Expired locks are not auto-cleared in the default app
   configuration; users rely on lazy unlock during login or manual admin unlock.
@@ -206,12 +285,20 @@ Current pre-merge evidence:
 
 Local storage04/11: large shared caches and project temp moved to D with C→D
 junctions and supported user environment preferences; C gained~11.8GiB free.
-**Host action pending:** credential move hit protected EFS/read denial, leaving
-standard C AI:ApiKey empty. Owner explicitly deferred key re-entry via
-scripts/set-local-ai-key.ps1. Speech/text cloud is not locally configured until
-then; no claim of key/account readiness. Do not reuse the protected D copy as
-the active store or weaken file protection. See
+**Host recovery verified, updated later04/11:** owner re-entered a working key;
+metadata200 for both models and one tiny text200/completed/OK were verified.
+Ordinary launcher then attempted to replace User Secrets and failed EFS, leaving
+the active file absent. Local fix now removes startup credential writes, uses
+child env for DB/worker flags and guards explicit key replacement with backup.
+Owner initially deferred, then re-entered the key and explicitly requested a
+restart. The corrected launcher now runs on5100 with text/speech configured
+from User Secrets AI:ApiKey, ready200. Actual secret-file length/mtime/protection
+attributes remained unchanged through startup. No new paid probe was run after
+this restart: configured is not current account/quota/ASR quality verification.
+Global fallback presence alone is also not proof of a valid key. Do not reuse the protected D copy as
+active store or weaken file protection. See
 [storage audit](../../docs/feature-audits/2026-11-04-local-storage-on-d.md).
+Follow-up: [local key startup audit](../../docs/feature-audits/2026-11-04-local-key-startup-safety.md).
 
 UI/logic closeout03/11: local Plan1/2 implemented and verified, including
 MariaDB quota/migration/concurrency, SQL Writing/Admin pagination, Speaking
@@ -245,9 +332,13 @@ Paid live speech / real-mic acceptance and production release remain owner gates
 
 Whisper retirement follow-up04/11: unused loopback test helper removed; legacy
 prompts superseded; startup fixture traps retired engines/downloads/processes.
-The old .appdata/local/speech directory is absent. Its artifacts/evidence remain
-in ignored retired-speech-2026-11-04 because permanent deletion was policy-blocked;
-they are not read or started. See
+The old .appdata/local/speech directory is absent. Follow-up uninstall04/11:
+43engine/model/archive files109780875bytes were deleted directly by the owner
+after tool policy rejection, and the unused Whisper Docker image was removed.
+No installation binaries/models/archives remain in retired-speech-2026-11-04.
+Six audio/log evidence files remain unchanged; two stale state/lock metadata files
+1426bytes remain after a separate policy rejection. They are never read/started.
+See [uninstall audit](../../docs/feature-audits/2026-11-04-whisper-uninstall.md) and
 [retirement audit](../../docs/feature-audits/2026-11-04-whisper-runtime-retirement.md).
 
 Plan2 follow-up (01/11/2026): owner-approved OPENAI_API_KEY now works through the
