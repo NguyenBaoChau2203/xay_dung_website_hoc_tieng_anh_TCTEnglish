@@ -90,3 +90,7 @@ TCTEnglish/wwwroot/lib/pinned/provenance.json text eol=lf
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Shared package hashes must survive Windows/Linux checkouts.
+data/shared/**/*.json text eol=lf
+data/shared/packages/**/assets/** -text

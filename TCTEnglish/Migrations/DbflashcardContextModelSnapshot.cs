@@ -761,6 +761,66 @@ namespace TCTEnglish.Migrations
                     b.ToTable("ReadingUserTranslations");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.SharedDataApplication", b =>
+                {
+                    b.Property<string>("PackageId")
+                        .HasMaxLength(120)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AppliedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Digest")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.HasKey("PackageId", "Version");
+
+                    b.ToTable("SharedDataApplications");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.SharedDataBinding", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasMaxLength(160)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(160)");
+
+                    b.Property<string>("Digest")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("PackageId")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(120)");
+
+                    b.HasKey("Key");
+
+                    b.HasIndex("Kind", "EntityId")
+                        .IsUnique();
+
+                    b.ToTable("SharedDataBindings");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSubscription", b =>
                 {
                     b.Property<long>("Id")
