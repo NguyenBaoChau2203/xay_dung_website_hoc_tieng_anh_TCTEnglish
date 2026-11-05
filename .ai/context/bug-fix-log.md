@@ -2837,3 +2837,19 @@ its exact disposable user. No production gate/config or existing release changed
 **Regression**: remote Host overriding loopback Server was red (no exception),
 then the provider parser rejects it before DB access. Other local/staging/
 production guards remain in focused tests; verification recorded in shared-data ledger.
+
+### Pull sync while web apphost is locked on Windows — 05/11/2026
+
+**Symptom/root cause**: real post-merge sync built into the same Release folder
+as a running/shutting-down app. Windows held TCTEnglish.exe; MSB3021/MSB3027
+stopped sync after Git succeeded. Git/data error reporting was correct.
+
+**Fix**: build CLI separately under ignored local state, execute its DLL with
+source content root; apply committed EF migrations from that exact assembly using
+a local-only CLI action. Hosting retains bundle path, backup and release gates.
+Launcher already-built SkipBuild remains supported. Do not kill another app,
+use stale binaries or change User Secrets to recover.
+
+**Verification**: failing wrapper regression then5/5pass; real isolated Sync
+succeeded with the original Release exe still locked,0recordoperations. Personal
+table checksum preservation and final remote checks are in the shared-data ledger.

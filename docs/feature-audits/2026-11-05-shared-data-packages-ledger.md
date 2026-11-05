@@ -64,3 +64,18 @@ sync lỗi dừng web/khôi phục environment/giữ nguyên User Secrets.
   production. Vấn đề media nguồn thiếu/Admin404 trước đây nằm ngoài thay đổi.
 - Remote CI/merge/staging run và commit marker sẽ ghi ở phần bàn giao sau khi
   GitHub hoàn tất. HTTPS renewal bị owner bỏ phạm vi; không thay thiết lập này.
+
+## Review sau merge127: binary web Windows đang bị giữ
+
+PR127 (headfd772d7) CI Linux/application/provider/build thành công41991931626;
+tooling/Windows thành công41991931499; merge94c758a. Pull thực tế phát hiện file
+Release apphost đang bị giữ: code pull xong nhưng sync build MSB3021/MSB3027;
+không thay data hoặc dừng process khác. Master run41992685823 được hủy khi chỉ
+job build đang chạy, chưa có job staging/production, tránh phát hành hai lần.
+
+Follow-up: sync build riêng dưới `.appdata/local/shared-data/build`, chạy DLL
+với content root nguồn và child env cũ; migration local gọi EF MigrateAsync từ
+chính assembly đó. Action migrate chặn mọi target ngoài local; hosting tiếp tục
+EF bundle/backup/gate. Không dùng stale DLL hay kill process để né file lock.
+Regression fake build giữ web output: red→green;5wrapper tests đạt. Sync thật
+với Release exe bị giữ đã thành công0operations, không nhân bản hoặc ghi key.
