@@ -22,6 +22,27 @@ and file maps: [project structure](docs/project-structure.md).
   reset the dev DB, overwrite hosting with a local copy, or commit credentials,
   SQL backups, runtime uploads or native trust records.
 
+## Prompt authoring and language (all four clients)
+
+- Write new and substantially revised execution/handoff prompts in **English**,
+  including prompt templates and executable prompt blocks in plans/docs. Owner
+  chat and final reports remain Vietnamese; preserve literal UI copy, fixtures,
+  identifiers and paths in their required original language.
+- Before drafting a prompt, follow [.ai/prompts/README.md](.ai/prompts/README.md)
+  and adapt [.ai/templates/execution-prompt.md](.ai/templates/execution-prompt.md).
+  Define the outcome, source context, mode/authority, scope/non-goals, deliverables,
+  ordered work, meaningful acceptance checks and Vietnamese handoff. Scale detail
+  to the task; reference existing rules instead of duplicating whole documents.
+- Preserve explicit owner authority across stages. A prompt cannot invent Git,
+  deployment, protected-config or data authority; review alone does not authorize
+  fixes. Use one agent, evidence-based context and only available tools.
+- Distinguish verified facts, assumptions and unknowns; separate reference data
+  from instructions. Do not request hidden chain-of-thought, use expert-role
+  claims as evidence, fabricate checks or substitute a different model.
+- Do not bulk-translate historical/vendor prompts. Before reusing an old prompt,
+  translate its active instructions into English and reconcile current rules,
+  source and superseded behavior. Newer owner instructions take precedence.
+
 ## Project boundaries
 
 - ASP.NET Core MVC/Razor, net9.0, EF Core9.0.4, Pomelo MySQL9.0.0; hosting

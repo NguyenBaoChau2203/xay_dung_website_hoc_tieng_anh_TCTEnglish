@@ -7,6 +7,11 @@ Ngày tích hợp: **29/10/2026**. Nguồn:
 
 ## Cập nhật 2026-10-30: auto-sync theo checkout
 
+Kiểm tra mới05/11/2026: bản pin1.6.2/project-mode MCP đạt, graph có source Shared
+Data mới từ master và status up to date (709files/12.400nodes/28.470edges tại thời
+điểm kiểm tra). Xem [báo cáo ngữ cảnh](feature-audits/2026-11-05-context-tooling-sync.md).
+Các số liệu/cấu hình lịch sử bên dưới không thay thế kết quả kiểm tra hiện tại.
+
 Chủ dự án đã duyệt backup, rebuild bằng 1.6.2 và incremental auto-sync cho riêng
 checkout hiện tại. Index mới ban đầu có **577 file, 9.657 node, 21.146 edge**,
 metadata engine 1.6.2; status sau rebuild không còn pending. Các con số sau đó có
