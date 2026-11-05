@@ -95,6 +95,13 @@ key source: the launcher preserves explicit `AI__ApiKey`, then User Secrets
 `AI:ApiKey`, then maps `OPENAI_API_KEY` only into its child processes. Never echo,
 put in argv, persist or copy that key into Git. Confirm app `/health/ready` and
 `scripts/speech-status.ps1`; configured means present, not verified account/quota.
+Use an already-saved local key automatically; never ask to paste it into chat.
+Ordinary startup reads User Secrets without rewriting, normalizing or relocating
+the saved file. Docker connection/worker flags and normalized nonsecret AI
+settings are child-process environment overrides, restored on exit/failure.
+Only an explicit key/configuration operation writes the supported secret store;
+replacement must preserve the original/protected backup if it fails. Never use
+delete-then-move overwrite for credentials or weaken EFS/ACLs to make it work.
 A process already listening may use old code/key: the launcher refuses that port
 before building. Preserve it and use a free port with
 `-Configuration Release -WebPort <port>`, or restart only a process whose ownership

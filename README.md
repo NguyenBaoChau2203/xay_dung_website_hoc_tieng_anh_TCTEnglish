@@ -43,7 +43,7 @@ Hệ thống sử dụng các Controller chuyên biệt cho từng phân hệ ng
 *   `VocabularyController` & `SetController` & `FolderController`: Quản lý kho từ vựng cá nhân, tạo bộ thẻ học (Set/Card) cấu trúc thư mục tối đa 3 cấp.
 *   `ClassController` & `ChatController`: Quản lý lớp học ảo, thành viên lớp học và cổng HTTP Chat hình ảnh kết hợp ClassChatHub.
 *   `GoalsController` & `NotificationController`: Tính toán chỉ số gamification, trao huy hiệu và điều phối thông báo hệ thống.
-*   `Areas/Admin/*`: Khu vực quản trị độc lập dành cho Admin/Teacher để vận hành hệ thống, cấu hình AI, quản trị học liệu và thống kê dữ liệu.
+*   `Areas/Admin/*`: Khu vực quản trị độc lập dành cho Admin để vận hành hệ thống, cấu hình AI, quản trị học liệu và thống kê dữ liệu.
 
 ---
 
@@ -59,7 +59,7 @@ Dưới đây là chi tiết phân công công việc và đóng góp cụ thể
 #### 🔑 Hệ thống Tài khoản, Bảo mật & Xác thực (Account & Security Infrastructure)
 *   **Authentication & OAuth:** Thiết kế và hiện thực hóa hệ thống xác thực Cookie-based chuyên nghiệp, tích hợp thành công các cổng đăng nhập bên thứ ba (Google OAuth, Facebook OAuth) giúp tối ưu hóa luồng trải nghiệm người dùng (UX).
 *   **Hạ tầng SMTP Mailer:** Xây dựng hệ thống gửi mail tự động qua SMTP (Gmail) để xác thực tài khoản, thông báo bảo mật hệ thống và xử lý quy trình quên/khôi phục mật khẩu bảo mật tuyệt đối.
-*   **Phân quyền đa cấp (Role-Based Access Control - RBAC):** Thiết lập cơ chế kiểm tra quyền truy cập nghiêm ngặt cho 3 đối tượng người dùng riêng biệt: **Admin** (Quản trị hệ thống), **Teacher** (Giáo viên điều phối học liệu), **Student** (Học viên).
+*   **Phân quyền đa cấp (Role-Based Access Control - RBAC):** Ba role hiện tại trong source là **Admin**, **Premium** và **Standard**. `Student` chỉ còn là ánh xạ legacy sang Standard; không có Teacher role riêng.
 *   **Thiết lập Ranh giới Bảo mật (Security Hardening):** 
     *   Triển khai giải pháp chống **IDOR (Insecure Direct Object Reference)** bằng cách tích hợp các lớp kiểm tra quyền sở hữu dữ liệu ở tầng dịch vụ (Service Layer) trên tất cả các tác vụ READ/UPDATE/DELETE có tham số (ví dụ: `.Where(x => x.UserId == currentUserId && x.Id == requestedId)`).
     *   Tích hợp bộ lọc chống tấn công giả mạo **CSRF (Cross-Site Request Forgery)** thông qua token bảo mật `[ValidateAntiForgeryToken]` cho toàn bộ các HTTP POST/PUT/DELETE.
@@ -108,7 +108,7 @@ Dưới đây là chi tiết phân công công việc và đóng góp cụ thể
 *   Xây dựng API quản lý thông báo, thiết lập hệ thống đẩy thông báo thời gian thực khi có cập nhật mới (như bài tập, streak mới, nâng cấp tài khoản thành công). Hỗ trợ hiển thị số lượng tin chưa đọc và tính năng đánh dấu đã đọc (`NotificationController`).
 
 #### ✏️ Quản trị học liệu Vocabulary & Listening
-*   Phát triển giao diện quản lý từ vựng và bài tập nghe dành cho Admin/Teacher để cập nhật định kỳ nội dung học tập chất lượng trên hệ thống.
+*   Phát triển giao diện quản lý từ vựng và bài tập nghe dành cho Admin để cập nhật định kỳ nội dung học tập chất lượng trên hệ thống.
 
 ---
 

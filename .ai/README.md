@@ -12,6 +12,10 @@ launcher uses app key env/User Secrets before the owner-approved
 `OPENAI_API_KEY` fallback. See AGENTS.md and docs/operations/openai-local-setup.md
 for key source/status and occupied-port handling. Do not print credentials or
 start paid API tests/web on ordinary folder-open/tooling hooks.
+Ordinary startup never writes User Secrets. Reuse the saved key; local DB/worker
+settings live only in the launcher and child environment and are restored when
+it exits. Explicit key replacement must retain the old protected file/backup on
+failure. Never delete a credential file before moving a replacement into place.
 Historical Whisper plans/prompts are superseded: never use them to restore a
 local speech engine or start one alongside the web. Use the current local
 speech guide and launcher; old transcript provenance stays readable.

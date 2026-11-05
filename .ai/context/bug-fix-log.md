@@ -41,6 +41,220 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+### Speaking YouTube init, NoSpeech label và Goals skill summary — 2026-11-05
+
+**Symptom**: Speaking showed “...” until YouTube ready; a late callback reset
+the selected sentence. NoSpeech feedback disappeared after rendering scores.
+Goals showed Writing1/2 but overall0%, and the editor could load a Vocabulary
+target for another selected skill.
+
+**Root Cause**: Sentence init lived in onPlayerReady; updateScoreBoard reset
+the assessment label; Goals summary/editor still used legacy Vocabulary values.
+
+**Solution**: Init sentence controls independently of YouTube, keep a chosen
+sentence on late ready; set NoSpeech status after score render; constrain/wrap
+mobile toast. Average percentages of positive skill targets (each capped), select
+matching area/target for editor; weekly chart copy explicitly identifies vocabulary.
+
+**Files Changed**: wwwroot/js/speaking.js, wwwroot/css/speaking.css,
+Services/GoalsService.cs, Views/Goals/Index.cshtml; test_speaking_behavior.cjs,
+test_speaking_word_comparison.cjs, GoalsPhase4IntegrationTests.cs.
+
+**Verification**: Meaningful red→green on2YouTube cases, NoSpeech message and
+3Goals summary cases. Goals focused51pass; full .NET929pass/0fail/18skip;
+Node58pass. Browser: blocked video API usable; NoSpeech no progress POST;
+Writing24→Goals1/2/50%, replay unchanged; Writing editor target2/mobile390 fits.
+
+**Commit**: Not created (local stage only).
+
+**Notes**: Related older Goals fixes restored real data; this follow-up fixes
+multi-skill presentation, not schema/reward rules. UAT uses synthetic accounts,
+fake speech transport and no paid requests. See05/11owner-closeout audit.
+
+### Writing recentAttempts NeedsReview labeled Cần sửa — 2026-11-04
+
+**Symptom**: After local-review NeedsReview submit, Practice/Data `recentAttempts`
+showed `statusLabel: "Cần sửa"` instead of “Cần xem lại”.
+
+**Root Cause**: `WritingService.BuildWritingAttemptHistory` used
+`Passed ? "Đạt" : "Cần sửa"` and ignored `EvaluationSource`.
+
+**Solution**: `WritingAssessmentPolicy.ResolveHistoricalStatusLabel` maps via
+`ResolveHistoricalStatus`; BuildWritingAttemptHistory calls it.
+
+**Files Changed**:
+- `TCTEnglish/Services/Writing/WritingAssessmentPolicy.cs`
+- `TCTEnglish/Services/WritingService.cs`
+- `TCTEnglish.Tests/WritingLocalAssessmentTests.cs`
+
+**Verification**: WritingLocalAssessmentTests 39/0; live Practice/Data after
+restart shows `Cần xem lại` for local-review and `Đạt` for approved variant.
+
+**Commit**: not committed (owner: no commit this stage).
+
+**Notes**: Found during R6 UAT; related to earlier WRITING-REVIEW-STATE fix.
+
+### Chau C1.1 fresh-baseline allowlist + leftover MariaDB — 2026-11-04
+
+**Symptom**: Fresh-baseline helper accepted history0 targets that still had app
+tables (e.g. Sets); denylist of 8 names missed leftovers.
+
+**Root Cause**: Guard enumerated a fixed app-table denylist instead of refusing
+every current-schema table outside the metadata allowlist.
+
+**Solution**: `RequireFreshBaselineTargetAsync` SELECTs all `TABLE_NAME` for
+`DATABASE()`, allows only `__tct_acceptance_sentinel` and empty
+`__EFMigrationsHistory`; Theory + MariaDB leftover Sets/Cards/SpeakingVideos
+prove reject-before-Migrate and row preservation. No Program/entity/migration
+changes.
+
+**Files Changed**:
+- `TCTEnglish.Tests/Infrastructure/MariaDbAcceptanceConnectionGuard.cs`
+- `TCTEnglish.Tests/Infrastructure/MariaDbFreshBaselineGuardTests.cs`
+- `TCTEnglish.Tests/WritingAcceptedAnswersMariaDbUpgradeTests.cs` (leftover class)
+- plans/known-issues/ledger under `.tmp/`
+
+**Verification**: Unit 8/8; leftover 1/1 on chau1104h:3334; concurrency+guard 4/4
+on chau1104r; fresh upgrade 1/1 on chau1104i. R6 Admin partial UAT separately.
+
+**Commit**: not committed (owner: no commit this stage).
+
+**Notes**: Do not reuse a leftover-dirtied virgin DB for upgrade. R6 3-role/live
+still pending.
+
+### Chau final-polish final checks RR1/RR2 — 2026-11-04
+
+**Symptom**: Upgrade test could MigrateAsync down to 03/11 on an already-latest
+acceptance DB (drop WritingAcceptedAnswers); speaking “render twice” test did not
+exercise production renderer; concurrency test lacked lock-point barrier.
+
+**Root Cause**: Missing fresh-baseline guard before downgrade migrate; Node test
+self-appended DOM; HTTP concurrency started two tasks without coordinating the
+first FOR UPDATE hold against a second in-flight request.
+
+**Solution**: `RequireFreshBaselineTargetAsync` + WritingAnswersUpgradeFact on
+virgin DB; already-upgraded rejection test; production recorder/assess/commit
+two-cycle + in-memory mutation; FOR UPDATE contention barrier + existing-list
+and save-vs-edit MariaDB tests. No app feature protocol changes.
+
+**Files Changed**: MariaDbAcceptanceConnectionGuard.cs, WritingAcceptedAnswersMariaDbUpgradeTests.cs,
+MariaDbFreshBaselineGuardTests.cs, WritingAcceptedAnswersConcurrencyTests.cs,
+test_speaking_word_comparison.cjs, known-issues, plans/ledger.
+
+**Verification**: Fresh upgrade 1/1 on chau1104u:3332; concurrency+guard 4/4 on
+chau1104r:3331; full .NET 926/0/7; Node test_*.cjs 56/0. No paid API; no commit.
+
+**Notes**: R6 browser/demo/measurement still pending for owner.
+
+### Chau final-polish review repair R1–R5 — 2026-11-04
+
+**Symptom**: Concurrent Admin SaveAcceptedAnswers could persist 10 variants;
+stale Hello form approved Hi there after Goodbye edit; Local+cloud feedback
+reload flipped NeedsReview→NeedsRevision; structure test 1-fail gate; Speaking
+comparison stayed visible on new record/mic deny.
+
+**Root Cause**: Include-inside-txn without row lock; state token omitted sentence
+content; cloud path overwrote EvaluationSource to local+ai-feedback; structure
+test sliced on retired SyncWritingExerciseSentences name; speaking.js did not
+clear comparison at new recording epoch; DOM fixture lacked firstChild/removeChild.
+
+**Solution**: MariaDB FOR UPDATE on WritingExercises + ChangeTracker.Clear +
+content-bound token; preserve local decision source and optional cloud provenance;
+map legacy local+ai-feedback→NeedsReview; fix structure marker; clear comparison
+on record start/mic deny; AcceptanceTables + upgrade preservation for attempts.
+
+**Files Changed**: WritingExerciseManagementController.cs, WritingAssessmentPolicy.cs,
+WritingService.cs, Edit/_AcceptedAnswersPanels, speaking.js, dom_fixture.cjs,
+WritingAdminControllerStructureTests, WritingAcceptedAnswers* tests,
+MariaDbAcceptanceFactory, WritingLocalCloudFeedbackStatusTests, known-issues.
+
+**Verification**: Focused 16/16; full .NET 922 pass / 0 fail / 6 skip; Node
+speaking/writing 16/16; MariaDB concurrency on tct_acceptance_chau1104r:3331.
+No paid API; no commit/push/PR/deploy.
+
+**Notes**: R6 browser UAT/demo/measurement still pending for owner re-review.
+
+### Chau final polish F1/F2 + Speaking word diff + Writing accepted answers — 2026-11-04
+
+**Symptom**: Writing drafts leaked across accounts on shared browser storage;
+NeedsReview showed as “Làm lại”; owner asked for Speaking per-word comparison
+and Admin-approved Writing answer variants before UAT.
+
+**Root Cause**: Draft keys omitted owner id; JS normalize dropped AssessmentStatus/
+ReviewRequired; AssessSpeaking only returned transcriptPreview; Writing grading
+accepted only canonical EnglishMeaning with no Admin variant table.
+
+**Solution**: Owner-scoped draft namespace from server-verified CurrentOwnerUserId;
+preserve three assessment states through snapshot/Razor/JS; pure SpeakingTextAlignment
+on full transcript with optional comparison JSON/UI; additive WritingAcceptedAnswers
+table, Admin SaveAcceptedAnswers form, Assess(canonical + approved variants),
+passage-edit guard when variants exist.
+
+**Files Changed**: writing.js, WritingPractice.cshtml, WritingIndexViewModel.cs,
+WritingService.cs, WritingAssessmentPolicy.cs, SpeakingTextAlignment.cs,
+SpeakingAssessmentService.cs, SpeakingController.cs, speaking.js/css,
+Practice.cshtml, WritingAcceptedAnswer entity/DbContext/migration,
+WritingExerciseManagementController + Edit/_AcceptedAnswersPanels, tests/docs.
+
+**Verification**: Node draft/status/speaking comparison tests green; WritingLocal/
+Schema/AcceptedAnswers integration green; SpeakingTextAlignment + matching assess
+comparison JSON green; MariaDB disposable upgrade/repeat/unique-hash pass on
+tct_acceptance_chau1104c:3330; local tctenglish_dev applied
+AddWritingAcceptedAnswers. No paid API; no commit/push/PR/deploy.
+
+**Notes**: Owner browser A→B draft isolation and full 3-role UAT matrix still
+recommended. Production deploy remains OFF.
+
+### Stop local startup from replacing the credential store — 2026-11-04
+
+**Symptom**: Owner entered a new key successfully. A metadata probe returned200
+for gpt-6-luna/gpt-transcribe and one tiny text request returned200/completed/OK.
+Starting the web then failed with EFS encryption error in Update-LocalSecretStore;
+the active secrets.json disappeared. Global OPENAI_API_KEY still being present
+is not evidence it is the newly entered/validated key. No substitute key was tested.
+
+**Root Cause**: Ordinary launcher rewrote User Secrets to save Docker connection/
+worker flags. File.Move(temp,destination,overwrite:true) could remove the existing
+destination before the replacement failed. The finally block deleted the temp.
+This is separate from the earlier cross-drive cache relocation mistake: normal
+startup also performed an unnecessary destructive credential replacement.
+
+**Solution**: Startup only reads the supported store; Docker/worker flags and
+normalized nonsecret AI options are temporary child-process environment settings.
+Restore all affected env on success/failure/DatabaseOnly. Explicit key helper
+uses File.Replace with same-directory backup for existing files and nonoverwrite
+Move for new ones; retain/restore protected backup on failure, no EFS/ACL bypass.
+
+**Files Changed**: scripts/start-local.ps1, scripts/LocalAiConfiguration.psm1,
+scripts/tests/test_local_launcher.py, scripts/tests/test_local_ai_config.py,
+AGENTS.md, .ai/README.md, relevant local operations guides.
+
+**Verification**: Launcher meaningful regressions red4 →green7; readonly store
+mock forbids writes and asserts unchanged bytes/mtime, fresh store not created,
+runtime DB flags inherited/restored, failure/DatabaseOnly and no ASR start guards.
+Key/config14 pass including Windows locked-target failure preserving original.
+Full scripts Ran105/1skip; setup9 pass; tooling verified. Real launcher built
+Release, dev DB already up-to-date/no new migration; ready200 and Login200.
+It preserved existing users/data and did not create a new secrets file.
+
+**Owner state**: Informed/apologized; owner chose “Tôi sẽ nhập lại sau”. The
+running web was deliberately launched without key env in its own process tree;
+AI currently unavailable in that instance. Re-enter key via masked helper then
+restart that owned launcher; do not reuse the old protected D copy or claim the
+pre-incident validation proves the current instance has a working key.
+
+**Later follow-up04/11**: Owner re-entered the key and asked to restart. Stopped
+the owned no-key instance, launched the corrected Release script on5100. AI
+source=User Secrets, speech source=User Secrets AI:ApiKey, ready200, Login opened.
+Secret file length/mtime/EFS attribute metadata unchanged; no secret write or
+new paid request. Current configuration is restored; live account/quota/audio
+acceptance remains separate from metadata/startup checks.
+
+**Commit**: Not committed; local fix/local-launcher-preserve-user-secrets only.
+
+**Sources**: https://learn.microsoft.com/en-us/dotnet/api/system.io.file.replace?view=net-9.0 ;
+https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-replacefilew .
+
 ### Upgrade vulnerable vendored DOMPurify before publishing the pending diff — 2026-11-04
 
 **Symptom**: Final pre-merge security review found the new local browser bundle
