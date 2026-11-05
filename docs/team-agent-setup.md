@@ -39,6 +39,14 @@ dùng file bấm đúp. Không chỉnh user settings để ép quyền tự ch�
 
 ## Những gì đã chia sẻ
 
+Sau khi pull, dùng quy tắc và prompt mới từ checkout hiện tại. Xem
+[chuẩn prompt tiếng Anh](../.ai/prompts/README.md) và
+[kiểm tra công cụ ngữ cảnh05/11](feature-audits/2026-11-05-context-tooling-sync.md).
+Context7 tra tài liệu thư viện bên ngoài khi đã kết nối, không đồng bộ source
+private. CodeGraph dùng index local và approval riêng từng máy; không đưa
+index/approval vào Git. Phiên chat dài cần đọc lại hướng dẫn đã đổi hoặc mở
+phiên mới; cấu hình trong repo không chứng minh IDE đã reload/trust server.
+
 | Client | Rules / skills | Native hooks | Native MCP |
 | --- | --- | --- | --- |
 | Codex | AGENTS.md, .agents/skills/tct-* | .codex/hooks.json | .codex/config.toml |
