@@ -33,6 +33,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<SpeakingSentence> SpeakingSentences { get; set; }
     public virtual DbSet<WritingExercise> WritingExercises { get; set; }
     public virtual DbSet<WritingExerciseSentence> WritingExerciseSentences { get; set; }
+    public virtual DbSet<WritingAcceptedAnswer> WritingAcceptedAnswers { get; set; }
     public virtual DbSet<UserWritingAttempt> UserWritingAttempts { get; set; }
     public virtual DbSet<ClassFolder> ClassFolders { get; set; }
     public virtual DbSet<ClassMember> ClassMembers { get; set; }
@@ -837,6 +838,42 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.WritingExerciseId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_WritingExerciseSentences_WritingExercises");
+        });
+
+        modelBuilder.Entity<WritingAcceptedAnswer>(entity =>
+        {
+            entity.ToTable("WritingAcceptedAnswers");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.AnswerText)
+                .IsRequired()
+                .HasMaxLength(1000);
+
+            entity.Property(e => e.NormalizedHash)
+                .IsRequired()
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .IsFixedLength();
+
+            entity.HasIndex(e => new { e.WritingExerciseSentenceId, e.NormalizedHash })
+                .IsUnique()
+                .HasDatabaseName("UX_WritingAcceptedAnswers_Sentence_Hash");
+
+            entity.HasIndex(e => e.WritingExerciseSentenceId)
+                .HasDatabaseName("IX_WritingAcceptedAnswers_WritingExerciseSentenceId");
+
+            entity.HasOne(d => d.WritingExerciseSentence)
+                .WithMany(p => p.WritingAcceptedAnswers)
+                .HasForeignKey(d => d.WritingExerciseSentenceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_WritingAcceptedAnswers_WritingExerciseSentences");
+
+            entity.HasOne(d => d.ApprovedByUser)
+                .WithMany(p => p.WritingAcceptedAnswersApproved)
+                .HasForeignKey(d => d.ApprovedByUserId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_WritingAcceptedAnswers_Users");
         });
 
         modelBuilder.Entity<UserWritingAttempt>(entity =>

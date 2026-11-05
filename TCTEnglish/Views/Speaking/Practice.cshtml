@@ -186,6 +186,20 @@
                                         </div>
                                     </div>
                                     <p id="spk-assessment-status" class="small text-muted mb-0 mt-2" aria-live="polite"></p>
+                                    <section id="spk-word-comparison"
+                                             class="spk-word-comparison"
+                                             hidden
+                                             aria-label="Đối chiếu nội dung nhận diện">
+                                        <h3 class="spk-word-comparison-title">Đối chiếu nội dung nhận diện</h3>
+                                        <p class="spk-word-comparison-note">So khớp chữ đã nhận diện với câu mẫu — không phải điểm phát âm/phoneme.</p>
+                                        <div class="spk-word-comparison-legend" aria-hidden="true">
+                                            <span class="spk-word-chip spk-word-chip--matched"><span class="spk-word-chip-mark" aria-hidden="true">✓</span> Khớp</span>
+                                            <span class="spk-word-chip spk-word-chip--missing"><span class="spk-word-chip-mark" aria-hidden="true">−</span> Thiếu</span>
+                                            <span class="spk-word-chip spk-word-chip--extra"><span class="spk-word-chip-mark" aria-hidden="true">+</span> Thừa</span>
+                                            <span class="spk-word-chip spk-word-chip--substituted"><span class="spk-word-chip-mark" aria-hidden="true">≠</span> Khác</span>
+                                        </div>
+                                        <div id="spk-word-comparison-body" class="spk-word-comparison-body" tabindex="0"></div>
+                                    </section>
                                 </div>
 
                                 @* Interaction Controls *@

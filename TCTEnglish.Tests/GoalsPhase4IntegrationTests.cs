@@ -12,6 +12,58 @@ namespace TCTEnglish.Tests;
 
 public sealed class GoalsPhase4IntegrationTests
 {
+    [Theory]
+    [InlineData(false, 1, 50)]
+    [InlineData(false, 5, 100)]
+    [InlineData(true, 1, 25)]
+    public async Task GoalsSummary_UsesActiveSkillTargets_AndEditorMatchesSelectedSkill(
+        bool includeVocabulary, int writingCompletions, int expectedPercent)
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SetGoalAsync(factory, 10);
+        using var scope = factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        context.UserGoals.Add(new UserGoal
+        {
+            UserId = TestDataIds.UserId, GoalArea = GoalArea.Writing, TargetValue = 2
+        });
+        if (includeVocabulary)
+        {
+            context.UserGoals.Add(new UserGoal
+            {
+                UserId = TestDataIds.UserId, GoalArea = GoalArea.Vocabulary, TargetValue = 10
+            });
+        }
+        context.UserGoals.AddRange(
+            new UserGoal
+            {
+                UserId = TestDataIds.UserId, GoalArea = GoalArea.Speaking,
+                TargetValue = 0
+            },
+            new UserGoal
+            {
+                UserId = TestDataIds.OutsiderUserId, GoalArea = GoalArea.Writing,
+                TargetValue = 100
+            });
+        context.UserDailyActivities.Add(new UserDailyActivity
+        {
+            UserId = TestDataIds.UserId, ActivityDate = BusinessDateHelper.Today,
+            WritingCompletedCount = writingCompletions
+        });
+        await context.SaveChangesAsync();
+
+        var model = await scope.ServiceProvider.GetRequiredService<IGoalsService>()
+            .GetGoalsAsync(TestDataIds.UserId);
+
+        Assert.NotNull(model);
+        Assert.Equal(expectedPercent, model.ProgressPercent);
+        var selected = model.GoalCards.First(card => card.TargetValue > 0);
+        Assert.Equal(selected.GoalArea, model.GoalEditor.GoalArea);
+        Assert.Equal(selected.TargetValue, model.GoalEditor.TargetValue);
+        Assert.Contains("từ vựng", model.WeeklyActivityMessage, StringComparison.Ordinal);
+    }
+
     [Fact]
     public async Task GoalsPage_RendersBootstrapBundle_AndGoalEditorModalContract()
     {

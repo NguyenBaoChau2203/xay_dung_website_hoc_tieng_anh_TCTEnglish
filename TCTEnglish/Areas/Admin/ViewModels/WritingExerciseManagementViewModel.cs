@@ -89,11 +89,39 @@ public sealed class WritingExerciseCreateViewModel : WritingExerciseFormViewMode
 public sealed class WritingExerciseEditViewModel : WritingExerciseFormViewModel
 {
     public DateTime CreatedAt { get; set; }
+    public List<WritingExerciseSentenceVariantPanelViewModel> SentenceVariantPanels { get; set; } = new();
 }
 
 public sealed class WritingExerciseSentenceInputViewModel
 {
+    public int? Id { get; set; }
     public string VietnameseText { get; set; } = string.Empty;
     public string EnglishMeaning { get; set; } = string.Empty;
     public bool BreakAfter { get; set; }
+}
+
+public sealed class WritingExerciseSentenceVariantPanelViewModel
+{
+    public int SentenceId { get; set; }
+    public int SortOrder { get; set; }
+    public string VietnameseText { get; set; } = string.Empty;
+    public string CanonicalEnglishMeaning { get; set; } = string.Empty;
+    public int VariantCount { get; set; }
+    public List<WritingAcceptedAnswerItemViewModel> Variants { get; set; } = new();
+    public string ExpectedStateToken { get; set; } = string.Empty;
+}
+
+public sealed class WritingAcceptedAnswerItemViewModel
+{
+    public int Id { get; set; }
+    public string AnswerText { get; set; } = string.Empty;
+    public DateTime ApprovedAtUtc { get; set; }
+}
+
+public sealed class WritingAcceptedAnswersSaveViewModel
+{
+    public int ExerciseId { get; set; }
+    public int SentenceId { get; set; }
+    public string ExpectedStateToken { get; set; } = string.Empty;
+    public List<string> Answers { get; set; } = new();
 }

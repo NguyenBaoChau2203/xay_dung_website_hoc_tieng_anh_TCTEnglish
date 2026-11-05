@@ -436,7 +436,7 @@
 
     function onPlayerReady() {
         updateProgressUI();
-        if (SENTENCES.length > 0) selectSentence(0, false);
+        if (activeSentIdx < 0 && SENTENCES.length > 0) selectSentence(0, false);
     }
 
     function onPlayerStateChange(evt) {
@@ -489,6 +489,7 @@
         setScoringUIState(false);
         if (reason === 'sentence-change') {
             setAssessmentStatus('Đã hủy ghi âm vì đổi câu — kết quả cũ không được gắn sang câu mới.');
+            clearWordComparison();
         }
     }
 
@@ -538,6 +539,7 @@
 
         // Update score board from stored data
         updateScoreBoard(s);
+        clearWordComparison();
 
         // YouTube seek
         if (player && typeof player.seekTo === 'function') {
@@ -559,6 +561,92 @@
     function setAssessmentStatus(message) {
         const el = $('spk-assessment-status');
         if (el) el.textContent = message || '';
+    }
+
+    function clearWordComparison() {
+        const panel = $('spk-word-comparison');
+        const body = $('spk-word-comparison-body');
+        if (body) {
+            while (body.firstChild) {
+                body.removeChild(body.firstChild);
+            }
+        }
+        if (panel) {
+            panel.hidden = true;
+        }
+    }
+
+    function renderWordComparison(comparison) {
+        const panel = $('spk-word-comparison');
+        const body = $('spk-word-comparison-body');
+        if (!panel || !body) {
+            return;
+        }
+
+        while (body.firstChild) {
+            body.removeChild(body.firstChild);
+        }
+
+        if (!comparison || comparison.available !== true || !Array.isArray(comparison.operations)) {
+            const note = document.createElement('p');
+            note.className = 'spk-word-comparison-empty';
+            note.textContent = comparison && comparison.unavailableReason === 'token_limit'
+                ? 'Câu quá dài để đối chiếu an toàn trong lần này.'
+                : 'Chưa có đối chiếu nội dung nhận diện.';
+            body.appendChild(note);
+            panel.hidden = false;
+            return;
+        }
+
+        if (comparison.operations.length === 0) {
+            const note = document.createElement('p');
+            note.className = 'spk-word-comparison-empty';
+            note.textContent = 'Không có từ để đối chiếu.';
+            body.appendChild(note);
+            panel.hidden = false;
+            return;
+        }
+
+        const list = document.createElement('ul');
+        list.className = 'spk-word-comparison-list';
+        list.setAttribute('role', 'list');
+
+        comparison.operations.forEach(function (op) {
+            const kind = String(op && op.kind || '').toLowerCase();
+            const item = document.createElement('li');
+            item.className = 'spk-word-chip spk-word-chip--' + (kind || 'matched');
+            item.setAttribute('role', 'listitem');
+
+            const mark = document.createElement('span');
+            mark.className = 'spk-word-chip-mark';
+            mark.setAttribute('aria-hidden', 'true');
+            mark.textContent = kind === 'missing' ? '−'
+                : kind === 'extra' ? '+'
+                    : kind === 'substituted' ? '≠'
+                        : '✓';
+            item.appendChild(mark);
+
+            const label = document.createElement('span');
+            label.className = 'spk-word-chip-label';
+            if (kind === 'missing') {
+                label.textContent = String(op.referenceToken || '');
+                item.setAttribute('aria-label', 'Thiếu: ' + label.textContent);
+            } else if (kind === 'extra') {
+                label.textContent = String(op.hypothesisToken || '');
+                item.setAttribute('aria-label', 'Thừa: ' + label.textContent);
+            } else if (kind === 'substituted') {
+                label.textContent = String(op.referenceToken || '') + ' → ' + String(op.hypothesisToken || '');
+                item.setAttribute('aria-label', 'Khác: ' + label.textContent);
+            } else {
+                label.textContent = String(op.hypothesisToken || op.referenceToken || '');
+                item.setAttribute('aria-label', 'Khớp: ' + label.textContent);
+            }
+            item.appendChild(label);
+            list.appendChild(item);
+        });
+
+        body.appendChild(list);
+        panel.hidden = false;
     }
 
     function formatScoreDisplay(value, { unavailable = false } = {}) {
@@ -676,6 +764,8 @@
             expectedText: sentence.text || ''
         };
         activeRecordingSnapshot = snapshot;
+        // New recording epoch owns the comparison panel — drop prior result immediately.
+        clearWordComparison();
 
         if (global.TctSpeechRecorder && global.TctSpeechRecorder.isSupported()) {
             startPcmRecording(snapshot);
@@ -909,6 +999,7 @@
             isRecording = false;
             activeRecordingSnapshot = null;
             setRecordUIState(false);
+            clearWordComparison();
             showToast('Không mở được micro — kiểm tra quyền mic/HTTPS.', 'error');
             setAssessmentStatus('Mic bị từ chối hoặc không khả dụng — chưa lưu tiến độ.');
         }
@@ -948,6 +1039,7 @@
         isScoring = true;
         setScoringUIState(true);
         setAssessmentStatus('Đang gửi máy chủ nhận dạng...');
+        clearWordComparison();
 
         try {
             const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
@@ -973,17 +1065,21 @@
                 const code = assessBody.code || '';
                 showToast(assessBody.error || 'ASR máy chủ chưa sẵn sàng.', 'warning');
                 setAssessmentStatus(assessBody.error || 'Engine chưa sẵn sàng — nghe/thu được nhưng chưa lưu XP.');
+                clearWordComparison();
                 return;
             }
 
             if (!assessBody.canCommitProgress || !assessBody.assessmentId) {
                 showToast(assessBody.message || 'Chưa nhận được lời nói.', 'warning');
-                setAssessmentStatus(assessBody.message || 'Chưa nhận được lời nói — chưa lưu tiến độ.');
                 updateScoreBoard(s, null);
+                // The score render resets this label; keep the latest no-speech reason visible.
+                setAssessmentStatus(assessBody.message || 'Chưa nhận được lời nói — chưa lưu tiến độ.');
+                clearWordComparison();
                 return;
             }
 
             updateScoreBoard(s, Math.round(assessBody.textMatchScore || 0));
+            renderWordComparison(assessBody.comparison);
             const progress = await saveSpeakingProgress(snapshot.sentenceId, {
                 assessmentId: assessBody.assessmentId
             }, controller.signal);
@@ -1421,8 +1517,9 @@
 
     function init() {
         bindEvents();
+        // Sentence controls stay usable while the external video API is loading.
+        if (SENTENCES.length > 0) selectSentence(0, false);
         if (TEST_MODE) {
-            if (SENTENCES.length > 0) selectSentence(0, false);
             return;
         }
         loadYouTubeAPI();

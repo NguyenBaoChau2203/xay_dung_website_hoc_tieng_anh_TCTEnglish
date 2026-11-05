@@ -2,7 +2,7 @@
  * writing.js – Practice UI logic (Phase 4 Overhaul)
  *
  * New in this version:
- *  - Browser draft persistence via localStorage (keyed per exercise + sentence)
+ *  - Browser draft persistence via localStorage (keyed per owner + exercise + sentence)
  *  - Explicit UI states: loading, rate-limit (429), session-expired (401), fallback
  *  - Loading spinner on submit button
  *  - Debounced draft-saved indicator
@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ── Config from data attributes ──────────────────────────────────────── */
     const antiForgeryToken = elPracticeRoot.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+    const ownerUserId      = String(elPracticeRoot.getAttribute('data-owner-user-id') || '').trim();
+    const hasOwnerScope    = /^[1-9]\d*$/.test(ownerUserId);
     const exerciseId       = elPracticeRoot.getAttribute('data-exercise-id') || '';
     const resumeSentenceId = elPracticeRoot.getAttribute('data-resume-sentence-id') || '';
     const hintUrl          = elPracticeRoot.getAttribute('data-hint-url')    || '';
@@ -78,14 +80,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const orderedSentenceIds = sentencePayload.map(function (s) { return String(s.id); });
 
-    /* ── localStorage helpers ─────────────────────────────────────────────── */
-    const DRAFT_NS = 'wp_draft_ex' + exerciseId + '_';
-
+    /* ── localStorage helpers (owner-scoped; legacy unowned keys ignored) ─── */
     function draftKey(sentenceId) {
-        return DRAFT_NS + String(sentenceId);
+        return 'wp_draft_u' + ownerUserId + '_ex' + exerciseId + '_' + String(sentenceId);
     }
 
     function loadDraft(sentenceId) {
+        if (!hasOwnerScope) {
+            return '';
+        }
+
         try {
             return localStorage.getItem(draftKey(sentenceId)) || '';
         } catch {
@@ -94,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function saveDraft(sentenceId, text) {
+        if (!hasOwnerScope) {
+            return;
+        }
+
         try {
             if (text) {
                 localStorage.setItem(draftKey(sentenceId), text);
@@ -104,6 +112,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function clearDraft(sentenceId) {
+        if (!hasOwnerScope) {
+            return;
+        }
+
         try {
             localStorage.removeItem(draftKey(sentenceId));
         } catch { /* silent */ }
@@ -163,10 +175,22 @@ document.addEventListener('DOMContentLoaded', function () {
             return null;
         }
 
+        const assessmentStatus = collapseWhitespace(value.assessmentStatus || '');
+        const assessmentSource = collapseWhitespace(value.assessmentSource || value.evaluationSource || '');
+        const reviewRequired = typeof value.reviewRequired === 'boolean'
+            ? value.reviewRequired
+            : (assessmentStatus.toLowerCase() === 'needsreview');
+
         return {
             passed: Boolean(value.passed),
             usedAi: Boolean(value.usedAi),
             evaluationSource: collapseWhitespace(value.evaluationSource || ''),
+            assessmentStatus: assessmentStatus,
+            assessmentSource: assessmentSource,
+            reviewRequired: reviewRequired,
+            canAutoAdvance: typeof value.canAutoAdvance === 'boolean'
+                ? value.canAutoAdvance
+                : Boolean(value.passed),
             summaryTitle: collapseWhitespace(value.summaryTitle || ''),
             summaryText: collapseWhitespace(value.summaryText || ''),
             reviewText: String(value.reviewText || '').trim(),
@@ -178,6 +202,18 @@ document.addEventListener('DOMContentLoaded', function () {
             wordChoiceFeedback: collapseWhitespace(value.wordChoiceFeedback || ''),
             suggestedRewrite: String(value.suggestedRewrite || '').trim()
         };
+    }
+
+    function isNeedsReviewEvaluation(evaluation) {
+        if (!evaluation) {
+            return false;
+        }
+
+        if (evaluation.reviewRequired) {
+            return true;
+        }
+
+        return String(evaluation.assessmentStatus || '').toLowerCase() === 'needsreview';
     }
 
     function getSentenceById(sentenceId) {
@@ -220,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!sentence)                                                    { return 'Chờ làm';   }
         if (sentence.hasAccepted && hasPendingChanges(sentence))         { return 'Đang sửa';  }
         if (sentence.hasAccepted)                                        { return 'Hoàn thành'; }
+        if (isNeedsReviewEvaluation(sentence.lastEvaluation))            { return 'Cần xem lại'; }
         if (sentence.lastEvaluationPassed === false)                     { return 'Làm lại';   }
         if (isActive)                                                     { return 'Đang chọn'; }
         if (hasDraft(sentence))                                          { return 'Bản nháp';  }
@@ -676,7 +713,11 @@ document.addEventListener('DOMContentLoaded', function () {
         syncButtons();
 
         try {
-            const evaluation = await evaluateSentence(active, trimmedDraft);
+            const evaluation = normalizeEvaluationSnapshot(await evaluateSentence(active, trimmedDraft));
+            if (!evaluation) {
+                throw new Error('Hệ thống trả về kết quả chấm không hợp lệ.');
+            }
+
             const copy       = getEvaluationBannerCopy(evaluation);
 
             active.lastAttemptText = trimmedDraft;
@@ -694,6 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentIndex  = getSentenceIndex(activeSentenceId);
             const hasNext       = currentIndex >= 0 && currentIndex < orderedSentenceIds.length - 1;
 
+            // NeedsReview stays passed=false / no auto-next / no completion credit on the client.
             if (evaluation.passed && evaluation.canAutoAdvance && hasNext) {
                 const nextId       = orderedSentenceIds[currentIndex + 1];
                 const nextSentence = getSentenceById(nextId);

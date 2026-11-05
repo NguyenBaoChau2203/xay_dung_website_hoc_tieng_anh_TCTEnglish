@@ -344,11 +344,39 @@ namespace TCTVocabulary.Controllers
                 textMatchScore = outcome.TextMatchScore,
                 speechDetected = outcome.SpeechDetected,
                 transcriptPreview = outcome.TranscriptPreview,
+                comparison = SerializeSpeakingComparison(outcome.Comparison),
                 fluencyAvailable = outcome.FluencyAvailable,
                 completenessAvailable = outcome.CompletenessAvailable,
                 canCommitProgress = outcome.CanCommitProgress,
                 message = outcome.Message
             });
+        }
+
+        private static object? SerializeSpeakingComparison(SpeakingTextAlignmentResult? comparison)
+        {
+            if (comparison == null)
+            {
+                return null;
+            }
+
+            return new
+            {
+                available = comparison.ComparisonAvailable,
+                unavailableReason = comparison.UnavailableReason,
+                operations = comparison.Operations.Select(op => new
+                {
+                    kind = op.Kind switch
+                    {
+                        SpeakingAlignmentKind.Matched => "matched",
+                        SpeakingAlignmentKind.Missing => "missing",
+                        SpeakingAlignmentKind.Extra => "extra",
+                        SpeakingAlignmentKind.Substituted => "substituted",
+                        _ => "matched"
+                    },
+                    referenceToken = op.ReferenceToken,
+                    hypothesisToken = op.HypothesisToken
+                })
+            };
         }
 
         // ────────────────────────────────────────────────────────────

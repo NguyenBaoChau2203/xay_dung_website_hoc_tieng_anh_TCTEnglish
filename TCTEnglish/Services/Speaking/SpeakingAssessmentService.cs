@@ -15,6 +15,7 @@ public sealed class SpeakingAssessmentOutcome
     public double TextMatchScore { get; init; }
     public bool SpeechDetected { get; init; }
     public string TranscriptPreview { get; init; } = string.Empty;
+    public SpeakingTextAlignmentResult? Comparison { get; init; }
     public bool FluencyAvailable { get; init; }
     public bool CompletenessAvailable { get; init; }
     public bool CanCommitProgress { get; init; }
@@ -186,6 +187,9 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             assessment.Status,
             assessment.TextMatchScore);
 
+        // Align on the full transcript before preview truncation; never a second ASR call.
+        var comparison = SpeakingTextAlignment.Compare(access.ReferenceText, assessment.TranscriptText);
+
         return new SpeakingAssessmentOutcome
         {
             Success = true,
@@ -194,6 +198,7 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             TextMatchScore = assessment.TextMatchScore,
             SpeechDetected = assessment.SpeechDetected,
             TranscriptPreview = Truncate(assessment.TranscriptText, 120),
+            Comparison = comparison,
             FluencyAvailable = false,
             CompletenessAvailable = false,
             CanCommitProgress = assessment.SpeechDetected,

@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Writing;
 using TCTVocabulary.Areas.Admin.ViewModels;
 using TCTVocabulary.Controllers;
 using TCTVocabulary.Models;
@@ -220,6 +221,7 @@ public class WritingExerciseManagementController : BaseController
             .OrderBy(sentence => sentence.SortOrder)
             .Select(sentence => new WritingExerciseSentenceInputViewModel
             {
+                Id = sentence.Id,
                 VietnameseText = sentence.VietnameseText,
                 EnglishMeaning = sentence.EnglishMeaning,
                 BreakAfter = sentence.BreakAfter
@@ -238,7 +240,8 @@ public class WritingExerciseManagementController : BaseController
             FullEnglishText = BuildFullText(orderedSentences, sentence => sentence.EnglishMeaning),
             IsPublished = exercise.IsPublished,
             CreatedAt = exercise.CreatedAt,
-            Sentences = orderedSentences
+            Sentences = orderedSentences,
+            SentenceVariantPanels = await BuildSentenceVariantPanelsAsync(exercise.Id)
         };
 
         PopulateFormOptions(model);
@@ -261,6 +264,7 @@ public class WritingExerciseManagementController : BaseController
 
         if (!ModelState.IsValid)
         {
+            model.SentenceVariantPanels = await BuildSentenceVariantPanelsAsync(id);
             return View(model);
         }
 
@@ -271,8 +275,12 @@ public class WritingExerciseManagementController : BaseController
 
             await ExecuteWritingTransactionAsync(async () =>
             {
+                await LockWritingExerciseRowAsync(id);
+                _context.ChangeTracker.Clear();
+
                 exercise = await _context.WritingExercises
                     .Include(item => item.WritingExerciseSentences)
+                    .ThenInclude(sentence => sentence.WritingAcceptedAnswers)
                     .FirstOrDefaultAsync(item => item.Id == id);
 
                 if (exercise == null)
@@ -287,7 +295,11 @@ public class WritingExerciseManagementController : BaseController
                 exercise.PreviewText = model.PreviewText;
                 exercise.IsPublished = model.IsPublished;
 
-                SyncWritingExerciseSentences(exercise, model.Sentences);
+                if (!TrySyncWritingExerciseSentences(exercise, model.Sentences, out var syncError))
+                {
+                    throw new InvalidOperationException("variant_guard:" + syncError);
+                }
+
                 await _context.SaveChangesAsync();
             });
 
@@ -307,6 +319,12 @@ public class WritingExerciseManagementController : BaseController
                 DateTime.UtcNow);
             return RedirectToAction(nameof(Index));
         }
+        catch (InvalidOperationException ex) when (ex.Message.StartsWith("variant_guard:", StringComparison.Ordinal))
+        {
+            ModelState.AddModelError(nameof(model.FullEnglishText), ex.Message["variant_guard:".Length..]);
+            model.SentenceVariantPanels = await BuildSentenceVariantPanelsAsync(id);
+            return View(model);
+        }
         catch (Exception ex)
         {
             _logger.LogError(
@@ -319,6 +337,7 @@ public class WritingExerciseManagementController : BaseController
                 id,
                 model.Title);
             ModelState.AddModelError(string.Empty, "Không thể cập nhật bài viết lúc này. Vui lòng thử lại.");
+            model.SentenceVariantPanels = await BuildSentenceVariantPanelsAsync(id);
             return View(model);
         }
     }
@@ -384,10 +403,39 @@ public class WritingExerciseManagementController : BaseController
         });
     }
 
-    private void SyncWritingExerciseSentences(
-        WritingExercise exercise,
-        IReadOnlyList<WritingExerciseSentenceInputViewModel> sentences)
+    /// <summary>
+    /// Acquire a MariaDB row lock on the parent exercise before reading/writing sentence variants.
+    /// SQLite test provider has no FOR UPDATE; CAS token still guards state there.
+    /// </summary>
+    private async Task LockWritingExerciseRowAsync(int exerciseId)
     {
+        if (_context.Database.IsMySql())
+        {
+            var locked = await _context.Database
+                .SqlQuery<int>($"SELECT `Id` AS `Value` FROM `WritingExercises` WHERE `Id` = {exerciseId} FOR UPDATE")
+                .ToListAsync();
+            if (locked.Count == 0)
+            {
+                throw new InvalidOperationException("missing_exercise");
+            }
+
+            return;
+        }
+
+        var exists = await _context.WritingExercises.AsNoTracking()
+            .AnyAsync(item => item.Id == exerciseId);
+        if (!exists)
+        {
+            throw new InvalidOperationException("missing_exercise");
+        }
+    }
+
+    private bool TrySyncWritingExerciseSentences(
+        WritingExercise exercise,
+        IReadOnlyList<WritingExerciseSentenceInputViewModel> sentences,
+        out string? errorMessage)
+    {
+        errorMessage = null;
         var existingSentences = exercise.WritingExerciseSentences
             .OrderBy(sentence => sentence.SortOrder)
             .ThenBy(sentence => sentence.Id)
@@ -398,11 +446,22 @@ public class WritingExerciseManagementController : BaseController
         {
             var existingSentence = existingSentences[index];
             var updatedSentence = sentences[index];
+            var hasVariants = existingSentence.WritingAcceptedAnswers?.Count > 0;
+            var contentChanged = !string.Equals(
+                    existingSentence.VietnameseText,
+                    updatedSentence.VietnameseText,
+                    StringComparison.Ordinal)
+                || !string.Equals(
+                    existingSentence.EnglishMeaning,
+                    updatedSentence.EnglishMeaning,
+                    StringComparison.Ordinal);
 
-            existingSentence.SortOrder = index + 1;
-            existingSentence.VietnameseText = updatedSentence.VietnameseText;
-            existingSentence.EnglishMeaning = updatedSentence.EnglishMeaning;
-            existingSentence.BreakAfter = updatedSentence.BreakAfter;
+            if (hasVariants && contentChanged)
+            {
+                errorMessage =
+                    $"Câu {existingSentence.SortOrder} đang có đáp án biến thể đã duyệt. Hãy quản lý/xóa biến thể trước khi đổi nội dung câu trong full text.";
+                return false;
+            }
         }
 
         if (existingSentences.Count > sentences.Count)
@@ -411,12 +470,30 @@ public class WritingExerciseManagementController : BaseController
                 .Skip(sentences.Count)
                 .ToList();
 
+            if (trailingSentences.Any(sentence => sentence.WritingAcceptedAnswers?.Count > 0))
+            {
+                errorMessage =
+                    "Không thể xóa/ghép câu đang có đáp án biến thể đã duyệt. Hãy xóa biến thể có chủ ý trước khi rút ngắn passage.";
+                return false;
+            }
+
             foreach (var trailingSentence in trailingSentences)
             {
                 exercise.WritingExerciseSentences.Remove(trailingSentence);
             }
 
             _context.WritingExerciseSentences.RemoveRange(trailingSentences);
+        }
+
+        for (var index = 0; index < sharedCount; index++)
+        {
+            var existingSentence = existingSentences[index];
+            var updatedSentence = sentences[index];
+
+            existingSentence.SortOrder = index + 1;
+            existingSentence.VietnameseText = updatedSentence.VietnameseText;
+            existingSentence.EnglishMeaning = updatedSentence.EnglishMeaning;
+            existingSentence.BreakAfter = updatedSentence.BreakAfter;
         }
 
         for (var index = existingSentences.Count; index < sentences.Count; index++)
@@ -431,6 +508,271 @@ public class WritingExerciseManagementController : BaseController
                 BreakAfter = newSentence.BreakAfter
             });
         }
+
+        return true;
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SaveAcceptedAnswers([FromForm] WritingAcceptedAnswersSaveViewModel model)
+    {
+        var adminId = GetCurrentUserId();
+        if (model.ExerciseId <= 0 || model.SentenceId <= 0)
+        {
+            return NotFound();
+        }
+
+        var cleanedAnswers = (model.Answers ?? new List<string>())
+            .Select(WritingAssessmentPolicy.CollapseWhitespace)
+            .Where(answer => !string.IsNullOrWhiteSpace(answer))
+            .ToList();
+
+        if (cleanedAnswers.Count > WritingAssessmentPolicy.MaxAcceptedVariantsPerSentence)
+        {
+            return await RedisplayEditWithVariantErrorAsync(
+                model.ExerciseId,
+                model.SentenceId,
+                cleanedAnswers,
+                $"Mỗi câu chỉ được tối đa {WritingAssessmentPolicy.MaxAcceptedVariantsPerSentence} đáp án biến thể.");
+        }
+
+        if (cleanedAnswers.Any(answer => answer.Length > WritingAssessmentPolicy.MaxAcceptedAnswerLength))
+        {
+            return await RedisplayEditWithVariantErrorAsync(
+                model.ExerciseId,
+                model.SentenceId,
+                cleanedAnswers,
+                $"Mỗi đáp án biến thể tối đa {WritingAssessmentPolicy.MaxAcceptedAnswerLength} ký tự.");
+        }
+
+        try
+        {
+            var savedSortOrder = 0;
+            var savedCount = 0;
+
+            await ExecuteWritingTransactionAsync(async () =>
+            {
+                await LockWritingExerciseRowAsync(model.ExerciseId);
+                _context.ChangeTracker.Clear();
+
+                var tracked = await _context.WritingExerciseSentences
+                    .Include(item => item.WritingAcceptedAnswers)
+                    .FirstOrDefaultAsync(item =>
+                        item.Id == model.SentenceId
+                        && item.WritingExerciseId == model.ExerciseId);
+
+                if (tracked == null)
+                {
+                    throw new InvalidOperationException("missing_sentence");
+                }
+
+                var currentToken = WritingAssessmentPolicy.BuildAcceptedAnswersStateToken(
+                    model.ExerciseId,
+                    tracked.Id,
+                    tracked.VietnameseText,
+                    tracked.EnglishMeaning,
+                    tracked.WritingAcceptedAnswers);
+                if (!string.Equals(currentToken, model.ExpectedStateToken ?? string.Empty, StringComparison.Ordinal))
+                {
+                    throw new InvalidOperationException("stale_variants");
+                }
+
+                var seenHashes = new HashSet<string>(StringComparer.Ordinal);
+                var canonicalHash = WritingAssessmentPolicy.ComputeNormalizedHash(tracked.EnglishMeaning);
+                var prepared = new List<(string Text, string Hash)>();
+
+                foreach (var answer in cleanedAnswers)
+                {
+                    var hash = WritingAssessmentPolicy.ComputeNormalizedHash(answer);
+                    if (string.Equals(hash, canonicalHash, StringComparison.Ordinal))
+                    {
+                        throw new InvalidOperationException(
+                            "variant_validation:Đáp án biến thể không được trùng đáp án chuẩn (EnglishMeaning) sau chuẩn hóa.");
+                    }
+
+                    if (!seenHashes.Add(hash))
+                    {
+                        throw new InvalidOperationException(
+                            "variant_validation:Các đáp án biến thể không được trùng nhau sau chuẩn hóa.");
+                    }
+
+                    prepared.Add((answer, hash));
+                }
+
+                if (tracked.WritingAcceptedAnswers.Count > 0)
+                {
+                    _context.WritingAcceptedAnswers.RemoveRange(tracked.WritingAcceptedAnswers);
+                }
+
+                var now = DateTime.UtcNow;
+                foreach (var item in prepared)
+                {
+                    tracked.WritingAcceptedAnswers.Add(new WritingAcceptedAnswer
+                    {
+                        WritingExerciseSentenceId = tracked.Id,
+                        AnswerText = item.Text,
+                        NormalizedHash = item.Hash,
+                        ApprovedByUserId = adminId,
+                        ApprovedAtUtc = now
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+                savedSortOrder = tracked.SortOrder;
+                savedCount = prepared.Count;
+            });
+
+            TempData["SuccessMessage"] = $"Đã cập nhật đáp án biến thể cho câu {savedSortOrder}.";
+            _logger.LogInformation(
+                "Admin {AdminId} saved {VariantCount} accepted answers for WritingExercise {ExerciseId} sentence {SentenceId}",
+                adminId,
+                savedCount,
+                model.ExerciseId,
+                model.SentenceId);
+            return RedirectToAction(nameof(Edit), new { id = model.ExerciseId });
+        }
+        catch (InvalidOperationException ex) when (ex.Message == "stale_variants")
+        {
+            return await RedisplayEditWithVariantErrorAsync(
+                model.ExerciseId,
+                model.SentenceId,
+                cleanedAnswers,
+                "Danh sách đáp án biến thể hoặc nội dung câu đã thay đổi từ lúc bạn mở form. Hãy tải lại trang rồi lưu lại.");
+        }
+        catch (InvalidOperationException ex) when (ex.Message == "missing_sentence" || ex.Message == "missing_exercise")
+        {
+            return NotFound();
+        }
+        catch (InvalidOperationException ex) when (ex.Message.StartsWith("variant_validation:", StringComparison.Ordinal))
+        {
+            return await RedisplayEditWithVariantErrorAsync(
+                model.ExerciseId,
+                model.SentenceId,
+                cleanedAnswers,
+                ex.Message["variant_validation:".Length..]);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(
+                ex,
+                "Admin {AdminId} failed saving accepted answers for exercise {ExerciseId} sentence {SentenceId}",
+                adminId,
+                model.ExerciseId,
+                model.SentenceId);
+            return await RedisplayEditWithVariantErrorAsync(
+                model.ExerciseId,
+                model.SentenceId,
+                cleanedAnswers,
+                "Không thể lưu đáp án biến thể lúc này. Vui lòng thử lại.");
+        }
+    }
+
+    private async Task<IActionResult> RedisplayEditWithVariantErrorAsync(
+        int exerciseId,
+        int sentenceId,
+        IReadOnlyList<string> preservedAnswers,
+        string errorMessage)
+    {
+        var exercise = await _context.WritingExercises
+            .AsNoTracking()
+            .Include(item => item.WritingExerciseSentences)
+            .FirstOrDefaultAsync(item => item.Id == exerciseId);
+
+        if (exercise == null)
+        {
+            return NotFound();
+        }
+
+        var orderedSentences = exercise.WritingExerciseSentences
+            .OrderBy(sentence => sentence.SortOrder)
+            .Select(sentence => new WritingExerciseSentenceInputViewModel
+            {
+                Id = sentence.Id,
+                VietnameseText = sentence.VietnameseText,
+                EnglishMeaning = sentence.EnglishMeaning,
+                BreakAfter = sentence.BreakAfter
+            })
+            .ToList();
+
+        var model = new WritingExerciseEditViewModel
+        {
+            Id = exercise.Id,
+            Title = exercise.Title,
+            Level = exercise.Level,
+            ContentType = exercise.ContentType,
+            Topic = exercise.Topic,
+            PreviewText = exercise.PreviewText,
+            FullVietnameseText = BuildFullText(orderedSentences, sentence => sentence.VietnameseText),
+            FullEnglishText = BuildFullText(orderedSentences, sentence => sentence.EnglishMeaning),
+            IsPublished = exercise.IsPublished,
+            CreatedAt = exercise.CreatedAt,
+            Sentences = orderedSentences,
+            SentenceVariantPanels = await BuildSentenceVariantPanelsAsync(exercise.Id)
+        };
+
+        var panel = model.SentenceVariantPanels.FirstOrDefault(item => item.SentenceId == sentenceId);
+        if (panel != null)
+        {
+            panel.Variants = preservedAnswers
+                .Select(answer => new WritingAcceptedAnswerItemViewModel
+                {
+                    Id = 0,
+                    AnswerText = answer,
+                    ApprovedAtUtc = DateTime.UtcNow
+                })
+                .ToList();
+            panel.VariantCount = panel.Variants.Count;
+        }
+
+        PopulateFormOptions(model);
+        ModelState.AddModelError(string.Empty, errorMessage);
+        ViewData["VariantSaveError"] = errorMessage;
+        TempData["ErrorMessage"] = errorMessage;
+        return View(nameof(Edit), model);
+    }
+
+    private async Task<List<WritingExerciseSentenceVariantPanelViewModel>> BuildSentenceVariantPanelsAsync(int exerciseId)
+    {
+        var sentences = await _context.WritingExerciseSentences
+            .AsNoTracking()
+            .Where(sentence => sentence.WritingExerciseId == exerciseId)
+            .OrderBy(sentence => sentence.SortOrder)
+            .Select(sentence => new
+            {
+                sentence.Id,
+                sentence.SortOrder,
+                sentence.VietnameseText,
+                sentence.EnglishMeaning,
+                Variants = sentence.WritingAcceptedAnswers
+                    .OrderBy(answer => answer.Id)
+                    .Select(answer => new WritingAcceptedAnswerItemViewModel
+                    {
+                        Id = answer.Id,
+                        AnswerText = answer.AnswerText,
+                        ApprovedAtUtc = answer.ApprovedAtUtc
+                    })
+                    .ToList()
+            })
+            .ToListAsync();
+
+        return sentences.Select(sentence => new WritingExerciseSentenceVariantPanelViewModel
+        {
+            SentenceId = sentence.Id,
+            SortOrder = sentence.SortOrder,
+            VietnameseText = sentence.VietnameseText,
+            CanonicalEnglishMeaning = sentence.EnglishMeaning,
+            VariantCount = sentence.Variants.Count,
+            Variants = sentence.Variants,
+            ExpectedStateToken = WritingAssessmentPolicy.BuildAcceptedAnswersStateToken(
+                exerciseId,
+                sentence.Id,
+                sentence.VietnameseText,
+                sentence.EnglishMeaning,
+                sentence.Variants.Select(variant => (
+                    variant.Id,
+                    WritingAssessmentPolicy.ComputeNormalizedHash(variant.AnswerText),
+                    variant.ApprovedAtUtc.Ticks)))
+        }).ToList();
     }
 
     private static List<WritingExerciseOptionViewModel> BuildTopicOptions(IEnumerable<string?> topics)

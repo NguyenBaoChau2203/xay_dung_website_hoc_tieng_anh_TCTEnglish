@@ -36,7 +36,14 @@ jobs:
       - name: Run application tests
         run: dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --no-build --no-restore --logger "trx;LogFileName=tests.trx" --results-directory test-results
       - name: Check artifact guards and Plesk webhook protocol
-        run: python3 -m unittest discover -s scripts/tests -p test_deploy_tools.py -v
+        run: |
+          python3 -m unittest discover -s scripts/tests -p test_deploy_tools.py -v
+          python3 -m unittest discover -s scripts/tests -p test_staging_release.py -v
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Run browser logic regressions
+        run: node --test scripts/tests/test_*.cjs
       - name: Start disposable MariaDB matching hosting
         shell: bash
         run: |
@@ -87,6 +94,34 @@ jobs:
       - name: Remove disposable database
         if: always()
         run: docker rm -f -v tct-ci-mariadb || true
+
+  staging:
+    name: Deploy tested master to staging
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && vars.PLESK_STAGING_DEPLOYMENT_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: staging
+      url: https://staging.tctenglish.site
+    concurrency:
+      group: tctenglish-staging
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: tctenglish-release
+          path: release-artifact
+      - name: Publish staging manifest and verify authenticated readiness
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PLESK_STAGING_WEBHOOK_URL: ${{ secrets.PLESK_STAGING_WEBHOOK_URL }}
+          STAGING_PORTAL_USERNAME: ${{ secrets.STAGING_PORTAL_USERNAME }}
+          STAGING_PORTAL_PASSWORD: ${{ secrets.STAGING_PORTAL_PASSWORD }}
+        run: python3 scripts/publish-staging-release.py release-artifact/tctenglish-release.zip
 
   release:
     name: Publish approved release and trigger Plesk

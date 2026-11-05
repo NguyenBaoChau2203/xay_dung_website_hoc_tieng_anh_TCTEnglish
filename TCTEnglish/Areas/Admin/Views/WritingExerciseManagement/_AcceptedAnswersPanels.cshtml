@@ -1,0 +1,69 @@
+@model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseEditViewModel
+
+<section class="card border-0 shadow-sm rounded-4 mt-4" aria-labelledby="accepted-answers-heading">
+    <div class="card-body p-4">
+        <h3 id="accepted-answers-heading" class="h5 fw-bold mb-2">Đáp án biến thể do Admin duyệt</h3>
+        <p class="text-muted mb-4">
+            Đáp án chuẩn (<code>EnglishMeaning</code>) vẫn được chấp nhận. Thêm tối đa 5 cách diễn đạt khác cho từng câu đã có ID.
+            Form này tách khỏi bulk Edit passage để tránh mất biến thể khi tách/ghép câu.
+        </p>
+
+        @if (ViewData["VariantSaveError"] is string variantSaveError && !string.IsNullOrWhiteSpace(variantSaveError))
+        {
+            <div class="alert alert-danger rounded-3 mb-3" role="alert">@variantSaveError</div>
+        }
+
+        @if (Model.SentenceVariantPanels.Count == 0)
+        {
+            <p class="mb-0 text-muted">Chưa có câu nào. Lưu bài với full text trước, rồi quay lại để duyệt biến thể.</p>
+        }
+        else
+        {
+            @foreach (var panel in Model.SentenceVariantPanels)
+            {
+                <article class="border rounded-3 p-3 mb-3" aria-label="Biến thể câu @panel.SortOrder">
+                    <div class="d-flex flex-wrap justify-content-between gap-2 mb-2">
+                        <div>
+                            <div class="fw-semibold">Câu @panel.SortOrder <span class="text-muted">#@panel.SentenceId</span></div>
+                            <div class="small text-muted">@panel.VietnameseText</div>
+                        </div>
+                        <div class="small">
+                            <span class="badge text-bg-light border">Chuẩn: @panel.CanonicalEnglishMeaning</span>
+                        </div>
+                    </div>
+
+                    <form asp-action="SaveAcceptedAnswers" method="post" class="vstack gap-2">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="ExerciseId" value="@Model.Id" />
+                        <input type="hidden" name="SentenceId" value="@panel.SentenceId" />
+                        <input type="hidden" name="ExpectedStateToken" value="@panel.ExpectedStateToken" />
+
+                        @for (var i = 0; i < 5; i++)
+                        {
+                            var existing = i < panel.Variants.Count ? panel.Variants[i].AnswerText : string.Empty;
+                            <div>
+                                <label class="form-label small mb-1" for="variant-@panel.SentenceId-@i">
+                                    Biến thể @(i + 1)
+                                </label>
+                                <input id="variant-@panel.SentenceId-@i"
+                                       name="Answers[@i]"
+                                       type="text"
+                                       class="form-control"
+                                       maxlength="1000"
+                                       value="@existing"
+                                       autocomplete="off" />
+                            </div>
+                        }
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary rounded-pill px-3">
+                                <i class="fa-solid fa-floppy-disk me-1" aria-hidden="true"></i>
+                                Lưu biến thể câu @panel.SortOrder
+                            </button>
+                        </div>
+                    </form>
+                </article>
+            }
+        }
+    </div>
+</section>

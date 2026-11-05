@@ -149,6 +149,9 @@ public class SpeakingAssessmentIntegrationTests
         var assessBody = await assessResponse.Content.ReadAsStringAsync();
         using var assessJson = JsonDocument.Parse(assessBody);
         Assert.True(assessJson.RootElement.GetProperty("canCommitProgress").GetBoolean());
+        Assert.True(assessJson.RootElement.TryGetProperty("comparison", out var comparison));
+        Assert.True(comparison.GetProperty("available").GetBoolean());
+        Assert.True(comparison.GetProperty("operations").GetArrayLength() > 0);
         var assessmentId = assessJson.RootElement.GetProperty("assessmentId").GetGuid();
 
         using var progressRequest = new HttpRequestMessage(

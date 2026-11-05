@@ -1,4 +1,5 @@
 using System.Data.Common;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
@@ -249,6 +250,73 @@ public static class MariaDbAcceptanceConnectionGuard
             runParameter.Value = runId;
             insert.Parameters.Add(runParameter);
             await insert.ExecuteNonQueryAsync(cancellationToken);
+        }
+    }
+
+    /// <summary>
+    /// Tables allowed on a virgin upgrade target besides the owned sentinel.
+    /// __EFMigrationsHistory may exist only when it has zero applied rows.
+    /// </summary>
+    public static readonly HashSet<string> FreshBaselineAllowedMetadataTables = new(StringComparer.OrdinalIgnoreCase)
+    {
+        SentinelTable,
+        "__EFMigrationsHistory"
+    };
+
+    /// <summary>
+    /// Fail before any baseline MigrateAsync when the acceptance DB has any
+    /// current-schema table outside the metadata allowlist, or when migration
+    /// history already has rows. Never downgrades an upgraded lab DB.
+    /// </summary>
+    public static async Task RequireFreshBaselineTargetAsync(
+        DbConnection connection,
+        string expectedDatabase,
+        string expectedRunId,
+        CancellationToken cancellationToken = default)
+    {
+        await VerifyOnlineIdentityAsync(connection, expectedDatabase, expectedRunId, cancellationToken);
+
+        var tableNames = new List<string>();
+        await using (var listCommand = connection.CreateCommand())
+        {
+            listCommand.CommandText =
+                """
+                SELECT TABLE_NAME
+                FROM information_schema.TABLES
+                WHERE TABLE_SCHEMA = DATABASE()
+                ORDER BY TABLE_NAME;
+                """;
+            await using var reader = await listCommand.ExecuteReaderAsync(cancellationToken);
+            while (await reader.ReadAsync(cancellationToken))
+            {
+                tableNames.Add(reader.GetString(0));
+            }
+        }
+
+        var disallowed = tableNames
+            .Where(name => !FreshBaselineAllowedMetadataTables.Contains(name))
+            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        if (disallowed.Count > 0)
+        {
+            throw new InvalidOperationException(
+                "Acceptance upgrade baseline refused: current schema has tables outside the metadata allowlist (" +
+                string.Join(", ", disallowed.Select(name => $"`{name}`")) +
+                "). Use a fresh disposable DB; do not downgrade an upgraded target.");
+        }
+
+        if (tableNames.Any(name => string.Equals(name, "__EFMigrationsHistory", StringComparison.OrdinalIgnoreCase)))
+        {
+            await using var historyCountCommand = connection.CreateCommand();
+            historyCountCommand.CommandText = "SELECT COUNT(*) FROM `__EFMigrationsHistory`;";
+            var appliedCount = Convert.ToInt32(
+                await historyCountCommand.ExecuteScalarAsync(cancellationToken));
+            if (appliedCount > 0)
+            {
+                throw new InvalidOperationException(
+                    "Acceptance upgrade baseline refused: __EFMigrationsHistory is not empty. " +
+                    "Use a fresh disposable DB; do not downgrade an upgraded target.");
+            }
         }
     }
 

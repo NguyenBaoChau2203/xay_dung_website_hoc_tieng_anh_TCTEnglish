@@ -33,7 +33,7 @@ public sealed class WritingAdminControllerStructureTests
         var helperSlice = SliceBetween(
             source,
             "private async Task ExecuteWritingTransactionAsync(Func<Task> action)",
-            "private void SyncWritingExerciseSentences(");
+            "private bool TrySyncWritingExerciseSentences(");
 
         Assert.Contains("_context.Database.CreateExecutionStrategy()", helperSlice, StringComparison.Ordinal);
         Assert.Contains("strategy.ExecuteAsync", helperSlice, StringComparison.Ordinal);

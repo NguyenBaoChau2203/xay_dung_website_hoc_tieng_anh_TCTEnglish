@@ -26,8 +26,12 @@ không đổi default Debug/5100 của đồng đội.
 Helper hỏi key có che ký tự, lấy UserSecretsId từ csproj, merge atomic vào .NET
 User Secrets ngoài repo; không đưa key vào argument/history/chat. Giữ các secret
 OAuth/SMTP/DB/billing/speech; nested/flat conflict bị từ chối trước khi ghi.
-User Secrets là file local không mã hóa theo cơ chế .NET hiện có. Không chia sẻ
-file đó hoặc output `dotnet user-secrets list` để nhờ hỗ trợ.
+.NET User Secrets không tự cung cấp mã hóa; Windows có thể áp dụng EFS/ACL riêng.
+Giữ nguyên bảo vệ của OS. Không chia sẻ file đó hoặc output `dotnet user-secrets list`
+để nhờ hỗ trợ. Helper dùng replace với backup cùng thư mục khi file đã tồn tại;
+nếu thay file lỗi, giữ original/backup để phục hồi, không delete-then-move overwrite.
+Ordinary startup chỉ đọc kho key. Connection Docker/worker flags và chuẩn hóa
+nonsecret AI options vào environment của launcher/child, không sửa file User Secrets.
 
 App vẫn boot khi thiếu key: Writing Local và các tính năng offline tiếp tục;
 Speaking cloud ASR báo chưa cấu hình (không fake điểm). Key/account cần credit,

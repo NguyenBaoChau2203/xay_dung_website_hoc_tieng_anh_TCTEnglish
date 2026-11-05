@@ -93,6 +93,21 @@ function createElement(tagName, id) {
     el.children.push(child);
     return child;
   };
+  Object.defineProperty(el, 'firstChild', {
+    get() {
+      return el.children.length > 0 ? el.children[0] : null;
+    },
+    configurable: true,
+  });
+  el.removeChild = (child) => {
+    const index = el.children.indexOf(child);
+    if (index < 0) {
+      throw new Error('NotFoundError: node is not a child');
+    }
+    el.children.splice(index, 1);
+    child.parentNode = null;
+    return child;
+  };
   el.remove = () => {
     if (!el.parentNode) return;
     el.parentNode.children = el.parentNode.children.filter((c) => c !== el);
@@ -104,6 +119,24 @@ function createElement(tagName, id) {
   return el;
 }
 
+function hasAttributeMatch(el, key, val) {
+  if (key.startsWith('data-')) {
+    const dataKey = key
+      .slice(5)
+      .replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    const fromDataset = el.dataset && el.dataset[dataKey];
+    const fromAttr = el.getAttribute ? el.getAttribute(key) : null;
+    const present = fromDataset != null || fromAttr != null;
+    if (val === undefined) return present;
+    if (fromDataset != null) return String(fromDataset) === val;
+    return fromAttr != null && String(fromAttr) === val;
+  }
+
+  const attrVal = el.getAttribute ? el.getAttribute(key) : null;
+  if (val === undefined) return attrVal != null;
+  return attrVal === val;
+}
+
 function matches(el, selector) {
   if (!el || !selector) return false;
   if (selector.startsWith('#')) return el.id === selector.slice(1);
@@ -111,18 +144,16 @@ function matches(el, selector) {
     const parts = selector.split('.').filter(Boolean);
     return parts.every((p) => el.classList.contains(p));
   }
+  // Bare attribute selector: [data-writing-practice] or [data-x="1"]
+  const bareAttr = selector.match(/^\[([^=\]]+)(?:=\"([^\"]*)\")?\]$/);
+  if (bareAttr) {
+    return hasAttributeMatch(el, bareAttr[1], bareAttr[2]);
+  }
   const attr = selector.match(/^([a-z0-9-]+)\[([^=\]]+)(?:=\"([^\"]*)\")?\]$/i);
   if (attr) {
     const [, tag, key, val] = attr;
     if (el.tagName !== tag.toUpperCase()) return false;
-    if (key.startsWith('data-')) {
-      const dataKey = key
-        .slice(5)
-        .replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-      if (val === undefined) return el.dataset[dataKey] != null;
-      return String(el.dataset[dataKey]) === val;
-    }
-    return el.getAttribute(key) === val;
+    return hasAttributeMatch(el, key, val);
   }
   if (/^[a-z0-9-]+$/i.test(selector)) return el.tagName === selector.toUpperCase();
   // compound: .spk-sent-btn[data-index="0"]

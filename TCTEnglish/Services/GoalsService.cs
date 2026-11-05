@@ -132,6 +132,13 @@ namespace TCTVocabulary.Services
 
             var todayProgressByArea = BuildTodayProgressByArea(todayActivity);
             var goalCards = BuildGoalCards(activeGoals, todayProgressByArea);
+            // Each positive skill target contributes equally; zero targets are paused.
+            // Do not add card/video/exercise counts with different units together.
+            var measuredGoals = goalCards.Where(card => card.TargetValue > 0).ToList();
+            var overallProgressPercent = measuredGoals.Count == 0
+                ? 0
+                : (int)Math.Round(measuredGoals.Average(card => card.ProgressPercent));
+            var editorGoal = measuredGoals.FirstOrDefault() ?? goalCards.FirstOrDefault();
 
             var vocabularyGoal = goalCards.FirstOrDefault(card => card.GoalArea == GoalArea.Vocabulary);
 
@@ -166,7 +173,7 @@ namespace TCTVocabulary.Services
                 DailyGoal = dailyGoal,
                 TodayProgressValue = todayProgressValue,
                 TodayProgressMax = dailyGoal,
-                ProgressPercent = CalculateProgressPercent(todayProgressValue, dailyGoal),
+                ProgressPercent = overallProgressPercent,
                 WeeklyActivity = weeklyActivity,
                 WeeklyActivityMessage = BuildWeeklyActivityMessage(hasWeeklyActivity),
                 Badges = badges,
@@ -174,8 +181,8 @@ namespace TCTVocabulary.Services
                 DeferredGoalAreaLabels = BuildDeferredGoalAreaLabels(),
                 GoalEditor = new UpdateGoalInputViewModel
                 {
-                    GoalArea = goalCards.FirstOrDefault()?.GoalArea ?? GoalArea.Vocabulary,
-                    TargetValue = dailyGoal
+                    GoalArea = editorGoal?.GoalArea ?? GoalArea.Vocabulary,
+                    TargetValue = editorGoal?.TargetValue ?? dailyGoal
                 }
             };
         }
@@ -709,7 +716,7 @@ namespace TCTVocabulary.Services
         {
             return hasWeeklyActivity
                 ? "Biểu đồ hiển thị số thẻ đã ôn trong 7 ngày gần nhất."
-                : "Chưa ghi nhận hoạt động học tập trong 7 ngày gần nhất. Hoàn thành một buổi học hôm nay để bắt đầu lấp đầy biểu đồ.";
+                : "Chưa ghi nhận lượt ôn từ vựng trong 7 ngày gần nhất. Ôn thẻ hôm nay để bắt đầu lấp đầy biểu đồ.";
         }
 
         private static List<GoalsWeekDayViewModel> BuildWeeklyActivity(

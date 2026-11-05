@@ -175,11 +175,13 @@ namespace TCTVocabulary.Services
 
             var sentence = sentences[sentenceIndex];
             var normalizedAnswer = WritingAssessmentPolicy.CollapseWhitespace(userAnswer);
+            var approvedVariants = await LoadApprovedVariantTextsAsync(sentence.Id, cancellationToken);
             var scopeValidationFailure = TryBuildOutOfScopeSubmissionFailure(
                 exerciseId,
                 sentence,
                 sentences,
-                normalizedAnswer);
+                normalizedAnswer,
+                approvedVariants);
 
             WritingSentenceEvaluationViewModel evaluationViewModel;
             using var optionalBudget = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
@@ -194,7 +196,10 @@ namespace TCTVocabulary.Services
             }
             else
             {
-                var decision = WritingAssessmentPolicy.Assess(sentence.EnglishMeaning, normalizedAnswer);
+                var decision = WritingAssessmentPolicy.Assess(
+                    sentence.EnglishMeaning,
+                    normalizedAnswer,
+                    approvedVariants);
                 evaluationViewModel = BuildWritingSentenceEvaluationViewModelFromDecision(
                     exerciseId,
                     sentence,
@@ -404,7 +409,7 @@ namespace TCTVocabulary.Services
                 ? exerciseListViewModel.CurrentPage
                 : Math.Max(page, 1);
 
-            return BuildWritingPracticeViewModel(exerciseListViewModel, practiceData, selectedPage);
+            return BuildWritingPracticeViewModel(exerciseListViewModel, practiceData, selectedPage, userId);
         }
 
         private async Task<WritingExerciseCatalog> GetWritingExerciseCatalogAsync(
@@ -665,7 +670,8 @@ namespace TCTVocabulary.Services
         private static WritingPracticeViewModel BuildWritingPracticeViewModel(
             WritingExerciseListViewModel exerciseListViewModel,
             WritingPracticeDataViewModel practiceData,
-            int selectedPage)
+            int selectedPage,
+            int currentOwnerUserId)
         {
             return new WritingPracticeViewModel
             {
@@ -676,6 +682,7 @@ namespace TCTVocabulary.Services
                 SelectedTopic = exerciseListViewModel.SelectedTopic,
                 SelectedStatus = exerciseListViewModel.SelectedStatus,
                 SelectedPage = selectedPage,
+                CurrentOwnerUserId = currentOwnerUserId,
                 ExerciseId = practiceData.ExerciseId,
                 ExerciseTitle = practiceData.ExerciseTitle,
                 ExercisePreviewText = practiceData.ExercisePreviewText,
@@ -1256,7 +1263,9 @@ namespace TCTVocabulary.Services
                     SentenceId = attempt.SentenceId,
                     SentenceNumber = attempt.SentenceNumber,
                     Passed = attempt.Passed,
-                    StatusLabel = attempt.Passed ? "Đạt" : "Cần sửa",
+                    StatusLabel = WritingAssessmentPolicy.ResolveHistoricalStatusLabel(
+                        attempt.Passed,
+                        attempt.EvaluationSource),
                     SubmittedAnswerPreview = BuildWritingAttemptPreview(attempt.SubmittedAnswer),
                     EvaluationSource = attempt.EvaluationSource,
                     TimestampDisplay = FormatWritingTimestamp(attempt.CreatedAtUtc)
@@ -1341,14 +1350,35 @@ namespace TCTVocabulary.Services
             return sentenceRows;
         }
 
+        private async Task<IReadOnlyList<string>> LoadApprovedVariantTextsAsync(
+            int sentenceId,
+            CancellationToken cancellationToken)
+        {
+            return await _context.WritingAcceptedAnswers
+                .AsNoTracking()
+                .Where(answer => answer.WritingExerciseSentenceId == sentenceId)
+                .OrderBy(answer => answer.Id)
+                .Select(answer => answer.AnswerText)
+                .ToListAsync(cancellationToken);
+        }
+
         private static WritingRuleEvaluationResult? TryBuildOutOfScopeSubmissionFailure(
             int exerciseId,
             WritingSentenceLookupRow sentence,
             IReadOnlyList<WritingSentenceLookupRow> allSentences,
-            string userAnswer)
+            string userAnswer,
+            IReadOnlyList<string>? approvedVariants = null)
         {
             var answerTokens = ExtractComparisonTokens(userAnswer);
             if (answerTokens.Count == 0)
+            {
+                return null;
+            }
+
+            // Approved answers for the current sentence must not be rejected as "other sentence".
+            if (WritingAssessmentPolicy.IsExactNormalizedMatch(sentence.EnglishMeaning, userAnswer)
+                || (approvedVariants?.Any(variant =>
+                    WritingAssessmentPolicy.IsExactNormalizedMatch(variant, userAnswer)) ?? false))
             {
                 return null;
             }
@@ -1700,13 +1730,12 @@ namespace TCTVocabulary.Services
                     return;
                 }
 
-                // Local mode: AI is labeled supplemental feedback only — never change pass/XP.
+                // Local mode: optional cloud is supplemental provenance only — never overwrite
+                // the local decision source/status/pass (reload maps EvaluationSource → status).
                 evaluationViewModel.UsedAi = true;
-                evaluationViewModel.EvaluationSource = _writingEvaluationOptions.IsLocalMode
-                    ? "local+ai-feedback"
-                    : "ai";
-                evaluationViewModel.AssessmentSource = evaluationViewModel.EvaluationSource;
-                evaluationViewModel.OptionalFeedbackSource = AppendFeedbackSource(evaluationViewModel.OptionalFeedbackSource, "cloud");
+                evaluationViewModel.OptionalFeedbackSource = AppendFeedbackSource(
+                    evaluationViewModel.OptionalFeedbackSource,
+                    "cloud");
                 evaluationViewModel.MeaningFeedback = SanitizeFeedback(aiEvaluation.MeaningFeedback);
                 evaluationViewModel.GrammarFeedback = SanitizeFeedback(aiEvaluation.GrammarFeedback);
                 evaluationViewModel.NaturalnessFeedback = SanitizeFeedback(aiEvaluation.NaturalnessFeedback);
@@ -1720,6 +1749,8 @@ namespace TCTVocabulary.Services
 
                 if (!_writingEvaluationOptions.IsLocalMode)
                 {
+                    evaluationViewModel.EvaluationSource = "ai";
+                    evaluationViewModel.AssessmentSource = "ai";
                     evaluationViewModel.Passed = aiEvaluation.Passed;
                     evaluationViewModel.CanAutoAdvance = aiEvaluation.Passed;
                     evaluationViewModel.AssessmentStatus = aiEvaluation.Passed
@@ -1843,11 +1874,15 @@ namespace TCTVocabulary.Services
                 return null;
             }
 
+            var status = WritingAssessmentPolicy.ResolveHistoricalStatus(attempt.Passed, attempt.EvaluationSource);
             return new WritingSentenceEvaluationSnapshotViewModel
             {
                 Passed = attempt.Passed,
                 UsedAi = attempt.UsedAi,
                 EvaluationSource = attempt.EvaluationSource,
+                AssessmentStatus = status.ToString(),
+                AssessmentSource = attempt.EvaluationSource,
+                ReviewRequired = status == WritingAssessmentStatus.NeedsReview,
                 SummaryTitle = attempt.SummaryTitle ?? string.Empty,
                 SummaryText = attempt.SummaryText ?? string.Empty,
                 ReviewText = attempt.ReviewText ?? string.Empty,

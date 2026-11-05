@@ -103,6 +103,7 @@ public partial class User
     public virtual ICollection<UserSpeakingProgress> UserSpeakingProgresses { get; set; } = new List<UserSpeakingProgress>();
     public virtual ICollection<SpeakingVideo> OwnedSpeakingVideos { get; set; } = new List<SpeakingVideo>();
     public virtual ICollection<UserWritingAttempt> UserWritingAttempts { get; set; } = new List<UserWritingAttempt>();
+    public virtual ICollection<WritingAcceptedAnswer> WritingAcceptedAnswersApproved { get; set; } = new List<WritingAcceptedAnswer>();
     public virtual ICollection<WritingExercise> WritingExercises { get; set; } = new List<WritingExercise>();
     public virtual ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
     public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
