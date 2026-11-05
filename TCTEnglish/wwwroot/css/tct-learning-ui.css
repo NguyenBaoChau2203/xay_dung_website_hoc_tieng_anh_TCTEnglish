@@ -1,40 +1,159 @@
-/* 
-    TCT English Design System (Stitch)
-    Shared tokens and utilities
+/*
+    TCT English shared design layer.
+
+    Single source for design tokens (--tct-*) and the scoped components (.tct-*).
+    Spec and rules: DESIGN.md. Team workflow: docs/design-system/team-ui-workflow.md.
+    Live gallery: docs/design-system/preview.html (renders THIS file).
+
+    Loaded globally by Views/Shared/_Layout.cshtml (before layout.css) and
+    Areas/Admin/Views/Shared/_AdminLayout.cshtml. Standalone pages (Layout = null,
+    e.g. Account/Auth) link it themselves.
+
+    Rules for this file
+    - Tokens are plain values; components consume tokens, never raw hex.
+    - Nothing here restyles an element selector globally. Everything is either a
+      custom property, an opt-in class, or scoped under .tct-theme.
+    - Components set their own margins/padding: the learner shell zeroes both on
+      `*` (layout.css) while the Admin shell does not.
+    - Legacy names (first block) keep their values because auth-stitch.css and
+      listening-index.css consume them. Do not use them in new code.
 */
 
 :root {
-    /* Colors */
+    /* ---------- Legacy names (kept; consumers: auth-stitch.css, listening-index.css) ---------- */
     --tct-bg-light: #f6f7fb;
     --tct-white: #ffffff;
-    
     --tct-primary-blue: #4255ff;
     --tct-primary-blue-hover: #2f3fe0;
     --tct-soft-blue: #eef2ff;
     --tct-yellow-accent: #ffcd1f;
     --tct-green-success: #10b981;
-    
     --tct-text-main: #111c2d;
-    --tct-text-muted: #64748b;
     --tct-border-subtle: rgba(66, 85, 255, 0.10);
     --tct-border-input: #e2e8f0;
-    
-    /* Shadows */
     --tct-shadow-soft: 0 2px 12px rgba(66, 85, 255, 0.06);
-    
-    /* Radii */
     --tct-radius-card: 18px;
     --tct-radius-btn: 12px;
     --tct-radius-pill: 9999px;
-    
-    /* Typography */
-    --tct-font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
+    --tct-font-family: 'Be Vietnam Pro', 'Inter', sans-serif; /* Auth/Listening only; new code uses --tct-font */
+
+    /* ---------- Color: brand ---------- */
+    --tct-primary: #4255ff;
+    --tct-primary-hover: #2f3fe0;
+    --tct-primary-strong: #2136e7;   /* links, pressed state, text on soft tints (7.6:1 on white) */
+    --tct-primary-soft: #eef2ff;     /* quiet fills (secondary button, soft badge) */
+    --tct-primary-tint: #f0f3ff;     /* selected / active navigation / row hover */
+    --tct-on-primary: #ffffff;
+    --tct-accent: #ffcd1f;           /* upgrade / highlight; always pair with dark text */
+    --tct-on-accent: #111c2d;
+
+    /* ---------- Color: neutrals ---------- */
+    --tct-bg: #f6f7fb;               /* page canvas */
+    --tct-surface: #ffffff;          /* cards, panels, header, sidebar */
+    --tct-surface-muted: #f8fafc;    /* table head, quiet panels */
+    --tct-text: #111c2d;
+    --tct-text-secondary: #444656;
+    --tct-text-muted: #5b6578;       /* >= 4.5:1 on white, canvas and tint */
+    --tct-border: #e5e7eb;           /* decorative separators only */
+    --tct-border-control: #7c869b;   /* form-control boundary, >= 3:1 on white */
+
+    /* ---------- Color: semantic (fill = icons/bars/borders; text = readable copy) ---------- */
+    --tct-success: #10b981;
+    --tct-success-text: #047857;
+    --tct-success-soft: #ecfdf5;
+    --tct-warning: #f59e0b;
+    --tct-warning-text: #92400e;
+    --tct-warning-soft: #fffbeb;
+    --tct-danger: #ba1a1a;
+    --tct-danger-text: #ba1a1a;
+    --tct-danger-soft: #fef2f2;
+    --tct-info: #06b6d4;
+    --tct-info-text: #0e7490;
+    --tct-info-soft: #ecfeff;
+
+    /* ---------- Focus and disabled ---------- */
+    --tct-focus-ring: #4255ff;
+    --tct-focus-ring-on-dark: #ffffff;   /* dark surfaces such as the Admin sidebar */
+    --tct-focus-ring-width: 2px;
+    --tct-focus-ring-offset: 2px;
+    --tct-disabled-bg: #eef0f4;
+    --tct-disabled-text: #6b7280;
+
+    /* ---------- Typography ---------- */
+    --tct-font: Inter, Arial, sans-serif;
+    --tct-font-phonetic: Inter, 'Segoe UI', 'Noto Sans', 'Arial Unicode MS', sans-serif;
+    --tct-font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    --tct-text-xs: max(0.75rem, 12px);
+    --tct-text-sm: max(0.875rem, 13px);
+    --tct-text-base: 1rem;
+    --tct-text-lg: 1.125rem;
+    --tct-text-xl: 1.25rem;
+    --tct-text-2xl: 1.5rem;
+    --tct-text-3xl: 2rem;
+    --tct-title-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    --tct-weight-regular: 400;       /* Inter is loaded at 400/500/600/700 only */
+    --tct-weight-medium: 500;
+    --tct-weight-semibold: 600;
+    --tct-weight-bold: 700;
+    --tct-leading-tight: 1.25;
+    --tct-leading-base: 1.5;
+    --tct-leading-relaxed: 1.7;
+    --tct-measure: 70ch;             /* reading line length */
+
+    /* ---------- Spacing (rem; maps to Bootstrap spacers 1-5, xl has no utility) ---------- */
+    --tct-space-xs: 0.25rem;         /* Bootstrap 1 */
+    --tct-space-sm: 0.5rem;          /* Bootstrap 2 */
+    --tct-space-md: 1rem;            /* Bootstrap 3 */
+    --tct-space-lg: 1.5rem;          /* Bootstrap 4 */
+    --tct-space-xl: 2rem;
+    --tct-space-2xl: 3rem;           /* Bootstrap 5 */
+
+    /* ---------- Shape and depth ---------- */
+    --tct-radius-sm: 8px;
+    --tct-radius-md: 12px;
+    --tct-radius-lg: 18px;           /* cards, panels */
+    --tct-radius-xl: 20px;           /* dialogs */
+    --tct-shadow-lift: 0 10px 25px rgba(66, 85, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03);
+    --tct-shadow-overlay: 0 25px 50px rgba(0, 0, 0, 0.18);
+
+    /* ---------- Controls ---------- */
+    --tct-control-h: max(2.5rem, 40px);
+    --tct-target-min: 44px;          /* icon-only buttons and touch targets */
+
+    /* ---------- Shell geometry (single source; layout.css consumes these) ---------- */
+    --tct-header-h: 72px;
+    --tct-sidebar-w: 280px;          /* > 1024px */
+    --tct-sidebar-w-md: 240px;       /* <= 1024px */
+    --tct-main-pad: 40px;            /* > 768px */
+    --tct-main-pad-sm: 16px;         /* <= 768px */
+    --tct-admin-sidebar-w: 260px;
+    --tct-container-max: 1280px;
+    --tct-container-narrow: 960px;
+
+    /* ---------- Layers (existing values; pick from this scale for new layers) ---------- */
+    --tct-z-sidebar: 900;
+    --tct-z-header: 1000;
+    --tct-z-dropdown: 1050;          /* shell notification panel; Bootstrap modal 1055, toast 1090 */
+    --tct-z-launcher: 1600;          /* AI chat launcher */
+    --tct-z-overlay: 2000;           /* legacy custom modal overlay (#folderModal) */
+    --tct-z-popover: 10000;          /* user dropdown, skip link */
+
+    /* ---------- Motion ---------- */
+    --tct-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --tct-dur-fast: 150ms;
+    --tct-dur: 250ms;
 }
 
-/* 
-    Scoped Utilities
-    Use these classes in target pages to avoid breaking global styles
-*/
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --tct-dur-fast: 0.01ms;
+        --tct-dur: 0.01ms;
+    }
+}
+
+/* ======================================================================
+   Legacy scoped utilities (unchanged API; used by Auth)
+   ====================================================================== */
 
 .tct-page-bg {
     background-color: var(--tct-bg-light);
@@ -48,6 +167,8 @@
     border: 1px solid var(--tct-border-subtle);
     border-radius: var(--tct-radius-card);
     box-shadow: var(--tct-shadow-soft);
+    min-width: 0;                 /* lets a card shrink inside flex/grid parents */
+    overflow-wrap: anywhere;      /* long learner/admin text wraps instead of overflowing */
 }
 
 .tct-btn-primary {
@@ -96,4 +217,569 @@
 
 .tct-text-muted {
     color: var(--tct-text-muted);
+}
+
+/* ======================================================================
+   Focus (shared by every .tct-* component and the .tct-theme bridge)
+   ====================================================================== */
+
+/* [tabindex="-1"] is excluded on purpose: Bootstrap focuses .modal/.offcanvas (tabindex -1)
+   from script when they open, and that container must not get a ring. */
+.tct-theme :is(a, button, summary, [tabindex]:not([tabindex="-1"]), input, select, textarea):focus-visible,
+.tct-focusable:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+.tct-on-dark :is(a, button, summary, [tabindex]:not([tabindex="-1"]), input, select, textarea):focus-visible {
+    outline-color: var(--tct-focus-ring-on-dark);
+}
+
+/* ======================================================================
+   Bootstrap 5.3 bridge (opt-in): put class="tct-theme" on a page wrapper.
+   Maps TCT tokens onto Bootstrap variables for that subtree only. Changing the
+   Bootstrap look app-wide is a brand decision and is NOT done here.
+   ====================================================================== */
+
+.tct-theme {
+    --bs-primary: var(--tct-primary);
+    --bs-primary-rgb: 66, 85, 255;
+    --bs-primary-bg-subtle: var(--tct-primary-soft);
+    --bs-primary-border-subtle: #c9d1ff;
+    --bs-primary-text-emphasis: #1a2399;
+    --bs-link-color: var(--tct-primary-strong);
+    --bs-link-color-rgb: 33, 54, 231;
+    --bs-link-hover-color: var(--tct-primary-hover);
+    --bs-link-hover-color-rgb: 47, 63, 224;
+    --bs-body-color: var(--tct-text);
+    --bs-body-color-rgb: 17, 28, 45;
+    --bs-secondary-color: var(--tct-text-muted);
+    --bs-secondary-color-rgb: 91, 101, 120;
+    --bs-border-color: var(--tct-border);
+    --bs-border-radius: var(--tct-radius-sm);
+    --bs-border-radius-lg: var(--tct-radius-md);
+    --bs-border-radius-xl: var(--tct-radius-lg);
+    --bs-focus-ring-color: rgba(66, 85, 255, 0.35);
+    /* Validation and .text-danger/.bg-danger read these; no !important needed. */
+    --bs-danger: var(--tct-danger);
+    --bs-danger-rgb: 186, 26, 26;
+    --bs-form-invalid-color: var(--tct-danger-text);
+    --bs-form-invalid-border-color: var(--tct-danger);
+    color: var(--tct-text);
+}
+
+/* Buttons */
+.tct-theme .btn {
+    --bs-btn-border-radius: var(--tct-radius-md);
+    --bs-btn-font-weight: var(--tct-weight-semibold);
+    --bs-btn-focus-shadow-rgb: 66, 85, 255;
+    min-height: var(--tct-control-h);
+}
+
+.tct-theme .btn-sm {
+    --bs-btn-border-radius: var(--tct-radius-sm);
+    min-height: 0;
+}
+
+.tct-theme .btn:focus,
+.tct-theme .btn:active:focus {
+    box-shadow: none; /* site.css paints a template-blue ring on :focus; focus-visible below replaces it */
+}
+
+.tct-theme .btn-primary {
+    --bs-btn-color: var(--tct-on-primary);
+    --bs-btn-bg: var(--tct-primary);
+    --bs-btn-border-color: var(--tct-primary);
+    --bs-btn-hover-color: var(--tct-on-primary);
+    --bs-btn-hover-bg: var(--tct-primary-hover);
+    --bs-btn-hover-border-color: var(--tct-primary-hover);
+    --bs-btn-active-color: var(--tct-on-primary);
+    --bs-btn-active-bg: var(--tct-primary-strong);
+    --bs-btn-active-border-color: var(--tct-primary-strong);
+    --bs-btn-disabled-bg: var(--tct-primary);
+    --bs-btn-disabled-border-color: var(--tct-primary);
+}
+
+.tct-theme .btn-outline-primary {
+    --bs-btn-color: var(--tct-primary-strong);
+    --bs-btn-border-color: var(--tct-primary);
+    --bs-btn-hover-color: var(--tct-on-primary);
+    --bs-btn-hover-bg: var(--tct-primary);
+    --bs-btn-hover-border-color: var(--tct-primary);
+    --bs-btn-active-color: var(--tct-on-primary);
+    --bs-btn-active-bg: var(--tct-primary-strong);
+    --bs-btn-active-border-color: var(--tct-primary-strong);
+    --bs-btn-disabled-color: var(--tct-primary-strong);
+    --bs-btn-disabled-border-color: var(--tct-primary);
+}
+
+.tct-theme .btn-danger {
+    --bs-btn-bg: var(--tct-danger);
+    --bs-btn-border-color: var(--tct-danger);
+    --bs-btn-hover-bg: #9a1515;
+    --bs-btn-hover-border-color: #9a1515;
+    --bs-btn-active-bg: #861212;
+    --bs-btn-active-border-color: #861212;
+    --bs-btn-disabled-bg: var(--tct-danger);
+    --bs-btn-disabled-border-color: var(--tct-danger);
+}
+
+.tct-theme .btn-outline-danger {
+    --bs-btn-color: var(--tct-danger);
+    --bs-btn-border-color: var(--tct-danger);
+    --bs-btn-hover-bg: var(--tct-danger);
+    --bs-btn-hover-border-color: var(--tct-danger);
+    --bs-btn-active-bg: #861212;
+    --bs-btn-active-border-color: #861212;
+    --bs-btn-disabled-color: var(--tct-danger);
+    --bs-btn-disabled-border-color: var(--tct-danger);
+}
+
+/* Icon-only button: 44px target. Combine with .btn and always set aria-label. */
+.tct-theme .tct-btn-icon,
+.tct-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--tct-target-min);
+    height: var(--tct-target-min);
+    padding: 0;
+}
+
+/* Form controls: boundary must be >= 3:1 (WCAG 1.4.11) */
+.tct-theme .form-control,
+.tct-theme .form-select {
+    min-height: var(--tct-control-h);
+    border-color: var(--tct-border-control);
+    border-radius: var(--tct-radius-md);
+    color: var(--tct-text);
+}
+
+.tct-theme textarea.form-control {
+    min-height: calc(var(--tct-control-h) * 2);
+}
+
+.tct-theme .form-control::placeholder {
+    color: var(--tct-text-muted);
+    opacity: 1;
+}
+
+.tct-theme .form-control:focus,
+.tct-theme .form-select:focus {
+    border-color: var(--tct-primary);
+    box-shadow: none; /* site.css adds a template ring on :focus */
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: 1px;
+}
+
+.tct-theme .form-control:disabled,
+.tct-theme .form-select:disabled {
+    background-color: var(--tct-disabled-bg);
+    color: var(--tct-disabled-text);
+}
+
+.tct-theme .form-check-input {
+    border-color: var(--tct-border-control);
+}
+
+.tct-theme .form-check-input:checked {
+    background-color: var(--tct-primary);
+    border-color: var(--tct-primary);
+}
+
+.tct-theme .form-check-input:focus {
+    box-shadow: none; /* the ring comes from the shared :focus-visible rule (keyboard), not mouse clicks */
+}
+
+.tct-theme .form-label {
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text);
+    margin-bottom: var(--tct-space-xs);
+}
+
+.tct-theme .form-text {
+    color: var(--tct-text-muted);
+    font-size: var(--tct-text-sm);
+}
+
+
+/* Pagination, cards, tables, dialogs */
+.tct-theme .pagination {
+    --bs-pagination-color: var(--tct-primary-strong);
+    --bs-pagination-hover-color: var(--tct-primary-strong);
+    --bs-pagination-hover-bg: var(--tct-primary-tint);
+    --bs-pagination-focus-color: var(--tct-primary-strong);
+    --bs-pagination-focus-bg: var(--tct-primary-tint);
+    --bs-pagination-focus-box-shadow: none;
+    --bs-pagination-active-bg: var(--tct-primary);
+    --bs-pagination-active-border-color: var(--tct-primary);
+    --bs-pagination-active-color: var(--tct-on-primary);
+    --bs-pagination-border-color: var(--tct-border);
+    --bs-pagination-border-radius: var(--tct-radius-sm);
+    --bs-pagination-disabled-color: var(--tct-disabled-text);
+}
+
+.tct-theme .card {
+    --bs-card-border-color: var(--tct-border);
+    --bs-card-border-radius: var(--tct-radius-lg);
+    --bs-card-inner-border-radius: calc(var(--tct-radius-lg) - 1px);
+    --bs-card-cap-bg: var(--tct-surface-muted);
+}
+
+.tct-theme .table {
+    --bs-table-hover-bg: var(--tct-primary-tint);
+    --bs-table-border-color: var(--tct-border);
+}
+
+.tct-theme .modal-content {
+    border: 0;
+    border-radius: var(--tct-radius-xl);
+    box-shadow: var(--tct-shadow-overlay);
+}
+
+.tct-theme .modal-title {
+    font-weight: var(--tct-weight-bold);
+}
+
+/* ======================================================================
+   Layout primitives
+   ====================================================================== */
+
+.tct-page {
+    width: 100%;
+    max-width: var(--tct-container-max);
+    margin-inline: auto;
+}
+
+.tct-page--narrow {
+    max-width: var(--tct-container-narrow);
+}
+
+/* Reading and lesson text: comfortable line length, Vietnamese diacritics stay clear */
+.tct-prose {
+    max-width: var(--tct-measure);
+    font-size: var(--tct-text-lg);
+    line-height: var(--tct-leading-relaxed);
+    overflow-wrap: anywhere;
+}
+
+/* IPA / phonetic transcription. Set on the element itself: the learner shell sets
+   font-family on `*`, so a wrapper's font-family never reaches its descendants. */
+.tct-phonetic {
+    font-family: var(--tct-font-phonetic);
+    font-feature-settings: 'kern';
+    letter-spacing: 0.01em;
+}
+
+.tct-break {
+    overflow-wrap: anywhere;
+    min-width: 0;
+}
+
+.tct-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+/* ======================================================================
+   Page header: breadcrumb, title, description, actions
+   Partial: Views/Shared/_PageHeader.cshtml
+   ====================================================================== */
+
+.tct-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-sm);
+    margin: 0 0 var(--tct-space-lg);
+}
+
+.tct-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tct-space-xs) var(--tct-space-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--tct-text-sm);
+    color: var(--tct-text-muted);
+}
+
+.tct-breadcrumb li + li::before {
+    content: '/';
+    content: '/' / ''; /* decorative: not announced where alt text is supported */
+    margin-inline-end: var(--tct-space-sm);
+    color: var(--tct-text-muted);
+}
+
+.tct-breadcrumb a {
+    color: var(--tct-primary-strong);
+    text-decoration: none;
+}
+
+.tct-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.tct-page-header__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--tct-space-sm) var(--tct-space-md);
+}
+
+.tct-page-header__text {
+    flex: 1 1 18rem;
+    min-width: 0;
+}
+
+.tct-page-title {
+    margin: 0;
+    font-size: var(--tct-title-size);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+    color: var(--tct-text);
+    overflow-wrap: anywhere;
+}
+
+.tct-page-desc {
+    margin: var(--tct-space-xs) 0 0;
+    max-width: var(--tct-measure);
+    font-size: var(--tct-text-base);
+    line-height: var(--tct-leading-base);
+    color: var(--tct-text-secondary);
+}
+
+.tct-page-header__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tct-space-sm);
+}
+
+/* ======================================================================
+   Search / filter toolbar
+   ====================================================================== */
+
+.tct-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--tct-space-sm) var(--tct-space-md);
+    padding: var(--tct-space-md);
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+}
+
+.tct-toolbar__search {
+    flex: 1 1 16rem;
+    min-width: 0;
+    max-width: 28rem;
+}
+
+.tct-toolbar__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tct-space-sm);
+}
+
+.tct-toolbar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tct-space-sm);
+    margin-inline-start: auto;
+}
+
+@media (max-width: 575.98px) {
+    .tct-toolbar__search {
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .tct-toolbar__filters,
+    .tct-toolbar__actions {
+        width: 100%;
+        margin-inline-start: 0;
+    }
+}
+
+/* ======================================================================
+   Cards (interactive variant) and badges
+   ====================================================================== */
+
+.tct-card--interactive {
+    transition: box-shadow var(--tct-dur) var(--tct-ease), transform var(--tct-dur) var(--tct-ease);
+}
+
+.tct-card--interactive:hover,
+.tct-card--interactive:focus-within {
+    box-shadow: var(--tct-shadow-lift);
+    transform: translateY(-2px);
+}
+
+.tct-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375em;
+    padding: 0.25em 0.75em;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-secondary);
+    border: 1px solid var(--tct-border);
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-semibold);
+    line-height: var(--tct-leading-base);
+    white-space: nowrap;
+}
+
+/* Always include a text label (and optionally an icon): never color alone. */
+.tct-badge--primary { background: var(--tct-primary-soft); color: var(--tct-primary-strong); border-color: transparent; }
+.tct-badge--success { background: var(--tct-success-soft); color: var(--tct-success-text); border-color: transparent; }
+.tct-badge--warning { background: var(--tct-warning-soft); color: var(--tct-warning-text); border-color: transparent; }
+.tct-badge--danger  { background: var(--tct-danger-soft);  color: var(--tct-danger-text);  border-color: transparent; }
+.tct-badge--info    { background: var(--tct-info-soft);    color: var(--tct-info-text);    border-color: transparent; }
+
+/* ======================================================================
+   Tables: wrap in .tct-table-wrap (focusable scroll region) for overflow
+   ====================================================================== */
+
+.tct-table-wrap {
+    overflow-x: auto;
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+}
+
+.tct-table-wrap:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+.tct-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: var(--tct-text-sm);
+    color: var(--tct-text);
+}
+
+.tct-table caption {
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    text-align: left;
+    color: var(--tct-text-secondary);
+}
+
+.tct-table th {
+    padding: 0.75rem var(--tct-space-md);
+    text-align: left;
+    white-space: nowrap;
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text-secondary);
+    background: var(--tct-surface-muted);
+    border-bottom: 1px solid var(--tct-border);
+}
+
+.tct-table td {
+    padding: 0.75rem var(--tct-space-md);
+    vertical-align: middle;
+    border-bottom: 1px solid var(--tct-border);
+}
+
+.tct-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.tct-table tbody tr:hover {
+    background: var(--tct-primary-tint);
+}
+
+/* ======================================================================
+   State blocks: loading / empty / error / success
+   Partial: Views/Shared/_StateMessage.cshtml
+   ====================================================================== */
+
+.tct-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    padding: var(--tct-space-xl) var(--tct-space-md);
+    text-align: center;
+    color: var(--tct-text-secondary);
+    background: var(--tct-surface);
+    border: 1px dashed var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+}
+
+.tct-state__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: var(--tct-text-xl);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+}
+
+.tct-state__title {
+    margin: 0;
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text);
+}
+
+.tct-state__message {
+    margin: 0;
+    max-width: 48ch;
+    font-size: var(--tct-text-base);
+    line-height: var(--tct-leading-base);
+}
+
+.tct-state--error .tct-state__icon   { background: var(--tct-danger-soft);  color: var(--tct-danger-text); }
+.tct-state--success .tct-state__icon { background: var(--tct-success-soft); color: var(--tct-success-text); }
+.tct-state--loading .tct-state__icon { background: var(--tct-info-soft);    color: var(--tct-info-text); }
+
+.tct-skeleton {
+    display: block;
+    min-height: 1em;
+    border-radius: var(--tct-radius-sm);
+    background: linear-gradient(90deg, #e9ecf5 25%, #f3f5fa 37%, #e9ecf5 63%);
+    background-size: 400% 100%;
+    animation: tct-shimmer 1.4s var(--tct-ease) infinite;
+}
+
+.tct-skeleton--line {
+    height: 0.75rem;
+}
+
+.tct-skeleton--short {
+    width: 70%;
+}
+
+.tct-skeleton-group {
+    display: grid;
+    gap: var(--tct-space-sm);
+    width: 100%;
+    max-width: 16rem;
+}
+
+@keyframes tct-shimmer {
+    from { background-position: 100% 50%; }
+    to   { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tct-skeleton {
+        animation: none;
+    }
+
+    .tct-card--interactive:hover,
+    .tct-card--interactive:focus-within {
+        transform: none;
+    }
 }

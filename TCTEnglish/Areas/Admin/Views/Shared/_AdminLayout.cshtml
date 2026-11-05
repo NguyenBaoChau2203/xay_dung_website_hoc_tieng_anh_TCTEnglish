@@ -25,12 +25,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           rel="stylesheet" />
 
+    <!-- Shared TCT design tokens and opt-in components (DESIGN.md) -->
+    <link rel="stylesheet" href="~/css/tct-learning-ui.css" asp-append-version="true" />
+
     <!-- Admin-specific shared CSS -->
     <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
 
     <!-- Admin-specific CSS (minimal, only for sidebar width variable) -->
     <style>
-        :root { --sidebar-width: 260px; }
+        :root { --sidebar-width: var(--tct-admin-sidebar-w, 260px); }
 
         .admin-sidebar {
             width: var(--sidebar-width);

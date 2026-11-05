@@ -70,11 +70,29 @@ and file maps: [project structure](docs/project-structure.md).
 5. Thin controllers; business logic in services, constructor DI. Preserve HTTP,
    JSON and SignalR contracts. Register services in Program.cs only when authorized.
 6. Bootstrap5 utilities/components, no inline styles for standard layouts. Read
-   DESIGN.md and the relevant UI skill before changing UI.
+   DESIGN.md, docs/design-system/team-ui-workflow.md and the relevant UI skill
+   before changing UI (see Shared UI foundation below).
 7. Never modify Program.cs, appsettings.json or .csproj without explicit task
    authority. Never hardcode connection strings, OAuth/SMTP credentials or tokens.
 8. No destructive DROP TABLE/DROP COLUMN migrations without explicit approval.
    Never edit applied migrations or invent/delete migration-history rows.
+
+### Shared UI foundation (all four AI tools)
+
+- One standard: [DESIGN.md](DESIGN.md) (values, mandatory vs page-level) and
+  [team UI workflow](docs/design-system/team-ui-workflow.md) (process, PR checklist,
+  legacy-screen tracker). Live examples: docs/design-system/preview.html. Do not copy
+  the rules into another file or client folder.
+- Source of truth is `wwwroot/css/tct-learning-ui.css` (`--tct-*` tokens, `.tct-*`,
+  `.tct-theme`). Wrap pages in `tct-theme`; reuse `_PageHeader`/`_StateMessage` and
+  Bootstrap components; page CSS stays scoped in `wwwroot/css/{feature}.css` and
+  consumes `var(--tct-*)`. No new `:root` palette, hex values, font, icon family,
+  package or CDN. Chau decides brand/primary-color/root-font proposals.
+- Edits to tct-learning-ui.css, layout.css, site.css, the two layouts or shared
+  partials are shared-impact: list consumers, compare before/after, keep selectors/IDs
+  that JS uses. A missing token/component needs a documented proposal first.
+- Page prompt: .ai/prompts/implement-page-with-team-design-system.md. Verify in a
+  browser (1440/768/375-390, zoom, keyboard); state what was not observed.
 
 ## Database, PR and Release Rules (Automatic)
 
@@ -212,7 +230,7 @@ enter the owner-provided test key into their own local secret store once.
 | Architecture/exploration | codegraph_explore verbatim source and call paths |
 | JSON/AJAX endpoint | tct-api-endpoint; access, identity, antiforgery and existing contracts |
 | Persisted model/mapping | tct-ef-migration automatically; schema ships/validates with feature |
-| UI | DESIGN.md + tct-ui-component; ui-review for rendered checks, ui-motion for motion, ui-ux-pro-max for lookup |
+| UI | DESIGN.md + team UI workflow + tct-ui-component; ui-review for rendered checks, ui-motion for motion, ui-ux-pro-max for lookup |
 | Admin/Speaking/Vocabulary | tct-admin-panel / tct-speaking-feature / tct-vocabulary-feature |
 | Seed/tooling/commit | tct-data-seeder / tct-tooling-review / tct-commit-message |
 | Completion | tct-superpowers verification; build/relevant tests, evidence before claims |
