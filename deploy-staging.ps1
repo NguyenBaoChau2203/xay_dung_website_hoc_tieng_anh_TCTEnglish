@@ -106,7 +106,8 @@ if ($ValidateOnly -or -not $manifest.enabled) {
 if (-not $SettingsPath) { $SettingsPath = Join-Path $StateRoot 'hosting.json' }
 Assert-ChildPath $StateRoot $SettingsPath | Out-Null
 Assert-NoReparsePath $SettingsPath
-$settings = Get-Content -Raw -LiteralPath $SettingsPath | ConvertFrom-Json
+try { $settings = Get-Content -Raw -LiteralPath $SettingsPath | ConvertFrom-Json }
+catch { throw 'Staging hosting settings could not be read; credential details omitted.' }
 if ($settings.environment -cne 'Staging' -or $settings.siteHost -cne 'staging.tctenglish.site') { throw 'Staging hosting identity did not match.' }
 $builder = New-Object System.Data.Common.DbConnectionStringBuilder
 try { $builder.set_ConnectionString([string]$settings.connectionString) }
