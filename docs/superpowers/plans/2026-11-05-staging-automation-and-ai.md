@@ -19,9 +19,9 @@ cấp quyền local-only lên hosting. Commit/push/merge cần quyền cho đún
 - [x] Chuẩn bị helper nhập key staging kín trên máy (không dùng local key store),
       cấu hình OpenAI text/speech trên Plesk; metadata trước paid smoke có giới hạn.
       Không ghi key vào argv/source/Git/artifact/log.
-- [ ] Xử lý IIS anonymous exception chỉ ACME challenge, root vẫn401; kiểm token
-      đường HTTP + HTTPS và cấp lại chứng chỉ trong điều kiện đó nếu hosting cho.
-      Nếu bị giới hạn quyền, cung cấp yêu cầu hỗ trợ cụ thể; không nới auth cả site.
+- [x] HTTPS hiện tại hợp lệ đến03/02/2027. Owner xác nhận thời hạn này đủ và loại
+      cấu hình tự gia hạn/ticket khỏi phạm vi; không thực hiện thêm hoặc báo đã
+      nghiệm thu automatic renewal. Root vẫn được bảo vệ.
 - [x] Nghiệm thu Admin xuất bản học liệu: hai tài khoản riêng cùng thấy bài;
       draft/private/progress vẫn theo người. Không tự nâng quyền tất cả thành Admin.
 - [x] Cập nhật runbook/onboarding/audit: cách dùng hằng ngày, phần cần owner nhập,
@@ -37,5 +37,6 @@ anonymous root401 nhưng ACME token200; redeploy giữ users/goals/học liệu/
 
 Owner đã xác nhận quyền commit/push/PR/merge và bật riêng staging sau khi xem phạm
 vi file/checks. Bootstrap branch/Plesk private preflight và Environment đã chuẩn
-bị. Theo dõi first real CI/staging release sau merge; production false. SSL
-exception còn cần Nhân Hòa, nội dung hỗ trợ sẵn, không báo tự gia hạn đã đạt.
+bị. Release41965473404 đã hoàn tất trên host và CI rerun sau đối chiếu đạt; giữ
+data/keys. Sửa deadline quan sát release chậm và progress output cho lần sau.
+Production false. Owner đã bỏ phần tự gia hạn khỏi scope, không cần hỗ trợ SSL.

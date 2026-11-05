@@ -9,6 +9,7 @@ param(
     [string]$BackupClientPath = ''
 )
 $ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
 $utf8 = New-Object Text.UTF8Encoding($false)
 $SiteRoot = [IO.Path]::GetFullPath($SiteRoot).TrimEnd('\')
 $StateRoot = [IO.Path]::GetFullPath($StateRoot).TrimEnd('\')
@@ -156,7 +157,7 @@ try {
     Write-Json (Join-Path $runRoot 'owner.json') @{ environment='Staging'; commit=$manifest.commit; runNumber=$manifest.runNumber }
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $zipPath = Join-Path $runRoot 'release.zip'
-    Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath
+    Invoke-WebRequest -UseBasicParsing -Uri $artifactUri.AbsoluteUri -OutFile $zipPath -TimeoutSec 900
     if ((Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash -ne $manifest.sha256) { throw 'Release checksum did not match.' }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $stageRoot = Join-Path $runRoot 'stage'

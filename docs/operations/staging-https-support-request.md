@@ -1,5 +1,9 @@
 # Tin nhắn nhờ Nhân Hòa hỗ trợ gia hạn SSL
 
+**Chưa cần gửi:** Châu đã xác nhận ngày05/11/2026 rằng chứng chỉ hiện tại đến
+03/02/2027 đủ dùng và không cần thiết lập thêm. Nội dung bên dưới chỉ giữ để
+tham khảo nếu sau này Châu muốn tiếp tục dùng staging lâu hơn.
+
 Bạn gửi đoạn bên dưới qua kênh hỗ trợ Nhân Hòa đang dùng. Không cần gửi mật khẩu,
 key OpenAI hay thông tin kết nối database. Hiện chưa có ticket nào được agent gửi.
 

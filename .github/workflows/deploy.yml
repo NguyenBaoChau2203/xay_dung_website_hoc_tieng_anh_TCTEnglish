@@ -100,7 +100,7 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && vars.PLESK_STAGING_DEPLOYMENT_ENABLED == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     environment:
       name: staging
       url: https://staging.tctenglish.site

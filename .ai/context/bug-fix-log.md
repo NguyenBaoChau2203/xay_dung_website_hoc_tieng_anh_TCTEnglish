@@ -2799,3 +2799,27 @@ bundle, persistent env/uploads, run/digest readiness and failure recovery.
 15local regressions include actual Windows PS5.1 fake-command failure drills;
 production deployment regressions18/18. IIS ACME auth exception remains a
 provider-level follow-up; valid current TLS does not certify automatic renewal.
+
+### Staging verifier times out before a slow but successful host deploy — 2026-11-05
+
+**Symptom**: First staging job reported failure waiting for its marker, while
+Plesk later completed the exact release and stayed ready with the expected digest.
+
+**Root Cause**: Hosting took about9minutes to download the140MB artifact; the
+publisher's60polls expired earlier. A failed CI verifier did not stop the remote
+PowerShell task. Before recovery, current.json/marker/backup were checked; no
+process was killed and no lock/attempt or migration history was removed.
+
+**Fix**: One20minute monotonic verification budget includes HTTP time; requests
+and sleeps respect remaining time. Staging job25minutes; host download bounded
+at15minutes and progress output disabled. Production script/gate unchanged.
+
+**Verification**: Red slow-host case +missing deadline interface → green17/17;
+new tests cover a release first observed after8minutes and HTTP time consuming
+the budget. Actual release41965473404 completed04:18:09UTC, ready200 and expected
+ef58fda/run/digest; failed-job rerun after reconciliation passed idempotently,
+with completedAt/data unchanged. Users3/history12/Writing1/goals2/credits1.
+
+**Owner scope**: Current HTTPS expiry03/02/2027 accepted; automatic renewal and
+support ticket explicitly dropped, not certified as working. Key/Chat/Speech
+and shared lessons/progress verification remain recorded in the staging audit.

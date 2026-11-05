@@ -23,14 +23,14 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         raise urllib.error.HTTPError(req.full_url if req else STAGING_ORIGIN, code, 'Redirect refused', headers, fp)
 
 
-def portal_json(relative):
+def portal_json(relative, timeout=10):
     # Never follow a redirect with the portal Authorization header.
     credentials = (os.environ['STAGING_PORTAL_USERNAME'] + ':' + os.environ['STAGING_PORTAL_PASSWORD']).encode()
     request = urllib.request.Request(STAGING_ORIGIN + relative, headers={
         'Authorization': 'Basic ' + base64.b64encode(credentials).decode('ascii'),
         'Cache-Control': 'no-cache',
     })
-    with urllib.request.build_opener(NoRedirect()).open(request, timeout=10) as response:
+    with urllib.request.build_opener(NoRedirect()).open(request, timeout=timeout) as response:
         return response.status, json.load(response)
 
 
@@ -38,17 +38,24 @@ def marker_matches(marker, sha, run_id, digest):
     return marker.get('environment') == 'Staging' and common.marker_matches(marker, sha, run_id, digest)
 
 
-def wait_for_deployed_release(sha, run_id, digest, attempts=60, delay_seconds=5):
-    for _ in range(attempts):
+def wait_for_deployed_release(sha, run_id, digest, timeout_seconds=1200, delay_seconds=5):
+    # The observed 140 MB hosting download took ~9 minutes. Count HTTP time
+    # in one wall-clock budget, allowing backup/migration/startup after download.
+    deadline = time.monotonic() + timeout_seconds
+    while time.monotonic() < deadline:
         try:
-            status, marker = portal_json('/tct-release.json')
-            ready_status, ready = portal_json('/health/ready')
-            if status == ready_status == 200 and ready.get('status') == 'ready' and marker_matches(marker, sha, run_id, digest):
+            status, marker = portal_json('/tct-release.json', timeout=min(10, deadline - time.monotonic()))
+            if time.monotonic() >= deadline:
+                break
+            ready_status, ready = portal_json('/health/ready', timeout=min(10, deadline - time.monotonic()))
+            if time.monotonic() <= deadline and status == ready_status == 200 and ready.get('status') == 'ready' and marker_matches(marker, sha, run_id, digest):
                 print('Staging expected commit/run/digest and readiness verified.')
                 return True
         except Exception:
             pass  # Never print exception URLs, response bodies or credentials.
-        time.sleep(delay_seconds)
+        remaining = deadline - time.monotonic()
+        if remaining > 0:
+            time.sleep(min(delay_seconds, remaining))
     return False
 
 

@@ -80,6 +80,31 @@ class StagingPublisherTests(unittest.TestCase):
                 self.module.ensure_staging_release('tag', Path(artifact.name), 'a' * 40)
             create.assert_not_called()
 
+    def test_slow_host_release_after_eight_minutes_is_still_verified(self):
+        elapsed = [0.0]
+        def portal(relative, **kwargs):
+            if relative.endswith('ready'):
+                return 200, {'status': 'ready'}
+            return 200, {'environment': 'Staging', 'commit': 'a' * 40 if elapsed[0] >= 480 else 'c' * 40,
+                'runNumber': 12, 'sha256': 'b' * 64}
+        with mock.patch.object(self.module, 'portal_json', side_effect=portal), \
+                mock.patch.object(self.module.time, 'monotonic', side_effect=lambda: elapsed[0]), \
+                mock.patch.object(self.module.time, 'sleep', side_effect=lambda seconds: elapsed.__setitem__(0, elapsed[0] + seconds)):
+            self.assertTrue(self.module.wait_for_deployed_release('a' * 40, 12, 'b' * 64))
+        self.assertGreaterEqual(elapsed[0], 480)
+        self.assertLess(elapsed[0], 1200)
+
+    def test_verification_budget_includes_http_time_and_stops(self):
+        elapsed = [0.0]
+        def unavailable(*args, **kwargs):
+            elapsed[0] += min(8, kwargs.get('timeout', 10))
+            raise OSError('unavailable')
+        with mock.patch.object(self.module, 'portal_json', side_effect=unavailable), \
+                mock.patch.object(self.module.time, 'monotonic', side_effect=lambda: elapsed[0]), \
+                mock.patch.object(self.module.time, 'sleep', side_effect=lambda seconds: elapsed.__setitem__(0, elapsed[0] + seconds)):
+            self.assertFalse(self.module.wait_for_deployed_release('a' * 40, 12, 'b' * 64, timeout_seconds=30))
+        self.assertLessEqual(elapsed[0], 30)
+
 
 @unittest.skipUnless(os.name == 'nt', 'Plesk Windows PowerShell 5.1 preflight')
 class StagingHostGuardTests(unittest.TestCase):
