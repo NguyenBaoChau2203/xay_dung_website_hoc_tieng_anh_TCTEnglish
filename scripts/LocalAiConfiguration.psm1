@@ -45,15 +45,36 @@ function Update-LocalSecretStore {
         }
     }
     $temporary = Join-Path $directory ('.tct-secrets-' + [guid]::NewGuid().ToString('N') + '.tmp')
+    $backup = Join-Path $directory ('.tct-secrets-' + [guid]::NewGuid().ToString('N') + '.backup')
+    $committed = $false
     try {
         $values = Read-LocalSecretStore -SecretPath $SecretPath
         & $Update $values
         $json = ConvertTo-Json -InputObject $values -Depth 32
         [IO.File]::WriteAllText($temporary, $json, [Text.UTF8Encoding]::new($false))
-        [IO.File]::Move($temporary, $SecretPath, $true)
+        if ([IO.File]::Exists($SecretPath)) {
+            # ReplaceFile preserves EFS/ACL metadata and keeps the original in a
+            # same-directory backup. Never delete a destination before a move.
+            [IO.File]::Replace($temporary, $SecretPath, $backup)
+        } else {
+            # No overwrite: a competing file must not be deleted on a failed move.
+            [IO.File]::Move($temporary, $SecretPath)
+        }
+        $committed = $true
+    } catch {
+        if (-not [IO.File]::Exists($SecretPath) -and [IO.File]::Exists($backup)) {
+            try { [IO.File]::Move($backup, $SecretPath) } catch {
+                # Retain the protected backup for recovery; never reduce EFS/ACLs.
+            }
+        }
+        throw 'User Secrets update failed. Existing file/any protected backup was preserved. Retry from your normal user terminal; do not change file protection.'
     } finally {
-        if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary -Force }
-        $lock.Dispose()
+        try {
+            if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary -Force }
+            if ($committed -and (Test-Path -LiteralPath $backup)) { Remove-Item -LiteralPath $backup -Force }
+        } finally {
+            $lock.Dispose()
+        }
     }
 }
 

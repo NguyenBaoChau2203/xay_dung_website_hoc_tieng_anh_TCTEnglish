@@ -1,5 +1,6 @@
 """Fixture-only key/config checks: never use the owner's User Secrets."""
 import json
+import sys
 import subprocess
 import tempfile
 import unittest
@@ -78,6 +79,23 @@ class LocalAiConfigTests(unittest.TestCase):
         self.assertEqual("gpt-6-luna", defaults["Model"])
         self.assertEqual("low", defaults["ReasoningEffort"])
         self.assertEqual("https://api.openai.com/v1", defaults["BaseUrl"])
+
+    @unittest.skipUnless(sys.platform.startswith('win'), 'Windows delete-sharing failure')
+    def test_failed_key_replacement_preserves_original_store(self):
+        initial = {'AI:ApiKey': 'fixture-other-secret', 'AI:ReasoningEffort': 'low'}
+        result, after = self.run_fixture(initial, """
+$held=[IO.File]::Open($store,[IO.FileMode]::Open,[IO.FileAccess]::Read,[IO.FileShare]::Read)
+$rejected=$false
+try {
+    try { Set-LocalAiKey -SecretPath $store -SecureKey (ConvertTo-SecureString 'fixture-openai-secret' -AsPlainText -Force) }
+    catch { $rejected=$true }
+} finally { $held.Dispose() }
+if (-not $rejected) { throw 'Expected a locked destination to reject replacement.' }
+if (-not (Test-Path -LiteralPath $store)) { throw 'Original store disappeared after failed replacement.' }
+if (@(Get-ChildItem -LiteralPath $PSScriptRoot -Filter '.tct-secrets-*').Count -ne 0) { throw 'Unexpected leftover secret file in fixture.' }
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(initial, after)
 
     def test_environment_legacy_model_is_rejected_without_changing_store(self):
         result, after = self.run_fixture({"AI:ApiKey": "fixture-openai-secret"}, "$env:AI__Model='gemini-2.5-flash-lite'\nAssert-LocalAiEnvironment\n")

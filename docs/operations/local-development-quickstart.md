@@ -20,9 +20,11 @@ pwsh -NoProfile -File scripts/start-local.ps1
 ```
 
 Script khởi động MariaDB 10.5.23 tương thích hosting tại `127.0.0.1:3307`, tạo
-mật khẩu riêng, lưu User Secrets, restore tool EF 9.0.4, áp dụng migration và
-chạy web ở `http://localhost:5100`. Mật khẩu/backup chỉ ở `.appdata/local` và
-User Secrets ngoài Git. Volume riêng tên `tctenglish-local-mariadb-data`.
+mật khẩu riêng, restore tool EF 9.0.4, áp dụng migration và chạy web ở
+`http://localhost:5100`. Connection Docker/worker flags chỉ vào environment của
+launcher và child process, được khôi phục khi thoát/lỗi; không ghi lại kho key.
+Mật khẩu DB/backup ở ignored `.appdata/local`; key giữ trong User Secrets ngoài
+Git. Volume riêng tên `tctenglish-local-mariadb-data`.
 Sau migration, CLI bootstrap chỉ tạo sample khi chưa có user: ba tài khoản
 Admin/Standard/Premium với mật khẩu ngẫu nhiên trong `.appdata/local/access.json`,
 vocabulary/Writing/Speaking/Listening/Reading mẫu. DB đã có user không bị seed
@@ -55,6 +57,8 @@ Web: `http://localhost:5100`. Speech cloud model: `gpt-transcribe` (không còn
 local ASR loopback). Launcher dùng `AI__ApiKey` hoặc User Secrets `AI:ApiKey`;
 nếu hai nguồn này chưa có key, tự nối `OPENAI_API_KEY` đã được owner cho phép vào
 process web. Log chỉ báo nguồn/key configured, không in hay lưu lại key.
+Sau khi nhập key một lần, cả4 AI Agent dùng lại qua cùng launcher. Không cần
+đưa key vào prompt; startup không viết User Secrets kể cả khi thư mục có EFS.
 Xem [OpenAI local setup](openai-local-setup.md) và [local speech](local-speech.md).
 Chỉ DB: `-DatabaseOnly`. Status cấu hình speech (không gọi API trả phí):
 
@@ -71,12 +75,9 @@ pwsh -NoProfile -File scripts/local-media.ps1 -Action Setup
 VS Code/Cursor task **TCT: Start local web** gọi cùng script; không gắn speech
 API vào folderOpen.
 
-Nếu đã setup một lần, bật Docker Desktop rồi F5 trong IDE hoặc:
-
-```powershell
-docker compose -f compose.local.yml up -d
-dotnet watch --project TCTEnglish run --launch-profile http
-```
+F5/dotnet watch trực tiếp chỉ dùng khi bạn đã chủ động cấu hình connection local
+riêng cho IDE/process đó. Chúng không nhận environment tạm của launcher đã thoát.
+Dùng launcher ở trên để luôn có DB local và nguồn key đúng khi nhờ AI Agent mở web.
 
 Nếu cổng5100 đã có process, launcher từ chối trước build để không báo nhầm app
 cũ đã nhận code/key mới. Giữ process đó và chọn cổng trống, ví dụ

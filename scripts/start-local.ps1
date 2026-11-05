@@ -49,6 +49,16 @@ function Test-PortListening {
 
 $localEnvKeys = @(
     'AI__ApiKey',
+    'AI__BaseUrl',
+    'AI__Model',
+    'AI__ReasoningEffort',
+    'ConnectionStrings__DefaultConnection',
+    'Database__ServerVersion',
+    'Database__ApplyMigrationsOnStartup',
+    'Database__SeedOnStartup',
+    'Billing__PendingPaymentCleanupWorkerEnabled',
+    'Billing__PremiumExpiryWorkerEnabled',
+    'ReconciliationWorker__Enabled',
     'ASPNETCORE_ENVIRONMENT',
     'DOTNET_ENVIRONMENT',
     'TEMP',
@@ -133,27 +143,37 @@ try {
         Write-Host 'Existing local database preserved; backup import is skipped.'
     }
 
-    Update-LocalSecretStore -SecretPath $secretPath -Update {
-    param($secrets)
-    Convert-LegacyAiSettings $secrets
-    $secrets['ConnectionStrings:DefaultConnection'] = "Server=127.0.0.1;Port=3307;Database=tctenglish_dev;User=tct_dev;Password=$($localValues.MARIADB_PASSWORD);SslMode=None;"
-    $secrets['Database:ServerVersion'] = '10.5.23-mariadb'
-    $secrets['Database:ApplyMigrationsOnStartup'] = 'true'
-    $secrets['Database:SeedOnStartup'] = 'false'
-    # Missing AI key must stay missing so the authorized OPENAI_API_KEY fallback can apply.
-    # Preserve an existing explicit empty key: the resolver treats it as an override.
-    foreach ($key in @('Authentication:Google:ClientId','Authentication:Google:ClientSecret','Authentication:Facebook:AppId','Authentication:Facebook:AppSecret','SmtpSettings:Password')) { if (-not $secrets.ContainsKey($key)) { $secrets[$key] = '' } }
-    $secrets['Billing:PendingPaymentCleanupWorkerEnabled'] = 'false'
-    $secrets['Billing:PremiumExpiryWorkerEnabled'] = 'false'
-    $secrets['ReconciliationWorker:Enabled'] = 'false'
+    # Ordinary startup must never rewrite the credential store. In particular,
+    # an EFS/ACL failure during replacement must not remove an owner's saved key.
+    $localDatabaseEnvironment = @{
+        'ConnectionStrings__DefaultConnection' = "Server=127.0.0.1;Port=3307;Database=tctenglish_dev;User=tct_dev;Password=$($localValues.MARIADB_PASSWORD);SslMode=None;"
+        'Database__ServerVersion' = '10.5.23-mariadb'
+        'Database__ApplyMigrationsOnStartup' = 'true'
+        'Database__SeedOnStartup' = 'false'
+        'Billing__PendingPaymentCleanupWorkerEnabled' = 'false'
+        'Billing__PremiumExpiryWorkerEnabled' = 'false'
+        'ReconciliationWorker__Enabled' = 'false'
     }
-    Write-Host 'Local connection saved to .NET User Secrets (127.0.0.1:3307 / tctenglish_dev).'
+    foreach ($setting in $localDatabaseEnvironment.GetEnumerator()) {
+        [Environment]::SetEnvironmentVariable($setting.Key, $setting.Value, 'Process')
+    }
+    Write-Host 'Local connection configured for child processes (127.0.0.1:3307 / tctenglish_dev); User Secrets preserved.'
 
     if ($DatabaseOnly) {
         Write-Host 'DatabaseOnly: MariaDB ready; speech cloud and web were not started.'
         return
     }
 
+    # Legacy nonsecret settings may be normalized for this run only. Preserve
+    # the saved store and explicit environment overrides, including empty keys.
+    $runtimeAiValues = Read-LocalSecretStore -SecretPath $secretPath
+    Convert-LegacyAiSettings $runtimeAiValues
+    foreach ($name in @('BaseUrl', 'Model', 'ReasoningEffort')) {
+        if ($null -eq [Environment]::GetEnvironmentVariable("AI__$name", 'Process') -and $runtimeAiValues.ContainsKey("AI:$name")) {
+            [Environment]::SetEnvironmentVariable("AI__$name", [string]$runtimeAiValues["AI:$name"], 'Process')
+        }
+    }
+    $runtimeAiValues = $null
     $ai = Initialize-LocalAiEnvironment -SecretPath $secretPath
     if ($ai.Configured) {
         Write-Host "AI: key configured | source=$($ai.Source) | model=gpt-6-luna | reasoning=low (account access not checked)."
