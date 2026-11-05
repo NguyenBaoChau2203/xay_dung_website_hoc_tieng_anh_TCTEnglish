@@ -1,29 +1,35 @@
-# Yêu cầu Nhân Hòa: HTTP-01 cho staging khi root có mật khẩu
+# Tin nhắn nhờ Nhân Hòa hỗ trợ gia hạn SSL
 
-Owner gửi qua tài khoản hỗ trợ Nhân Hòa; agent chưa gửi ticket hoặc liên hệ ai.
-Không cần đưa key OpenAI, DB connection string hoặc mật khẩu vào nội dung.
+Bạn gửi đoạn bên dưới qua kênh hỗ trợ Nhân Hòa đang dùng. Không cần gửi mật khẩu,
+key OpenAI hay thông tin kết nối database. Hiện chưa có ticket nào được agent gửi.
 
-> Xin hỗ trợ cấu hình riêng site `staging.tctenglish.site` (Windows/Plesk,
-> siteId274, gói Sinh Viên N518, IP103.28.36.90). Website cần giữ Password-Protected
-> Directories ở `/` để nhóm test. Chứng chỉ Let's Encrypt hiện hợp lệ đến03/02/2027.
->
-> Khi root protection bật, anonymous HTTP/HTTPS tại
-> `/.well-known/acme-challenge/<token>` trả401; cùng URL có portal credentials trả200
-> với nội dung token87bytes. Plesk customer UI của đường ACME hiển thị bảo vệ kế
-> thừa Directory name `/`, không có ngoại lệ anonymous riêng. Chúng tôi đã thử
-> override `PleskUrlProtectionModule` trong cấu hình của riêng staging, nhưng URL
-> challenge vẫn401; không thay cấu hình common challenge/server hay production.
->
-> Nhờ kỹ thuật cho phép anonymous **chỉ** ACME challenge path trên staging trong
-> IIS/Plesk common challenge routing (hoặc khắc phục SSL It!/URL-protection tương
-> ứng). Root và mọi đường app khác vẫn yêu cầu mật khẩu. Không gỡ bảo vệ toàn site,
-> không đổi DNS/@/www, certificate hoặc cấu hình `tctenglish.site` production.
->
-> Tiêu chí: khi root staging vẫn401, URL token HTTP và HTTPS trả200, rồi Reissue
-> Certificate thành công với root protection vẫn bật. Vui lòng xác nhận đường
-> exception được giữ khi Plesk reconfigure và tự gia hạn. Có thể phối hợp token
-> test với chủ tài khoản; không cần tắt xác thực hoặc cấp quyền server cho nhóm.
+Tiêu đề: Nhờ hỗ trợ tự gia hạn SSL cho staging.tctenglish.site
 
-Sau phản hồi, agent kiểm token200/root401, reissue và certificate/readiness thật.
-Không kết luận tự gia hạn đã được nghiệm thu chỉ dựa vào checkbox Plesk. Trong
-lúc chờ, HTTPS hiện tại vẫn hợp lệ; không cần thao tác cert cho mỗi lần deploy.
+> Chào anh/chị, em đang dùng gói hosting Sinh Viên N518, quản lý bằng Plesk.
+>
+> Em có web test cho nhóm tại staging.tctenglish.site. Web này được đặt mật khẩu
+> để chỉ các bạn trong nhóm vào được. SSL hiện tại vẫn dùng bình thường, có hạn
+> đến ngày 03/02/2027.
+>
+> Em muốn SSL tự gia hạn mà vẫn giữ mật khẩu bảo vệ web. Hiện đường dẫn xác minh
+> `/.well-known/acme-challenge/` cũng đang yêu cầu mật khẩu nên việc gia hạn bị
+> chặn. Nhờ anh/chị cho phép truy cập không cần mật khẩu vào riêng đường dẫn xác
+> minh này. Các trang còn lại của web test vẫn giữ mật khẩu như hiện tại giúp em.
+>
+> Nhờ anh/chị kiểm tra lại việc cấp/gia hạn SSL khi mật khẩu bảo vệ web vẫn đang
+> bật, và giữ cấu hình này cho các lần gia hạn sau. Chỉ thay đổi trên
+> staging.tctenglish.site, giữ nguyên website chính tctenglish.site và các bản
+> ghi DNS của website chính giúp em nhé. Em cảm ơn anh/chị.
+
+Nếu kỹ thuật cần thông tin để kiểm tra: IP hosting là 103.28.36.90, siteId của
+staging là 274. Web chạy Windows/IIS; chứng chỉ dùng Let's Encrypt. Đường xác
+minh hiện trả lỗi 401 khi không đăng nhập, còn đăng nhập thì tải được token
+87 bytes với mã 200. Giao diện Plesk dẫn về bảo vệ của thư mục `/`; thử điều chỉnh
+`PleskUrlProtectionModule` trong cấu hình staging chưa giải quyết được lỗi.
+Chưa sửa thư mục xác minh chung hay cấu hình máy chủ.
+
+Sau khi Nhân Hòa báo đã xử lý, gửi lại phản hồi cho agent để kiểm tra đường xác
+minh trả 200 qua cả HTTP/HTTPS, các trang của web vẫn yêu cầu mật khẩu và việc cấp
+lại chứng chỉ thành công. Chỉ có tùy chọn “tự gia hạn” trong Plesk chưa đủ để xác
+nhận đã chạy được. Nhóm vẫn dùng HTTPS hiện tại để test; cập nhật code không cần
+cấp lại SSL mỗi lần.
