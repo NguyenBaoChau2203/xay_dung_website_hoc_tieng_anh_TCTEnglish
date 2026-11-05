@@ -74,7 +74,8 @@ public static class SharedDataCommand
                 File.Move(temp, SharedDataFormat.SafePath(root, "production.json"), true);
                 Output("Production approval manifest prepared. Review its exact hashes in a PR; the production deployment gate and environment approval are still required."); return 0;
             }
-            if (action is not ("sync" or "status" or "export" or "map-owner")) throw new SharedDataException("Choose shared-data validate, status, export, map-owner or sync.");
+            if (action is not ("sync" or "status" or "export" or "map-owner" or "migrate")) throw new SharedDataException("Choose shared-data validate, status, export, map-owner or sync.");
+            if (action == "migrate" && target != "local") throw new SharedDataException("Shared CLI migration is Docker-local only; hosting must use its reviewed release bundle.");
             var connection = app.Configuration.GetConnectionString("DefaultConnection") ?? "";
             AssertTarget(connection, app.Environment.EnvironmentName, target,
                 Environment.GetEnvironmentVariable("TCT_SHARED_PRODUCTION_APPROVED") == "true");
@@ -90,6 +91,11 @@ public static class SharedDataCommand
             foreach (var owner in owners) { SharedDataFormat.AssertKey(owner.Key); if (owner.Value < 1 || owner.Key == "system") throw new SharedDataException("Owner mappings require positive IDs; system is reserved."); }
             using var scope = app.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            if (action == "migrate")
+            {
+                await db.Database.MigrateAsync(ct);
+                Output("Committed local schema migrations applied from the isolated CLI build."); return 0;
+            }
             if (!owners.ContainsKey("team-owner") && target is "local" or "staging")
             {
                 var candidates = db.Users.AsNoTracking().Where(u => u.Role == "Admin");

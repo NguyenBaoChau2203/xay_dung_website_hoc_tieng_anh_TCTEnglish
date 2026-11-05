@@ -28,6 +28,11 @@ Git hook post-merge chạy sync nếu đã setup và có merge thực sự. “A
 date” không chạy hook, nên Agent dùng wrapper trên. Startup local cũng nhập bù
 trước khi mở web. Mở IDE/MCP/session đơn thuần không khởi động Docker/speech.
 
+Sync build công cụ riêng vào ignored `.appdata/local/shared-data/build`, tránh
+ghi lên binary web đang mở trên Windows. Công cụ áp migration đã commit từ đúng
+bản build này, chỉ cho Docker local; hosting vẫn dùng EF release bundle. Web đang
+chạy giữ code cũ cho đến khi được khởi động lại, dù database đã nhận gói mới.
+
 ## Máy mới
 
 Theo [onboarding](team-local-onboarding.md): Git, Node22+/npm, PowerShell7, .NET
