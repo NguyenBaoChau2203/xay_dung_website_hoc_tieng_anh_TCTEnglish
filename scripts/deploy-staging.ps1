@@ -177,6 +177,7 @@ try {
         if (-not (Test-Path -LiteralPath (Join-Path $application $required))) { throw 'The application artifact is incomplete.' }
     }
     if (-not (Test-Path -LiteralPath (Join-Path $migrationRoot 'efbundle.exe'))) { throw 'The migration bundle is missing.' }
+    if ($manifest.sharedDataSchema -eq 1 -and (-not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\catalog.json')) -or -not (Test-Path -LiteralPath (Join-Path $application 'App_Data\shared-data\production.json')))) { throw 'Shared-data artifact is incomplete; stopped before backup/migration.' }
     if (@(Get-ChildItem -LiteralPath $application -Filter 'appsettings.*.json').Count) { throw 'Environment configurations must never come from an artifact.' }
 
     $effective = Get-Content -Raw -LiteralPath (Join-Path $application 'appsettings.json') | ConvertFrom-Json
@@ -232,6 +233,15 @@ try {
     Push-Location $migrationRoot
     try { & (Join-Path $migrationRoot 'efbundle.exe') *> (Join-Path $runRoot 'migration.log'); if ($LASTEXITCODE -ne 0) { throw 'Database migration failed; maintenance and backup have been retained.' } }
     finally { Pop-Location }
+
+    $sharedRoot = Join-Path $application 'App_Data\shared-data'
+    if (Test-Path -LiteralPath (Join-Path $sharedRoot 'catalog.json')) {
+        Push-Location $application
+        try {
+            & (Join-Path $application 'TCTEnglish.exe') '--shared-data=sync' '--shared-target=staging' "--shared-root=$sharedRoot" "--shared-webroot=$(Join-Path $SiteRoot 'wwwroot')" "--shared-owners=$(Join-Path $StateRoot 'shared-data-owners.json')" *> (Join-Path $runRoot 'shared-data.log')
+            if ($LASTEXITCODE -ne 0) { throw 'Shared-data conflict/import failed; maintenance and backup retained. Inspect private shared-data.log.' }
+        } finally { Pop-Location }
+    } elseif ($manifest.sharedDataSchema -eq 1) { throw 'This release requires the reviewed shared-data artifact.' }
 
     $filesChanged = $true
     Copy-Tree $application $SiteRoot

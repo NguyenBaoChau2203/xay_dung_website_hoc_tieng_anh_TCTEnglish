@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "team.onboarding",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.onboarding.reading",
+      "kind": "ReadingPassage",
+      "values": {
+        "Title": "Team workspace — học liệu dùng chung",
+        "Content": "Our team learns English together. We share learning materials, but each learner keeps their own goals and progress.",
+        "Level": "A1",
+        "Topic": "Teamwork",
+        "ImageUrl": null,
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.onboarding.question",
+      "kind": "ReadingQuestion",
+      "values": {
+        "QuestionText": "What does the team share?",
+        "OrderIndex": 1
+      },
+      "references": {
+        "PassageId": "team.onboarding.reading"
+      }
+    },
+    {
+      "key": "team.onboarding.option.correct",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "Learning materials",
+        "IsCorrect": true
+      },
+      "references": {
+        "QuestionId": "team.onboarding.question"
+      }
+    },
+    {
+      "key": "team.onboarding.option.other",
+      "kind": "ReadingOption",
+      "values": {
+        "OptionText": "One personal progress record",
+        "IsCorrect": false
+      },
+      "references": {
+        "QuestionId": "team.onboarding.question"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.onboarding.reading"
+}

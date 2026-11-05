@@ -213,6 +213,7 @@ def main_with_artifact(artifact_path):
         artifact_url = asset['browser_download_url']
     manifest = {
         'enabled': True,
+        'sharedDataSchema': 1,
         'repository': REPOSITORY,
         'commit': sha,
         'runNumber': run_number,

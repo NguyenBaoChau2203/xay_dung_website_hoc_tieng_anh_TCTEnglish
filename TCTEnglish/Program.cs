@@ -245,6 +245,14 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+if (args.Any(x => x.StartsWith("--shared-data=", StringComparison.Ordinal)))
+{
+    // Explicit CLI only: no HTTP listener, hosted workers or paid cloud request.
+    Environment.ExitCode = await TCTEnglish.Infrastructure.SharedData.SharedDataCommand.RunAsync(app, args);
+    await app.DisposeAsync();
+    return;
+}
+
 if (args.Contains("--local-bootstrap=true", StringComparer.Ordinal))
 {
     // Explicit local CLI only: no HTTP listener, hosted workers, cloud calls or production seeds.

@@ -13,7 +13,7 @@ from pwsh_util import find_pwsh
 REPO = Path(__file__).resolve().parents[2]
 
 DRIVER = r"""
-param([int]$Port, [switch]$FailWeb, [switch]$DatabaseOnly)
+param([int]$Port, [switch]$FailWeb, [switch]$DatabaseOnly, [switch]$FailSync)
 $ErrorActionPreference='Stop'
 $env:APPDATA=Join-Path $PSScriptRoot 'profile'
 $env:AI__ApiKey=$null
@@ -34,6 +34,12 @@ foreach ($name in $fixtureRuntimeNames) { $fixtureRuntimeBefore[$name]=[Environm
 $previousFixtureTemp=$env:TEMP
 $previousFixtureTmp=$env:TMP
 $global:BootstrapRan=$false
+$global:SharedSyncRan=$false
+function global:pwsh {
+    if ($args -notcontains '-DatabaseReady' -or $args -notcontains '-SkipBuild' -or $args -notcontains 'Sync') { throw 'Unexpected child PowerShell call.' }
+    $global:SharedSyncRan=$true
+    $global:LASTEXITCODE=if($FailSync){2}else{0}
+}
 $global:LocalAsrTouched=$false
 function global:Start-Process {
     $global:LocalAsrTouched=$true
@@ -76,6 +82,7 @@ foreach ($name in $fixtureRuntimeNames) { if ($fixtureRuntimeBefore[$name] -cne 
     AllRuntimeRestored=$allRuntimeRestored
     TempRestored=($env:TEMP -ceq $previousFixtureTemp -and $env:TMP -ceq $previousFixtureTmp)
     BootstrapRan=$global:BootstrapRan
+    SharedSyncRan=$global:SharedSyncRan
     LocalAsrTouched=$global:LocalAsrTouched
     KeyRestored=($null -eq [Environment]::GetEnvironmentVariable('AI__ApiKey','Process'))
 } | ConvertTo-Json -Compress
@@ -84,7 +91,7 @@ foreach ($name in $fixtureRuntimeNames) { if ($fixtureRuntimeBefore[$name] -cne 
 
 @unittest.skipUnless(sys.platform.startswith('win'), 'Windows local launcher/User Secrets fixture')
 class LocalLauncherTests(unittest.TestCase):
-    def invoke(self, port, fail_web=False, initial_secrets=None, forbid_secret_writes=False, database_only=False):
+    def invoke(self, port, fail_web=False, initial_secrets=None, forbid_secret_writes=False, database_only=False, fail_sync=False):
         with tempfile.TemporaryDirectory(prefix='tct-launcher-') as directory:
             root = Path(directory)
             scripts = root / 'scripts'
@@ -120,6 +127,8 @@ class LocalLauncherTests(unittest.TestCase):
                 arguments.append('-FailWeb')
             if database_only:
                 arguments.append('-DatabaseOnly')
+            if fail_sync:
+                arguments.append('-FailSync')
             process = subprocess.run(arguments, text=True, capture_output=True, timeout=25)
             self.assertEqual(0, process.returncode, process.stderr)
             combined = process.stdout + process.stderr
@@ -148,6 +157,7 @@ class LocalLauncherTests(unittest.TestCase):
         self.assertTrue(result['WebTempMatched'] and result['TempRestored'], result)
         self.assertTrue(result['WebDatabaseMatched'] and result['DatabaseEnvironmentRestored'], result)
         self.assertTrue(result['BootstrapRan'], result)
+        self.assertTrue(result['SharedSyncRan'], result)
         self.assertFalse(result['LocalAsrTouched'], result)
         self.assertTrue(result['KeyRestored'], result)
 
@@ -207,7 +217,15 @@ class LocalLauncherTests(unittest.TestCase):
                              forbid_secret_writes=True, database_only=True)
         self.assertFalse(result['Failed'], result)
         self.assertFalse(result['WebRan'] or result['BootstrapRan'], result)
+        self.assertFalse(result['SharedSyncRan'], result)
         self.assertTrue(result['DatabaseEnvironmentRestored'] and result['TempRestored'], result)
+
+    def test_shared_data_conflict_stops_web_and_restores_environment(self):
+        with socket.socket() as reservation:
+            reservation.bind(('127.0.0.1', 0)); port=reservation.getsockname()[1]
+        result=self.invoke(port,fail_sync=True,initial_secrets={'AI:ApiKey':'fixture-stored-key'},forbid_secret_writes=True)
+        self.assertTrue(result['Failed'] and result['SharedSyncRan'],result)
+        self.assertFalse(result['WebRan'],result)
 
 
 if __name__ == '__main__':

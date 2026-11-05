@@ -3,7 +3,8 @@
 set -eu
 cd "$(git rev-parse --show-toplevel)"
 if command -v node >/dev/null 2>&1; then
-    exec node scripts/agent-tools.cjs setup
+    node scripts/agent-tools.cjs setup
+    exec node scripts/shared-data-hook.cjs
 fi
 echo 'TCT tools: install Node.js 22+, then open SETUP-AGENTS.cmd.' >&2
 exit 1

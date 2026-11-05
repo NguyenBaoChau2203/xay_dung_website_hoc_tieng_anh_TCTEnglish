@@ -89,7 +89,7 @@ def main_with_artifact(artifact_path):
         raise SystemExit('Staging artifact is missing.')
     tag = 'staging-' + run_id + '-' + sha[:12]
     digest = ensure_staging_release(tag, artifact, sha)
-    manifest = {'enabled': True, 'environment': 'Staging', 'repository': common.REPOSITORY,
+    manifest = {'enabled': True, 'environment': 'Staging', 'sharedDataSchema': 1, 'repository': common.REPOSITORY,
         'commit': sha, 'runNumber': int(run_id), 'sha256': digest,
         'artifactUrl': 'https://github.com/' + common.REPOSITORY + '/releases/download/' + tag + '/' + common.RELEASE_ASSET}
     common.update_branch({'release.json': json.dumps(manifest, indent=2),

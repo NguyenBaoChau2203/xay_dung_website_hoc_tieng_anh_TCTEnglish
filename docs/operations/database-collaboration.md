@@ -1,5 +1,9 @@
 # Database local và database dev/staging dùng chung
 
+**Cập nhật05/11/2026:** đã bổ sung công cụ gói có phiên bản và đồng bộ sau pull.
+Xem [hướng dẫn hiện hành](shared-data-workflow.md). Các mô tả quy trình trước
+khi có công cụ ở phần dưới chỉ là bối cảnh; không cần copy toàn bộ Docker/DB.
+
 Owner chọn bổ sung dev/staging chung và đã cho phép cấu hình trên hosting hiện
 có. **Đã thiết lập và nghiệm thu cơ bản05/11/2026** tại
 https://staging.tctenglish.site, DB riêng `nhtctsnn_tctenglish_staging` trên gói N518.
@@ -14,9 +18,9 @@ tham khảo; không yêu cầu mua thêm server hoặc tạo lại staging đang
 | Code, quy tắc tính XP/goal, giao diện | PR → merge master → pull | Theo source |
 | Bảng/cột/index và badge catalog `HasData` | Migration + Designer + snapshot cùng PR | Launcher áp migration đã commit vào Docker local |
 | Học liệu mẫu ban đầu | Bootstrap local khi DB chưa có user | Không chạy lại trên DB đang dùng |
-| Học liệu Admin thêm/sửa trong DB | Tạo trên staging chung hoặc kế hoạch import/seed có kiểm tra | Không tự đi theo Git |
+| Học liệu Admin thêm/sửa trong DB | Export gói được chọn → PR/merge → pull-local + sync | Có công cụ; xem shared-data-workflow.md |
 | Goal cá nhân, tiến độ, XP, streak, huy hiệu đã nhận, bài làm | Thuộc user trong DB tương ứng | Không tự đi theo Git |
-| Key, mật khẩu, backup, uploads | Kho riêng theo môi trường; không commit | Không chia sẻ bằng repo |
+| Key, mật khẩu, backup, runtime uploads | Kho riêng theo môi trường; không commit | Chỉ media học liệu được chọn/kiểm tra mới vào assets của gói |
 
 Ví dụ: sửa thuật toán Goals rồi push sẽ chia sẻ thuật toán. Tạo mục tiêu Writing
 2 bài/ngày trong Docker của Châu chỉ tạo dữ liệu của user đó. `UserGoal.UserId`

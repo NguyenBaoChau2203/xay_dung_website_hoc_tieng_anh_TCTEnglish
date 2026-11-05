@@ -2823,3 +2823,17 @@ with completedAt/data unchanged. Users3/history12/Writing1/goals2/credits1.
 **Owner scope**: Current HTTPS expiry03/02/2027 accepted; automatic renewal and
 support ticket explicitly dropped, not certified as working. Key/Chat/Speech
 and shared lessons/progress verification remain recorded in the staging audit.
+### Shared-data target aliases — 05/11/2026
+
+**Symptom/root cause**: review of the new CLI found that generic connection
+string lookup picked Server before Host; the MySQL provider resolves synonyms
+with the last value. A duplicate alias could make the guard inspect another host.
+No remote operation was executed during diagnosis.
+
+**Fix**: SharedDataCommand.AssertTarget uses the same MySqlConnectionStringBuilder
+as the provider, including effective server/database/user/port. CI also requires
+its exact disposable user. No production gate/config or existing release changed.
+
+**Regression**: remote Host overriding loopback Server was red (no exception),
+then the provider parser rejects it before DB access. Other local/staging/
+production guards remain in focused tests; verification recorded in shared-data ledger.

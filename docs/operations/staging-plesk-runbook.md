@@ -4,6 +4,14 @@ Staging đang chạy tại **https://staging.tctenglish.site** trên gói Sinh V
 Đã kiểm HTTPS, readiness, quyền Admin, học liệu chung và progress riêng. Website
 production `tctenglish.site` và DB production không được dùng để thử nghiệm.
 
+**Cập nhật dữ liệu05/11:** theo yêu cầu mới của Châu, staging đã nhận toàn bộ
+snapshot database production và tệp media còn có trên hosting. Có63 tài khoản
+(60 nguồn +3test),15 lớp,36 bộ từ,162 thẻ và các bài Nghe/Đọc/Nói/Viết cùng lịch
+sử, tin nhắn, Goals, Billing. Key/config staging giữ riêng, production chỉ đọc.
+Xem [biên bản và giới hạn dữ liệu](../feature-audits/2026-11-05-staging-full-data-copy-ledger.md).
+Các đoạn mô tả dữ liệu synthetic bên dưới là lịch sử lúc tạo staging ban đầu.
+Không chạy lại snapshot mỗi lần deploy; CI/CD giữ các thay đổi nhóm đã làm.
+
 ## Cấu hình thực tế
 
 | Thành phần | Giá trị |

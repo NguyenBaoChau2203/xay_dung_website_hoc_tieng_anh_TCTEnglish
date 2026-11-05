@@ -27,6 +27,25 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### STAGING-SOURCE-MEDIA-MISSING — confirmed05/11/2026
+
+- Owner đã yêu cầu copy toàn bộ production DB sang staging. Đã hoàn tất9.209
+  rows, giữ3test users/12migration, kiểm60bảng và copy27tệp có thật.94đường dẫn
+  ảnh/tệp trong DB không có file tương ứng ở production (vocabulary/avatar/class/
+  Reading/chat). Không có nguồn để phục hồi các file này trong snapshot.
+- Cần file/backup media gốc hoặc thay thế nội dung được owner duyệt; không tạo
+  ảnh giả hay gọi đó là lỗi copy staging. Chi tiết private và
+  [audit](../../docs/feature-audits/2026-11-05-staging-full-data-copy-ledger.md).
+
+### ADMIN-CLASS-MESSAGE-MENU-404 — confirmed05/11/2026
+
+- Menu Admin có `/Admin/ClassManagement` và `/Admin/MessageManagement` nhưng
+  checkout hiện không có controller tương ứng. Hai URL trả404 trong browser/API
+  acceptance staging; User/Set/Writing/Premium pages trả200.
+- Toàn bộ15classes/35classmessages đã copy và kiểm FK/checksum. Cần task giao
+  diện/chức năng Admin riêng để quyết định triển khai hai màn hình hay chỉnh menu;
+  không đổi quyền truy cập hoặc sửa feature trong task sao chép database.
+
 ### STAGING-HTTPS-RENEWAL — owner deferred05/11/2026
 
 - Staging N518 đã chạy https://staging.tctenglish.site với DB/site/pool riêng;
