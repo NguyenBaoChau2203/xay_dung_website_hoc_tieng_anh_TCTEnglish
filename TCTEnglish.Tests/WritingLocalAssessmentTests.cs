@@ -43,6 +43,32 @@ public sealed class WritingLocalAssessmentTests
         Assert.Equal("local-review", decision.Source);
     }
 
+    [Fact]
+    public void ApprovedVariant_ExactNormalized_IsAccepted()
+    {
+        var decision = WritingAssessmentPolicy.Assess(
+            "I like tea.",
+            "I enjoy tea!",
+            approvedVariants: new[] { "I enjoy tea." });
+
+        Assert.Equal(WritingAssessmentStatus.Accepted, decision.Status);
+        Assert.True(decision.Passed);
+        Assert.True(decision.CanAutoAdvance);
+        Assert.Equal("local-approved-variant", decision.Source);
+    }
+
+    [Fact]
+    public void OtherSentenceVariant_DoesNotAcceptWithoutListingIt()
+    {
+        var decision = WritingAssessmentPolicy.Assess(
+            "I like tea.",
+            "Please call me back.",
+            approvedVariants: new[] { "I enjoy tea." });
+
+        Assert.Equal(WritingAssessmentStatus.NeedsReview, decision.Status);
+        Assert.False(decision.Passed);
+    }
+
     [Theory]
     [InlineData("")]
     [InlineData("   ")]
@@ -101,5 +127,38 @@ public sealed class WritingLocalAssessmentTests
         Assert.Equal(WritingAssessmentStatus.Accepted, decision.Status);
         Assert.True(decision.Passed);
         Assert.True(decision.CanAutoAdvance);
+    }
+
+    [Theory]
+    [InlineData(true, "local-exact", WritingAssessmentStatus.Accepted)]
+    [InlineData(false, "local-review", WritingAssessmentStatus.NeedsReview)]
+    [InlineData(false, "local+ai-feedback", WritingAssessmentStatus.NeedsReview)]
+    [InlineData(false, "local-hard-fail", WritingAssessmentStatus.NeedsRevision)]
+    [InlineData(false, "local-scope", WritingAssessmentStatus.NeedsRevision)]
+    [InlineData(false, "ai-cloud", WritingAssessmentStatus.NeedsRevision)]
+    [InlineData(false, "ai", WritingAssessmentStatus.NeedsRevision)]
+    public void HistoricalSourceMapping_DoesNotUseSummaryTitle(
+        bool passed,
+        string evaluationSource,
+        WritingAssessmentStatus expected)
+    {
+        var status = WritingAssessmentPolicy.ResolveHistoricalStatus(passed, evaluationSource);
+        Assert.Equal(expected, status);
+    }
+
+    [Theory]
+    [InlineData(true, "local-exact", "Đạt")]
+    [InlineData(true, "local-approved-variant", "Đạt")]
+    [InlineData(false, "local-review", "Cần xem lại")]
+    [InlineData(false, "local+ai-feedback", "Cần xem lại")]
+    [InlineData(false, "local-hard-fail", "Cần sửa")]
+    public void HistoricalStatusLabel_MatchesAssessmentBucket(
+        bool passed,
+        string evaluationSource,
+        string expectedLabel)
+    {
+        Assert.Equal(
+            expectedLabel,
+            WritingAssessmentPolicy.ResolveHistoricalStatusLabel(passed, evaluationSource));
     }
 }

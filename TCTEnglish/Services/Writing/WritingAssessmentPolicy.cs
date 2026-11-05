@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Text;
 
 namespace TCTEnglish.Services.Writing;
@@ -33,7 +34,84 @@ public sealed class WritingAssessmentDecision
 /// </summary>
 public static class WritingAssessmentPolicy
 {
-    public static WritingAssessmentDecision Assess(string? referenceAnswer, string? userAnswer)
+    /// <summary>
+    /// Map persisted EvaluationSource/Passed to status without reading SummaryTitle text.
+    /// </summary>
+    public static WritingAssessmentStatus ResolveHistoricalStatus(bool passed, string? evaluationSource)
+    {
+        if (passed)
+        {
+            return WritingAssessmentStatus.Accepted;
+        }
+
+        // local-review: local NeedsReview decision.
+        // local+ai-feedback: legacy rows written when optional cloud overwrote EvaluationSource;
+        // treat as NeedsReview when !passed so reload keeps the local decision.
+        if (string.Equals(evaluationSource, "local-review", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(evaluationSource, "local+ai-feedback", StringComparison.OrdinalIgnoreCase))
+        {
+            return WritingAssessmentStatus.NeedsReview;
+        }
+
+        return WritingAssessmentStatus.NeedsRevision;
+    }
+
+    /// <summary>
+    /// Short history-chip label for Practice/Data recentAttempts (not the full summary title).
+    /// </summary>
+    public static string ResolveHistoricalStatusLabel(bool passed, string? evaluationSource)
+        => ResolveHistoricalStatus(passed, evaluationSource) switch
+        {
+            WritingAssessmentStatus.Accepted => "Đạt",
+            WritingAssessmentStatus.NeedsReview => "Cần xem lại",
+            _ => "Cần sửa"
+        };
+
+    public const int MaxAcceptedVariantsPerSentence = 5;
+    public const int MaxAcceptedAnswerLength = 1000;
+
+    /// <summary>
+    /// Content-bound optimistic concurrency token for Admin accepted-answer forms.
+    /// Binds exercise/sentence identity, Vietnamese/English meaning, and ordered variants.
+    /// </summary>
+    public static string BuildAcceptedAnswersStateToken(
+        int exerciseId,
+        int sentenceId,
+        string? vietnameseText,
+        string? englishMeaning,
+        IEnumerable<(int Id, string NormalizedHash, long ApprovedAtUtcTicks)> variants)
+    {
+        var variantsPayload = string.Join(
+            '|',
+            variants
+                .OrderBy(variant => variant.Id)
+                .Select(variant => $"{variant.Id}:{variant.NormalizedHash}:{variant.ApprovedAtUtcTicks}"));
+
+        var payload =
+            $"ex={exerciseId}|sen={sentenceId}|vi={CollapseWhitespace(vietnameseText)}|en={CollapseWhitespace(englishMeaning)}|vars={variantsPayload}";
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(payload));
+        return Convert.ToHexString(hash).ToLowerInvariant();
+    }
+
+    public static string BuildAcceptedAnswersStateToken(
+        int exerciseId,
+        int sentenceId,
+        string? vietnameseText,
+        string? englishMeaning,
+        IEnumerable<TCTVocabulary.Models.WritingAcceptedAnswer> answers)
+    {
+        return BuildAcceptedAnswersStateToken(
+            exerciseId,
+            sentenceId,
+            vietnameseText,
+            englishMeaning,
+            answers.Select(answer => (answer.Id, answer.NormalizedHash, answer.ApprovedAtUtc.Ticks)));
+    }
+
+    public static WritingAssessmentDecision Assess(
+        string? referenceAnswer,
+        string? userAnswer,
+        IEnumerable<string>? approvedVariants = null)
     {
         var collapsedAnswer = CollapseWhitespace(userAnswer);
         if (string.IsNullOrWhiteSpace(collapsedAnswer))
@@ -79,6 +157,30 @@ public static class WritingAssessmentPolicy
             };
         }
 
+        if (approvedVariants != null)
+        {
+            foreach (var variant in approvedVariants)
+            {
+                var normalizedVariant = NormalizeForComparison(variant);
+                if (!string.IsNullOrEmpty(normalizedVariant)
+                    && string.Equals(normalizedAnswer, normalizedVariant, StringComparison.Ordinal))
+                {
+                    return new WritingAssessmentDecision
+                    {
+                        Status = WritingAssessmentStatus.Accepted,
+                        Source = "local-approved-variant",
+                        SummaryTitle = "Câu đạt yêu cầu",
+                        SummaryText = "Câu của bạn khớp một đáp án đã được Admin duyệt. Bạn có thể sang câu tiếp theo.",
+                        MeaningFeedback = "Ý nghĩa khớp đáp án biến thể đã duyệt.",
+                        GrammarFeedback = "Không phát hiện lệch so với đáp án biến thể đã duyệt.",
+                        NaturalnessFeedback = "Câu được chấp nhận theo khớp chính xác với đáp án đã duyệt.",
+                        WordChoiceFeedback = "Từ vựng khớp đáp án biến thể đã duyệt.",
+                        SuggestedRewrite = string.Empty
+                    };
+                }
+            }
+        }
+
         // Non-exact answers are never auto-accepted by keyword overlap.
         return new WritingAssessmentDecision
         {
@@ -92,6 +194,21 @@ public static class WritingAssessmentPolicy
             WordChoiceFeedback = "So sánh với gợi ý/đáp án tham chiếu nếu có, rồi gửi lại khi chắc hơn.",
             SuggestedRewrite = string.Empty
         };
+    }
+
+    public static string ComputeNormalizedHash(string? answer)
+    {
+        var normalized = NormalizeForComparison(answer);
+        var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(normalized));
+        return Convert.ToHexString(bytes).ToLowerInvariant();
+    }
+
+    public static bool IsExactNormalizedMatch(string? left, string? right)
+    {
+        var normalizedLeft = NormalizeForComparison(left);
+        var normalizedRight = NormalizeForComparison(right);
+        return !string.IsNullOrEmpty(normalizedLeft)
+            && string.Equals(normalizedLeft, normalizedRight, StringComparison.Ordinal);
     }
 
     private static WritingAssessmentDecision HardRevision(

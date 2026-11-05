@@ -2742,6 +2742,49 @@ namespace TCTEnglish.Migrations
                     b.ToTable("UserWritingSentenceProgresses", (string)null);
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.WritingAcceptedAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerText")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<DateTime>("ApprovedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("ApprovedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NormalizedHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("char(64)")
+                        .IsFixedLength();
+
+                    b.Property<int>("WritingExerciseSentenceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovedByUserId");
+
+                    b.HasIndex("WritingExerciseSentenceId")
+                        .HasDatabaseName("IX_WritingAcceptedAnswers_WritingExerciseSentenceId");
+
+                    b.HasIndex("WritingExerciseSentenceId", "NormalizedHash")
+                        .IsUnique()
+                        .HasDatabaseName("UX_WritingAcceptedAnswers_Sentence_Hash");
+
+                    b.ToTable("WritingAcceptedAnswers", (string)null);
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
                 {
                     b.Property<int>("Id")
@@ -3624,6 +3667,26 @@ namespace TCTEnglish.Migrations
                     b.Navigation("WritingExercise");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.WritingAcceptedAnswer", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "ApprovedByUser")
+                        .WithMany("WritingAcceptedAnswersApproved")
+                        .HasForeignKey("ApprovedByUserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_WritingAcceptedAnswers_Users");
+
+                    b.HasOne("TCTVocabulary.Models.WritingExerciseSentence", "WritingExerciseSentence")
+                        .WithMany("WritingAcceptedAnswers")
+                        .HasForeignKey("WritingExerciseSentenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_WritingAcceptedAnswers_WritingExerciseSentences");
+
+                    b.Navigation("ApprovedByUser");
+
+                    b.Navigation("WritingExerciseSentence");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.WritingExercise", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -3790,6 +3853,8 @@ namespace TCTEnglish.Migrations
 
                     b.Navigation("UserWritingSentenceProgresses");
 
+                    b.Navigation("WritingAcceptedAnswersApproved");
+
                     b.Navigation("WritingExercises");
 
                     b.Navigation("WritingGenerationLogs");
@@ -3811,6 +3876,8 @@ namespace TCTEnglish.Migrations
                     b.Navigation("UserWritingAttempts");
 
                     b.Navigation("UserWritingSentenceProgresses");
+
+                    b.Navigation("WritingAcceptedAnswers");
                 });
 #pragma warning restore 612, 618
         }

@@ -134,6 +134,7 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         "SpeakingSentences",
         "SpeakingVideos",
         "SpeakingPlaylists",
+        "WritingAcceptedAnswers",
         "WritingExerciseSentences",
         "WritingExercises",
         "ClassMessages",

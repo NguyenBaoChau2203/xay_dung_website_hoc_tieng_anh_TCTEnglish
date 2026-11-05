@@ -36,9 +36,14 @@
                 passed = s.LastEvaluation.Passed,
                 usedAi = s.LastEvaluation.UsedAi,
                 evaluationSource = s.LastEvaluation.EvaluationSource,
+                assessmentStatus = s.LastEvaluation.AssessmentStatus,
+                assessmentSource = s.LastEvaluation.AssessmentSource,
+                reviewRequired = s.LastEvaluation.ReviewRequired,
                 summaryTitle = s.LastEvaluation.SummaryTitle,
                 summaryText = s.LastEvaluation.SummaryText,
                 reviewText = s.LastEvaluation.ReviewText,
+                optionalFeedbackSource = s.LastEvaluation.OptionalFeedbackSource,
+                optionalFeedbackText = s.LastEvaluation.OptionalFeedbackText,
                 meaningFeedback = s.LastEvaluation.MeaningFeedback,
                 grammarFeedback = s.LastEvaluation.GrammarFeedback,
                 naturalnessFeedback = s.LastEvaluation.NaturalnessFeedback,
@@ -55,6 +60,7 @@
 <div class="writing-practice-page">
     <div class="writing-practice-shell"
          data-writing-practice
+         data-owner-user-id="@Model.CurrentOwnerUserId"
          data-exercise-id="@Model.ExerciseId"
          data-resume-sentence-id="@Model.ResumeSentenceId"
          data-hint-url="@hintEndpoint"

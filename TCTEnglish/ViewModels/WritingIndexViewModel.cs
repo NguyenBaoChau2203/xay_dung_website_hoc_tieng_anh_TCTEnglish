@@ -131,6 +131,8 @@ namespace TCTEnglish.ViewModels
         public string SelectedTopic { get; set; } = "all";
         public string SelectedStatus { get; set; } = "all";
         public int SelectedPage { get; set; } = 1;
+        /// <summary>Server-verified current user id for browser draft namespacing only.</summary>
+        public int CurrentOwnerUserId { get; set; }
         public int ExerciseId { get; set; }
         public string ExerciseTitle { get; set; } = string.Empty;
         public string ExercisePreviewText { get; set; } = string.Empty;
@@ -168,6 +170,10 @@ namespace TCTEnglish.ViewModels
         public bool Passed { get; set; }
         public bool UsedAi { get; set; }
         public string EvaluationSource { get; set; } = string.Empty;
+        /// <summary>Accepted | NeedsRevision | NeedsReview</summary>
+        public string AssessmentStatus { get; set; } = string.Empty;
+        public string AssessmentSource { get; set; } = string.Empty;
+        public bool ReviewRequired { get; set; }
         public string SummaryTitle { get; set; } = string.Empty;
         public string SummaryText { get; set; } = string.Empty;
         public string ReviewText { get; set; } = string.Empty;
@@ -176,6 +182,8 @@ namespace TCTEnglish.ViewModels
         public string NaturalnessFeedback { get; set; } = string.Empty;
         public string WordChoiceFeedback { get; set; } = string.Empty;
         public string SuggestedRewrite { get; set; } = string.Empty;
+        public string OptionalFeedbackSource { get; set; } = string.Empty;
+        public string OptionalFeedbackText { get; set; } = string.Empty;
     }
 
     public class WritingSentenceHintViewModel

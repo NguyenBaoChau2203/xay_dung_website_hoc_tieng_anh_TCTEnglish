@@ -191,6 +191,47 @@ function loadSpeaking(sandbox) {
   return sandbox.window.TctSpeakingPractice;
 }
 
+function mountWithDelayedPlayer() {
+  const { document, byId } = buildPracticeDom();
+  const { sandbox, window, fetchCalls } = createSandbox({ document });
+  let onPlayerReady;
+  window.TCT_SPEAKING_TEST_MODE = false;
+  window.YT.Player = function (_element, options) {
+    onPlayerReady = options.events.onReady;
+    return {
+      getPlayerState: () => 2,
+      getCurrentTime: () => 0,
+      seekTo() {}, playVideo() {}, pauseVideo() {}, setPlaybackRate() {},
+    };
+  };
+  const api = loadSpeaking(sandbox);
+  return { byId, api, fetchCalls, playerReady: () => {
+    window.onYouTubeIframeAPIReady();
+    onPlayerReady();
+  } };
+}
+
+test('practice initializes before the YouTube player is ready', () => {
+  const { byId, api, fetchCalls } = mountWithDelayedPlayer();
+  try {
+    assert.equal(byId['current-transcript-en'].textContent, 'Hello world');
+    assert.equal(fetchCalls.length, 0, 'initial selection must not call assessment or progress');
+  } finally {
+    api.dispose();
+  }
+});
+
+test('late player readiness preserves the sentence selected by the learner', () => {
+  const { byId, api, playerReady } = mountWithDelayedPlayer();
+  try {
+    api.selectSentence(1, false);
+    playerReady();
+    assert.equal(byId['current-transcript-en'].textContent, 'Good morning');
+  } finally {
+    api.dispose();
+  }
+});
+
 test('missing SpeechRecognition does not POST progress after timers', async () => {
   const { document, byId } = buildPracticeDom();
   const { sandbox, window, progressPosts } = createSandbox({

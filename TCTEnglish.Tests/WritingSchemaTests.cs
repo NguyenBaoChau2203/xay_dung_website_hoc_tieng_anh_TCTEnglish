@@ -67,6 +67,33 @@ public sealed class WritingSchemaTests
     }
 
     [Fact]
+    public void WritingAcceptedAnswer_HasSentenceCascadeApproverSetNullAndUniqueHashIndex()
+    {
+        var options = new DbContextOptionsBuilder<DbflashcardContext>()
+            .UseInMemoryDatabase(nameof(WritingAcceptedAnswer_HasSentenceCascadeApproverSetNullAndUniqueHashIndex))
+            .Options;
+
+        using var context = new DbflashcardContext(options);
+        var entity = context.Model.FindEntityType(typeof(WritingAcceptedAnswer));
+        Assert.NotNull(entity);
+
+        var sentenceFk = Assert.Single(entity.GetForeignKeys()
+            .Where(foreignKey => foreignKey.PrincipalEntityType.ClrType == typeof(WritingExerciseSentence)));
+        var approverFk = Assert.Single(entity.GetForeignKeys()
+            .Where(foreignKey => foreignKey.PrincipalEntityType.ClrType == typeof(User)));
+
+        Assert.Equal(DeleteBehavior.Cascade, sentenceFk.DeleteBehavior);
+        Assert.Equal(DeleteBehavior.SetNull, approverFk.DeleteBehavior);
+
+        var uniqueIndex = Assert.Single(entity.GetIndexes()
+            .Where(index => index.GetDatabaseName() == "UX_WritingAcceptedAnswers_Sentence_Hash"));
+        Assert.True(uniqueIndex.IsUnique);
+        Assert.Equal(
+            new[] { nameof(WritingAcceptedAnswer.WritingExerciseSentenceId), nameof(WritingAcceptedAnswer.NormalizedHash) },
+            uniqueIndex.Properties.Select(property => property.Name).ToArray());
+    }
+
+    [Fact]
     public void WritingGenerationLog_UsesUserNoActionAndQuotaIndexes()
     {
         var options = new DbContextOptionsBuilder<DbflashcardContext>()
