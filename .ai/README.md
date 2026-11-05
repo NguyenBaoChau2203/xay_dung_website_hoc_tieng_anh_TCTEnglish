@@ -22,6 +22,11 @@ speech guide and launcher; old transcript provenance stays readable.
 
 ## Routing
 
+For task/execution/handoff prompt authoring, use the shared
+[prompt standard](prompts/README.md) and [English template](templates/execution-prompt.md).
+English prompt instructions and Vietnamese owner reports apply to all four clients;
+load the standard when writing prompts, not as another mandatory startup bundle.
+
 | Task | Canonical skill under .agents/skills/ |
 | --- | --- |
 | Feature planning, debugging, verification | tct-superpowers |
