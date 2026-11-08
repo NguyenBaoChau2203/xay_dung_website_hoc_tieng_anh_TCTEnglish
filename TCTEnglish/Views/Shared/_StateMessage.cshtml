@@ -1,0 +1,53 @@
+@model TCTEnglish.ViewModels.StateMessageViewModel
+@*
+    Loading / empty / error / success block (DESIGN.md, docs/design-system/team-ui-workflow.md).
+    Usage (build the model in an @{ } block; do not nest double quotes inside the model attribute):
+      @{ var empty = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "...", Message = "..." }; }
+      <partial name="_StateMessage" model="empty" />
+    - Error uses role="alert"; the others use role="status" (polite announcement).
+    - Never pass raw exception text as Message; use a recoverable, user-facing sentence.
+    - ActionUrl must be local; otherwise the action is omitted.
+    Needs tct-learning-ui.css (loaded by _Layout and _AdminLayout).
+*@
+@using TCTEnglish.ViewModels
+@{
+    var kind = Model.Kind;
+    var modifier = kind switch
+    {
+        StateMessageKind.Loading => "tct-state--loading",
+        StateMessageKind.Error => "tct-state--error",
+        StateMessageKind.Success => "tct-state--success",
+        _ => "tct-state--empty"
+    };
+    var iconClass = kind switch
+    {
+        StateMessageKind.Error => "fa-solid fa-triangle-exclamation",
+        StateMessageKind.Success => "fa-solid fa-circle-check",
+        _ => "fa-solid fa-inbox"
+    };
+    var role = kind == StateMessageKind.Error ? "alert" : "status";
+    var showAction = !string.IsNullOrWhiteSpace(Model.ActionLabel)
+        && !string.IsNullOrWhiteSpace(Model.ActionUrl)
+        && Url.IsLocalUrl(Model.ActionUrl);
+}
+<div class="tct-state @modifier" role="@role" aria-busy="@(kind == StateMessageKind.Loading ? "true" : null)">
+    <span class="tct-state__icon" aria-hidden="true">
+        @if (kind == StateMessageKind.Loading)
+        {
+            <span class="spinner-border spinner-border-sm" role="presentation"></span>
+        }
+        else
+        {
+            <i class="@iconClass"></i>
+        }
+    </span>
+    <p class="tct-state__title">@Model.Title</p>
+    @if (!string.IsNullOrWhiteSpace(Model.Message))
+    {
+        <p class="tct-state__message">@Model.Message</p>
+    }
+    @if (showAction)
+    {
+        <a class="btn btn-primary" href="@Model.ActionUrl">@Model.ActionLabel</a>
+    }
+</div>

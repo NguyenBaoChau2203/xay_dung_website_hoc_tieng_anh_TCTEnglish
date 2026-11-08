@@ -35,7 +35,8 @@ context; this file describes the structure we intend to keep.
 | `tooling/mcp/` | Isolated locked Python dependencies for the Git MCP reference server |
 | `tooling/codegraph/` | Pinned CodeGraph package/lock and read-only MCP adapter |
 | `tooling/.runtime/` | Ignored local bootstrap binaries, locks and install fingerprints |
-| `DESIGN.md` | Existing visual identity and UI guidance |
+| `DESIGN.md` | Canonical visual standard; every token matches `TCTEnglish/wwwroot/css/tct-learning-ui.css` |
+| `docs/design-system/` | `team-ui-workflow.md` (team process, PR checklist, legacy-screen tracker) and `preview.html` (local component gallery that loads the real shared CSS/JS) |
 
 ## Main Application Layout
 

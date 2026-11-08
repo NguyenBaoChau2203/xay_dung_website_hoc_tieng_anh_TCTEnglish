@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCT Design System — Gallery</title>
+
+    <!--
+        Local gallery. Open this file directly in a browser (needs internet for the same CDNs the app uses).
+        It loads the REAL shared assets by repository-relative path:
+          TCTEnglish/wwwroot/css/tct-learning-ui.css  (tokens + components)
+          TCTEnglish/wwwroot/css/layout.css           (learner shell)
+          TCTEnglish/wwwroot/js/layout.js             (sidebar toggle behavior)
+        Nothing here posts to the application and no AI/media API is called. All data is synthetic.
+        Only the small <style> block below (gallery scaffolding) is specific to this page.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../../TCTEnglish/wwwroot/css/tct-learning-ui.css">
+    <link rel="stylesheet" href="../../TCTEnglish/wwwroot/css/layout.css">
+    <script src="../../TCTEnglish/wwwroot/js/layout.js"></script>
+
+    <style>
+        /* Gallery scaffolding only. Uses tokens; defines no product components. */
+        .gal-section { margin: 0 0 var(--tct-space-2xl); scroll-margin-top: calc(var(--tct-header-h) + 16px); }
+        .gal-section > h2 { margin: 0 0 var(--tct-space-xs); font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); }
+        .gal-lead { margin: 0 0 var(--tct-space-md); max-width: var(--tct-measure); color: var(--tct-text-secondary); }
+        .gal-h3 { margin: var(--tct-space-lg) 0 var(--tct-space-sm); font-size: var(--tct-text-lg); font-weight: var(--tct-weight-semibold); }
+        .gal-demo { padding: var(--tct-space-md); background: var(--tct-surface); border: 1px solid var(--tct-border); border-radius: var(--tct-radius-lg); }
+        .gal-demo + details { margin-top: var(--tct-space-xs); }
+        .gal-grid { display: grid; gap: var(--tct-space-md); grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+        .gal-swatch { border: 1px solid var(--tct-border); border-radius: var(--tct-radius-md); background: var(--tct-surface); overflow: hidden; }
+        .gal-swatch__chip { height: 3rem; border-bottom: 1px solid var(--tct-border); }
+        .gal-swatch__meta { padding: var(--tct-space-sm); font-size: var(--tct-text-xs); line-height: var(--tct-leading-base); overflow-wrap: anywhere; }
+        .gal-swatch__meta code, .gal-code { font-family: var(--tct-font-mono); }
+        .gal-code { display: block; margin: 0; padding: var(--tct-space-md); overflow-x: auto; background: #0f172a; color: #e2e8f0; border-radius: var(--tct-radius-md); font-size: var(--tct-text-sm); line-height: var(--tct-leading-base); white-space: pre; }
+        .gal-banner { margin: 0 0 var(--tct-space-lg); padding: var(--tct-space-sm) var(--tct-space-md); background: var(--tct-warning-soft); color: var(--tct-warning-text); border: 1px solid var(--tct-warning); border-radius: var(--tct-radius-md); font-weight: var(--tct-weight-semibold); }
+        .gal-box { display: grid; place-items: center; min-height: 3.5rem; background: var(--tct-primary-soft); color: var(--tct-primary-strong); font-size: var(--tct-text-xs); font-weight: var(--tct-weight-semibold); }
+        .gal-pass { color: var(--tct-success-text); font-weight: var(--tct-weight-bold); }
+        .gal-fail { color: var(--tct-danger-text); font-weight: var(--tct-weight-bold); }
+        .gal-scale-row { display: flex; align-items: baseline; gap: var(--tct-space-md); padding: var(--tct-space-xs) 0; border-bottom: 1px solid var(--tct-border); }
+        .gal-scale-row > code { flex: 0 0 9rem; font-size: var(--tct-text-xs); }
+        .gal-scale-row > span { min-width: 0; overflow-wrap: anywhere; }
+        .gal-demo-form { max-width: 36rem; }
+        .header .btn-upgrade { text-decoration: none; }
+        .gal-t-3xl { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); }
+        .gal-t-title { font-size: var(--tct-title-size); font-weight: var(--tct-weight-bold); }
+        .gal-t-2xl { font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-semibold); }
+        .gal-t-xl { font-size: var(--tct-text-xl); font-weight: var(--tct-weight-semibold); }
+        .gal-t-lg { font-size: var(--tct-text-lg); }
+        .gal-t-base { font-size: var(--tct-text-base); }
+        .gal-t-sm { font-size: var(--tct-text-sm); }
+        .gal-t-xs { font-size: var(--tct-text-xs); }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+    <!-- ===== Learner shell header (same classes/IDs as Views/Shared/_Layout.cshtml) ===== -->
+    <header class="header">
+        <div class="header-left">
+            <button type="button" class="menu-icon-btn" id="menuToggleBtn" aria-label="Mở hoặc đóng thanh điều hướng" aria-controls="mainSidebar" aria-expanded="false"><i class="fas fa-bars menu-icon"></i></button>
+            <a href="#top" class="logo">TCT</a>
+        </div>
+
+        <form class="search-box" action="#" onsubmit="return false">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="text" id="globalSearchInput" name="q" placeholder="Search folders, classes, users" aria-label="Search folders, classes, users"
+                   data-placeholder-default="Search folders, classes, users" data-placeholder-compact="Search" autocomplete="off">
+        </form>
+
+        <div class="header-right">
+            <a href="#top" class="btn-upgrade">Upgrade: Premium</a>
+            <button type="button" class="btn-notification" aria-label="Thông báo"><i class="fas fa-bell"></i></button>
+            <div class="user-menu-container">
+                <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menu tài khoản của Người dùng mẫu">
+                    <div class="avatar"></div>
+                    <span class="user-name-display">Người dùng mẫu</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-header">
+                        <div class="avatar small"></div>
+                        <div class="user-info-text"><div class="name">Người dùng mẫu</div><div class="email">mau@example.invalid</div></div>
+                    </div>
+                    <hr>
+                    <a href="#top" class="dropdown-item"><i class="fas fa-user"></i> Hồ sơ của tôi</a>
+                    <a href="#top" class="dropdown-item logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="mainSidebar" aria-label="Menu chính">
+            <nav>
+                <div class="workspace-title">Gallery</div>
+                <a class="nav-item active" aria-current="page" href="#tokens"><i class="fas fa-palette" aria-hidden="true"></i><span>Token</span></a>
+                <a class="nav-item" href="#typography"><i class="fas fa-font" aria-hidden="true"></i><span>Typography</span></a>
+                <a class="nav-item" href="#shell"><i class="fas fa-table-columns" aria-hidden="true"></i><span>Shell &amp; layout</span></a>
+                <a class="nav-item" href="#page-header"><i class="fas fa-heading" aria-hidden="true"></i><span>Page header</span></a>
+                <a class="nav-item" href="#buttons"><i class="fas fa-hand-pointer" aria-hidden="true"></i><span>Buttons</span></a>
+                <a class="nav-item" href="#forms"><i class="fas fa-pen-to-square" aria-hidden="true"></i><span>Forms</span></a>
+                <a class="nav-item" href="#toolbar"><i class="fas fa-filter" aria-hidden="true"></i><span>Search / filter</span></a>
+                <a class="nav-item" href="#cards"><i class="fas fa-clone" aria-hidden="true"></i><span>Cards &amp; badges</span></a>
+                <a class="nav-item" href="#tables"><i class="fas fa-table" aria-hidden="true"></i><span>Tables &amp; paging</span></a>
+                <a class="nav-item" href="#feedback"><i class="fas fa-comment-dots" aria-hidden="true"></i><span>Modal &amp; feedback</span></a>
+                <a class="nav-item" href="#states"><i class="fas fa-circle-info" aria-hidden="true"></i><span>UI states</span></a>
+                <a class="nav-item" href="#admin"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Admin patterns</span></a>
+            </nav>
+            <div class="sidebar-footer">Gallery cục bộ — dữ liệu mẫu, không gửi tới server.</div>
+        </aside>
+
+        <main class="main tct-theme" id="main-content">
+            <div class="tct-page" id="top">
+
+                <header class="tct-page-header">
+                    <nav class="tct-breadcrumb" aria-label="Breadcrumb">
+                        <ol>
+                            <li><a href="#top">TCT English</a></li>
+                            <li><span aria-current="page">Design system</span></li>
+                        </ol>
+                    </nav>
+                    <div class="tct-page-header__row">
+                        <div class="tct-page-header__text">
+                            <h1 class="tct-page-title">TCT Design System — Component gallery</h1>
+                            <p class="tct-page-desc">Mọi mẫu bên dưới dùng CSS thật của ứng dụng. Mở rộng/thu hẹp cửa sổ (1440 / 768 / 390px) hoặc phóng to 200% để xem hành vi responsive; nút ☰ dùng <code>layout.js</code> thật.</p>
+                        </div>
+                    </div>
+                </header>
+
+                <p class="gal-banner" role="note"><i class="fas fa-flask me-1" aria-hidden="true"></i> Nội dung tổng hợp (synthetic): form không gửi dữ liệu, không gọi API AI/media, không có dữ liệu thật.</p>
+
+                <!-- ============================ TOKENS ============================ -->
+                <section class="gal-section" id="tokens" aria-labelledby="h-tokens">
+                    <h2 id="h-tokens">Token</h2>
+                    <p class="gal-lead">Giá trị đọc trực tiếp từ <code>tct-learning-ui.css</code> khi trang mở, nên không thể lệch khỏi code. Tỉ lệ tương phản được tính từ chính các giá trị đó.</p>
+
+                    <h3 class="gal-h3">Màu</h3>
+                    <div class="gal-grid" id="swatches" aria-label="Bảng màu token"></div>
+
+                    <h3 class="gal-h3">Tương phản (WCAG 2.x) — tính từ token</h3>
+                    <div class="tct-table-wrap" tabindex="0" role="region" aria-label="Bảng tương phản màu">
+                        <table class="tct-table" id="contrast-table">
+                            <thead><tr><th scope="col">Cặp màu</th><th scope="col">Tỉ lệ</th><th scope="col">Cần</th><th scope="col">Kết quả</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="gal-h3">Khoảng cách, bo góc, đổ bóng</h3>
+                    <div class="gal-grid">
+                        <div><div class="gal-box" id="sp-xs">xs</div><small><code>--tct-space-xs</code> = <span data-tok="--tct-space-xs"></span></small></div>
+                        <div><div class="gal-box" id="sp-md">md</div><small><code>--tct-space-md</code> = <span data-tok="--tct-space-md"></span></small></div>
+                        <div><div class="gal-box tct-card" id="rd-lg">radius-lg</div><small><code>--tct-radius-lg</code> = <span data-tok="--tct-radius-lg"></span></small></div>
+                        <div><div class="gal-box" id="rd-md">radius-md</div><small><code>--tct-radius-md</code> = <span data-tok="--tct-radius-md"></span></small></div>
+                        <div><div class="gal-box" id="rd-sm">radius-sm</div><small><code>--tct-radius-sm</code> = <span data-tok="--tct-radius-sm"></span></small></div>
+                        <div><div class="gal-box tct-card" id="sh-lift">shadow-lift</div><small><code>--tct-shadow-lift</code></small></div>
+                    </div>
+
+                    <h3 class="gal-h3">Thang lớp (z-index) và hình học shell</h3>
+                    <div class="tct-table-wrap" tabindex="0" role="region" aria-label="Bảng lớp và hình học shell">
+                        <table class="tct-table">
+                            <thead><tr><th scope="col">Token</th><th scope="col">Giá trị</th><th scope="col">Dùng cho</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>--tct-z-sidebar</code></td><td data-tok="--tct-z-sidebar"></td><td>Sidebar học viên</td></tr>
+                                <tr><td><code>--tct-z-header</code></td><td data-tok="--tct-z-header"></td><td>Header cố định</td></tr>
+                                <tr><td><code>--tct-z-dropdown</code></td><td data-tok="--tct-z-dropdown"></td><td>Panel thông báo (Bootstrap modal 1055, toast 1090)</td></tr>
+                                <tr><td><code>--tct-z-launcher</code></td><td data-tok="--tct-z-launcher"></td><td>Nút AI chat nổi</td></tr>
+                                <tr><td><code>--tct-z-overlay</code></td><td data-tok="--tct-z-overlay"></td><td>Modal tự dựng cũ (<code>#folderModal</code>)</td></tr>
+                                <tr><td><code>--tct-z-popover</code></td><td data-tok="--tct-z-popover"></td><td>Menu người dùng, skip link</td></tr>
+                                <tr><td><code>--tct-header-h</code></td><td data-tok="--tct-header-h"></td><td>Offset header (xem ghi chú: header đăng nhập cao hơn)</td></tr>
+                                <tr><td><code>--tct-sidebar-w</code> / <code>-md</code></td><td><span data-tok="--tct-sidebar-w"></span> / <span data-tok="--tct-sidebar-w-md"></span></td><td>&gt;1024px / ≤1024px</td></tr>
+                                <tr><td><code>--tct-main-pad</code> / <code>-sm</code></td><td><span data-tok="--tct-main-pad"></span> / <span data-tok="--tct-main-pad-sm"></span></td><td>&gt;768px / ≤768px</td></tr>
+                                <tr><td><code>--tct-admin-sidebar-w</code></td><td data-tok="--tct-admin-sidebar-w"></td><td>Sidebar Admin</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============================ TYPOGRAPHY ============================ -->
+                <section class="gal-section" id="typography" aria-labelledby="h-type">
+                    <h2 id="h-type">Typography</h2>
+                    <p class="gal-lead">Font chuẩn: Inter (400/500/600/700, có subset tiếng Việt). Chỉ dùng 4 độ đậm đó.</p>
+                    <div class="gal-demo" id="type-scale">
+                        <div class="gal-scale-row"><code>--tct-text-3xl</code><span class="gal-t-3xl">Học từ vựng mỗi ngày</span></div>
+                        <div class="gal-scale-row"><code>--tct-title-size</code><span class="gal-t-title">Tiêu đề trang (clamp)</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-2xl</code><span class="gal-t-2xl">Mục lớn — Section heading</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-xl</code><span class="gal-t-xl">Tiêu đề thẻ — Card title</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-lg</code><span class="gal-t-lg">Văn bản dẫn — Lead paragraph</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-base</code><span class="gal-t-base">Nội dung chính — Body text, ăn, ơ, ư, ạ, ệ, ỗ, ử, ữ</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-sm</code><span class="gal-t-sm">Phụ đề, nhãn bảng — Secondary text</span></div>
+                        <div class="gal-scale-row"><code>--tct-text-xs</code><span class="gal-t-xs">Chú thích, badge — Captions (không nhỏ hơn 12px)</span></div>
+                    </div>
+
+                    <h3 class="gal-h3">Phiên âm, tiếng Việt có dấu và văn bản đọc</h3>
+                    <div class="gal-demo">
+                        <p class="mb-2"><strong>vocabulary</strong> <span class="tct-phonetic" id="ipa-sample">/vəˈkæbjʊləri/ · /θɪŋk/ · /ʃɪp/ · /ðə/ · /ˈsɪŋɪŋ/ · /ˌɪntəˈnæʃənl/ · /dʒɔɪ/ · /tʃɛr/</span></p>
+                        <div class="tct-prose" id="prose-sample">
+                            <p class="mb-2">Hôm nay chúng ta ôn lại những từ vựng đã học: “resilient” nghĩa là kiên cường, bền bỉ; “thoroughly” nghĩa là một cách kỹ lưỡng. Hãy đọc to từng câu, chú ý trọng âm và ngữ điệu của người bản xứ.</p>
+                            <p class="mb-0">Khi nội dung dài, độ rộng dòng được giới hạn khoảng <span data-tok="--tct-measure"></span> để mắt dễ theo dõi, và từ rất dài như <span class="tct-break">Antidisestablishmentarianism_không_có_khoảng_trắng_rất_dài_để_kiểm_tra_tràn_dòng</span> vẫn tự ngắt.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================ SHELL ============================ -->
+                <section class="gal-section" id="shell" aria-labelledby="h-shell">
+                    <h2 id="h-shell">Shell &amp; layout</h2>
+                    <p class="gal-lead">Trang này chính là shell học viên thật (<code>layout.css</code> + <code>layout.js</code>). Trên ≤768px sidebar trở thành ngăn kéo; bấm ☰ để thử, <kbd>Esc</kbd> đóng và trả focus.</p>
+                    <div class="gal-demo">
+                        <ul class="mb-0 ps-3">
+                            <li>Container nội dung: <code>.tct-page</code> (tối đa <span data-tok="--tct-container-max"></span>) hoặc <code>.tct-page--narrow</code> (<span data-tok="--tct-container-narrow"></span>) cho form.</li>
+                            <li>Khoảng đệm <code>.main</code>: <span data-tok="--tct-main-pad"></span> (≤768px: <span data-tok="--tct-main-pad-sm"></span>).</li>
+                            <li>Điểm gãy thực tế của shell: 1024px (sidebar 240px), 768px (ngăn kéo), 576px (placeholder tìm kiếm rút gọn), 480px (header nhỏ). Admin: 991.98px.</li>
+                            <li id="shell-live">Đang đo…</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ============================ PAGE HEADER ============================ -->
+                <section class="gal-section" id="page-header" aria-labelledby="h-ph">
+                    <h2 id="h-ph">Page header</h2>
+                    <p class="gal-lead">Partial: <code>&lt;partial name="_PageHeader" model="..." /&gt;</code>. Mỗi trang đúng một <code>&lt;h1&gt;</code> (trang gallery này đã dùng h1 ở đầu, nên mẫu dưới dùng thẻ giả <code>div</code>).</p>
+                    <div class="gal-demo" data-code>
+                        <header class="tct-page-header mb-0">
+                            <nav class="tct-breadcrumb" aria-label="Breadcrumb">
+                                <ol>
+                                    <li><a href="#page-header">Từ vựng</a></li>
+                                    <li><a href="#page-header">Chủ đề</a></li>
+                                    <li><span aria-current="page">Du lịch &amp; Giao thông</span></li>
+                                </ol>
+                            </nav>
+                            <div class="tct-page-header__row">
+                                <div class="tct-page-header__text">
+                                    <div class="tct-page-title">Du lịch &amp; Giao thông</div>
+                                    <p class="tct-page-desc">48 từ · cập nhật gần nhất 2 ngày trước.</p>
+                                </div>
+                                <div class="tct-page-header__actions">
+                                    <a class="btn btn-outline-primary" href="#page-header"><i class="fas fa-pen me-1" aria-hidden="true"></i>Chỉnh sửa</a>
+                                    <a class="btn btn-primary" href="#page-header"><i class="fas fa-play me-1" aria-hidden="true"></i>Bắt đầu học</a>
+                                </div>
+                            </div>
+                        </header>
+                    </div>
+                </section>
+
+                <!-- ============================ BUTTONS ============================ -->
+                <section class="gal-section" id="buttons" aria-labelledby="h-btn">
+                    <h2 id="h-btn">Buttons</h2>
+                    <p class="gal-lead">Dùng Bootstrap <code>.btn</code> bên trong <code>.tct-theme</code>. Nút thao tác là <code>&lt;button&gt;</code>, điều hướng là <code>&lt;a&gt;</code>. Nút chỉ có icon cần <code>aria-label</code> và vùng bấm ≥ 44px.</p>
+                    <div class="gal-demo" data-code>
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <button type="button" class="btn btn-primary">Chính</button>
+                            <button type="button" class="btn btn-outline-primary">Phụ</button>
+                            <button type="button" class="btn btn-outline-secondary">Trung tính</button>
+                            <button type="button" class="btn btn-danger">Xóa</button>
+                            <button type="button" class="btn btn-outline-danger">Hủy bỏ</button>
+                            <button type="button" class="btn btn-primary" disabled>Đang tắt</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm">Nhỏ</button>
+                            <button type="button" class="btn btn-outline-primary tct-btn-icon" aria-label="Phát âm thanh"><i class="fas fa-volume-high" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+
+                    <h3 class="gal-h3">Trạng thái chờ (chống gửi trùng)</h3>
+                    <div class="gal-demo">
+                        <button type="button" class="btn btn-primary" id="pending-demo">
+                            <span class="spinner-border spinner-border-sm me-2 d-none" role="presentation" aria-hidden="true"></span><span class="label">Lưu thay đổi</span>
+                        </button>
+                        <span class="ms-3 text-muted" id="pending-status" role="status">Bấm để xem trạng thái chờ 1,5 giây.</span>
+                    </div>
+                </section>
+
+                <!-- ============================ FORMS ============================ -->
+                <section class="gal-section" id="forms" aria-labelledby="h-forms">
+                    <h2 id="h-forms">Forms</h2>
+                    <p class="gal-lead">Nhãn luôn hiện, gợi ý dùng <code>.form-text</code>, lỗi gắn bằng <code>aria-describedby</code>. Viền ô nhập ≥ 3:1 so với nền. Form trong gallery bị chặn gửi.</p>
+                    <div class="gal-demo gal-demo-form">
+                        <form action="#" onsubmit="return false" novalidate data-code>
+                            <div class="mb-3">
+                                <label for="f-name" class="form-label">Tên hiển thị</label>
+                                <input id="f-name" class="form-control" type="text" value="Nguyễn Thị Ánh Tuyết" aria-describedby="f-name-help">
+                                <div id="f-name-help" class="form-text">Hiện trên bảng xếp hạng lớp.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="f-email" class="form-label">Email</label>
+                                <input id="f-email" class="form-control is-invalid" type="email" value="khong-hop-le" aria-invalid="true" aria-describedby="f-email-err">
+                                <div id="f-email-err" class="invalid-feedback"><i class="fas fa-circle-exclamation me-1" aria-hidden="true"></i>Email chưa đúng định dạng (ví dụ: ten@congty.vn).</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="f-level" class="form-label">Trình độ</label>
+                                <select id="f-level" class="form-select"><option>A1 — Mới bắt đầu</option><option selected>B1 — Trung cấp</option><option>C1 — Nâng cao</option></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="f-note" class="form-label">Ghi chú</label>
+                                <textarea id="f-note" class="form-control" rows="2" placeholder="Nhập ghi chú ngắn"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="f-off" class="form-label">Trường bị khóa</label>
+                                <input id="f-off" class="form-control" type="text" value="Không thể chỉnh sửa" disabled>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="f-remind" checked>
+                                <label class="form-check-label" for="f-remind">Nhắc tôi ôn tập mỗi ngày</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- ============================ TOOLBAR ============================ -->
+                <section class="gal-section" id="toolbar" aria-labelledby="h-tb">
+                    <h2 id="h-tb">Search / filter toolbar</h2>
+                    <div class="gal-demo" data-code>
+                        <form class="tct-toolbar" role="search" action="#" onsubmit="return false">
+                            <div class="tct-toolbar__search">
+                                <label for="tb-q" class="form-label">Tìm kiếm</label>
+                                <input id="tb-q" type="search" class="form-control" placeholder="Từ khóa, chủ đề…">
+                            </div>
+                            <div class="tct-toolbar__filters">
+                                <div>
+                                    <label for="tb-level" class="form-label">Trình độ</label>
+                                    <select id="tb-level" class="form-select"><option>Tất cả</option><option>A1</option><option>B1</option></select>
+                                </div>
+                            </div>
+                            <div class="tct-toolbar__actions">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-filter me-1" aria-hidden="true"></i>Lọc</button>
+                                <button type="reset" class="btn btn-outline-secondary">Xóa lọc</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- ============================ CARDS & BADGES ============================ -->
+                <section class="gal-section" id="cards" aria-labelledby="h-cards">
+                    <h2 id="h-cards">Cards &amp; badges</h2>
+                    <div class="gal-demo" data-code>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <article class="tct-card tct-card--interactive p-3 h-100">
+                                    <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                                        <h3 class="h5 m-0 tct-break">Du lịch &amp; Giao thông</h3>
+                                        <span class="tct-badge tct-badge--primary"><i class="fas fa-layer-group" aria-hidden="true"></i>48 từ</span>
+                                    </div>
+                                    <p class="text-muted mb-3">Từ vựng cho chuyến đi: sân bay, khách sạn, hỏi đường.</p>
+                                    <a href="#cards" class="btn btn-outline-primary btn-sm">Xem bộ từ</a>
+                                </article>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <article class="tct-card p-3 h-100">
+                                    <h3 class="h5 mb-2">Tên bộ từ rất dài để thử việc xuống dòng: Internationalization_and_Localization_của_phần_mềm</h3>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="tct-badge tct-badge--success"><i class="fas fa-circle-check" aria-hidden="true"></i>Đã thuộc</span>
+                                        <span class="tct-badge tct-badge--warning"><i class="fas fa-clock" aria-hidden="true"></i>Sắp đến hạn</span>
+                                        <span class="tct-badge tct-badge--danger"><i class="fas fa-circle-xmark" aria-hidden="true"></i>Chưa đạt</span>
+                                        <span class="tct-badge tct-badge--info"><i class="fas fa-circle-info" aria-hidden="true"></i>Gợi ý</span>
+                                        <span class="tct-badge">Trung tính</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================ TABLES ============================ -->
+                <section class="gal-section" id="tables" aria-labelledby="h-tbl">
+                    <h2 id="h-tbl">Tables &amp; pagination</h2>
+                    <p class="gal-lead">Bọc bảng trong <code>.tct-table-wrap</code> (vùng cuộn có <code>tabindex="0"</code>, <code>role="region"</code> và nhãn) để cuộn ngang được bằng bàn phím trên màn hình hẹp.</p>
+                    <div class="gal-demo" data-code>
+                        <div class="tct-table-wrap" tabindex="0" role="region" aria-label="Danh sách người dùng mẫu">
+                            <table class="tct-table">
+                                <caption class="visually-hidden">Danh sách người dùng mẫu</caption>
+                                <thead><tr><th scope="col">Người dùng</th><th scope="col">Vai trò</th><th scope="col">Trạng thái</th><th scope="col">Email</th><th scope="col" class="text-end">Hành động</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Nguyễn Văn An</td><td>Standard</td><td><span class="tct-badge tct-badge--success"><i class="fas fa-circle-check" aria-hidden="true"></i>Hoạt động</span></td><td>an.nguyen@example.invalid</td><td class="text-end"><button type="button" class="btn btn-outline-primary btn-sm">Xem</button></td></tr>
+                                    <tr><td>Trần Thị Bích Ngọc</td><td>Premium</td><td><span class="tct-badge tct-badge--danger"><i class="fas fa-lock" aria-hidden="true"></i>Đã chặn</span></td><td class="tct-break">tran.thi.bich.ngoc.rat.dai.de.thu.tran.dong@example.invalid</td><td class="text-end"><button type="button" class="btn btn-outline-primary btn-sm">Xem</button></td></tr>
+                                    <tr><td>Local Admin</td><td>Admin</td><td><span class="tct-badge tct-badge--primary"><i class="fas fa-shield-halved" aria-hidden="true"></i>Quản trị</span></td><td>admin@example.invalid</td><td class="text-end"><button type="button" class="btn btn-outline-primary btn-sm">Xem</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="gal-demo mt-3" data-code>
+                        <nav aria-label="Phân trang mẫu">
+                            <ul class="pagination flex-wrap mb-0">
+                                <li class="page-item disabled"><span class="page-link" aria-disabled="true">Trước</span></li>
+                                <li class="page-item active"><a class="page-link" href="#tables" aria-current="page" aria-label="Trang 1">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#tables" aria-label="Trang 2">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#tables" aria-label="Trang 3">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#tables">Sau</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+
+                <!-- ============================ FEEDBACK ============================ -->
+                <section class="gal-section" id="feedback" aria-labelledby="h-fb">
+                    <h2 id="h-fb">Modal &amp; feedback</h2>
+                    <p class="gal-lead">Dùng Bootstrap modal (focus trap, <kbd>Esc</kbd>, trả focus), Bootstrap alert/toast. Xác nhận hủy dữ liệu dùng đúng thư viện SweetAlert2 đã ghim nếu trang đó đang dùng.</p>
+                    <div class="gal-demo" data-code>
+                        <div class="d-grid gap-2 mb-3">
+                            <div class="alert alert-success d-flex gap-2 align-items-start mb-0" role="status"><i class="fas fa-circle-check mt-1" aria-hidden="true"></i><div>Đã lưu thay đổi.</div></div>
+                            <div class="alert alert-warning d-flex gap-2 align-items-start mb-0" role="status"><i class="fas fa-triangle-exclamation mt-1" aria-hidden="true"></i><div>Bộ từ này sắp hết hạn ôn tập.</div></div>
+                            <div class="alert alert-danger d-flex gap-2 align-items-start mb-0" role="alert"><i class="fas fa-circle-exclamation mt-1" aria-hidden="true"></i><div>Không thể tải dữ liệu. Vui lòng thử lại.</div></div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-primary" id="open-modal" data-bs-toggle="modal" data-bs-target="#demoModal">Mở hộp thoại</button>
+                            <button type="button" class="btn btn-outline-primary" id="show-toast">Hiện toast</button>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title fs-5" id="demoModalLabel">Xóa bộ từ này?</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                                </div>
+                                <div class="modal-body">Hành động này không thể hoàn tác. (Mẫu: không có gì bị xóa.)</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Giữ lại</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="demoToast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+                            <div class="toast-header"><strong class="me-auto">Thông báo</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Đóng"></button></div>
+                            <div class="toast-body">Đã sao chép liên kết.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================ STATES ============================ -->
+                <section class="gal-section" id="states" aria-labelledby="h-states">
+                    <h2 id="h-states">UI states</h2>
+                    <p class="gal-lead">Partial <code>_StateMessage</code> cho loading / empty / error / success. Bên dưới là đúng markup partial sinh ra (<code>role="alert"</code> cho lỗi, <code>role="status"</code> cho các trạng thái còn lại).</p>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6"><div class="tct-state tct-state--empty" role="status"><span class="tct-state__icon" aria-hidden="true"><i class="fa-solid fa-inbox"></i></span><p class="tct-state__title">Chưa có bộ từ nào</p><p class="tct-state__message">Tạo bộ từ đầu tiên để bắt đầu học.</p><a class="btn btn-primary" href="#states">Tạo bộ từ</a></div></div>
+                        <div class="col-12 col-md-6"><div class="tct-state tct-state--error" role="alert"><span class="tct-state__icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span><p class="tct-state__title">Không tải được dữ liệu</p><p class="tct-state__message">Kết nối bị gián đoạn. Hãy thử lại sau ít phút.</p><a class="btn btn-primary" href="#states">Thử lại</a></div></div>
+                        <div class="col-12 col-md-6"><div class="tct-state tct-state--success" role="status"><span class="tct-state__icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span><p class="tct-state__title">Hoàn thành bài học</p><p class="tct-state__message">Bạn đã ôn xong 20 từ hôm nay.</p></div></div>
+                        <div class="col-12 col-md-6"><div class="tct-state tct-state--loading" role="status" aria-busy="true"><span class="tct-state__icon" aria-hidden="true"><span class="spinner-border spinner-border-sm" role="presentation"></span></span><p class="tct-state__title">Đang tải…</p><div class="tct-skeleton-group" aria-hidden="true"><span class="tct-skeleton tct-skeleton--line"></span><span class="tct-skeleton tct-skeleton--line tct-skeleton--short"></span></div></div></div>
+                    </div>
+                </section>
+
+                <!-- ============================ ADMIN ============================ -->
+                <section class="gal-section" id="admin" aria-labelledby="h-admin">
+                    <h2 id="h-admin">Admin patterns (Bootstrap-first)</h2>
+                    <p class="gal-lead">Admin dùng shell Bootstrap riêng (<code>_AdminLayout.cshtml</code>, sidebar tối 260px). Các mẫu nội dung dưới đây là đúng cách trang Admin hiện đang viết, chỉ thêm <code>.tct-theme</code> để dùng token. Shell Admin được kiểm bằng trình duyệt trên ứng dụng thật, không phải ở đây.</p>
+                    <div class="gal-demo" data-code>
+                        <div class="row g-3 mb-3">
+                            <div class="col-6 col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3 py-3"><div class="bg-primary bg-opacity-10 rounded-3 p-3 lh-1"><i class="fas fa-users text-primary" aria-hidden="true"></i></div><div><p class="text-muted small mb-0">Tổng người dùng</p><p class="fw-bold fs-4 mb-0">128</p></div></div></div></div>
+                            <div class="col-6 col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3 py-3"><div class="bg-danger bg-opacity-10 rounded-3 p-3 lh-1"><i class="fas fa-ban text-danger" aria-hidden="true"></i></div><div><p class="text-muted small mb-0">Đã chặn</p><p class="fw-bold fs-4 mb-0">3</p></div></div></div></div>
+                        </div>
+                        <div class="bg-dark rounded-3 p-3 tct-on-dark d-inline-block">
+                            <a href="#admin" class="nav-link text-white px-3 py-2 d-inline-block">Liên kết trên nền tối (focus ring trắng)</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Gallery-only behavior: reads live token values, computes contrast, shows markup, demos pending/toast.
+        (function () {
+            const rootStyle = getComputedStyle(document.documentElement);
+            const tok = (n) => rootStyle.getPropertyValue(n).trim();
+
+            document.querySelectorAll('[data-tok]').forEach((el) => { el.textContent = tok(el.dataset.tok); });
+
+            // ---- colors ----
+            const groups = {
+                'Thương hiệu': ['--tct-primary', '--tct-primary-hover', '--tct-primary-strong', '--tct-primary-soft', '--tct-primary-tint', '--tct-accent'],
+                'Trung tính': ['--tct-bg', '--tct-surface', '--tct-surface-muted', '--tct-text', '--tct-text-secondary', '--tct-text-muted', '--tct-border', '--tct-border-control'],
+                'Ngữ nghĩa': ['--tct-success', '--tct-success-text', '--tct-success-soft', '--tct-warning', '--tct-warning-text', '--tct-warning-soft', '--tct-danger', '--tct-danger-soft', '--tct-info', '--tct-info-text', '--tct-info-soft'],
+            };
+            const sw = document.getElementById('swatches');
+            Object.values(groups).flat().forEach((name) => {
+                const d = document.createElement('div');
+                d.className = 'gal-swatch';
+                d.innerHTML = '<div class="gal-swatch__chip"></div><div class="gal-swatch__meta"><code></code><br><span></span></div>';
+                d.querySelector('.gal-swatch__chip').style.background = 'var(' + name + ')';
+                d.querySelector('code').textContent = name;
+                d.querySelector('span').textContent = tok(name);
+                sw.appendChild(d);
+            });
+
+            // ---- contrast ----
+            const hex = (h) => { h = h.replace('#', ''); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+            const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+            const lum = (h) => { const [r, g, b] = hex(h).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+            const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+            const dark = '#212529';
+            const pairs = [
+                ['Chữ chính trên surface', '--tct-text', '--tct-surface', 4.5],
+                ['Chữ chính trên canvas', '--tct-text', '--tct-bg', 4.5],
+                ['Chữ phụ trên surface', '--tct-text-secondary', '--tct-surface', 4.5],
+                ['Chữ mờ (muted) trên surface', '--tct-text-muted', '--tct-surface', 4.5],
+                ['Chữ mờ (muted) trên canvas', '--tct-text-muted', '--tct-bg', 4.5],
+                ['Chữ mờ (muted) trên tint', '--tct-text-muted', '--tct-primary-tint', 4.5],
+                ['Liên kết primary-strong trên surface', '--tct-primary-strong', '--tct-surface', 4.5],
+                ['Chữ trắng trên nút primary', '--tct-on-primary', '--tct-primary', 4.5],
+                ['Chữ trắng trên nút primary (hover)', '--tct-on-primary', '--tct-primary-hover', 4.5],
+                ['Chữ tối trên accent', '--tct-on-accent', '--tct-accent', 4.5],
+                ['Badge primary', '--tct-primary-strong', '--tct-primary-soft', 4.5],
+                ['Badge success', '--tct-success-text', '--tct-success-soft', 4.5],
+                ['Badge warning', '--tct-warning-text', '--tct-warning-soft', 4.5],
+                ['Badge danger', '--tct-danger-text', '--tct-danger-soft', 4.5],
+                ['Badge info', '--tct-info-text', '--tct-info-soft', 4.5],
+                ['Viền ô nhập trên surface (UI 3:1)', '--tct-border-control', '--tct-surface', 3],
+                ['Focus ring trên surface (UI 3:1)', '--tct-focus-ring', '--tct-surface', 3],
+                ['Focus ring trên canvas (UI 3:1)', '--tct-focus-ring', '--tct-bg', 3],
+                ['Focus ring trắng trên nền tối #212529 (UI 3:1)', '--tct-focus-ring-on-dark', dark, 3],
+            ];
+            const tbody = document.querySelector('#contrast-table tbody');
+            pairs.forEach(([label, fg, bg, need]) => {
+                const f = fg.startsWith('--') ? tok(fg) : fg, b = bg.startsWith('--') ? tok(bg) : bg;
+                const r = ratio(f, b), ok = r >= need;
+                const tr = document.createElement('tr');
+                tr.innerHTML = '<td></td><td></td><td></td><td></td>';
+                tr.children[0].textContent = label + ' (' + f + ' / ' + b + ')';
+                tr.children[1].textContent = r.toFixed(2) + ':1';
+                tr.children[2].textContent = need + ':1';
+                tr.children[3].innerHTML = ok ? '<span class="gal-pass"><i class="fas fa-check" aria-hidden="true"></i> Đạt</span>' : '<span class="gal-fail"><i class="fas fa-xmark" aria-hidden="true"></i> Không đạt</span>';
+                tbody.appendChild(tr);
+            });
+
+            // ---- show markup for copyable demos ----
+            const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            document.querySelectorAll('[data-code]').forEach((el) => {
+                const demo = el.tagName === 'FORM' ? el.closest('.gal-demo') : el;
+                const html = el.tagName === 'FORM' ? el.outerHTML : el.innerHTML;
+                const lines = html.replace(/^\n+|\s+$/g, '').split('\n');
+                const indent = Math.min(...lines.filter((l) => l.trim()).map((l) => l.match(/^\s*/)[0].length));
+                const d = document.createElement('details');
+                d.innerHTML = '<summary class="small">Xem HTML</summary><pre class="gal-code" tabindex="0"></pre>';
+                d.querySelector('pre').textContent = lines.map((l) => l.slice(indent)).join('\n');
+                demo.after(d);
+            });
+
+            // ---- shell live measurement ----
+            function measure() {
+                const h = document.querySelector('.header').getBoundingClientRect().height;
+                const sb = document.getElementById('mainSidebar').getBoundingClientRect();
+                const m = getComputedStyle(document.querySelector('.main'));
+                document.getElementById('shell-live').textContent =
+                    'Đo trực tiếp: viewport ' + innerWidth + 'px · header ' + Math.round(h) + 'px · sidebar ' + Math.round(sb.width) + 'px · main margin-left ' + m.marginLeft + ' · padding ' + m.paddingLeft + ' · html font-size ' + getComputedStyle(document.documentElement).fontSize;
+            }
+            measure(); addEventListener('resize', measure);
+
+            // ---- pending button demo ----
+            const pbtn = document.getElementById('pending-demo'), pst = document.getElementById('pending-status');
+            pbtn.addEventListener('click', function () {
+                if (pbtn.disabled) return;
+                pbtn.disabled = true; pbtn.setAttribute('aria-busy', 'true');
+                pbtn.querySelector('.spinner-border').classList.remove('d-none');
+                pbtn.querySelector('.label').textContent = 'Đang lưu…';
+                pst.textContent = 'Đang lưu…';
+                setTimeout(function () {
+                    pbtn.disabled = false; pbtn.removeAttribute('aria-busy');
+                    pbtn.querySelector('.spinner-border').classList.add('d-none');
+                    pbtn.querySelector('.label').textContent = 'Lưu thay đổi';
+                    pst.textContent = 'Đã xong (mẫu — không lưu gì).';
+                }, 1500);
+            });
+
+            // ---- toast demo ----
+            document.getElementById('show-toast').addEventListener('click', function () {
+                bootstrap.Toast.getOrCreateInstance(document.getElementById('demoToast')).show();
+            });
+        })();
+    </script>
+</body>
+</html>

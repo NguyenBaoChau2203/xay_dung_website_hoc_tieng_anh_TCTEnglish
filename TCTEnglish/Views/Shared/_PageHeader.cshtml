@@ -1,0 +1,72 @@
+@model TCTEnglish.ViewModels.PageHeaderViewModel
+@*
+    Shared page header (DESIGN.md, docs/design-system/team-ui-workflow.md).
+    Usage (build the model in an @{ } block; do not nest double quotes inside the model attribute):
+      @{ var header = new PageHeaderViewModel { Title = "...", Description = "..." }; }
+      <partial name="_PageHeader" model="header" />
+    - Renders the page's single <h1>; do not add another h1 in the view.
+    - All text is Razor-encoded; URLs must be local (Url.IsLocalUrl) or they render as plain text.
+    - Actions are navigation links. Put POST buttons in the page so its form and antiforgery token stay local.
+    - Wrap the page in class="tct-theme" so Bootstrap buttons use the TCT tokens.
+    Needs tct-learning-ui.css (loaded by _Layout and _AdminLayout).
+*@
+@using TCTEnglish.ViewModels
+<header class="tct-page-header">
+    @if (Model.Breadcrumbs.Count > 0)
+    {
+        <nav class="tct-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                @for (var i = 0; i < Model.Breadcrumbs.Count; i++)
+                {
+                    var crumb = Model.Breadcrumbs[i];
+                    var isLast = i == Model.Breadcrumbs.Count - 1;
+                    <li>
+                        @if (!isLast && !string.IsNullOrEmpty(crumb.Url) && Url.IsLocalUrl(crumb.Url))
+                        {
+                            <a href="@crumb.Url">@crumb.Text</a>
+                        }
+                        else
+                        {
+                            <span aria-current="@(isLast ? "page" : null)">@crumb.Text</span>
+                        }
+                    </li>
+                }
+            </ol>
+        </nav>
+    }
+    <div class="tct-page-header__row">
+        <div class="tct-page-header__text">
+            <h1 class="tct-page-title">@Model.Title</h1>
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <p class="tct-page-desc">@Model.Description</p>
+            }
+        </div>
+        @if (Model.Actions.Count > 0)
+        {
+            <div class="tct-page-header__actions">
+                @foreach (var action in Model.Actions)
+                {
+                    if (!Url.IsLocalUrl(action.Url))
+                    {
+                        continue;
+                    }
+
+                    var buttonClass = action.Variant switch
+                    {
+                        PageActionVariant.Primary => "btn btn-primary",
+                        PageActionVariant.Danger => "btn btn-outline-danger",
+                        _ => "btn btn-outline-primary"
+                    };
+                    <a class="@buttonClass" href="@action.Url">
+                        @if (!string.IsNullOrWhiteSpace(action.IconClass))
+                        {
+                            <i class="@action.IconClass me-1" aria-hidden="true"></i>
+                        }
+                        @action.Label
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</header>
