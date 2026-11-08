@@ -41,6 +41,7 @@ public class OpenAiProviderClientTests
             Assert.Equal(new[] { "system", "user", "assistant", "user" }, root.GetProperty("input").EnumerateArray().Select(x => x.GetProperty("role").GetString()));
             Assert.False(root.TryGetProperty("temperature", out _));
             Assert.False(root.TryGetProperty("top_p", out _));
+            Assert.False(root.TryGetProperty("text", out _));
             Assert.DoesNotContain("audio", root.GetRawText());
             return Response(Completed());
         });
@@ -137,20 +138,52 @@ public class OpenAiProviderClientTests
     public async Task CallerCancellation_DuringBackoff_Propagates()
     {
         var handler = new Handler((_, _) => Task.FromResult(Response("{}", HttpStatusCode.ServiceUnavailable)));
-        using var cancel = new CancellationTokenSource(60);
-        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => Client(handler, retries: 2).GenerateReplyAsync(1, Messages, cancel.Token));
+        var clock = new CoordinatedClock { HoldDelays = true };
+        using var cancel = new CancellationTokenSource();
+        var pending = Client(handler, retries: 2, clock: clock).GenerateReplyAsync(1, Messages, cancel.Token);
+        await clock.DelayEntered.Task.WaitAsync(TimeSpan.FromSeconds(5));
         Assert.Equal(1, handler.Calls);
+        cancel.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => pending);
+        Assert.Equal(1, handler.Calls);
+        Assert.Equal(1, clock.Starts);
     }
 
     [Fact]
     public async Task Deadline_CoversBodyRead_AndDoesNotResetForRetry()
     {
-        var handler = new Handler((_, _) => Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new SlowContent() }));
-        var clock = System.Diagnostics.Stopwatch.StartNew();
-        var error = await Assert.ThrowsAsync<AiProviderException>(() => Client(handler, retries: 2).GenerateReplyAsync(1, Messages, default, new() { RequestTimeoutSeconds = 1 }));
+        var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var handler = new Handler((_, _) => Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new GatedContent(entered) }));
+        var clock = new CoordinatedClock();
+        var pending = Client(handler, retries: 2, clock: clock).GenerateReplyAsync(1, Messages, default, new() { RequestTimeoutSeconds = 1 });
+        await entered.Task.WaitAsync(TimeSpan.FromSeconds(5));
+        clock.Active!.ReachOriginalDeadline();
+        var error = await Assert.ThrowsAsync<AiProviderException>(() => pending);
         Assert.Equal(AiProviderException.ErrorCodeTimeout, error.ErrorCode);
-        Assert.InRange(clock.Elapsed.TotalSeconds, 0.8, 2.5);
+        Assert.InRange(clock.Active.Elapsed.TotalSeconds, 0.8, 2.5);
         Assert.Equal(1, handler.Calls);
+        Assert.Equal(1, clock.Starts);
+    }
+
+    [Fact]
+    public async Task Deadline_OneOriginalWindowCovers503BackoffAndNextBody()
+    {
+        var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        Handler? handler = null;
+        handler = new Handler((_, _) => handler!.Calls == 1
+            ? Task.FromResult(Response("{}", HttpStatusCode.ServiceUnavailable))
+            : Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new GatedContent(entered) }));
+        var clock = new CoordinatedClock();
+        var pending = Client(handler!, retries: 2, clock: clock).GenerateReplyAsync(1, Messages, default, new() { RequestTimeoutSeconds = 1 });
+        await entered.Task.WaitAsync(TimeSpan.FromSeconds(5));
+        var budget = clock.Active!;
+        budget.Advance(TimeSpan.FromMilliseconds(750));
+        var error = await Assert.ThrowsAsync<AiProviderException>(() => pending.WaitAsync(TimeSpan.FromSeconds(5)));
+        Assert.Equal(AiProviderException.ErrorCodeTimeout, error.ErrorCode);
+        Assert.InRange(budget.Elapsed.TotalSeconds, 0.8, 2.5);
+        Assert.Equal(2, handler!.Calls);
+        Assert.Equal(1, clock.Starts);
+        Assert.Equal(TimeSpan.FromMilliseconds(250), budget.RecordedDelay);
     }
 
     [Fact]
@@ -212,8 +245,31 @@ public class OpenAiProviderClientTests
         await provider.GenerateReplyAsync(1, Messages, default);
     }
 
-    private static ProviderClient Client(Handler handler, int retries = 0, string key = "fixture-key") =>
-        new(new Factory(handler), Options.Create(new AiOptions { ApiKey = key, RetryMaxAttempts = retries, BaseUrl = "https://api.openai.com/v1", Model = "gpt-6-luna" }), NullLogger<ProviderClient>.Instance);
+    [Fact]
+    public async Task ChatConstrainedOutput_AddsResponsesJsonSchema_AndFakeBodyStillParses()
+    {
+        var handler = new Handler(async (request, ct) =>
+        {
+            using var body = JsonDocument.Parse(await request.Content!.ReadAsStringAsync(ct));
+            var format = body.RootElement.GetProperty("text").GetProperty("format");
+            Assert.Equal("json_schema", format.GetProperty("type").GetString());
+            Assert.Equal("chat_sentence_selection", format.GetProperty("name").GetString());
+            Assert.True(format.GetProperty("strict").GetBoolean());
+            Assert.Equal("object", format.GetProperty("schema").GetProperty("type").GetString());
+            Assert.False(format.GetProperty("schema").GetProperty("additionalProperties").GetBoolean());
+            return Response(Completed("{\"sentenceIds\":[\"bell-1\"]}"));
+        });
+        var schema = """{"type":"object","additionalProperties":false,"properties":{"sentenceIds":{"type":"array","items":{"type":"string"}}},"required":["sentenceIds"]}""";
+        var reply = await Client(handler).GenerateReplyAsync(1, Messages, default, new AiProviderRequestOptions
+        {
+            ConstrainedOutput = new ChatConstrainedOutput("chat_sentence_selection", schema)
+        });
+        Assert.Equal("{\"sentenceIds\":[\"bell-1\"]}", reply.Text);
+        Assert.Equal(1, handler.Calls);
+    }
+
+    private static ProviderClient Client(Handler handler, int retries = 0, string key = "fixture-key", IAiTransportClock? clock = null) =>
+        new(new Factory(handler), Options.Create(new AiOptions { ApiKey = key, RetryMaxAttempts = retries, BaseUrl = "https://api.openai.com/v1", Model = "gpt-6-luna" }), NullLogger<ProviderClient>.Instance, clock);
 
     public static HttpResponseMessage Response(string body, HttpStatusCode status = HttpStatusCode.OK)
     {
@@ -239,5 +295,90 @@ public class OpenAiProviderClientTests
         protected override bool TryComputeLength(out long length) { length = 0; return false; }
         protected override Task SerializeToStreamAsync(Stream stream, TransportContext? context) => throw new NotSupportedException();
         protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context, CancellationToken cancellationToken) => await Task.Delay(Timeout.Infinite, cancellationToken);
+    }
+
+    private sealed class GatedContent(TaskCompletionSource entered) : HttpContent
+    {
+        protected override bool TryComputeLength(out long length) { length = 0; return false; }
+        protected override Task SerializeToStreamAsync(Stream stream, TransportContext? context) => throw new NotSupportedException();
+        protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context, CancellationToken cancellationToken)
+        {
+            entered.TrySetResult();
+            await Task.Delay(Timeout.Infinite, cancellationToken);
+        }
+    }
+
+    private sealed class CoordinatedClock : IAiTransportClock
+    {
+        public int Starts { get; private set; }
+        public CoordinatedBudget? Active { get; private set; }
+        public bool HoldDelays { get; init; }
+        public TaskCompletionSource DelayEntered { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        public IAiTransportBudget Start(CancellationToken caller, TimeSpan timeout)
+        {
+            Starts++;
+            Active = new CoordinatedBudget(caller, timeout, HoldDelays, DelayEntered);
+            return Active;
+        }
+    }
+
+    private sealed class CoordinatedBudget : IAiTransportBudget
+    {
+        private readonly CancellationTokenSource _budget;
+        private readonly TimeSpan _timeout;
+        private readonly bool _holdDelays;
+        private readonly TaskCompletionSource _delayEntered;
+
+        public CoordinatedBudget(CancellationToken caller, TimeSpan timeout, bool holdDelays, TaskCompletionSource delayEntered)
+        {
+            _timeout = timeout;
+            _holdDelays = holdDelays;
+            _delayEntered = delayEntered;
+            _budget = CancellationTokenSource.CreateLinkedTokenSource(caller);
+        }
+
+        public TimeSpan Elapsed { get; private set; }
+        public TimeSpan RecordedDelay { get; private set; }
+        public CancellationToken Token => _budget.Token;
+
+        public void ReachOriginalDeadline()
+        {
+            Elapsed = _timeout;
+            _budget.Cancel();
+        }
+
+        public void Advance(TimeSpan step)
+        {
+            var next = Elapsed + step;
+            if (next >= _timeout)
+            {
+                Elapsed = _timeout;
+                _budget.Cancel();
+                return;
+            }
+
+            Elapsed = next;
+        }
+
+        public async Task DelayAsync(TimeSpan delay)
+        {
+            RecordedDelay = delay;
+            _delayEntered.TrySetResult();
+            if (!_holdDelays)
+            {
+                Advance(delay);
+                if (_budget.IsCancellationRequested)
+                {
+                    throw new OperationCanceledException(Token);
+                }
+
+                return;
+            }
+
+            await Task.Delay(Timeout.Infinite, Token);
+        }
+
+        public void Dispose() => _budget.Dispose();
     }
 }

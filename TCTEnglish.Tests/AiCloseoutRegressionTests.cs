@@ -21,6 +21,7 @@ public sealed class AiCloseoutRegressionTests
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, _) =>
                 Task.FromResult(new AiProviderReply("known", 10, 10, 20, "fake", "save-failure"))));
+            services.KeepChatLifecycleOnProviderStub();
         });
         factory.SaveInterceptors.Add(new FailReplySaveOnce());
         await factory.InitializeAsync();
@@ -83,6 +84,7 @@ public sealed class AiCloseoutRegressionTests
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, messages, _) =>
             { sent = messages.ToArray(); return Task.FromResult(new AiProviderReply("ok", 20, 10, 30, "fake", "context")); }));
+            services.KeepChatLifecycleOnProviderStub();
             services.PostConfigure<AiOptions>(o => { o.MaxOutputTokens = 600; o.RequestTokenBudget = 4600; o.DailyTokenBudgetPerUser = 60000; });
         });
         await factory.InitializeAsync();

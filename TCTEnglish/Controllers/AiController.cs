@@ -286,7 +286,8 @@ public sealed class AiController : BaseController
                 _ => "user"
             },
             Content = message.Content,
-            CreatedAtUtc = message.CreatedAtUtc
+            CreatedAtUtc = message.CreatedAtUtc,
+            Grounding = ChatGroundingMapper.From(message.Grounding)
         };
     }
 

@@ -1119,6 +1119,9 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.ModelName)
                 .HasMaxLength(100);
 
+            entity.Property(e => e.GroundingMetadata)
+                .HasColumnType("longtext");
+
             entity.Property(e => e.Role)
                 .HasConversion<int>();
 
@@ -1217,6 +1220,9 @@ public partial class DbflashcardContext : DbContext
                 .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
             entity.Property(e => e.FinalizedAtUtc)
+                .HasColumnType("datetime(6)");
+
+            entity.Property(e => e.LeaseExpiresAtUtc)
                 .HasColumnType("datetime(6)");
 
             entity.HasIndex(e => new { e.UserId, e.DayUtc, e.Status })

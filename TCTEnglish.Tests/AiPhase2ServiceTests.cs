@@ -523,7 +523,7 @@ public sealed class AiChatServiceTests
             context,
             new AiConversationService(context),
             new AiContextBuilder(new SimpleAiTokenCounter()),
-            providerClient,
+            new LifecycleAiChatAnswerService(providerClient),
             guard ?? new AiConversationExecutionGuard(),
             AiDailyQuotaReservationService.ForDbContext(context),
             aiOptions,

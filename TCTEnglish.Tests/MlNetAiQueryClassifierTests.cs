@@ -130,6 +130,29 @@ public sealed class MlNetAiQueryClassifierTests
     }
 
     [Fact]
+    public void ExplicitStoredCardQuestions_DoNotBecomeGreetingsWhenModelLacksTheirIntent()
+    {
+        var root = CreateTempDirectory();
+        TrainAndSaveModel(Path.Combine(root, "data", "model.zip"),
+        [
+            ("xin chao", nameof(UserIntent.Greeting)),
+            ("hello", nameof(UserIntent.Greeting)),
+            ("chao ban", nameof(UserIntent.Greeting)),
+            ("goi y speaking", nameof(UserIntent.SpeakingSuggestion)),
+            ("video speaking", nameof(UserIntent.SpeakingSuggestion)),
+            ("hoc speaking", nameof(UserIntent.SpeakingSuggestion))
+        ]);
+        var classifier = CreateClassifier(root, new MlNetIntentClassifierOptions { ModelArtifactPath = "data/model.zip" });
+
+        foreach (var question in new[] { "Ví dụ của forecast", "Phiên âm của forecast", "Định nghĩa của từ forecast là gì?" })
+        {
+            var result = classifier.Classify(question);
+            Assert.Equal(UserIntent.CardLookup, result.Intent);
+            Assert.Equal("keyword", result.ClassifierName);
+        }
+    }
+
+    [Fact]
     public void InvalidateModel_ClearsCachedRuntimeAndLoadsLatestModel()
     {
         var root = CreateTempDirectory();

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Models;
+using TCTEnglish.Services.AI.Rag;
 using TCTVocabulary.Models;
 
 namespace TCTEnglish.Services.AI;
@@ -9,10 +10,12 @@ public sealed class AiConversationService : IAiConversationService
     private const int MaxConversationTitleLength = 80;
 
     private readonly DbflashcardContext _context;
+    private readonly IGroundingCitationService? _grounding;
 
-    public AiConversationService(DbflashcardContext context)
+    public AiConversationService(DbflashcardContext context, IGroundingCitationService? grounding = null)
     {
         _context = context;
+        _grounding = grounding;
     }
 
     public async Task<AiConversation> CreateConversationAsync(int userId, string? title, CancellationToken ct)
@@ -174,6 +177,11 @@ public sealed class AiConversationService : IAiConversationService
         }
 
         newestFirst.Reverse();
+        if (_grounding is not null && newestFirst.Count > 0)
+        {
+            await _grounding.ProjectAsync(userId, newestFirst, GroundingProjectionMode.Display, ct);
+        }
+
         return new AiMessagePageDto(newestFirst, hasMore);
     }
 

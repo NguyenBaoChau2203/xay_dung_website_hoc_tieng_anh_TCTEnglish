@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Services.AI.Internal.Retrievers;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -113,7 +114,7 @@ public sealed class StudyRecommendationRetrieverTests
         {
             Id = 301,
             UserId = 1,
-            ActivityDate = DateTime.UtcNow.Date,
+            ActivityDate = BusinessDateHelper.Today,
             CardsReviewed = 3
         });
 

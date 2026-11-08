@@ -220,6 +220,7 @@ public sealed class AiCancelAndStopIntegrationTests
                 options.DailyTokenBudgetPerUser = 60000;
             });
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, ct) => replyFactory(ct)));
+            services.KeepChatLifecycleOnProviderStub();
         });
     }
 }

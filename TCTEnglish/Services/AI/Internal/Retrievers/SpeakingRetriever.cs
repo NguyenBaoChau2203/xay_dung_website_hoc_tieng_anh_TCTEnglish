@@ -32,8 +32,23 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
 
     public async Task<IReadOnlyList<KnowledgeSnippet>> RetrieveAsync(int userId, string userMessage, CancellationToken ct)
     {
+        var privateUnlocked = await AiLearnerAccess.CanUseOwnPrivateMediaAsync(_context, userId, ct);
+        var publicCount = await _context.SpeakingVideos
+            .AsNoTracking()
+            .CountAsync(video => video.OwnerUserId == null, ct);
+        var ownCount = await _context.SpeakingVideos
+            .AsNoTracking()
+            .CountAsync(video => video.OwnerUserId == userId, ct);
+        if (publicCount == 0 && ownCount == 0)
+        {
+            return [];
+        }
+
+        var ownUnlockedCount = privateUnlocked ? ownCount : 0;
+        var ownLockedCount = privateUnlocked ? 0 : ownCount;
         var videos = await _context.SpeakingVideos
             .AsNoTracking()
+            .Where(video => video.OwnerUserId == null || (privateUnlocked && video.OwnerUserId == userId))
             .Join(
                 _context.SpeakingPlaylists.AsNoTracking(),
                 video => video.PlaylistId,
@@ -44,62 +59,51 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
                     video.Title,
                     video.Level,
                     video.Topic,
+                    video.OwnerUserId,
                     PlaylistName = playlist.Name
                 })
             .ToListAsync(ct);
 
-        if (videos.Count == 0)
-        {
-            return [];
-        }
-
-        var userProgressByVideo = await _context.UserSpeakingProgresses
-            .AsNoTracking()
-            .Where(progress => progress.UserId == userId)
-            .Join(
-                _context.SpeakingSentences.AsNoTracking(),
-                progress => progress.SentenceId,
-                sentence => sentence.Id,
-                (progress, sentence) => new
+        var accessibleIds = videos.Select(video => video.Id).ToList();
+        var userProgressByVideo = accessibleIds.Count == 0
+            ? new Dictionary<int, ProgressSnapshot>()
+            : await _context.UserSpeakingProgresses
+                .AsNoTracking()
+                .Where(progress => progress.UserId == userId)
+                .Join(
+                    _context.SpeakingSentences.AsNoTracking().Where(sentence => accessibleIds.Contains(sentence.VideoId)),
+                    progress => progress.SentenceId,
+                    sentence => sentence.Id,
+                    (progress, sentence) => new
+                    {
+                        sentence.VideoId,
+                        progress.TotalScore
+                    })
+                .GroupBy(item => item.VideoId)
+                .Select(group => new ProgressSnapshot
                 {
-                    sentence.VideoId,
-                    progress.TotalScore
+                    VideoId = group.Key,
+                    AttemptCount = group.Count(),
+                    BestScore = group.Max(item => item.TotalScore)
                 })
-            .GroupBy(item => item.VideoId)
-            .Select(group => new
-            {
-                VideoId = group.Key,
-                AttemptCount = group.Count(),
-                BestScore = group.Max(item => item.TotalScore)
-            })
-            .ToDictionaryAsync(group => group.VideoId, ct);
+                .ToDictionaryAsync(group => group.VideoId, ct);
 
         var normalizedQueryTokens = AiTextNormalizer.Tokenize(userMessage)
             .Where(token => !IgnoredQueryTokens.Contains(token))
             .ToHashSet(StringComparer.Ordinal);
         var requestedLevel = ExtractLevel(normalizedQueryTokens);
-
         var rankedVideos = videos
             .Select(video =>
             {
-                var progress = userProgressByVideo.GetValueOrDefault(video.Id);
+                userProgressByVideo.TryGetValue(video.Id, out var progress);
                 var topicScore = CalculateTopicScore(normalizedQueryTokens, video.Title, video.Topic, video.PlaylistName);
-
                 var score = 1;
                 if (requestedLevel is not null)
                 {
-                    if (string.Equals(video.Level, requestedLevel, StringComparison.OrdinalIgnoreCase))
-                    {
-                        score += 5;
-                    }
-                    else
-                    {
-                        score -= 1;
-                    }
+                    score += string.Equals(video.Level, requestedLevel, StringComparison.OrdinalIgnoreCase) ? 5 : -1;
                 }
 
                 score += topicScore * 2;
-
                 if (progress is null)
                 {
                     score += 3;
@@ -115,9 +119,11 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
 
                 return new
                 {
+                    video.Id,
                     video.Title,
                     video.Level,
                     video.Topic,
+                    video.OwnerUserId,
                     AttemptCount = progress?.AttemptCount ?? 0,
                     BestScore = progress?.BestScore ?? 0d,
                     Score = score
@@ -126,16 +132,24 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
             .OrderByDescending(video => video.Score)
             .ThenBy(video => video.AttemptCount)
             .ThenBy(video => video.BestScore)
-            .ThenBy(video => video.Title)
+            .ThenBy(video => video.Title, StringComparer.Ordinal)
             .Take(3)
             .ToList();
 
-        return rankedVideos.Select(video => new KnowledgeSnippet(
+        var snippets = new List<KnowledgeSnippet>
+        {
+            new(
+                "summary",
+                $"publicCount={publicCount}|ownUnlockedCount={ownUnlockedCount}|ownLockedCount={ownLockedCount}|fallback={(ownLockedCount > 0 ? "upgrade" : "none")}",
+                KnowledgeSnippetSources.SpeakingSuggestionSummary)
+        };
+        snippets.AddRange(rankedVideos.Select(video => new KnowledgeSnippet(
             video.Title,
-            $"level={video.Level}|topic={video.Topic}",
+            $"level={video.Level}|topic={video.Topic}|visibility={(video.OwnerUserId is null ? "public" : "owner-premium")}",
             KnowledgeSnippetSources.SpeakingSuggestion,
-            Priority: video.Score))
-            .ToList();
+            Priority: video.Score,
+            EntityKey: $"speaking:{video.Id}")));
+        return snippets;
     }
 
     private static string? ExtractLevel(HashSet<string> queryTokens)
@@ -151,7 +165,7 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
         return null;
     }
 
-    private static int CalculateTopicScore(HashSet<string> queryTokens, string title, string topic, string playlistName)
+    private static int CalculateTopicScore(HashSet<string> queryTokens, string title, string? topic, string playlistName)
     {
         if (queryTokens.Count == 0)
         {
@@ -161,7 +175,15 @@ public sealed class SpeakingRetriever : IKnowledgeRetriever
         var contentTokens = AiTextNormalizer.Tokenize(title);
         contentTokens.UnionWith(AiTextNormalizer.Tokenize(topic));
         contentTokens.UnionWith(AiTextNormalizer.Tokenize(playlistName));
-
         return queryTokens.Count(contentTokens.Contains);
+    }
+
+    private sealed class ProgressSnapshot
+    {
+        public int VideoId { get; set; }
+
+        public int AttemptCount { get; set; }
+
+        public double BestScore { get; set; }
     }
 }

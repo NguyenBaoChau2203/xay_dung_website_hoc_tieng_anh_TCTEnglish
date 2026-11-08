@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 
 namespace TCTEnglish.Services.AI.Internal.Retrievers;
 
@@ -75,7 +76,7 @@ public sealed class LearningProgressRetriever : IKnowledgeRetriever
             .Select(set => new { set.SetId, TotalCards = set.Cards.Count })
             .ToDictionaryAsync(set => set.SetId, set => set.TotalCards, ct);
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         var cardsReviewedToday = await _context.UserDailyActivities
             .AsNoTracking()
             .Where(activity => activity.UserId == userId && activity.ActivityDate == today)

@@ -110,6 +110,7 @@ public sealed class RepairReviewTests(ITestOutputHelper output)
         services.AddScoped<IAiProviderClient>(_=>new StubAiProviderClient((_,_,_)=>Task.FromResult(new AiProviderReply("ok",10,10,20,"fake","review"))));
         services.PostConfigure<AiOptions>(o=>{o.RequestTokenBudget=4600;o.DailyTokenBudgetPerUser=60000;o.MaxInputChars=1000;});
         configure?.Invoke(services);
+        services.KeepChatLifecycleOnProviderStub();
     });
 
     private static async Task<Guid> SeedConversation(TestWebApplicationFactory factory,DateTime old)

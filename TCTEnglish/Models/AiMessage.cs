@@ -23,6 +23,15 @@ public class AiMessage
     public int? CompletionTokens { get; set; }
     public string? ModelName { get; set; }
 
+    /// <summary>
+    /// Nullable versioned grounding envelope. Legacy rows stay null.
+    /// Routes and source text are not stored here.
+    /// </summary>
+    public string? GroundingMetadata { get; set; }
+
     public DateTime CreatedAtUtc { get; set; }
+
+    [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+    public AiMessageGrounding? Grounding { get; set; }
 }
 

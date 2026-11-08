@@ -4,6 +4,7 @@ using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
 using TCTEnglish.Services.AI.Internal.Retrievers;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using Xunit;
 
 namespace TCTEnglish.Tests;
@@ -565,7 +566,7 @@ public sealed class AiBaselineRegressionTests
         context.UserDailyActivities.Add(new UserDailyActivity
         {
             UserId = PrimaryUserId,
-            ActivityDate = DateTime.UtcNow.Date,
+            ActivityDate = BusinessDateHelper.Today,
             CardsReviewed = 2
         });
 
@@ -701,7 +702,7 @@ public sealed class AiBaselineRegressionTests
         context.UserDailyActivities.Add(new UserDailyActivity
         {
             UserId = PrimaryUserId,
-            ActivityDate = DateTime.UtcNow.Date,
+            ActivityDate = BusinessDateHelper.Today,
             XpEarned = 20,
             CardsReviewed = 6
         });
@@ -866,7 +867,7 @@ public sealed class AiBaselineRegressionTests
         context.UserDailyActivities.Add(new UserDailyActivity
         {
             UserId = PrimaryUserId,
-            ActivityDate = DateTime.UtcNow.Date,
+            ActivityDate = BusinessDateHelper.Today,
             XpEarned = 40,
             CardsReviewed = 3,
             SpeakingCompletedCount = 1,

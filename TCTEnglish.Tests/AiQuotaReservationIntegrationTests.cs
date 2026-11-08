@@ -38,6 +38,7 @@ public sealed class AiQuotaReservationIntegrationTests
                 await release.Task.WaitAsync(ct);
                 return new AiProviderReply("ok", 10, 10, 20, "test-model", Guid.NewGuid().ToString("N"));
             }));
+            services.KeepChatLifecycleOnProviderStub();
         });
         await factory.InitializeAsync();
 

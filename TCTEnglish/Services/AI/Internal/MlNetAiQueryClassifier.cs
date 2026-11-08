@@ -59,7 +59,8 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
             }
 
             var mlNetClassification = new IntentClassification(intent, prediction.Confidence, "mlnet");
-            return ShouldPreferDeterministic(deterministicClassification, mlNetClassification)
+            return ShouldPreferDeterministic(deterministicClassification, mlNetClassification,
+                DeterministicIntentClassifier.HasExplicitCardLookupKeyword(AiTextNormalizer.Normalize(userMessage)))
                 ? deterministicClassification
                 : mlNetClassification;
         }
@@ -72,7 +73,8 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
 
     private static bool ShouldPreferDeterministic(
         IntentClassification deterministic,
-        IntentClassification mlNetClassification)
+        IntentClassification mlNetClassification,
+        bool explicitCardLookup)
     {
         if (deterministic.Confidence < 0.3f)
         {
@@ -82,7 +84,8 @@ public sealed class MlNetAiQueryClassifier : IAiQueryClassifier
         if (deterministic.Intent is not (UserIntent.WebsiteGuide
             or UserIntent.MyProgress
             or UserIntent.StudyRecommendation
-            or UserIntent.OutOfScope))
+            or UserIntent.OutOfScope)
+            && !(deterministic.Intent == UserIntent.CardLookup && explicitCardLookup))
         {
             return false;
         }

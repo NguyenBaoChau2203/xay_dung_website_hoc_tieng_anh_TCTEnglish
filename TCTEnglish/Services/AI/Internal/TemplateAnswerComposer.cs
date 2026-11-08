@@ -141,9 +141,13 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
     private static string ComposeCardLookup(string userMessage, IReadOnlyList<KnowledgeSnippet> snippets)
     {
-        var results = snippets
-            .Where(x => x.Source == KnowledgeSnippetSources.CardLookupResult)
-            .ToList();
+        var selection = CardLookupSelection.Resolve(userMessage, snippets);
+        var results = selection.Cards.ToList();
+
+        if (selection.Mode == CardLookupAnswerMode.Clarify)
+        {
+            return ComposeCardClarification(results);
+        }
 
         if (results.Count == 0)
         {
@@ -201,23 +205,56 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         return string.Join(Environment.NewLine, multiLines);
     }
 
+    private static string ComposeCardClarification(IReadOnlyList<KnowledgeSnippet> results)
+    {
+        var term = results[0].Title;
+        var lines = new List<string>
+        {
+            $"Từ \"{term}\" có nhiều nghĩa trong các bộ bạn được xem. Bạn muốn nghĩa ở bộ nào?"
+        };
+        foreach (var result in results)
+        {
+            lines.Add($"- **{GetStringValue(result, "setName")}**");
+        }
+
+        return string.Join(Environment.NewLine, lines);
+    }
+
     private static string ComposeSpeakingSuggestion(IReadOnlyList<KnowledgeSnippet> snippets)
     {
         var suggestions = snippets
             .Where(x => x.Source == KnowledgeSnippetSources.SpeakingSuggestion)
             .Take(3)
             .ToList();
+        var summary = snippets.FirstOrDefault(x => x.Source == KnowledgeSnippetSources.SpeakingSuggestionSummary);
+        var publicCount = summary is null ? suggestions.Count : GetIntValue(summary, "publicCount");
+        var unlockedCount = summary is null ? 0 : GetIntValue(summary, "ownUnlockedCount");
+        var lockedCount = summary is null ? 0 : GetIntValue(summary, "ownLockedCount");
+        var fallback = summary is null ? "none" : GetStringValue(summary, "fallback");
+        var countLine = $"Catalog công khai: {publicCount} video. Bài riêng đang mở: {unlockedCount}. Bài riêng đang khóa: {lockedCount}.";
 
         if (suggestions.Count == 0)
         {
-            return string.Join(Environment.NewLine, [
-                "Mình chưa tìm thấy bài speaking phù hợp trong hệ thống lúc này.",
-                string.Empty,
-                "Bạn có thể vào trang **Speaking** để duyệt toàn bộ playlist và video theo trình độ."
-            ]);
+            var lines = new List<string>
+            {
+                "Mình chưa tìm thấy bài speaking phù hợp trong hệ thống lúc này."
+            };
+            if (summary is not null)
+            {
+                lines.Add(countLine);
+            }
+
+            if (fallback == "upgrade")
+            {
+                lines.Add("Vui lòng nâng cấp lên Premium để sử dụng tính năng này.");
+            }
+
+            lines.Add(string.Empty);
+            lines.Add("Bạn có thể vào trang **Speaking** để duyệt toàn bộ playlist và video theo trình độ.");
+            return string.Join(Environment.NewLine, lines);
         }
 
-        var lines = new List<string>
+        var answer = new List<string>
         {
             "Một số bài speaking phù hợp với bạn:"
         };
@@ -226,12 +263,22 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         {
             var level = GetStringValue(suggestion, "level");
             var topic = GetStringValue(suggestion, "topic");
-            lines.Add($"- **{suggestion.Title}** — Level {level}, Chủ đề: {topic}");
+            answer.Add($"- **{suggestion.Title}** — Level {level}, Chủ đề: {topic}");
         }
 
-        lines.Add(string.Empty);
-        lines.Add("Vào trang **Speaking** để xem danh sách đầy đủ và bắt đầu luyện tập.");
-        return string.Join(Environment.NewLine, lines);
+        if (summary is not null)
+        {
+            answer.Add(countLine);
+        }
+
+        if (fallback == "upgrade")
+        {
+            answer.Add("Vui lòng nâng cấp lên Premium để sử dụng tính năng này.");
+        }
+
+        answer.Add(string.Empty);
+        answer.Add("Vào trang **Speaking** để xem danh sách đầy đủ và bắt đầu luyện tập.");
+        return string.Join(Environment.NewLine, answer);
     }
 
     private static string ComposeClassInfo(IReadOnlyList<KnowledgeSnippet> snippets)

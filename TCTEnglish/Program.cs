@@ -146,6 +146,33 @@ builder.Services.AddOptions<AiOptions>()
         configuration.GetSection("AI").Bind(options);
     });
 builder.Services.AddScoped<IAiConversationService, AiConversationService>();
+builder.Services.AddSingleton<TCTEnglish.Services.AI.Rag.ILearnerSourceDisplayCache>(sp =>
+    new TCTEnglish.Services.AI.Rag.LearnerSourceDisplayCache(sp.GetRequiredService<TimeProvider>()));
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.IGroundingCitationService, TCTEnglish.Services.AI.Rag.GroundingCitationService>();
+builder.Services.AddSingleton<TCTEnglish.Services.AI.Rag.Corpus.ICorpusSnapshotStore>(sp =>
+    new TCTEnglish.Services.AI.Rag.Corpus.CorpusSnapshotStore(sp.GetRequiredService<IWebHostEnvironment>().ContentRootPath));
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.Corpus.RetrievalCorpusService>(sp =>
+    new TCTEnglish.Services.AI.Rag.Corpus.RetrievalCorpusService(
+        Path.Combine(sp.GetRequiredService<IWebHostEnvironment>().ContentRootPath, "wwwroot", "data", "ai", "website-guides.json"),
+        sp.GetRequiredService<DbflashcardContext>(),
+        sp.GetRequiredService<TCTEnglish.Services.AI.Rag.Corpus.ICorpusSnapshotStore>()));
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.Corpus.IRetrievalIndexService>(sp =>
+    sp.GetRequiredService<TCTEnglish.Services.AI.Rag.Corpus.RetrievalCorpusService>());
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.Corpus.ILexicalRetrievalService>(sp =>
+    sp.GetRequiredService<TCTEnglish.Services.AI.Rag.Corpus.RetrievalCorpusService>());
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.IAiChatAnswerService, TCTEnglish.Services.AI.Rag.AiChatAnswerService>();
+builder.Services.AddOptions<TCTEnglish.Services.AI.EmbeddingOptions>();
+builder.Services.AddHttpClient(TCTEnglish.Services.AI.OpenAiEmbeddingClient.HttpClientName, client => client.Timeout = Timeout.InfiniteTimeSpan)
+    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false })
+    .RemoveAllLoggers();
+builder.Services.AddScoped<TCTEnglish.Services.AI.IOpenAiEmbeddingClient, TCTEnglish.Services.AI.OpenAiEmbeddingClient>();
+builder.Services.AddSingleton<TCTEnglish.Services.AI.Rag.Corpus.IVectorIndexAdmission, TCTEnglish.Services.AI.Rag.Corpus.VectorIndexAdmission>();
+builder.Services.AddSingleton<TCTEnglish.Services.AI.Rag.Corpus.IVectorIndexStore>(sp =>
+    new TCTEnglish.Services.AI.Rag.Corpus.VectorIndexStore(sp.GetRequiredService<IWebHostEnvironment>().ContentRootPath));
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.Corpus.IVectorIndexService, TCTEnglish.Services.AI.Rag.Corpus.VectorIndexService>();
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.Corpus.IHybridRetrievalService, TCTEnglish.Services.AI.Rag.Corpus.HybridRetrievalService>();
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.IChatSentenceSelector, TCTEnglish.Services.AI.Rag.OpenAiChatSentenceSelector>();
+builder.Services.AddScoped<TCTEnglish.Services.AI.Rag.IGroundedChatPipeline, TCTEnglish.Services.AI.Rag.GroundedChatPipeline>();
 // Isolated scoped DbContext per quota transaction — never flush caller's pending chat entities.
 builder.Services.AddScoped<IAiDailyQuotaReservationService, AiDailyQuotaReservationService>();
 builder.Services.AddScoped<IAiChatService, AiChatService>();

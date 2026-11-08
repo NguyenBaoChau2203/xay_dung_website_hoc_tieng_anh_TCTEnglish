@@ -87,7 +87,8 @@ public sealed class AiStreamingService : IAiStreamingService
                 reply.Usage,
                 reply.Metadata,
                 linkedCts.Token,
-                () => CleanupAsync(streamKey));
+                () => CleanupAsync(streamKey),
+                reply.Grounding);
         }
         catch
         {

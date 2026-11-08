@@ -20,26 +20,31 @@ public class OpenAiConsumerPipelineTests
     private const string Generation = """{"detectedSourceLanguage":"vi","suggestedTitle":"A daily update","suggestedTopic":"Business","suggestedLevel":"beginner","suggestedContentType":"emails","previewText":"Chúng ta cần chốt lịch trong tuần này.","sentences":[{"vietnameseText":"Chúng ta cần chốt lịch trong tuần này.","englishMeaning":"We need to finalize the schedule this week.","breakAfter":true}]}""";
 
     [Fact]
-    public async Task Chat_ContinuesConversation_AndPersistsActualUsageThroughRealAdapter()
+    public async Task Chat_ContinuesConversation_WithoutSendingHistoryToProvider()
     {
         var calls = 0;
-        await using var factory = Factory(async (request, ct) =>
+        await using var factory = Factory((_, _) =>
         {
-            using var doc = JsonDocument.Parse(await request.Content!.ReadAsStringAsync(ct));
-            Assert.Equal(2048, doc.RootElement.GetProperty("max_output_tokens").GetInt32());
-            if (++calls == 2) Assert.Contains(doc.RootElement.GetProperty("input").EnumerateArray(), x => x.GetProperty("role").GetString() == "assistant");
-            return OpenAiProviderClientTests.Response(OpenAiProviderClientTests.Completed("Practice every day."));
+            calls++;
+            return Task.FromResult(OpenAiProviderClientTests.Response(OpenAiProviderClientTests.Completed("Practice every day.")));
         });
         await factory.InitializeAsync();
         using var scope = factory.Services.CreateScope();
         var service = scope.ServiceProvider.GetRequiredService<IAiChatService>();
         var first = await service.SendAsync(TestDataIds.UserId, null, "Explain present simple", default);
-        await service.SendAsync(TestDataIds.UserId, first.ConversationId, "Give another example", default);
+        var second = await service.SendAsync(TestDataIds.UserId, first.ConversationId, "Give another example", default);
+        Assert.Equal(first.ConversationId, second.ConversationId);
         var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var replies = await db.AiMessages.AsNoTracking().Where(x => x.Role == AiMessageRole.Assistant).ToListAsync();
-        Assert.Equal(2, replies.Count);
-        Assert.All(replies, x => { Assert.Equal(12, x.PromptTokens); Assert.Equal(20, x.CompletionTokens); });
-        Assert.Equal(2, calls);
+        var messages = await db.AiMessages.AsNoTracking().Where(x => x.ConversationId == first.ConversationId).ToListAsync();
+        Assert.Equal(4, messages.Count);
+        Assert.Equal(2, messages.Count(x => x.Role == AiMessageRole.Assistant));
+        Assert.All(messages.Where(x => x.Role == AiMessageRole.Assistant), x =>
+        {
+            Assert.True(x.PromptTokens > 0);
+            Assert.True(x.CompletionTokens > 0);
+            Assert.NotEqual("Practice every day.", x.Content);
+        });
+        Assert.Equal(0, calls);
     }
 
     [Fact]
@@ -68,10 +73,15 @@ public class OpenAiConsumerPipelineTests
     }
 
     [Fact]
-    public async Task AppStreaming_KeepsNinetyCharacterChunks_ThroughRealResponsesAdapter()
+    public async Task AppStreaming_ChunksInternalAnswer_WithoutCallingProvider()
     {
-        var text = new string('a', 225);
-        await using var factory = TextFactory(text);
+        var calls = 0;
+        var providerText = new string('a', 225);
+        await using var factory = Factory((_, _) =>
+        {
+            calls++;
+            return Task.FromResult(OpenAiProviderClientTests.Response(OpenAiProviderClientTests.Completed(providerText)));
+        });
         await factory.InitializeAsync();
         Guid conversationId;
         using (var scope = factory.Services.CreateScope())
@@ -79,8 +89,13 @@ public class OpenAiConsumerPipelineTests
                 .CreateConversationAsync(TestDataIds.UserId, "Practice", default)).Id;
         await using var session = await factory.Services.GetRequiredService<IAiStreamingService>()
             .StartStreamAsync(TestDataIds.UserId, conversationId, "Give an example", Guid.NewGuid().ToString("N"), "127.0.0.1", default);
-        Assert.Equal(new[] { 90, 90, 45 }, session.Chunks.Select(x => x.Length));
-        Assert.Equal(text, string.Concat(session.Chunks));
+        var joined = string.Concat(session.Chunks);
+        Assert.Equal(0, calls);
+        Assert.NotEqual(providerText, joined);
+        Assert.NotEmpty(session.Chunks);
+        Assert.All(session.Chunks.Take(session.Chunks.Count - 1), chunk => Assert.Equal(90, chunk.Length));
+        Assert.InRange(session.Chunks[^1].Length, 1, 90);
+        Assert.Equal(joined.Length, session.Chunks.Sum(chunk => chunk.Length));
     }
 
     [Fact]

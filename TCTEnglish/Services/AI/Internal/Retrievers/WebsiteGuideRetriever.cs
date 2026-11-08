@@ -53,13 +53,15 @@ public sealed class WebsiteGuideRetriever : IKnowledgeRetriever
             return Task.FromResult<IReadOnlyList<KnowledgeSnippet>>([]);
         }
 
+        var guideId = bestGuide.Id?.Trim() ?? string.Empty;
         return Task.FromResult<IReadOnlyList<KnowledgeSnippet>>([
             new KnowledgeSnippet(
                 bestGuide.Title,
                 bestGuide.Body,
                 KnowledgeSnippetSources.WebsiteGuide,
                 bestGuide.Route,
-                bestScore)
+                bestScore,
+                EntityKey: guideId.Length == 0 ? null : "guide:" + guideId)
         ]);
     }
 
@@ -130,6 +132,8 @@ public sealed class WebsiteGuideRetriever : IKnowledgeRetriever
 
     private sealed class WebsiteGuideEntry
     {
+        public string Id { get; set; } = string.Empty;
+
         public string Title { get; set; } = string.Empty;
 
         public List<string> Keywords { get; set; } = [];

@@ -122,6 +122,7 @@ public sealed class ThirdReviewProbeTests(ITestOutputHelper output)
                 cts.Cancel();
                 return Task.FromResult(new AiProviderReply("known reply", 10, 10, 20, "fake", "third-review"));
             }));
+            services.KeepChatLifecycleOnProviderStub();
             services.PostConfigure<AiOptions>(o =>
             {
                 o.RequestTokenBudget = 4600;
@@ -171,6 +172,7 @@ public sealed class ThirdReviewProbeTests(ITestOutputHelper output)
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_,_,_) =>
                 Task.FromResult(new AiProviderReply("known", 10, 10, 20, "fake", "recover"))));
+            services.KeepChatLifecycleOnProviderStub();
             services.PostConfigure<AiOptions>(o =>
             {
                 o.RequestTokenBudget = 4600;

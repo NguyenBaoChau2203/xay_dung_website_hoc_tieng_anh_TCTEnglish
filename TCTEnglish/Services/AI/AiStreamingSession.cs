@@ -17,7 +17,8 @@ public sealed class AiStreamingSession : IAsyncDisposable
         ChatUsageDto usage,
         ChatMetadataDto metadata,
         CancellationToken cancellationToken,
-        Func<ValueTask> disposeAsync)
+        Func<ValueTask> disposeAsync,
+        ChatGroundingDto? grounding = null)
     {
         ConversationId = conversationId;
         StreamId = streamId;
@@ -25,6 +26,7 @@ public sealed class AiStreamingSession : IAsyncDisposable
         Usage = usage;
         Metadata = metadata;
         CancellationToken = cancellationToken;
+        Grounding = grounding;
         _disposeAsync = disposeAsync;
     }
 
@@ -37,6 +39,8 @@ public sealed class AiStreamingSession : IAsyncDisposable
     public ChatUsageDto Usage { get; }
 
     public ChatMetadataDto Metadata { get; }
+
+    public ChatGroundingDto? Grounding { get; }
 
     public CancellationToken CancellationToken { get; }
 

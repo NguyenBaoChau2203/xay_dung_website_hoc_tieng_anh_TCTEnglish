@@ -114,6 +114,8 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.AddSingleton<IAiQueryClassifier>(sp => sp.GetRequiredService<DeterministicIntentClassifier>());
             services.RemoveAll<IAiProviderClient>();
             services.AddScoped<IAiProviderClient>(sp => sp.GetRequiredService<InternalKnowledgeProvider>());
+            services.RemoveAll<IOpenAiEmbeddingClient>();
+            services.AddSingleton<IOpenAiEmbeddingClient, BlockedTestEmbeddingClient>();
 
             // Ordinary tests must not hit OpenAI audio even when the host has OPENAI_API_KEY.
             services.RemoveAll<IOpenAiSpeechCredentialResolver>();
@@ -426,6 +428,19 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
         var result = await command.ExecuteScalarAsync();
         return result is not null && result != DBNull.Value;
     }
+}
+
+/// <summary>Ordinary tests must not send embedding requests, even when a local key exists.</summary>
+internal sealed class BlockedTestEmbeddingClient : IOpenAiEmbeddingClient
+{
+    public Task<EmbeddingBatch> EmbedAsync(IReadOnlyList<string> inputs, CancellationToken ct)
+        => throw new AiProviderException(
+            "Test host blocks embedding calls.",
+            AiProviderException.ErrorCodeInvalidConfiguration,
+            false);
+
+    public Task<EmbeddingBatch> EmbedAsync(IReadOnlyList<string> inputs, EmbeddingInvocation invocation, CancellationToken ct)
+        => EmbedAsync(inputs, ct);
 }
 
 /// <summary>Default test speech credentials: never configured, never network.</summary>

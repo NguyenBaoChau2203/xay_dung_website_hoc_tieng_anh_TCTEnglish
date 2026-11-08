@@ -8,5 +8,6 @@ public sealed class AiChatMessageViewModel
     public string Role { get; init; } = string.Empty;
     public string Content { get; init; } = string.Empty;
     public DateTime CreatedAtUtc { get; init; }
+    public ChatGroundingDto? Grounding { get; init; }
 }
 

@@ -42,19 +42,22 @@ namespace TCTEnglish.Realtime
         public string StreamId { get; init; } = string.Empty;
         public ChatUsageDto Usage { get; init; } = new(0, 0, 0, string.Empty);
         public ChatMetadataDto Metadata { get; init; } = new(string.Empty, 0);
+        public ChatGroundingDto? Grounding { get; init; }
 
         public static AiStreamCompletedMessage Create(
             Guid conversationId,
             string streamId,
             ChatUsageDto usage,
-            ChatMetadataDto metadata)
+            ChatMetadataDto metadata,
+            ChatGroundingDto? grounding = null)
         {
             return new AiStreamCompletedMessage
             {
                 ConversationId = conversationId,
                 StreamId = streamId,
                 Usage = usage,
-                Metadata = metadata
+                Metadata = metadata,
+                Grounding = grounding
             };
         }
     }

@@ -292,19 +292,7 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
 
     private static bool IsCardLookup(string normalizedMessage)
     {
-        var hasLookupKeyword = AiTextNormalizer.ContainsAny(
-            normalizedMessage,
-            "nghia la gi",
-            "dinh nghia",
-            "tra tu",
-            "tim tu",
-            "phien am",
-            "vi du",
-            "example",
-            "word",
-            "term");
-
-        if (hasLookupKeyword)
+        if (HasExplicitCardLookupKeyword(normalizedMessage))
         {
             return true;
         }
@@ -313,6 +301,11 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
         return tokens.Count <= 3
             && !AiTextNormalizer.ContainsAny(normalizedMessage, "speaking", "lop hoc", "set", "bo tu", "tien do");
     }
+
+    internal static bool HasExplicitCardLookupKeyword(string normalizedMessage)
+        => AiTextNormalizer.ContainsAny(normalizedMessage,
+            "nghia la gi", "dinh nghia", "tra tu", "tim tu", "phien am",
+            "vi du", "example", "word", "term");
 
     private static bool IsSpeakingSuggestion(string normalizedMessage)
     {
