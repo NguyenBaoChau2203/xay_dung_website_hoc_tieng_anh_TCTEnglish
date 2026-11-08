@@ -79,6 +79,10 @@ and file maps: [project structure](docs/project-structure.md).
 
 ### Shared UI foundation (all four AI tools)
 
+- Owner-selected visual direction: **Claymorphism for every redesigned page**,
+  including learner, Account, marketing and Admin screens. Follow DESIGN.md's
+  shared Clay tokens/components and desktop/laptop demo priority. Older flat or
+  competing visual specifications are superseded; preserve their behavior contracts.
 - One standard: [DESIGN.md](DESIGN.md) (values, mandatory vs page-level) and
   [team UI workflow](docs/design-system/team-ui-workflow.md) (process, PR checklist,
   legacy-screen tracker). Live examples: docs/design-system/preview.html. Do not copy
