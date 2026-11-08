@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Đăng nhập / Đăng ký | TCT English";
     Layout = null;
+    var activeTab = (ViewData["ActiveTab"] as string) ?? "login";
 }
 
 <!DOCTYPE html>
@@ -10,11 +11,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Đăng nhập hoặc đăng ký tài khoản TCT English – nền tảng học tiếng Anh nội bộ dành cho nhân viên TCT." />
+    <meta name="description" content="Đăng nhập hoặc đăng ký tài khoản TCT English – nền tảng học tiếng Anh thông minh." />
     <title>@ViewData["Title"]</title>
 
-    <!-- Google Fonts: Be Vietnam Pro / Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,91 +25,103 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Bootstrap 5 (for blocked-account modal) -->
+    <!-- Bootstrap 5.3.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-    <!-- TCT English Redesign Shared UI & Auth Styles -->
+    <!-- Shared Design System Tokens (Claymorphism) & Scoped Auth Styles -->
     <link href="~/css/tct-learning-ui.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/css/auth-stitch.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/account-auth-ui.css" rel="stylesheet" asp-append-version="true" />
 </head>
-<body class="auth-page">
+<body class="tct-theme account-auth-ui auth-page">
 
     <div class="auth-split-container">
 
         <!-- ============================================================
-             LEFT COLUMN: Dark Gradient Hero
+             LEFT COLUMN: Hero with Brand, Illustration & Feature Cards (Claymorphism)
              ============================================================ -->
-        <div class="auth-col-left" aria-hidden="true">
+        <aside class="auth-col-left" aria-label="Giới thiệu TCT English">
             <!-- Dot-grid pattern overlay -->
-            <div class="auth-decoration"></div>
+            <div class="auth-decoration" aria-hidden="true"></div>
 
-            <!-- Floating glass shapes -->
-            <div class="auth-floating-shapes">
+            <!-- Floating soft clay shapes -->
+            <div class="auth-floating-shapes" aria-hidden="true">
                 <div class="auth-shape auth-shape--1"></div>
                 <div class="auth-shape auth-shape--2"></div>
                 <div class="auth-shape auth-shape--3"></div>
                 <div class="auth-shape auth-shape--4"></div>
-                <div class="auth-shape auth-shape--5"></div>
             </div>
 
             <!-- Brand content -->
             <div class="auth-brand-content">
                 <div class="auth-brand-logo">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
                 </div>
                 <div class="auth-brand-title">TCT ENGLISH</div>
-                <div class="auth-brand-subtitle">
+                <p class="auth-brand-subtitle">
                     Học tiếng Anh thông minh — dành cho mọi người.<br />
                     Nâng tầm ngoại ngữ, mở rộng tương lai.
-                </div>
+                </p>
             </div>
 
-            <!-- Feature glass cards -->
+            <!-- Custom Vector Illustration for Website -->
+            <div class="auth-hero-illustration">
+                <img src="~/images/auth/auth-illustration.svg" asp-append-version="true" alt="Học tiếng Anh cùng TCT English" class="auth-hero-img" />
+            </div>
+
+            <!-- Feature Clay Cards -->
             <div class="auth-features">
                 <div class="auth-feature-card">
                     <div class="auth-feature-icon auth-feature-icon--vocab">
-                        <i class="fa-solid fa-book-open"></i>
+                        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
                     </div>
                     <span class="auth-feature-label">500+ Từ vựng</span>
                 </div>
                 <div class="auth-feature-card">
                     <div class="auth-feature-icon auth-feature-icon--speaking">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i class="fa-solid fa-microphone" aria-hidden="true"></i>
                     </div>
                     <span class="auth-feature-label">AI Speaking</span>
                 </div>
                 <div class="auth-feature-card">
                     <div class="auth-feature-icon auth-feature-icon--quiz">
-                        <i class="fa-solid fa-bolt"></i>
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                     </div>
                     <span class="auth-feature-label">Smart Quiz</span>
                 </div>
             </div>
-        </div>
+        </aside>
 
         <!-- ============================================================
-             RIGHT COLUMN: Auth Card Area (Main Landmark)
+             RIGHT COLUMN: Form Card Area (Main Landmark)
              ============================================================ -->
         <main class="auth-col-right" id="main-content">
-            <button class="auth-close-btn" onclick="window.history.back()" aria-label="Quay lại" id="btn-close-auth" type="button">
-                <i class="fa-solid fa-xmark"></i>
+            <button class="btn auth-close-btn tct-btn-icon" onclick="window.history.back()" aria-label="Quay lại" id="btn-close-auth" type="button">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
             </button>
 
-            <div class="auth-card">
-                <h1 class="visually-hidden" id="auth-heading">Đăng nhập hoặc Đăng ký tài khoản TCT English</h1>
+            <div class="tct-card auth-card">
+                <header class="auth-header">
+                    <h1 class="tct-page-title" id="auth-heading">Đăng nhập</h1>
+                    <p class="auth-subheading" id="auth-description">Tiếp tục học với TCT English.</p>
+                </header>
 
-                <!-- TABS header -->
+                <!-- TABS: Login / Register -->
                 <div class="auth-tabs" role="tablist" aria-label="Chọn hình thức xác thực">
-                    <button class="auth-tab-btn" type="button" role="tab" id="tab-login" aria-selected="false" aria-controls="form-login" tabindex="-1" onclick="switchTab('login')">Đăng nhập</button>
-                    <button class="auth-tab-btn" type="button" role="tab" id="tab-register" aria-selected="false" aria-controls="form-register" tabindex="-1" onclick="switchTab('register')">Đăng ký</button>
+                    <div class="auth-tab-slider" aria-hidden="true"></div>
+                    <button class="auth-tab-btn" type="button" role="tab" id="tab-login" aria-selected="true" aria-controls="form-login" tabindex="0" onclick="switchTab('login')">
+                        Đăng nhập
+                    </button>
+                    <button class="auth-tab-btn" type="button" role="tab" id="tab-register" aria-selected="false" aria-controls="form-register" tabindex="-1" onclick="switchTab('register')">
+                        Đăng ký
+                    </button>
                 </div>
 
-                <!-- Error Message Display from Server -->
+                <!-- Server Error Message -->
                 @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="auth-error-msg" role="alert" aria-live="polite">
-                        <i class="fa-solid fa-circle-exclamation" style="margin-right: 6px;"></i>
+                    <div class="alert alert-danger" role="alert" id="server-error-alert">
+                        <i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>
                         <span>@ViewBag.ErrorMessage</span>
                     </div>
                 }
@@ -115,25 +130,27 @@
                 {
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Thành công!',
-                                text: @Html.Raw(Json.Serialize(TempData["SuccessMessage"])),
-                                confirmButtonColor: '#4255ff',
-                                confirmButtonText: 'Đăng nhập ngay'
-                            });
+                            if (typeof Swal !== 'undefined') {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thành công!',
+                                    text: @Html.Raw(Json.Serialize(TempData["SuccessMessage"])),
+                                    confirmButtonColor: '#4255ff',
+                                    confirmButtonText: 'Đăng nhập ngay'
+                                });
+                            }
                         });
                     </script>
                 }
 
-                <!-- SOCIAL LOGIN (Shared) -->
+                <!-- Social Login Buttons -->
                 <div class="auth-social-btns">
-                    <button class="auth-btn-social" type="button" id="btn-google" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Google" })')">
-                        <i class="fa-brands fa-google" style="color: #DB4437; font-size: 17px;"></i>
+                    <button class="btn auth-btn-social" type="button" id="btn-google" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Google" })')">
+                        <i class="fa-brands fa-google text-danger" aria-hidden="true"></i>
                         Google
                     </button>
-                    <button class="auth-btn-social" type="button" id="btn-facebook" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Facebook" })')">
-                        <i class="fa-brands fa-facebook" style="color: #1877F2; font-size: 17px;"></i>
+                    <button class="btn auth-btn-social" type="button" id="btn-facebook" onclick="handleExternalLogin('@Url.Action("ExternalLogin", "Account", new { provider = "Facebook" })')">
+                        <i class="fa-brands fa-facebook text-primary" aria-hidden="true"></i>
                         Facebook
                     </button>
                 </div>
@@ -141,84 +158,88 @@
                 <div class="auth-separator">hoặc bằng email</div>
 
                 <!-- ==================== LOGIN FORM ==================== -->
-                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" onsubmit="handleLogin(event)" role="tabpanel" aria-labelledby="tab-login" style="display: none;">
+                <form id="form-login" action="@Url.Action("Login", "Account")" method="post" onsubmit="handleLogin(event)" role="tabpanel" aria-labelledby="tab-login">
                     @Html.AntiForgeryToken()
 
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="login-email">Email</label>
-                        <input type="email" name="email" class="auth-form-input" placeholder="Nhập email của bạn" required id="login-email" autocomplete="email">
+                        <input type="email" name="email" class="form-control auth-form-input" placeholder="nhapemail@example.com" required id="login-email" autocomplete="email">
                     </div>
 
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="login-password">Mật khẩu</label>
                         <div class="auth-password-wrap">
-                            <input type="password" name="password" class="auth-form-input" placeholder="••••••••" required id="login-password" autocomplete="current-password">
-                            <button type="button" class="auth-toggle-password" onclick="togglePassword('login-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false">
-                                <i class="fa-solid fa-eye"></i>
+                            <input type="password" name="password" class="form-control auth-form-input" placeholder="••••••••" required id="login-password" autocomplete="current-password">
+                            <button type="button" class="auth-toggle-password" onclick="togglePassword('login-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false" aria-controls="login-password">
+                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <a href="@Url.Action("ForgotPassword", "Account")" class="auth-forgot-pass">Quên mật khẩu?</a>
+                        <div class="d-flex justify-content-end mt-1">
+                            <a href="@Url.Action("ForgotPassword", "Account")" class="auth-forgot-pass">Quên mật khẩu?</a>
+                        </div>
                     </div>
 
-                    <!-- Blocked Account Alert (hidden by default) -->
-                    <div id="blocked-alert" class="auth-blocked-alert" role="alert" style="display:none;">
-                        <div class="blocked-header">
-                            <i class="fa-solid fa-lock"></i>
-                            <strong>Tài khoản đã bị khóa</strong>
+                    <!-- Client Error Alert Box -->
+                    <div id="login-error-msg" class="alert alert-danger" role="alert" tabindex="-1" hidden style="display:none;"></div>
+
+                    <!-- Blocked Account Alert -->
+                    <div id="blocked-alert" class="alert alert-warning auth-blocked-alert" role="alert" style="display:none;">
+                        <div class="fw-bold mb-1">
+                            <i class="fa-solid fa-lock me-1" aria-hidden="true"></i> Tài khoản đã bị khóa
                         </div>
-                        <p><strong>Lý do:</strong> <span id="blocked-reason"></span></p>
-                        <p><strong>Mở khóa:</strong> <span id="blocked-expiry"></span></p>
-                        <a href="@Url.Action("Contact", "Home", new { subject = "khieu-nai-khoa-tai-khoan" })" class="auth-btn-appeal">
-                            <i class="fa-solid fa-paper-plane"></i> Gửi khiếu nại
+                        <p class="mb-1 small">Lý do: <span id="blocked-reason"></span></p>
+                        <p class="mb-2 small">Mở khóa: <span id="blocked-expiry"></span></p>
+                        <a href="@Url.Action("Contact", "Home", new { subject = "khieu-nai-khoa-tai-khoan" })" class="btn btn-outline-primary btn-sm">
+                            <i class="fa-solid fa-paper-plane me-1" aria-hidden="true"></i> Gửi khiếu nại
                         </a>
                     </div>
 
-                    <button type="submit" class="auth-btn-submit" id="btn-login-submit">
-                        <i class="fa-solid fa-right-to-bracket" style="margin-right: 6px;"></i> Đăng nhập
+                    <button type="submit" class="btn btn-primary auth-btn-submit" id="btn-login-submit">
+                        <i class="fa-solid fa-right-to-bracket me-2" aria-hidden="true"></i> Đăng nhập
                     </button>
 
                     <div class="auth-form-footer">
-                        Mới sử dụng TCT English? <button type="button" class="auth-link" onclick="switchTab('register')">Tạo tài khoản</button>
+                        Mới sử dụng TCT English? <button type="button" class="btn btn-link auth-link p-0 align-baseline" onclick="switchTab('register')">Tạo tài khoản</button>
                     </div>
                 </form>
 
                 <!-- ==================== REGISTER FORM ==================== -->
-                <form id="form-register" action="@Url.Action("Register", "Account")" method="post" onsubmit="handleRegister(event)" role="tabpanel" aria-labelledby="tab-register" style="display: none;">
+                <form id="form-register" action="@Url.Action("Register", "Account")" method="post" onsubmit="handleRegister(event)" role="tabpanel" aria-labelledby="tab-register" style="display:none;">
                     @Html.AntiForgeryToken()
 
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="register-email">Email</label>
-                        <input type="email" name="email" class="auth-form-input" placeholder="nhapemail@example.com" required id="register-email" autocomplete="email">
+                        <input type="email" name="email" class="form-control auth-form-input" placeholder="nhapemail@example.com" required id="register-email" autocomplete="email">
                     </div>
 
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="register-name">Tên hiển thị</label>
-                        <input type="text" name="fullName" class="auth-form-input" placeholder="Nhập tên của bạn" required id="register-name" autocomplete="name">
+                        <input type="text" name="fullName" class="form-control auth-form-input" placeholder="Nhập tên của bạn" required id="register-name" autocomplete="name">
                     </div>
 
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="register-password">Mật khẩu</label>
                         <div class="auth-password-wrap">
-                            <input type="password" name="password" class="auth-form-input" placeholder="Tối thiểu 6 ký tự" required id="register-password" autocomplete="new-password">
-                            <button type="button" class="auth-toggle-password" onclick="togglePassword('register-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false">
-                                <i class="fa-solid fa-eye"></i>
+                            <input type="password" name="password" class="form-control auth-form-input" placeholder="Tối thiểu 6 ký tự" required minlength="6" id="register-password" autocomplete="new-password">
+                            <button type="button" class="auth-toggle-password" onclick="togglePassword('register-password', this)" aria-label="Hiện mật khẩu" aria-pressed="false" aria-controls="register-password">
+                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
 
                     <div class="auth-checkbox-wrap">
-                        <input type="checkbox" id="terms" required>
-                        <label for="terms" style="cursor: pointer">
+                        <input type="checkbox" id="terms" class="form-check-input" required>
+                        <label for="terms" class="form-check-label ms-1">
                             Tôi chấp nhận <strong>Điều khoản dịch vụ</strong> và <strong>Chính sách quyền riêng tư</strong> của TCT English.
                         </label>
                     </div>
 
-                    <button type="submit" class="auth-btn-submit" id="btn-register-submit">
-                        <i class="fa-solid fa-user-plus" style="margin-right: 6px;"></i> Đăng ký
+                    <button type="submit" class="btn btn-primary auth-btn-submit" id="btn-register-submit">
+                        <i class="fa-solid fa-user-plus me-2" aria-hidden="true"></i> Đăng ký
                     </button>
 
                     <div class="auth-form-footer">
-                        Bạn đã có tài khoản? <button type="button" class="auth-link" onclick="switchTab('login')">Đăng nhập</button>
+                        Bạn đã có tài khoản? <button type="button" class="btn btn-link auth-link p-0 align-baseline" onclick="switchTab('login')">Đăng nhập</button>
                     </div>
                 </form>
 
@@ -227,38 +248,75 @@
     </div>
 
     <!-- LOADER OVERLAY -->
-    <div id="loader-overlay" aria-hidden="true">
-        <div class="loader-brand">TCT ENGLISH</div>
-
-        <div class="loader-tip-card">
-            <div class="loader-tip-icon"><i class="fa-solid fa-lightbulb"></i></div>
-            <div class="loader-tip-title">MẸO GHI NHỚ:</div>
-            <div class="loader-tip-content">
-                Sử dụng hình ảnh và âm thanh để kích thích não bộ ghi nhớ.
-            </div>
-        </div>
-
-        <div class="loading-bar-wrap">
-            <div class="loading-fill" id="loading-fill"></div>
+    <div id="loader-overlay" class="loader-overlay" role="status" aria-label="Đang chuyển trang" hidden>
+        <div class="loader-box tct-card">
+            <div class="spinner-border text-primary mb-3" role="status" aria-hidden="true"></div>
+            <p class="mb-0 fw-semibold text-secondary" id="loading-fill">Đang xử lý đăng nhập…</p>
         </div>
     </div>
 
-    <!-- SCRIPT -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Lấy giá trị từ Controller (login hoặc register), mặc định login nếu không có
-            const activeTab = '@(ViewData["ActiveTab"] ?? "login")';
-            switchTab(activeTab);
+    @if (TempData["IsBlocked"] is true)
+    {
+        <!-- ===== BLOCKED ACCOUNT MODAL (Bootstrap 5) ===== -->
+        <div class="modal fade" id="blockedAccountModal" tabindex="-1" aria-labelledby="blockedAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow" style="border-radius: var(--tct-radius-xl);">
+                    <div class="modal-header border-bottom-0 pb-0">
+                        <h2 class="modal-title h5 fw-semibold text-danger" id="blockedAccountModalLabel">
+                            <i class="fa-solid fa-lock me-2" aria-hidden="true"></i>Tài khoản đã bị khóa
+                        </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-2"><strong>Lý do:</strong> @TempData["LockReason"]</p>
+                        <p class="mb-3"><strong>Mở khóa:</strong> @TempData["LockExpiry"]</p>
+                        <a href="@Url.Action("Contact", "Home", new { subject = "khieu-nai-khoa-tai-khoan" })" class="btn btn-outline-primary btn-sm">
+                            <i class="fa-solid fa-paper-plane me-1" aria-hidden="true"></i> Gửi khiếu nại
+                        </a>
+                    </div>
+                    <div class="modal-footer border-top-0 pt-0">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            // Tablist keyboard navigation (ArrowLeft / ArrowRight)
-            const tabs = [document.getElementById('tab-login'), document.getElementById('tab-register')];
-            tabs.forEach((tab, index) => {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var modalEl = document.getElementById('blockedAccountModal');
+                if (modalEl && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                    var blockedModal = new bootstrap.Modal(modalEl);
+                    blockedModal.show();
+                }
+            });
+        </script>
+    }
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Owned Account Auth Script -->
+    <script src="~/js/account-auth-ui.js" asp-append-version="true"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var activeTab = '@activeTab';
+            if (window.switchTab) {
+                window.switchTab(activeTab);
+            }
+
+            // Keyboard navigation for tabs
+            var tabLog = document.getElementById('tab-login');
+            var tabReg = document.getElementById('tab-register');
+            var tabs = [tabLog, tabReg];
+            tabs.forEach(function (tab, index) {
                 if (!tab) return;
-                tab.addEventListener('keydown', (e) => {
+                tab.addEventListener('keydown', function (e) {
                     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
                         e.preventDefault();
-                        const nextIndex = (e.key === 'ArrowRight') ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
-                        const nextTab = tabs[nextIndex];
+                        var nextIndex = (e.key === 'ArrowRight') ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+                        var nextTab = tabs[nextIndex];
                         if (nextTab) {
                             nextTab.click();
                             nextTab.focus();
@@ -267,248 +325,19 @@
                 });
             });
 
-            // Check if redirected due to blocked social login
             @if (TempData["BlockedReason"] != null)
             {
                 <text>
-                switchTab('login');
-                const bReason = document.getElementById('blocked-reason');
-                const bExpiry = document.getElementById('blocked-expiry');
+                if (window.switchTab) window.switchTab('login');
+                var bReason = document.getElementById('blocked-reason');
+                var bExpiry = document.getElementById('blocked-expiry');
                 if (bReason) bReason.textContent = @Html.Raw(Json.Serialize(TempData["BlockedReason"]));
                 if (bExpiry) bExpiry.textContent = @Html.Raw(Json.Serialize(TempData["BlockedExpiry"]));
-                const bAlert = document.getElementById('blocked-alert');
+                var bAlert = document.getElementById('blocked-alert');
                 if (bAlert) bAlert.style.display = 'block';
                 </text>
             }
         });
-
-        // Toggle password visibility with aria-label & aria-pressed
-        function togglePassword(inputId, btn) {
-            const input = document.getElementById(inputId);
-            if (!input || !btn) return;
-            const icon = btn.querySelector('i');
-            const isPassword = input.type === 'password';
-            input.type = isPassword ? 'text' : 'password';
-            if (icon) {
-                icon.classList.replace(isPassword ? 'fa-eye' : 'fa-eye-slash', isPassword ? 'fa-eye-slash' : 'fa-eye');
-            }
-            btn.setAttribute('aria-label', isPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu');
-            btn.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
-        }
-
-        // Show loader overlay then redirect for external login (Google/Facebook)
-        function handleExternalLogin(url) {
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) {
-                window.location.href = url;
-                return;
-            }
-
-            const overlay = document.getElementById('loader-overlay');
-            const bar = document.getElementById('loading-fill');
-
-            bar.style.transition = 'none';
-            bar.style.width = '0%';
-            overlay.classList.add('active');
-
-            setTimeout(() => {
-                bar.style.transition = 'width 3s ease-out';
-                bar.style.width = '80%';
-            }, 50);
-
-            setTimeout(() => {
-                window.location.href = url;
-            }, 150);
-        }
-
-        function switchTab(tabName) {
-            const btnReg = document.getElementById('tab-register');
-            const btnLog = document.getElementById('tab-login');
-            const formReg = document.getElementById('form-register');
-            const formLog = document.getElementById('form-login');
-            if (!btnReg || !btnLog || !formReg || !formLog) return;
-
-            const isRegister = tabName === 'register';
-
-            btnReg.classList.toggle('active', isRegister);
-            btnReg.setAttribute('aria-selected', isRegister ? 'true' : 'false');
-            btnReg.setAttribute('tabindex', isRegister ? '0' : '-1');
-
-            btnLog.classList.toggle('active', !isRegister);
-            btnLog.setAttribute('aria-selected', !isRegister ? 'true' : 'false');
-            btnLog.setAttribute('tabindex', !isRegister ? '0' : '-1');
-
-            formReg.style.display = isRegister ? 'block' : 'none';
-            formLog.style.display = !isRegister ? 'block' : 'none';
-        }
-
-        function handleRegister(e) {
-            const terms = document.getElementById('terms');
-            if (!terms || !terms.checked) {
-                e.preventDefault();
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Điều khoản dịch vụ',
-                    text: 'Vui lòng đồng ý với điều khoản dịch vụ để tiếp tục.',
-                    confirmButtonColor: '#4255ff',
-                    confirmButtonText: 'Đã hiểu'
-                });
-                return;
-            }
-
-            const submitBtn = document.getElementById('btn-register-submit');
-            if (submitBtn) {
-                if (submitBtn.disabled) {
-                    e.preventDefault();
-                    return;
-                }
-                submitBtn.disabled = true;
-                submitBtn.setAttribute('aria-busy', 'true');
-                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Đang đăng ký...';
-            }
-            // Form will submit naturally without preventDefault
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-
-            const form = document.getElementById('form-login');
-            const submitBtn = document.getElementById('btn-login-submit');
-            if (!form || !submitBtn) return;
-            if (submitBtn.disabled) return;
-
-            const formData = new FormData(form);
-
-            // Hide blocked alert and previous error
-            const bAlert = document.getElementById('blocked-alert');
-            if (bAlert) bAlert.style.display = 'none';
-            const errorBox = document.getElementById('login-error-msg');
-            if (errorBox) errorBox.style.display = 'none';
-
-            // Set pending state
-            submitBtn.disabled = true;
-            submitBtn.setAttribute('aria-busy', 'true');
-            const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Đang đăng nhập...';
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    showLoaderAndRedirect();
-                } else if (data.blocked) {
-                    submitBtn.disabled = false;
-                    submitBtn.removeAttribute('aria-busy');
-                    submitBtn.innerHTML = originalBtnHtml;
-                    location.reload();
-                } else {
-                    submitBtn.disabled = false;
-                    submitBtn.removeAttribute('aria-busy');
-                    submitBtn.innerHTML = originalBtnHtml;
-                    showLoginError(data.message || "Đã có lỗi xảy ra");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.disabled = false;
-                submitBtn.removeAttribute('aria-busy');
-                submitBtn.innerHTML = originalBtnHtml;
-                showLoginError("Lỗi kết nối server.");
-            });
-        }
-
-        // Safe error display without innerHTML concatenation
-        function showLoginError(msg) {
-            let errorBox = document.getElementById('login-error-msg');
-            if (!errorBox) {
-                const form = document.getElementById('form-login');
-                const btn = form.querySelector('.auth-btn-submit');
-                errorBox = document.createElement('div');
-                errorBox.id = 'login-error-msg';
-                errorBox.className = 'auth-error-msg';
-                errorBox.setAttribute('role', 'alert');
-                errorBox.setAttribute('aria-live', 'assertive');
-                form.insertBefore(errorBox, btn);
-            }
-            errorBox.replaceChildren();
-            const icon = document.createElement('i');
-            icon.className = 'fa-solid fa-circle-exclamation';
-            icon.style.marginRight = '6px';
-            errorBox.appendChild(icon);
-            errorBox.appendChild(document.createTextNode(msg));
-            errorBox.style.display = 'block';
-        }
-
-        function showLoaderAndRedirect() {
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) {
-                window.location.href = '@Url.Action("Index", "Home")';
-                return;
-            }
-
-            const overlay = document.getElementById('loader-overlay');
-            const bar = document.getElementById('loading-fill');
-            const errorBox = document.getElementById('login-error-msg');
-            if (errorBox) errorBox.style.display = 'none';
-
-            bar.style.transition = 'none';
-            bar.style.width = '0%';
-            overlay.classList.add('active');
-
-            setTimeout(() => {
-                bar.style.transition = 'width 1.5s linear';
-                bar.style.width = '100%';
-            }, 50);
-
-            setTimeout(() => {
-                window.location.href = '@Url.Action("Index", "Home")';
-            }, 1550);
-        }
     </script>
-
-    @if (TempData["IsBlocked"] is true)
-    {
-        <!-- ===== BLOCKED ACCOUNT MODAL (Bootstrap 5) ===== -->
-        <div class="modal fade" id="blockedAccountModal" tabindex="-1" aria-labelledby="blockedAccountModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow" style="border-radius: 24px;">
-                    <div class="modal-header border-bottom-0 pb-0">
-                        <h5 class="modal-title fw-semibold text-danger" id="blockedAccountModalLabel">
-                            <i class="fa-solid fa-lock me-2"></i>Tài khoản đã bị khóa
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="mb-2"><strong>Lý do:</strong> @TempData["LockReason"]</p>
-                        <p class="mb-3"><strong>Mở khóa:</strong> @TempData["LockExpiry"]</p>
-                        <a href="@Url.Action("Contact", "Home", new { subject = "khieu-nai-khoa-tai-khoan" })"
-                           class="auth-btn-appeal" style="text-decoration: none; display: inline-flex;">
-                            <i class="fa-solid fa-paper-plane"></i> Gửi khiếu nại
-                        </a>
-                    </div>
-                    <div class="modal-footer border-top-0 pt-0">
-                        <button type="button" class="tct-btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var blockedModal = new bootstrap.Modal(document.getElementById('blockedAccountModal'));
-                blockedModal.show();
-            });
-        </script>
-    }
-
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

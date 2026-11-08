@@ -1,675 +1,430 @@
-﻿@model TCTVocabulary.ViewModels.UpdateProfileViewModel
+@model TCTVocabulary.ViewModels.UpdateProfileViewModel
 @using TCTEnglish.ViewModels
 
 @{
     ViewData["Title"] = "Hồ sơ của tôi";
     ViewData["HideSidebar"] = true;
+    var hasAvatar = !string.IsNullOrEmpty(Model.CurrentAvatarUrl);
+    var userInitial = string.IsNullOrWhiteSpace(Model.FullName) ? "U" : Model.FullName.Substring(0, 1).ToUpper();
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/account-ui.css" asp-append-version="true" />
 }
 
-<div class="account-dashboard">
+<div class="tct-theme tct-page account-ui">
+    <div class="account-surface">
 
-    <!-- Mobile sidebar toggle -->
-    <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-label="Mở hoặc đóng menu hồ sơ" aria-expanded="false" aria-controls="accountSidebar" type="button">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- ====== SIDEBAR ====== -->
-    <aside class="account-sidebar" id="accountSidebar">
-        <!-- Collapse toggle: pinned to right edge of sidebar -->
-        <button class="account-sidebar-toggle" id="accountSidebarToggle" aria-label="Ẩn/hiện menu">
-            <i class="fas fa-chevron-left" id="accountSidebarToggleIcon"></i>
-        </button>
-
-        <div class="sidebar-brand">
-            <div class="sidebar-brand-icon">TCT</div>
-            <div class="sidebar-brand-text">
-                <h2>TCT English</h2>
-                <p>Học tập chủ động</p>
-            </div>
-        </div>
-
-        <nav class="sidebar-nav">
-            <button class="sidebar-nav-item active" data-tab="profile">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
-                <span>Hồ sơ</span>
-            </button>
-            <button class="sidebar-nav-item" data-tab="security">
-                <span class="material-symbols-outlined">settings</span>
-                <span>Cài đặt</span>
-            </button>
-            <button class="sidebar-nav-item" data-tab="subscription">
-                <span class="material-symbols-outlined">workspace_premium</span>
-                <span>Gói dịch vụ</span>
-            </button>
-        </nav>
-
-        <div class="sidebar-bottom">
-            <a asp-action="Logout" class="sidebar-logout-btn">
-                Đăng xuất
-            </a>
-        </div>
-    </aside>
-
-    <!-- ====== MAIN CONTENT ====== -->
-    <section class="account-main" aria-label="Hồ sơ tài khoản">
-
-        <!-- Alert Notifications -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="stitch-alert stitch-alert-success" role="alert">
-                <span class="material-symbols-outlined">check_circle</span>
-                <span>@TempData["SuccessMessage"]</span>
-                <button type="button" class="stitch-alert-close" onclick="this.closest('.stitch-alert').remove()" aria-label="Close">
-                    <span class="material-symbols-outlined">close</span>
+        <!-- ====== ACCOUNT SIDEBAR ====== -->
+        <aside class="account-sidebar preview-account-nav" id="accountSidebar" aria-label="Menu tài khoản">
+            <div class="nav-heading">
+                <strong>Tài khoản</strong>
+                <button class="btn btn-outline-primary tct-btn-icon" id="accountSidebarToggle" type="button" aria-controls="accountSidebar" aria-expanded="true" aria-label="Thu gọn hoặc đóng menu tài khoản">
+                    <i class="fa-solid fa-chevron-left" id="accountSidebarToggleIcon" aria-hidden="true"></i>
                 </button>
             </div>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="stitch-alert stitch-alert-error" role="alert">
-                <span class="material-symbols-outlined">error</span>
-                <span>@TempData["ErrorMessage"]</span>
-                <button type="button" class="stitch-alert-close" onclick="this.closest('.stitch-alert').remove()" aria-label="Close">
-                    <span class="material-symbols-outlined">close</span>
+
+            <nav aria-label="Tài khoản">
+                <button class="sidebar-nav-item preview-nav-item active" type="button" data-tab="profile" aria-current="page">
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <span class="nav-label">Hồ sơ</span>
                 </button>
+                <button class="sidebar-nav-item preview-nav-item" type="button" data-tab="security">
+                    <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                    <span class="nav-label">Cài đặt</span>
+                </button>
+                <button class="sidebar-nav-item preview-nav-item" type="button" data-tab="subscription">
+                    <i class="fa-solid fa-gem" aria-hidden="true"></i>
+                    <span class="nav-label">Gói dịch vụ</span>
+                </button>
+            </nav>
+
+            <div class="nav-logout">
+                <a asp-action="Logout" class="btn btn-outline-danger w-100">
+                    <i class="fa-solid fa-right-from-bracket me-2" aria-hidden="true"></i>Đăng xuất
+                </a>
             </div>
-        }
+        </aside>
 
-        <!-- ═══════════════ TAB: MY PROFILE ═══════════════ -->
-        <div class="account-tab-pane active" id="tab-profile">
+        <!-- ====== MAIN CONTENT ====== -->
+        <div class="account-content">
 
-            <!-- Bento Grid: User Profile Card + Membership -->
-            <div class="profile-bento-grid">
+            <!-- Mobile Drawer Opener -->
+            <button class="btn btn-outline-primary mobile-account-toggle sidebar-mobile-toggle" id="sidebarMobileToggle" type="button" aria-controls="accountSidebar" aria-expanded="false">
+                <i class="fa-solid fa-bars me-2" aria-hidden="true"></i>Menu tài khoản
+            </button>
 
-                <!-- User Profile Card -->
-                <div class="profile-user-card">
-                    @{
-                        var hasAvatar = !string.IsNullOrEmpty(Model.CurrentAvatarUrl);
-                        var userInitial = string.IsNullOrWhiteSpace(Model.FullName) ? "U" : Model.FullName.Substring(0, 1).ToUpper();
-                    }
-                    <div class="user-avatar-wrap">
-                        @if (hasAvatar)
-                        {
-                            <img id="avatarPreview" src="@Model.CurrentAvatarUrl" alt="Avatar của @Model.FullName" class="user-avatar-img" onerror="this.style.display='none'; var fb = document.getElementById('avatarFallback'); if (fb) fb.style.display='flex';" />
-                            <div id="avatarFallback" class="user-avatar-fallback" style="display:none;">@userInitial</div>
-                        }
-                        else
-                        {
-                            <div id="avatarFallback" class="user-avatar-fallback">@userInitial</div>
-                            <img id="avatarPreview" src="" alt="Avatar của @Model.FullName" class="user-avatar-img" style="display:none;" onerror="this.style.display='none'; var fb = document.getElementById('avatarFallback'); if (fb) fb.style.display='flex';" />
-                        }
-                        <button type="button" class="user-avatar-edit-btn" id="avatarClickTarget" aria-label="Thay đổi ảnh đại diện" title="Thay đổi ảnh đại diện">
-                            <span class="material-symbols-outlined" style="font-size: 1.1rem;">edit</span>
+            <!-- Page Header (Single H1) -->
+            @await Html.PartialAsync("_PageHeader", new PageHeaderViewModel
+            {
+                Title = "Hồ sơ của tôi",
+                Description = "Cập nhật thông tin cá nhân và xem thành tích học tập."
+            })
+
+            <!-- Alert Notifications -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success d-flex align-items-center justify-content-between" role="status">
+                    <div>
+                        <i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>
+                        <span>@TempData["SuccessMessage"]</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+                    <div>
+                        <i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>
+                        <span>@TempData["ErrorMessage"]</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+                </div>
+            }
+
+            <!-- ═══════════════ TAB: MY PROFILE ═══════════════ -->
+            <div class="account-tab-pane active" id="tab-profile">
+
+                <!-- Identity Row -->
+                <div class="identity">
+                    <div class="avatar-wrap">
+                        <div class="avatar" id="avatarFallback" style="@(hasAvatar ? "display:none;" : "")">@userInitial</div>
+                        <img id="avatarPreview" src="@(hasAvatar ? Model.CurrentAvatarUrl : "")" alt="Avatar của @Model.FullName" class="avatar" style="@(hasAvatar ? "" : "display:none;")" onerror="this.style.display='none'; var fb = document.getElementById('avatarFallback'); if (fb) fb.style.display='flex';" />
+                        <button type="button" class="btn btn-primary tct-btn-icon avatar-edit" id="avatarClickTarget" aria-label="Thay đổi ảnh đại diện">
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="user-info-wrap">
-                        <div class="user-info-title-row">
-                            <h1 class="user-info-name">@Model.FullName</h1>
-                            @if (Model.Role == "Premium")
-                            {
-                                <span class="user-badge">
-                                    <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1;">verified</span>
-                                    Premium
-                                </span>
-                            }
-                        </div>
-                        <p class="user-info-subtitle">Học viên TCT English &bull; Vai trò: @Model.Role</p>
-                        <div class="user-info-meta">
-                            <div class="user-meta-item">
-                                <span class="material-symbols-outlined">mail</span>
-                                <span>@Model.Email</span>
-                            </div>
-                        </div>
+                    <div class="identity-text">
+                        <h2>@Model.FullName</h2>
+                        <p class="text-secondary mb-2">@Model.Email</p>
+                        <span class="tct-badge @(Model.Role == "Premium" ? "tct-badge--warning" : Model.Role == "Admin" ? "tct-badge--success" : "tct-badge--primary")">@Model.Role</span>
                     </div>
                 </div>
 
-                <!-- Membership Status Card -->
-                <div class="membership-card">
-                    <div style="position: relative; z-index: 1;">
-                        <h3 class="membership-card-plan">Gói thành viên</h3>
-                        <p class="membership-card-subtitle">
-                            @if (Model.Role == "Premium")
+                <!-- Streak & Badges Stats -->
+                <dl class="profile-stats">
+                    <div>
+                        <dt>Chuỗi học</dt>
+                        <dd>@Model.StreakDays Ngày</dd>
+                    </div>
+                    <div>
+                        <dt>Danh hiệu</dt>
+                        <dd>@Model.EarnedBadges.Count</dd>
+                    </div>
+                </dl>
+
+                <!-- Profile Columns (Form + Info) -->
+                <div class="profile-columns">
+
+                    <!-- Form Personal Info -->
+                    <section class="tct-card panel">
+                        <h2>Thông tin cá nhân</h2>
+
+                        <form asp-controller="Account" asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                            <input asp-for="Avatar" type="file" id="Avatar" class="visually-hidden" accept=".jpg,.jpeg,.png" tabindex="-1" />
+                            <span asp-validation-for="Avatar" class="text-danger small d-block"></span>
+                            <p class="form-text mb-2">JPG hoặc PNG, tối đa 2 MB. Ảnh chỉ được lưu khi bạn chọn Lưu thay đổi.</p>
+                            <p class="small" id="avatar-status" role="status" hidden></p>
+
+                            <div class="field">
+                                <label asp-for="FullName" class="form-label">Họ và tên</label>
+                                <input asp-for="FullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" id="FullName" required />
+                                <span asp-validation-for="FullName" class="text-danger small d-block mt-1"></span>
+                            </div>
+
+                            <div class="field">
+                                <label class="form-label" for="profile-display-email">Địa chỉ email</label>
+                                <input type="email" id="profile-display-email" class="form-control" value="@Model.Email" readonly aria-describedby="profile-email-hint" />
+                                <p class="form-text mt-1" id="profile-email-hint">
+                                    Đổi email tại <a href="#tab-security" data-tab="security">Cài đặt tài khoản</a>.
+                                </p>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline-primary" id="profile-cancel">Hủy</button>
+                                <button type="submit" class="btn btn-primary" id="profile-save">
+                                    <i class="fa-solid fa-floppy-disk me-2" aria-hidden="true"></i>Lưu thay đổi
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Side Info Stack -->
+                    <aside class="info-stack">
+                        <section class="tct-card panel">
+                            <h2>Gói thành viên</h2>
+                            <p class="fw-semibold mb-1">
+                                @(Model.Role == "Premium" ? "TCT English Premium" : Model.Role == "Admin" ? "Vai trò Admin" : "TCT English Standard")
+                            </p>
+                            <p class="text-secondary small mb-3">Chưa có thông tin thời hạn tại đây.</p>
+                            @if (Model.Role != "Premium" && Model.Role != "Admin")
                             {
-                                <text>TCT English Premium Academic</text>
+                                <a href="/Premium" class="btn btn-outline-primary btn-sm">Nâng cấp Premium</a>
                             }
-                            else
+                        </section>
+
+                        <section class="tct-card panel">
+                            <h2>Mục tiêu học tập</h2>
+                            <p class="text-secondary small mb-3">Theo dõi tiến độ học tập và thiết lập chỉ tiêu cá nhân tại trang Mục tiêu.</p>
+                            <a asp-controller="Goals" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                                Xem &amp; điều chỉnh mục tiêu
+                            </a>
+                        </section>
+
+                        <section class="tct-card panel">
+                            <h2>Thông tin khác</h2>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary small">Ngôn ngữ giao diện</span>
+                                <span class="small fw-semibold">Tiếng Việt</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-secondary small">Múi giờ</span>
+                                <span class="small fw-semibold">GMT +7</span>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+
+                <!-- Earned Badges -->
+                <section class="tct-card panel">
+                    <h2>Danh hiệu đã đạt</h2>
+                    @if (Model.EarnedBadges == null || Model.EarnedBadges.Count == 0)
+                    {
+                        @await Html.PartialAsync("_StateMessage", new StateMessageViewModel
+                        {
+                            Kind = StateMessageKind.Empty,
+                            Title = "Chưa có danh hiệu",
+                            Message = "Danh hiệu sẽ xuất hiện khi bạn hoàn thành các mốc học tập.",
+                            ActionLabel = "Xem mục tiêu học tập",
+                            ActionUrl = "/Goals"
+                        })
+                    }
+                    else
+                    {
+                        <ul class="badge-list">
+                            @foreach (var badge in Model.EarnedBadges.Where(b => b.IsUnlocked))
                             {
-                                <text>TCT English Standard</text>
+                                <li>
+                                    <i class="@(string.IsNullOrEmpty(badge.IconClass) ? "fa-solid fa-award" : badge.IconClass)" aria-hidden="true"></i>
+                                    <div>
+                                        <strong>@badge.Name</strong>
+                                        <p class="text-secondary small">@badge.Description</p>
+                                    </div>
+                                </li>
                             }
-                        </p>
-                        <div class="membership-card-stats">
-                            <div>
-                                <div class="mem-stat-label">Ngày hết hạn</div>
-                                <div class="mem-stat-val">
-                                    @if (Model.Role == "Premium")
-                                    {
-                                        <text>Không giới hạn</text>
-                                    }
-                                    else
-                                    {
-                                        <text>—</text>
-                                    }
+                        </ul>
+                    }
+                </section>
+            </div>
+
+            <!-- ═══════════════ TAB: SECURITY & PASSWORD ═══════════════ -->
+            <div class="account-tab-pane" id="tab-security" hidden>
+                <h2 tabindex="-1" id="profile-security-heading">Cài đặt tài khoản</h2>
+                <p class="text-secondary">
+                    Quản lý các thiết lập bảo mật, mật khẩu và tùy chỉnh tài khoản của bạn.
+                </p>
+
+                <div class="tct-card panel mb-4">
+                    <!-- Update Email -->
+                    <form asp-controller="Account" asp-action="UpdateEmail" method="post" class="security-form">
+                        @Html.AntiForgeryToken()
+                        <h3><i class="fa-solid fa-envelope text-primary me-2" aria-hidden="true"></i>Địa chỉ email</h3>
+                        <p class="text-secondary small">Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
+                        <div class="email-row">
+                            <div class="field">
+                                <label class="form-label visually-hidden" for="profileEmailInput">Địa chỉ email</label>
+                                <input id="profileEmailInput" name="Email" value="@Model.Email" class="form-control" autocomplete="email" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="profile-email-submit">Cập nhật email</button>
+                        </div>
+                    </form>
+
+                    <!-- Change Password -->
+                    <form asp-controller="Account" asp-action="ChangePassword" method="post" class="security-form">
+                        @Html.AntiForgeryToken()
+                        <h3><i class="fa-solid fa-key text-primary me-2" aria-hidden="true"></i>Thay đổi mật khẩu</h3>
+                        <p class="form-text mb-3">Ít nhất 6 ký tự theo yêu cầu hiện tại.</p>
+
+                        <div class="password-fields">
+                            <div class="field">
+                                <label class="form-label" for="profileCurrentPassword">Mật khẩu hiện tại</label>
+                                <div class="input-group">
+                                    <input id="profileCurrentPassword" name="CurrentPassword" type="password" class="form-control" autocomplete="current-password" required />
+                                    <button class="btn password-toggle tct-btn-icon toggle-pwd" type="button" aria-label="Hiện mật khẩu hiện tại" aria-controls="profileCurrentPassword" aria-pressed="false" data-password="profileCurrentPassword">
+                                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="text-end">
-                                <div class="mem-stat-label">Trạng thái</div>
-                                <div class="mem-stat-val active">Đang hoạt động</div>
+
+                            <div class="field">
+                                <label class="form-label" for="profileNewPassword">Mật khẩu mới</label>
+                                <div class="input-group">
+                                    <input id="profileNewPassword" name="NewPassword" type="password" class="form-control" autocomplete="new-password" minlength="6" required />
+                                    <button class="btn password-toggle tct-btn-icon toggle-pwd" type="button" aria-label="Hiện mật khẩu mới" aria-controls="profileNewPassword" aria-pressed="false" data-password="profileNewPassword">
+                                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="membership-bg-glow"></div>
-                </div>
-            </div>
 
-            <!-- Dashboard Stats -->
-            <div class="dash-stats-grid">
-                <div class="dash-stat-item">
-                    <div class="dash-stat-icon icon-streak">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                    </div>
-                    <div>
-                        <p class="dash-stat-label">Chuỗi học</p>
-                        <p class="dash-stat-value">@Model.StreakDays Ngày</p>
-                    </div>
-                </div>
-                <div class="dash-stat-item">
-                    <div class="dash-stat-icon icon-badge">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                    </div>
-                    <div>
-                        <p class="dash-stat-label">Danh hiệu</p>
-                        <p class="dash-stat-value">@Model.EarnedBadges.Count</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit Profile Form + Side Info -->
-            <div class="profile-form-grid">
-
-                <!-- Main Form -->
-                <div class="stitch-card profile-form-card">
-                    <div class="profile-form-header">
-                        <div class="profile-form-header-icon">
-                            <span class="material-symbols-outlined">person</span>
-                        </div>
-                        <h2 class="profile-form-title">Thông tin cá nhân</h2>
-                    </div>
-
-                    <form asp-controller="Account" asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
-                        @Html.AntiForgeryToken()
-                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-4"></div>
-
-                        <!-- Avatar Upload (hidden, triggered by button above) -->
-                        <input asp-for="Avatar" type="file" id="Avatar" class="d-none" accept=".jpg,.jpeg,.png" onchange="previewImage(this);" />
-                        <span asp-validation-for="Avatar" class="text-danger small mt-1 d-block mb-3"></span>
-
-                        <div class="profile-form-fields">
-                            <div class="profile-field-group">
-                                <label asp-for="FullName" class="stitch-form-label">Họ và tên</label>
-                                <input asp-for="FullName" class="stitch-input" placeholder="Ví dụ: Nguyễn Văn A" />
-                                <span asp-validation-for="FullName" class="text-danger small mt-1 d-block"></span>
-                            </div>
-                            <div class="profile-field-group">
-                                <label class="stitch-form-label">Địa chỉ Email</label>
-                                <input type="email" class="stitch-input" value="@Model.Email" disabled />
-                                <span class="stitch-field-hint">Thay đổi email trong tab Cài đặt.</span>
+                            <div class="field">
+                                <label class="form-label" for="profileConfirmPassword">Xác nhận mật khẩu</label>
+                                <div class="input-group">
+                                    <input id="profileConfirmPassword" name="ConfirmPassword" type="password" class="form-control" autocomplete="new-password" required />
+                                    <button class="btn password-toggle tct-btn-icon toggle-pwd" type="button" aria-label="Hiện xác nhận mật khẩu" aria-controls="profileConfirmPassword" aria-pressed="false" data-password="profileConfirmPassword">
+                                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="profile-form-actions">
-                            <button type="button" class="stitch-btn-ghost" onclick="window.location.reload()">Hủy</button>
-                            <button type="submit" class="stitch-btn-primary">
-                                <span class="material-symbols-outlined" style="font-size: 1rem;">save</span>
-                                Lưu thay đổi
-                            </button>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
                         </div>
                     </form>
                 </div>
 
-                <!-- Side Info Panel -->
-                <div class="profile-side-info">
-
-                    <!-- Learning Goals Mini -->
-                    <div class="stitch-card">
-                        <h3 class="side-card-title">Mục tiêu học tập</h3>
-                        <p class="text-muted small mb-3">Theo dõi tiến độ học tập và thiết lập chỉ tiêu cá nhân tại trang Mục tiêu.</p>
-                        <a asp-controller="Goals" asp-action="Index" class="side-card-link">
-                            Xem &amp; điều chỉnh mục tiêu
-                            <span class="material-symbols-outlined" style="font-size: 1rem;">chevron_right</span>
-                        </a>
+                <!-- Notifications -->
+                <section class="tct-card panel mb-4" id="section-notifications" aria-labelledby="heading-notifications">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h2 id="heading-notifications" class="mb-0">
+                            <i class="fa-solid fa-bell text-primary me-2" aria-hidden="true"></i>Thông báo
+                        </h2>
+                        <span class="badge bg-secondary-subtle text-secondary border">Chưa hỗ trợ</span>
                     </div>
+                    <p class="text-secondary small mb-3">Tùy chọn nhận thông báo đẩy và email định kỳ. Tính năng này hiện đang được nâng cấp.</p>
 
-                    <!-- Quick Info -->
-                    <div class="stitch-card">
-                        <h3 class="side-card-title">Thông tin khác</h3>
-                        <div class="side-info-list">
-                            <div class="side-info-row">
-                                <span class="side-info-label">Ngôn ngữ giao diện</span>
-                                <span class="side-info-value">Tiếng Việt</span>
-                            </div>
-                            <div class="side-info-row">
-                                <span class="side-info-label">Múi giờ</span>
-                                <span class="side-info-value">GMT +7</span>
+                    <fieldset disabled>
+                        <div class="preference-row">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input notification-checkbox" id="prefPush" />
+                                <label class="form-check-label" for="prefPush">
+                                    <strong>Thông báo đẩy (Push)</strong>
+                                    <p class="text-secondary small mb-0">Nhận thông báo về lịch học và nhắc nhở ôn tập trên thiết bị.</p>
+                                </label>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ═══════════════ TAB: SECURITY & PASSWORD ═══════════════ -->
-        <div class="account-tab-pane" id="tab-security">
-
-            <div class="section-header">
-                <h3>Bảo mật &amp; Mật khẩu</h3>
-                <p>Cập nhật email, mật khẩu và quản lý tài khoản của bạn. Để cài đặt thông báo và liên kết tài khoản, vui lòng mở <a href="/Account/Settings" class="text-primary fw-medium text-decoration-none">Cài đặt tài khoản</a>.</p>
-            </div>
-
-            <!-- Security & Password Card -->
-            <div class="stitch-card mb-4">
-                <!-- Email -->
-                <div class="settings-section-header">
-                    <div class="settings-section-icon bg-primary-soft">
-                        <span class="material-symbols-outlined">lock</span>
-                    </div>
-                    <h2 class="settings-section-title">Bảo mật &amp; Mật khẩu</h2>
-                </div>
-
-                <form asp-controller="Account" asp-action="UpdateEmail" method="post">
-                    @Html.AntiForgeryToken()
-                    <div class="security-row">
-                        <div class="security-text mb-3 mb-md-0">
-                            <h4>Địa chỉ email</h4>
-                            <p>Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <input name="Email" value="@Model.Email" class="stitch-input" placeholder="name@example.com" style="max-width: 250px;" />
-                            <button type="submit" class="stitch-btn-primary">
-                                Cập nhật
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <form asp-controller="Account" asp-action="ChangePassword" method="post">
-                    @Html.AntiForgeryToken()
-                    <div class="security-row flex-column align-items-stretch">
-                        <div class="security-text mb-3">
-                            <h4>Thay đổi mật khẩu</h4>
-                            <p>Mật khẩu nên dài ít nhất 8 ký tự. Chỉ nhập nếu bạn muốn thay đổi mật khẩu hiện tại.</p>
-                        </div>
-
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-4">
-                                <label class="stitch-form-label">Mật khẩu hiện tại</label>
-                                <div class="input-group">
-                                    <input name="CurrentPassword" type="password" class="stitch-input" placeholder="Mật khẩu hiện nay" autocomplete="current-password" />
-                                    <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="stitch-form-label">Mật khẩu mới</label>
-                                <div class="input-group">
-                                    <input name="NewPassword" type="password" class="stitch-input" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" />
-                                    <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="stitch-form-label">Xác nhận mật khẩu</label>
-                                <div class="input-group">
-                                    <input name="ConfirmPassword" type="password" class="stitch-input" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
-                                    <button class="btn btn-outline-secondary toggle-pwd" type="button" tabindex="-1">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
+                        <div class="preference-row mt-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input notification-checkbox" id="prefEmail" />
+                                <label class="form-check-label" for="prefEmail">
+                                    <strong>Email định kỳ</strong>
+                                    <p class="text-secondary small mb-0">Bản tin học tập hàng tuần và báo cáo tiến độ qua email.</p>
+                                </label>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="stitch-btn-primary">
-                                Đổi mật khẩu
-                            </button>
+                    </fieldset>
+                </section>
+
+                <!-- Linked Accounts -->
+                <section class="tct-card panel mb-4" id="section-linked" aria-labelledby="heading-linked">
+                    <h2 id="heading-linked">
+                        <i class="fa-solid fa-link text-primary me-2" aria-hidden="true"></i>Tài khoản liên kết
+                    </h2>
+                    <p class="text-secondary small mb-3">Liên kết tài khoản bên thứ ba để đăng nhập nhanh chóng và an toàn hơn.</p>
+
+                    <div class="linked-row">
+                        <div class="provider">
+                            <div class="social-icon text-danger fs-3">
+                                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <strong>Google</strong>
+                                <p class="text-secondary small mb-0">Chưa liên kết</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary-subtle text-secondary border">Chưa liên kết</span>
                         </div>
                     </div>
-                </form>
-            </div>
 
-            <!-- Danger Zone -->
-            <div class="danger-zone">
-                <div class="danger-zone-header">
-                    <span class="material-symbols-outlined">warning</span>
-                    <h2>Vùng nguy hiểm</h2>
-                </div>
-                <div class="danger-box">
-                    <div>
-                        <h4 class="mb-1 fw-bold text-dark" style="font-size: 0.95rem;">Xóa tài khoản vĩnh viễn</h4>
-                        <p class="text-muted small mb-0">Một khi đã xóa, tất cả dữ liệu học tập của bạn sẽ không thể khôi phục.</p>
+                    <div class="linked-row">
+                        <div class="provider">
+                            <div class="social-icon text-primary fs-3">
+                                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <strong>Facebook</strong>
+                                <p class="text-secondary small mb-0">Chưa liên kết</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary-subtle text-secondary border">Chưa liên kết</span>
+                        </div>
                     </div>
-                    <button type="button" class="stitch-btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                </section>
+
+                <!-- Danger Zone -->
+                <section class="tct-card panel danger-panel" id="section-danger">
+                    <h2 class="text-danger">
+                        <i class="fa-solid fa-triangle-exclamation text-danger me-2" aria-hidden="true"></i>Vùng nguy hiểm
+                    </h2>
+                    <p class="text-secondary small">Tất cả dữ liệu học tập, bộ từ vựng và tiến trình sẽ không thể khôi phục sau khi xóa.</p>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                         Xóa tài khoản
                     </button>
-                </div>
+                </section>
             </div>
 
-            <!-- Delete Account Confirmation Modal -->
-            <div class="modal fade confirm-modal" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger bg-opacity-10">
-                            <h5 class="modal-title fw-bold text-danger" id="deleteAccountModalLabel">
-                                <i class="fas fa-triangle-exclamation me-2"></i> Xác nhận xóa tài khoản
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="text-muted mb-0">Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng, và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.</p>
-                            <p class="text-muted small mb-0 mt-1">Hành động này không thể hoàn tác.</p>
-
-                            <div class="confirm-input-wrap">
-                                <label for="deleteConfirmInput">Gõ <strong>CONFIRM</strong> để tiếp tục:</label>
-                                <input type="text" id="deleteConfirmInput" class="form-control" placeholder="CONFIRM" autocomplete="off" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" id="deleteAccountBtn" class="btn btn-danger fw-medium" disabled>
-                                    <i class="fas fa-trash-can me-1"></i> Xóa vĩnh viễn
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════ TAB: SUBSCRIPTION ═══════════════ -->
-        <div class="account-tab-pane" id="tab-subscription">
-            <div class="section-header">
-                <h3>Gói dịch vụ</h3>
-                <p>Quản lý gói đăng ký và nâng cấp tài khoản của bạn.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 col-lg-6">
-                    <div class="membership-card">
-                        <div style="position: relative; z-index: 1;">
-                            <div class="d-flex justify-content-between align-items-start mb-4">
-                                <div>
-                                    <div class="mem-stat-label">Trạng thái hội viên</div>
-                                    <div class="membership-card-title">
-                                        @if (Model.Role == "Premium")
-                                        {
-                                            <text>Premium Academic</text>
-                                        }
-                                        else
-                                        {
-                                            <text>TCT English Standard</text>
-                                        }
-                                    </div>
-                                    <div class="membership-card-subtitle">
-                                        @if (Model.Role == "Premium")
-                                        {
-                                            <text>Bạn đang sử dụng toàn bộ tính năng cao cấp.</text>
-                                        }
-                                        else
-                                        {
-                                            <text>Tài khoản cơ bản giới hạn tính năng.</text>
-                                        }
-                                    </div>
-                                </div>
-                                <span class="material-symbols-outlined" style="font-size: 2.5rem; opacity: 0.5;">school</span>
-                            </div>
-
-                            <div class="membership-card-stats">
-                                <div>
-                                    <div class="mem-stat-label">Ngày hết hạn</div>
-                                    <div class="mem-stat-val">
-                                        @if (Model.Role == "Premium")
-                                        {
-                                            <text>Không giới hạn</text>
-                                        }
-                                        else
-                                        {
-                                            <text>-</text>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="text-end">
-                                    <div class="mem-stat-label">Trạng thái</div>
-                                    <div class="mem-stat-val active">Đang hoạt động</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="membership-bg-glow"></div>
-                    </div>
-
-                    @if (Model.Role != "Premium")
+            <!-- ═══════════════ TAB: SUBSCRIPTION ═══════════════ -->
+            <div class="account-tab-pane" id="tab-subscription" hidden>
+                <h2 tabindex="-1" id="profile-subscription-heading">Gói dịch vụ</h2>
+                <section class="tct-card panel">
+                    <h3>@(Model.Role == "Premium" ? "TCT English Premium" : Model.Role == "Admin" ? "Vai trò Admin" : "TCT English Standard")</h3>
+                    <p class="text-secondary mb-3">Chưa có thông tin thời hạn tại đây.</p>
+                    @if (Model.Role != "Premium" && Model.Role != "Admin")
                     {
-                        <div class="mt-4">
-                            <a href="/Premium" class="stitch-btn-primary d-inline-block text-decoration-none w-100 text-center py-3">
-                                Nâng cấp Premium
-                            </a>
-                        </div>
+                        <a href="/Premium" class="btn btn-primary">Nâng cấp Premium</a>
                     }
+                </section>
+            </div>
+
+        </div>
+
+        <!-- Sidebar Backdrop for Mobile -->
+        <div id="sidebarOverlay" class="offcanvas-backdrop fade" hidden></div>
+
+        <!-- Delete Account Confirmation Modal -->
+        <div class="modal fade confirm-modal" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0 pb-0">
+                        <h2 class="modal-title h5 fw-bold text-danger" id="deleteAccountModalLabel">
+                            <i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i>Xác nhận xóa tài khoản
+                        </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-secondary mb-1">
+                            Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.
+                        </p>
+                        <p class="text-secondary small mb-3">Hành động này không thể hoàn tác.</p>
+
+                        <div class="field mb-0">
+                            <label class="form-label" for="deleteConfirmInput">Gõ <strong>CONFIRM</strong> để tiếp tục:</label>
+                            <input type="text" id="deleteConfirmInput" class="form-control" placeholder="CONFIRM" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0 pt-0">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy</button>
+                        <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" id="deleteAccountBtn" class="btn btn-danger" disabled>
+                                <i class="fa-solid fa-trash-can me-1" aria-hidden="true"></i> Xóa vĩnh viễn
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </section>
+    </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script>
-        // ── Sidebar tab switching ──────────────────────────────────────
-        (function() {
-            var sidebar = document.getElementById('accountSidebar');
-            var overlay = document.getElementById('sidebarOverlay');
-            var toggleBtn = document.getElementById('sidebarMobileToggle');
-            var navItems = document.querySelectorAll('.sidebar-nav-item');
-            var tabPanes = document.querySelectorAll('.account-tab-pane');
-
-            // Read ?tab= from URL
-            var params = new URLSearchParams(window.location.search);
-            var initialTab = params.get('tab') || 'profile';
-
-            function activateTab(tabId) {
-                navItems.forEach(function(item) {
-                    item.classList.toggle('active', item.getAttribute('data-tab') === tabId);
-                });
-                tabPanes.forEach(function(pane) {
-                    pane.classList.toggle('active', pane.id === 'tab-' + tabId);
-                });
-                // Update URL without reload
-                var url = new URL(window.location);
-                if (tabId === 'profile') {
-                    url.searchParams.delete('tab');
-                } else {
-                    url.searchParams.set('tab', tabId);
-                }
-                window.history.replaceState({}, '', url);
-            }
-
-            // Set initial tab
-            activateTab(initialTab);
-
-            navItems.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    activateTab(this.getAttribute('data-tab'));
-                    if (accountMql.matches) {
-                        closeAccountSidebar(false);
-                    }
-                });
-            });
-
-            // Mobile sidebar toggle & accessibility
-            var accountMql = window.matchMedia('(max-width: 992px)');
-
-            function syncAccountSidebar() {
-                if (!sidebar) return;
-                if (accountMql.matches) {
-                    var isOpen = sidebar.classList.contains('open');
-                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                    sidebar.inert = !isOpen;
-                    if (overlay) overlay.classList.toggle('show', isOpen);
-                } else {
-                    sidebar.inert = false;
-                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
-                    if (overlay) overlay.classList.remove('show');
-                }
-            }
-
-            function closeAccountSidebar(returnFocus) {
-                if (!sidebar) return;
-                if (returnFocus && toggleBtn) toggleBtn.focus();
-                sidebar.classList.remove('open');
-                syncAccountSidebar();
-            }
-
-            function openAccountSidebar() {
-                if (!sidebar) return;
-                sidebar.classList.add('open');
-                syncAccountSidebar();
-                var firstItem = sidebar.querySelector('a, button, input');
-                if (firstItem) firstItem.focus();
-            }
-
-            if (toggleBtn && sidebar) {
-                toggleBtn.addEventListener('click', function() {
-                    if (sidebar.classList.contains('open')) {
-                        closeAccountSidebar(true);
-                    } else {
-                        openAccountSidebar();
-                    }
-                });
-            }
-
-            if (overlay) {
-                overlay.addEventListener('click', function() {
-                    closeAccountSidebar(false);
-                });
-            }
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && accountMql.matches && sidebar && sidebar.classList.contains('open')) {
-                    closeAccountSidebar(true);
-                }
-            });
-
-            accountMql.addEventListener('change', syncAccountSidebar);
-            syncAccountSidebar();
-        })();
-
-        // ── Avatar Upload ──────────────────────────────────────────────
-        (function() {
-            var avatarTarget = document.getElementById('avatarClickTarget');
-            var fileInput = document.getElementById('Avatar');
-            if (avatarTarget && fileInput) {
-                avatarTarget.addEventListener('click', function() {
-                    fileInput.click();
-                });
-            }
-        })();
-
-        function previewImage(input) {
-            var preview = document.getElementById('avatarPreview');
-            var fallback = document.getElementById('avatarFallback');
-            if (input && input.files && input.files[0]) {
-                var file = input.files[0];
-                if (!file.type || !file.type.startsWith('image/')) {
-                    if (preview) preview.style.display = 'none';
-                    if (fallback) fallback.style.display = 'flex';
-                    return;
-                }
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    if (preview) {
-                        preview.src = e.target.result;
-                        preview.style.display = '';
-                    }
-                    if (fallback) {
-                        fallback.style.display = 'none';
-                    }
-                };
-                reader.onerror = function() {
-                    if (preview) preview.style.display = 'none';
-                    if (fallback) fallback.style.display = 'flex';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // ── Password Toggle Visibility ─────────────────────────────────
-        document.querySelectorAll('.toggle-pwd').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var input = this.closest('.input-group').querySelector('input');
-                if (!input) return;
-                var icon = this.querySelector('i');
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    input.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                }
-            });
-        });
-
-        // ── Delete Account: Type CONFIRM to enable ────────────────────
-        (function() {
-            var confirmInput = document.getElementById('deleteConfirmInput');
-            var deleteBtn = document.getElementById('deleteAccountBtn');
-            if (confirmInput && deleteBtn) {
-                confirmInput.addEventListener('input', function() {
-                    deleteBtn.disabled = (this.value.trim() !== 'CONFIRM');
-                });
-            }
-        })();
-
-        // ── Auto-dismiss alerts ────────────────────────────────────────
-        setTimeout(function() {
-            document.querySelectorAll('.stitch-alert').forEach(function(el) {
-                el.style.transition = 'opacity 0.5s ease';
-                el.style.opacity = '0';
-                setTimeout(function() { el.remove(); }, 500);
-            });
-        }, 5000);
-
-        // ── Sidebar Collapse Toggle ────────────────────────────────────
-        (function() {
-            var sidebarEl  = document.getElementById('accountSidebar');
-            var toggleBtn2 = document.getElementById('accountSidebarToggle');
-            var icon2      = document.getElementById('accountSidebarToggleIcon');
-            if (!sidebarEl || !toggleBtn2) return;
-
-            var collapsed = localStorage.getItem('accountSidebarCollapsed') === 'true';
-            if (collapsed) {
-                sidebarEl.classList.add('sidebar-collapsed');
-                icon2.style.transform = 'rotate(180deg)';
-            }
-
-            toggleBtn2.addEventListener('click', function() {
-                var isCollapsed = sidebarEl.classList.toggle('sidebar-collapsed');
-                icon2.style.transform = isCollapsed ? 'rotate(180deg)' : '';
-                localStorage.setItem('accountSidebarCollapsed', isCollapsed);
-            });
-        })();
-    </script>
+    <script src="~/js/account-ui.js" asp-append-version="true"></script>
 }

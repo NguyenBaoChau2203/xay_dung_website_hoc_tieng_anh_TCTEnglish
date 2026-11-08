@@ -3,14 +3,29 @@
     Layout = "_Layout";
 }
 
-<section class="account-access-denied container py-5" aria-labelledby="access-denied-title">
-    <h1 id="access-denied-title" class="h3 mb-3">Bạn không có quyền truy cập trang này</h1>
-    <p class="mb-4">
-        Tài khoản hiện tại không đủ quyền để mở khu vực quản trị hoặc tài nguyên được bảo vệ.
-        Nếu bạn nghĩ đây là nhầm lẫn, hãy đăng nhập bằng đúng tài khoản hoặc quay lại trang học.
-    </p>
-    <div class="d-flex flex-wrap gap-2">
-        <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Quay lại trang chủ</a>
-        <a class="btn btn-outline-secondary" href="@Url.Action("Profile", "Account")">Về hồ sơ của tôi</a>
+@section Styles {
+    <link rel="stylesheet" href="~/css/account-ui.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page account-ui">
+    <div class="container py-5">
+        <div class="tct-card denied-content text-center">
+            <div class="recovery-icon" aria-hidden="true">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h1 class="h3 mb-3">Bạn không có quyền truy cập trang này</h1>
+            <p class="text-secondary mb-4">
+                Tài khoản hiện tại không đủ quyền để mở khu vực quản trị hoặc tài nguyên được bảo vệ.
+                Nếu bạn nghĩ đây là nhầm lẫn, hãy đăng nhập bằng đúng tài khoản hoặc quay lại trang học.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a class="btn btn-primary" href="@Url.Action("Index", "Home")">
+                    <i class="fa-solid fa-house me-2" aria-hidden="true"></i>Quay lại trang chủ
+                </a>
+                <a class="btn btn-outline-secondary" href="@Url.Action("Profile", "Account")">
+                    <i class="fa-regular fa-user me-2" aria-hidden="true"></i>Về hồ sơ của tôi
+                </a>
+            </div>
+        </div>
     </div>
-</section>
+</div>

@@ -42,6 +42,181 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Account full-bleed light blue canvas background polish — 2026-11-08
+
+**Symptom**: On the Account pages, a visible white vertical stripe/gutter appeared along the left edge and around the view because the light blue clay canvas background (`#f0f3ff`) was contained only inside `.account-ui`, while the parent `<main class="main">` had a 40px padding and a grayish-white `#f8fafc` background.
+
+**Root Cause**: `<main class="main">` had `background: #f8fafc` and `padding: 40px`, causing the light blue background of `.account-ui` to render as an inner box surrounded by a 40px white border.
+
+**Solution**:
+- Added `.main:has(.account-ui), body:has(.account-ui) { background-color: var(--tct-clay-canvas, #f0f3ff) !important; }` so the entire screen background renders in the cohesive light blue clay canvas tint.
+- Added negative margins on `.account-ui` (`margin: calc(-1 * var(--tct-main-pad, 40px)); padding: var(--tct-main-pad, 40px);` on desktop and `16px` on mobile) to bleed the light blue canvas 100% edge-to-edge across all viewports.
+- Set `.account-ui .account-surface` to `max-width: 100%; width: 100%;` so the layout comfortably fills the full window.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/account-ui.css` — added full-bleed canvas expansion rules and negative margin cancellation
+
+**Verification**:
+- `node --test scripts/tests/test_account_auth_ui.cjs scripts/tests/test_account_ui.cjs` -> 23/23 tests passed.
+- `dotnet test TCTEnglish.Tests -c Release --filter "FullyQualifiedName~AccountUiRenderTests"` -> 8/8 tests passed.
+- `git diff --check` -> 0 errors.
+
+**Commit**: Uncommitted local change.
+
+### Account views layout upgrade — full-width responsive dashboard & spacious Claymorphism — 2026-11-08
+
+**Symptom**: The Account views (Profile AU05 and Settings AU06) felt cramped and pushed into a corner with massive empty gutters on laptop/desktop screens; forms inside panels were artificially squeezed into a 550px (68ch) left-aligned column.
+
+**Root Cause**:
+- `.tct-page` and `.account-surface` were both hard-capped at `--tct-container-max` (1280px), creating hundreds of pixels of wasted margin on screens $\ge 1366\text{px}$.
+- `.account-surface` had redundant `padding: var(--tct-main-pad)` (40px) inside `.main` which already applied 40px padding, causing 80px double inset padding on all edges.
+- `.security-form` was restricted to `max-width: var(--tct-measure)` (68ch = 550px), leaving more than half of each settings card completely blank on the right.
+- Three password fields were squeezed into 550px, giving each field only ~150px.
+
+**Solution**:
+- Overrode `.tct-page.account-ui` to `width: 100%; max-width: 100%;`.
+- Updated `.account-surface` to `max-width: 1600px; width: 100%; margin: 0 auto; padding: 0;` using a balanced `16rem minmax(0, 1fr)` grid with sticky sidebar.
+- Removed the 68ch clamp on `.security-form`, letting forms breathe across 100% of the content card.
+- In Settings, expanded `.password-fields` to 3 well-proportioned columns (~280px–360px each) with clean responsive collapse on mobile/tablet.
+- Upgraded `.account-sidebar`, `.identity`, and `.panel` to the Claymorphism design system with refined padding, border-radius, and clay shadows.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/account-ui.css` — expanded container widths, updated sidebar/panel styles and form field layouts
+
+**Verification**:
+- `node --test scripts/tests/test_account_auth_ui.cjs scripts/tests/test_account_ui.cjs` -> 23/23 tests passed.
+- `dotnet test TCTEnglish.Tests -c Release --filter "FullyQualifiedName~AccountUiRenderTests"` -> 8/8 tests passed.
+- `git diff --check` -> 0 errors.
+
+**Commit**: Uncommitted local change.
+
+### Account reset password UI polish — hide empty validation summary on initial load — 2026-11-08
+
+**Symptom**: On the ResetPassword screen (AU04), an empty pink box with a red outline was rendered between the header description and the first password input on initial load before any submission.
+
+**Root Cause**: In ASP.NET Core MVC, `@Html.ValidationSummary(excludePropertyErrors: false, ...)` outputs `<div class="alert alert-danger validation-summary-valid" ...>` even when `ModelState.IsValid` is true. Because `account-auth-ui.css` styled `.alert` and `.alert-danger` with padding and borders, but lacked the standard `.validation-summary-valid { display: none !important; }` rule, the empty container was visibly rendered.
+
+**Solution**:
+- Added `.account-auth-ui .validation-summary-valid, .account-auth-ui .alert.validation-summary-valid { display: none !important; }` to hide the container when there are no errors.
+- Added explicit styling for `.account-auth-ui .validation-summary-errors` so when real validation errors occur upon submission, it displays properly.
+- Updated brand icon from `fa-key` to `fa-graduation-cap` in `ResetPassword.cshtml` to maintain uniform brand identity with AU01, AU02, and AU03.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/account-auth-ui.css` — added `.validation-summary-valid` and `.validation-summary-errors` rules
+- `TCTEnglish/Views/Account/ResetPassword.cshtml` — updated brand icon to `fa-graduation-cap`
+
+**Verification**:
+- `node --test scripts/tests/test_account_auth_ui.cjs scripts/tests/test_account_ui.cjs` -> 23/23 tests passed.
+- `dotnet test TCTEnglish.Tests -c Release --filter "FullyQualifiedName~AccountUiRenderTests"` -> 8/8 tests passed.
+- Verified live HTML: `validation-summary-valid` is generated and hidden via CSS; empty box no longer appears.
+
+**Commit**: Uncommitted local change.
+
+### Account recovery UI polish — orphan word wrapping and vertical rhythm on ForgotPasswordConfirmation — 2026-11-08
+
+**Symptom**: On the ForgotPasswordConfirmation screen (AU03), the note "Kiểm tra cả thư mục thư rác. Liên kết khôi phục có thời hạn." broke with an orphan word "hạn." on a second line; the brand logo and the recovery envelope icon rendered inline on the same row due to `text-center` with `inline-flex`.
+
+**Root Cause**: `.recovery-card` had `max-width: 28rem` (448px) with 32px padding leaving only 384px content width, causing the 59-character note to wrap awkwardly; `.brand` and `.recovery-icon` were both `inline-flex` without a block break container; the primary CTA button had `mb-2` adding redundant spacing to `.back-link`.
+
+**Solution**:
+- Updated `.recovery-card` to `max-width: 30rem` (480px, conforming with `account-ui-design.md` spec `<=30rem`).
+- Wrapped brand in `.recovery-brand-wrap` (block flex container centered) and converted `.recovery-icon` to block flex (`display: flex; margin: 0 auto var(--tct-space-md);`) to ensure brand and icon appear on separate, centered rows.
+- Added `.recovery-hint` with `white-space: nowrap` for viewports $\ge 460\text{px}$ so the hint stays strictly on 1 single line on desktop/laptop.
+- Removed `mb-2` from the primary button and added icon with `me-2` to `.back-link` for consistent 20px spacing rhythm and hover micro-interaction.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/account-auth-ui.css` — added `.recovery-brand-wrap`, `.recovery-hint`, updated `.recovery-card` and `.recovery-icon`
+- `TCTEnglish/Views/Account/ForgotPasswordConfirmation.cshtml` — updated markup structure and classes
+- `TCTEnglish.Tests/AccountUiRenderTests.cs` — added `AU03_ForgotPasswordConfirmation_RendersSemanticMarkup_AndOneH1` test
+
+**Verification**:
+- `node --test scripts/tests/test_account_auth_ui.cjs scripts/tests/test_account_ui.cjs` -> 23/23 tests passed.
+- `dotnet test TCTEnglish.Tests -c Release --filter "FullyQualifiedName~AccountUiRenderTests"` -> 8/8 tests passed.
+- `git diff --check` -> 0 errors.
+
+**Commit**: Uncommitted local change.
+
+### Account functional follow-up — responsive lifecycle and cancelled submits — 2026-11-08
+
+**Scope / authority**: The owner authorized backend and functional logic fixes after Gemini's Account repair. UI/UX remains with the owner and Gemini. One agent worked locally on `feature/chau-ui-design-system`; no CSS, Razor, C# controller, schema, protected configuration or real user data was changed in this follow-up.
+
+**Symptoms and evidence**:
+- Opening the Settings delete modal at 390px and resizing to 1440px left the modal visible but cleared `body.style.overflow` and `modal-open`.
+- Opening the Account drawer, resizing mobile → desktop → mobile during hide, then reopening produced a drawer without a Bootstrap instance, dialog semantics or scroll lock.
+- A cancelled submit event still set `_inFlight` and disabled its button, although no request started. This was reproduced using synthetic cancellation listeners on actual rendered recovery forms; tests also cover cancellation later in propagation.
+
+**Root cause**: Desktop cleanup removed global body styles/backdrops and restored inert state it did not own. A stale `hidden` callback and timeout cleaned desktop state without respecting the latest breakpoint or Bootstrap transitions. Submit guards did not inspect cancellation before or after propagation.
+
+**Fix**:
+- Let Bootstrap restore its own scroll state before `hidden.bs.offcanvas`; dispose only after the current transition completes and the current breakpoint is desktop.
+- Defer Account close requests during opening, keep the mobile instance through rapid breakpoint changes, and restore only shell inert values captured by this drawer.
+- Respect pre-cancelled submits. Native submit guards restore pending state in a microtask if a later listener cancels; preserve duplicate-request blocking and the `CONFIRM` gate. AJAX login respects prior cancellation.
+- Correct the execution ledger's binding description to the actual lower-case `email` / `password` / `fullName` contract; there is no posted `RememberMe`, registration `ConfirmPassword` or `AcceptTerms`.
+
+**Regression evidence**: New tests failed before the production fix (16 passed / 7 failed), then all 23 Account Node tests passed. Focused .NET tests: 27 passed. Build: 0 warnings / 0 errors. Chrome: 13 functional cases passed using actual Razor and Bootstrap through a GET-only SQLite-memory fixture; all browser POSTs were intercepted. Synthetic pageshow is not a real BFCache round-trip. Full comparison suite: 1176 passed / 22 skipped / 0 failed. The first full run had one unrelated RAG deadline assertion failure; it passed in isolation and in the full comparison run without RAG source edits. Both runs and the unresolved cause of the initial failure are recorded in `docs/feature-audits/2026-11-08-account-logic-verification.md`.
+
+**Files**: `TCTEnglish/wwwroot/js/account-ui.js`, `TCTEnglish/wwwroot/js/account-auth-ui.js`, their two `scripts/tests/test_account_*.cjs` regression files, the Account execution ledger and the follow-up plan/report. Existing visual work and `DESIGN.md` are preserved.
+
+**Commit**: uncommitted; no push, remote CI, database reset or deployment.
+
+### Account UI review repair R1–R8 — 2026-11-08
+
+**Symptom**: Review reproduced 2 P1 regressions and 5 P2 issues across Account UI implementation:
+1. R1 (P1): ForgotPassword and ResetPassword forms failed to submit on first attempt because duplicate submit ownership (inline `onsubmit` plus JS event listener) marked the request as in-flight and called `e.preventDefault()`.
+2. R2 (P1): Disposing an open mobile Offcanvas during breakpoint resize to desktop left `document.body` scroll-locked (`overflow: hidden; padding-right`), backdrop lingering, and dialog/aria-modal attributes stuck.
+3. R3 (P2): `pageshow` listener indiscriminately enabled submit buttons on all forms, enabling the Delete Account button without requiring the confirmation text.
+4. R4 (P2): Clicking Cancel on Profile with a pre-existing saved avatar hid the image and defaulted to generic initials instead of restoring the saved avatar.
+5. R5 (P2): Unconfirmed email badge and text used low-contrast `.text-warning` on light background.
+6. R6 (P2): Focus outline was suppressed on auth/account controls because `box-shadow: var(--tct-focus-ring); outline: none;` passed a hex color to `box-shadow` (invalid CSS); undefined token `--tct-shadow-sm` was used; `.tct-theme .btn` 40px height overrode `.account-auth-ui :where(button, .btn)` 44px min-height due to 0 specificity.
+7. R7 (P2): Invalid or expired ResetPassword token displayed a generic error with no actionable navigation to request a new recovery link.
+8. R8 (P2): Execution ledger and tracker contained inaccurate field names (`loginForm`, `UsernameOrEmail`, `AcceptTerms`) and fictitious route `/Account/Auth`.
+
+**Root Cause**:
+- R1: Both inline `onsubmit="handle*Submit(event)"` in Razor and `form.addEventListener('submit', ...)` were attached. The inline handler marked `_inFlight = true` and disabled the button, so the subsequent event listener aborted native submission.
+- R2: Bootstrap Offcanvas disposal (`offcanvas.dispose()`) without awaiting hide completion leaves inline styles on `document.body` and fails to clean up backdrop/inert elements.
+- R3: A global `pageshow` handler iterating over forms enabled all submit buttons unconditionally.
+- R4: `setAvatarState('default')` assumed empty state instead of inspecting whether an existing avatar URL was loaded.
+- R5: Reliance on Bootstrap default `.text-warning` rather than design system semantic token `--tct-warning-text`.
+- R6: Misconception that `--tct-focus-ring` was a box-shadow declaration rather than a raw color token (`#4255ff`), CSS `:where()` having 0 specificity, and typo referencing non-existent `--tct-shadow-sm`.
+- R7: Razor view did not inspect `ViewData.ModelState["Token"]` to render contextual recovery guidance with a direct link to `ForgotPassword`.
+- R8: Discrepancy between early design draft names and actual MVC/ViewModel contract names.
+
+**Solution**:
+- Removed inline `onsubmit` bindings from `ForgotPassword.cshtml` and `ResetPassword.cshtml`; guarded `handle*Submit` in `account-auth-ui.js` against duplicate execution during the same event cycle.
+- Added `cleanupDesktopState()` in `account-ui.js` to wait for offcanvas hidden event before disposal, clear inline body overflow/padding, remove lingering backdrops, and reset dialog/inert attributes.
+- Moved `#deleteAccountModal` inside `.account-ui` in `Settings.cshtml`; updated `pageshow` and form handlers to verify `deleteConfirmInput.value.trim() === 'CONFIRM'`.
+- Saved `initialAvatarSrc` and `initialHasAvatar` at initialization in `account-ui.js`, restoring image display on Cancel and calling `window.location.reload()`.
+- Replaced `.text-warning` with `.text-unconfirmed-warning` consuming `--tct-warning-text` (#92400e, 7.4:1 contrast ratio) and `.tct-badge.tct-badge--warning`.
+- Updated focus rules to use `outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring); outline-offset: var(--tct-focus-ring-offset); box-shadow: none;`; replaced `--tct-shadow-sm` with `--tct-shadow-soft`; increased selector specificity for `.account-auth-ui .btn:not(.btn-sm)`.
+- Added `@if (ViewData.ModelState["Token"]?.Errors.Count > 0)` in `ResetPassword.cshtml` rendering a direct link to `Url.Action("ForgotPassword", "Account")`.
+- Corrected field names and routes in `docs/feature-audits/2026-11-08-account-ui-execution-ledger.md` and `docs/design-system/team-ui-workflow.md`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Account/ForgotPassword.cshtml` — removed inline `onsubmit`.
+- `TCTEnglish/Views/Account/ResetPassword.cshtml` — removed inline `onsubmit`; added actionable recovery link when Token is invalid/expired.
+- `TCTEnglish/Views/Account/Settings.cshtml` — moved delete modal inside `.account-ui`; replaced warning badge/text with high-contrast tokens.
+- `TCTEnglish/wwwroot/js/account-auth-ui.js` — guarded first native submit and blocked duplicate in-flight requests.
+- `TCTEnglish/wwwroot/js/account-ui.js` — complete offcanvas lifecycle at breakpoint change; form-aware pageshow gate; avatar restoration on Cancel.
+- `TCTEnglish/wwwroot/css/account-auth-ui.css` — fixed visible focus ring; replaced `--tct-shadow-sm` with `--tct-shadow-soft`; enforced 44px touch targets.
+- `TCTEnglish/wwwroot/css/account-ui.css` — fixed visible focus ring; replaced `--tct-shadow-sm` with `--tct-shadow-soft`; added `.text-unconfirmed-warning`; scoped modal styles.
+- `TCTEnglish.Tests/AccountUiRenderTests.cs` — updated tests and added `AU04_ResetPassword_WhenTokenInvalidOrExpired_RendersDirectLinkToForgotPassword`.
+- `scripts/tests/test_account_auth_ui.cjs` — added regressions for R1 duplicate submit ownership.
+- `scripts/tests/test_account_ui.cjs` — added regressions for R2 breakpoint cleanup, R3 delete button pageshow gate, and R4 avatar cancel restoration.
+- `docs/design-system/team-ui-workflow.md` — updated adoption rows and removed fictitious route.
+- `docs/feature-audits/2026-11-08-account-ui-execution-ledger.md` — updated contract documentation and added Stage II repair ledger.
+
+**Verification**:
+- `node --test scripts/tests/test_account_auth_ui.cjs scripts/tests/test_account_ui.cjs`: 15/15 passed (duration: 167ms).
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --filter "FullyQualifiedName~AccountUiRenderTests"`: 7/7 passed.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release --filter "FullyQualifiedName~AccountUiRenderTests|FullyQualifiedName~AccountCorrectnessIntegrationTests|FullyQualifiedName~ProfileBadgeReadTests|FullyQualifiedName~SharedUiPartialsRenderTests"`: 27/27 passed.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Release`: 1176 passed / 22 skipped / 0 failed (duration: 4m 38s).
+
+**Commit**: uncommitted (left dirty for owner review per prompt instructions)
+
+**Notes**:
+- Verified that pre-existing modified `DESIGN.md` (SHA256: `E904054E057CB06329FA3E867B1E65264993C1DD4C7653338172BF064F0C9945`) is preserved intact.
+- Preserved single-agent execution policy without spawning subagents. No commits, pushes, remote CI, or deployments performed.
+
 ### Hybrid RAG Phase 7 repair round 1 — retry budget, evaluation protocol, provider clock — 2026-11-08
 
 **Symptom**: The submitted Phase 7 envelope asked the owner to pick plan A or B, and treated 169,087 as if it covered embedding retries. A 36,276-byte batch that loses its response leaves only 3,724 bytes in a 40,000-byte job, so that retry cannot be sent. The 16-row demo did not lock the frozen actor, date, corpus or recall denominator. Under the full suite, `CallerCancellation_DuringBackoff_Propagates` saw 2 sends instead of 1, and `Deadline_CoversBodyRead_AndDoesNotResetForRetry` measured 2.8705s outside the 0.8–2.5s window after `ErrorCodeTimeout` had already matched. Isolated reruns of those two tests passed.

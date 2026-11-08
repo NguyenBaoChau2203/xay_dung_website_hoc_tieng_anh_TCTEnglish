@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>Account UI · Thiết kế đã duyệt · TCT English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="../../TCTEnglish/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../TCTEnglish/wwwroot/css/site.css" rel="stylesheet">
+  <link href="../../TCTEnglish/wwwroot/css/tct-learning-ui.css" rel="stylesheet">
+  <link href="../../TCTEnglish/wwwroot/css/layout.css" rel="stylesheet">
+  <style>
+    /* Prototype styles only. Source tokens and Bootstrap remain the foundation. */
+    .account-preview { margin: 0; background: var(--tct-bg); color: var(--tct-text); font-family: var(--tct-font); line-height: var(--tct-leading-base); }
+    .account-preview :where(h1,h2,h3,p,a,button,input,select,label,legend,div,span,li,dt,dd,small,strong,nav,summary) { font-family: var(--tct-font); }
+    .account-preview :where(button,input,select) { font-size: var(--tct-text-base); }
+    .account-preview :is(button,.btn,.preview-nav-item) { min-height: var(--tct-target-min); }
+    .account-preview :where(h2,h3) { line-height: var(--tct-leading-tight); font-weight: var(--tct-weight-semibold); }
+    .account-preview h2 { font-size: var(--tct-text-xl); margin: 0 0 var(--tct-space-md); }
+    .account-preview h3 { font-size: var(--tct-text-lg); margin: 0 0 var(--tct-space-sm); }
+    .account-preview p { margin: 0 0 var(--tct-space-md); }
+    .account-preview .muted { color: var(--tct-text-muted); }
+    .account-preview .caption { font-size: var(--tct-text-sm); }
+    .account-preview .review-bar { background: var(--tct-surface); border-bottom: 1px solid var(--tct-border); padding: var(--tct-space-lg) var(--tct-space-xl); }
+    .account-preview .review-heading { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm) var(--tct-space-lg); align-items: center; margin-bottom: var(--tct-space-sm); }
+    .account-preview .review-controls { display: flex; flex-wrap: wrap; gap: var(--tct-space-md); align-items: end; }
+    .account-preview .review-control { flex: 1 1 15rem; max-width: 25rem; min-width: 0; }
+    .account-preview .review-status { margin: var(--tct-space-sm) 0 0; color: var(--tct-text-muted); font-size: var(--tct-text-sm); }
+    .account-preview .review-skip { position: absolute; inset-inline-start: var(--tct-space-md); top: -8rem; z-index: var(--tct-z-popover); background: var(--tct-surface); padding: var(--tct-space-md); }
+    .account-preview .review-skip:focus { top: var(--tct-space-md); }
+    .account-preview .screen[hidden], .account-preview [data-hidden="true"] { display: none; }
+    .account-preview .preview-stage { min-width: 0; }
+    .account-preview .auth-surface { padding: var(--tct-space-xl); min-height: calc(100dvh - 12rem); display: grid; align-content: center; }
+    .account-preview .auth-grid { width: 100%; max-width: 70rem; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; align-items: stretch; gap: var(--tct-space-xl); }
+    .account-preview .auth-story { background: var(--tct-primary-soft); border-radius: var(--tct-radius-xl); padding: var(--tct-space-2xl); display: flex; flex-direction: column; justify-content: space-between; gap: var(--tct-space-2xl); }
+    .account-preview .brand { display: inline-flex; align-items: center; gap: var(--tct-space-sm); font-weight: var(--tct-weight-bold); color: var(--tct-primary-strong); font-size: var(--tct-text-xl); }
+    .account-preview .brand-icon { display: inline-flex; align-items: center; justify-content: center; width: var(--tct-target-min); height: var(--tct-target-min); background: var(--tct-primary); color: var(--tct-on-primary); border-radius: var(--tct-radius-md); }
+    .account-preview .story-title { font-size: var(--tct-title-size); line-height: var(--tct-leading-tight); max-width: 14ch; margin-bottom: var(--tct-space-lg); font-weight: var(--tct-weight-bold); }
+    .account-preview .auth-form-area { width: 100%; max-width: 30rem; margin: 0 auto; }
+    .account-preview .compact-brand { display: none; margin-bottom: var(--tct-space-lg); }
+    .account-preview .auth-card { padding: var(--tct-space-xl); }
+    .account-preview .auth-top { display: flex; justify-content: space-between; gap: var(--tct-space-md); align-items: start; margin-bottom: var(--tct-space-lg); }
+    .account-preview .auth-top .tct-page-title { margin: 0 0 var(--tct-space-sm); }
+    .account-preview .auth-top p { margin: 0; }
+    .account-preview .auth-tabs { display: flex; gap: var(--tct-space-xs); background: var(--tct-surface-muted); border-radius: var(--tct-radius-md); padding: var(--tct-space-xs); margin-bottom: var(--tct-space-lg); }
+    .account-preview .auth-tab { flex: 1; border: 0; background: transparent; border-radius: var(--tct-radius-sm); padding: var(--tct-space-sm); color: var(--tct-text-secondary); font-weight: var(--tct-weight-semibold); }
+    .account-preview .auth-tab[aria-selected="true"] { background: var(--tct-surface); color: var(--tct-primary-strong); box-shadow: var(--tct-shadow-soft); }
+    .account-preview .social-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--tct-space-sm); margin-bottom: var(--tct-space-lg); }
+    .account-preview .social-row .btn { --bs-btn-color: var(--tct-text); --bs-btn-border-color: var(--tct-border-control); --bs-btn-hover-color: var(--tct-text); --bs-btn-hover-bg: var(--tct-surface-muted); --bs-btn-hover-border-color: var(--tct-primary); --bs-btn-active-color: var(--tct-text); --bs-btn-active-bg: var(--tct-primary-soft); --bs-btn-active-border-color: var(--tct-primary); }
+    .account-preview .separator { display: flex; align-items: center; gap: var(--tct-space-md); margin-bottom: var(--tct-space-lg); color: var(--tct-text-muted); font-size: var(--tct-text-sm); }
+    .account-preview .separator::before, .account-preview .separator::after { content: ''; height: 1px; flex: 1; background: var(--tct-border); }
+    .account-preview .field { margin-bottom: var(--tct-space-lg); min-width: 0; }
+    .account-preview .field .form-control { width: 100%; min-width: 0; }
+    .account-preview .input-group { flex-wrap: nowrap; }
+    .account-preview .input-group .form-control { flex: 1 1 auto; width: 1%; }
+    .account-preview .password-toggle { flex-shrink: 0; border-color: var(--tct-border-control); color: var(--tct-text-secondary); }
+    .account-preview .form-end { margin-top: var(--tct-space-lg); text-align: center; }
+    .account-preview .terms { display: flex; align-items: start; gap: var(--tct-space-sm); margin-bottom: var(--tct-space-lg); font-size: var(--tct-text-sm); }
+    .account-preview .terms input { flex-shrink: 0; margin-top: var(--tct-space-xs); }
+    .account-preview .recovery-card { max-width: 30rem; width: 100%; margin: 0 auto; padding: var(--tct-space-xl); }
+    .account-preview .recovery-card .brand { margin-bottom: var(--tct-space-xl); }
+    .account-preview .recovery-icon { display: inline-flex; align-items: center; justify-content: center; width: 4rem; height: 4rem; color: var(--tct-primary-strong); background: var(--tct-primary-soft); border-radius: var(--tct-radius-lg); font-size: var(--tct-text-2xl); margin-bottom: var(--tct-space-lg); }
+    .account-preview .recovery-card .tct-page-header { margin-bottom: var(--tct-space-lg); }
+    .account-preview .back-link { display: inline-flex; align-items: center; gap: var(--tct-space-sm); min-height: var(--tct-target-min); margin-top: var(--tct-space-md); }
+    .account-preview .alert { margin: 0 0 var(--tct-space-lg); padding: var(--tct-space-md); border-radius: var(--tct-radius-md); }
+    .account-preview .alert-danger { background: var(--tct-danger-soft); color: var(--tct-danger-text); border-color: var(--tct-danger); }
+    .account-preview .alert-success { background: var(--tct-success-soft); color: var(--tct-success-text); border-color: var(--tct-success); }
+    .account-preview .alert-info { background: var(--tct-info-soft); color: var(--tct-info-text); border-color: var(--tct-info); }
+    .account-preview .alert-warning { background: var(--tct-warning-soft); color: var(--tct-warning-text); border-color: var(--tct-warning); }
+    .account-preview .preview-shell-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--tct-space-md); padding: var(--tct-space-md) var(--tct-space-xl); min-height: var(--tct-header-h); background: var(--tct-surface); border-bottom: 1px solid var(--tct-border); }
+    .account-preview .shell-user { display: flex; align-items: center; gap: var(--tct-space-sm); color: var(--tct-text-secondary); }
+    .account-preview .shell-caption { padding: var(--tct-space-sm) var(--tct-space-xl); color: var(--tct-text-muted); font-size: var(--tct-text-xs); }
+    .account-preview .account-surface { max-width: var(--tct-container-max); margin: 0 auto; padding: var(--tct-main-pad); display: grid; grid-template-columns: 15rem minmax(0,1fr); gap: var(--tct-space-xl); align-items: start; }
+    .account-preview .preview-account-nav { padding: var(--tct-space-lg); background: var(--tct-surface); border: 1px solid var(--tct-border); border-radius: var(--tct-radius-lg); min-width: 0; }
+    .account-preview .preview-account-nav nav { display: grid; gap: var(--tct-space-sm); }
+    .account-preview .nav-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-sm); margin-bottom: var(--tct-space-lg); }
+    .account-preview .preview-nav-item { display: flex; align-items: center; gap: var(--tct-space-sm); width: 100%; text-align: left; border: 0; background: transparent; color: var(--tct-text-secondary); text-decoration: none; border-radius: var(--tct-radius-md); padding: var(--tct-space-sm) var(--tct-space-md); overflow-wrap: anywhere; }
+    .account-preview .preview-nav-item[aria-current="page"], .account-preview .preview-nav-item.active { color: var(--tct-primary-strong); background: var(--tct-primary-tint); font-weight: var(--tct-weight-semibold); }
+    .account-preview .preview-nav-item i { width: 1.25rem; text-align: center; flex-shrink: 0; }
+    .account-preview .nav-logout { margin-top: var(--tct-space-xl); border-top: 1px solid var(--tct-border); padding-top: var(--tct-space-md); }
+    .account-preview .mobile-account-toggle { display: none; margin-bottom: var(--tct-space-lg); }
+    .account-preview .account-content { min-width: 0; }
+    .account-preview .identity { display: flex; align-items: center; gap: var(--tct-space-lg); margin-bottom: var(--tct-space-xl); flex-wrap: wrap; }
+    .account-preview .avatar-wrap { position: relative; flex-shrink: 0; padding: 0 var(--tct-space-sm) var(--tct-space-sm) 0; }
+    .account-preview .avatar { display: flex; align-items: center; justify-content: center; width: 5rem; height: 5rem; border-radius: var(--tct-radius-pill); background: var(--tct-primary-soft); color: var(--tct-primary-strong); font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-semibold); object-fit: cover; }
+    .account-preview .avatar-edit { position: absolute; right: 0; bottom: 0; }
+    .account-preview .identity-text { min-width: 0; flex: 1 1 12rem; overflow-wrap: anywhere; }
+    .account-preview .identity-text h2 { margin-bottom: var(--tct-space-sm); }
+    .account-preview .identity-text p { margin-bottom: var(--tct-space-sm); }
+    .account-preview .profile-stats { display: flex; flex-wrap: wrap; gap: var(--tct-space-md) var(--tct-space-xl); margin: 0 0 var(--tct-space-xl); }
+    .account-preview .profile-stats div { display: flex; align-items: baseline; gap: var(--tct-space-sm); }
+    .account-preview .profile-stats dt { font-weight: var(--tct-weight-regular); color: var(--tct-text-muted); }
+    .account-preview .profile-stats dd { margin: 0; font-weight: var(--tct-weight-semibold); }
+    .account-preview .profile-columns { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: var(--tct-space-lg); margin-bottom: var(--tct-space-xl); }
+    .account-preview .panel { padding: var(--tct-space-lg); margin-bottom: var(--tct-space-lg); }
+    .account-preview .profile-columns .panel { margin-bottom: 0; }
+    .account-preview .info-stack { display: grid; gap: var(--tct-space-lg); align-content: start; min-width: 0; }
+    .account-preview .form-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: var(--tct-space-sm); margin-top: var(--tct-space-lg); }
+    .account-preview .badge-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--tct-space-md); }
+    .account-preview .badge-list li { display: flex; align-items: start; gap: var(--tct-space-md); padding-block: var(--tct-space-sm); }
+    .account-preview .badge-list i { color: var(--tct-warning-text); margin-top: var(--tct-space-xs); }
+    .account-preview .badge-list p { margin: 0; }
+    .account-preview .tct-badge { white-space: normal; }
+    .account-preview .section-nav { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); margin: 0 0 var(--tct-space-xl); }
+    .account-preview .section-nav .btn { white-space: normal; }
+    .account-preview .security-form { max-width: var(--tct-measure); }
+    .account-preview .security-form + .security-form { border-top: 1px solid var(--tct-border); margin-top: var(--tct-space-xl); padding-top: var(--tct-space-xl); }
+    .account-preview .email-row { display: flex; align-items: end; gap: var(--tct-space-sm); flex-wrap: wrap; }
+    .account-preview .email-row .field { flex: 1 1 16rem; margin-bottom: 0; }
+    .account-preview .password-fields { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--tct-space-md); }
+    .account-preview .linked-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--tct-space-md); padding: var(--tct-space-lg) 0; border-top: 1px solid var(--tct-border); }
+    .account-preview .linked-row .provider { display: flex; align-items: center; gap: var(--tct-space-md); min-width: 0; flex: 1 1 12rem; }
+    .account-preview .linked-row p { margin: 0; }
+    .account-preview .preference-row { display: flex; align-items: start; gap: var(--tct-space-md); margin-top: var(--tct-space-lg); }
+    .account-preview .preference-row p { margin: 0; }
+    .account-preview .danger-panel { border-color: var(--tct-danger); }
+    .account-preview .danger-panel h2 { color: var(--tct-danger-text); }
+    .account-preview .denied-grid { max-width: var(--tct-container-max); margin: 0 auto; padding: var(--tct-main-pad); display: grid; grid-template-columns: 15rem minmax(0,1fr); gap: var(--tct-space-xl); }
+    .account-preview .denied-content { max-width: var(--tct-container-narrow); padding: var(--tct-space-xl); }
+    .account-preview .denied-content .form-actions { justify-content: start; }
+    .account-preview .modal-content { border-radius: var(--tct-radius-xl); background: var(--tct-surface); color: var(--tct-text); }
+    .account-preview .modal-header, .account-preview .modal-body, .account-preview .modal-footer { padding: var(--tct-space-lg); }
+    .account-preview .modal-title { font-size: var(--tct-text-xl); margin: 0; }
+    .account-preview .modal-footer { gap: var(--tct-space-sm); }
+    .account-preview .offcanvas-header { padding: 0; margin-bottom: var(--tct-space-lg); }
+    .account-preview .offcanvas-body { padding: 0; flex-grow: 0; overflow: visible; }
+    .account-preview .offcanvas-start { width: min(20rem, calc(100vw - var(--tct-space-xl))); }
+    .account-preview .preview-footer { padding: var(--tct-space-lg) var(--tct-space-xl); border-top: 1px solid var(--tct-border); font-size: var(--tct-text-sm); color: var(--tct-text-muted); }
+    .account-preview [hidden][hidden] { display: none; }
+    @media (max-width: 1199.98px) {
+      .account-preview .profile-columns, .account-preview .password-fields { grid-template-columns: minmax(0,1fr); }
+    }
+    @media (max-width: 992px) {
+      .account-preview .auth-grid { grid-template-columns: minmax(0,1fr); }
+      .account-preview .auth-story { display: none; }
+      .account-preview .compact-brand { display: inline-flex; }
+      .account-preview .account-surface { grid-template-columns: minmax(0,1fr); }
+      .account-preview .mobile-account-toggle { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
+      .account-preview .preview-account-nav:not(.offcanvas) { display: none; }
+      .account-preview .preview-account-nav.offcanvas { border-radius: 0; border: 0; overflow-y: auto; }
+      .account-preview .denied-grid { grid-template-columns: minmax(0,1fr); }
+      .account-preview .learner-nav { display: none; }
+    }
+    @media (min-width: 993px) {
+      .account-preview .preview-account-nav.sidebar-collapsed { width: 4.5rem; padding-inline: var(--tct-space-sm); }
+      .account-preview .account-surface:has(.sidebar-collapsed) { grid-template-columns: 4.5rem minmax(0,1fr); }
+      .account-preview .sidebar-collapsed .nav-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+      .account-preview .sidebar-collapsed .preview-nav-item { justify-content: center; padding: var(--tct-space-sm); }
+      .account-preview .sidebar-collapsed .nav-heading { justify-content: center; }
+      .account-preview .sidebar-collapsed .nav-heading strong { display: none; }
+    }
+    @media (max-width: 768px) {
+      .account-preview .review-bar, .account-preview .preview-shell-header, .account-preview .preview-footer { padding: var(--tct-space-md); }
+      .account-preview .auth-surface, .account-preview .account-surface, .account-preview .denied-grid { padding: var(--tct-main-pad-sm); }
+      .account-preview .auth-card, .account-preview .recovery-card, .account-preview .denied-content { padding: var(--tct-space-lg); }
+      .account-preview .shell-caption { padding-inline: var(--tct-space-md); }
+      .account-preview .shell-user { font-size: var(--tct-text-sm); }
+    }
+    @media (max-width: 575.98px) {
+      .account-preview .social-row { grid-template-columns: minmax(0,1fr); }
+      .account-preview .form-actions .btn, .account-preview .email-row > .btn { width: 100%; }
+      .account-preview .review-controls .btn { width: 100%; }
+      .account-preview .review-control { max-width: none; }
+      .account-preview .identity { gap: var(--tct-space-md); }
+    }
+    @media (max-height: 650px) {
+      .account-preview .auth-surface { align-content: start; }
+      .account-preview .auth-story { justify-content: start; }
+    }
+  </style>
+</head>
+<body class="tct-theme account-preview">
+  <a class="review-skip" href="#preview-main">Chuyển đến màn hình xem trước</a>
+  <header class="review-bar" id="review-bar">
+    <div class="review-heading"><strong>Account UI · TCT English</strong><span class="tct-badge tct-badge--success">Approved · Châu · 2026-11-08</span></div>
+    <p class="caption muted">Phương án B đã được Châu duyệt · Stage I chờ khởi chạy · Preview tĩnh, dữ liệu tổng hợp; không gửi form, lưu tài khoản hoặc mở OAuth.</p>
+    <div class="review-controls">
+      <div class="review-control"><label class="form-label" for="screen-picker">Màn hình</label><select class="form-select" id="screen-picker"><option value="au01">AU01 · Đăng nhập / đăng ký</option><option value="au02">AU02 · Quên mật khẩu</option><option value="au03">AU03 · Kiểm tra email</option><option value="au04">AU04 · Đặt lại mật khẩu</option><option value="au05">AU05 · Hồ sơ</option><option value="au06">AU06 · Cài đặt</option><option value="au07">AU07 · Không đủ quyền</option></select></div>
+      <div class="review-control"><label class="form-label" for="state-picker">Trạng thái minh họa</label><select class="form-select" id="state-picker"></select></div>
+      <button class="btn btn-outline-primary" id="long-copy" type="button" aria-pressed="false">Thử văn bản dài</button>
+    </div>
+    <p class="review-status" id="review-status" role="status">Chọn màn hình và trạng thái để review. Nội dung không dùng tài khoản thật.</p>
+  </header>
+  <main class="preview-stage" id="preview-main" tabindex="-1">
+    <section class="screen" id="au01" aria-label="Đăng nhập và đăng ký">
+      <div class="auth-surface"><div class="auth-grid">
+        <aside class="auth-story" aria-label="TCT English"><div class="brand"><span class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>TCT English</div><div class="auth-story-illustration"><img src="../../TCTEnglish/wwwroot/images/auth/auth-illustration.svg" alt="Học tiếng Anh cùng TCT English" class="auth-story-img" style="max-height:220px;max-width:100%;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(66,85,255,0.10));" /></div><div><h2 class="story-title">Một nơi cho việc học tiếng Anh mỗi ngày.</h2><p class="muted">Ôn từ vựng, luyện kỹ năng và theo dõi mục tiêu học tập của bạn.</p></div><p class="caption muted">Học tập chủ động cùng TCT English.</p></aside>
+        <div class="auth-form-area"><div class="brand compact-brand"><span class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>TCT English</div><div class="tct-card auth-card">
+          <header class="auth-top"><div><h1 class="tct-page-title" id="auth-heading">Đăng nhập</h1><p class="muted" id="auth-description">Tiếp tục học với TCT English.</p></div><button class="btn btn-outline-primary tct-btn-icon" type="button" id="btn-close-auth" aria-label="Quay lại" data-demo="Quay lại trang trước"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button></header>
+          <div class="auth-tabs" role="tablist" aria-label="Chọn hình thức xác thực"><button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="true" aria-controls="form-login" tabindex="0">Đăng nhập</button><button type="button" class="auth-tab" id="tab-register" role="tab" aria-selected="false" aria-controls="form-register" tabindex="-1">Đăng ký</button></div>
+          <div class="alert alert-success" id="auth-success" role="status" hidden>Đăng ký thành công! Vui lòng đăng nhập bằng tài khoản vừa tạo.</div>
+          <div class="alert alert-danger" id="auth-server-error" role="alert" hidden>Email này đã được sử dụng.</div>
+          <div class="social-row"><button class="btn btn-outline-secondary" id="btn-google" type="button" data-demo="Chuyển sang Google — chỉ minh họa"><i class="fa-brands fa-google me-2" aria-hidden="true"></i>Google</button><button class="btn btn-outline-secondary" id="btn-facebook" type="button" data-demo="Chuyển sang Facebook — chỉ minh họa"><i class="fa-brands fa-facebook me-2" aria-hidden="true"></i>Facebook</button></div>
+          <div class="separator">hoặc bằng email</div>
+          <form id="form-login" role="tabpanel" aria-labelledby="tab-login" data-static-form>
+            <div class="field"><label class="form-label" for="login-email">Email</label><input class="form-control" id="login-email" type="email" placeholder="ban@example.com" autocomplete="email" required></div>
+            <div class="field"><label class="form-label" for="login-password">Mật khẩu</label><div class="input-group"><input class="form-control" id="login-password" type="password" autocomplete="current-password" required><button class="btn password-toggle tct-btn-icon" type="button" aria-label="Hiện mật khẩu đăng nhập" aria-controls="login-password" aria-pressed="false" data-password="login-password"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div><a class="back-link" href="#au02" data-screen="au02">Quên mật khẩu?</a></div>
+            <div class="alert alert-danger" id="login-error-msg" role="alert" tabindex="-1" hidden>Email hoặc mật khẩu không đúng.</div>
+            <div class="alert alert-warning" id="blocked-alert" role="alert" hidden><strong>Tài khoản đã bị khóa</strong><p>Lý do: <span id="blocked-reason">Trạng thái minh họa.</span></p><p>Mở khóa: <span id="blocked-expiry">Theo thông báo của hệ thống.</span></p><button class="btn btn-outline-primary" type="button" data-demo="Đường dẫn khiếu nại tài khoản">Gửi khiếu nại</button></div>
+            <button class="btn btn-primary w-100" type="submit" id="btn-login-submit">Đăng nhập</button><p class="form-end caption">Mới sử dụng TCT English? <button class="btn btn-link" type="button" data-auth-tab="register">Tạo tài khoản</button></p>
+          </form>
+          <form id="form-register" role="tabpanel" aria-labelledby="tab-register" data-static-form hidden>
+            <div class="field"><label class="form-label" for="register-email">Email</label><input class="form-control" id="register-email" type="email" autocomplete="email" placeholder="ban@example.com" required></div>
+            <div class="field"><label class="form-label" for="register-name">Tên hiển thị</label><input class="form-control" id="register-name" type="text" autocomplete="name" placeholder="Tên của bạn" required></div>
+            <div class="field"><label class="form-label" for="register-password">Mật khẩu</label><div class="input-group"><input class="form-control" id="register-password" type="password" autocomplete="new-password" aria-describedby="register-password-hint" minlength="6" required><button class="btn password-toggle tct-btn-icon" type="button" aria-label="Hiện mật khẩu đăng ký" aria-controls="register-password" aria-pressed="false" data-password="register-password"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div><p class="form-text" id="register-password-hint">Ít nhất 6 ký tự theo yêu cầu hiện tại.</p></div>
+            <div class="terms"><input class="form-check-input" id="terms" type="checkbox" required><label for="terms">Tôi chấp nhận <strong>Điều khoản dịch vụ</strong> và <strong>Chính sách quyền riêng tư</strong> của TCT English.</label></div>
+            <button class="btn btn-primary w-100" type="submit" id="btn-register-submit">Đăng ký</button><p class="form-end caption">Bạn đã có tài khoản? <button class="btn btn-link" type="button" data-auth-tab="login">Đăng nhập</button></p>
+          </form>
+          <div id="loader-overlay" role="status" hidden><span id="loading-fill">Đang chuyển đến trang học…</span></div>
+        </div></div>
+      </div></div>
+    </section>
+    <section class="screen" id="au02" hidden aria-label="Quên mật khẩu"><div class="auth-surface"><div class="tct-card recovery-card">
+      <div class="brand"><span class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>TCT English</div>
+      <header class="tct-page-header"><h1 class="tct-page-title">Quên mật khẩu</h1><p class="tct-page-desc">Nhập email đã dùng để đăng ký. Nếu email có trong hệ thống, bạn sẽ nhận được hướng dẫn đặt lại mật khẩu.</p></header>
+      <form id="form-forgot-password" data-static-form><div class="field"><label class="form-label" for="forgot-email">Địa chỉ email</label><input class="form-control" type="email" id="forgot-email" autocomplete="email" placeholder="ban@example.com" required aria-describedby="forgot-error"><p class="invalid-feedback" id="forgot-error">Vui lòng nhập địa chỉ email hợp lệ.</p></div><button type="submit" class="btn btn-primary w-100" id="btn-forgot-submit">Gửi liên kết khôi phục</button></form>
+      <a class="back-link" href="#au01" data-screen="au01"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Quay lại đăng nhập</a>
+    </div></div></section>
+    <section class="screen" id="au03" hidden aria-label="Xác nhận yêu cầu khôi phục"><div class="auth-surface"><div class="tct-card recovery-card">
+      <div class="brand"><span class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>TCT English</div><div class="recovery-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></div>
+      <header class="tct-page-header"><h1 class="tct-page-title">Hãy kiểm tra email của bạn</h1></header>
+      <div class="tct-state tct-state--success" role="status"><span class="tct-state__icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span><p class="tct-state__title">Yêu cầu đã được tiếp nhận</p><p class="tct-state__message">Nếu email này tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.</p></div>
+      <p class="muted mt-3">Kiểm tra cả thư mục thư rác. Liên kết khôi phục có thời hạn.</p><a class="btn btn-primary w-100" href="#au01" data-screen="au01">Quay lại đăng nhập</a><a class="back-link" href="#au02" data-screen="au02">Nhập lại email</a>
+    </div></div></section>
+    <section class="screen" id="au04" hidden aria-label="Đặt lại mật khẩu"><div class="auth-surface"><div class="tct-card recovery-card">
+      <div class="brand"><span class="brand-icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>TCT English</div><header class="tct-page-header"><h1 class="tct-page-title">Đặt lại mật khẩu</h1><p class="tct-page-desc">Nhập mật khẩu mới cho tài khoản của bạn. Mật khẩu phải có ít nhất 6 ký tự.</p></header>
+      <div class="alert alert-danger" id="reset-error" role="alert" tabindex="-1" hidden><strong>Liên kết đặt lại mật khẩu đã hết hạn hoặc không hợp lệ.</strong><p class="mb-0">Yêu cầu liên kết mới để tiếp tục. <a href="#au02" data-screen="au02">Gửi yêu cầu mới</a></p></div>
+      <!-- No hidden Token/Email in this synthetic preview. The Razor implementation preserves them. -->
+      <form id="form-reset-password" data-static-form><div class="field"><label class="form-label" for="reset-new-password">Mật khẩu mới</label><div class="input-group"><input class="form-control" id="reset-new-password" type="password" autocomplete="new-password" minlength="6" required><button class="btn password-toggle tct-btn-icon" type="button" aria-controls="reset-new-password" data-password="reset-new-password" aria-label="Hiện mật khẩu mới" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div></div><div class="field"><label class="form-label" for="reset-confirm-password">Xác nhận mật khẩu mới</label><div class="input-group"><input class="form-control" id="reset-confirm-password" type="password" autocomplete="new-password" required aria-describedby="reset-mismatch"><button class="btn password-toggle tct-btn-icon" type="button" aria-controls="reset-confirm-password" data-password="reset-confirm-password" aria-label="Hiện xác nhận mật khẩu mới" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div><p class="text-danger caption mt-1" id="reset-mismatch" hidden>Mật khẩu xác nhận không khớp.</p></div><button type="submit" class="btn btn-primary w-100" id="btn-reset-submit">Xác nhận đặt lại mật khẩu</button></form>
+      <a class="back-link" href="#au01" data-screen="au01"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Quay lại đăng nhập</a>
+    </div></div></section>
+    <section class="screen" id="au05" hidden aria-label="Hồ sơ"><div class="preview-shell-header"><span class="brand">TCT</span><span class="caption muted">Học tập · Từ vựng · Mục tiêu</span><span class="shell-user"><i class="fa-regular fa-user" aria-hidden="true"></i>Học viên minh họa</span></div><p class="shell-caption">Khung học viên mô phỏng; header/footer và menu ứng dụng thật giữ do layout quản lý.</p><div class="account-surface">
+      <aside class="preview-account-nav" id="accountSidebar" aria-label="Menu tài khoản"><div class="nav-heading"><strong>Tài khoản</strong><button class="btn btn-outline-primary tct-btn-icon" id="accountSidebarToggle" type="button" aria-controls="accountSidebar" aria-expanded="true" aria-label="Thu gọn hoặc đóng menu tài khoản"><i class="fa-solid fa-chevron-left" id="accountSidebarToggleIcon" aria-hidden="true"></i></button></div><nav aria-label="Tài khoản"><button class="preview-nav-item sidebar-nav-item active" type="button" data-tab="profile" aria-current="page"><i class="fa-regular fa-user" aria-hidden="true"></i><span class="nav-label">Hồ sơ</span></button><button class="preview-nav-item sidebar-nav-item" type="button" data-tab="security"><i class="fa-solid fa-shield-alt" aria-hidden="true"></i><span class="nav-label">Cài đặt</span></button><button class="preview-nav-item sidebar-nav-item" type="button" data-tab="subscription"><i class="fa-solid fa-gem" aria-hidden="true"></i><span class="nav-label">Gói dịch vụ</span></button><a class="preview-nav-item" href="#au06" data-screen="au06"><i class="fa-solid fa-sliders" aria-hidden="true"></i><span class="nav-label">Tất cả cài đặt</span></a></nav><div class="nav-logout"><button class="btn btn-outline-danger w-100" type="button" data-demo="Đăng xuất — chỉ minh họa">Đăng xuất</button></div></aside>
+      <div class="account-content"><button class="btn btn-outline-primary mobile-account-toggle" id="sidebarMobileToggle" type="button" aria-controls="accountSidebar" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i>Menu tài khoản</button><header class="tct-page-header"><h1 class="tct-page-title">Hồ sơ của tôi</h1><p class="tct-page-desc">Cập nhật thông tin cá nhân và xem thành tích học tập.</p></header><div id="profile-feedback" class="alert alert-success" role="status" hidden>Cập nhật thông tin cá nhân thành công.</div>
+        <div class="account-tab-pane active" id="tab-profile"><div class="identity"><div class="avatar-wrap"><div class="avatar" id="avatarFallback">M</div><img class="avatar" id="avatarPreview" alt="Ảnh đại diện minh họa" hidden><button class="btn btn-primary tct-btn-icon avatar-edit" type="button" id="avatarClickTarget" aria-label="Thay đổi ảnh đại diện"><i class="fa-solid fa-pen" aria-hidden="true"></i></button></div><div class="identity-text"><h2 data-long-name>Minh Anh</h2><p class="muted" data-long-email>minhanh@example.invalid</p><span class="tct-badge tct-badge--primary" id="profile-role">Standard</span></div></div>
+          <dl class="profile-stats"><div><dt>Chuỗi học</dt><dd id="profile-streak">0 ngày</dd></div><div><dt>Danh hiệu</dt><dd id="profile-badge-count">0</dd></div></dl>
+          <div class="profile-columns"><section class="tct-card panel"><h2>Thông tin cá nhân</h2><form id="profile-preview-form" data-static-form><input class="visually-hidden" type="file" id="Avatar" accept=".jpg,.jpeg,.png" tabindex="-1"><p class="form-text mb-3">JPG hoặc PNG, tối đa 2 MB. Ảnh chỉ được lưu khi bạn chọn Lưu thay đổi.</p><p class="caption" id="avatar-status" role="status" hidden></p><div class="field"><label class="form-label" for="FullName">Họ và tên</label><input class="form-control" type="text" id="FullName" value="Minh Anh" autocomplete="name" required></div><div class="field"><label class="form-label" for="profile-display-email">Địa chỉ email</label><input class="form-control" id="profile-display-email" type="email" value="minhanh@example.invalid" readonly aria-describedby="profile-email-hint"><p class="form-text" id="profile-email-hint">Đổi email tại <a href="#au06" data-screen="au06">Cài đặt tài khoản</a>.</p></div><div class="form-actions"><button type="button" class="btn btn-outline-primary" id="profile-cancel">Hủy</button><button type="submit" class="btn btn-primary" id="profile-save">Lưu thay đổi</button></div></form></section><aside class="info-stack"><section class="tct-card panel"><h2>Gói thành viên</h2><p id="profile-plan">TCT English Standard</p><p class="muted caption">Chưa có thông tin thời hạn tại đây.</p><a href="#subscription" class="btn btn-outline-primary" data-profile-tab="subscription">Xem gói dịch vụ</a></section><section class="tct-card panel"><h2>Mục tiêu học tập</h2><p class="muted caption">Theo dõi tiến độ và thiết lập chỉ tiêu tại trang Mục tiêu.</p><button class="btn btn-link px-0" type="button" data-demo="Đi đến /Goals — chỉ minh họa">Xem mục tiêu học tập</button></section></aside></div>
+          <section class="tct-card panel"><h2>Danh hiệu đã đạt</h2><div class="tct-state tct-state--empty" role="status" id="profile-empty"><span class="tct-state__icon" aria-hidden="true"><i class="fa-solid fa-award"></i></span><p class="tct-state__title">Chưa có danh hiệu</p><p class="tct-state__message">Danh hiệu sẽ xuất hiện khi bạn hoàn thành các mốc học tập.</p><button type="button" class="btn btn-primary" data-demo="Đi đến /Goals — chỉ minh họa">Xem mục tiêu học tập</button></div><ul class="badge-list" id="profile-earned" hidden><li><i class="fa-solid fa-medal" aria-hidden="true"></i><div><strong>Khởi đầu chủ động</strong><p class="caption muted">Hoàn thành buổi học đầu tiên.</p></div></li><li><i class="fa-solid fa-fire" aria-hidden="true"></i><div><strong>Ba ngày liên tiếp</strong><p class="caption muted">Duy trì chuỗi học ba ngày.</p></div></li></ul></section>
+        </div>
+        <div class="account-tab-pane" id="tab-security" hidden><h2 tabindex="-1" id="profile-security-heading">Bảo mật &amp; Mật khẩu</h2><p class="muted">Quản lý thêm thông báo và liên kết tại <a href="#au06" data-screen="au06">Cài đặt tài khoản</a>.</p><div class="tct-card panel" id="profile-security-host"></div><section class="tct-card panel danger-panel"><h2>Vùng nguy hiểm</h2><p>Tất cả dữ liệu học tập sẽ không thể khôi phục sau khi xóa.</p><button class="btn btn-outline-danger" type="button" data-delete-trigger>Xóa tài khoản</button></section></div>
+        <div class="account-tab-pane" id="tab-subscription" hidden><h2 tabindex="-1" id="profile-subscription-heading">Gói dịch vụ</h2><section class="tct-card panel"><h3 id="subscription-plan">TCT English Standard</h3><p class="muted">Chưa có thông tin thời hạn tại đây.</p><button class="btn btn-primary" type="button" data-demo="Mở /Premium — chỉ minh họa" id="subscription-action">Nâng cấp Premium</button></section></div>
+      </div></div><div id="sidebarOverlay" class="offcanvas-backdrop fade" hidden></div></section>
+    <section class="screen" id="au06" hidden aria-label="Cài đặt"><div class="preview-shell-header"><span class="brand">TCT</span><span class="caption muted">Học tập · Từ vựng · Mục tiêu</span><span class="shell-user"><i class="fa-regular fa-user" aria-hidden="true"></i>Học viên minh họa</span></div><p class="shell-caption">Cùng shell và menu Account; preview không cập nhật tài khoản.</p><div class="account-surface">
+      <aside class="preview-account-nav" id="settingsAccountSidebar" aria-label="Menu tài khoản"><div class="nav-heading"><strong>Tài khoản</strong><button class="btn btn-outline-primary tct-btn-icon" type="button" id="settingsAccountSidebarToggle" aria-label="Thu gọn hoặc đóng menu tài khoản" aria-expanded="true"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button></div><nav aria-label="Tài khoản"><a class="preview-nav-item" href="#au05" data-screen="au05"><i class="fa-regular fa-user" aria-hidden="true"></i><span class="nav-label">Hồ sơ</span></a><a class="preview-nav-item" href="#au06" data-screen="au06" aria-current="page"><i class="fa-solid fa-shield-alt" aria-hidden="true"></i><span class="nav-label">Cài đặt</span></a><a class="preview-nav-item" href="#subscription" data-go-subscription><i class="fa-solid fa-gem" aria-hidden="true"></i><span class="nav-label">Gói dịch vụ</span></a></nav><div class="nav-logout"><button class="btn btn-outline-danger w-100" type="button" data-demo="Đăng xuất — chỉ minh họa">Đăng xuất</button></div></aside>
+      <div class="account-content"><button class="btn btn-outline-primary mobile-account-toggle" id="settingsSidebarMobileToggle" type="button" aria-controls="settingsAccountSidebar" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i>Menu tài khoản</button><header class="tct-page-header"><h1 class="tct-page-title">Cài đặt tài khoản</h1><p class="tct-page-desc">Quản lý bảo mật, liên kết và các tùy chọn hiện có.</p></header><div class="alert alert-success" id="settings-feedback" role="status" hidden>Cập nhật Email thành công.</div>
+        <nav class="section-nav" aria-label="Các mục cài đặt"><button class="btn btn-outline-primary settings-section-nav-item" type="button" id="navSecurity" data-section="security">Bảo mật</button><button class="btn btn-outline-primary settings-section-nav-item" type="button" id="navLinked" data-section="linked">Tài khoản liên kết</button><button class="btn btn-outline-primary settings-section-nav-item" type="button" id="navNotifications" data-section="notifications">Thông báo</button><button class="btn btn-outline-primary settings-section-nav-item" type="button" id="navDanger" data-section="danger">Vùng nguy hiểm</button></nav>
+        <section class="tct-card panel settings-section-block" id="section-security"><h2 tabindex="-1">Bảo mật &amp; Mật khẩu</h2><div class="alert alert-info" id="social-password-note" hidden>Nếu bạn chưa có mật khẩu riêng, hãy dùng <a href="#au02" data-screen="au02">Quên mật khẩu</a> để yêu cầu hướng dẫn.</div><div id="settings-security-host"></div></section>
+        <section class="tct-card panel settings-section-block" id="section-linked"><h2 tabindex="-1">Tài khoản liên kết</h2><p class="muted caption">Hệ thống chưa cung cấp bằng chứng liên kết cho mọi tài khoản. Thông báo xác nhận email không thay thế trạng thái đã kết nối.</p><div class="linked-row"><div class="provider"><i class="fa-brands fa-google" aria-hidden="true"></i><div><strong>Google</strong><p class="caption muted" id="google-status">Chưa kết nối</p></div></div><button class="btn btn-outline-primary" type="button" id="google-connect" data-demo="Mở /Account/LinkGoogle — chỉ minh họa">Kết nối</button><span class="tct-badge tct-badge--warning" id="google-unconfirmed" hidden>Chưa xác nhận</span><span class="tct-badge tct-badge--success" id="google-linked" hidden>Đã kết nối</span></div><div class="linked-row"><div class="provider"><i class="fa-brands fa-facebook" aria-hidden="true"></i><div><strong>Facebook</strong><p class="caption muted">Chưa kết nối</p></div></div><button class="btn btn-outline-primary" type="button" data-demo="Mở /Account/LinkFacebook — chỉ minh họa">Kết nối</button></div></section>
+        <section class="tct-card panel settings-section-block" id="section-notifications"><h2 tabindex="-1">Thông báo</h2><span class="tct-badge tct-badge--warning mb-3">Chưa hỗ trợ</span><p class="muted">Các tùy chọn này hiện chưa được lưu. Bạn chưa thể bật hoặc tắt tại đây.</p><fieldset disabled aria-describedby="preference-note"><legend class="caption">Tùy chọn thông báo</legend><label class="preference-row"><input type="checkbox" class="form-check-input notification-checkbox"><span><strong>Thông báo đẩy (Push)</strong><span class="d-block muted caption">Nhắc lịch học và ôn tập trên thiết bị.</span></span></label><label class="preference-row"><input type="checkbox" class="form-check-input notification-checkbox"><span><strong>Email định kỳ</strong><span class="d-block muted caption">Bản tin học tập và báo cáo tiến độ qua email.</span></span></label></fieldset><p class="form-text mt-3" id="preference-note">Trạng thái này mô tả khả năng chỉnh tùy chọn, không cho biết mọi thông báo của bạn đang bật hay tắt.</p></section>
+        <section class="tct-card panel danger-panel settings-section-block" id="section-danger"><h2 tabindex="-1">Vùng nguy hiểm</h2><h3>Xóa tài khoản vĩnh viễn</h3><p class="muted">Một khi đã xóa, tất cả dữ liệu học tập của bạn sẽ không thể khôi phục.</p><button type="button" class="btn btn-outline-danger" data-delete-trigger>Xóa tài khoản</button></section>
+      </div></div><div id="settingsSidebarOverlay" class="offcanvas-backdrop fade" hidden></div></section>
+    <section class="screen" id="au07" hidden aria-label="Không đủ quyền"><div class="preview-shell-header"><span class="brand">TCT</span><span class="caption muted">Khung học viên minh họa</span><span class="shell-user">Học viên minh họa</span></div><div class="denied-grid"><aside class="tct-card panel learner-nav"><nav aria-label="Menu học tập"><a class="preview-nav-item" href="#au05" data-screen="au05">Hồ sơ</a><button class="preview-nav-item" type="button" data-demo="Trang học từ vựng">Từ vựng</button><button class="preview-nav-item" type="button" data-demo="Trang mục tiêu">Mục tiêu</button></nav></aside><section class="tct-card denied-content"><div class="recovery-icon" aria-hidden="true"><i class="fa-solid fa-lock"></i></div><header class="tct-page-header"><h1 class="tct-page-title">Bạn không có quyền truy cập trang này</h1></header><p class="muted">Tài khoản hiện tại không đủ quyền để mở khu vực quản trị hoặc tài nguyên được bảo vệ. Nếu bạn nghĩ đây là nhầm lẫn, hãy đăng nhập bằng đúng tài khoản hoặc quay lại trang học.</p><div class="form-actions"><button class="btn btn-primary" type="button" data-demo="Home/Index — chỉ minh họa">Quay lại trang chủ</button><a class="btn btn-outline-primary" href="#au05" data-screen="au05">Về hồ sơ của tôi</a></div><p class="caption muted mt-4">Preview của trang HTTP 403. Tệp HTML tĩnh không phát sinh phản hồi HTTP 403.</p></section></div></section>
+  </main>
+  <footer class="preview-footer">Dữ liệu và trạng thái đều tổng hợp. Preview hỗ trợ review bố cục; Razor, quyền truy cập, lưu dữ liệu, gửi email và OAuth cần kiểm tra riêng khi triển khai.</footer>
+  <div class="modal fade" id="blockedAccountModal" tabindex="-1" aria-labelledby="blockedAccountModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h2 class="modal-title" id="blockedAccountModalLabel">Tài khoản đã bị khóa</h2><button class="btn btn-outline-primary tct-btn-icon" type="button" data-bs-dismiss="modal" aria-label="Đóng thông báo tài khoản bị khóa"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div><div class="modal-body"><p><strong>Lý do:</strong> Ví dụ trạng thái bị khóa để review giao diện.</p><p><strong>Mở khóa:</strong> Theo thông báo của hệ thống.</p><button class="btn btn-outline-primary" type="button" data-demo="Gửi khiếu nại — chỉ minh họa">Gửi khiếu nại</button></div><div class="modal-footer"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">Đóng</button></div></div></div></div>
+  <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h2 class="modal-title" id="deleteAccountModalLabel">Xác nhận xóa tài khoản</h2><button class="btn btn-outline-primary tct-btn-icon" type="button" data-bs-dismiss="modal" aria-label="Đóng xác nhận xóa tài khoản"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div><div class="modal-body"><p>Tất cả dữ liệu học tập, bộ từ vựng và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>. Hành động này không thể hoàn tác.</p><label class="form-label" for="deleteConfirmInput">Gõ <strong>CONFIRM</strong> để tiếp tục:</label><input class="form-control" id="deleteConfirmInput" autocomplete="off" placeholder="CONFIRM"><p class="form-text mt-3">Bản xem trước không thực hiện thao tác xóa.</p></div><div class="modal-footer"><button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Hủy</button><button class="btn btn-danger" id="deleteAccountBtn" type="button" disabled>Xóa vĩnh viễn</button></div></div></div></div>
+  <script src="../../TCTEnglish/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    'use strict';
+    // Review-only state. No backend URLs, fetch, XHR, storage of form values or real tokens.
+    const $ = id => document.getElementById(id);
+    const screenStates = {
+      au01: [['login','Đăng nhập'],['register','Đăng ký'],['error','Sai thông tin đăng nhập'],['network','Lỗi kết nối'],['pending','Đang đăng nhập'],['register-pending','Đang đăng ký'],['register-error','Email đăng ký đã sử dụng'],['registered','Đăng ký thành công'],['reset-success','Đặt lại mật khẩu thành công'],['blocked','Tài khoản khóa · modal'],['external-blocked','Tài khoản khóa · inline']],
+      au02: [['default','Nhập email'],['invalid','Email không hợp lệ'],['pending','Đang xử lý']],
+      au03: [['default','Thông báo chung sau yêu cầu']],
+      au04: [['default','Nhập mật khẩu mới'],['mismatch','Mật khẩu xác nhận không khớp'],['expired','Liên kết hết hạn / không hợp lệ'],['pending','Đang xử lý'],['success','Kết quả thành công · về đăng nhập']],
+      au05: [['default','Standard · chưa có danh hiệu'],['earned','Standard · đã đạt danh hiệu'],['premium','Premium · thời hạn chưa biết'],['admin','Vai trò Admin'],['avatar-error','Ảnh không đọc được'],['avatar-preview','Ảnh mới chưa lưu'],['success','Lưu thành công'],['error','Lưu không thành công'],['pending','Đang lưu'],['security','Tab bảo mật'],['subscription','Tab gói dịch vụ']],
+      au06: [['default','Chưa kết nối · thông báo chưa hỗ trợ'],['unconfirmed','Social marker · chưa xác nhận'],['linked','Đã kết nối · fixture boolean=true'],['success','Cập nhật email thành công'],['error','Lỗi đổi mật khẩu'],['pending','Đang cập nhật'],['delete','Xác nhận xóa · không gửi']],
+      au07: [['default','Không đủ quyền · 403 composition']]
+    };
+    let currentScreen = 'au01';
+    let longCopy = false;
+    let lastDeleteTrigger = null;
+    const status = text => { $('review-status').textContent = text; };
+    function setAuthTab(tab) {
+      const register = tab === 'register';
+      ['login','register'].forEach(name => { const active = (name === 'register') === register; $('tab-'+name).setAttribute('aria-selected',String(active)); $('tab-'+name).tabIndex = active ? 0 : -1; $('form-'+name).hidden = !active; });
+      $('auth-heading').textContent = register ? 'Tạo tài khoản' : 'Đăng nhập';
+      $('auth-description').textContent = register ? 'Tạo tài khoản để bắt đầu học.' : 'Tiếp tục học với TCT English.';
+    }
+    const securityMarkup = prefix => `<form class="security-form" data-static-form><h3>Địa chỉ email</h3><p class="caption muted">Email dùng để thông báo và khôi phục mật khẩu.</p><div class="email-row"><div class="field"><label class="form-label" for="${prefix}EmailInput">Địa chỉ email</label><input type="email" id="${prefix}EmailInput" class="form-control" value="minhanh@example.invalid" autocomplete="email" required></div><button type="submit" class="btn btn-primary" id="${prefix}-email-submit">Cập nhật email</button></div></form><form class="security-form" data-static-form><h3>Thay đổi mật khẩu</h3><p class="form-text mb-3">Ít nhất 6 ký tự theo yêu cầu hiện tại.</p><div class="password-fields">${[['CurrentPassword','Mật khẩu hiện tại','current-password'],['NewPassword','Mật khẩu mới','new-password'],['ConfirmPassword','Xác nhận mật khẩu','new-password']].map(([field,label,autocomplete])=>`<div class="field"><label class="form-label" for="${prefix}${field}">${label}</label><div class="input-group"><input class="form-control" type="password" id="${prefix}${field}" autocomplete="${autocomplete}" required><button type="button" class="btn password-toggle tct-btn-icon toggle-pwd" aria-label="Hiện ${label.toLowerCase()}" aria-controls="${prefix}${field}" aria-pressed="false" data-password="${prefix}${field}"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div></div>`).join('')}</div><div class="form-actions"><button class="btn btn-primary" type="submit">Đổi mật khẩu</button></div></form>`;
+    $('profile-security-host').innerHTML = securityMarkup('profile');
+    $('settings-security-host').innerHTML = securityMarkup('settings');
+    function profileTab(tab, moveFocus=false) {
+      ['profile','security','subscription'].forEach(name => { $('tab-'+name).hidden = name !== tab; $('tab-'+name).classList.toggle('active',name === tab); });
+      document.querySelectorAll('#accountSidebar [data-tab]').forEach(el=>{el.classList.toggle('active',el.dataset.tab===tab);if(el.dataset.tab===tab)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+      if(moveFocus) { const heading=$('tab-'+tab).querySelector('h2'); heading.tabIndex=-1; heading.focus(); }
+    }
+    const pending = (id, busy, label) => { const el=$(id); if(!el.dataset.label)el.dataset.label=el.textContent; el.disabled=busy; el.setAttribute('aria-busy',String(busy)); el.replaceChildren();if(busy){const spinner=document.createElement('span');spinner.className='spinner-border spinner-border-sm me-2';spinner.setAttribute('aria-hidden','true');el.append(spinner);}el.append(document.createTextNode(busy?label:el.dataset.label)); };
+    function feedback(id, visible, error, text) {const el=$(id);el.hidden=!visible;el.className='alert '+(error?'alert-danger':'alert-success');el.setAttribute('role',error?'alert':'status');el.tabIndex=-1;el.textContent=text;}
+    function avatarState(kind) { const image=$('avatarPreview'), fallback=$('avatarFallback'), label=$('avatar-status'); image.hidden=true;fallback.hidden=false;fallback.textContent='M';label.hidden=kind==='default';label.classList.toggle('text-danger',kind==='error');label.textContent=kind==='error'?'Không thể đọc ảnh. Vui lòng chọn JPG hoặc PNG khác.':'Ảnh mới chưa lưu'; if(kind==='preview'){const tokens=getComputedStyle(document.body);const svg='<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><rect width="96" height="96" fill="'+tokens.getPropertyValue('--tct-primary').trim()+'"/><text x="48" y="61" text-anchor="middle" font-family="Arial" font-size="34" fill="'+tokens.getPropertyValue('--tct-on-primary').trim()+'">MA</text></svg>';image.src='data:image/svg+xml,'+encodeURIComponent(svg);image.hidden=false;fallback.hidden=true;} }
+    function applyState(state) {
+      setAuthTab(['register','register-error','register-pending'].includes(state)?'register':'login');
+      ['auth-success','auth-server-error','login-error-msg','blocked-alert','reset-error','reset-mismatch','social-password-note'].forEach(id=>$(id).hidden=true);
+      pending('btn-login-submit',false,'');pending('btn-register-submit',false,'');pending('btn-forgot-submit',false,'');pending('btn-reset-submit',false,'');pending('profile-save',false,'');pending('settings-email-submit',false,'');
+      $('forgot-email').classList.remove('is-invalid');$('forgot-email').removeAttribute('aria-invalid');$('reset-confirm-password').removeAttribute('aria-invalid');
+      feedback('profile-feedback',false,false,'');feedback('settings-feedback',false,false,'');
+      profileTab('profile');avatarState('default');
+      const premium=state==='premium', admin=state==='admin', earned=state==='earned'||premium;
+      $('profile-role').textContent=admin?'Admin':premium?'Premium':'Standard';$('profile-plan').textContent=admin?'Vai trò Admin':premium?'TCT English Premium':'TCT English Standard';$('subscription-plan').textContent=$('profile-plan').textContent;$('subscription-action').hidden=premium||admin;
+      $('profile-streak').textContent=earned?'3 ngày':'0 ngày';$('profile-badge-count').textContent=earned?'2':'0';$('profile-empty').hidden=earned;$('profile-earned').hidden=!earned;
+      $('google-status').textContent=state==='unconfirmed'?'Có thể đã đăng nhập Google — chưa xác nhận trong hệ thống liên kết':state==='linked'?'Đã kết nối':'Chưa kết nối';$('google-unconfirmed').hidden=state!=='unconfirmed';$('google-linked').hidden=state!=='linked';$('google-connect').hidden=['unconfirmed','linked'].includes(state);
+      if(currentScreen==='au01'){
+        $('auth-success').hidden=!['registered','reset-success'].includes(state);$('auth-success').textContent=state==='reset-success'?'Đặt lại mật khẩu thành công. Vui lòng đăng nhập.':'Đăng ký thành công! Vui lòng đăng nhập bằng tài khoản vừa tạo.';$('auth-server-error').hidden=state!=='register-error';
+        $('login-error-msg').hidden=!['error','network'].includes(state);$('login-error-msg').textContent=state==='network'?'Không thể kết nối. Vui lòng thử lại.':'Email hoặc mật khẩu không đúng.';
+        if(state==='pending')pending('btn-login-submit',true,'Đang đăng nhập…');
+        if(state==='register-pending')pending('btn-register-submit',true,'Đang đăng ký…');
+        if(state==='external-blocked')$('blocked-alert').hidden=false;
+        if(state==='blocked'){ $('btn-login-submit').focus();bootstrap.Modal.getOrCreateInstance($('blockedAccountModal')).show(); }
+      }
+      if(currentScreen==='au02'){if(state==='invalid'){$('forgot-email').classList.add('is-invalid');$('forgot-email').setAttribute('aria-invalid','true');}if(state==='pending')pending('btn-forgot-submit',true,'Đang xử lý…');}
+      if(currentScreen==='au04'){if(state==='expired')$('reset-error').hidden=false;if(state==='mismatch'){$('reset-mismatch').hidden=false;$('reset-confirm-password').setAttribute('aria-invalid','true');}if(state==='pending')pending('btn-reset-submit',true,'Đang xử lý…');if(state==='success'){chooseScreen('au01');$('state-picker').value='reset-success';applyState('reset-success');status('AU04 → AU01: minh họa server chuyển về Đăng nhập sau khi đặt mật khẩu thành công.');return;}}
+      if(currentScreen==='au05'){if(state==='security')profileTab('security');if(state==='subscription')profileTab('subscription');if(state==='avatar-error')avatarState('error');if(state==='avatar-preview')avatarState('preview');if(state==='pending')pending('profile-save',true,'Đang lưu…');if(['error','success'].includes(state))feedback('profile-feedback',true,state==='error',state==='error'?'Không thể lưu thay đổi. Vui lòng thử lại.':'Cập nhật thông tin cá nhân thành công.');}
+      if(currentScreen==='au06'){if(state==='unconfirmed')$('social-password-note').hidden=false;if(state==='pending')pending('settings-email-submit',true,'Đang cập nhật…');if(['error','success'].includes(state))feedback('settings-feedback',true,state==='error',state==='error'?'Mật khẩu hiện tại không đúng.':'Cập nhật Email thành công.');if(state==='delete')openDelete(document.querySelector('#au06 [data-delete-trigger]'));}
+    }
+    function chooseScreen(screen, focus=false) {
+      if(!screenStates[screen])screen='au01';
+      drawers.forEach(d=>d.instance?.hide());
+      currentScreen=screen;document.querySelectorAll('.screen').forEach(el=>el.hidden=el.id!==screen);$('screen-picker').value=screen;
+      $('state-picker').replaceChildren(...screenStates[screen].map(([value,label])=>new Option(label,value)));
+      status('Trạng thái tổng hợp của '+$('screen-picker').selectedOptions[0].textContent+'. Không kết nối dịch vụ tài khoản.');applyState(screenStates[screen][0][0]);
+      history.replaceState(null,'','#'+screen);if(focus){$('preview-main').focus();window.scrollTo({top:$('preview-main').offsetTop,behavior:'instant'});}
+    }
+    const mobileMql=matchMedia('(max-width: 992px)');
+    const drawers=[['accountSidebar','sidebarMobileToggle','accountSidebarToggle','sidebarOverlay'],['settingsAccountSidebar','settingsSidebarMobileToggle','settingsAccountSidebarToggle','settingsSidebarOverlay']].map(([id,opener,collapse,overlay])=>({el:$(id),opener:$(opener),collapse:$(collapse),overlay:$(overlay),instance:null,collapsed:false}));
+    function syncDrawers(){drawers.forEach(d=>{if(mobileMql.matches){d.el.classList.remove('sidebar-collapsed');d.el.classList.add('offcanvas','offcanvas-start');d.el.tabIndex=-1;d.el.inert=!d.el.classList.contains('show');d.instance??=new bootstrap.Offcanvas(d.el,{backdrop:false,scroll:false,keyboard:true});}else{if(d.el.classList.contains('hiding'))return;d.el.inert=false;d.el.classList.remove('offcanvas','offcanvas-start');d.el.removeAttribute('tabindex');d.el.classList.toggle('sidebar-collapsed',d.collapsed);}});}
+    drawers.forEach(d=>{d.opener.addEventListener('click',()=>{d.el.inert=false;d.instance?.show();});d.collapse.addEventListener('click',()=>{if(mobileMql.matches)d.instance?.hide();else{d.collapsed=!d.collapsed;d.el.classList.toggle('sidebar-collapsed',d.collapsed);d.collapse.setAttribute('aria-expanded',String(!d.collapsed));}});d.overlay.addEventListener('click',()=>d.instance?.hide());d.el.addEventListener('show.bs.offcanvas',()=>{d.el.inert=false;d.overlay.hidden=false;d.overlay.classList.add('show');d.opener.setAttribute('aria-expanded','true');});d.el.addEventListener('shown.bs.offcanvas',()=>{d.el.classList.add('open');d.el.querySelector('nav a,nav button')?.focus();});d.el.addEventListener('hidden.bs.offcanvas',()=>{if(mobileMql.matches)d.opener.focus();d.el.inert=mobileMql.matches;d.el.classList.remove('open');d.overlay.classList.remove('show');d.overlay.hidden=true;d.opener.setAttribute('aria-expanded','false');if(!mobileMql.matches){d.instance?.dispose();d.instance=null;syncDrawers();}});});
+    mobileMql.addEventListener('change',()=>{drawers.forEach(d=>{if(d.el.classList.contains('show'))d.instance.hide();else if(!mobileMql.matches&&d.instance){d.instance.dispose();d.instance=null;}});syncDrawers();});
+    function openDelete(trigger){lastDeleteTrigger=trigger;$('deleteConfirmInput').value='';$('deleteAccountBtn').disabled=true;bootstrap.Modal.getOrCreateInstance($('deleteAccountModal')).show();}
+    $('deleteAccountModal').addEventListener('shown.bs.modal',()=>$('deleteConfirmInput').focus());
+    $('deleteAccountModal').addEventListener('hidden.bs.modal',()=>{$('deleteConfirmInput').value='';$('deleteAccountBtn').disabled=true;lastDeleteTrigger?.focus();});
+    $('blockedAccountModal').addEventListener('hidden.bs.modal',()=>$('btn-login-submit').focus());
+    $('deleteConfirmInput').addEventListener('input',()=>$('deleteAccountBtn').disabled=$('deleteConfirmInput').value.trim()!=='CONFIRM');
+    $('deleteAccountBtn').addEventListener('click',()=>{status('Thao tác xóa đã bị chặn trong preview. Không có request được gửi.');bootstrap.Modal.getInstance($('deleteAccountModal')).hide();});
+    document.addEventListener('submit',event=>{event.preventDefault();status('Đây là form minh họa. Không gửi hoặc lưu dữ liệu. Dùng bộ chọn trạng thái để xem kết quả.');},true);
+    document.addEventListener('click',event=>{
+      const password=event.target.closest('[data-password]');if(password){const input=$(password.dataset.password),shown=input.type==='password';input.type=shown?'text':'password';password.setAttribute('aria-pressed',String(shown));password.setAttribute('aria-label',password.getAttribute('aria-label').replace(shown?'Hiện':'Ẩn',shown?'Ẩn':'Hiện'));password.querySelector('i').className='fa-solid '+(shown?'fa-eye-slash':'fa-eye');return;}
+      const nav=event.target.closest('[data-screen]');if(nav){event.preventDefault();chooseScreen(nav.dataset.screen,true);return;}
+      const tab=event.target.closest('[data-auth-tab]');if(tab){setAuthTab(tab.dataset.authTab);return;}
+      const profile=event.target.closest('[data-tab],[data-profile-tab]');if(profile){event.preventDefault();const drawer=drawers[0];const tabId=profile.dataset.tab||profile.dataset.profileTab;if(drawer.el.classList.contains('show')){drawer.el.addEventListener('hidden.bs.offcanvas',()=>profileTab(tabId,true),{once:true});drawer.instance.hide();}else profileTab(tabId,true);return;}
+      if(event.target.closest('[data-go-subscription]')){event.preventDefault();chooseScreen('au05',true);profileTab('subscription');return;}
+      const section=event.target.closest('[data-section]');if(section){const target=$('section-'+section.dataset.section);target.scrollIntoView({behavior:'instant',block:'start'});target.querySelector('h2').focus();return;}
+      const del=event.target.closest('[data-delete-trigger]');if(del){openDelete(del);return;}
+      const demo=event.target.closest('[data-demo]');if(demo)status(demo.dataset.demo+'. Không có thao tác mạng hoặc thay đổi tài khoản.');
+    });
+    ['login','register'].forEach(name=>{$('tab-'+name).addEventListener('click',()=>setAuthTab(name));$('tab-'+name).addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const next=e.key==='Home'?'login':e.key==='End'?'register':name==='login'?'register':'login';setAuthTab(next);$('tab-'+next).focus();}});});
+    $('avatarClickTarget').addEventListener('click',()=>$('Avatar').click());
+    $('Avatar').addEventListener('change',event=>{const file=event.target.files[0];if(!file)return;if(!['image/png','image/jpeg'].includes(file.type)||file.size>2*1024*1024){event.target.value='';avatarState('error');return;}const reader=new FileReader();reader.onload=()=>{$('avatarPreview').src=reader.result;$('avatarPreview').hidden=false;$('avatarFallback').hidden=true;$('avatar-status').hidden=false;$('avatar-status').textContent='Ảnh mới chưa lưu';};reader.onerror=()=>avatarState('error');reader.readAsDataURL(file);});
+    $('avatarPreview').addEventListener('error',()=>avatarState('error'));
+    $('profile-cancel').addEventListener('click',()=>{$('FullName').value='Minh Anh';$('Avatar').value='';avatarState('default');status('Đã hủy thay đổi trong preview.');});
+    $('screen-picker').addEventListener('change',()=>chooseScreen($('screen-picker').value));
+    $('state-picker').addEventListener('change',()=>applyState($('state-picker').value));
+    $('long-copy').addEventListener('click',()=>{longCopy=!longCopy;$('long-copy').setAttribute('aria-pressed',String(longCopy));document.querySelectorAll('[data-long-name]').forEach(e=>e.textContent=longCopy?'Nguyễn Minh Anh — Nhóm học tiếng Anh và phát triển kỹ năng giao tiếp quốc tế':'Minh Anh');document.querySelectorAll('[data-long-email]').forEach(e=>e.textContent=longCopy?'averylongsyntheticaccountnameforresponsiveverification@example.invalid':'minhanh@example.invalid');status(longCopy?'Đã bật văn bản tổng hợp dài để kiểm tra wrap.':'Đã phục hồi nội dung tổng hợp ngắn.');});
+    syncDrawers();chooseScreen(location.hash.slice(1));
+  </script>
+</body>
+</html>
