@@ -151,7 +151,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
 | Viết | `/Home/Writing*` | `writing-index.css`, `writing-exercises.css`, `writing.css` | `--wi-*`, `--we-*`, `--w-*` | Chưa chuyển | _chủ dự án gán_ |
 | Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
-| Mục tiêu | `/Goals` | `goals.css` | `--md-sys-color-*`, `--stitch-*` | Chưa chuyển | _chủ dự án gán_ |
+| Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
