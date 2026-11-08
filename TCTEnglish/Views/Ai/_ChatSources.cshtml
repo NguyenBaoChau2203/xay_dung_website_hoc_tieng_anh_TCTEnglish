@@ -1,0 +1,44 @@
+@using TCTEnglish.Services.AI.Rag
+@using TCTEnglish.ViewModels.AI
+@model ChatGroundingDto
+@{
+    var label = string.IsNullOrWhiteSpace(Model.StateLabel)
+        ? LearnerChatState.Label(Model.Outcome, Model.Status)
+        : Model.StateLabel;
+    var showNotice = Model.Status is "changed" or "snapshot"
+        && !string.IsNullOrWhiteSpace(Model.Notice);
+}
+<section class="ai-chat-sources" aria-label="Nguồn và trạng thái câu trả lời">
+    @if (!string.IsNullOrWhiteSpace(label))
+    {
+        <p class="ai-chat-state" data-answer-state="@(Model.Outcome ?? Model.Status)">@label</p>
+    }
+    @if (showNotice)
+    {
+        <p class="ai-chat-source-notice">@Model.Notice</p>
+    }
+    @if (Model.Sources.Count > 0)
+    {
+        <p class="ai-chat-source-label">Nguồn</p>
+        <ul class="ai-chat-source-list" aria-label="Nguồn">
+            @foreach (var source in Model.Sources)
+            {
+                var title = string.IsNullOrWhiteSpace(source.Title) ? LearnerChatState.MissingTitle : source.Title;
+                <li data-source-key="@source.SourceKey" data-source-freshness="@source.Freshness">
+                    @if (LearnerSourceLink.IsAllowed(source.Route))
+                    {
+                        <a class="ai-chat-source-link" href="@source.Route">@title</a>
+                    }
+                    else
+                    {
+                        <span class="ai-chat-source-title">@title</span>
+                    }
+                    @if (LearnerChatState.ShowFreshness(source.Freshness))
+                    {
+                        <span class="ai-chat-source-freshness">@LearnerChatState.FreshnessLabel(source.Freshness)</span>
+                    }
+                </li>
+            }
+        </ul>
+    }
+</section>

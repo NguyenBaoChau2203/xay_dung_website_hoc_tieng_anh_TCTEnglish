@@ -43,11 +43,15 @@
             hubConnection: null,
             hubAvailable: false,
             activeStreamId: null,
+            activeConversationId: null,
             isStreaming: false,
             scrollToBottomButton: elScrollToBottomBtn,
-            streamChunkCount: 0,
-            streamBuffer: '',
+            streamGeneration: 0,
+            streamAttempt: null,
+            retiredStreamIds: new Set(),
+            streamChunks: new Map(),
             streamMessageElement: null,
+            pendingDraft: '',
             streamCompletionResolver: null
         };
 
@@ -117,15 +121,6 @@
             elHistoryDisclosure.open = true;
         }
 
-        function adjustTextareaHeight(textarea) {
-            if (!textarea || textarea.tagName !== 'TEXTAREA') return;
-            textarea.style.height = 'auto';
-            const maxHeight = 120;
-            const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-            textarea.style.height = Math.max(newHeight, 46) + 'px';
-            textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
-        }
-
         adjustTextareaHeight(elInput);
 
         elInput.addEventListener('input', function () {
@@ -169,17 +164,46 @@
             });
         }
 
+        const elRetryBtn = document.getElementById('chatRetryBtn');
+        if (elRetryBtn) {
+            elRetryBtn.addEventListener('click', function () {
+                if (isSubmitting || elForm.dataset.state === 'sending') {
+                    return;
+                }
+
+                if (typeof elForm.requestSubmit === 'function') {
+                    elForm.requestSubmit();
+                } else {
+                    elForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                }
+            });
+        }
+
         elStopBtn.addEventListener('click', async function () {
-            if (!runtime.activeStreamId || !runtime.hubConnection) {
+            if (!runtime.isStreaming || !runtime.hubConnection) {
                 return;
             }
 
+            const stoppedStreamId = runtime.activeStreamId;
+            if (runtime.streamAttempt) {
+                runtime.streamAttempt.cancelled = true;
+            }
             elStopBtn.disabled = true;
+            runtime.streamGeneration += 1;
+            discardUnacceptedStream(runtime);
+            finalizeStreaming(runtime);
+            resolveStreamCompletion(runtime, true);
+            restoreDraftIfEmpty(elInput, runtime.pendingDraft);
+
+            if (!stoppedStreamId) {
+                elStopBtn.disabled = false;
+                return;
+            }
 
             try {
-                await runtime.hubConnection.invoke('StopAiStream', runtime.activeStreamId);
+                await runtime.hubConnection.invoke('StopAiStream', stoppedStreamId);
             } catch {
-                showStatus(elStatus, 'Không thể dừng phản hồi realtime. Bạn có thể gửi lại bằng AJAX.');
+                showStatus(elStatus, 'Không thể xác nhận dừng phản hồi. Hãy kiểm tra lịch sử trước khi gửi lại.', { allowRetry: true });
             } finally {
                 elStopBtn.disabled = false;
             }
@@ -235,12 +259,16 @@
             }
 
             isSubmitting = true;
+            runtime.pendingDraft = text;
 
             if (quickActionPending) {
                 elForm.dataset.quickActionPending = 'false';
             }
 
-            appendMessage(elChatWindow, 'user', text, elScrollToBottomBtn);
+            removeTrailingTransportNotice(elChatWindow);
+            if (!shouldReuseUserBubble(elChatWindow, text)) {
+                appendMessage(elChatWindow, 'user', text, elScrollToBottomBtn);
+            }
             elInput.value = '';
             adjustTextareaHeight(elInput);
             hideStatus(elStatus);
@@ -269,7 +297,8 @@
                         historyElements,
                         payload?.conversationId,
                         payload?.conversationTitle || draftConversationTitle);
-                    appendMessage(elChatWindow, 'assistant', payload.text || '', elScrollToBottomBtn);
+                    const appended = appendMessage(elChatWindow, 'assistant', payload.text || '', elScrollToBottomBtn);
+                    attachGrounding(appended?.contentElement?.parentElement, payload.grounding);
                 } else if (currentConversationId) {
                     touchConversationHistory(
                         historyElements,
@@ -278,6 +307,7 @@
                 }
 
                 notifyLauncherQuotaConsumed();
+                runtime.pendingDraft = '';
 
                 if (quickActionTriggered) {
                     markQuickActionsAccepted(elQuickActions);
@@ -286,8 +316,14 @@
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
                 setUiState('error', elForm, elSendBtn, elStopBtn, elTyping, false);
-                showStatus(elStatus, error?.message || 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
-                appendMessage(elChatWindow, 'system', 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.', elScrollToBottomBtn);
+                const learnerMessage = describeSendError(error);
+                restoreDraftIfEmpty(elInput, runtime.pendingDraft);
+                showStatus(elStatus, learnerMessage, { allowRetry: true });
+                removeTrailingTransportNotice(elChatWindow);
+                const notice = appendMessage(elChatWindow, 'system', learnerMessage, elScrollToBottomBtn);
+                if (notice?.containerElement) {
+                    notice.containerElement.setAttribute('data-answer-state', 'temporary_unavailability');
+                }
 
                 if (quickActionTriggered && !getConversationIdValue(elConversationId)) {
                     restoreQuickActions(elQuickActions, elChatWindow);
@@ -399,62 +435,94 @@
         connection.off('AiStreamFailed');
 
         connection.on('AiStreamStarted', function (payload) {
-            runtime.activeStreamId = payload?.streamId || null;
+            const attempt = runtime.streamAttempt;
+            if (!attempt || !payload?.streamId || runtime.retiredStreamIds.has(payload.streamId)) {
+                return;
+            }
+
+            if (payload.conversationId && String(attempt.conversationId) !== String(payload.conversationId)) {
+                return;
+            }
+
+            if (attempt.streamId && attempt.streamId !== payload.streamId) {
+                return;
+            }
+
+            attempt.streamId = payload.streamId;
+            if (attempt.cancelled) {
+                retireStream(runtime, payload.streamId);
+                // Stop can precede admission. Cancel as soon as the server supplies its id.
+                connection.invoke('StopAiStream', payload.streamId).catch(function () {});
+                return;
+            }
+
+            if (!runtime.isStreaming || attempt.generation !== runtime.streamGeneration) {
+                return;
+            }
+
+            runtime.activeStreamId = payload.streamId;
+            const early = runtime.earlyChunks?.get(payload.streamId);
+            if (!early) {
+                return;
+            }
+
+            early.forEach(function (chunk, index) {
+                if (!runtime.streamChunks.has(index)) {
+                    runtime.streamChunks.set(index, chunk);
+                }
+            });
+            runtime.earlyChunks.delete(payload.streamId);
         });
 
         connection.on('AiStreamChunk', function (payload) {
-            if (!runtime.isStreaming || !runtime.streamMessageElement) {
+            if (!runtime.isStreaming || !runtime.streamMessageElement || !payload?.streamId) {
                 return;
             }
 
-            if (runtime.activeStreamId && payload?.streamId && runtime.activeStreamId !== payload.streamId) {
+            if (runtime.activeConversationId && payload.conversationId && String(runtime.activeConversationId) !== String(payload.conversationId)) {
                 return;
             }
 
-            const chatWindow = runtime.streamMessageElement.closest('.ai-chat-window');
-            const isNearBottom = isChatWindowNearBottom(chatWindow);
-
-            if (runtime.streamChunkCount === 0) {
-                const elTyping = document.getElementById('typing');
-                if (elTyping) elTyping.classList.add('d-none');
-                if (runtime.streamMessageElement && runtime.streamMessageElement.closest('.ai-chat-message')) {
-                    runtime.streamMessageElement.closest('.ai-chat-message').classList.remove('d-none');
-                }
+            if (runtime.activeStreamId && payload.streamId !== runtime.activeStreamId) {
+                return;
             }
 
-            runtime.streamChunkCount += 1;
-            runtime.streamBuffer += payload?.chunk || '';
-            renderAssistantContent(runtime.streamMessageElement, runtime.streamBuffer);
-
-            if (isNearBottom && chatWindow) {
-                scrollToBottom(chatWindow, false, runtime.scrollToBottomButton);
-            } else {
-                syncScrollAffordance(chatWindow, runtime.scrollToBottomButton);
+            const index = Number.isInteger(payload?.chunkIndex) ? payload.chunkIndex : runtime.streamChunks.size;
+            if (runtime.retiredStreamIds.has(payload.streamId)) {
+                return;
             }
+
+            const bucket = chunkBucket(runtime, payload.streamId);
+            if (bucket.has(index)) {
+                return;
+            }
+
+            bucket.set(index, payload?.chunk || '');
         });
 
         connection.on('AiStreamCompleted', function (payload) {
-            if (!runtime.isStreaming) {
+            if (!streamEventCurrent(runtime, payload) || !runtime.streamMessageElement) {
                 return;
             }
 
-            if (runtime.activeStreamId && payload?.streamId && runtime.activeStreamId !== payload.streamId) {
-                return;
+            const text = acceptedStreamText(runtime);
+            renderAssistantContent(runtime.streamMessageElement, text);
+            const row = messageRow(runtime.streamMessageElement);
+            if (row) {
+                row.classList.remove('d-none');
+                row.setAttribute('data-accepted', 'true');
             }
-
+            attachGrounding(runtime.streamMessageElement.parentElement || runtime.streamMessageElement.parentNode, payload?.grounding);
             finalizeStreaming(runtime);
             resolveStreamCompletion(runtime, true);
         });
 
         connection.on('AiStreamFailed', function (payload) {
-            if (!runtime.isStreaming) {
+            if (!streamEventCurrent(runtime, payload, false)) {
                 return;
             }
 
-            if (runtime.activeStreamId && payload?.streamId && runtime.activeStreamId !== payload.streamId) {
-                return;
-            }
-
+            discardUnacceptedStream(runtime);
             const errorCode = payload?.errorCode || '';
             if (errorCode === 'cancelled') {
                 finalizeStreaming(runtime);
@@ -485,6 +553,12 @@
     }
 
     async function trySendWithStreaming(runtime, text, conversationId, elChatWindow, elForm, elSendBtn, elStopBtn, elTyping, elStatus) {
+        // The server's invocation finishes after its final event. Do not let a
+        // stopped invocation's late admission/failure attach to another turn.
+        if (runtime.streamAttempt && !runtime.streamAttempt.settled) {
+            throw new Error('Yêu cầu trước đang kết thúc. Hãy chờ một chút và kiểm tra lịch sử trước khi gửi lại.');
+        }
+
         if (!conversationId) {
             return false;
         }
@@ -494,12 +568,23 @@
         }
 
         setUiState('sending', elForm, elSendBtn, elStopBtn, elTyping, true);
+        runtime.streamGeneration += 1;
+        const attempt = {
+            generation: runtime.streamGeneration,
+            conversationId: conversationId,
+            streamId: null,
+            cancelled: false,
+            settled: false
+        };
+        runtime.streamAttempt = attempt;
         runtime.isStreaming = true;
-        runtime.streamChunkCount = 0;
-        runtime.streamBuffer = '';
+        runtime.activeConversationId = conversationId;
+        runtime.streamChunks = new Map();
+        runtime.earlyChunks = new Map();
         runtime.streamMessageElement = appendStreamingAssistantMessage(elChatWindow, runtime.scrollToBottomButton);
-        if (runtime.streamMessageElement && runtime.streamMessageElement.closest('.ai-chat-message')) {
-            runtime.streamMessageElement.closest('.ai-chat-message').classList.add('d-none');
+        const pendingRow = messageRow(runtime.streamMessageElement);
+        if (pendingRow) {
+            pendingRow.classList.add('d-none');
         }
 
         const completionPromise = new Promise(function (resolve) {
@@ -507,8 +592,10 @@
         });
 
         runtime.hubConnection.invoke('StartAiStream', conversationId, text)
+            .then(function () { attempt.settled = true; })
             .catch(function () {
-                if (!runtime.isStreaming) {
+                attempt.settled = true;
+                if (!runtime.isStreaming || runtime.streamAttempt !== attempt || attempt.generation !== runtime.streamGeneration) {
                     return;
                 }
 
@@ -541,8 +628,20 @@
     }
 
     function finalizeStreaming(runtime) {
+        retireStream(runtime, runtime.activeStreamId);
         runtime.isStreaming = false;
         runtime.activeStreamId = null;
+        if (runtime.earlyChunks) {
+            runtime.earlyChunks.clear();
+        }
+    }
+
+    function retireStream(runtime, streamId) {
+        if (!streamId) return;
+        runtime.retiredStreamIds.add(streamId);
+        if (runtime.retiredStreamIds.size > 128) {
+            runtime.retiredStreamIds.delete(runtime.retiredStreamIds.values().next().value);
+        }
     }
 
     function resolveStreamCompletion(runtime, success, details) {
@@ -734,6 +833,318 @@
         };
     }
 
+    function attachGrounding(bubble, grounding) {
+        if (!bubble) {
+            return;
+        }
+
+        const existing = typeof bubble.querySelector === 'function' ? bubble.querySelector('.ai-chat-sources') : null;
+        if (existing && typeof existing.remove === 'function') {
+            existing.remove();
+        }
+
+        if (!grounding || typeof grounding !== 'object') {
+            return;
+        }
+
+        const status = typeof grounding.status === 'string' ? grounding.status : '';
+        const outcome = typeof grounding.outcome === 'string' ? grounding.outcome : '';
+        const container = messageContainer(bubble);
+        if (container) {
+            container.setAttribute('data-grounding-status', status);
+            container.setAttribute('data-grounding-outcome', outcome);
+        }
+
+        const label = learnerStateLabel(grounding);
+        const showNotice = (status === 'changed' || status === 'snapshot')
+            && typeof grounding.notice === 'string'
+            && grounding.notice.trim();
+        const sources = Array.isArray(grounding.sources) ? grounding.sources : [];
+        if (!label && !showNotice && sources.length === 0) {
+            return;
+        }
+
+        const section = document.createElement('section');
+        section.className = 'ai-chat-sources';
+        section.setAttribute('aria-label', 'Nguồn và trạng thái câu trả lời');
+
+        if (label) {
+            const state = document.createElement('p');
+            state.className = 'ai-chat-state';
+            state.setAttribute('data-answer-state', outcome || status);
+            state.textContent = label;
+            section.appendChild(state);
+        }
+
+        if (showNotice) {
+            const note = document.createElement('p');
+            note.className = 'ai-chat-source-notice';
+            note.textContent = grounding.notice;
+            section.appendChild(note);
+        }
+
+        const visible = sources.filter((source) => source && typeof source.sourceKey === 'string' && source.sourceKey);
+        if (visible.length > 0) {
+            const heading = document.createElement('p');
+            heading.className = 'ai-chat-source-label';
+            heading.textContent = 'Nguồn';
+            const list = document.createElement('ul');
+            list.className = 'ai-chat-source-list';
+            list.setAttribute('aria-label', 'Nguồn');
+            visible.forEach((source) => {
+                const item = document.createElement('li');
+                item.setAttribute('data-source-key', source.sourceKey);
+                item.setAttribute('data-source-freshness', typeof source.freshness === 'string' ? source.freshness : '');
+                const title = typeof source.title === 'string' && source.title.trim()
+                    ? source.title.trim()
+                    : 'Nguồn đã lưu';
+                if (isSafeCitationRoute(source.route)) {
+                    const link = document.createElement('a');
+                    link.className = 'ai-chat-source-link';
+                    link.href = source.route;
+                    link.textContent = title;
+                    item.appendChild(link);
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'ai-chat-source-title';
+                    span.textContent = title;
+                    item.appendChild(span);
+                }
+
+                if (source.freshness === 'changed' || source.freshness === 'snapshot') {
+                    const fresh = document.createElement('span');
+                    fresh.className = 'ai-chat-source-freshness';
+                    fresh.textContent = source.freshness === 'changed'
+                        ? 'Nguồn đã thay đổi sau khi trả lời'
+                        : 'Số liệu tại thời điểm trả lời';
+                    item.appendChild(fresh);
+                }
+
+                list.appendChild(item);
+            });
+            section.appendChild(heading);
+            section.appendChild(list);
+        }
+
+        bubble.appendChild(section);
+    }
+
+    function learnerStateLabel(grounding) {
+        const supplied = grounding.stateLabel;
+        if (typeof supplied === 'string' && supplied.trim()) {
+            return supplied.trim();
+        }
+
+        const status = grounding.status || '';
+        if (status === 'unavailable') return 'Tạm thời không xem được nguồn';
+        if (status === 'unverified') return 'Chưa xác minh được nguồn';
+        if (status === 'changed') return 'Nguồn đã thay đổi sau khi trả lời';
+        if (status === 'snapshot') return 'Số liệu tại thời điểm trả lời';
+        switch (grounding.outcome) {
+            case 'answered': return 'Đã trả lời từ nguồn được phép xem';
+            case 'needs_clarification': return 'Cần làm rõ thêm';
+            case 'insufficient_evidence': return 'Chưa đủ căn cứ';
+            case 'out_of_scope': return 'Ngoài phạm vi trợ lý';
+            case 'provider_unavailable': return 'Trợ lý tạm thời không trả lời được';
+            case 'access_denied': return 'Không còn quyền xem nguồn này';
+            case 'quota_exceeded': return 'Đã hết lượt hỏi hôm nay';
+            case 'cancelled': return 'Đã dừng câu trả lời';
+            default: return '';
+        }
+    }
+
+    function isSafeCitationRoute(route) {
+        if (typeof route !== 'string' || !route.startsWith('/') || route.startsWith('//') || route.toLowerCase().startsWith('/admin')) {
+            return false;
+        }
+
+        if (route.includes('://') || route.includes('\\') || route.includes('<') || route.includes('>') || route.includes('"') || route.includes('\n') || route.includes('\r') || route.includes(' ') || route.includes('..')) {
+            return false;
+        }
+
+        let path = route;
+        const queryIndex = route.indexOf('?');
+        if (queryIndex >= 0) {
+            path = route.slice(0, queryIndex);
+            const query = route.slice(queryIndex + 1);
+            const match = /^exerciseId=([1-9]\d*)$/.exec(query);
+            if (!match || String(Number(match[1])) !== match[1]) {
+                return false;
+            }
+        }
+
+        return path.length > 1 && path.length <= 200 && /^[A-Za-z0-9/_-]+$/.test(path);
+    }
+
+    function streamEventCurrent(runtime, payload, requireStreamId) {
+        if (!runtime.isStreaming || !payload) {
+            return false;
+        }
+
+        if (payload.streamId) {
+            if (!runtime.activeStreamId || payload.streamId !== runtime.activeStreamId) {
+                return false;
+            }
+        } else if (requireStreamId !== false) {
+            return false;
+        }
+
+        if (runtime.activeConversationId && payload.conversationId && String(runtime.activeConversationId) !== String(payload.conversationId)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function chunkBucket(runtime, streamId) {
+        if (runtime.activeStreamId === streamId) {
+            return runtime.streamChunks;
+        }
+
+        if (!runtime.earlyChunks) {
+            runtime.earlyChunks = new Map();
+        }
+
+        if (!runtime.earlyChunks.has(streamId)) {
+            if (runtime.earlyChunks.size >= 4) {
+                return new Map();
+            }
+
+            runtime.earlyChunks.set(streamId, new Map());
+        }
+
+        return runtime.earlyChunks.get(streamId);
+    }
+
+    function acceptedStreamText(runtime) {
+        return Array.from(runtime.streamChunks.keys())
+            .sort((left, right) => left - right)
+            .map((index) => runtime.streamChunks.get(index) || '')
+            .join('');
+    }
+
+    function messageRow(element) {
+        let node = element;
+        while (node) {
+            const className = typeof node.className === 'string' ? node.className : '';
+            if (className.split(/\s+/).includes('ai-chat-message')) {
+                return node;
+            }
+
+            node = node.parentNode || null;
+        }
+
+        return null;
+    }
+
+    function messageContainer(bubble) {
+        let node = bubble;
+        while (node) {
+            if (typeof node.getAttribute === 'function' && node.getAttribute('data-role')) {
+                return node;
+            }
+
+            node = node.parentNode || null;
+        }
+
+        return null;
+    }
+
+    function discardUnacceptedStream(runtime) {
+        const row = messageRow(runtime.streamMessageElement);
+        if (row && row.getAttribute('data-accepted') !== 'true') {
+            removeStreamingPlaceholder(runtime.streamMessageElement);
+            runtime.streamMessageElement = null;
+            runtime.streamChunks = new Map();
+            if (runtime.earlyChunks) {
+                runtime.earlyChunks.clear();
+            }
+        }
+    }
+
+    function adjustTextareaHeight(textarea) {
+        if (!textarea || textarea.tagName !== 'TEXTAREA') {
+            return;
+        }
+
+        textarea.style.height = 'auto';
+        const maxHeight = 120;
+        const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+        textarea.style.height = Math.max(newHeight, 46) + 'px';
+        textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
+    }
+
+    function restoreDraftIfEmpty(input, draft) {
+        if (!input || (input.value || '').trim() || !draft) {
+            return;
+        }
+
+        input.value = draft;
+        adjustTextareaHeight(input);
+    }
+
+    function removeTrailingTransportNotice(chatWindow) {
+        if (!chatWindow || typeof chatWindow.querySelectorAll !== 'function') {
+            return;
+        }
+
+        const rows = Array.from(chatWindow.querySelectorAll('[data-role]'));
+        for (let index = rows.length - 1; index >= 0; index -= 1) {
+            const row = rows[index];
+            if (row.id === 'typing') {
+                continue;
+            }
+
+            if (row.getAttribute('data-role') !== 'system' || row.getAttribute('data-answer-state') !== 'temporary_unavailability') {
+                return;
+            }
+
+            if (typeof row.remove === 'function') {
+                row.remove();
+            }
+        }
+    }
+
+    function shouldReuseUserBubble(chatWindow, text) {
+        if (!chatWindow || typeof chatWindow.querySelectorAll !== 'function') {
+            return false;
+        }
+
+        const rows = Array.from(chatWindow.querySelectorAll('[data-role]'));
+        for (let index = rows.length - 1; index >= 0; index -= 1) {
+            if (rows[index].id === 'typing') {
+                continue;
+            }
+
+            const role = rows[index].getAttribute('data-role');
+            if (role === 'system' && rows[index].getAttribute('data-answer-state') === 'temporary_unavailability') {
+                continue;
+            }
+
+            if (role === 'assistant') {
+                return false;
+            }
+
+            if (role === 'user') {
+                const bubble = typeof rows[index].querySelector === 'function'
+                    ? rows[index].querySelector('.ai-chat-bubble')
+                    : null;
+                return ((bubble && bubble.textContent) || '').trim() === text;
+            }
+        }
+
+        return false;
+    }
+
+    function describeSendError(error) {
+        const message = (error && error.message) || '';
+        if (!message || message === 'Failed to fetch' || message === 'NetworkError when attempting to fetch resource.' || message === 'Load failed') {
+            return 'Mạng bị gián đoạn. Bản nháp vẫn còn để bạn gửi lại.';
+        }
+
+        return message;
+    }
+
     function removeEmptyState(elChatWindow) {
         setEmptyStateVisibility(elChatWindow, false);
     }
@@ -851,13 +1262,25 @@
         });
     }
 
-    function showStatus(elStatus, message) {
+    function showStatus(elStatus, message, options) {
         if (!elStatus) {
             return;
         }
 
-        elStatus.textContent = message;
+        const textNode = typeof elStatus.querySelector === 'function'
+            ? elStatus.querySelector('[data-ai-status-text]')
+            : null;
+        if (textNode) {
+            textNode.textContent = message;
+        } else {
+            elStatus.textContent = message;
+        }
+
         elStatus.classList.remove('d-none');
+        const retry = document.getElementById('chatRetryBtn');
+        if (retry) {
+            retry.classList.toggle('d-none', options?.allowRetry !== true);
+        }
     }
 
     function hideStatus(elStatus) {
@@ -865,7 +1288,20 @@
             return;
         }
 
-        elStatus.textContent = '';
+        const textNode = typeof elStatus.querySelector === 'function'
+            ? elStatus.querySelector('[data-ai-status-text]')
+            : null;
+        if (textNode) {
+            textNode.textContent = '';
+        } else {
+            elStatus.textContent = '';
+        }
+
+        const retry = document.getElementById('chatRetryBtn');
+        if (retry) {
+            retry.classList.add('d-none');
+        }
+
         elStatus.classList.add('d-none');
     }
 
@@ -890,7 +1326,11 @@
             return 'Bạn đang gửi quá nhanh. Vui lòng chờ một chút rồi thử lại.';
         }
 
-        return 'Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.';
+        if (statusCode === 503 || statusCode === 504) {
+            return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
+        }
+
+        return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
     }
 
     async function tryGetErrorMessage(response) {
@@ -1366,6 +1806,7 @@
             }
 
             row.appendChild(bubble);
+            attachGrounding(bubble, item.grounding);
             fragment.appendChild(row);
         }
 

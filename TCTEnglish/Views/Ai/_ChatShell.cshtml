@@ -140,7 +140,9 @@
                     <div class="@messageClass"
                          data-role="@message.Role"
                          data-message-id="@message.Id"
-                         data-created-at="@message.CreatedAtUtc.ToString("O")">
+                         data-created-at="@message.CreatedAtUtc.ToString("O")"
+                         data-grounding-status="@(message.Grounding?.Status ?? string.Empty)"
+                         data-grounding-outcome="@(message.Grounding?.Outcome ?? string.Empty)">
                         @if (isAssistant || isSystem)
                         {
                             <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
@@ -156,6 +158,10 @@
                             else
                             {
                                 @message.Content
+                            }
+                            @if (isAssistant && message.Grounding is not null)
+                            {
+                                <partial name="_ChatSources" model="message.Grounding" />
                             }
                         </div>
 
@@ -228,6 +234,9 @@
             </div>
         </form>
 
-        <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="status" aria-live="assertive" aria-atomic="true"></div>
+        <div id="chatStatus" class="alert alert-warning ai-chat-status d-none mb-0" role="status" aria-live="assertive" aria-atomic="true">
+            <span data-ai-status-text></span>
+            <button type="button" id="chatRetryBtn" class="btn btn-sm btn-outline-secondary d-none">Thử lại</button>
+        </div>
     </div>
 </div>
