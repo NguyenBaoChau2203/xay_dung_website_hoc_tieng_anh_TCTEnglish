@@ -7,7 +7,8 @@ public sealed record ChatReplyDto(
     Guid ConversationId,
     string ConversationTitle,
     ChatUsageDto Usage,
-    ChatMetadataDto Metadata);
+    ChatMetadataDto Metadata,
+    ChatGroundingDto? Grounding = null);
 
 public sealed record ChatUsageDto(
     int PromptTokens,

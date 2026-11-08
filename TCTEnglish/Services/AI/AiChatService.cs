@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Models;
+using TCTEnglish.Services.AI.Rag;
 using TCTEnglish.ViewModels.AI;
 using TCTVocabulary.Models;
 
@@ -13,45 +14,50 @@ public sealed class AiChatService : IAiChatService
 {
     private static readonly string DefaultSystemPrompt = AiSystemPrompts.PlatformGuide;
 
-    private static readonly string[] BlockedContentPatterns =
-    {
-        "ignore previous instructions",
-        "system prompt",
-        "api key",
-        "connection string",
-        "password"
-    };
+    /// <summary>
+    /// After the assistant row and quota settlement are durable, display projection is a
+    /// bounded reauthorization of at most 12 stored sources. This matches the existing
+    /// five-second post-acceptance budget used for persistence and quota finalization.
+    /// Expiry returns the unverified notice and leaves the saved turn for a later reload.
+    /// </summary>
+    public static readonly TimeSpan AcceptedTurnProjectionBudget = TimeSpan.FromSeconds(5);
 
     private readonly DbflashcardContext _context;
     private readonly IAiConversationService _conversationService;
     private readonly IAiContextBuilder _contextBuilder;
-    private readonly IAiProviderClient _providerClient;
+    private readonly IAiChatAnswerService _answerService;
     private readonly IAiConversationExecutionGuard _conversationExecutionGuard;
     private readonly IAiDailyQuotaReservationService _quotaReservationService;
     private readonly AiOptions _options;
     private readonly ILogger<AiChatService> _logger;
     private readonly IAiTokenCounter _historyTokenCounter;
+    private readonly IGroundedChatPipeline? _groundedPipeline;
+    private readonly IGroundingCitationService? _grounding;
 
     public AiChatService(
         DbflashcardContext context,
         IAiConversationService conversationService,
         IAiContextBuilder contextBuilder,
-        IAiProviderClient providerClient,
+        IAiChatAnswerService answerService,
         IAiConversationExecutionGuard conversationExecutionGuard,
         IAiDailyQuotaReservationService quotaReservationService,
         IOptions<AiOptions> options,
         ILogger<AiChatService> logger,
-        IAiTokenCounter? historyTokenCounter = null)
+        IAiTokenCounter? historyTokenCounter = null,
+        IGroundedChatPipeline? groundedPipeline = null,
+        IGroundingCitationService? grounding = null)
     {
         _context = context;
         _conversationService = conversationService;
         _contextBuilder = contextBuilder;
-        _providerClient = providerClient;
+        _answerService = answerService;
         _conversationExecutionGuard = conversationExecutionGuard;
         _quotaReservationService = quotaReservationService;
         _options = options.Value;
         _logger = logger;
         _historyTokenCounter = historyTokenCounter ?? new SimpleAiTokenCounter();
+        _groundedPipeline = groundedPipeline;
+        _grounding = grounding;
     }
 
     public async Task<ChatReplyDto> SendAsync(int userId, Guid? conversationId, string message, CancellationToken ct)
@@ -67,9 +73,9 @@ public sealed class AiChatService : IAiChatService
             throw new ArgumentException($"Message exceeds {_options.MaxInputChars} characters.", nameof(message));
         }
 
-        if (ContainsBlockedContent(normalizedMessage))
+        if (ChatDisclosurePolicy.IsPromptOrCredentialExtraction(normalizedMessage))
         {
-            throw new ArgumentException("Nội dung yêu cầu không được hỗ trợ.", nameof(message));
+            throw new ArgumentException(ChatDisclosurePolicy.RefusalText, nameof(message));
         }
 
         var normalizedRole = await GetNormalizedUserRoleAsync(userId, ct);
@@ -106,13 +112,14 @@ public sealed class AiChatService : IAiChatService
         await _context.SaveChangesAsync(ct);
 
         AiQuotaReservation? reservation = null;
+        AiTurnStageJournal? stageJournal = null;
         var stopwatch = Stopwatch.StartNew();
         var replyCommitted = false;
         var providerReplyKnown = false;
         var knownActualTokens = 0;
         try
         {
-            var historyNewestFirst = await LoadContextHistoryAsync(resolvedConversationId, userMessage.Id, normalizedMessage, ct);
+            var historyNewestFirst = await LoadContextHistoryAsync(userId, resolvedConversationId, userMessage.Id, normalizedMessage, ct);
 
             var contextResult = _contextBuilder.BuildContextMessages(
                 DefaultSystemPrompt,
@@ -120,7 +127,39 @@ public sealed class AiChatService : IAiChatService
                 historyNewestFirst,
                 _options);
 
-            if (_options.RequestTokenBudget > 0 && contextResult.PlannedTotalTokens > _options.RequestTokenBudget)
+            var historyTurns = historyNewestFirst
+                .OrderBy(message => message.CreatedAtUtc)
+                .ThenBy(message => message.Id)
+                .Select(message => new GroundedHistoryTurn(MapHistoryRole(message.Role), message.Content ?? string.Empty))
+                .ToList();
+            ChatTurnBudgetDecision? groundedBudget = null;
+            var reserveTokens = contextResult.PlannedTotalTokens;
+            var groundedBudgetExceeded = false;
+            if (_groundedPipeline is not null && GroundedAnswerComposer.ShouldRetrieve(normalizedMessage, historyTurns))
+            {
+                var generationAttempts = Math.Clamp(_options.EffectiveRetryMaxAttempts, 0, 3) + 1;
+                var embeddingAttempts = new EmbeddingOptions().EffectiveRetryMaxAttempts + 1;
+                if (!ChatTurnBudget.TryCreate(
+                        GroundedAnswerComposer.RetrievalQuery(normalizedMessage, historyTurns),
+                        contextResult.PlannedTotalTokens,
+                        _options.MaxOutputTokens,
+                        _options.RequestTokenBudget,
+                        out var decision,
+                        generationAttempts,
+                        embeddingAttempts,
+                        _options.Model,
+                        _options.ReasoningEffort))
+                {
+                    groundedBudgetExceeded = true;
+                }
+                else
+                {
+                    groundedBudget = decision;
+                    reserveTokens = decision.ReservedTokens;
+                }
+            }
+
+            if (groundedBudgetExceeded || (_options.RequestTokenBudget > 0 && contextResult.PlannedTotalTokens > _options.RequestTokenBudget))
             {
                 await SaveRequestLogAsync(new AiRequestLog
                 {
@@ -149,7 +188,7 @@ public sealed class AiChatService : IAiChatService
                 var questionLimit = normalizedRole == Roles.Standard ? 15 : 0;
                 reservation = await _quotaReservationService.ReserveQuestionAsync(
                     userId,
-                    contextResult.PlannedTotalTokens,
+                    reserveTokens,
                     questionLimit,
                     _options.DailyTokenBudgetPerUser,
                     ct);
@@ -179,9 +218,41 @@ public sealed class AiChatService : IAiChatService
             }
 
             AiProviderReply aiReply;
+            AiChatAnswer? acceptedAnswer = null;
+            long answerMs = 0;
+            long projectMs = 0;
             try
             {
-                aiReply = await _providerClient.GenerateReplyAsync(userId, contextResult.Messages, ct);
+                AiChatAnswer answer;
+                var answerWatch = Stopwatch.StartNew();
+                if (_groundedPipeline is null)
+                {
+                    answer = await _answerService.AnswerAsync(userId, normalizedMessage, contextResult.Messages, ct);
+                }
+                else
+                {
+                    stageJournal = new AiTurnStageJournal(_quotaReservationService, reservation);
+                    var execution = await _groundedPipeline.ExecuteAsync(new GroundedTurnInput(
+                        userId,
+                        normalizedMessage,
+                        contextResult.Messages,
+                        historyTurns,
+                        groundedBudget,
+                        stageJournal), ct);
+                    answer = execution.Answer;
+                }
+
+                answerWatch.Stop();
+                answerMs = answerWatch.ElapsedMilliseconds;
+
+                acceptedAnswer = answer;
+                aiReply = new AiProviderReply(
+                    answer.Text,
+                    answer.PromptTokens,
+                    answer.CompletionTokens,
+                    answer.TotalTokens,
+                    answer.Model,
+                    answer.RequestId);
             }
             catch (AiProviderException ex)
             {
@@ -193,7 +264,15 @@ public sealed class AiChatService : IAiChatService
 
                 if (reservation is not null)
                 {
-                    await _quotaReservationService.ReleaseAsync(reservation, providerCleanupToken);
+                    if (stageJournal is { HasCharge: true })
+                    {
+                        await _quotaReservationService.SettleAsync(reservation, stageJournal.Charge, providerCleanupToken);
+                    }
+                    else
+                    {
+                        await _quotaReservationService.ReleaseAsync(reservation, providerCleanupToken);
+                    }
+
                     reservation = null;
                 }
 
@@ -219,10 +298,9 @@ public sealed class AiChatService : IAiChatService
                 }
 
                 _logger.LogWarning(
-                    ex,
                     "AI provider request failed for conversation {conversationId}. ErrorCode {errorCode}",
                     resolvedConversationId,
-                    ex.ErrorCode);
+                    AiChatDiagnostics.SafeErrorCode(ex.ErrorCode));
 
                 throw;
             }
@@ -231,6 +309,11 @@ public sealed class AiChatService : IAiChatService
             // Provider returned a known reply — distinct from replyCommitted (DB durable).
             providerReplyKnown = true;
             knownActualTokens = aiReply.PromptTokens + aiReply.CompletionTokens;
+            string? groundingMetadata = null;
+            if (_grounding is not null && acceptedAnswer is not null)
+            {
+                groundingMetadata = _grounding.Capture(acceptedAnswer);
+            }
 
             var assistantMessage = new AiMessage
             {
@@ -241,6 +324,7 @@ public sealed class AiChatService : IAiChatService
                 PromptTokens = aiReply.PromptTokens,
                 CompletionTokens = aiReply.CompletionTokens,
                 ModelName = aiReply.Model,
+                GroundingMetadata = groundingMetadata,
                 CreatedAtUtc = DateTime.UtcNow
             };
 
@@ -311,24 +395,74 @@ public sealed class AiChatService : IAiChatService
                 ? Guid.NewGuid().ToString("N")
                 : aiReply.RequestId;
 
-            _logger.LogInformation(
-                "AI chat reply completed for conversation {conversationId}. LatencyMs {latencyMs}. Model {model}. PromptTokens {promptTokens}. CompletionTokens {completionTokens}. TotalTokens {totalTokens}",
-                resolvedConversationId,
-                stopwatch.ElapsedMilliseconds,
-                aiReply.Model,
-                aiReply.PromptTokens,
-                aiReply.CompletionTokens,
-                aiReply.TotalTokens);
+            // A durable reply stays returned after the caller aborts. Projection below must not
+            // turn that acceptance into a failed send, a second assistant, or another settlement.
+            ChatGroundingDto? grounding = null;
+            var replyText = aiReply.Text;
+            if (_grounding is not null)
+            {
+                try
+                {
+                    var projected = new AiMessage
+                    {
+                        Id = assistantMessage.Id,
+                        Role = AiMessageRole.Assistant,
+                        Content = assistantMessage.Content,
+                        GroundingMetadata = assistantMessage.GroundingMetadata,
+                        CreatedAtUtc = assistantMessage.CreatedAtUtc
+                    };
+                    // Independent of the caller token: an already-aborted request must not skip
+                    // reauthorization, and a stalled read must not hold the conversation lease.
+                    using var projectionCts = new CancellationTokenSource(AcceptedTurnProjectionBudget);
+                    var projectWatch = Stopwatch.StartNew();
+                    await _grounding.ProjectAsync(userId, [projected], GroundingProjectionMode.Display, projectionCts.Token);
+                    projectWatch.Stop();
+                    projectMs = projectWatch.ElapsedMilliseconds;
+                    grounding = ChatGroundingMapper.From(projected.Grounding);
+                    replyText = projected.Content;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(
+                        "Display projection failed after the AI reply was committed for conversation {conversationId}. ErrorCode {errorCode}",
+                        resolvedConversationId,
+                        AiChatDiagnostics.SafeErrorCode(ex is OperationCanceledException ? "cancelled" : "projection_failed"));
+                    replyText = GroundingNotices.UnverifiedContext;
+                    grounding = new ChatGroundingDto(
+                        0,
+                        null,
+                        null,
+                        null,
+                        "unverified",
+                        GroundingNotices.UnverifiedContext,
+                        [],
+                        LearnerChatState.Label(null, "unverified"));
+                }
+            }
 
-            // If the caller aborted after a durable known reply, still surface the reply (no retry storm).
-            ct.ThrowIfCancellationRequested();
+            _logger.LogInformation(
+                "{ChatDiagnostic}",
+                AiChatDiagnostics.FormatCompletion(
+                    resolvedConversationId,
+                    requestId,
+                    acceptedAnswer?.Outcome,
+                    acceptedAnswer?.RetrievalMode,
+                    acceptedAnswer?.Evidence,
+                    answerMs,
+                    projectMs,
+                    stopwatch.ElapsedMilliseconds,
+                    aiReply.PromptTokens,
+                    aiReply.CompletionTokens,
+                    aiReply.TotalTokens,
+                    aiReply.Model));
 
             return new ChatReplyDto(
-                aiReply.Text,
+                replyText,
                 resolvedConversationId,
                 conversation.Title,
                 new ChatUsageDto(aiReply.PromptTokens, aiReply.CompletionTokens, aiReply.TotalTokens, aiReply.Model),
-                new ChatMetadataDto(requestId, (int)stopwatch.ElapsedMilliseconds));
+                new ChatMetadataDto(requestId, (int)stopwatch.ElapsedMilliseconds),
+                grounding);
         }
         catch (OperationCanceledException)
         {
@@ -405,6 +539,10 @@ public sealed class AiChatService : IAiChatService
                         }
                     }
                 }
+                else if (stageJournal is { HasCharge: true })
+                {
+                    await _quotaReservationService.SettleAsync(reservation, stageJournal.Charge, cleanupToken);
+                }
                 else
                 {
                     await _quotaReservationService.ReleaseAsync(reservation, cleanupToken);
@@ -478,7 +616,15 @@ public sealed class AiChatService : IAiChatService
         }
     }
 
-    private async Task<List<AiMessage>> LoadContextHistoryAsync(Guid conversationId, Guid currentMessageId, string message, CancellationToken ct)
+    private static string MapHistoryRole(AiMessageRole role)
+        => role switch
+        {
+            AiMessageRole.System => "system",
+            AiMessageRole.Assistant => "assistant",
+            _ => "user"
+        };
+
+    private async Task<List<AiMessage>> LoadContextHistoryAsync(int userId, Guid conversationId, Guid currentMessageId, string message, CancellationToken ct)
     {
         var inputBudget = Math.Min(_options.ModelContextLimit, _options.RequestTokenBudget > 0 ? _options.RequestTokenBudget : _options.ModelContextLimit);
         var remaining = Math.Max(0, inputBudget - _options.MaxOutputTokens
@@ -489,11 +635,16 @@ public sealed class AiChatService : IAiChatService
             var query = _context.AiMessages.AsNoTracking().Where(m => m.ConversationId == conversationId && m.Id != currentMessageId);
             if (beforeTime.HasValue) query = query.Where(m => m.CreatedAtUtc < beforeTime.Value || (m.CreatedAtUtc == beforeTime.Value && m.Id.CompareTo(beforeId) < 0));
             var batch = await query.OrderByDescending(m => m.CreatedAtUtc).ThenByDescending(m => m.Id).Take(50)
-                .Select(m => new AiMessage { Id = m.Id, CreatedAtUtc = m.CreatedAtUtc, Role = m.Role, Content = m.Content }).ToListAsync(ct);
+                .Select(m => new AiMessage { Id = m.Id, CreatedAtUtc = m.CreatedAtUtc, Role = m.Role, Content = m.Content, GroundingMetadata = m.GroundingMetadata }).ToListAsync(ct);
             if (batch.Count == 0) break;
+            if (_grounding is not null)
+            {
+                await _grounding.ProjectAsync(userId, batch, GroundingProjectionMode.ProviderContext, ct);
+            }
+
             foreach (var item in batch)
             {
-                // A small per-message envelope allowance also bounds empty/tiny messages.
+                // Budget the projected text, including a replacement notice, before any return.
                 var cost = Math.Max(1, _historyTokenCounter.CountTokens(item.Content)) + 4;
                 if (cost > remaining) { history.Reverse(); return history; }
                 history.Add(item); remaining -= cost;
@@ -501,7 +652,8 @@ public sealed class AiChatService : IAiChatService
             beforeTime = batch[^1].CreatedAtUtc; beforeId = batch[^1].Id;
             if (batch.Count < 50) break;
         }
-        history.Reverse(); return history;
+        history.Reverse();
+        return history;
     }
 
     private void DiscardUncommittedReplyArtifacts()
@@ -548,19 +700,6 @@ public sealed class AiChatService : IAiChatService
             .FirstOrDefaultAsync(ct);
 
         return Roles.Normalize(role);
-    }
-
-    private static bool ContainsBlockedContent(string message)
-    {
-        foreach (var pattern in BlockedContentPatterns)
-        {
-            if (message.Contains(pattern, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private async Task SaveRequestLogAsync(AiRequestLog requestLog, CancellationToken ct)

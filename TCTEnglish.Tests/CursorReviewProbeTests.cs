@@ -261,6 +261,7 @@ public sealed class CursorReviewProbes(ITestOutputHelper output)
     {
         services.RemoveAll<IAiProviderClient>();
         services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, ct) => reply(ct)));
+        services.KeepChatLifecycleOnProviderStub();
         services.PostConfigure<AiOptions>(o => { o.DailyTokenBudgetPerUser=60000; o.RequestTokenBudget=4600; o.MaxInputChars=1000; });
     });
 

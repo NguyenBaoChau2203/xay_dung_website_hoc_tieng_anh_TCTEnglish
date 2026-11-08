@@ -76,9 +76,12 @@ public sealed class BillingRetriever : IKnowledgeRetriever
             .Take(3)
             .ToListAsync(ct);
 
-        var pendingOrderCount = recentOrders.Count(order =>
-            string.Equals(order.Status, PaymentOrderStatuses.Pending, StringComparison.OrdinalIgnoreCase)
-            || string.Equals(order.Status, PaymentOrderStatuses.ManualReview, StringComparison.OrdinalIgnoreCase));
+        var pendingOrderCount = await _context.PaymentOrders
+            .AsNoTracking()
+            .CountAsync(order =>
+                order.UserId == userId
+                && (order.Status == PaymentOrderStatuses.Pending
+                    || order.Status == PaymentOrderStatuses.ManualReview), ct);
 
         var isPremium = isRolePremium || activeSubscription is not null;
         var snippets = new List<KnowledgeSnippet>

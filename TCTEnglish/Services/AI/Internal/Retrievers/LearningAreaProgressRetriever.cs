@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 
 namespace TCTEnglish.Services.AI.Internal.Retrievers;
 
@@ -23,7 +24,7 @@ public sealed class LearningAreaProgressRetriever : IKnowledgeRetriever
             return [];
         }
 
-        var today = DateTime.UtcNow.Date;
+        var today = BusinessDateHelper.Today;
         var todayActivity = await _context.UserDailyActivities
             .AsNoTracking()
             .Where(activity => activity.UserId == userId && activity.ActivityDate == today)
@@ -58,6 +59,7 @@ public sealed class LearningAreaProgressRetriever : IKnowledgeRetriever
             .Where(progress => progress.UserId == userId && progress.IsCompleted)
             .CountAsync(ct);
 
+        var canUseOwnPrivateMedia = await AiLearnerAccess.CanUseOwnPrivateMediaAsync(_context, userId, ct);
         var availableReading = await _context.ReadingPassages
             .AsNoTracking()
             .Where(passage => passage.IsPublished)
@@ -65,16 +67,21 @@ public sealed class LearningAreaProgressRetriever : IKnowledgeRetriever
 
         var availableWriting = await _context.WritingExercises
             .AsNoTracking()
-            .Where(exercise => exercise.IsPublished || exercise.UserId == userId)
+            .Where(exercise =>
+                (exercise.UserId == null && exercise.IsPublished)
+                || (canUseOwnPrivateMedia && exercise.UserId == userId))
             .CountAsync(ct);
 
         var availableListening = await _context.ListeningLessons
             .AsNoTracking()
-            .Where(lesson => lesson.IsPublished || lesson.OwnerUserId == userId)
+            .Where(lesson =>
+                (lesson.OwnerUserId == null && lesson.IsPublished)
+                || (canUseOwnPrivateMedia && lesson.OwnerUserId == userId))
             .CountAsync(ct);
 
         var availableSpeaking = await _context.SpeakingVideos
             .AsNoTracking()
+            .Where(video => video.OwnerUserId == null || (canUseOwnPrivateMedia && video.OwnerUserId == userId))
             .CountAsync(ct);
 
         return

@@ -25,6 +25,7 @@ public sealed class ClassRetriever : IKnowledgeRetriever
             .ThenBy(currentClass => currentClass.ClassName)
             .Select(currentClass => new
             {
+                currentClass.ClassId,
                 currentClass.ClassName,
                 IsOwner = currentClass.OwnerId == userId,
                 MemberCount = currentClass.ClassMembers.Count() + 1
@@ -52,7 +53,8 @@ public sealed class ClassRetriever : IKnowledgeRetriever
         snippets.AddRange(classes.Take(5).Select(currentClass => new KnowledgeSnippet(
             currentClass.ClassName,
             $"role={(currentClass.IsOwner ? "owner" : "member")}|memberCount={currentClass.MemberCount}",
-            KnowledgeSnippetSources.ClassInfoItem)));
+            KnowledgeSnippetSources.ClassInfoItem,
+            EntityKey: $"class:{currentClass.ClassId}")));
 
         return snippets;
     }

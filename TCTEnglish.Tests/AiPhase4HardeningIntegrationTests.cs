@@ -807,6 +807,7 @@ public sealed class AiPhase4HardeningIntegrationTests
             });
 
             services.AddScoped<IAiProviderClient>(_ => new StubAiProviderClient((_, _, ct) => replyFactory(ct)));
+            services.KeepChatLifecycleOnProviderStub();
         });
     }
 

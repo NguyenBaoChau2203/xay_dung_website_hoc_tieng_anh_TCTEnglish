@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -11,11 +10,13 @@ namespace TCTEnglish.Services.AI;
 public sealed class OpenAiProviderClient(
     IHttpClientFactory httpClientFactory,
     IOptions<AiOptions> options,
-    ILogger<OpenAiProviderClient> logger) : IAiProviderClient
+    ILogger<OpenAiProviderClient> logger,
+    IAiTransportClock? transportClock = null) : IAiProviderClient
 {
     public const string HttpClientName = "OpenAI";
     private const int MaxResponseBytes = 1024 * 1024;
     private readonly AiOptions _options = options.Value;
+    private readonly IAiTransportClock _transport = transportClock ?? SystemAiTransportClock.Instance;
 
     public async Task<AiProviderReply> GenerateReplyAsync(int userId, IReadOnlyList<AiContextMessage> messages,
         CancellationToken ct, AiProviderRequestOptions? requestOptions = null)
@@ -28,27 +29,59 @@ public sealed class OpenAiProviderClient(
             throw new ArgumentException("Unsupported context role.", nameof(messages));
 
         var maxOutput = Math.Clamp(requestOptions?.MaxOutputTokens ?? _options.MaxOutputTokens, 1, 16384);
-        var payload = JsonSerializer.Serialize(new
+        var payload = CreatePayload(_options.Model, _options.ReasoningEffort, maxOutput, messages, requestOptions?.ConstrainedOutput);
+        var inputCeiling = Math.Max(0, requestOptions?.MaxInputBytes ?? 0);
+        if (inputCeiling > 0 && Encoding.UTF8.GetByteCount(payload) > inputCeiling)
         {
-            model = _options.Model,
-            reasoning = new { effort = _options.ReasoningEffort },
-            max_output_tokens = maxOutput,
-            store = false,
-            input = messages.Select(m => new { role = m.Role, content = m.Content ?? string.Empty })
-        });
+            throw new AiProviderException(
+                "The chat selection payload exceeds the admitted input allowance.",
+                AiProviderException.ErrorCodeBudgetExhausted,
+                false);
+        }
         var timeout = TimeSpan.FromSeconds(Math.Clamp(requestOptions?.RequestTimeoutSeconds ?? _options.EffectiveRequestTimeoutSeconds, 1, 120));
-        var clock = Stopwatch.StartNew();
-        using var budget = CancellationTokenSource.CreateLinkedTokenSource(ct);
-        budget.CancelAfter(timeout);
-        var maxAttempts = Math.Clamp(_options.EffectiveRetryMaxAttempts, 0, 3) + 1;
+        using var budget = _transport.Start(ct, timeout);
+        var configuredAttempts = Math.Clamp(_options.EffectiveRetryMaxAttempts, 0, 3) + 1;
+        var maxAttempts = requestOptions?.MaxAttempts is int admitted
+            ? Math.Clamp(admitted, 1, configuredAttempts)
+            : configuredAttempts;
         var client = httpClientFactory.CreateClient(HttpClientName);
+        var chatSelection = requestOptions?.ConstrainedOutput is not null;
+        var uncertainTokens = 0;
+        var attemptBound = checked(Encoding.UTF8.GetByteCount(payload) + maxOutput);
+        var knownPrompt = 0;
+        var knownCompletion = 0;
+        var knownTotal = 0;
+        var pendingAttempt = false;
+
+        void MarkUnknown()
+        {
+            if (!chatSelection || !pendingAttempt) return;
+            uncertainTokens = (int)Math.Min(int.MaxValue, (long)uncertainTokens + attemptBound);
+            pendingAttempt = false;
+        }
+
+        async Task ReportAsync()
+        {
+            if (!chatSelection || requestOptions?.RecordUsage is null) return;
+            using var cleanup = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            if (!await requestOptions.RecordUsage(knownTotal, uncertainTokens, cleanup.Token))
+                throw new AiProviderException("The chat turn no longer owns its stage.", AiProviderException.ErrorCodeCorpusStale, false)
+                    .WithRecordedUsage(knownPrompt, knownCompletion, knownTotal, uncertainTokens);
+        }
+
+        AiProviderException WithUsage(AiProviderException failure) => !chatSelection ? failure : failure.WithRecordedUsage(
+            knownPrompt, knownCompletion, knownTotal, uncertainTokens);
 
         try
         {
             for (var attempt = 1; attempt <= maxAttempts; attempt++)
             {
+                budget.Token.ThrowIfCancellationRequested();
+                if (requestOptions?.ConfirmCurrent is not null && !await requestOptions.ConfirmCurrent(budget.Token))
+                    throw WithUsage(new AiProviderException("The chat turn or evidence is no longer current.", AiProviderException.ErrorCodeCorpusStale, false));
                 AiProviderException failure;
                 TimeSpan? retryAfter = null;
+                var sent = false;
                 try
                 {
                     budget.Token.ThrowIfCancellationRequested();
@@ -57,15 +90,33 @@ public sealed class OpenAiProviderClient(
                         Content = new StringContent(payload, Encoding.UTF8, "application/json")
                     };
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.ApiKey.Trim());
+                    sent = true;
+                    pendingAttempt = chatSelection;
                     using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, budget.Token);
                     var body = await ReadBoundedBodyAsync(response.Content, budget.Token);
+                    if (chatSelection && TryReadUsage(body, out var receiptPrompt, out var receiptCompletion, out var receiptTotal))
+                    {
+                        knownPrompt = (int)Math.Min(int.MaxValue, (long)knownPrompt + receiptPrompt);
+                        knownCompletion = (int)Math.Min(int.MaxValue, (long)knownCompletion + receiptCompletion);
+                        knownTotal = (int)Math.Min(int.MaxValue, (long)knownTotal + receiptTotal);
+                        pendingAttempt = false;
+                        await ReportAsync();
+                    }
                     budget.Token.ThrowIfCancellationRequested();
                     if (response.IsSuccessStatusCode)
                     {
-                        var reply = ParseReply(body, response);
+                        var reply = ParseReply(body, response) with { UncertainTokenUpper = uncertainTokens };
+                        MarkUnknown();
+                        await ReportAsync();
                         budget.Token.ThrowIfCancellationRequested();
-                        if (clock.Elapsed >= timeout) throw TimeoutFailure();
-                        return reply;
+                        if (budget.Elapsed >= timeout) throw TimeoutFailure();
+                        return !chatSelection ? reply : reply with
+                        {
+                            PromptTokens = knownPrompt,
+                            CompletionTokens = knownCompletion,
+                            TotalTokens = knownTotal,
+                            UncertainTokenUpper = uncertainTokens
+                        };
                     }
                     failure = HttpFailure(response.StatusCode, body);
                     retryAfter = response.Headers.RetryAfter?.Delta
@@ -82,17 +133,37 @@ public sealed class OpenAiProviderClient(
                 {
                     failure = new("Unable to read the OpenAI response.", AiProviderException.ErrorCodeNetwork, true);
                 }
+                catch (AiProviderException ex)
+                {
+                    failure = ex;
+                }
 
-                if (!failure.IsTransient || attempt == maxAttempts) throw failure;
+                if (sent) MarkUnknown();
+                await ReportAsync();
+
+                if (!failure.IsTransient || attempt == maxAttempts)
+                {
+                    throw WithUsage(failure);
+                }
                 var delay = retryAfter ?? TimeSpan.FromMilliseconds(250 * Math.Pow(2, attempt - 1));
                 if (delay < TimeSpan.Zero) delay = TimeSpan.Zero;
                 // Do not violate Retry-After or start an attempt that cannot fit in this request's budget.
-                if (delay >= timeout - clock.Elapsed) throw failure;
-                await Task.Delay(delay, budget.Token);
+                if (delay >= timeout - budget.Elapsed) throw WithUsage(failure);
+                await budget.DelayAsync(delay);
             }
         }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
-        catch (OperationCanceledException) { throw TimeoutFailure(); }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+            MarkUnknown();
+            await ReportAsync();
+            throw;
+        }
+        catch (OperationCanceledException)
+        {
+            MarkUnknown();
+            await ReportAsync();
+            throw WithUsage(TimeoutFailure());
+        }
         throw new AiProviderException("OpenAI request failed.", AiProviderException.ErrorCodeUnknown, false);
     }
 
@@ -131,6 +202,43 @@ public sealed class OpenAiProviderClient(
         return output.ToArray();
     }
 
+    public static string CreatePayload(
+        string model,
+        string reasoningEffort,
+        int maxOutputTokens,
+        IReadOnlyList<AiContextMessage> messages,
+        ChatConstrainedOutput? constrained)
+    {
+        var input = messages.Select(message => new { role = message.Role, content = message.Content ?? string.Empty });
+        return constrained is null
+            ? JsonSerializer.Serialize(new
+            {
+                model,
+                reasoning = new { effort = reasoningEffort },
+                max_output_tokens = maxOutputTokens,
+                store = false,
+                input
+            })
+            : JsonSerializer.Serialize(new
+            {
+                model,
+                reasoning = new { effort = reasoningEffort },
+                max_output_tokens = maxOutputTokens,
+                store = false,
+                input,
+                text = new
+                {
+                    format = new
+                    {
+                        type = "json_schema",
+                        name = constrained.Name,
+                        schema = JsonSerializer.Deserialize<JsonElement>(constrained.SchemaJson),
+                        strict = true
+                    }
+                }
+            });
+    }
+
     private AiProviderReply ParseReply(byte[] body, HttpResponseMessage response)
     {
         try
@@ -138,31 +246,11 @@ public sealed class OpenAiProviderClient(
             using var document = JsonDocument.Parse(body);
             var root = document.RootElement;
             if (root.ValueKind != JsonValueKind.Object) throw InvalidResponse();
-            var status = String(root, "status");
-            if (status == "incomplete")
-                throw new AiProviderException("OpenAI output was incomplete. No partial result was accepted.", AiProviderException.ErrorCodeIncompleteResponse, false);
-            if (status != "completed" || (root.TryGetProperty("error", out var error) && error.ValueKind != JsonValueKind.Null)) throw InvalidResponse();
-            if (!root.TryGetProperty("output", out var output) || output.ValueKind != JsonValueKind.Array) throw InvalidResponse();
-            var text = new StringBuilder();
-            foreach (var item in output.EnumerateArray())
-            {
-                if (item.ValueKind != JsonValueKind.Object) throw InvalidResponse();
-                if (String(item, "type") != "message") continue; // Never expose reasoning/tool items.
-                if (String(item, "role") != "assistant") throw InvalidResponse();
-                if (item.TryGetProperty("status", out var itemStatus) && itemStatus.GetString() != "completed") throw InvalidResponse();
-                if (!item.TryGetProperty("content", out var parts) || parts.ValueKind != JsonValueKind.Array) throw InvalidResponse();
-                foreach (var part in parts.EnumerateArray())
-                {
-                    if (part.ValueKind != JsonValueKind.Object) throw InvalidResponse();
-                    var type = String(part, "type");
-                    if (type == "refusal") throw new AiProviderException("OpenAI declined this request.", AiProviderException.ErrorCodeRefusal, false);
-                    if (type != "output_text") continue;
-                    text.Append(String(part, "text") ?? throw InvalidResponse());
-                }
-            }
-            if (string.IsNullOrWhiteSpace(text.ToString()))
-                throw new AiProviderException("OpenAI returned empty content.", AiProviderException.ErrorCodeEmptyResponse, false);
-            var input = 0; var completion = 0; var total = 0; var reasoning = 0;
+            var input = 0;
+            var completion = 0;
+            var total = 0;
+            var reasoning = 0;
+            var hasUsage = false;
             if (root.TryGetProperty("usage", out var usage) && usage.ValueKind != JsonValueKind.Null)
             {
                 if (usage.ValueKind != JsonValueKind.Object) throw InvalidResponse();
@@ -172,7 +260,36 @@ public sealed class OpenAiProviderClient(
                 if (usage.TryGetProperty("output_tokens_details", out var details) && details.ValueKind != JsonValueKind.Null)
                     reasoning = Tokens(details, "reasoning_tokens");
                 if (reasoning > completion) throw InvalidResponse();
+                hasUsage = input > 0 || completion > 0 || total > 0;
             }
+
+            AiProviderException Fail(AiProviderException exception)
+                => hasUsage ? exception.WithRecordedUsage(input, completion, total) : exception;
+
+            var status = String(root, "status");
+            if (status == "incomplete")
+                throw Fail(new AiProviderException("OpenAI output was incomplete. No partial result was accepted.", AiProviderException.ErrorCodeIncompleteResponse, false));
+            if (status != "completed" || (root.TryGetProperty("error", out var error) && error.ValueKind != JsonValueKind.Null)) throw Fail(InvalidResponse());
+            if (!root.TryGetProperty("output", out var output) || output.ValueKind != JsonValueKind.Array) throw Fail(InvalidResponse());
+            var text = new StringBuilder();
+            foreach (var item in output.EnumerateArray())
+            {
+                if (item.ValueKind != JsonValueKind.Object) throw Fail(InvalidResponse());
+                if (String(item, "type") != "message") continue; // Never expose reasoning/tool items.
+                if (String(item, "role") != "assistant") throw Fail(InvalidResponse());
+                if (item.TryGetProperty("status", out var itemStatus) && itemStatus.GetString() != "completed") throw Fail(InvalidResponse());
+                if (!item.TryGetProperty("content", out var parts) || parts.ValueKind != JsonValueKind.Array) throw Fail(InvalidResponse());
+                foreach (var part in parts.EnumerateArray())
+                {
+                    if (part.ValueKind != JsonValueKind.Object) throw Fail(InvalidResponse());
+                    var type = String(part, "type");
+                    if (type == "refusal") throw Fail(new AiProviderException("OpenAI declined this request.", AiProviderException.ErrorCodeRefusal, false));
+                    if (type != "output_text") continue;
+                    text.Append(String(part, "text") ?? throw Fail(InvalidResponse()));
+                }
+            }
+            if (string.IsNullOrWhiteSpace(text.ToString()))
+                throw Fail(new AiProviderException("OpenAI returned empty content.", AiProviderException.ErrorCodeEmptyResponse, false));
             var requestId = response.Headers.TryGetValues("x-request-id", out var values) ? values.FirstOrDefault() : null;
             return new(text.ToString().Trim(), input, completion, total, String(root, "model") ?? _options.Model, requestId)
             { ReasoningTokens = reasoning };
@@ -188,6 +305,27 @@ public sealed class OpenAiProviderClient(
         if (root.ValueKind != JsonValueKind.Object) throw InvalidResponse();
         if (!root.TryGetProperty(name, out var value)) return 0;
         return value.TryGetInt32(out var count) && count >= 0 ? count : throw InvalidResponse();
+    }
+
+    private static bool TryReadUsage(byte[] body, out int prompt, out int completion, out int total)
+    {
+        prompt = completion = total = 0;
+        try
+        {
+            using var document = JsonDocument.Parse(body);
+            if (document.RootElement.ValueKind != JsonValueKind.Object
+                || !document.RootElement.TryGetProperty("usage", out var usage) || usage.ValueKind != JsonValueKind.Object)
+                return false;
+            prompt = Tokens(usage, "input_tokens");
+            completion = Tokens(usage, "output_tokens");
+            total = usage.TryGetProperty("total_tokens", out _) ? Tokens(usage, "total_tokens") : checked(prompt + completion);
+            return total > 0 && total == (long)prompt + completion;
+        }
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException or OverflowException or AiProviderException)
+        {
+            prompt = completion = total = 0;
+            return false;
+        }
     }
 
     private static AiProviderException HttpFailure(HttpStatusCode status, byte[] body)

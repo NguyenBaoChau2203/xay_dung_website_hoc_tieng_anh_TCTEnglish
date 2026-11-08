@@ -26,4 +26,31 @@ public class AiManagementViewModel
 
     /// <summary>Number of labelled samples in the seed dataset (null when dataset does not exist).</summary>
     public int? DatasetSampleCount { get; set; }
+
+    /// <summary>missing, ready, corrupt or unsupported. This is status only; opening the page does not rebuild.</summary>
+    public string RetrievalIndexState { get; set; } = "missing";
+
+    public string? RetrievalSnapshotId { get; set; }
+
+    public int RetrievalDocumentCount { get; set; }
+
+    public int RetrievalChunkCount { get; set; }
+
+    public DateTime? RetrievalPromotedAtUtc { get; set; }
+
+    public string? RetrievalOperationMessage { get; set; }
+
+    public string VectorIndexState { get; set; } = "missing";
+
+    public string VectorIndexDetail { get; set; } = string.Empty;
+
+    public string? VectorIndexId { get; set; }
+
+    public int VectorChunkCount { get; set; }
+
+    public string VectorModel { get; set; } = string.Empty;
+
+    public int VectorDimensions { get; set; }
+
+    public string? VectorOperationMessage { get; set; }
 }

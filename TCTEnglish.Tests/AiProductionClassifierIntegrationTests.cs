@@ -74,6 +74,19 @@ public sealed class AiProductionClassifierIntegrationTests
     }
 
     [Fact]
+    public async Task ShippedClassifier_KeepsExplicitStoredCardQuestionsInLookupFlow()
+    {
+        await using var factory = CreateProductionClassifierFactory();
+        await factory.InitializeAsync();
+        using var scope = factory.Services.CreateScope();
+        var classifier = scope.ServiceProvider.GetRequiredService<IAiQueryClassifier>();
+        Assert.IsType<MlNetAiQueryClassifier>(classifier);
+
+        foreach (var question in new[] { "Ví dụ của forecast", "Phiên âm của forecast", "Định nghĩa của từ forecast là gì?" })
+            Assert.Equal(UserIntent.CardLookup, classifier.Classify(question).Intent);
+    }
+
+    [Fact]
     public void MlNetClassifierAssets_ArePresentAndStable()
     {
         var contentRoot = Path.GetFullPath(Path.Combine(

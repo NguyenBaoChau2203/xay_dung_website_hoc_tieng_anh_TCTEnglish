@@ -41,6 +41,573 @@ This is a historical record of actual fixes — not a list of pending issues (se
 ## Fix History
 
 <!-- Agent: append new entries BELOW this line, newest first -->
+
+### Hybrid RAG Phase 7 repair round 1 — retry budget, evaluation protocol, provider clock — 2026-11-08
+
+**Symptom**: The submitted Phase 7 envelope asked the owner to pick plan A or B, and treated 169,087 as if it covered embedding retries. A 36,276-byte batch that loses its response leaves only 3,724 bytes in a 40,000-byte job, so that retry cannot be sent. The 16-row demo did not lock the frozen actor, date, corpus or recall denominator. Under the full suite, `CallerCancellation_DuringBackoff_Propagates` saw 2 sends instead of 1, and `Deadline_CoversBodyRead_AndDoesNotResetForRetry` measured 2.8705s outside the 0.8–2.5s window after `ErrorCodeTimeout` had already matched. Isolated reruns of those two tests passed.
+
+**Root Cause**: The envelope added the unique corpus byte upper to a chat reservation and called that a retry guarantee. Production already keeps unknown usage and refuses a retry that does not fit the current job remainder; the acceptance write-up and harness did not. The demo script did not state that all 120 fixture cases are `actor-lan-standard` on `2026-11-06` in `synthetic-phase0`, or that a missing vector index makes zero query-embedding calls. The provider tests armed a 60ms caller token and a wall-clock stopwatch around a 250ms backoff, so parallel scheduling could cross an attempt boundary. The product client already used one timeout window; the tests did not control that clock.
+
+**Solution**: Replace the A/B envelope with a nominal success path of 14 embedding POSTs and 123,119 known bytes, and an explicit stop when a lost batch does not fit the job remainder. `AiAcceptanceRunGuard` admits each fake send, retains unknown usage for the whole run, and refuses promotion while unknown remains or the chunk count is short. A coordinated transport clock drives backoff, body reads and the original deadline. The 0.8–2.5s window and the one-call/two-call assertions stay. Production still uses `Stopwatch`, `CancelAfter` and `Task.Delay` through `SystemAiTransportClock`. The optional fourth constructor argument defaults to that clock, so `Program.cs` is unchanged.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/IAiTransportClock.cs` — production clock and the test seam.
+- `TCTEnglish/Services/AI/OpenAiProviderClient.cs` — one budget for send, body read and backoff.
+- `TCTEnglish.Tests/OpenAiProviderClientTests.cs` — coordinated cancellation, body deadline, and the 503-plus-backoff case.
+- `TCTEnglish.Tests/AiAcceptanceRunGuard.cs` — run-scoped post, token, duration and promotion guard.
+- `TCTEnglish.Tests/AiRagPhase7FixRound1Tests.cs` — lost 36,276-byte batch, 10-POST corpus replay, later-turn cap, frozen fixture.
+- `TCTEnglish.Tests/AiRagHybridRetrievalTests.cs` — missing vector index returns `lexical_degraded` with zero embedding calls.
+- `TCTEnglish.Tests/Fixtures/AI/phase7-corpus-admission-bounds.json` — 487 chunk byte uppers and the three job batches.
+- `docs/feature-audits/hybrid-rag/phase-7/dry-run-envelope.md` — corrected envelope; 169,087 and 282,974 withdrawn.
+- `docs/feature-audits/hybrid-rag/phase-7/evaluation-protocol.md` — actor, date, denominators, disposable seed rules.
+- `docs/feature-audits/hybrid-rag/phase-7/demo-script.md` — rehearsal labels, not an API grant.
+
+**Verification**: Submitted scope archived at `scope-manifest-input.json` and recomputed as 155/155, fingerprint `4948d507087a980d32de797f8d6d29a9f309d707ddbec106f2bd37b3497e4817`, before the repair edits. Focused `Phase7FixRound1`: 46 passed, 0 failed. Full suite on that binary: 1142 passed, 22 opt-in skipped, 0 failed, total 1164, 2 m 29 s. Node chat guards 14/14. App build `--no-restore`: 0 warnings, 0 errors. `git diff --check` clean. Docker Linux pipe missing and port 3307 closed, so MariaDB dry-run and browser rehearsal did not run. No paid text, embedding or speech call.
+
+**Commit**: none. Local repair only. HEAD remains `6af768bd32d16cc6d012d484ee82df4cab805c69`.
+
+**Notes**: No matching known-issues row. The 14 POST / 123,119 byte figure is a review envelope, not spending authority. Batches of 36,276 and 37,558 bytes cannot be retried inside the same 40,000-byte job. The frozen evaluation fixture was not edited. Live Phase 7 acceptance stays blocked until a separate budget grant and a real MariaDB/browser run.
+
+### Hybrid RAG Phase 6 closeout — late Stop admission, retry isolation and citation spacing — 2026-11-07
+
+**Symptom**: Stop before `AiStreamStarted` removed the local placeholder but never
+sent a cancellation when the server id arrived later. An immediate retry could
+start another invocation while the old admission/failure was still pending; a
+late Started could replace the new stream identity. Razor-reloaded citation
+markup also painted template indentation as large blank areas.
+
+**Root Cause**: The earlier stop-before-id repair handled the idle DOM only.
+The client had no pending-invocation ownership; reading `streamGeneration` inside
+each synchronous event callback did not associate that event with an attempt.
+Citation markup inherited `white-space: pre-wrap` from the assistant bubble.
+
+**Solution**: Retain a cancelled attempt until Start settles, cancel its id when
+admission arrives, and block another transport while that invocation is pending.
+Bind invocation failure to its attempt/generation, accept only one stream id per
+attempt and retain a bounded set of retired ids. Preserve the draft and deliberate
+retry with no automatic HTTP fallback. Collapse template whitespace in the bubble
+and citation region while preserving the markdown body's existing whitespace.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js` — invocation ownership, late cancellation, retired stream ids.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — citation/bubble whitespace boundary.
+- `scripts/tests/test_ai_chat_phase6_sources.cjs` — late Stop and Stop/retry/replayed Started regressions.
+
+**Verification**: Before the JS repair: 2 failed / 5 passed. After repair: phase-6
+Node 7/7; combined chat guards/paging 14/14. Native Chrome on the real Razor/JS
+page with explicitly injected SignalR events confirmed one initial Start despite
+double Enter, late `StopAiStream`, draft restoration, blocked overlapping retry,
+and no stale text/source. A later accepted attempt rendered ordered/deduplicated
+chunks and its own source only. Real cookie/MariaDB journeys additionally proved
+warm-cache account, entitlement and class revocation; real HTTP and SignalR source
+answers survived full/embed reload. Full app 1136 passed / 22 opt-in skipped /
+0 failed; focused 224/224; final build succeeded; no pending model change.
+See `docs/feature-audits/hybrid-rag/phase-6/browser-closeout.md` for exact evidence.
+
+**Commit**: none. Local only; Phase 6 AWAITING_REVIEW, Phase 7 LOCKED.
+
+**Notes**: This extends the earlier Phase 6 stop-before-id fix above. Its old Node
+assertion explicitly expected no remote Stop and has been corrected. No matching
+known-issues entry exists. Paid provider behavior/quality is not claimed.
+
+### Hybrid RAG Phase 6 — draft restore, stop-before-start, and retry duplication — 2026-11-07
+
+**Symptom**: Restoring a draft after a failed or stopped send threw `ReferenceError: adjustTextareaHeight is not defined`. Stopping before `AiStreamStarted` left the in-flight turn accepted, so a late completion could still attach sources. Retry after HTTP 429 appended a second user bubble with the same text.
+
+**Root Cause**: `adjustTextareaHeight` was declared inside `init` while `restoreDraftIfEmpty` calls it from the outer function scope. The Stop handler returned until `activeStreamId` existed, so the generation counter was not bumped and the unaccepted chunks stayed eligible. `#typing` remains in `#chatWindow` with `data-role="assistant"` and class `d-none`; `shouldReuseUserBubble` treated that hidden row as the latest assistant answer and refused to reuse the pending user bubble.
+
+**Solution**: Move `adjustTextareaHeight` to the IIFE scope. On Stop, increment `streamGeneration`, discard the unaccepted stream, and finalize before `StopAiStream`; skip the hub invoke when no stream id exists yet. Skip `row.id === 'typing'` in `shouldReuseUserBubble` and `removeTrailingTransportNotice`.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/ai-chat.js` — IIFE-scoped height helper, stop-before-id discard, typing-row skip
+
+**Verification**: Node `scripts/tests/test_ai_chat_phase6_sources.cjs`, `scripts/tests/test_ai_chat_submit_guard.cjs`, and `scripts/tests/test_ai_chat_load_older_order.cjs`: 13 passed, 0 failed. That includes the F2 SignalR case that failed while the helper was nested, the stop-before-id case, and the 429 retry case. Browser retry on `http://localhost:5186/AI/Chat?embed=true&phase6=retry`, after a cache-bypass reload of the served script, kept one user bubble and cleared the composer. No commit.
+
+**Commit**: none — HEAD remains `6af768bd32d16cc6d012d484ee82df4cab805c69`
+
+**Notes**: The typing row is a real assistant-role element in `TCTEnglish/Views/Ai/_ChatShell.cshtml`. A DOM harness that omits `data-role="assistant"` on `#typing` will not catch the duplicate-bubble regression.
+
+### Hybrid RAG Phase 5 repair round 2 — missing sources array and post-commit projection deadline — 2026-11-07
+
+**Symptom**: A version-1 envelope without a `sources` field was treated as a verified empty source list, so the stored sentence stayed in provider history. A display projection that waited on its cancellation token kept the accepted send and stream open, because that call used `CancellationToken.None`. The Phase 5 manifest path `predecessorManifest` pointed at the Phase 4 manifest while `predecessorFingerprint` identified the reviewed Phase 5 snapshot.
+
+**Root Cause**: `TryRead` checked `sources` only when the property was present, then replaced a null list with `[]`. Post-commit `ProjectAsync` had an exception handler but no independent deadline. The refreshed manifest reused the Phase 4 path for a different fingerprint.
+
+**Solution**: Require one `sources` array, using the serializer's case-insensitive name policy. A missing, null, or non-array value is unverifiable: display keeps the stored body, and provider context receives the neutral unverified notice. An explicit `sources: []` and legacy NULL metadata stay readable. After commit, display projection uses its own five-second token, the same post-acceptance budget as persistence and quota finalization. Timeout, cancellation, and other projection failures return the unverified notice without a second assistant or another settlement. The next manifest records the reviewed 140-entry fingerprint and names review round 2 as the predecessor reference instead of the Phase 4 manifest path.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/GroundingCitationService.cs` — mandatory sources array
+- `TCTEnglish/Services/AI/AiChatService.cs` — five-second independent projection budget
+- `TCTEnglish.Tests/AiRagPhase5FixRound2Tests.cs` — missing-sources, empty-array, legacy, deadline, and stream regressions
+- `docs/feature-audits/hybrid-rag/phase-5/scope-manifest.json` — predecessor reference
+
+**Verification**: Round 2 tests were red first (5 failed, 5 passed, including the two missing-sources envelopes and both waiting projections). After the fix, 10/10 passed. Focused Phase 4/5, quota, cancel, and provider-consumer tests: 80 passed, 2 opt-in skipped, 0 failed. Full suite: 1128 passed, 22 skipped, 0 failed, total 1150. No new migration. Disposable MariaDB 10.5.23 applied 15 migrations once and preserved the legacy NULL metadata row. Pending model reported no changes.
+
+**Commit**: none. Local only. HEAD remains `6af768bd32d16cc6d012d484ee82df4cab805c69`.
+
+**Notes**: The five-second budget can return the unverified notice while a slow but valid reauthorization is still running only until that token cancels the awaited call; the saved assistant remains for reload. `known-issues.md` has no matching citation entry.
+
+### Hybrid RAG Phase 5 repair — history, unverifiable envelopes, sentence freshness and post-commit projection — 2026-11-07
+
+**Symptom**: A revoked assistant body could still enter provider history when the next message did not fit the remaining budget. Broken or future metadata kept the stored sentence in provider context. A null source item threw while reading history. Two sentences of one document stored only the first, so editing the second left the stale sentence in context. A projection fault after the assistant commit surfaced as a failed send even though the turn and quota were already accepted.
+
+**Root Cause**: `LoadContextHistoryAsync` returned on budget overflow before `ProjectAsync`. `TryRead` kept the body for every parse failure and dereferenced source members. Capture deduped by source key, and corpus freshness treated a matching first sentence as current after a document-hash miss. Display projection ran after commit with the caller cancellation token and no failure result.
+
+**Solution**: Project each loaded history batch in provider mode before token cost and before every return, and budget the projected text. Reject null or non-object source members without catching database or cancellation failures. Replace unverifiable metadata with a neutral notice only in provider context; display keeps the stored body and an unverified status. Store every cited sentence. A present document hash that matches neither the live document hash nor the title-body hash is changed and does not fall through to the first sentence. A version-1 envelope with no document hash is changed when any live sentence is absent. After commit, projection faults and cancellation return the unverified notice, leave the saved assistant and settlement untouched, and do not add a second row.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/AiChatService.cs` — project history before each budget return; fail closed after commit
+- `TCTEnglish/Services/AI/Rag/GroundingCitationService.cs` — null-safe parse, provider notice, sentence provenance, group freshness
+- `TCTEnglish.Tests/AiRagPhase5FixRound1Tests.cs` — regressions for HR-P5-R1-F01–F05
+
+**Verification**: The new file was red first: 7 failed, 2 passed, 0 skipped, total 9. After the repair it passed 10/10. Focused Phase 4/5, quota, cancel and provider-consumer tests then passed 70 with 2 opt-in skips. Full suite: 1118 passed, 22 skipped, 0 failed, total 1140. No new migration. Disposable MariaDB 10.5.23 applied 15 migrations once, preserved user 900001 and the legacy message with NULL `GroundingMetadata`, and `has-pending-model-changes` reported no changes.
+
+**Commit**: none. Local only. HEAD remains `6af768bd32d16cc6d012d484ee82df4cab805c69`.
+
+**Notes**: Schema version stays 1. Old rows are not rewritten and missing sentence hashes are not invented. A content hash equal to the document, title-body, or body fingerprint remains document-level provenance, so an existing single-sentence envelope that stored the document hash stays current until that document changes. `known-issues.md` has no citation entry to update.
+
+### Hybrid RAG Phase 5 — cited document must exist before the visible reply keeps the source sentence — 2026-11-07
+
+**Symptom**: `GroundedTurn_KeepsEmbeddingSpendWhenSelectionIsInvalid_AndAnswersOnlySourceText` expected the reply `The bell is red.` and received `Nguồn dùng cho câu trả lời này không còn xem được.` A raw JSON search for that Vietnamese notice also failed while the parsed `content` field held the notice.
+
+**Root Cause**: The send path stores the accepted sentence, then projects the envelope before returning. The scripted evidence key `reading:1` had no published passage, so reauthorization treated the source as revoked and replaced the visible body. Stored `AiMessages.Content` stayed `The bell is red.` ASP.NET JSON escaped the notice, so a substring search of the raw payload missed it.
+
+**Solution**: The Phase 4 regression now inserts published reading passage 1 before send. Revocation still hides a missing, forbidden, or unpublished source. Phase 5 assertions read `content` and `grounding.status` from parsed JSON.
+
+**Files Changed**:
+- `TCTEnglish.Tests/AiRagPhase4GroundedTests.cs` — seed the cited published passage
+- `TCTEnglish.Tests/AiRagPhase5CitationTests.cs` — assert the parsed message after card deletion
+
+**Verification**: The grounded test passed. `AiRagPhase5CitationTests` passed inside the full suite: 1108 passed, 22 opt-in skipped, 0 failed.
+
+**Commit**: none. Local only. HEAD remains `6af768bd32d16cc6d012d484ee82df4cab805c69`.
+
+**Notes**: Do not show a scripted missing source by skipping projection. Seed the live document when a test needs the source sentence to remain visible. Parse JSON before searching Vietnamese notice text.
+
+### Hybrid RAG Phase 4 closeout — cancellation receipts, per-send guards and atomic promotion — 2026-11-07
+
+**Symptom**: The returned repair lost known usage when callers cancelled at body
+EOF, retained an unknown hold after an HTTP 400 as if it were a zero-send preflight,
+and could overwrite the actual uncertain send bound with unsent retry allowance.
+Later sends lacked ownership/source checks; the single-sentence path and snapshot
+replacement could accept stale evidence. Final transient evidence lost document
+identity. Windows readers caused intermittent lexical/vector promotion failures.
+
+**Root Cause**: Receipt persistence ran after transport/retrieval returned and used
+the caller token. Chat guards did not reach individual retries. Send inference used
+error categories. Final checks covered selection only. Sentence conversion omitted
+document/snapshot metadata. Atomic rename/replace did not retry native sharing
+violations; Directory.Move reports an open child as native 5, file replace as 32.
+
+**Solution**: Add opt-in cumulative receipt callbacks with bounded independent tokens
+to both transports, and connect durable ownership/current-source guards per send.
+Use actual ledger attempts, preserve reported uncertain cost, clear only true
+preflights, recheck all sentence paths/snapshot identity and retain provenance in
+the transient answer. Share a bounded atomic-promotion retry helper: 8 attempts,
+700 ms total backoff, Windows 32/33 and directory-only native 5; never weaken ACLs
+or repeat provider requests. Keep failure diagnostic native codes and assertions.
+
+**Files Changed**: AI provider/embedding options and transports; grounded pipeline,
+selector/interfaces/composer/evidence; hybrid retrieval; lexical/vector stores and
+CorpusFilePromotion; AiRagPhase4CloseoutTests and MariaDbAiTurnLifecycleTests;
+diagnostic assertions in the existing corpus/vector/Phase 3 regression tests.
+
+**Verification**: 13 new regression cases have failing-before/passing-after evidence.
+Focused 191/191; final full suite 1100 passed / 22 opt-in skipped / 0 failed.
+MariaDB lifecycle 3 passed / 0 skipped, including cancelled receipt 105 settled once.
+Disposable MariaDB 10.5.23 upgraded 14 migrations from the reviewed baseline,
+preserved user 900001 checksum 2660695814, repeated without history drift; repo-local
+EF reported no pending model changes. Tooling validator and git diff --check passed.
+
+**Notes**: Reuses the same-day Phase 4/Phase 3 ledger diagnoses above/below. No paid
+API, persisted model/migration/configuration/shared-data change or remote action.
+The original intermittent failures lacked native diagnostics; controlled probes
+prove the repaired I/O mechanism, and the original tests pass in the final full run.
+Details: docs/feature-audits/hybrid-rag/phase-4/review-round-2.md. No commit.
+
+### Hybrid RAG Phase 4 repair — lost and invalid provider usage dropped the known receipt — 2026-11-07
+
+**Symptom**: A lost first embedding response followed by a successful retry kept only the later receipt. An invalid query vector dropped known embedding usage. An incomplete generation response replaced a known total of 105 with an unknown bound of 64. Settlement then billed the unknown bound instead of the receipt.
+
+**Root Cause**: Stage spend cleared the unknown hold and did not keep an earlier uncertain attempt. Chat generation attached usage only after shape checks, so an incomplete but metered response was reclassified as an unknown send. The ledger bill preferred that unknown figure over the known total.
+
+**Solution**: `RecordStageUsageAsync` stores known and unknown amounts together. A lost embedding marks the pending unknown bound, then the retry records the known receipt without clearing that bound. Query-vector validation and incomplete chat output record the provider usage before the answer is rejected. Chat retries add an unknown bound only for a sent attempt that has no receipt. Settlement still prefers the conservative known-plus-unknown charge when it is greater than zero.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/AiDailyQuotaReservationService.cs` — stage usage write returns whether the pending owner was updated
+- `TCTEnglish/Services/AI/AiTurnStageJournal.cs` — memory follows a successful durable write
+- `TCTEnglish/Services/AI/OpenAiProviderClient.cs` — usage is copied before incomplete or refusal validation
+- `TCTEnglish/Services/AI/AiProviderException.cs` — recorded prompt, completion, total and unknown travel with the exception
+- `TCTEnglish/Services/AI/Rag/HybridRetrievalService.cs` — embedding attempts keep known prompt tokens and the uncertain upper bound
+- `TCTEnglish/Services/AI/Rag/GroundedChatPipeline.cs` — generation records the known total and any earlier unknown attempts
+- `TCTEnglish.Tests/AiRagPhase4RepairRound1Tests.cs` — lost retry, invalid vector and incomplete generation
+
+**Verification**: `LostEmbeddingResponse_RetainsUnknownBoundAndKnownSeven` sees 2 embedding POSTs, known 7 and a positive unknown bound. `InvalidQueryVector_RetainsKnownSeven` sees 1 POST and known 7. `IncompleteGeneration_RetainsKnownOneHundredFive` keeps KnownGenerationTokens 105 and settles 122 when embedding known is 17. These ran inside the Phase4RepairRound1 suite. No commit hash: uncommitted local repair.
+
+**Notes**: Preflight refusals `invalid_configuration`, `budget_exhausted` and `corpus_stale` still send nothing. Non-chat payloads stay free of the chat `text` schema. Related to the same-day quota-stage entry below; this repair does not add columns.
+
+### Hybrid RAG Phase 4 repair — selector payload was not the admitted generation charge — 2026-11-07
+
+**Symptom**: A short output cap could stand in for the whole generation charge. A 3228-byte selector body was admitted under a planned 328 / request 700 budget. CJK history could be sent even when the serialized request exceeded the room reserved for one attempt.
+
+**Root Cause**: Admission reserved output tokens and then measured evidence slack, but it did not measure the exact JSON body that `OpenAiProviderClient.CreatePayload` sends, including system prompt, question, evidence and schema. Character-divided-by-four was not the invoice, and the output cap did not include input bytes.
+
+**Solution**: `ChatTurnBudget.TryCreate` measures the fixed selector envelope with the same serializer. If that envelope does not fit the per-attempt room, generation is not sent. Otherwise the input upper bound is the room left after output, and the unknown generation charge is attempts times input plus output. The pipeline shrinks oldest user history and then trailing sentences until the measured body fits, or it refuses before HTTP. The provider also rejects a body larger than `MaxInputBytes` before the loop. Evidence slack stays `min(800, room)` so a normal short answer is still admitted.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/ChatTurnBudget.cs` — envelope, attempt count and generation reserve
+- `TCTEnglish/Services/AI/AiChatService.cs` — passes admitted generation and embedding attempt counts
+- `TCTEnglish/Services/AI/OpenAiProviderClient.cs` — one payload serializer and a pre-HTTP byte ceiling
+- `TCTEnglish/Services/AI/Rag/OpenAiChatSentenceSelector.cs` — measures and refuses before send
+- `TCTEnglish/Services/AI/Rag/GroundedChatPipeline.cs` — shrinks history and evidence to the input ceiling
+- `TCTEnglish.Tests/AiRagPhase4RepairRound1Tests.cs` — CJK history and the narrow 700 budget
+
+**Verification**: `CjkHistory_DoesNotSendAnUnboundedSelectorPayload` either refuses with no POST or keeps the body inside 700 bytes. `AdmittedCjkHistory_StaysInsideTheSelectorCeiling_AndNarrowBudgetRefuses` refuses the 3228-byte fixture at planned 328 / budget 700, and a wider admitted turn sends only bodies inside `GenerationInputUpper`. No tokenizer package was added. No commit hash.
+
+**Notes**: The UTF-8 byte count is the conservative upper bound, not a provider invoice. Scripted selectors report measure 0 and are not capped by this ceiling.
+
+### Hybrid RAG Phase 4 repair — multi-sentence chunk answered with the whole chunk — 2026-11-07
+
+**Symptom**: Follow-up `is that true?` after `what color is the bell`, against the chunk `The bell is red. The door is blue.`, could answer from the whole chunk. A completed selector result `{"sentenceIds":[]}` could still fall through to catalog success.
+
+**Root Cause**: Materialize emitted the chunk embed text instead of one evidence item per snapshot sentence. Empty completed `sentenceIds` was treated as “no selection” and the catalog remained eligible.
+
+**Solution**: Materialize emits one item per snapshot sentence whose hash matches, and copies sentence id, sentence hash, route, visibility and corpus/chunker/source versions. `TrySelect` returns false for a completed empty array. The answer uses the sentence hash and the sentence visibility. `LexicalAnswerAdmission` was not relaxed, and no citation table was added.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/Corpus/HybridRetrievalService.cs` — per-sentence evidence and provenance
+- `TCTEnglish/Services/AI/Rag/GroundedAnswerComposer.cs` — empty completed selection is not a catalog success
+- `TCTEnglish/Services/AI/Rag/GroundedChatPipeline.cs` — transient sentence provenance reaches the answer
+- `TCTEnglish.Tests/AiRagPhase4RepairRound1Tests.cs` — two-sentence chunk and empty selection
+
+**Verification**: `RealTwoSentenceChunk_FollowUpCopiesOriginalSentenceAndProvenance` returns only the red sentence, with its original sentence id, sentence and document hashes, route, visibility and versions. `CompletedEmptySelection_DoesNotAnswerFromCatalog` does not answer from the catalog. No commit hash.
+
+**Notes**: This stays transient evidence. Phase 5 citation storage was not started.
+
+### Hybrid RAG Phase 4 repair — unpublished source accepted after the selector returned — 2026-11-07
+
+**Symptom**: A source unpublished, rehashed, made private, or replaced in the snapshot while the selector was in flight could still become the accepted assistant sentence.
+
+**Root Cause**: The pipeline checked source currency before retrieval, then accepted the model selection without reading publication, hash and snapshot again after the provider await.
+
+**Solution**: `SourcesStillCurrentAsync` rechecks each grounded identity before selector dispatch and again after the await, before accept. On failure the sentences and model JSON are dropped and the composer returns the existing source-revoked text. Paid usage already recorded is kept. The interface default stays true so scripted hybrids compile. A fixed server refusal is persisted with HTTP 200 so the client does not retry 503.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/Corpus/HybridRetrievalService.cs` — recheck by source key and document hash
+- `TCTEnglish/Services/AI/Rag/GroundedChatPipeline.cs` — both barriers drop a stale selection
+- `TCTEnglish.Tests/AiRagPhase4RepairRound1Tests.cs` — unpublish during selection
+
+**Verification**: `UnpublishDuringSelection_DoesNotAcceptTheOldSentence` does not return the old sentence. An unchanged authorized source still answers through the existing grounded tests in the same Phase4RepairRound1 run. No commit hash.
+
+**Notes**: The recheck is a read of current publication and snapshot identity. It does not store a citation.
+
+### Hybrid RAG Phase 4 repair — expired owner still sent generation and kept a late receipt — 2026-11-07
+
+**Symptom**: After another conversation recovered an expired stage lease, the old owner could still call generation and a late receipt could write KnownGenerationTokens on a terminal row. A missing or non-pending ledger mutation could also report success.
+
+**Root Cause**: Stage mutations committed even when the row was missing, not Pending, or the lease had already expired. The pipeline treated an in-process flag as ownership and did not stop the selector when the durable owner was gone. A late usage write did not require the row to still be pending.
+
+**Solution**: `MutatePendingAsync` returns false, without changing the row, when the ledger is missing, not Pending, or `LeaseExpiresAtUtc` is due. It does not extend an expired lease and does not reopen a terminal question. Begin, record, clear and usage return that result. The journal updates memory only after the durable write succeeds. `OwnsTurnAsync` is a no-tracking read of the pending unexpired owner. A failed begin, a failed usage write, or a lost owner returns the revoked outcome and does not call generation. A late receipt on a terminal or expired row returns false and leaves KnownGenerationTokens unset.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/AiDailyQuotaReservationService.cs` — pending-and-unexpired gate and `OwnsTurnAsync`
+- `TCTEnglish/Services/AI/AiTurnStageJournal.cs` — durable result before memory
+- `TCTEnglish/Services/AI/Rag/GroundedChatPipeline.cs` — ownership gates embedding and generation
+- `TCTEnglish.Tests/AiRagPhase4RepairRound1Tests.cs` — expired owner sends no generation
+- `TCTEnglish.Tests/MariaDbAiTurnLifecycleTests.cs` — late generation receipt on MariaDB
+
+**Verification**: `ExpiredOwner_DoesNotSendGenerationAfterRecovery` leaves selector calls at 0 and does not keep the old sentence. `ExpiredOwner_DoesNotAcceptALateGenerationReceipt` on disposable MariaDB 10.5.23 returns false, settles the embedding unknown 22, and leaves KnownGenerationTokens null. The existing live-lease fact still passes on that database: 2 passed, 0 skipped. No commit hash.
+
+**Notes**: The 3-minute lease duration was not increased. No new column and no applied migration edit. Recovery of a due lease remains the other conversation's reserve, and a second settle stays a no-op.
+
+### Hybrid RAG Phase 4 — live quota stage settled by another conversation — 2026-11-07
+
+**Symptom**: After a chat turn recorded embedding usage and before generation
+finished, the next conversation's question reservation settled the first turn.
+Generation tokens could be dropped, and an unknown in-flight charge could be
+treated as already final.
+
+**Root Cause**: `ReserveQuestionAsync` recovered every Pending ledger row with
+ActualTokens greater than zero. Embedding spend was stored in ActualTokens while
+the same turn was still generating, so conversation B closed conversation A's
+live row.
+
+**Solution**: Keep ActualTokens at zero while a stage lease is live. Store known
+and unknown embedding/generation amounts on the ledger, with ActiveStage,
+LeaseExpiresAtUtc and TerminalIntent. Another reserve recovers a row only when
+the lease has expired, the row is AwaitingRecovery, or it is a legacy row with
+no stage, no lease and ActualTokens greater than zero. Unknown bounds stay in
+the settled total. A second terminal close is a no-op.
+
+**Files Changed**:
+- `TCTEnglish/Models/AiQuotaReservationLedger.cs` — nullable stage, lease and usage columns
+- `TCTEnglish/Services/AI/AiTurnLifecycle.cs` — recovery and settlement rules
+- `TCTEnglish/Services/AI/AiDailyQuotaReservationService.cs` — stage writes and lease-aware recovery
+- `TCTEnglish/Migrations/20261106181456_AddAiQuotaTurnStage.cs` — additive nullable columns
+- `TCTEnglish.Tests/AiRagPhase4GroundedTests.cs` — barrier race and expired-unknown regressions
+- `TCTEnglish.Tests/MariaDbAiTurnLifecycleTests.cs` — same lease rule on MariaDB 10.5.23
+
+**Verification**: SQLite barrier test keeps the first row Pending with
+KnownEmbeddingTokens 17 and ActualTokens 0 while a second scope reserves; after
+the manual clock passes the 3-minute lease, one reserve settles 17 once.
+Expired unknown generation 80 settles once and a later Settle(500) does not
+change it. MariaDB acceptance test on `tct_acceptance_phase4rag` passed the
+same live-then-expire sequence. Disposable `tct_migration_check` upgraded from
+`20260510020134_AddReadingUserTranslation`, preserved user 900001 checksum,
+applied 14 migrations including AddAiQuotaTurnStage, and a repeat update changed
+no history. No commit hash: this phase is uncommitted local work.
+
+**Notes**: In-process flags are not the lock. The durable stage and lease are.
+Do not set ActualTokens during a live stage or the old scan returns. Legacy
+MarkKnownUsagePending still moves the row to AwaitingRecovery so closeout
+recovery keeps working.
+
+### Hybrid RAG Phase 3 closeout — usage receipts, uncertain retries and bounded progress — 2026-11-07
+
+**Symptom**: The returned repair still lost valid usage when vector validation
+failed, reported complete/zero usage after cancelled/malformed/timeout responses,
+and reused token allowance after an uncertain send. Cache write failures escaped
+with no operation usage result. A cold corpus above the per-job UTF-8 ceiling
+could never build an index, even when every individual chunk fit the ceiling.
+Preflight configuration failures also invented an HTTP attempt in the service.
+
+**Root Cause**: Usage was recorded only after validating the whole embedding
+response. Unknown sends had a flag but no retained token reservation. The service
+admitted only a whole-corpus bound and did not preserve its ledger across I/O errors.
+Fallback service accounting inferred sends from exceptions without transport evidence.
+
+**Solution**: Record independent valid usage before vector validation. Retain
+conservative pending/uncertain bounds across retries and later batches, and mark
+unknown outcomes on all failure/cancel paths. Return known costs on index/cache
+failure. Support explicit partial jobs that keep validated cache, resume within
+the same caps and promote only a complete/current index. No automatic next job.
+Keep single-call adapter accounting in the default embedding interface method;
+the production client owns actual per-HTTP attempts, including preflight zero sends.
+
+**Files Changed**: EmbeddingOperationBudget.cs, IOpenAiEmbeddingClient.cs, OpenAiEmbeddingClient.cs,
+Rag/Corpus/VectorIndexService.cs and AiRagPhase3CloseoutTests.cs.
+
+**Verification**: Seven new regressions failed before repair; cache-I/O and
+preflight cases failed separately. After repair RAG/provider 135/135 passed, full app suite
+1067 passed / 19 opt-in skipped / 0 failed. All nine new regressions pass.
+Native admin dry-run keyboard and
+ready200 checked on preserved owner runtime; new backend tested in Phase3Closeout.
+See docs/feature-audits/hybrid-rag/phase-3/review-round-2.md for scope/limits.
+
+**Notes**: No paid API, protected config, persisted/shared data or remote stage.
+Kept the running Release process; its apphost lock is not a compile failure.
+### Hybrid RAG phase 3 repair round 1 — HR-P3-R1-F01–F04 — 2026-11-06
+
+**Symptom**: Ngân sách 1 request vẫn gửi HTTP lần hai khi provider trả 429, rồi promote index. Câu tiếng Việt được ước lượng 7 token và được gửi dù trần là 10; usage 20 đã nhận bị báo thành 0. Hai scope trên cùng index cùng gọi provider. Batch 65 đoạn vẫn gửi đoạn thứ 65 sau khi cả 65 nguồn đã bị gỡ publish, rồi promote.
+
+**Root Cause**: `OpenAiEmbeddingClient` retry bên trong một lần gọi `EmbedAsync`, trong khi `VectorIndexService` chỉ đếm lời gọi đó. Trần token dùng ước lượng ký tự/4 và ghi usage sau khi đã so sánh. Mỗi instance service có `SemaphoreSlim` riêng. Recheck corpus chỉ xảy ra lúc lập kế hoạch, không trước batch, retry hay promote.
+
+**Solution**: Một ledger attempt/usage cho cả job, trừ request trước mỗi POST kể cả retry. Trần trước khi gửi là số byte UTF-8, vì BPE byte-level không thể nhiều token hơn số byte; ký tự/4 chỉ còn là ước lượng có nhãn. Usage đã biết được giữ khi vượt trần, hủy hoặc lỗi; usage không đọc được ghi `unknown`. Admission dùng chung theo thư mục index, service vẫn scoped. Trước mỗi batch, trước mỗi retry và ngay trước promote, đối chiếu snapshot lexical và tập chunk public hiện tại. Lệch snapshot trả `lexical-snapshot-changed`. Lệch nội dung hoặc publication trả `corpus-drift`. Không gửi payload cũ và không promote.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/EmbeddingOperationBudget.cs` — ledger attempt/usage và trần byte
+- `TCTEnglish/Services/AI/OpenAiEmbeddingClient.cs` — trừ ngân sách và recheck trước mỗi POST
+- `TCTEnglish/Services/AI/Rag/Corpus/VectorIndexAdmission.cs` — lease theo index root
+- `TCTEnglish/Services/AI/Rag/Corpus/VectorIndexService.cs` — batch theo ngân sách còn lại, dừng khi corpus lệch
+- `TCTEnglish/Program.cs` — đăng ký coordinator singleton trong grant RAG đã có
+- `TCTEnglish/Areas/Admin/Controllers/AiManagementController.cs` — hiện safeTokens và usage unknown
+- `TCTEnglish.Tests/AiRagPhase3FixRound1Tests.cs` — regression F01–F04 và hủy sau usage đã biết
+
+**Verification**: Review round 1 đã reproduce bốn lỗi trên HTTP/SQLite giả. Sau sửa, `AiRagPhase3FixRound1Tests` 7/7 trên configuration `Phase3FixRound1`. Filter AiRag và OpenAiProviderClientTests 126 pass. Bộ tương thích 84 pass. Bộ app 1058 pass, 19 skip opt-in MariaDB, 0 fail. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Trần byte không phải số token của nhà cung cấp. Corpus public local dry-run báo safeTokens=113887 trong khi form mặc định là 40000, nên embed cả corpus sẽ bị từ chối trước HTTP. Chat thường vẫn lexical. Phase 4–7 vẫn khóa.
+
+### Hybrid RAG phase 2 repair round 2 — HR-P2-R1-F02 and HR-P2-R1-F03 — 2026-11-06
+
+**Symptom**: Câu “Where can I find the tidal harbor marker in this lesson?” và “Can I find the tidal harbor marker in this lesson?” trả câu mở đầu “Here you can find examples in this lesson.” thay vì câu chứa marker. Câu hỏi số người, nguyên nhân phát sáng, vị trí nhìn thấy, thời điểm xây dựng, người xây hoặc màu sắc vẫn được Answered/full khi nguồn chỉ có năm 2008, mệnh đề because của việc sơn lại, hoặc “visible at dawn”.
+
+**Root Cause**: `QueryOverlap` đếm mọi token câu hỏi, nên các từ khung find/in/this/lesson thắng token chủ đề. `LexicalAnswerAdmission` coi bất kỳ chữ số, because, giới từ hoặc frame không nhận ra là đủ ý; test vòng 1 còn coi “Where is the tidal harbor marker visible?” là đáp án đúng của “at dawn”.
+
+**Solution**: Token nội dung được nhân 100 trước khi cộng token khung, nên một token chủ đề thắng mọi từ khung. Admission chỉ nhận span nêu đúng facet được hỏi: số người không phải năm, nguyên nhân phải chứa đúng vị ngữ, vị trí phải là địa điểm không phải thời gian, thời điểm nhìn thấy không phải thời điểm xây, who/màu không rơi về Reference. Câu nhiều facet chỉ full khi cùng một span nêu đủ mọi facet.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/Corpus/RetrievalCorpusService.cs` — chọn span theo token nội dung
+- `TCTEnglish/Services/AI/Rag/Corpus/LexicalAnswerAdmission.cs` — đối chiếu facet được hỏi với span
+- `TCTEnglish.Tests/AiRagPhase2FixRound1Tests.cs` — đảo oracle where/visible thành negative
+- `TCTEnglish.Tests/AiRagPhase2FixRound2Tests.cs` — regression F02/F03 còn mở
+
+**Verification**: Năm regression đỏ trước khi sửa, gồm oracle where/visible. Sau sửa `AiRagPhase2FixRound1Tests` và `AiRagPhase2FixRound2Tests` 9/9. Filter Phase2FixRound2 231 pass. Provider/ML/probe 65 pass. Tooling exit 0. Python 135 pass, 1 skip. Baseline development 15/17, held-out 0, cùng hai miss cũ. Trang admin đã đăng nhập: Dry-run lúc chưa có index không tạo file; Build tạo snapshot; Dry-run sau đó không đổi byte. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Heuristic cue cũ không còn là điều kiện đủ. F01/F04 không bị viết lại. Snapshot v1 vẫn bị từ chối. Hai miss baseline HR-NAV-D04 và HR-NAV-D12 giữ nguyên. Index local vừa build nằm trong `.appdata` đã ignore, không phải production.
+
+### Hybrid RAG phase 2 repair round 1 — HR-P2-R1-F01–F04 — 2026-11-06
+
+**Symptom**: Dry-run trên trang admin gửi thành rebuild vì nút submit bị disable trước khi browser tạo form data. Chunk nhiều câu trả câu chào thay vì câu chứa từ khóa. Câu hỏi nguyên nhân hoặc số lượng được Answered/full dù nguồn chỉ nói “visible at dawn”. Một câu 29.700 ký tự vượt trần 600 token xấp xỉ và đi vào evidence.
+
+**Root Cause**: Handler submit gỡ submitter khỏi form data và `bool dryRun` mặc định false. `ToHit` lấy câu hash-hợp lệ đầu tiên trong chunk. Điểm BM25 dương được nối thành câu trả lời full. `Pack` không tách câu đơn dài hơn trần chunk.
+
+**Solution**: Form gửi `operation=dry-run|build` trước khi disable nút; thiếu hoặc sai giá trị thì không ghi snapshot. Chunker `paragraph-sentence-v2` chia câu quá dài thành span liền kề, hash đúng từng span, và từ chối snapshot v1. Evidence lấy span trùng query. Admission chỉ trả full khi span nêu đúng kiểu yêu cầu; nguyên nhân hoặc số lượng không có trong span thì InsufficientEvidence và evidence rỗng.
+
+**Files Changed**:
+- `TCTEnglish/Areas/Admin/Views/AiManagement/Index.cshtml` — giữ operation khi disable nút
+- `TCTEnglish/Areas/Admin/Controllers/AiManagementController.cs` — từ chối operation thiếu hoặc không hợp lệ
+- `TCTEnglish/Services/AI/Rag/Corpus/CorpusChunker.cs` — span đúng nguồn và trần chunk
+- `TCTEnglish/Services/AI/Rag/Corpus/RetrievalCorpusService.cs` — chọn câu khớp
+- `TCTEnglish/Services/AI/Rag/Corpus/LexicalAnswerAdmission.cs` — tách candidate khỏi câu trả lời đủ ý
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — không nâng hit không đủ ý thành full
+- `TCTEnglish.Tests/AiRagPhase2FixRound1Tests.cs` — regression bốn finding
+
+**Verification**: Bốn regression đỏ trước sửa. Sau sửa `AiRagPhase2FixRound1Tests` 5/5. Filter Phase2FixRound1 227 pass. Provider/ML/probe 65 pass. Tooling exit 0. Python 135 pass, 1 skip. Baseline development 15/17, held-out 0. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Snapshot `paragraph-sentence-v1` không còn được phục vụ. Admin cần rebuild. Hai miss baseline HR-NAV-D04 và HR-NAV-D12 giữ nguyên, không chỉnh trọng số. Trang admin trên launcher local chưa được bấm bằng trình duyệt đăng nhập; serialization Dry-run/Build đã bấm trên handler thật, còn POST admin được chứng minh bằng test host.
+
+### Hybrid RAG phase 1 closeout — complete lookup target and requested field — 2026-11-06
+
+**Symptom**: `Explain why France has seasons` và câu tiếng Việt vẫn Answered/full từ thẻ France chỉ định nghĩa quốc gia. Tra cụm water cycle còn lấy thẻ water, và hỏi phiên âm có thể nhận definition dù chưa có phiên âm.
+
+**Root Cause**: Boolean tra thẻ chỉ nhận sự xuất hiện explain/meaning, không mang mục tiêu đầy đủ hoặc loại nội dung. Retriever có thể tìm từng token; boundary coi bất kỳ card hit là đủ và đưa cả evidence không dùng vào full answer. Control bộ Weather còn kỳ vọng definition của cloud cho yêu cầu weather.
+
+**Solution**: Thêm transient `StoredCardLookupRequest` với kind và target đầy đủ, đọc các frame tra cứu có điểm đầu/cuối rõ. Chỉ chọn card có title chuẩn hóa bằng toàn bộ target và có field cần trả (definition/phonetic/example). Thiếu source/field trả InsufficientEvidence, scope không full, evidence rỗng. Câu không nhận diện có lexical card hit được từ chối. Luồng tra thẻ chỉ đưa các card đã chọn vào evidence. Giữ source qualifier/ACL/query caps trong retriever và mọi typed user/platform flow.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/StoredCardLookupRequest.cs` — kind/target parsing và kiểm tra nguồn/field
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — positive lookup selection và outcome/evidence nhất quán
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — bỏ heuristic boolean/thuộc tính đã thay thế
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — câu hỏi nguyên nhân, partial phrase, complete phrase, phiên âm; sửa control Weather/cloud sai loại câu trả lời
+
+**Verification**: Nhóm hồi quy trước sửa 11 fail/2 pass; sau sửa boundary 36/36. Bộ filter Phase 1 215/215; provider/ML/lifecycle probe 65/65, cấu hình Phase1FixRound6. Probe độc lập 30 quan sát, gồm 10 ca unsupported đã kiểm scope/evidence đều đạt. Không gọi paid API.
+
+**Commit**: Chưa commit. Owner yêu cầu Codex hoàn thiện trực tiếp trong review vòng 6; chưa cấp commit/push/release.
+
+**Notes**: Transient DTO không đổi EF mapping/schema/content. Full Hybrid RAG/grounded generation và citation bền vẫn là các phase tiếp theo; baseline an toàn có thể abstain cho câu không có học liệu phù hợp. F02/F03/F04/F05 và source key card:{id} được giữ.
+
+### Hybrid RAG phase 1 repair round 5 — HR-P1-R1-F01 — 2026-11-06
+
+**Symptom**: “What is the capital of France?” vẫn Answered/full khi definition là “a country; its capital is not given in Unit12”. “Can you tell me the capital of France?” trả “a European country” như thể đó là thủ đô. Token có chữ và số được nhận là giá trị thuộc tính.
+
+**Root Cause**: `HasExplicitAttributeValue` coi token dài từ 4, vừa có chữ vừa có số, là giá trị fact. Parser chỉ nhận vế trái dài 1–3 token, nên câu lịch sự không vào khung fact và thẻ lexical được nâng thành Answered/full. Oracle `capital: LIMA9` cũng dựa trên heuristic đó.
+
+**Solution**: Câu trả lời full từ thẻ chỉ khi câu là tra nội dung đã lưu: từ ngắn, hỏi nghĩa, giải thích từ, kiểm tra từ trong notes, hoặc so sánh bộ. Câu thuộc tính “of/của” không phải hỏi nghĩa thì không được full, kể cả vế trái dài. Không còn dùng token chữ-số, mã Unit/Lesson hay prefix lịch sự để cấp quyền trả lời. “what does Peru mean” vẫn trả definition đã lưu. “What is the capital of Peru?” không còn full.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — bỏ heuristic giá trị tự do; thêm quyết định tra thẻ dương
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — chỉ giữ snippet thẻ khi câu là tra nội dung đã lưu
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — Unit12, Lesson4, câu lịch sự; bỏ oracle fact LIMA9
+
+**Verification**: Hai test đỏ trước khi sửa trên `Phase1FixRound5`: Peru/LIMA9 và France/Unit12 đều Answered. Sau sửa, hai test đó xanh. Filter plan 203 pass. Provider/ML/probe 65 pass, `--no-build`. Script tests 135, 1 skip. Tooling exit 0. Query builder không đổi. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: LIMA9 là oracle tổng hợp của vòng 4, không phải yêu cầu nghiệp vụ. Definition vẫn hiện khi người dùng hỏi nghĩa đã lưu. Fact tự do thuộc Phase 4, đang LOCKED. F02/F03/F04/F05 và `card:{id}` được giữ.
+
+### Hybrid RAG phase 1 repair round 4 — F01 và F04 còn lại — 2026-11-06
+
+**Symptom**: Definition có chữ “capital” nhưng không có giá trị thủ đô vẫn thành Answered/full. “Thủ đô của France là gì?” cũng trả definition đó. “Daily Study” bị cắt thành bộ Daily.
+
+**Root Cause**: Hỗ trợ fact chỉ cần từ khóa thuộc tính và thực thể trùng. “là gì” bị coi là tra nghĩa cho cả câu. Tên bộ bị xóa các từ khung như Study/Reading ở đầu hoặc cuối, nên prefix Daily/Lab được chọn thay tên đầy đủ.
+
+**Solution**: Fact “X of Y” hoặc “X của Y” chỉ Answered khi evidence có token giá trị gắn với thuộc tính, gồm chữ và số. Nhắc thuộc tính trong câu văn không đủ. “là gì” không biến câu hỏi thuộc tính thành tra nghĩa. Tên sau “trong bo/trong set”, kể cả trong ngoặc, được giữ nguyên và khớp SetId trước trần. Cụm “trong bộ thẻ của tôi” không phải tên bộ. Giữ F02/F03/F05, `card:{id}` và trần 25/20/100.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — yêu cầu giá trị tường minh, không chỉ từ khóa
+- `TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs` — không cắt từ khung khỏi tên bộ
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — sửa oracle Kenya; thêm France/Việt, Peru/LIMA9, Daily Study, Study, Reading Lab
+
+**Verification**: Hai hồi quy đỏ trước khi sửa. Sau sửa, nhóm thẻ/fact 11/11 trên `Phase1FixRound4`. Filter chat/retriever 202/202. Provider, ML.NET và probe 65/65, `--no-build`. Script tests 135, 1 skip. Tooling exit 0. Pomelo query builder không đổi hình dạng SQL; test translation cũ vẫn xanh. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Oracle Kenya “the capital city is recorded here” không còn được coi là câu trả lời thủ đô. Giá trị dương phải là token như LIMA9. Baseline không suy fact từ câu văn tự do. Bản dịch Pomelo không phải lần chạy MariaDB.
+
+### Hybrid RAG phase 1 repair round 3 — F01, F04 và F05 — 2026-11-06
+
+**Symptom**: “What is the capital of France?” vẫn thành Answered/full từ definition quốc gia không có dữ kiện thủ đô. “nghia cua forecast trong bo Daily Words” trả nghĩa của bộ Daily. Bare “weather” đổi thành thẻ cloud sau khi thêm bộ tên Weather.
+
+**Root Cause**: Policy fact chỉ nhận mốc thời gian hoặc cụm chủ đề, nên token trùng term được coi là đủ. Qualifier bộ lấy một token và mọi token trùng tên bộ đều thành bộ lọc, kể cả khi câu không chỉ định nguồn.
+
+**Solution**: Câu “what/who is the X of Y” chỉ được Answered khi definition hoặc example chứa thuộc tính và thẻ đúng thực thể. Nhãn sau “trong bo/trong set” hoặc hai vế “giua bo … va …” là tên đầy đủ, khớp bản đã chuẩn hóa với tên bộ được phép xem, rồi lọc `SetId` trước trần. Tên không khớp hoặc chỉ là prefix thì không mượn bộ khác. Hai bộ cùng tên thì hỏi lại. Từ trùng tên bộ không còn là qualifier. Giữ F02/F03, `card:{id}` và trần 25/20/100.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — kiểm tra thuộc tính có được evidence hỗ trợ
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — bỏ thẻ không hỗ trợ và không trả full
+- `TCTEnglish/Services/AI/Internal/CardLookupRequest.cs` — tách từ cần tra khỏi ràng buộc nguồn
+- `TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs` — resolve set id trước cap
+- `TCTEnglish/Services/AI/Internal/CardLookupSelection.cs` — nhiều bộ chỉ được trả lời khi câu so sánh
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — hồi quy France/Japan/Kenya, tên bộ đầy đủ, bare weather
+
+**Verification**: Ba test mới đỏ trước khi sửa. Sau sửa, nhóm thẻ/fact/Pomelo 10/10 trên `Phase1FixRound3`. Filter chat/retriever 201/201. Provider, ML.NET và probe 65/65, `--no-build`. Script tests 135, 1 skip. Pomelo 10.5.23 chỉ `ToQueryString`, không mở kết nối. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Vòng 2 đã khép weather-today và exact forecast; vòng này khép fact không có mốc thời gian và qualifier nguồn. Tên bộ nhiều từ được nhận khi đứng trọn sau marker. Bản dịch SQL không phải lần chạy trên MariaDB.
+
+### Hybrid RAG phase 1 repair round 2 — F01/F02/F04 còn lại — 2026-11-06
+
+**Symptom**: “What is the weather today?” vẫn thành Answered/full từ thẻ `weather`. “Giải thích forecast trong bộ thẻ của tôi” mất thẻ đúng sau 120 definition. “nghia cua match trong bo Sporting” khi có bốn bộ và nhiều bản trùng thì hỏi lại Alpha/Beta/Gamma, không còn Sporting.
+
+**Root Cause**: Policy fact chỉ khớp cụm tiếng Việt. Exact tier không nhận token nội dung khi câu có từ khung. Qualifier bộ chỉ chạy trên tối đa 3 snippet sau khi xếp theo tên bộ.
+
+**Solution**: Câu hỏi tình trạng hiện tại (today/hôm nay kèm what is/bao nhiêu/thế nào) không được dùng definition thẻ, trừ khi câu hỏi nghĩa đã lưu hoặc dữ liệu học của chính user. Token nội dung, sau khi tách từ khung, vào exact tier trước cap broad. Tên bộ được phép xem được lọc trong SQL trước mọi trần; bộ chỉ định nhưng không truy cập được thì không trả thẻ bộ khác. Giữ `card:{id}`, F03 và trần 25/20/100.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — phân biệt fact hiện tại với tra nghĩa
+- `TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs` — token nội dung và lọc bộ trước cap
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — hồi quy thời tiết, forecast có ngữ cảnh, bốn bộ, bản dịch Pomelo không kết nối
+
+**Verification**: Ba test mới đỏ trước khi sửa. Sau sửa, nhóm thẻ/fact/Pomelo 11/11 trên `Phase1FixRound2`. Filter chat/retriever 198/198. Provider, ML.NET và probe 65/65, `--no-build`. Script tests 135, 1 skip. Không gọi API trả phí và không mở MariaDB.
+
+**Commit**: Chưa commit.
+
+**Notes**: Bản dịch Pomelo được kiểm bằng `ToQueryString` trên provider 10.5.23, không thực thi SQL. Tên bộ nhiều từ chưa được khớp. F03 và identity `card:{id}` được giữ.
+
+### Hybrid RAG phase 1 repair round 1 — HR-P1-R1-F01 đến F04 — 2026-11-06
+
+**Symptom**: Câu “Giá vàng hôm nay là bao nhiêu?” thành Answered/full chỉ vì thẻ `vang`. Thẻ đúng `zephyr-window` biến mất khi hơn 100 definition chứa token đó đứng trước. Từ `go`/`up` không tra được. Hai thẻ `match` khác bộ bị Answered/full và cùng source key theo title.
+
+**Root Cause**: Boundary thêm CardLookup cho mọi OutOfScope rồi nhận bất kỳ card hit. `CardLookupRetriever` loại token ngắn hơn 3 ký tự và `Take(100)` trước khi chấm điểm. `SourceKey` ghép source với title. NeedsClarification chỉ xét title khác nhau.
+
+**Solution**: Câu fact ngoài học liệu không được nâng thành câu trả lời thẻ; câu hỏi nghĩa đã lưu và term lạ vẫn tra được. Tầng exact/phrase có trần riêng chạy trước tầng broad 100. Token 2 ký tự chỉ khớp exact, không LIKE. Snippet mang `EntityId`/`ContainerId`. Source key là `card:{id}`. Term trần trùng nhau thì hỏi bộ nào; một bộ được chỉ định hoặc câu so sánh thì trả lời đúng các thẻ đó.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs` — nhận câu fact ngoài học liệu
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — outcome, evidence key và clarification
+- `TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs` — tầng truy vấn có trần
+- `TCTEnglish/Services/AI/Internal/CardLookupSelection.cs` — chọn một bộ, so sánh hoặc hỏi lại
+- `TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs` — câu hỏi chọn bộ
+- `TCTEnglish/Services/AI/Internal/KnowledgeSnippet.cs` — identity thẻ/set tạm
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — bốn hồi quy SQLite trên boundary thật
+
+**Verification**: Bốn test mới đỏ trước khi sửa. Sau sửa, cùng bốn test và hai test thẻ cũ xanh 6/6 trên cấu hình `Phase1FixReview`. Filter hồi quy chat/retriever 194/194. OpenAiProviderClientTests và MlNet 61/61, `--no-build`. Không gọi API trả phí.
+
+**Commit**: Chưa commit.
+
+**Notes**: Chưa chứng minh câu SQL trên MariaDB disposable. Tầng exact 25, phrase 20, broad 100. Đây không phải BM25 hay citation bền. Danh sách cụm fact ngoài học liệu không thay classifier tổng quát.
+
+### Hybrid RAG phase 1 — chat boundary và lỗ hổng truy cập nội bộ — 2026-11-06
+
+**Symptom**: Chat production đi thẳng qua `IAiProviderClient`. Retriever cũ trả video Speaking riêng của user khác, bỏ lỡ thẻ nằm sau cửa sổ 500 bản ghi không sắp xếp, đếm “hôm nay” theo ngày UTC, đếm đơn pending chỉ trong 3 đơn mới nhất, và chặn luôn câu hỏi đổi mật khẩu vì có chữ password. Câu confidence thấp bị coi là ngoài phạm vi nên không tìm guide/thẻ.
+
+**Root Cause**: `AiChatService.SendAsync` gọi provider text dùng chung. `SpeakingRetriever` không lọc `OwnerUserId` theo rule public/Premium. `CardLookupRetriever` `Take(500)` trước khi chấm điểm và không gồm folder lớp. Các retriever tiến độ dùng `DateTime.UtcNow.Date`. `BillingRetriever` đếm pending trên cửa sổ `Take(3)`. Bộ lọc mật khẩu là substring, còn `InternalKnowledgeProvider` hạ confidence dưới 0.55 thành OutOfScope trước khi tra cứu.
+
+**Solution**: Thêm `IAiChatAnswerService` scoped, chỉ cho chat. Production không gọi `IAiProviderClient` cho câu trả lời chat. Giữ lifecycle guard/quota/lưu/Stop trong `AiChatService`. Speaking đếm và gợi ý đúng catalog public hoặc bài riêng khi Admin/Premium. Thẻ lọc quyền rồi mới `OrderBy`/`Take(100)`. Ngày học dùng `BusinessDateHelper.Today`. Pending order đếm riêng trên DB. Câu đổi mật khẩu của chính user trả guide 19; rút secret/prompt bị từ chối trước quota. Confidence thấp vẫn tra guide và thẻ. Snippet có “ignore previous instructions” / “system prompt” bị gỡ trước khi soạn câu trả lời.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs` — ranh giới trả lời nội bộ, outcome và evidence
+- `TCTEnglish/Services/AI/AiChatService.cs` — gọi answer service, từ chối secret trước quota
+- `TCTEnglish/Program.cs` — một dòng DI scoped; `IAiProviderClient` vẫn là `OpenAiProviderClient`
+- `TCTEnglish/Services/AI/Internal/Retrievers/SpeakingRetriever.cs` — lọc catalog và entitlement
+- `TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs` — lọc quyền trước trần kết quả
+- `TCTEnglish/Services/AI/Internal/Retrievers/BillingRetriever.cs` — đếm pending thật
+- `TCTEnglish/Services/AI/Internal/Retrievers/LearningProgressRetriever.cs`, `GoalsRetriever.cs`, `StudyRecommendationRetriever.cs`, `LearningAreaProgressRetriever.cs` — ngày nghiệp vụ
+- `TCTEnglish.Tests/AiRagBoundaryAccessTests.cs` — hồi quy quyền và ranh giới provider
+
+**Verification**: Local Debug, không gọi API trả phí. `AiRagBoundaryAccessTests` 11/11. Bộ lọc phase 1 lần đầu 199 pass / 2 fail ở hai test chat còn kỳ vọng HTTP OpenAI; sau khi sửa hai test đó, `OpenAiConsumerPipelineTests` cùng probe lifecycle 30/30. Lần chạy lại boundary, composer và baseline 49/49. Vocab suggest vẫn ghi nhận payload provider; chat HTTP/SignalR không gửi nội dung riêng sang provider.
+
+**Commit**: Chưa commit. Owner chưa cho phép commit, push, PR hay deploy.
+
+**Notes**: Đây là baseline nội bộ đã kiểm quyền, chưa phải Hybrid RAG. Chưa có BM25, embedding trả phí, citation bền hay UI phase sau. Quota chat vẫn theo ngày UTC. Trần 100 thẻ sau lọc token có thể bỏ lỡ nếu nhiều thẻ được phép cùng chứa token và đứng trước theo `Term`. Nhãn visibility của thẻ dùng chung lớp vẫn là `owner` cho đến phase citation. Không đổi schema nên không có migration.
+
 ### Speaking YouTube init, NoSpeech label và Goals skill summary — 2026-11-05
 
 **Symptom**: Speaking showed “...” until YouTube ready; a late callback reset
@@ -2853,3 +3420,124 @@ use stale binaries or change User Secrets to recover.
 **Verification**: failing wrapper regression then5/5pass; real isolated Sync
 succeeded with the original Release exe still locked,0recordoperations. Personal
 table checksum preservation and final remote checks are in the shared-data ledger.
+### Hybrid RAG evaluation fixture hashed raw CRLF bytes — 2026-11-06
+
+**Symptom**: The Phase 0 freeze compared SHA-256 of the fixture's raw bytes. On this Windows checkout the file was CRLF, so the stored hash matched here and would change after an LF checkout.
+
+**Root Cause**: `.gitattributes` has `* text=auto`. The new evaluation JSON was hashed before line endings were normalized, the same class of failure as the 2026-05-01 ML.NET seed CSV.
+
+**Solution**: Freeze the fixture as SHA-256 of UTF-8 text after CR and CRLF become LF. Keep the revision 1 raw CRLF hash only as history. Pin `TCTEnglish.Tests/Fixtures/AI/hybrid-rag-evaluation.json` to `text eol=lf`. Tests accept the same canonical hash for LF and CRLF bytes and reject a changed fact, ID, outcome or split.
+
+**Files Changed**:
+- `TCTEnglish.Tests/Fixtures/AI/hybrid-rag-evaluation.json` - revision 2 content and LF bytes.
+- `TCTEnglish.Tests/HybridRagFixtureValidator.cs` - canonical hash and scenario checks.
+- `TCTEnglish.Tests/HybridRagEvaluationBaselineTests.cs` - LF/CRLF and content-mutation regressions.
+- `.gitattributes` - LF pin for this fixture only.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Phase0FixReview --filter FullyQualifiedName~HybridRagEvaluationBaselineTests` passed locally, 15/15, including CanonicalHash_TreatsLfAndCrlfAsTheSameFreeze and CanonicalHash_RejectsChangedFactIdOutcomeOrSplit.
+
+**Commit**: Not created.
+
+**Notes**: Scope manifests still hash raw file bytes. That identity is separate from the canonical fixture freeze.
+### Hybrid RAG fixture validator accepted inconsistent scenario setup — 2026-11-06
+
+**Symptom**: In-memory clones of the frozen evaluation fixture stayed valid when quota usage was 0/15 and 0/60000 under quota_exceeded, when provider_unavailable or cancelled used scenario none, and when a tombstone pointed at a source the case did not declare.
+
+**Root Cause**: ValidateScenario checked the shape of a supplied scenario by itself. It did not compare that setup with the case outcome, and a tombstone source only had to exist somewhere in the corpus.
+
+**Solution**: Compare the scenario already on the case with quota_exceeded, provider_unavailable and cancelled. Require a scenario sourceId to be one of that case's declared sourceIds. Do not build fault, quota, cancel or source fields from the outcome or the question. Leave the revision 2 fixture and its canonical hash unchanged.
+
+**Files Changed**:
+- `TCTEnglish.Tests/HybridRagFixtureValidator.cs` - outcome and declared-source checks.
+- `TCTEnglish.Tests/HybridRagEvaluationBaselineTests.cs` - four regressions for the reproduced clones.
+
+**Verification**:
+- Before the check, the four new tests failed because Validate returned an empty error list.
+- After the check, `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj -c Phase0FixRound2 --filter FullyQualifiedName~HybridRagEvaluationBaselineTests` passed 19/19, including the frozen fixture hash and the earlier LF/CRLF and mutation regressions.
+
+**Commit**: Not created.
+
+**Notes**: This is a synthetic-fixture validator fix. It does not change application quota, provider or retrieval behavior.
+
+### Hybrid RAG Phase 2 accepted unrelated facts and incidental guides — 2026-11-06
+
+**Symptom**: The returned Phase 2 repair still declared full answers using another
+object's color, number, cause, place, year or builder within the same sentence.
+Missing subject words/time qualifiers and unsupported mixed requests could also
+pass. Incidental guide terms such as `bell` or `about` replaced lesson questions
+with notification/Dashboard instructions. Seven older integration refusal checks
+also failed; the deterministic failures reproduced on the pre-closeout binary.
+
+**Root Cause**: Word presence and first/last content tokens were used as evidence
+of a complete relation. A no-frame fallback implied full support. Any guide snippet
+short-circuited corpus admission; low-confidence fallback reopened explicitly
+unscoped homework/random-fact/explanation requests.
+
+**Solution**: Full lexical answers use a deliberately small extraction grammar
+binding the complete subject, relation and requested qualifiers in one source
+sentence. Unknown/mixed unsupported requests fail closed. Keyword/passage search
+returns an explicitly labelled `excerpt`; it cannot claim `full`. An explicit
+source request or literal source-topic match takes the lesson-validation path
+before an incidental guide. Live personal facts retain priority. Add a bounded
+task-scope refusal for unscoped generation requests while preserving explicit
+stored-source requests; no unconstrained provider fallback.
+
+**Files Changed**: `Rag/Corpus/LexicalAnswerAdmission.cs`, `Rag/AiChatAnswerService.cs`,
+`Rag/ChatExternalFactPolicy.cs` and `AiRagPhase2FixRound2Tests.cs`.
+
+**Verification**: Initial expanded regressions 17 failed/6 passed; a further polite
+`about` variant failed independently before its routing repair. Final focused
+RAG plus deterministic/production-classifier integration checks passed 115/115
+in `Phase2Closeout`. Final full suite: 1044 passed, 0 failed, 19 opt-in skipped.
+Full-suite/browser evidence and final scope are recorded in
+`docs/feature-audits/hybrid-rag/phase-2/review-round-3.md`.
+
+**Notes**: No frozen fixture/BM25 tuning, persisted model, shared content, protected
+configuration, paid API or remote Git/release change. The grammar is conservative
+Phase 2 extraction, not unrestricted language understanding. No commit created.
+### Hybrid RAG Phase 7 local completion round 2 — 2026-11-08
+
+**Symptom**: The acceptance guard never expired with its default clock, could
+publish after the run deadline and could release a pending reservation with a
+zero/negative usage receipt. Integer-only tests did not connect the guard to
+production-client retries. In the real local browser, “Nghĩa của từ forecast là
+gì?” missed an existing private card; “Ví dụ của forecast” became a greeting.
+The login Bootstrap stylesheet was blocked by a mismatched SRI digest.
+
+**Root Cause**: The default elapsed delegate returned zero, promote omitted the
+deadline check and invalid receipts cleared pending usage. The harness lacked a
+transport boundary. Short Vietnamese definition prefixes captured `tu … la gi`
+as target words. The shipped ML classifier could override explicit CardLookup
+wording; its arbitration protected several other intents only. The stylesheet
+integrity value did not match the pinned CDN asset.
+
+**Solution**: Use a monotonic default run clock, a linked cancellation deadline,
+recheck expiry before promotion and retain invalid receipts as unknown. Add an
+acceptance-only HTTP handler shared by real embedding/text client instances,
+gating every send/retry and bounded body read before receiving usage. It does
+not register in production or authorize live calls. Match complete Vietnamese
+definition frames before short prefixes and retain the full multiword target.
+Reuse the explicit lookup keyword predicate when arbitrating ML predictions,
+while leaving bare ambiguous queries eligible for ML. Correct the Bootstrap
+5.3.3 CSS SRI without removing integrity checks.
+
+**Verification**: Three guard tests failed before their fix; seven Vietnamese
+answer/evidence cases failed before the parser fix; an ML model lacking lookup
+labels reproduced the greeting error before arbitration was repaired. Five
+transport tests exercise the actual production clients with fake HTTP, including
+retry refusal and cancellation during a pending body. Focused final classifier,
+boundary, provider and acceptance checks passed 109/109. Real MariaDB read-only
+dry-run returned 471 documents / 487 chunks / 113,887 bytes, 0 embedding calls.
+Native browser full/embed tests prove the exact Vietnamese wording, saved
+example, missing pronunciation, complete-target rejection, source route/history
+and guide answers. Final full-suite/build evidence and run identity are in
+`docs/feature-audits/hybrid-rag/phase-7/local-completion-handoff.md`.
+
+**Data/authority**: Owner asked for direct local fixes and a running test web.
+After the owner reopened Docker, the standard launcher preserved the existing
+database. Two guarded idempotent private Standard test accounts and two cards
+per account were added; access details stay in ignored local storage. No shared
+content, persisted model, migration, protected config or saved secret changed.
+No paid request, commit, push, CI or deploy. Dense/live evaluation stays BLOCKED.
+No matching entry in known-issues.md required a status change.

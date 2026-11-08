@@ -1,0 +1,539 @@
+{
+  "phase": 3,
+  "round": "codex-closeout-review-2",
+  "branch": "feature/hybrid-rag-chatbot",
+  "startingHead": "6af768bd32d16cc6d012d484ee82df4cab805c69",
+  "endingHead": "6af768bd32d16cc6d012d484ee82df4cab805c69",
+  "predecessorFingerprint": "408779fa6c5d9139fa40d8021693c4b76fa6a3b860bbf1478804b368cec9e720",
+  "algorithm": "Lowercase SHA-256 of each file's final raw bytes. Fingerprint is lowercase SHA-256 of UTF-8 entries sorted ordinal by path; each entry is path, TAB, status, TAB, sha256, LF (including the final LF). Manifest/result/handoff/state files are excluded from the fingerprint. The canonical fixture freeze is separate.",
+  "fingerprint": "66bae722fbbb0b4d5d3724dcd363b1c58eda91202880e93dd00746c147b89fcb",
+  "digestEntries": [
+    {
+      "path": ".ai/context/bug-fix-log.md",
+      "status": "modified",
+      "sha256": "b33bc0b4264788fe95c0f7f8c6295d49bd4d002424ec665b9f103a7f295411c1"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-1-fix-round-1.md",
+      "status": "added",
+      "sha256": "a861271f2ba7af1ba03005e01b1cbeea7a4572c67fa8ee1b116d271157b9318e"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-1-fix-round-2.md",
+      "status": "added",
+      "sha256": "262c905f30243b0032421bb9a3208190720eeb23fa6132c18fdf4cf68b7eed38"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-1-fix-round-3.md",
+      "status": "added",
+      "sha256": "219d0070d5c0e5af7f6400bf8dbfaaefd33ba4dac71c9f6e0a002ebd04d8abbb"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-1-fix-round-4.md",
+      "status": "added",
+      "sha256": "0aef520118613e75cd1f4aba2a78c3c95458f302cb745f711877971770c7d935"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-1-fix-round-5.md",
+      "status": "added",
+      "sha256": "bb6f8c74b374491859b3165b740994dd5abaa4420cc93eb92defac14b2f8a944"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-2-fix-round-1.md",
+      "status": "added",
+      "sha256": "796cfffc310c6de5e304e72541752f7df02e3195a4adbcc4b133fda912958d51"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-2-fix-round-2.md",
+      "status": "added",
+      "sha256": "b7117f527169894a42bc66a6f5b4809d53f1b73d23103a0548e7df3f53df45b2"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-3-fix-round-1.md",
+      "status": "added",
+      "sha256": "c4c206c4adbc13fc09c98292b52d70c6b3cf01e13aa4f3ce9d02edd4892ba367"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiBaselineRegressionTests.cs",
+      "status": "modified",
+      "sha256": "513f7e528b3795b6460e77fab24e7b0b5a93b1be6feb47d621f0d4de04620cc3"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiCancelAndStopIntegrationTests.cs",
+      "status": "modified",
+      "sha256": "88a292538fd7193ae77ff361339484f1dfc27c7ce3b0e51d7b4f82267043bc73"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiCloseoutRegressionTests.cs",
+      "status": "modified",
+      "sha256": "f1094a8f58e637b7e1d6a0bb107e03f104122e5e91942b936477c988271d0a50"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiPhase2ServiceTests.cs",
+      "status": "modified",
+      "sha256": "6b75bdab020731c87fa202c4c415ef496b2fe452ca557bda58c526be20bbd7ac"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiPhase4HardeningIntegrationTests.cs",
+      "status": "modified",
+      "sha256": "6c005e55e333f80e29688742d02b48116e3b19b141b2910aa4a2247810ef3b0e"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiQuotaReservationIntegrationTests.cs",
+      "status": "modified",
+      "sha256": "d4e8a91589b1878a01abd99ebab6fe94cbafc79562874862c7c75252fca362c3"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagBoundaryAccessTests.cs",
+      "status": "added",
+      "sha256": "ddd62c1752656b2384406c060b11db2fedcb48c06963806199e8387730970242"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagCorpusBm25Tests.cs",
+      "status": "added",
+      "sha256": "e3b966d1e79d592835187d5204d9b12ab3288781a90db6d40da175b88c6f06d8"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagHybridRetrievalTests.cs",
+      "status": "added",
+      "sha256": "f7b78e9fd58301ca1341f5574e6118c4a79fd2881afa8407549c7c245a7f6bca"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagPhase2FixRound1Tests.cs",
+      "status": "added",
+      "sha256": "9978a0b668dae4f619e15a40b6f6bdb32d63b1bbea4258437f1a752261dd2eea"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagPhase2FixRound2Tests.cs",
+      "status": "added",
+      "sha256": "e103e6f3980374e1631e832dc70c5c662569f8cf2c3ff6522fe6ea16f4518d84"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagPhase3CloseoutTests.cs",
+      "status": "added",
+      "sha256": "a36f21e7239855cee7231dbf94b5c1514d9450a3c223df3120254442481f0b18"
+    },
+    {
+      "path": "TCTEnglish.Tests/AiRagPhase3FixRound1Tests.cs",
+      "status": "added",
+      "sha256": "b08a483d08e59ed5a0540f43dedc544cefcb8d9601b8b637a87e562af77c066f"
+    },
+    {
+      "path": "TCTEnglish.Tests/CursorReviewProbeTests.cs",
+      "status": "modified",
+      "sha256": "af8db1804ea5ce5123a08b78ec69f5033e42c1255aab7510a646d155a453d80a"
+    },
+    {
+      "path": "TCTEnglish.Tests/OpenAiConsumerPipelineTests.cs",
+      "status": "modified",
+      "sha256": "18ac18cf67b6dd3115fe314e26188844a0a291ae19b9e993a80d9e11a1bf1904"
+    },
+    {
+      "path": "TCTEnglish.Tests/RepairReviewProbeTests.cs",
+      "status": "modified",
+      "sha256": "55ab302673795b65d744513edd597c46a89a04de28b5311bc9472f52384e8729"
+    },
+    {
+      "path": "TCTEnglish.Tests/StudyRecommendationRetrieverTests.cs",
+      "status": "modified",
+      "sha256": "7d069857a75765763c875b8ff414d0cc4b4bc3bd312a31464cf78f11c4b3c9b7"
+    },
+    {
+      "path": "TCTEnglish.Tests/TestHelpers/LifecycleAiChatAnswerService.cs",
+      "status": "added",
+      "sha256": "a6d0aff18355cd0ab5e0c10b448340373a411ffa9d80d101648c767deae1ac12"
+    },
+    {
+      "path": "TCTEnglish.Tests/ThirdReviewProbeTests.cs",
+      "status": "modified",
+      "sha256": "1605af0e2f75102cf927f60589c2c1d642bbd36f633d4913c9df20287867decb"
+    },
+    {
+      "path": "TCTEnglish/Areas/Admin/Controllers/AiManagementController.cs",
+      "status": "modified",
+      "sha256": "bb1f94b126696244e289bd1151edeff877ce0b108197a32e71f97187b6dac8cc"
+    },
+    {
+      "path": "TCTEnglish/Areas/Admin/ViewModels/AiManagementViewModel.cs",
+      "status": "modified",
+      "sha256": "4e7c6cf4eb5314f6f97db750357de597b33dde6fdf814d903bcd4e5dea0eed0c"
+    },
+    {
+      "path": "TCTEnglish/Areas/Admin/Views/AiManagement/Index.cshtml",
+      "status": "modified",
+      "sha256": "55afa431802f20cd0185f95ebdb53c09825c30d43e8ad0b87bde66946c635f37"
+    },
+    {
+      "path": "TCTEnglish/Program.cs",
+      "status": "modified",
+      "sha256": "d6b980aa308461c5fb68996536c401f217e423b6fd8917792b6b7d224b1aa21f"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/AiChatService.cs",
+      "status": "modified",
+      "sha256": "832e41b913e02875e5f71011452bcb0ae6329ec51eac8ba8eac314dc911cafbc"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/AiProviderException.cs",
+      "status": "modified",
+      "sha256": "d51575828f2eb6b903d7d6dc089248dd46bdc668c0833872a302eb2777d0050b"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/EmbeddingOperationBudget.cs",
+      "status": "added",
+      "sha256": "c33fa5c149e9af6fc32d3c82c71538b8319df475ac765d293d8685ceac9eea9f"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/EmbeddingOptions.cs",
+      "status": "added",
+      "sha256": "76dc6ef93458231f0ad919b234b1acd2d43607169290ac4463d0605788a3d889"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/IOpenAiEmbeddingClient.cs",
+      "status": "modified",
+      "sha256": "b071b0164e4b7d2301f3c4fdcc3ec366f36fcbd37efb21ddf9eb2f53e8ab8ad4"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/CardLookupRequest.cs",
+      "status": "added",
+      "sha256": "c28a0246b9a5dfd0d7b351111b00d8ba900c3a8f61052ec10fe1d6df30fd510d"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/CardLookupSelection.cs",
+      "status": "added",
+      "sha256": "0b4110d124a5c9ab07d5bbdbb4301a272f833c1b9217fbe54fe86e9b7a652130"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/KnowledgeSnippet.cs",
+      "status": "modified",
+      "sha256": "cf9db633fa7b0415cfceea4c28020fd9de0d4d2d954ffe22b7123dd744cbf15a"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/KnowledgeSnippetSources.cs",
+      "status": "modified",
+      "sha256": "5bf384c4226ec0f63cf5bb5edec91e92928e5c024e1116a7591bad30069b4894"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/AiLearnerAccess.cs",
+      "status": "added",
+      "sha256": "f659cf274e57d0a00119757a61068a96a24cbfa478a1df5d835746158f676d0a"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/BillingRetriever.cs",
+      "status": "modified",
+      "sha256": "d53db34c97a370d414d1e8025eb08e377314707a4063eae0e9ccc2c2c19190da"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/CardLookupRetriever.cs",
+      "status": "modified",
+      "sha256": "c317e3d27b6c98357e58c1cfce3b8e470a4e5fe8f2915972678e6a839c21824c"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/GoalsRetriever.cs",
+      "status": "modified",
+      "sha256": "a298fb41b1958f3a02cd1992d78d27fffed32564ea3980dd8bd5034d5dcd3b2d"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/LearningAreaProgressRetriever.cs",
+      "status": "modified",
+      "sha256": "97a27073fc11badb166a03a8afc9e36ab6ff30fcdc81ae5fea214aba419fde86"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/LearningProgressRetriever.cs",
+      "status": "modified",
+      "sha256": "7ab981c9d060a9f742007918855df813e2b8c7de7b47d3a8d0bf158542e21ff0"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/SpeakingRetriever.cs",
+      "status": "modified",
+      "sha256": "a45f76a9980f080f600f2672fa9d7160d35374f43d884dd6dedd512f84dd8eb4"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/Retrievers/StudyRecommendationRetriever.cs",
+      "status": "modified",
+      "sha256": "6eb4e4ed4e4df678657ea18c31114788d9c49f195f4e7176020a66bf8b54e793"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs",
+      "status": "modified",
+      "sha256": "882aa5d43966ae25448bf9012cfea7e8329daf57092a6b09817aebc6d8157a36"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/OpenAiEmbeddingClient.cs",
+      "status": "modified",
+      "sha256": "63e080745a746c76416e1a41759f34633eba6abffc286383379d60e29a11d1c2"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/AiChatAnswer.cs",
+      "status": "added",
+      "sha256": "5d5c0094ae136e84a8403c9cb89d825596852fa717c475642e26f248144251ec"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/AiChatAnswerService.cs",
+      "status": "added",
+      "sha256": "f481e1422b9461a6faf29751f8b1fb1d4f792db10f883eb0c3bf8b40fc3eb141"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/ChatDisclosurePolicy.cs",
+      "status": "added",
+      "sha256": "3d4141d225211a72510aaa7a3ac0d6675f0d46f09d507f978777673fd8615743"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/ChatExternalFactPolicy.cs",
+      "status": "added",
+      "sha256": "0af23f795045c88cc7081ccfe159c6e161f12d4346f9fb3d945b9c5609e9c9bc"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/Bm25Ranker.cs",
+      "status": "added",
+      "sha256": "20af8a405e94591f07fdfa8919f3c148e340b694d720b4ec8ad43ad30a8fb236"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CorpusAdapters.cs",
+      "status": "added",
+      "sha256": "213c955bac91354c4ff4b57fe405b7ee9bdafd71e7996585b423b77bb494676d"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CorpusChunkIdentity.cs",
+      "status": "added",
+      "sha256": "3cf69d9e18b6ef3cb2509edfcb59a7f114baba13a41ed2a47cbfc49f7a6b4db4"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CorpusChunker.cs",
+      "status": "added",
+      "sha256": "5eb4ff1d919b5ee0a31594dab53e20a7221c5e4238515a4a6b75053579e38717"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CorpusModels.cs",
+      "status": "added",
+      "sha256": "839336548d0a1d9361986b33e61cea7430e9860a3b5505c9cf5d5509c3261f85"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CorpusSnapshotStore.cs",
+      "status": "added",
+      "sha256": "a15d672dbace87a8143452ce6aba2db238ddb62f250f647257fb2b45fd3ca9a8"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/CosineRanker.cs",
+      "status": "added",
+      "sha256": "b33cf851c2eb384c412770eee188b413943976d1cedb6eec9f4174de00699597"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/HybridRetrievalService.cs",
+      "status": "added",
+      "sha256": "1fdd4d262a1bf94a704e3108ea4274e2be8a5af641fbe536705c24ef7a49fb99"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/LexicalAnswerAdmission.cs",
+      "status": "added",
+      "sha256": "dd6f4eb4ffc6bc3738bf48436c117d5697152f986bc1b2d26c00356a9fe8c18e"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/LexicalNormalizer.cs",
+      "status": "added",
+      "sha256": "9d79c2ef4cfa2a681d0b679e6ff56a115df3fb624eb4c26dc929f4ab039621a5"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/ReciprocalRankFusion.cs",
+      "status": "added",
+      "sha256": "60a48daccaf9f7f7159f44e118f863c62be7a39f210eb614e34bfb46976cf20f"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/RetrievalCorpusService.cs",
+      "status": "added",
+      "sha256": "96116902d55f14e195f2309bcb4fefdf1090a32691dccc1eed9b0c5763cda3a1"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/SnapshotJson.cs",
+      "status": "added",
+      "sha256": "8fa58ac676bd189eb88a74327984ed985e07f8a27caf8516e20373bc6ab5c505"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/VectorIndexAdmission.cs",
+      "status": "added",
+      "sha256": "98d6871f9cef3daa7bb8b73735c8d97c5f3c664aa8cdceebff31580b3f092393"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/VectorIndexService.cs",
+      "status": "modified",
+      "sha256": "07f453e0e34e0c2e936a7a93015ce64eb6e4aa3e1ac26fdd08b00745e99d5552"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/Corpus/VectorIndexStore.cs",
+      "status": "added",
+      "sha256": "ce39c88f3af9d11f9abd58ba01c1cf09aaae134e9afa58188e1d4b370cb14b34"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/HybridRagEvidence.cs",
+      "status": "added",
+      "sha256": "68bdce203655d6d3af2bee3f13fc8f66fb45c1a11af9469b6ad9f5f2a58f3b61"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/HybridRagOutcome.cs",
+      "status": "added",
+      "sha256": "378abf9a1ce9dd9ccccd27955244a700fba15e6d709ba5e97720ec01a84d3270"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/IAiChatAnswerService.cs",
+      "status": "added",
+      "sha256": "77422e96305727026cae53132a7870a71da1bf0c15a71467f092924a1bacbb8f"
+    },
+    {
+      "path": "TCTEnglish/Services/AI/Rag/StoredCardLookupRequest.cs",
+      "status": "added",
+      "sha256": "15b0f3428574b7251976280d759f4e4664877e23a593989c28fa4cbb4809f712"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/README.md",
+      "status": "added",
+      "sha256": "735f1aadf287b27209386598c9c9eb02556536ac183d698e8e07418e5050f8ae"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-1.md",
+      "status": "added",
+      "sha256": "d62548d0863df272c0f11866760de8a3641078f16990ee2b273d257f615eb7c7"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-2.md",
+      "status": "added",
+      "sha256": "0305745e7f35b9e91211f3c5b3245cd0ff41781228795d9d69f0c49619616577"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-3.md",
+      "status": "added",
+      "sha256": "61f17bc4bfe6e56a17eee5e9d06b9e444ef47852374e1a97688562589a155893"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-4.md",
+      "status": "added",
+      "sha256": "a889a7f6da92d31ce2b0415f9cdd2f79a5672ff3e62d8faabfe2fc8a7b8cd662"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-5.md",
+      "status": "added",
+      "sha256": "860a962106ee774e363d178a56973a7f627bb8aea56afa45f386003933b5a3d8"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-1-fix-round-6.md",
+      "status": "added",
+      "sha256": "aafc5db2fcb954b9975872cf5f2c33a4d30b09027b1c95c3c9750726d1a70281"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-2-closeout.md",
+      "status": "added",
+      "sha256": "8fd8329f675943ee293ffba761145b2954df4fe98d5cdc199d9ec3a8db93be43"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-2-corpus-bm25.md",
+      "status": "added",
+      "sha256": "15fcc937ff29b4c849b2fd33f90b486143020a889a7e5f50e5c47a33b42c2216"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-2-fix-round-1.md",
+      "status": "added",
+      "sha256": "e87d708346303aa4a02f2d29bff422f960d29345345828d9c9ee8b7242706c1b"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-2-fix-round-2.md",
+      "status": "added",
+      "sha256": "c449f0db8056af2fc9514ff474b6d8fcc9424ab6c30448af24a4277140383af1"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-3-closeout.md",
+      "status": "added",
+      "sha256": "5f6f101a456a304d2e0e381728a41242bbed7a99d28c696b3e61f390cd1ac672"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-3-fix-round-1.md",
+      "status": "added",
+      "sha256": "dd26b732911cea63fa37931b3b8bd8f4010914a1833d6ab3bd5ac202af28c183"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-3-hybrid-retrieval.md",
+      "status": "added",
+      "sha256": "d4f6c5216153866725eab6b69ea9f444127a42935f9b3708d55c3d128dd03260"
+    }
+  ],
+  "excludedEntries": [
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-3/fix-round-1-handoff.md",
+      "status": "added",
+      "reason": "handoff result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-3/handoff.md",
+      "status": "added",
+      "reason": "original handoff result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-3/review-round-1.md",
+      "status": "added",
+      "reason": "review result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-3/review-round-2.md",
+      "status": "added",
+      "reason": "review and closeout result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-3/scope-manifest.json",
+      "status": "added",
+      "reason": "manifest itself"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/review-state.md",
+      "status": "added",
+      "reason": "coordination state"
+    }
+  ],
+  "baselineDirtyNotInDigest": [
+    ".ai/prompts/hybrid-rag-chatbot-execution.md",
+    ".ai/prompts/hybrid-rag/codex-phase-review.md",
+    ".ai/prompts/hybrid-rag/cursor-auto-fix-template.md",
+    ".ai/prompts/hybrid-rag/phase-0-discovery.md",
+    ".ai/prompts/hybrid-rag/phase-0-fix-round-1.md",
+    ".ai/prompts/hybrid-rag/phase-0-fix-round-2.md",
+    ".ai/prompts/hybrid-rag/phase-1-chat-boundary-access.md",
+    ".ai/prompts/hybrid-rag/phase-2-corpus-bm25.md",
+    ".ai/prompts/hybrid-rag/phase-3-hybrid-retrieval.md",
+    ".ai/prompts/hybrid-rag/phase-4-grounded-answers-budget.md",
+    ".ai/prompts/hybrid-rag/phase-5-durable-citations.md",
+    ".ai/prompts/hybrid-rag/phase-6-ui-resilience.md",
+    ".ai/prompts/hybrid-rag/phase-7-demo-acceptance.md",
+    ".gitattributes",
+    "TCTEnglish.Tests/Fixtures/AI/hybrid-rag-evaluation.json",
+    "TCTEnglish.Tests/HybridRagEvaluationBaselineTests.cs",
+    "TCTEnglish.Tests/HybridRagFixtureValidator.cs",
+    "docs/feature-audits/2026-11-05-hybrid-rag-research.md",
+    "docs/feature-audits/hybrid-rag/phase-0/baseline-results.md",
+    "docs/feature-audits/hybrid-rag/phase-0/contracts.md",
+    "docs/feature-audits/hybrid-rag/phase-0/coverage-matrix.md",
+    "docs/feature-audits/hybrid-rag/phase-0/fix-round-1-handoff.md",
+    "docs/feature-audits/hybrid-rag/phase-0/fix-round-2-handoff.md",
+    "docs/feature-audits/hybrid-rag/phase-0/handoff.md",
+    "docs/feature-audits/hybrid-rag/phase-0/oracle-validation.md",
+    "docs/feature-audits/hybrid-rag/phase-0/review-round-1.md",
+    "docs/feature-audits/hybrid-rag/phase-0/review-round-2.md",
+    "docs/feature-audits/hybrid-rag/phase-0/scope-manifest.json",
+    "docs/superpowers/plans/2026-11-05-hybrid-rag-chatbot.md",
+    "docs/superpowers/plans/hybrid-rag/fix-plan-template.md",
+    "docs/superpowers/plans/hybrid-rag/handoff-template.md",
+    "docs/superpowers/plans/hybrid-rag/phase-0-discovery.md",
+    "docs/superpowers/plans/hybrid-rag/phase-0-fix-round-1.md",
+    "docs/superpowers/plans/hybrid-rag/phase-0-fix-round-2.md",
+    "docs/superpowers/plans/hybrid-rag/phase-1-chat-boundary-access.md",
+    "docs/superpowers/plans/hybrid-rag/phase-4-grounded-answers-budget.md",
+    "docs/superpowers/plans/hybrid-rag/phase-5-durable-citations.md",
+    "docs/superpowers/plans/hybrid-rag/phase-6-ui-resilience.md",
+    "docs/superpowers/plans/hybrid-rag/phase-7-demo-acceptance.md",
+    "docs/superpowers/plans/hybrid-rag/review-gates.md"
+  ],
+  "notes": [
+    "Cumulative Phase 3 scope approved by the owner-requested Codex local closeout review 2 on 2026-11-07. Approval and limits are recorded in review-round-2.md and review-state.md.",
+    "Returned repair fingerprint 408779fa6c5d9139fa40d8021693c4b76fa6a3b860bbf1478804b368cec9e720 matched 86/86 before edits. Phase 2 prerequisite remains 62a864787561df4164da82030b24b590564fdce804d097a49b66c4ddc5a4dbdf. predecessorManifest retains that phase-origin reference; the immediate returned repair is documented by phase-3/fix-round-1-handoff.md.",
+    "Closeout adds one regression file, the executed closeout plan and the Phase 3 plan completion record. Existing ledger/interface/client/vector-service/bug-memory/README hashes reflect final bytes. Program.cs, protected settings/project files, fixtures and shared content were preserved during closeout.",
+    "Focused 135/135; full suite 1067 passed, 19 opt-in skipped, 0 failed. Nine new regressions have failing-before/passing-after evidence. No paid API or remote action. Semantic/live provider acceptance remains in Phase 7.",
+    "Native keyboard dry-run on the preserved prior owner runtime at port 5102: 487 chunks, estimate 27610, safe UTF-8 bound 113887, 8 estimated requests, 0 API calls and no vector manifest. Backend closeout built/tested separately in Phase3Closeout; no claim of a new live paid rebuild."
+  ],
+  "predecessorManifest": "docs/feature-audits/hybrid-rag/phase-2/scope-manifest.json"
+}

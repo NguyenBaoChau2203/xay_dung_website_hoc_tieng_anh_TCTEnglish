@@ -8,6 +8,7 @@ public static class KnowledgeSnippetSources
     public const string ProgressSummary = "progress-summary";
     public const string CardLookupResult = "card-lookup-result";
     public const string SpeakingSuggestion = "speaking-suggestion";
+    public const string SpeakingSuggestionSummary = "speaking-suggestion-summary";
     public const string ClassInfoSummary = "class-info-summary";
     public const string ClassInfoItem = "class-info-item";
     public const string StudyRecommendation = "study-recommendation";

@@ -109,6 +109,9 @@ namespace TCTEnglish.Migrations
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
+                    b.Property<string>("GroundingMetadata")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("ModelName")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -133,6 +136,9 @@ namespace TCTEnglish.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<byte?>("ActiveStage")
+                        .HasColumnType("tinyint unsigned");
+
                     b.Property<int>("ActualTokens")
                         .HasColumnType("int");
 
@@ -147,11 +153,29 @@ namespace TCTEnglish.Migrations
                     b.Property<DateTime?>("FinalizedAtUtc")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("KnownEmbeddingTokens")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("KnownGenerationTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LeaseExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("ReservedTokens")
                         .HasColumnType("int");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint unsigned");
+
+                    b.Property<byte?>("TerminalIntent")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<int?>("UnknownEmbeddingTokens")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnknownGenerationTokens")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int")

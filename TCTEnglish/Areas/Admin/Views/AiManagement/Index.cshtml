@@ -151,6 +151,72 @@
     </div>
 </div>
 
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-bottom py-3 d-flex align-items-center gap-2">
+        <i class="bi bi-search text-primary fs-5" aria-hidden="true"></i>
+        <h2 class="fw-semibold mb-0 h5">Chỉ mục từ vựng (BM25)</h2>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis ms-auto">@Model.RetrievalIndexState</span>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(Model.RetrievalOperationMessage))
+        {
+            <div class="alert alert-info" role="status">@Model.RetrievalOperationMessage</div>
+        }
+        <dl class="row small mb-3">
+            <dt class="col-sm-4 text-muted fw-normal">Snapshot</dt>
+            <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.RetrievalSnapshotId) ? "Chưa có bản hợp lệ" : Model.RetrievalSnapshotId)</dd>
+            <dt class="col-sm-4 text-muted fw-normal">Tài liệu / đoạn</dt>
+            <dd class="col-sm-8">@Model.RetrievalDocumentCount / @Model.RetrievalChunkCount</dd>
+            <dt class="col-sm-4 text-muted fw-normal">Lần build gần nhất</dt>
+            <dd class="col-sm-8">@(Model.RetrievalPromotedAtUtc.HasValue ? Model.RetrievalPromotedAtUtc.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm") : "Chưa build")</dd>
+        </dl>
+        <p class="text-muted small">Dry-run chỉ đếm nguồn và hash. Nút xây chỉ mục ghi snapshot mới sau khi kiểm tra checksum. Thao tác này không gọi API trả phí và không chạy khi mở trang.</p>
+        <form asp-area="Admin" asp-controller="AiManagement" asp-action="RebuildRetrievalIndex" method="post" class="d-flex flex-column flex-sm-row gap-2" id="retrievalIndexForm">
+            @Html.AntiForgeryToken()
+            <button type="submit" name="operation" value="dry-run" class="btn btn-outline-primary">Dry-run</button>
+            <button type="submit" name="operation" value="build" class="btn btn-primary">Xây chỉ mục từ vựng</button>
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-bottom py-3 d-flex align-items-center gap-2">
+        <i class="bi bi-diagram-3 text-primary fs-5" aria-hidden="true"></i>
+        <h2 class="fw-semibold mb-0 h5">Vector công khai và RRF</h2>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis ms-auto">@Model.VectorIndexState</span>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(Model.VectorOperationMessage))
+        {
+            <div class="alert alert-info" role="status">@Model.VectorOperationMessage</div>
+        }
+        <dl class="row small mb-3">
+            <dt class="col-sm-4 text-muted fw-normal">Model / chiều</dt>
+            <dd class="col-sm-8">@Model.VectorModel / @Model.VectorDimensions</dd>
+            <dt class="col-sm-4 text-muted fw-normal">Đoạn đã lập chỉ mục</dt>
+            <dd class="col-sm-8">@Model.VectorChunkCount</dd>
+            <dt class="col-sm-4 text-muted fw-normal">Trạng thái</dt>
+            <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.VectorIndexDetail) ? Model.VectorIndexState : Model.VectorIndexState + " / " + Model.VectorIndexDetail)</dd>
+        </dl>
+        <p class="text-muted small">Dry-run vector chỉ ước lượng cache và token, không gọi API. Nút tạo vector chỉ gửi embedding cho đoạn public đã đổi, trong ngân sách ghi trên form. Chat thường vẫn dùng BM25 cho đến khi phase sau bật truy vấn trả phí.</p>
+        <form asp-area="Admin" asp-controller="AiManagement" asp-action="RebuildRetrievalIndex" method="post" class="row g-2 align-items-end" id="vectorIndexForm">
+            @Html.AntiForgeryToken()
+            <div class="col-12 col-sm-4">
+                <label class="form-label small mb-1" for="maxRequests">Số request tối đa</label>
+                <input class="form-control" id="maxRequests" name="maxRequests" type="number" min="1" max="12" value="12" inputmode="numeric" />
+            </div>
+            <div class="col-12 col-sm-4">
+                <label class="form-label small mb-1" for="maxInputTokens">Token đầu vào tối đa</label>
+                <input class="form-control" id="maxInputTokens" name="maxInputTokens" type="number" min="1" max="40000" value="40000" inputmode="numeric" />
+            </div>
+            <div class="col-12 col-sm-4 d-flex flex-column flex-sm-row gap-2">
+                <button type="submit" name="operation" value="embed-dry-run" class="btn btn-outline-primary">Dry-run vector</button>
+                <button type="submit" name="operation" value="embed" class="btn btn-primary">Tạo vector</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @* ===== TRAIN BUTTON CARD ===== *@
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
@@ -279,6 +345,58 @@
     }
 
     // ─── Train button: confirm → loading spinner → submit ─────────────────────
+    document.getElementById('retrievalIndexForm')?.addEventListener('submit', function (event) {
+        const form = event.currentTarget;
+        if (!(form instanceof HTMLFormElement) || form.dataset.submitted === 'true') {
+            event.preventDefault();
+            return;
+        }
+
+        const submitter = event.submitter;
+        const operation = submitter instanceof HTMLButtonElement ? submitter.value : '';
+        if (operation !== 'dry-run' && operation !== 'build') {
+            event.preventDefault();
+            return;
+        }
+
+        const field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = 'operation';
+        field.value = operation;
+        form.appendChild(field);
+        form.querySelectorAll('button').forEach(function (button) {
+            button.removeAttribute('name');
+            button.disabled = true;
+        });
+        form.dataset.submitted = 'true';
+    });
+
+    document.getElementById('vectorIndexForm')?.addEventListener('submit', function (event) {
+        const form = event.currentTarget;
+        if (!(form instanceof HTMLFormElement) || form.dataset.submitted === 'true') {
+            event.preventDefault();
+            return;
+        }
+
+        const submitter = event.submitter;
+        const operation = submitter instanceof HTMLButtonElement ? submitter.value : '';
+        if (operation !== 'embed-dry-run' && operation !== 'embed') {
+            event.preventDefault();
+            return;
+        }
+
+        const field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = 'operation';
+        field.value = operation;
+        form.appendChild(field);
+        form.querySelectorAll('button').forEach(function (button) {
+            button.removeAttribute('name');
+            button.disabled = true;
+        });
+        form.dataset.submitted = 'true';
+    });
+
     document.getElementById('btnTrain')?.addEventListener('click', function () {
         Swal.fire({
             title: 'Xác nhận huấn luyện?',

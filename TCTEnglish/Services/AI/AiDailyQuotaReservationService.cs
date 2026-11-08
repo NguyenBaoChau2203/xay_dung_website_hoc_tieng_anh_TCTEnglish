@@ -20,6 +20,26 @@ public interface IAiDailyQuotaReservationService
     Task MarkKnownUsagePendingAsync(AiQuotaReservation reservation, int actualTokens, CancellationToken ct);
     /// <summary>Settle a Pending ledger that already has known ActualTokens (restart/reconcile).</summary>
     Task<bool> RecoverKnownPendingAsync(Guid requestId, CancellationToken ct);
+
+    /// <summary>Open a leased stage. False means this turn no longer owns the row.</summary>
+    Task<bool> BeginStageAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, TimeSpan lease, int unknownTokenBound, CancellationToken ct)
+        => Task.FromResult(true);
+
+    Task<bool> RecordStageSpendAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, int knownTokens, CancellationToken ct)
+        => Task.FromResult(true);
+
+    Task<bool> RecordStageUsageAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, int knownTokens, int unknownTokens, CancellationToken ct)
+        => Task.FromResult(true);
+
+    Task<bool> RecordStageUnknownAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, int unknownTokenBound, CancellationToken ct)
+        => Task.FromResult(true);
+
+    Task<bool> ClearStageUnknownAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, CancellationToken ct)
+        => Task.FromResult(true);
+
+    /// <summary>True only while the row is pending and its lease has not expired.</summary>
+    Task<bool> OwnsTurnAsync(AiQuotaReservation reservation, CancellationToken ct)
+        => Task.FromResult(true);
 }
 
 public sealed record AiQuotaReservation(Guid RequestId, int UserId, DateTime DayUtc, int ReservedTokens);
@@ -29,23 +49,26 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
     private const int MaxTransientAttempts = 8;
     private readonly DbflashcardContext? _directContext;
     private readonly IServiceScopeFactory? _scopeFactory;
+    private readonly TimeProvider _clock;
 
     /// <summary>
     /// DI path: each quota transaction uses an isolated scoped DbContext so SaveChanges
     /// cannot flush the caller's pending AiMessage / AiRequestLog entries.
     /// </summary>
-    public AiDailyQuotaReservationService(IServiceScopeFactory scopeFactory)
+    public AiDailyQuotaReservationService(IServiceScopeFactory scopeFactory, TimeProvider? clock = null)
     {
         _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
+        _clock = clock ?? TimeProvider.System;
     }
 
     /// <summary>Direct context for focused MariaDB / unit fixtures that own a single DbContext.</summary>
-    public static AiDailyQuotaReservationService ForDbContext(DbflashcardContext context)
-        => new(context);
+    public static AiDailyQuotaReservationService ForDbContext(DbflashcardContext context, TimeProvider? clock = null)
+        => new(context, clock);
 
-    private AiDailyQuotaReservationService(DbflashcardContext context)
+    private AiDailyQuotaReservationService(DbflashcardContext context, TimeProvider? clock)
     {
         _directContext = context ?? throw new ArgumentNullException(nameof(context));
+        _clock = clock ?? TimeProvider.System;
     }
 
     public async Task<AiQuotaReservation> ReserveQuestionAsync(
@@ -55,15 +78,22 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
         int tokenBudget,
         CancellationToken ct)
     {
-        var dayUtc = DateTime.UtcNow.Date;
+        var now = _clock.GetUtcNow().UtcDateTime;
+        var dayUtc = now.Date;
         var reservedTokens = Math.Max(plannedTokens, 0);
         var requestId = Guid.NewGuid();
-        // A new scope/process recovers durable known usage before admitting another turn.
-        var knownPending = await UsingContextAsync(context => context.AiQuotaReservationLedgers.AsNoTracking()
-            .Where(l => l.UserId == userId && l.Status == AiQuotaReservationStatus.Pending && l.ActualTokens > 0)
-            .OrderBy(l => l.CreatedAtUtc).Select(l => l.RequestId).Take(32).ToListAsync(ct), ct);
-        foreach (var pendingId in knownPending)
-            await RecoverKnownPendingAsync(pendingId, ct);
+        // Recover only rows whose stage lease has ended or that were explicitly yielded.
+        // A live embedding/generation lease must survive another conversation's reserve.
+        var pending = await UsingContextAsync(context => context.AiQuotaReservationLedgers.AsNoTracking()
+            .Where(l => l.UserId == userId && l.Status == AiQuotaReservationStatus.Pending)
+            .OrderBy(l => l.CreatedAtUtc).Take(32).ToListAsync(ct), ct);
+        foreach (var row in pending)
+        {
+            if (AiTurnLifecycle.MayRecover(AiTurnLedgerSnapshot.FromLedger(row), now))
+            {
+                await RecoverKnownPendingAsync(row.RequestId, ct);
+            }
+        }
 
         return await UsingContextAsync(
             context => ExecuteWithTransientRetryAsync(
@@ -114,7 +144,9 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
                         Status = AiQuotaReservationStatus.Pending,
                         ReservedTokens = reservedTokens,
                         ActualTokens = 0,
-                        CreatedAtUtc = DateTime.UtcNow
+                        ActiveStage = (byte)AiQuotaTurnStage.Admitted,
+                        LeaseExpiresAtUtc = now.Add(AiTurnLifecycle.StageLease),
+                        CreatedAtUtc = now
                     });
 
                     row.PendingQuestions += 1;
@@ -166,8 +198,10 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
                         return true;
                     }
 
-                    // Keep Pending (do not release counters); store known usage for reconcile.
+                    // Yield the live lease. Another turn may recover this row; an open stage may not.
                     ledger.ActualTokens = tokens;
+                    ledger.ActiveStage = (byte)AiQuotaTurnStage.AwaitingRecovery;
+                    ledger.TerminalIntent = (byte)AiQuotaTerminalIntent.Settle;
                     await SaveQuotaChangesAsync(context, ct);
                     await tx.CommitAsync(ct);
                     return true;
@@ -188,14 +222,25 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
 
                     var ledger = await context.AiQuotaReservationLedgers
                         .FirstOrDefaultAsync(x => x.RequestId == requestId, ct);
-                    if (ledger is null || ledger.Status != AiQuotaReservationStatus.Pending || ledger.ActualTokens <= 0)
+                    if (ledger is null || ledger.Status != AiQuotaReservationStatus.Pending)
+                    {
+                        await tx.CommitAsync(ct);
+                        return false;
+                    }
+
+                    var snapshot = AiTurnLedgerSnapshot.FromLedger(ledger);
+                    if (!AiTurnLifecycle.MayRecover(snapshot, _clock.GetUtcNow().UtcDateTime))
                     {
                         await tx.CommitAsync(ct);
                         return false;
                     }
 
                     var reservation = new AiQuotaReservation(ledger.RequestId, ledger.UserId, ledger.DayUtc, ledger.ReservedTokens);
-                    await ApplyTerminalStateAsync(context, reservation, AiQuotaReservationStatus.Settled, ledger.ActualTokens, ct);
+                    var terminal = AiTurnLifecycle.RecoveryTerminal(snapshot);
+                    var charge = terminal == AiQuotaReservationStatus.Settled
+                        ? AiTurnLifecycle.RecoveryCharge(snapshot)
+                        : 0;
+                    await ApplyTerminalStateAsync(context, reservation, terminal, charge, ct);
                     await tx.CommitAsync(ct);
                     return true;
                 },
@@ -203,6 +248,159 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
                 ct),
             ct);
     }
+
+    public Task<bool> OwnsTurnAsync(AiQuotaReservation reservation, CancellationToken ct)
+        => UsingContextAsync(async context =>
+        {
+            var ledger = await context.AiQuotaReservationLedgers.AsNoTracking()
+                .FirstOrDefaultAsync(row => row.RequestId == reservation.RequestId, ct);
+            if (ledger is null || ledger.Status != AiQuotaReservationStatus.Pending || ledger.UserId != reservation.UserId)
+            {
+                return false;
+            }
+
+            return ledger.LeaseExpiresAtUtc is not DateTime lease || lease > _clock.GetUtcNow().UtcDateTime;
+        }, ct);
+
+    public Task<bool> BeginStageAsync(
+        AiQuotaReservation reservation,
+        AiQuotaTurnStage stage,
+        TimeSpan lease,
+        int unknownTokenBound,
+        CancellationToken ct)
+        => MutatePendingAsync(reservation, ct, ledger =>
+        {
+            var bound = Math.Max(0, unknownTokenBound);
+            ledger.ActiveStage = (byte)stage;
+            ledger.LeaseExpiresAtUtc = _clock.GetUtcNow().UtcDateTime.Add(lease <= TimeSpan.Zero ? AiTurnLifecycle.StageLease : lease);
+            if (stage is AiQuotaTurnStage.Embedding or AiQuotaTurnStage.EmbeddingKnown)
+            {
+                ledger.UnknownEmbeddingTokens = bound;
+            }
+            else if (stage is AiQuotaTurnStage.Generating or AiQuotaTurnStage.Validating)
+            {
+                ledger.UnknownGenerationTokens = bound;
+            }
+
+            return Task.CompletedTask;
+        });
+
+    public Task<bool> RecordStageSpendAsync(
+        AiQuotaReservation reservation,
+        AiQuotaTurnStage stage,
+        int knownTokens,
+        CancellationToken ct)
+        => RecordStageUsageAsync(reservation, stage, knownTokens, 0, ct);
+
+    public Task<bool> RecordStageUsageAsync(
+        AiQuotaReservation reservation,
+        AiQuotaTurnStage stage,
+        int knownTokens,
+        int unknownTokens,
+        CancellationToken ct)
+        => MutatePendingAsync(reservation, ct, ledger =>
+        {
+            var known = Math.Max(0, knownTokens);
+            var unknown = Math.Max(0, unknownTokens);
+            ledger.LeaseExpiresAtUtc = _clock.GetUtcNow().UtcDateTime.Add(AiTurnLifecycle.StageLease);
+            if (stage is AiQuotaTurnStage.Embedding or AiQuotaTurnStage.EmbeddingKnown)
+            {
+                ledger.KnownEmbeddingTokens = known;
+                ledger.UnknownEmbeddingTokens = unknown;
+                ledger.ActiveStage = (byte)AiQuotaTurnStage.EmbeddingKnown;
+            }
+            else
+            {
+                ledger.KnownGenerationTokens = known;
+                ledger.UnknownGenerationTokens = unknown;
+                ledger.ActiveStage = (byte)AiQuotaTurnStage.Validating;
+            }
+
+            // ActualTokens stays 0 while the stage lease is live so a legacy
+            // ActualTokens>0 scan cannot settle this turn early.
+            return Task.CompletedTask;
+        });
+
+    public Task<bool> RecordStageUnknownAsync(
+        AiQuotaReservation reservation,
+        AiQuotaTurnStage stage,
+        int unknownTokenBound,
+        CancellationToken ct)
+        => MutatePendingAsync(reservation, ct, ledger =>
+        {
+            var bound = Math.Max(0, unknownTokenBound);
+            ledger.LeaseExpiresAtUtc = _clock.GetUtcNow().UtcDateTime.Add(AiTurnLifecycle.StageLease);
+            if (stage is AiQuotaTurnStage.Embedding or AiQuotaTurnStage.EmbeddingKnown)
+            {
+                ledger.UnknownEmbeddingTokens = bound;
+                ledger.ActiveStage = (byte)AiQuotaTurnStage.Embedding;
+            }
+            else
+            {
+                ledger.UnknownGenerationTokens = bound;
+                ledger.ActiveStage = (byte)AiQuotaTurnStage.Generating;
+            }
+
+            return Task.CompletedTask;
+        });
+
+    public Task<bool> ClearStageUnknownAsync(AiQuotaReservation reservation, AiQuotaTurnStage stage, CancellationToken ct)
+        => MutatePendingAsync(reservation, ct, ledger =>
+        {
+            if (stage is AiQuotaTurnStage.Embedding or AiQuotaTurnStage.EmbeddingKnown)
+            {
+                ledger.UnknownEmbeddingTokens = 0;
+                if ((ledger.KnownEmbeddingTokens ?? 0) == 0)
+                {
+                    ledger.ActiveStage = (byte)AiQuotaTurnStage.Admitted;
+                }
+            }
+            else
+            {
+                ledger.UnknownGenerationTokens = 0;
+            }
+
+            ledger.LeaseExpiresAtUtc = _clock.GetUtcNow().UtcDateTime.Add(AiTurnLifecycle.StageLease);
+            return Task.CompletedTask;
+        });
+
+    private Task<bool> MutatePendingAsync(
+        AiQuotaReservation reservation,
+        CancellationToken ct,
+        Func<AiQuotaReservationLedger, Task> mutate)
+        => UsingContextAsync(
+            context => ExecuteWithTransientRetryAsync(
+                async () =>
+                {
+                    await using var tx = await context.Database.BeginTransactionAsync(IsolationLevel.Serializable, ct);
+                    DetachQuotaEntitiesOnly(context);
+                    var ledger = await context.AiQuotaReservationLedgers
+                        .FirstOrDefaultAsync(x => x.RequestId == reservation.RequestId, ct);
+                    if (ledger is null || ledger.Status != AiQuotaReservationStatus.Pending)
+                    {
+                        await tx.CommitAsync(ct);
+                        return false;
+                    }
+
+                    if (ledger.LeaseExpiresAtUtc is DateTime lease && lease <= _clock.GetUtcNow().UtcDateTime)
+                    {
+                        await tx.CommitAsync(ct);
+                        return false;
+                    }
+
+                    if (ledger.UserId != reservation.UserId || ledger.DayUtc != reservation.DayUtc)
+                    {
+                        throw new InvalidOperationException("Quota reservation identity mismatch.");
+                    }
+
+                    await mutate(ledger);
+                    await SaveQuotaChangesAsync(context, ct);
+                    await tx.CommitAsync(ct);
+                    return true;
+                },
+                context,
+                ct),
+            ct);
 
     private Task FinalizeAsync(
         AiQuotaReservation reservation,
@@ -254,6 +452,18 @@ public sealed class AiDailyQuotaReservationService : IAiDailyQuotaReservationSer
         if (ledger.Status != AiQuotaReservationStatus.Pending)
         {
             return;
+        }
+
+        var snapshot = AiTurnLedgerSnapshot.FromLedger(ledger);
+        if (terminalStatus == AiQuotaReservationStatus.Released && AiTurnLifecycle.RecoveryCharge(snapshot) > 0)
+        {
+            terminalStatus = AiQuotaReservationStatus.Settled;
+            actualTokens = AiTurnLifecycle.RecoveryCharge(snapshot);
+        }
+
+        if (terminalStatus == AiQuotaReservationStatus.Settled)
+        {
+            actualTokens = AiTurnLifecycle.SettlementTokens(snapshot, actualTokens);
         }
 
         var row = await context.AiUserDailyQuotas

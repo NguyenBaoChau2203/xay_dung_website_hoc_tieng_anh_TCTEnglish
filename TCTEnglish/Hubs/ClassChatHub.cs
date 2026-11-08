@@ -289,7 +289,8 @@ namespace TCTEnglish.Hubs
                         conversationId,
                         streamSession.StreamId,
                         streamSession.Usage,
-                        streamSession.Metadata));
+                        streamSession.Metadata,
+                        streamSession.Grounding));
             }
             catch (OperationCanceledException)
             {

@@ -25,6 +25,7 @@ scripts/tests/*.cjs text eol=lf
 ###############################################################################
 TCTEnglish/Services/AI/Internal/Data/intent-samples.seed.csv text eol=lf
 TCTEnglish/Services/AI/Internal/Data/intent-classifier-model.zip binary
+TCTEnglish.Tests/Fixtures/AI/hybrid-rag-evaluation.json text eol=lf
 
 # Vendored browser files retain upstream bytes so provenance hashes are portable.
 TCTEnglish/wwwroot/lib/pinned/* -text

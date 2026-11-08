@@ -1,0 +1,150 @@
+{
+  "phase": 0,
+  "round": "fix-2",
+  "branch": "feature/hybrid-rag-chatbot",
+  "startingHead": "6af768bd32d16cc6d012d484ee82df4cab805c69",
+  "endingHead": "6af768bd32d16cc6d012d484ee82df4cab805c69",
+  "reviewedFingerprint": "b4205acda7cc68a5e0ec94a1c68410b6d7ee3181381bdebfec09f69d8ea65ce2",
+  "algorithm": "Lowercase SHA-256 of each file's final bytes. Fingerprint is SHA-256 of UTF-8 text made by sorting digest entries by relative path ordinal, joining '{path}\\t{status}\\t{contentSha256}' with \\n, and appending one trailing \\n. This manifest, review-state, review reports and handoff result files are excluded from that text. Raw scope bytes are not the canonical LF fixture freeze.",
+  "canonicalFixtureSha256": "1d55f34fd8e4e7da65427fc8c344c946b79c720c764cb3b1a1a7e5e4aa3ee48f",
+  "revisionOneRawSha256": "0abf1e31fc781c0ba7b87d5916cda23e69564033b19efdebfdfd9e7ef2bb4116",
+  "fingerprint": "1c33f6700cde76fc80558f823e2fb5699cbeae8c6fba89aeaab29bd25a2268cb",
+  "digestEntries": [
+    {
+      "path": ".ai/context/bug-fix-log.md",
+      "status": "modified",
+      "sha256": "950364be2c5df4788ddb26b8c1d0ea897718d5e4f9aacb1f27780e45b764af55"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-0-fix-round-1.md",
+      "status": "added",
+      "sha256": "d16fcc8ee517f8fe7a979850b6840b4a9686e4103b5ca73a34abff9cc52e6915"
+    },
+    {
+      "path": ".ai/prompts/hybrid-rag/phase-0-fix-round-2.md",
+      "status": "added",
+      "sha256": "a58e4ab83a951365ac5fa92223e63ff36ff7d48e200cb21786585c46afcf59c8"
+    },
+    {
+      "path": ".gitattributes",
+      "status": "modified",
+      "sha256": "a09b73af84d3d27b2a1aaa3ef6adf2a5443ec15df03772e52eced1b4d167a0af"
+    },
+    {
+      "path": "TCTEnglish.Tests/Fixtures/AI/hybrid-rag-evaluation.json",
+      "status": "added",
+      "sha256": "1d55f34fd8e4e7da65427fc8c344c946b79c720c764cb3b1a1a7e5e4aa3ee48f"
+    },
+    {
+      "path": "TCTEnglish.Tests/HybridRagEvaluationBaselineTests.cs",
+      "status": "added",
+      "sha256": "f24fbc05eb2eb58c08a8760a2d9fd4ad995d290cb9a3f66ec37848784a43194d"
+    },
+    {
+      "path": "TCTEnglish.Tests/HybridRagFixtureValidator.cs",
+      "status": "added",
+      "sha256": "fea42d29390790a0a049a9af668df7ff411b722e72f1b48b1aa6d5406c0c797d"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/baseline-results.md",
+      "status": "added",
+      "sha256": "764061e979d37c9d7832d490b4b51c39d5e065ffca9d80add7fb11224b825584"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/contracts.md",
+      "status": "added",
+      "sha256": "78bb60dbb3a3fc09748489fafe6321e95f9958b78d2f992fbe5033b74ca56932"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/coverage-matrix.md",
+      "status": "added",
+      "sha256": "d33f1c2532b0e88dc97ac4bb2bf64e85ba2710b5f8a14fbf1e74dcefd060a57f"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/oracle-validation.md",
+      "status": "added",
+      "sha256": "85a88ebbf66dd6d9690ad2c947eff6e045a4d6c15de5b742e91377bd1ccffbcb"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-0-fix-round-1.md",
+      "status": "added",
+      "sha256": "4980047ef9789148503160ca5459c8ae2b4a6a589e72854cc68c9b961a5b0379"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/phase-0-fix-round-2.md",
+      "status": "added",
+      "sha256": "9dcd22776b2001b99fd9ad9e24c0d8e028f5ffd2e8c16d77ce992a7d044ff45c"
+    }
+  ],
+  "excludedFromDigest": [
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/fix-round-1-handoff.md",
+      "status": "added",
+      "sha256": "afca75d9515632e525f457fbcf07591be9358b13808f832fa760add5ed0d03ca",
+      "reason": "handoff result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/fix-round-2-handoff.md",
+      "status": "added",
+      "sha256": "13a5f6678fec1f0fa4ec4e9c9c397b9b0e2a5bae62d94656d0ee427438beac4a",
+      "reason": "handoff result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/handoff.md",
+      "status": "added",
+      "sha256": "4bb9e72eef701c1919a7def85165cbf661674c7eabcb9f59a3ffa08b3351b7c2",
+      "reason": "handoff result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/review-round-1.md",
+      "status": "added",
+      "sha256": "516590f99264c5245a63e765eb0d4960a6a8f113c8337e3189988f705b37a69f",
+      "reason": "review result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/review-round-2.md",
+      "status": "added",
+      "sha256": "18e3ef2d5a3825ddc1e74f74ca674dd2baf4c15381fe800a7c545da9bcd62758",
+      "reason": "review result"
+    },
+    {
+      "path": "docs/feature-audits/hybrid-rag/phase-0/scope-manifest.json",
+      "status": "added",
+      "sha256": null,
+      "reason": "manifest excludes itself"
+    },
+    {
+      "path": "docs/superpowers/plans/hybrid-rag/review-state.md",
+      "status": "modified",
+      "sha256": "35544431df990be0ce3dc2c2833971e44594548f68e1cd12f592e290e463716a",
+      "reason": "coordination state, not an approval"
+    }
+  ],
+  "baselineDirtyNotInDigest": [
+    ".ai/prompts/hybrid-rag-chatbot-execution.md",
+    ".ai/prompts/hybrid-rag/codex-phase-review.md",
+    ".ai/prompts/hybrid-rag/cursor-auto-fix-template.md",
+    ".ai/prompts/hybrid-rag/phase-0-discovery.md",
+    ".ai/prompts/hybrid-rag/phase-1-chat-boundary-access.md",
+    ".ai/prompts/hybrid-rag/phase-2-corpus-bm25.md",
+    ".ai/prompts/hybrid-rag/phase-3-hybrid-retrieval.md",
+    ".ai/prompts/hybrid-rag/phase-4-grounded-answers-budget.md",
+    ".ai/prompts/hybrid-rag/phase-5-durable-citations.md",
+    ".ai/prompts/hybrid-rag/phase-6-ui-resilience.md",
+    ".ai/prompts/hybrid-rag/phase-7-demo-acceptance.md",
+    "docs/feature-audits/2026-11-05-hybrid-rag-research.md",
+    "docs/superpowers/plans/2026-11-05-hybrid-rag-chatbot.md",
+    "docs/superpowers/plans/hybrid-rag/README.md",
+    "docs/superpowers/plans/hybrid-rag/fix-plan-template.md",
+    "docs/superpowers/plans/hybrid-rag/handoff-template.md",
+    "docs/superpowers/plans/hybrid-rag/phase-0-discovery.md",
+    "docs/superpowers/plans/hybrid-rag/phase-1-chat-boundary-access.md",
+    "docs/superpowers/plans/hybrid-rag/phase-2-corpus-bm25.md",
+    "docs/superpowers/plans/hybrid-rag/phase-3-hybrid-retrieval.md",
+    "docs/superpowers/plans/hybrid-rag/phase-4-grounded-answers-budget.md",
+    "docs/superpowers/plans/hybrid-rag/phase-5-durable-citations.md",
+    "docs/superpowers/plans/hybrid-rag/phase-6-ui-resilience.md",
+    "docs/superpowers/plans/hybrid-rag/phase-7-demo-acceptance.md",
+    "docs/superpowers/plans/hybrid-rag/review-gates.md"
+  ]
+}
