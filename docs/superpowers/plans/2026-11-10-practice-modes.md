@@ -840,24 +840,40 @@ git diff --check
 
 ## 10. Definition of done
 
-- [ ] All routes in 4.1 work with P10 access (404 for non-viewable sets); payloads never contain personal notes or other users' data.
-- [ ] No migration; no `Program.cs`, appsettings, `.csproj`, shared CSS/partials, `LearningApiController`, Goals or AI changes. `_Layout.cshtml` only per D1.
-- [ ] The legacy study pages and their tests are unchanged and green; chat citation tests are green.
-- [ ] `practice-core.js` is pure and fully covered by `test_practice_core.cjs`; the C# and JS count tables match.
-- [ ] Progress writes happen only with the switch on, through `UpdateCardProgress`; Match never writes.
-- [ ] Every mode has loading / empty / error / success states, keyboard support, labelled controls, a live region for feedback, and reduced-motion handling.
-- [ ] CSS is tokens-only under `.tp-page`; Font Awesome 6.0.0 only; no new packages or CDNs.
-- [ ] No mascot, Chinese-language, XP, confetti-library or AI remnants.
-- [ ] Set detail strip, actions menu, set list and card detail link to the new modes; the hero "Ôn bộ này" is unchanged.
-- [ ] The Vietnamese report separates local / CI / staging / production.
+- [x] All routes in 4.1 work with P10 access (404 for non-viewable sets); payloads never contain personal notes or other users' data.
+- [x] No migration; no `Program.cs`, appsettings, `.csproj`, shared CSS/partials, `LearningApiController`, Goals or AI changes. `_Layout.cshtml` only per D1.
+- [x] The legacy study pages and their tests are unchanged and green; chat citation tests are green.
+- [x] `practice-core.js` is pure and fully covered by `test_practice_core.cjs`; the C# and JS count tables match.
+- [x] Progress writes happen only with the switch on, through `UpdateCardProgress`; Match never writes.
+- [x] Every mode has loading / empty / error / success states, keyboard support, labelled controls, a live region for feedback, and reduced-motion handling. (No client "loading" state: every session embeds its words, the only request is the optional progress write.)
+- [x] CSS is tokens-only under `.tp-page`; Font Awesome 6.0.0 only; no new packages or CDNs.
+- [x] No mascot, Chinese-language, XP, confetti-library or AI remnants.
+- [x] Set detail strip, actions menu, set list and card detail link to the new modes; the hero "Ôn bộ này" is unchanged.
+- [x] The Vietnamese report separates local / CI / staging / production.
 
-## 11. Execution notes (agent fills in)
+## 11. Execution notes (agent filled in)
 
-- Branch / HEAD at Q0:
-- D1 as received:
-- Baseline counts (dotnet / node):
-- Legacy pages read (what each writes to storage/progress):
-- Pool top-up behaviour observed:
+- Branch / HEAD at Q0: `feature/practice-modes` created from `feature/personal-sets-redesign` at `a9964a6` (5 local commits over origin/master `eed4e2c`, not pushed). The working tree had the unrelated `TCTEnglish/appsettings.Development.json` change and an untracked `Claude outputs/` folder; neither was staged or edited. No pull, rebase or reset.
+- D1 as received: blank in both the plan and the prompt, so **KHÔNG**. `_Layout.cshtml` is untouched; entry points are the set detail strip and menu, the set list header and card detail. A test asserts that the dashboard page has no `/Practice` link.
+- Baseline counts (dotnet / node): `dotnet test -c Release` 1272 passed / 22 skipped / 0 failed; `node --test scripts/tests/*.cjs` 93 passed.
+- Legacy pages read: not re-read line by line in this session. Behaviour follows plan 0.2 and the previous session's notes; `StudyController.UpdateCardProgress` (antiforgery header, `CanViewSetAsync`) was re-read. They were verified instead by the unchanged legacy test suites and by opening `/Home/Study/5`, `?mode=due`, `QuizMode`, `WriteMode` and `MatchingMode` in the browser (no console errors). `time-tracker.js` and `track-time` were not re-read; the `Flashcard` / `Quiz` feature values come from the plan.
+- Pool top-up behaviour observed: a 14-word set asked for cloze n=10 returns all 14 targets and an empty own-set pool, so the pool is topped up from other viewable sets (synthetic words from another set appeared as distractors). Covered by `TinyPool_IsToppedUpFromOtherViewableSets`.
 - Deviations and why:
-- Browser coverage / not verified:
-- Final counts:
+  - `PracticeQuery.Words` is the normalized CSV string (model binding) with a `WordIds` list property; `PracticeSessionViewModel` also carries `AllUrl` (the "Luyện tất cả" link of an empty source) and `Hue`.
+  - `ScopeKey` for `words=` sessions is `words:{setId|mine}:{hash}` so a partial retry never overwrites the Learn state of the whole set. Set stats (`learnPercent`, `testPercent`, `matchMs`) are merged only for single-set sessions without `words`.
+  - The test draft is keyed by a hash of the targets and options (not of the question ids), because the key must be known before the seeded rebuild. Choice and true/false question ids include the prompt side, so a changed "Hỏi bằng" never reuses answers.
+  - Drill and flashcard orders are shuffled in the browser (targets arrive in source order).
+  - In Match a second tile of the same side counts as a miss (plan 6.8 lists only pair or miss).
+  - The three fixed bottom bars (feedback panel, test submit bar, hub start bar) sit above the AI chat launcher at every width (offset 5.5rem), not only on mobile, because the launcher overlapped them at 992-1300px.
+  - The hard-words set filter uses a "Lọc" button instead of an inline `onchange`.
+  - `set-detail.js` repeats the small suggestion rule instead of loading `practice-core.js` on the detail page.
+  - A `tp-stage` class clash between the shell and the Learn stage list was renamed to `tp-step`.
+  - "Làm lại câu sai" in Test is not persisted as a draft.
+- Browser coverage (headless Chrome over CDP, local web on a free port, synthetic Premium account, screenshots only in ignored `.tmp/practice/`):
+  - All 8 modes at 1440 / 768 / 390 / 320 and 720 px at 2x (200% zoom equivalent): no horizontal overflow, 0 console errors, 0 failures from the scripted contrast check (4.5:1, 3:1 for large text) in a prepared state per mode (answered, flipped, started, first question).
+  - Keyboard: quiz, typing, listening, cloze and flashcard were played to the end with keys. Learn (start the stage, intro, answer with 1, Enter to continue), Match (Tab to a tile, Enter to select and pair) and Test (Tab reaches "Nộp bài" in 71 stops, Space picks an option, Enter opens the confirmation, Escape closes it) were walked with real key events. The first 16 Tab stops of every mode show a focus ring.
+  - Reduced motion: slide-in, tile wiggle and pop animations resolve to none; the flip is an instant swap.
+  - Server writes: flashcard with the switch off left `learned` at 0 and with it on it became 1; Learn with it on moved the set to 11 learned; Test with it on moved 8 wrong answers to learning; Match with `srs=1` still reports `countsToSrs=false` and writes nothing.
+  - Also checked: hub defaults restored from the saved setup, suggestion badge, test types keep at least one, Match hides the switch, hard-words stacked rows at 390 px, set detail strip / menu / list / card links, legacy pages opening.
+- Not verified: screen readers; real touch swipe (mouse-drag emulation only); audible speech and the listening auto-play; Firefox and Safari; a Standard or Admin visual pass of the practice pages (integration tests only); class or folder-member scope in a browser; an actual AI chat citation click (no key; only the `/Home/Study/{id}` target was opened); the empty-words hub state visually (covered by a render test). `SharedDataMariaDbTests`, CI, staging and production were not run or touched; no schema changed.
+- Final counts: `dotnet test -c Release` 1287 passed / 22 skipped / 0 failed (baseline 1272 / 22); `node --test scripts/tests/*.cjs` 115 passed (baseline 93); `has-pending-model-changes`: no changes; `scripts/agent_tooling.py`: verified; tooling unit tests (pinned uv): 139 run, OK, 1 skipped; `git diff --check` flags only the pre-existing blank line at the end of `appsettings.Development.json`.

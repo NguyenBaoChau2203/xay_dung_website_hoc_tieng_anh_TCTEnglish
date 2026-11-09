@@ -272,6 +272,13 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
   validation for badge records.
 - **Effort**: Small.
 
+### TD-011: Practice Learn/Match/Test state is device-local [LOW]
+- **Files**: `wwwroot/js/practice-core.js` (`createStore`), `wwwroot/js/practice-learn.js`, `practice-match.js`, `practice-test.js`, `practice-hub.js`
+- **Issue**: Learn rounds, Match best times, the test draft and per-set stats (`tct:set-stats:{setId}` `learnPercent` / `testPercent` / `matchMs`) live in `localStorage` / `sessionStorage` on one browser. There is no migration or server table by design (plan P3).
+- **Impact**: A new browser, a cleared profile or private mode starts Learn from the first round and shows no record or "Lần trước" figure; nothing is lost on the server because review progress is still written through `UpdateCardProgress` when "Tính vào ôn tập" is on. Learn/Match progress is not shared between devices.
+- **Recommended fix**: Only if owners want cross-device records: add a small per-user table (migration with MariaDB verification) and keep the browser copy as a cache.
+- **Effort**: Medium.
+
 ---
 
 ## Architecture Warnings
