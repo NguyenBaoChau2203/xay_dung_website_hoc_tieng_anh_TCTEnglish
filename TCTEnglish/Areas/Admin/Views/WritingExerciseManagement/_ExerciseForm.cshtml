@@ -18,11 +18,12 @@
 
     <div class="row g-4 align-items-start">
         <div class="col-xl-8">
+            @* ── Metadata Section ─────────────────────────────────── *@
             <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card mb-4">
                 <div class="card-body p-4 p-lg-5">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
                         <div>
-                            <h4 class="mb-1 fw-bold text-dark">@formHeading</h4>
+                            <h2 class="h4 mb-1 fw-bold text-dark">@formHeading</h2>
                             <p class="text-muted mb-0">@formDescription</p>
                         </div>
                         <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-3 py-2" id="previewStatusBadge">
@@ -81,11 +82,11 @@
                             </label>
                             <textarea asp-for="PreviewText"
                                       class="form-control"
-                                      rows="4"
+                                      rows="3"
                                       placeholder="Mô tả ngắn để learner hiểu nội dung trước khi bắt đầu viết."></textarea>
                             <span asp-validation-for="PreviewText" class="text-danger small mt-1 d-block"></span>
                             <div class="form-text">
-                                Phần này sẽ xuất hiện ở trang learner trước khi người học mở màn practice writing.
+                                <i class="fa-solid fa-circle-info me-1" aria-hidden="true"></i>Phần này sẽ xuất hiện ở trang learner trước khi người học mở màn practice writing.
                             </div>
                         </div>
 
@@ -105,27 +106,28 @@
                 </div>
             </div>
 
+            @* ── Full Text Builder Section ────────────────────────── *@
             <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card mb-4">
                 <div class="card-body p-4 p-lg-5">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
                         <div>
-                            <h4 class="mb-1 fw-bold text-dark">Full Text Builder</h4>
+                            <h2 class="h4 mb-1 fw-bold text-dark">Full Text Builder</h2>
                             <p class="text-muted mb-0">
-                                Dán nguyên đoạn tiếng Việt và nguyên đoạn tiếng Anh mẫu. Hệ thống sẽ tự tách câu khi gặp dấu chấm câu như `.`, `!`, `?`, `;`, `:`.
+                                Dán nguyên đoạn tiếng Việt và nguyên đoạn tiếng Anh mẫu. Hệ thống sẽ tự tách câu khi gặp dấu chấm câu như <code>.</code>, <code>!</code>, <code>?</code>, <code>;</code>, <code>:</code>.
                             </p>
                         </div>
                         <span class="admin-writing-helper-pill">
-                            <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Tự tách câu khi lưu
+                            <i class="fa-solid fa-wand-magic-sparkles me-2" aria-hidden="true"></i>Tự tách câu khi lưu
                         </span>
                     </div>
 
                     <div class="admin-writing-builder-note mb-4">
                         <div class="admin-writing-builder-note-item">
-                            <i class="fa-solid fa-align-left text-primary"></i>
+                            <i class="fa-solid fa-align-left text-primary" aria-hidden="true"></i>
                             <span>Muốn xuống đoạn mới trong learner preview, hãy chừa một dòng trống giữa hai paragraph.</span>
                         </div>
                         <div class="admin-writing-builder-note-item">
-                            <i class="fa-solid fa-circle-nodes text-primary"></i>
+                            <i class="fa-solid fa-circle-nodes text-primary" aria-hidden="true"></i>
                             <span>Hai full text cần có cùng số câu sau khi tách tự động để hệ thống ghép cặp chính xác.</span>
                         </div>
                     </div>
@@ -137,7 +139,7 @@
                             </label>
                             <textarea asp-for="FullVietnameseText"
                                       class="form-control admin-writing-passage-input"
-                                      rows="10"
+                                      rows="8"
                                       placeholder="Dán toàn bộ đoạn tiếng Việt ở đây. Mỗi câu nên kết thúc bằng dấu câu như ., !, ?, ; hoặc :."></textarea>
                             <span asp-validation-for="FullVietnameseText" class="text-danger small mt-1 d-block"></span>
                             <div class="form-text">
@@ -151,7 +153,7 @@
                             </label>
                             <textarea asp-for="FullEnglishText"
                                       class="form-control admin-writing-passage-input"
-                                      rows="10"
+                                      rows="8"
                                       placeholder="Dán toàn bộ đoạn tiếng Anh mẫu để hệ thống tự ghép từng câu tương ứng."></textarea>
                             <span asp-validation-for="FullEnglishText" class="text-danger small mt-1 d-block"></span>
                             <div class="form-text">
@@ -160,7 +162,7 @@
                         </div>
 
                         <div class="col-12">
-                            <div id="pairSyncMessage" class="alert alert-secondary rounded-4 mb-0 admin-writing-sync-alert">
+                            <div id="pairSyncMessage" class="alert alert-secondary rounded-4 mb-0 admin-writing-sync-alert" role="status">
                                 Hệ thống sẽ tự chia hai đoạn văn thành các câu tương ứng khi bạn bấm lưu.
                             </div>
                         </div>
@@ -168,11 +170,12 @@
                 </div>
             </div>
 
-            <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card">
+            @* ── Sentence Pairs Preview ───────────────────────────── *@
+            <div class="card border-0 shadow-sm rounded-4 admin-writing-section-card mb-4">
                 <div class="card-body p-4 p-lg-5">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
                         <div>
-                            <h4 class="mb-1 fw-bold text-dark">Auto-Detected Sentence Pairs</h4>
+                            <h2 class="h4 mb-1 fw-bold text-dark">Auto-Detected Sentence Pairs</h2>
                             <p class="text-muted mb-0">
                                 Xem nhanh hệ thống sẽ ghép những câu nào trước khi lưu vào database.
                             </p>
@@ -183,31 +186,37 @@
                     </div>
 
                     <div id="autoPairEmpty" class="admin-writing-empty-state">
-                        Dán cả full text tiếng Việt và tiếng Anh mẫu để xem trước các cặp câu được nhận diện.
+                        <i class="fa-solid fa-code-compare fa-2x mb-2 text-secondary opacity-50" aria-hidden="true"></i>
+                        <p class="mb-0">Dán cả full text tiếng Việt và tiếng Anh mẫu để xem trước các cặp câu được nhận diện.</p>
                     </div>
 
                     <div id="autoPairList" class="d-grid gap-3"></div>
                 </div>
             </div>
 
-            <div class="d-flex justify-content-end gap-3 mt-4">
-                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Hủy bỏ</a>
-                <button type="submit" class="btn btn-primary shadow-sm rounded-pill px-4">
-                    <i class="@submitIcon me-2"></i>@submitText
+            @* ── Form Actions ─────────────────────────────────────── *@
+            <div class="d-flex justify-content-end gap-3 mt-4 mb-4">
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm">Hủy bỏ</a>
+                <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                    <i class="@submitIcon me-2" aria-hidden="true"></i>@submitText
                 </button>
             </div>
         </div>
 
+        @* ── Sticky Sidebar ───────────────────────────────────── *@
         <div class="col-xl-4">
             <div class="admin-writing-sidebar sticky-xl-top">
+                @* Quick Summary Card *@
                 <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card mb-4">
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
                             <div>
-                                <div class="text-uppercase text-muted small fw-semibold mb-2">Quick Summary</div>
-                                <h5 class="mb-1 fw-bold text-dark">Tình trạng bài viết</h5>
+                                <div class="text-uppercase text-muted small fw-semibold mb-1">Quick Summary</div>
+                                <h3 class="h6 mb-0 fw-bold text-dark">Tình trạng bài viết</h3>
                             </div>
-                            <i class="fa-solid fa-chart-column text-primary"></i>
+                            <div class="admin-writing-icon-badge" aria-hidden="true">
+                                <i class="fa-solid fa-chart-column text-primary"></i>
+                            </div>
                         </div>
 
                         <div class="admin-writing-mini-grid">
@@ -233,10 +242,11 @@
                     </div>
                 </div>
 
+                @* Learner Preview Card *@
                 <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card mb-4">
                     <div class="card-body p-4">
-                        <div class="text-uppercase text-muted small fw-semibold mb-2">Learner Preview</div>
-                        <h5 class="mb-3 fw-bold text-dark">Xem trước bài viết</h5>
+                        <div class="text-uppercase text-muted small fw-semibold mb-1">Learner Preview</div>
+                        <h3 class="h6 mb-3 fw-bold text-dark">Xem trước bài viết</h3>
 
                         <div class="admin-writing-preview-meta mb-3">
                             <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25" id="previewLevelChip">
@@ -262,12 +272,13 @@
                     </div>
                 </div>
 
+                @* Checklist Card *@
                 <div class="card border-0 shadow-sm rounded-4 admin-writing-preview-card">
                     <div class="card-body p-4">
-                        <div class="text-uppercase text-muted small fw-semibold mb-2">Checklist</div>
-                        <h5 class="mb-3 fw-bold text-dark">Nhập bài nhanh</h5>
+                        <div class="text-uppercase text-muted small fw-semibold mb-1">Checklist</div>
+                        <h3 class="h6 mb-3 fw-bold text-dark">Nhập bài nhanh</h3>
                         <ul class="admin-writing-checklist mb-0">
-                            <li>Mỗi câu nên kết thúc bằng dấu câu như `.`, `!`, `?`, `;`, `:` để hệ thống tách chính xác hơn.</li>
+                            <li>Mỗi câu nên kết thúc bằng dấu câu như <code>.</code>, <code>!</code>, <code>?</code>, <code>;</code>, <code>:</code> để hệ thống tách chính xác hơn.</li>
                             <li>Muốn xuống paragraph trong learner preview, hãy chừa một dòng trống giữa hai đoạn.</li>
                             <li>Full text tiếng Việt và tiếng Anh mẫu cần khớp số câu sau khi tách tự động.</li>
                             <li>Preview text nên ngắn gọn để learner hiểu bối cảnh trước khi vào bài practice.</li>

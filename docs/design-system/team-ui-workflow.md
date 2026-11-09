@@ -149,7 +149,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
 | Nói | `/Speaking`, `/Speaking/Practice` | `speaking.css` | `--stitch-*`, `--spk-*` | Chưa chuyển | _chủ dự án gán_ |
 | Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
-| Viết | `/Home/Writing*` | `writing-index.css`, `writing-exercises.css`, `writing.css` | `--wi-*`, `--we-*`, `--w-*` | Chưa chuyển | _chủ dự án gán_ |
+| Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
 | Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |

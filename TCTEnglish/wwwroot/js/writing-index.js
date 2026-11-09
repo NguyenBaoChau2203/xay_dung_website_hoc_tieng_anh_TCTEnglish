@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         elSelectedLevelCopy.textContent = `Chế độ ${levelTitle} đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.`;
+        if (elSelectedLevelCopy.classList) {
+            elSelectedLevelCopy.classList.remove('wp-copy-fade');
+            void elSelectedLevelCopy.offsetWidth;
+            elSelectedLevelCopy.classList.add('wp-copy-fade');
+        }
 
         contentLinks.forEach(function (link) {
             const href = link.getAttribute('href');
