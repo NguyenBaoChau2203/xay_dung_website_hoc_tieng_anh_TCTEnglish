@@ -46,9 +46,10 @@ public sealed class SharedDataExporter(DbflashcardContext db, string webRoot, Di
             var spec = SharedDataRegistry.Get(item.Key.Kind);
             var binding = bindings.GetValueOrDefault(item.Value.Key);
             var values = new Dictionary<string, JsonElement>(StringComparer.Ordinal);
-            foreach (var field in spec.Fields)
+            foreach (var field in spec.AllFields)
             {
                 var value = spec.Property(field).GetValue(item.Value.Row);
+                if (spec.OptionalFields.Contains(field) && spec.IsDefaultOptionalValue(field, value)) continue;
                 if (field.EndsWith("Url", StringComparison.Ordinal) && value is string url && url.StartsWith('/'))
                 {
                     if (!url.StartsWith("/images/", StringComparison.Ordinal) && !url.StartsWith("/uploads/", StringComparison.Ordinal)) throw new SharedDataException("Only selected application media can be exported.");

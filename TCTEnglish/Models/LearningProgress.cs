@@ -20,6 +20,9 @@ public partial class LearningProgress
     public DateTime? LastReviewedDate { get; set; }
     public DateTime? NextReviewDate { get; set; }
 
+    // Per-user "hide from review" flag
+    public bool IsSuspended { get; set; }
+
     public virtual Card Card { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
