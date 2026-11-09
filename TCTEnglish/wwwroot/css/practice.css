@@ -387,6 +387,118 @@
 .tp-page .tp-tile.is-miss { border-color: var(--tct-danger); background: var(--tct-danger-soft); animation: tp-wiggle var(--tct-dur) var(--tct-ease); }
 .tp-page .tp-penalty { position: absolute; top: calc(-1 * var(--tct-space-sm)); right: var(--tct-space-xs); z-index: 1; animation: tp-float 900ms var(--tct-ease) forwards; }
 
+/* ---------------------------------------------------------------- test */
+.tp-page .tp-test-wrap { display: flex; flex-direction: column; gap: var(--tct-space-md); }
+.tp-page .tp-test { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--tct-space-md); align-items: start; }
+
+@media (min-width: 1200px) {
+    .tp-page .tp-test { grid-template-columns: minmax(0, 1fr) 11rem; }
+}
+
+.tp-page .tp-test__main { display: flex; flex-direction: column; gap: var(--tct-space-md); }
+
+.tp-page .tp-q { padding: var(--tct-space-lg); display: flex; flex-direction: column; gap: var(--tct-space-md); scroll-margin-top: calc(var(--tct-header-h) + 4rem); }
+.tp-page .tp-q__head { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-sm); }
+.tp-page .tp-q__title { margin: 0; font-size: var(--tct-text-base); font-weight: var(--tct-weight-bold); outline: none; }
+
+.tp-page .tp-tf-line { display: flex; flex-direction: column; gap: var(--tct-space-sm); }
+.tp-page .tp-tf-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: var(--tct-space-sm); }
+.tp-page .tp-tf-btn { justify-content: center; text-align: center; }
+
+.tp-page .tp-jump { position: sticky; top: calc(var(--tct-header-h) + 4rem); display: none; padding: var(--tct-space-sm); border: 1px solid var(--tct-border); border-radius: var(--tct-radius-md); background: var(--tct-surface); }
+
+@media (min-width: 1200px) {
+    .tp-page .tp-jump { display: block; }
+}
+
+.tp-page .tp-jump__title { margin: 0 0 var(--tct-space-sm); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-secondary); }
+.tp-page .tp-jump__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--tct-space-xs); }
+.tp-page .tp-jump__btn { min-height: 2rem; border: 1px solid var(--tct-border-control); border-radius: var(--tct-radius-sm); background: var(--tct-surface); color: var(--tct-text); font-size: var(--tct-text-sm); font-variant-numeric: tabular-nums; }
+.tp-page .tp-jump__btn.is-answered { border-color: var(--tct-primary); background: var(--tct-primary-soft); color: var(--tct-primary-strong); font-weight: var(--tct-weight-bold); }
+
+.tp-page .tp-test-bar {
+    position: sticky;
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    z-index: var(--tct-z-sidebar);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tct-space-md);
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+    box-shadow: var(--tct-shadow-lift);
+}
+
+@media (min-width: 992px) {
+    .tp-page .tp-test-bar { bottom: calc(var(--tct-space-md) + env(safe-area-inset-bottom)); }
+}
+
+.tp-page .tp-test-bar__count { font-weight: var(--tct-weight-semibold); font-variant-numeric: tabular-nums; }
+
+.tp-page .tp-ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: var(--tct-radius-pill);
+    background: conic-gradient(var(--tp-hue-fill, var(--tct-primary)) calc(var(--p, 0) * 1%), var(--tct-border) 0);
+}
+
+.tp-page .tp-ring::before { content: ''; position: absolute; inset: 10px; border-radius: var(--tct-radius-pill); background: var(--tct-bg); }
+.tp-page .tp-ring__value { position: relative; font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); font-variant-numeric: tabular-nums; }
+
+.tp-page .tp-result__toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-sm); }
+.tp-page .tp-result__list { display: flex; flex-direction: column; gap: var(--tct-space-sm); margin: 0; padding: 0; list-style: none; }
+.tp-page .tp-result__card { padding: var(--tct-space-md); }
+.tp-page .tp-result__card--bad { border-left: 4px solid var(--tct-danger); }
+.tp-page .tp-result__card--close { border-left: 4px solid var(--tct-warning); }
+.tp-page .tp-result__card--ok { border-left: 4px solid var(--tct-success); }
+.tp-page .tp-result__q { margin: 0 0 var(--tct-space-xs); font-weight: var(--tct-weight-semibold); overflow-wrap: anywhere; }
+.tp-page .tp-result__summary { cursor: pointer; font-weight: var(--tct-weight-semibold); overflow-wrap: anywhere; }
+.tp-page .tp-result__line { margin: var(--tct-space-xs) 0 0; overflow-wrap: anywhere; }
+.tp-page .tp-result__line--bad { color: var(--tct-danger-text); }
+.tp-page .tp-result__line--ok { color: var(--tct-success-text); }
+
+/* ---------------------------------------------------------------- learn */
+.tp-page .tp-seg { display: inline-flex; width: 6rem; height: 10px; border-radius: var(--tct-radius-pill); overflow: hidden; background: var(--tct-border); }
+.tp-page .tp-seg__part { flex: var(--n, 0) 1 0; min-width: 0; }
+.tp-page .tp-seg__part--done { background: var(--tct-success); }
+.tp-page .tp-seg__part--learning { background: var(--tct-warning); }
+.tp-page .tp-seg__part--new { background: var(--tct-border-control); }
+
+.tp-page .tp-stages { display: flex; flex-direction: column; gap: var(--tct-space-md); }
+.tp-page .tp-step-list { display: flex; flex-direction: column; gap: var(--tct-space-xs); margin: 0; padding: 0; list-style: none; }
+.tp-page .tp-step { display: flex; align-items: center; gap: var(--tct-space-sm); padding: var(--tct-space-sm) var(--tct-space-md); border: 1px solid var(--tct-border); border-radius: var(--tct-radius-md); background: var(--tct-surface); }
+.tp-page .tp-step__name { flex: 1 1 auto; font-weight: var(--tct-weight-semibold); }
+.tp-page .tp-step--done { color: var(--tct-success-text); }
+.tp-page .tp-step--current { border-color: var(--tct-success); background: var(--tct-success-soft); color: var(--tct-success-text); }
+.tp-page .tp-step--locked { background: var(--tct-surface-muted); color: var(--tct-text-muted); }
+.tp-page .tp-stars--small { font-size: var(--tct-text-base); }
+
+.tp-page .tp-stage-card { display: flex; flex-direction: column; gap: var(--tct-space-md); padding: var(--tct-space-lg); }
+.tp-page .tp-stage-card__meta { margin: 0; color: var(--tct-text-secondary); }
+.tp-page .tp-chip-words { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); margin: 0; padding: 0; list-style: none; }
+.tp-page .tp-chip-word { display: inline-flex; align-items: center; gap: var(--tct-space-sm); padding: var(--tct-space-xs) var(--tct-space-sm); }
+.tp-page .tp-chip-word__term { font-weight: var(--tct-weight-semibold); overflow-wrap: anywhere; }
+.tp-page .tp-dots { display: inline-flex; gap: var(--tct-space-xs); }
+.tp-page .tp-dot { width: 8px; height: 8px; border-radius: var(--tct-radius-pill); background: var(--tct-border); }
+.tp-page .tp-dot--on { background: var(--tct-success); }
+
+.tp-page .tp-bars { display: flex; flex-direction: column; gap: var(--tct-space-sm); padding: var(--tct-space-md); }
+.tp-page .tp-bar-row { display: flex; align-items: center; gap: var(--tct-space-md); }
+.tp-page .tp-bar-row__label { min-width: 5.5rem; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+.tp-page .tp-bar-row__track { flex: 1 1 auto; height: 10px; border-radius: var(--tct-radius-pill); background: var(--tct-border); overflow: hidden; }
+.tp-page .tp-bar-row__fill { display: block; height: 100%; width: calc(var(--p, 0) * 1%); border-radius: var(--tct-radius-pill); }
+.tp-page .tp-bar-row__fill--new { background: var(--tct-border-control); }
+.tp-page .tp-bar-row__fill--learning { background: var(--tct-warning); }
+.tp-page .tp-bar-row__fill--done { background: var(--tct-success); }
+.tp-page .tp-bar-row__count { min-width: 2ch; font-variant-numeric: tabular-nums; font-weight: var(--tct-weight-semibold); text-align: end; }
+.tp-page .tp-ok { color: var(--tct-success-text); }
+.tp-page .tp-learning { color: var(--tct-warning-text); }
+
 /* ---------------------------------------------------------------- motion */
 @keyframes tp-slide-in { from { opacity: 0; transform: translateX(var(--tct-space-lg)); } to { opacity: 1; transform: none; } }
 @keyframes tp-wiggle { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
