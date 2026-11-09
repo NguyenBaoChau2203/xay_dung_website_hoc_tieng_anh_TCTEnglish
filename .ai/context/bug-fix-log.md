@@ -3716,3 +3716,28 @@ per account were added; access details stay in ignored local storage. No shared
 content, persisted model, migration, protected config or saved secret changed.
 No paid request, commit, push, CI or deploy. Dense/live evaluation stays BLOCKED.
 No matching entry in known-issues.md required a status change.
+
+### Speaking redesign intercepted server catalog filters — 2026-11-10
+
+**Symptom**: Selecting a topic or CEFR level after loading a partial catalog
+changed the URL but filtered only the cards already present, omitting unloaded
+matches. Modified link activation was also cancelled.
+
+**Root cause**: New UI click handlers intercepted navigational anchors and called
+`pushState` without fetching the corresponding server-filtered result. Existing
+catalog pagination requires server navigation for these links.
+
+**Fix**: Keep native anchor navigation; retain client narrowing only for plain
+buttons. Remove the synthetic filter history/popstate handling. No controller,
+query, schema or media/assessment contract changed.
+
+**Regression evidence**: `test_speaking_catalog_navigation.cjs` loads the actual
+`speaking.js` with a partial-catalog fixture. Topic, missing level and all-level
+navigation each failed before the fix and passed afterward, including Ctrl+click
+and no synthetic history writes. Complete Node suite: 126 passed.
+
+**Limits**: This verifies production-script behavior in a DOM fixture, not native
+browser navigation or every Speaking interaction. Existing simulated interaction
+tests alone do not prove capture, focus or smoothness. No matching open issue in
+known-issues.md was changed. This correction accompanies the owner-accepted local
+Speaking checkpoint; no push or deployment.

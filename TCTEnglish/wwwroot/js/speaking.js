@@ -18,23 +18,24 @@
     // ── DOM refs ─────────────────────────────────────────────────
     const searchInput = document.getElementById('vi-search');
     const videoCounter = document.getElementById('vi-video-count');
-    const allCards = document.querySelectorAll('.vi-video-col');
     const levelSections = document.querySelectorAll('.vi-level-section');
     const noResultsEl = document.getElementById('vi-no-results');
 
     // ── State ────────────────────────────────────────────────────
-    let activeTopic = 'all';
-    let activeLevel = 'all';
+    const initialActiveLevelBtn = document.querySelector('.level-filter-btn.spk-pill-btn--active');
+    let activeLevel = (initialActiveLevelBtn && initialActiveLevelBtn.dataset.level) || 'all';
 
-    // Topic/level filters are server links (SQL filter + paging). Keep click handlers only
-    // for plain buttons that are not navigational anchors.
+    const initialActiveTopicBtn = document.querySelector('.topic-filter-btn.spk-chip--active');
+    let activeTopic = (initialActiveTopicBtn && initialActiveTopicBtn.dataset.topic) || 'all';
+
+    // Navigational anchors query the complete server catalog, including unloaded
+    // pages. Only non-navigational buttons may narrow the cards already loaded.
     filterBtns.forEach(btn => {
         if (btn.tagName === 'A') return;
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active', 'spk-chip--active'));
             btn.classList.add('active', 'spk-chip--active');
-            activeTopic = btn.dataset.topic;
-            if (searchInput) searchInput.value = '';
+            activeTopic = btn.dataset.topic || 'all';
             applyFilters();
         });
     });
@@ -44,8 +45,7 @@
         btn.addEventListener('click', () => {
             levelBtns.forEach(b => b.classList.remove('active', 'spk-pill-btn--active'));
             btn.classList.add('active', 'spk-pill-btn--active');
-            activeLevel = btn.dataset.level;
-            if (searchInput) searchInput.value = '';
+            activeLevel = btn.dataset.level || 'all';
             applyFilters();
         });
     });
@@ -116,6 +116,11 @@
                 : `${videoCounter.dataset.totalCount || totalVisibleCount} videos`;
         }
 
+        const libraryBadge = document.querySelector('.spk-library-count-badge');
+        if (libraryBadge) {
+            libraryBadge.textContent = `${totalVisibleCount} bài học`;
+        }
+
         if (noResultsEl) {
             noResultsEl.style.display = totalVisibleCount === 0 ? '' : 'none';
         }
@@ -132,7 +137,11 @@
         const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
         container.innerHTML = '';
 
-        if (totalPages <= 1) return;
+        if (totalPages <= 1) {
+            container.classList.add('d-none');
+            return;
+        }
+        container.classList.remove('d-none');
 
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
@@ -508,13 +517,15 @@
         const activeBtn = document.querySelector(`.spk-sent-btn[data-index="${idx}"]`);
         if (activeBtn) {
             activeBtn.classList.add('spk-sent-btn--active');
-            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            const isReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            activeBtn.scrollIntoView({ behavior: isReducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
         }
         // Sync dictation slider
         const activeDicBtn = document.querySelector(`.spk-sent-btn[data-dic-index="${idx}"]`);
         if (activeDicBtn) {
             activeDicBtn.classList.add('spk-sent-btn--active');
-            activeDicBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            const isReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            activeDicBtn.scrollIntoView({ behavior: isReducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
         }
 
         // Update transcript
@@ -923,14 +934,16 @@
     function setRecordUIState(recording) {
         if (!btnRecord) return;
         if (recording) {
-            btnRecord.classList.add('is-recording');
+            btnRecord.classList.add('is-recording', 'recording', 'spk-record-btn--active');
+            if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-busy', 'true'); btnRecord.setAttribute('aria-label', 'Đang ghi âm. Nhấn để dừng.'); }
             if (recordIcon) {
                 recordIcon.className = 'material-symbols-outlined';
                 recordIcon.textContent = 'stop_circle';
             }
             if (recordLabel) recordLabel.textContent = 'Đang ghi âm...';
         } else {
-            btnRecord.classList.remove('is-recording');
+            btnRecord.classList.remove('is-recording', 'recording', 'spk-record-btn--active');
+            if (typeof btnRecord.removeAttribute === 'function') { btnRecord.removeAttribute('aria-busy'); } if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-label', 'Kiểm tra phát âm'); }
             if (recordIcon) {
                 recordIcon.className = 'material-symbols-outlined';
                 recordIcon.textContent = 'mic';
@@ -942,7 +955,8 @@
     function setScoringUIState(scoring) {
         if (!btnRecord) return;
         if (scoring) {
-            btnRecord.classList.add('is-scoring');
+            btnRecord.classList.add('is-scoring', 'assessing', 'spk-record-btn--assessing');
+            if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-busy', 'true'); btnRecord.setAttribute('aria-label', 'Đang chấm điểm...'); }
             btnRecord.disabled = true;
             if (recordIcon) {
                 recordIcon.className = 'fas fa-spinner fa-spin';
@@ -950,7 +964,8 @@
             }
             if (recordLabel) recordLabel.textContent = 'Đang chấm điểm...';
         } else {
-            btnRecord.classList.remove('is-scoring');
+            btnRecord.classList.remove('is-scoring', 'assessing', 'spk-record-btn--assessing');
+            if (typeof btnRecord.removeAttribute === 'function') { btnRecord.removeAttribute('aria-busy'); } if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-label', 'Kiểm tra phát âm'); }
             btnRecord.disabled = false;
             if (recordIcon) {
                 recordIcon.className = 'material-symbols-outlined';
@@ -1258,14 +1273,15 @@
             for (let c = 0; c < word.length; c++) {
                 const pos = globalIdx + c;
                 if (pos >= typedText.length) {
-                    // Not yet reached
-                    charSpans += '<span class="char-untyped">*</span>';
+                    // Not yet reached -> show asterisk in slate
+                    charSpans += '<span class="char-untyped spk-dic-char--untyped">*</span>';
                 } else if (typedText[pos].toLowerCase() === word[c].toLowerCase()) {
-                    // Correct — show the expected char (preserves original case)
-                    charSpans += `<span class="char-correct">${escapeHtml(word[c])}</span>`;
+                    // Correct — show expected char in vivid green (preserves original case)
+                    charSpans += `<span class="char-correct spk-dic-char--correct">${escapeHtml(word[c])}</span>`;
                 } else {
-                    // Incorrect — show what the user typed
-                    charSpans += `<span class="char-incorrect">${escapeHtml(typedText[pos])}</span>`;
+                    // Incorrect — show what user typed in vivid red
+                    const wrongChar = typedText[pos] === ' ' ? '·' : typedText[pos];
+                    charSpans += `<span class="char-incorrect spk-dic-char--wrong">${escapeHtml(wrongChar)}</span>`;
                 }
             }
 
@@ -1450,9 +1466,16 @@
         });
 
         // Tab switching
+        const tabsTrack = $('spk-practice-tabs') || tabPronunciation?.parentElement;
+
         tabPronunciation?.addEventListener('click', function () {
-            this.classList.add('spk-pill-active');
-            tabDictation?.classList.remove('spk-pill-active');
+            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+                abortActiveRecognition('tab-switch');
+            }
+            this.classList.add('spk-pill-active', 'spk-practice-tab--active');
+            tabDictation?.classList.remove('spk-pill-active', 'spk-practice-tab--active');
+            tabsTrack?.classList.remove('spk-tabs--dictation-active');
+            document.querySelector('.spk-practice-wrapper')?.classList.remove('spk-mode--dictation');
             panePronounciation?.classList.remove('d-none');
             panePronounciation?.classList.add('d-flex');
             paneDictation?.classList.add('d-none');
@@ -1460,12 +1483,18 @@
         });
 
         tabDictation?.addEventListener('click', function () {
-            this.classList.add('spk-pill-active');
-            tabPronunciation?.classList.remove('spk-pill-active');
+            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+                abortActiveRecognition('tab-switch');
+            }
+            this.classList.add('spk-pill-active', 'spk-practice-tab--active');
+            tabPronunciation?.classList.remove('spk-pill-active', 'spk-practice-tab--active');
+            tabsTrack?.classList.add('spk-tabs--dictation-active');
+            document.querySelector('.spk-practice-wrapper')?.classList.add('spk-mode--dictation');
             paneDictation?.classList.remove('d-none');
             paneDictation?.classList.add('d-flex');
             panePronounciation?.classList.add('d-none');
             panePronounciation?.classList.remove('d-flex');
+            setTimeout(() => dicInput?.focus(), 120);
         });
 
         // Keyboard shortcuts
@@ -1531,8 +1560,10 @@
         selectSentence,
         dispose,
         applyRecordingFeedback,
+        renderDictationFeedback,
         isPreviewOnly: BROWSER_SCORE_PREVIEW_ONLY,
     };
+    global.renderDictationFeedback = renderDictationFeedback;
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -1902,5 +1933,36 @@
 
     // ── Initial count sync ─────────────────────────────────────────
     updateCount();
+
+    // ── Global Helpers for Empty State Bento ───────────────────────────
+    window.focusImportInput = function () {
+        var input = document.getElementById('mip-url-input');
+        if (input) {
+            if (typeof input.scrollIntoView === 'function') {
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            setTimeout(function () {
+                input.focus();
+                var wrap = input.closest ? input.closest('.spk-hero-url-wrap') : null;
+                if (wrap) {
+                    wrap.classList.add('spk-halo-pulse');
+                    setTimeout(function () { wrap.classList.remove('spk-halo-pulse'); }, 1400);
+                }
+            }, 300);
+        }
+    };
+
+    window.setSampleVideo = function (btn) {
+        if (!btn) return;
+        var url = btn.dataset ? btn.dataset.url : btn.getAttribute('data-url');
+        var input = document.getElementById('mip-url-input');
+        if (input && url) {
+            input.value = url;
+            if (typeof Event === 'function') {
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            window.focusImportInput();
+        }
+    };
 
 })();
