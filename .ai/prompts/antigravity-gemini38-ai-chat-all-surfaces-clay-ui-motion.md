@@ -6,6 +6,13 @@ Research, design, implement and verify **all existing AI Chat surfaces** using
 the shared TCT Claymorphism system. Prioritize a polished laptop/desktop classroom
 demonstration while preserving responsive, accessible and reliable chat behavior.
 
+**Create the team's AI Chatbot logo as a required deliverable.** The current
+`tct-ai-launcher.png` is a temporary placeholder, not an approved identity to
+preserve. Design an original TCT AI mark, deliver reusable assets and usage notes,
+and integrate the selected identity across the launcher, chat header and assistant
+avatar in full/embedded chat. This requirement is additional to the UI and motion
+work, not an optional decorative illustration.
+
 The owner selected **Gemini 3.8 Flash High in Antigravity** to execute this task.
 The application's configured text/speech models are separate and stay unchanged.
 Work as one agent for research, implementation, review and verification. Choose
@@ -71,6 +78,10 @@ Writable boundaries:
 - Purposeful local assets under `TCTEnglish/wwwroot/images/ai/`, relevant tests
   under `TCTEnglish.Tests/` and `scripts/tests/`, and
   `docs/feature-audits/2026-11-10-ai-chat-ui-execution-ledger.md`.
+- The original chatbot logo assets and
+  `docs/design-system/ai-chatbot-identity.md` for this feature's logo usage only.
+  Reference DESIGN.md for shared brand values; do not create a competing palette
+  or duplicate the shared UI rules in that document.
 - AI Chat-specific adoption rows and bug-memory entries for actual fixes.
 
 **Explicit shared-impact boundary:** `_AiChatLauncher.cshtml` and its CSS/JS may
@@ -92,6 +103,9 @@ real out-of-scope dependency and continue independent work instead of silently
 changing shared/backend behavior. Do not regenerate models/corpora, train the
 classifier, rebuild live indexes or purchase embeddings to collect UI evidence.
 Use isolated fixtures for those operations and retain their existing controls.
+
+Logo design is explicitly authorized within the existing TCT brand. Keep the
+website/company logo, product name, primary colors and shared typography unchanged.
 
 **Do not commit, push, create a PR, run remote CI, merge or deploy.** Leave the
 implementation for Chau's review. Keep both release gates, hosting, credentials
@@ -165,6 +179,56 @@ Consult the newest symptom-relevant bug memory before a fix, especially unknown
 transport outcomes, accepted-stream cancellation, cursor ordering and RAG source
 freshness/access. Preserve privacy and backend contracts throughout the redesign.
 
+## Required original chatbot logo and integration
+
+1. Inspect the placeholder and all current AI image consumers, including
+   `_AiChatLauncher.cshtml`, `_ChatShell.cshtml`, JS-created avatars and fallback
+   paths. Keep the chatbot identity distinct from learner avatars and the main
+   website logo. Use the current product label **TCT AI**; do not invent a new
+   product name or copy another AI provider's emblem.
+2. Compare two or three concise visual directions in the ledger, choose one and
+   implement it without an intermediate approval stop. Aim for a recognizable,
+   friendly English-learning assistant aligned with TCT blue/yellow and the Clay
+   UI. Prefer a simple silhouette and a clear small-size mark; a generic robot
+   emoji or a stock icon alone is not a finished original logo. Clay depth may
+   enhance the avatar/container but the mark must remain recognizable without
+   shadows, animation or detailed 3D rendering.
+3. Deliver a clean, editable vector master
+   `TCTEnglish/wwwroot/images/ai/tct-ai-mark.svg` and a usable monochrome variant
+   `tct-ai-mark-mono.svg` in the same directory. Use transparent backgrounds and
+   a correct viewBox. Add a simplified small-size/avatar version only if needed;
+   preserve the same identity. A transparent PNG export, preferably 512px, is
+   useful when supported by available tools. Generate/export actual assets, not
+   an SVG wrapper around a raster or a nonexistent export claim. Native SVG work
+   is allowed; image generation may support exploration when available.
+4. Use only DESIGN.md's existing approved brand colors in the logo artwork.
+   Fixed color values inside standalone SVG/PNG artwork are allowed for this
+   deliverable; this does not authorize new CSS palettes, tokens, fonts or an
+   icon library. Keep SVGs self-contained, without scripts, foreignObject,
+   external references, embedded fonts or private metadata. Record provenance,
+   tools and any applicable license; do not claim trademark clearance without
+   evidence.
+5. Integrate the chosen mark consistently into the floating trigger, panel/chat
+   header and assistant avatars in full, embedded, restored-history and newly
+   appended/streamed messages. Update asset paths, fallbacks and dimensions
+   together. Never replace learner avatars with the bot mark. Keep the placeholder
+   until its references are verified migrated; remove it only if no consumer
+   needs it. Do not leave a temporary logo in one mode or show a broken image.
+6. Write `docs/design-system/ai-chatbot-identity.md` in Vietnamese for the team,
+   with the selected mark,
+   intent, file inventory, color/mono/background use, clear space, minimum size,
+   crop/placement guidance and provenance. Reference existing shared tokens and
+   typography. Show/refer to actual delivered assets; this is a small feature
+   identity guide, not a replacement for DESIGN.md. Put exploratory previews
+   under ignored `.tmp/ai-chat-ui/`, not a large tracked draft-image collection.
+7. Verify the actual mark at 24, 32, 40, 48 and 64px on the intended light/dark
+   surfaces and inside circular/square avatar crops. Choose/document a minimum
+   usable size from those observations. Keep the launcher hit target accessible
+   even if its artwork is smaller. Check aspect ratio, padding, clipping, image
+   load/fallback, alt/decorative handling and normal/reduced-motion use. Any logo
+   animation follows the same purposeful state/cleanup rules as the chat UI;
+   the static mark must remain fully usable.
+
 ## Required interaction and motion coverage
 
 Create a ledger matrix before implementation: surface/control, trigger, actual
@@ -214,8 +278,10 @@ state/completion without reading every streamed character repeatedly.
    matrix in the same execution. Preserve initialization, IDs/data hooks, encoded
    text and contracts. Theme the standalone embed explicitly; compare launcher
    changes on representative host pages before marking shared work complete.
-5. Create purposeful illustrations/icons only if they help the design. Native
-   image generation is permitted with actually available tools; otherwise use
+5. Complete the required original chatbot logo, usage guide and every image
+   consumer described above. Then create additional illustrations/icons only
+   if they help the design. Native image generation is permitted with actually
+   available tools; otherwise use
    existing icons or native SVG/CSS art and document the choice. Save optimized
    local assets with dimensions, alt/decorative handling, purpose, size and
    provenance/tool/license as relevant. No hotlinks, active/external SVG content,
@@ -230,6 +296,9 @@ one h1 per full page/document and appropriate dialog headings. Existing redesign
 pages are visual references, not authority to copy their global overrides or
 hardcoded colors. A missing shared component/token needs a documented proposal;
 do not edit the shared foundation without scope authority.
+
+The logo-artwork color permission above applies to delivered image assets only;
+feature CSS and the shared design system retain their existing token rules.
 
 ## Safe local execution and acceptance
 
@@ -251,6 +320,10 @@ Acceptance checks:
 
 - [ ] All four surface rows, both AI partials, meaningful roles/states and shared
   launcher consumers have implementation/check evidence or an explicit blocker.
+- [ ] A new original chatbot logo, editable SVG master, monochrome variant and
+  identity guide are delivered. All full/embed/launcher and assistant-avatar
+  consumers use the selected mark; small-size/crop/background/fallback checks
+  have actual evidence. Retaining the temporary image is not logo completion.
 - [ ] Laptop first: actual demo viewport if known, otherwise 1440x900 and
   1366x768; then 768 and 375/390 widths, short height, long Vietnamese/English
   messages, code blocks/tables/URLs and actual 200% zoom where supported. Label
@@ -296,8 +369,11 @@ Acceptance checks:
 
 ## Vietnamese handoff
 
-Report the chosen design, coverage of every surface and implemented interactions/
-motion, changed files, research/assets and exact checks. Include a short demo
+Report the chosen design and original chatbot logo, coverage of every surface
+and implemented interactions/motion, changed files, research/assets and exact
+checks. Link the delivered logo variants and usage guide; show the selected mark
+and its actual small-size use when the client supports image previews. Include
+a short demo
 checklist for full chat, launcher/embed and Admin with normal/reduced-motion
 observations, local URL and unverified states/blockers. Distinguish live app,
 fixtures, static references and local/CI/hosting. Leave the implementation
