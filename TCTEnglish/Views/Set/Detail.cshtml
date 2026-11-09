@@ -1,0 +1,290 @@
+@model TCTEnglish.ViewModels.Sets.SetDetailViewModel
+@using System.Text.Json
+@using TCTEnglish.Services.Sets
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = Model.SetName;
+    var breadcrumbs = new List<PageBreadcrumbItem> { new("Bộ thẻ", Url.Action("Index", "Set")) };
+    if (Model.FolderId.HasValue && !string.IsNullOrWhiteSpace(Model.FolderName) && Model.IsOwner)
+    {
+        breadcrumbs.Add(new PageBreadcrumbItem(Model.FolderName!, Url.Action("FolderDetail", "Folder", new { id = Model.FolderId.Value })));
+    }
+    breadcrumbs.Add(new PageBreadcrumbItem(Model.SetName));
+    var header = new PageHeaderViewModel { Title = Model.SetName, Description = Model.Description, Breadcrumbs = breadcrumbs };
+
+    var studyDue = Url.Action("Study", "Study", new { id = Model.SetId, mode = "due" });
+    var visibilityText = Model.Visibility == "Private"
+        ? (Model.HasShareLink ? "Chia sẻ bằng link" : "Riêng tư")
+        : "Công khai";
+
+    var config = new
+    {
+        setId = Model.SetId,
+        canEdit = Model.CanEdit,
+        canManage = Model.CanManage,
+        wordCount = Model.WordCount,
+        dueCount = Model.DueCount,
+        masteredPercent = Model.MasteredPercent,
+        isStudying = Model.IsStudying,
+        topics = Model.Topics,
+        urls = new
+        {
+            cards = Url.Content("~/api/sets/" + Model.SetId + "/cards"),
+            bulk = Url.Content("~/api/sets/" + Model.SetId + "/cards/bulk"),
+            suspendBase = Url.Content("~/api/sets/cards/"),
+            shareLink = Url.Content("~/api/sets/" + Model.SetId + "/share-link"),
+            cardBase = Url.Content("~/Sets/Cards/"),
+            add = Url.Action("AddCards", "Set", new { id = Model.SetId })
+        }
+    };
+    var studyModes = new[]
+    {
+        (Key: "flashcard", Title: "Thẻ ghi nhớ", Icon: "fa-solid fa-clone", Hue: "info", Href: Url.Action("Study", "Study", new { id = Model.SetId })!, Note: "Đã thuộc " + Model.MasteredPercent + "%"),
+        (Key: "quiz", Title: "Trắc nghiệm", Icon: "fa-solid fa-list-check", Hue: "primary", Href: Url.Action("QuizMode", "Study", new { id = Model.SetId })!, Note: Math.Min(Model.WordCount, 20) + " câu"),
+        (Key: "match", Title: "Ghép thẻ", Icon: "fa-solid fa-puzzle-piece", Hue: "warning", Href: Url.Action("MatchingMode", "Study", new { id = Model.SetId })!, Note: "Chưa có kỷ lục"),
+        (Key: "write", Title: "Viết", Icon: "fa-solid fa-keyboard", Hue: "success", Href: Url.Action("WriteMode", "Study", new { id = Model.SetId })!, Note: Model.WordCount + " từ")
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page ts-page ts-page--detail">
+    <partial name="_SetAlerts" />
+
+    <section class="ts-hero ts-hue-@Model.CoverHue">
+        <div class="ts-hero-art" aria-hidden="true"><span class="ts-hero-term">@Model.SampleTerm</span></div>
+        <div class="ts-hero-main">
+            <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
+            <p class="ts-hero-meta">
+                <span>@Model.WordCount từ</span>
+                @if (!string.IsNullOrEmpty(Model.OwnerName))
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span class="tct-break">của @Model.OwnerName</span>
+                }
+                @if (!string.IsNullOrEmpty(Model.FolderName) && Model.IsOwner)
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span class="tct-break">Thư mục @Model.FolderName</span>
+                }
+                @if (Model.IsOwner)
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span>@visibilityText</span>
+                }
+                @if (Model.DueCount > 0)
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span class="ts-due">@Model.DueCount cần ôn</span>
+                }
+            </p>
+            <div class="ts-hero-actions">
+                @if (Model.IsStudying)
+                {
+                    if (Model.WordCount > 0)
+                    {
+                        <a class="btn btn-primary" href="@studyDue"><i class="fa-solid fa-play me-1" aria-hidden="true"></i>Ôn bộ này (@Model.DueCount)</a>
+                    }
+                }
+                else
+                {
+                    <form method="post" asp-controller="Set" asp-action="Subscribe">
+                        <input type="hidden" name="setId" value="@Model.SetId" />
+                        <button type="submit" class="btn btn-primary" data-ts-pending="Đang lưu…"><i class="fa-regular fa-bookmark me-1" aria-hidden="true"></i>Theo học</button>
+                    </form>
+                }
+                @if (Model.CanEdit)
+                {
+                    <a class="btn btn-outline-primary" href="@Url.Action("AddCards", "Set", new { id = Model.SetId })"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm từ</a>
+                }
+                <partial name="_SetActionsMenu" model="Model" />
+            </div>
+        </div>
+    </section>
+
+    @if (Model.WordCount > 0)
+    {
+        <section class="ts-study" aria-labelledby="ts-study-title"
+                 data-ts-study data-set-id="@Model.SetId" data-due="@Model.DueCount" data-mastered="@Model.MasteredPercent" data-words="@Model.WordCount">
+            <h2 class="ts-section-title" id="ts-study-title">Học bộ này</h2>
+            <nav class="ts-study-strip" aria-label="Chế độ học">
+                @foreach (var mode in studyModes)
+                {
+                    <a class="tct-card tct-card--interactive ts-study-tile" href="@mode.Href" data-ts-mode="@mode.Key">
+                        <span class="ts-study-icon ts-hue-@mode.Hue" aria-hidden="true"><i class="@mode.Icon"></i></span>
+                        <span class="ts-study-text">
+                            <span class="ts-study-name">@mode.Title</span>
+                            <span class="ts-study-note" data-ts-note>@mode.Note</span>
+                        </span>
+                    </a>
+                }
+            </nav>
+        </section>
+    }
+
+    <section class="ts-words" aria-label="Danh sách từ">
+        <div class="tct-toolbar ts-toolbar" role="search">
+            <div class="tct-toolbar__search">
+                <label class="visually-hidden" for="ts-search">Tìm trong bộ thẻ</label>
+                <div class="ts-search">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="ts-search" class="form-control" placeholder="Tìm từ, nghĩa hoặc phiên âm…" maxlength="80" autocomplete="off" />
+                </div>
+            </div>
+            <div class="tct-toolbar__filters">
+                <div>
+                    <label class="visually-hidden" for="ts-sort">Sắp xếp</label>
+                    <select id="ts-sort" class="form-select" data-ts-filter="sort">
+                        <option value="newest">Mới thêm</option>
+                        <option value="az">A–Z</option>
+                        <option value="hard">Hay quên nhất</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="visually-hidden" for="ts-status">Trạng thái</label>
+                    <select id="ts-status" class="form-select" data-ts-filter="status">
+                        <option value="">Mọi trạng thái</option>
+                        <option value="new">Mới</option>
+                        <option value="learning">Đang học</option>
+                        <option value="learned">Đã thuộc</option>
+                        <option value="hard">Hay quên</option>
+                        <option value="suspended">Đang tạm ẩn</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="visually-hidden" for="ts-topic">Chủ đề</label>
+                    <select id="ts-topic" class="form-select" data-ts-filter="topic">
+                        <option value="">Mọi chủ đề</option>
+                        @foreach (var topic in Model.Topics)
+                        {
+                            <option value="@topic">@topic</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <label class="visually-hidden" for="ts-pos">Loại từ</label>
+                    <select id="ts-pos" class="form-select" data-ts-filter="pos">
+                        <option value="">Mọi loại từ</option>
+                        @foreach (var (code, label) in CardPartsOfSpeech.All)
+                        {
+                            <option value="@code">@label</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <label class="visually-hidden" for="ts-level">CEFR</label>
+                    <select id="ts-level" class="form-select" data-ts-filter="level">
+                        <option value="">Mọi CEFR</option>
+                        @foreach (var level in CefrLevels.All)
+                        {
+                            <option value="@level">@level</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="tct-toolbar__actions">
+                @if (Model.CanEdit)
+                {
+                    <button type="button" class="btn btn-outline-primary" id="ts-select-toggle" aria-pressed="false" hidden>
+                        <i class="fa-regular fa-square-check me-1" aria-hidden="true"></i><span data-ts-select-label>Chọn</span>
+                    </button>
+                }
+                <div class="btn-group" role="group" aria-label="Kiểu hiển thị">
+                    <button type="button" class="btn btn-outline-primary tct-btn-icon" data-ts-view="list" aria-pressed="true" aria-label="Dạng danh sách"><i class="fa-solid fa-list" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-outline-primary tct-btn-icon" data-ts-view="grid" aria-pressed="false" aria-label="Dạng lưới có ảnh"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <p class="ts-result-count tct-text-muted" id="ts-count" aria-live="polite">Đang tải…</p>
+
+        <div id="ts-list-region">
+            <div class="tct-table-wrap ts-list-view" id="ts-list-view" tabindex="0" aria-label="Bảng danh sách từ">
+                <table class="tct-table ts-word-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ts-col-select" hidden><span class="visually-hidden">Chọn</span></th>
+                            <th scope="col">Từ</th>
+                            <th scope="col">Phiên âm</th>
+                            <th scope="col">Nghĩa</th>
+                            <th scope="col">CEFR</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"><span class="visually-hidden">Phát âm</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="ts-rows"></tbody>
+                </table>
+            </div>
+            <ul class="ts-word-grid" id="ts-grid" hidden></ul>
+            <div class="tct-skeleton-group ts-skeleton" id="ts-skeleton" aria-hidden="true">
+                @for (var i = 0; i < 6; i++)
+                {
+                    <span class="tct-skeleton tct-skeleton--line"></span>
+                }
+            </div>
+            <div id="ts-empty" hidden></div>
+            <div class="alert alert-danger" role="alert" id="ts-error" hidden>
+                Không tải được danh sách từ.
+                <button type="button" class="btn btn-sm btn-outline-danger ms-2" id="ts-retry">Thử lại</button>
+            </div>
+            <div id="ts-sentinel" class="ts-sentinel" aria-hidden="true"></div>
+            <p class="ts-loading-more tct-text-muted" id="ts-more" hidden>Đang tải thêm…</p>
+        </div>
+    </section>
+
+    @if (Model.CanEdit)
+    {
+        <a class="btn btn-primary tct-btn-icon ts-fab" href="@Url.Action("AddCards", "Set", new { id = Model.SetId })" aria-label="Thêm từ"><i class="fa-solid fa-plus" aria-hidden="true"></i></a>
+
+        <div class="ts-bulk-bar tct-on-dark" id="ts-bulk" role="toolbar" aria-label="Thao tác với từ đã chọn" hidden>
+            <span class="ts-bulk-count" id="ts-bulk-count" aria-live="polite">Đã chọn 0</span>
+            <label class="visually-hidden" for="ts-bulk-move">Chuyển sang bộ khác</label>
+            <select class="form-select form-select-sm" id="ts-bulk-move">
+                <option value="">Chuyển bộ…</option>
+                @foreach (var target in Model.MoveTargets)
+                {
+                    <option value="@target.SetId">@target.SetName</option>
+                }
+            </select>
+            <label class="visually-hidden" for="ts-bulk-topic">Đổi chủ đề</label>
+            <select class="form-select form-select-sm" id="ts-bulk-topic">
+                <option value="">Chủ đề…</option>
+                <option value="__clear">Bỏ chủ đề</option>
+                @foreach (var topic in SetTopics.All.Union(Model.Topics))
+                {
+                    <option value="@topic">@topic</option>
+                }
+            </select>
+            <button type="button" class="btn btn-sm btn-outline-light" id="ts-bulk-suspend">Tạm ẩn</button>
+            <button type="button" class="btn btn-sm btn-danger" id="ts-bulk-delete">Xóa</button>
+            <button type="button" class="btn btn-sm btn-outline-light tct-btn-icon" id="ts-bulk-clear" aria-label="Bỏ chọn"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="modal fade" id="tsBulkDeleteModal" tabindex="-1" aria-labelledby="tsBulkDeleteTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tsBulkDeleteTitle">Xóa <span id="ts-bulk-delete-count">0</span> từ?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">Tiến độ ôn của mọi người với các từ này cũng bị xóa. Không hoàn tác được.</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Giữ lại</button>
+                        <button type="button" class="btn btn-danger" id="ts-bulk-delete-confirm">Xóa từ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.CanManage)
+    {
+        <partial name="_ShareSetModal" model="Model" />
+    }
+
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tsDetailConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config))</script>
+    @Html.AntiForgeryToken()
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/set-detail.js" asp-append-version="true"></script>
+}

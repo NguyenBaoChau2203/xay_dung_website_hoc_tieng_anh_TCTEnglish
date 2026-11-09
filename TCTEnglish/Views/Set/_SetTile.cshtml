@@ -1,0 +1,49 @@
+@model TCTEnglish.ViewModels.Sets.SetCardTileViewModel
+@{
+    var (visIcon, visLabel) = Model.Relation == "shared"
+        ? ("fa-solid fa-users", "Được chia sẻ")
+        : Model.Visibility == "Private"
+            ? (Model.HasShareLink ? ("fa-solid fa-link", "Chia sẻ bằng link") : ("fa-solid fa-lock", "Riêng tư"))
+            : ("fa-solid fa-globe", "Công khai");
+    var studied = Model.WordCount - Model.NewCount;
+}
+<article class="tct-card tct-card--interactive ts-tile">
+    <a class="ts-tile-link" href="@Url.Action("Detail", "Set", new { id = Model.SetId })">
+        <span class="visually-hidden">Mở bộ thẻ @Model.SetName</span>
+    </a>
+    <div class="ts-tile-art ts-hue-@Model.CoverHue" aria-hidden="true">
+        <span class="ts-tile-term">@Model.SampleTerm</span>
+        <span class="ts-tile-vis"><i class="@visIcon"></i><span class="ts-tile-vis-text">@visLabel</span></span>
+    </div>
+    <div class="ts-tile-body ts-hue-@Model.CoverHue">
+        <h3 class="ts-tile-name tct-clamp-2 tct-break">@Model.SetName</h3>
+        <p class="ts-tile-meta">
+            <span>@Model.WordCount từ</span>
+            @if (!string.IsNullOrEmpty(Model.OwnerName))
+            {
+                <span class="ts-dot" aria-hidden="true"></span>
+                <span class="tct-break">của @Model.OwnerName</span>
+            }
+        </p>
+        <p class="ts-tile-status">
+            @if (Model.DueCount > 0)
+            {
+                <span class="tct-badge tct-badge--danger"><i class="fa-solid fa-clock" aria-hidden="true"></i>@Model.DueCount cần ôn</span>
+            }
+            else if (Model.WordCount == 0)
+            {
+                <span class="tct-badge">Chưa có từ</span>
+            }
+            else
+            {
+                <span class="tct-badge tct-badge--success"><i class="fa-solid fa-check" aria-hidden="true"></i>Đã ôn xong</span>
+            }
+        </p>
+        <div class="ts-progress" aria-hidden="true"><span class="ts-progress-fill" style="--p:@(Model.ProgressPercent)%"></span></div>
+        <span class="visually-hidden">@Model.ProgressPercent% đã học (@studied/@Model.WordCount từ)</span>
+    </div>
+    @if (Model.DueCount > 0)
+    {
+        <a class="btn btn-primary btn-sm ts-tile-quick" href="@Url.Action("Study", "Study", new { id = Model.SetId, mode = "due" })" aria-label="Ôn bộ @Model.SetName">Ôn</a>
+    }
+</article>

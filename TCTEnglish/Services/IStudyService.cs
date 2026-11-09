@@ -4,7 +4,8 @@ namespace TCTVocabulary.Services
 {
     public interface IStudyService
     {
-        Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null);
+        /// <param name="mode">"due" returns due reviews (not suspended, next review passed) then up to 20 new cards.</param>
+        Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null, string? mode = null);
         Task<OperationResult> UpdateCardProgressAsync(int cardId, bool isKnown, int userId);
         Task<VocabularyIndexViewModel> GetVocabularyIndexViewModelAsync(int currentUserId);
         Task<VocabularySetDetailViewModel?> GetVocabularySetDetailViewModelAsync(int setId, int currentUserId);

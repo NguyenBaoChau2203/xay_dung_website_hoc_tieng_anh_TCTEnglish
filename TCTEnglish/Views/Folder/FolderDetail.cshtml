@@ -131,9 +131,10 @@
             {
                 <div class="set-row-card">
                     <div class="set-card-body"
-                         onclick="location.href='@Url.Action("Study", "Study", new { id = set.SetId })'">
+                         onclick="location.href='@Url.Action("Detail", "Set", new { id = set.SetId })'">
                         <div class="set-meta-info">
                             <span class="pill-count">@set.CardCount thuật ngữ</span>
+                            <a href="@Url.Action("Study", "Study", new { id = set.SetId })" class="pill-count" onclick="event.stopPropagation()">Học</a>
                         </div>
                         <h4 class="set-name-text">@set.SetName</h4>
                     </div>
@@ -157,8 +158,8 @@
                                         <input type="hidden" name="setId" value="@set.SetId" />
                                         <input type="hidden" name="folderId" value="@Model.Folder.FolderId" />
 
-                                        <a href="@Url.Action("EditSet", "Set", new { id = set.SetId })">
-                                            <i class="fas fa-pen"></i> Chỉnh sửa học phần
+                                        <a href="@Url.Action("Settings", "Set", new { id = set.SetId })">
+                                            <i class="fas fa-pen"></i> Cài đặt bộ thẻ
                                         </a>
 
                                         <a href="javascript:void(0)"

@@ -1,0 +1,113 @@
+@model TCTEnglish.ViewModels.Sets.CardFormViewModel
+@using System.Text.Json
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Sửa từ";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Sửa từ",
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem(Model.SetName, Url.Action("Detail", "Set", new { id = Model.SetId })),
+            new PageBreadcrumbItem(string.IsNullOrWhiteSpace(Model.Term) ? "Sửa từ" : Model.Term, Url.Action("CardDetail", "Set", new { cardId = Model.CardId })),
+            new PageBreadcrumbItem("Sửa")
+        }
+    };
+    var initial = new
+    {
+        phonetic = Model.Phonetic,
+        phoneticUk = Model.PhoneticUk,
+        meaningEn = Model.MeaningEn,
+        partsOfSpeech = Model.PartsOfSpeech ?? new List<string>(),
+        topic = Model.Topic,
+        emoji = Model.Emoji,
+        cefr = Model.Cefr,
+        personalNote = Model.PersonalNote,
+        imageUrl = Model.ImageUrl,
+        imageSource = Model.ImageSource,
+        examples = Model.Examples ?? new(),
+        synonyms = Model.Synonyms ?? new(),
+        antonyms = Model.Antonyms ?? new(),
+        collocations = Model.Collocations ?? new(),
+        wordFamily = Model.WordFamily ?? new(),
+        verbForms = Model.VerbForms,
+        plural = Model.Plural,
+        aiGenerated = Model.AiGenerated
+    };
+    var config = new
+    {
+        cardId = Model.CardId,
+        setId = Model.SetId,
+        isPremium = Model.IsPremium,
+        initial,
+        errors = Model.FieldErrors,
+        urls = new
+        {
+            enrich = Url.Content("~/api/vocab/enrich"),
+            images = Url.Content("~/api/vocab/images"),
+            cardImage = Url.Content("~/api/sets/card-image"),
+            duplicates = Url.Content("~/api/sets/duplicates"),
+            cardBase = Url.Content("~/Sets/Cards/")
+        }
+    };
+    var topics = Enumerable.Empty<string>();
+    ViewData["Prefix"] = "ec";
+    ViewData["Named"] = true;
+    ViewData["IsPremium"] = Model.IsPremium;
+    ViewData["Topics"] = topics;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--form ts-page--edit-card">
+    <partial name="_PageHeader" model="header" />
+
+    <form method="post" class="ts-form tct-card ts-edit-card" novalidate asp-controller="Set" asp-action="EditCard" asp-route-cardId="@Model.CardId" id="ts-edit-card-form">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <div class="mb-3">
+            <label class="form-label" for="ec-term">Từ</label>
+            <div class="input-group">
+                <input class="form-control @(ViewData.ModelState["Term"]?.Errors.Count > 0 ? "is-invalid" : "")" id="ec-term" name="Term" value="@Model.Term"
+                       maxlength="255" lang="en" autocomplete="off" spellcheck="false" required />
+                @if (Model.IsPremium)
+                {
+                    <button type="button" class="btn btn-outline-primary" id="ec-suggest"><i class="fa-solid fa-lightbulb me-1" aria-hidden="true"></i>Gợi ý</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#premiumLockedModal"><i class="fa-solid fa-crown me-1" aria-hidden="true"></i>Gợi ý</button>
+                }
+            </div>
+            <span class="invalid-feedback d-block" asp-validation-for="Term"></span>
+            <p class="ts-note ts-note--warn" id="ec-dup" hidden></p>
+            <p class="ts-note ts-note--danger" id="ec-enrich-error" role="alert" hidden></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="ec-definition">Nghĩa tiếng Việt</label>
+            <textarea class="form-control @(ViewData.ModelState["Definition"]?.Errors.Count > 0 ? "is-invalid" : "")" id="ec-definition" name="Definition" rows="2" maxlength="1000" required>@Model.Definition</textarea>
+            <span class="invalid-feedback d-block" asp-validation-for="Definition"></span>
+        </div>
+
+        <partial name="_CardDetailFields" />
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <button type="submit" class="btn btn-primary" data-ts-pending="Đang lưu…">Lưu thay đổi</button>
+            <a class="btn btn-outline-primary" href="@Url.Action("CardDetail", "Set", new { cardId = Model.CardId })">Hủy</a>
+        </div>
+    </form>
+
+    <partial name="_PremiumLockedModal" />
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tsEditCardConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config))</script>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/set-card-form.js" asp-append-version="true"></script>
+    <script src="~/js/set-composer.js" asp-append-version="true"></script>
+    <script src="~/js/set-edit-card.js" asp-append-version="true"></script>
+}

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Services.Sets;
 using TCTVocabulary.Models;
 using TCTVocabulary.ViewModels;
 
@@ -11,10 +12,12 @@ namespace TCTVocabulary.Controllers
     public class FolderController : BaseController
     {
         private readonly DbflashcardContext _context;
+        private readonly IPersonalSetService _personalSets;
 
-        public FolderController(DbflashcardContext context)
+        public FolderController(DbflashcardContext context, IPersonalSetService personalSets)
         {
             _context = context;
+            _personalSets = personalSets;
         }
 
         [Authorize]
@@ -223,6 +226,16 @@ namespace TCTVocabulary.Controllers
                 .ToListAsync();
 
             var isOwner = folder.UserId == userId;
+
+            // Managers see every set; everyone else only sees sets they may view (private sets stay private;
+            // saved folders and class folders keep showing all their sets).
+            if (!(isOwner || IsAdminUser()) && sets.Count > 0)
+            {
+                var visible = await _personalSets.GetViewableSetIdsAsync(
+                    sets.Select(s => s.SetId).ToList(), userId, IsAdminUser());
+                sets = sets.Where(s => visible.Contains(s.SetId)).ToList();
+            }
+
             var isSaved = await _context.SavedFolders
                 .AsNoTracking()
                 .AnyAsync(sf => sf.UserId == userId && sf.FolderId == folderId);

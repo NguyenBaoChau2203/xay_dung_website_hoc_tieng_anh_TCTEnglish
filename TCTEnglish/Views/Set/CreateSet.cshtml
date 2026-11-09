@@ -1,6 +1,26 @@
-@model TCTVocabulary.ViewModels.SetEditorViewModel
+@model TCTEnglish.ViewModels.Sets.SetInfoFormViewModel
+@using TCTEnglish.ViewModels
 @{
-    ViewData["Title"] = "Tạo học phần mới";
+    ViewData["Title"] = "Tạo bộ thẻ";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Tạo bộ thẻ",
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem("Tạo bộ thẻ")
+        }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
 }
 
-<partial name="_SetEditorForm" model="Model" />
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--form">
+    <partial name="_PageHeader" model="header" />
+    <partial name="_SetInfoForm" model="Model" />
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

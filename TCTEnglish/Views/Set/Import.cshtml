@@ -1,0 +1,96 @@
+@model TCTEnglish.ViewModels.Sets.CardImportContextViewModel
+@using System.Text.Json
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Nhập hàng loạt";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Nhập hàng loạt",
+        Description = "Dán danh sách từ, mỗi dòng một từ. Tối đa 100 từ mỗi lần.",
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem(Model.SetName, Url.Action("Detail", "Set", new { id = Model.SetId })),
+            new PageBreadcrumbItem("Nhập hàng loạt")
+        }
+    };
+    var config = new
+    {
+        setId = Model.SetId,
+        isPremium = Model.IsPremium,
+        existing = Model.ExistingTermsLower,
+        urls = new
+        {
+            batch = Url.Content("~/api/sets/" + Model.SetId + "/cards/batch"),
+            enrichBatch = Url.Content("~/api/vocab/enrich-batch"),
+            setUrl = Url.Action("Detail", "Set", new { id = Model.SetId }),
+            importUrl = Url.Action("Import", "Set", new { id = Model.SetId }),
+            pricing = Url.Action("Pricing", "Billing")
+        }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--import">
+    <partial name="_PageHeader" model="header" />
+
+    <section id="ts-step-input" class="tct-card ts-import-card" aria-labelledby="ts-input-title">
+        <h2 class="visually-hidden" id="ts-input-title">Nhập danh sách từ</h2>
+        <label class="form-label" for="ts-import-text">Danh sách từ</label>
+        <p class="form-text">Mỗi dòng một từ, có thể kèm nghĩa sau dấu gạch ngang, hai chấm hoặc dấu bằng. File CSV có cột term/meaning_vi cũng dùng được.</p>
+        <textarea class="form-control ts-mono" id="ts-import-text" rows="10" placeholder="apple - quả táo&#10;resilient&#10;borrow: mượn"></textarea>
+        <div class="ts-import-actions">
+            <label class="btn btn-outline-primary mb-0" for="ts-import-file"><i class="fa-solid fa-file-import me-1" aria-hidden="true"></i>Tải file CSV</label>
+            <input type="file" class="visually-hidden" id="ts-import-file" accept=".csv,.txt,.tsv,text/csv,text/plain" />
+            <button type="button" class="btn btn-primary" id="ts-import-preview" disabled>Xem trước</button>
+        </div>
+    </section>
+
+    <section id="ts-step-preview" class="ts-import-card" aria-labelledby="ts-preview-title" hidden>
+        <h2 class="ts-section-title" id="ts-preview-title">Xem trước</h2>
+        <p class="tct-text-muted" id="ts-preview-summary" aria-live="polite"></p>
+        <div class="tct-table-wrap" tabindex="0" aria-label="Bảng xem trước danh sách từ">
+            <table class="tct-table">
+                <thead><tr><th scope="col">#</th><th scope="col">Từ</th><th scope="col">Nghĩa</th><th scope="col">Trạng thái</th></tr></thead>
+                <tbody id="ts-preview-rows"></tbody>
+            </table>
+        </div>
+        <p class="ts-premium-hint" id="ts-import-premium-hint" hidden>
+            <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            Nâng cấp Premium để AI tự điền nghĩa, ví dụ và ảnh cho cả danh sách.
+            <a href="@Url.Action("Pricing", "Billing")">Xem gói Premium</a>
+        </p>
+        <div class="ts-import-actions">
+            <button type="button" class="btn btn-outline-primary" id="ts-preview-back">Sửa danh sách</button>
+            <button type="button" class="btn btn-primary" id="ts-run-ai" hidden>Điền tự động &amp; thêm</button>
+            <button type="button" class="btn btn-outline-primary" id="ts-run-plain">Thêm không cần AI</button>
+        </div>
+    </section>
+
+    <section id="ts-step-run" class="ts-import-card" aria-labelledby="ts-run-title" hidden>
+        <h2 class="ts-section-title" id="ts-run-title">Đang điền và thêm từ…</h2>
+        <div class="progress" role="progressbar" aria-label="Tiến độ nhập" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="ts-progress">
+            <div class="progress-bar" id="ts-progress-bar"></div>
+        </div>
+        <ul class="ts-run-list" id="ts-run-list"></ul>
+        <div class="ts-import-actions" id="ts-run-done" hidden>
+            <button type="button" class="btn btn-outline-danger" id="ts-run-retry" hidden>Thử lại <span id="ts-retry-count">0</span> từ lỗi</button>
+            <a class="btn btn-primary" href="@Url.Action("Detail", "Set", new { id = Model.SetId })">Xem bộ thẻ</a>
+            <button type="button" class="btn btn-outline-primary" id="ts-run-again">Nhập tiếp</button>
+        </div>
+    </section>
+
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tsImportConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config))</script>
+    @Html.AntiForgeryToken()
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/set-import-parser.js" asp-append-version="true"></script>
+    <script src="~/js/set-composer.js" asp-append-version="true"></script>
+    <script src="~/js/set-card-form.js" asp-append-version="true"></script>
+    <script src="~/js/set-import.js" asp-append-version="true"></script>
+}
