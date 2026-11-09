@@ -72,6 +72,9 @@ public sealed class PracticeSessionViewModel
     public int UserId { get; set; }
     public string ExitUrl { get; set; } = "/Practice";
     public string AgainUrl { get; set; } = "/Practice";
+
+    /// <summary>Same session with source=all (offered when a due/hard source is empty).</summary>
+    public string AllUrl { get; set; } = "/Practice";
     public string HubUrl { get; set; } = "/Practice";
     public string? SetUrl { get; set; }
     public string TestUrl { get; set; } = "/Practice/test";

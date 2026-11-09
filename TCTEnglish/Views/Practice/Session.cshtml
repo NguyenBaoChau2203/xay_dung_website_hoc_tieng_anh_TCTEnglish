@@ -1,5 +1,6 @@
 @model TCTEnglish.ViewModels.Sets.PracticeSessionViewModel
 @using System.Text.Json
+@using TCTEnglish.ViewModels
 @{
     ViewData["Title"] = Model.ModeLabel + " · " + Model.ScopeName;
     var json = new JsonSerializerOptions(JsonSerializerDefaults.Web);
@@ -16,6 +17,7 @@
         query = Model.Query,
         exitUrl = Model.ExitUrl,
         againUrl = Model.AgainUrl,
+        allUrl = Model.AllUrl,
         hubUrl = Model.HubUrl,
         setUrl = Model.SetUrl,
         testUrl = Model.TestUrl,
@@ -25,6 +27,38 @@
         targets = Model.Targets,
         pool = Model.Pool
     };
+
+    StateMessageViewModel? emptyState = null;
+    if (Model.Empty)
+    {
+        emptyState = Model.EmptyReason switch
+        {
+            "due" => new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Không có từ nào đến hạn ôn.",
+                Message = "Bạn đã ôn hết các từ đến hạn. Có thể luyện thêm tất cả các từ.",
+                ActionLabel = "Luyện tất cả",
+                ActionUrl = Model.AllUrl
+            },
+            "hard" => new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Bạn chưa có từ nào hay quên.",
+                Message = "Từ nào trả lời sai khi ôn sẽ hiện ở đây.",
+                ActionLabel = "Luyện tất cả",
+                ActionUrl = Model.AllUrl
+            },
+            _ => new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Chưa có từ nào để luyện.",
+                Message = "Thêm từ vào bộ thẻ trước nhé.",
+                ActionLabel = Model.SetUrl != null ? "Mở bộ thẻ" : "Đến Bộ thẻ của tôi",
+                ActionUrl = Model.SetUrl ?? Url.Action("Index", "Set")
+            }
+        };
+    }
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
@@ -32,12 +66,73 @@
 
 <div class="tct-theme tct-page tp-page tp-page--session tp-hue-@Model.Hue" data-tp-mode="@Model.Mode">
     <h1 class="visually-hidden">@Model.ModeLabel · @Model.ScopeName</h1>
-    <main id="tpStage"></main>
-    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+
+    <header class="tp-bar">
+        <a class="btn btn-outline-primary tct-btn-icon tp-exit" id="tpExit" href="@Model.ExitUrl" aria-label="Thoát"><i class="fa-solid fa-xmark" aria-hidden="true"></i></a>
+        <div class="tp-progress" id="tpProgress" role="progressbar" aria-label="Tiến độ" aria-valuemin="0" aria-valuemax="@Model.Targets.Count" aria-valuenow="0">
+            <span class="tp-progress__fill" id="tpProgressFill"></span>
+        </div>
+        <span class="tp-counter" id="tpCounter" aria-hidden="true"></span>
+        <div class="tp-slot" id="tpSlot"></div>
+    </header>
+
+    @if (emptyState != null)
+    {
+        <div class="tp-empty">
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="emptyState" />
+            <a class="btn btn-outline-primary" href="@Model.ExitUrl">Quay lại</a>
+        </div>
+    }
+    else
+    {
+        <noscript>
+            <div class="tp-empty">
+                <partial name="~/Views/Shared/_StateMessage.cshtml" model="@(new StateMessageViewModel { Kind = StateMessageKind.Error, Title = "Cần bật JavaScript để luyện tập.", Message = "Hãy bật JavaScript trong trình duyệt rồi tải lại trang." })" />
+            </div>
+        </noscript>
+        <main id="tpStage" class="tp-stage" tabindex="-1"></main>
+        <div id="tpFeedback" class="tp-feedback-host" aria-live="polite"></div>
+
+        <div class="modal fade" id="tpExitModal" tabindex="-1" aria-labelledby="tpExitTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tpExitTitle">Thoát phiên luyện tập?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">Kết quả các câu đã làm vẫn được giữ.</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ở lại</button>
+                        <a class="btn btn-primary" id="tpExitConfirm" href="@Model.ExitUrl">Thoát</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div id="tsToastHost" class="toast-container tp-toast-host" aria-live="polite" aria-atomic="false"></div>
     <script id="tpConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config, json))</script>
     @Html.AntiForgeryToken()
 </div>
 
 @section Scripts {
     <script src="~/js/time-tracker.js" data-feature="@Model.TimeFeature" defer></script>
+    @if (!Model.Empty)
+    {
+        <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+        <script src="~/js/practice-core.js" asp-append-version="true"></script>
+        <script src="~/js/practice-ui.js" asp-append-version="true"></script>
+        @switch (Model.Mode)
+        {
+            case "quiz":
+            case "typing":
+            case "listening":
+            case "cloze":
+                <script src="~/js/practice-drill.js" asp-append-version="true"></script>
+                break;
+            default:
+                <script src="~/js/practice-@(Model.Mode).js" asp-append-version="true"></script>
+                break;
+        }
+    }
 }

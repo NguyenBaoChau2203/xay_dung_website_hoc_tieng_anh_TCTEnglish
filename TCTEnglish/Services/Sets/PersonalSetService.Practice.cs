@@ -353,6 +353,11 @@ public sealed partial class PersonalSetService
             _ => model.HubUrl,
         };
         model.AgainUrl = "/Practice/" + mode + BuildQueryString(mode, q);
+        var allQuery = PracticeModes.Normalize(mode, new PracticeQuery
+        {
+            Set = q.Set, Scope = q.Scope, N = q.N, Source = PracticeModes.SourceAll, Srs = q.Srs, Types = q.Types, Ask = q.Ask, From = q.From,
+        });
+        model.AllUrl = "/Practice/" + mode + BuildQueryString(mode, allQuery);
 
         // Learn/Test links keep the same scope and words but use their own counts and no test options.
         var linkQuery = new PracticeQuery { Set = q.Set, Scope = q.Scope, Words = q.Words, Source = q.Source, Srs = q.Srs, From = q.From };

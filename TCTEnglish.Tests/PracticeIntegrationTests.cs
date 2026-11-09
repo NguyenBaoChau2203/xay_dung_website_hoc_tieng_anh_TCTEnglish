@@ -238,6 +238,32 @@ public class PracticeIntegrationTests
         Assert.StartsWith("words:", words.GetProperty("scopeKey").GetString());
     }
 
+
+    [Fact]
+    public async Task SessionShell_LoadsTheRightScripts_AndEmptySessionsRenderAStateInstead()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var seed = await AddSetAsync(factory, TestDataIds.UserId, "Shell set", SetVisibility.Private, "s1", "s2", "s3");
+        using var owner = Client(factory, TestDataIds.UserId);
+
+        foreach (var (mode, script) in new[] { ("quiz", "practice-drill.js"), ("typing", "practice-drill.js"), ("listening", "practice-drill.js"),
+                     ("cloze", "practice-drill.js"), ("learn", "practice-learn.js"), ("test", "practice-test.js"), ("match", "practice-match.js"), ("flashcard", "practice-flashcard.js") })
+        {
+            var (_, body) = await GetAsync(owner, $"/Practice/{mode}?set={seed.SetId}");
+            Assert.Contains("/js/practice-core.js", body);
+            Assert.Contains("/js/practice-ui.js", body);
+            Assert.Contains("/js/" + script, body);
+            Assert.Contains("id=\"tpExitModal\"", body);
+            Assert.Contains("id=\"tpProgress\" role=\"progressbar\"", body);
+        }
+
+        var (_, due) = await GetAsync(owner, $"/Practice/learn?set={seed.SetId}&source=due");
+        Assert.Contains("tct-state--empty", due);
+        Assert.DoesNotContain("practice-ui.js", due);
+        Assert.Contains($"href=\"/Practice/learn?set={seed.SetId}&amp;n=10\"", due); // "Luyện tất cả": same session without the due source
+        Assert.DoesNotContain("id=\"tpStage\"", due);
+    }
+
     [Fact]
     public async Task EmptyStates_AreServedAsEmptySessions_NotErrors()
     {
