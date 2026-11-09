@@ -1,0 +1,43 @@
+@model TCTEnglish.ViewModels.Sets.PracticeSessionViewModel
+@using System.Text.Json
+@{
+    ViewData["Title"] = Model.ModeLabel + " · " + Model.ScopeName;
+    var json = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+    var config = new
+    {
+        mode = Model.Mode,
+        modeLabel = Model.ModeLabel,
+        hue = Model.Hue,
+        scopeKey = Model.ScopeKey,
+        scopeName = Model.ScopeName,
+        setId = Model.SetId,
+        userId = Model.UserId,
+        countsToSrs = Model.CountsToSrs,
+        query = Model.Query,
+        exitUrl = Model.ExitUrl,
+        againUrl = Model.AgainUrl,
+        hubUrl = Model.HubUrl,
+        setUrl = Model.SetUrl,
+        testUrl = Model.TestUrl,
+        learnUrl = Model.LearnUrl,
+        empty = Model.Empty,
+        emptyReason = Model.EmptyReason,
+        targets = Model.Targets,
+        pool = Model.Pool
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tp-page tp-page--session tp-hue-@Model.Hue" data-tp-mode="@Model.Mode">
+    <h1 class="visually-hidden">@Model.ModeLabel · @Model.ScopeName</h1>
+    <main id="tpStage"></main>
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tpConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config, json))</script>
+    @Html.AntiForgeryToken()
+</div>
+
+@section Scripts {
+    <script src="~/js/time-tracker.js" data-feature="@Model.TimeFeature" defer></script>
+}

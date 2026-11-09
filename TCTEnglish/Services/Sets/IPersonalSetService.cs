@@ -46,6 +46,15 @@ public interface IPersonalSetService
     Task<OperationResult<int>> CloneSetAsync(int? setId, string? slug, int userId, bool isAdmin, CancellationToken ct = default);
     Task<OperationResult<SampleSetsResult>> AddSampleSetsAsync(int userId, CancellationToken ct = default);
 
+    // ----- Practice (read-only word selection for /Practice) -----
+
+    Task<PracticeHubViewModel> GetPracticeHubAsync(int? setId, int userId, bool isAdmin, CancellationToken ct = default);
+
+    /// <summary>Null when the requested set is not viewable (or the mode is unknown).</summary>
+    Task<PracticeSessionViewModel?> GetPracticeAsync(string mode, PracticeQuery query, int userId, bool isAdmin, CancellationToken ct = default);
+
+    Task<HardWordsViewModel> GetHardWordsAsync(int? setId, int userId, bool isAdmin, CancellationToken ct = default);
+
     // ----- Legacy contract helpers -----
 
     /// <summary>Legacy POST /Home/EditSet: non-destructive upsert that keeps progress and card details.</summary>

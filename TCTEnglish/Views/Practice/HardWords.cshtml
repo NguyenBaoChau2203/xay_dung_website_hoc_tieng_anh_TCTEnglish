@@ -1,0 +1,26 @@
+@model TCTEnglish.ViewModels.Sets.HardWordsViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Từ hay quên";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Từ hay quên",
+        Description = "Những từ bạn trả lời sai nhiều nhất khi ôn và luyện tập.",
+        Breadcrumbs = new List<PageBreadcrumbItem> { new("Luyện tập", Url.Action("Index", "Practice")), new("Từ hay quên") }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tp-page tp-page--hard">
+    <partial name="_PageHeader" model="header" />
+    <table class="table">
+        <tbody>
+            @foreach (var r in Model.Rows)
+            {
+                <tr><td><a href="@Url.Action("CardDetail", "Set", new { cardId = r.CardId })">@r.Term</a></td><td>@r.Definition</td><td>@r.SetName</td><td>Sai @r.WrongCount lần</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

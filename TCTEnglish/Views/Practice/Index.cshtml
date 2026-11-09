@@ -1,0 +1,26 @@
+@model TCTEnglish.ViewModels.Sets.PracticeHubViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Luyện tập";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Luyện tập",
+        Description = "Luyện thêm ngoài giờ ôn. Mặc định không làm thay đổi lịch ôn.",
+        Breadcrumbs = new List<PageBreadcrumbItem> { new("Bộ thẻ", Url.Action("Index", "Set")), new("Luyện tập") }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tp-page tp-page--hub">
+    <partial name="_PageHeader" model="header" />
+    <label for="tpSetSelect" class="form-label">Bộ từ</label>
+    <select id="tpSetSelect" class="form-select">
+        <option value="mine">Tất cả bộ của tôi</option>
+        @foreach (var s in Model.Sets)
+        {
+            <option value="@s.Id" selected="@(Model.PreselectedSetId == s.Id)">@s.Name (@s.WordCount)</option>
+        }
+    </select>
+</div>
