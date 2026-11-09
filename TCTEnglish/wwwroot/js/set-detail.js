@@ -101,7 +101,9 @@
         if (row.phonetic) { phonetic.appendChild(T.el('span', 'tct-phonetic', row.phonetic)); }
         tr.appendChild(phonetic);
 
-        tr.appendChild(T.el('td', 'ts-col-meaning tct-clamp-2 tct-break', row.definition));
+        var meaningCell = T.el('td', 'ts-col-meaning');
+        meaningCell.appendChild(T.el('span', 'tct-clamp-2 tct-break', row.definition));
+        tr.appendChild(meaningCell);
         tr.appendChild(T.el('td', 'ts-col-cefr', row.cefr || ''));
 
         var statusCell = T.el('td', 'ts-col-status');
