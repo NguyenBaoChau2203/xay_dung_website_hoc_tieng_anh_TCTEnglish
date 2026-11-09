@@ -451,6 +451,15 @@
         var input = $('ts-share-url');
         var copyButton = $('ts-share-copy');
         var regenerate = $('ts-share-regenerate');
+        var modalEl = $('tsShareModal');
+
+        // The opener lives in a dropdown that closes first, so Bootstrap cannot restore focus: send it to the menu button.
+        if (modalEl) {
+            modalEl.addEventListener('hidden.bs.modal', function () {
+                var opener = document.querySelector('.ts-page [data-bs-toggle="dropdown"][aria-label="Thêm tùy chọn cho bộ thẻ"]');
+                if (opener) { opener.focus(); }
+            });
+        }
 
         function showLink(url) {
             input.value = url || '';

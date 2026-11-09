@@ -637,6 +637,7 @@
                         method: 'POST',
                         body: { items: group.map(function (c) { return { term: c.term.trim(), meaningHint: c.meaningTyped && c.definition.trim() ? c.definition.trim() : null }; }) }
                     }).then(function (response) {
+                        var failed = 0;
                         (response.results || []).forEach(function (item, i) {
                             var card = group[i];
                             if (!card) { return; }
@@ -649,9 +650,11 @@
                             } else if (item.ok && item.result) {
                                 card.didYouMean = item.result.didYouMean || null;
                             } else {
-                                T.toast('Lỗi khi điền gợi ý.', { type: 'danger' });
+                                failed++;
+                                card.enrichError = 'Chưa điền được gợi ý. Bạn có thể tự nhập nghĩa.';
                             }
                         });
+                        if (failed > 0) { T.toast('Không điền được gợi ý cho ' + failed + ' từ.', { type: 'danger' }); }
                     }).catch(function (error) {
                         T.toast(error.message || 'Lỗi khi điền gợi ý.', { type: 'danger' });
                     }).then(function () {
