@@ -8,6 +8,14 @@
         Description = "Những từ bạn trả lời sai nhiều nhất khi ôn và luyện tập.",
         Breadcrumbs = new List<PageBreadcrumbItem> { new("Luyện tập", Url.Action("Index", "Practice")), new("Từ hay quên") }
     };
+    var empty = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Bạn chưa có từ nào hay quên.",
+        Message = "Cứ ôn tập đều đặn, từ nào sai nhiều sẽ hiện ở đây.",
+        ActionLabel = "Về Luyện tập",
+        ActionUrl = Url.Action("Index", "Practice")
+    };
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
@@ -15,12 +23,58 @@
 
 <div class="tct-theme tct-page tp-page tp-page--hard">
     <partial name="_PageHeader" model="header" />
-    <table class="table">
-        <tbody>
-            @foreach (var r in Model.Rows)
-            {
-                <tr><td><a href="@Url.Action("CardDetail", "Set", new { cardId = r.CardId })">@r.Term</a></td><td>@r.Definition</td><td>@r.SetName</td><td>Sai @r.WrongCount lần</td></tr>
-            }
-        </tbody>
-    </table>
+
+    @if (Model.Sets.Count > 0)
+    {
+        <form method="get" action="@Url.Action("HardWords", "Practice")" class="tp-hard-filter">
+            <label class="form-label" for="tpHardSet">Bộ từ</label>
+            <select id="tpHardSet" name="set" class="form-select">
+                <option value="">Tất cả bộ</option>
+                @foreach (var s in Model.Sets)
+                {
+                    <option value="@s.Id" selected="@(Model.SetId == s.Id)">@s.Name</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-outline-primary">Lọc</button>
+        </form>
+    }
+
+    @if (Model.Rows.Count == 0)
+    {
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
+    }
+    else
+    {
+        <div class="tct-table-wrap tp-hard-table" tabindex="0" role="region" aria-label="Danh sách từ hay quên">
+            <table class="tct-table">
+                <caption class="visually-hidden">Từ hay quên, sắp theo số lần sai</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Từ</th>
+                        <th scope="col">Phiên âm</th>
+                        <th scope="col">Nghĩa</th>
+                        <th scope="col">Bộ</th>
+                        <th scope="col">Số lần sai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Rows)
+                    {
+                        <tr>
+                            <td data-label="Từ"><a href="@Url.Action("CardDetail", "Set", new { cardId = r.CardId })" lang="en" class="tp-hard-term">@r.Term</a></td>
+                            <td data-label="Phiên âm">@(string.IsNullOrWhiteSpace(r.Phonetic) ? "—" : r.Phonetic)</td>
+                            <td data-label="Nghĩa" class="tct-break">@r.Definition</td>
+                            <td data-label="Bộ" class="tct-break">@r.SetName</td>
+                            <td data-label="Số lần sai"><span class="tct-badge tct-badge--danger">Sai @r.WrongCount lần</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tp-hard-actions">
+            <a class="btn btn-primary" href="/Practice/learn?words=@Model.WordIdsCsv&amp;from=hard">Học các từ này</a>
+            <a class="btn btn-outline-primary" href="/Practice/test?words=@Model.WordIdsCsv&amp;from=hard">Kiểm tra các từ này</a>
+        </div>
+    }
 </div>

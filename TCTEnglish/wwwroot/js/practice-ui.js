@@ -352,6 +352,8 @@
         return '/Practice/learn?' + parts.join('&');
     }
 
+    ui.learnLink = learnLink;
+
     /**
      * Result screen. results: [{ word, result: 'correct' | 'close' | 'wrong' }]. "close" counts as correct.
      * options: { durationMs, extra: Node[] }.

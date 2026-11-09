@@ -540,19 +540,35 @@
             if (tile) { tile.textContent = text; }
         }
 
-        var quiz = typeof stats.quizPercent === 'number' ? Math.round(stats.quizPercent) : null;
-        var match = typeof stats.matchMs === 'number' && stats.matchMs > 0 ? stats.matchMs : null;
-        if (quiz !== null) { note('quiz', 'Lần trước ' + quiz + '%'); } else { note('quiz', Math.min(words, 20) + ' câu'); }
-        if (match !== null) {
-            var seconds = Math.round(match / 1000);
-            note('match', 'Kỷ lục ' + Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0'));
-        } else { note('match', 'Chưa có kỷ lục'); }
+        // Stats written by the practice modes (practice-core.js) and, for the best Match time, the legacy pages.
+        var userId = strip.getAttribute('data-user-id') || '';
+        var learn = typeof stats.learnPercent === 'number' ? Math.round(stats.learnPercent) : null;
+        var test = typeof stats.testPercent === 'number' ? Math.round(stats.testPercent)
+            : (typeof stats.quizPercent === 'number' ? Math.round(stats.quizPercent) : null);
+        var best = typeof stats.matchMs === 'number' && stats.matchMs > 0 ? stats.matchMs : null;
+        try {
+            var rawBest = T.safeStorage.get('tct:match-best:' + userId + ':set:' + setId + ':6');
+            var parsed = rawBest ? JSON.parse(rawBest) : null;
+            if (parsed && typeof parsed.ms === 'number' && parsed.ms > 0 && (best === null || parsed.ms < best)) { best = parsed.ms; }
+        } catch (e) { /* unreadable entry: ignore */ }
 
-        // First rule that matches decides the suggested mode.
-        var suggested = due > 0 ? 'flashcard'
-            : mastered < 30 ? 'flashcard'
-            : quiz === null ? 'quiz'
-            : quiz < 80 ? 'write'
+        function formatMs(ms) {
+            var tenths = Math.round(ms / 100);
+            if (tenths < 600) { return (tenths / 10).toFixed(1).replace('.', ',') + ' giây'; }
+            var minutes = Math.floor(tenths / 600);
+            var secs = ((tenths - minutes * 600) / 10).toFixed(1).replace('.', ',');
+            return minutes + ' phút ' + (secs.length < 4 ? '0' + secs : secs) + ' giây';
+        }
+
+        if (learn !== null) { note('learn', 'Đã thuộc ' + learn + '%'); }
+        if (test !== null) { note('test', 'Lần trước ' + test + '%'); }
+        note('match', best !== null ? 'Kỷ lục ' + formatMs(best) : 'Chưa có kỷ lục');
+
+        // Due words keep pointing at the hero button (no badge); otherwise the same rule as practice-core suggestMode().
+        if (due > 0) { return; }
+        var suggested = learn === null || learn < 100 ? 'learn'
+            : test === null ? 'test'
+            : test < 80 ? 'learn'
             : 'match';
         var tile = strip.querySelector('[data-ts-mode="' + suggested + '"] .ts-study-text');
         if (tile) {

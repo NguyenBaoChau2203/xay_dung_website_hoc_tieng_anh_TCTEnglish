@@ -396,6 +396,77 @@ public class PracticeIntegrationTests
         Assert.DoesNotContain(">h3<", otherBody);
     }
 
+
+    // ------------------------------------------------------------------ integration with the set pages
+
+    [Fact]
+    public async Task SetPages_LinkToTheNewModes_AndTheLayoutHasNoPracticeEntryWithoutD1()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var seed = await AddSetAsync(factory, TestDataIds.UserId, "Linked set", SetVisibility.Private, "k1", "k2", "k3");
+        using var owner = Client(factory, TestDataIds.UserId);
+
+        var (_, detail) = await GetAsync(owner, $"/Sets/{seed.SetId}");
+        foreach (var href in new[]
+                 {
+                     $"/Practice/learn?set={seed.SetId}&amp;n=20&amp;from=set",
+                     $"/Practice/test?set={seed.SetId}&amp;n=10&amp;from=set",
+                     $"/Practice/match?set={seed.SetId}&amp;n=6&amp;from=set",
+                     $"/Practice/flashcard?set={seed.SetId}&amp;n=0&amp;from=set",
+                     $"/Practice?set={seed.SetId}",
+                 })
+        {
+            Assert.Contains($"href=\"{href}\"", detail);
+        }
+
+        Assert.Contains($"data-user-id=\"{TestDataIds.UserId}\"", detail);
+        Assert.Contains("\"userId\":" + TestDataIds.UserId, detail);
+        Assert.DoesNotContain($"/Home/QuizMode/{seed.SetId}", detail);
+        Assert.DoesNotContain($"/Home/WriteMode/{seed.SetId}", detail);
+        Assert.DoesNotContain($"/Home/MatchingMode/{seed.SetId}", detail);
+        Assert.Contains("Luyện tập", detail);
+
+        var (_, list) = await GetAsync(owner, "/Sets");
+        Assert.Contains("href=\"/Practice\"", list);
+
+        var (_, card) = await GetAsync(owner, $"/Sets/Cards/{seed.CardIds[0]}");
+        Assert.Contains($"href=\"/Practice/learn?words={seed.CardIds[0]}&amp;from=set\"", card);
+        Assert.Contains($"href=\"/Practice/typing?words={seed.CardIds[0]}\"", card);
+
+        // D1 was not granted: the shared layout (any page without its own Practice link) has no sidebar item.
+        var (_, home) = await GetAsync(owner, "/Home/Index");
+        Assert.DoesNotContain("/Practice", home);
+    }
+
+    [Fact]
+    public async Task Hub_PreselectsAViewableSet_AndHardWordsShowsTheStackedRowContract()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var seed = await AddSetAsync(factory, TestDataIds.UserId, "Hub pick set", SetVisibility.Private, "x1", "x2");
+        await SetProgressAsync(factory, TestDataIds.UserId, seed.CardIds[0], wrong: 2, last: DateTime.UtcNow);
+        using var owner = Client(factory, TestDataIds.UserId);
+
+        var (_, hub) = await GetAsync(owner, $"/Practice?set={seed.SetId}");
+        Assert.Contains($"<option value=\"{seed.SetId}\" selected=\"selected\">Hub pick set (2)", hub);
+        Assert.Contains("id=\"tpHubConfig\"", hub);
+        Assert.Contains("/js/practice-hub.js", hub);
+        Assert.Contains("Từ hay quên", hub);
+        foreach (var label in new[] { "Học", "Kiểm tra", "Ghép thẻ", "Lật thẻ", "Trắc nghiệm", "Gõ từ", "Nghe", "Điền từ" })
+        {
+            Assert.Contains(">" + label + "<", System.Net.WebUtility.HtmlDecode(hub));
+        }
+
+        var (_, hard) = await GetAsync(owner, "/Practice/HardWords");
+        Assert.Contains("data-label=\"Số lần sai\"", hard);
+        Assert.Contains($"href=\"/Practice/learn?words={seed.CardIds[0]}&amp;from=hard\"", hard);
+        Assert.Contains($"href=\"/Practice/test?words={seed.CardIds[0]}&amp;from=hard\"", hard);
+
+        // A user with no words sees the empty state instead of the setup panel.
+        using var outsider = Client(factory, TestDataIds.OutsiderUserId);
+        var (_, empty) = await GetAsync(outsider, "/Practice");
+        Assert.Contains("tct-state--empty", empty);
+    }
+
     // ------------------------------------------------------------------ contracts
 
     [Fact]

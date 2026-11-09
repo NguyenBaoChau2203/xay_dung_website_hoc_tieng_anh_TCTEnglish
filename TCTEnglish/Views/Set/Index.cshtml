@@ -7,7 +7,11 @@
     var header = new PageHeaderViewModel
     {
         Title = "Bộ thẻ của tôi",
-        Actions = new[] { new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus") }
+        Actions = new[]
+        {
+            new PageHeaderAction("Luyện tập", "/Practice", PageActionVariant.Secondary, "fa-solid fa-dumbbell"),
+            new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus")
+        }
     };
     var chips = new[]
     {

@@ -148,6 +148,8 @@
         {
             <a class="btn btn-primary" href="@Url.Action("EditCard", "Set", new { cardId = Model.CardId })"><i class="fa-solid fa-pen me-1" aria-hidden="true"></i>Sửa</a>
         }
+        <a class="btn btn-outline-primary" href="/Practice/learn?words=@Model.CardId&amp;from=set"><i class="fa-solid fa-graduation-cap me-1" aria-hidden="true"></i>Học từ này</a>
+        <a class="btn btn-outline-primary" href="/Practice/typing?words=@Model.CardId"><i class="fa-solid fa-keyboard me-1" aria-hidden="true"></i>Gõ từ này</a>
         <button type="button" class="btn btn-outline-primary" id="ts-suspend" aria-pressed="@(progress.IsSuspended ? "true" : "false")">
             <i class="fa-regular fa-eye-slash me-1" aria-hidden="true"></i><span id="ts-suspend-label">@(progress.IsSuspended ? "Bỏ tạm ẩn" : "Tạm ẩn khỏi ôn tập")</span>
         </button>

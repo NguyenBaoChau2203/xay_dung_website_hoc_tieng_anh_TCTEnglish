@@ -8,7 +8,7 @@
         {
             <li><a class="dropdown-item" href="@Url.Action("Import", "Set", new { id = Model.SetId })"><i class="fa-solid fa-file-import me-2" aria-hidden="true"></i>Nhập hàng loạt</a></li>
         }
-        <li><a class="dropdown-item" href="@Url.Action("QuizMode", "Study", new { id = Model.SetId })"><i class="fa-solid fa-list-check me-2" aria-hidden="true"></i>Luyện trắc nghiệm</a></li>
+        <li><a class="dropdown-item" href="/Practice?set=@Model.SetId"><i class="fa-solid fa-dumbbell me-2" aria-hidden="true"></i>Luyện tập</a></li>
         @if (Model.CanManage)
         {
             <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tsShareModal"><i class="fa-solid fa-share-nodes me-2" aria-hidden="true"></i>Chia sẻ</button></li>

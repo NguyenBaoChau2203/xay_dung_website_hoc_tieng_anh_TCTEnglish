@@ -20,6 +20,7 @@
     var config = new
     {
         setId = Model.SetId,
+        userId = Model.UserId,
         canEdit = Model.CanEdit,
         canManage = Model.CanManage,
         wordCount = Model.WordCount,
@@ -37,12 +38,13 @@
             add = Url.Action("AddCards", "Set", new { id = Model.SetId })
         }
     };
+    var nearestCount = new[] { 10, 20, 30 }.OrderBy(c => Math.Abs(c - Math.Min(Model.WordCount, 20))).First();
     var studyModes = new[]
     {
-        (Key: "flashcard", Title: "Thẻ ghi nhớ", Icon: "fa-solid fa-clone", Hue: "info", Href: Url.Action("Study", "Study", new { id = Model.SetId })!, Note: "Đã thuộc " + Model.MasteredPercent + "%"),
-        (Key: "quiz", Title: "Trắc nghiệm", Icon: "fa-solid fa-list-check", Hue: "primary", Href: Url.Action("QuizMode", "Study", new { id = Model.SetId })!, Note: Math.Min(Model.WordCount, 20) + " câu"),
-        (Key: "match", Title: "Ghép thẻ", Icon: "fa-solid fa-puzzle-piece", Hue: "warning", Href: Url.Action("MatchingMode", "Study", new { id = Model.SetId })!, Note: "Chưa có kỷ lục"),
-        (Key: "write", Title: "Viết", Icon: "fa-solid fa-keyboard", Hue: "success", Href: Url.Action("WriteMode", "Study", new { id = Model.SetId })!, Note: Model.WordCount + " từ")
+        (Key: "learn", Title: "Học", Icon: "fa-solid fa-graduation-cap", Hue: "success", Href: "/Practice/learn?set=" + Model.SetId + "&n=20&from=set", Note: "Đã thuộc " + Model.MasteredPercent + "%"),
+        (Key: "test", Title: "Kiểm tra", Icon: "fa-solid fa-clipboard-check", Hue: "primary", Href: "/Practice/test?set=" + Model.SetId + "&n=" + nearestCount + "&from=set", Note: nearestCount + " câu"),
+        (Key: "match", Title: "Ghép thẻ", Icon: "fa-solid fa-shuffle", Hue: "warning", Href: "/Practice/match?set=" + Model.SetId + "&n=6&from=set", Note: "Chưa có kỷ lục"),
+        (Key: "flashcard", Title: "Lật thẻ", Icon: "fa-solid fa-clone", Hue: "info", Href: "/Practice/flashcard?set=" + Model.SetId + "&n=0&from=set", Note: Model.WordCount + " thẻ")
     };
 }
 @section Styles {
@@ -102,7 +104,7 @@
     @if (Model.WordCount > 0)
     {
         <section class="ts-study" aria-labelledby="ts-study-title"
-                 data-ts-study data-set-id="@Model.SetId" data-due="@Model.DueCount" data-mastered="@Model.MasteredPercent" data-words="@Model.WordCount">
+                 data-ts-study data-set-id="@Model.SetId" data-due="@Model.DueCount" data-mastered="@Model.MasteredPercent" data-words="@Model.WordCount" data-user-id="@Model.UserId">
             <h2 class="ts-section-title" id="ts-study-title">Học bộ này</h2>
             <nav class="ts-study-strip" aria-label="Chế độ học">
                 @foreach (var mode in studyModes)
@@ -116,6 +118,7 @@
                     </a>
                 }
             </nav>
+            <p class="ts-study-more mt-2 mb-0"><a href="/Practice?set=@Model.SetId">Luyện riêng từng kỹ năng <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></a></p>
         </section>
     }
 

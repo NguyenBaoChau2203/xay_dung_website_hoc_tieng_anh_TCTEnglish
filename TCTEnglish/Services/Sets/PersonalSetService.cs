@@ -281,6 +281,7 @@ public sealed partial class PersonalSetService : IPersonalSetService
         return new SetDetailViewModel
         {
             SetId = head.SetId,
+            UserId = userId,
             SetName = head.SetName,
             Description = head.Description,
             Visibility = head.Visibility,

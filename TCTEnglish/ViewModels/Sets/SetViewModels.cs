@@ -73,6 +73,7 @@ public sealed class SetMoveTarget
 public sealed class SetDetailViewModel
 {
     public int SetId { get; set; }
+    public int UserId { get; set; }
     public string SetName { get; set; } = string.Empty;
     public string? Description { get; set; }
     public string Visibility { get; set; } = "Public";
