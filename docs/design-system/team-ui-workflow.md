@@ -150,6 +150,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | AI chat | `/Ai/Chat` | `ai-chat.css`, `ai-chat-launcher.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
+| Bộ thẻ cá nhân | `/Sets`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `personal-sets.css` | `--tct-*` | Đã dùng token | Huỳnh Phú Trọng |
 | Admin (toàn bộ) | `/Admin/*` | Bootstrap + `account.css` + `<style>` trong layout | `--sidebar-width` (đã nối vào token). Lưu ý: `account.css` ép `.text-secondary { color: #745b00 !important }` trên mọi trang Admin | Chưa chuyển | _chủ dự án gán_ |
 
 Các vấn đề cũ đang chờ chủ dự án quyết định (tương phản, chiều cao header, `#folderModal`,

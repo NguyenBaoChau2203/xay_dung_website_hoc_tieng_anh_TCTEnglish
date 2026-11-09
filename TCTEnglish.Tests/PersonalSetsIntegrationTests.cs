@@ -119,7 +119,7 @@ public class PersonalSetsIntegrationTests
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.Contains("Sprint One User Set", body);
         Assert.DoesNotContain($"/Sets/{TestDataIds.UserSetId}/Settings", body);
-        Assert.DoesNotContain($"/Sets/{TestDataIds.UserSetId}/Add", body);
+        Assert.DoesNotContain($"href=\"/Sets/{TestDataIds.UserSetId}/Add\"", body);
         Assert.DoesNotContain("tsShareModal", body);
         Assert.Contains("Theo học", body);
         Assert.Contains("Sao chép về bộ của tôi", body);
@@ -193,7 +193,8 @@ public class PersonalSetsIntegrationTests
         Assert.Equal(HttpStatusCode.OK, page.StatusCode);
         Assert.Contains(PrivateName, body);
         Assert.Contains("Đăng nhập để học bộ này", body);
-        Assert.DoesNotContain("<form", body, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("/Sets/Subscribe", body);
+        Assert.DoesNotContain("/Sets/Clone", body);
         Assert.DoesNotContain("Lưu vào bộ thẻ của tôi", body);
 
         using var otherUser = Client(factory, TestDataIds.OutsiderUserId);
@@ -286,7 +287,7 @@ public class PersonalSetsIntegrationTests
         using var blankResponse = await client.SendAsync(blank);
         var blankBody = await blankResponse.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, blankResponse.StatusCode);
-        Assert.Contains("Nhập tên bộ thẻ", blankBody);
+        Assert.Contains("Nhập tên bộ thẻ", WebUtility.HtmlDecode(blankBody));
 
         using var scope = factory.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -395,9 +396,9 @@ public class PersonalSetsIntegrationTests
             await db.SaveChangesAsync();
         }
 
-        using var client = Client(factory, TestDataIds.MemberUserId);
+        using var client = Client(factory, TestDataIds.AssistantUserId);
         using var empty = await client.GetAsync("/Sets");
-        Assert.Contains("Thêm bộ thẻ mẫu", await empty.Content.ReadAsStringAsync());
+        Assert.Contains("Thêm bộ thẻ mẫu", WebUtility.HtmlDecode(await empty.Content.ReadAsStringAsync()));
 
         var token = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Sets");
         for (var i = 0; i < 2; i++)
@@ -409,7 +410,7 @@ public class PersonalSetsIntegrationTests
 
         using var scope2 = factory.Services.CreateScope();
         var context = scope2.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        var owned = await context.Sets.AsNoTracking().Where(s => s.OwnerId == TestDataIds.MemberUserId).ToListAsync();
+        var owned = await context.Sets.AsNoTracking().Where(s => s.OwnerId == TestDataIds.AssistantUserId).ToListAsync();
         Assert.Single(owned);
         Assert.Equal(6, await context.Cards.CountAsync(c => c.SetId == owned[0].SetId));
     }

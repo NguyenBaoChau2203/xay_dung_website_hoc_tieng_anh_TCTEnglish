@@ -66,7 +66,8 @@ even when the public URL still uses `/Home/...`.
 - `HomeController` is intentionally limited to dashboard and public pages such as landing, contact, search, privacy, and dashboard widgets.
 - `ClassController` owns class browsing, creation, and class detail flows.
 - `FolderController` owns folder list and folder detail flows.
-- `SetController` owns set create/edit/update/delete flows.
+- `SetController` (partial: `SetController.cs` legacy `/Home/*` set routes, `SetController.Personal.cs` personal-set workspace) owns set create/edit/delete, `/Sets`, `/Sets/{id}[/Settings|/Add|/Import|/Export]`, `/Sets/Cards/{id}[/Edit]`, `/s/{slug}`, follow/clone/samples.
+- `SetApiController` (`/api/sets/*`) and `VocabApiController` (`/api/vocab/*`, Premium/Admin AI enrich) serve the personal-set JSON endpoints; all rules live in `Services/Sets/PersonalSetService`.
 - `StudyController` owns study-mode views such as quiz, matching, write, reading, listening, and related practice pages.
 - `ChatController` owns chat upload and class chat HTTP endpoints.
 - `VocabularyController` remains the vocabulary landing/detail/topic area and now leans on `IStudyService`.

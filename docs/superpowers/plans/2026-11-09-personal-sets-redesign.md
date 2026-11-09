@@ -1422,19 +1422,18 @@ git diff --check
 
 ---
 
-## 11. Execution notes (agent fills in)
+## 11. Execution notes (agent filled in)
 
-- Branch / HEAD at P0:
-- Owner decisions D1–D4 as received:
-- Baseline test counts:
-- B1–B7 confirmation (file:line):
-- Set/Card readers reviewed:
-- Service option used (A/B):
-- Migration + MariaDB evidence:
-- Shared-data compatibility results:
-- Chat superset test result:
-- Quiz/Matching end-of-session hook found?:
-- IMemoryCache available? / limiter used:
-- Token proposal (if any):
-- Deviations from the plan and why:
-- Not verified:
+- Branch / HEAD at P0: `feature/personal-sets-redesign` from origin/master `eed4e2c`. The local tree had one unrelated whitespace change in `appsettings.Development.json` (left uncommitted), so no `pull-local.ps1` was run.
+- Owner decisions D1–D4 as received: all CÓ. D1: one `AddScoped` line (Option A). D2: one sidebar item. D3: tracker row added, no token proposal needed. D4: Card optional fields + private-set guard.
+- Baseline test counts: 271 passed, 1 skipped (filtered subset). Final full Release run: 1272 passed, 22 skipped, 0 failed. Node tests: 25/25 (parser 12, composer 13).
+- B1–B7: confirmed in source and fixed (see `.ai/context/bug-fix-log.md`).
+- Service option used: A (`IPersonalSetService`, namespace `TCTEnglish.Services.Sets`).
+- Migration + MariaDB evidence: `20261109154943_AddPersonalSetWorkspace`. `IX_Cards_SetId_Term` is created before `IX_Cards_SetID` is dropped (EF's generated order fails on MariaDB with error 1553). On disposable `mariadb:10.5.23` (`tct-ci-mariadb`, port 33307): `scripts/verify-mariadb.ps1` passed (16 migrations); manual downgrade/upgrade/repeat with legacy rows kept Phonetic/Example/Topic/progress, `Visibility='Public'`, `AiGenerated=0`, `IsSuspended=0`, cascade FKs present. `SharedDataMariaDbTests` were not run locally (skipped).
+- Shared-data compatibility: Card spec gained `OptionalFields` (omitted while default) so old packages and digests stay valid; validator, engine and exporter changed minimally; tests in `SharedDataPersonalSetCompatibilityTests`.
+- Chat superset test result: passes for owner, folder owner, saved folder, class owner, class member (reflection on `LearnerCardAccess`).
+- Quiz/Matching end-of-session hook found?: yes (`QuizMode` finishStudy, `MatchingMode` finishGame); localStorage `tct:set-stats:{setId}` is written.
+- IMemoryCache available? / limiter used: `IMemoryCache` is an optional constructor dependency (used only if registered). Chat `IAiRequestRateLimiter` not reused (1-minute window shared with chat).
+- Token proposal: none; the six existing hues were kept.
+- Deviations: new code uses `TCTEnglish.*` namespaces while legacy controllers stay `TCTVocabulary.*`; login has no `returnUrl`; legacy EditSet pairs by term then position; Pixabay redirects are followed by the default HttpClient (final host re-checked); no `noindex` hook on the shared page.
+- Not verified: browser acceptance (1440/768/375, keyboard, zoom, contrast) was NOT performed. CSS/JS behaviour is covered only by Node logic tests and server-rendered integration tests. CI, staging and production were not touched.
