@@ -279,6 +279,13 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Only if owners want cross-device records: add a small per-user table (migration with MariaDB verification) and keep the browser copy as a cache.
 - **Effort**: Medium.
 
+### TD-012: AI chat launcher can cover the edge of the practice start button [LOW]
+- **Files**: `wwwroot/css/practice.css` (`.tp-side`, `.tp-start-bar`), `Views/Practice/Index.cshtml`
+- **Issue**: At 1200px and wider the hub's setup panel is a sticky right column. On a viewport shorter than about 800px the fixed AI launcher (68px box, bottom-right) can sit over the last ~20px of the "Bắt đầu luyện" button. The label is not covered. The feedback sheet, the test submit bar and the phone layout keep their own clearance.
+- **Impact**: Cosmetic; the button stays clickable except under the launcher circle.
+- **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
+- **Effort**: Low.
+
 ---
 
 ## Architecture Warnings
