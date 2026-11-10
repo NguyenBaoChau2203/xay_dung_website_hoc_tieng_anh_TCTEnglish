@@ -892,33 +892,137 @@ body.account-auth-ui,
     border: 1px solid var(--tct-warning);
 }
 
-/* Loader Overlay */
+/* ── Loader Overlay (LO01) ─────────────────────────────────────────── */
 .account-auth-ui #loader-overlay,
 .account-auth-ui .loader-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(240, 243, 255, 0.82);
+    background: rgba(240, 243, 255, 0.85);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: var(--tct-z-popover);
-    backdrop-filter: blur(4px);
+    z-index: var(--tct-z-popover, 1070);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: opacity var(--tct-dur-fast, 150ms) ease;
 }
 
 .account-auth-ui #loader-overlay[hidden],
 .account-auth-ui .loader-overlay[hidden] {
-    display: none;
+    display: none !important;
+    pointer-events: none !important;
 }
 
 .account-auth-ui .loader-box {
-    background: var(--tct-clay-surface);
-    border-radius: var(--tct-radius-lg);
-    box-shadow: var(--tct-clay-shadow);
-    padding: var(--tct-space-xl);
+    background: var(--tct-clay-surface, #ffffff);
+    border-radius: var(--tct-clay-radius-panel, 24px);
+    box-shadow: var(--tct-clay-shadow-overlay, 0 20px 40px -8px rgba(17, 28, 45, 0.2)),
+                inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    padding: 2rem 2.25rem;
     text-align: center;
-    border: 1px solid rgba(66, 85, 255, 0.10);
-    max-width: 320px;
+    border: 1px solid rgba(66, 85, 255, 0.14);
+    max-width: 360px;
+    width: calc(100% - 2rem);
+    position: relative;
+    animation: loaderBoxEnter var(--tct-dur-normal, 250ms) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes loaderBoxEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* TCT Emblem */
+.account-auth-ui .loader-emblem-wrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-auth-ui .loader-emblem-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px dashed rgba(66, 85, 255, 0.35);
+    animation: loaderRingSpin 10s linear infinite;
+}
+
+@keyframes loaderRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.account-auth-ui .loader-emblem-core {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--tct-primary, #4255ff) 0%, #2f3fe0 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 14px rgba(66, 85, 255, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.4);
+    animation: loaderEmblemPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes loaderEmblemPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 14px rgba(66, 85, 255, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(66, 85, 255, 0.55), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.account-auth-ui .loader-spinner {
+    width: 24px;
+    height: 24px;
+    border-width: 2.5px;
+}
+
+.account-auth-ui .loader-recovery {
+    animation: loaderRecoveryFadeIn var(--tct-dur-normal, 250ms) ease;
+}
+
+@keyframes loaderRecoveryFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced Motion Override for Loader */
+@media (prefers-reduced-motion: reduce) {
+    .account-auth-ui .loader-box {
+        animation: none !important;
+    }
+
+    .account-auth-ui .loader-emblem-ring,
+    .account-auth-ui .loader-emblem-core {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .account-auth-ui .loader-spinner {
+        animation: none !important;
+        opacity: 0.85;
+    }
+
+    .account-auth-ui .loader-recovery {
+        animation: none !important;
+    }
 }
 
 /* Responsive Breakpoints */

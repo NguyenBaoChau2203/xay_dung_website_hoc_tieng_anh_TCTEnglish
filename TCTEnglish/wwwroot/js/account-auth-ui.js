@@ -148,20 +148,92 @@
         }
     }
 
-    function showLoaderAndRedirect(targetUrl) {
-        var destination = targetUrl || ($('form-login') && $('form-login').dataset.homeUrl) || '/Home/Index';
+    var activeNavDestination = '';
+    var navRecoveryTimerId = null;
+
+    function safeSetTimeout(fn, ms) {
+        if (typeof window !== 'undefined' && typeof window.setTimeout === 'function') {
+            return window.setTimeout(fn, ms);
+        }
+        if (typeof setTimeout === 'function') {
+            return setTimeout(fn, ms);
+        }
+        return null;
+    }
+
+    function safeClearTimeout(id) {
+        if (!id) return;
+        if (typeof window !== 'undefined' && typeof window.clearTimeout === 'function') {
+            window.clearTimeout(id);
+            return;
+        }
+        if (typeof clearTimeout === 'function') {
+            clearTimeout(id);
+        }
+    }
+
+    function hideLoaderOverlay() {
+        if (navRecoveryTimerId) {
+            safeClearTimeout(navRecoveryTimerId);
+            navRecoveryTimerId = null;
+        }
         var overlay = $('loader-overlay');
         if (overlay) {
-            overlay.hidden = false;
+            overlay.hidden = true;
+            if (overlay.style) {
+                overlay.style.display = 'none';
+            }
         }
+        var recoveryBox = $('loader-recovery-actions');
+        if (recoveryBox && recoveryBox.classList) {
+            recoveryBox.classList.add('d-none');
+        }
+    }
+
+    function showLoaderOverlay(title, subtitle, destination) {
+        var overlay = $('loader-overlay');
+        if (!overlay) return;
+
+        activeNavDestination = destination || '';
+        if (navRecoveryTimerId) {
+            safeClearTimeout(navRecoveryTimerId);
+            navRecoveryTimerId = null;
+        }
+
+        var titleEl = $('loading-title');
+        if (titleEl && title) {
+            titleEl.textContent = title;
+        }
+        var fillEl = $('loading-fill');
+        if (fillEl && subtitle) {
+            fillEl.textContent = subtitle;
+        }
+
+        var recoveryBox = $('loader-recovery-actions');
+        if (recoveryBox && recoveryBox.classList) {
+            recoveryBox.classList.add('d-none');
+        }
+
+        overlay.hidden = false;
+        if (overlay.style) {
+            overlay.style.display = 'flex';
+        }
+
+        navRecoveryTimerId = safeSetTimeout(function () {
+            if (overlay && !overlay.hidden && recoveryBox && recoveryBox.classList) {
+                recoveryBox.classList.remove('d-none');
+            }
+        }, 8000);
+    }
+
+    function showLoaderAndRedirect(targetUrl) {
+        var destination = targetUrl || ($('form-login') && $('form-login').dataset.homeUrl) || '/Home/Index';
+        showLoaderOverlay('Đang mở trang học tập…', 'Đang chuẩn bị không gian học tập của bạn.', destination);
         window.location.href = destination;
     }
 
     function handleExternalLogin(url) {
-        var overlay = $('loader-overlay');
-        if (overlay) {
-            overlay.hidden = false;
-        }
+        showLoaderOverlay('Đang kết nối dịch vụ xác thực…', 'Chuyển tiếp đến cổng đăng nhập an toàn.', url);
         window.location.href = url;
     }
 
@@ -395,8 +467,28 @@
             formReset.addEventListener('submit', handleResetSubmit);
         }
 
-        // Restore pending on pageshow (e.g., bfcache navigation)
+        // Loader recovery buttons
+        var btnLoaderRetry = $('btn-loader-retry');
+        if (btnLoaderRetry) {
+            btnLoaderRetry.addEventListener('click', function () {
+                if (activeNavDestination) {
+                    window.location.href = activeNavDestination;
+                }
+            });
+        }
+
+        var btnLoaderCancel = $('btn-loader-cancel');
+        if (btnLoaderCancel) {
+            btnLoaderCancel.addEventListener('click', function () {
+                hideLoaderOverlay();
+                if (formLog) formLog._inFlight = false;
+                setPending($('btn-login-submit'), false);
+            });
+        }
+
+        // Restore pending and hide loader on pageshow (e.g., bfcache navigation)
         window.addEventListener('pageshow', function () {
+            hideLoaderOverlay();
             if (formLog) formLog._inFlight = false;
             if (formReg) formReg._inFlight = false;
             if (formForgot) formForgot._inFlight = false;
@@ -422,6 +514,7 @@
     global.handleExternalLogin = handleExternalLogin;
     global.showLoginError = showLoginError;
     global.showLoaderAndRedirect = showLoaderAndRedirect;
+    global.hideLoaderOverlay = hideLoaderOverlay;
     global.handleForgotSubmit = handleForgotSubmit;
     global.handleResetSubmit = handleResetSubmit;
 

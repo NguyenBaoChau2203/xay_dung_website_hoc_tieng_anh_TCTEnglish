@@ -247,11 +247,33 @@
         </main>
     </div>
 
-    <!-- LOADER OVERLAY -->
-    <div id="loader-overlay" class="loader-overlay" role="status" aria-label="Đang chuyển trang" hidden>
+    <!-- LOADER OVERLAY (LO01) -->
+    <div id="loader-overlay" class="loader-overlay" role="status" aria-live="polite" aria-atomic="true" hidden>
         <div class="loader-box tct-card">
-            <div class="spinner-border text-primary mb-3" role="status" aria-hidden="true"></div>
-            <p class="mb-0 fw-semibold text-secondary" id="loading-fill">Đang xử lý đăng nhập…</p>
+            <div class="loader-emblem-wrap mb-3">
+                <div class="loader-emblem-ring" aria-hidden="true"></div>
+                <div class="loader-emblem-core">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="loader-spinner spinner-border text-primary mb-3" role="status" aria-hidden="true"></div>
+            <h2 class="h6 fw-bold text-dark mb-1" id="loading-title">Đang chuyển trang…</h2>
+            <p class="mb-0 text-muted small" id="loading-fill">Đang chuẩn bị không gian học tập của bạn.</p>
+
+            <!-- Honest recovery container (revealed if navigation exceeds timeout) -->
+            <div id="loader-recovery-actions" class="loader-recovery mt-3 pt-3 border-top d-none">
+                <p class="text-warning small mb-2">
+                    <i class="fa-solid fa-clock-rotate-left me-1"></i>Quá trình chuyển trang mất nhiều thời gian hơn dự kiến.
+                </p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="button" class="btn btn-sm btn-primary rounded-pill px-3" id="btn-loader-retry">
+                        <i class="fa-solid fa-arrow-rotate-right me-1"></i>Mở lại liên kết
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" id="btn-loader-cancel">
+                        Hủy & quay lại
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

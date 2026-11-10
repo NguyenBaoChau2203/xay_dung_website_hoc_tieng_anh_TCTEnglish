@@ -3,229 +3,259 @@
     ViewData["Title"] = "Quản lý người dùng";
 }
 
-<div id="userManagementPage">
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-user-management.css" asp-append-version="true" />
+}
+
+<div class="tct-theme admin-users-page" id="userManagementPage">
+    <!-- ===== Page Header ===== -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <div>
-            <h2 class="fw-bold mb-1">
-                <i class="bi bi-people-fill me-2"></i>Quản lý người dùng
-            </h2>
+            <h1 class="admin-page-title mb-1">
+                <i class="bi bi-people-fill text-primary me-2"></i>Quản lý người dùng
+            </h1>
             <p class="text-muted mb-0">
-                Quản lý tài khoản, vai trò và trạng thái hoạt động theo thời gian thực.
+                Quản lý tài khoản, phân quyền và giám sát trạng thái hoạt động theo thời gian thực.
             </p>
         </div>
+        <div class="d-flex align-items-center gap-2">
+            <div id="presenceConnectionBadge" class="admin-presence-indicator" role="status" aria-live="polite">
+                <span class="admin-presence-dot admin-presence-dot--pulse"></span>
+                <span>Real-time: Trực tuyến</span>
+            </div>
+        </div>
     </div>
 
+    <!-- ===== Presence & User KPI Summary ===== -->
     <div class="row g-3 mb-4">
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body d-flex align-items-center gap-3 py-3">
-                    <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon-sm">
-                        <i class="bi bi-people-fill fs-4 text-primary"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-0">Tổng người dùng</p>
-                        <h4 class="fw-bold mb-0" id="totalUsersCount">@Model.TotalUsers</h4>
-                    </div>
+        <!-- Total Users -->
+        <div class="col-6 col-lg-3">
+            <div class="admin-users-kpi-card">
+                <div class="admin-users-kpi-icon admin-users-kpi-icon--total">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <div class="admin-users-kpi-label">Tổng người dùng</div>
+                    <h2 class="admin-users-kpi-value" id="totalUsersCount">@Model.TotalUsers</h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body d-flex align-items-center gap-3 py-3">
-                    <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon-sm">
-                        <i class="bi bi-check-circle-fill fs-4 text-success"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-0">Online</p>
-                        <h4 class="fw-bold mb-0" id="onlineUsersCount">@Model.OnlineUsers</h4>
-                    </div>
+
+        <!-- Online Users -->
+        <div class="col-6 col-lg-3">
+            <div class="admin-users-kpi-card">
+                <div class="admin-users-kpi-icon admin-users-kpi-icon--online">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <div>
+                    <div class="admin-users-kpi-label">Đang trực tuyến</div>
+                    <h2 class="admin-users-kpi-value text-success" id="onlineUsersCount">@Model.OnlineUsers</h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body d-flex align-items-center gap-3 py-3">
-                    <div class="bg-secondary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon-sm">
-                        <i class="bi bi-moon-fill fs-4 text-secondary"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-0">Offline</p>
-                        <h4 class="fw-bold mb-0" id="offlineUsersCount">@Model.OfflineUsers</h4>
-                    </div>
+
+        <!-- Offline Users -->
+        <div class="col-6 col-lg-3">
+            <div class="admin-users-kpi-card">
+                <div class="admin-users-kpi-icon admin-users-kpi-icon--offline">
+                    <i class="bi bi-moon-fill"></i>
+                </div>
+                <div>
+                    <div class="admin-users-kpi-label">Ngoại tuyến</div>
+                    <h2 class="admin-users-kpi-value text-secondary" id="offlineUsersCount">@Model.OfflineUsers</h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body d-flex align-items-center gap-3 py-3">
-                    <div class="bg-danger bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon-sm">
-                        <i class="bi bi-x-circle-fill fs-4 text-danger"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-0">Đã chặn</p>
-                        <h4 class="fw-bold mb-0" id="blockedUsersCount">@Model.BlockedUsers</h4>
-                    </div>
+
+        <!-- Blocked Users -->
+        <div class="col-6 col-lg-3">
+            <div class="admin-users-kpi-card">
+                <div class="admin-users-kpi-icon admin-users-kpi-icon--blocked">
+                    <i class="bi bi-lock-fill"></i>
+                </div>
+                <div>
+                    <div class="admin-users-kpi-label">Đã khóa</div>
+                    <h2 class="admin-users-kpi-value text-danger" id="blockedUsersCount">@Model.BlockedUsers</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body py-3">
-            <form method="get" asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="row g-2 align-items-end">
-                <div class="col-md-4">
-                    <label class="form-label small fw-semibold">Tìm kiếm</label>
-                    <div class="input-group">
-                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                        <input type="text"
-                               name="q"
-                               value="@Model.SearchQuery"
-                               class="form-control"
-                               placeholder="Tên hoặc email..."
-                               aria-label="Tên hoặc email người dùng" />
-                    </div>
+    <!-- ===== Search & Filters Toolbar ===== -->
+    <div class="admin-filter-card">
+        <form method="get" asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="row g-3 align-items-end" id="userFilterForm">
+            <div class="col-12 col-md-4">
+                <label class="admin-filter-label" for="filterSearchInput">
+                    <i class="bi bi-search me-1"></i>Tìm kiếm người dùng
+                </label>
+                <div class="input-group">
+                    <input type="text"
+                           id="filterSearchInput"
+                           name="q"
+                           value="@Model.SearchQuery"
+                           class="form-control admin-filter-input"
+                           placeholder="Nhập tên hoặc email..."
+                           aria-label="Tên hoặc email người dùng" />
                 </div>
-                <div class="col-md-3">
-                    <label class="form-label small fw-semibold">Vai trò</label>
-                    <select name="role" class="form-select">
-                        <option value="">Tất cả</option>
-                        <option value="Admin" selected="@(Model.RoleFilter == "Admin" ? "selected" : null)">Admin</option>
-                        <option value="Premium" selected="@(Model.RoleFilter == "Premium" ? "selected" : null)">Premium</option>
-                        <option value="Standard" selected="@(Model.RoleFilter == "Standard" ? "selected" : null)">Standard</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label small fw-semibold">Trạng thái</label>
-                    <select name="status" class="form-select">
-                        <option value="">Tất cả</option>
-                        <option value="Online" selected="@(Model.StatusFilter == "Online" ? "selected" : null)">Online</option>
-                        <option value="Offline" selected="@(Model.StatusFilter == "Offline" ? "selected" : null)">Offline</option>
-                        <option value="Blocked" selected="@(Model.StatusFilter == "Blocked" ? "selected" : null)">Blocked</option>
-                    </select>
-                </div>
-                <div class="col-md-2 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary flex-grow-1">
-                        <i class="bi bi-funnel me-1"></i>Lọc
-                    </button>
-                    <a asp-area="Admin"
-                       asp-controller="UserManagement"
-                       asp-action="Index"
-                       class="btn btn-outline-secondary"
-                       title="Xóa bộ lọc"
-                       aria-label="Xóa bộ lọc">
-                        <i class="bi bi-x-lg"></i>
-                    </a>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="admin-filter-label" for="filterRoleSelect">
+                    <i class="bi bi-shield me-1"></i>Vai trò
+                </label>
+                <select id="filterRoleSelect" name="role" class="form-select admin-filter-select">
+                    <option value="">Tất cả vai trò</option>
+                    <option value="Admin" selected="@(Model.RoleFilter == "Admin" ? "selected" : null)">Admin (Quản trị)</option>
+                    <option value="Premium" selected="@(Model.RoleFilter == "Premium" ? "selected" : null)">Premium (Học viên VIP)</option>
+                    <option value="Standard" selected="@(Model.RoleFilter == "Standard" ? "selected" : null)">Standard (Học viên)</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="admin-filter-label" for="filterStatusSelect">
+                    <i class="bi bi-activity me-1"></i>Trạng thái
+                </label>
+                <select id="filterStatusSelect" name="status" class="form-select admin-filter-select">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="Online" selected="@(Model.StatusFilter == "Online" ? "selected" : null)">Online (Trực tuyến)</option>
+                    <option value="Offline" selected="@(Model.StatusFilter == "Offline" ? "selected" : null)">Offline (Ngoại tuyến)</option>
+                    <option value="Blocked" selected="@(Model.StatusFilter == "Blocked" ? "selected" : null)">Blocked (Bị khóa)</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1" id="btnFilterSubmit">
+                    <i class="bi bi-funnel me-1"></i>Lọc
+                </button>
+                <a asp-area="Admin"
+                   asp-controller="UserManagement"
+                   asp-action="Index"
+                   class="btn btn-outline-secondary"
+                   title="Xóa bộ lọc"
+                   aria-label="Xóa bộ lọc">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            </div>
+        </form>
     </div>
 
-    <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-            <h5 class="fw-semibold mb-0">
-                Danh sách người dùng
-                <span class="badge bg-secondary ms-2" id="filteredUsersCount">@Model.TotalFilteredCount</span>
-            </h5>
+    <!-- ===== Users Table Surface ===== -->
+    <div class="admin-users-table-card">
+        <div class="admin-users-table-header">
+            <div class="d-flex align-items-center gap-2">
+                <h2 class="admin-card-title">
+                    <i class="bi bi-list-check text-primary"></i>
+                    <span>Danh sách tài khoản</span>
+                </h2>
+                <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-2 py-1" id="filteredUsersCount">
+                    @Model.TotalFilteredCount
+                </span>
+            </div>
+            <div class="text-muted small">
+                Trang @Model.CurrentPage / @Math.Max(1, Model.TotalPages) (Hiển thị tối đa 20 dòng/trang)
+            </div>
         </div>
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0" id="usersTable">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="ps-4 text-nowrap">ID</th>
-                            <th>Người dùng</th>
-                            <th>Vai trò</th>
-                            <th class="text-center">Folders</th>
-                            <th class="text-center">Sets</th>
-                            <th>Trạng thái</th>
-                            <th>Ngày tạo</th>
-                            <th class="text-end pe-4 text-nowrap">Hành động</th>
+
+        <div class="table-responsive">
+            <table class="table admin-table align-middle" id="usersTable">
+                <thead>
+                    <tr>
+                        <th class="ps-4 text-nowrap">ID</th>
+                        <th>Người dùng</th>
+                        <th>Vai trò</th>
+                        <th class="text-center">Folders</th>
+                        <th class="text-center">Sets</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th class="text-end pe-4 text-nowrap">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Users.Any())
+                    {
+                        <tr data-empty-state="existing">
+                            <td colspan="8">
+                                <div class="admin-empty-state">
+                                    <i class="bi bi-inbox admin-empty-state-icon d-block"></i>
+                                    <p class="mb-0 fw-medium">Không tìm thấy người dùng nào phù hợp với bộ lọc hiện tại.</p>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @if (!Model.Users.Any())
-                        {
-                            <tr>
-                                <td colspan="8" class="text-center text-muted py-5">
-                                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                                    Không tìm thấy người dùng nào.
-                                </td>
-                            </tr>
-                        }
-                        @foreach (var user in Model.Users)
-                        {
-                            <tr id="user-row-@user.UserId" data-user-id="@user.UserId" data-status="@((int)user.Status)">
-                                <td class="ps-4 fw-medium text-muted">#@user.UserId</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        @if (!string.IsNullOrEmpty(user.AvatarUrl))
-                                        {
-                                            <img src="@user.AvatarUrl" class="rounded-circle" width="36" height="36" alt="avatar" />
-                                        }
-                                        else
-                                        {
-                                            <div class="bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center admin-avatar-placeholder">
-                                                <i class="bi bi-person-fill text-secondary"></i>
-                                            </div>
-                                        }
-                                        <div>
-                                            <div class="fw-medium" id="user-full-name-@user.UserId">@user.FullName</div>
-                                            <small class="text-muted" id="user-email-@user.UserId">@user.Email</small>
+                    }
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr id="user-row-@user.UserId" data-user-id="@user.UserId" data-status="@((int)user.Status)">
+                            <td class="ps-4 fw-semibold text-muted">#@user.UserId</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    @if (!string.IsNullOrEmpty(user.AvatarUrl))
+                                    {
+                                        <img src="@user.AvatarUrl" class="admin-user-avatar-img" width="36" height="36" alt="Avatar" />
+                                    }
+                                    else
+                                    {
+                                        <div class="admin-user-avatar-initials">
+                                            @(string.IsNullOrEmpty(user.FullName) || user.FullName == "N/A" ? "U" : user.FullName.Substring(0, 1).ToUpper())
                                         </div>
+                                    }
+                                    <div>
+                                        <div class="fw-semibold text-dark" id="user-full-name-@user.UserId">@user.FullName</div>
+                                        <small class="text-muted" id="user-email-@user.UserId">@user.Email</small>
                                     </div>
-                                </td>
-                                <td>
-                                    <span class="@user.RoleBadgeClass" id="role-badge-@user.UserId">
-                                        <i class="bi @user.RoleIconClass me-1"></i>@user.Role
-                                    </span>
-                                </td>
-                                <td class="text-center">@user.FolderCount</td>
-                                <td class="text-center">@user.SetCount</td>
-                                <td>
-                                    <span class="@user.StatusBadgeClass"
-                                          id="status-badge-@user.UserId"
-                                          data-status="@((int)user.Status)">
-                                        <i class="bi @user.StatusIconClass me-1"></i>@user.StatusLabel
-                                    </span>
-                                </td>
-                                <td class="text-muted">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
-                                <td class="text-end pe-4">
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-outline-primary btn-edit"
-                                                data-user-id="@user.UserId"
-                                                title="Chỉnh sửa"
-                                                aria-label="Chỉnh sửa người dùng @user.FullName">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-warning btn-unlock"
-                                                data-user-id="@user.UserId"
-                                                data-user-name="@user.FullName"
-                                                title="Mở khóa"
-                                                aria-label="Mở khóa người dùng @user.FullName"
-                                                @(user.CanUnlock ? null : "disabled")>
-                                            <i class="bi bi-unlock-fill"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-block-user"
-                                                data-user-id="@user.UserId"
-                                                data-user-name="@user.FullName"
-                                                data-user-email="@user.Email"
-                                                title="Khóa tài khoản"
-                                                aria-label="Khóa tài khoản người dùng @user.FullName">
-                                            <i class="bi bi-lock-fill"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="@user.RoleBadgeClass" id="role-badge-@user.UserId">
+                                    <i class="bi @user.RoleIconClass me-1"></i>@user.Role
+                                </span>
+                            </td>
+                            <td class="text-center fw-medium">@user.FolderCount</td>
+                            <td class="text-center fw-medium">@user.SetCount</td>
+                            <td>
+                                <span class="@user.StatusBadgeClass"
+                                      id="status-badge-@user.UserId"
+                                      data-status="@((int)user.Status)">
+                                    <i class="bi @user.StatusIconClass me-1"></i>@user.StatusLabel
+                                </span>
+                            </td>
+                            <td class="text-muted small">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
+                            <td class="text-end pe-4">
+                                <div class="admin-table-actions">
+                                    <button type="button"
+                                            class="btn admin-table-action-btn btn-edit"
+                                            data-user-id="@user.UserId"
+                                            title="Chỉnh sửa thông tin"
+                                            aria-label="Chỉnh sửa người dùng @user.FullName">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button"
+                                            class="btn admin-table-action-btn btn-unlock"
+                                            data-user-id="@user.UserId"
+                                            data-user-name="@user.FullName"
+                                            title="Mở khóa tài khoản"
+                                            aria-label="Mở khóa người dùng @user.FullName"
+                                            @(user.CanUnlock ? null : "disabled")>
+                                        <i class="bi bi-unlock-fill"></i>
+                                    </button>
+                                    <button type="button"
+                                            class="btn admin-table-action-btn btn-block-user"
+                                            data-user-id="@user.UserId"
+                                            data-user-name="@user.FullName"
+                                            data-user-email="@user.Email"
+                                            title="Khóa tài khoản"
+                                            aria-label="Khóa tài khoản người dùng @user.FullName">
+                                        <i class="bi bi-lock-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
+
         @if (Model.TotalPages > 1)
         {
-            <div class="card-footer bg-white border-top py-3">
-                <nav aria-label="Điều hướng trang">
-                    <ul class="pagination justify-content-center mb-0">
+            <div class="admin-pagination-footer">
+                <nav aria-label="Điều hướng phân trang">
+                    <ul class="pagination admin-pagination justify-content-center mb-0">
                         <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
                             <a class="page-link"
                                href="@Url.Action("Index", new { q = Model.SearchQuery, role = Model.RoleFilter, status = Model.StatusFilter, page = Model.CurrentPage - 1 })"
@@ -251,51 +281,57 @@
                         </li>
                     </ul>
                 </nav>
-                <p class="text-center text-muted small mt-2 mb-0">
-                    Trang @Model.CurrentPage / @Model.TotalPages - @Model.TotalFilteredCount người dùng
-                </p>
             </div>
         }
     </div>
 </div>
 
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+<!-- ===== MODAL: Chỉnh sửa người dùng ===== -->
+<div class="modal fade tct-theme admin-modal" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-bottom">
-                <h5 class="modal-title fw-semibold">
-                    <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa người dùng
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header admin-modal-header">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="admin-modal-icon-badge admin-modal-icon-badge--primary">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title admin-modal-title" id="editUserModalLabel">Chỉnh sửa người dùng</h5>
+                        <p class="admin-modal-subtitle mb-0">Cập nhật thông tin tài khoản và phân quyền</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-close admin-modal-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body admin-modal-body">
                 <input type="hidden" id="editUserId" />
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Họ tên</label>
-                    <input type="text" id="editFullName" class="form-control" />
+                    <label class="form-label admin-modal-label" for="editFullName">Họ và tên <span class="text-danger">*</span></label>
+                    <input type="text" id="editFullName" class="form-control admin-modal-input" placeholder="Họ và tên..." required />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Email</label>
-                    <input type="email" id="editEmail" class="form-control" />
+                    <label class="form-label admin-modal-label" for="editEmail">Địa chỉ Email <span class="text-danger">*</span></label>
+                    <input type="email" id="editEmail" class="form-control admin-modal-input" placeholder="email@example.com" required />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Vai trò</label>
-                    <select id="editRole" class="form-select">
-                        <option value="Admin">Admin</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Standard">Standard</option>
+                    <label class="form-label admin-modal-label" for="editRole">Vai trò tài khoản</label>
+                    <select id="editRole" class="form-select admin-modal-select">
+                        <option value="Admin">Admin (Quản trị viên toàn quyền)</option>
+                        <option value="Premium">Premium (Học viên gói VIP)</option>
+                        <option value="Standard">Standard (Học viên tiêu chuẩn)</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Trạng thái hiện tại</label>
-                    <input type="text" id="editStatusLabel" class="form-control" readonly />
-                    <div class="form-text">Online/Offline được cập nhật tự động theo kết nối thực tế.</div>
+                    <label class="form-label admin-modal-label" for="editStatusLabel">Trạng thái hiện tại</label>
+                    <input type="text" id="editStatusLabel" class="form-control admin-modal-input admin-modal-input--readonly" readonly />
+                    <div class="form-text admin-modal-helper">
+                        <i class="bi bi-info-circle me-1"></i>Trạng thái kết nối Online/Offline được đồng bộ tự động theo thời gian thực.
+                    </div>
                 </div>
-                <div id="editErrorAlert" class="alert alert-danger d-none small"></div>
+                <div id="editErrorAlert" class="alert alert-danger d-none admin-modal-alert mb-0" role="alert"></div>
             </div>
-            <div class="modal-footer border-top">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary" id="btnSaveEdit">
+            <div class="modal-footer admin-modal-footer">
+                <button type="button" class="btn admin-modal-btn-cancel" data-bs-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn admin-modal-btn-primary" id="btnSaveEdit">
                     <i class="bi bi-check-lg me-1"></i>Lưu thay đổi
                 </button>
             </div>
@@ -303,22 +339,35 @@
     </div>
 </div>
 
-<div class="modal fade" id="blockUserModal" tabindex="-1" aria-hidden="true">
+<!-- ===== MODAL: Khóa tài khoản ===== -->
+<div class="modal fade tct-theme admin-modal" id="blockUserModal" tabindex="-1" aria-labelledby="blockUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-bottom bg-danger bg-opacity-10">
-                <h5 class="modal-title fw-semibold text-danger">
-                    <i class="bi bi-lock-fill me-2"></i>Khóa tài khoản
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header admin-modal-header">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="admin-modal-icon-badge admin-modal-icon-badge--danger">
+                        <i class="bi bi-lock-fill"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title admin-modal-title text-danger" id="blockUserModalLabel">Khóa tài khoản người dùng</h5>
+                        <p class="admin-modal-subtitle mb-0">Tạm dừng quyền truy cập và sử dụng hệ thống</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-close admin-modal-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body admin-modal-body">
                 <input type="hidden" id="blockUserId" />
-                <p class="text-muted mb-3">Bạn đang khóa tài khoản: <strong id="blockUserName"></strong></p>
+                <div class="admin-modal-warning-banner mb-3">
+                    <i class="bi bi-exclamation-triangle-fill text-warning fs-5 flex-shrink-0"></i>
+                    <div>
+                        <div class="small text-muted mb-0.5">Bạn đang thực hiện khóa tài khoản của:</div>
+                        <strong id="blockUserName" class="admin-modal-target-user"></strong>
+                    </div>
+                </div>
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Thời hạn khóa <span class="text-danger">*</span></label>
-                    <select id="blockDuration" class="form-select">
-                        <option value="30s">30 giây (test nhanh)</option>
+                    <label class="form-label admin-modal-label" for="blockDuration">Thời hạn khóa <span class="text-danger">*</span></label>
+                    <select id="blockDuration" class="form-select admin-modal-select">
+                        <option value="30s">30 giây (kiểm tra nhanh)</option>
                         <option value="1d">1 ngày</option>
                         <option value="3d">3 ngày</option>
                         <option value="7d" selected>7 ngày</option>
@@ -326,18 +375,18 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-medium">Lý do khóa <span class="text-danger">*</span></label>
+                    <label class="form-label admin-modal-label" for="blockReason">Lý do khóa <span class="text-danger">*</span></label>
                     <textarea id="blockReason"
-                              class="form-control"
+                              class="form-control admin-modal-input"
                               rows="3"
-                              placeholder="Nhập lý do khóa tài khoản..."
+                              placeholder="Nhập lý do khóa tài khoản (sẽ được gửi thông báo tới người dùng)..."
                               required></textarea>
                 </div>
-                <div id="blockErrorAlert" class="alert alert-danger d-none small"></div>
+                <div id="blockErrorAlert" class="alert alert-danger d-none admin-modal-alert mb-0" role="alert"></div>
             </div>
-            <div class="modal-footer border-top">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-danger" id="btnConfirmBlock">
+            <div class="modal-footer admin-modal-footer">
+                <button type="button" class="btn admin-modal-btn-cancel" data-bs-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn admin-modal-btn-danger" id="btnConfirmBlock">
                     <i class="bi bi-lock-fill me-1"></i>Xác nhận khóa
                 </button>
             </div>

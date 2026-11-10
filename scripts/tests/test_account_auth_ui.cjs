@@ -244,6 +244,28 @@ function setupAuthDom(options = {}) {
   formReset.appendChild(btnResetSubmit);
   root.appendChild(formReset);
 
+  // Loader Overlay (LO01)
+  const loaderOverlay = make('div', 'loader-overlay');
+  loaderOverlay.hidden = true;
+  loaderOverlay.style = { display: 'none' };
+  const loadingTitle = make('h2', 'loading-title');
+  loadingTitle.textContent = 'Đang chuyển trang…';
+  loaderOverlay.appendChild(loadingTitle);
+  const loadingFill = make('p', 'loading-fill');
+  loadingFill.textContent = 'Đang chuẩn bị không gian học tập của bạn.';
+  loaderOverlay.appendChild(loadingFill);
+
+  const loaderRecovery = make('div', 'loader-recovery-actions');
+  loaderRecovery.classList.add('d-none');
+  const btnLoaderRetry = make('button', 'btn-loader-retry');
+  btnLoaderRetry.textContent = 'Mở lại liên kết';
+  loaderRecovery.appendChild(btnLoaderRetry);
+  const btnLoaderCancel = make('button', 'btn-loader-cancel');
+  btnLoaderCancel.textContent = 'Hủy & quay lại';
+  loaderRecovery.appendChild(btnLoaderCancel);
+  loaderOverlay.appendChild(loaderRecovery);
+  doc.body.appendChild(loaderOverlay);
+
   return {
     doc,
     byId,
@@ -269,6 +291,12 @@ function setupAuthDom(options = {}) {
     resetNewPwd,
     resetConfirmPwd,
     resetMismatch,
+    loaderOverlay,
+    loadingTitle,
+    loadingFill,
+    loaderRecovery,
+    btnLoaderRetry,
+    btnLoaderCancel,
   };
 }
 
@@ -562,4 +590,86 @@ test('R1: duplicate submission ownership (inline onsubmit + listener) must NOT c
   dom.formForgot.dispatchEvent(evt);
 
   assert.equal(defaultPrevented, false, 'First submit must not be canceled by duplicate handler invocation on same event');
+});
+
+test('LO01: showLoaderAndRedirect displays overlay with honest title, sets destination and hides on pageshow', () => {
+  const dom = setupAuthDom();
+  const sandbox = loadAuthScript(dom);
+
+  assert.equal(dom.loaderOverlay.hidden, true);
+
+  sandbox.window.showLoaderAndRedirect('/Home/Index');
+
+  assert.equal(dom.loaderOverlay.hidden, false);
+  assert.equal(dom.loadingTitle.textContent, 'Đang mở trang học tập…');
+  assert.equal(sandbox.window.location.href, '/Home/Index');
+
+  // Trigger pageshow event (e.g., user navigated back or via bfcache)
+  const pageshowListeners = sandbox.window._listeners['pageshow'] || [];
+  pageshowListeners.forEach((fn) => fn({ persisted: true }));
+
+  assert.equal(dom.loaderOverlay.hidden, true, 'Overlay must be hidden immediately on pageshow');
+});
+
+test('LO01: handleExternalLogin updates overlay message for provider without claiming auth success', () => {
+  const dom = setupAuthDom();
+  const sandbox = loadAuthScript(dom);
+
+  assert.equal(dom.loaderOverlay.hidden, true);
+
+  sandbox.window.handleExternalLogin('/Account/ExternalLogin?provider=Google');
+
+  assert.equal(dom.loaderOverlay.hidden, false);
+  assert.equal(dom.loadingTitle.textContent, 'Đang kết nối dịch vụ xác thực…');
+  assert.equal(sandbox.window.location.href, '/Account/ExternalLogin?provider=Google');
+  assert.doesNotMatch(dom.loadingTitle.textContent, /thành công/i, 'Must not claim auth succeeded before provider returns');
+});
+
+test('LO01: loader recovery timeout reveals retry and cancel actions; cancel restores controls', () => {
+  const dom = setupAuthDom();
+  let timerFn = null;
+  const sandbox = loadAuthScript(dom, {
+    setTimeout: (fn, ms) => {
+      if (ms === 8000) {
+        timerFn = fn;
+      }
+      return 123;
+    },
+    clearTimeout: () => {
+      timerFn = null;
+    },
+  });
+
+  sandbox.window.showLoaderAndRedirect('/Dashboard');
+  assert.equal(dom.loaderOverlay.hidden, false);
+  assert.equal(dom.loaderRecovery.classList.contains('d-none'), true);
+
+  // Simulate timeout firing after 8s
+  assert.ok(timerFn, 'Timeout callback should be scheduled');
+  timerFn();
+  assert.equal(dom.loaderRecovery.classList.contains('d-none'), false, 'Recovery actions should be visible');
+
+  // User clicks cancel
+  dom.btnLoaderCancel.click();
+  assert.equal(dom.loaderOverlay.hidden, true, 'Cancel button must dismiss the overlay');
+  assert.equal(dom.btnLoginSubmit.disabled, false, 'Form controls must be restored');
+});
+
+test('LO01: pageshow cancels in-flight and hides loader without clearing user input', () => {
+  const dom = setupAuthDom();
+  const sandbox = loadAuthScript(dom);
+
+  dom.loginEmail.value = 'learner@example.local';
+  dom.loginPassword.value = 'secret123';
+
+  sandbox.window.showLoaderAndRedirect('/Home/Index');
+  assert.equal(dom.loaderOverlay.hidden, false);
+
+  // Fire pageshow
+  const pageshowListeners = sandbox.window._listeners['pageshow'] || [];
+  pageshowListeners.forEach((fn) => fn({ persisted: true }));
+
+  assert.equal(dom.loaderOverlay.hidden, true);
+  assert.equal(dom.loginEmail.value, 'learner@example.local', 'Email input must be preserved');
+  assert.equal(dom.loginPassword.value, 'secret123', 'Password input must be preserved');
 });
