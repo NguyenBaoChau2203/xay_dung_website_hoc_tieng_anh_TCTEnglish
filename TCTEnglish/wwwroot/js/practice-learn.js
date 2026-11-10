@@ -30,11 +30,12 @@
         var introduced = {};
         var roundRight = 0;
         var roundTotal = 0;
-        var roundLabel = el('span', 'tct-badge tct-badge--success');
-        var segments = el('span', 'tp-seg');
+        var roundLabel = el('span', 'tct-badge tct-badge--primary tp-round-label');
+        var masteredBadge = el('span', 'tct-badge tct-badge--success tp-mastered-badge');
+        var segments = el('span', 'tp-seg k-progress k-progress--split tp-bar-split');
         segments.setAttribute('role', 'img');
-        var segDone = el('span', 'tp-seg__part tp-seg__part--done');
-        var segLearning = el('span', 'tp-seg__part tp-seg__part--learning');
+        var segDone = el('span', 'tp-seg__part tp-seg__part--done k-progress__part k-progress__part--done');
+        var segLearning = el('span', 'tp-seg__part tp-seg__part--learning k-progress__part k-progress__part--learning');
         var segNew = el('span', 'tp-seg__part tp-seg__part--new');
         segments.appendChild(segDone);
         segments.appendChild(segLearning);
@@ -50,6 +51,13 @@
         function updateProgress() {
             var p = core.progress(state);
             var total = state.words.length;
+            var pct = function (n) { return (total ? (100 * n / total) : 0).toFixed(2) + '%'; };
+            segDone.style.setProperty('--w', pct(p.mastered));
+            segLearning.style.setProperty('--w', pct(p.learning));
+            masteredBadge.textContent = '';
+            masteredBadge.appendChild(icon('fa-solid fa-check'));
+            masteredBadge.appendChild(document.createTextNode('Đã thuộc ' + p.mastered + '/' + total));
+            ui.barInsert(segments);
             segDone.style.setProperty('--n', String(p.mastered));
             segLearning.style.setProperty('--n', String(p.learning));
             segNew.style.setProperty('--n', String(p.notStarted));
@@ -72,28 +80,28 @@
             var box = el('span', 'tp-stars tp-stars--small');
             box.setAttribute('role', 'img');
             box.setAttribute('aria-label', count + ' sao');
-            for (var i = 1; i <= 3; i++) { box.appendChild(icon(i <= count ? 'fa-solid fa-star' : 'fa-regular fa-star tp-star--off')); }
+            for (var i = 1; i <= 3; i++) { box.appendChild(icon(i <= count ? 'fa-solid fa-star' : 'fa-solid fa-star tp-star--off')); }
             return box;
         }
 
         // ------------------------------------------------------------- resume
         function showResume() {
             var p = core.progress(state);
-            var box = el('section', 'tct-card tp-match-start');
+            var box = el('section', 'k-panel tp-match-start');
             var h = heading('Tiếp tục học?');
             box.appendChild(h);
             box.appendChild(el('p', 'm-0', 'Đã thuộc ' + p.mastered + '/' + state.words.length));
             var actions = el('div', 'tp-summary__actions');
-            var go = el('button', 'btn btn-primary', 'Học tiếp');
+            var go = el('button', 'btn btn-lg btn-primary', 'Học tiếp');
             go.type = 'button';
             go.addEventListener('click', function () { if (state.queue.length > 0 && state.round > 0) { askNext(); } else { showStages(); } });
-            var restart = el('button', 'btn btn-outline-primary', 'Bắt đầu lại');
+            var restart = el('button', 'btn btn-lg btn-outline-primary', 'Bắt đầu lại');
             restart.type = 'button';
             restart.addEventListener('click', function () { reset(); showStages(); });
             actions.appendChild(go);
             actions.appendChild(restart);
             box.appendChild(actions);
-            session.setSlot([]);
+            session.setSlot([masteredBadge]);
             updateProgress();
             session.render(box);
             go.focus();
@@ -110,13 +118,14 @@
         // ------------------------------------------------------------- stage list
         function wordChip(id) {
             var w = byId[id];
-            var chip = el('li', 'tct-card tp-chip-word');
+            var chip = el('li', 'tp-chip-word');
             var term = el('span', 'tp-chip-word__term tct-break', w ? w.term : '');
             term.lang = 'en';
             chip.appendChild(term);
             var st = wordState(id);
             if (st.level === 0 && st.misses === 0) {
-                chip.appendChild(el('span', 'tct-badge tct-badge--warning', 'Mới'));
+                chip.classList.add('tp-chip-word--new');
+                chip.appendChild(el('span', 'tp-chip-word__new', 'Mới'));
             } else {
                 var d = core.masteryDots(state, id);
                 var dots = el('span', 'tp-dots');
@@ -128,47 +137,91 @@
             return chip;
         }
 
+        var PATH_OFFSETS = [20, 45, 25, 50, 30];
+
+        function node(cls, iconClass) {
+            var n = el('span', 'tp-step__node ' + cls);
+            n.setAttribute('aria-hidden', 'true');
+            n.appendChild(icon(iconClass));
+            return n;
+        }
+
+        function legendItem(cls, text) {
+            var item = el('span', 'tp-legend-item');
+            item.appendChild(el('span', 'tp-legend-dot ' + cls));
+            item.appendChild(document.createTextNode(text));
+            return item;
+        }
+
         function showStages() {
             if (core.learnComplete(state)) { showComplete(); return; }
-            session.setSlot([]);
+            session.setSlot([masteredBadge]);
             updateProgress();
+            var p = core.progress(state);
             var root = el('section', 'tp-stages');
-            var title = heading('Các chặng');
-            root.appendChild(title);
 
-            var list = el('ol', 'tp-step-list');
+            var head = el('div', 'tp-stages__head');
+            head.appendChild(el('p', 'tp-stages__scope', 'Học · ' + config.scopeName));
+            var title = heading('Chọn chặng để học');
+            head.appendChild(title);
+            var legend = el('p', 'tp-legend');
+            legend.appendChild(legendItem('tp-legend-dot--done', 'Đã thuộc ' + p.mastered));
+            legend.appendChild(legendItem('tp-legend-dot--learning', 'Đang học ' + p.learning));
+            legend.appendChild(legendItem('tp-legend-dot--new', 'Chưa học ' + p.notStarted));
+            head.appendChild(legend);
+            root.appendChild(head);
+
+            var list = el('ol', 'tp-step-list tp-path');
             var done = core.roundsDone(state);
             var totalStages = core.stageCount(state);
+            var n = 0;
+            function offset(item) { item.style.setProperty('--x', String(PATH_OFFSETS[n % PATH_OFFSETS.length])); n += 1; }
             for (var i = 0; i < done; i++) {
                 var item = el('li', 'tp-step tp-step--done');
-                item.appendChild(icon('fa-solid fa-circle-check'));
-                item.appendChild(el('span', 'tp-step__name', 'Chặng ' + (i + 1)));
+                offset(item);
+                item.appendChild(node('tp-step__node--done', 'fa-solid fa-check'));
                 item.appendChild(stars(state.roundStars[i] || 1));
+                item.appendChild(el('span', 'tp-step__name visually-hidden', 'Chặng ' + (i + 1)));
                 list.appendChild(item);
             }
             var current = el('li', 'tp-step tp-step--current');
+            offset(current);
             current.setAttribute('aria-current', 'step');
-            current.appendChild(icon('fa-solid fa-play'));
-            current.appendChild(el('span', 'tp-step__name', 'Chặng ' + (done + 1)));
-            current.appendChild(el('span', 'tct-badge tct-badge--success', 'Đang học'));
+            current.appendChild(node('tp-step__node--current', 'fa-solid fa-play'));
+            current.appendChild(el('span', 'tp-step__pill', 'Chặng ' + (done + 1) + ' · Đang học'));
+            current.appendChild(el('span', 'tp-step__name visually-hidden', 'Chặng ' + (done + 1)));
             list.appendChild(current);
             for (var j = done + 1; j < totalStages; j++) {
                 var locked = el('li', 'tp-step tp-step--locked');
-                locked.appendChild(icon('fa-solid fa-lock'));
-                locked.appendChild(el('span', 'tp-step__name', 'Chặng ' + (j + 1)));
+                offset(locked);
+                locked.appendChild(node('tp-step__node--locked', 'fa-solid fa-lock'));
+                locked.appendChild(el('span', 'tp-step__name visually-hidden', 'Chặng ' + (j + 1)));
                 locked.appendChild(el('span', 'visually-hidden', 'Chưa mở'));
                 list.appendChild(locked);
             }
-            root.appendChild(list);
+            var trophy = el('li', 'tp-step tp-step--trophy');
+            offset(trophy);
+            trophy.setAttribute('aria-hidden', 'true');
+            trophy.appendChild(node('tp-step__node--trophy', 'fa-solid fa-trophy'));
+            list.appendChild(trophy);
+            var map = el('div', 'tp-stage-map');
+            map.appendChild(list);
+            root.appendChild(map);
 
             var preview = core.previewRound(state, core.LEARN_ROUND_SIZE);
-            var card = el('div', 'tct-card tp-stage-card');
-            card.appendChild(el('h3', 'tp-missed__title', 'Chặng ' + (done + 1)));
-            card.appendChild(el('p', 'tp-stage-card__meta', preview.fresh + ' từ mới · ' + preview.review + ' từ ôn lại'));
+            var card = el('div', 'k-panel tp-stage-card');
+            var cardHead = el('div', 'tp-stage-card__head');
+            cardHead.appendChild(el('h3', 'tp-missed__title', 'Chặng ' + (done + 1)));
+            cardHead.appendChild(el('p', 'tp-stage-card__meta', preview.fresh + ' từ mới · ' + preview.review + ' từ ôn lại'));
+            card.appendChild(cardHead);
             var chips = el('ul', 'tp-chip-words');
             preview.ids.forEach(function (id) { chips.appendChild(wordChip(id)); });
             card.appendChild(chips);
-            var start = el('button', 'btn btn-primary btn-lg', 'Bắt đầu chặng ' + (done + 1));
+            var info = el('p', 'tp-stage-card__info');
+            info.appendChild(icon('fa-solid fa-circle-info'));
+            info.appendChild(document.createTextNode('Mỗi từ qua 2 bước: chọn nghĩa, rồi gõ lại từ. Sai thì hỏi lại cuối vòng.'));
+            card.appendChild(info);
+            var start = el('button', 'btn btn-primary btn-lg w-100', 'Bắt đầu chặng ' + (done + 1));
             start.type = 'button';
             start.addEventListener('click', function () {
                 core.startRound(state, core.LEARN_ROUND_SIZE);
@@ -187,13 +240,13 @@
         // ------------------------------------------------------------- round
         function levelBadge(id) {
             var st = wordState(id);
-            if (st.level >= 1) { return el('span', 'tct-badge tct-badge--primary align-self-start', 'Ôn lại — gõ từ'); }
-            if (st.misses > 0) { return el('span', 'tct-badge tct-badge--danger align-self-start', 'Học lại'); }
-            return el('span', 'tct-badge tct-badge--warning align-self-start', 'Từ mới');
+            if (st.level >= 1) { return el('span', 'tct-badge tct-badge--primary', 'Ôn lại — gõ từ'); }
+            if (st.misses > 0) { return el('span', 'tct-badge tct-badge--danger', 'Học lại'); }
+            return el('span', 'tct-badge tct-badge--warning', 'Từ mới');
         }
 
         function askNext() {
-            session.setSlot([roundLabel, segments]);
+            session.setSlot([roundLabel, masteredBadge]);
             roundLabel.textContent = 'Vòng ' + state.round;
             updateProgress();
             if (state.queue.length === 0) { roundEnd(); return; }
@@ -209,9 +262,9 @@
         }
 
         function showIntro(word) {
-            var card = el('section', 'tct-card tp-question');
+            var card = el('section', 'tp-question tp-intro k-panel k-anim-pop');
             card.setAttribute('aria-label', 'Từ mới');
-            card.appendChild(el('span', 'tct-badge tct-badge--warning align-self-start', 'Từ mới'));
+            card.appendChild(el('span', 'tct-badge tct-badge--warning', 'Từ mới'));
             card.appendChild(ui.termLine(word));
             card.appendChild(ui.meaningLine(word));
             var ex = word.examples && word.examples[0];
@@ -221,7 +274,7 @@
                 card.appendChild(line);
                 if (ex.vi) { card.appendChild(el('p', 'tp-example-vi', ex.vi)); }
             }
-            var ok = el('button', 'btn btn-primary align-self-end', 'Đã hiểu');
+            var ok = el('button', 'btn btn-lg btn-primary', 'Đã hiểu');
             ok.type = 'button';
             ok.addEventListener('click', function () { introduced[word.id] = true; askNext(); });
             card.appendChild(ok);
@@ -231,7 +284,7 @@
 
         function showQuestion(word) {
             var q = core.questionFor(state, word, pool, Math.random);
-            var card = el('section', 'tct-card tp-question');
+            var card = el('section', 'tp-question');
             card.setAttribute('aria-label', 'Câu hỏi');
             card.appendChild(levelBadge(word.id));
             var typing = null;
@@ -341,25 +394,26 @@
             var starBox = el('div', 'tp-stars tp-pop');
             starBox.setAttribute('role', 'img');
             starBox.setAttribute('aria-label', count + ' sao');
-            for (var i = 1; i <= 3; i++) { starBox.appendChild(icon(i <= count ? 'fa-solid fa-star' : 'fa-regular fa-star tp-star--off')); }
+            for (var i = 1; i <= 3; i++) { starBox.appendChild(icon(i <= count ? 'fa-solid fa-star' : 'fa-solid fa-star tp-star--off')); }
             head.appendChild(starBox);
             var title = heading('Hết vòng ' + state.round);
             head.appendChild(title);
             root.appendChild(head);
 
-            var bars = el('div', 'tct-card tp-bars');
+            var bars = el('div', 'k-panel tp-bars');
             bars.appendChild(bar('Chưa học', p.notStarted, total, 'tp-bar-row__fill--new'));
             bars.appendChild(bar('Đang học', p.learning, total, 'tp-bar-row__fill--learning'));
             bars.appendChild(bar('Đã thuộc', p.mastered, total, 'tp-bar-row__fill--done'));
             root.appendChild(bars);
 
+            var wordsPanel = el('section', 'tp-missed k-panel');
             var words = el('ul', 'tp-missed__list');
             state.roundWords.forEach(function (id) {
                 var w = byId[id];
                 if (!w) { return; }
                 var mastered = wordState(id).level >= 2;
-                var item = el('li', 'tct-card tp-missed__item');
-                item.appendChild(icon(mastered ? 'fa-solid fa-circle-check tp-ok' : 'fa-solid fa-hourglass-half tp-learning'));
+                var item = el('li', 'tp-missed__item');
+                item.appendChild(icon(mastered ? 'fa-solid fa-circle-check tp-ok' : 'fa-solid fa-clock tp-learning'));
                 var text = el('div', 'tp-missed__text');
                 var term = el('span', 'tp-missed__term', w.term);
                 term.lang = 'en';
@@ -369,10 +423,11 @@
                 item.appendChild(el('span', 'tct-badge ' + (mastered ? 'tct-badge--success' : 'tct-badge--warning'), mastered ? 'Đã thuộc' : 'Đang học'));
                 words.appendChild(item);
             });
-            root.appendChild(words);
+            wordsPanel.appendChild(words);
+            root.appendChild(wordsPanel);
 
             var actions = el('div', 'tp-summary__actions');
-            var next = el('button', 'btn btn-primary', 'Tiếp tục');
+            var next = el('button', 'btn btn-lg btn-primary', 'Tiếp tục');
             next.type = 'button';
             next.addEventListener('click', function () { showStages(); });
             actions.appendChild(next);
@@ -390,25 +445,28 @@
             var root = el('section', 'tp-summary');
             root.setAttribute('aria-label', 'Hoàn thành');
             var head = el('div', 'tp-summary__head');
-            var star = el('div', 'tp-stars tp-pop');
+            var star = el('div', 'tp-stars tp-trophy k-anim-pop');
             star.setAttribute('role', 'img');
             star.setAttribute('aria-label', 'Hoàn thành');
-            star.appendChild(icon('fa-solid fa-star'));
+            star.appendChild(icon('fa-solid fa-trophy'));
             head.appendChild(star);
             var title = heading('Bạn đã thuộc hết ' + state.words.length + ' từ!');
             head.appendChild(title);
             root.appendChild(head);
             var actions = el('div', 'tp-summary__actions');
-            var again = el('button', 'btn btn-outline-primary', 'Học lại từ đầu');
+            var again = el('button', 'btn btn-lg btn-outline-primary', 'Học lại từ đầu');
             again.type = 'button';
             again.addEventListener('click', function () { session.finished = false; reset(); showStages(); });
             actions.appendChild(again);
-            [['Làm bài kiểm tra', config.testUrl, 'btn-primary'], ['Xong', config.exitUrl, 'btn-outline-primary']].forEach(function (a) {
-                var link = el('a', 'btn ' + a[2], a[0]);
-                link.href = a[1];
-                actions.appendChild(link);
-            });
+            var testLink = el('a', 'btn btn-lg btn-primary', 'Làm bài kiểm tra');
+            testLink.href = config.testUrl;
+            actions.insertBefore(testLink, actions.firstChild);
             root.appendChild(actions);
+            var links = el('div', 'tp-summary__links');
+            var doneLink = el('a', 'tp-summary__link', 'Xong');
+            doneLink.href = config.exitUrl;
+            links.appendChild(doneLink);
+            root.appendChild(links);
             session.setSlot([]);
             session.render(root);
             title.focus();

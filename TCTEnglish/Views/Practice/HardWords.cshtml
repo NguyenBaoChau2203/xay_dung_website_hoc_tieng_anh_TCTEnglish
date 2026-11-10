@@ -29,7 +29,7 @@
     {
         <form method="get" action="@Url.Action("HardWords", "Practice")" class="tp-hard-filter">
             <label class="form-label" for="tpHardSet">Bộ từ</label>
-            <select id="tpHardSet" name="set" class="form-select">
+            <select id="tpHardSet" name="set" class="form-select k-pill-select">
                 <option value="">Tất cả bộ</option>
                 @foreach (var s in Model.Sets)
                 {
@@ -46,7 +46,7 @@
     }
     else
     {
-        <div class="tct-table-wrap tp-hard-table" tabindex="0" role="region" aria-label="Danh sách từ hay quên">
+        <div class="tct-table-wrap k-panel tp-hard-table" tabindex="0" role="region" aria-label="Danh sách từ hay quên">
             <table class="tct-table">
                 <caption class="visually-hidden">Từ hay quên, sắp theo số lần sai</caption>
                 <thead>
@@ -74,8 +74,8 @@
         </div>
 
         <div class="tp-hard-actions">
-            <a class="btn btn-primary" href="/Practice/learn?words=@Model.WordIdsCsv&amp;from=hard">Học các từ này</a>
-            <a class="btn btn-outline-primary" href="/Practice/test?words=@Model.WordIdsCsv&amp;from=hard">Kiểm tra các từ này</a>
+            <a class="btn btn-lg btn-primary" href="/Practice/learn?words=@Model.WordIdsCsv&amp;from=hard">Học các từ này</a>
+            <a class="btn btn-lg btn-outline-primary" href="/Practice/test?words=@Model.WordIdsCsv&amp;from=hard">Kiểm tra các từ này</a>
         </div>
     }
 </div>

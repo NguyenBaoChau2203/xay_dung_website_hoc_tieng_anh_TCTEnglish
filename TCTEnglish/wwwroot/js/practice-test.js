@@ -75,16 +75,22 @@
             var total = run.questions.length;
             var root = el('div', 'tp-test');
             var main = el('div', 'tp-test__main');
+            var currentIndex = -1;
             var jump = el('nav', 'tp-jump');
             jump.setAttribute('aria-label', 'Danh sách câu hỏi');
             var jumpGrid = el('div', 'tp-jump__grid');
             jump.appendChild(el('p', 'tp-jump__title', 'Câu hỏi'));
             jump.appendChild(jumpGrid);
             var counter = el('span', 'tp-test-bar__count');
+            var miniBar = el('span', 'k-progress k-progress--thin tp-test-bar__progress');
+            miniBar.setAttribute('aria-hidden', 'true');
+            var miniFill = el('span', 'k-progress__fill');
+            miniBar.appendChild(miniFill);
             var submit = el('button', 'btn btn-primary', 'Nộp bài');
             submit.type = 'button';
             var bar = el('div', 'tp-test-bar');
             bar.appendChild(counter);
+            bar.appendChild(miniBar);
             bar.appendChild(submit);
 
             var jumpButtons = [];
@@ -94,10 +100,20 @@
                 var done = answered(run);
                 counter.textContent = 'Đã làm ' + done + '/' + total;
                 session.setProgress(done, total);
+                miniFill.style.setProperty('--p', (total ? Math.round(100 * done / total) : 0) + '%');
                 run.questions.forEach(function (q, i) {
                     var has = run.answers[q.id] != null && String(run.answers[q.id]).trim() !== '';
                     jumpButtons[i].classList.toggle('is-answered', has);
                     jumpButtons[i].setAttribute('aria-label', 'Câu ' + (i + 1) + (has ? ', đã làm' : ', chưa làm'));
+                });
+            }
+
+            function setCurrent(index) {
+                if (index === currentIndex || index < 0 || !jumpButtons[index]) { return; }
+                currentIndex = index;
+                jumpButtons.forEach(function (b, n) {
+                    b.classList.toggle('is-current', n === index);
+                    if (n === index) { b.setAttribute('aria-current', 'true'); } else { b.removeAttribute('aria-current'); }
                 });
             }
 
@@ -109,7 +125,8 @@
             }
 
             run.questions.forEach(function (q, i) {
-                var section = el('section', 'tct-card tp-q');
+                var hue = q.kind === 'truefalse' ? 'info' : q.kind === 'typing' ? 'warning' : q.kind === 'cloze' ? 'danger' : 'primary';
+                var section = el('section', 'k-panel tp-q tp-hue-' + hue);
                 var headId = 'tpQ' + (i + 1) + 'Title';
                 section.setAttribute('aria-labelledby', headId);
                 section.id = 'tpQ' + (i + 1);
@@ -117,8 +134,13 @@
                 var title = el('h2', 'tp-q__title', 'Câu ' + (i + 1) + '/' + total);
                 title.id = headId;
                 title.tabIndex = -1;
-                head.appendChild(title);
-                head.appendChild(el('span', 'tct-badge tct-badge--primary', core.TEST_TYPE_LABEL[q.kind === 'truefalse' ? 'tf' : q.kind]));
+                var lead = el('div', 'tp-q__lead');
+                var num = el('span', 'tp-q__num', String(i + 1));
+                num.setAttribute('aria-hidden', 'true');
+                lead.appendChild(num);
+                lead.appendChild(title);
+                head.appendChild(lead);
+                head.appendChild(el('span', 'tct-badge tct-badge--' + hue, core.TEST_TYPE_LABEL[q.kind === 'truefalse' ? 'tf' : q.kind]));
                 section.appendChild(head);
                 buildBody(section, q, run, setAnswer);
                 main.appendChild(section);
@@ -127,6 +149,7 @@
                 var jb = el('button', 'tp-jump__btn', String(i + 1));
                 jb.type = 'button';
                 jb.addEventListener('click', function () {
+                    setCurrent(i);
                     section.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
                     title.focus({ preventScroll: true });
                 });
@@ -134,8 +157,15 @@
                 jumpGrid.appendChild(jb);
             });
 
-            root.appendChild(main);
             root.appendChild(jump);
+            root.appendChild(main);
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) { if (entry.isIntersecting) { setCurrent(sections.indexOf(entry.target)); } });
+                }, { rootMargin: '-25% 0px -65% 0px' });
+                sections.forEach(function (s) { observer.observe(s); });
+            }
+            setCurrent(0);
             var wrapper = el('div', 'tp-test-wrap');
             wrapper.appendChild(root);
             wrapper.appendChild(bar);
@@ -145,7 +175,8 @@
                 if (left > 0) { confirmSubmit(left, function () { finish(run); }); } else { finish(run); }
             });
 
-            session.setSlot([]);
+            ui.barTitle('Kiểm tra');
+            session.setSlot([el('span', 'tp-bar__meta', config.scopeName + ' · ' + total + ' câu')]);
             session.render(wrapper);
             refresh();
         }
@@ -200,6 +231,7 @@
                     var b = el('button', 'tp-option tp-tf-btn');
                     b.type = 'button';
                     b.dataset.optionId = pair[0];
+                    b.appendChild(icon(pair[0] === 'true' ? 'fa-solid fa-check tp-tf-icon tp-tf-icon--ok' : 'fa-solid fa-xmark tp-tf-icon tp-tf-icon--bad'));
                     b.appendChild(el('span', 'tp-option__label', pair[1]));
                     b.addEventListener('click', function () {
                         var next = run.answers[q.id] === pair[0] ? null : pair[0];
@@ -215,7 +247,7 @@
                 section.appendChild(el('p', 'tp-prompt', 'Gõ từ tiếng Anh có nghĩa này'));
                 section.appendChild(ui.meaningLine(q.word));
                 var id = 'tpAns' + q.id.replace(/\W/g, '');
-                var label = el('label', 'visually-hidden', 'Gõ từ tiếng Anh');
+                var label = el('label', 'k-label tp-field-label', 'Gõ từ tiếng Anh');
                 label.htmlFor = id;
                 var input = el('input', 'form-control tp-typing__input');
                 input.id = id;
@@ -296,12 +328,7 @@
             root.setAttribute('aria-label', 'Kết quả bài kiểm tra');
 
             var head = el('div', 'tp-summary__head');
-            var ring = el('div', 'tp-ring');
-            ring.style.setProperty('--p', String(graded.percent));
-            ring.setAttribute('role', 'img');
-            ring.setAttribute('aria-label', graded.percent + '%');
-            ring.appendChild(el('span', 'tp-ring__value', graded.percent + '%'));
-            head.appendChild(ring);
+            head.appendChild(ui.ring(graded.percent));
             var title = el('h2', 'tp-summary__title', 'Đúng ' + graded.correct + '/' + graded.total);
             title.tabIndex = -1;
             head.appendChild(title);
@@ -314,9 +341,11 @@
                 if (item.result === 'wrong' && !seen[item.question.word.id]) { seen[item.question.word.id] = true; missedWords.push(item.question.word); }
             });
 
-            var filter = el('button', 'btn btn-sm btn-outline-primary tp-filter', 'Chỉ câu sai');
+            var filter = el('button', 'tp-filter k-seg');
             filter.type = 'button';
             filter.setAttribute('aria-pressed', 'false');
+            var filterItem = el('span', 'k-seg__item', 'Chỉ câu sai');
+            filter.appendChild(filterItem);
             var toolbar = el('div', 'tp-result__toolbar');
             toolbar.appendChild(el('h3', 'tp-missed__title', 'Chi tiết từng câu'));
             toolbar.appendChild(filter);
@@ -329,7 +358,7 @@
                 var q = item.question;
                 var label = (i + 1) + '. ' + questionTitle(q);
                 if (item.result === 'correct') {
-                    var d = el('details', 'tct-card tp-result__card tp-result__card--ok');
+                    var d = el('details', 'k-panel tp-result__card tp-result__card--ok');
                     var sum = el('summary', 'tp-result__summary');
                     sum.appendChild(icon('fa-solid fa-circle-check me-2'));
                     sum.appendChild(document.createTextNode(label));
@@ -337,7 +366,7 @@
                     d.appendChild(el('p', 'tp-result__line', 'Đáp án: ' + core.expectedText(q)));
                     li.appendChild(d);
                 } else {
-                    var card = el('div', 'tct-card tp-result__card tp-result__card--' + (item.result === 'close' ? 'close' : 'bad'));
+                    var card = el('div', 'k-panel tp-result__card tp-result__card--' + (item.result === 'close' ? 'close' : 'bad'));
                     var heading = el('p', 'tp-result__q');
                     heading.appendChild(icon(item.result === 'close' ? 'fa-solid fa-circle-check me-2' : 'fa-solid fa-circle-xmark me-2'));
                     heading.appendChild(document.createTextNode(label));
@@ -358,12 +387,13 @@
             filter.addEventListener('click', function () {
                 var on = filter.getAttribute('aria-pressed') !== 'true';
                 filter.setAttribute('aria-pressed', String(on));
+                filterItem.classList.toggle('is-active', on);
                 Array.prototype.forEach.call(list.children, function (li) { li.hidden = on && li.dataset.result === 'correct'; });
             });
 
             var actions = el('div', 'tp-summary__actions');
             if (missedWords.length) {
-                var retry = el('button', 'btn btn-primary', 'Làm lại câu sai');
+                var retry = el('button', 'btn btn-lg btn-primary', 'Làm lại câu sai');
                 retry.type = 'button';
                 retry.addEventListener('click', function () {
                     var retrySeed = randomSeed();
@@ -374,16 +404,23 @@
                     window.scrollTo(0, 0);
                 });
                 actions.appendChild(retry);
-                var learn = el('a', 'btn btn-outline-primary', 'Học các từ sai');
+                var learn = el('a', 'btn btn-lg btn-outline-primary', 'Học các từ sai');
                 learn.href = ui.learnLink(config, missedWords.slice(0, 50).map(function (w) { return w.id; }));
                 actions.appendChild(learn);
+            } else {
+                var fresh = el('a', 'btn btn-lg btn-primary', 'Làm bài mới');
+                fresh.href = config.againUrl;
+                actions.appendChild(fresh);
             }
-            [['Làm bài mới', config.againUrl, missedWords.length ? 'btn-outline-primary' : 'btn-primary'], ['Xong', config.exitUrl, 'btn-outline-primary']].forEach(function (a) {
-                var link = el('a', 'btn ' + a[2], a[0]);
-                link.href = a[1];
-                actions.appendChild(link);
-            });
             root.appendChild(actions);
+            var links = el('div', 'tp-summary__links');
+            [missedWords.length ? ['Làm bài mới', config.againUrl] : null, ['Xong', config.exitUrl]].forEach(function (pair) {
+                if (!pair) { return; }
+                var link = el('a', 'tp-summary__link', pair[0]);
+                link.href = pair[1];
+                links.appendChild(link);
+            });
+            root.appendChild(links);
 
             session.setCounter('');
             session.setProgress(graded.total, graded.total);

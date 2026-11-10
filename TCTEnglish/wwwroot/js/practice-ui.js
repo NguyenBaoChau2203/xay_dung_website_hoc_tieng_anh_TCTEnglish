@@ -137,6 +137,24 @@
     };
 
     /** Key hints as chips: each item is "<key> <label>" (the first word is the key). */
+    /** Title shown in the top bar right after the exit button (match and test). */
+    ui.barTitle = function (text) {
+        var bar = document.querySelector('.tp-bar');
+        if (!bar) { return; }
+        var node = bar.querySelector('.tp-bar__title');
+        if (!node) {
+            node = el('span', 'tp-bar__title');
+            bar.insertBefore(node, bar.children[1] || null);
+        }
+        node.textContent = text;
+    };
+
+    /** Puts a node in the top bar right after the exit button (learn uses it for the split progress bar). */
+    ui.barInsert = function (node) {
+        var bar = document.querySelector('.tp-bar');
+        if (bar && !node.parentNode) { bar.insertBefore(node, bar.children[1] || null); }
+    };
+
     ui.keyHints = function (items) {
         var row = el('p', 'tp-keyhint');
         items.forEach(function (item) {
