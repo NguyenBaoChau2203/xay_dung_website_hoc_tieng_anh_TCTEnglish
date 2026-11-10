@@ -857,8 +857,11 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - U0 before-screenshots: `.tmp/ui-refresh/U0/<page>-<1440|390>.png` for 19 pages (zero console errors, zero failed requests; one h1 per page).
 - `color-mix` uses (each has a plain-token fallback declared first; all in `study-kit.css`): danger edge `--k-edge` (danger 70% + text); accent tint `--k-bg` (accent 30% + surface); `.k-btn--success|danger|warning` edges (65% + text); `.k-progress__fill` inset shadow (text 12% + transparent); `.btn .k-kbd` chip (surface 22% + transparent). Later phases add to this list.
 - Mockup vs rule differences, per page:
+  - `/Sets` (mockup 01): relation tabs show no counts (see data list); tiles have no CEFR tag and no "Mới" status (the model has neither); the quick "Ôn" button straddles the cover edge (top-right of the body) so it never covers the status badge, instead of sitting bottom-right; the accent hue is the 30% accent tint from plan 3.1 (mockup shows a similar light yellow).
 - Data not available (elements left out):
+  - `/Sets`: tab counts (`SetIndexViewModel` returns only the lists of the active filter, so counts for the other tabs do not exist); tile CEFR tag; "Mới" badge.
 - Contrast results:
+  - `/Sets` (measured in the browser, U2): tile term 15.02 (accent tint) / token pairs in U1; tile name 17.10; meta 5.87; "cần ôn" badge 5.91; group count 5.61; tab text 17.10 (selected); add-tile title 8.90, note 5.61; quick button 5.28; visibility icon 9.31.
 - Browser coverage / not verified:
 - Final counts:
 
@@ -891,3 +894,20 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - G12 contrast (computed from token values; page pairs are re-measured in each page phase): white on success-text 5.48, danger 6.46, warning-text 7.09, info-text 5.36, primary 5.28; fg on bg per hue: primary 6.84, success 5.21, warning 6.84, danger 5.91, info 5.15, accent tint 15.02; text-secondary on seg track 8.16; text on seg track 14.99; text-secondary on every soft tint ≥ 8.3; kbd 8.16; control boundary `--tct-border-control` on white 3.66; switch knob 3.66; star outline `--tct-warning-text` on canvas 6.62 (the accent fill alone is 1.40, so the outline is required).
 - G13 regression: `/Home/Index`, `/Home/Study/5`, `/Home/QuizMode/5` render without console or network errors; the kit is linked only from Set/Practice views (grep). Not verified: a Vocabulary page (the route tried returned 404, so it was not compared).
 - Fix attempts / deferred / blocked: form-switch label gap fixed after the first render (1 attempt). Environment note: the running app must be stopped (through its background task) before a rebuild, because Razor views compile into the DLL.
+
+### U2 — `/Sets`
+- Commit: see `git log` ("feat(sets): restyle the personal sets list")
+- G1 build: pass, 0 errors; no new warnings (the same 44 as U1; none in `Index.cshtml` / `_SetTile.cshtml`)
+- G2 area tests: passed 106 / failed 0 / skipped 0 (U0: 106)
+- G3 full tests: passed 1287 / failed 0 / skipped 22 (U0: 1287 / 22)
+- G4 node: passed 115 / failed 0
+- G5 hooks: nothing removed or renamed (one prefix literal `ts-hue-` appears in the Detail work that is in the same working tree, not in this commit)
+- G6 tokens/diff-check: clean
+- G7 scope: `Views/Set/Index.cshtml`, `Views/Set/_SetTile.cshtml`, `wwwroot/css/personal-sets.css`, this plan
+- G8 render: `/Sets` at 1440/1024/768/390/320 in `.tmp/ui-refresh/U2/` (plus the empty state, Admin account); 0 console errors, 0 failed requests, no horizontal overflow
+- G9 mockup: compared 1440 and 390 with mockup 01 — differences listed above; tabs, section headings, tile cover/body/progress, add tile and header buttons match
+- G10 behaviour: tabs navigate to `?filter=own|subscribed|shared` with `aria-current` on the active one; tile link opens `/Sets/5`; the quick "Ôn" button shows on hover and points at `/Home/Study/5?mode=due`; the add tile and the header "Tạo bộ thẻ" both go to `/Home/CreateSet`; "Luyện tập" goes to `/Practice`; the empty state (Admin has no sets) shows the message and both buttons
+- G11 a11y: one `<h1>`; the add tile is `aria-hidden` + `tabindex=-1` because the header action does the same job; tab focus ring on the segmented tabs is a 2px solid ring; tile hover lift is removed under reduced motion
+- G12 contrast: see "Contrast results" above
+- G13 regression: Home/Study/QuizMode unchanged (they do not load the kit); the `/Practice` hub still renders
+- Fix attempts / deferred / blocked: none

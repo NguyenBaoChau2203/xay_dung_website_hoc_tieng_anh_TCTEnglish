@@ -35,11 +35,11 @@
 <div class="tct-theme tct-page ts-page ts-page--list">
     <partial name="_PageHeader" model="header" />
 
-    <nav class="ts-chips" aria-label="Lọc bộ thẻ">
+    <nav class="ts-chips k-seg" aria-label="Lọc bộ thẻ">
         @foreach (var (key, label) in chips)
         {
             var active = (Model.Filter ?? string.Empty) == (key ?? string.Empty);
-            <a class="ts-chip@(active ? " ts-chip--active" : "")" aria-current="@(active ? "page" : null)"
+            <a class="k-seg__item" aria-current="@(active ? "page" : null)"
                href="@Url.Action("Index", "Set", new { filter = key })">@label</a>
         }
     </nav>
@@ -71,11 +71,21 @@
             }
 
             <section class="ts-group" aria-labelledby="ts-group-@id">
-                <h2 class="ts-group-title" id="ts-group-@id">@title <span class="tct-text-muted ts-group-count">@items.Count</span></h2>
+                <h2 class="ts-group-title" id="ts-group-@id">@title <span class="ts-group-count">@items.Count</span></h2>
                 <ul class="ts-grid">
                     @foreach (var tile in items)
                     {
                         <li><partial name="_SetTile" model="tile" /></li>
+                    }
+                    @if (id == "own")
+                    {
+                        <li>
+                            <a class="ts-tile-add" href="@createUrl" aria-hidden="true" tabindex="-1">
+                                <span class="ts-tile-add-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                                <span class="ts-tile-add-title">Tạo bộ thẻ mới</span>
+                                <span class="ts-tile-add-note">hoặc nhập từ file CSV</span>
+                            </a>
+                        </li>
                     }
                 </ul>
             </section>

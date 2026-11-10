@@ -7,7 +7,7 @@
             : ("fa-solid fa-globe", "Công khai");
     var studied = Model.WordCount - Model.NewCount;
 }
-<article class="tct-card tct-card--interactive ts-tile">
+<article class="tct-card tct-card--interactive k-card ts-tile">
     <a class="ts-tile-link" href="@Url.Action("Detail", "Set", new { id = Model.SetId })">
         <span class="visually-hidden">Mở bộ thẻ @Model.SetName</span>
     </a>
@@ -39,7 +39,7 @@
                 <span class="tct-badge tct-badge--success"><i class="fa-solid fa-check" aria-hidden="true"></i>Đã ôn xong</span>
             }
         </p>
-        <div class="ts-progress" aria-hidden="true"><span class="ts-progress-fill" style="--p:@(Model.ProgressPercent)%"></span></div>
+        <div class="ts-progress k-progress k-progress--thin" aria-hidden="true"><span class="ts-progress-fill k-progress__fill" style="--p:@(Model.ProgressPercent)%"></span></div>
         <span class="visually-hidden">@Model.ProgressPercent% đã học (@studied/@Model.WordCount từ)</span>
     </div>
     @if (Model.DueCount > 0)
