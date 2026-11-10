@@ -143,7 +143,7 @@ function buildChatDom() {
   enhanceElement(shell);
   shell.setAttribute('data-ai-chat-shell', 'true');
   shell.dataset.userInitial = 'T';
-  shell.dataset.aiAvatar = '/images/ai/tct-ai-launcher.png';
+  shell.dataset.aiAvatar = '/images/ai/tct-ai-mark.svg';
 
   const quickActions = createElement('div', 'quickActions');
   enhanceElement(quickActions);

@@ -14,7 +14,7 @@
     // not add quota queries or display a guessed 0/15 before that fetch completes.
 }
 
-<div class="ai-launcher" data-ai-launcher data-ai-usage-url="@(isAuthenticated ? usageUrl : string.Empty)">
+<div class="tct-theme ai-launcher" data-ai-launcher data-ai-usage-url="@(isAuthenticated ? usageUrl : string.Empty)">
     @if (isAuthenticated)
     {
         <div class="ai-launcher-backdrop" data-ai-backdrop></div>
@@ -31,6 +31,7 @@
             <div class="ai-launcher-panel-header">
                 <div class="ai-launcher-panel-copy">
                     <div class="ai-launcher-panel-kicker d-flex align-items-center gap-2 mb-1">
+                        <img src="~/images/ai/tct-ai-mark.svg" asp-append-version="true" alt="" class="ai-launcher-header-mark" width="22" height="22" />
                         <span>TCT AI</span>
                         @if (isAdminPlan)
                         {
@@ -99,7 +100,7 @@
                 aria-expanded="false"
                 aria-label="Mở trợ lý AI">
             <span class="ai-launcher-icon-shell">
-                <img src="~/images/ai/tct-ai-launcher.png"
+                <img src="~/images/ai/tct-ai-mark.svg"
                      asp-append-version="true"
                      alt="TCT AI"
                      class="ai-launcher-icon" />
@@ -114,7 +115,7 @@
            aria-label="Đăng nhập để chat cùng AI"
            title="Đăng nhập để chat cùng AI">
             <span class="ai-launcher-icon-shell">
-                <img src="~/images/ai/tct-ai-launcher.png"
+                <img src="~/images/ai/tct-ai-mark.svg"
                      asp-append-version="true"
                      alt="TCT AI"
                      class="ai-launcher-icon" />

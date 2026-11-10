@@ -5,13 +5,13 @@
     var chatPageUrl = Url.Action("Chat", "Ai") ?? "/AI/Chat";
 }
 
-<div class="ai-chat-page">
+<div class="tct-theme ai-chat-page">
     <div class="ai-chat-layout" data-ai-chat-layout>
         <aside class="ai-chat-history"
                aria-label="Lịch sử hội thoại"
                data-ai-history-root
                data-ai-chat-base-url="@chatPageUrl">
-            <details class="ai-chat-history-disclosure" id="aiHistoryDisclosure">
+            <details class="ai-chat-history-disclosure" id="aiHistoryDisclosure" open>
                 <summary class="ai-chat-history-header">
                     <span class="ai-chat-history-title">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" aria-hidden="true">
@@ -88,7 +88,7 @@
 
 <div class="modal fade" id="deleteConversationModal" tabindex="-1" aria-labelledby="deleteConversationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content tct-theme">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteConversationModalLabel">Xóa đoạn chat</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
@@ -125,6 +125,8 @@
     <script src="~/lib/pinned/purify-3.4.17.min.js" asp-append-version="true"></script>
     <script src="~/js/ai-chat.js" asp-append-version="true"></script>
     <script>
+        document.querySelector('.main')?.classList.add('ai-chat-main-active');
+        document.body.classList.add('ai-chat-body-active');
         window.tctAiChat?.init({
             sendUrl: '@Url.Action("Send", "Ai")',
             observabilityUrl: '@Url.Action("Observability", "Ai")',

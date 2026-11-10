@@ -253,7 +253,7 @@ public sealed class AiPhase4HardeningIntegrationTests
         Assert.Contains("id=\"scrollToBottomBtn\"", html);
         Assert.Contains("data-user-avatar=\"\"", html);
         Assert.Contains("data-user-initial=\"U\"", html);
-        Assert.Contains("data-ai-avatar=\"/images/ai/tct-ai-launcher.png\"", html);
+        Assert.Contains("data-ai-avatar=\"/images/ai/tct-ai-mark.svg\"", html);
     }
 
     [Fact]
@@ -396,7 +396,7 @@ public sealed class AiPhase4HardeningIntegrationTests
         Assert.Contains("id=\"typing\" class=\"ai-chat-message ai-chat-message-assistant d-none\"", html);
         Assert.Contains("ai-chat-typing-bubble", html);
         Assert.Contains("data-user-initial=\"U\"", html);
-        Assert.Contains("data-ai-avatar=\"/images/ai/tct-ai-launcher.png\"", html);
+        Assert.Contains("data-ai-avatar=\"/images/ai/tct-ai-mark.svg\"", html);
         Assert.Contains("data-ai-quick-actions", html);
         Assert.Contains("data-ai-quick-action", html);
         Assert.Contains("aria-label=\"Gợi ý câu hỏi nhanh\"", html);
