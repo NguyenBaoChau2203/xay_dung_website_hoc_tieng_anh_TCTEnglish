@@ -17,6 +17,10 @@
         ? (Model.HasShareLink ? "Chia sẻ bằng link" : "Riêng tư")
         : "Công khai";
 
+    var visibilityIcon = Model.Visibility == "Private"
+        ? (Model.HasShareLink ? "fa-solid fa-link" : "fa-solid fa-lock")
+        : "fa-solid fa-globe";
+
     var config = new
     {
         setId = Model.SetId,
@@ -71,7 +75,7 @@
                 }
                 @if (Model.IsOwner)
                 {
-                    <span class="ts-dot" aria-hidden="true"></span><span>@visibilityText</span>
+                    <span class="ts-dot" aria-hidden="true"></span><span><i class="@visibilityIcon me-1" aria-hidden="true"></i>@visibilityText</span>
                 }
                 @if (Model.DueCount > 0)
                 {
@@ -83,19 +87,19 @@
                 {
                     if (Model.WordCount > 0)
                     {
-                        <a class="btn btn-primary" href="@studyDue"><i class="fa-solid fa-play me-1" aria-hidden="true"></i>Ôn bộ này (@Model.DueCount)</a>
+                        <a class="btn btn-primary btn-lg" href="@studyDue"><i class="fa-solid fa-play me-1" aria-hidden="true"></i>Ôn bộ này (@Model.DueCount)</a>
                     }
                 }
                 else
                 {
                     <form method="post" asp-controller="Set" asp-action="Subscribe">
                         <input type="hidden" name="setId" value="@Model.SetId" />
-                        <button type="submit" class="btn btn-primary" data-ts-pending="Đang lưu…"><i class="fa-regular fa-bookmark me-1" aria-hidden="true"></i>Theo học</button>
+                        <button type="submit" class="btn btn-primary btn-lg" data-ts-pending="Đang lưu…"><i class="fa-regular fa-bookmark me-1" aria-hidden="true"></i>Theo học</button>
                     </form>
                 }
                 @if (Model.CanEdit)
                 {
-                    <a class="btn btn-outline-primary" href="@Url.Action("AddCards", "Set", new { id = Model.SetId })"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm từ</a>
+                    <a class="btn btn-outline-primary btn-lg" href="@Url.Action("AddCards", "Set", new { id = Model.SetId })"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm từ</a>
                 }
                 <partial name="_SetActionsMenu" model="Model" />
             </div>
@@ -110,8 +114,8 @@
             <nav class="ts-study-strip" aria-label="Chế độ học">
                 @foreach (var mode in studyModes)
                 {
-                    <a class="tct-card tct-card--interactive ts-study-tile" href="@mode.Href" data-ts-mode="@mode.Key">
-                        <span class="ts-study-icon ts-hue-@mode.Hue" aria-hidden="true"><i class="@mode.Icon"></i></span>
+                    <a class="tct-card tct-card--interactive k-card ts-study-tile ts-hue-@mode.Hue" href="@mode.Href" data-ts-mode="@mode.Key">
+                        <span class="k-art-box k-art-box--detail"><partial name="~/Views/Practice/_ModeArt.cshtml" model="mode.Key" /></span>
                         <span class="ts-study-text">
                             <span class="ts-study-name">@mode.Title</span>
                             <span class="ts-study-note" data-ts-note>@mode.Note</span>
@@ -119,7 +123,7 @@
                     </a>
                 }
             </nav>
-            <p class="ts-study-more mt-2 mb-0"><a href="/Practice?set=@Model.SetId">Luyện riêng từng kỹ năng <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></a></p>
+            <p class="ts-study-more"><a href="/Practice?set=@Model.SetId">Luyện riêng từng kỹ năng: Trắc nghiệm, Gõ từ, Nghe, Điền từ <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></a></p>
         </section>
     }
 
@@ -135,7 +139,7 @@
             <div class="tct-toolbar__filters">
                 <div>
                     <label class="visually-hidden" for="ts-sort">Sắp xếp</label>
-                    <select id="ts-sort" class="form-select" data-ts-filter="sort">
+                    <select id="ts-sort" class="form-select k-pill-select" data-ts-filter="sort">
                         <option value="newest">Mới thêm</option>
                         <option value="az">A–Z</option>
                         <option value="hard">Hay quên nhất</option>
@@ -143,7 +147,7 @@
                 </div>
                 <div>
                     <label class="visually-hidden" for="ts-status">Trạng thái</label>
-                    <select id="ts-status" class="form-select" data-ts-filter="status">
+                    <select id="ts-status" class="form-select k-pill-select" data-ts-filter="status">
                         <option value="">Mọi trạng thái</option>
                         <option value="new">Mới</option>
                         <option value="learning">Đang học</option>
@@ -154,7 +158,7 @@
                 </div>
                 <div>
                     <label class="visually-hidden" for="ts-topic">Chủ đề</label>
-                    <select id="ts-topic" class="form-select" data-ts-filter="topic">
+                    <select id="ts-topic" class="form-select k-pill-select" data-ts-filter="topic">
                         <option value="">Mọi chủ đề</option>
                         @foreach (var topic in Model.Topics)
                         {
@@ -164,7 +168,7 @@
                 </div>
                 <div>
                     <label class="visually-hidden" for="ts-pos">Loại từ</label>
-                    <select id="ts-pos" class="form-select" data-ts-filter="pos">
+                    <select id="ts-pos" class="form-select k-pill-select" data-ts-filter="pos">
                         <option value="">Mọi loại từ</option>
                         @foreach (var (code, label) in CardPartsOfSpeech.All)
                         {
@@ -174,7 +178,7 @@
                 </div>
                 <div>
                     <label class="visually-hidden" for="ts-level">CEFR</label>
-                    <select id="ts-level" class="form-select" data-ts-filter="level">
+                    <select id="ts-level" class="form-select k-pill-select" data-ts-filter="level">
                         <option value="">Mọi CEFR</option>
                         @foreach (var level in CefrLevels.All)
                         {
@@ -184,23 +188,22 @@
                 </div>
             </div>
             <div class="tct-toolbar__actions">
+                <p class="ts-result-count tct-text-muted" id="ts-count" aria-live="polite">Đang tải…</p>
                 @if (Model.CanEdit)
                 {
                     <button type="button" class="btn btn-outline-primary" id="ts-select-toggle" aria-pressed="false" hidden>
                         <i class="fa-regular fa-square-check me-1" aria-hidden="true"></i><span data-ts-select-label>Chọn</span>
                     </button>
                 }
-                <div class="btn-group" role="group" aria-label="Kiểu hiển thị">
-                    <button type="button" class="btn btn-outline-primary tct-btn-icon" data-ts-view="list" aria-pressed="true" aria-label="Dạng danh sách"><i class="fa-solid fa-list" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-outline-primary tct-btn-icon" data-ts-view="grid" aria-pressed="false" aria-label="Dạng lưới có ảnh"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></button>
+                <div class="k-seg ts-view-toggle" role="group" aria-label="Kiểu hiển thị">
+                    <button type="button" class="k-seg__item" data-ts-view="list" aria-pressed="true" aria-label="Dạng danh sách"><i class="fa-solid fa-list" aria-hidden="true"></i></button>
+                    <button type="button" class="k-seg__item" data-ts-view="grid" aria-pressed="false" aria-label="Dạng lưới có ảnh"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
 
-        <p class="ts-result-count tct-text-muted" id="ts-count" aria-live="polite">Đang tải…</p>
-
         <div id="ts-list-region">
-            <div class="tct-table-wrap ts-list-view" id="ts-list-view" tabindex="0" aria-label="Bảng danh sách từ">
+            <div class="tct-table-wrap k-panel ts-list-view" id="ts-list-view" tabindex="0" aria-label="Bảng danh sách từ">
                 <table class="tct-table ts-word-table">
                     <thead>
                         <tr>
@@ -237,7 +240,7 @@
     {
         <a class="btn btn-primary tct-btn-icon ts-fab" href="@Url.Action("AddCards", "Set", new { id = Model.SetId })" aria-label="Thêm từ"><i class="fa-solid fa-plus" aria-hidden="true"></i></a>
 
-        <div class="ts-bulk-bar tct-on-dark" id="ts-bulk" role="toolbar" aria-label="Thao tác với từ đã chọn" hidden>
+        <div class="ts-bulk-bar k-panel" id="ts-bulk" role="toolbar" aria-label="Thao tác với từ đã chọn" hidden>
             <span class="ts-bulk-count" id="ts-bulk-count" aria-live="polite">Đã chọn 0</span>
             <label class="visually-hidden" for="ts-bulk-move">Chuyển sang bộ khác</label>
             <select class="form-select form-select-sm" id="ts-bulk-move">
@@ -256,9 +259,9 @@
                     <option value="@topic">@topic</option>
                 }
             </select>
-            <button type="button" class="btn btn-sm btn-outline-light" id="ts-bulk-suspend">Tạm ẩn</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="ts-bulk-suspend">Tạm ẩn</button>
             <button type="button" class="btn btn-sm btn-danger" id="ts-bulk-delete">Xóa</button>
-            <button type="button" class="btn btn-sm btn-outline-light tct-btn-icon" id="ts-bulk-clear" aria-label="Bỏ chọn"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-sm btn-outline-primary tct-btn-icon" id="ts-bulk-clear" aria-label="Bỏ chọn"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         </div>
 
         <div class="modal fade" id="tsBulkDeleteModal" tabindex="-1" aria-labelledby="tsBulkDeleteTitle" aria-hidden="true">

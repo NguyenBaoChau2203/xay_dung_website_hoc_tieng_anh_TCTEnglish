@@ -142,7 +142,7 @@
 :is(.ts-page, .tp-page) .btn-outline-primary.btn-sm,
 :is(.ts-page, .tp-page) .btn-outline-danger.btn-sm { box-shadow: 0 2px 0 var(--k-btn-edge); }
 
-:is(.ts-page, .tp-page) .btn-lg {
+:is(.ts-page, .tp-page) .btn.btn-lg {
     min-height: 56px;
     font-size: var(--tct-text-lg);
     border-radius: var(--tct-radius-lg);

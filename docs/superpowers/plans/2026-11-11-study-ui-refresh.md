@@ -855,12 +855,15 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - Environment: Docker Desktop was stopped at U0; started with `docker desktop start`. App served from `scripts/start-local.ps1 -NoBrowser -Configuration Release -WebPort 5100`. Dev data: user Premium has 3 sets (Practice deck 14 words, two Smoke decks 60 words); set id 5, card id 141 used for screenshots. Screenshots are driven by a small headless-Chrome DevTools script kept outside the repo (no browser MCP in this environment).
 - Routes used: `/Sets`, `/Sets/{id}`, `/Sets/Cards/{id}`, `/Sets/{id}/Add|Import|Settings`, `/Sets/Cards/{id}/Edit`, create form at `/Home/CreateSet` (`/Sets/Create` is POST only), `/Practice`, `/Practice/HardWords`, `/Practice/{mode}?set={id}`.
 - U0 before-screenshots: `.tmp/ui-refresh/U0/<page>-<1440|390>.png` for 19 pages (zero console errors, zero failed requests; one h1 per page).
-- `color-mix` uses (each has a plain-token fallback declared first; all in `study-kit.css`): danger edge `--k-edge` (danger 70% + text); accent tint `--k-bg` (accent 30% + surface); `.k-btn--success|danger|warning` edges (65% + text); `.k-progress__fill` inset shadow (text 12% + transparent); `.btn .k-kbd` chip (surface 22% + transparent). Later phases add to this list.
+- `color-mix` uses (each has a plain-token fallback declared first; all in `study-kit.css`): danger edge `--k-edge` (danger 70% + text); accent tint `--k-bg` (accent 30% + surface); `.k-btn--success|danger|warning` edges (65% + text); `.k-progress__fill` inset shadow (text 12% + transparent); `.btn .k-kbd` chip (surface 22% + transparent); `.ts-hero-art` panel in `personal-sets.css` (surface 75% + transparent). Later phases add to this list.
 - Mockup vs rule differences, per page:
   - `/Sets` (mockup 01): relation tabs show no counts (see data list); tiles have no CEFR tag and no "Mới" status (the model has neither); the quick "Ôn" button straddles the cover edge (top-right of the body) so it never covers the status badge, instead of sitting bottom-right; the accent hue is the 30% accent tint from plan 3.1 (mockup shows a similar light yellow).
+  - `/Sets/{id}` (mockups 02, 11): the "‹ Bộ thẻ" back link is the breadcrumb (rule); on phones all filter selects wrap under the search instead of hiding behind a "more" control (there is none; plan 4.2 says not to hide controls without an alternative); at ≤575px IPA, CEFR and the speak button are hidden in the word list as the plan says (they remain on the card page); the study tile "Học" shows the suggestion badge only when no review is due (existing JS rule), so mockup 02's badge appears on sets without due words; the word-row CEFR column shows a tag only when a card has a level (dev data has none, so the tag is covered by code review, not observed).
+  - `set-detail.js` edits beyond the plan's 5.2 row (DOM class/attribute only, no logic): `lang="en"` on term links, CEFR text wrapped in `.k-cefr`, a `ts-hue-*` class on grid cards from the status key. The suggestion badge keeps its insertion point (first child of `.ts-study-text`, which is already after the art box) and gains the wand icon.
 - Data not available (elements left out):
   - `/Sets`: tab counts (`SetIndexViewModel` returns only the lists of the active filter, so counts for the other tabs do not exist); tile CEFR tag; "Mới" badge.
 - Contrast results:
+  - `/Sets/{id}` (browser, U3): suggestion badge 6.84; study note 5.48 (success text on white); study name 17.10; "Luyện riêng" link 7.31; hero meta 8.17–8.95; due count 6.23 (warning-text on the accent tint); title 16.44; breadcrumb link 6.72–7.35, breadcrumb current 5.16; hero term (40px bold) 5.30; result count 5.61; table header 5.61; term 17.10; meaning 17.10; status badge 8.90; speak icon 6.84.
   - `/Sets` (measured in the browser, U2): tile term 15.02 (accent tint) / token pairs in U1; tile name 17.10; meta 5.87; "cần ôn" badge 5.91; group count 5.61; tab text 17.10 (selected); add-tile title 8.90, note 5.61; quick button 5.28; visibility icon 9.31.
 - Browser coverage / not verified:
 - Final counts:
@@ -911,3 +914,20 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - G12 contrast: see "Contrast results" above
 - G13 regression: Home/Study/QuizMode unchanged (they do not load the kit); the `/Practice` hub still renders
 - Fix attempts / deferred / blocked: none
+
+### U3 — `/Sets/{id}`
+- Commit: see `git log` ("feat(sets): restyle the set detail page")
+- G1 build: pass, 0 errors; no new warnings (the same 44; none in the changed views)
+- G2 area tests: passed 106 / failed 0 / skipped 0 (U0: 106)
+- G3 full tests: passed 1287 / failed 0 / skipped 22 (U0: 1287 / 22)
+- G4 node: passed 115 / failed 0
+- G5 hooks: nothing removed or renamed (one prefix literal `ts-hue-` added by the JS)
+- G6 tokens/diff-check: clean
+- G7 scope: `Views/Set/Detail.cshtml`, `wwwroot/js/set-detail.js`, `wwwroot/css/personal-sets.css`, `wwwroot/css/study-kit.css` (the `.btn.btn-lg` specificity fix found here), this plan
+- G8 render: `/Sets/5` at 1440/1024/768/390/320 in `.tmp/ui-refresh/U3/`; also grid view, bulk bar and share modal at 1440 and a 720px render (= 200% zoom of 1440); 0 console errors, 0 failed requests, no horizontal overflow
+- G9 mockup: compared 1440 and 390 with mockups 02 and 11; differences recorded above
+- G10 behaviour (mouse + scripted keyboard, all pass): 14 rows load with count "14 từ"; search "lib" gives 1 result and marks the search active; status filter "Đã thuộc" gives 11 rows and marks the select active; sort A–Z; list/grid toggle (14 cards, `aria-pressed` follows, cards carry a status hue); selection mode shows checkboxes; bulk bar shows "Đã chọn 1"; bulk delete modal opens and cancels; speak buttons are 36px; actions menu lists import, practice, share, export, settings; share modal opens and closes; study tile URLs equal U0 (`/Practice/{learn|test|match|flashcard}?set=5&…&from=set`); the suggestion badge appears on "Học" for sets without due words (sets 3 and 4), sits between the art box and the name, and has the icon; hero buttons are 56px high. Not exercised: infinite scroll (the 14-word dev set fits one page), bulk suspend/move/topic/delete confirm (cancel path only, to keep dev data untouched), share copy/regenerate, "Theo học" for a non-owner, "Thêm từ" click-through, the CEFR tag (no card has a level)
+- G11 a11y: one `<h1>`; every icon-only button has a name (0 without); live regions kept (`ts-count`, `ts-bulk-count`, toast host); tab order hero → study tiles → search, 2px focus ring on each; reduced-motion emulation: tile hover transform is `none` and transitions are 0.01ms
+- G12 contrast: see "Contrast results" (all ≥ 4.5, large hero term 5.30)
+- G13 regression: Home, Study and QuizMode render with no console or network errors; they do not load the kit
+- Fix attempts / deferred / blocked: 3 fixes in one pass, none repeated: (1) mobile column rules lost to `td { display: block }` — selectors raised to `td.ts-col-*`; (2) hero column flex-basis left a gap on phones; (3) `.btn-lg` min-height lost to the kit's `.btn:not(.btn-sm)` rule (hero buttons were 45px, now 56px)

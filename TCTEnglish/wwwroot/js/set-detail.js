@@ -18,6 +18,9 @@
         'new': 'tct-badge'
     };
 
+    // Status key -> token hue for the grid card art (suspended and unknown keys keep the neutral art).
+    var STATUS_HUE = { hard: 'danger', learned: 'success', learning: 'warning', 'new': 'primary' };
+
     function $(id) { return document.getElementById(id); }
 
     var els = {
@@ -93,6 +96,7 @@
 
         var termCell = T.el('td', 'ts-col-term');
         var link = T.el('a', 'ts-term tct-break', row.term);
+        link.lang = 'en';
         link.href = config.urls.cardBase + row.cardId;
         termCell.appendChild(link);
         tr.appendChild(termCell);
@@ -104,7 +108,9 @@
         var meaningCell = T.el('td', 'ts-col-meaning');
         meaningCell.appendChild(T.el('span', 'tct-clamp-2 tct-break', row.definition));
         tr.appendChild(meaningCell);
-        tr.appendChild(T.el('td', 'ts-col-cefr', row.cefr || ''));
+        var cefrCell = T.el('td', 'ts-col-cefr');
+        if (row.cefr) { cefrCell.appendChild(T.el('span', 'k-cefr', row.cefr)); }
+        tr.appendChild(cefrCell);
 
         var statusCell = T.el('td', 'ts-col-status');
         statusCell.appendChild(statusBadge(row.status));
@@ -118,7 +124,8 @@
     }
 
     function renderGridItem(row) {
-        var li = T.el('li', row.isSuspended ? 'ts-word-card ts-word-card--suspended' : 'ts-word-card');
+        var hue = STATUS_HUE[row.status.key];
+        var li = T.el('li', (row.isSuspended ? 'ts-word-card ts-word-card--suspended' : 'ts-word-card') + (hue ? ' ts-hue-' + hue : ''));
         li.dataset.cardId = row.cardId;
 
         var art = T.el('div', 'ts-word-art');
@@ -146,6 +153,7 @@
 
         var body = T.el('div', 'ts-word-body');
         var link = T.el('a', 'ts-term tct-break', row.term);
+        link.lang = 'en';
         link.href = config.urls.cardBase + row.cardId;
         body.appendChild(link);
         body.appendChild(T.el('p', 'ts-word-meaning tct-clamp-2 tct-break', row.definition));
@@ -572,7 +580,9 @@
             : 'match';
         var tile = strip.querySelector('[data-ts-mode="' + suggested + '"] .ts-study-text');
         if (tile) {
-            var badge = T.el('span', 'tct-badge tct-badge--primary ts-suggest', 'Gợi ý cho bạn');
+            var badge = T.el('span', 'tct-badge tct-badge--primary ts-suggest');
+            badge.appendChild(T.icon('fa-solid fa-wand-magic-sparkles'));
+            badge.appendChild(document.createTextNode('Gợi ý cho bạn'));
             tile.insertBefore(badge, tile.firstChild);
         }
     })();
