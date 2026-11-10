@@ -105,7 +105,7 @@ Inter) and consolidates the drifting per-page palettes into one token set. It is
 **not** a finished site redesign: legacy screens keep their own CSS until a page
 owner adopts the tokens (adoption tracker: section 6 of [team-ui-workflow.md](docs/design-system/team-ui-workflow.md)).
 
-The shared Clay foundation and gallery are local changes until published. Its
+The shared Clay foundation and gallery are versioned with this UI integration. Its
 existence does not certify that every legacy page has been migrated. Adopt the
 foundation page by page; do not add a per-feature Clay library or a second palette.
 

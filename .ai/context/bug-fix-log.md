@@ -3741,3 +3741,15 @@ browser navigation or every Speaking interaction. Existing simulated interaction
 tests alone do not prove capture, focus or smoothness. No matching open issue in
 known-issues.md was changed. This correction accompanies the owner-accepted local
 Speaking checkpoint; no push or deployment.
+
+### Speaking UI adoption row contained control characters — 2026-11-10
+
+**Symptom**: The team UI tracker rendered the Admin Speaking CSS filename and
+`var(--tct-*)` incorrectly.
+**Cause**: The tracked Markdown contained literal BEL (U+0007) and vertical-tab
+(U+000B) characters at those locations; this was not just console rendering.
+**Fix**: Restore the literal filenames/token notation and normal Markdown code
+spans. Update the AI/Admin/loader adoption rows to describe the integrated code
+without claiming every legacy Admin page or unobserved browser state passed.
+**Verification**: UTF-8/control-character inspection, existing asset paths and
+`git diff --check`. Documentation-only; no runtime or database change.

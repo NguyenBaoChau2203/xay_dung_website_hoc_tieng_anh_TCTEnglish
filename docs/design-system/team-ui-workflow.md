@@ -12,9 +12,10 @@ mở, đọc lại mục Claymorphism trong [DESIGN.md](../../DESIGN.md) và xem
 Giữ hành vi/contract của thiết kế đã duyệt; cập nhật phần hình ảnh theo chuẩn mới.
 Mọi thành viên dùng cùng token/component, không tự dựng bộ Clay riêng.
 
-> Nền tảng chung ban đầu đã merge qua PR #130. Phần Claymorphism mới hiện ở local
-> cho đến khi chủ dự án cho phép phát hành. Các trang cũ chỉ được đánh dấu đã chuyển
-> sau khi chủ màn hình thực sự áp dụng và kiểm tra; xem tracker ở mục 6.
+> Nền tảng chung ban đầu đã merge qua PR #130. Bộ Claymorphism và các màn của Châu
+> được quản lý cùng đợt tích hợp trên `feature/chau-ui-design-system`; các thành viên
+> lấy về từ `master` sau khi PR được merge. Trạng thái chuyển code không thay thế
+> nghiệm thu trình duyệt; xem tracker và ledger của từng màn ở mục 6.
 
 ## 1. Vị trí file chuẩn và cách dùng
 
@@ -147,7 +148,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | --- | --- | --- | --- | --- | --- |
 | Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
 | Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Nói | /Speaking, /Speaking/Practice + /Admin/SpeakingVideoManagement* | speaking.css, dmin-speaking-video.css | ar(--tct-*) dùng chung | Đã chuyển code (sửa theo review) | Chau |
+| Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
 | Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
@@ -156,9 +157,16 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| AI chat | `/Ai/Chat` | `ai-chat.css`, `ai-chat-launcher.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
+| AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chau |
 | Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Admin (toàn bộ) | `/Admin/*` | Bootstrap + `account.css` + `<style>` trong layout | `--sidebar-width` (đã nối vào token). Lưu ý: `account.css` ép `.text-secondary { color: #745b00 !important }` trên mọi trang Admin | Chưa chuyển | _chủ dự án gán_ |
+| Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chau |
+| Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chau |
+| Admin của các module còn lại | Class, Set, Listening, Reading, Notification, Message, Billing | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chủ module tương ứng |
+
+Ledger cho AI Chat: [giao diện và logo](../feature-audits/2026-11-10-ai-chat-ui-execution-ledger.md).
+Ledger cho Admin/loader: [phạm vi và kiểm chứng](../feature-audits/2026-11-10-admin-loader-ui-execution-ledger.md).
+Các ledger ghi cả kiểm tra đã làm và giới hạn. Những trạng thái trình duyệt chưa
+quan sát hoặc kiểm thử provider bị bỏ qua không được tính là nghiệm thu đạt.
 
 Các vấn đề cũ đang chờ chủ dự án quyết định (tương phản, chiều cao header, `#folderModal`,
 font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.md.
