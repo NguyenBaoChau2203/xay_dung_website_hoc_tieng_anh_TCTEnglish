@@ -6,9 +6,16 @@ control dùng chung một bộ chuẩn** để website nhìn thống nhất. Tà
 [`tct-learning-ui.css`](../../TCTEnglish/wwwroot/css/tct-learning-ui.css) (code). Không
 chép lại giá trị ở nơi khác.
 
-> Nền tảng này đã được triển khai **cục bộ** và chưa được commit/đẩy lên GitHub hay
-> hosting. Toàn bộ website **chưa** được thiết kế lại: các màn hình cũ vẫn giữ CSS riêng
-> cho đến khi chủ màn hình chuyển sang token (mục 6).
+**Cập nhật 08/11/2026:** Châu chọn **Claymorphism cho mọi trang được làm lại**, ưu
+tiên laptop/desktop khi demo. Trước khi thiết kế hoặc tiếp tục một task UI đang
+mở, đọc lại mục Claymorphism trong [DESIGN.md](../../DESIGN.md) và xem gallery.
+Giữ hành vi/contract của thiết kế đã duyệt; cập nhật phần hình ảnh theo chuẩn mới.
+Mọi thành viên dùng cùng token/component, không tự dựng bộ Clay riêng.
+
+> Nền tảng chung ban đầu đã merge qua PR #130. Bộ Claymorphism và các màn của Châu
+> được quản lý cùng đợt tích hợp trên `feature/chau-ui-design-system`; các thành viên
+> lấy về từ `master` sau khi PR được merge. Trạng thái chuyển code không thay thế
+> nghiệm thu trình duyệt; xem tracker và ledger của từng màn ở mục 6.
 
 ## 1. Vị trí file chuẩn và cách dùng
 
@@ -89,6 +96,8 @@ Mỗi trang đúng **một** `<h1>` (partial `_PageHeader` đã tạo nó). Nút
 3. **Xác định phạm vi:** route, vai trò, trạng thái (loading/empty/error/success), file
    view/CSS/JS bạn sở hữu. Việc nằm ngoài (ví dụ đổi layout chung) ghi thành đề xuất.
 4. **Chọn component** từ gallery/DESIGN.md trước khi tự tạo. Thiếu component: làm theo mục 5.
+   Bản làm lại cần thể hiện Claymorphism bằng panel/nút nổi mềm từ nguồn chung;
+   trang bảng dữ liệu và nội dung dài dùng mức bóng nhẹ ở khung chứa.
 5. **CSS có phạm vi:** `wwwroot/css/{feature}.css`, selector bắt đầu bằng class của trang,
    giá trị lấy từ `var(--tct-*)`. Không khai báo `:root` mới, không hex riêng, không selector phần tử toàn cục.
 6. **Kiểm tra trên trang thật:** `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`
@@ -139,18 +148,25 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | --- | --- | --- | --- | --- | --- |
 | Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
 | Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Nói | `/Speaking`, `/Speaking/Practice` | `speaking.css` | `--stitch-*`, `--spk-*` | Chưa chuyển | _chủ dự án gán_ |
+| Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
-| Viết | `/Home/Writing*` | `writing-index.css`, `writing-exercises.css`, `writing.css` | `--wi-*`, `--we-*`, `--w-*` | Chưa chuyển | _chủ dự án gán_ |
+| Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
-| Mục tiêu | `/Goals` | `goals.css` | `--md-sys-color-*`, `--stitch-*` | Chưa chuyển | _chủ dự án gán_ |
-| Tài khoản | `/Account/Profile`, `/Account/Settings` | `account.css` | Material không tiền tố (cũng nạp vào Admin) | Chưa chuyển | _chủ dự án gán_ |
-| Đăng nhập / quên mật khẩu | `/Account/Login` … (`Layout = null`) | `auth-stitch.css` + `tct-learning-ui.css` | Tên `--tct-*` cũ | Dùng tên cũ | _chủ dự án gán_ |
+| Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
+| Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
+| Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| AI chat | `/Ai/Chat` | `ai-chat.css`, `ai-chat-launcher.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
+| AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chau |
 | Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Admin (toàn bộ) | `/Admin/*` | Bootstrap + `account.css` + `<style>` trong layout | `--sidebar-width` (đã nối vào token). Lưu ý: `account.css` ép `.text-secondary { color: #745b00 !important }` trên mọi trang Admin | Chưa chuyển | _chủ dự án gán_ |
+| Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chau |
+| Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chau |
+| Admin của các module còn lại | Class, Set, Listening, Reading, Notification, Message, Billing | CSS module hiện có + khung Admin chung | Kiểm tra theo từng module | Chưa chuyển toàn bộ nội dung module | Chủ module tương ứng |
+
+Ledger cho AI Chat: [giao diện và logo](../feature-audits/2026-11-10-ai-chat-ui-execution-ledger.md).
+Ledger cho Admin/loader: [phạm vi và kiểm chứng](../feature-audits/2026-11-10-admin-loader-ui-execution-ledger.md).
+Các ledger ghi cả kiểm tra đã làm và giới hạn. Những trạng thái trình duyệt chưa
+quan sát hoặc kiểm thử provider bị bỏ qua không được tính là nghiệm thu đạt.
 
 Các vấn đề cũ đang chờ chủ dự án quyết định (tương phản, chiều cao header, `#folderModal`,
 font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.md.
@@ -158,6 +174,7 @@ font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.m
 ## 7. Checklist PR cho màn hình giao diện
 
 - [ ] Dùng `tct-theme`, token và component chung; không hex/font/bo góc riêng, không `:root` mới, không `!important` tràn lan.
+- [ ] Claymorphism đúng DESIGN.md: khối nổi/bo tròn/bóng trong-ngoài dùng chung; ô nhập, chữ, focus và bảng dễ đọc. Ưu tiên xem bản laptop trước.
 - [ ] Responsive: 1440, 768, 375/390 và 200% zoom, không tràn ngang (kiểm tra cả phần tử bị `overflow-x: hidden` che).
 - [ ] Bàn phím: Tab theo đúng thứ tự, focus nhìn thấy rõ, Escape đóng hộp thoại/ngăn kéo và trả focus.
 - [ ] Tương phản: chữ 4.5:1 (chữ lớn 3:1), viền control và icon quan trọng 3:1; không dùng màu làm tín hiệu duy nhất.

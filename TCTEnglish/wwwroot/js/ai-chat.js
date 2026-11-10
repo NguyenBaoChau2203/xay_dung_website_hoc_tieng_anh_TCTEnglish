@@ -788,13 +788,13 @@
         const shell = document.querySelector('.ai-chat-shell');
         const userAvatar = shell?.dataset.userAvatar || '';
         const userInitial = shell?.dataset.userInitial || 'U';
-        const aiAvatar = shell?.dataset.aiAvatar || '/images/ai/tct-ai-launcher.png';
+        const aiAvatar = shell?.dataset.aiAvatar || '/images/ai/tct-ai-mark.svg';
 
         if (role === 'assistant' || role === 'system') {
             const avatarDiv = document.createElement('div');
             avatarDiv.className = 'ai-chat-avatar ai-chat-avatar-assistant';
             avatarDiv.setAttribute('aria-hidden', 'true');
-            avatarDiv.innerHTML = `<img src="${aiAvatar}" alt="AI Avatar" loading="lazy" />`;
+            avatarDiv.innerHTML = `<img src="${aiAvatar}" alt="TCT AI" loading="lazy" />`;
             container.appendChild(avatarDiv);
         }
 
@@ -1067,10 +1067,16 @@
             return;
         }
 
+        if (!textarea.value || !textarea.value.trim()) {
+            textarea.style.height = '36px';
+            textarea.style.overflowY = 'hidden';
+            return;
+        }
+
         textarea.style.height = 'auto';
         const maxHeight = 120;
         const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-        textarea.style.height = Math.max(newHeight, 46) + 'px';
+        textarea.style.height = Math.max(newHeight, 36) + 'px';
         textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
     }
 
@@ -1248,7 +1254,11 @@
     function scrollToBottom(elChatWindow, smooth, scrollButton) {
         if (!elChatWindow) return;
 
-        if (smooth) {
+        const prefersReducedMotion = typeof window !== 'undefined'
+            && typeof window.matchMedia === 'function'
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (smooth && !prefersReducedMotion) {
             elChatWindow.scrollTo({
                 top: elChatWindow.scrollHeight,
                 behavior: 'smooth'
@@ -1766,7 +1776,7 @@
         const payload = await response.json();
         const items = Array.isArray(payload.items) ? payload.items : [];
         const insertBefore = button.closest('.ai-chat-load-older-row') || button;
-        const aiAvatar = chatShell?.getAttribute('data-ai-avatar') || '/images/ai/tct-ai-launcher.png';
+        const aiAvatar = chatShell?.getAttribute('data-ai-avatar') || '/images/ai/tct-ai-mark.svg';
         // Insert a chronological fragment once — per-row insertBefore(nextSibling) reverses the page.
         const fragment = document.createDocumentFragment();
 
@@ -1788,7 +1798,7 @@
                 avatar.setAttribute('aria-hidden', 'true');
                 const img = document.createElement('img');
                 img.src = aiAvatar;
-                img.alt = 'AI Avatar';
+                img.alt = 'TCT AI';
                 img.loading = 'lazy';
                 avatar.appendChild(img);
                 row.appendChild(avatar);

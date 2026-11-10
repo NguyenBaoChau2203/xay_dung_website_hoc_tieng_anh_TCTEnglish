@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="100%" height="100%" fill="none">
+    <defs>
+        <!-- Ambient Auras -->
+        <radialGradient id="auraGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4255ff" stop-opacity="0.14"/>
+            <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Brand Gradients -->
+        <linearGradient id="gradBrand" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4255ff"/>
+            <stop offset="100%" stop-color="#2563eb"/>
+        </linearGradient>
+        <linearGradient id="gradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#0284c7"/>
+        </linearGradient>
+        <linearGradient id="gradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+        <linearGradient id="gradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#34d399"/>
+            <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+
+        <!-- Character Gradients -->
+        <linearGradient id="gradPersonSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fed7aa"/>
+            <stop offset="100%" stop-color="#fbd38d"/>
+        </linearGradient>
+        <linearGradient id="gradPersonHair" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#334155"/>
+            <stop offset="100%" stop-color="#1e293b"/>
+        </linearGradient>
+        <linearGradient id="gradHoodie" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4338ca"/>
+            <stop offset="100%" stop-color="#3730a3"/>
+        </linearGradient>
+
+        <!-- Device Gradients -->
+        <linearGradient id="gradLaptopBody" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#cbd5e1"/>
+            <stop offset="100%" stop-color="#94a3b8"/>
+        </linearGradient>
+        <linearGradient id="gradScreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+
+        <!-- Clay Shadows -->
+        <filter id="shadowClay" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4255ff" flood-opacity="0.12"/>
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.04"/>
+        </filter>
+        <filter id="shadowCap" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1e293b" flood-opacity="0.18"/>
+        </filter>
+    </defs>
+
+    <!-- Ambient Glow Circles -->
+    <ellipse cx="240" cy="170" rx="200" ry="130" fill="url(#auraGlow)"/>
+    <circle cx="360" cy="90" r="90" fill="url(#sunGlow)"/>
+
+    <!-- Subtle Connection Lines -->
+    <g opacity="0.35" stroke="#818cf8" stroke-width="1.2" stroke-dasharray="3 4">
+        <line x1="160" y1="95" x2="210" y2="140"/>
+        <line x1="320" y1="95" x2="270" y2="140"/>
+        <line x1="110" y1="210" x2="170" y2="250"/>
+        <line x1="370" y1="210" x2="310" y2="250"/>
+    </g>
+
+    <!-- Floating Sparkles & Learning Particles -->
+    <path d="M70 35 L72 40 L77 42 L72 44 L70 49 L68 44 L63 42 L68 40 Z" fill="#38bdf8"/>
+    <path d="M420 30 L422 34 L426 36 L422 38 L420 42 L418 38 L414 36 L418 34 Z" fill="#fbbf24"/>
+    <path d="M445 160 L447 164 L451 166 L447 168 L445 172 L443 168 L439 166 L443 164 Z" fill="#34d399"/>
+    <circle cx="180" cy="40" r="3" fill="#818cf8" opacity="0.7"/>
+    <circle cx="295" cy="30" r="3.5" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="50" cy="180" r="2.5" fill="#fbbf24" opacity="0.7"/>
+
+    <!-- Desk Base -->
+    <g transform="translate(100, 260)">
+        <rect x="0" y="16" width="280" height="10" rx="5" fill="#e2e8f0"/>
+        <rect x="20" y="26" width="240" height="4" rx="2" fill="#cbd5e1"/>
+        <line x1="10" y1="17" x2="270" y2="17" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+    </g>
+
+    <!-- ============================================================
+         MAIN CHARACTER: Friendly Learner at Laptop
+         ============================================================ -->
+    <g transform="translate(180, 110)">
+        <!-- Learner Body / Hoodie -->
+        <path d="M25 145 C25 120, 42 105, 60 105 C78 105, 95 120, 95 145 L95 165 L25 165 Z" fill="url(#gradHoodie)"/>
+        <!-- Hoodie Neck Strings -->
+        <path d="M48 105 L60 122 L72 105" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+        <!-- Neck -->
+        <rect x="52" y="90" width="16" height="18" rx="4" fill="url(#gradPersonSkin)"/>
+
+        <!-- Head / Face -->
+        <ellipse cx="60" cy="70" rx="22" ry="25" fill="url(#gradPersonSkin)"/>
+
+        <!-- Eyes -->
+        <circle cx="52" cy="68" r="2.5" fill="#1e293b"/>
+        <circle cx="68" cy="68" r="2.5" fill="#1e293b"/>
+        <circle cx="51.5" cy="67" r="0.8" fill="#ffffff"/>
+        <circle cx="67.5" cy="67" r="0.8" fill="#ffffff"/>
+
+        <!-- Smile -->
+        <path d="M55 76 Q60 82 65 76" stroke="#b45309" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+        <!-- Rosy Cheeks -->
+        <circle cx="47" cy="73" r="3" fill="#f87171" opacity="0.4"/>
+        <circle cx="73" cy="73" r="3" fill="#f87171" opacity="0.4"/>
+
+        <!-- Haircut -->
+        <path d="M38 66 C37 50, 48 42, 60 42 C74 42, 83 50, 82 66 C77 60, 72 58, 60 58 C49 58, 43 62, 38 66 Z" fill="url(#gradPersonHair)"/>
+
+        <!-- Headphones -->
+        <path d="M35 70 C35 45, 46 34, 60 34 C74 34, 85 45, 85 70" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+        <rect x="31" y="63" width="9" height="18" rx="4.5" fill="#0284c7" stroke="#bae6fd" stroke-width="1.2"/>
+        <rect x="80" y="63" width="9" height="18" rx="4.5" fill="#0284c7" stroke="#bae6fd" stroke-width="1.2"/>
+
+        <!-- Arms Typing -->
+        <path d="M28 142 C30 156, 42 160, 52 160" stroke="url(#gradHoodie)" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <path d="M92 142 C90 156, 78 160, 68 160" stroke="url(#gradHoodie)" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <circle cx="52" cy="160" r="6" fill="url(#gradPersonSkin)"/>
+        <circle cx="68" cy="160" r="6" fill="url(#gradPersonSkin)"/>
+
+        <!-- Laptop -->
+        <g transform="translate(18, 134)">
+            <!-- Screen Lid -->
+            <polygon points="18,4 66,4 72,32 12,32" fill="url(#gradLaptopBody)"/>
+            <polygon points="20,6 64,6 69,30 15,30" fill="url(#gradScreen)"/>
+            <!-- Content on Screen -->
+            <rect x="25" y="10" width="22" height="14" rx="2" fill="#4255ff" opacity="0.8"/>
+            <rect x="28" y="13" width="16" height="2" rx="1" fill="#ffffff"/>
+            <rect x="28" y="17" width="11" height="1.5" rx="0.75" fill="#38bdf8"/>
+            <circle cx="57" cy="17" r="4" fill="#fbbf24"/>
+            <!-- Keyboard Base -->
+            <polygon points="8,32 76,32 82,39 2,39" fill="#94a3b8"/>
+            <rect x="36" y="34" width="12" height="3" rx="1" fill="#64748b"/>
+            <!-- Screen glow line -->
+            <line x1="13" y1="32" x2="71" y2="32" stroke="#38bdf8" stroke-width="1.5" opacity="0.8"/>
+        </g>
+    </g>
+
+    <!-- ============================================================
+         FLOATING CARD 1 (TOP-LEFT): Vocabulary Flashcard (Clay White)
+         ============================================================ -->
+    <g transform="translate(25, 45)" filter="url(#shadowClay)">
+        <!-- White Clay Card Surface -->
+        <rect x="0" y="0" width="145" height="92" rx="16" fill="#ffffff" stroke="rgba(66, 85, 255, 0.12)" stroke-width="1.2"/>
+
+        <!-- Header Badge -->
+        <rect x="12" y="12" width="70" height="18" rx="6" fill="url(#gradBrand)"/>
+        <text x="18" y="24" fill="#ffffff" font-family="'Inter', sans-serif" font-size="9" font-weight="700" letter-spacing="0.5">FLASHCARD</text>
+
+        <!-- Speaker Icon Button -->
+        <circle cx="122" cy="21" r="10" fill="#e0f2fe"/>
+        <path d="M118 18 L121 18 L124 16 L124 26 L121 24 L118 24 Z" fill="#0284c7"/>
+        <path d="M126 19 Q128 21 126 23" stroke="#0284c7" stroke-width="1.5" fill="none"/>
+
+        <!-- Word & Phonetic -->
+        <text x="12" y="50" fill="#1e293b" font-family="'Inter', sans-serif" font-size="15" font-weight="700">Fluent</text>
+        <text x="64" y="50" fill="#64748b" font-family="'Inter', sans-serif" font-size="10" font-weight="500">/ˈfluː.ənt/</text>
+
+        <!-- Meaning -->
+        <text x="12" y="67" fill="#475569" font-family="'Inter', sans-serif" font-size="10" font-weight="500">Lưu loát, thành thạo</text>
+
+        <!-- Rating Stars -->
+        <g transform="translate(12, 75)">
+            <circle cx="4" cy="4" r="3" fill="#fbbf24"/>
+            <circle cx="14" cy="4" r="3" fill="#fbbf24"/>
+            <circle cx="24" cy="4" r="3" fill="#fbbf24"/>
+            <circle cx="34" cy="4" r="3" fill="#fbbf24"/>
+            <circle cx="44" cy="4" r="3" fill="#cbd5e1"/>
+        </g>
+    </g>
+
+    <!-- ============================================================
+         FLOATING CARD 2 (TOP-RIGHT): AI Speaking Bubble (Clay White)
+         ============================================================ -->
+    <g transform="translate(305, 38)" filter="url(#shadowClay)">
+        <!-- White Clay Bubble Surface -->
+        <rect x="0" y="0" width="150" height="85" rx="16" fill="#ffffff" stroke="rgba(66, 85, 255, 0.12)" stroke-width="1.2"/>
+        <!-- Pointer Tail -->
+        <polygon points="25,85 40,85 20,96" fill="#ffffff"/>
+
+        <!-- Header: AI Speaking Badge -->
+        <rect x="12" y="12" width="22" height="22" rx="7" fill="url(#gradCyan)"/>
+        <!-- Mic Icon inside badge -->
+        <rect x="20" y="16" width="6" height="8" rx="3" fill="#ffffff"/>
+        <path d="M18 20 C18 23.5, 28 23.5, 28 20" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <line x1="23" y1="24" x2="23" y2="27" stroke="#ffffff" stroke-width="1.5"/>
+
+        <text x="40" y="24" fill="#0284c7" font-family="'Inter', sans-serif" font-size="11" font-weight="700">AI Speaking</text>
+
+        <!-- Accuracy Pill -->
+        <rect x="94" y="14" width="44" height="16" rx="5" fill="#dcfce7"/>
+        <text x="98" y="25" fill="#15803d" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700">98% Acc</text>
+
+        <!-- Soundwave Bars -->
+        <g transform="translate(14, 46)">
+            <rect x="0" y="10" width="4" height="12" rx="2" fill="#38bdf8"/>
+            <rect x="7" y="5" width="4" height="22" rx="2" fill="#0284c7"/>
+            <rect x="14" y="12" width="4" height="8" rx="2" fill="#38bdf8"/>
+            <rect x="21" y="2" width="4" height="28" rx="2" fill="#4255ff"/>
+            <rect x="28" y="8" width="4" height="16" rx="2" fill="#6366f1"/>
+            <rect x="35" y="4" width="4" height="24" rx="2" fill="#0284c7"/>
+            <rect x="42" y="11" width="4" height="10" rx="2" fill="#38bdf8"/>
+            <rect x="49" y="1" width="4" height="30" rx="2" fill="#4255ff"/>
+            <rect x="56" y="7" width="4" height="18" rx="2" fill="#0284c7"/>
+            <rect x="63" y="13" width="4" height="6" rx="2" fill="#38bdf8"/>
+            <rect x="70" y="3" width="4" height="26" rx="2" fill="#4255ff"/>
+            <rect x="77" y="9" width="4" height="14" rx="2" fill="#6366f1"/>
+            <rect x="84" y="12" width="4" height="8" rx="2" fill="#38bdf8"/>
+            <rect x="91" y="6" width="4" height="20" rx="2" fill="#0284c7"/>
+            <rect x="98" y="11" width="4" height="10" rx="2" fill="#38bdf8"/>
+            <rect x="105" y="4" width="4" height="24" rx="2" fill="#4255ff"/>
+            <rect x="112" y="12" width="4" height="8" rx="2" fill="#38bdf8"/>
+            <rect x="119" y="8" width="4" height="16" rx="2" fill="#0284c7"/>
+        </g>
+    </g>
+
+    <!-- ============================================================
+         FLOATING SATELLITE 3 (BOTTOM-LEFT): Stack of Books
+         ============================================================ -->
+    <g transform="translate(35, 205)" filter="url(#shadowClay)">
+        <!-- Book 1 (Bottom, Blue) -->
+        <rect x="0" y="32" width="65" height="13" rx="3" fill="#2563eb"/>
+        <rect x="2" y="34" width="61" height="9" rx="2" fill="#3b82f6"/>
+        <line x1="6" y1="38" x2="60" y2="38" stroke="#ffffff" stroke-width="1.2" opacity="0.7"/>
+
+        <!-- Book 2 (Middle, Coral) -->
+        <rect x="5" y="19" width="58" height="13" rx="3" fill="#ea580c"/>
+        <rect x="7" y="21" width="54" height="9" rx="2" fill="#f97316"/>
+        <line x1="11" y1="25" x2="55" y2="25" stroke="#ffffff" stroke-width="1.2" opacity="0.7"/>
+
+        <!-- Book 3 (Top, Emerald) -->
+        <rect x="10" y="6" width="50" height="13" rx="3" fill="#059669"/>
+        <rect x="12" y="8" width="46" height="9" rx="2" fill="#10b981"/>
+        <!-- Ribbon Bookmark -->
+        <path d="M48 6 L48 24 L52 21 L56 24 L56 6 Z" fill="#fbbf24"/>
+    </g>
+
+    <!-- ============================================================
+         FLOATING SATELLITE 4 (BOTTOM-RIGHT): Graduation Cap (Icon of TCT)
+         ============================================================ -->
+    <g transform="translate(370, 195)" filter="url(#shadowCap)">
+        <!-- Cap Base Skullcap -->
+        <ellipse cx="36" cy="38" rx="18" ry="8" fill="#1e293b"/>
+        <!-- Diamond Top Mortarboard -->
+        <polygon points="36,12 68,26 36,38 4,26" fill="#1e1b4b"/>
+        <polygon points="36,14 65,26 36,36 7,26" fill="#312e81"/>
+        <!-- Golden Center Button -->
+        <circle cx="36" cy="25" r="2.5" fill="#fbbf24"/>
+        <!-- Golden Hanging Tassel -->
+        <path d="M36 25 Q48 26 50 40" stroke="#f59e0b" stroke-width="1.8" fill="none"/>
+        <circle cx="50" cy="42" r="2" fill="#fbbf24"/>
+    </g>
+
+    <!-- Alphabet Badges (A, B, C) Floating -->
+    <g transform="translate(145, 65)">
+        <circle cx="10" cy="10" r="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+        <text x="6" y="14" fill="#2563eb" font-family="'Inter', sans-serif" font-size="10" font-weight="700">A</text>
+    </g>
+    <g transform="translate(290, 75)">
+        <circle cx="9" cy="9" r="9" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
+        <text x="6" y="13" fill="#d97706" font-family="'Inter', sans-serif" font-size="9" font-weight="700">B</text>
+    </g>
+    <g transform="translate(385, 140)">
+        <circle cx="9" cy="9" r="9" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+        <text x="5.5" y="13" fill="#16a34a" font-family="'Inter', sans-serif" font-size="9" font-weight="700">C</text>
+    </g>
+</svg>

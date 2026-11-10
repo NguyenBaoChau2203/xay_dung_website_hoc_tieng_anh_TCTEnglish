@@ -839,7 +839,7 @@ namespace TCTVocabulary.Services
                     Description = "Phù hợp cho người mới bắt đầu làm quen với các đoạn văn ngắn và đơn giản.",
                     DurationText = "15-20 phút mỗi bài",
                     IconClass = "fas fa-seedling",
-                    AccentColor = "#24b36b"
+                    AccentColor = "#10b981"
                 },
                 new()
                 {
@@ -847,8 +847,8 @@ namespace TCTVocabulary.Services
                     Title = "Trung cấp",
                     Description = "Dành cho người học muốn nối ý tốt hơn với nhiều chi tiết và từ vựng hơn.",
                     DurationText = "20-30 phút mỗi bài",
-                    IconClass = "far fa-star",
-                    AccentColor = "#2d7ff9"
+                    IconClass = "fas fa-star",
+                    AccentColor = "#f59e0b"
                 },
                 new()
                 {
@@ -857,7 +857,7 @@ namespace TCTVocabulary.Services
                     Description = "Thử sức với cấu trúc mạch lạc hơn, diễn đạt tinh hơn và giọng văn chuyên nghiệp hơn.",
                     DurationText = "30-40 phút mỗi bài",
                     IconClass = "fas fa-crown",
-                    AccentColor = "#9a5cf5"
+                    AccentColor = "#8b5cf6"
                 }
             };
         }
@@ -880,7 +880,7 @@ namespace TCTVocabulary.Services
                     Title = "Nhật ký",
                     Description = "Viết cá nhân mang tính ghi chép, suy ngẫm",
                     IconClass = "far fa-calendar",
-                    AccentColor = "#24b36b"
+                    AccentColor = "#10b981"
                 },
                 new()
                 {
@@ -888,7 +888,7 @@ namespace TCTVocabulary.Services
                     Title = "Bài luận",
                     Description = "Đoạn văn nêu quan điểm hoặc mang phong cách học thuật",
                     IconClass = "fas fa-graduation-cap",
-                    AccentColor = "#2d7ff9"
+                    AccentColor = "#f59e0b"
                 },
                 new()
                 {

@@ -1,73 +1,94 @@
+/*
+    TCT English AI Chat Launcher — Claymorphism & Purposeful Motion Stylesheet.
+    Consumes shared tokens (--tct-*) defined in tct-learning-ui.css.
+*/
+
 .ai-launcher {
     bottom: 1.35rem;
-    font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--tct-font, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
     position: fixed;
     right: 1.35rem;
-    z-index: 1600;
+    z-index: var(--tct-z-launcher, 1600);
 }
 
 .ai-launcher-backdrop {
-    background: rgba(15, 23, 42, 0.2);
+    background: rgba(17, 28, 45, 0.25);
+    backdrop-filter: blur(2px);
     inset: 0;
     opacity: 0;
     pointer-events: none;
     position: fixed;
-    transition: opacity 0.25s ease;
+    transition: opacity var(--tct-dur, 250ms) var(--tct-ease, ease);
+    z-index: -1;
 }
+
+/* ======================================================================
+   Floating Launcher Trigger (Clay Raised Circular Button)
+   ====================================================================== */
 
 .ai-launcher-trigger {
     align-items: center;
-    background: linear-gradient(135deg, #2f6bff 0%, #69b6ff 100%);
+    background: linear-gradient(135deg, var(--tct-primary, #4255ff) 0%, var(--tct-primary-strong, #2136e7) 100%);
     border: none;
     border-radius: 999px;
-    box-shadow: 0 14px 28px rgba(47, 107, 255, 0.28);
+    box-shadow: var(--tct-clay-shadow-lift, 10px 12px 24px rgba(66, 85, 255, 0.22)), inset 2px 2px 4px rgba(255, 255, 255, 0.35);
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
     padding: 6px;
     position: relative;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform var(--tct-dur-fast, 150ms) var(--tct-ease, ease),
+                box-shadow var(--tct-dur-fast, 150ms) var(--tct-ease, ease);
 }
 
 .ai-launcher-trigger:hover {
-    box-shadow: 0 18px 34px rgba(47, 107, 255, 0.32);
-    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(47, 107, 255, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.ai-launcher-trigger:active {
+    box-shadow: var(--tct-clay-shadow-pressed);
+    transform: translateY(0) scale(0.98);
 }
 
 .ai-launcher-icon-shell {
-    background: rgba(255, 255, 255, 0.92);
-    border: 2px solid rgba(255, 255, 255, 0.78);
+    background: var(--tct-surface, #ffffff);
+    border: 2px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
+    box-shadow: inset 1px 1px 3px rgba(66, 85, 255, 0.08), inset -1px -1px 3px rgba(0, 0, 0, 0.04);
     display: flex;
-    height: 62px;
+    height: 60px;
     justify-content: center;
     overflow: hidden;
-    padding: 0;
-    width: 62px;
+    padding: 4px;
+    width: 60px;
 }
 
 .ai-launcher-icon {
     display: block;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
 }
 
 .ai-launcher-tooltip {
-    background: #1f2a56;
+    background: var(--tct-text, #111c2d);
     border-radius: 999px;
     bottom: calc(100% + 0.85rem);
-    color: #ffffff;
-    font-size: 0.85rem;
+    color: var(--tct-on-primary, #ffffff);
+    font-size: var(--tct-text-xs, 0.8rem);
+    font-weight: var(--tct-weight-semibold, 600);
     left: 50%;
     opacity: 0;
-    padding: 0.45rem 0.85rem;
+    padding: 0.4rem 0.85rem;
     pointer-events: none;
     position: absolute;
     transform: translate(-50%, 8px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity var(--tct-dur-fast, 150ms) var(--tct-ease, ease),
+                transform var(--tct-dur-fast, 150ms) var(--tct-ease, ease);
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(17, 28, 45, 0.2);
 }
 
 .ai-launcher-trigger:hover .ai-launcher-tooltip,
@@ -76,12 +97,16 @@
     transform: translate(-50%, 0);
 }
 
+/* ======================================================================
+   Floating Panel Dialog (Clay Overlay Dialog)
+   ====================================================================== */
+
 .ai-launcher-panel {
-    background: #ffffff;
-    border: 1px solid rgba(66, 85, 255, 0.12);
-    border-radius: 28px;
+    background: var(--tct-surface, #ffffff);
+    border: 1px solid var(--tct-border, #e5e7eb);
+    border-radius: var(--tct-radius-xl, 28px);
     bottom: calc(100% + 1rem);
-    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.18);
+    box-shadow: var(--tct-clay-shadow-overlay, 0 18px 42px rgba(17, 28, 45, 0.20), inset 3px 3px 8px rgba(255, 255, 255, 0.95), inset -5px -5px 12px rgba(66, 85, 255, 0.08));
     display: flex;
     flex-direction: column;
     height: min(700px, calc(100vh - 6.5rem));
@@ -93,8 +118,9 @@
     position: absolute;
     right: 0;
     transform: translateY(14px) scale(0.98);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    width: min(416px, calc(100vw - 2rem));
+    transition: opacity var(--tct-dur, 250ms) var(--tct-ease, ease),
+                transform var(--tct-dur, 250ms) var(--tct-ease, ease);
+    width: min(420px, calc(100vw - 2rem));
 }
 
 .ai-launcher-panel:focus {
@@ -103,11 +129,12 @@
 
 .ai-launcher-panel-header {
     align-items: center;
-    background: linear-gradient(135deg, #20358e 0%, #4255ff 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--tct-primary-strong, #2136e7) 0%, var(--tct-primary, #4255ff) 100%);
+    color: var(--tct-on-primary, #ffffff);
     display: flex;
     justify-content: space-between;
-    padding: 0.9rem 0.95rem 0.85rem;
+    padding: 0.9rem 1rem 0.85rem;
+    box-shadow: 0 4px 12px rgba(33, 54, 231, 0.15);
 }
 
 .ai-launcher-panel-copy {
@@ -116,23 +143,31 @@
 
 .ai-launcher-panel-kicker {
     font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    opacity: 0.8;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
     text-transform: uppercase;
+}
+
+.ai-launcher-header-mark {
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px;
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 .ai-launcher-panel-title {
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: var(--tct-weight-bold, 700);
 }
 
 .ai-launcher-panel-plan {
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 999px;
     display: inline-flex;
     font-size: 0.70rem;
-    font-weight: 600;
+    font-weight: var(--tct-weight-semibold, 600);
     line-height: 1.2;
     margin-top: 0;
     max-width: 100%;
@@ -142,7 +177,7 @@
 }
 
 .ai-launcher-panel-quota {
-    background: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.26);
 }
 
 .ai-launcher-panel-actions {
@@ -155,21 +190,30 @@
 .ai-launcher-panel-link,
 .ai-launcher-panel-close {
     align-items: center;
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.16);
     border: none;
-    border-radius: 14px;
-    color: #ffffff;
+    border-radius: 12px;
+    color: var(--tct-on-primary, #ffffff);
     display: inline-flex;
-    height: 40px;
+    height: 38px;
     justify-content: center;
     text-decoration: none;
-    width: 40px;
+    width: 38px;
+    transition: background-color var(--tct-dur-fast, 150ms) var(--tct-ease, ease),
+                transform var(--tct-dur-fast, 150ms) var(--tct-ease, ease);
 }
 
 .ai-launcher-panel-link:hover,
 .ai-launcher-panel-close:hover {
-    background: rgba(255, 255, 255, 0.22);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.28);
+    color: var(--tct-on-primary, #ffffff);
+    transform: translateY(-1px);
+}
+
+.ai-launcher-panel-link:active,
+.ai-launcher-panel-close:active {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(0);
 }
 
 .ai-launcher-panel-link:focus-visible,
@@ -180,7 +224,7 @@
 }
 
 .ai-launcher-panel-body {
-    background: #f5f7ff;
+    background: var(--tct-bg, #f0f3ff);
     flex: 1 1 auto;
     min-height: 0;
 }
@@ -211,6 +255,10 @@ body.ai-chat-open {
     overflow: hidden;
 }
 
+/* ======================================================================
+   Responsive Breakpoints
+   ====================================================================== */
+
 @media (max-width: 767.98px) {
     .ai-launcher {
         bottom: 0.9rem;
@@ -218,8 +266,8 @@ body.ai-chat-open {
     }
 
     .ai-launcher-icon-shell {
-        height: 58px;
-        width: 58px;
+        height: 54px;
+        width: 54px;
     }
 
     .ai-launcher-panel {
@@ -245,5 +293,21 @@ body.ai-chat-open {
         border-radius: 20px;
         height: min(84vh, 680px);
         width: min(100vw - 0.7rem, 400px);
+    }
+}
+
+/* ======================================================================
+   Complete Alternate Reduced Motion Behavior
+   ====================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .ai-launcher-backdrop,
+    .ai-launcher-trigger,
+    .ai-launcher-panel,
+    .ai-launcher-tooltip,
+    .ai-launcher-panel-link,
+    .ai-launcher-panel-close {
+        transition: none !important;
+        transform: none !important;
     }
 }

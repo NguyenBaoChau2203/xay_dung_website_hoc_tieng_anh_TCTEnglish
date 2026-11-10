@@ -21,30 +21,33 @@
     <link rel="stylesheet" href="~/css/admin-writing-exercise.css" asp-append-version="true" />
 }
 
-<div class="container-fluid py-4 admin-writing-page">
+<div class="container-fluid py-4 admin-writing-page tct-theme">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
         <div>
-            <div class="text-uppercase text-muted small fw-semibold mb-2">Content Management</div>
-            <h2 class="mb-1 text-dark fw-bold">Quản lý Writing Exercises</h2>
+            <div class="text-uppercase text-muted small fw-semibold mb-2">
+                <i class="fa-solid fa-pen-ruler me-1" aria-hidden="true"></i> Content Management
+            </div>
+            <h1 class="h2 mb-1 text-dark fw-bold">Quản lý Writing Exercises</h1>
             <p class="text-muted mb-0">
                 Quản trị metadata, full text và trạng thái hiển thị cho learner flow Writing. Hệ thống sẽ tự tách câu khi admin lưu bài.
             </p>
         </div>
 
         <div class="d-flex flex-wrap gap-2">
-            <a asp-action="Create" class="btn btn-primary shadow-sm rounded-pill px-4">
-                <i class="fa-solid fa-plus me-2"></i> Thêm bài viết mới
+            <a asp-action="Create" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                <i class="fa-solid fa-plus me-2" aria-hidden="true"></i> Thêm bài viết mới
             </a>
         </div>
     </div>
 
+    @* ── KPI Stat Cards ──────────────────────────────────── *@
     <div class="row g-3 mb-4">
         <div class="col-md-6 col-xl-3">
             <div class="card border-0 shadow-sm rounded-4 admin-writing-stat-card">
                 <div class="card-body p-4">
                     <div class="admin-writing-stat-label">Tổng bài viết</div>
                     <div class="admin-writing-stat-value">@totalExercises</div>
-                    <div class="admin-writing-stat-note">Tất cả exercise hiện có trong hệ thống.</div>
+                    <div class="admin-writing-stat-note">Tất cả bài viết hiện có trong hệ thống.</div>
                 </div>
             </div>
         </div>
@@ -62,7 +65,7 @@
                 <div class="card-body p-4">
                     <div class="admin-writing-stat-label">Chủ đề đang có</div>
                     <div class="admin-writing-stat-value text-secondary">@activeTopics</div>
-                    <div class="admin-writing-stat-note">Số chủ đề khác nhau đang được dùng cho bài writing.</div>
+                    <div class="admin-writing-stat-note">Số chủ đề khác nhau đang được áp dụng.</div>
                 </div>
             </div>
         </div>
@@ -71,46 +74,48 @@
                 <div class="card-body p-4">
                     <div class="admin-writing-stat-label">Tự động tách câu</div>
                     <div class="admin-writing-stat-value text-primary">@totalAutoSplitSentences</div>
-                    <div class="admin-writing-stat-note">Tổng số câu đã được hệ thống nhận diện từ các full text đang lưu.</div>
+                    <div class="admin-writing-stat-note">Tổng số câu hệ thống tự nhận diện từ full text.</div>
                 </div>
             </div>
         </div>
     </div>
 
+    @* ── Flash Messages ───────────────────────────────────── *@
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-4" role="alert">
-            <i class="fa-solid fa-circle-check me-2"></i><strong>Thành công!</strong> @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm mb-4" role="status">
+            <i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i><strong>Thành công!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
         </div>
     }
 
     @if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-4" role="alert">
-            <i class="fa-solid fa-triangle-exclamation me-2"></i><strong>Lỗi!</strong> @TempData["ErrorMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm mb-4" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i><strong>Lỗi!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
         </div>
     }
 
+    @* ── Quick Filter Card ───────────────────────────────── *@
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body p-4">
             <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-start gap-3 mb-3">
                 <div>
-                    <h5 class="mb-1 fw-bold text-dark">Bộ lọc nhanh</h5>
+                    <h2 class="h5 mb-1 fw-bold text-dark">Bộ lọc nhanh</h2>
                     <p class="text-muted mb-0 small">
                         Tìm bài theo tiêu đề, chủ đề, level, content type và trạng thái hiển thị.
                     </p>
                 </div>
                 <button type="button" id="btnResetFilter" class="btn btn-outline-secondary rounded-pill px-3">
-                    <i class="fa-solid fa-rotate-left me-1"></i> Đặt lại
+                    <i class="fa-solid fa-rotate-left me-1" aria-hidden="true"></i> Đặt lại
                 </button>
             </div>
 
             <form method="get" asp-action="Index" class="row g-3 align-items-end" id="catalogFilters">
                 <div class="col-xl-3 col-md-6">
                     <label for="filterSearch" class="form-label fw-semibold text-muted small mb-1">
-                        <i class="fa-solid fa-magnifying-glass me-1"></i> Tìm nhanh
+                        <i class="fa-solid fa-magnifying-glass me-1" aria-hidden="true"></i> Tìm nhanh
                     </label>
                     <input id="filterSearch" name="search"
                            type="search" value="@Model.Search"
@@ -120,7 +125,7 @@
 
                 <div class="col-xl-2 col-md-6">
                     <label for="filterLevel" class="form-label fw-semibold text-muted small mb-1">
-                        <i class="fa-solid fa-layer-group me-1"></i> Trình độ
+                        <i class="fa-solid fa-layer-group me-1" aria-hidden="true"></i> Trình độ
                     </label>
                     <select id="filterLevel" name="level" class="form-select">
                         <option value="">Tất cả trình độ</option>
@@ -133,7 +138,7 @@
 
                 <div class="col-xl-2 col-md-6">
                     <label for="filterContentType" class="form-label fw-semibold text-muted small mb-1">
-                        <i class="fa-solid fa-pen-nib me-1"></i> Content type
+                        <i class="fa-solid fa-pen-nib me-1" aria-hidden="true"></i> Content type
                     </label>
                     <select id="filterContentType" name="contentType" class="form-select">
                         <option value="">Tất cả loại</option>
@@ -146,7 +151,7 @@
 
                 <div class="col-xl-2 col-md-6">
                     <label for="filterTopic" class="form-label fw-semibold text-muted small mb-1">
-                        <i class="fa-solid fa-tag me-1"></i> Chủ đề
+                        <i class="fa-solid fa-tag me-1" aria-hidden="true"></i> Chủ đề
                     </label>
                     <select id="filterTopic" name="topic" class="form-select">
                         @foreach (var option in topicOptions)
@@ -158,7 +163,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <label for="filterVisibility" class="form-label fw-semibold text-muted small mb-1">
-                        <i class="fa-solid fa-eye me-1"></i> Trạng thái hiển thị
+                        <i class="fa-solid fa-eye me-1" aria-hidden="true"></i> Trạng thái hiển thị
                     </label>
                     <select id="filterVisibility" name="visibility" class="form-select">
                         @foreach (var option in visibilityOptions)
@@ -167,14 +172,13 @@
                         }
                     </select>
                 </div>
-                <div class="col-auto"><button type="submit" class="btn btn-primary btn-sm">Lọc</button></div>
             </form>
 
             <div class="d-flex align-items-center justify-content-between gap-3 mt-3 flex-wrap">
                 <div class="text-muted small">
                     @if (totalExercises > 0)
                     {
-                        <span>Danh sách được sắp theo bài mới tạo gần nhất.</span>
+                        <span><i class="fa-regular fa-clock me-1"></i> Danh sách được sắp theo bài mới tạo gần nhất.</span>
                     }
                 </div>
                 <div id="filterResultCount" class="text-muted small fw-semibold">@Model.TotalCount kết quả</div>
@@ -182,17 +186,18 @@
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    @* ── Exercises Table ─────────────────────────────────── *@
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
         <div class="card-body p-0">
-            <div class="table-responsive">
+            <div class="tct-table-wrap" tabindex="0" aria-label="Bảng danh sách bài viết">
                 <table class="table table-hover align-middle mb-0" id="exerciseTable">
                     <thead class="bg-light">
                         <tr>
-                            <th class="ps-4 border-0 text-muted">Bài viết</th>
-                            <th class="border-0 text-muted">Thiết lập</th>
-                            <th class="border-0 text-muted text-center" style="width: 180px;">Cấu trúc</th>
-                            <th class="border-0 text-muted text-center" style="width: 170px;">Hiển thị</th>
-                            <th class="pe-4 border-0 text-muted text-center" style="width: 120px;">Thao tác</th>
+                            <th class="ps-4 border-0 text-muted" scope="col">Bài viết</th>
+                            <th class="border-0 text-muted" scope="col">Thiết lập</th>
+                            <th class="border-0 text-muted text-center" style="width: 180px;" scope="col">Cấu trúc</th>
+                            <th class="border-0 text-muted text-center" style="width: 170px;" scope="col">Hiển thị</th>
+                            <th class="pe-4 border-0 text-muted text-center" style="width: 120px;" scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody id="exerciseTableBody">
@@ -201,8 +206,8 @@
                             <tr class="empty-row">
                                 <td colspan="5" class="text-center py-5">
                                     <div class="text-muted">
-                                        <i class="fa-solid fa-file-circle-plus fa-3x mb-3 text-secondary opacity-50"></i>
-                                        <h5>Chưa có writing exercise nào</h5>
+                                        <i class="fa-solid fa-file-circle-plus fa-3x mb-3 text-secondary opacity-50" aria-hidden="true"></i>
+                                        <h5 class="fw-bold">Chưa có writing exercise nào</h5>
                                         <p class="mb-0">Hãy tạo bài viết đầu tiên bằng full text để bắt đầu nhập nội dung cho learner flow.</p>
                                     </div>
                                 </td>
@@ -221,7 +226,7 @@
                                         <div class="fw-bold text-dark mb-1">@item.Title</div>
                                         <div class="text-muted small admin-writing-line-clamp">@item.PreviewText</div>
                                         <div class="text-muted smaller mt-2">
-                                            <i class="fa-regular fa-clock me-1"></i> @item.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                                            <i class="fa-regular fa-clock me-1" aria-hidden="true"></i> @item.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
                                         </div>
                                     </td>
                                     <td>
@@ -246,13 +251,13 @@
                                         @if (item.IsPublished)
                                         {
                                             <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
-                                                <i class="fa-solid fa-eye me-1"></i> Đang hiển thị
+                                                <i class="fa-solid fa-eye me-1" aria-hidden="true"></i> Đang hiển thị
                                             </span>
                                         }
                                         else
                                         {
                                             <span class="badge rounded-pill bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-2">
-                                                <i class="fa-solid fa-eye-slash me-1"></i> Đang ẩn
+                                                <i class="fa-solid fa-eye-slash me-1" aria-hidden="true"></i> Đang ẩn
                                             </span>
                                         }
                                     </td>
@@ -261,7 +266,7 @@
                                             <a asp-action="Edit" asp-route-id="@item.Id"
                                                class="btn btn-sm btn-outline-primary" title="Chỉnh sửa"
                                                aria-label="Chỉnh sửa bài viết @item.Title">
-                                                <i class="fa-solid fa-pen"></i>
+                                                <i class="fa-solid fa-pen" aria-hidden="true"></i>
                                             </a>
                                             <button type="button"
                                                     class="btn btn-sm btn-outline-danger btn-delete-exercise"
@@ -269,7 +274,7 @@
                                                     data-exercise-title="@item.Title"
                                                     title="Xóa"
                                                     aria-label="Xóa bài viết @item.Title">
-                                                <i class="fa-solid fa-trash"></i>
+                                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -281,32 +286,36 @@
             </div>
         </div>
     </div>
+
+    @* ── Catalog Pager ───────────────────────────────────── *@
     <partial name="_CatalogPager" model="Model" />
 </div>
 
-<div class="modal fade" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
+@* ── Delete Confirmation Modal ───────────────────────── *@
+<div class="modal fade tct-theme" id="deleteExerciseModal" tabindex="-1" aria-labelledby="deleteExerciseModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header bg-danger bg-opacity-10 border-bottom">
                 <h5 class="modal-title fw-semibold text-danger" id="deleteExerciseModalLabel">
-                    <i class="fa-solid fa-triangle-exclamation me-2"></i> Xác nhận xóa bài viết
+                    <i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i> Xác nhận xóa bài viết
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-4">
                 <p class="text-muted mb-1">Bạn có chắc chắn muốn xóa bài viết:</p>
-                <p class="fw-bold text-dark" id="deleteExerciseTitle"></p>
-                <p class="text-danger small mb-0">
-                    Toàn bộ câu con sẽ bị xóa theo cascade. Hành động này không thể hoàn tác.
-                </p>
+                <p class="fw-bold text-dark fs-5 mb-2" id="deleteExerciseTitle"></p>
+                <div class="alert alert-warning d-flex align-items-center gap-2 mb-0 rounded-3">
+                    <i class="fa-solid fa-circle-exclamation text-warning" aria-hidden="true"></i>
+                    <span class="small">Toàn bộ câu con và biến thể đã duyệt sẽ bị xóa theo cascade. Hành động này không thể hoàn tác.</span>
+                </div>
             </div>
-            <div class="modal-footer border-top">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            <div class="modal-footer border-top bg-light">
+                <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Hủy</button>
                 <form asp-action="Delete" method="post" id="deleteExerciseForm" class="d-inline">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="id" id="deleteExerciseId" />
-                    <button type="submit" class="btn btn-danger fw-medium">
-                        <i class="fa-solid fa-trash me-1"></i> Xóa vĩnh viễn
+                    <button type="submit" class="btn btn-danger rounded-pill px-3 fw-medium">
+                        <i class="fa-solid fa-trash me-1" aria-hidden="true"></i> Xóa vĩnh viễn
                     </button>
                 </form>
             </div>
@@ -320,7 +329,7 @@
             document.querySelectorAll('#catalogFilters select').forEach(function (select) {
                 select.addEventListener('change', function () { document.getElementById('catalogFilters').requestSubmit(); });
             });
-            document.getElementById('btnResetFilter').addEventListener('click', function () { window.location.href = '@Url.Action("Index")'; });
+            document.getElementById('btnResetFilter')?.addEventListener('click', function () { window.location.href = '@Url.Action("Index")'; });
 
             const deleteModalElement = document.getElementById('deleteExerciseModal');
             if (!deleteModalElement || typeof bootstrap === 'undefined') {

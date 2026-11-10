@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none" role="img" aria-label="TCT AI Logo">
+  <defs>
+    <!-- Clay drop shadow for the companion body -->
+    <filter id="tct-clay-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#2136e7" flood-opacity="0.22" />
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#111c2d" flood-opacity="0.10" />
+    </filter>
+    <!-- Soft glow for the gold spark -->
+    <filter id="tct-spark-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#f59e0b" flood-opacity="0.35" />
+    </filter>
+    <!-- TCT Royal Blue Clay Gradient -->
+    <linearGradient id="tct-blue-clay" x1="28" y1="26" x2="100" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#556bff" />
+      <stop offset="45%" stop-color="#4255ff" />
+      <stop offset="100%" stop-color="#2136e7" />
+    </linearGradient>
+    <!-- TCT Gold Spark Gradient -->
+    <linearGradient id="tct-gold-grad" x1="72" y1="12" x2="98" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff176" />
+      <stop offset="45%" stop-color="#ffcd1f" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <!-- Faceplate Gradient -->
+    <linearGradient id="tct-visor-grad" x1="38" y1="44" x2="90" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0f4ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Grounding Ambient Halo (Subtle tint for dark and light surfaces) -->
+  <circle cx="64" cy="68" r="54" fill="#eef2ff" opacity="0.6" />
+
+  <!-- Main Companion Body (Speech-Bubble Squircle Silhouette) -->
+  <g filter="url(#tct-clay-shadow)">
+    <!-- Seamless union of friendly rounded head and conversation speech tail -->
+    <path d="M 46 32
+             C 58 30, 70 30, 82 32
+             C 96 35, 102 44, 102 60
+             C 102 76, 96 86, 82 89
+             C 74 90.5, 62 91, 52 91
+             C 42 91, 37 94, 28 102
+             C 27 103, 25 102.5, 25.5 101
+             C 27.5 95, 29 89.5, 27 84
+             C 24 76, 24 68, 26 60
+             C 28 44, 34 35, 46 32 Z"
+          fill="url(#tct-blue-clay)" />
+
+    <!-- Outer Inset Clay Highlights (Puffy top-left reflection) -->
+    <path d="M 48 34
+             C 60 32, 70 32, 80 34
+             C 92 37, 98 44, 98 56"
+          stroke="#ffffff"
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.5" />
+  </g>
+
+  <!-- Ear Communicator Node (Left Smart Pill) -->
+  <rect x="18" y="54" width="7" height="18" rx="3.5" fill="#2f3fe0" />
+  <rect x="19" y="56" width="2" height="14" rx="1" fill="#ffffff" opacity="0.4" />
+
+  <!-- Inner Faceplate / Clean Visor -->
+  <g>
+    <rect x="36" y="44" width="56" height="38" rx="15" fill="url(#tct-visor-grad)" />
+    <!-- Visor Inset Soft Border -->
+    <rect x="36" y="44" width="56" height="38" rx="15" stroke="#d5ddff" stroke-width="1.5" />
+
+    <!-- Left Eye (Friendly expressive pill) -->
+    <rect x="49" y="54" width="7" height="11" rx="3.5" fill="#111c2d" />
+    <circle cx="51" cy="56.5" r="1.5" fill="#ffffff" />
+
+    <!-- Right Eye (Friendly expressive pill) -->
+    <rect x="72" y="54" width="7" height="11" rx="3.5" fill="#111c2d" />
+    <circle cx="74" cy="56.5" r="1.5" fill="#ffffff" />
+
+    <!-- Cheerful Smile Arc -->
+    <path d="M 58 68 Q 64 74 70 68" stroke="#111c2d" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+    <!-- Soft Cheerful Blush Accents -->
+    <circle cx="43" cy="67" r="3" fill="#ffcd1f" opacity="0.45" />
+    <circle cx="85" cy="67" r="3" fill="#ffcd1f" opacity="0.45" />
+  </g>
+
+  <!-- Spark Antenna Stem -->
+  <path d="M 76 34 Q 82 28 85 24" stroke="#2136e7" stroke-width="3.5" stroke-linecap="round" fill="none" />
+  <path d="M 76 34 Q 82 28 85 24" stroke="#556bff" stroke-width="2" stroke-linecap="round" fill="none" />
+
+  <!-- Iconic TCT Intelligence Beacon (4-Point Golden AI Spark) -->
+  <g filter="url(#tct-spark-glow)">
+    <path d="M 88 10
+             Q 90 20 98 22
+             Q 90 24 88 34
+             Q 86 24 78 22
+             Q 86 20 88 10 Z"
+          fill="url(#tct-gold-grad)" />
+    <!-- Core white brilliance pip -->
+    <circle cx="88" cy="22" r="2.2" fill="#ffffff" />
+  </g>
+</svg>

@@ -4,7 +4,7 @@
     var userAvatar = User.FindFirst("AvatarUrl")?.Value;
     var userName = User.Identity?.Name;
     var userInitial = !string.IsNullOrEmpty(userName) ? userName[0].ToString().ToUpper() : "U";
-    var aiAvatar = "/images/ai/tct-ai-launcher.png";
+    var aiAvatar = "/images/ai/tct-ai-mark.svg";
 }
 
 <div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")"
@@ -15,18 +15,23 @@
     @if (!Model.IsEmbedded)
     {
         <div class="ai-chat-shell-header">
-            <div>
-                <div class="ai-chat-shell-kicker">
-                    TCT AI
-                    @if (Model.IsStandardPlan)
-                    {
-                        <span class="badge bg-secondary ms-2 fw-normal ai-chat-plan-badge">Gói Standard: 15 câu/ngày</span>
-                    }
+            <div class="ai-chat-shell-intro">
+                <div class="ai-chat-shell-brand-icon" aria-hidden="true">
+                    <img src="@aiAvatar" alt="" class="ai-chat-header-mark" width="48" height="48" />
                 </div>
-                <h1 class="ai-chat-shell-title">Trợ lý học tiếng Anh</h1>
-                <p class="ai-chat-shell-subtitle mb-0">
-                    Hỏi về từ vựng, cách luyện tập, speaking và mẹo học phù hợp với lộ trình của bạn.
-                </p>
+                <div>
+                    <div class="ai-chat-shell-kicker">
+                        TCT AI
+                        @if (Model.IsStandardPlan)
+                        {
+                            <span class="badge bg-secondary ms-2 fw-normal ai-chat-plan-badge">Gói Standard: 15 câu/ngày</span>
+                        }
+                    </div>
+                    <h1 class="ai-chat-shell-title">Trợ lý học tiếng Anh</h1>
+                    <p class="ai-chat-shell-subtitle mb-0">
+                        Hỏi về từ vựng, cách luyện tập, speaking và mẹo học phù hợp với lộ trình của bạn.
+                    </p>
+                </div>
             </div>
 
             <div class="ai-chat-shell-meta">
@@ -146,7 +151,7 @@
                         @if (isAssistant || isSystem)
                         {
                             <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
-                                <img src="@aiAvatar" alt="AI Avatar" loading="lazy" />
+                                <img src="@aiAvatar" alt="TCT AI" loading="lazy" />
                             </div>
                         }
 
@@ -184,7 +189,7 @@
 
             <div id="typing" class="ai-chat-message ai-chat-message-assistant d-none" data-role="assistant" aria-live="polite" aria-atomic="true">
                 <div class="ai-chat-avatar ai-chat-avatar-assistant" aria-hidden="true">
-                    <img src="@aiAvatar" alt="AI Avatar" loading="lazy" />
+                    <img src="@aiAvatar" alt="TCT AI" loading="lazy" />
                 </div>
                 <div class="ai-chat-bubble ai-chat-bubble-assistant ai-chat-typing-bubble">
                     <span class="ai-chat-typing-dots"><span>.</span><span>.</span><span>.</span></span>
@@ -221,8 +226,9 @@
                               class="form-control ai-chat-input"
                               maxlength="1000"
                               rows="1"
-                              placeholder="Nhập câu hỏi của bạn... (Enter gửi, Shift+Enter xuống dòng)"
+                              placeholder="Nhập câu hỏi của bạn..."
                               autocomplete="off"
+                              style="height: 36px; min-height: 36px; overflow-y: hidden;"
                               aria-label="Nhập câu hỏi của bạn cho trợ lý AI"
                               aria-describedby="chatStatus"></textarea>
 
