@@ -35,7 +35,7 @@
 <div class="tct-theme tct-page tp-page tp-page--hub">
     <partial name="_PageHeader" model="header" />
 
-    <form id="tpSetup" method="get" action="/Practice/learn" data-tp-hub>
+    <form id="tpSetup" class="tp-hub" method="get" action="/Practice/learn" data-tp-hub>
         <fieldset class="tp-modes">
             <legend class="visually-hidden">Chế độ</legend>
             <p class="tp-group-title">Học bộ từ</p>
@@ -54,73 +54,77 @@
             </div>
         </fieldset>
 
-        <div class="tct-card tp-setup-panel">
-            @if (Model.TotalWords == 0)
+        <div class="tp-side">
+            <div class="k-panel tp-setup-panel">
+                <h2 class="tp-setup-title">Thiết lập</h2>
+                @if (Model.TotalWords == 0)
+                {
+                    <partial name="~/Views/Shared/_StateMessage.cshtml" model="noWords" />
+                }
+                else
+                {
+                    <div class="tp-field">
+                        <label class="form-label" for="tpSet">Bộ từ</label>
+                        <select id="tpSet" class="form-select" name="set">
+                            <option value="mine">Tất cả bộ của tôi</option>
+                            @foreach (var s in Model.Sets)
+                            {
+                                <option value="@s.Id" selected="@(Model.PreselectedSetId == s.Id)">@s.Name (@s.WordCount)</option>
+                            }
+                        </select>
+                    </div>
+
+                    <fieldset class="tp-field" id="tpCountField">
+                        <legend class="form-label tp-legend" id="tpCountLegend">Số từ</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpCountPills"></div>
+                    </fieldset>
+
+                    <fieldset class="tp-field" id="tpTypesField" hidden>
+                        <legend class="form-label tp-legend">Dạng câu</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpTypePills"></div>
+                        <p class="form-text m-0">Chọn ít nhất một dạng câu.</p>
+                    </fieldset>
+
+                    <fieldset class="tp-field" id="tpAskField" hidden>
+                        <legend class="form-label tp-legend">Hỏi bằng</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpAskPills"></div>
+                    </fieldset>
+
+                    <fieldset class="tp-field">
+                        <legend class="form-label tp-legend">Nguồn từ</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpSourcePills"></div>
+                    </fieldset>
+
+                    <div class="tp-field tp-srs-row form-check form-switch" id="tpSrsField">
+                        <input class="form-check-input" type="checkbox" role="switch" id="tpSrs" />
+                        <label class="form-check-label" for="tpSrs">Tính vào ôn tập</label>
+                        <p class="form-text m-0">Kết quả luyện tập sẽ thay đổi lịch ôn của từ.</p>
+                    </div>
+                }
+            </div>
+
+            @if (Model.TotalWords > 0)
             {
-                <partial name="~/Views/Shared/_StateMessage.cshtml" model="noWords" />
-            }
-            else
-            {
-                <div class="tp-field">
-                    <label class="form-label" for="tpSet">Bộ từ</label>
-                    <select id="tpSet" class="form-select" name="set">
-                        <option value="mine">Tất cả bộ của tôi</option>
-                        @foreach (var s in Model.Sets)
-                        {
-                            <option value="@s.Id" selected="@(Model.PreselectedSetId == s.Id)">@s.Name (@s.WordCount)</option>
-                        }
-                    </select>
-                </div>
-
-                <fieldset class="tp-field" id="tpCountField">
-                    <legend class="form-label tp-legend" id="tpCountLegend">Số từ</legend>
-                    <div class="tp-pills" id="tpCountPills"></div>
-                </fieldset>
-
-                <fieldset class="tp-field" id="tpTypesField" hidden>
-                    <legend class="form-label tp-legend">Dạng câu</legend>
-                    <div class="tp-pills" id="tpTypePills"></div>
-                    <p class="form-text m-0">Chọn ít nhất một dạng câu.</p>
-                </fieldset>
-
-                <fieldset class="tp-field" id="tpAskField" hidden>
-                    <legend class="form-label tp-legend">Hỏi bằng</legend>
-                    <div class="tp-pills" id="tpAskPills"></div>
-                </fieldset>
-
-                <fieldset class="tp-field">
-                    <legend class="form-label tp-legend">Nguồn từ</legend>
-                    <div class="tp-pills" id="tpSourcePills"></div>
-                </fieldset>
-
-                <div class="tp-field form-check form-switch" id="tpSrsField">
-                    <input class="form-check-input" type="checkbox" role="switch" id="tpSrs" />
-                    <label class="form-check-label" for="tpSrs">Tính vào ôn tập</label>
-                    <p class="form-text m-0">Kết quả luyện tập sẽ thay đổi lịch ôn của từ.</p>
+                <div class="tp-start-bar">
+                    <p class="tp-start-bar__summary" id="tpSummary" aria-live="polite"></p>
+                    <button type="submit" class="btn btn-primary btn-lg w-100" id="tpStart">Bắt đầu luyện</button>
                 </div>
             }
         </div>
 
-        @if (Model.TotalWords > 0)
-        {
-            <div class="tp-start-bar">
-                <p class="tp-start-bar__summary" id="tpSummary" aria-live="polite"></p>
-                <button type="submit" class="btn btn-primary btn-lg w-100" id="tpStart">Bắt đầu luyện</button>
-            </div>
-        }
+        <a class="tct-card tct-card--interactive k-panel tp-hard-link tp-hue-danger" href="@Url.Action("HardWords", "Practice")">
+            <span class="tp-hard-link__icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
+            <span class="tp-hard-link__text">
+                <span class="tp-hard-link__name">Từ hay quên</span>
+                <span class="tp-hard-link__hint">Xem và luyện riêng những từ bạn hay quên.</span>
+            </span>
+            @if (Model.HardWordCount > 0)
+            {
+                <span class="tct-badge tct-badge--danger">@Model.HardWordCount</span>
+            }
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </a>
     </form>
-
-    <a class="tct-card tct-card--interactive tp-hard-link" href="@Url.Action("HardWords", "Practice")">
-        <span class="tp-hard-link__text">
-            <span class="tp-hard-link__name">Từ hay quên</span>
-            <span class="tp-hard-link__hint">Xem và luyện riêng những từ bạn hay quên.</span>
-        </span>
-        @if (Model.HardWordCount > 0)
-        {
-            <span class="tct-badge tct-badge--danger">@Model.HardWordCount</span>
-        }
-        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-    </a>
 
     <script id="tpHubConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config, new JsonSerializerOptions(JsonSerializerDefaults.Web)))</script>
 </div>

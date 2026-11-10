@@ -63,7 +63,7 @@
         input.id = id;
         input.checked = checked;
         input.addEventListener('change', function () { onChange(input); });
-        var lab = el('label', 'btn btn-outline-primary', label);
+        var lab = el('label', 'k-seg__item', label);
         lab.htmlFor = id;
         wrap.appendChild(input);
         wrap.appendChild(lab);
@@ -138,7 +138,7 @@
         function stat(mode, text, hue) {
             var node = form.querySelector('[data-tp-stat="' + mode + '"]');
             if (!node) { return; }
-            node.className = 'tct-badge tp-stat ' + (hue ? 'tct-badge--' + hue : '');
+            node.className = 'tp-stat';
             node.hidden = !text;
             node.textContent = text || '';
         }
