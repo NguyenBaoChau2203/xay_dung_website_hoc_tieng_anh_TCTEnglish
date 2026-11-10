@@ -951,3 +951,20 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - G13 regression: Home, Study and QuizMode were re-checked in U3 and are unaffected (they do not load the kit)
 - G12 contrast: term 17.10; Vietnamese definition 16.35; POS badge 6.84; example 17.10, highlighted term 7.65, translation 5.87; speak icon 6.84; stat tiles danger 5.91, success 5.21, info 5.15; last reviewed 5.87; suspend title 17.10, help 5.87; status badge 5.21; primary button 5.28; outline button 17.10; breadcrumb link 7.31
 - Fix attempts / deferred / blocked: none
+
+### U5 — Other Set pages
+- Commit: see `git log` ("feat(sets): apply the study kit to the add, import, create, settings, edit and shared pages")
+- G1 build: pass, 0 errors; no new warnings
+- G2 area tests: passed 106 / failed 0 / skipped 0 (U0: 106)
+- G3 full tests: passed 1287 / failed 0 / skipped 22 (U0: 1287 / 22)
+- G4 node: passed 115 / failed 0 (includes the set composer behaviour test)
+- G5 hooks: no id, data attribute or class was removed from a view; the only line still absent from the JS grep list is the U4 `ts-suspend-label` literal (see U4)
+- G6 tokens/diff-check: clean
+- G7 scope: `Views/Set/AddCards.cshtml` (the mode toggle becomes `.k-seg`, keeping `data-ts-mode`, `aria-pressed` and the `active` class the composer script toggles), `wwwroot/css/personal-sets.css`, this plan. Import, Create, Settings, EditCard and Shared change through CSS only (they already use the kit buttons, `.tct-card` panels and the `.ts-hero` styles)
+- G8 render: add, import, create, settings, edit at 1440/1024/768/390/320 in `.tmp/ui-refresh/U5/`, plus the filled composer, the import preview and the anonymous shared page at 1440 and 390; 0 console errors, 0 failed requests (one 400 from `/api/vocab/enrich` while a test term was typed in the composer, an existing endpoint rejecting a nonsense word, not a rendering problem), no horizontal overflow
+- G9 mockup: no mockups exist for these pages; the kit look is applied as plan 4.4 describes: pressed-edge buttons, 20px panels, numbered 28px circle on composer rows, 18px term input, dashed suggestion chips, dashed add-row button, edge shadow on the save bar. Visibility choices on create/settings keep their title + description as selectable cards (a segmented control would lose the descriptions), with a 2px border and an edge when selected
+- G10 behaviour: composer adds a row (numbers 1, 2), a card with only a term is marked "thiếu nghĩa" and the status line updates, the mode toggle switches to the paste pane (`aria-pressed` and `active` agree) and "Tách thành thẻ" splits two lines into rows and returns to the single pane; import: paste 3 lines, "Xem trước" shows 3 rows "3 từ sẵn sàng · 0 trùng · 0 lỗi", "Sửa danh sách" goes back; create: submitting an empty name stays on the form with 2 validation messages; settings: clearing the name shows 1 validation error and nothing is saved (name still "Practice deck" on reload), the delete modal opens with the confirm button disabled and cancels; edit card: fields load (term, definition); shared page as anonymous: one `<h1>`, "Đăng nhập để học bộ này" button 56px, 5 tiles. Not exercised, to keep dev data and AI usage untouched: saving cards, running the import, saving settings/edit, AI suggestions (stubbed in the node tests), follow/clone as a signed-in non-owner
+- G11 a11y: one `<h1>` per page; the new mode toggle is a real button pair with `aria-pressed`; focus rings come from the shared rule
+- G12 contrast: composer number 6.84; term input 17.10; mode toggle 17.10; add-row text 7.65; save status 9.31; sub-label 5.87; choice title 15.45 and text 5.30 (selected tint); form preview letter 15.02; danger button 6.46
+- G13 regression: unchanged pages do not load the kit
+- Fix attempts / deferred / blocked: the settings form's "Hủy" link text sat at the top of its stretched box next to the primary button; fixed with an inline-flex rule scoped to `.ts-form .d-flex > .btn` (1 attempt)
