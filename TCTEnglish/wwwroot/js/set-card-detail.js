@@ -18,7 +18,6 @@
 
     var toggle = document.getElementById('ts-suspend');
     if (!toggle) { return; }
-    var label = document.getElementById('ts-suspend-label');
     var suspended = !!config.suspended;
 
     toggle.addEventListener('click', function () {
@@ -28,7 +27,7 @@
         T.fetchJson(config.suspendUrl, { method: 'POST', body: { suspended: wanted } }).then(function (result) {
             suspended = !!(result && result.suspended);
             toggle.setAttribute('aria-pressed', String(suspended));
-            label.textContent = suspended ? 'Bỏ tạm ẩn' : 'Tạm ẩn khỏi ôn tập';
+            toggle.setAttribute('aria-checked', String(suspended));
             T.toast(suspended ? 'Đã tạm ẩn ' + config.term : 'Đã bỏ tạm ẩn ' + config.term);
         }).catch(function (error) {
             T.toast(error.message, { type: 'danger' });
