@@ -855,7 +855,7 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - Environment: Docker Desktop was stopped at U0; started with `docker desktop start`. App served from `scripts/start-local.ps1 -NoBrowser -Configuration Release -WebPort 5100`. Dev data: user Premium has 3 sets (Practice deck 14 words, two Smoke decks 60 words); set id 5, card id 141 used for screenshots. Screenshots are driven by a small headless-Chrome DevTools script kept outside the repo (no browser MCP in this environment).
 - Routes used: `/Sets`, `/Sets/{id}`, `/Sets/Cards/{id}`, `/Sets/{id}/Add|Import|Settings`, `/Sets/Cards/{id}/Edit`, create form at `/Home/CreateSet` (`/Sets/Create` is POST only), `/Practice`, `/Practice/HardWords`, `/Practice/{mode}?set={id}`.
 - U0 before-screenshots: `.tmp/ui-refresh/U0/<page>-<1440|390>.png` for 19 pages (zero console errors, zero failed requests; one h1 per page).
-- `color-mix` uses:
+- `color-mix` uses (each has a plain-token fallback declared first; all in `study-kit.css`): danger edge `--k-edge` (danger 70% + text); accent tint `--k-bg` (accent 30% + surface); `.k-btn--success|danger|warning` edges (65% + text); `.k-progress__fill` inset shadow (text 12% + transparent); `.btn .k-kbd` chip (surface 22% + transparent). Later phases add to this list.
 - Mockup vs rule differences, per page:
 - Data not available (elements left out):
 - Contrast results:
@@ -874,3 +874,20 @@ Add one "Phase gate record" (7.3) per phase, U0 → U10, in order.
 - G8 render: 19 pages × 1440 and 390 captured to `.tmp/ui-refresh/U0/` (before state); no console errors, no failed requests
 - G9–G13: not run in U0 (per plan 7.1)
 - Fix attempts / deferred / blocked: none
+
+### U1 — Shared kit
+- Commit: see `git log` ("feat(ui): add study-kit.css and mode art partial")
+- G1 build: pass, 0 errors. A full rebuild (`--no-incremental`) reports 44 warnings, all in files this phase did not touch. U0's incremental build printed 0 because nothing recompiled; the true baseline is the same 44.
+- G2 area tests: passed 106 / failed 0 / skipped 0 (U0: 106)
+- G3 full tests: passed 1287 / failed 0 / skipped 22 (U0: 1287 / 22)
+- G4 node: passed 115 / failed 0
+- G5 hooks: unchanged (390 checked)
+- G6 tokens/diff-check: clean. The U0 header comments in `personal-sets.css` / `practice.css` contained the words the grep looks for, so they were reworded (the grep now prints nothing). `git diff --check` is clean for this phase's files; it only reports a blank line at EOF in the unrelated, never-staged `appsettings.Development.json`.
+- G7 scope: `wwwroot/css/study-kit.css` (new), `Views/Practice/_ModeArt.cshtml` (new), the stylesheet link in 12 views, the header comment of the two page CSS files, this plan. No forbidden file.
+- G8 render: 19 pages × 1440/1024/768/390/320 in `.tmp/ui-refresh/U1/`; 0 console errors, 0 failed requests. No horizontal overflow except two items not caused by U1: the `/Practice/HardWords` table header at 320px (recheck in U9) and the legacy home decoration at ≤390px. 200% zoom: 320/390 px widths cover the same CSS viewport as 640/780 px at 200%; a literal zoom pass is done in U10.
+- G9 mockup: not applicable (the kit is not a page). Buttons now show the pressed edge on every page, as designed.
+- G10 behaviour: all pages load; a Bootstrap dropdown opens, a modal opens and closes (checked on set detail); buttons are real links/buttons, so Enter/Space work.
+- G11 a11y: Tab order and visible focus ring checked on `/Practice` (shell, mode cards, radios, select, start button); one `<h1>` per page; reduced-motion rules in the kit remove the :active transform and the keyframes.
+- G12 contrast (computed from token values; page pairs are re-measured in each page phase): white on success-text 5.48, danger 6.46, warning-text 7.09, info-text 5.36, primary 5.28; fg on bg per hue: primary 6.84, success 5.21, warning 6.84, danger 5.91, info 5.15, accent tint 15.02; text-secondary on seg track 8.16; text on seg track 14.99; text-secondary on every soft tint ≥ 8.3; kbd 8.16; control boundary `--tct-border-control` on white 3.66; switch knob 3.66; star outline `--tct-warning-text` on canvas 6.62 (the accent fill alone is 1.40, so the outline is required).
+- G13 regression: `/Home/Index`, `/Home/Study/5`, `/Home/QuizMode/5` render without console or network errors; the kit is linked only from Set/Practice views (grep). Not verified: a Vocabulary page (the route tried returned 404, so it was not compared).
+- Fix attempts / deferred / blocked: form-switch label gap fixed after the first render (1 attempt). Environment note: the running app must be stopped (through its background task) before a rebuild, because Razor views compile into the DLL.

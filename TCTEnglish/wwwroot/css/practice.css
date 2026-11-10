@@ -3,7 +3,7 @@
 
     Rules (DESIGN.md, docs/design-system/team-ui-workflow.md)
     - Every selector starts with .tp-page; the page wrapper also carries .tct-theme.
-    - Values come from var(--tct-*) only: no hex, no :root, no !important, weight <= 700.
+    - Values come from var(--tct-*) tokens only: no literal colours, no root selector, no forced priority, weight <= 700.
     - The only inline styles in markup are CSS custom properties carrying data (--p, --i).
     - Mode hues map the existing token pairs; no new palette.
     - Keyframes are disabled under prefers-reduced-motion.

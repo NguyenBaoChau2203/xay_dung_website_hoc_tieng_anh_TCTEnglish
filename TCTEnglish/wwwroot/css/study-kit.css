@@ -1,0 +1,580 @@
+/*
+    Study kit: components shared by the personal sets (.ts-page) and practice (.tp-page) areas.
+    Owner: Set/Card and study modes. Loaded BEFORE personal-sets.css / practice.css.
+
+    Rules (DESIGN.md, docs/design-system/team-ui-workflow.md, docs/superpowers/plans/2026-11-11-study-ui-refresh.md)
+    - Every selector is scoped with :is(.ts-page, .tp-page); the page wrapper also carries .tct-theme.
+    - Values come from var(--tct-*) tokens only: no literal colours, no root selector, no forced
+      priority, weight <= 700.
+    - Two exceptions, each with a plain-token fallback declared first: color-mix() between two
+      tokens (pressed edges, soft accent tint, progress inset) and the transparent keyword.
+    - Pressed-edge ("3D") style: box-shadow 0 Npx 0 <edge> plus translateY on :active.
+      Reduced motion drops the transform and keeps the edge.
+    - Illustrations are decorative inline SVG coloured only through the classes below.
+*/
+
+/* ---------------------------------------------------------------- hue variables (one helper, six token pairs) */
+:is(.ts-page, .tp-page) :is(.ts-hue-primary, .tp-hue-primary),
+.ts-page.ts-hue-primary,
+.tp-page.tp-hue-primary {
+    --k-bg: var(--tct-primary-soft);
+    --k-fg: var(--tct-primary-strong);
+    --k-fill: var(--tct-primary);
+    --k-edge: var(--tct-primary-strong);
+    --k-sq-bg: var(--tct-primary-strong);
+    --k-sq-fg: var(--tct-on-primary);
+}
+
+:is(.ts-page, .tp-page) :is(.ts-hue-success, .tp-hue-success),
+.ts-page.ts-hue-success,
+.tp-page.tp-hue-success {
+    --k-bg: var(--tct-success-soft);
+    --k-fg: var(--tct-success-text);
+    --k-fill: var(--tct-success);
+    --k-edge: var(--tct-success-text);
+    --k-sq-bg: var(--tct-success-text);
+    --k-sq-fg: var(--tct-on-primary);
+}
+
+:is(.ts-page, .tp-page) :is(.ts-hue-warning, .tp-hue-warning),
+.ts-page.ts-hue-warning,
+.tp-page.tp-hue-warning {
+    --k-bg: var(--tct-warning-soft);
+    --k-fg: var(--tct-warning-text);
+    --k-fill: var(--tct-warning);
+    --k-edge: var(--tct-warning-text);
+    --k-sq-bg: var(--tct-warning-text);
+    --k-sq-fg: var(--tct-on-primary);
+}
+
+:is(.ts-page, .tp-page) :is(.ts-hue-danger, .tp-hue-danger),
+.ts-page.ts-hue-danger,
+.tp-page.tp-hue-danger {
+    --k-bg: var(--tct-danger-soft);
+    --k-fg: var(--tct-danger-text);
+    --k-fill: var(--tct-danger);
+    --k-edge: var(--tct-danger-text);
+    --k-edge: color-mix(in srgb, var(--tct-danger) 70%, var(--tct-text));
+    --k-sq-bg: var(--tct-danger);
+    --k-sq-fg: var(--tct-on-primary);
+}
+
+:is(.ts-page, .tp-page) :is(.ts-hue-info, .tp-hue-info),
+.ts-page.ts-hue-info,
+.tp-page.tp-hue-info {
+    --k-bg: var(--tct-info-soft);
+    --k-fg: var(--tct-info-text);
+    --k-fill: var(--tct-info);
+    --k-edge: var(--tct-info-text);
+    --k-sq-bg: var(--tct-info-text);
+    --k-sq-fg: var(--tct-on-primary);
+}
+
+:is(.ts-page, .tp-page) :is(.ts-hue-accent, .tp-hue-accent),
+.ts-page.ts-hue-accent,
+.tp-page.tp-hue-accent {
+    --k-bg: var(--tct-accent);
+    --k-bg: color-mix(in srgb, var(--tct-accent) 30%, var(--tct-surface));
+    --k-fg: var(--tct-on-accent);
+    --k-fill: var(--tct-accent);
+    --k-edge: var(--tct-warning-text);
+    --k-sq-bg: var(--tct-accent);
+    --k-sq-fg: var(--tct-on-accent);
+}
+
+/* ---------------------------------------------------------------- buttons (scoped override of Bootstrap buttons) */
+:is(.ts-page, .tp-page) .btn {
+    --k-btn-edge: transparent;
+    border-radius: var(--tct-radius-md);
+    font-weight: var(--tct-weight-semibold);
+    transition: transform var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease),
+        background-color var(--tct-dur-fast) var(--tct-ease), border-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .btn:not(.btn-sm) { min-height: var(--tct-target-min); }
+
+:is(.ts-page, .tp-page) .btn-primary {
+    --k-btn-edge: var(--tct-primary-strong);
+    font-weight: var(--tct-weight-bold);
+    box-shadow: 0 4px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn-primary.btn-sm { box-shadow: 0 2px 0 var(--k-btn-edge); }
+
+:is(.ts-page, .tp-page) .btn-outline-primary,
+:is(.ts-page, .tp-page) .btn-outline-danger {
+    --k-btn-edge: var(--tct-border);
+    --bs-btn-bg: var(--tct-surface);
+    --bs-btn-color: var(--tct-text);
+    --bs-btn-border-color: var(--tct-border);
+    --bs-btn-border-width: 1.5px;
+    --bs-btn-hover-bg: var(--tct-surface);
+    --bs-btn-hover-color: var(--tct-primary-strong);
+    --bs-btn-hover-border-color: var(--tct-primary);
+    --bs-btn-active-bg: var(--tct-primary-tint);
+    --bs-btn-active-color: var(--tct-primary-strong);
+    --bs-btn-active-border-color: var(--tct-primary);
+    --bs-btn-disabled-bg: var(--tct-surface);
+    --bs-btn-disabled-color: var(--tct-text);
+    --bs-btn-disabled-border-color: var(--tct-border);
+    background: var(--tct-surface);
+    color: var(--tct-text);
+    border: 1.5px solid var(--tct-border);
+    box-shadow: 0 3px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn-outline-primary:hover,
+:is(.ts-page, .tp-page) .btn-outline-primary:focus-visible {
+    background: var(--tct-surface);
+    color: var(--tct-primary-strong);
+    border-color: var(--tct-primary);
+}
+
+:is(.ts-page, .tp-page) .btn-outline-danger { color: var(--tct-danger-text); }
+
+:is(.ts-page, .tp-page) .btn-outline-danger:hover,
+:is(.ts-page, .tp-page) .btn-outline-danger:focus-visible {
+    background: var(--tct-surface);
+    color: var(--tct-danger-text);
+    border-color: var(--tct-danger);
+}
+
+:is(.ts-page, .tp-page) .btn-outline-primary.btn-sm,
+:is(.ts-page, .tp-page) .btn-outline-danger.btn-sm { box-shadow: 0 2px 0 var(--k-btn-edge); }
+
+:is(.ts-page, .tp-page) .btn-lg {
+    min-height: 56px;
+    font-size: var(--tct-text-lg);
+    border-radius: var(--tct-radius-lg);
+}
+
+:is(.ts-page, .tp-page) .btn:not(:disabled):not(.disabled):active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn:disabled,
+:is(.ts-page, .tp-page) .btn.disabled { box-shadow: none; transform: none; }
+
+/* Helper buttons: combine with .btn */
+:is(.ts-page, .tp-page) .btn.k-btn--success {
+    --k-btn-edge: var(--tct-success-text);
+    --k-btn-edge: color-mix(in srgb, var(--tct-success-text) 65%, var(--tct-text));
+    background: var(--tct-success-text);
+    border-color: var(--tct-success-text);
+    color: var(--tct-on-primary);
+    box-shadow: 0 4px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--danger {
+    --k-btn-edge: var(--tct-danger-text);
+    --k-btn-edge: color-mix(in srgb, var(--tct-danger) 65%, var(--tct-text));
+    background: var(--tct-danger);
+    border-color: var(--tct-danger);
+    color: var(--tct-on-primary);
+    box-shadow: 0 4px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--warning {
+    --k-btn-edge: var(--tct-warning-text);
+    --k-btn-edge: color-mix(in srgb, var(--tct-warning-text) 65%, var(--tct-text));
+    background: var(--tct-warning-text);
+    border-color: var(--tct-warning-text);
+    color: var(--tct-on-primary);
+    box-shadow: 0 4px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--success:hover,
+:is(.ts-page, .tp-page) .btn.k-btn--danger:hover,
+:is(.ts-page, .tp-page) .btn.k-btn--warning:hover { color: var(--tct-on-primary); filter: brightness(1.06); }
+
+:is(.ts-page, .tp-page) .btn.k-btn--soft {
+    --k-btn-edge: var(--k-fill, var(--tct-primary));
+    background: var(--k-bg, var(--tct-primary-soft));
+    border-color: transparent;
+    color: var(--k-fg, var(--tct-primary-strong));
+    box-shadow: 0 3px 0 var(--k-btn-edge);
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--soft:hover { color: var(--k-fg, var(--tct-primary-strong)); filter: brightness(0.97); }
+
+:is(.ts-page, .tp-page) .btn.k-btn--mark-learning,
+:is(.ts-page, .tp-page) .btn.k-btn--mark-known {
+    background: var(--tct-surface);
+    border: 2px solid var(--k-mark, var(--tct-border));
+    color: var(--k-mark-text, var(--tct-text));
+    box-shadow: 0 3px 0 var(--k-mark, var(--tct-border));
+    --k-btn-edge: var(--k-mark, var(--tct-border));
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--mark-learning { --k-mark: var(--tct-warning); --k-mark-text: var(--tct-warning-text); }
+:is(.ts-page, .tp-page) .btn.k-btn--mark-known { --k-mark: var(--tct-success); --k-mark-text: var(--tct-success-text); }
+
+:is(.ts-page, .tp-page) .btn.k-btn--mark-learning:hover,
+:is(.ts-page, .tp-page) .btn.k-btn--mark-known:hover { background: var(--tct-surface); color: var(--k-mark-text); filter: brightness(0.97); }
+
+/* Small round-rect icon button (speak, play). The ::after keeps a 44px hit area around a 36px visual. */
+:is(.ts-page, .tp-page) .k-btn--icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    min-height: 0;
+    padding: 0;
+}
+
+:is(.ts-page, .tp-page) .k-btn--icon::after { content: ""; position: absolute; inset: -4px; }
+
+:is(.ts-page, .tp-page) .btn.k-btn--icon.k-btn--soft { box-shadow: none; }
+
+:is(.ts-page, .tp-page) .btn.k-btn--icon.k-btn--soft:active { transform: none; box-shadow: none; }
+
+:is(.ts-page, .tp-page) .k-btn--ghost {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: var(--tct-text-secondary);
+}
+
+:is(.ts-page, .tp-page) .btn.k-btn--ghost:hover { background: var(--tct-disabled-bg); color: var(--tct-text); }
+
+:is(.ts-page, .tp-page) .btn.k-btn--ghost:active { transform: none; box-shadow: none; }
+
+/* ---------------------------------------------------------------- surfaces */
+:is(.ts-page, .tp-page) .k-card {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-xl);
+    box-shadow: 0 3px 0 var(--tct-border);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+:is(.ts-page, .tp-page) .k-panel {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-xl);
+    box-shadow: none;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+:is(.ts-page, .tp-page) .k-soft {
+    background: var(--k-bg, var(--tct-primary-soft));
+    color: var(--k-fg, var(--tct-primary-strong));
+    border: 0;
+    border-radius: var(--tct-radius-xl);
+}
+
+/* ---------------------------------------------------------------- segmented control */
+:is(.ts-page, .tp-page) .k-seg {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-disabled-bg);
+}
+
+:is(.ts-page, .tp-page) .k-seg--wrap { border-radius: var(--tct-radius-lg); }
+
+:is(.ts-page, .tp-page) .k-seg__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tct-space-xs);
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: var(--tct-radius-pill);
+    background: transparent;
+    color: var(--tct-text-secondary);
+    font-size: var(--tct-text-base);
+    font-weight: var(--tct-weight-semibold);
+    line-height: var(--tct-leading-tight);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease), color var(--tct-dur-fast) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .k-seg__item:hover { color: var(--tct-text); text-decoration: none; }
+
+:is(.ts-page, .tp-page) .k-seg__item[aria-current="page"],
+:is(.ts-page, .tp-page) .k-seg__item[aria-pressed="true"],
+:is(.ts-page, .tp-page) .k-seg__item.is-active,
+:is(.ts-page, .tp-page) .btn-check:checked + .k-seg__item {
+    background: var(--tct-surface);
+    color: var(--tct-text);
+    box-shadow: var(--tct-shadow-soft);
+}
+
+:is(.ts-page, .tp-page) .btn-check:focus-visible + .k-seg__item {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+:is(.ts-page, .tp-page) .k-seg__count { color: var(--tct-text-muted); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+
+/* ---------------------------------------------------------------- pills and tags */
+:is(.ts-page, .tp-page) .form-select.k-pill-select {
+    height: 40px;
+    min-height: 40px;
+    padding-block: 0;
+    border: 1.5px solid var(--tct-border-control);
+    border-radius: var(--tct-radius-pill);
+    background-color: var(--tct-surface);
+    color: var(--tct-text);
+    font-size: var(--tct-text-base);
+}
+
+:is(.ts-page, .tp-page) .form-select.k-pill-select.ts-filter--active {
+    border-color: var(--tct-primary);
+    background-color: var(--tct-primary-tint);
+    color: var(--tct-primary-strong);
+    font-weight: var(--tct-weight-semibold);
+}
+
+:is(.ts-page, .tp-page) .k-dot-badge::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-inline-end: var(--tct-space-xs);
+    border-radius: var(--tct-radius-pill);
+    background: currentColor;
+    vertical-align: baseline;
+}
+
+:is(.ts-page, .tp-page) .k-cefr {
+    display: inline-block;
+    padding: 1px 6px;
+    border: 1.5px solid var(--tct-border-control);
+    border-radius: var(--tct-radius-sm);
+    color: var(--tct-text);
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-base);
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- progress */
+:is(.ts-page, .tp-page) .k-progress {
+    display: block;
+    height: 14px;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-disabled-bg);
+}
+
+:is(.ts-page, .tp-page) .k-progress--thin { height: 8px; }
+
+:is(.ts-page, .tp-page) .k-progress__fill {
+    display: block;
+    width: var(--p, 0%);
+    height: 100%;
+    border-radius: var(--tct-radius-pill);
+    background: var(--k-fill, var(--tct-primary));
+    box-shadow: inset 0 -3px 0 var(--tct-border);
+    box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--tct-text) 12%, transparent);
+    transition: width var(--tct-dur) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .k-progress--success .k-progress__fill { background: var(--tct-success); }
+
+:is(.ts-page, .tp-page) .k-progress--thin .k-progress__fill { box-shadow: none; }
+
+/* Three-part bar: mastered, learning, new (the track shows through) */
+:is(.ts-page, .tp-page) .k-progress--split { display: flex; }
+
+:is(.ts-page, .tp-page) .k-progress__part {
+    display: block;
+    flex: 0 0 auto;
+    width: var(--w, 0%);
+    height: 100%;
+    transition: width var(--tct-dur) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .k-progress__part--done { background: var(--tct-success); border-radius: var(--tct-radius-pill) 0 0 var(--tct-radius-pill); }
+:is(.ts-page, .tp-page) .k-progress__part--learning { background: var(--tct-warning); }
+
+/* ---------------------------------------------------------------- typography helpers */
+:is(.ts-page, .tp-page) .k-display {
+    font-size: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+    font-weight: var(--tct-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+:is(.ts-page, .tp-page) .k-title-lg { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); }
+
+:is(.ts-page, .tp-page) .k-label { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-muted); }
+
+:is(.ts-page, .tp-page) .k-num { font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------------- key hints */
+:is(.ts-page, .tp-page) .k-kbd {
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: var(--tct-radius-sm);
+    background: var(--tct-disabled-bg);
+    color: var(--tct-text-secondary);
+    font-family: inherit;
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-bold);
+    line-height: 1;
+}
+
+/* A key hint inside a coloured button reads on a translucent chip. */
+:is(.ts-page, .tp-page) .btn .k-kbd {
+    background: var(--tct-surface);
+    background: color-mix(in srgb, var(--tct-surface) 22%, transparent);
+    color: inherit;
+}
+
+:is(.ts-page, .tp-page) .btn-outline-primary .k-kbd,
+:is(.ts-page, .tp-page) .btn-outline-danger .k-kbd,
+:is(.ts-page, .tp-page) .k-btn--mark-learning .k-kbd,
+:is(.ts-page, .tp-page) .k-btn--mark-known .k-kbd { background: var(--tct-disabled-bg); }
+
+/* ---------------------------------------------------------------- icon square (skill modes) */
+:is(.ts-page, .tp-page) .k-icon-sq {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--tct-radius-md);
+    background: var(--k-sq-bg, var(--tct-primary-strong));
+    color: var(--k-sq-fg, var(--tct-on-primary));
+    font-size: var(--tct-text-xl);
+}
+
+/* ---------------------------------------------------------------- switch (button role=switch and Bootstrap form-switch) */
+:is(.ts-page, .tp-page) .k-switch {
+    position: relative;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-border-control);
+    cursor: pointer;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .k-switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-surface);
+    transition: transform var(--tct-dur-fast) var(--tct-ease);
+}
+
+:is(.ts-page, .tp-page) .k-switch[aria-checked="true"],
+:is(.ts-page, .tp-page) .k-switch[aria-pressed="true"] { background: var(--tct-primary); }
+
+:is(.ts-page, .tp-page) .k-switch[aria-checked="true"]::after,
+:is(.ts-page, .tp-page) .k-switch[aria-pressed="true"]::after { transform: translateX(20px); }
+
+:is(.ts-page, .tp-page) .form-switch { padding-left: calc(46px + var(--tct-space-sm)); }
+
+:is(.ts-page, .tp-page) .form-switch .form-check-input {
+    width: 46px;
+    height: 26px;
+    margin-top: 0;
+    margin-left: calc(-1 * (46px + var(--tct-space-sm)));
+    border: 0;
+    background-color: var(--tct-border-control);
+    background-image: radial-gradient(circle at 13px 13px, var(--tct-surface) 0 10px, transparent 10.5px);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+:is(.ts-page, .tp-page) .form-switch .form-check-input:checked {
+    background-color: var(--tct-primary);
+    background-image: radial-gradient(circle at calc(100% - 13px) 13px, var(--tct-surface) 0 10px, transparent 10.5px);
+    background-position: 0 0;
+}
+
+:is(.ts-page, .tp-page) .form-switch .form-check-input:focus {
+    background-image: radial-gradient(circle at 13px 13px, var(--tct-surface) 0 10px, transparent 10.5px);
+}
+
+:is(.ts-page, .tp-page) .form-switch .form-check-input:checked:focus {
+    background-image: radial-gradient(circle at calc(100% - 13px) 13px, var(--tct-surface) 0 10px, transparent 10.5px);
+}
+
+/* ---------------------------------------------------------------- illustrations (_ModeArt) */
+:is(.ts-page, .tp-page) .k-art { display: block; width: 100%; height: 100%; }
+
+:is(.ts-page, .tp-page) .k-art-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 96px;
+    overflow: hidden;
+    border-radius: var(--tct-radius-lg);
+    background: var(--k-bg, var(--tct-primary-soft));
+}
+
+:is(.ts-page, .tp-page) .k-art-box--detail { height: 84px; }
+:is(.ts-page, .tp-page) .k-art-box--hub { height: 96px; }
+:is(.ts-page, .tp-page) .k-art-box--start { width: 160px; height: 80px; margin-inline: auto; }
+
+@media (max-width: 575.98px) {
+    :is(.ts-page, .tp-page) .k-art-box { height: 64px; }
+    :is(.ts-page, .tp-page) .k-art-box--start { height: 80px; }
+}
+
+:is(.ts-page, .tp-page) .k-art .f-primary { fill: var(--tct-primary); }
+:is(.ts-page, .tp-page) .k-art .f-success { fill: var(--tct-success); }
+:is(.ts-page, .tp-page) .k-art .f-success-soft { fill: var(--tct-success-soft); }
+:is(.ts-page, .tp-page) .k-art .f-accent { fill: var(--tct-accent); }
+:is(.ts-page, .tp-page) .k-art .f-warning { fill: var(--tct-warning); }
+:is(.ts-page, .tp-page) .k-art .f-warning-text { fill: var(--tct-warning-text); }
+:is(.ts-page, .tp-page) .k-art .f-surface { fill: var(--tct-surface); }
+
+:is(.ts-page, .tp-page) .k-art .s-primary { stroke: var(--tct-primary); }
+:is(.ts-page, .tp-page) .k-art .s-primary-strong { stroke: var(--tct-primary-strong); }
+:is(.ts-page, .tp-page) .k-art .s-success { stroke: var(--tct-success); }
+:is(.ts-page, .tp-page) .k-art .s-success-text { stroke: var(--tct-success-text); }
+:is(.ts-page, .tp-page) .k-art .s-warning { stroke: var(--tct-warning); }
+:is(.ts-page, .tp-page) .k-art .s-warning-text { stroke: var(--tct-warning-text); }
+:is(.ts-page, .tp-page) .k-art .s-info { stroke: var(--tct-info); }
+:is(.ts-page, .tp-page) .k-art .s-info-text { stroke: var(--tct-info-text); }
+:is(.ts-page, .tp-page) .k-art .s-muted { stroke: var(--tct-border-control); opacity: 0.5; }
+:is(.ts-page, .tp-page) .k-art .s-white { stroke: var(--tct-surface); }
+:is(.ts-page, .tp-page) .k-art .k-art-half { opacity: 0.55; }
+
+/* ---------------------------------------------------------------- motion */
+@keyframes k-pop { from { transform: scale(0.96); opacity: 0.6; } to { transform: scale(1); opacity: 1; } }
+@keyframes k-wiggle { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes k-rise { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+:is(.ts-page, .tp-page) .k-anim-pop { animation: k-pop var(--tct-dur) var(--tct-ease) both; }
+:is(.ts-page, .tp-page) .k-anim-wiggle { animation: k-wiggle 400ms var(--tct-ease) both; }
+:is(.ts-page, .tp-page) .k-anim-rise { animation: k-rise var(--tct-dur) var(--tct-ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+    :is(.ts-page, .tp-page) .k-anim-pop,
+    :is(.ts-page, .tp-page) .k-anim-wiggle,
+    :is(.ts-page, .tp-page) .k-anim-rise { animation: none; }
+
+    :is(.ts-page, .tp-page) .btn:not(:disabled):not(.disabled):active { transform: none; }
+    :is(.ts-page, .tp-page) .k-switch::after { transition: none; }
+}
