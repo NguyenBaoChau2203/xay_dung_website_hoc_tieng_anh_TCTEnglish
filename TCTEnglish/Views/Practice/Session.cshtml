@@ -65,13 +65,13 @@
     <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
 }
 
-<div class="tct-theme tct-page tp-page tp-page--session tp-hue-@Model.Hue" data-tp-mode="@Model.Mode">
+<div class="tct-theme tct-page tp-page tp-page--session@(Model.Mode is "learn" or "test" ? " tp-page--wide" : "") tp-hue-@Model.Hue" data-tp-mode="@Model.Mode">
     <h1 class="visually-hidden">@Model.ModeLabel · @Model.ScopeName</h1>
 
     <header class="tp-bar">
-        <a class="btn btn-outline-primary tct-btn-icon tp-exit" id="tpExit" href="@Model.ExitUrl" aria-label="Thoát"><i class="fa-solid fa-xmark" aria-hidden="true"></i></a>
-        <div class="tp-progress" id="tpProgress" role="progressbar" aria-label="Tiến độ" aria-valuemin="0" aria-valuemax="@Model.Targets.Count" aria-valuenow="0">
-            <span class="tp-progress__fill" id="tpProgressFill"></span>
+        <a class="btn k-btn--ghost tct-btn-icon tp-exit" id="tpExit" href="@Model.ExitUrl" aria-label="Thoát"><i class="fa-solid fa-xmark" aria-hidden="true"></i></a>
+        <div class="tp-progress k-progress k-progress--success" id="tpProgress" role="progressbar" aria-label="Tiến độ" aria-valuemin="0" aria-valuemax="@Model.Targets.Count" aria-valuenow="0">
+            <span class="tp-progress__fill k-progress__fill" id="tpProgressFill"></span>
         </div>
         <span class="tp-counter" id="tpCounter" aria-hidden="true"></span>
         <div class="tp-slot" id="tpSlot"></div>

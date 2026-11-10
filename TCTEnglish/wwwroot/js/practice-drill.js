@@ -61,7 +61,7 @@
                 return;
             }
             var q = questions[index];
-            var card = el('section', 'tct-card tp-question');
+            var card = el('section', 'tp-question');
             card.setAttribute('aria-label', 'Câu ' + (index + 1) + ' trên ' + questions.length);
             current = { q: q, options: null, answered: false, speakText: null };
 
@@ -82,7 +82,7 @@
                 play.setAttribute('aria-label', 'Nghe lại');
                 play.appendChild(ui.icon('fa-solid fa-volume-high'));
                 play.addEventListener('click', function () { ui.speak(q.word.term); });
-                var slow = el('button', 'btn btn-outline-primary', 'Nghe chậm');
+                var slow = el('button', 'btn btn-lg k-btn--soft tp-listen__slow', 'Nghe chậm');
                 slow.type = 'button';
                 slow.addEventListener('click', function () { ui.speak(q.word.term, 0.6); });
                 listen.appendChild(play);

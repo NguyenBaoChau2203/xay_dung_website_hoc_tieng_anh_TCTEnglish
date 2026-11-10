@@ -88,7 +88,7 @@
     };
 
     ui.speakButton = function (text, term) {
-        var button = el('button', 'btn btn-outline-primary tct-btn-icon tp-speak');
+        var button = el('button', 'btn k-btn--soft k-btn--icon tp-speak tp-hue-primary');
         button.type = 'button';
         button.setAttribute('aria-label', 'Phát âm ' + (term || text));
         button.appendChild(icon('fa-solid fa-volume-high'));
@@ -121,7 +121,7 @@
             var v = ui.visual(word);
             if (v) { line.appendChild(v); }
         }
-        var term = el('p', 'tp-term tct-break', word.term);
+        var term = el('p', 'tp-term k-display tct-break', word.term);
         term.lang = 'en';
         line.appendChild(term);
         if (word.phonetic) { line.appendChild(el('span', 'tct-phonetic', word.phonetic)); }
@@ -136,8 +136,17 @@
         return box;
     };
 
+    /** Key hints as chips: each item is "<key> <label>" (the first word is the key). */
     ui.keyHints = function (items) {
-        return el('p', 'tp-keyhint', items.join(' · '));
+        var row = el('p', 'tp-keyhint');
+        items.forEach(function (item) {
+            var cut = item.indexOf(' ');
+            var part = el('span', 'tp-keyhint__item');
+            part.appendChild(el('kbd', 'k-kbd', cut < 0 ? item : item.slice(0, cut)));
+            if (cut > 0) { part.appendChild(el('span', null, item.slice(cut + 1))); }
+            row.appendChild(part);
+        });
+        return row;
     };
 
     // ------------------------------------------------------------------ options
@@ -170,6 +179,7 @@
 
         function reveal(pickedId) {
             disable();
+            root.classList.add('tp-options--answered');
             buttons.forEach(function (button) {
                 var id = button.dataset.optionId;
                 var mark = button.querySelector('.tp-option__mark');
@@ -200,11 +210,14 @@
     ui.feedbackPanel = function (session, outcome, word, options) {
         var opts = options || {};
         var info = OUTCOME[outcome] || OUTCOME.wrong;
-        var panel = el('div', 'tp-feedback tp-feedback--' + outcome);
+        var panel = el('div', 'tp-feedback tp-feedback--' + outcome + ' k-anim-rise');
+        var head = el('div', 'tp-feedback__head');
         var title = el('p', 'tp-feedback__title');
         title.appendChild(icon(info.icon));
         title.appendChild(document.createTextNode(info.title));
-        panel.appendChild(title);
+        head.appendChild(title);
+        if (word) { head.appendChild(ui.speakButton(word.term)); }
+        panel.appendChild(head);
 
         if (word) {
             var answer = el('div', 'tp-feedback__answer');
@@ -212,15 +225,19 @@
             term.lang = 'en';
             answer.appendChild(term);
             if (word.phonetic) { answer.appendChild(el('span', 'tct-phonetic', word.phonetic)); }
-            answer.appendChild(ui.speakButton(word.term));
             panel.appendChild(answer);
             panel.appendChild(el('p', 'tp-feedback__def m-0', word.definition));
         }
         if (opts.extra) { panel.appendChild(opts.extra); }
 
         var actions = el('div', 'tp-feedback__actions');
-        var next = el('button', 'btn btn-primary', opts.last ? 'Xem kết quả' : 'Tiếp tục');
+        var tone = outcome === 'correct' ? 'k-btn--success' : outcome === 'close' ? 'k-btn--warning' : 'k-btn--danger';
+        var next = el('button', 'btn btn-lg w-100 tp-feedback__next ' + tone);
         next.type = 'button';
+        next.appendChild(document.createTextNode(opts.last ? 'Xem kết quả' : 'Tiếp tục'));
+        var enter = el('kbd', 'k-kbd', 'Enter');
+        enter.setAttribute('aria-hidden', 'true');
+        next.appendChild(enter);
         var used = false;
         function go() {
             if (used) { return; }
@@ -276,14 +293,14 @@
         }
 
         var actions = el('div', 'tp-typing__actions');
-        var check = el('button', 'btn btn-primary', 'Kiểm tra');
+        var check = el('button', 'btn btn-primary btn-lg', 'Kiểm tra');
         check.type = 'button';
-        var skip = el('button', 'btn btn-outline-primary', 'Không nhớ');
+        var skip = el('button', 'btn btn-outline-primary btn-lg', 'Không nhớ');
         skip.type = 'button';
         actions.appendChild(check);
         actions.appendChild(skip);
         if (opts.hints) {
-            hintButton = el('button', 'btn btn-outline-primary');
+            hintButton = el('button', 'btn btn-lg k-btn--soft tp-hue-accent');
             hintButton.type = 'button';
             hintButton.appendChild(icon('fa-solid fa-lightbulb me-1'));
             var hintText = document.createTextNode('Gợi ý');
@@ -358,6 +375,20 @@
      * Result screen. results: [{ word, result: 'correct' | 'close' | 'wrong' }]. "close" counts as correct.
      * options: { durationMs, extra: Node[] }.
      */
+    /** Percent ring: green from 70%, amber from 50%, red below. `label` is the small text under the number. */
+    ui.ring = function (percent, label) {
+        var tone = percent >= 70 ? 'ok' : percent >= 50 ? 'mid' : 'low';
+        var ring = el('div', 'tp-ring tp-ring--' + tone);
+        ring.style.setProperty('--p', String(percent));
+        ring.setAttribute('role', 'img');
+        ring.setAttribute('aria-label', percent + '% ' + (label || 'trả lời đúng'));
+        var inner = el('span', 'tp-ring__inner');
+        inner.appendChild(el('span', 'tp-ring__value', percent + '%'));
+        inner.appendChild(el('span', 'tp-ring__label', label || 'trả lời đúng'));
+        ring.appendChild(inner);
+        return ring;
+    };
+
     ui.summary = function (session, results, options) {
         var opts = options || {};
         var config = session.config;
@@ -376,39 +407,43 @@
         var root = el('section', 'tp-summary');
         root.setAttribute('aria-label', 'Kết quả');
         var head = el('div', 'tp-summary__head');
+        if (total) { head.appendChild(ui.ring(percent)); }
         var starBox = el('div', 'tp-stars tp-pop');
         starBox.setAttribute('role', 'img');
         starBox.setAttribute('aria-label', stars + ' sao');
         for (var i = 1; i <= 3; i++) {
-            var star = icon(i <= stars ? 'fa-solid fa-star' : 'fa-regular fa-star tp-star--off');
-            starBox.appendChild(star);
+            starBox.appendChild(icon(i <= stars ? 'fa-solid fa-star' : 'fa-solid fa-star tp-star--off'));
         }
         head.appendChild(starBox);
         head.appendChild(el('h2', 'tp-summary__title', total ? 'Xong phiên rồi!' : 'Chưa có câu nào'));
         root.appendChild(head);
 
         var kpis = el('div', 'tp-kpis');
-        [['Đúng', right + '/' + total], ['Chính xác', percent + '%'], ['Thời gian', core.formatDuration(opts.durationMs != null ? opts.durationMs : session.elapsed())]]
-            .forEach(function (pair) {
-                var card = el('div', 'tct-card tp-kpi');
-                card.appendChild(el('span', 'tp-kpi__value', pair[1]));
-                card.appendChild(el('span', 'tp-kpi__label', pair[0]));
+        [['Câu hỏi', String(total), 'primary'], ['Đúng', right + '/' + total, 'success'], ['Thời gian', core.formatDuration(opts.durationMs != null ? opts.durationMs : session.elapsed()), 'info']]
+            .forEach(function (item) {
+                var card = el('div', 'tp-kpi k-soft tp-hue-' + item[2]);
+                card.appendChild(el('span', 'tp-kpi__value', item[1]));
+                card.appendChild(el('span', 'tp-kpi__label', item[0]));
                 kpis.appendChild(card);
             });
         root.appendChild(kpis);
         if (opts.extra) { opts.extra.forEach(function (node) { root.appendChild(node); }); }
 
         if (missed.length) {
-            var section = el('section', 'tp-missed');
-            section.appendChild(el('h3', 'tp-missed__title', 'Từ làm sai'));
+            var section = el('section', 'tp-missed k-panel');
+            var missedTitle = el('h3', 'tp-missed__title');
+            missedTitle.appendChild(icon('fa-solid fa-circle-xmark'));
+            missedTitle.appendChild(document.createTextNode('Từ làm sai'));
+            section.appendChild(missedTitle);
             var list = el('ul', 'tp-missed__list');
             missed.forEach(function (w) {
-                var item = el('li', 'tct-card tp-missed__item');
+                var item = el('li', 'tp-missed__item');
                 var text = el('div', 'tp-missed__text');
                 var link = el('a', 'tp-missed__term', w.term);
                 link.href = '/Sets/Cards/' + w.id;
                 link.lang = 'en';
                 text.appendChild(link);
+                if (w.phonetic) { text.appendChild(el('span', 'tct-phonetic tp-missed__ipa', w.phonetic)); }
                 text.appendChild(el('span', 'tp-missed__def', w.definition));
                 item.appendChild(text);
                 item.appendChild(ui.speakButton(w.term));
@@ -420,15 +455,21 @@
 
         var actions = el('div', 'tp-summary__actions');
         function add(label, href, cls) {
-            var a = el('a', 'btn ' + (cls || 'btn-outline-primary'), label);
+            var a = el('a', 'btn btn-lg ' + (cls || 'btn-outline-primary'), label);
             a.href = href;
             actions.appendChild(a);
         }
         add('Luyện tiếp', config.againUrl, 'btn-primary');
         if (missed.length) { add('Học các từ sai', learnLink(config, missed.slice(0, 50).map(function (w) { return w.id; }))); }
-        add('Từ hay quên', '/Practice/HardWords');
-        add('Xong', config.exitUrl);
         root.appendChild(actions);
+
+        var links = el('div', 'tp-summary__links');
+        [['Từ hay quên', '/Practice/HardWords'], ['Xong', config.exitUrl]].forEach(function (pair) {
+            var a = el('a', 'tp-summary__link', pair[0]);
+            a.href = pair[1];
+            links.appendChild(a);
+        });
+        root.appendChild(links);
 
         session.setCounter('');
         session.render(root);
