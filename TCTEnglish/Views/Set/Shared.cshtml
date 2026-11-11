@@ -77,7 +77,7 @@
             <ul class="ts-shared-tiles">
                 @foreach (var card in first)
                 {
-                    <li class="tct-card ts-shared-tile">
+                    <li class="tct-card k-panel ts-shared-tile">
                         <span class="ts-term tct-break" lang="en">@card.Term</span>
                         @if (!string.IsNullOrWhiteSpace(card.Phonetic)) { <span class="tct-phonetic tct-text-muted">@card.Phonetic</span> }
                         <span class="tct-break">@card.Definition</span>

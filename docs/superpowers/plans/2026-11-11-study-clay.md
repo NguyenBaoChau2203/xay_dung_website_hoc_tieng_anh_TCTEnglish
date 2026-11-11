@@ -704,3 +704,30 @@ git diff --check
 - G14 clay grep: the card-detail rules are clean; five lines remain for C5 (`.ts-choice` checked state, `.ts-compose-card*` x3, `.ts-save-bar`).
 - Differences found: pre-existing, not changed: the example highlight marks only the headword ("negotiate" then a plain "d" in "negotiated").
 - Attempts / deferred / blocked: 3 runs of the behaviour script (one script bug in the delete-confirm selector and a PowerShell string expansion, one Tab-order window); nothing deferred or blocked.
+
+### C5 — other Set pages and modals (no mockup)
+- Commit: see `git log` ("feat(study-clay): restyle add, import, create, settings, edit and shared pages")
+- G1 build: pass (warnings 43, C0 43; forced rebuild)
+- G2 area: passed 108 / failed 0 / skipped 0
+- G3 full: passed 1328 / failed 0 / skipped 22 (C0: same)
+- G4 node: passed 205 / failed 0
+- G5 hooks: unchanged (457, removed 0)
+- G6 tokens/diff: clean
+- G7 scope: `Views/Set/{AddCards,Import,EditCard,Settings,Shared}.cshtml` (class names only: `k-panel` on the plain cards, `k-panel--quiet` on the composer cards and the import preview table), `wwwroot/css/personal-sets.css`, `.ai/context/known-issues.md` (one entry, see below). `CreateSet`, `_SetInfoForm`, `_ShareSetModal` and the modals needed no markup change.
+- G8 render: `/Sets/1/Add`, `/Sets/1/Import`, `/Sets/1/Settings`, `/Home/CreateSet`, `/Sets/Cards/6/Edit` x 1440x900, 1366x768, 1024x768, 768x1024, 390x844, 320x640, 720x450, `.tmp/study-clay/c5/` (plus add-cards states, import preview, drawer, shared page anonymous, share modal, settings, edit, create-invalid, forced-colors). Canvas everywhere, one `<h1>` each, no overflow (only the closed off-screen drawer is reported), no new console or network errors; the baseline `card-edit` TypeError is the known issue below.
+- G9: no mockup for these pages; checked against the Clay rules (plan 4.4) and against the C2-C4 pages.
+- G10 behaviour: 45 scripted checks over two runs on a throwaway scratch set (created and deleted through the app's own form, API and delete confirmation); every check passes except the items below.
+  - AddCards: compose card quiet panel 24px with border kept, white number pillow, IPA field inset with the control border colour, meaning textarea = shared Clay field (16px), dashed "Thêm thẻ" (24px), save bar overlay shadow, mode switch selected item (weight 600, quiet shadow, 1px border); term without meaning shows "Nhập nghĩa tiếng Việt"; a valid card gets the success border **and** a 3px `--tct-success-soft` ring plus the check icon and "1 thẻ sẵn sàng" (first run: the ring was hidden by `.k-panel--quiet`; fixed with a doubled-class selector, then verified; the danger state was verified by toggling its class, since a real save error needs a server failure); save added the card (total 2 to 3); paste mode and "Tách thành thẻ" turn three lines into cards; "Gợi ý" opens the Premium-locked modal for a Standard account without a script error.
+  - Import: input step is a Clay panel, textarea is the shared field, "Xem trước" enables, the preview lists three rows in a quiet panel (duplicates flagged "Trùng", a bare word flagged "Thiếu nghĩa — cần AI hoặc tự nhập"), import without AI added the two lines that have a meaning and offered "Xem bộ thẻ" (`/Sets/{id}`).
+  - Create / Settings: choice cards unselected quiet with a 2px control border, selected pressed with a primary border, clicking "Công khai" moves the state; an empty name gives "Nhập tên bộ thẻ" and keeps the form; saving a new name persists with "Đã lưu bộ thẻ"; an empty name on Settings is rejected; the danger zone is a Clay panel with its danger border; the delete modal uses the shared Clay overlay (28px), cancels, and the confirm button stays disabled until the exact set name is typed, then deletes and returns to `/Sets` (scratch set removed, `/Sets/{id}` answers 404).
+  - EditCard: Clay panel, option pills inset with the selected one quiet and weight 600, save persists and returns to the card page.
+  - Shared page: anonymous visitor sees one `<h1>`, five Clay panel tiles, the canvas and the "Đăng nhập để học bộ này" prompt, no console errors; the share modal uses the shared overlay (28px).
+  - Forced colours (add, create, edit, import) and 390px (add, import, create, settings, edit) pass.
+  - **Not exercised:** CSV file upload through the file chooser (paste path used); "Gợi ý" for a Premium account (would call the paid AI); clone / follow as a logged-in non-owner (would create a set on another account); the real server-error state of a composer card (class toggled instead).
+  - **Failed check, pre-existing, not fixed:** for a Standard account the "Chi tiết" drawer does not open (`set-card-form.js` `setData` reads `refs.imageResults`, which is only rendered for Premium). Verified identical on the C0 baseline (the same TypeError on `/Sets/Cards/{id}/Edit`) and that a Premium account opens the drawer normally with the Clay-styled fields. Recorded in `.ai/context/known-issues.md` as SETS-CARD-DETAILS-NONPREMIUM-NULL; a fix needs a JS logic change, which this plan forbids.
+- G11 a11y: forced-colors emulation: no shadow and a visible border on compose cards, number badge, IPA field, add-card button, save bar, choice cards, edit panel and import panel; the validity state is carried by border colour, ring, check icon and text, not by shadow alone.
+- G12 contrast (real elements): add-card button 7.23, number badge 7.65, field labels 5.87, premium hint 6.84, save status 9.31, mode switch 17.10 / 8.32, choice title 15.45, choice text 5.30 (selected tint) / 5.87, form hints 5.87, danger-zone text 17.10.
+- G13 regression: C1 suite 17/17.
+- G14 clay grep: `personal-sets.css` has no non-Clay `box-shadow`, no edge shadow or `translateY` press, and no hard-coded radius (0 / 0 / 0).
+- Differences found: none beyond the pre-existing drawer bug.
+- Attempts / deferred / blocked: 2 runs of the behaviour script after 1 CSS fix; the drawer check on a Standard account is **blocked** by the pre-existing bug (outside scope, recorded); nothing deferred.

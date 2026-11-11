@@ -27,6 +27,17 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
+
+- Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên
+  `/Sets/{id}/Add` không mở được bảng chi tiết, và `/Sets/Cards/{id}/Edit` ghi lỗi
+  console `TypeError: Cannot set properties of null (setting 'textContent')`.
+- Nguyên nhân: `Object.setData` trong `wwwroot/js/set-card-form.js` (khoảng dòng 465)
+  gán `refs.imageResults.textContent` không kiểm tra, nhưng phần tìm ảnh chỉ được
+  render cho Premium (dòng kế bên đã kiểm `refs.imageQuery`). Có sẵn từ trước đợt
+  Study Clay (thấy ở baseline C0); tài khoản Premium mở bảng bình thường.
+- Chưa sửa vì đợt Study Clay chỉ đổi giao diện (không đổi logic JS). Hướng sửa gọn:
+  bọc dòng đó bằng `if (refs.imageResults)`; cần test hồi quy cho tài khoản Standard.
 ### STAGING-SOURCE-MEDIA-MISSING — confirmed05/11/2026
 
 - Owner đã yêu cầu copy toàn bộ production DB sang staging. Đã hoàn tất9.209

@@ -37,7 +37,7 @@
 <div class="tct-theme tct-page tct-page--narrow ts-page ts-page--import">
     <partial name="_PageHeader" model="header" />
 
-    <section id="ts-step-input" class="tct-card ts-import-card" aria-labelledby="ts-input-title">
+    <section id="ts-step-input" class="tct-card k-panel ts-import-card" aria-labelledby="ts-input-title">
         <h2 class="visually-hidden" id="ts-input-title">Nhập danh sách từ</h2>
         <label class="form-label" for="ts-import-text">Danh sách từ</label>
         <p class="form-text">Mỗi dòng một từ, có thể kèm nghĩa sau dấu gạch ngang, hai chấm hoặc dấu bằng. File CSV có cột term/meaning_vi cũng dùng được.</p>
@@ -52,7 +52,7 @@
     <section id="ts-step-preview" class="ts-import-card" aria-labelledby="ts-preview-title" hidden>
         <h2 class="ts-section-title" id="ts-preview-title">Xem trước</h2>
         <p class="tct-text-muted" id="ts-preview-summary" aria-live="polite"></p>
-        <div class="tct-table-wrap" tabindex="0" aria-label="Bảng xem trước danh sách từ">
+        <div class="tct-table-wrap k-panel k-panel--quiet" tabindex="0" aria-label="Bảng xem trước danh sách từ">
             <table class="tct-table">
                 <thead><tr><th scope="col">#</th><th scope="col">Từ</th><th scope="col">Nghĩa</th><th scope="col">Trạng thái</th></tr></thead>
                 <tbody id="ts-preview-rows"></tbody>

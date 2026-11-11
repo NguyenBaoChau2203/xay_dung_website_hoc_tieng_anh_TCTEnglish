@@ -80,7 +80,7 @@
         <button type="button" class="ts-add-card" id="ts-add-card"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i><span>Thêm thẻ</span></button>
     </section>
 
-    <section id="ts-pane-paste" class="tct-card ts-paste" aria-label="Dán danh sách" hidden>
+    <section id="ts-pane-paste" class="tct-card k-panel ts-paste" aria-label="Dán danh sách" hidden>
         <label class="form-label" for="ts-paste-text">Danh sách từ</label>
         <p class="form-text">Mỗi dòng một từ, có thể kèm dấu gạch ngang và nghĩa. AI sẽ điền phần còn lại (Premium).</p>
         <textarea class="form-control ts-mono" id="ts-paste-text" rows="8" placeholder="apple - quả táo&#10;resilient&#10;borrow: mượn"></textarea>
@@ -91,14 +91,14 @@
         </div>
     </section>
 
-    <div class="ts-save-bar tct-card" id="ts-save-bar">
+    <div class="ts-save-bar tct-card k-panel" id="ts-save-bar">
         <span class="ts-save-status" id="ts-save-status" aria-live="polite">0 thẻ sẵn sàng</span>
         <button type="button" class="btn btn-primary btn-lg ts-save-btn" id="ts-save" data-ts-pending="Đang lưu…">Lưu từ</button>
     </div>
 
     <template id="tsComposeCardTpl">
         <li class="ts-compose-item">
-            <article class="tct-card ts-compose-card">
+            <article class="tct-card k-panel k-panel--quiet ts-compose-card">
                 <header class="ts-compose-head">
                     <span class="ts-compose-num" data-ref="num"></span>
                     <span class="ts-valid" data-ref="valid" hidden><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">Hợp lệ</span></span>
