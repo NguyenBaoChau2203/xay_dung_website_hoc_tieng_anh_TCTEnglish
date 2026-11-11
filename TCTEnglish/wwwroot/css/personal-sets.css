@@ -341,8 +341,11 @@
     margin-bottom: var(--tct-space-xl);
     padding: var(--tct-space-xl);
     overflow: hidden;
+    border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-xl);
     background: var(--k-bg);
+    background: linear-gradient(135deg, var(--k-tint), var(--tct-surface) 78%);
+    box-shadow: var(--tct-clay-shadow);
     color: var(--tct-text);
 }
 
@@ -372,7 +375,7 @@
     overflow: hidden;
     border-radius: var(--tct-radius-lg);
     background: var(--tct-surface);
-    background: color-mix(in srgb, var(--tct-surface) 75%, transparent);
+    box-shadow: var(--tct-clay-shadow);
     color: var(--k-fg);
 }
 
@@ -400,7 +403,7 @@
 
 .ts-page .ts-hero-main { position: relative; z-index: 1; flex: 1 1 18rem; min-width: 0; }
 .ts-page .ts-hero-main .tct-page-header { margin-bottom: var(--tct-space-sm); }
-.ts-page .ts-hero-main .tct-breadcrumb { font-size: var(--tct-text-sm); color: var(--tct-text-muted); }
+.ts-page .ts-hero-main .tct-breadcrumb { font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
 .ts-page .ts-hero-main .tct-page-title { font-size: clamp(1.75rem, 1.5rem + 1vw, 2.125rem); font-weight: var(--tct-weight-bold); }
 .ts-page .ts-hero-main .tct-page-desc { color: var(--tct-text-secondary); }
 .ts-page .ts-hero-meta { display: flex; flex-wrap: wrap; align-items: center; margin: 0 0 var(--tct-space-md); color: var(--tct-text-secondary); }
@@ -431,9 +434,6 @@
     text-decoration: none;
 }
 
-.ts-page .ts-study-tile:hover,
-.ts-page .ts-study-tile:focus-within { box-shadow: 0 5px 0 var(--tct-border); }
-
 .ts-page .ts-study-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--tct-space-xs); min-width: 0; padding-inline: var(--tct-space-xs); }
 .ts-page .ts-study-name { font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); }
 .ts-page .ts-study-note { min-height: 1.25em; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--k-fg); }
@@ -441,11 +441,6 @@
 .ts-page .ts-study-more { margin: var(--tct-space-md) 0 0; font-weight: var(--tct-weight-semibold); }
 .ts-page .ts-study-more a { color: var(--tct-primary-strong); text-decoration: none; }
 .ts-page .ts-study-more a:hover { text-decoration: underline; }
-
-@media (prefers-reduced-motion: reduce) {
-    .ts-page .ts-study-tile:hover,
-    .ts-page .ts-study-tile:focus-within { transform: none; }
-}
 
 /* ---------------------------------------------------------------- detail: word list */
 .ts-page .ts-words { margin-bottom: var(--tct-space-2xl); }
@@ -464,15 +459,14 @@
 .ts-page .ts-search { position: relative; }
 .ts-page .ts-search i { position: absolute; left: var(--tct-space-md); top: 50%; transform: translateY(-50%); color: var(--tct-text-muted); pointer-events: none; }
 
+/* White field with a real boundary and the shared Clay field inset (border, radius, shadow come from .tct-theme .form-control). */
 .ts-page .ts-search .form-control {
     height: 48px;
     padding-left: 2.75rem;
-    border: 0;
-    border-radius: var(--tct-radius-lg);
-    background: var(--tct-disabled-bg);
+    border-width: 1.5px;
 }
 
-.ts-page .ts-search .form-control.ts-filter--active { background: var(--tct-primary-tint); }
+.ts-page .ts-search .form-control.ts-filter--active { border-color: var(--tct-primary); background: var(--tct-primary-tint); }
 
 .ts-page .ts-result-count { margin: 0; font-size: var(--tct-text-base); white-space: nowrap; }
 .ts-page .ts-view-toggle .k-seg__item { min-width: 44px; padding-inline: var(--tct-space-md); }
@@ -480,7 +474,11 @@
 .ts-page .ts-word-table td,
 .ts-page .ts-word-table th { vertical-align: middle; }
 .ts-page .ts-word-table { font-size: var(--tct-text-base); }
-.ts-page .ts-word-table th { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-muted); background: var(--tct-surface-muted); }
+.ts-page .ts-word-table th { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-muted); background: var(--tct-surface-muted); background: color-mix(in srgb, var(--tct-primary) 3%, var(--tct-surface)); }
+
+/* One quiet container for the whole table: rows get a tint on hover, never their own shadow. */
+.ts-page .ts-word-table tbody tr:hover,
+.ts-page .ts-word-table tbody tr:hover > td { background-color: var(--tct-primary-tint); }
 .ts-page .ts-col-select { width: 2.5rem; }
 .ts-page .ts-col-cefr { white-space: nowrap; }
 .ts-page .ts-col-speak { width: var(--tct-target-min); text-align: right; }
@@ -509,11 +507,11 @@
     border: 0;
     background: var(--tct-primary-soft);
     color: var(--tct-primary-strong);
-    box-shadow: none;
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .ts-page .ts-col-speak .ts-speak::after { content: ""; position: absolute; inset: -4px; }
-.ts-page .ts-col-speak .ts-speak:active { transform: none; box-shadow: none; }
+.ts-page .ts-col-speak .ts-speak:not(:disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
 
 @media (max-width: 767.98px) {
     .ts-page .ts-word-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -558,17 +556,22 @@
 @media (min-width: 576px) { .ts-page .ts-word-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1200px) { .ts-page .ts-word-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
+/* Grid cards are built by set-detail.js without the .k-card class, so they take the same Clay card rules here. */
 .ts-page .ts-word-card {
     position: relative;
     overflow: hidden;
     border: 1px solid var(--tct-border);
-    border-radius: var(--tct-radius-xl);
-    background: var(--tct-surface);
-    box-shadow: 0 3px 0 var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+    background: var(--tct-clay-surface);
+    box-shadow: var(--tct-clay-shadow);
+    transition: box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
+.ts-page .ts-word-card:is(:hover, :focus-within) { box-shadow: var(--tct-clay-shadow-lift); }
+
 .ts-page .ts-word-card--suspended { opacity: 0.7; }
-.ts-page .ts-word-art { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; background: var(--k-bg, var(--tct-surface-muted)); overflow: hidden; }
+/* Art = inset box inside the card (same field look as the other covers). */
+.ts-page .ts-word-art { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; margin: 10px 10px 0; border-radius: var(--tct-radius-lg); background: var(--k-bg, var(--tct-surface-muted)); box-shadow: var(--tct-clay-shadow-field); overflow: hidden; }
 .ts-page .ts-word-art img { width: 100%; height: 100%; object-fit: cover; }
 .ts-page .ts-word-glyph { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); color: var(--k-fg, var(--tct-text-secondary)); }
 .ts-page .ts-word-badge { position: absolute; top: var(--tct-space-sm); right: var(--tct-space-sm); }
@@ -581,7 +584,7 @@
 .ts-page .ts-sentinel { height: 1px; }
 .ts-page .ts-loading-more { text-align: center; }
 
-/* Bulk bar: light panel with the pressed edge, clear of the AI launcher offsets below */
+/* Bulk bar: floating Clay panel (overlay depth), clear of the AI launcher offsets below */
 .ts-page .ts-bulk-bar {
     position: fixed;
     bottom: var(--tct-space-md);
@@ -598,7 +601,7 @@
     border-radius: var(--tct-radius-xl);
     background: var(--tct-surface);
     color: var(--tct-text);
-    box-shadow: 0 4px 0 var(--tct-border), var(--tct-shadow-overlay);
+    box-shadow: var(--tct-clay-shadow-overlay);
 }
 
 .ts-page .ts-bulk-bar[hidden] { display: none; }
@@ -912,7 +915,8 @@
 /* ---------------------------------------------------------------- forced colours (C-R6)
    Clay depth is decorative: system colours keep every boundary. Classes are added phase by phase. */
 @media (forced-colors: active) {
-    .ts-page :is(.ts-overview, .ts-overview__stat, .ts-tile-art, .ts-tile-vis, .ts-tile-add-icon) {
+    .ts-page :is(.ts-overview, .ts-overview__stat, .ts-tile-art, .ts-tile-vis, .ts-tile-add-icon,
+        .ts-hero, .ts-hero-art, .ts-word-card, .ts-word-art, .ts-bulk-bar, .ts-col-speak .ts-speak) {
         box-shadow: none;
         border: 1px solid CanvasText;
     }
