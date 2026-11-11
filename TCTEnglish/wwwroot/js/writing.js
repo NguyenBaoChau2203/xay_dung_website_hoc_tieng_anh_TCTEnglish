@@ -434,29 +434,34 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        if (ev.optionalFeedbackText) {
-            elFeedbackSourceNote.hidden = false;
-            const source = ev.optionalFeedbackSource ? ' (' + ev.optionalFeedbackSource + ')' : '';
-            elFeedbackSourceNote.textContent = 'Phản hồi bổ sung' + source + ': ' + ev.optionalFeedbackText;
-            return;
+        const localLabel = (window.TctAiAvailability && typeof window.TctAiAvailability.message === 'function')
+            ? window.TctAiAvailability.message('localWriting')
+            : 'Đã đánh giá bằng bộ kiểm tra nội bộ.';
+        const parts = [];
+        if (!ev.usedAi) {
+            parts.push(localLabel);
+            if (String(ev.assessmentStatus || '').toLowerCase() === 'needsreview' || ev.reviewRequired) {
+                parts.push('Cần xem lại. Không tự khẳng định sai nghĩa; hãy dùng gợi ý để chỉnh.');
+            } else if (ev.passed) {
+                parts.push('Câu này đủ điều kiện để tiếp tục.');
+            } else {
+                parts.push('Hãy chỉnh sửa và gửi lại câu này.');
+            }
         }
 
-        if (ev.usedAi) {
-            elFeedbackSourceNote.hidden      = true;
+        if (ev.optionalFeedbackText) {
+            const source = ev.optionalFeedbackSource ? ' (' + ev.optionalFeedbackSource + ')' : '';
+            parts.push('Phản hồi bổ sung' + source + ': ' + ev.optionalFeedbackText);
+        }
+
+        if (parts.length === 0) {
+            elFeedbackSourceNote.hidden = true;
             elFeedbackSourceNote.textContent = '';
             return;
         }
 
-        // Local / non-AI assessment — label honestly
-        elFeedbackSourceNote.hidden      = false;
-        if (String(ev.assessmentStatus || '').toLowerCase() === 'needsreview' || ev.reviewRequired) {
-            elFeedbackSourceNote.textContent =
-                'Đánh giá nội bộ: cần xem lại. Không tự khẳng định sai nghĩa; hãy dùng gợi ý để chỉnh.';
-        } else {
-            elFeedbackSourceNote.textContent = ev.passed
-                ? 'Hệ thống đã dùng đánh giá nội bộ (không chờ cloud). Câu này đủ điều kiện để tiếp tục.'
-                : 'Hệ thống đã dùng đánh giá nội bộ (không chờ cloud). Hãy chỉnh sửa và gửi lại câu này.';
-        }
+        elFeedbackSourceNote.hidden = false;
+        elFeedbackSourceNote.textContent = parts.join(' ');
     }
 
     function getEvaluationBannerCopy(evaluation) {

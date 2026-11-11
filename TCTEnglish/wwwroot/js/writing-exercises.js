@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const antiForgeryToken = createForm.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
     const createUrl = createForm.getAttribute('data-create-url') || '';
     const practiceUrl = createForm.getAttribute('data-practice-url') || '';
+    const catalogUrl = createForm.getAttribute('data-catalog-url') || '';
 
     if (!sourceTextInput || !submitButton || !submitText || !messageBox || !antiForgeryToken || !createUrl) {
         return;
@@ -48,6 +49,33 @@ document.addEventListener('DOMContentLoaded', function () {
         messageBox.hidden = true;
         messageBox.textContent = '';
         messageBox.classList.remove('is-error', 'is-success', 'is-info');
+        const link = createForm.querySelector('[data-writing-catalog-link]');
+        if (link) link.hidden = true;
+    }
+
+    function availabilityMessage(kind) {
+        const helper = window.TctAiAvailability;
+        if (helper && typeof helper.message === 'function') return helper.message(kind);
+        if (kind === 'catalog') return 'Chọn bài có sẵn';
+        if (kind === 'unavailable') return 'Tính năng AI tạm thời chưa sẵn sàng.';
+        if (kind === 'rate') return 'Bạn đang gửi yêu cầu quá nhanh.';
+        if (kind === 'access') return 'Phiên đăng nhập đã hết hoặc bạn không có quyền.';
+        return 'Dịch vụ đánh giá đang gián đoạn.';
+    }
+
+    function showCatalogAlternative() {
+        if (!catalogUrl) return null;
+        let link = createForm.querySelector('[data-writing-catalog-link]');
+        if (!link) {
+            link = document.createElement('a');
+            link.setAttribute('data-writing-catalog-link', 'true');
+            link.className = 'btn btn-outline-primary btn-sm mt-2';
+            link.textContent = availabilityMessage('catalog');
+            if (messageBox.parentNode) messageBox.parentNode.appendChild(link);
+        }
+        link.href = catalogUrl;
+        link.hidden = false;
+        return link;
     }
 
     function setSubmitting(isSubmitting) {
@@ -112,20 +140,30 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!response.ok) {
-                if (response.status === 429) {
+                const code = payload && (payload.errorCode || payload.code) ? String(payload.errorCode || payload.code) : '';
+                if (response.status === 401 || response.status === 403) {
+                    setCreateMessage('is-error', (payload && payload.error) || availabilityMessage('access'));
+                } else if (response.status === 429 && code !== 'circuit_open' && code !== 'rate_limited') {
                     const retryAfter = payload && payload.retryAfterSeconds
                         ? ' Hãy thử lại sau ' + payload.retryAfterSeconds + ' giây.'
                         : '';
                     setCreateMessage('is-error', (payload && payload.error) || ('Bạn đã dùng hết lượt tạo bài hôm nay.' + retryAfter));
-                    return;
+                } else if (response.status === 429 || code === 'rate_limited') {
+                    setCreateMessage('is-error', availabilityMessage('rate'));
+                } else if (code === 'invalid_configuration' || code === 'authentication' || code === 'quota_exhausted') {
+                    setCreateMessage('is-error', availabilityMessage('unavailable'));
+                } else if (!payload) {
+                    setCreateMessage('is-error', availabilityMessage('outage'));
+                } else {
+                    setCreateMessage('is-error', (payload && payload.error) || availabilityMessage('outage'));
                 }
-
-                setCreateMessage('is-error', (payload && payload.error) || 'Không thể tạo bài viết bằng AI lúc này. Vui lòng thử lại.');
+                showCatalogAlternative();
                 return;
             }
 
             if (!payload || payload.success !== true || !payload.data) {
                 setCreateMessage('is-error', 'Hệ thống trả về kết quả tạo bài không hợp lệ.');
+                showCatalogAlternative();
                 return;
             }
 
@@ -139,7 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             window.location.assign(nextUrl);
         } catch {
-            setCreateMessage('is-error', 'Kết nối tới dịch vụ AI đang gặp vấn đề. Vui lòng thử lại.');
+            setCreateMessage('is-error', availabilityMessage('outage'));
+            showCatalogAlternative();
         } finally {
             setSubmitting(false);
         }

@@ -248,6 +248,13 @@ function assistantRows(chatWindow) {
   return (chatWindow.children || []).filter((child) => child.getAttribute && child.getAttribute('data-role') === 'assistant');
 }
 
+function collectText(node, parts = []) {
+  if (!node) return '';
+  if (node.textContent) parts.push(node.textContent);
+  for (const child of node.children || []) collectText(child, parts);
+  return parts.join(' ');
+}
+
 function visibleAssistantText(chatWindow) {
   const parts = [];
   walk(chatWindow, (node) => {
@@ -631,5 +638,57 @@ test('network failure keeps one draft and does not send twice', async () => {
   await delay(40);
   assert.equal(calls, 1);
   assert.equal(byId.messageInput.value, 'offline draft');
-  assert.equal(byId.chatStatusText.textContent, 'Mạng bị gián đoạn. Bản nháp vẫn còn để bạn gửi lại.');
+  assert.equal(byId.chatStatusText.textContent, 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.');
+});
+
+test('circuit-open chat failure is a known local outage and does not claim an unknown charge', async () => {
+  const { document, byId } = buildChatDom();
+  const sends = [];
+  const fetchImpl = async (url, options = {}) => {
+    if (String(url).includes('Observability')) return observabilityResponse();
+    sends.push(JSON.parse(options.body));
+    return {
+      ok: false,
+      status: 503,
+      headers: { get: (name) => String(name).toLowerCase() === 'content-type' ? 'application/json' : null },
+      json: async () => ({ error: 'Dịch vụ đánh giá đang gián đoạn.', errorCode: 'circuit_open' }),
+    };
+  };
+  loadAiChat({ document, fetchImpl });
+  await delay(20);
+  byId.messageInput.value = 'ask while paused';
+  pressEnter(byId.messageInput);
+  await delay(40);
+  assert.equal(sends.length, 1);
+  assert.equal(byId.messageInput.value, 'ask while paused');
+  assert.equal(byId.chatStatusText.textContent, 'Dịch vụ đánh giá đang gián đoạn.');
+  assert.equal(byId.chatRetryBtn.classList.contains('d-none'), false);
+  assert.doesNotMatch(byId.chatStatusText.textContent, /Chưa xác nhận được kết quả/);
+});
+
+test('internal chat success is not labelled as a model call', async () => {
+  const { document, byId } = buildChatDom();
+  const fetchImpl = async (url) => {
+    if (String(url).includes('Observability')) return observabilityResponse();
+    return {
+      ok: true,
+      status: 200,
+      headers: { get: () => 'application/json' },
+      json: async () => ({
+        text: 'The bell is red.',
+        conversationId: '33333333-3333-3333-3333-333333333333',
+        usage: { model: 'internal-chat-boundary', promptTokens: 0, completionTokens: 0, totalTokens: 0 },
+        grounding: { outcome: 'answered', status: 'current', stateLabel: 'Đã trả lời từ nguồn được phép xem', sources: [] },
+      }),
+    };
+  };
+  loadAiChat({ document, fetchImpl });
+  await delay(20);
+  byId.messageInput.value = 'what color is the bell';
+  pressEnter(byId.messageInput);
+  await delay(40);
+  const rendered = collectText(byId.chatWindow);
+  assert.match(rendered, /The bell is red/);
+  assert.match(rendered, /Trả lời từ dữ liệu trong hệ thống/);
+  assert.doesNotMatch(rendered, /gpt-6-luna|GPT/);
 });
