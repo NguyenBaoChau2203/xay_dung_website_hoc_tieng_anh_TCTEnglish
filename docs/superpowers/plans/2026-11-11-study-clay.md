@@ -772,3 +772,24 @@ git diff --check
 - `color-mix` additions: bar background (canvas 72% into transparent, canvas fallback first), cloze box (primary 4% into surface, fallback first), option hover border (hue fill 40% into transparent).
 - Differences found: none beyond G9.
 - Attempts / deferred / blocked: 4 runs of the behaviour script (1 CSS fix twice for the 1366x768 overlap); nothing deferred or blocked.
+
+### C8 — flashcard and match (mockups 07, 08)
+- Commit: see `git log` ("feat(study-clay): restyle the flashcard and match modes")
+- G1 build: pass (warnings 43, C0 43; forced rebuild)
+- G2 area: passed 108 / failed 0 / skipped 0
+- G3 full: passed 1328 / failed 0 / skipped 22 (C0: same)
+- G4 node: passed 205 / failed 0
+- G5 hooks: unchanged (457, removed 0)
+- G6 tokens/diff: clean
+- G7 scope: `wwwroot/css/practice.css` only. Previous/next take the white icon look from CSS (the JS keeps `btn-outline-primary tct-btn-icon tp-flash-nav`), so `practice-flashcard.js` and `practice-match.js` are untouched.
+- G8 render: flashcard and match x 1440x900, 1366x768, 1024x768, 768x1024, 390x844, 320x640, 720x450 (the page matrix of C7 covers the session shell; the flashcard and match screens were captured at 1440, flipped, swiping, ended, and match start, board, miss, gone, result, plus 390 and forced colours), `.tmp/study-clay/c8/`. Canvas, one `<h1>`, no overflow and no console errors at the sizes captured.
+- G9 mockups 07 / 08: the white card with a lift shadow and no stacked-card edge, the tag and speak chip, the inset seg toggle, the shuffle outline button, the two bordered mark buttons with key chips, white prev/next buttons and the key hints match mockup 08; the match board with raised tiles, the selected primary tile, the red wrong tiles with the "+1 giây" pill, the inset dashed slots and the timer match mockup 07. Differences: the sample set has no phonetics, emoji or CEFR, so the card shows only the word; the mockup's "Bảng 1/2" shows "Bảng 1/1" (six pairs fit one board); the record badge appears on the result screen.
+- G10 behaviour: 32 scripted checks over two runs, all pass after one fix. Flashcard: click, Space and Enter flip; Arrow keys move between cards; key 2 marks "Đã thuộc" (chips 6/0 to 5/1); the direction toggle swaps front and back; shuffle and speak raise no error; a right swipe tilts the card, shows the hint and moves to the next card; the deck ends on the summary screen with the Clay ring. Match: start screen, 12 tiles in 4 columns (3 at 390), the timer runs, hover lifts without transform, a selected tile (primary border + tint + pressed shadow + `aria-pressed`), a wrong pair (danger tiles with a ring, wiggle, "+1 giây" pill with the Clay button shadow, "1 lần ghép sai"), a right pair flashes green then leaves two dashed inset slots, and the board finishes into "Xong rồi!" with "Kỷ lục mới!", KPIs (12,5 giây, 1 ghép sai, 6 cặp) and "Chơi lại" / "Thử chế độ Học". Not exercised: the second board (needs more than 12 cards), a left swipe, touch gestures on a real device.
+  - **Defect found and fixed:** in forced colours the order toggle lost its border because `.tp-order-toggle { border: 0 }` out-ranked the shared forced-colors rule; the toggle is now listed in the practice forced-colors block (verified: 1px border, no shadow).
+- G11 a11y: forced colours: card face, nav, mark buttons and the toggle show no shadow and a visible border; selected / matched / wrong tiles keep a 3px border (plus the tint and text colour); reduced motion: tile transition ~0; focus and key handling unchanged.
+- G12 contrast (real elements): flip hint 5.30, "Chưa thuộc" 7.09 and "Đã thuộc" 5.48 on white, count chips 6.84 / 5.21, toggle 17.10, key hints 5.30; tile states reuse the C1 pairs (selected primary-strong on primary-soft 6.84, matched 5.21, wrong 5.91).
+- G13 regression: C1 suite 17/17.
+- G14 clay grep: flashcard and match rules clean; `practice.css` keeps 1 jump-button line, 4 learn-map node lines, 1 hard-words line (edge / `translateY`) and 1 hard radius (the legend dot) for C9.
+- `color-mix` additions: the dashed matched slot (border-control 60% into transparent, surface 35% into transparent; plain fallbacks first).
+- Differences found: none beyond G9.
+- Attempts / deferred / blocked: 2 runs of the behaviour script and 1 CSS fix; nothing deferred or blocked.

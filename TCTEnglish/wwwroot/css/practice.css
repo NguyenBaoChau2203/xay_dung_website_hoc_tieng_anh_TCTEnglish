@@ -419,19 +419,6 @@
     touch-action: pan-y;
 }
 
-/* The card "stack" showing behind the front card */
-.tp-page .tp-flashcard-wrap::after {
-    content: "";
-    position: absolute;
-    left: 28px;
-    right: 28px;
-    bottom: -14px;
-    z-index: -1;
-    height: 40px;
-    border-radius: 0 0 24px 24px;
-    background: var(--tct-disabled-bg);
-}
-
 .tp-page .tp-flashcard-wrap.is-dragging { transition: none; }
 
 .tp-page .tp-flashcard {
@@ -468,10 +455,10 @@
     justify-content: center;
     gap: var(--tct-space-md);
     padding: var(--tct-space-xl) var(--tct-space-lg);
-    border: 2px solid var(--tct-border);
+    border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-xl);
     background: var(--tct-surface);
-    box-shadow: 0 6px 0 var(--tct-border), var(--tct-shadow-lift);
+    box-shadow: var(--tct-clay-shadow-lift);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -541,7 +528,27 @@
 }
 
 .tp-page .tp-flash-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--tct-space-md); margin-top: var(--tct-space-sm); }
-.tp-page .tp-flash-nav { width: 56px; height: 56px; }
+/* Previous / next: white Clay icon buttons (same look as the exit button). */
+.tp-page .btn.tp-flash-nav {
+    --bs-btn-bg: var(--tct-surface);
+    --bs-btn-color: var(--tct-text-secondary);
+    --bs-btn-border-color: transparent;
+    --bs-btn-border-width: 0;
+    --bs-btn-hover-bg: var(--tct-surface);
+    --bs-btn-hover-color: var(--tct-primary-strong);
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-bg: var(--tct-surface);
+    --bs-btn-active-color: var(--tct-primary-strong);
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-bg: var(--tct-surface);
+    --bs-btn-disabled-color: var(--tct-disabled-text);
+    --bs-btn-disabled-border-color: transparent;
+    width: 56px;
+    height: 56px;
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.tp-page .btn.tp-flash-nav:not(:disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
 .tp-page .tp-flash-controls .tp-mark { min-width: 200px; min-height: 56px; }
 
 @media (max-width: 575.98px) {
@@ -590,7 +597,7 @@
     font-size: var(--tct-text-lg);
     text-align: center;
     transition: border-color var(--tct-dur-fast) var(--tct-ease), background-color var(--tct-dur-fast) var(--tct-ease),
-        box-shadow var(--tct-dur-fast) var(--tct-ease), transform var(--tct-dur-fast) var(--tct-ease);
+        box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
 @media (max-width: 575.98px) {
@@ -599,24 +606,33 @@
 
 .tp-page .tp-tile--term { font-weight: var(--tct-weight-semibold); }
 .tp-page .tp-tile--meaning { font-weight: var(--tct-weight-medium); }
-.tp-page .tp-tile:hover:not(:disabled) { border-color: var(--k-fill, var(--tct-primary)); }
+.tp-page .tp-tile:hover:not(:disabled) { box-shadow: var(--tct-clay-shadow-lift); }
+.tp-page .tp-tile:active:not(:disabled) { box-shadow: var(--tct-clay-shadow-pressed); }
 
+/* Selected: coloured border + tint + text colour; the pressed shadow only adds depth (no transform). */
 .tp-page .tp-tile.is-selected,
 .tp-page .tp-tile[aria-pressed="true"] {
     border-color: var(--tct-primary);
     background: var(--tct-primary-soft);
-    box-shadow: 0 4px 0 var(--tct-primary-strong);
+    box-shadow: var(--tct-clay-shadow-pressed);
     color: var(--tct-primary-strong);
-    transform: translateY(-2px);
 }
 
 .tp-page .tp-tile__label { min-width: 0; overflow-wrap: anywhere; }
-.tp-page .tp-tile.is-matched { border-color: var(--tct-success); background: var(--tct-success-soft); box-shadow: 0 4px 0 var(--tct-success); color: var(--tct-success-text); }
+.tp-page .tp-tile.is-matched { border-color: var(--tct-success); background: var(--tct-success-soft); box-shadow: var(--tct-clay-shadow-pressed), 0 0 0 4px var(--tct-success-soft); color: var(--tct-success-text); }
 
 /* A matched pair leaves an empty dashed slot so the board keeps its shape */
-.tp-page .tp-tile.is-gone { border: 2px dashed var(--tct-border-control); background: transparent; box-shadow: none; color: transparent; transform: none; opacity: 0.6; }
+.tp-page .tp-tile.is-gone {
+    border: 2px dashed var(--tct-border-control);
+    border: 2px dashed color-mix(in srgb, var(--tct-border-control) 60%, transparent);
+    background: transparent;
+    background: color-mix(in srgb, var(--tct-surface) 35%, transparent);
+    box-shadow: var(--tct-clay-shadow-field);
+    color: transparent;
+    opacity: 0.6;
+}
 
-.tp-page .tp-tile.is-miss { border-color: var(--tct-danger); background: var(--tct-danger-soft); box-shadow: 0 4px 0 var(--tct-danger); color: var(--tct-danger-text); animation: k-wiggle 400ms var(--tct-ease); }
+.tp-page .tp-tile.is-miss { border-color: var(--tct-danger); background: var(--tct-danger-soft); box-shadow: var(--tct-clay-shadow-pressed), 0 0 0 4px var(--tct-danger-soft); color: var(--tct-danger-text); animation: k-wiggle 400ms var(--tct-ease); }
 
 .tp-page .tp-penalty {
     position: absolute;
@@ -626,6 +642,7 @@
     padding: 2px 8px;
     border-radius: var(--tct-radius-pill);
     background: var(--tct-danger);
+    box-shadow: var(--tct-clay-shadow-button);
     color: var(--tct-on-primary);
     font-size: var(--tct-text-xs);
     font-weight: var(--tct-weight-bold);
@@ -634,10 +651,6 @@
 
 .tp-page .tp-trophy { font-size: 64px; }
 
-@media (prefers-reduced-motion: reduce) {
-    .tp-page .tp-tile.is-selected,
-    .tp-page .tp-tile[aria-pressed="true"] { transform: none; }
-}
 
 /* ---------------------------------------------------------------- test */
 .tp-page--session[data-tp-mode="test"] .tp-progress,
@@ -1061,13 +1074,14 @@
    Clay depth is decorative: system colours keep every boundary and state. Classes are added phase by phase. */
 @media (forced-colors: active) {
     .tp-page :is(.tp-mode-card, .tp-mode-card__check, .tp-mode-card__icon, .tp-side, .tp-start-bar, .tp-hard-link, .tp-hard-link__icon,
-        .tp-option, .tp-option__key, .tp-visual, .tp-cloze, .tp-feedback, .tp-ring, .tp-diff, .tp-listen__play) {
+        .tp-option, .tp-option__key, .tp-visual, .tp-cloze, .tp-feedback, .tp-ring, .tp-diff, .tp-listen__play,
+        .tp-flashcard__face, .tp-flash-nav, .tp-tile, .tp-penalty, .tp-order-toggle) {
         box-shadow: none;
         border: 1px solid CanvasText;
     }
 
     /* Answer states keep a thicker border (plus the mark icon and the text colour). */
-    .tp-page :is(.tp-option--correct, .tp-option--wrong, .tp-option[aria-pressed="true"]) { border-width: 3px; }
+    .tp-page :is(.tp-option--correct, .tp-option--wrong, .tp-option[aria-pressed="true"], .tp-tile.is-selected, .tp-tile[aria-pressed="true"], .tp-tile.is-matched, .tp-tile.is-miss) { border-width: 3px; }
     .tp-page .tp-ring::before { box-shadow: none; border: 1px solid CanvasText; }
 
     /* The chosen mode keeps a thicker border besides its check badge. */
