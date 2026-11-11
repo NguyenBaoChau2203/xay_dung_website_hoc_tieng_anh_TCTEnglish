@@ -328,8 +328,8 @@
 
 .ts-page .ts-danger-zone { margin-top: var(--tct-space-xl); padding: var(--tct-space-lg); border-color: var(--tct-danger); }
 
-/* Kit panels: every plain card on these pages takes the 20px radius */
-.ts-page .tct-card:not(.k-card) { border-radius: var(--tct-radius-xl); }
+/* Plain cards on these pages take the large (dialog) radius; kit cards and panels keep the 24px panel radius from study-kit.css. */
+.ts-page .tct-card:not(.k-card):not(.k-panel) { border-radius: var(--tct-radius-xl); }
 
 /* ---------------------------------------------------------------- detail: hero, study strip */
 .ts-page .ts-hero {
@@ -791,7 +791,7 @@
     border-radius: var(--tct-radius-xl);
 }
 
-.ts-page .ts-word-hero::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--tct-primary); }
+/* The 6px primary top bar of the previous design is gone: Clay depth replaces it. */
 .ts-page .ts-word-hero-main { flex: 1 1 auto; min-width: 0; }
 .ts-page .ts-word-ipa { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-sm); margin: 0; color: var(--tct-text-secondary); font-size: var(--tct-text-lg); }
 
@@ -801,7 +801,8 @@
     gap: var(--tct-space-sm);
     padding: 6px 6px 6px 14px;
     border-radius: var(--tct-radius-md);
-    background: var(--tct-bg);
+    background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-field);
 }
 
 .ts-page .ts-pron abbr { color: var(--tct-text-muted); font-size: var(--tct-text-xs); font-weight: var(--tct-weight-bold); text-decoration: none; }
@@ -819,8 +820,9 @@
     width: 110px;
     height: 110px;
     overflow: hidden;
-    border-radius: var(--tct-radius-xl);
+    border-radius: var(--tct-radius-lg);
     background: var(--k-bg);
+    box-shadow: var(--tct-clay-shadow-field);
     font-size: 3.5rem;
 }
 
@@ -850,7 +852,18 @@
 .ts-page .ts-plain-list,
 .ts-page .ts-chip-row { margin: 0; padding: 0; list-style: none; }
 
-.ts-page .ts-example { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--tct-space-md); margin-bottom: var(--tct-space-md); padding-left: var(--tct-space-md); border-left: 4px solid var(--tct-primary); }
+.ts-page .ts-example {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--tct-space-md);
+    margin-bottom: var(--tct-space-md);
+    padding: 14px 16px;
+    border-radius: var(--tct-radius-lg);
+    background: var(--tct-surface);
+    background: color-mix(in srgb, var(--tct-primary) 3%, var(--tct-surface));
+    box-shadow: var(--tct-clay-shadow-field);
+}
 .ts-page .ts-example-body { min-width: 0; }
 .ts-page .ts-example-en { margin: 0 0 var(--tct-space-xs); font-size: var(--tct-text-lg); }
 .ts-page .ts-hl { padding: 0; background: transparent; color: var(--tct-primary-strong); font-weight: var(--tct-weight-bold); }
@@ -866,18 +879,20 @@
     align-items: center;
     min-height: 34px;
     padding: 5px 12px;
-    border: 1.5px dashed var(--tct-border-control);
+    border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-pill);
     background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-quiet);
     color: var(--tct-text);
     font-size: var(--tct-text-base);
     text-decoration: none;
 }
 
-.ts-page .ts-chip--link { border-style: solid; color: var(--tct-primary-strong); }
+.ts-page .ts-chip--link { color: var(--tct-primary-strong); }
 .ts-page .ts-chip--link:hover { background: var(--tct-primary-tint); }
 .ts-page .ts-chip--add { color: var(--tct-text-secondary); }
 .ts-page .ts-chip--add:hover { border-color: var(--tct-primary); color: var(--tct-primary-strong); }
+.ts-page .ts-chip:is(a):active { box-shadow: var(--tct-clay-shadow-pressed); }
 .ts-page span.ts-chip { cursor: default; }
 
 .ts-page .ts-dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--tct-space-md); margin: 0; }
@@ -892,7 +907,7 @@
 .ts-page .ts-progress-head .ts-section-title { margin: 0; }
 .ts-page .ts-stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--tct-space-sm); margin: 0; }
 .ts-page .ts-stat-grid > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.ts-page .ts-stat { display: flex; flex-direction: column-reverse; padding: var(--tct-space-md); border-radius: var(--tct-radius-lg); background: var(--k-bg); color: var(--k-fg); }
+.ts-page .ts-stat { display: flex; flex-direction: column-reverse; padding: var(--tct-space-md); border-radius: var(--tct-radius-md); background: var(--k-bg); box-shadow: var(--tct-clay-shadow-quiet); color: var(--k-fg); }
 .ts-page .ts-stat dd { margin: 0; font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); color: inherit; }
 .ts-page .ts-stat dt { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: inherit; }
 .ts-page .ts-last-reviewed { margin: var(--tct-space-md) 0 0; padding-bottom: var(--tct-space-md); border-bottom: 1px solid var(--tct-border); font-size: var(--tct-text-sm); color: var(--tct-text-muted); }
@@ -916,7 +931,8 @@
    Clay depth is decorative: system colours keep every boundary. Classes are added phase by phase. */
 @media (forced-colors: active) {
     .ts-page :is(.ts-overview, .ts-overview__stat, .ts-tile-art, .ts-tile-vis, .ts-tile-add-icon,
-        .ts-hero, .ts-hero-art, .ts-word-card, .ts-word-art, .ts-bulk-bar, .ts-col-speak .ts-speak) {
+        .ts-hero, .ts-hero-art, .ts-word-card, .ts-word-art, .ts-bulk-bar, .ts-col-speak .ts-speak,
+        .ts-word-hero, .ts-word-hero-art, .ts-pron, .ts-example, .ts-chip, .ts-stat) {
         box-shadow: none;
         border: 1px solid CanvasText;
     }
