@@ -96,32 +96,30 @@
     list-style: none;
 }
 
+/* The tile is a .k-card: Clay depth and the hover lift come from study-kit.css. */
 .ts-page .ts-tile {
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    transition: transform var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
-.ts-page .ts-tile:hover,
-.ts-page .ts-tile:focus-within {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0 var(--tct-border);
-}
+.ts-page .ts-tile-link { position: absolute; inset: 0; z-index: 1; border-radius: var(--tct-radius-lg); }
 
-.ts-page .ts-tile-link { position: absolute; inset: 0; z-index: 1; border-radius: var(--tct-radius-xl); }
-
+/* Cover = art box pressed into the card (inset Clay field). */
 .ts-page .ts-tile-art {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 112px;
+    margin: 10px 10px 0;
     padding: 0 var(--tct-space-lg);
     overflow: hidden;
+    border-radius: var(--tct-radius-lg);
     background: var(--k-bg);
+    box-shadow: var(--tct-clay-shadow-field);
     color: var(--k-fg);
 }
 
@@ -160,6 +158,7 @@
     height: 30px;
     border-radius: var(--tct-radius-pill);
     background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-quiet);
     color: var(--tct-text-secondary);
     font-size: var(--tct-text-sm);
 }
@@ -208,7 +207,9 @@
     min-height: 230px;
     padding: var(--tct-space-lg);
     border: 2px dashed var(--tct-border-control);
-    border-radius: var(--tct-radius-xl);
+    border: 2px dashed color-mix(in srgb, var(--tct-border-control) 60%, transparent);
+    border-radius: var(--tct-radius-lg);
+    background: color-mix(in srgb, var(--tct-surface) 45%, transparent);
     color: var(--tct-text-secondary);
     text-align: center;
     text-decoration: none;
@@ -225,7 +226,8 @@
     height: 48px;
     margin-bottom: var(--tct-space-sm);
     border-radius: var(--tct-radius-md);
-    background: var(--tct-primary-soft);
+    background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-quiet);
     color: var(--tct-primary-strong);
     font-size: var(--tct-text-xl);
 }
@@ -233,9 +235,48 @@
 .ts-page .ts-tile-add-title { font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); }
 .ts-page .ts-tile-add-note { font-size: var(--tct-text-sm); color: var(--tct-text-muted); }
 
-@media (prefers-reduced-motion: reduce) {
-    .ts-page .ts-tile:hover,
-    .ts-page .ts-tile:focus-within { transform: none; }
+/* ---------------------------------------------------------------- list overview (due words, totals, practice links) */
+.ts-page .ts-overview {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-xl);
+    margin-bottom: var(--tct-space-lg);
+    padding: var(--tct-space-lg) var(--tct-space-xl);
+    border-radius: var(--tct-radius-xl);
+    background: var(--tct-surface);
+    background: linear-gradient(135deg, var(--k-tint), var(--tct-surface) 60%);
+}
+
+.ts-page .ts-overview__main { flex: 1 1 auto; min-width: 0; }
+.ts-page .ts-overview__title { margin: 0 0 var(--tct-space-xs); font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); }
+.ts-page .ts-overview__text { margin: 0 0 var(--tct-space-md); color: var(--tct-text-secondary); }
+
+.ts-page .ts-overview__stats { display: flex; flex-wrap: wrap; gap: var(--tct-space-md); margin: 0 0 var(--tct-space-md); }
+
+.ts-page .ts-overview__stat {
+    display: flex;
+    flex-direction: column-reverse;
+    min-width: 110px;
+    margin: 0;
+    padding: 10px 16px;
+}
+
+.ts-page .ts-overview__stat dd { margin: 0; font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); color: var(--k-fg); }
+.ts-page .ts-overview__stat dt { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-secondary); }
+
+.ts-page .ts-overview__actions { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); }
+.ts-page .ts-overview__actions .btn { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
+
+.ts-page .ts-overview__art { display: none; flex: 0 0 220px; width: 220px; height: 130px; }
+
+@media (min-width: 992px) {
+    .ts-page .ts-overview__art { display: block; }
+}
+
+@media (max-width: 575.98px) {
+    .ts-page .ts-overview { padding: var(--tct-space-md); }
+    .ts-page .ts-overview__actions { flex-direction: column; }
+    .ts-page .ts-overview__actions .btn { justify-content: center; width: 100%; }
 }
 
 /* ---------------------------------------------------------------- create / settings */
@@ -867,3 +908,14 @@
 
 /* ---------------------------------------------------------------- edit card page */
 .ts-page .ts-edit-card { padding: var(--tct-space-lg); }
+
+/* ---------------------------------------------------------------- forced colours (C-R6)
+   Clay depth is decorative: system colours keep every boundary. Classes are added phase by phase. */
+@media (forced-colors: active) {
+    .ts-page :is(.ts-overview, .ts-overview__stat, .ts-tile-art, .ts-tile-vis, .ts-tile-add-icon) {
+        box-shadow: none;
+        border: 1px solid CanvasText;
+    }
+
+    .ts-page .ts-tile-add { border-color: CanvasText; background: transparent; }
+}

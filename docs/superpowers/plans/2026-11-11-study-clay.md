@@ -640,3 +640,27 @@ git diff --check
 - G14 clay grep: clean for `study-kit.css` (no `box-shadow` without a Clay/shadow token or `none`, no `0 Npx 0` edge, no `translateY` on `:active`, no hard-coded radius). `personal-sets.css` and `practice.css` still hold old depth values; they are cleaned in their own phases (C2-C9) and re-checked there.
 - Differences found: the shared `.tct-card--interactive:hover` adds `translateY(-2px)`; an owner rule (`.k-card.tct-card--interactive:is(:hover, :focus-within)`) sets `transform: none` so Clay cards only deepen their shadow.
 - Attempts / deferred / blocked: 2 attempts (first run: hover transform, probe fixed); nothing deferred or blocked.
+
+### C2 — `/Sets` and the overview block
+- Commit: see `git log` ("feat(study-clay): restyle the /Sets list and add the overview block")
+- G1 build: pass (warnings 43, C0 43; forced rebuild)
+- G2 area: passed 108 / failed 0 / skipped 0 (includes `PracticeIntegrationTests`, which asserts `href="/Practice"` on the list page)
+- G3 full: passed 1328 / failed 0 / skipped 22 (C0: same)
+- G4 node: passed 205 / failed 0
+- G5 hooks: unchanged (457, removed 0)
+- G6 tokens/diff: clean (`git diff --check` clean for CSS and views; tokens-only grep prints nothing for `personal-sets.css`)
+- G7 scope: `Views/Set/Index.cshtml`, `wwwroot/css/personal-sets.css`
+- G8 render: `/Sets` and `/Sets?filter=own` x 1440x900, 1366x768, 1024x768, 768x1024, 390x844, 320x640, 720x450 (200% of 1440), `.tmp/study-clay/c2/` (plus due, zero-due and empty-state shots). Canvas on every page, one `<h1>`, no horizontal overflow, no console or network errors.
+- G9 mockup (01): overview, stat tiles, two actions, art, seg track, inset tile covers, add tile and the Create button match the mockup layout. Differences: the mockup chips show counts ("Tất cả 7") and the tiles show CEFR and "Mới" badges; the plan has neither (no data/ViewModel change), so they are not built. Tile covers use the plan's inset art box; colours come from the six token hues.
+- G10 behaviour: 23 scripted checks, all pass over two runs.
+  - zero-due branch: title "Bạn đã ôn xong các từ đến hạn", single primary "Mở Luyện tập" (`/Practice`), stats 1 / 6 / 0 equal the tile sums;
+  - due branch (4 cards made due through `POST /Home/UpdateCardProgress` with a wrong answer, which schedules a review 1 minute later; synthetic Standard account, no reseed): title "Hôm nay bạn có 4 từ cần ôn", text "Nằm trong 1 bộ thẻ…", stats 1 / 6 / 4, primary "Luyện từ đến hạn" with the planned URL, outline "Mở Luyện tập";
+  - keyboard: Tab reaches the overview link with a focus ring; Enter opens `/Practice/flashcard?scope=mine&source=due&n=0&srs=1&from=hub`, whose counter reads 1/4 = the due total; "Mở Luyện tập" opens `/Practice`;
+  - the overview is hidden on `filter=own|subscribed|shared` and the header keeps "Luyện tập"; the four chips and "Của tôi" switch the view; tile link, quick "Ôn" (`/Home/Study/1?mode=due`) and create links exist;
+  - empty state (Admin account owns no set): no overview, header still has the `/Practice` link.
+- G11 a11y: forced-colors emulation: overview, stats, tile cover, visibility badge and add-tile icon have no shadow and a visible border; reduced motion: tile transition 0.01ms (shared base rule). Overview is a labelled `<section>` (`aria-labelledby`), art is `aria-hidden`.
+- G12 contrast: overview text pairs are the C1 pairs (hero start tint 5.91 / success 4.63 / warning 6.18, gradient end 7.65 / 5.48 / 7.09; stat numbers use `--k-fg` on the white pillow >= 5.48; outline button text on the hero 5.91).
+- G13 regression: C1 behaviour suite re-run 17/17 (canvas scoped; Goals keeps its own canvas). Legacy screenshots differ from C0 only where the study pages show learning counters, because C2 created four due cards (Study shows "4 Chưa thuộc"); layout is unchanged.
+- G14 clay grep (C2 range, lines 76-300 of `personal-sets.css`): clean; 7 non-Clay `box-shadow` lines and 8 edge/`translateY` lines remain further down the file and belong to C3-C5.
+- Differences found: none beyond G9 notes.
+- Attempts / deferred / blocked: 2 attempts (the first behaviour run failed only because of three script bugs: JS focus does not set `:focus-visible`, an unresolved async eval, and a stray logout); nothing deferred or blocked.

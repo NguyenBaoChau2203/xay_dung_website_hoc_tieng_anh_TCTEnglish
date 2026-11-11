@@ -4,14 +4,24 @@
 @{
     ViewData["Title"] = "Bộ thẻ của tôi";
     var createUrl = Url.Action("CreateSet", "Set")!;
+    // The overview (with its own "Mở Luyện tập" link) only shows on the "Tất cả" view with sets present;
+    // otherwise the header keeps the Luyện tập action so the link to /Practice always exists.
+    var showOverview = !Model.IsEmpty && string.IsNullOrEmpty(Model.Filter);
+    var overviewTiles = Model.Own.Concat(Model.Subscribed).Concat(Model.Shared).DistinctBy(t => t.SetId).ToList();
+    var totalSets = overviewTiles.Count;
+    var totalWords = overviewTiles.Sum(t => t.WordCount);
+    var dueWords = overviewTiles.Sum(t => t.DueCount);
+    var dueSets = overviewTiles.Count(t => t.DueCount > 0);
+    var headerActions = new List<PageHeaderAction>();
+    if (!showOverview)
+    {
+        headerActions.Add(new PageHeaderAction("Luyện tập", "/Practice", PageActionVariant.Secondary, "fa-solid fa-dumbbell"));
+    }
+    headerActions.Add(new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus"));
     var header = new PageHeaderViewModel
     {
         Title = "Bộ thẻ của tôi",
-        Actions = new[]
-        {
-            new PageHeaderAction("Luyện tập", "/Practice", PageActionVariant.Secondary, "fa-solid fa-dumbbell"),
-            new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus")
-        }
+        Actions = headerActions.ToArray()
     };
     var chips = new[]
     {
@@ -34,6 +44,41 @@
 
 <div class="tct-theme tct-page ts-page ts-page--list">
     <partial name="_PageHeader" model="header" />
+
+    @if (showOverview)
+    {
+        <section class="ts-overview k-panel ts-hue-primary" aria-labelledby="ts-overview-title">
+            <div class="ts-overview__main">
+                @if (dueWords > 0)
+                {
+                    <h2 id="ts-overview-title" class="ts-overview__title">Hôm nay bạn có @dueWords từ cần ôn</h2>
+                    <p class="ts-overview__text">Nằm trong @dueSets bộ thẻ. Ôn đều mỗi ngày để giữ chuỗi học.</p>
+                }
+                else
+                {
+                    <h2 id="ts-overview-title" class="ts-overview__title">Bạn đã ôn xong các từ đến hạn</h2>
+                    <p class="ts-overview__text">Có thể luyện thêm để nhớ lâu hơn.</p>
+                }
+                <dl class="ts-overview__stats">
+                    <div class="ts-overview__stat k-pillow ts-hue-primary"><dt>bộ thẻ</dt><dd>@totalSets</dd></div>
+                    <div class="ts-overview__stat k-pillow ts-hue-success"><dt>từ đã lưu</dt><dd>@totalWords</dd></div>
+                    <div class="ts-overview__stat k-pillow ts-hue-warning"><dt>từ đến hạn</dt><dd>@dueWords</dd></div>
+                </dl>
+                <div class="ts-overview__actions">
+                    @if (dueWords > 0)
+                    {
+                        <a class="btn btn-primary" href="/Practice/flashcard?scope=mine&amp;source=due&amp;n=0&amp;srs=1&amp;from=hub"><i class="fa-solid fa-bolt" aria-hidden="true"></i>Luyện từ đến hạn</a>
+                        <a class="btn btn-outline-primary" href="/Practice"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i>Mở Luyện tập</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary" href="/Practice"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i>Mở Luyện tập</a>
+                    }
+                </div>
+            </div>
+            <div class="ts-overview__art" aria-hidden="true"><partial name="~/Views/Practice/_ModeArt.cshtml" model="@("flashcard")" /></div>
+        </section>
+    }
 
     <nav class="ts-chips k-seg" aria-label="Lọc bộ thẻ">
         @foreach (var (key, label) in chips)
