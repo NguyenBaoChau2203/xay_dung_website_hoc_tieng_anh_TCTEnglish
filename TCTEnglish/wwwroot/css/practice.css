@@ -856,16 +856,15 @@
     align-items: center;
     gap: var(--tct-space-md);
     padding: var(--tct-space-md);
-    border: 2px solid var(--tct-border);
-    border-radius: var(--tct-radius-xl);
+    border: 2px solid transparent;
+    border-radius: var(--tct-radius-lg);
     cursor: pointer;
     transition: border-color var(--tct-dur-fast) var(--tct-ease), background-color var(--tct-dur-fast) var(--tct-ease),
-        box-shadow var(--tct-dur-fast) var(--tct-ease), transform var(--tct-dur-fast) var(--tct-ease);
+        box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
 .tp-page .tp-mode-card--big { flex-direction: column; align-items: stretch; padding: 10px 10px var(--tct-space-md); }
-.tp-page .tp-mode-card:hover { border-color: var(--k-fill, var(--tct-primary)); }
-.tp-page .tp-mode-card:active { transform: translateY(2px); }
+/* Hover lift comes from .k-card (study-kit.css); the card is chosen with a coloured border, a check badge and a tint, never the shadow alone. */
 
 .tp-page .tp-mode-card:has(input:checked) {
     border-color: var(--k-fill, var(--tct-primary));
@@ -874,7 +873,8 @@
 }
 
 .tp-page .tp-mode-card:has(input:focus-visible) { outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring); outline-offset: var(--tct-focus-ring-offset); }
-.tp-page .tp-mode-card:has(input:checked) .k-art-box { background: var(--tct-surface); }
+.tp-page .tp-mode-card:has(input:checked) .k-art-box { background: var(--tct-surface); box-shadow: var(--tct-clay-shadow-quiet); }
+.tp-page .tp-mode-card__icon { box-shadow: var(--tct-clay-shadow-button); }
 
 .tp-page .tp-mode-card__text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--tct-space-xs); min-width: 0; }
 .tp-page .tp-mode-card--big .tp-mode-card__text { padding-inline: var(--tct-space-xs); }
@@ -895,6 +895,7 @@
     height: 26px;
     border-radius: var(--tct-radius-pill);
     background: var(--k-sq-bg, var(--tct-primary-strong));
+    box-shadow: var(--tct-clay-shadow-button);
     color: var(--k-sq-fg, var(--tct-on-primary));
     font-size: var(--tct-text-xs);
 }
@@ -907,7 +908,7 @@
 .tp-page .tp-setup-panel { display: flex; flex-direction: column; gap: var(--tct-space-lg); padding: var(--tct-space-lg); }
 .tp-page .tp-setup-title { margin: 0; font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); }
 .tp-page .tp-field { margin: 0; padding: 0; border: 0; min-width: 0; }
-.tp-page .tp-field .form-select { height: 46px; border-radius: var(--tct-radius-md); }
+.tp-page .tp-field .form-select { height: 46px; }
 .tp-page .tp-legend { float: none; width: auto; padding: 0; margin-bottom: var(--tct-space-sm); font-size: var(--tct-text-base); }
 .tp-page .tp-pills { max-width: 100%; }
 .tp-page .tp-pill { display: contents; }
@@ -937,7 +938,7 @@
     border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-xl);
     background: var(--tct-surface);
-    box-shadow: 0 3px 0 var(--tct-border), var(--tct-shadow-lift);
+    box-shadow: var(--tct-clay-shadow-overlay);
 }
 
 .tp-page .tp-start-bar__summary { margin: 0; text-align: center; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); overflow-wrap: anywhere; }
@@ -951,7 +952,6 @@
     text-decoration: none;
 }
 
-.tp-page .tp-hard-link:hover { border-color: var(--k-fill); }
 
 .tp-page .tp-hard-link__icon {
     display: inline-flex;
@@ -962,6 +962,7 @@
     height: 48px;
     border-radius: var(--tct-radius-md);
     background: var(--k-bg);
+    box-shadow: var(--tct-clay-shadow-quiet);
     color: var(--k-fg);
     font-size: var(--tct-text-xl);
 }
@@ -984,16 +985,13 @@
         gap: var(--tct-space-lg);
         padding: var(--tct-space-lg);
         border: 1px solid var(--tct-border);
-        border-radius: var(--tct-radius-xl);
+        border-radius: var(--tct-radius-lg);
         background: var(--tct-surface);
+        box-shadow: var(--tct-clay-shadow);
     }
 
-    .tp-page .tp-side .tp-setup-panel { padding: 0; border: 0; border-radius: 0; background: transparent; }
+    .tp-page .tp-side .tp-setup-panel { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
     .tp-page .tp-side .tp-start-bar { position: static; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tp-page .tp-mode-card:active { transform: none; }
 }
 
 /* ---------------------------------------------------------------- hard words */
@@ -1037,4 +1035,16 @@
     .tp-page .tp-progress__fill { transition: none; }
     .tp-page .tp-flashcard__inner,
     .tp-page .tp-flashcard-wrap { transition: none; }
+}
+
+/* ---------------------------------------------------------------- forced colours (C-R6)
+   Clay depth is decorative: system colours keep every boundary and state. Classes are added phase by phase. */
+@media (forced-colors: active) {
+    .tp-page :is(.tp-mode-card, .tp-mode-card__check, .tp-mode-card__icon, .tp-side, .tp-start-bar, .tp-hard-link, .tp-hard-link__icon) {
+        box-shadow: none;
+        border: 1px solid CanvasText;
+    }
+
+    /* The chosen mode keeps a thicker border besides its check badge. */
+    .tp-page .tp-mode-card:has(input:checked) { border-width: 3px; }
 }

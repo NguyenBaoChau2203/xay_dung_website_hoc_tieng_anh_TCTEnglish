@@ -731,3 +731,22 @@ git diff --check
 - G14 clay grep: `personal-sets.css` has no non-Clay `box-shadow`, no edge shadow or `translateY` press, and no hard-coded radius (0 / 0 / 0).
 - Differences found: none beyond the pre-existing drawer bug.
 - Attempts / deferred / blocked: 2 runs of the behaviour script after 1 CSS fix; the drawer check on a Standard account is **blocked** by the pre-existing bug (outside scope, recorded); nothing deferred.
+
+### C6 — `/Practice` hub (mockup 04)
+- Commit: see `git log` ("feat(study-clay): restyle the practice hub")
+- G1 build: pass (warnings 43, C0 43; forced rebuild)
+- G2 area: passed 108 / failed 0 / skipped 0
+- G3 full: passed 1328 / failed 0 / skipped 22 (C0: same)
+- G4 node: passed 205 / failed 0
+- G5 hooks: unchanged (457, removed 0)
+- G6 tokens/diff: clean
+- G7 scope: `Views/Practice/Index.cshtml` (one class: the hard-words link card changes `k-panel` to `k-card`, so it lifts on hover), `wwwroot/css/practice.css` (hub rules + a new forced-colors block). `practice-hub.js` untouched.
+- G8 render: `/Practice` x 1440x900, 1366x768, 1024x768, 768x1024, 390x844, 320x640, 720x450, `.tmp/study-clay/c6/`. Canvas, one `<h1>`, no overflow, no console or network errors.
+- G9 mockup 04: four big mode cards with inset art and the chosen one in its hue (border + tint + lift + check badge), skill cards with coloured icon squares, the hard-words link with the danger icon and count, the setup column as one raised panel with the inset seg tracks, the switch and the start button match. Differences: the "Gợi ý cho bạn" badge and the "Đã thuộc 38%" / "Lần trước 75%" notes in the mockup come from per-user stats that the local account does not have, so they stay hidden; the mockup's "Đến hạn (12)" pill shows its count only after a set is chosen (existing behaviour: the count is per set).
+- G10 behaviour: 36 scripted checks, all pass except one wrong script assertion (the check badge computes `display: flex` because it is absolutely positioned; its shadow is the Clay button token). Mode cards select with the mouse and with ArrowRight / ArrowLeft (focus ring visible); count options reset per mode (match 6/12/18 cặp, flashcard 20/50/Cả bộ thẻ, learn 10/20/50 từ, quiz 10/20/30 câu); test mode shows "Dạng câu" and "Hỏi bằng", the last chosen type cannot be unchecked, the selected pill has weight 600, a 1px border and the quiet shadow; "Đến hạn (4)" appears once a set is chosen; the summary line follows mode, set and count; the switch toggles (primary track); "Bắt đầu luyện" opens `/Practice/quiz?set=1&n=20&from=hub`; the setup is remembered after a start and a reload (match, 12); the hard-words link keeps `/Practice/HardWords`, shows the count badge, lifts on hover without transform and opens the page. The URL builder is `practice-hub.js`, which this plan does not touch, so URLs are identical to C0.
+- G11 a11y: forced colours: no shadow and a visible border on cards, icon squares, the setup panel, link, seg, select and switch; the chosen mode keeps a 3px border besides its check badge; reduced motion: card transition ~0; 390px no overflow.
+- G12 contrast (real elements): group titles 8.41, card names 16.24 (chosen) and hints 8.84 (chosen tint) / 9.31, legends 9.31, hints 5.87, seg items 17.10, summary 17.10, badge 5.91, page description 8.41: all >= 4.5.
+- G13 regression: C1 suite 17/17.
+- G14 clay grep: hub rules clean. `practice.css` still has 14 non-Clay shadow lines, 15 edge/`translateY` lines and 1 hard radius in the session, drill, flashcard, match, test, learn and hard-words rules (C7-C9).
+- Differences found: none beyond G9.
+- Attempts / deferred / blocked: 2 runs of the behaviour script (two script assertions fixed: a checked card was used as the "unchecked" sample; remembered setup is saved when the practice starts, not on every click); nothing deferred or blocked.
