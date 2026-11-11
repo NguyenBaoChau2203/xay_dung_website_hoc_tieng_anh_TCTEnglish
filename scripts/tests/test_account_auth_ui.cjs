@@ -344,6 +344,18 @@ function loadAuthScript(dom, contextOverrides = {}) {
   return sandbox;
 }
 
+test('inline and registered registration handlers do not cancel the same native submission', () => {
+  const dom = setupAuthDom();
+  dom.terms.checked = true;
+  const sandbox = loadAuthScript(dom);
+  const event = { type: 'submit', defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+  sandbox.window.handleRegister(event);
+  dom.formRegister.dispatchEvent(event);
+  assert.equal(event.defaultPrevented, false);
+  assert.equal(dom.btnRegSubmit.disabled, true);
+  assert.equal(dom.formRegister._inFlight, true);
+});
+
 test('Auth native forms remain retryable when another validator cancels submission', async () => {
   for (const [formKey, buttonKey] of [
     ['formRegister', 'btnRegSubmit'],

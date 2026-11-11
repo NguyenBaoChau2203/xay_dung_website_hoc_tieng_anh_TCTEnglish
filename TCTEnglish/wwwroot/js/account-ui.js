@@ -262,7 +262,15 @@
             tabPanes.forEach(function (pane) {
                 var isActive = pane.id === 'tab-' + tabId;
                 pane.hidden = !isActive;
-                pane.classList.toggle('active', isActive);
+                if (isActive) {
+                    pane.classList.remove('active');
+                    if (typeof pane.offsetWidth === 'number') {
+                        void pane.offsetWidth;
+                    }
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
             });
 
             var navItems = getNavItems();
@@ -278,6 +286,62 @@
                     }
                 }
             });
+
+            // Sync dynamic Hero Header content
+            var pageTitleEl = $('accountPageTitle');
+            var pageDescEl = $('accountPageDesc');
+            var breadcrumbEl = $('accountBreadcrumbActive');
+            var dynamicIconEl = $('accountHeroDynamicIcon');
+            var dynamicLabelEl = $('accountHeroDynamicLabel');
+            var dynamicValEl = $('accountHeroDynamicVal');
+
+            var tabHeroConfig = {
+                profile: {
+                    title: 'Hồ sơ của tôi',
+                    desc: 'Cập nhật thông tin cá nhân và xem thành tích học tập.',
+                    breadcrumb: 'Hồ sơ cá nhân',
+                    iconClass: 'fa-solid fa-fire',
+                    iconBoxClass: 'bg-warning-subtle text-warning',
+                    label: 'Chuỗi học tập',
+                    val: 'ngày'
+                },
+                security: {
+                    title: 'Cài đặt tài khoản & Bảo mật',
+                    desc: 'Quản lý thông tin đăng nhập, bảo vệ tài khoản và thiết lập các tùy chọn cá nhân.',
+                    breadcrumb: 'Cài đặt & Bảo mật',
+                    iconClass: 'fa-solid fa-shield-alt',
+                    iconBoxClass: 'bg-success-subtle text-success',
+                    label: 'Bảo mật',
+                    val: 'Đã kích hoạt'
+                },
+                subscription: {
+                    title: 'Gói dịch vụ & Quyền lợi',
+                    desc: 'Khám phá các gói dịch vụ học tiếng Anh tại TCT English với công nghệ AI và Spaced Repetition.',
+                    breadcrumb: 'Gói dịch vụ',
+                    iconClass: 'fa-solid fa-gem',
+                    iconBoxClass: 'bg-warning-subtle text-warning',
+                    label: 'Đặc quyền',
+                    val: 'AI & SRS Tối ưu'
+                }
+            };
+
+            var cfg = tabHeroConfig[tabId] || tabHeroConfig.profile;
+            if (pageTitleEl) pageTitleEl.textContent = cfg.title;
+            if (pageDescEl) pageDescEl.textContent = cfg.desc;
+            if (breadcrumbEl) breadcrumbEl.textContent = cfg.breadcrumb;
+            if (dynamicLabelEl) dynamicLabelEl.textContent = cfg.label;
+            if (dynamicValEl) {
+                if (tabId === 'profile') {
+                    var streak = dynamicValEl.getAttribute('data-streak') || '0';
+                    dynamicValEl.textContent = streak + ' ngày';
+                } else {
+                    dynamicValEl.textContent = cfg.val;
+                }
+            }
+            if (dynamicIconEl) {
+                dynamicIconEl.className = 'meta-chip__icon ' + cfg.iconBoxClass;
+                dynamicIconEl.innerHTML = '<i class="' + cfg.iconClass + '" aria-hidden="true"></i>';
+            }
 
             // Update URL without reload
             try {
@@ -305,7 +369,8 @@
         // Initialize tab from URL
         try {
             var params = new URLSearchParams(window.location.search);
-            var initTab = params.get('tab') || 'profile';
+            var root = document.querySelector('.account-ui');
+            var initTab = params.get('tab') || (root && root.getAttribute('data-initial-tab')) || 'profile';
             activateTab(initTab, false);
         } catch (e) {
             activateTab('profile', false);

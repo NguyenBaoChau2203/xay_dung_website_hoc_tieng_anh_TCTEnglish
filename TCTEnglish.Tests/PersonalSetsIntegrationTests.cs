@@ -644,7 +644,7 @@ public class PersonalSetsIntegrationTests
     // ------------------------------------------------------------------ account deletion and seeded content
 
     [Fact]
-    public async Task AccountDeletion_WithSubscriptionsOnBothSides_Succeeds()
+    public async Task AccountDeletion_WithoutConfirmation_PreservesSubscriptionsOnBothSides()
     {
         await using var factory = await CreateFactoryAsync();
         using (var scope = factory.Services.CreateScope())
@@ -667,8 +667,9 @@ public class PersonalSetsIntegrationTests
 
         using var scope2 = factory.Services.CreateScope();
         var context = scope2.ServiceProvider.GetRequiredService<DbflashcardContext>();
-        Assert.False(await context.Users.AnyAsync(u => u.UserId == TestDataIds.UserId));
-        Assert.Empty(await context.SetSubscriptions.ToListAsync());
+        Assert.True(await context.Users.AnyAsync(u => u.UserId == TestDataIds.UserId));
+        Assert.Equal(2, await context.SetSubscriptions.CountAsync());
+        Assert.True(await context.Sets.AnyAsync(s => s.SetId == TestDataIds.UserSetId));
         Assert.True(await context.Sets.AnyAsync(s => s.SetName == "Theirs"));
     }
 

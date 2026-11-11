@@ -21,17 +21,27 @@ namespace TCTVocabulary.Services
             if (avatarFile == null || avatarFile.Length == 0)
                 return oldAvatarUrl;
 
-            var avatarUrl = await _fileStorageService.SaveImageAsync(avatarFile, ImageUploadPolicies.Avatar);
+            return await StageAvatarAsync(avatarFile);
+        }
 
+        public async Task<string> StageAvatarAsync(IFormFile avatarFile, CancellationToken cancellationToken = default)
+        {
+            if (avatarFile == null || avatarFile.Length == 0)
+            {
+                throw new InvalidOperationException("Tệp tải lên không hợp lệ.");
+            }
+
+            var avatarUrl = await _fileStorageService.SaveImageAsync(avatarFile, ImageUploadPolicies.Avatar, cancellationToken);
             _logger.LogInformation(
-                "Avatar uploaded to {publicUrlPrefix}, sizeBytes {fileSizeBytes}",
+                "Avatar staged under {publicUrlPrefix}, sizeBytes {fileSizeBytes}",
                 ImageUploadPolicies.Avatar.PublicUrlPrefix,
                 avatarFile.Length);
-
-            // Delete old avatar if it's a local file
-            _fileStorageService.TryDeleteLocalFile(oldAvatarUrl, ImageUploadPolicies.Avatar.PublicUrlPrefix);
-
             return avatarUrl;
+        }
+
+        public bool DeleteOwnedAvatar(string? publicUrl)
+        {
+            return _fileStorageService.TryDeleteOwnedLocalFile(publicUrl, ImageUploadPolicies.Avatar.PublicUrlPrefix);
         }
     }
 }

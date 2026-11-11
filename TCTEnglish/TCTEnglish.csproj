@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Lib.Net.Http.WebPush" Version="3.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.4" />
     <PackageReference Include="Microsoft.ML" Version="4.0.2" />
@@ -42,6 +43,8 @@
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     <PackageReference Include="YoutubeExplode" Version="6.5.7" />
+    <PackageReference Include="AngleSharp" Version="1.10.1" />
+    <PackageReference Include="MySqlConnector" Version="2.6.2" />
   </ItemGroup>
 
 </Project>

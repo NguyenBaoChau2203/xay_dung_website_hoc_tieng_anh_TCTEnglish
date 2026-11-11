@@ -221,7 +221,12 @@ namespace TCTVocabulary.Services
             };
         }
 
-        public async Task<OperationResult> UpdateGoalAsync(int userId, GoalArea goalArea, int targetValue)
+        public Task<OperationResult> UpdateGoalAsync(int userId, GoalArea goalArea, int targetValue)
+            => TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId,
+                () => UpdateGoalCoreAsync(userId, goalArea, targetValue),
+                result => result.Status == OperationStatus.Success, CancellationToken.None);
+
+        private async Task<OperationResult> UpdateGoalCoreAsync(int userId, GoalArea goalArea, int targetValue)
         {
             if (!Enum.IsDefined(goalArea))
             {
@@ -278,6 +283,14 @@ namespace TCTVocabulary.Services
             {
                 user.Goal = targetValue;
             }
+
+            await TCTEnglish.Services.Learning.GoalTargetHistoryWriter.AppendAsync(
+                _context,
+                userId,
+                goalArea,
+                targetValue,
+                isActive: true,
+                DateTime.UtcNow);
 
             await _context.SaveChangesAsync();
 

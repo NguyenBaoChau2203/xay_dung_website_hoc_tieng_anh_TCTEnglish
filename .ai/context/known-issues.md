@@ -205,6 +205,14 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 ### TD-003: AccountController is still a large mixed-responsibility controller [MEDIUM]
 - **Files**: `Controllers/AccountController.cs`,
   `Views/Account/Auth.cshtml`, `Views/Account/ForgotPasswordConfirmation.cshtml`
+- **Update 2026-11-11**: Profile editing, security challenges, habit reads and
+  account deletion now go through `TCTEnglish/Services/Accounts` and
+  `Services/Learning`. The controller still owns login, OAuth and reset HTTP.
+  Review repaired atomic proofs/security retries, cookie/hub invalidation,
+  multi-tab/idle telemetry, habit/history boundaries, delivery lease/privacy and
+  deletion safeguards. Local MariaDB/browser evidence and remaining live-channel,
+  native zoom and dependency limits are in
+  `docs/feature-audits/2026-11-11-account-functional-execution-ledger.md`.
 - **Issue**: Auth, social login, profile, settings, password reset, and account
   deletion all live in one controller, with a mix of typed models and
   `ViewBag`-driven UI messages.
@@ -270,6 +278,24 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Continue standardizing structured logs as the remaining
   controllers are service-extracted.
 - **Effort**: Small ongoing.
+
+### TD-009: Test-only SQLite native dependency advisory [SECURITY]
+
+- **Confirmed 2026-11-11**: TCTEnglish.Tests resolves
+  SQLitePCLRaw.lib.e_sqlite3 2.1.10 and the fresh audit reports High
+  GHSA-2m69-gcr7-jv3q. The application project does not resolve this package and
+  still uses MariaDB; this is a separate test-infrastructure dependency issue.
+- **Status**: The authorized AngleSharp1.10.1/MySqlConnector2.6.2 app maintenance
+  passed review. Its remaining weekly-email test failure and parser-coverage gap
+  were repaired; those fixes do not resolve this SQLite advisory.
+- **Follow-up**: Assess an EF9-compatible provider/native-bundle replacement with
+  loaded SQLite>=3.50.2, then verify SQLite-specific transaction/schema/concurrency,
+  full suite and test audit. The advisory lists no patched release of the same
+  affected2.x native package; do not merely bump to2.1.11 or suppress the warning.
+  Test-project dependency changes need their own bounded authority, as the original
+  two-pin launch explicitly excluded that project file. Preserve model/history/data.
+- **Evidence**: docs/feature-audits/2026-11-11-dependency-security-maintenance-ledger.md
+  and docs/superpowers/plans/2026-11-11-dependency-security-maintenance.md.
 
 ### TD-010: Goals migration rollout checklist is not documented strongly enough [MEDIUM]
 - **Files**: `Migrations/*Goals*`, `Models/DbflashcardContext.cs`, `Services/GoalsService.cs`

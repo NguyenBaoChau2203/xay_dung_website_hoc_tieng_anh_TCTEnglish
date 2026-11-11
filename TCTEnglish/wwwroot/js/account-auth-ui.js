@@ -294,6 +294,7 @@
 
     function handleRegister(e) {
         if (e && e.defaultPrevented) return;
+        if (e && e._authHandled) return;
         var form = $('form-register');
         var terms = $('terms');
         var submitBtn = $('btn-register-submit');

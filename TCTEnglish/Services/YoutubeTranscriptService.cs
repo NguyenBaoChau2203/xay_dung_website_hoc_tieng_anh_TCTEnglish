@@ -45,8 +45,20 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
     public YoutubeTranscriptService(
         IAudioTranscriptImporter audioImporter,
         ILogger<YoutubeTranscriptService> logger)
+        : this(audioImporter, logger, new YoutubeClient())
     {
-        _youtubeClient = new YoutubeClient();
+    }
+
+    /// <summary>
+    /// Fixture seam for a package HttpClient. Runtime registration keeps the
+    /// parameterless <see cref="YoutubeClient"/> constructor above.
+    /// </summary>
+    public YoutubeTranscriptService(
+        IAudioTranscriptImporter audioImporter,
+        ILogger<YoutubeTranscriptService> logger,
+        YoutubeClient youtubeClient)
+    {
+        _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
         _audioImporter = audioImporter;
         _logger = logger;
     }

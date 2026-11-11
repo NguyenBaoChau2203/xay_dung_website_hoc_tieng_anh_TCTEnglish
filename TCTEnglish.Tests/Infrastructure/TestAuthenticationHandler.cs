@@ -40,6 +40,7 @@ public sealed class TestAuthenticationHandler : AuthenticationHandler<Authentica
         {
             new Claim(ClaimTypes.NameIdentifier, userId),
             new Claim(ClaimTypes.Role, string.IsNullOrWhiteSpace(role) ? Roles.Standard : role),
+            new Claim(TCTEnglish.Services.Accounts.AccountSecurityClaims.Version, "0"),
             new Claim(ClaimTypes.Email, string.IsNullOrWhiteSpace(email) ? $"user{userId}@test.local" : email),
             new Claim(ClaimTypes.Name, string.IsNullOrWhiteSpace(name) ? $"User {userId}" : name)
         };

@@ -1,0 +1,45 @@
+@model TCTEnglish.Services.Notifications.NotificationPreferenceForm
+<form asp-controller="Account" asp-action="SaveNotificationPreferences" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="ReturnSurface" value="@Model.ReturnSurface" />
+    <div class="form-check">
+        <input asp-for="DailyReminderEnabled" class="form-check-input" />
+        <label asp-for="DailyReminderEnabled" class="form-check-label">Nhắc học hằng ngày</label>
+    </div>
+    <div class="row g-2 mt-2">
+        <div class="col-4">
+            <label asp-for="ReminderHour" class="form-label">Giờ</label>
+            <input asp-for="ReminderHour" class="form-control" type="number" min="0" max="23" />
+        </div>
+        <div class="col-4">
+            <label asp-for="ReminderMinute" class="form-label">Phút</label>
+            <input asp-for="ReminderMinute" class="form-control" type="number" min="0" max="59" />
+        </div>
+        <div class="col-4">
+            <label asp-for="TimeZoneId" class="form-label">Múi giờ nhắc</label>
+            <select asp-for="TimeZoneId" class="form-select">
+                <option value="Asia/Ho_Chi_Minh">Việt Nam</option>
+                <option value="UTC">UTC</option>
+            </select>
+        </div>
+    </div>
+    <p class="form-text">20:00 chỉ là gợi ý trước khi lưu. Thống kê học vẫn dùng giờ Việt Nam.</p>
+    <div class="form-check mt-2">
+        <input asp-for="PushOptIn" class="form-check-input" id="prefPush" />
+        <label class="form-check-label" for="prefPush">
+            <strong>Thông báo đẩy (Push)</strong>
+            <p class="text-secondary small mb-0">@Model.PushState</p>
+        </label>
+    </div>
+    <div class="form-check mt-2">
+        <input asp-for="WeeklyEmailOptIn" class="form-check-input" id="prefEmail" />
+        <label class="form-check-label" for="prefEmail">
+            <strong>Email tổng kết tuần</strong>
+            <p class="text-secondary small mb-0">@Model.EmailState</p>
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm mt-3">Lưu tùy chọn</button>
+    <button type="button" class="btn btn-outline-primary btn-sm mt-3" id="enablePushDevice" disabled="@(!Model.PushConfigured)">Đăng ký thiết bị này</button>
+    <button type="button" class="btn btn-outline-primary btn-sm mt-3" id="disablePushDevice">Hủy đăng ký thiết bị này</button>
+    <p id="pushDeviceStatus" class="small text-secondary mt-2 mb-0" role="status" aria-live="polite"></p>
+</form>

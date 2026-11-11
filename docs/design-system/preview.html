@@ -78,18 +78,45 @@
             <button type="button" class="btn-notification" aria-label="Thông báo"><i class="fas fa-bell"></i></button>
             <div class="user-menu-container">
                 <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menu tài khoản của Người dùng mẫu">
-                    <div class="avatar"></div>
-                    <span class="user-name-display">Người dùng mẫu</span>
-                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                </button>
-                <div class="user-dropdown" id="userDropdown">
-                    <div class="dropdown-header">
-                        <div class="avatar small"></div>
-                        <div class="user-info-text"><div class="name">Người dùng mẫu</div><div class="email">mau@example.invalid</div></div>
+                    <div class="user-avatar-wrap">
+                        <div class="avatar avatar-fallback">N</div>
+                        <span class="user-avatar-status" aria-hidden="true"></span>
                     </div>
-                    <hr>
-                    <a href="#top" class="dropdown-item"><i class="fas fa-user"></i> Hồ sơ của tôi</a>
-                    <a href="#top" class="dropdown-item logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    <span class="user-name-display">Người dùng mẫu</span>
+                    <i class="fas fa-chevron-down user-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="user-dropdown" id="userDropdown" role="menu" aria-label="Menu tài khoản của Người dùng mẫu">
+                    <div class="dropdown-header">
+                        <div class="user-avatar-wrap user-avatar-wrap--header">
+                            <div class="avatar small avatar-fallback">N</div>
+                            <span class="user-avatar-status" aria-hidden="true"></span>
+                        </div>
+                        <div class="user-info-text">
+                            <div class="user-name-badge-line">
+                                <span class="name text-truncate">Người dùng mẫu</span>
+                                <span class="user-role-badge user-role-badge--learner"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Học viên</span>
+                            </div>
+                            <div class="email text-truncate">mau@example.invalid</div>
+                        </div>
+                    </div>
+                    <div class="user-dropdown-nav">
+                        <a href="#top" class="dropdown-item user-dropdown-item" role="menuitem">
+                            <span class="item-icon-box item-icon-box--profile" aria-hidden="true"><i class="fas fa-user"></i></span>
+                            <div class="item-content"><span class="item-title">Hồ sơ của tôi</span><span class="item-desc">Xem thông tin cá nhân & tiến độ</span></div>
+                            <i class="fas fa-chevron-right item-arrow" aria-hidden="true"></i>
+                        </a>
+                        <a href="#top" class="dropdown-item user-dropdown-item" role="menuitem">
+                            <span class="item-icon-box item-icon-box--settings" aria-hidden="true"><i class="fas fa-cog"></i></span>
+                            <div class="item-content"><span class="item-title">Cài đặt</span><span class="item-desc">Mật khẩu, bảo mật & giao diện</span></div>
+                            <i class="fas fa-chevron-right item-arrow" aria-hidden="true"></i>
+                        </a>
+                        <hr class="user-dropdown-hr">
+                        <a href="#top" class="dropdown-item user-dropdown-item logout" role="menuitem">
+                            <span class="item-icon-box item-icon-box--logout" aria-hidden="true"><i class="fas fa-sign-out-alt"></i></span>
+                            <div class="item-content"><span class="item-title">Đăng xuất</span><span class="item-desc">Kết thúc phiên làm việc</span></div>
+                            <i class="fas fa-arrow-right-from-bracket item-arrow" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -167,30 +167,55 @@ public sealed class PremiumWritingLearnerFlowIntegrationTests
     }
 
     [Fact]
-    public async Task DeleteAccount_WithPrivateWritingData_HardDeletesWritingRecordsBeforeUserRemoval()
+    public async Task DeleteAccount_PreservesWritingDataWhenAnotherLearnerHasAnAttempt()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
-        await UpdateUserRoleAsync(factory, TestDataIds.UserId, Roles.Premium);
-        var seededExercise = await SeedPrivateExerciseAsync(factory, TestDataIds.UserId);
-
-        await SeedWritingLifecycleDependenciesAsync(factory, seededExercise.ExerciseId, seededExercise.FirstSentenceId, TestDataIds.UserId, TestDataIds.OutsiderUserId);
-
-        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Premium);
+        var ownerId = await SeedDeletionOwnerAsync(factory);
+        var seededExercise = await SeedPrivateExerciseAsync(factory, ownerId);
+        await SeedWritingLifecycleDependenciesAsync(factory, seededExercise.ExerciseId, seededExercise.FirstSentenceId, ownerId, TestDataIds.OutsiderUserId);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, ownerId, Roles.Premium);
         using var deleteAccountResponse = await PostDeleteAccountAsync(client);
 
         Assert.Equal(HttpStatusCode.Redirect, deleteAccountResponse.StatusCode);
         Assert.NotNull(deleteAccountResponse.Headers.Location);
-        Assert.Equal("/Account/Login", deleteAccountResponse.Headers.Location!.OriginalString);
+        Assert.Equal("/Account/Settings", deleteAccountResponse.Headers.Location!.OriginalString);
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
-        Assert.False(await context.Users.AsNoTracking().AnyAsync(user => user.UserId == TestDataIds.UserId));
-        Assert.False(await context.WritingExercises.AsNoTracking().AnyAsync(exercise => exercise.Id == seededExercise.ExerciseId));
-        Assert.False(await context.WritingExerciseSentences.AsNoTracking().AnyAsync(sentence => sentence.WritingExerciseId == seededExercise.ExerciseId));
-        Assert.False(await context.UserWritingAttempts.AsNoTracking().AnyAsync(attempt => attempt.WritingExerciseId == seededExercise.ExerciseId));
-        Assert.False(await context.WritingGenerationLogs.AsNoTracking().AnyAsync(log => log.UserId == TestDataIds.UserId));
+        Assert.True(await context.Users.AsNoTracking().AnyAsync(user => user.UserId == ownerId));
+        Assert.True(await context.WritingExercises.AsNoTracking().AnyAsync(exercise => exercise.Id == seededExercise.ExerciseId));
+        Assert.True(await context.UserWritingAttempts.AsNoTracking().AnyAsync(attempt => attempt.WritingExerciseId == seededExercise.ExerciseId && attempt.UserId == TestDataIds.OutsiderUserId));
+        Assert.True(await context.WritingGenerationLogs.AsNoTracking().AnyAsync(log => log.UserId == ownerId));
+    }
+
+    [Fact]
+    public async Task DeleteAccount_RemovesSoleOwnedPrivateWritingData()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        var ownerId = await SeedDeletionOwnerAsync(factory);
+        var exercise = await SeedPrivateExerciseAsync(factory, ownerId, addAttemptHistory: true);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, ownerId, Roles.Premium);
+        using var response = await PostDeleteAccountAsync(client);
+        Assert.Equal("/Account/Login", response.Headers.Location?.OriginalString);
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        Assert.False(await db.Users.AnyAsync(row => row.UserId == ownerId));
+        Assert.False(await db.WritingExercises.AnyAsync(row => row.Id == exercise.ExerciseId));
+        Assert.False(await db.UserWritingAttempts.AnyAsync(row => row.WritingExerciseId == exercise.ExerciseId));
+    }
+
+    private static async Task<int> SeedDeletionOwnerAsync(TestWebApplicationFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var user = new User { Email = $"delete-owner-{Guid.NewGuid():N}@example.test", FullName = "Delete owner", Role = Roles.Premium,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("LifecycleDelete1!"), CreatedAt = DateTime.UtcNow };
+        db.Users.Add(user);
+        await db.SaveChangesAsync();
+        return user.UserId;
     }
 
     private static async Task UpdateUserRoleAsync(TestWebApplicationFactory factory, int userId, string role)
@@ -320,7 +345,9 @@ public sealed class PremiumWritingLearnerFlowIntegrationTests
             "/Account/DeleteAccount",
             new FormUrlEncodedContent(
             [
-                new KeyValuePair<string, string>("__RequestVerificationToken", antiForgeryToken)
+                new KeyValuePair<string, string>("__RequestVerificationToken", antiForgeryToken),
+                new KeyValuePair<string, string>("confirmText", "CONFIRM"),
+                new KeyValuePair<string, string>("currentPassword", "LifecycleDelete1!")
             ]));
     }
 

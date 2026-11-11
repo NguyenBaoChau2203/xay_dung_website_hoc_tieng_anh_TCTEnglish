@@ -1,0 +1,33 @@
+@model string
+<div class="mt-3 pt-3 border-top">
+    <h3 class="h6">Xác minh email hiện tại</h3>
+    <p class="small text-secondary">Xác minh địa chỉ đang dùng để nhận tổng kết tuần. Mã email dùng một lần và hết hạn sau 10 phút.</p>
+    <form asp-controller="Account" asp-action="RequestAccountProof" method="post" class="mb-2">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="purpose" value="VerifyEmail" />
+        <input type="hidden" name="returnSurface" value="@Model" />
+        <button type="submit" class="btn btn-outline-primary btn-sm">Gửi mã xác minh email</button>
+    </form>
+    <form asp-controller="Account" asp-action="VerifyCurrentEmail" method="post" class="mb-3">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="returnSurface" value="@Model" />
+        <label class="form-label" for="@(Model)-email-proof">Mã xác minh vừa nhận</label>
+        <input id="@(Model)-email-proof" name="proofCode" class="form-control mb-2" autocomplete="one-time-code" maxlength="128" required />
+        <button type="submit" class="btn btn-primary btn-sm">Xác minh email</button>
+    </form>
+    <details>
+        <summary class="small">Nhận mã cho thao tác cần xác thực lại</summary>
+        <p class="small text-secondary mt-2">Nếu chưa có mật khẩu cục bộ, nhận mã đúng mục đích rồi nhập vào biểu mẫu tương ứng. Dùng mã không thay đổi thông tin tài khoản ngay.</p>
+        <div class="d-flex flex-wrap gap-2">
+            @foreach (var item in new[] { (Purpose: "Reauth", Label: "Mã đổi email"), (Purpose: "SetFirstPassword", Label: "Mã đặt mật khẩu đầu tiên"), (Purpose: "Deletion", Label: "Mã xóa tài khoản") })
+            {
+                <form asp-controller="Account" asp-action="RequestAccountProof" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="purpose" value="@item.Purpose" />
+                    <input type="hidden" name="returnSurface" value="@Model" />
+                    <button type="submit" class="btn btn-outline-primary btn-sm">@item.Label</button>
+                </form>
+            }
+        </div>
+    </details>
+</div>

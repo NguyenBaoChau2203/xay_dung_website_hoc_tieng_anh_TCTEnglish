@@ -161,11 +161,25 @@ namespace TCTVocabulary.Areas.Admin.Controllers
                 return BadRequest(new { message = "Email này đã được sử dụng bởi người dùng khác." });
             }
 
-            user.FullName = model.FullName;
-            user.Email = model.Email;
-            user.Role = Roles.Normalize(model.Role);
-
-            await _context.SaveChangesAsync();
+            var saved = await TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, model.UserId, async () =>
+            {
+                user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == model.UserId && row.AnonymizedAt == null);
+                if (user == null) return false;
+                var emailChanged = !string.Equals(user.Email, model.Email, StringComparison.OrdinalIgnoreCase);
+                if (emailChanged || Roles.Normalize(user.Role) != Roles.Normalize(model.Role))
+                {
+                    user.SecurityVersion += 1;
+                    user.ResetPasswordToken = null;
+                    user.ResetPasswordTokenExpiry = null;
+                    if (emailChanged) user.EmailVerifiedAt = null;
+                }
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.Role = Roles.Normalize(model.Role);
+                await _context.SaveChangesAsync();
+                return true;
+            }, result => result, HttpContext.RequestAborted);
+            if (!saved || user == null) return NotFound(new { message = "Không tìm thấy người dùng." });
 
             return Json(new
             {
@@ -257,10 +271,21 @@ namespace TCTVocabulary.Areas.Admin.Controllers
 
             var previousStatus = user.Status;
 
-            user.Status = UserStatus.Blocked;
-            user.LockReason = request.Reason;
-            user.LockExpiry = lockExpiry.Value;
-            await _context.SaveChangesAsync();
+            var saved = await TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, request.UserId, async () =>
+            {
+                user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == request.UserId && row.AnonymizedAt == null);
+                if (user == null) return false;
+                previousStatus = user.Status;
+                user.Status = UserStatus.Blocked;
+                user.LockReason = request.Reason;
+                user.LockExpiry = lockExpiry.Value;
+                user.SecurityVersion += 1;
+                user.ResetPasswordToken = null;
+                user.ResetPasswordTokenExpiry = null;
+                await _context.SaveChangesAsync();
+                return true;
+            }, result => result, HttpContext.RequestAborted);
+            if (!saved || user == null) return NotFound(new { message = "Không tìm thấy người dùng." });
 
             await _emailSender.SendBlockedNotificationAsync(user.Email, request.Reason, lockExpiry.Value);
 

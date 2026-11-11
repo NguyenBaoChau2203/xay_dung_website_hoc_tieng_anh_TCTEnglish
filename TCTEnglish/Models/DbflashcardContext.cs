@@ -88,6 +88,14 @@ public partial class DbflashcardContext : DbContext
 
     // ─── Learning time tracking ──────────────────────────────────────────────
     public virtual DbSet<UserFeatureTimeLog> UserFeatureTimeLogs { get; set; }
+    public virtual DbSet<AccountSecurityChallenge> AccountSecurityChallenges { get; set; }
+    public virtual DbSet<LearningActivitySession> LearningActivitySessions { get; set; }
+    public virtual DbSet<LearningActivitySegment> LearningActivitySegments { get; set; }
+    public virtual DbSet<UserGoalTargetRevision> UserGoalTargetRevisions { get; set; }
+    public virtual DbSet<UserNotificationPreference> UserNotificationPreferences { get; set; }
+    public virtual DbSet<WebPushSubscription> WebPushSubscriptions { get; set; }
+    public virtual DbSet<OutboundDelivery> OutboundDeliveries { get; set; }
+    public virtual DbSet<AccountFileCleanupJob> AccountFileCleanupJobs { get; set; }
 
     // SỬA LỖI: Để trống hàm này để tránh xung đột với chuỗi kết nối trong Program.cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -409,6 +417,14 @@ public partial class DbflashcardContext : DbContext
                 .HasMaxLength(1000)
                 .IsRequired(false);
             entity.Property(e => e.LockExpiry)
+                .HasColumnType("datetime(6)")
+                .IsRequired(false);
+            entity.Property(e => e.SecurityVersion)
+                .HasDefaultValue(0);
+            entity.Property(e => e.EmailVerifiedAt)
+                .HasColumnType("datetime(6)")
+                .IsRequired(false);
+            entity.Property(e => e.AnonymizedAt)
                 .HasColumnType("datetime(6)")
                 .IsRequired(false);
         });
@@ -1609,7 +1625,7 @@ public partial class DbflashcardContext : DbContext
             entity.HasIndex(e => new { e.UserId, e.Status, e.CreatedAtUtc })
                 .HasDatabaseName("IX_PaymentOrders_UserId_Status_CreatedAt");
             entity.HasOne(e => e.User).WithMany()
-                .HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(e => e.Plan).WithMany(p => p.PaymentOrders)
                 .HasForeignKey(e => e.PlanId).OnDelete(DeleteBehavior.Restrict);
         });
@@ -1655,6 +1671,139 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(e => e.PaymentOrderId).IsRequired(false).OnDelete(DeleteBehavior.NoAction);
             entity.HasOne(e => e.Subscription).WithMany()
                 .HasForeignKey(e => e.SubscriptionId).IsRequired(false).OnDelete(DeleteBehavior.NoAction);
+        });
+
+        modelBuilder.Entity<AccountSecurityChallenge>(entity =>
+        {
+            entity.ToTable("AccountSecurityChallenges");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Purpose).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.TokenDigest).HasMaxLength(64).IsUnicode(false).IsRequired();
+            entity.Property(e => e.NewEmail).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.ExpiresAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.ConsumedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.CreatedAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => e.TokenDigest).IsUnique().HasDatabaseName("IX_AccountSecurityChallenges_TokenDigest");
+            entity.HasIndex(e => new { e.UserId, e.Purpose, e.CreatedAtUtc })
+                .HasDatabaseName("IX_AccountSecurityChallenges_User_Purpose_Created");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<LearningActivitySession>(entity =>
+        {
+            entity.ToTable("LearningActivitySessions");
+            entity.HasKey(e => e.SessionId);
+            entity.Property(e => e.Skill).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.Mode).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.LeaseToken).HasMaxLength(64).IsUnicode(false).IsRequired();
+            entity.Property(e => e.StartedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.LastAcceptedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.LeaseExpiresAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => new { e.UserId, e.LeaseExpiresAtUtc })
+                .HasDatabaseName("IX_LearningActivitySessions_User_Lease");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<LearningActivitySegment>(entity =>
+        {
+            entity.ToTable("LearningActivitySegments");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Skill).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.StartedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.EndedAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => new { e.SessionId, e.Sequence })
+                .IsUnique()
+                .HasDatabaseName("IX_LearningActivitySegments_Session_Sequence");
+            entity.HasIndex(e => new { e.UserId, e.StartedAtUtc })
+                .HasDatabaseName("IX_LearningActivitySegments_User_Started");
+            entity.HasOne(e => e.Session).WithMany(s => s.Segments)
+                .HasForeignKey(e => e.SessionId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<UserGoalTargetRevision>(entity =>
+        {
+            entity.ToTable("UserGoalTargetRevisions");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.EffectiveFromUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.RecordedAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => new { e.UserId, e.GoalArea, e.RevisionNumber })
+                .IsUnique()
+                .HasDatabaseName("IX_UserGoalTargetRevisions_User_Area_Revision");
+            entity.HasIndex(e => new { e.UserId, e.GoalArea, e.EffectiveFromUtc })
+                .HasDatabaseName("IX_UserGoalTargetRevisions_User_Area_Effective");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<UserNotificationPreference>(entity =>
+        {
+            entity.ToTable("UserNotificationPreferences");
+            entity.HasKey(e => e.UserId);
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.TimeZoneId).HasMaxLength(64).IsRequired();
+            entity.Property(e => e.UpdatedAtUtc).HasColumnType("datetime(6)");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<WebPushSubscription>(entity =>
+        {
+            entity.ToTable("WebPushSubscriptions");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.EndpointHash).HasMaxLength(64).IsUnicode(false).IsRequired();
+            entity.Property(e => e.Endpoint).HasMaxLength(2000).IsRequired();
+            entity.Property(e => e.P256dh).HasMaxLength(200).IsRequired();
+            entity.Property(e => e.Auth).HasMaxLength(200).IsRequired();
+            entity.Property(e => e.CreatedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.RevokedAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.LastSeenAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => e.EndpointHash).IsUnique().HasDatabaseName("IX_WebPushSubscriptions_EndpointHash");
+            entity.HasIndex(e => new { e.UserId, e.RevokedAtUtc })
+                .HasDatabaseName("IX_WebPushSubscriptions_User_Revoked");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<OutboundDelivery>(entity =>
+        {
+            entity.ToTable("OutboundDeliveries");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Channel).HasMaxLength(16).IsRequired();
+            entity.Property(e => e.PeriodKey).HasMaxLength(40).IsRequired();
+            entity.Property(e => e.SubscriptionKey).HasMaxLength(64).IsUnicode(false).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(16).IsRequired();
+            entity.Property(e => e.LeaseOwner).HasMaxLength(64).IsUnicode(false);
+            entity.Property(e => e.LastOutcome).HasMaxLength(32);
+            entity.Property(e => e.LeaseUntilUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.NextAttemptAtUtc).HasColumnType("datetime(6)");
+            entity.Property(e => e.CreatedAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => new { e.UserId, e.Channel, e.PeriodKey, e.SubscriptionKey })
+                .IsUnique()
+                .HasDatabaseName("IX_OutboundDeliveries_User_Channel_Period_Sub");
+            entity.HasIndex(e => new { e.Status, e.NextAttemptAtUtc })
+                .HasDatabaseName("IX_OutboundDeliveries_Status_NextAttempt");
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<AccountFileCleanupJob>(entity =>
+        {
+            entity.ToTable("AccountFileCleanupJobs");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.PublicUrl).HasMaxLength(500).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(16).IsRequired();
+            entity.Property(e => e.NextAttemptAtUtc).HasColumnType("datetime(6)");
+            entity.HasIndex(e => new { e.Status, e.NextAttemptAtUtc })
+                .HasDatabaseName("IX_AccountFileCleanupJobs_Status_NextAttempt");
         });
 
         OnModelCreatingPartial(modelBuilder);
