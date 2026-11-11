@@ -33,10 +33,12 @@
 
     <!-- Shared Admin Shell CSS (AS01) -->
     <link rel="stylesheet" href="~/css/admin-shell.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/page-loader.css" asp-append-version="true" />
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body class="admin-shell">
+    <partial name="_Loader" />
     <a href="#admin-main-content" class="visually-hidden-focusable admin-skip-link">Chuyển đến nội dung chính</a>
 
     <!-- Mobile Drawer Backdrop -->

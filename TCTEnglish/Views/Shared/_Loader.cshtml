@@ -1,5 +1,192 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+@*
+    TCT English Shared Page Loader Component
+    Spec: DESIGN.md. Shared across layouts.
 *@
-@{
-}
+<div id="tct-page-loader" class="tct-page-loader-backdrop" role="status" aria-live="polite" aria-label="Đang tải trang">
+    <div class="tct-page-loader-card" id="tctPageLoaderCard">
+        <!-- 3D Clay Emblem -->
+        <div class="tct-loader-emblem-wrap" aria-hidden="true">
+            <div class="tct-loader-orbit-ring" aria-hidden="true"></div>
+            <div class="tct-loader-orbit-ring tct-loader-orbit-ring--inner" aria-hidden="true"></div>
+            <div class="tct-loader-emblem-core">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+        </div>
+
+        <!-- Brand and Status -->
+        <div class="tct-loader-brand">
+            <span class="tct-loader-brand-badge">TCT</span> English
+        </div>
+        <div class="tct-loader-status" id="tctLoaderStatus">
+            <span id="tctLoaderStatusText">Đang tải trang</span>
+            <span class="tct-loader-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+
+        <!-- Animated Progress Track -->
+        <div class="tct-loader-track" aria-hidden="true">
+            <div class="tct-loader-track-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Top glowing page transition progress bar -->
+<div id="tctPageProgressBar" class="tct-page-progress-bar" aria-hidden="true"></div>
+
+<script>
+    (function () {
+        'use strict';
+        var backdrop = document.getElementById('tct-page-loader');
+        var bar = document.getElementById('tctPageProgressBar');
+        var statusText = document.getElementById('tctLoaderStatusText');
+        var failsafeTimer = null;
+
+        function setStatus(text) {
+            if (statusText && text) {
+                statusText.textContent = text;
+            }
+        }
+
+        function dismissLoader() {
+            if (failsafeTimer) {
+                clearTimeout(failsafeTimer);
+                failsafeTimer = null;
+            }
+            if (!backdrop) return;
+            if (bar) {
+                bar.style.width = '100%';
+                setTimeout(function () {
+                    if (bar) {
+                        bar.classList.remove('tct-page-progress-bar--active');
+                        bar.style.opacity = '0';
+                        bar.style.width = '0%';
+                    }
+                }, 200);
+            }
+            backdrop.classList.add('tct-loader-fade-out');
+            setTimeout(function () {
+                if (backdrop && backdrop.classList.contains('tct-loader-fade-out')) {
+                    backdrop.style.display = 'none';
+                    backdrop.setAttribute('aria-hidden', 'true');
+                }
+            }, 280);
+        }
+
+        function showLoader(text) {
+            if (!backdrop) return;
+            setStatus(text || 'Đang chuyển trang…');
+
+            if (failsafeTimer) clearTimeout(failsafeTimer);
+            failsafeTimer = setTimeout(dismissLoader, 6000);
+
+            backdrop.style.display = 'flex';
+            backdrop.removeAttribute('aria-hidden');
+            // Trigger reflow for CSS transition
+            void backdrop.offsetHeight;
+            backdrop.classList.remove('tct-loader-fade-out');
+
+            if (bar) {
+                bar.classList.add('tct-page-progress-bar--active');
+                bar.style.opacity = '1';
+                bar.style.width = '35%';
+                setTimeout(function () {
+                    if (bar && bar.classList.contains('tct-page-progress-bar--active')) {
+                        bar.style.width = '80%';
+                    }
+                }, 180);
+            }
+        }
+
+        // Expose globally so any script can call window.tctShowLoader / window.tctDismissLoader
+        window.tctShowLoader = showLoader;
+        window.tctDismissLoader = dismissLoader;
+
+        // Initial page load dismissal
+        if (document.readyState === 'complete') {
+            setTimeout(dismissLoader, 150);
+        } else {
+            window.addEventListener('load', function () {
+                setTimeout(dismissLoader, 150);
+            });
+            // Failsafe timer on initial load
+            setTimeout(dismissLoader, 2000);
+        }
+
+        // BFCache safety: immediately dismiss when restored from back/forward cache
+        window.addEventListener('pageshow', function () {
+            dismissLoader();
+        });
+
+        // Listen for internal link clicks to trigger loader smoothly
+        document.addEventListener('click', function (e) {
+            // Ignore modified clicks (new tab, context menu, etc.)
+            if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+                return;
+            }
+
+            var anchor = e.target.closest('a');
+            if (!anchor) return;
+
+            var href = anchor.getAttribute('href');
+            if (!href) return;
+
+            // Ignore anchor hashes, javascript:, mailto:, tel:
+            if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                return;
+            }
+
+            // Ignore external target or downloads
+            if (anchor.target && anchor.target !== '_self') return;
+            if (anchor.hasAttribute('download')) return;
+
+            // Ignore modal, dropdown, offcanvas toggles and tabs
+            if (anchor.getAttribute('data-bs-toggle') || anchor.getAttribute('data-tab') || anchor.classList.contains('dropdown-toggle')) {
+                return;
+            }
+
+            // Check if navigation is within current origin
+            var isInternal = false;
+            try {
+                var targetUrl = new URL(anchor.href, window.location.href);
+                if (targetUrl.origin === window.location.origin) {
+                    // Ignore if navigating to the same URL with only a hash change
+                    if (targetUrl.pathname === window.location.pathname &&
+                        targetUrl.search === window.location.search &&
+                        targetUrl.hash) {
+                        return;
+                    }
+                    isInternal = true;
+                }
+            } catch (err) {
+                if (href.startsWith('/')) isInternal = true;
+            }
+
+            if (isInternal) {
+                showLoader('Đang chuyển trang…');
+            }
+        }, true);
+
+        // Listen for standard form submissions (e.g. search)
+        document.addEventListener('submit', function (e) {
+            var form = e.target;
+            if (!form || form.tagName !== 'FORM') return;
+
+            setTimeout(function () {
+                if (!e.defaultPrevented && !form.dataset.preventLoader) {
+                    showLoader('Đang xử lý…');
+                }
+            }, 0);
+        });
+
+        // Fallback before unload
+        window.addEventListener('beforeunload', function () {
+            showLoader('Đang chuyển trang…');
+        });
+
+        // Accessibility: Escape key dismisses loader if user wants to cancel
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && backdrop && !backdrop.classList.contains('tct-loader-fade-out')) {
+                dismissLoader();
+            }
+        });
+    })();
+</script>

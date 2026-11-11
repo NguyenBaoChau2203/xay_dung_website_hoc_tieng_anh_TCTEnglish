@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/notifications.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/ai-chat-launcher.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/page-loader.css" asp-append-version="true" />
 
     <script src="~/js/layout.js" asp-append-version="true"></script>
 
@@ -88,33 +89,111 @@
                 var avatarStyle = !string.IsNullOrEmpty(avatarUrl)
                     ? $"background-image: url('{avatarUrl}'); background-size: cover; background-position: center; background-color: transparent;"
                     : "";
+                var userName = User.Identity.Name ?? "Học viên";
+                var userEmail = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value ?? "";
+                var isAdmin = User.IsInRole("Admin");
+                var userInitial = !string.IsNullOrWhiteSpace(userName) ? userName.Substring(0, 1).ToUpper() : "U";
 
                 <div class="user-menu-container">
-                    <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menu tài khoản của @User.Identity.Name">
-                        <div class="avatar" style="@avatarStyle"></div>
-                        <span class="user-name-display">@User.Identity.Name</span>
-                        <i class="fas fa-chevron-down" style="font-size: 12px; color: #6b7280;"></i>
+                    <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menu tài khoản của @userName">
+                        <div class="user-avatar-wrap">
+                            @if (!string.IsNullOrEmpty(avatarUrl))
+                            {
+                                <div class="avatar" style="@avatarStyle"></div>
+                            }
+                            else
+                            {
+                                <div class="avatar avatar-fallback">@userInitial</div>
+                            }
+                            <span class="user-avatar-status" aria-hidden="true"></span>
+                        </div>
+                        <span class="user-name-display">@userName</span>
+                        <i class="fas fa-chevron-down user-chevron" aria-hidden="true"></i>
                     </button>
 
-                    <div class="user-dropdown" id="userDropdown">
+                    <div class="user-dropdown" id="userDropdown" role="menu" aria-label="Menu tài khoản của @userName">
                         <div class="dropdown-header">
-                            <div class="avatar small" style="@avatarStyle"></div>
+                            <div class="user-avatar-wrap user-avatar-wrap--header">
+                                @if (!string.IsNullOrEmpty(avatarUrl))
+                                {
+                                    <div class="avatar small" style="@avatarStyle"></div>
+                                }
+                                else
+                                {
+                                    <div class="avatar small avatar-fallback">@userInitial</div>
+                                }
+                                <span class="user-avatar-status" aria-hidden="true"></span>
+                            </div>
                             <div class="user-info-text">
-                                <div class="name">@User.Identity.Name</div>
-                                <div class="email">@User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value</div>
+                                <div class="user-name-badge-line">
+                                    <span class="name text-truncate" title="@userName">@userName</span>
+                                    @if (isAdmin)
+                                    {
+                                        <span class="user-role-badge user-role-badge--admin" title="Quản trị viên hệ thống">
+                                            <i class="fa-solid fa-crown" aria-hidden="true"></i> Admin
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="user-role-badge user-role-badge--learner" title="Học viên TCT">
+                                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Học viên
+                                        </span>
+                                    }
+                                </div>
+                                <div class="email text-truncate" title="@userEmail">@userEmail</div>
                             </div>
                         </div>
-                        <hr />
-                        <a asp-controller="Account" asp-action="Profile" class="dropdown-item">
-                            <i class="fas fa-user"></i> Hồ sơ của tôi
-                        </a>
-                        <a asp-controller="Account" asp-action="Settings" class="dropdown-item">
-                            <i class="fas fa-cog"></i> Cài đặt
-                        </a>
-                        <hr />
-                        <a asp-controller="Account" asp-action="Logout" class="dropdown-item logout">
-                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                        </a>
+
+                        <div class="user-dropdown-nav">
+                            <a asp-controller="Account" asp-action="Profile" class="dropdown-item user-dropdown-item" role="menuitem">
+                                <span class="item-icon-box item-icon-box--profile" aria-hidden="true">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <div class="item-content">
+                                    <span class="item-title">Hồ sơ của tôi</span>
+                                    <span class="item-desc">Xem thông tin cá nhân & tiến độ</span>
+                                </div>
+                                <i class="fas fa-chevron-right item-arrow" aria-hidden="true"></i>
+                            </a>
+
+                            <a asp-controller="Account" asp-action="Settings" class="dropdown-item user-dropdown-item" role="menuitem">
+                                <span class="item-icon-box item-icon-box--settings" aria-hidden="true">
+                                    <i class="fas fa-cog"></i>
+                                </span>
+                                <div class="item-content">
+                                    <span class="item-title">Cài đặt</span>
+                                    <span class="item-desc">Mật khẩu, bảo mật & giao diện</span>
+                                </div>
+                                <i class="fas fa-chevron-right item-arrow" aria-hidden="true"></i>
+                            </a>
+
+                            @if (isAdmin)
+                            {
+                                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="dropdown-item user-dropdown-item user-dropdown-item--admin" role="menuitem">
+                                    <span class="item-icon-box item-icon-box--admin" aria-hidden="true">
+                                        <i class="fa-solid fa-gauge-high"></i>
+                                    </span>
+                                    <div class="item-content">
+                                        <span class="item-title">Trang quản trị</span>
+                                        <span class="item-desc">Bảng điều khiển hệ thống</span>
+                                    </div>
+                                    <i class="fas fa-arrow-up-right-from-square item-arrow" aria-hidden="true"></i>
+                                </a>
+                            }
+
+                            <hr class="user-dropdown-hr" />
+
+                            <a asp-controller="Account" asp-action="Logout" class="dropdown-item user-dropdown-item logout" role="menuitem">
+                                <span class="item-icon-box item-icon-box--logout" aria-hidden="true">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <div class="item-content">
+                                    <span class="item-title">Đăng xuất</span>
+                                    <span class="item-desc">Kết thúc phiên làm việc an toàn</span>
+                                </div>
+                                <i class="fas fa-arrow-right-from-bracket item-arrow" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             }
@@ -128,6 +207,7 @@
     @{
         bool hideSidebar = ViewData["HideSidebar"] as bool? == true;
         string layoutClass = hideSidebar ? "layout sidebar-collapsed" : "layout";
+        string sidebarClass = hideSidebar ? "sidebar collapsed" : "sidebar";
 
         string currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
         string currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
@@ -153,9 +233,7 @@
     }
     <div class="@layoutClass">
         <!-- ================= SIDEBAR ================= -->
-        @if (!hideSidebar)
-        {
-        <aside class="sidebar" id="mainSidebar" aria-label="Menu chính">
+        <aside class="@sidebarClass" id="mainSidebar" aria-label="Menu chính">
             <nav>
                 <div class="workspace-title">Menu chính</div>
                 <a class="nav-item @IsActive("Home", "Index")" aria-current="@AriaCurrent("Home", "Index")" asp-controller="Home" asp-action="Index">
@@ -284,7 +362,6 @@
                 Tận dụng Flashcards để ghi nhớ kiến thức nhanh hơn 3 lần.
             </div>
         </aside>
-        }
 
         <!-- ================= MAIN ================= -->
         <main class="main" id="main-content">
