@@ -268,7 +268,7 @@
         }
 
         function confirmSubmit(left, onConfirm) {
-            var modal = el('div', 'modal fade');
+            var modal = el('div', 'modal fade tct-theme');
             modal.tabIndex = -1;
             modal.setAttribute('aria-labelledby', 'tpSubmitTitle');
             modal.setAttribute('aria-hidden', 'true');
