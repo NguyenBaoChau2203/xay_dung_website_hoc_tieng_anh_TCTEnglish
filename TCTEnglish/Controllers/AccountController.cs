@@ -9,7 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System.IO;
+using TCTEnglish.Models;
+using TCTEnglish.Services.Accounts;
+using TCTEnglish.Services.Learning;
+using TCTEnglish.Services.Notifications;
+using TCTEnglish.ViewModels.Account;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
@@ -23,8 +29,26 @@ namespace TCTVocabulary.Controllers
         private readonly IAvatarUploadService _avatarUploadService;
         private readonly ILogger<AccountController> _logger;
         private readonly IGoalsService _goalsService;
+        private readonly IAccountProfileService _profiles;
+        private readonly IAccountSecurityService _security;
+        private readonly IAccountDeletionService _deletion;
+        private readonly INotificationPreferenceService _preferences;
+        private readonly IWebPushSubscriptionService _pushSubscriptions;
+        private readonly IOptions<OutboundDeliveryOptions> _outboundOptions;
 
-        public AccountController(DbflashcardContext context, IWebHostEnvironment webHostEnvironment, IAppEmailSender emailSender, IAvatarUploadService avatarUploadService, ILogger<AccountController> logger, IGoalsService goalsService)
+        public AccountController(
+            DbflashcardContext context,
+            IWebHostEnvironment webHostEnvironment,
+            IAppEmailSender emailSender,
+            IAvatarUploadService avatarUploadService,
+            ILogger<AccountController> logger,
+            IGoalsService goalsService,
+            IAccountProfileService profiles,
+            IAccountSecurityService security,
+            IAccountDeletionService deletion,
+            INotificationPreferenceService preferences,
+            IWebPushSubscriptionService pushSubscriptions,
+            IOptions<OutboundDeliveryOptions> outboundOptions)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
@@ -32,6 +56,12 @@ namespace TCTVocabulary.Controllers
             _avatarUploadService = avatarUploadService;
             _logger = logger;
             _goalsService = goalsService;
+            _profiles = profiles;
+            _security = security;
+            _deletion = deletion;
+            _preferences = preferences;
+            _pushSubscriptions = pushSubscriptions;
+            _outboundOptions = outboundOptions;
         }
 
         // GET: /Account/AccessDenied
@@ -135,7 +165,7 @@ namespace TCTVocabulary.Controllers
             // Removed ViewData["ActiveTab"] as we are using AJAX now
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-            if (user == null)
+            if (user == null || user.AnonymizedAt != null)
             {
                 // Return JSON error
                 return Json(new { success = false, message = "Email hoặc mật khẩu không đúng." });
@@ -393,6 +423,8 @@ namespace TCTVocabulary.Controllers
                 claims.Add(new Claim("AvatarUrl", user.AvatarUrl));
             }
 
+            claims.Add(new Claim(AccountSecurityClaims.Version, AccountSecurityClaims.FormatVersion(user.SecurityVersion)));
+
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
@@ -448,24 +480,18 @@ namespace TCTVocabulary.Controllers
         // GET: /Account/Profile
         [Microsoft.AspNetCore.Authorization.Authorize]
         [HttpGet]
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> Profile(int habitDays = 7)
         {
             if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
 
             var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null) return RedirectToAction("Login");
 
-            var earnedBadges = await _goalsService.GetEarnedBadgesForProfileAsync(userId);
-
-            var model = new UpdateProfileViewModel
+            var model = await _profiles.BuildAsync(userId, Request.IsHttps, Request.Query["tab"], null, windowDays: habitDays);
+            if (model == null)
             {
-                FullName = user.FullName ?? string.Empty,
-                Email = user.Email ?? string.Empty,
-                CurrentAvatarUrl = user.AvatarUrl,
-                Role = user.Role ?? Roles.Standard,
-                StreakDays = user.Streak ?? 0,
-                EarnedBadges = earnedBadges.ToList()
-            };
+                return RedirectToAction("Login");
+            }
 
             return View("~/Views/Account/Profile.cshtml", model);
         }
@@ -474,43 +500,35 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
+        public async Task<IActionResult> UpdateProfile(UpdateProfileInput model)
         {
             if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-            if (user == null) return RedirectToAction("Login");
-            
-            if (ModelState.IsValid)
+            if (string.IsNullOrWhiteSpace(model.FullName) || model.FullName.Trim().Length > 100)
             {
-                // Upload Avatar
-                if (model.Avatar != null)
-                {
-                    try
-                    {
-                        user.AvatarUrl = await _avatarUploadService.UploadAvatarAsync(model.Avatar, user.AvatarUrl);
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        TempData["ErrorMessage"] = ex.Message;
-                        model.CurrentAvatarUrl = user.AvatarUrl;
-                        model.Email = user.Email ?? string.Empty;
-                        model.StreakDays = user.Streak ?? 0;
-                        model.EarnedBadges = (await _goalsService.GetEarnedBadgesForProfileAsync(userId)).ToList();
-                        return View("~/Views/Account/Profile.cshtml", model);
-                    }
-                }
-
-                user.FullName = model.FullName;
-                // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
-                await _context.SaveChangesAsync();
-
-                // Refresh cookies to update claims (like Name, AvatarUrl)
-                await SignInUserAsync(user);
-
-                TempData["SuccessMessage"] = "Cập nhật thông tin cá nhân thành công.";
+                ModelState.AddModelError(nameof(model.FullName), "Họ tên cần từ 1 đến 100 ký tự.");
             }
 
+            if (!ModelState.IsValid)
+            {
+                var invalid = await _profiles.BuildAsync(userId, Request.IsHttps, "profile", model.FullName);
+                return View("~/Views/Account/Profile.cshtml", invalid);
+            }
+
+            var result = await _profiles.UpdateAsync(userId, model.FullName, model.Avatar);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, result.Error ?? "Không lưu được hồ sơ.");
+                var failed = await _profiles.BuildAsync(userId, Request.IsHttps, "profile", model.FullName);
+                return View("~/Views/Account/Profile.cshtml", failed);
+            }
+
+            if (result.ReissueSession)
+            {
+                var user = await _context.Users.AsNoTracking().FirstAsync(row => row.UserId == userId);
+                await SignInUserAsync(user);
+            }
+
+            TempData["SuccessMessage"] = result.Message;
             return RedirectToAction("Profile");
         }
 
@@ -529,16 +547,7 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Login");
             }
 
-            var model = new SecuritySettingsViewModel
-            {
-                Email = user.Email,
-                // Prefix alone is not proof of a linked Google identity; surface as unconfirmed.
-                IsGoogleLinked = false,
-                IsFacebookLinked = false,
-                HasUnconfirmedSocialLoginMarker = user.PasswordHash != null
-                    && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal)
-            };
-
+            var model = await BuildSettingsModelAsync(user);
             return View("~/Views/Account/Settings.cshtml", model);
         }
 
@@ -546,6 +555,7 @@ namespace TCTVocabulary.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
         public async Task<IActionResult> UpdateEmail(SecuritySettingsViewModel model)
         {
             if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
@@ -553,43 +563,24 @@ namespace TCTVocabulary.Controllers
 
             if (user == null) return RedirectToAction("Login");
 
-            if (string.IsNullOrEmpty(model.Email))
-            {
-                TempData["ErrorMessage"] = "Vui lòng nhập Email.";
-                return RedirectToAction("Settings");
-            }
-
-            var normalizedEmail = model.Email.Trim();
-            if (!IsValidEmailAddress(normalizedEmail))
-            {
-                TempData["ErrorMessage"] = "Email không hợp lệ.";
-                return RedirectToAction("Settings");
-            }
-
-            if (!string.Equals(normalizedEmail, user.Email, StringComparison.OrdinalIgnoreCase))
-            {
-                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == normalizedEmail);
-                if (existingUser != null)
-                {
-                    TempData["ErrorMessage"] = "Email này đã được sử dụng bởi người dùng khác.";
-                    return RedirectToAction("Settings");
-                }
-
-                user.Email = normalizedEmail;
-                await _context.SaveChangesAsync();
-
-                await SignInUserAsync(user);
-
-                TempData["SuccessMessage"] = "Cập nhật Email thành công.";
-            }
-
-            return RedirectToAction("Settings");
+            var confirmUrl = Url.Action("ConfirmEmailChange", "Account", new { token = "TOKEN" }, Request.Scheme)
+                ?.Replace("TOKEN", "{0}", StringComparison.Ordinal)
+                ?? "/Account/ConfirmEmailChange?token={0}";
+            var result = await _security.RequestEmailChangeAsync(
+                user,
+                model.Email,
+                model.CurrentPassword,
+                model.ProofCode,
+                confirmUrl,
+                HttpContext.RequestAborted);
+            return await SecurityResultAsync(user, model.ReturnSurface, result, model.Email);
         }
 
         // POST: /Account/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
         public async Task<IActionResult> ChangePassword(SecuritySettingsViewModel model)
         {
             if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
@@ -597,104 +588,37 @@ namespace TCTVocabulary.Controllers
 
             if (user == null) return RedirectToAction("Login");
 
-            if (string.IsNullOrEmpty(model.NewPassword))
-            {
-                TempData["ErrorMessage"] = "Vui lòng nhập Mật khẩu mới.";
-                return RedirectToAction("Settings");
-            }
-
-            if (model.NewPassword.Length < 6)
-            {
-                TempData["ErrorMessage"] = "Mật khẩu mới phải có ít nhất 6 ký tự.";
-                return RedirectToAction("Settings");
-            }
-
-            if (string.IsNullOrEmpty(model.CurrentPassword))
-            {
-                TempData["ErrorMessage"] = "Vui lòng nhập Mật khẩu hiện tại để đổi mật khẩu.";
-                return RedirectToAction("Settings");
-            }
-
-            if (model.NewPassword != model.ConfirmPassword)
-            {
-                TempData["ErrorMessage"] = "Mật khẩu xác nhận không khớp.";
-                return RedirectToAction("Settings");
-            }
-
-            var isSocialLoginMarker = user.PasswordHash != null
-                && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal);
-
-            if (isSocialLoginMarker)
-            {
-                // Social sentinel has no local password to verify; allow first local password set.
-            }
-            else if (!TryVerifyLocalPassword(model.CurrentPassword, user.PasswordHash, out var isPasswordValid) || !isPasswordValid)
-            {
-                // Malformed/legacy non-social hashes fail closed — do not bypass current-password check.
-                TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng.";
-                return RedirectToAction("Settings");
-            }
-            else if (TryVerifyLocalPassword(model.NewPassword, user.PasswordHash, out var sameAsCurrent) && sameAsCurrent)
-            {
-                TempData["ErrorMessage"] = "Mật khẩu mới không được trùng với mật khẩu hiện tại. Vui lòng chọn mật khẩu khác.";
-                return RedirectToAction("Settings");
-            }
-
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
-            // FIX: Removed redundant _context.Users.Update(user) — EF Core tracks fetched entity automatically
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Cập nhật Mật khẩu thành công.";
-
-            return RedirectToAction("Settings");
+            var result = await _security.ChangePasswordAsync(
+                user,
+                model.CurrentPassword,
+                model.ProofCode,
+                model.NewPassword,
+                model.ConfirmPassword);
+            return await SecurityResultAsync(user, model.ReturnSurface, result);
         }
 
         // POST: /Account/DeleteAccount
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public async Task<IActionResult> DeleteAccount()
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
+        public async Task<IActionResult> DeleteAccount(string? confirmText, string? currentPassword, string? proofCode, string? returnSurface)
         {
             if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
 
-            var accountDeleted = false;
-
-            try
+            var result = await _deletion.DeleteAsync(userId, confirmText, currentPassword, proofCode);
+            if (!result.Succeeded)
             {
-                var strategy = _context.Database.CreateExecutionStrategy();
-                await strategy.ExecuteAsync(async () =>
-                {
-                    await using var transaction = await _context.Database.BeginTransactionAsync();
-
-                    var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-                    if (user == null)
-                    {
-                        return;
-                    }
-
-                    await DeleteUserRelatedDataAsync(userId);
-                    await _context.SaveChangesAsync();
-
-                    _context.Users.Remove(user);
-                    await _context.SaveChangesAsync();
-
-                    await transaction.CommitAsync();
-                    accountDeleted = true;
-                });
+                TempData["ErrorMessage"] = result.Error;
+                return returnSurface == "profile"
+                    ? RedirectToAction("Profile", new { tab = "security" })
+                    : RedirectToAction("Settings");
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to delete account for User {UserId}", userId);
-                TempData["ErrorMessage"] = "Không thể xóa tài khoản lúc này. Vui lòng thử lại.";
-                return RedirectToAction("Settings");
-            }
-
-            if (!accountDeleted) return NotFound();
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             try { await HttpContext.SignOutAsync("ExternalCookie"); } catch { }
 
-            TempData["SuccessMessage"] = "Tài khoản của bạn đã được xóa vĩnh viễn.";
+            TempData["SuccessMessage"] = "Tài khoản của bạn đã được xóa. Dữ liệu cá nhân đã gỡ khỏi tài khoản này; bản sao lưu máy chủ không bị xóa bởi thao tác này.";
             return RedirectToAction("Login");
         }
         // GET: /Account/ResetPassword
@@ -744,7 +668,8 @@ namespace TCTVocabulary.Controllers
                 .ExecuteUpdateAsync(setters => setters
                     .SetProperty(u => u.PasswordHash, newHash)
                     .SetProperty(u => u.ResetPasswordToken, (string?)null)
-                    .SetProperty(u => u.ResetPasswordTokenExpiry, (DateTime?)null));
+                    .SetProperty(u => u.ResetPasswordTokenExpiry, (DateTime?)null)
+                    .SetProperty(u => u.SecurityVersion, u => u.SecurityVersion + 1));
 
             if (affected == 0)
             {
@@ -756,329 +681,185 @@ namespace TCTVocabulary.Controllers
             return RedirectToAction("Login");
         }
 
-        private async Task DeleteUserRelatedDataAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public IActionResult ConfirmEmailChange(string? token)
         {
-            var classFoldersAdded = await _context.ClassFolders
-                .Where(cf => cf.AddedByUserId == userId)
-                .ToListAsync();
-            if (classFoldersAdded.Count > 0)
-            {
-                _context.ClassFolders.RemoveRange(classFoldersAdded);
-            }
-
-            var classMessages = await _context.ClassMessages
-                .Where(cm => cm.UserId == userId)
-                .ToListAsync();
-            if (classMessages.Count > 0)
-            {
-                _context.ClassMessages.RemoveRange(classMessages);
-            }
-
-            var classMembers = await _context.ClassMembers
-                .Where(cm => cm.UserId == userId)
-                .ToListAsync();
-            if (classMembers.Count > 0)
-            {
-                _context.ClassMembers.RemoveRange(classMembers);
-            }
-
-            var savedFolders = await _context.SavedFolders
-                .Where(sf => sf.UserId == userId)
-                .ToListAsync();
-            if (savedFolders.Count > 0)
-            {
-                _context.SavedFolders.RemoveRange(savedFolders);
-            }
-
-            var userLearningProgresses = await _context.LearningProgresses
-                .Where(lp => lp.UserId == userId)
-                .ToListAsync();
-            if (userLearningProgresses.Count > 0)
-            {
-                _context.LearningProgresses.RemoveRange(userLearningProgresses);
-            }
-
-            var speakingProgresses = await _context.UserSpeakingProgresses
-                .Where(p => p.UserId == userId)
-                .ToListAsync();
-            if (speakingProgresses.Count > 0)
-            {
-                _context.UserSpeakingProgresses.RemoveRange(speakingProgresses);
-            }
-
-            var ownedClasses = await _context.Classes
-                .Where(c => c.OwnerId == userId)
-                .ToListAsync();
-            if (ownedClasses.Count > 0)
-            {
-                _context.Classes.RemoveRange(ownedClasses);
-            }
-
-            await DeleteOwnedLearningContentAsync(userId);
-            await DeleteOwnedPrivateSpeakingContentAsync(userId);
-            await DeleteOwnedPrivateListeningContentAsync(userId);
-            await DeleteOwnedPrivateWritingContentAsync(userId);
+            ViewData["Title"] = "Xác nhận email";
+            ViewBag.Token = token ?? string.Empty;
+            return View("~/Views/Account/ConfirmEmailChange.cshtml");
         }
 
-        private async Task DeleteOwnedPrivateListeningContentAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
+        public async Task<IActionResult> ConfirmEmailChange(string? token, string? unused)
         {
-            var ownedPrivateLessonIds = await _context.ListeningLessons
-                .AsNoTracking()
-                .Where(lesson => lesson.OwnerUserId == userId)
-                .Select(lesson => lesson.Id)
-                .ToListAsync();
-
-            if (ownedPrivateLessonIds.Count == 0)
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == userId);
+            if (user == null) return RedirectToAction("Login");
+            _ = unused;
+            var result = await _security.ConfirmEmailChangeAsync(userId, token);
+            if (!result.Succeeded)
             {
-                return;
+                TempData["ErrorMessage"] = result.Error;
+                return RedirectToAction("Settings");
             }
 
-            // Remove dependencies: TranscriptLines, QuizQuestions, VocabItems, UserProgresses
-            var ownedPrivateProgresses = await _context.UserListeningProgresses
-                .Where(p => ownedPrivateLessonIds.Contains(p.LessonId))
-                .ToListAsync();
-            if (ownedPrivateProgresses.Count > 0)
-                _context.UserListeningProgresses.RemoveRange(ownedPrivateProgresses);
-
-            var ownedPrivateVocabs = await _context.ListeningVocabItems
-                .Where(v => ownedPrivateLessonIds.Contains(v.LessonId))
-                .ToListAsync();
-            if (ownedPrivateVocabs.Count > 0)
-                _context.ListeningVocabItems.RemoveRange(ownedPrivateVocabs);
-
-            var ownedPrivateQuizzes = await _context.ListeningQuizQuestions
-                .Where(q => ownedPrivateLessonIds.Contains(q.LessonId))
-                .ToListAsync();
-            if (ownedPrivateQuizzes.Count > 0)
-                _context.ListeningQuizQuestions.RemoveRange(ownedPrivateQuizzes);
-
-            var ownedPrivateTranscripts = await _context.ListeningTranscriptLines
-                .Where(t => ownedPrivateLessonIds.Contains(t.LessonId))
-                .ToListAsync();
-            if (ownedPrivateTranscripts.Count > 0)
-                _context.ListeningTranscriptLines.RemoveRange(ownedPrivateTranscripts);
-
-            var ownedPrivateLessons = await _context.ListeningLessons
-                .Where(l => ownedPrivateLessonIds.Contains(l.Id))
-                .ToListAsync();
-
-            if (ownedPrivateLessons.Count > 0)
-            {
-                _context.ListeningLessons.RemoveRange(ownedPrivateLessons);
-            }
+            var refreshed = await _context.Users.AsNoTracking().FirstAsync(row => row.UserId == userId);
+            await SignInUserAsync(refreshed);
+            TempData["SuccessMessage"] = result.Message;
+            return RedirectToAction("Settings");
         }
 
-        private async Task DeleteOwnedPrivateSpeakingContentAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
+        public async Task<IActionResult> RequestAccountProof(string purpose, string? returnSurface)
         {
-            var ownedPrivateVideoIds = await _context.SpeakingVideos
-                .AsNoTracking()
-                .Where(video => video.OwnerUserId == userId)
-                .Select(video => video.Id)
-                .ToListAsync();
-
-            if (ownedPrivateVideoIds.Count == 0)
-            {
-                return;
-            }
-
-            var ownedPrivateSentenceIds = await _context.SpeakingSentences
-                .AsNoTracking()
-                .Where(sentence => ownedPrivateVideoIds.Contains(sentence.VideoId))
-                .Select(sentence => sentence.Id)
-                .ToListAsync();
-
-            if (ownedPrivateSentenceIds.Count > 0)
-            {
-                var dependentProgresses = await _context.UserSpeakingProgresses
-                    .Where(progress => ownedPrivateSentenceIds.Contains(progress.SentenceId))
-                    .ToListAsync();
-
-                if (dependentProgresses.Count > 0)
-                {
-                    _context.UserSpeakingProgresses.RemoveRange(dependentProgresses);
-                }
-
-                var ownedPrivateSentences = await _context.SpeakingSentences
-                    .Where(sentence => ownedPrivateSentenceIds.Contains(sentence.Id))
-                    .ToListAsync();
-
-                if (ownedPrivateSentences.Count > 0)
-                {
-                    _context.SpeakingSentences.RemoveRange(ownedPrivateSentences);
-                }
-            }
-
-            var ownedPrivateVideos = await _context.SpeakingVideos
-                .Where(video => ownedPrivateVideoIds.Contains(video.Id))
-                .ToListAsync();
-
-            if (ownedPrivateVideos.Count > 0)
-            {
-                _context.SpeakingVideos.RemoveRange(ownedPrivateVideos);
-            }
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
+            var user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == userId);
+            if (user == null) return RedirectToAction("Login");
+            var result = await _security.SendProofAsync(user, purpose, null);
+            TempData[result.Succeeded ? "SuccessMessage" : "ErrorMessage"] = result.Succeeded ? result.Message : result.Error;
+            return returnSurface == "profile"
+                ? RedirectToAction("Profile", new { tab = "security" })
+                : RedirectToAction("Settings");
         }
 
-        private async Task DeleteOwnedPrivateWritingContentAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("account-security")]
+        public async Task<IActionResult> VerifyCurrentEmail(string? proofCode, string? returnSurface)
         {
-            var ownedExerciseIds = await _context.WritingExercises
-                .AsNoTracking()
-                .Where(exercise => exercise.UserId == userId)
-                .Select(exercise => exercise.Id)
-                .ToListAsync();
-
-            if (ownedExerciseIds.Count > 0)
-            {
-                var attemptsForOwnedExercises = await _context.UserWritingAttempts
-                    .Where(attempt => ownedExerciseIds.Contains(attempt.WritingExerciseId))
-                    .ToListAsync();
-                if (attemptsForOwnedExercises.Count > 0)
-                {
-                    _context.UserWritingAttempts.RemoveRange(attemptsForOwnedExercises);
-                }
-
-                var sentencesForOwnedExercises = await _context.WritingExerciseSentences
-                    .Where(sentence => ownedExerciseIds.Contains(sentence.WritingExerciseId))
-                    .ToListAsync();
-                if (sentencesForOwnedExercises.Count > 0)
-                {
-                    _context.WritingExerciseSentences.RemoveRange(sentencesForOwnedExercises);
-                }
-
-                var ownedExercises = await _context.WritingExercises
-                    .Where(exercise => ownedExerciseIds.Contains(exercise.Id))
-                    .ToListAsync();
-                if (ownedExercises.Count > 0)
-                {
-                    _context.WritingExercises.RemoveRange(ownedExercises);
-                }
-            }
-
-            var writingGenerationLogs = await _context.WritingGenerationLogs
-                .Where(log => log.UserId == userId)
-                .ToListAsync();
-            if (writingGenerationLogs.Count > 0)
-            {
-                _context.WritingGenerationLogs.RemoveRange(writingGenerationLogs);
-            }
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
+            var result = await _security.VerifyCurrentEmailAsync(userId, proofCode, HttpContext.RequestAborted);
+            TempData[result.Succeeded ? "SuccessMessage" : "ErrorMessage"] = result.Succeeded ? result.Message : result.Error;
+            return returnSurface == "profile"
+                ? RedirectToAction("Profile", new { tab = "security" }) : RedirectToAction("Settings");
         }
 
-        private async Task DeleteOwnedLearningContentAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveNotificationPreferences(NotificationPreferenceForm model)
         {
-            var ownedSetIds = await _context.Sets
-                .AsNoTracking()
-                .Where(s => s.OwnerId == userId)
-                .Select(s => s.SetId)
-                .ToListAsync();
-
-            if (ownedSetIds.Count > 0)
+            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
+            var saved = await _preferences.SaveAsync(userId, new NotificationPreferenceForm
             {
-                var ownedCardIds = await _context.Cards
-                    .AsNoTracking()
-                    .Where(c => ownedSetIds.Contains(c.SetId))
-                    .Select(c => c.CardId)
-                    .ToListAsync();
-
-                if (ownedCardIds.Count > 0)
-                {
-                    var progressesForOwnedCards = await _context.LearningProgresses
-                        .Where(lp => ownedCardIds.Contains(lp.CardId) && lp.UserId != userId)
-                        .ToListAsync();
-                    if (progressesForOwnedCards.Count > 0)
-                    {
-                        _context.LearningProgresses.RemoveRange(progressesForOwnedCards);
-                    }
-
-                    var ownedCards = await _context.Cards
-                        .Where(c => ownedCardIds.Contains(c.CardId))
-                        .ToListAsync();
-                    if (ownedCards.Count > 0)
-                    {
-                        _context.Cards.RemoveRange(ownedCards);
-                    }
-                }
-
-                var ownedSets = await _context.Sets
-                    .Where(s => ownedSetIds.Contains(s.SetId))
-                    .ToListAsync();
-                if (ownedSets.Count > 0)
-                {
-                    _context.Sets.RemoveRange(ownedSets);
-                }
-            }
-
-            var ownedFolderIds = await _context.Folders
-                .AsNoTracking()
-                .Where(f => f.UserId == userId)
-                .Select(f => f.FolderId)
-                .ToListAsync();
-
-            if (ownedFolderIds.Count > 0)
-            {
-                var savedFolderReferences = await _context.SavedFolders
-                    .Where(sf => ownedFolderIds.Contains(sf.FolderId))
-                    .ToListAsync();
-                if (savedFolderReferences.Count > 0)
-                {
-                    _context.SavedFolders.RemoveRange(savedFolderReferences);
-                }
-
-                await DeleteOwnedFoldersAsync(userId);
-            }
+                DailyReminderEnabled = model.DailyReminderEnabled,
+                ReminderHour = model.ReminderHour,
+                ReminderMinute = model.ReminderMinute,
+                TimeZoneId = model.TimeZoneId,
+                PushOptIn = model.PushOptIn,
+                WeeklyEmailOptIn = model.WeeklyEmailOptIn
+            });
+            TempData[saved.Succeeded ? "SuccessMessage" : "ErrorMessage"] = saved.Succeeded
+                ? "Đã lưu tùy chọn thông báo."
+                : saved.Error;
+            return model.ReturnSurface == "profile"
+                ? RedirectToAction("Profile", new { tab = "security" })
+                : RedirectToAction("Settings");
         }
 
-        private async Task DeleteOwnedFoldersAsync(int userId)
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpGet]
+        public IActionResult PushKey()
         {
-            var folders = await _context.Folders
-                .AsNoTracking()
-                .Where(f => f.UserId == userId)
-                .Select(f => new { f.FolderId, f.ParentFolderId })
-                .ToListAsync();
-
-            if (folders.Count == 0)
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            return Json(new
             {
-                return;
-            }
-
-            var folderMap = folders.ToDictionary(f => f.FolderId, f => f.ParentFolderId);
-            var depthCache = new Dictionary<int, int>();
-
-            int GetDepth(int folderId)
-            {
-                if (depthCache.TryGetValue(folderId, out var cachedDepth))
-                {
-                    return cachedDepth;
-                }
-
-                if (!folderMap.TryGetValue(folderId, out var parentId)
-                    || parentId is null
-                    || !folderMap.ContainsKey(parentId.Value))
-                {
-                    depthCache[folderId] = 0;
-                    return 0;
-                }
-
-                var depth = GetDepth(parentId.Value) + 1;
-                depthCache[folderId] = depth;
-                return depth;
-            }
-
-            var orderedFolderIds = folderMap.Keys
-                .OrderByDescending(GetDepth)
-                .ToList();
-
-            var trackedFolders = await _context.Folders
-                .Where(f => orderedFolderIds.Contains(f.FolderId))
-                .ToListAsync();
-
-            var trackedFolderLookup = trackedFolders.ToDictionary(f => f.FolderId);
-            foreach (var folderId in orderedFolderIds)
-            {
-                if (trackedFolderLookup.TryGetValue(folderId, out var folder))
-                {
-                    _context.Folders.Remove(folder);
-                }
-            }
+                accountCode = AccountDisplayCode.Format(userId),
+                configured = _outboundOptions.Value.PushConfigured,
+                publicKey = _outboundOptions.Value.PushConfigured ? _outboundOptions.Value.VapidPublicKey : null
+            });
         }
+
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PushSubscribe([FromBody] PushSubscriptionInput input)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            var result = await _pushSubscriptions.SubscribeAsync(userId, input);
+            return result.Succeeded ? Ok(new { success = true })
+                : result.FreshSubscriptionRequired
+                    ? Conflict(new { error = result.Error, freshSubscriptionRequired = true })
+                    : BadRequest(new { error = result.Error });
+        }
+
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PushUnsubscribe([FromBody] PushSubscriptionInput input)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            var removed = await _pushSubscriptions.UnsubscribeAsync(userId, input.Endpoint);
+            return removed ? Ok(new { success = true }) : NotFound();
+        }
+
+        private async Task<IActionResult> SecurityResultAsync(User user, string? returnSurface, AccountActionResult result, string? postedEmail = null)
+        {
+            if (!result.Succeeded)
+            {
+                TempData["ErrorMessage"] = result.Error;
+                ModelState.Clear(); // Never render submitted passwords or one-time codes again.
+                ViewData["EmailChangeInput"] = postedEmail;
+                if (returnSurface == "profile")
+                {
+                    var page = await _profiles.BuildAsync(user.UserId, Request.IsHttps, "security", null);
+                    return View("~/Views/Account/Profile.cshtml", page);
+                }
+
+                return View("~/Views/Account/Settings.cshtml", await BuildSettingsModelAsync(user));
+            }
+
+            if (result.ReissueSession)
+            {
+                await _context.Entry(user).ReloadAsync();
+                await SignInUserAsync(user);
+            }
+
+            TempData["SuccessMessage"] = result.Message;
+            return returnSurface == "profile"
+                ? RedirectToAction("Profile", new { tab = "security" })
+                : RedirectToAction("Settings");
+        }
+
+        private async Task<SecuritySettingsViewModel> BuildSettingsModelAsync(User user)
+        {
+            var preferences = await _preferences.ReadAsync(user.UserId, _outboundOptions.Value.PushConfigured);
+            var pending = await _context.AccountSecurityChallenges.AsNoTracking()
+                .Where(row => row.UserId == user.UserId && row.Purpose == AccountProofPurpose.EmailChange && row.ConsumedAtUtc == null && row.ExpiresAtUtc > DateTime.UtcNow)
+                .OrderByDescending(row => row.Id)
+                .Select(row => row.NewEmail)
+                .FirstOrDefaultAsync();
+            return new SecuritySettingsViewModel
+            {
+                Email = user.Email,
+                IsGoogleLinked = false,
+                IsFacebookLinked = false,
+                HasUnconfirmedSocialLoginMarker = _security.IsSocialLoginMarker(user),
+                PendingEmail = pending,
+                PasswordStateText = user.PasswordHash != null && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal)
+                    ? "Có dấu SOCIAL_LOGIN, chưa có mật khẩu cục bộ đã kiểm chứng"
+                    : "Đổi mật khẩu cần mật khẩu hiện tại",
+                EmailVerificationText = user.EmailVerifiedAt.HasValue ? "Email đã xác minh" : "Email chưa được xác minh",
+                DailyReminderEnabled = preferences.DailyReminderEnabled,
+                ReminderHour = preferences.ReminderHour,
+                ReminderMinute = preferences.ReminderMinute,
+                TimeZoneId = preferences.TimeZoneId,
+                PushOptIn = preferences.PushOptIn,
+                WeeklyEmailOptIn = preferences.WeeklyEmailOptIn,
+                PushState = preferences.PushState,
+                EmailState = preferences.EmailState,
+                PushConfigured = _outboundOptions.Value.PushConfigured
+            };
+        }
+
 
         /// <summary>
         /// Structural gate only. Prefix/length can still fail at Verify (bad cost/salt) — callers must catch.

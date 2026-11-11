@@ -161,7 +161,7 @@ public sealed class AccountUiRenderTests
     }
 
     [Fact]
-    public async Task AU06_Settings_RendersSections_AndDisabledNotificationCheckboxes()
+    public async Task AU06_Settings_RendersSections_AndSavedNotificationPreferences()
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
@@ -183,7 +183,10 @@ public sealed class AccountUiRenderTests
         Assert.Contains("id=\"deleteAccountModal\"", html);
         Assert.Contains("id=\"deleteConfirmInput\"", html);
         Assert.Contains("id=\"deleteAccountBtn\"", html);
-        Assert.Contains("<fieldset disabled", html);
+        Assert.Contains("id=\"prefPush\"", html);
+        Assert.Contains("id=\"prefEmail\"", html);
+        Assert.Contains("SaveNotificationPreferences", html);
+        Assert.DoesNotContain("<fieldset disabled", html);
     }
 
     [Fact]

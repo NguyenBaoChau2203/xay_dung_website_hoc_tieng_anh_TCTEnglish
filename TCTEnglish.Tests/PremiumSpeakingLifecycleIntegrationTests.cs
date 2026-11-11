@@ -122,30 +122,57 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
     }
 
     [Fact]
-    public async Task Speaking_DeleteAccount_RemovesOwnedPrivateSpeakingVideosAndDependentProgress()
+    public async Task Speaking_DeleteAccount_PreservesPrivateVideoWhenAnotherLearnerHasProgress()
     {
         var transcriptService = BuildTranscriptService();
         await using var factory = CreateFactoryWithTranscriptService(transcriptService);
         await factory.InitializeAsync();
-        await UpdateUserRoleAsync(factory, TestDataIds.UserId, Roles.Premium);
-
-        var seeded = await SeedPrivateSpeakingVideoAsync(factory, TestDataIds.UserId);
-        await SeedProgressForSentenceAsync(factory, seeded.SentenceId, TestDataIds.UserId);
+        var ownerId = await SeedDeletionOwnerAsync(factory);
+        var seeded = await SeedPrivateSpeakingVideoAsync(factory, ownerId);
+        await SeedProgressForSentenceAsync(factory, seeded.SentenceId, ownerId);
         await SeedProgressForSentenceAsync(factory, seeded.SentenceId, TestDataIds.OutsiderUserId);
 
-        using var ownerClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Premium);
+        using var ownerClient = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, ownerId, Roles.Premium);
         using var deleteAccountResponse = await PostDeleteAccountAsync(ownerClient);
 
         Assert.Equal(HttpStatusCode.Redirect, deleteAccountResponse.StatusCode);
-        Assert.Equal("/Account/Login", deleteAccountResponse.Headers.Location?.OriginalString);
+        Assert.Equal("/Account/Settings", deleteAccountResponse.Headers.Location?.OriginalString);
 
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
 
-        Assert.False(await context.Users.AsNoTracking().AnyAsync(user => user.UserId == TestDataIds.UserId));
-        Assert.False(await context.SpeakingVideos.AsNoTracking().AnyAsync(video => video.Id == seeded.VideoId));
-        Assert.False(await context.SpeakingSentences.AsNoTracking().AnyAsync(sentence => sentence.VideoId == seeded.VideoId));
-        Assert.False(await context.UserSpeakingProgresses.AsNoTracking().AnyAsync(progress => progress.SentenceId == seeded.SentenceId));
+        Assert.True(await context.Users.AsNoTracking().AnyAsync(user => user.UserId == ownerId));
+        Assert.True(await context.SpeakingVideos.AsNoTracking().AnyAsync(video => video.Id == seeded.VideoId));
+        Assert.True(await context.UserSpeakingProgresses.AsNoTracking().AnyAsync(progress => progress.SentenceId == seeded.SentenceId && progress.UserId == TestDataIds.OutsiderUserId));
+    }
+
+    [Fact]
+    public async Task Speaking_DeleteAccount_RemovesSoleOwnedPrivateVideoAndProgress()
+    {
+        await using var factory = CreateFactoryWithTranscriptService(BuildTranscriptService());
+        await factory.InitializeAsync();
+        var ownerId = await SeedDeletionOwnerAsync(factory);
+        var seeded = await SeedPrivateSpeakingVideoAsync(factory, ownerId);
+        await SeedProgressForSentenceAsync(factory, seeded.SentenceId, ownerId);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, ownerId, Roles.Premium);
+        using var response = await PostDeleteAccountAsync(client);
+        Assert.Equal("/Account/Login", response.Headers.Location?.OriginalString);
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        Assert.False(await db.Users.AnyAsync(row => row.UserId == ownerId));
+        Assert.False(await db.SpeakingVideos.AnyAsync(row => row.Id == seeded.VideoId));
+        Assert.False(await db.UserSpeakingProgresses.AnyAsync(row => row.SentenceId == seeded.SentenceId));
+    }
+
+    private static async Task<int> SeedDeletionOwnerAsync(TestWebApplicationFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var user = new User { Email = $"delete-owner-{Guid.NewGuid():N}@example.test", FullName = "Delete owner", Role = Roles.Premium,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("LifecycleDelete1!"), CreatedAt = DateTime.UtcNow };
+        db.Users.Add(user);
+        await db.SaveChangesAsync();
+        return user.UserId;
     }
 
     private static TestWebApplicationFactory CreateFactoryWithTranscriptService(FakeYoutubeTranscriptService transcriptService)
@@ -327,7 +354,9 @@ public sealed class PremiumSpeakingLifecycleIntegrationTests
             "/Account/DeleteAccount",
             new FormUrlEncodedContent(
             [
-                new KeyValuePair<string, string>("__RequestVerificationToken", antiForgeryToken)
+                new KeyValuePair<string, string>("__RequestVerificationToken", antiForgeryToken),
+                new KeyValuePair<string, string>("confirmText", "CONFIRM"),
+                new KeyValuePair<string, string>("currentPassword", "LifecycleDelete1!")
             ]));
     }
 

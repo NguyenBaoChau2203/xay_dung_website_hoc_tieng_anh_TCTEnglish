@@ -24,22 +24,31 @@
 
             <nav aria-label="Tài khoản">
                 <a class="sidebar-nav-item preview-nav-item" href="@Url.Action("Profile", "Account")">
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <span class="nav-icon-box nav-icon-box--profile" aria-hidden="true">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
                     <span class="nav-label">Hồ sơ</span>
                 </a>
                 <a class="sidebar-nav-item preview-nav-item active" href="@Url.Action("Settings", "Account")" aria-current="page">
-                    <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                    <span class="nav-icon-box nav-icon-box--security" aria-hidden="true">
+                        <i class="fa-solid fa-sliders"></i>
+                    </span>
                     <span class="nav-label">Cài đặt</span>
                 </a>
                 <a class="sidebar-nav-item preview-nav-item" href="/Account/Profile?tab=subscription">
-                    <i class="fa-solid fa-gem" aria-hidden="true"></i>
+                    <span class="nav-icon-box nav-icon-box--subscription" aria-hidden="true">
+                        <i class="fa-solid fa-gem"></i>
+                    </span>
                     <span class="nav-label">Gói dịch vụ</span>
                 </a>
             </nav>
 
             <div class="nav-logout">
-                <a asp-action="Logout" class="btn btn-outline-danger w-100">
-                    <i class="fa-solid fa-right-from-bracket me-2" aria-hidden="true"></i>Đăng xuất
+                <a asp-action="Logout" class="btn btn-outline-danger w-100 btn-logout" title="Đăng xuất" aria-label="Đăng xuất">
+                    <span class="nav-icon-box nav-icon-box--logout" aria-hidden="true">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                    <span class="nav-label">Đăng xuất</span>
                 </a>
             </div>
         </aside>
@@ -52,12 +61,57 @@
                 <i class="fa-solid fa-bars me-2" aria-hidden="true"></i>Menu tài khoản
             </button>
 
-            <!-- Page Header (Single H1) -->
-            @await Html.PartialAsync("_PageHeader", new PageHeaderViewModel
-            {
-                Title = "Cài đặt tài khoản",
-                Description = "Quản lý các thiết lập bảo mật và tùy chỉnh trải nghiệm học tập của bạn."
-            })
+            <!-- Dynamic Account Header Hero (Single H1, Claymorphism) -->
+            <header class="account-header-hero tct-card" aria-label="Tiêu đề trang cài đặt">
+                <div class="account-header-hero__content">
+                    <nav class="account-breadcrumb-nav" aria-label="Đường dẫn">
+                        <span class="account-breadcrumb-pill">
+                            <i class="fa-solid fa-sliders text-primary me-1" aria-hidden="true"></i>
+                            <span>Tài khoản</span>
+                            <span class="breadcrumb-sep text-secondary mx-1">/</span>
+                            <span class="breadcrumb-active fw-semibold text-primary">Cài đặt</span>
+                        </span>
+                    </nav>
+                    <div class="account-header-hero__titles">
+                        <h1 class="tct-page-title account-hero-title mb-1">Cài đặt tài khoản</h1>
+                        <p class="tct-page-desc account-hero-desc text-secondary mb-0">
+                            Quản lý các thiết lập bảo mật và tùy chỉnh trải nghiệm học tập của bạn.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="account-header-hero__meta" aria-label="Thông tin nhanh tài khoản">
+                    <div class="account-meta-chip meta-chip--status">
+                        <span class="meta-chip__icon bg-success-subtle text-success">
+                            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        </span>
+                        <div class="meta-chip__text">
+                            <span class="meta-chip__label">Trạng thái</span>
+                            <strong class="meta-chip__val text-success">Hoạt động</strong>
+                        </div>
+                    </div>
+
+                    <div class="account-meta-chip meta-chip--security">
+                        <span class="meta-chip__icon bg-purple-subtle text-purple">
+                            <i class="fa-solid fa-shield-alt" aria-hidden="true"></i>
+                        </span>
+                        <div class="meta-chip__text">
+                            <span class="meta-chip__label">Bảo mật</span>
+                            <strong class="meta-chip__val text-primary">Đã kích hoạt</strong>
+                        </div>
+                    </div>
+
+                    <div class="account-meta-chip meta-chip--zone">
+                        <span class="meta-chip__icon bg-info-subtle text-info">
+                            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                        </span>
+                        <div class="meta-chip__text">
+                            <span class="meta-chip__label">Múi giờ</span>
+                            <strong class="meta-chip__val">GMT +7</strong>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
             <!-- Alert Notifications -->
             @if (TempData["SuccessMessage"] != null)
@@ -99,22 +153,33 @@
 
             <!-- ── Security & Password ── -->
             <section class="tct-card panel mb-4" id="section-security" aria-labelledby="heading-security">
-                <h2 id="heading-security">
-                    <i class="fa-solid fa-shield-alt text-primary me-2" aria-hidden="true"></i>Bảo mật &amp; Mật khẩu
-                </h2>
+                <div class="panel-header d-flex align-items-center gap-2 mb-3">
+                    <span class="panel-icon-box panel-icon-box--purple" aria-hidden="true">
+                        <i class="fa-solid fa-shield-alt"></i>
+                    </span>
+                    <h2 id="heading-security" class="mb-0">Bảo mật &amp; Mật khẩu</h2>
+                </div>
 
                 <!-- Email Update -->
                 <form asp-controller="Account" asp-action="UpdateEmail" method="post" class="security-form mb-4">
                     @Html.AntiForgeryToken()
+                    <input type="hidden" name="ReturnSurface" value="settings" />
                     <div class="mb-3">
-                        <h3 class="h6 fw-bold">Địa chỉ email</h3>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="panel-icon-box panel-icon-box--blue" aria-hidden="true">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <h3 class="h6 fw-bold mb-0">Địa chỉ email</h3>
+                        </div>
                         <p class="text-secondary small">Email này dùng để thông báo và khôi phục mật khẩu nếu bạn quên.</p>
                         <div class="email-row">
                             <div class="field">
                                 <label for="settingsEmailInput" class="form-label visually-hidden">Địa chỉ email</label>
-                                <input id="settingsEmailInput" name="Email" value="@Model?.Email" class="form-control" placeholder="name@example.com" autocomplete="email" />
+                                <input id="settingsEmailInput" name="Email" type="email" value="@(ViewData["EmailChangeInput"] as string ?? Model?.Email)" class="form-control" placeholder="name@example.com" autocomplete="email" />
+                                <input name="CurrentPassword" type="password" class="form-control mt-2" autocomplete="current-password" placeholder="Mật khẩu hiện tại" />
+                                <input name="ProofCode" class="form-control mt-2" placeholder="Mã email nếu không có mật khẩu cục bộ" autocomplete="one-time-code" />
                             </div>
-                            <button type="submit" class="btn btn-primary">Cập nhật email</button>
+                            <button type="submit" class="btn btn-primary">Gửi xác nhận</button>
                         </div>
                     </div>
                 </form>
@@ -122,8 +187,14 @@
                 <!-- Change Password -->
                 <form asp-controller="Account" asp-action="ChangePassword" method="post" class="security-form">
                     @Html.AntiForgeryToken()
+                    <input type="hidden" name="ReturnSurface" value="settings" />
                     <div class="mb-3">
-                        <h3 class="h6 fw-bold">Thay đổi mật khẩu</h3>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="panel-icon-box panel-icon-box--purple" aria-hidden="true">
+                                <i class="fa-solid fa-key"></i>
+                            </span>
+                            <h3 class="h6 fw-bold mb-0">Thay đổi mật khẩu</h3>
+                        </div>
                         <p class="text-secondary small">Mật khẩu nên dài ít nhất 6 ký tự. Chỉ nhập nếu bạn muốn thay đổi mật khẩu hiện tại.</p>
                     </div>
 
@@ -159,6 +230,10 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="settings-first-password-proof">Mã email để đặt mật khẩu đầu tiên</label>
+                        <input id="settings-first-password-proof" name="ProofCode" class="form-control" autocomplete="one-time-code" maxlength="128" />
+                    </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
                     </div>
@@ -168,47 +243,46 @@
             <!-- ── Notifications ── -->
             <section class="tct-card panel mb-4" id="section-notifications" aria-labelledby="heading-notifications">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h2 id="heading-notifications" class="mb-0">
-                        <i class="fa-solid fa-bell text-primary me-2" aria-hidden="true"></i>Thông báo
-                    </h2>
-                    <span class="badge bg-secondary-subtle text-secondary border">Chưa hỗ trợ</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="panel-icon-box panel-icon-box--amber" aria-hidden="true">
+                            <i class="fa-solid fa-bell"></i>
+                        </span>
+                        <h2 id="heading-notifications" class="mb-0">Thông báo</h2>
+                    </div>
+                    <span class="badge bg-light text-dark border">Đã nối máy chủ</span>
                 </div>
-                <p class="text-secondary small mb-3">Tùy chọn nhận thông báo đẩy và email định kỳ. Tính năng này hiện đang được nâng cấp.</p>
-
-                <fieldset disabled>
-                    <div class="preference-row">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input notification-checkbox" id="prefPush" />
-                            <label class="form-check-label" for="prefPush">
-                                <strong>Thông báo đẩy (Push)</strong>
-                                <p class="text-secondary small mb-0">Nhận thông báo về lịch học và nhắc nhở ôn tập trên thiết bị.</p>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="preference-row mt-3">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input notification-checkbox" id="prefEmail" />
-                            <label class="form-check-label" for="prefEmail">
-                                <strong>Email định kỳ</strong>
-                                <p class="text-secondary small mb-0">Bản tin học tập hàng tuần và báo cáo tiến độ qua email.</p>
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
+                <p class="text-secondary small mb-3">@Model.EmailVerificationText @Model.PushState</p>
+                @await Html.PartialAsync("_NotificationPreferences", new TCTEnglish.Services.Notifications.NotificationPreferenceForm
+                {
+                    DailyReminderEnabled = Model.DailyReminderEnabled,
+                    ReminderHour = Model.ReminderHour,
+                    ReminderMinute = Model.ReminderMinute,
+                    TimeZoneId = Model.TimeZoneId,
+                    PushOptIn = Model.PushOptIn,
+                    WeeklyEmailOptIn = Model.WeeklyEmailOptIn,
+                    PushState = Model.PushState,
+                    EmailState = Model.EmailState,
+                    PushConfigured = Model.PushConfigured,
+                    ReturnSurface = "settings"
+                })
+                @await Html.PartialAsync("_AccountProofRequests", "settings")
             </section>
 
             <!-- ── Linked Accounts ── -->
             <section class="tct-card panel mb-4" id="section-linked" aria-labelledby="heading-linked">
-                <h2 id="heading-linked">
-                    <i class="fa-solid fa-link text-primary me-2" aria-hidden="true"></i>Tài khoản liên kết
-                </h2>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="panel-icon-box panel-icon-box--indigo" aria-hidden="true">
+                        <i class="fa-solid fa-link"></i>
+                    </span>
+                    <h2 id="heading-linked" class="mb-0">Tài khoản liên kết</h2>
+                </div>
                 <p class="text-secondary small mb-3">Liên kết tài khoản bên thứ ba để đăng nhập nhanh chóng và an toàn hơn.</p>
 
                 <!-- Google -->
                 <div class="linked-row">
                     <div class="provider">
-                        <div class="social-icon text-danger fs-3">
-                            <i class="fa-brands fa-google" aria-hidden="true"></i>
+                        <div class="social-icon-box social-icon-box--google" aria-hidden="true">
+                            <i class="fa-brands fa-google"></i>
                         </div>
                         <div>
                             <strong>Google</strong>
@@ -245,8 +319,8 @@
                 <!-- Facebook -->
                 <div class="linked-row">
                     <div class="provider">
-                        <div class="social-icon text-primary fs-3">
-                            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                        <div class="social-icon-box social-icon-box--facebook" aria-hidden="true">
+                            <i class="fa-brands fa-facebook"></i>
                         </div>
                         <div>
                             <strong>Facebook</strong>
@@ -275,9 +349,12 @@
 
             <!-- ── Danger Zone ── -->
             <section class="tct-card panel danger-zone danger-panel mb-4" id="section-danger" aria-labelledby="heading-danger">
-                <h2 id="heading-danger" class="text-danger">
-                    <i class="fa-solid fa-triangle-exclamation text-danger me-2" aria-hidden="true"></i>Vùng nguy hiểm
-                </h2>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="panel-icon-box panel-icon-box--red" aria-hidden="true">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </span>
+                    <h2 id="heading-danger" class="text-danger mb-0">Vùng nguy hiểm</h2>
+                </div>
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                     <div>
                         <strong class="d-block mb-1">Xóa tài khoản vĩnh viễn</strong>
@@ -309,18 +386,22 @@
                     <p class="text-secondary mb-2">Bạn có chắc chắn muốn xóa tài khoản? Tất cả dữ liệu học tập, bộ từ vựng, và tiến trình sẽ bị <strong class="text-danger">xóa vĩnh viễn</strong>.</p>
                     <p class="text-danger small mb-3">Hành động này không thể hoàn tác.</p>
 
-                    <div class="confirm-input-wrap">
-                        <label for="deleteConfirmInput" class="form-label">Gõ <strong>CONFIRM</strong> để tiếp tục:</label>
-                        <input type="text" id="deleteConfirmInput" class="form-control" placeholder="CONFIRM" autocomplete="off" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <form asp-controller="Account" asp-action="DeleteAccount" method="post" class="d-inline">
+                    <form asp-controller="Account" asp-action="DeleteAccount" method="post">
                         @Html.AntiForgeryToken()
-                        <button type="submit" id="deleteAccountBtn" class="btn btn-danger fw-medium" disabled>
-                            <i class="fa-solid fa-trash-can me-1" aria-hidden="true"></i>Xóa vĩnh viễn
-                        </button>
+                        <input type="hidden" name="returnSurface" value="settings" />
+                        <div class="confirm-input-wrap">
+                            <label for="deleteConfirmInput" class="form-label">Gõ <strong>CONFIRM</strong> để tiếp tục:</label>
+                            <input type="text" id="deleteConfirmInput" name="confirmText" class="form-control" placeholder="CONFIRM" autocomplete="off" />
+                        </div>
+                        <label class="form-label mt-2" for="deleteCurrentPassword">Mật khẩu hiện tại hoặc mã xác nhận</label>
+                        <input type="password" id="deleteCurrentPassword" name="currentPassword" class="form-control" autocomplete="current-password" />
+                        <input type="text" name="proofCode" class="form-control mt-2" placeholder="Mã email nếu không có mật khẩu cục bộ" autocomplete="one-time-code" />
+                        <div class="modal-footer px-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" id="deleteAccountBtn" class="btn btn-danger fw-medium" disabled>
+                                <i class="fa-solid fa-trash-can me-1" aria-hidden="true"></i>Xóa vĩnh viễn
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -331,4 +412,5 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="~/js/account-ui.js" asp-append-version="true"></script>
+    <script src="~/js/account-push.js" asp-append-version="true"></script>
 }

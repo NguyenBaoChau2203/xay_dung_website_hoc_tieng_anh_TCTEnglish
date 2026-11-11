@@ -25,6 +25,20 @@ namespace TCTVocabulary.ViewModels
 
         public bool IsGoogleLinked { get; set; }
         public bool IsFacebookLinked { get; set; }
+        public string? ProofCode { get; set; }
+        public string? ReturnSurface { get; set; }
+        public string? PendingEmail { get; set; }
+        public string PasswordStateText { get; set; } = string.Empty;
+        public string EmailVerificationText { get; set; } = string.Empty;
+        public bool DailyReminderEnabled { get; set; }
+        public int ReminderHour { get; set; } = 20;
+        public int ReminderMinute { get; set; }
+        public string TimeZoneId { get; set; } = "Asia/Ho_Chi_Minh";
+        public bool PushOptIn { get; set; }
+        public bool WeeklyEmailOptIn { get; set; }
+        public string PushState { get; set; } = "Chưa bật";
+        public string EmailState { get; set; } = "Chưa bật";
+        public bool PushConfigured { get; set; }
 
         /// <summary>
         /// SOCIAL_LOGIN_ marker suggests an external-created account, but is not proof of a linked Google identity.

@@ -115,6 +115,18 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 
     private static readonly string[] AcceptanceTables =
     [
+        "AccountFileCleanupJobs",
+        "AccountSecurityChallenges",
+        "LearningActivitySegments",
+        "LearningActivitySessions",
+        "UserGoalTargetRevisions",
+        "UserNotificationPreferences",
+        "WebPushSubscriptions",
+        "OutboundDeliveries",
+        "PaymentEvents",
+        "PaymentAdminActions",
+        "PaymentOrders",
+        "UserSubscriptions",
         "AiQuotaReservationLedgers",
         "AiUserDailyQuotas",
         "AiRequestLogs",

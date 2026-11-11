@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization; // [FIX-AI-AUTH]
+using TCTEnglish.Services.Learning;
 using TCTVocabulary.Models;
 using TCTVocabulary.Security;
 using TCTVocabulary.Services;
@@ -16,15 +17,18 @@ namespace TCTVocabulary.Controllers
         private readonly DbflashcardContext _context;
         private readonly IGoalsService _goalsService;
         private readonly ILogger<LearningApiController> _logger;
+        private readonly ILearningActivityTracker _activityTracker;
 
         public LearningApiController(
             DbflashcardContext context,
             IGoalsService goalsService,
-            ILogger<LearningApiController> logger)
+            ILogger<LearningApiController> logger,
+            ILearningActivityTracker activityTracker)
         {
             _context = context;
             _goalsService = goalsService;
             _logger = logger;
+            _activityTracker = activityTracker;
         }
 
         [HttpPost("record")]
@@ -154,7 +158,6 @@ namespace TCTVocabulary.Controllers
 
         // ── Track time per feature ─────────────────────────────────────────
         [HttpPost("track-time")]
-        [IgnoreAntiforgeryToken] // sendBeacon không gửi được header CSRF
         public async Task<IActionResult> TrackFeatureTime([FromBody] TrackFeatureTimeRequest request)
         {
             if (!User.TryGetUserId(out var currentUserId))
@@ -182,6 +185,49 @@ namespace TCTVocabulary.Controllers
             _logger.LogDebug("Time logged: user {UserId}, {Feature}, {Duration}s", currentUserId, request.Feature, duration);
             return Ok(new { success = true });
         }
+
+        [HttpPost("activity-session")]
+        public async Task<IActionResult> OpenActivitySession([FromBody] ActivitySessionRequest request)
+        {
+            if (!User.TryGetUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var opened = await _activityTracker.OpenSessionAsync(currentUserId, request.Feature, request.Mode);
+            if (opened == null)
+            {
+                return BadRequest(new { error = "Trang này không được tính vào thời gian luyện tập." });
+            }
+
+            return Ok(new { sessionId = opened.Value.SessionId, leaseToken = opened.Value.LeaseToken });
+        }
+
+        [HttpPost("activity-checkpoint")]
+        public async Task<IActionResult> AcceptActivityCheckpoint([FromBody] ActivityCheckpointBody request)
+        {
+            if (!User.TryGetUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _activityTracker.AcceptCheckpointAsync(currentUserId, new ActivityCheckpointRequest
+            {
+                SessionId = request.SessionId,
+                Sequence = request.Sequence,
+                CumulativeActiveSeconds = request.CumulativeActiveSeconds,
+                LeaseToken = request.LeaseToken,
+                Visible = request.Visible,
+                EndSession = request.EndSession
+            });
+            if (result.NotFound) return NotFound(new { error = result.Error });
+            if (!string.IsNullOrEmpty(result.Error))
+            {
+                return BadRequest(new { error = result.Error });
+            }
+
+            return Ok(new { accepted = result.Accepted, acceptedSeconds = result.AcceptedSeconds, duplicate = result.Duplicate });
+        }
     }
 
     public class LearningRecordRequest
@@ -189,6 +235,22 @@ namespace TCTVocabulary.Controllers
         public int CardId { get; set; }
         public string MasteryLevel { get; set; } = null!;
         public DateTime Timestamp { get; set; }
+    }
+
+    public class ActivitySessionRequest
+    {
+        public string Feature { get; set; } = string.Empty;
+        public string? Mode { get; set; }
+    }
+
+    public class ActivityCheckpointBody
+    {
+        public Guid SessionId { get; set; }
+        public int Sequence { get; set; }
+        public int CumulativeActiveSeconds { get; set; }
+        public string LeaseToken { get; set; } = string.Empty;
+        public bool Visible { get; set; }
+        public bool EndSession { get; set; }
     }
 
     public class TrackFeatureTimeRequest

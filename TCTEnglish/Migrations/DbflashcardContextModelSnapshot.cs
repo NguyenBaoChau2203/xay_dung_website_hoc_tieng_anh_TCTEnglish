@@ -54,6 +54,92 @@ namespace TCTEnglish.Migrations
                     b.ToTable("ClassJoinRequests");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.AccountFileCleanupJob", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FormerUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("NextAttemptAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PublicUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Status", "NextAttemptAtUtc")
+                        .HasDatabaseName("IX_AccountFileCleanupJobs_Status_NextAttempt");
+
+                    b.ToTable("AccountFileCleanupJobs", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.AccountSecurityChallenge", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("ConsumedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NewEmail")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Purpose")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<int>("SecurityVersion")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TokenDigest")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TokenDigest")
+                        .IsUnique()
+                        .HasDatabaseName("IX_AccountSecurityChallenges_TokenDigest");
+
+                    b.HasIndex("UserId", "Purpose", "CreatedAtUtc")
+                        .HasDatabaseName("IX_AccountSecurityChallenges_User_Purpose_Created");
+
+                    b.ToTable("AccountSecurityChallenges", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -274,6 +360,97 @@ namespace TCTEnglish.Migrations
                     b.ToTable("AiUserDailyQuotas", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.LearningActivitySegment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AcceptedSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Sequence")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime>("StartedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId", "Sequence")
+                        .IsUnique()
+                        .HasDatabaseName("IX_LearningActivitySegments_Session_Sequence");
+
+                    b.HasIndex("UserId", "StartedAtUtc")
+                        .HasDatabaseName("IX_LearningActivitySegments_User_Started");
+
+                    b.ToTable("LearningActivitySegments", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.LearningActivitySession", b =>
+                {
+                    b.Property<Guid>("SessionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("LastAcceptedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("LastAcceptedCumulativeSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LastSequence")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LeaseExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LeaseToken")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Mode")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime>("StartedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SessionId");
+
+                    b.HasIndex("UserId", "LeaseExpiresAtUtc")
+                        .HasDatabaseName("IX_LearningActivitySessions_User_Lease");
+
+                    b.ToTable("LearningActivitySessions", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -391,6 +568,71 @@ namespace TCTEnglish.Migrations
                         .HasDatabaseName("IX_NotificationJobRuns_JobName_BusinessDate");
 
                     b.ToTable("NotificationJobRuns");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.OutboundDelivery", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AttemptCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Channel")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LastOutcome")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("LeaseOwner")
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime?>("LeaseUntilUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("NextAttemptAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PeriodKey")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<string>("SubscriptionKey")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Status", "NextAttemptAtUtc")
+                        .HasDatabaseName("IX_OutboundDeliveries_Status_NextAttempt");
+
+                    b.HasIndex("UserId", "Channel", "PeriodKey", "SubscriptionKey")
+                        .IsUnique()
+                        .HasDatabaseName("IX_OutboundDeliveries_User_Channel_Period_Sub");
+
+                    b.ToTable("OutboundDeliveries", (string)null);
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.PaymentAdminAction", b =>
@@ -845,6 +1087,78 @@ namespace TCTEnglish.Migrations
                     b.ToTable("SharedDataBindings");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserGoalTargetRevision", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("EffectiveFromUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("GoalArea")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("RecordedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("RevisionNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TargetValue")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "GoalArea", "EffectiveFromUtc")
+                        .HasDatabaseName("IX_UserGoalTargetRevisions_User_Area_Effective");
+
+                    b.HasIndex("UserId", "GoalArea", "RevisionNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_UserGoalTargetRevisions_User_Area_Revision");
+
+                    b.ToTable("UserGoalTargetRevisions", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.UserNotificationPreference", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
+
+                    b.Property<bool>("DailyReminderEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("PushOptIn")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ReminderMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TimeZoneId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("WeeklyEmailOptIn")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserNotificationPreferences", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSubscription", b =>
                 {
                     b.Property<long>("Id")
@@ -892,6 +1206,59 @@ namespace TCTEnglish.Migrations
                         .HasDatabaseName("IX_UserSubscriptions_UserId_Status_EndsAtUtc");
 
                     b.ToTable("UserSubscriptions");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.WebPushSubscription", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Auth")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Endpoint")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<string>("EndpointHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<DateTime>("LastSeenAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("P256dh")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime?>("RevokedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EndpointHash")
+                        .IsUnique()
+                        .HasDatabaseName("IX_WebPushSubscriptions_EndpointHash");
+
+                    b.HasIndex("UserId", "RevokedAtUtc")
+                        .HasDatabaseName("IX_WebPushSubscriptions_User_Revoked");
+
+                    b.ToTable("WebPushSubscriptions", (string)null);
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.WritingGenerationLog", b =>
@@ -2222,6 +2589,9 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserId"));
 
+                    b.Property<DateTime?>("AnonymizedAt")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("longtext");
 
@@ -2235,6 +2605,9 @@ namespace TCTEnglish.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("EmailVerifiedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("FullName")
                         .HasColumnType("longtext");
@@ -2273,6 +2646,11 @@ namespace TCTEnglish.Migrations
 
                     b.Property<string>("Role")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("SecurityVersion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -2989,6 +3367,17 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.AccountSecurityChallenge", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -3058,6 +3447,28 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.LearningActivitySegment", b =>
+                {
+                    b.HasOne("TCTEnglish.Models.LearningActivitySession", "Session")
+                        .WithMany("Segments")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.LearningActivitySession", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.Notification", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -3066,6 +3477,17 @@ namespace TCTEnglish.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Notifications_Users");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.OutboundDelivery", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -3116,7 +3538,7 @@ namespace TCTEnglish.Migrations
                     b.HasOne("TCTVocabulary.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Plan");
@@ -3162,6 +3584,28 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserGoalTargetRevision", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.UserNotificationPreference", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSubscription", b =>
                 {
                     b.HasOne("TCTEnglish.Models.PaymentOrder", "ActivatedByPaymentOrder")
@@ -3183,6 +3627,17 @@ namespace TCTEnglish.Migrations
                     b.Navigation("ActivatedByPaymentOrder");
 
                     b.Navigation("Plan");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.WebPushSubscription", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -3797,6 +4252,11 @@ namespace TCTEnglish.Migrations
             modelBuilder.Entity("TCTEnglish.Models.AiConversation", b =>
                 {
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.LearningActivitySession", b =>
+                {
+                    b.Navigation("Segments");
                 });
 
             modelBuilder.Entity("TCTEnglish.Models.PaymentOrder", b =>

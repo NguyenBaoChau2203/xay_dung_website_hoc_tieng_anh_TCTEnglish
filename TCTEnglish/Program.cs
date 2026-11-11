@@ -1,10 +1,20 @@
+using System.Globalization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
+using TCTVocabulary.Security;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using TCTEnglish.Hubs;
+using TCTEnglish.Services.Accounts;
+using TCTEnglish.Services.Learning;
+using TCTEnglish.Services.Notifications;
 using TCTEnglish.Infrastructure;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.AI.Internal;
@@ -20,6 +30,7 @@ builder.Services.AddSignalR(options =>
     // Allow StopAiStream to run while StartAiStream awaits the provider on the same connection.
     // Hub DB work must open its own scope (see ClassChatHub) — never share one DbContext across parallel invocations.
     options.MaximumParallelInvocationsPerClient = 2;
+    options.AddFilter<AccountSecurityHubFilter>();
 });
 builder.Services.AddRazorPages()
     .AddJsonOptions(options =>
@@ -41,9 +52,44 @@ builder.Services.AddDbContext<DbflashcardContext>(options =>
 
 builder.Services.AddSingleton<ISmtpMailTransport, SmtpClientMailTransport>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("account-security", context =>
+        RateLimitPartition.GetSlidingWindowLimiter(context.User.TryGetUserId(out var id) ? id : 0,
+            _ => new SlidingWindowRateLimiterOptions
+            {
+                PermitLimit = 12, Window = TimeSpan.FromMinutes(1), SegmentsPerWindow = 4,
+                QueueLimit = 0, AutoReplenishment = true
+            }));
+    options.OnRejected = async (rejection, cancellationToken) =>
+    {
+        rejection.HttpContext.Response.ContentType = "text/plain; charset=utf-8";
+        await rejection.HttpContext.Response.WriteAsync("Bạn đang thao tác quá nhanh. Vui lòng chờ một phút rồi thử lại.", cancellationToken);
+    };
+});
 builder.Services.AddSingleton<IAppEmailSender, SmtpAppEmailSender>();
 builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 builder.Services.AddScoped<IAvatarUploadService, AvatarUploadService>();
+builder.Services.AddScoped<IAccountSecurityService, AccountSecurityService>();
+builder.Services.AddScoped<IAccountProfileService, AccountProfileService>();
+builder.Services.AddScoped<IAccountDeletionService, AccountDeletionService>();
+builder.Services.AddScoped<IAccountFileCleanupProcessor, AccountFileCleanupProcessor>();
+builder.Services.AddScoped<ILearningActivityTracker, LearningActivityTracker>();
+builder.Services.AddScoped<ILearningHabitService, LearningHabitService>();
+builder.Services.AddScoped<INotificationPreferenceService, NotificationPreferenceService>();
+builder.Services.AddScoped<IWebPushSubscriptionService, WebPushSubscriptionService>();
+builder.Services.AddScoped<IWebPushTransport, LibWebPushTransport>();
+builder.Services.AddScoped<IOutboundDeliveryProcessor, OutboundDeliveryProcessor>();
+builder.Services.AddOptions<OutboundDeliveryOptions>()
+    .BindConfiguration(OutboundDeliveryOptions.SectionName);
+builder.Services.AddHttpClient("webpush")
+    .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
+    {
+        AllowAutoRedirect = false,
+        UseProxy = false,
+        ConnectCallback = WebPushEndpointGuard.ConnectAsync
+    });
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddSingleton<TCTEnglish.Services.Notifications.LearningBusinessClock>();
@@ -213,6 +259,7 @@ builder.Services.AddSingleton<IAiConversationExecutionGuard, AiConversationExecu
 builder.Services.AddSingleton<IAiStreamingService, AiStreamingService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 builder.Services.AddHostedService<NotificationWorker>();
+builder.Services.AddHostedService<OutboundReminderWorker>();
 builder.Services.AddScoped<IReadingTranslationService, ReadingTranslationService>();
 
 builder.Services.AddAuthentication(options =>
@@ -226,6 +273,24 @@ builder.Services.AddAuthentication(options =>
     options.LogoutPath = "/Account/Logout";
     options.AccessDeniedPath = "/Account/AccessDenied";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    options.Events.OnValidatePrincipal = async context =>
+    {
+        var principal = context.Principal;
+        var idValue = principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (!int.TryParse(idValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out var userId))
+        {
+            context.RejectPrincipal();
+            return;
+        }
+
+        var db = context.HttpContext.RequestServices.GetRequiredService<DbflashcardContext>();
+        var clock = context.HttpContext.RequestServices.GetRequiredService<TimeProvider>();
+        if (!await AccountSessionValidator.IsValidAsync(db, principal, clock.GetUtcNow().UtcDateTime, context.HttpContext.RequestAborted))
+        {
+            context.RejectPrincipal();
+            await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+    };
 })
 .AddCookie("ExternalCookie")
 .AddGoogle(options =>
@@ -325,6 +390,7 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 app.MapHub<ClassChatHub>("/classChatHub");
 app.MapGet("/health/ready", async (DbflashcardContext db, CancellationToken cancellationToken) =>
 {

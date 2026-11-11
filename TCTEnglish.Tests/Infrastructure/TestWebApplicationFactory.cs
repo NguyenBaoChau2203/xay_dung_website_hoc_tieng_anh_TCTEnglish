@@ -74,7 +74,8 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                 .Where(descriptor => descriptor.ServiceType == typeof(IHostedService)
                     && (descriptor.ImplementationType == typeof(AutoUnlockWorker)
                         || descriptor.ImplementationType == typeof(SpeakingImportWorker)
-                        || descriptor.ImplementationType == typeof(NotificationWorker)))
+                        || descriptor.ImplementationType == typeof(NotificationWorker)
+                        || descriptor.ImplementationType == typeof(TCTEnglish.Services.Notifications.OutboundReminderWorker)))
                 .ToList();
 
             foreach (var descriptor in hostedServiceDescriptors)
