@@ -51,10 +51,13 @@
     align-items: center;
     gap: var(--tct-space-md);
     padding: var(--tct-space-sm) 0;
-    background: var(--tct-surface-muted); /* the shell canvas, so the sticky bar is invisible until content scrolls under it */
+    background: var(--tct-clay-canvas); /* the Clay canvas, so the sticky bar hides content that scrolls under it */
+    background: color-mix(in srgb, var(--tct-clay-canvas) 72%, transparent); /* soft, so the page glow stays visible */
+    backdrop-filter: blur(6px);
 }
 
 .tp-page .tp-progress { flex: 1 1 auto; min-width: 0; }
+.tp-page .tp-progress.k-progress { height: 16px; }
 .tp-page .tp-progress__fill { width: calc(var(--p, 0) * 1%); }
 
 .tp-page .tp-counter {
@@ -67,6 +70,16 @@
 }
 
 .tp-page .tp-slot { display: flex; align-items: center; gap: var(--tct-space-sm); }
+
+/* The speak button in the bar uses the white icon-button look (same as the exit button). */
+.tp-page .tp-slot .btn.tp-speak {
+    --bs-btn-bg: var(--tct-surface);
+    --bs-btn-color: var(--tct-text-secondary);
+    --bs-btn-hover-bg: var(--tct-surface);
+    --bs-btn-hover-color: var(--tct-primary-strong);
+    --bs-btn-active-bg: var(--tct-surface);
+    --bs-btn-active-color: var(--tct-primary-strong);
+}
 .tp-page .tp-slot:empty { display: none; }
 
 .tp-page .tp-stage { flex: 1 1 auto; display: flex; flex-direction: column; gap: var(--tct-space-lg); outline: none; background: transparent; }
@@ -107,8 +120,9 @@
     flex: 0 0 auto;
     width: 96px;
     height: 96px;
-    border-radius: var(--tct-radius-xl);
+    border-radius: var(--tct-radius-lg);
     background: var(--k-bg, var(--tct-primary-soft));
+    box-shadow: var(--tct-clay-shadow-field);
     font-size: var(--tct-text-3xl);
     overflow: hidden;
 }
@@ -125,8 +139,10 @@
     width: 100%;
     margin: 0;
     padding: var(--tct-space-lg);
-    border-radius: var(--tct-radius-xl);
+    border-radius: var(--tct-radius-lg);
     background: var(--tct-disabled-bg);
+    background: color-mix(in srgb, var(--tct-primary) 4%, var(--tct-surface));
+    box-shadow: var(--tct-clay-shadow-field);
     font-size: var(--tct-text-xl);
     line-height: var(--tct-leading-relaxed);
 }
@@ -168,27 +184,27 @@
     gap: var(--tct-space-md);
     min-height: 68px;
     padding: var(--tct-space-sm) var(--tct-space-md);
-    border: 2px solid var(--tct-border);
-    border-radius: var(--tct-radius-lg);
+    border: 2px solid transparent;
+    border-radius: var(--tct-radius-md);
     background: var(--tct-surface);
-    box-shadow: 0 4px 0 var(--tct-border);
+    box-shadow: var(--tct-clay-shadow);
     color: var(--tct-text);
     font: inherit;
     font-size: var(--tct-text-lg);
     font-weight: var(--tct-weight-semibold);
     text-align: start;
     transition: border-color var(--tct-dur-fast) var(--tct-ease), background-color var(--tct-dur-fast) var(--tct-ease),
-        box-shadow var(--tct-dur-fast) var(--tct-ease), transform var(--tct-dur-fast) var(--tct-ease);
+        box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
 @media (max-width: 575.98px) {
     .tp-page .tp-option { min-height: 56px; }
 }
 
-.tp-page .tp-option:hover:not(:disabled) { border-color: var(--k-fill, var(--tct-primary)); background: var(--k-bg, var(--tct-primary-soft)); }
-.tp-page .tp-option:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 var(--tct-border); }
+.tp-page .tp-option:hover:not(:disabled) { border-color: color-mix(in srgb, var(--k-fill, var(--tct-primary)) 40%, transparent); box-shadow: var(--tct-clay-shadow-lift); }
+.tp-page .tp-option:active:not(:disabled) { box-shadow: var(--tct-clay-shadow-pressed); }
 .tp-page .tp-option:disabled { cursor: default; }
-.tp-page .tp-option[aria-pressed="true"] { border-color: var(--tct-primary); background: var(--tct-primary-soft); box-shadow: 0 4px 0 var(--tct-primary-strong); color: var(--tct-primary-strong); }
+.tp-page .tp-option[aria-pressed="true"] { border-color: var(--tct-primary); background: var(--tct-primary-soft); box-shadow: var(--tct-clay-shadow-pressed); color: var(--tct-primary-strong); }
 
 .tp-page .tp-option__key {
     flex: 0 0 auto;
@@ -198,7 +214,8 @@
     min-width: 30px;
     height: 30px;
     border-radius: var(--tct-radius-sm);
-    background: var(--tct-disabled-bg);
+    background: var(--tct-primary-tint);
+    box-shadow: var(--tct-clay-shadow-field);
     font-size: var(--tct-text-sm);
     font-weight: var(--tct-weight-bold);
     color: var(--tct-text-secondary);
@@ -207,8 +224,9 @@
 .tp-page .tp-option__label { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
 .tp-page .tp-option__mark { flex: 0 0 auto; font-size: var(--tct-text-xl); }
 
-.tp-page .tp-option--correct { border-color: var(--tct-success); background: var(--tct-success-soft); box-shadow: 0 4px 0 var(--tct-success); color: var(--tct-success-text); }
-.tp-page .tp-option--wrong { border-color: var(--tct-danger); background: var(--tct-danger-soft); box-shadow: 0 4px 0 var(--tct-danger); color: var(--tct-danger-text); }
+/* Answer states: coloured border + tint + text colour (the mark icon and the label are in the markup); the pressed shadow and token ring only add depth. */
+.tp-page .tp-option--correct { border-color: var(--tct-success); background: var(--tct-success-soft); box-shadow: var(--tct-clay-shadow-pressed), 0 0 0 4px var(--tct-success-soft); color: var(--tct-success-text); }
+.tp-page .tp-option--wrong { border-color: var(--tct-danger); background: var(--tct-danger-soft); box-shadow: var(--tct-clay-shadow-pressed), 0 0 0 4px var(--tct-danger-soft); color: var(--tct-danger-text); }
 .tp-page .tp-options--answered .tp-option:not(.tp-option--correct):not(.tp-option--wrong) { opacity: 0.55; }
 
 .tp-page .tp-keyhint { display: none; }
@@ -226,15 +244,9 @@
 /* ---------------------------------------------------------------- feedback sheet (bottom, sticky, spans the column) */
 .tp-page .tp-feedback-host {
     position: sticky;
-    bottom: 0;
+    bottom: var(--tct-space-md);
     z-index: var(--tct-z-sidebar);
-    margin-top: auto;
-    margin-inline: calc(-1 * var(--tct-space-xl));
-    margin-bottom: calc(-1 * var(--tct-main-pad));
-}
-
-@media (max-width: 767.98px) {
-    .tp-page .tp-feedback-host { margin-inline: calc(-1 * var(--tct-main-pad-sm)); margin-bottom: calc(-1 * var(--tct-main-pad-sm)); }
+    margin-top: var(--tct-space-xl);
 }
 
 .tp-page .tp-feedback-host:empty { display: none; }
@@ -243,9 +255,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--tct-space-sm);
-    padding: var(--tct-space-lg) var(--tct-space-xl) calc(var(--tct-space-lg) + env(safe-area-inset-bottom));
+    padding: var(--tct-space-lg) var(--tct-space-xl);
     border: 0;
-    border-radius: var(--tct-radius-xl) var(--tct-radius-xl) 0 0;
+    border-radius: var(--tct-radius-xl);
+    box-shadow: var(--tct-clay-shadow-lift);
 }
 
 /* The AI launcher (68px box incl. its ring) sits bottom-right: keep the button clear of it. */
@@ -256,13 +269,24 @@
 /* The wide learn column reaches the launcher at any viewport width. */
 .tp-page--wide .tp-feedback { padding-right: calc(var(--tct-target-min) + 3 * var(--tct-space-md)); }
 
+/* Limited height (laptops such as 1366x768): a compact card, so the sticky feedback never covers the answer options. */
+@media (min-width: 576px) and (max-height: 820px) {
+    .tp-page .tp-feedback-host { bottom: var(--tct-space-sm); margin-top: var(--tct-space-md); }
+    .tp-page .tp-feedback { gap: var(--tct-space-xs); padding: 12px var(--tct-space-lg); }
+    .tp-page .tp-feedback__title { font-size: var(--tct-text-lg); }
+    .tp-page .tp-feedback__term { font-size: var(--tct-text-xl); }
+    .tp-page .tp-feedback__def { font-size: var(--tct-text-base); }
+    .tp-page .tp-feedback__actions { margin-top: var(--tct-space-xs); }
+    .tp-page .tp-feedback__next.btn-lg { min-height: 44px; }
+}
+
 .tp-page .tp-feedback--correct { background: var(--tct-success-soft); color: var(--tct-success-text); }
 .tp-page .tp-feedback--close { background: var(--tct-warning-soft); color: var(--tct-warning-text); }
 .tp-page .tp-feedback--wrong { background: var(--tct-danger-soft); color: var(--tct-danger-text); }
 
 .tp-page .tp-feedback__head { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-md); }
 .tp-page .tp-feedback__title { margin: 0; display: flex; align-items: center; gap: var(--tct-space-sm); font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); }
-.tp-page .tp-feedback .tp-speak { width: var(--tct-target-min); height: var(--tct-target-min); background: var(--tct-surface); box-shadow: none; }
+.tp-page .tp-feedback .tp-speak { width: var(--tct-target-min); height: var(--tct-target-min); background: var(--tct-surface); box-shadow: var(--tct-clay-shadow-quiet); }
 .tp-page .tp-feedback__answer { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--tct-space-sm) var(--tct-space-md); color: var(--tct-text); }
 .tp-page .tp-feedback__term { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); }
 .tp-page .tp-feedback__def { font-size: var(--tct-text-lg); color: var(--tct-text-secondary); }
@@ -280,7 +304,6 @@
 .tp-page .tp-typing__input {
     height: 56px;
     border: 2px solid var(--tct-border-control);
-    border-radius: var(--tct-radius-lg);
     font-size: var(--tct-text-xl);
     font-weight: var(--tct-weight-semibold);
 }
@@ -289,7 +312,8 @@
 .tp-page .tp-typing__actions .btn { flex: 1 1 auto; }
 .tp-page .tp-hint-line { margin: 0; min-height: 1.5em; font-family: var(--tct-font-mono); font-size: var(--tct-text-lg); letter-spacing: 0.15em; color: var(--tct-text-secondary); text-align: center; }
 
-.tp-page .tp-diff { display: flex; flex-direction: column; gap: var(--tct-space-xs); }
+/* Diff rows sit in one quiet container. */
+.tp-page .tp-diff { display: flex; flex-direction: column; gap: var(--tct-space-xs); padding: var(--tct-space-md); border: 1px solid var(--tct-border); border-radius: var(--tct-radius-lg); background: var(--tct-surface); box-shadow: var(--tct-clay-shadow-quiet); }
 .tp-page .tp-diff__row { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--tct-space-sm); }
 .tp-page .tp-diff__label { min-width: 5.5em; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
 .tp-page .tp-diff__chars { padding: 2px var(--tct-space-sm); border-radius: var(--tct-radius-md); background: var(--tct-surface); color: var(--tct-text); font-family: var(--tct-font-mono); font-size: var(--tct-text-xl); overflow-wrap: anywhere; }
@@ -314,9 +338,10 @@
     height: 220px;
     border-radius: var(--tct-radius-pill);
     background: conic-gradient(var(--k-ring) calc(var(--p, 0) * 1%), var(--tct-disabled-bg) 0);
+    box-shadow: var(--tct-clay-shadow-lift);
 }
 
-.tp-page .tp-ring::before { content: ""; position: absolute; inset: 18px; border-radius: var(--tct-radius-pill); background: var(--tct-bg); }
+.tp-page .tp-ring::before { content: ""; position: absolute; inset: 18px; border-radius: var(--tct-radius-pill); background: var(--tct-surface); box-shadow: var(--tct-clay-shadow-field); }
 .tp-page .tp-ring--ok { --k-ring: var(--tct-success); }
 .tp-page .tp-ring--mid { --k-ring: var(--tct-warning); }
 .tp-page .tp-ring--low { --k-ring: var(--tct-danger); }
@@ -364,11 +389,6 @@
 .tp-page .tp-summary__links { display: flex; justify-content: center; gap: var(--tct-space-lg); }
 .tp-page .tp-summary__link { display: inline-flex; align-items: center; min-height: var(--tct-target-min); font-weight: var(--tct-weight-semibold); color: var(--tct-primary-strong); text-decoration: none; }
 .tp-page .tp-summary__link:hover { text-decoration: underline; }
-
-@media (prefers-reduced-motion: reduce) {
-    .tp-page .tp-option:active:not(:disabled),
-    .tp-page .tp-listen__play:active { transform: none; }
-}
 
 /* ---------------------------------------------------------------- flashcard */
 .tp-page .tp-chip { display: inline-flex; align-items: center; gap: var(--tct-space-xs); padding: 5px 12px; font-size: var(--tct-text-sm); font-variant-numeric: tabular-nums; }
@@ -561,10 +581,10 @@
     justify-content: center;
     min-height: 104px;
     padding: var(--tct-space-sm);
-    border: 2px solid var(--tct-border);
-    border-radius: var(--tct-radius-lg);
+    border: 2px solid transparent;
+    border-radius: var(--tct-radius-md);
     background: var(--tct-surface);
-    box-shadow: 0 4px 0 var(--tct-border);
+    box-shadow: var(--tct-clay-shadow);
     color: var(--tct-text);
     font: inherit;
     font-size: var(--tct-text-lg);
@@ -1040,10 +1060,15 @@
 /* ---------------------------------------------------------------- forced colours (C-R6)
    Clay depth is decorative: system colours keep every boundary and state. Classes are added phase by phase. */
 @media (forced-colors: active) {
-    .tp-page :is(.tp-mode-card, .tp-mode-card__check, .tp-mode-card__icon, .tp-side, .tp-start-bar, .tp-hard-link, .tp-hard-link__icon) {
+    .tp-page :is(.tp-mode-card, .tp-mode-card__check, .tp-mode-card__icon, .tp-side, .tp-start-bar, .tp-hard-link, .tp-hard-link__icon,
+        .tp-option, .tp-option__key, .tp-visual, .tp-cloze, .tp-feedback, .tp-ring, .tp-diff, .tp-listen__play) {
         box-shadow: none;
         border: 1px solid CanvasText;
     }
+
+    /* Answer states keep a thicker border (plus the mark icon and the text colour). */
+    .tp-page :is(.tp-option--correct, .tp-option--wrong, .tp-option[aria-pressed="true"]) { border-width: 3px; }
+    .tp-page .tp-ring::before { box-shadow: none; border: 1px solid CanvasText; }
 
     /* The chosen mode keeps a thicker border besides its check badge. */
     .tp-page .tp-mode-card:has(input:checked) { border-width: 3px; }
