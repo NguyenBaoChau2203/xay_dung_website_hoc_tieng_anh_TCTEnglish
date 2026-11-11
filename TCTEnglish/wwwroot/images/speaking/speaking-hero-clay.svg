@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 250" width="100%" height="100%" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <!-- Soft Clay Dropshadows -->
+    <filter id="spk-clay-main-drop" x="-15%" y="-15%" width="135%" height="135%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3849c7" flood-opacity="0.16" />
+    </filter>
+    <filter id="spk-clay-soft-drop" x="-15%" y="-15%" width="135%" height="135%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#111c2d" flood-opacity="0.10" />
+    </filter>
+    <filter id="spk-clay-bubble-drop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="8" stdDeviation="10" flood-color="#f59e0b" flood-opacity="0.22" />
+    </filter>
+    <filter id="spk-clay-yt-drop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#ef4444" flood-opacity="0.22" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="spk-ambient-bg" x1="0" y1="0" x2="440" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#eef3ff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#e0e7ff" stop-opacity="0.3" />
+    </linearGradient>
+
+    <!-- Microphone Capsule Gradient -->
+    <linearGradient id="spk-mic-body-grad" x1="180" y1="40" x2="250" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#697cff" />
+      <stop offset="45%" stop-color="#4255ff" />
+      <stop offset="100%" stop-color="#2334c4" />
+    </linearGradient>
+
+    <!-- Microphone Grille Mesh Gradient -->
+    <linearGradient id="spk-mic-grille-grad" x1="190" y1="40" x2="240" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a5b4fc" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+
+    <!-- Speech Bubble Gold/Amber -->
+    <linearGradient id="spk-bubble-grad" x1="260" y1="30" x2="350" y2="105" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="25%" stop-color="#fef3c7" />
+      <stop offset="70%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <!-- Metallic/White Clay Stand -->
+    <linearGradient id="spk-stand-grad" x1="190" y1="130" x2="230" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <!-- Cyan Sound Wave Gradient -->
+    <linearGradient id="spk-cyan-wave" x1="70" y1="70" x2="140" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Violet Sound Wave Gradient -->
+    <linearGradient id="spk-purple-wave" x1="280" y1="130" x2="370" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+
+    <!-- YouTube Card Red -->
+    <linearGradient id="spk-yt-grad" x1="60" y1="130" x2="160" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Backdrop Pill -->
+  <rect x="8" y="8" width="424" height="234" rx="28" fill="url(#spk-ambient-bg)" stroke="#ffffff" stroke-width="2" />
+
+  <!-- Ambient Sound Rings (Acoustic resonance) -->
+  <circle cx="215" cy="110" r="105" stroke="#4255ff" stroke-opacity="0.06" stroke-width="8" />
+  <circle cx="215" cy="110" r="85" stroke="#4255ff" stroke-opacity="0.10" stroke-width="5" stroke-dasharray="8 6" />
+  <circle cx="215" cy="110" r="65" stroke="#4255ff" stroke-opacity="0.12" stroke-width="3" stroke-dasharray="4 4" />
+
+  <!-- ── FLOATING ELEMENT 1: Left Sound Frequency Bars (Clay Pill bars) ── -->
+  <g filter="url(#spk-clay-soft-drop)">
+    <rect x="65" y="88" width="12" height="42" rx="6" fill="url(#spk-cyan-wave)" />
+    <rect x="83" y="70" width="12" height="78" rx="6" fill="url(#spk-cyan-wave)" />
+    <rect x="101" y="82" width="12" height="54" rx="6" fill="url(#spk-cyan-wave)" />
+    <rect x="119" y="96" width="12" height="26" rx="6" fill="url(#spk-cyan-wave)" />
+  </g>
+
+  <!-- ── FLOATING ELEMENT 2: Floating YouTube Video Clay Chip (Bottom Left) ── -->
+  <g filter="url(#spk-clay-yt-drop)">
+    <rect x="58" y="148" width="105" height="52" rx="16" fill="url(#spk-yt-grad)" stroke="#ffffff" stroke-width="1.5" />
+    <!-- YouTube Play Icon Clay -->
+    <rect x="70" y="160" width="38" height="28" rx="8" fill="#ff0000" />
+    <polygon points="86,168 86,180 96,174" fill="#ffffff" />
+    <!-- Mini sound lines -->
+    <rect x="115" y="164" width="36" height="6" rx="3" fill="#cbd5e1" />
+    <rect x="115" y="176" width="24" height="5" rx="2.5" fill="#94a3b8" />
+  </g>
+
+  <!-- ── FLOATING ELEMENT 3: AI Speech Bubble (Top Right) ── -->
+  <g filter="url(#spk-clay-bubble-drop)">
+    <path d="M 285 40 C 285 28, 385 28, 385 40 L 385 75 C 385 86, 305 86, 298 96 L 296 85 C 285 85, 285 75, 285 75 Z" fill="url(#spk-bubble-grad)" stroke="#ffffff" stroke-width="1.5" />
+    <!-- AI Text / Wave in bubble -->
+    <text x="335" y="52" text-anchor="middle" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="800" fill="#92400e" letter-spacing="0.8">AI SCORE</text>
+    <text x="335" y="73" text-anchor="middle" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="17" font-weight="900" fill="#78350f">98%</text>
+    <!-- Mini Stars in bubble -->
+    <path d="M 374 38 Q 374 43 370 43 Q 374 43 374 48 Q 374 43 378 43 Q 374 43 374 38 Z" fill="#ffffff" />
+  </g>
+
+  <!-- ── CENTRAL 3D CLAY MICROPHONE ── -->
+  <!-- Base Stand -->
+  <ellipse cx="215" cy="204" rx="46" ry="14" fill="url(#spk-stand-grad)" filter="url(#spk-clay-soft-drop)" />
+  <ellipse cx="215" cy="202" rx="42" ry="11" fill="#ffffff" opacity="0.6" />
+  <!-- Stand Stem -->
+  <rect x="210" y="145" width="10" height="52" rx="5" fill="url(#spk-stand-grad)" />
+
+  <!-- U-Shaped Metal Cradle -->
+  <path d="M 182 108 C 182 150, 248 150, 248 108" stroke="url(#spk-stand-grad)" stroke-width="8" stroke-linecap="round" fill="none" filter="url(#spk-clay-soft-drop)" />
+  <!-- Side Pivot Screws -->
+  <circle cx="182" cy="108" r="5" fill="#64748b" />
+  <circle cx="248" cy="108" r="5" fill="#64748b" />
+
+  <!-- Microphone Main Capsule -->
+  <g filter="url(#spk-clay-main-drop)">
+    <!-- Body Capsule (Bottom Half) -->
+    <rect x="194" y="90" width="42" height="42" rx="14" fill="url(#spk-mic-body-grad)" />
+    <!-- Top Grille Capsule -->
+    <path d="M 194 92 L 194 65 C 194 52, 236 52, 236 65 L 236 92 Z" fill="url(#spk-mic-grille-grad)" />
+    <!-- Grille Ring separator -->
+    <rect x="193" y="89" width="44" height="4" rx="2" fill="#312e81" opacity="0.4" />
+    <rect x="194" y="90" width="42" height="2" rx="1" fill="#ffffff" opacity="0.7" />
+
+    <!-- Microphone Grille Mesh Details -->
+    <line x1="202" y1="62" x2="202" y2="86" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4" stroke-linecap="round" />
+    <line x1="210" y1="58" x2="210" y2="86" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round" />
+    <line x1="215" y1="56" x2="215" y2="86" stroke="#ffffff" stroke-width="2" stroke-opacity="0.6" stroke-linecap="round" />
+    <line x1="220" y1="58" x2="220" y2="86" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round" />
+    <line x1="228" y1="62" x2="228" y2="86" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4" stroke-linecap="round" />
+
+    <line x1="198" y1="70" x2="232" y2="70" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4" />
+    <line x1="198" y1="78" x2="232" y2="78" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4" />
+
+    <!-- Glossy Highlight Pill on Body -->
+    <rect x="199" y="96" width="6" height="26" rx="3" fill="#ffffff" opacity="0.45" />
+    <circle cx="202" cy="126" r="3" fill="#ffffff" opacity="0.45" />
+  </g>
+
+  <!-- ── FLOATING ELEMENT 4: Purple CEFR Pill (Bottom Right) ── -->
+  <g filter="url(#spk-clay-soft-drop)">
+    <rect x="290" y="146" width="98" height="38" rx="19" fill="#ffffff" stroke="#e0e7ff" stroke-width="1.5" />
+    <circle cx="308" cy="165" r="11" fill="url(#spk-purple-wave)" />
+    <!-- Checkmark in circle -->
+    <path d="M 304 165 L 307 168 L 313 162" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <text x="325" y="170" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#4338ca">A1 → C2</text>
+  </g>
+
+  <!-- Sparkles & Stars (Decorative Ambient) -->
+  <path d="M 148 48 Q 148 56 140 56 Q 148 56 148 64 Q 148 56 156 56 Q 148 56 148 48 Z" fill="#ffcd1f" />
+  <path d="M 268 188 Q 268 193 263 193 Q 268 193 268 198 Q 268 193 273 193 Q 268 193 268 188 Z" fill="#4255ff" opacity="0.6" />
+  <circle cx="168" cy="85" r="3" fill="#38bdf8" opacity="0.7" />
+  <circle cx="270" cy="115" r="3.5" fill="#fbbf24" opacity="0.8" />
+</svg>

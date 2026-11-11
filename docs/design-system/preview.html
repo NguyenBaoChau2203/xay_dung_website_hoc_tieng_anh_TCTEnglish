@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCT Design System — Gallery</title>
+    <title>TCT Claymorphism — Design System Gallery</title>
 
     <!--
         Local gallery. Open this file directly in a browser (needs internet for the same CDNs the app uses).
@@ -99,7 +99,8 @@
         <aside class="sidebar" id="mainSidebar" aria-label="Menu chính">
             <nav>
                 <div class="workspace-title">Gallery</div>
-                <a class="nav-item active" aria-current="page" href="#tokens"><i class="fas fa-palette" aria-hidden="true"></i><span>Token</span></a>
+                <a class="nav-item active" aria-current="page" href="#clay"><i class="fas fa-shapes" aria-hidden="true"></i><span>Claymorphism</span></a>
+                <a class="nav-item" href="#tokens"><i class="fas fa-palette" aria-hidden="true"></i><span>Token</span></a>
                 <a class="nav-item" href="#typography"><i class="fas fa-font" aria-hidden="true"></i><span>Typography</span></a>
                 <a class="nav-item" href="#shell"><i class="fas fa-table-columns" aria-hidden="true"></i><span>Shell &amp; layout</span></a>
                 <a class="nav-item" href="#page-header"><i class="fas fa-heading" aria-hidden="true"></i><span>Page header</span></a>
@@ -127,13 +128,45 @@
                     </nav>
                     <div class="tct-page-header__row">
                         <div class="tct-page-header__text">
-                            <h1 class="tct-page-title">TCT Design System — Component gallery</h1>
+                            <h1 class="tct-page-title">TCT Claymorphism — Component gallery</h1>
                             <p class="tct-page-desc">Mọi mẫu bên dưới dùng CSS thật của ứng dụng. Mở rộng/thu hẹp cửa sổ (1440 / 768 / 390px) hoặc phóng to 200% để xem hành vi responsive; nút ☰ dùng <code>layout.js</code> thật.</p>
                         </div>
                     </div>
                 </header>
 
                 <p class="gal-banner" role="note"><i class="fas fa-flask me-1" aria-hidden="true"></i> Nội dung tổng hợp (synthetic): form không gửi dữ liệu, không gọi API AI/media, không có dữ liệu thật.</p>
+
+                <section class="gal-section" id="clay" aria-labelledby="h-clay">
+                    <h2 id="h-clay">Phong cách chung: Claymorphism</h2>
+                    <p class="gal-lead">Quyết định của Châu ngày 08/11/2026: mọi trang được thiết kế lại dùng khối nổi mềm, bo tròn và bóng trong/ngoài từ bộ token chung. Ưu tiên trải nghiệm laptop; giữ chữ, viền input và focus rõ ràng. Bảng dữ liệu và nội dung học dùng hiệu ứng nhẹ ở khung chứa.</p>
+                    <div class="row g-4" data-code>
+                        <div class="col-lg-4">
+                            <article class="tct-card tct-card--interactive p-4 h-100">
+                                <span class="tct-badge tct-badge--primary mb-3"><i class="fas fa-book-open" aria-hidden="true"></i>Trang học</span>
+                                <h3 class="h5 mb-2">Một bài học, một việc rõ ràng</h3>
+                                <p class="mb-4">Nội dung dễ đọc, panel có chiều sâu và nút hành động nổi bật theo màu TCT.</p>
+                                <a class="btn btn-primary" href="#cards">Xem component</a>
+                            </article>
+                        </div>
+                        <div class="col-lg-4">
+                            <article class="tct-clay-surface p-4 h-100">
+                                <h3 class="h5 mb-3">Form có viền dễ nhận biết</h3>
+                                <label class="form-label" for="clay-email">Email mẫu</label>
+                                <input class="form-control mb-2" type="email" id="clay-email" value="demo@example.invalid" readonly aria-describedby="clay-email-note">
+                                <p class="form-text mb-3" id="clay-email-note">Bóng chìm nhẹ; không thay viền hoặc focus bằng bóng.</p>
+                                <button class="btn btn-outline-primary" type="button" disabled>Ví dụ không gửi dữ liệu</button>
+                            </article>
+                        </div>
+                        <div class="col-lg-4">
+                            <article class="tct-clay-surface tct-clay-surface--quiet p-4 h-100">
+                                <span class="tct-badge tct-badge--success mb-3">Admin / dữ liệu</span>
+                                <h3 class="h5 mb-2">Cùng phong cách, mật độ gọn</h3>
+                                <p class="mb-3">Khung nổi nhẹ; hàng và chữ trong bảng giữ rành mạch, không tạo một khối 3D cho từng ô.</p>
+                                <a class="btn btn-outline-primary" href="#admin">Xem mẫu Admin</a>
+                            </article>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- ============================ TOKENS ============================ -->
                 <section class="gal-section" id="tokens" aria-labelledby="h-tokens">
@@ -469,7 +502,8 @@
     <script>
         // Gallery-only behavior: reads live token values, computes contrast, shows markup, demos pending/toast.
         (function () {
-            const rootStyle = getComputedStyle(document.documentElement);
+            // Report the effective adopted theme, not preserved root legacy values.
+            const rootStyle = getComputedStyle(document.querySelector('.tct-theme'));
             const tok = (n) => rootStyle.getPropertyValue(n).trim();
 
             document.querySelectorAll('[data-tok]').forEach((el) => { el.textContent = tok(el.dataset.tok); });

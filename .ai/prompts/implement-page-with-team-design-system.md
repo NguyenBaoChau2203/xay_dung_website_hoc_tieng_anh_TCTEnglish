@@ -1,5 +1,12 @@
 # Execution Prompt: Implement <SCREEN_NAME> with the TCT shared design system
 
+Current owner direction (2026-11-08): use **Claymorphism on every redesigned
+page**, prioritizing laptop/desktop demonstration quality. Read DESIGN.md's Clay
+section and the live gallery before choosing surfaces/controls. Preserve prior
+behavior contracts; replace competing visual decisions with the shared Clay
+tokens/components, without creating a per-feature theme or changing shared CSS
+outside the authority below. Dense pages still use Clay at the container level.
+
 Apply the [project prompt standard](README.md) and the
 [execution template](../templates/execution-prompt.md). Fill every `<PLACEHOLDER>`
 from the teammate's actual assignment before handoff; an unfilled placeholder is a

@@ -22,217 +22,188 @@
 
 @Html.AntiForgeryToken()
 
-<div class="spk-page-wrapper" aria-label="Learn English with Videos">
+<div class="tct-theme tct-page spk-page-wrapper" aria-label="Learn English with Videos">
 
-    @* ── HERO HEADER ────────────────────────────────────── *@
-    <div class="spk-index-hero mb-10">
-        @* Left: Title + Stats *@
-        <div class="spk-index-hero-left">
-            <div class="spk-index-eyebrow">
-                <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">record_voice_over</span>
-                Kỹ năng Nói
-            </div>
-            <h1 class="spk-index-title">
-                Luyện phát âm &amp;<br>
-                <span class="spk-index-title-gradient">phản xạ nói chuẩn</span>
-            </h1>
-            <p class="spk-index-subtitle">Học qua video thực tế, AI chấm điểm phát âm và cải thiện từng ngày.</p>
+    @* ── HERO BANNER (Claymorphism Surface & Mascot Illustration) ── *@
+    <div class="spk-hero-banner mb-5" aria-label="Giới thiệu Kỹ năng Nói">
+        <div class="spk-hero-ambient-blob spk-hero-ambient-blob--1" aria-hidden="true"></div>
+        <div class="spk-hero-ambient-blob spk-hero-ambient-blob--2" aria-hidden="true"></div>
 
-            <div class="spk-index-stats-row">
-                <div class="spk-index-stat">
-                    <div class="spk-index-stat-icon spk-index-stat-icon--blue">
-                        <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">video_library</span>
-                    </div>
-                    <div>
-                        <div class="spk-index-stat-val" id="vi-video-count" data-total-count="@totalVideos">@totalVideos</div>
-                        <div class="spk-index-stat-lbl">Videos</div>
-                    </div>
+        <div class="spk-hero-grid">
+            @* Left: Title, Badges, Illustration Showcase & Stats *@
+            <div class="spk-hero-content">
+                <div class="spk-hero-eyebrow">
+                    <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1" aria-hidden="true">record_voice_over</span>
+                    <span>Kỹ năng Nói &amp; Giao tiếp AI</span>
+                    <span class="spk-eyebrow-dot" aria-hidden="true"></span>
+                    <span class="spk-eyebrow-badge">Chuẩn CEFR</span>
                 </div>
-                <div class="spk-index-stat">
-                    <div class="spk-index-stat-icon spk-index-stat-icon--amber">
-                        <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">topic</span>
-                    </div>
-                    <div>
-                        <div class="spk-index-stat-val">@Model.Topics.Count</div>
-                        <div class="spk-index-stat-lbl">Chủ đề</div>
-                    </div>
+
+                <h1 class="spk-hero-title">
+                    Luyện phát âm &amp;<br>
+                    <span class="spk-hero-title-gradient">phản xạ nói chuẩn AI</span>
+                </h1>
+
+                <p class="spk-hero-subtitle">
+                    Học qua video YouTube thực tế, AI phân tích âm tiết và hỗ trợ cải thiện ngữ điệu từng câu tức thì.
+                </p>
+
+                @* Visual Anchor: 3D Clay Illustration Showcase Card *@
+                <div class="spk-hero-showcase" aria-hidden="true">
+                    <img src="~/images/speaking/speaking-hero-clay.svg" alt="Minh họa Luyện nói AI" class="spk-hero-illus-img" width="440" height="250" />
                 </div>
-                <div class="spk-index-stat">
-                    <div class="spk-index-stat-icon spk-index-stat-icon--green">
-                        <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">grade</span>
+
+                @* Stats Bento Row *@
+                <div class="spk-hero-stats-row">
+                    <div class="spk-hero-stat">
+                        <div class="spk-hero-stat-icon spk-hero-stat-icon--blue">
+                            <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1" aria-hidden="true">video_library</span>
+                        </div>
+                        <div class="spk-hero-stat-info">
+                            <div class="spk-hero-stat-val" id="vi-video-count" data-total-count="@totalVideos">@totalVideos</div>
+                            <div class="spk-hero-stat-lbl">Videos thực tế</div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="spk-index-stat-val">A1–C2</div>
-                        <div class="spk-index-stat-lbl">Trình độ</div>
+                    <div class="spk-hero-stat">
+                        <div class="spk-hero-stat-icon spk-hero-stat-icon--amber">
+                            <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1" aria-hidden="true">topic</span>
+                        </div>
+                        <div class="spk-hero-stat-info">
+                            <div class="spk-hero-stat-val">@Model.Topics.Count</div>
+                            <div class="spk-hero-stat-lbl">Chủ đề bài học</div>
+                        </div>
+                    </div>
+                    <div class="spk-hero-stat">
+                        <div class="spk-hero-stat-icon spk-hero-stat-icon--green">
+                            <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1" aria-hidden="true">grade</span>
+                        </div>
+                        <div class="spk-hero-stat-info">
+                            <div class="spk-hero-stat-val">A1–C2</div>
+                            <div class="spk-hero-stat-lbl">Khung trình độ</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            @* Right: Hero Import Panel (Clay Surface) *@
+            <section class="spk-hero-import" id="my-import-panel" aria-label="Thêm video YouTube">
+                <div class="spk-hero-blob spk-hero-blob--1" aria-hidden="true"></div>
+                <div class="spk-hero-blob spk-hero-blob--2" aria-hidden="true"></div>
+
+                <div class="spk-hero-import-top">
+                    <div class="spk-hero-yt-chip">
+                        <i class="fab fa-youtube" style="color:#ff0000;font-size:18px;" aria-hidden="true"></i>
+                        <span>YouTube Import</span>
+                        <span class="spk-hero-yt-dot"></span>
+                        <span style="color:var(--tct-text-muted, #5b6578);font-size:0.75rem;font-weight:600;">AI-powered</span>
+                    </div>
+                </div>
+
+                <h2 class="spk-hero-import-title">
+                    Dán link YouTube,<br>
+                    AI lo phần còn lại ✨
+                </h2>
+                <p class="spk-hero-import-desc">
+                    Hệ thống tự trích xuất transcript, tạo bài luyện phát âm<br>
+                    và chấm điểm cho bạn — hoàn toàn tự động.
+                </p>
+
+                <div class="spk-hero-input-block">
+                    <div class="spk-hero-url-wrap" id="spk-hero-url-wrap">
+                        <i class="fab fa-youtube spk-hero-url-yt-icon" aria-hidden="true"></i>
+                        <input type="url"
+                               id="mip-url-input"
+                               class="spk-hero-url-input"
+                               placeholder="https://youtube.com/watch?v=..."
+                               aria-label="Đường dẫn YouTube cần nhập"
+                               autocomplete="off" />
+                    </div>
+                    <button type="button" id="mip-submit-btn" class="spk-hero-submit-btn">
+                        <span class="material-symbols-outlined" id="mip-btn-icon" style="font-size:18px;" aria-hidden="true">add_circle</span>
+                        <span id="mip-btn-label">Thêm video</span>
+                    </button>
+                </div>
+
+                @* Custom Clay File Upload for Subtitle *@
+                <div class="spk-hero-subtitle-block mt-3">
+                    <label for="mip-subtitle-input" class="spk-custom-file-label">
+                        <span class="d-inline-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined text-primary" style="font-size:16px;" aria-hidden="true">subtitles</span>
+                            <span id="mip-subtitle-filename">Đính kèm phụ đề SRT/VTT (tùy chọn)</span>
+                        </span>
+                        <span class="spk-file-browse-btn">Chọn tệp</span>
+                    </label>
+                    <input id="mip-subtitle-input" name="subtitle" type="file" accept=".srt,.vtt,text/vtt" class="visually-hidden" />
+                </div>
+
+                <div id="mip-feedback" class="spk-hero-feedback" aria-live="polite" role="alert"></div>
+
+                <div class="spk-hero-feature-row">
+                    <span class="spk-hero-feature-pill">
+                        <span class="material-symbols-outlined" style="font-size:14px;" aria-hidden="true">auto_awesome</span> AI phân tích
+                    </span>
+                    <span class="spk-hero-feature-pill">
+                        <span class="material-symbols-outlined" style="font-size:14px;" aria-hidden="true">mic</span> Chấm điểm
+                    </span>
+                    <span class="spk-hero-feature-pill">
+                        <span class="material-symbols-outlined" style="font-size:14px;" aria-hidden="true">headphones</span> Nghe chép
+                    </span>
+                </div>
+            </section>
         </div>
-
-        @* Right: Hero Import Panel *@
-        <section class="spk-hero-import" id="my-import-panel" aria-label="Thêm video YouTube">
-            @* Decorative blobs *@
-            <div class="spk-hero-blob spk-hero-blob--1" aria-hidden="true"></div>
-            <div class="spk-hero-blob spk-hero-blob--2" aria-hidden="true"></div>
-
-            <div class="spk-hero-import-top">
-                <div class="spk-hero-yt-chip">
-                    <i class="fab fa-youtube" style="color:#ff4444;font-size:18px;"></i>
-                    <span>YouTube Import</span>
-                    <span class="spk-hero-yt-dot"></span>
-                    <span style="color:rgba(255,255,255,0.65);font-size:0.75rem;">AI-powered</span>
-                </div>
-            </div>
-
-            <h2 class="spk-hero-import-title">
-                Dán link YouTube,<br>
-                AI lo phần còn lại ✨
-            </h2>
-            <p class="spk-hero-import-desc">
-                Hệ thống tự trích xuất transcript, tạo bài luyện phát âm<br>
-                và chấm điểm cho bạn — hoàn toàn tự động.
-            </p>
-
-            <div class="spk-hero-input-block">
-                <div class="spk-hero-url-wrap" id="spk-hero-url-wrap">
-                    <i class="fab fa-youtube spk-hero-url-yt-icon"></i>
-                    <input type="url"
-                           id="mip-url-input"
-                           class="spk-hero-url-input"
-                           placeholder="https://youtube.com/watch?v=..."
-                           autocomplete="off" />
-                </div>
-                <button type="button" id="mip-submit-btn" class="spk-hero-submit-btn">
-                    <span class="material-symbols-outlined" id="mip-btn-icon" style="font-size:18px;">add_circle</span>
-                    <span id="mip-btn-label">Thêm video</span>
-                </button>
-            </div>
-            <div class="spk-hero-input-block">
-                <label for="mip-subtitle-input" class="spk-hero-feature-pill">Phụ đề SRT/VTT (tùy chọn)</label>
-                <input id="mip-subtitle-input" name="subtitle" type="file" accept=".srt,.vtt,text/vtt" />
-            </div>
-
-            <div id="mip-feedback" class="spk-hero-feedback" aria-live="polite" role="alert"></div>
-
-            <div class="spk-hero-feature-row">
-                <span class="spk-hero-feature-pill">
-                    <span class="material-symbols-outlined" style="font-size:14px;">auto_awesome</span> AI phân tích
-                </span>
-                <span class="spk-hero-feature-pill">
-                    <span class="material-symbols-outlined" style="font-size:14px;">mic</span> Chấm điểm
-                </span>
-                <span class="spk-hero-feature-pill">
-                    <span class="material-symbols-outlined" style="font-size:14px;">headphones</span> Nghe chép
-                </span>
-            </div>
-        </section>
     </div>
 
-    @* ── FILTERS ────────────────────────────────────────── *@
-    @if (Model.VideosByLevel.Any() || Model.Topics.Any())
-    {
-        <section class="spk-filter-section mb-10" aria-label="Bộ lọc">
-            <div class="spk-filter-row">
-                @if (Model.VideosByLevel.Any())
-                {
-                    <div class="spk-filter-group">
-                        <span class="spk-filter-group-label">
-                            <span class="material-symbols-outlined" style="font-size:16px;">school</span>
-                            Trình độ
-                        </span>
-                        <div class="spk-filter-pills">
-                            <a class="level-filter-btn spk-pill-btn @(string.IsNullOrEmpty(Model.ActiveLevel) ? "spk-pill-btn--active" : null)"
-                               data-level="all"
-                               href="@Url.Action("Index", "Speaking", new { topic = Model.ActiveTopic, search = Model.ActiveSearch })">Tất cả</a>
-                            @foreach (var level in new[] { "A1", "A2", "B1", "B2", "C1", "C2" })
-                            {
-                                <a class="level-filter-btn spk-pill-btn @(Model.ActiveLevel == level ? "spk-pill-btn--active" : null)"
-                                   data-level="@level"
-                                   href="@Url.Action("Index", "Speaking", new { level, topic = Model.ActiveTopic, search = Model.ActiveSearch })">@level</a>
-                            }
-                        </div>
-                    </div>
-                    @if (Model.Topics.Any())
-                    {
-                        <span class="spk-filter-divider" aria-hidden="true"></span>
-                    }
-                }
-
-                @if (Model.Topics.Any())
-                {
-                    <div class="spk-filter-group spk-filter-group--topics">
-                        <span class="spk-filter-group-label">
-                            <span class="material-symbols-outlined" style="font-size:16px;">label</span>
-                            Chủ đề
-                        </span>
-                        <div class="spk-topic-chips spk-scroll-x">
-                            <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
-                               data-topic="all"
-                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch })">Tất cả chủ đề</a>
-                            @foreach (var topic in Model.Topics)
-                            {
-                                <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
-                                   data-topic="@topic"
-                                   href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch })">@topic</a>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
-        </section>
-    }
-
-    @* ── WHY PRACTICE SPEAKING ──────────────────────────── *@
-    <section class="spk-why-section mb-10" aria-label="Lợi ích">
+    @* ── WHY PRACTICE SPEAKING (Clay Feature Cards) ─────── *@
+    <section class="spk-why-section mb-5" aria-label="Lợi ích luyện nói">
         <div class="spk-why-grid">
             <div class="spk-why-card">
                 <div class="spk-why-icon spk-why-icon--blue">
-                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1">mic</span>
+                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1" aria-hidden="true">mic</span>
                 </div>
                 <h3 class="spk-why-title">AI Chấm điểm</h3>
-                <p class="spk-why-desc">Phát âm được AI đánh giá theo chuẩn bản ngữ, chính xác đến từng âm tiết.</p>
+                <p class="spk-why-desc">Đối chiếu văn bản nhận diện chính xác từng từ, chỉ rõ từ khớp và từ thiếu.</p>
             </div>
             <div class="spk-why-card">
                 <div class="spk-why-icon spk-why-icon--green">
-                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1">trending_up</span>
+                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1" aria-hidden="true">trending_up</span>
                 </div>
                 <h3 class="spk-why-title">Tiến bộ rõ rệt</h3>
-                <p class="spk-why-desc">Theo dõi tiến trình học qua từng câu, từng video — không bỏ sót chi tiết nào.</p>
+                <p class="spk-why-desc">Theo dõi tiến trình hoàn thành qua từng câu, từng video một cách trực quan.</p>
             </div>
             <div class="spk-why-card">
                 <div class="spk-why-icon spk-why-icon--purple">
-                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1">headphones</span>
+                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1" aria-hidden="true">headphones</span>
                 </div>
                 <h3 class="spk-why-title">Nghe &amp; Chép</h3>
-                <p class="spk-why-desc">Chế độ Dictation giúp rèn kỹ năng nghe hiểu song song với phát âm.</p>
+                <p class="spk-why-desc">Chế độ Dictation giúp rèn kỹ năng nghe hiểu và phản xạ từ vựng song song.</p>
             </div>
             <div class="spk-why-card">
                 <div class="spk-why-icon spk-why-icon--amber">
-                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1">school</span>
+                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1" aria-hidden="true">school</span>
                 </div>
                 <h3 class="spk-why-title">Chuẩn CEFR</h3>
-                <p class="spk-why-desc">Video được phân loại từ A1 đến C2 — phù hợp với mọi trình độ.</p>
+                <p class="spk-why-desc">Video được phân loại từ A1 đến C2 — lộ trình rõ ràng phù hợp mọi trình độ.</p>
             </div>
         </div>
     </section>
 
     @* ── MY VIDEOS ──────────────────────────────────────── *@
-    <section class="spk-my-section" id="my-videos-section" aria-label="Video của tôi">
+    <section class="spk-my-section mb-5" id="my-videos-section" aria-label="Video của tôi">
         <div class="spk-my-section-header">
             <div class="spk-my-section-title-row">
                 <div class="spk-my-section-icon">
-                    <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">folder_special</span>
+                    <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1" aria-hidden="true">folder_special</span>
                 </div>
                 <h2 class="spk-section-title spk-headline-md">
                     Video của tôi
                     <span class="spk-count-badge" id="my-sec-count" data-total-count="@Model.MyVideosTotalCount">@Model.MyVideosTotalCount video</span>
                     @if (Model.IsMyVideosLocked)
                     {
-                        <span class="spk-locked-badge"><i class="fas fa-lock"></i> Tính năng đã khóa</span>
+                        <span class="spk-locked-badge"><i class="fas fa-lock me-1" aria-hidden="true"></i> Tính năng đã khóa</span>
                     }
                 </h2>
             </div>
-            <p class="spk-my-section-hint">Video bạn đã import từ YouTube để luyện tập riêng.</p>
+            <p class="spk-my-section-hint">Video bạn đã import từ YouTube để luyện tập riêng tư.</p>
         </div>
 
         <div class="spk-bento-grid spk-bento-grid--4" id="my-videos-grid">
@@ -260,7 +231,7 @@
                             <div class="spk-thumb-badge-tl">
                                 @if (v.IsLocked)
                                 {
-                                    <span class="spk-badge spk-badge--red"><i class="fas fa-lock"></i> ĐÃ KHÓA</span>
+                                    <span class="spk-badge spk-badge--red"><i class="fas fa-lock me-1" aria-hidden="true"></i> ĐÃ KHÓA</span>
                                 }
                                 else if (v.ImportStatus == "processing")
                                 {
@@ -275,12 +246,11 @@
                                     <span class="spk-badge spk-badge--green">SẴN SÀNG</span>
                                 }
                             </div>
-                            @* Play button overlay on hover *@
                             @if (v.ImportStatus == "ready" && !v.IsLocked)
                             {
                                 <div class="spk-thumb-play-overlay">
                                     <div class="spk-thumb-play-btn">
-                                        <span class="material-symbols-outlined" style="font-size:28px;font-variation-settings:'FILL' 1">play_arrow</span>
+                                        <span class="material-symbols-outlined" style="font-size:28px;font-variation-settings:'FILL' 1" aria-hidden="true">play_arrow</span>
                                     </div>
                                 </div>
                             }
@@ -291,14 +261,14 @@
                                 @if (!string.IsNullOrEmpty(v.Duration))
                                 {
                                     <span class="spk-meta-item">
-                                        <span class="material-symbols-outlined" style="font-size:13px;">schedule</span>
+                                        <span class="material-symbols-outlined" style="font-size:13px;" aria-hidden="true">schedule</span>
                                         @v.Duration
                                     </span>
                                 }
                                 @if (v.SentenceCount > 0)
                                 {
                                     <span class="spk-meta-item">
-                                        <span class="material-symbols-outlined" style="font-size:13px;">format_list_bulleted</span>
+                                        <span class="material-symbols-outlined" style="font-size:13px;" aria-hidden="true">format_list_bulleted</span>
                                         @v.SentenceCount câu
                                     </span>
                                 }
@@ -307,31 +277,31 @@
                                 @if (v.IsLocked)
                                 {
                                     <a href="/Account/Premium" class="spk-btn spk-btn--warning spk-btn--full">
-                                        <i class="fas fa-crown"></i> Nâng cấp Premium
+                                        <i class="fas fa-crown me-1" aria-hidden="true"></i> Nâng cấp Premium
                                     </a>
                                 }
                                 else if (v.ImportStatus == "ready")
                                 {
                                     <a href="@Url.Action("Practice", "Speaking", new { id = v.Id })" class="spk-btn spk-btn--primary spk-btn--flex">
-                                        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">mic</span>
+                                        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1" aria-hidden="true">mic</span>
                                         Luyện tập
                                     </a>
                                     <button type="button" class="spk-btn spk-btn--danger-outline spk-btn--icon my-btn-delete"
-                                            data-id="@v.Id" data-title="@v.Title" title="Xóa video">
-                                        <span class="material-symbols-outlined" style="font-size:16px;">delete</span>
+                                            data-id="@v.Id" data-title="@v.Title" title="Xóa video" aria-label="Xóa video @v.Title">
+                                        <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">delete</span>
                                     </button>
                                 }
                                 else if (v.ImportStatus == "processing")
                                 {
-                                    <button class="spk-btn spk-btn--disabled spk-btn--full" disabled>
-                                        <i class="fas fa-spinner fa-spin"></i> Đang xử lý...
+                                    <button type="button" class="spk-btn spk-btn--disabled spk-btn--full" disabled>
+                                        <i class="fas fa-spinner fa-spin me-1" aria-hidden="true"></i> Đang xử lý...
                                     </button>
                                 }
                                 else
                                 {
                                     <button type="button" class="spk-btn spk-btn--danger-outline spk-btn--full my-btn-delete"
                                             data-id="@v.Id" data-title="@v.Title">
-                                        <span class="material-symbols-outlined" style="font-size:16px;">delete</span> Xóa
+                                        <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">delete</span> Xóa
                                     </button>
                                 }
                             </div>
@@ -348,23 +318,93 @@
                             data-page="@(Model.MyCurrentPage + 1)"
                             data-page-size="@Model.PageSize"
                             data-search="@(Model.ActiveSearch ?? "")">
+                        <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">expand_more</span>
                         Xem thêm video của tôi
                     </button>
                 </div>
             }
 
-            @* Empty state placeholder *@
+            @* Empty state placeholder (Clay Bento Showcase) *@
             <div class="spk-my-empty @(Model.MyVideos.Any() ? "d-none" : "")" id="my-empty-state">
-                <div class="spk-my-empty-icon">
-                    <span class="material-symbols-outlined" style="font-size:36px;font-variation-settings:'FILL' 1">video_call</span>
+                <div class="spk-empty-left">
+                    <div class="spk-hero-eyebrow mb-1">
+                        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1;color:#ff9800" aria-hidden="true">auto_awesome</span>
+                        <span>Không gian học cá nhân</span>
+                        <span class="spk-eyebrow-dot" aria-hidden="true"></span>
+                        <span class="spk-eyebrow-badge">Tự chọn nội dung</span>
+                    </div>
+
+                    <div class="spk-empty-illus-row">
+                        <div class="spk-empty-illus-box">
+                            <img src="~/images/speaking/speaking-empty-clay.svg" alt="Chưa có video" width="72" height="54" />
+                        </div>
+                        <div>
+                            <h3 class="spk-my-empty-title">Luyện nói với bất kỳ video nào bạn thích</h3>
+                            <p class="spk-empty-tagline text-muted small mb-0">Biến nội dung YouTube yêu thích thành bài tập tương tác</p>
+                        </div>
+                    </div>
+
+                    <p class="spk-my-empty-desc">
+                        Dán link YouTube (Podcast, Ted Talk, Tin tức, Phim ảnh...) vào thanh công cụ phía trên. AI sẽ tự động trích xuất câu thoại, phiên âm IPA và chấm điểm khẩu hình theo từng âm tiết.
+                    </p>
+
+                    <div class="spk-empty-actions-row">
+                        <button type="button" class="spk-btn spk-btn--primary" onclick="focusImportInput()">
+                            <span class="material-symbols-outlined" style="font-size:18px;font-variation-settings:'FILL' 1" aria-hidden="true">add_circle</span>
+                            Dán link YouTube ngay
+                        </button>
+                        <span class="spk-empty-hint-text">
+                            <span class="material-symbols-outlined text-success" style="font-size:16px;font-variation-settings:'FILL' 1" aria-hidden="true">check_circle</span>
+                            Miễn phí &amp; hỗ trợ mọi video có phụ đề
+                        </span>
+                    </div>
+
+                    @* Quick Sample Suggestions *@
+                    <div class="spk-empty-samples mt-2">
+                        <span class="spk-empty-samples-label">Gợi ý video mẫu:</span>
+                        <div class="spk-sample-chips-wrap">
+                            <button type="button" class="spk-sample-chip" data-url="https://www.youtube.com/watch?v=gT_qWk7B8tQ" onclick="setSampleVideo(this)">
+                                <span class="material-symbols-outlined" style="font-size:14px;color:#ef4444" aria-hidden="true">play_circle</span>
+                                TED-Ed: How memories form
+                            </button>
+                            <button type="button" class="spk-sample-chip" data-url="https://www.youtube.com/watch?v=UF8uR6Z6KLc" onclick="setSampleVideo(this)">
+                                <span class="material-symbols-outlined" style="font-size:14px;color:#ef4444" aria-hidden="true">play_circle</span>
+                                Steve Jobs Stanford Speech
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <p class="spk-my-empty-title">Chưa có video nào</p>
-                <p class="spk-my-empty-desc">Dán link YouTube bên trên để AI tạo bài luyện nói riêng cho bạn</p>
-                <button type="button" class="spk-btn spk-btn--primary spk-btn--sm"
-                        onclick="document.getElementById('mip-url-input').focus()">
-                    <span class="material-symbols-outlined" style="font-size:16px;">add</span>
-                    Thêm video ngay
-                </button>
+
+                <div class="spk-empty-right">
+                    <div class="spk-empty-steps-heading">
+                        <span class="material-symbols-outlined text-primary" style="font-size:18px;font-variation-settings:'FILL' 1" aria-hidden="true">tips_and_updates</span>
+                        3 bước đơn giản để bắt đầu:
+                    </div>
+
+                    <div class="spk-empty-step-card">
+                        <div class="spk-empty-step-num">1</div>
+                        <div class="spk-empty-step-info">
+                            <div class="spk-empty-step-title">Dán đường dẫn YouTube</div>
+                            <div class="spk-empty-step-desc">Sao chép link video tiếng Anh bất kỳ và dán vào thanh nhập liệu phía trên.</div>
+                        </div>
+                    </div>
+
+                    <div class="spk-empty-step-card">
+                        <div class="spk-empty-step-num">2</div>
+                        <div class="spk-empty-step-info">
+                            <div class="spk-empty-step-title">AI bóc tách câu thoại</div>
+                            <div class="spk-empty-step-desc">Tự động phân tích audio, căn chỉnh phụ đề và tạo bài tập shadowing từng câu.</div>
+                        </div>
+                    </div>
+
+                    <div class="spk-empty-step-card">
+                        <div class="spk-empty-step-num">3</div>
+                        <div class="spk-empty-step-info">
+                            <div class="spk-empty-step-title">Luyện nói &amp; Chấm phát âm</div>
+                            <div class="spk-empty-step-desc">Ghi âm trực tiếp, đối chiếu sóng âm với người bản xứ và xem điểm số chi tiết.</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -383,32 +423,85 @@
         </div>
     </section>
 
-    @* ── PUBLIC LIBRARY HEADER ───────────────────────────── *@
-    <div class="spk-library-header mb-5">
-        <div class="spk-library-header-left">
-            <div class="spk-library-header-icon">
-                <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1">auto_stories</span>
+    @* ── UNIFIED PUBLIC LIBRARY TOOLBAR & FILTERS (Clay Card) ── *@
+    <div class="spk-unified-toolbar spk-library-toolbar mb-4" aria-label="Thanh công cụ và bộ lọc thư viện">
+        @* Row 1: Library Header on Left, Search Input on Right *@
+        <div class="spk-toolbar-top-row">
+            <div class="spk-library-toolbar-left spk-library-header-left">
+                <div class="spk-library-toolbar-icon spk-library-header-icon">
+                    <span class="material-symbols-outlined" style="font-size:22px;font-variation-settings:'FILL' 1" aria-hidden="true">auto_stories</span>
+                </div>
+                <div>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <h2 class="spk-section-title spk-headline-md mb-0">Video luyện nói theo trình độ</h2>
+                        <span class="spk-count-badge spk-library-count-badge">@totalVideos bài học</span>
+                    </div>
+                    <p class="spk-library-subtitle mb-0">Được biên soạn theo khung chuẩn CEFR từ A1 đến C2</p>
+                </div>
             </div>
-            <div>
-                <h2 class="spk-section-title spk-headline-md">Video luyện nói theo trình độ</h2>
-                <p class="spk-library-subtitle">Được biên soạn theo chuẩn CEFR từ A1 đến C2</p>
+            <div class="spk-library-toolbar-right spk-library-header-right">
+                <div class="spk-search-wrap">
+                    <span class="material-symbols-outlined spk-search-icon" aria-hidden="true">search</span>
+                    <input type="search"
+                           id="vi-search" value="@Model.ActiveSearch"
+                           class="spk-search-input"
+                           placeholder="Tìm kiếm video..."
+                           aria-label="Tìm kiếm video luyện nói"
+                           autocomplete="off" />
+                    @if (!string.IsNullOrEmpty(Model.ActiveSearch))
+                    {
+                        <a href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic })" class="spk-search-clear" title="Xóa tìm kiếm" aria-label="Xóa tìm kiếm">
+                            <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">close</span>
+                        </a>
+                    }
+                </div>
             </div>
         </div>
-        <div class="spk-library-header-right">
-            <div class="spk-search-wrap">
-                <span class="material-symbols-outlined spk-search-icon">search</span>
-                <input type="search"
-                       id="vi-search" value="@Model.ActiveSearch"
-                       class="spk-search-input"
-                       placeholder="Tìm kiếm video..."
-                       aria-label="Tìm kiếm video luyện nói"
-                       autocomplete="off" />
+
+        @* Hairline Divider *@
+        <div class="spk-toolbar-divider" aria-hidden="true"></div>
+
+        @* Row 2: Filter Controls (Trình độ + Chủ đề) *@
+        <div class="spk-toolbar-filter-row spk-filter-row" role="region" aria-label="Bộ lọc danh mục video">
+            <div class="spk-filter-group">
+                <span class="spk-filter-group-label">
+                    <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">school</span>
+                    Trình độ
+                </span>
+                <div class="spk-filter-pills" role="toolbar" aria-label="Lọc theo trình độ">
+                    <a class="level-filter-btn spk-pill-btn @(string.IsNullOrEmpty(Model.ActiveLevel) ? "spk-pill-btn--active" : null)"
+                       data-level="all"
+                       href="@Url.Action("Index", "Speaking", new { topic = Model.ActiveTopic, search = Model.ActiveSearch })">Tất cả</a>
+                    @foreach (var level in new[] { "A1", "A2", "B1", "B2", "C1", "C2" })
+                    {
+                        <a class="level-filter-btn spk-pill-btn @(Model.ActiveLevel == level ? "spk-pill-btn--active" : null)"
+                           data-level="@level"
+                           href="@Url.Action("Index", "Speaking", new { level, topic = Model.ActiveTopic, search = Model.ActiveSearch })">@level</a>
+                    }
+                </div>
             </div>
-            <div class="spk-view-toggle d-none d-md-flex" title="Chế độ xem lưới">
-                <button type="button" class="spk-view-btn spk-view-btn--active" title="Lưới" aria-label="Chế độ xem lưới" disabled>
-                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
-                </button>
-            </div>
+
+            @if (Model.Topics.Any())
+            {
+                <span class="spk-filter-divider" aria-hidden="true"></span>
+                <div class="spk-filter-group spk-filter-group--topics">
+                    <span class="spk-filter-group-label">
+                        <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">label</span>
+                        Chủ đề
+                    </span>
+                    <div class="spk-topic-chips spk-scroll-x" role="toolbar" aria-label="Lọc theo chủ đề">
+                        <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
+                           data-topic="all"
+                           href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch })">Tất cả chủ đề</a>
+                        @foreach (var topic in Model.Topics)
+                        {
+                            <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
+                               data-topic="@topic"
+                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch })">@topic</a>
+                        }
+                    </div>
+                </div>
+            }
         </div>
     </div>
 
@@ -416,8 +509,8 @@
     @if (!Model.VideosByLevel.Any())
     {
         <div class="spk-empty-full vi-empty text-center p-5">
-            <span class="material-symbols-outlined" style="font-size:56px;opacity:0.3;color:var(--stitch-outline)">satellite_alt</span>
-            <h3 class="spk-empty-title mt-3">Chưa có video</h3>
+            <img src="~/images/speaking/speaking-empty-clay.svg" alt="Chưa có video" class="spk-empty-svg mb-3" width="180" height="135" />
+            <h3 class="spk-empty-title mt-2">Chưa có video công khai</h3>
             <p class="spk-empty-desc">Hệ thống đang cập nhật nội dung. Vui lòng quay lại sau!</p>
         </div>
     }
@@ -436,11 +529,11 @@
             var metaAccent = meta.Accent;
             var metaIcon   = meta.Icon;
 
-            <section class="vi-level-section spk-level-section mb-10" data-level="@level">
-                <div class="spk-level-section-header mb-4">
+            <section class="vi-level-section spk-level-section mb-5" data-level="@level" aria-label="Trình độ @level">
+                <div class="spk-level-section-header mb-3">
                     <div class="spk-level-section-badge-wrap">
                         <span class="spk-level-section-badge" style="background:@metaBg; color:@metaFg; border: 2px solid @metaAccent;">
-                            <span class="spk-level-badge-icon">@metaIcon</span>
+                            <span class="spk-level-badge-icon" aria-hidden="true">@metaIcon</span>
                             @level
                         </span>
                         <div>
@@ -480,7 +573,7 @@
                                         </div>
                                         <div class="spk-pub-card-play-overlay">
                                             <div class="spk-pub-card-play">
-                                                <span class="material-symbols-outlined" style="font-size:24px;font-variation-settings:'FILL' 1">play_arrow</span>
+                                                <span class="material-symbols-outlined" style="font-size:24px;font-variation-settings:'FILL' 1" aria-hidden="true">play_arrow</span>
                                             </div>
                                         </div>
                                     </div>
@@ -494,14 +587,14 @@
                                             @if (item.SentenceCount > 0)
                                             {
                                                 <span class="spk-pub-card-meta-item">
-                                                    <span class="material-symbols-outlined" style="font-size:13px;">format_list_bulleted</span>
+                                                    <span class="material-symbols-outlined" style="font-size:13px;" aria-hidden="true">format_list_bulleted</span>
                                                     @item.SentenceCount câu
                                                 </span>
                                             }
                                         </div>
                                         <div class="spk-pub-card-footer">
                                             <span class="spk-pub-practice-btn">
-                                                <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">mic</span>
+                                                <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1" aria-hidden="true">mic</span>
                                                 Luyện tập
                                             </span>
                                         </div>
@@ -512,7 +605,7 @@
                     }
                 </div>
 
-                <div class="numbered-pagination-container d-flex justify-content-center gap-2 mt-4 flex-wrap" data-level="@level"></div>
+                <div class="numbered-pagination-container d-flex justify-content-center gap-2 flex-wrap" data-level="@level"></div>
                 @if (Model.PublicHasMoreByLevel.GetValueOrDefault(level))
                 {
                     <div class="d-flex justify-content-center mt-3">
@@ -523,6 +616,7 @@
                                 data-search="@(Model.ActiveSearch ?? "")"
                                 data-page="@(Model.Page + 1)"
                                 data-page-size="@Model.PageSize">
+                            <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">expand_more</span>
                             Xem thêm video @level
                         </button>
                     </div>
@@ -533,45 +627,41 @@
 
     @* ── NO RESULTS ─────────────────────────────────────── *@
     <div id="vi-no-results" class="spk-no-results text-center py-5" style="display:none;">
-        <div class="spk-no-results-icon">
-            <span class="material-symbols-outlined">search_off</span>
-        </div>
-        <h3 class="spk-empty-title mt-3">Không tìm thấy video</h3>
-        <p class="spk-empty-desc">Hãy thử tìm kiếm với từ khóa hoặc bộ lọc khác.</p>
+        <img src="~/images/speaking/speaking-empty-clay.svg" alt="Không tìm thấy kết quả" class="spk-empty-svg mb-3" width="160" height="120" />
+        <h3 class="spk-empty-title mt-2">Không tìm thấy video phù hợp</h3>
+        <p class="spk-empty-desc">Hãy thử tìm kiếm với từ khóa khác hoặc điều chỉnh lại bộ lọc trình độ / chủ đề.</p>
     </div>
 
 </div>
 
-@* ── DELETE MODAL ────────────────────────────────────────── *@
+@* ── DELETE MODAL (Clay Dialog) ────────────────────────── *@
 <div class="modal fade" id="deleteVideoModal" tabindex="-1" aria-labelledby="deleteVideoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="spk-modal-content">
             <div class="spk-modal-header">
                 <div class="spk-modal-header-icon spk-modal-header-icon--danger">
-                    <span class="material-symbols-outlined">delete_forever</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">delete_forever</span>
                 </div>
                 <div class="flex-grow-1">
                     <h5 class="spk-modal-title" id="deleteVideoModalLabel">Xác nhận xóa video</h5>
                     <p class="spk-modal-subtitle">Hành động này không thể hoàn tác.</p>
                 </div>
-                <button type="button" class="spk-modal-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
+                <button type="button" class="spk-modal-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
             <div class="spk-modal-body">
                 <div class="spk-modal-warning-box">
-                    <span class="material-symbols-outlined spk-modal-warning-icon">warning</span>
+                    <span class="material-symbols-outlined spk-modal-warning-icon" aria-hidden="true">warning</span>
                     <p class="mb-0">Bạn sắp xóa video <strong id="delete-modal-title" class="spk-modal-video-name"></strong>.<br>
                     Toàn bộ tiến trình luyện tập của video này cũng sẽ bị xóa vĩnh viễn.</p>
                 </div>
             </div>
             <div class="spk-modal-footer">
                 <button type="button" class="spk-btn spk-btn--ghost" data-bs-dismiss="modal">
-                    <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span>
+                    <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">arrow_back</span>
                     Hủy
                 </button>
                 <button type="button" class="spk-btn spk-btn--danger" id="delete-modal-confirm">
-                    <span class="material-symbols-outlined" style="font-size:16px;">delete_forever</span>
+                    <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">delete_forever</span>
                     Xóa vĩnh viễn
                 </button>
             </div>
@@ -581,4 +671,21 @@
 
 @section Scripts {
     <script src="~/js/speaking.js" asp-append-version="true"></script>
+    <script>
+        (function() {
+            var subInput = document.getElementById('mip-subtitle-input');
+            var subLabel = document.getElementById('mip-subtitle-filename');
+            if (subInput && subLabel) {
+                subInput.addEventListener('change', function() {
+                    if (this.files && this.files.length > 0) {
+                        subLabel.textContent = this.files[0].name;
+                        subLabel.classList.add('fw-bold', 'text-primary');
+                    } else {
+                        subLabel.textContent = 'Đính kèm phụ đề SRT/VTT (tùy chọn)';
+                        subLabel.classList.remove('fw-bold', 'text-primary');
+                    }
+                });
+            }
+        })();
+    </script>
 }

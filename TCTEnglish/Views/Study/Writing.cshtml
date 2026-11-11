@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="~/css/writing-index.css" asp-append-version="true" />
 }
 
-<div class="writing-index-page">
+<div class="tct-theme writing-index-page">
     <div class="writing-index-shell">
 
         @* ── Header ──────────────────────────────────────────── *@
         <header class="writing-header">
+            <div class="writing-header-badge">
+                <i class="fa-solid fa-pen-fancy me-1" aria-hidden="true"></i> Writing Mastery
+            </div>
             <h1 class="writing-header-title">Kỹ năng Viết</h1>
             <p class="writing-header-subtitle">
                 Hoàn thiện khả năng diễn đạt ý tưởng qua văn bản với các bài tập chuyên sâu từ email công việc đến báo cáo phân tích.
@@ -23,15 +26,17 @@
         <div class="writing-bento-grid">
 
             @* Continue Learning Card *@
-            <div class="writing-continue-card">
+            <article class="writing-continue-card">
                 <div class="writing-continue-body">
-                    <span class="writing-continue-badge">Tiếp tục học</span>
-                    <h3 class="writing-continue-title">Viết Email Chuyên Nghiệp</h3>
+                    <span class="writing-continue-badge">
+                        <i class="fa-solid fa-bolt me-1" aria-hidden="true"></i> Tiếp tục học
+                    </span>
+                    <h2 class="writing-continue-title">Viết Email Chuyên Nghiệp</h2>
                     <p class="writing-continue-desc">
-                        Bạn đã hoàn thành 65% bài học này. Tiếp tục để làm chủ cấu trúc email trang trọng.
+                        Bạn đã hoàn thành 65% bài học này. Tiếp tục để làm chủ cấu trúc email trang trọng và phong thái chuyên nghiệp.
                     </p>
                     <div class="writing-continue-progress-wrap">
-                        <div class="writing-continue-progress-bar">
+                        <div class="writing-continue-progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ bài học Viết Email Chuyên Nghiệp">
                             <div class="writing-continue-progress-fill" style="width: 65%"></div>
                         </div>
                         <span class="writing-continue-progress-label">65%</span>
@@ -46,11 +51,13 @@
                 </div>
                 <div class="writing-continue-img-wrap" aria-hidden="true">
                     <img class="writing-continue-img"
-                         src="/images/writing-banner.jpg"
-                         alt="Bàn làm việc học tập"
-                         onerror="this.style.display='none'" />
+                         src="~/images/writing/writing-banner-clay.svg"
+                         alt="Bàn làm việc học viết tiếng Anh"
+                         width="280"
+                         height="175"
+                         loading="lazy" />
                 </div>
-            </div>
+            </article>
 
             @* Stats Column *@
             <div class="writing-stats-column">
@@ -58,27 +65,29 @@
                     <div class="writing-stat-icon writing-stat-icon--streak">
                         <i class="fas fa-fire" aria-hidden="true"></i>
                     </div>
-                    <div>
+                    <div class="writing-stat-content">
                         <p class="writing-stat-label">Chuỗi ngày học</p>
                         <p class="writing-stat-value">12 Ngày</p>
+                        <span class="writing-stat-sub">Phong độ xuất sắc!</span>
                     </div>
                 </div>
                 <div class="writing-stat-card">
                     <div class="writing-stat-icon writing-stat-icon--words">
                         <i class="fas fa-pen-nib" aria-hidden="true"></i>
                     </div>
-                    <div>
+                    <div class="writing-stat-content">
                         <p class="writing-stat-label">Tổng số từ đã viết</p>
                         <p class="writing-stat-value">4,250 Từ</p>
+                        <span class="writing-stat-sub">+350 từ tuần này</span>
                     </div>
                 </div>
             </div>
         </div>
 
         @* ── Level Selection ──────────────────────────────────── *@
-        <section class="writing-section">
+        <section class="writing-section" aria-labelledby="writing-level-heading">
             <div class="writing-section-heading">
-                <h2 class="writing-section-title">Chọn cấp độ của bạn</h2>
+                <h2 id="writing-level-heading" class="writing-section-title">Chọn cấp độ của bạn</h2>
                 <p class="writing-section-subtitle" data-writing-selected-level-copy>
                     Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.
                 </p>
@@ -96,14 +105,17 @@
                        data-level-title="@level.Title"
                        aria-current="@(level.IsSelected ? "true" : "false")"
                        style="--writing-accent: @level.AccentColor;">
-                        <div class="writing-card-level-icon" aria-hidden="true">
-                            <i class="@level.IconClass"></i>
+                        <div class="writing-card-level-top">
+                            <div class="writing-card-level-icon" aria-hidden="true">
+                                <i class="@level.IconClass"></i>
+                            </div>
+                            <span class="writing-card-level-tag">@level.Key.ToUpper()</span>
                         </div>
                         <h3 class="writing-card-level-title">@level.Title</h3>
                         <p class="writing-card-level-desc">@level.Description</p>
                         <div class="writing-card-level-meta">
-                            <span>@level.DurationText</span>
-                            <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                            <span><i class="far fa-clock me-1"></i>@level.DurationText</span>
+                            <span class="writing-card-level-arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                         </div>
                     </a>
                 }
@@ -111,9 +123,10 @@
         </section>
 
         @* ── Content Topics ───────────────────────────────────── *@
-        <section class="writing-section">
+        <section class="writing-section" aria-labelledby="writing-content-heading">
             <div class="writing-section-heading">
-                <h2 class="writing-section-title">Chủ đề viết phổ biến</h2>
+                <h2 id="writing-content-heading" class="writing-section-title">Chủ đề viết phổ biến</h2>
+                <p class="writing-section-subtitle">Lựa chọn thể loại bài viết phù hợp với mục tiêu học tập và công việc hàng ngày của bạn.</p>
             </div>
 
             <div class="writing-content-grid">
@@ -128,12 +141,15 @@
                        data-content-type-key="@contentType.Key"
                        style="--writing-accent: @contentType.AccentColor;">
                         <div class="writing-card-content-icon-wrap" aria-hidden="true">
-                            <i class="@contentType.IconClass opacity-20"></i>
-                            <i class="@contentType.IconClass z-10"></i>
+                            <i class="@contentType.IconClass opacity-20" aria-hidden="true"></i>
+                            <i class="@contentType.IconClass z-10" aria-hidden="true"></i>
                         </div>
                         <div class="writing-card-content-body">
-                            <h4 class="writing-card-content-title">@contentType.Title</h4>
+                            <h3 class="writing-card-content-title">@contentType.Title</h3>
                             <p class="writing-card-content-desc">@contentType.Description</p>
+                            <span class="writing-card-content-cta">
+                                Xem bài tập <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                            </span>
                         </div>
                     </a>
                 }

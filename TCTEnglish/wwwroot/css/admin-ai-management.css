@@ -1,0 +1,67 @@
+/*
+    TCT English Admin AI Management — Claymorphism scoped styling.
+    Consumes shared tokens (--tct-*) defined in tct-learning-ui.css.
+*/
+
+.admin-ai-management-page {
+    font-family: var(--tct-font, Inter, Arial, sans-serif);
+    color: var(--tct-text, #111c2d);
+    padding-bottom: var(--tct-space-xl, 2rem);
+}
+
+.admin-ai-management-page .card {
+    background: var(--tct-surface, #ffffff);
+    border: 1px solid var(--tct-border, #e5e7eb) !important;
+    border-radius: var(--tct-radius-lg, 18px);
+    box-shadow: var(--tct-clay-shadow-quiet, 3px 4px 10px rgba(66, 85, 255, 0.08)) !important;
+    transition: box-shadow var(--tct-dur-fast, 150ms) var(--tct-ease, ease), transform var(--tct-dur-fast, 150ms) var(--tct-ease, ease);
+    overflow: hidden;
+}
+
+.admin-ai-management-page .card:hover {
+    box-shadow: var(--tct-clay-shadow, 8px 8px 20px rgba(66, 85, 255, 0.10)) !important;
+}
+
+.admin-ai-management-page .card-header {
+    background: var(--tct-surface, #ffffff) !important;
+    border-bottom: 1px solid var(--tct-border, #e5e7eb) !important;
+    padding: var(--tct-space-md, 1rem) var(--tct-space-lg, 1.5rem);
+}
+
+.admin-ai-management-page .card-body {
+    padding: var(--tct-space-lg, 1.5rem);
+}
+
+.admin-ai-management-page .form-control {
+    border-radius: var(--tct-radius-md, 12px);
+    border: 1px solid var(--tct-border-control, #7c869b);
+    box-shadow: var(--tct-clay-shadow-field, inset 2px 2px 5px rgba(66, 85, 255, 0.07), inset -2px -2px 5px rgba(255, 255, 255, 0.85));
+    min-height: var(--tct-control-h, 40px);
+    padding: 0.5rem 0.85rem;
+}
+
+.admin-ai-management-page .form-control:focus {
+    border-color: var(--tct-primary, #4255ff);
+    box-shadow: 0 0 0 3px rgba(66, 85, 255, 0.25);
+    outline: none;
+}
+
+.admin-ai-management-page .btn {
+    border-radius: var(--tct-radius-md, 12px);
+    font-weight: var(--tct-weight-semibold, 600);
+}
+
+.admin-ai-management-page .badge {
+    border-radius: 999px;
+    font-weight: var(--tct-weight-semibold, 600);
+    padding: 0.35rem 0.75rem;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .admin-ai-management-page .card,
+    .admin-ai-management-page .btn {
+        transition: none !important;
+        transform: none !important;
+    }
+}

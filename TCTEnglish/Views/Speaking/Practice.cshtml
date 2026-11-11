@@ -24,18 +24,18 @@
 
 @Html.AntiForgeryToken()
 
-<div class="spk-practice-wrapper">
+<div class="tct-theme tct-page spk-practice-wrapper">
 
     @* ── TOP BAR ─────────────────────────────────────────────── *@
-    <header class="spk-practice-topbar">
+    <header class="spk-practice-topbar" aria-label="Thanh điều hướng bài học">
         <div class="spk-practice-topbar-left">
-            <a href="@Url.Action("Index", "Speaking")" class="spk-btn spk-btn--ghost spk-btn--sm spk-btn--back">
-                <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
-                <span class="d-none d-sm-inline">Trở lại</span>
+            <a href="@Url.Action("Index", "Speaking")" class="spk-btn spk-btn--ghost spk-btn--sm spk-btn--back" title="Quay lại danh mục">
+                <span class="material-symbols-outlined" style="font-size:18px;" aria-hidden="true">arrow_back</span>
+                <span class="d-none d-sm-inline">Quay lại</span>
             </a>
             <div class="spk-practice-breadcrumb">
-                <span class="material-symbols-outlined" style="color:var(--stitch-primary);font-size:18px;">record_voice_over</span>
-                <span class="spk-breadcrumb-text">@Model.Title</span>
+                <span class="material-symbols-outlined" style="color:var(--tct-primary, #4255ff);font-size:18px;" aria-hidden="true">record_voice_over</span>
+                <h1 class="spk-breadcrumb-text mb-0 fs-6 fw-bold" title="@Model.Title">@Model.Title</h1>
                 @if (Model.IsPrivate)
                 {
                     <span class="spk-badge spk-badge--surface">
@@ -45,33 +45,29 @@
             </div>
         </div>
 
-        <div class="spk-practice-tabs" role="tablist">
+        <div class="spk-practice-tabs" id="spk-practice-tabs" role="tablist" aria-label="Chế độ luyện tập">
+            <span class="spk-tabs-glider" aria-hidden="true"></span>
             <button class="spk-practice-tab spk-practice-tab--active" id="tab-pronunciation"
-                    data-bs-toggle="pill" data-bs-target="#pronunciation-content" type="button" role="tab">
-                <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">mic</span>
-                Phát âm
+                    type="button" role="tab" aria-selected="true" aria-controls="pronunciation-content">
+                <span class="material-symbols-outlined spk-tab-icon" style="font-size:18px;font-variation-settings:'FILL' 1" aria-hidden="true">mic</span>
+                <span class="spk-tab-text">Phát âm</span>
             </button>
             <button class="spk-practice-tab" id="tab-dictation"
-                    data-bs-toggle="pill" data-bs-target="#dictation-content" type="button" role="tab">
-                <span class="material-symbols-outlined" style="font-size:16px;">keyboard</span>
-                Nghe chép
+                    type="button" role="tab" aria-selected="false" aria-controls="dictation-content">
+                <span class="material-symbols-outlined spk-tab-icon" style="font-size:18px;" aria-hidden="true">keyboard</span>
+                <span class="spk-tab-text">Nghe chép</span>
             </button>
         </div>
     </header>
 
     @* ── TAB CONTENT ─────────────────────────────────────────── *@
-    <div class="tab-content spk-practice-content" id="practiceTabsContent">
+    @* ── MAIN PRACTICE WORKSPACE & BODY ───────────────────────── *@
+    <div class="spk-practice-content" id="practiceTabsContent">
+        <div class="spk-practice-body" id="practice-main-body">
 
-        @* ====================================================
-           TAB 1: PHÁT ÂM (PRONUNCIATION)
-           ==================================================== *@
-        <div class="tab-pane fade show active" id="pronunciation-content" role="tabpanel">
-            <div class="spk-practice-body">
+            @* CENTER / MAIN WORKSPACE *@
+            <section class="spk-practice-workspace spk-scrollbar" aria-label="Khu vực luyện tập">
 
-                @* CENTER: Main Workspace *@
-                <section class="spk-practice-workspace spk-scrollbar">
-
-                    @* Progress bar (compact) *@
                     <div class="spk-progress-card spk-glass-card">
                         <div class="spk-progress-header">
                             <span class="spk-progress-label">
@@ -87,7 +83,7 @@
                         <div class="spk-progress-pct" id="prog-pct">0%</div>
                     </div>
 
-                    @* Video Player *@
+
                     <div class="spk-player-wrap">
                         <div class="spk-player-inner">
                             <div id="youtube-player"></div>
@@ -99,7 +95,11 @@
                         </div>
                     </div>
 
-                    @* Sentence Slider *@
+
+                @* ====================================================
+                   TAB 1: PHÁT ÂM (PRONUNCIATION / SHADOWING)
+                   ==================================================== *@
+                <div class="spk-mode-pane" id="pronunciation-content" role="tabpanel" aria-labelledby="tab-pronunciation">
                     <div class="spk-slider-section spk-glass-card">
                         <div class="spk-slider-header">
                             <h4 class="spk-panel-label">Danh sách câu</h4>
@@ -215,6 +215,16 @@
                                             <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                                         </button>
                                     </div>
+                                    <div class="spk-assess-choice" role="group" aria-label="Cách chấm phát âm">
+                                        <button type="button" class="spk-assess-choice-btn is-selected" id="spk-choice-automatic" aria-pressed="true">Chấm tự động</button>
+                                        <button type="button" class="spk-assess-choice-btn" id="spk-choice-self" aria-pressed="false">Tự luyện</button>
+                                    </div>
+                                    <p id="spk-self-practice-note" class="small text-muted mb-0" hidden>Bạn vẫn có thể luyện và nghe lại. Bản thu này chưa được chấm tự động.</p>
+                                    <div id="spk-self-playback" class="spk-self-playback" hidden>
+                                        <audio id="spk-self-audio" controls preload="none" aria-label="Nghe lại bản thu chưa chấm"></audio>
+                                        <p id="spk-self-playback-label" class="small mb-0">Chưa chấm tự động</p>
+                                    </div>
+                                    <button type="button" class="spk-btn spk-btn--ghost spk-btn--sm" id="spk-offer-self" hidden>Chuyển sang tự luyện</button>
                                     <button class="spk-btn spk-btn--record spk-btn--full spk-record-btn" id="btn-record">
                                         <span class="material-symbols-outlined" id="record-icon" style="font-variation-settings:'FILL' 1">mic</span>
                                         <span id="record-label">Kiểm tra phát âm</span>
@@ -224,66 +234,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </section>
-
-                @* RIGHT: Transcript Panel *@
-                <aside class="spk-transcript-panel" id="spk-transcript-panel">
-                    <div class="spk-transcript-header">
-                        <div class="spk-transcript-header-left">
-                            <h3 class="spk-transcript-title">Kịch bản bài học</h3>
-                            <span class="spk-count-badge" id="spk-transcript-count">0 / @Model.Sentences.Count</span>
-                        </div>
-                        <button class="spk-transcript-collapse-btn d-md-none" id="btn-collapse-transcript"
-                                onclick="toggleTranscriptPanel()" aria-label="Thu gọn kịch bản">
-                            <span class="material-symbols-outlined" style="font-size:18px;">keyboard_arrow_down</span>
-                        </button>
-                    </div>
-                    <div class="spk-transcript-list spk-scrollbar" id="spk-transcript-list">
-                        @for (int i = 0; i < Model.Sentences.Count; i++)
-                        {
-                            var s = Model.Sentences[i];
-                            <div class="spk-transcript-item @(s.IsPracticed ? "spk-transcript-item--done" : "spk-transcript-item--pending")"
-                                 data-trans-index="@i"
-                                 onclick="selectSentence(@i)" role="button" tabindex="0"
-                                 aria-label="Câu @(i + 1)">
-                                <div class="spk-transcript-icon">
-                                    @if (s.IsPracticed)
-                                    {
-                                        <span class="material-symbols-outlined spk-transcript-check"
-                                              style="font-variation-settings:'FILL' 1;">check_circle</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="spk-transcript-num">@(i + 1)</span>
-                                    }
-                                </div>
-                                <div class="spk-transcript-item-body">
-                                    <p class="spk-transcript-item-en">@s.Text</p>
-                                    @if (!string.IsNullOrEmpty(s.VietnameseMeaning))
-                                    {
-                                        <p class="spk-transcript-item-vi">@s.VietnameseMeaning</p>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div class="spk-transcript-footer">
-                        <button class="spk-btn spk-btn--ai-suggest spk-btn--full" type="button"
-                                onclick="this.classList.toggle('spk-btn--active')">
-                            <span class="material-symbols-outlined" style="font-size:16px;">auto_awesome</span>
-                            Gợi ý cải thiện từ AI
-                        </button>
-                    </div>
-                </aside>
-
-            </div>
-        </div>
-
-        @* ====================================================
-           TAB 2: NGHE CHÉP (DICTATION)
-           ==================================================== *@
-        <div class="tab-pane fade h-100" id="dictation-content" role="tabpanel">
+                @* ====================================================
+                   TAB 2: NGHE CHÉP / LUYỆN VIẾT (DICTATION)
+                   ==================================================== *@
+                <div class="spk-mode-pane d-none" id="dictation-content" role="tabpanel" aria-labelledby="tab-dictation">
             <div class="spk-dictation-layout">
                 <div class="spk-dictation-card spk-glass-card">
 
@@ -353,6 +309,58 @@
             </div>
         </div>
 
+            </section>
+
+                <aside class="spk-transcript-panel" id="spk-transcript-panel">
+                    <div class="spk-transcript-header">
+                        <div class="spk-transcript-header-left">
+                            <h3 class="spk-transcript-title">Kịch bản bài học</h3>
+                            <span class="spk-count-badge" id="spk-transcript-count">0 / @Model.Sentences.Count</span>
+                        </div>
+                        <button class="spk-transcript-collapse-btn d-md-none" id="btn-collapse-transcript"
+                                onclick="toggleTranscriptPanel()" aria-label="Thu gọn kịch bản">
+                            <span class="material-symbols-outlined" style="font-size:18px;">keyboard_arrow_down</span>
+                        </button>
+                    </div>
+                    <div class="spk-transcript-list spk-scrollbar" id="spk-transcript-list">
+                        @for (int i = 0; i < Model.Sentences.Count; i++)
+                        {
+                            var s = Model.Sentences[i];
+                            <div class="spk-transcript-item @(s.IsPracticed ? "spk-transcript-item--done" : "spk-transcript-item--pending")"
+                                 data-trans-index="@i"
+                                 onclick="selectSentence(@i)" role="button" tabindex="0"
+                                 aria-label="Câu @(i + 1)">
+                                <div class="spk-transcript-icon">
+                                    @if (s.IsPracticed)
+                                    {
+                                        <span class="material-symbols-outlined spk-transcript-check"
+                                              style="font-variation-settings:'FILL' 1;">check_circle</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="spk-transcript-num">@(i + 1)</span>
+                                    }
+                                </div>
+                                <div class="spk-transcript-item-body">
+                                    <p class="spk-transcript-item-en">@s.Text</p>
+                                    @if (!string.IsNullOrEmpty(s.VietnameseMeaning))
+                                    {
+                                        <p class="spk-transcript-item-vi">@s.VietnameseMeaning</p>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="spk-transcript-footer">
+                        <button class="spk-btn spk-btn--ai-suggest spk-btn--full" type="button"
+                                onclick="this.classList.toggle('spk-btn--active')">
+                            <span class="material-symbols-outlined" style="font-size:16px;">auto_awesome</span>
+                            Gợi ý cải thiện từ AI
+                        </button>
+                    </div>
+                </aside>
+
+        </div>
     </div>
 </div>
 
@@ -475,6 +483,7 @@
             }
         });
     </script>
+    <script src="~/js/ai-availability.js" asp-append-version="true"></script>
     <script src="~/js/speech-recorder.js" asp-append-version="true"></script>
     <script src="~/js/speaking.js" asp-append-version="true"></script>
 }

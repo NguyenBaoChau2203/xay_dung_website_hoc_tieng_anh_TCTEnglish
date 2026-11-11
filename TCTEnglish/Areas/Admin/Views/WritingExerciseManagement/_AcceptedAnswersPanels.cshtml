@@ -1,69 +1,89 @@
 @model TCTVocabulary.Areas.Admin.ViewModels.WritingExerciseEditViewModel
 
-<section class="card border-0 shadow-sm rounded-4 mt-4" aria-labelledby="accepted-answers-heading">
-    <div class="card-body p-4">
-        <h3 id="accepted-answers-heading" class="h5 fw-bold mb-2">Đáp án biến thể do Admin duyệt</h3>
+<section class="card border-0 shadow-sm rounded-4 mt-4 admin-writing-section-card" aria-labelledby="accepted-answers-heading">
+    <div class="card-body p-4 p-lg-5">
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="admin-writing-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-list-check text-primary"></i>
+            </div>
+            <h2 id="accepted-answers-heading" class="h5 fw-bold text-dark mb-0">Đáp án biến thể do Admin duyệt</h2>
+        </div>
         <p class="text-muted mb-4">
-            Đáp án chuẩn (<code>EnglishMeaning</code>) vẫn được chấp nhận. Thêm tối đa 5 cách diễn đạt khác cho từng câu đã có ID.
-            Form này tách khỏi bulk Edit passage để tránh mất biến thể khi tách/ghép câu.
+            Đáp án chuẩn (<code>EnglishMeaning</code>) vẫn luôn được chấp nhận. Bạn có thể thêm tối đa 5 cách diễn đạt hợp lệ khác cho từng câu đã có ID.
+            Form này hoạt động độc lập với form chỉnh sửa đoạn văn để tránh làm mất biến thể khi tách hoặc ghép lại câu.
         </p>
 
         @if (ViewData["VariantSaveError"] is string variantSaveError && !string.IsNullOrWhiteSpace(variantSaveError))
         {
-            <div class="alert alert-danger rounded-3 mb-3" role="alert">@variantSaveError</div>
+            <div class="alert alert-danger rounded-4 shadow-sm mb-4" role="alert">
+                <i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>@variantSaveError
+            </div>
         }
 
         @if (Model.SentenceVariantPanels.Count == 0)
         {
-            <p class="mb-0 text-muted">Chưa có câu nào. Lưu bài với full text trước, rồi quay lại để duyệt biến thể.</p>
+            <div class="admin-writing-empty-state py-4">
+                <i class="fa-solid fa-file-circle-question fa-2x mb-2 text-secondary opacity-50" aria-hidden="true"></i>
+                <p class="mb-0 text-muted">Chưa có câu nào trong bài viết. Hãy lưu bài với full text trước, sau đó quay lại trang này để duyệt biến thể.</p>
+            </div>
         }
         else
         {
-            @foreach (var panel in Model.SentenceVariantPanels)
-            {
-                <article class="border rounded-3 p-3 mb-3" aria-label="Biến thể câu @panel.SortOrder">
-                    <div class="d-flex flex-wrap justify-content-between gap-2 mb-2">
-                        <div>
-                            <div class="fw-semibold">Câu @panel.SortOrder <span class="text-muted">#@panel.SentenceId</span></div>
-                            <div class="small text-muted">@panel.VietnameseText</div>
-                        </div>
-                        <div class="small">
-                            <span class="badge text-bg-light border">Chuẩn: @panel.CanonicalEnglishMeaning</span>
-                        </div>
-                    </div>
-
-                    <form asp-action="SaveAcceptedAnswers" method="post" class="vstack gap-2">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="ExerciseId" value="@Model.Id" />
-                        <input type="hidden" name="SentenceId" value="@panel.SentenceId" />
-                        <input type="hidden" name="ExpectedStateToken" value="@panel.ExpectedStateToken" />
-
-                        @for (var i = 0; i < 5; i++)
-                        {
-                            var existing = i < panel.Variants.Count ? panel.Variants[i].AnswerText : string.Empty;
+            <div class="d-grid gap-3">
+                @foreach (var panel in Model.SentenceVariantPanels)
+                {
+                    <article class="card border rounded-4 p-4 shadow-sm bg-light-subtle" aria-label="Biến thể câu @panel.SortOrder">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
                             <div>
-                                <label class="form-label small mb-1" for="variant-@panel.SentenceId-@i">
-                                    Biến thể @(i + 1)
-                                </label>
-                                <input id="variant-@panel.SentenceId-@i"
-                                       name="Answers[@i]"
-                                       type="text"
-                                       class="form-control"
-                                       maxlength="1000"
-                                       value="@existing"
-                                       autocomplete="off" />
+                                <div class="fw-bold text-dark fs-6">
+                                    <span class="badge rounded-pill text-bg-primary px-3 py-1 me-2">Câu @panel.SortOrder</span>
+                                    <span class="text-muted small">ID câu: #@panel.SentenceId</span>
+                                </div>
+                                <div class="text-muted mt-1">@panel.VietnameseText</div>
                             </div>
-                        }
-
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary rounded-pill px-3">
-                                <i class="fa-solid fa-floppy-disk me-1" aria-hidden="true"></i>
-                                Lưu biến thể câu @panel.SortOrder
-                            </button>
+                            <div>
+                                <span class="badge bg-white text-dark border px-3 py-2 shadow-sm">
+                                    <i class="fa-solid fa-circle-check text-success me-1" aria-hidden="true"></i> Chuẩn: <strong>@panel.CanonicalEnglishMeaning</strong>
+                                </span>
+                            </div>
                         </div>
-                    </form>
-                </article>
-            }
+
+                        <form asp-action="SaveAcceptedAnswers" method="post" class="vstack gap-3">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="ExerciseId" value="@Model.Id" />
+                            <input type="hidden" name="SentenceId" value="@panel.SentenceId" />
+                            <input type="hidden" name="ExpectedStateToken" value="@panel.ExpectedStateToken" />
+
+                            <div class="row g-2">
+                                @for (var i = 0; i < 5; i++)
+                                {
+                                    var existing = i < panel.Variants.Count ? panel.Variants[i].AnswerText : string.Empty;
+                                    <div class="col-md-6 col-lg">
+                                        <label class="form-label small fw-semibold text-muted mb-1" for="variant-@panel.SentenceId-@i">
+                                            Biến thể @(i + 1)
+                                        </label>
+                                        <input id="variant-@panel.SentenceId-@i"
+                                               name="Answers[@i]"
+                                               type="text"
+                                               class="form-control form-control-sm"
+                                               maxlength="1000"
+                                               value="@existing"
+                                               placeholder="Cách diễn đạt @(i + 1)..."
+                                               autocomplete="off" />
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="d-flex justify-content-end pt-2">
+                                <button type="submit" class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm">
+                                    <i class="fa-solid fa-floppy-disk me-1" aria-hidden="true"></i>
+                                    Lưu biến thể câu @panel.SortOrder
+                                </button>
+                            </div>
+                        </form>
+                    </article>
+                }
+            </div>
         }
     </div>
 </section>

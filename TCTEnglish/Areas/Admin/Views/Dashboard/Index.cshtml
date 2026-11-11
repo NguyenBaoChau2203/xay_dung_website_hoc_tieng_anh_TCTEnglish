@@ -3,102 +3,162 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<!-- ===== Page Header ===== -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h2 class="fw-bold mb-1">Dashboard</h2>
-        <p class="text-muted mb-0">Tổng quan hệ thống TCT English</p>
-    </div>
-    <span class="badge bg-primary-subtle text-primary-emphasis fs-6">
-        <i class="bi bi-calendar3 me-1"></i> @DateTime.Now.ToString("dd/MM/yyyy")
-    </span>
-</div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-dashboard.css" asp-append-version="true" />
+}
 
-<!-- ===== KPI Cards ===== -->
-<div class="row g-4 mb-4">
-    <!-- Total Users -->
-    <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon">
-                    <i class="bi bi-people-fill fs-3 text-primary"></i>
+<div class="tct-theme admin-dashboard-page">
+    <!-- ===== Page Header ===== -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center admin-page-header gap-3">
+        <div>
+            <h1 class="admin-page-title">
+                <i class="bi bi-speedometer2 text-primary me-2"></i>Tổng quan hệ thống
+            </h1>
+            <p class="admin-page-subtitle">Thống kê hoạt động và quản trị nền tảng TCT English.</p>
+        </div>
+        <div class="admin-date-badge">
+            <i class="bi bi-calendar3"></i>
+            <span>Hôm nay: @DateTime.Now.ToString("dd/MM/yyyy")</span>
+        </div>
+    </div>
+
+    <!-- ===== KPI Cards ===== -->
+    <div class="row g-3 mb-2">
+        <!-- Total Users -->
+        <div class="col-md-4">
+            <div class="admin-kpi-card admin-kpi-card--users">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="admin-kpi-label">Tổng người dùng</span>
+                    <div class="admin-kpi-icon admin-kpi-icon--users">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                    <p class="text-muted small mb-1">Tổng người dùng</p>
-                    <h3 class="fw-bold mb-0">@Model.TotalUsers.ToString("N0")</h3>
+                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
+                    <h2 class="admin-kpi-value">@Model.TotalUsers.ToString("N0")</h2>
+                    @if (Model.NewUsersLast7Days > 0)
+                    {
+                        <span class="admin-kpi-trend" title="Người dùng đăng ký trong 7 ngày qua">
+                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewUsersLast7Days <small>7 ngày</small>
+                        </span>
+                    }
                 </div>
-                @if (Model.NewUsersLast7Days > 0)
-                {
-                    <span class="badge bg-success-subtle text-success-emphasis">
-                        <i class="bi bi-arrow-up-short"></i> +@Model.NewUsersLast7Days <small>7 ngày</small>
-                    </span>
-                }
+            </div>
+        </div>
+
+        <!-- Total Classes -->
+        <div class="col-md-4">
+            <div class="admin-kpi-card admin-kpi-card--classes">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="admin-kpi-label">Tổng lớp học</span>
+                    <div class="admin-kpi-icon admin-kpi-icon--classes">
+                        <i class="bi bi-collection-fill"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
+                    <h2 class="admin-kpi-value">@Model.TotalClasses.ToString("N0")</h2>
+                    @if (Model.NewClassesLast7Days > 0)
+                    {
+                        <span class="admin-kpi-trend" title="Lớp học được tạo trong 7 ngày qua">
+                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewClassesLast7Days <small>7 ngày</small>
+                        </span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Vocabulary Sets -->
+        <div class="col-md-4">
+            <div class="admin-kpi-card admin-kpi-card--sets">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="admin-kpi-label">Tổng học phần từ vựng</span>
+                    <div class="admin-kpi-icon admin-kpi-icon--sets">
+                        <i class="bi bi-journals"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2">
+                    <h2 class="admin-kpi-value">@Model.TotalSets.ToString("N0")</h2>
+                    @if (Model.NewSetsLast7Days > 0)
+                    {
+                        <span class="admin-kpi-trend" title="Học phần tạo trong 7 ngày qua">
+                            <i class="bi bi-arrow-up-short fs-6"></i>+@Model.NewSetsLast7Days <small>7 ngày</small>
+                        </span>
+                    }
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Total Classes -->
-    <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon">
-                    <i class="bi bi-collection-fill fs-3 text-success"></i>
+    <!-- ===== Quick Actions ===== -->
+    <div class="row g-2 mb-3">
+        <div class="col-6 col-lg-3">
+            <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="admin-quick-action-card">
+                <div class="admin-quick-action-icon bg-primary bg-opacity-10 text-primary">
+                    <i class="bi bi-people"></i>
                 </div>
-                <div class="flex-grow-1">
-                    <p class="text-muted small mb-1">Tổng lớp học</p>
-                    <h3 class="fw-bold mb-0">@Model.TotalClasses.ToString("N0")</h3>
+                <div>
+                    <div class="fw-semibold small">Quản lý Users</div>
+                    <div class="text-muted small">Tài khoản & phân quyền</div>
                 </div>
-                @if (Model.NewClassesLast7Days > 0)
-                {
-                    <span class="badge bg-success-subtle text-success-emphasis">
-                        <i class="bi bi-arrow-up-short"></i> +@Model.NewClassesLast7Days <small>7 ngày</small>
-                    </span>
-                }
-            </div>
+                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a asp-area="Admin" asp-controller="SpeakingVideoManagement" asp-action="Index" class="admin-quick-action-card">
+                <div class="admin-quick-action-icon bg-info bg-opacity-10 text-info">
+                    <i class="bi bi-mic"></i>
+                </div>
+                <div>
+                    <div class="fw-semibold small">Quản lý Speaking</div>
+                    <div class="text-muted small">Video & phụ đề AI</div>
+                </div>
+                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a asp-area="Admin" asp-controller="WritingExerciseManagement" asp-action="Index" class="admin-quick-action-card">
+                <div class="admin-quick-action-icon bg-success bg-opacity-10 text-success">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <div>
+                    <div class="fw-semibold small">Quản lý Writing</div>
+                    <div class="text-muted small">Bài tập & câu dịch</div>
+                </div>
+                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a asp-area="Admin" asp-controller="AiManagement" asp-action="Index" class="admin-quick-action-card">
+                <div class="admin-quick-action-icon bg-warning bg-opacity-10 text-warning">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <div>
+                    <div class="fw-semibold small">Quản lý AI</div>
+                    <div class="text-muted small">Mô hình & Intent</div>
+                </div>
+                <i class="bi bi-arrow-right admin-quick-action-arrow"></i>
+            </a>
         </div>
     </div>
 
-    <!-- Total Vocabulary Sets -->
-    <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="bg-warning bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center admin-kpi-icon">
-                    <i class="bi bi-journals fs-3 text-warning"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <p class="text-muted small mb-1">Tổng học phần</p>
-                    <h3 class="fw-bold mb-0">@Model.TotalSets.ToString("N0")</h3>
-                </div>
-                @if (Model.NewSetsLast7Days > 0)
-                {
-                    <span class="badge bg-success-subtle text-success-emphasis">
-                        <i class="bi bi-arrow-up-short"></i> +@Model.NewSetsLast7Days <small>7 ngày</small>
-                    </span>
-                }
-            </div>
+    <!-- ===== Recent Users Table ===== -->
+    <div class="admin-card-surface">
+        <div class="admin-card-header">
+            <h2 class="admin-card-title">
+                <i class="bi bi-clock-history text-primary"></i>
+                <span>Người dùng mới nhất</span>
+            </h2>
+            <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index"
+               class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                Xem tất cả danh sách <i class="bi bi-arrow-right ms-1"></i>
+            </a>
         </div>
-    </div>
-</div>
 
-<!-- ===== Recent Users Table ===== -->
-<div class="card border-0 shadow-sm">
-    <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3">
-        <h5 class="fw-semibold mb-0">
-            <i class="bi bi-clock-history me-2 text-muted"></i>Người dùng mới nhất
-        </h5>
-        <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index"
-           class="btn btn-sm btn-outline-primary">
-            Xem tất cả <i class="bi bi-arrow-right ms-1"></i>
-        </a>
-    </div>
-    <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
+            <table class="table admin-table align-middle">
+                <thead>
                     <tr>
                         <th class="ps-4">ID</th>
-                        <th>Họ tên</th>
-                        <th>Email</th>
+                        <th>Họ tên & Email</th>
                         <th>Vai trò</th>
                         <th>Trạng thái</th>
                         <th>Ngày tạo</th>
@@ -108,43 +168,56 @@
                     @if (!Model.RecentUsers.Any())
                     {
                         <tr>
-                            <td colspan="6" class="text-center text-muted py-5">
-                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                                Chưa có người dùng nào.
+                            <td colspan="5">
+                                <div class="admin-empty-state">
+                                    <i class="bi bi-inbox admin-empty-state-icon d-block"></i>
+                                    <p class="mb-0 fw-medium">Chưa có người dùng nào trong hệ thống.</p>
+                                </div>
                             </td>
                         </tr>
                     }
                     @foreach (var user in Model.RecentUsers)
                     {
                         <tr>
-                            <td class="ps-4 fw-medium">#@user.UserId</td>
-                            <td>@user.FullName</td>
-                            <td class="text-muted">@user.Email</td>
+                            <td class="ps-4 fw-semibold text-muted">#@user.UserId</td>
                             <td>
-                                @{
-                                    var roleBadge = user.Role switch
-                                    {
-                                        "Admin" => "bg-danger",
-                                        "Premium" => "bg-primary",
-                                        _ => "bg-secondary"
-                                    };
-                                }
-                                <span class="badge @roleBadge">@user.Role</span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="admin-user-avatar">
+                                        @(string.IsNullOrEmpty(user.FullName) || user.FullName == "N/A" ? "U" : user.FullName.Substring(0, 1).ToUpper())
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold text-dark">@user.FullName</div>
+                                        <small class="text-muted">@user.Email</small>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 @{
-                                    var (statusBadge, statusIcon, statusLabel) = user.Status switch
+                                    var (roleClass, roleIcon) = user.Role switch
                                     {
-                                        UserStatus.Online  => ("badge bg-success",   "bi-check-circle-fill", "Online"),
-                                        UserStatus.Blocked => ("badge bg-danger",    "bi-x-circle-fill",     "Blocked"),
-                                        _                  => ("badge bg-secondary", "bi-moon-fill",          "Offline")
+                                        "Admin" => ("admin-role-badge--admin", "bi-shield-fill"),
+                                        "Premium" => ("admin-role-badge--premium", "bi-gem"),
+                                        _ => ("admin-role-badge--standard", "bi-person")
                                     };
                                 }
-                                <span class="@statusBadge">
-                                    <i class="bi @statusIcon me-1"></i>@statusLabel
+                                <span class="admin-role-badge @roleClass">
+                                    <i class="bi @roleIcon"></i>@user.Role
                                 </span>
                             </td>
-                            <td class="text-muted">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                @{
+                                    var (statusClass, statusIcon, statusLabel) = user.Status switch
+                                    {
+                                        UserStatus.Online  => ("admin-status-badge--online",  "bi-circle-fill", "Online"),
+                                        UserStatus.Blocked => ("admin-status-badge--blocked", "bi-x-circle-fill", "Blocked"),
+                                        _                  => ("admin-status-badge--offline", "bi-moon-fill", "Offline")
+                                    };
+                                }
+                                <span class="admin-status-badge @statusClass">
+                                    <i class="bi @statusIcon" style="font-size: 0.65rem;"></i>@statusLabel
+                                </span>
+                            </td>
+                            <td class="text-muted small">@user.CreatedAt?.ToString("dd/MM/yyyy")</td>
                         </tr>
                     }
                 </tbody>

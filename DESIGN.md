@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: TCT English
-description: Shared visual standard for Razor and Bootstrap work. Every token below exists in TCTEnglish/wwwroot/css/tct-learning-ui.css.
+description: Shared Claymorphism standard for Razor and Bootstrap work. Listed baseline tokens exist in TCTEnglish/wwwroot/css/tct-learning-ui.css; adopted theme overrides are documented below.
 colors:
   primary: "#4255ff"
   primary-hover: "#2f3fe0"
@@ -81,11 +81,33 @@ Product screens make the next learning action easy to find and give clear feedba
 Study, dashboard and Admin screens prioritize task clarity. Marketing pages may use
 more expressive composition when requested.
 
+**Visual direction (owner decision, 2026-11-08): Claymorphism across every page
+being redesigned.** This applies to Account/Auth, dashboards, Speaking, Writing,
+Listening, Reading, Vocabulary/study, Goals, AI Chat, classes/folders, payments,
+notifications, marketing/utility pages and all Admin screens. Use one shared
+language of raised rounded surfaces, soft outer/inner shadows and restrained
+pastel surroundings. Keep TCT blue/yellow, Inter and readable semantic colors.
+Earlier screen designs retain their functionality/contracts but their competing
+visual treatment is superseded by this decision.
+
+**Demo priority (owner decision, 2026-11-08).** The classroom demonstration will
+use a laptop. Prioritize laptop/desktop visual quality when researching, designing,
+implementing and reviewing screens: deliberate composition, readable typography,
+balanced spacing, clear actions and polished interaction states. Review this
+experience first, including limited laptop viewport height so important controls
+remain reachable. Use the actual demo laptop viewport and display scaling when
+known; do not assume its resolution. Tablet/mobile responsiveness and accessibility
+checks remain required, with layouts adapted to their available space.
+
 **Status.** This file is the canonical visual specification for new and changed
 screens. It documents the existing TCT identity (blue `#4255ff`, yellow accent,
 Inter) and consolidates the drifting per-page palettes into one token set. It is
 **not** a finished site redesign: legacy screens keep their own CSS until a page
 owner adopts the tokens (adoption tracker: section 6 of [team-ui-workflow.md](docs/design-system/team-ui-workflow.md)).
+
+The shared Clay foundation and gallery are versioned with this UI integration. Its
+existence does not certify that every legacy page has been migrated. Adopt the
+foundation page by page; do not add a per-feature Clay library or a second palette.
 
 Related files, each with one job:
 
@@ -109,6 +131,52 @@ Related files, each with one job:
 
 Brand changes, a different primary color, removing navigation, changing the root
 font size or re-theming Bootstrap globally are **proposals for Chau**, not applied here.
+
+## Claymorphism implementation
+
+The shared CSS implements this directly; no Clay package, CDN or new font is
+required. `:root` retains baseline and legacy values for unconverted consumers.
+Inside `.tct-theme`, canvas, shape and depth aliases use the Clay tokens below.
+The frontmatter lists root baseline values; the gallery displays the effective
+adopted theme so aliases and rendered examples agree.
+
+| Clay token | Value / purpose |
+| --- | --- |
+| `--tct-clay-canvas` / `--tct-clay-surface` | `#f0f3ff` canvas / white opaque surfaces |
+| `--tct-clay-radius-control` | 16px, aliases `--tct-radius-md` inside the theme |
+| `--tct-clay-radius-panel` | 24px, aliases `--tct-radius-lg` |
+| `--tct-clay-radius-dialog` | 28px, aliases `--tct-radius-xl` |
+| `--tct-clay-shadow` / `-quiet` / `-lift` / `-overlay` | Shared raised, compact, interactive and dialog depth, each with outer and inset shadows |
+| `--tct-clay-shadow-button` / `-pressed` / `-field` | Button, selected/pressed and shallow form depth |
+
+`--tct-shadow-soft`, `--tct-shadow-lift` and `--tct-shadow-overlay` map to Clay
+inside `.tct-theme`. Reuse them or the explicit Clay tokens in scoped feature
+CSS; remove an old per-page box-shadow override when it defeats the shared look.
+
+- **Surfaces:** use `.tct-card`, Bootstrap `.card`, or `.tct-clay-surface` for a
+  custom panel. Add `.tct-clay-surface--quiet` with the base class for dense areas.
+  Toolbar, state blocks, table wrappers, dialogs and alert/toast surfaces reuse
+  shared depth. Buttons get a raised/pressed treatment; link buttons remain text.
+- **Forms:** the field is shallow and opaque; keep readable text, explicit
+  `border-control`, labels/errors and an independent focus outline. A shadow
+  never supplies the only control boundary or selected/error indication.
+- **Content density:** Clay is visible in the composition of every redesigned
+  page. Use stronger surfaces for main cards/hero actions and quiet containers
+  for Admin tables, transcripts and long prose; do not emboss every row or word.
+- **Interaction:** use existing short transition tokens, no perpetual bouncing,
+  filter/backdrop effects or shadow animation on large collections. Keep pointer
+  hit areas/layout geometry stable; reduced motion and forced colors retain
+  all information and independent focus/control boundaries.
+- **Shared shell:** preserve its geometry and contracts. Any header/sidebar/footer
+  Clay adoption needs its own consumer review, rather than a body-level switch
+  that silently changes every unverified legacy page.
+
+Review the live gallery's Clay section first. Page owners update their actual
+adoption evidence; a pretty static mockup is not proof of working forms/access.
+
+Concept reference reviewed 2026-11-08: [Adrian Bece's clay.css](https://github.com/codeAdrian/clay.css/).
+Only the visual concept informed this native implementation; no code/package was
+imported, and accessibility is verified independently rather than assumed.
 
 ## Colors
 
@@ -198,6 +266,9 @@ data attributes consumed by JavaScript.
 Restrained: `--tct-shadow-soft` for cards, `--tct-shadow-lift` for hover/interactive,
 `--tct-shadow-overlay` for dialogs. Prefer spacing and alignment over nested cards.
 
+In an adopted `.tct-theme`, these are the Clay composites described above; do not
+use the preserved root flat shadows to defeat the selected visual direction.
+
 Layer scale (existing values; new layers choose from it, never an arbitrary number):
 
 | Token | z-index | Used by |
@@ -214,6 +285,10 @@ Layer scale (existing values; new layers choose from it, never an arbitrary numb
 `--tct-radius-sm` 8px (small buttons, pagination), `md` 12px (buttons, inputs), `lg`
 18px (cards, panels, tables), `xl` 20px (dialogs), `pill` for search and badges.
 Circles for avatars and compact icon buttons (44px target).
+
+The values above describe root baseline/legacy geometry. Adopted Clay pages use
+16px controls, 24px panels and 28px dialogs through the scoped aliases. Pill,
+small radii and all layout-spacing/size tokens keep their existing values.
 
 ## Spacing
 

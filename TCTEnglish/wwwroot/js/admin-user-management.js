@@ -384,8 +384,33 @@
         });
     }
 
+    function updatePresenceConnectionIndicator(state) {
+        const badge = document.getElementById("presenceConnectionBadge");
+        if (!badge) return;
+
+        if (state === "connected") {
+            badge.className = "admin-presence-indicator";
+            badge.innerHTML = '<span class="admin-presence-dot admin-presence-dot--pulse"></span><span>Real-time: Trực tuyến</span>';
+        } else if (state === "reconnecting") {
+            badge.className = "admin-presence-indicator admin-presence-indicator--reconnecting";
+            badge.innerHTML = '<span class="admin-presence-dot"></span><span>Real-time: Đang kết nối lại…</span>';
+        } else {
+            badge.className = "admin-presence-indicator admin-presence-indicator--reconnecting";
+            badge.innerHTML = '<span class="admin-presence-dot"></span><span>Real-time: Ngoại tuyến</span>';
+        }
+    }
+
     function handlePresenceConnected() {
+        updatePresenceConnectionIndicator("connected");
         queuePresenceSync(0);
+    }
+
+    function handlePresenceReconnecting() {
+        updatePresenceConnectionIndicator("reconnecting");
+    }
+
+    function handlePresenceClosed() {
+        updatePresenceConnectionIndicator("closed");
     }
 
     page.querySelectorAll(".btn-edit").forEach((button) => {
@@ -549,6 +574,8 @@
         window.userActivityHubReady.then((connection) => {
             bindPresenceConnection(connection);
             handlePresenceConnected();
+        }).catch(() => {
+            handlePresenceClosed();
         });
     } else {
         handlePresenceConnected();
@@ -556,6 +583,8 @@
 
     window.addEventListener("user-activity:connected", handlePresenceConnected);
     window.addEventListener("user-activity:reconnected", handlePresenceConnected);
+    window.addEventListener("user-activity:reconnecting", handlePresenceReconnecting);
+    window.addEventListener("user-activity:closed", handlePresenceClosed);
 
     syncEmptyState();
     queuePresenceSync(0);

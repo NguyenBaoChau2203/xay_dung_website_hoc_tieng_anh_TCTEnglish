@@ -1,5 +1,5 @@
 /*
-    TCT English shared design layer.
+    TCT English shared design layer — Claymorphism (owner decision 2026-11-08).
 
     Single source for design tokens (--tct-*) and the scoped components (.tct-*).
     Spec and rules: DESIGN.md. Team workflow: docs/design-system/team-ui-workflow.md.
@@ -115,6 +115,20 @@
     --tct-radius-xl: 20px;           /* dialogs */
     --tct-shadow-lift: 0 10px 25px rgba(66, 85, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03);
     --tct-shadow-overlay: 0 25px 50px rgba(0, 0, 0, 0.18);
+
+    /* ---------- Claymorphism: one raised surface, two soft inset highlights ---------- */
+    --tct-clay-canvas: #f0f3ff;
+    --tct-clay-surface: #ffffff;
+    --tct-clay-radius-control: 16px;
+    --tct-clay-radius-panel: 24px;
+    --tct-clay-radius-dialog: 28px;
+    --tct-clay-shadow: 8px 8px 20px rgba(66, 85, 255, 0.10), inset 3px 3px 7px rgba(255, 255, 255, 0.95), inset -4px -4px 9px rgba(66, 85, 255, 0.08);
+    --tct-clay-shadow-quiet: 3px 4px 10px rgba(66, 85, 255, 0.08), inset 2px 2px 5px rgba(255, 255, 255, 0.90), inset -2px -2px 5px rgba(66, 85, 255, 0.06);
+    --tct-clay-shadow-lift: 10px 12px 24px rgba(66, 85, 255, 0.14), inset 3px 3px 7px rgba(255, 255, 255, 0.95), inset -4px -4px 9px rgba(66, 85, 255, 0.08);
+    --tct-clay-shadow-overlay: 0 18px 42px rgba(17, 28, 45, 0.20), inset 3px 3px 8px rgba(255, 255, 255, 0.95), inset -5px -5px 12px rgba(66, 85, 255, 0.08);
+    --tct-clay-shadow-button: 3px 4px 9px rgba(33, 54, 231, 0.18), inset 2px 2px 4px rgba(255, 255, 255, 0.24), inset -2px -2px 5px rgba(17, 28, 45, 0.15);
+    --tct-clay-shadow-pressed: inset 2px 2px 5px rgba(17, 28, 45, 0.18), inset -2px -2px 5px rgba(255, 255, 255, 0.24);
+    --tct-clay-shadow-field: inset 2px 2px 5px rgba(66, 85, 255, 0.07), inset -2px -2px 5px rgba(255, 255, 255, 0.85);
 
     /* ---------- Controls ---------- */
     --tct-control-h: max(2.5rem, 40px);
@@ -237,11 +251,19 @@
 
 /* ======================================================================
    Bootstrap 5.3 bridge (opt-in): put class="tct-theme" on a page wrapper.
-   Maps TCT tokens onto Bootstrap variables for that subtree only. Changing the
-   Bootstrap look app-wide is a brand decision and is NOT done here.
+   Maps TCT tokens onto Bootstrap variables and the owner-selected Claymorphism
+   language for that subtree only. Root legacy values remain unchanged.
    ====================================================================== */
 
 .tct-theme {
+    --tct-bg: var(--tct-clay-canvas);
+    --tct-surface: var(--tct-clay-surface);
+    --tct-radius-md: var(--tct-clay-radius-control);
+    --tct-radius-lg: var(--tct-clay-radius-panel);
+    --tct-radius-xl: var(--tct-clay-radius-dialog);
+    --tct-shadow-soft: var(--tct-clay-shadow);
+    --tct-shadow-lift: var(--tct-clay-shadow-lift);
+    --tct-shadow-overlay: var(--tct-clay-shadow-overlay);
     --bs-primary: var(--tct-primary);
     --bs-primary-rgb: 66, 85, 255;
     --bs-primary-bg-subtle: var(--tct-primary-soft);
@@ -283,7 +305,25 @@
 
 .tct-theme .btn:focus,
 .tct-theme .btn:active:focus {
-    box-shadow: none; /* site.css paints a template-blue ring on :focus; focus-visible below replaces it */
+    box-shadow: none; /* Clay buttons restore their surface below; focus uses an independent outline. */
+}
+
+/* Clay depth complements solid, readable button fills. Link buttons stay text. */
+.tct-theme .btn:not(.btn-link) {
+    box-shadow: var(--tct-clay-shadow-button);
+    transition: background-color var(--tct-dur-fast) var(--tct-ease), color var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease);
+}
+
+.tct-theme .btn:not(.btn-link):active,
+.tct-theme .btn:not(.btn-link).active,
+.tct-theme .btn-check:checked + .btn {
+    box-shadow: var(--tct-clay-shadow-pressed);
+}
+
+.tct-theme .btn:disabled,
+.tct-theme .btn.disabled,
+.tct-theme .btn[aria-disabled="true"] {
+    box-shadow: none;
 }
 
 .tct-theme .btn-primary {
@@ -353,6 +393,8 @@
     border-color: var(--tct-border-control);
     border-radius: var(--tct-radius-md);
     color: var(--tct-text);
+    background-color: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-field);
 }
 
 .tct-theme textarea.form-control {
@@ -367,7 +409,7 @@
 .tct-theme .form-control:focus,
 .tct-theme .form-select:focus {
     border-color: var(--tct-primary);
-    box-shadow: none; /* site.css adds a template ring on :focus */
+    box-shadow: var(--tct-clay-shadow-field); /* readable boundary and outline do not depend on shadows */
     outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
     outline-offset: 1px;
 }
@@ -424,6 +466,33 @@
     --bs-card-border-radius: var(--tct-radius-lg);
     --bs-card-inner-border-radius: calc(var(--tct-radius-lg) - 1px);
     --bs-card-cap-bg: var(--tct-surface-muted);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+.tct-theme .tct-card {
+    background-color: var(--tct-surface);
+    border-color: var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-shadow-soft);
+}
+
+/* For a page-specific panel; reuse this instead of inventing another shadow. */
+.tct-theme .tct-clay-surface {
+    min-width: 0;
+    background-color: var(--tct-surface);
+    color: var(--tct-text);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+.tct-theme .tct-clay-surface--quiet {
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.tct-theme :is(.alert, .toast) {
+    border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .tct-theme .table {
@@ -573,6 +642,7 @@
     background: var(--tct-surface);
     border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .tct-toolbar__search {
@@ -616,7 +686,9 @@
 }
 
 .tct-card--interactive:hover,
-.tct-card--interactive:focus-within {
+.tct-card--interactive:focus-within,
+.tct-theme .tct-card--interactive:hover,
+.tct-theme .tct-card--interactive:focus-within {
     box-shadow: var(--tct-shadow-lift);
     transform: translateY(-2px);
 }
@@ -652,6 +724,7 @@
     background: var(--tct-surface);
     border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .tct-table-wrap:focus-visible {
@@ -713,6 +786,7 @@
     background: var(--tct-surface);
     border: 1px dashed var(--tct-border);
     border-radius: var(--tct-radius-lg);
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .tct-state__icon {
@@ -779,7 +853,18 @@
     }
 
     .tct-card--interactive:hover,
-    .tct-card--interactive:focus-within {
+    .tct-card--interactive:focus-within,
+    .tct-theme .tct-card--interactive:hover,
+    .tct-theme .tct-card--interactive:focus-within {
         transform: none;
+    }
+}
+
+/* Clay shadows are decorative; system-color boundaries preserve the controls. */
+@media (forced-colors: active) {
+    .tct-theme .btn:not(.btn-link),
+    .tct-theme :is(.btn, .card, .tct-card, .tct-clay-surface, .form-control, .form-select, .modal-content, .alert, .toast, .tct-toolbar, .tct-table-wrap, .tct-state) {
+        box-shadow: none;
+        border-color: CanvasText;
     }
 }
