@@ -42,6 +42,81 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Account profile, habits, outbound reminders and deletion — 2026-11-11
+
+**Symptom**: Account profile showed a name hash as the account code, fixed study statistics and absolute security claims. Email and password changes could apply without a fresh proof. Activity tracking put the antiforgery token in the query string. Account deletion trusted a client-side CONFIRM gate.
+
+**Root cause**: Profile and settings rendered constants, avatar replacement deleted the previous file before the database commit, and sensitive mutations did not share a server-side security version.
+
+**Fix**: Server display code `TCT-` plus UserId, staged avatar replacement, proof-bound email/password changes, activity checkpoints with lease and CSRF header, persisted notification preferences, Web Push and weekly-email scheduling behind fake transports, and synthetic-account deletion that blocks shared dependencies and the last admin.
+
+**Regression evidence**: `dotnet test TCTEnglish.Tests --configuration Release --filter FullyQualifiedName~AccountFunctionalCompletionTests` — 10 passed. Account UI and correctness filters passed in the same session. `dotnet ef migrations has-pending-model-changes` reported no pending model changes. Disposable MariaDB upgrade and browser viewports on a migrated host were not run.
+
+**Files**: `TCTEnglish/Controllers/AccountController.cs`, `TCTEnglish/Services/Accounts/`, `TCTEnglish/Services/Learning/LearningHabitService.cs`, `TCTEnglish/Services/Notifications/OutboundDeliveryProcessor.cs`, `TCTEnglish/Migrations/20261111114120_AddAccountFunctionalCompletion.cs`, `TCTEnglish.Tests/AccountFunctionalCompletionTests.cs`.
+
+### Account Security tab 100% symmetrical horizontal and vertical OCD alignment — 2026-11-11
+
+**Symptom**: In the Account Security tab (`#tab-security`), cards across rows and columns were noticeably misaligned:
+1. Vertically: The vertical divider gutter between the left column and right column had a 58.3% split in Row 1 & 2 (`1.4fr 1fr`) but a 54.5% split in Row 3 (`1.2fr 1fr`), causing the vertical seam between columns to jump horizontally by ~50px.
+2. Horizontally: Email card and Security Health card in Row 1 had uneven heights, causing Password card and Notifications card in Row 2 to start at staggered, uneven Y coordinates.
+3. Row 3: Danger Zone card ended ~80px earlier than Linked Accounts card, leaving an asymmetrical bottom floor.
+
+**Root Cause**:
+1. Separate containers (`.security-main`, `.security-side`, `.security-bottom-grid`) were calculating their own independent child heights without grid cross-axis alignment.
+2. `.security-grid` and `.security-bottom-grid` used different `grid-template-columns` ratios.
+3. Card contents lacked vertical flexbox distribution (`display: flex; flex-direction: column; justify-content: space-between; height: 100%;`) to balance their heights.
+
+**Solution**:
+1. Unified column ratios: Set both `.security-grid` and `.security-bottom-grid` to identical `grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);` and `gap: var(--tct-space-xl, 1.5rem);`, creating a single, unbroken laser-straight vertical seam from top to bottom.
+2. Used `display: contents !important;` on `.security-main` and `.security-side` for desktop viewports ($\ge 992\text{px}$) with explicit `grid-row`/`grid-column` placement (`security-card--email` at 1/1, `security-card--health` at 2/1, `security-card--password` at 1/2, `security-card--notifications` at 2/2).
+3. Applied `align-items: stretch;` so both cards in every row have exactly identical heights, aligned top seams, and aligned bottom seams.
+4. Added balanced content strips (email verification trust note, daily study reminder preview, danger zone warning notice) so stretched cards are rich, symmetrical, and completely free of awkward whitespace.
+5. Expanded `.email-row` to `width: 100%; max-width: 100%;` so the email submit button aligns with the card's right boundary, matching the password submit button.
+
+**Files Changed**:
+- `TCTEnglish/Views/Account/Profile.cshtml` — Added semantic security card classes and balanced content strips
+- `TCTEnglish/wwwroot/css/account-ui.css` — Unified grid ratios, added `display: contents` desktop mapping and `align-items: stretch`
+- `scripts/tests/test_user_dropdown_and_loader.cjs` — Added automated regression test for symmetrical horizontal and vertical OCD alignment
+
+**Verification**:
+- `node --test scripts/tests/test_user_dropdown_and_loader.cjs scripts/tests/test_account*.cjs` -> 39/39 tests passed.
+- `curl http://localhost:5100/health/ready` -> `{"status":"ready"}`.
+
+**Commit**: Uncommitted local change.
+
+### Account views top header redesign — dynamic Claymorphism Account Hero Header & elimination of duplicate tab headers — 2026-11-11
+
+**Symptom**: On the Account pages (`Profile.cshtml` and `Settings.cshtml`), the top header was a static, flat text block saying "Hồ sơ của tôi" with excessive empty whitespace to the right. When users switched to the "Cài đặt" or "Gói dịch vụ" tabs, this static header clashed with the active tab and duplicated secondary subheadings inside the tab panels ("Cài đặt tài khoản & Bảo mật" and "Gói dịch vụ & Quyền lợi"), creating an awkward stacked double-header look with ~70% unused horizontal whitespace.
+
+**Root Cause**:
+1. `Profile.cshtml` invoked a static `@await Html.PartialAsync("_PageHeader", ...)` outside of the tab container, which did not update when switching tabs via `account-ui.js`.
+2. Inside `#tab-security` and `#tab-subscription`, duplicate panel headers repeated the exact same title and description.
+3. Lack of right-side metadata chips left wide desktop viewports with a barren void on the right side of the header.
+
+**Solution**:
+1. Created `.account-header-hero` in `Profile.cshtml` and `Settings.cshtml` following Claymorphism design system:
+   - Elevated Claymorphism card styling with subtle primary gradient top border, inner/outer clay shadows, and rounded 24px corners.
+   - Left side: Interactive dynamic breadcrumb pill (`Tài khoản / Hồ sơ cá nhân`), single semantic `<h1>` (`#accountPageTitle`), and descriptive subtitle (`#accountPageDesc`).
+   - Right side: 3 sleek Clay Quick Meta Chips (`Trạng thái: Hoạt động`, `Hạng thành viên`, and dynamic `Chuỗi học tập / Bảo mật / Đặc quyền`) to elegantly balance wide displays.
+2. Updated `activateTab` in `account-ui.js` with `tabHeroConfig` to dynamically synchronize the title, subtitle, breadcrumb, and quick chip based on the active tab (`profile`, `security`, `subscription`).
+3. Streamlined `#tab-security` and `#tab-subscription` in `Profile.cshtml` by replacing the duplicate visible headers with visually-hidden accessible `<h2>` elements (`#profile-security-heading`, `#profile-subscription-heading`), preserving keyboard navigation, screen reader accessibility, and focus targets.
+4. Added responsive styles in `account-ui.css` for `.account-header-hero`, `.account-breadcrumb-pill`, `.account-meta-chip`, and mobile stack layout.
+
+**Files Changed**:
+- `TCTEnglish/Views/Account/Profile.cshtml` — Replaced static `_PageHeader` with dynamic `.account-header-hero`, streamlined duplicate headers in `#tab-security` and `#tab-subscription`
+- `TCTEnglish/Views/Account/Settings.cshtml` — Upgraded header to `.account-header-hero` with status, security and time zone chips
+- `TCTEnglish/wwwroot/js/account-ui.js` — Added dynamic hero header synchronization in `activateTab`
+- `TCTEnglish/wwwroot/css/account-ui.css` — Added styling for `.account-header-hero`, breadcrumb pill, and meta chips with responsive rules
+- `scripts/tests/test_user_dropdown_and_loader.cjs` — Added automated regression tests for Account Header Hero and tab synchronization
+
+**Verification**:
+- `node --test scripts/tests/test_user_dropdown_and_loader.cjs` -> 11/11 tests passed.
+- `node --test scripts/tests/test_account*.cjs scripts/tests/test_user_dropdown_and_loader.cjs scripts/tests/test_admin_shell_and_users_ui.cjs` -> 43/43 tests passed.
+- `dotnet build` -> 0 errors.
+- `curl http://localhost:5100/health/ready` -> `{"status":"ready"}`.
+
+**Commit**: Uncommitted local change.
+
 ### Account full-bleed light blue canvas background polish — 2026-11-08
 
 **Symptom**: On the Account pages, a visible white vertical stripe/gutter appeared along the left edge and around the view because the light blue clay canvas background (`#f0f3ff`) was contained only inside `.account-ui`, while the parent `<main class="main">` had a 40px padding and a grayish-white `#f8fafc` background.
@@ -3884,3 +3959,106 @@ Enter/Space selected self-practice with the new notice and zero microphone calls
 The final browser run also preserved lifecycle cleanup and late-response guards.
 
 **Limits**: No matching known issue. No schema, secret or hosting-setting change.
+
+### Account profile columns bottom edge height discrepancy between left and right stacks — 2026-11-11
+
+**Symptom**: In Tab Hồ sơ (`#tab-profile`), the bottom of the left column (Card 2: "Lối tắt học tập") stopped higher than the bottom of the right column (Card 3: "Thói quen rèn luyện"), causing an uneven, staggered floor line between the two columns.
+
+**Cause**: `.account-ui .profile-columns` used `align-items: start;` and both `.profile-main-stack` and `.info-stack` used `align-content: start;` with grid layout. As a result, each column only sized to the natural height of its contents, leaving ~40px of vertical height difference at the bottom.
+
+**Fix**: Updated `.account-ui .profile-columns` to `align-items: stretch;`. Converted `.profile-main-stack` and `.info-stack` to `display: flex; flex-direction: column; height: 100%;`. Enabled `flex: 1 1 auto;` on the last panel of both stacks (`.profile-main-stack > .panel:last-child` with `.quick-action-item` flex growth, and `.info-stack > .panel:last-child` with `.study-motivation-strip` pinned via `margin-top: auto`). Added responsive reset for `<= 991.98px`.
+
+**Verification**: Node test suite `test_user_dropdown_and_loader.cjs` and all `test_account*.cjs` passed 39/39 (100%). Both columns now stretch to the exact same total height and terminate at the identical horizontal bottom baseline across desktop and laptop viewports.
+
+**Limits**: Visual layout adjustment only. No schema, database, or API contract changes.
+
+### Account completion review: security, tracking, delivery and deletion races — 2026-11-11
+
+**Symptoms**: Reusable account proofs, stale security state, invented seconds from
+instant heartbeats, overlapping tab time, foreign push endpoint takeover, stranded
+delivery leases, reminders sent after settings changed, unsafe deletion assumptions,
+missing verification controls and misleading email/period labels. Browser testing
+also reproduced cancelled registration from duplicate submit handlers and a large
+mobile gap from an offcanvas aside retaining sticky positioning.
+
+**Causes**: Read-then-write proofs/leases lacked atomic predicates; transactions
+were outside the MySQL execution strategy; retry closures retained detached users;
+activity acceptance lacked a user-wide lock; delivery eligibility was checked only
+when queued; SMTP connection-loss receipts were treated as safe retries. Goal/time
+rollout, boundary handling and foreign-content checks were incomplete.
+
+**Fix**: Serialize account mutations in retryable transactions and reload state on
+retries. Consume proofs atomically, revoke challenges/reset tokens on security
+changes, validate cookies and each hub invocation, and add current-email verification.
+Accept only uncovered elapsed active intervals; repair hidden/idle/pending-start
+client lifecycle and7/28-day calculations. Validate push keys, prohibit takeover and
+verify the display account. Fence delivery claims/settlement, recheck eligibility,
+mark ambiguous sends Unknown, isolate failures and fix weekly periods/links.
+Preserve foreign progress/financial records, last-admin safety and cleanup failures.
+Guard avatars against anonymization, preserve nonsecret failed email input, and
+repair duplicate auth handling and scoped mobile CSS.
+
+**Files**: Account/Learning controllers; Services/Accounts, Learning and Notifications;
+Program cookie/DI/rate-limit/worker wiring; Admin user security changes; hub filter;
+Account views and production tracker/push/auth/service-worker scripts. Existing
+unrelated Gemini/layout/loader/BTH3 work was preserved. The Account migration was
+reviewed/corrected before first application and not edited after application.
+
+**Verification**: Red-to-green regressions include one-use proof, zero-time credit,
+endpoint ownership, expired leases, SMTP ambiguous receipt, production JS lifecycle/
+permissions, form preservation, interval boundaries, avatar/deletion interleaving
+and injected transaction retry. MariaDB10.5.23 upgrade/repeat/user+goal preservation
+and9 native Account/worker cases passed. Full .NET:1,247 passed,0 failed,28 skips;
+Node182/182 passed. Browser name/avatar/preferences/password/delete flows used only
+a synthetic account; avatar404 and protected-route Login redirect confirmed deletion.
+See docs/feature-audits/2026-11-11-account-functional-execution-ledger.md.
+
+**Limits**: Live Push/SMTP and native browser200% zoom are not claimed. Two existing
+moderate dependency advisories need a separately authorized maintenance pass.
+No credential rewrite, data reset, commit, remote CI or release was performed.
+
+### TCT English Email Presentation Claymorphism Redesign — 2026-11-11
+
+**Symptoms**: Unstyled, minimal, and inconsistent inline HTML in transactional emails (password reset, account blocked/unlocked, contact form, new email confirmation, account proofs, and weekly learning summary).
+
+**Causes**: Fragmented legacy HTML strings embedded directly across different services without a unified design system, lacking fallback links, and missing email-safe Claymorphism tokens.
+
+**Fix**: Created pure, self-contained email presentation layer `TCTEnglish/Services/Emails/` (`TctEmailTokens.cs`, `TctEmailRenderer.cs`) with documented token-to-literal mapping, bulletproof table layouts, responsive breakpoints, HTML-attribute encoding preserving UTF-8 Vietnamese, and plain-text counterparts. Integrated all production send paths (`SmtpAppEmailSender`, `AccountSecurityService`, `OutboundDeliveryProcessor`). Generated interactive gallery and 16 synthetic fixtures in `docs/design-system/email-preview/`. Added 20 unit tests in `TctEmailDesignSystemTests.cs`.
+
+**Files**: `TCTEnglish/Services/Emails/TctEmailTokens.cs`, `TCTEnglish/Services/Emails/TctEmailRenderer.cs`, `TCTEnglish/Services/SmtpAppEmailSender.cs`, `TCTEnglish/Services/Accounts/AccountSecurityService.cs`, `TCTEnglish/Services/Notifications/OutboundDeliveryProcessor.cs`, `TCTEnglish.Tests/TctEmailDesignSystemTests.cs`, `docs/design-system/email-preview/`, `docs/feature-audits/2026-11-11-email-clay-redesign-ledger.md`, `docs/superpowers/plans/2026-11-11-email-clay-redesign.md`.
+
+**Verification**: Debug and Release builds compile with 0 errors. All 36 focused tests passed on Release (20 email design, 6 fake SMTP transport, 10 account completion). XSS injection safely encoded. Fallback URLs verified.
+
+**Limits**: Live SMTP delivery not performed. Offline browser preview verified; native desktop Outlook Word-engine rendering not directly observed on live mailboxes. No credentials, Program.cs, DB schema, or package changes.
+
+### Dependency review: weekly-email assertion and raw-style parser coverage — 2026-11-11
+
+**Symptoms**: Cursor's dependency-maintenance run left one full-suite failure in
+the weekly interval-clipping regression. The new HTML-style parser fixture also
+reported success without reparsing its style content.
+
+**Causes**: The weekly test searched raw HTML for the old contiguous phrase
+"khoảng 2 phút" after the shared email renderer changed the markup/empty-day copy.
+The parser test serialized Body.InnerHtml even though the leading style belonged
+to Head, so its reparse assertion operated on an empty string.
+
+**Fix**: Preserve the same cross-week and overlapping activity fixture, parse the
+rendered email, normalize text whitespace and assert the2-minute statistic, exact
+week and real settings anchor. Require Head/style and its original raw text, then
+serialize/reparse the whole document and prove content retention/no injected image.
+The test still distinguishes parsing from general HTML sanitization. No email
+appearance, business formula, production package or constructor was changed.
+
+**Files**: TCTEnglish.Tests/AccountReviewRepairTests.cs and
+TCTEnglish.Tests/AngleSharpAdvisoryCompatibilityTests.cs; dependency plan/ledger.
+
+**Verification**: Reproduced9 passed/1 failed/1 native skip before repair. Fresh
+Release focused suite84/84 and independent MariaDB10.5.23 acceptance11/11 passed.
+Final full Release suite:1,276 passed,0 failed,29 environment skips,total1,305.
+Actual app/test DLLs select AngleSharp1.10.1/MySqlConnector2.6.2; app audit has no
+vulnerable entries. Final full-suite evidence is in
+docs/feature-audits/2026-11-11-dependency-security-maintenance-ledger.md.
+
+**Limits**: Test-only SQLitePCLRaw2.1.10 advisory remains outside the original
+two-package scope; it is absent from application assets. Production TLS/live
+YouTube not exercised. No owner DB reset, secret change, paid call or release.
