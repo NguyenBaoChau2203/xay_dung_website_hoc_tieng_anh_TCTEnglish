@@ -577,14 +577,15 @@ git diff --check
 
 ## 10. Definition of done
 
-- [ ] Every in-scope page uses the shared Clay language (canvas, Clay surfaces, Clay buttons, field insets), matches its mockup within the rules, and keeps its behaviour.
-- [ ] No pressed-edge shadows, `translateY` presses or local shadow/radius values remain in owner CSS (G14 clean or justified).
-- [ ] No route, API, service, view model, migration, `practice-core.js` or shared-file change; JS edits are class names only.
-- [ ] All tests green at or above C0; hooks intact.
-- [ ] Accessibility floor verified, including forced colours and reduced motion; contrast recorded.
-- [ ] Legacy and other owners' pages are unchanged.
-- [ ] The gate records for C0–C10 are complete; the tracker rows are updated; the Vietnamese report separates verified from not verified.
+Checked at C10 (2026-11-11). Evidence is in the gate records of section 11.
 
+- [x] Every in-scope page uses the shared Clay language (canvas, Clay surfaces, Clay buttons, field insets), matches its mockup within the rules, and keeps its behaviour. (C2-C9 gate records; mockups 01-12 compared in each phase; the differences are listed there.)
+- [x] No pressed-edge shadows, `translateY` presses or local shadow/radius values remain in owner CSS (G14: `study-kit.css`, `personal-sets.css`, `practice.css` print nothing at C10).
+- [x] No route, API, service, view model, migration, `practice-core.js` or shared-file change; JS edits are class names only. (`git diff master...HEAD` touches only section 6 files, this plan, its prompt and one known-issues entry; the only JS edit is the one class name in `practice-test.js` recorded in C9.)
+- [x] All tests green at or above C0; hooks intact. (Build 43 warnings, 0 errors; full 1328 passed / 0 failed / 22 skipped; area 108; node 205; hook inventory 457, removed 0.)
+- [x] Accessibility floor verified, including forced colours and reduced motion; contrast recorded. (C10 sweep over 19 pages: no shadow survives forced colours, no infinite animation or transition under reduced motion; contrast per phase.) Known limits are listed under "Browser coverage / not verified".
+- [x] Legacy and other owners' pages are unchanged. (Study, QuizMode, dashboard, Vocabulary keep their own background; Goals keeps its own canvas; the owner CSS is not loaded there.)
+- [x] The gate records for C0-C10 are complete; the tracker rows are updated; the Vietnamese report separates verified from not verified.
 ## 11. Execution notes (agent fills in; one gate record per phase)
 
 - Branch / HEAD at C0: `feature/study-clay` created from local `master` = `062851f` (contains PR #134 and PR #132 `e6521ad`). Working tree: `appsettings.Development.json` modified (unrelated, never staged), `Claude outputs/` untracked.
@@ -597,19 +598,25 @@ git diff --check
 - Canvas selector outcome (did it win without `!important`?): **Yes.** `.main:has(.tct-theme:is(.ts-page, .tp-page))` (specificity 0,3,0) beats `layout.css` `.main` (0,1,0), and `body:has(...)` beats `body`. Computed `.main` background is `rgb(240, 243, 255)` = `--tct-clay-canvas` on all Set/Practice pages. Only `.main` and `body` were needed; the plan's third selector `.main:has(> ...)` is redundant and was dropped. Legacy pages keep `rgb(248, 250, 252)` (verified on dashboard, Study, QuizMode, Vocabulary).
 - `color-mix` uses (each has a plain-token fallback declared first, except the two glows and the transparent mixes):
   - `study-kit.css`: `--k-tint` in six hues (`--k-fill` 18% into `--tct-surface`, fallback `--k-bg`); `.k-seg` track (`--tct-primary` 8% into surface, fallback `--tct-primary-tint`); `.k-progress` track (primary 10%, fallback `--tct-disabled-bg`); `--k-bg` of the accent hue (accent 30%, unchanged); `.btn .k-kbd` translucent chip (surface 22% into transparent, unchanged); the two canvas glows (accent 13% / primary 8% into transparent).
-- Mockup vs rule differences: _filled as found_
+- Mockup vs rule differences: recorded in each phase (G9). Common to all: the mockups show richer data than the local account has (48-word sets, CEFR, phonetics, emoji, notes, done / locked stage nodes), so those states were compared by structure and by computed style rather than pixel for pixel. Token rule that won over a mockup pixel: the shared Clay radii (16 / 24 / 28px) and shadows; the search field border `1.5px` of plan 3.5 renders as 1px in headless Chrome.
 - Overview URL check (accepted query values): `PracticeModes.Normalize` accepts `source=due`, `n=0` (flashcard only, `CountsFor(Flashcard)` = 20/50/0), `srs=1` (not match) and `from=hub`; `scope` is not read from the query, it is derived (`mine` when no `set`). So `/Practice/flashcard?scope=mine&source=due&n=0&srs=1&from=hub` is valid as written.
 - Contrast results (C1, computed from the live page, scripted):
   - text / text-secondary / text-muted on the Clay canvas: 15.45 / 8.41 / 5.30; primary-strong (links, outline button text) on canvas 6.91; text on surface 17.10.
   - six hues `--k-fg` on `--k-bg`: 6.84 / 5.21 / 6.84 / 5.91 / 5.15 / 15.02 (primary, success, warning, danger, info, accent); on `--k-tint`: 5.91 / **4.63** / 6.18 / **4.73** / **4.54** / 15.81 (success, danger and info pass with little margin); on the gradient end (surface) all >= 5.36; icon squares >= 5.36.
   - outline button border (`--tct-primary`) on canvas 4.77; control border on surface 3.66; unselected seg text on its track 8.32.
   - **Known limit:** the selected `.k-seg__item` boundary (surface vs track 1.12:1, `--tct-border` vs track 1.11:1) is below 3:1. The state is also carried by text colour (17.10:1 vs 8.32:1), weight 600 vs 500, the `aria-current` / `aria-pressed` state and a 2px `CanvasText` border in forced colours. This is the plan's own 3.5 design; it is recorded here, not hidden.
-- Browser coverage / not verified:
+- Browser coverage / not verified (C10 summary):
+  - **Covered:** 19 in-scope pages (list, detail, card, edit, add, import, settings, create, shared (anonymous), hub, hard words and the eight modes) x 7 viewport sizes (1366x768 first, 1440x900, 1024x768, 768x1024, 390x844, 320x640 and 720x450 = 200% of 1440): canvas, one `<h1>`, no horizontal overflow, no new console or network error; a forced-colors and reduced-motion sweep of every page; five regression pages. Fresh headless Chrome profile for every run (DevTools protocol, outside the repo).
+  - **Not exercised (each recorded in its phase):** bulk delete / move / topic confirm, load-more, non-owner follow and clone, clipboard copy, CSV file chooser, the AI suggest call for a Premium account (paid), the learn stage to completion and its resume, done / locked stage node styles on real data, a left swipe and touch devices, a test with 20 questions, the second match board, the cloze sentence box (the sample cards have no examples), a real server-error state of a composer card, the hard-words empty state.
+  - **Not run:** the Chrome extension / other browsers (only headless Chrome), screen readers, real touch hardware, Firefox / Safari forced-colors, the 22 MariaDB-only tests (skipped by the harness, as at C0), 
+ode tests for these pages (none exist; checks live outside the repo).
+  - **Pre-existing defects seen, not fixed:** `/Sets/Cards/{id}/Edit` and the add-page details drawer throw a `TypeError` for a Standard account (known issue SETS-CARD-DETAILS-NONPREMIUM-NULL); `/Goals` logs `jQuery is not defined`.
   - C0 baseline screenshots: 27 in-scope and regression pages x 1440x900, 1366x768 and 390x844 in ignored `.tmp/study-clay/c0/` (headless Chrome via DevTools protocol, Standard synthetic account, app on port 5100).
   - Existing (pre-C0) console issues, not caused by this work: `/Sets/Cards/{id}/Edit` throws `TypeError: Cannot set properties of null (setting 'textContent')` in `Object.setData`; `/Goals` logs `jQuery is not defined` from `jquery.validate.js`. Both are recorded as baseline and must not get worse.
   - Local data has one personal set (id 1, six words, nothing due), so the overview "due" branch needs extra data in C2.
   - Mockups are opened in the phase that implements them rather than all at C0.
-- Final counts: _filled at C10_
+- Final counts (C10, with the app stopped): build 0 errors / 43 warnings (C0 43); full tests 1328 passed / 0 failed / 22 skipped (C0 1328 / 0 / 22); area filter 108 / 0 / 0 (C0 108); node 205 / 0 (C0 205); hook inventory 457, removed 0; git diff --check clean; G6 and G14 greps print nothing. No test was added: the change is presentation-only and was checked in the browser; the repo has no render test for these views beyond the existing ones (PracticeIntegrationTests still passes with the new overview).
+- Data touched locally by the checks (synthetic Standard account, no reseed): four cards of the sample set were made due and one card moved to "learned" through the app's own study endpoints, a share link was switched on and off once on the sample set, and a throwaway set was created and deleted through the app. Nothing is in Git; no shared content, persisted model or migration changed.
 
 ### C0 — Baseline
 - Commit: see `git log` (message "docs(study-clay): save the plan and prompt, record the C0 baseline")
@@ -814,3 +821,22 @@ git diff --check
 - `color-mix` additions: test bar background (canvas 96% into transparent), locked stage node (primary 10% into surface), mastery track (primary 10% into surface); plain-token fallbacks first.
 - Differences found: none beyond G9.
 - Attempts / deferred / blocked: 2 runs of the behaviour script, 1 JS class fix and 2 script fixes (a speak button was clicked instead of "Đã hiểu"; a wrong 16px expectation); nothing deferred or blocked.
+
+### C10 — full gate, docs, self-review
+- Commit: see `git log` ("docs(study-clay): close the plan, update the tracker rows")
+- G1 build: pass (warnings 43, C0 43; forced rebuild, app stopped)
+- G2 area: passed 108 / failed 0 / skipped 0
+- G3 full: passed 1328 / failed 0 / skipped 22 (C0: same)
+- G4 node: passed 205 / failed 0
+- G5 hooks: unchanged (457, removed 0)
+- G6 tokens/diff: clean (`git diff --check` and the tokens-only grep print nothing)
+- G7 scope (whole branch, `git diff master...HEAD`): this plan and its prompt, `.ai/context/known-issues.md`, `Views/Practice/{HardWords,Index,Session}.cshtml`, `Views/Set/{AddCards,CardDetail,Detail,EditCard,Import,Index,Settings,Shared}.cshtml`, `wwwroot/css/{personal-sets,practice,study-kit}.css`, `wwwroot/js/practice-test.js` (one class name), plus `docs/design-system/team-ui-workflow.md` (tracker rows, this commit). No controller, service, view model, migration, `Program.cs`, `appsettings*.json`, `.csproj`, layout, `site.css`, `tct-learning-ui.css`, shared partial, `practice-core.js` or `Views/Study/**` file changed; `appsettings.Development.json` stays an unstaged local change and `Claude outputs/` untracked.
+- G8 render: 20 pages x 7 sizes (140 loads; 1366x768 first, then 1440x900, 1024x768, 768x1024, 390x844, 320x640, 720x450 = 200% of 1440) in `.tmp/study-clay/c10/`: `.main` is the Clay canvas on every page, one `<h1>` on every page, `scrollWidth` equals `clientWidth` everywhere, no per-element overflow except the closed off-screen drawer on `/Sets/{id}/Add` (by design), and no console or network error except the known `Object.setData` TypeError on the edit page (known issue). Fresh headless Chrome profile for every run.
+- G9: every phase compared its mockups with the page (see each record); C10 added no visual change.
+- G10: each phase ran its checklist with scripted mouse and keyboard checks (C1 17, C2 23, C3 39, C4 23, C5 45, C6 36, C7 39, C8 32, C9 35); the "Not exercised" lists are in the phase records and in "Browser coverage / not verified" above.
+- G11 a11y: C10 sweep of all 19 pages (1366x768): with `forced-colors: active` no element of an owner page keeps a `box-shadow` (0 on every page); with `prefers-reduced-motion: reduce` no page has an infinite animation or a transition longer than 0.1 ms (0 on every page). Per-phase checks cover focus rings, labels, live regions and states that do not rely on shadow.
+- G12 contrast: recorded per phase from the live pages (all text pairs >= 4.5:1; the selected `.k-seg__item` boundary is the one documented limit of plan 3.5).
+- G13 regression: Study, QuizMode, dashboard and Vocabulary keep `rgb(248, 250, 252)`; Goals keeps its own `rgb(240, 243, 255)` canvas; their console state equals C0 (Goals: `jQuery is not defined`; dashboard 390px: the decorative `db-cta-deco` element).
+- G14 clay grep: `study-kit.css`, `personal-sets.css`, `practice.css`: 0 non-Clay shadow lines, 0 edge or `translateY` presses, 0 hard-coded radius px.
+- Self-review against AGENTS.md: presentation-only change; no persisted entity, DbContext or mapping touched, so no migration or schema assessment is needed; no antiforgery, ownership or contract change (routes, JSON and SignalR untouched; hooks 457 intact); Razor views still receive ViewModels (the overview totals are computed in the view from the existing tile ViewModels, no service change); Bootstrap and `--tct-*` tokens only (no new `:root`, hex, font, icon family, package or CDN; the `tct-learning-ui.css` shared file is untouched); one agent, no subagent, no push, PR, pull, rebase, reset, CI, merge or deployment; commits only on `feature/study-clay`. DESIGN.md Clay rules: canvas, shared Clay surfaces, buttons and field insets, readable boundaries on controls, states never carried by shadow alone, quiet containers for dense content, forced-colors and reduced-motion handled, laptop sizes reviewed first.
+- Attempts / deferred / blocked: nothing deferred; the only blocked check is the Standard-account details drawer (pre-existing bug, recorded).
