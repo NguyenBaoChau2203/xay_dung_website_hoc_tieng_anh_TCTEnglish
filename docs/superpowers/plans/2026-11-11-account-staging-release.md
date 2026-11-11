@@ -45,3 +45,21 @@ live Push setup and native200% browser zoom limits remain recorded in their ledg
 
 Final release evidence belongs in the PR/CI timeline and the owner handoff; do not
 claim success from this plan or start a new automatic release merely to update it.
+
+## Integration evidence before PR
+
+Current origin/master (e71c7af) was merged without discarding either feature.
+The only textual conflict was the EF model snapshot; both subscription and
+Account relationships are preserved and the pending-model check passed.
+
+Release rehearsal reproduced and repaired the physical-table-checksum false
+failure caused by new Account columns. A fresh disposable MariaDB10.5.23 upgrade
+and repeated migration passed all17 committed migrations while comparing every
+original users column. Integration also adds subscriber-aware Account deletion
+and removal of the anonymized user's own subscriptions, with failing regressions
+observed before the fix. No new schema migration is needed for these query-only
+repairs. No applied migration was changed.
+
+Node checks passed228/228. Release-protocol Python checks passed18 deployment,
+19 staging and5 shared-data Git cases. The final full .NET/native/shared-data
+results belong in the PR together with the exact remote CI/staging links.

@@ -115,6 +115,7 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 
     private static readonly string[] AcceptanceTables =
     [
+        "SetSubscriptions",
         "AccountFileCleanupJobs",
         "AccountSecurityChallenges",
         "LearningActivitySegments",

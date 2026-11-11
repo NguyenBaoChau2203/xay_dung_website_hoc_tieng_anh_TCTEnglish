@@ -164,6 +164,8 @@ public sealed class MariaDbAccountReviewAcceptanceTests
                 UpdatedAtUtc = DateTime.UtcNow, ExpiresAtUtc = DateTime.UtcNow.AddMinutes(10)
             };
             db.PaymentOrders.Add(order);
+            var followedSet = new Set { OwnerId = TestDataIds.UserId, SetName = "Synthetic followed set" };
+            db.SetSubscriptions.Add(new SetSubscription { Set = followedSet, UserId = id, SubscribedAt = DateTime.UtcNow });
             await db.SaveChangesAsync();
             orderId = order.Id;
         }
@@ -179,6 +181,8 @@ public sealed class MariaDbAccountReviewAcceptanceTests
         Assert.False(BCrypt.Net.BCrypt.Verify(Password, stored.PasswordHash));
         Assert.EndsWith("@users.invalid", stored.Email);
         Assert.Equal(id, (await verify.PaymentOrders.AsNoTracking().SingleAsync(row => row.Id == orderId)).UserId);
+        Assert.False(await verify.SetSubscriptions.AnyAsync(row => row.UserId == id));
+        Assert.True(await verify.Sets.AnyAsync(row => row.SetName == "Synthetic followed set" && row.OwnerId == TestDataIds.UserId));
     }
 
     private static MariaDbAcceptanceFactory Factory(ReviewClock? clock = null)

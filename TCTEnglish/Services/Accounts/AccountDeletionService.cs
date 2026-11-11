@@ -209,6 +209,11 @@ public sealed class AccountDeletionService : IAccountDeletionService
         }
 
         var setIds = await _context.Sets.Where(row => row.OwnerId == userId).Select(row => row.SetId).ToListAsync(cancellationToken);
+        if (await _context.SetSubscriptions.AnyAsync(row => setIds.Contains(row.SetId) && row.UserId != userId, cancellationToken))
+        {
+            return "Bộ thẻ của bạn đang được người khác theo dõi. Hãy xử lý liên kết dùng chung trước khi xóa tài khoản.";
+        }
+
         var cardIds = await _context.Cards.Where(row => setIds.Contains(row.SetId)).Select(row => row.CardId).ToListAsync(cancellationToken);
         if (await _context.LearningProgresses.AnyAsync(row => cardIds.Contains(row.CardId) && row.UserId != userId, cancellationToken))
         {
@@ -257,6 +262,7 @@ public sealed class AccountDeletionService : IAccountDeletionService
         await _context.UserBadges.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.UserGoals.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningProgresses.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
+        await _context.SetSubscriptions.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningCompletionCredits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningNotificationOutboxEvents.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.Notifications.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);

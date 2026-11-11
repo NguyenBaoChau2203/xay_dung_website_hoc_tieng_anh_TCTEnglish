@@ -278,6 +278,29 @@ public sealed class AccountFunctionalCompletionTests
         Assert.Equal(0, await db.UserDailyActivities.CountAsync(row => row.UserId == userId));
     }
 
+    [Fact]
+    public async Task Delete_WithOtherSetSubscriber_PreservesTheirLibraryAndOwnerAccount()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        var userId = await SeedUserAsync(factory, $"set-owner-{Guid.NewGuid():N}@test.local", BCrypt.Net.BCrypt.HashPassword("CorrectHorse1"));
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var set = new Set { OwnerId = userId, SetName = "Subscribed synthetic set" };
+        db.Sets.Add(set);
+        await db.SaveChangesAsync();
+        db.SetSubscriptions.Add(new SetSubscription { SetId = set.SetId, UserId = TestDataIds.UserId, SubscribedAt = DateTime.UtcNow });
+        await db.SaveChangesAsync();
+
+        var result = await scope.ServiceProvider.GetRequiredService<IAccountDeletionService>()
+            .DeleteAsync(userId, "CONFIRM", "CorrectHorse1", null);
+
+        Assert.False(result.Succeeded);
+        Assert.NotNull(await db.Users.AsNoTracking().SingleOrDefaultAsync(row => row.UserId == userId));
+        Assert.True(await db.Sets.AsNoTracking().AnyAsync(row => row.SetId == set.SetId));
+        Assert.True(await db.SetSubscriptions.AsNoTracking().AnyAsync(row => row.SetId == set.SetId && row.UserId == TestDataIds.UserId));
+    }
+
     private static async Task<int> SeedUserAsync(TestWebApplicationFactory factory, string email, string passwordHash)
     {
         using var scope = factory.Services.CreateScope();

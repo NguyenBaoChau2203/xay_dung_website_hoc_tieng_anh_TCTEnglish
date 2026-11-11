@@ -4076,3 +4076,35 @@ docs/feature-audits/2026-11-11-dependency-security-maintenance-ledger.md.
 **Limits**: Test-only SQLitePCLRaw2.1.10 advisory remains outside the original
 two-package scope; it is absent from application assets. Production TLS/live
 YouTube not exercised. No owner DB reset, secret change, paid call or release.
+### Account release integration: subscriptions and additive migration checks — 2026-11-11
+
+**Symptoms**: Integrating current master introduced SetSubscriptions after the
+Account deletion workflow had been reviewed. A subscriber-only relationship did
+not block owner deletion, and ledger-preserving anonymization left the deleting
+user's subscriptions behind. CI's whole-table users checksum also rejected the
+otherwise successful additive Account migration.
+
+**Causes**: The new personal-set relationship was absent from the original
+Account dependency checks/cleanup. MariaDB CHECKSUM TABLE includes new column
+values, so adding nullable/defaulted columns changes its checksum without
+changing any pre-upgrade values.
+
+**Fix**: Preserve another user's followed set by blocking account deletion while
+foreign subscriptions remain. Delete only the requesting user's subscriptions,
+including when anonymizing an identity retained for payment references. Include
+SetSubscriptions in the isolated native test fixture cleanup. Compare every
+pre-upgrade users column in deterministic UserID order across migrations, retaining
+empty-disposable-target, FK, complete-history and repeat-execution guards. Resolve
+the model-snapshot conflict by preserving both Account and personal-set mappings;
+do not edit already-applied migrations.
+
+**Verification**: Reproduced the owner-deletion regression (1 failing SQLite case)
+and retained-subscription regression (1 failing/10 passing native MariaDB cases).
+The migration check failed after all migrations succeeded; the corrected check
+passed a fresh MariaDB10.5.23 baseline upgrade and repeat (17 migrations), with
+all original users columns preserved. Final integrated checks and CI/staging
+results are recorded in the release PR and owner handoff.
+
+**Files**: AccountDeletionService; AccountFunctionalCompletionTests;
+MariaDbAccountReviewAcceptanceTests; MariaDbAcceptanceFactory;
+scripts/verify-mariadb.ps1; DbflashcardContextModelSnapshot.
