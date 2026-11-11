@@ -1,0 +1,60 @@
+@model TCTEnglish.ViewModels.Sets.SetInfoFormViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Cài đặt bộ thẻ";
+    var setId = Model.SetId ?? 0;
+    var header = new PageHeaderViewModel
+    {
+        Title = "Cài đặt bộ thẻ",
+        Breadcrumbs = new List<PageBreadcrumbItem>
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem(string.IsNullOrWhiteSpace(Model.SetName) ? "Bộ thẻ" : Model.SetName, Url.Action("Detail", "Set", new { id = setId })),
+            new PageBreadcrumbItem("Cài đặt")
+        }
+    };
+    var deleteTitleId = "ts-delete-title";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--form">
+    <partial name="_PageHeader" model="header" />
+    <partial name="_SetAlerts" />
+    <partial name="_SetInfoForm" model="Model" />
+
+    <section class="tct-card ts-danger-zone" aria-labelledby="ts-danger-title">
+        <h2 class="ts-section-title" id="ts-danger-title">Xóa bộ thẻ</h2>
+        <p>Xóa @Model.WordCount từ và tiến độ ôn của mọi người đang học bộ này. Không hoàn tác được.</p>
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#tsDeleteModal">
+            <i class="fa-regular fa-trash-can me-1" aria-hidden="true"></i>Xóa bộ thẻ
+        </button>
+    </section>
+
+    <div class="modal fade" id="tsDeleteModal" tabindex="-1" aria-labelledby="@deleteTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" method="post" asp-controller="Set" asp-action="DeleteDeck" asp-route-id="@setId" data-ts-confirm-form>
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="@deleteTitleId">Xóa bộ “@Model.SetName”?</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nhập đúng tên bộ thẻ để xác nhận. Việc này xóa vĩnh viễn @Model.WordCount từ cùng tiến độ ôn của mọi người.</p>
+                    <label class="visually-hidden" for="ts-confirm-name">Nhập tên bộ thẻ để xác nhận</label>
+                    <input class="form-control" id="ts-confirm-name" name="confirmName" autocomplete="off"
+                           placeholder="@Model.SetName" data-ts-confirm-input data-ts-confirm-value="@Model.SetName" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Giữ lại</button>
+                    <button type="submit" class="btn btn-danger" disabled data-ts-confirm-submit>Xóa vĩnh viễn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

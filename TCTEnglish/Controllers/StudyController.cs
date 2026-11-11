@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services;
+using TCTEnglish.Services.Sets;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
@@ -19,14 +20,17 @@ namespace TCTVocabulary.Controllers
         private readonly IWritingRequestRateLimiter _writingRequestRateLimiter;
         private readonly IListeningService _listeningService;
         private readonly DbflashcardContext _context;
+        private readonly IPersonalSetService _personalSets;
 
         public StudyController(
             IStudyService studyService,
             IWritingService writingService,
             IWritingRequestRateLimiter writingRequestRateLimiter,
             IListeningService listeningService,
-            DbflashcardContext context)
+            DbflashcardContext context,
+            IPersonalSetService personalSets)
         {
+            _personalSets = personalSets;
             _studyService = studyService;
             _writingService = writingService;
             _writingRequestRateLimiter = writingRequestRateLimiter;
@@ -36,14 +40,14 @@ namespace TCTVocabulary.Controllers
 
         [Authorize]
         [HttpGet("Study/{id:int?}")]
-        public async Task<IActionResult> Study(int id)
+        public async Task<IActionResult> Study(int id, string? mode = null)
         {
             if (!TryGetCurrentUserId(out var userId))
             {
                 return Unauthorized();
             }
 
-            return await RenderStudyViewAsync(nameof(Study), id, userId, redirectToFolderWhenEmpty: true);
+            return await RenderStudyViewAsync(nameof(Study), id, userId, redirectToSetWhenEmpty: true, mode);
         }
 
         [Authorize]
@@ -59,6 +63,17 @@ namespace TCTVocabulary.Controllers
             if (!TryGetCurrentUserId(out var userId))
             {
                 return Unauthorized();
+            }
+
+            // The card must exist and belong to a set the user may view (B7); otherwise nothing is written.
+            var cardSetId = await _context.Cards
+                .AsNoTracking()
+                .Where(c => c.CardId == request.CardId)
+                .Select(c => (int?)c.SetId)
+                .FirstOrDefaultAsync();
+            if (cardSetId == null || !await _personalSets.CanViewSetAsync(cardSetId.Value, userId, IsAdminUser()))
+            {
+                return NotFound();
             }
 
             var result = await _studyService.UpdateCardProgressAsync(request.CardId, request.IsKnown, userId);
@@ -86,7 +101,7 @@ namespace TCTVocabulary.Controllers
                 return RedirectToAction("Folder", "Folder");
             }
 
-            return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToFolderWhenEmpty: true);
+            return await RenderStudyViewAsync(nameof(Speaking), id.Value, userId, redirectToSetWhenEmpty: true);
         }
         
         [HttpGet("Listening")]
@@ -514,19 +529,40 @@ namespace TCTVocabulary.Controllers
             string viewName,
             int setId,
             int? userId = null,
-            bool redirectToFolderWhenEmpty = false)
+            bool redirectToSetWhenEmpty = false,
+            string? mode = null)
         {
-            var viewModel = await _studyService.GetStudyViewModelAsync(setId, userId);
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            // Read access to the set (B4): legacy sets are Public, folder/class/saved access is included.
+            var isAdmin = IsAdminUser();
+            if (!await _personalSets.CanViewSetAsync(setId, currentUserId, isAdmin))
+            {
+                return NotFound();
+            }
+
+            var isDue = string.Equals(mode, "due", StringComparison.OrdinalIgnoreCase);
+            var viewModel = await _studyService.GetStudyViewModelAsync(setId, userId, isDue ? "due" : null);
             if (viewModel == null)
             {
                 return NotFound();
             }
 
-            if (redirectToFolderWhenEmpty && !viewModel.Cards.Any())
+            if (redirectToSetWhenEmpty && !viewModel.Cards.Any())
             {
-                return RedirectToAction(nameof(FolderController.FolderDetail), "Folder", new { id = viewModel.Set.FolderId });
+                // /Sets/{id} always exists, unlike FolderDetail/0 for sets without a folder (B6).
+                if (isDue)
+                {
+                    TempData["SetMessage"] = "Bạn đã ôn xong bộ này. Quay lại sau nhé.";
+                }
+
+                return RedirectToAction(nameof(SetController.Detail), "Set", new { id = setId });
             }
 
+            viewModel.CanEdit = await _personalSets.CanEditSetAsync(setId, currentUserId, isAdmin);
             return View(viewName, viewModel);
         }
 

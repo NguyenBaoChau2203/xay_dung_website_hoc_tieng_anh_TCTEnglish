@@ -1,0 +1,136 @@
+@model TCTEnglish.ViewModels.Sets.PracticeHubViewModel
+@using System.Text.Json
+@using TCTEnglish.Services.Sets
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Luyện tập";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Luyện tập",
+        Description = "Luyện thêm ngoài giờ ôn. Mặc định không làm thay đổi lịch ôn.",
+        Breadcrumbs = new List<PageBreadcrumbItem> { new("Bộ thẻ", Url.Action("Index", "Set")), new("Luyện tập") }
+    };
+    var noWords = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Bạn chưa có từ nào để luyện.",
+        Message = "Tạo bộ thẻ và thêm vài từ rồi quay lại nhé.",
+        ActionLabel = "Tạo bộ thẻ",
+        ActionUrl = Url.Action("CreateSet", "Set")
+    };
+    var config = new
+    {
+        userId = Model.UserId,
+        preselectedSetId = Model.PreselectedSetId,
+        hardWordCount = Model.HardWordCount,
+        sets = Model.Sets.Select(s => new { id = s.Id, name = s.Name, wordCount = s.WordCount, dueCount = s.DueCount })
+    };
+    var big = new ViewDataDictionary(ViewData) { ["Big"] = true };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/practice.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tp-page tp-page--hub">
+    <partial name="_PageHeader" model="header" />
+
+    <form id="tpSetup" class="tp-hub" method="get" action="/Practice/learn" data-tp-hub>
+        <fieldset class="tp-modes">
+            <legend class="visually-hidden">Chế độ</legend>
+            <p class="tp-group-title">Học bộ từ</p>
+            <div class="tp-mode-grid tp-mode-grid--big">
+                @foreach (var mode in PracticeModes.StudyGames)
+                {
+                    <partial name="_ModeCard" model="mode" view-data="big" />
+                }
+            </div>
+            <p class="tp-group-title">Luyện riêng từng kỹ năng</p>
+            <div class="tp-mode-grid tp-mode-grid--small">
+                @foreach (var mode in PracticeModes.Skills)
+                {
+                    <partial name="_ModeCard" model="mode" />
+                }
+            </div>
+        </fieldset>
+
+        <div class="tp-side">
+            <div class="k-panel tp-setup-panel">
+                <h2 class="tp-setup-title">Thiết lập</h2>
+                @if (Model.TotalWords == 0)
+                {
+                    <partial name="~/Views/Shared/_StateMessage.cshtml" model="noWords" />
+                }
+                else
+                {
+                    <div class="tp-field">
+                        <label class="form-label" for="tpSet">Bộ từ</label>
+                        <select id="tpSet" class="form-select" name="set">
+                            <option value="mine">Tất cả bộ của tôi</option>
+                            @foreach (var s in Model.Sets)
+                            {
+                                <option value="@s.Id" selected="@(Model.PreselectedSetId == s.Id)">@s.Name (@s.WordCount)</option>
+                            }
+                        </select>
+                    </div>
+
+                    <fieldset class="tp-field" id="tpCountField">
+                        <legend class="form-label tp-legend" id="tpCountLegend">Số từ</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpCountPills"></div>
+                    </fieldset>
+
+                    <fieldset class="tp-field" id="tpTypesField" hidden>
+                        <legend class="form-label tp-legend">Dạng câu</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpTypePills"></div>
+                        <p class="form-text m-0">Chọn ít nhất một dạng câu.</p>
+                    </fieldset>
+
+                    <fieldset class="tp-field" id="tpAskField" hidden>
+                        <legend class="form-label tp-legend">Hỏi bằng</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpAskPills"></div>
+                    </fieldset>
+
+                    <fieldset class="tp-field">
+                        <legend class="form-label tp-legend">Nguồn từ</legend>
+                        <div class="tp-pills k-seg k-seg--wrap" id="tpSourcePills"></div>
+                    </fieldset>
+
+                    <div class="tp-field tp-srs-row form-check form-switch" id="tpSrsField">
+                        <input class="form-check-input" type="checkbox" role="switch" id="tpSrs" />
+                        <label class="form-check-label" for="tpSrs">Tính vào ôn tập</label>
+                        <p class="form-text m-0">Kết quả luyện tập sẽ thay đổi lịch ôn của từ.</p>
+                    </div>
+                }
+            </div>
+
+            @if (Model.TotalWords > 0)
+            {
+                <div class="tp-start-bar">
+                    <p class="tp-start-bar__summary" id="tpSummary" aria-live="polite"></p>
+                    <button type="submit" class="btn btn-primary btn-lg w-100" id="tpStart">Bắt đầu luyện</button>
+                </div>
+            }
+        </div>
+
+        <a class="tct-card tct-card--interactive k-panel tp-hard-link tp-hue-danger" href="@Url.Action("HardWords", "Practice")">
+            <span class="tp-hard-link__icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
+            <span class="tp-hard-link__text">
+                <span class="tp-hard-link__name">Từ hay quên</span>
+                <span class="tp-hard-link__hint">Xem và luyện riêng những từ bạn hay quên.</span>
+            </span>
+            @if (Model.HardWordCount > 0)
+            {
+                <span class="tct-badge tct-badge--danger">@Model.HardWordCount</span>
+            }
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </a>
+    </form>
+
+    <script id="tpHubConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config, new JsonSerializerOptions(JsonSerializerDefaults.Web)))</script>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/practice-core.js" asp-append-version="true"></script>
+    <script src="~/js/practice-hub.js" asp-append-version="true"></script>
+}

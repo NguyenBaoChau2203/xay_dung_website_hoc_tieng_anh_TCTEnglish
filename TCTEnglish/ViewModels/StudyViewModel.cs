@@ -11,6 +11,12 @@ namespace TCTVocabulary.ViewModels
         public bool IsReview { get; set; }
         public string StudyMode { get; set; } = "all";
         public int StudyTotal { get; set; }
+
+        /// <summary>True for /Home/Study/{id}?mode=due (due reviews plus a few new cards).</summary>
+        public bool IsDueReview { get; set; }
+
+        /// <summary>The viewer may edit this set (owner or admin); controls the edit link.</summary>
+        public bool CanEdit { get; set; }
     }
 
     public class VocabularySetSummaryViewModel

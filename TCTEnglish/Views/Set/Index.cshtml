@@ -1,0 +1,100 @@
+@model TCTEnglish.ViewModels.Sets.SetIndexViewModel
+@using TCTEnglish.ViewModels
+@using TCTEnglish.ViewModels.Sets
+@{
+    ViewData["Title"] = "Bộ thẻ của tôi";
+    var createUrl = Url.Action("CreateSet", "Set")!;
+    var header = new PageHeaderViewModel
+    {
+        Title = "Bộ thẻ của tôi",
+        Actions = new[]
+        {
+            new PageHeaderAction("Luyện tập", "/Practice", PageActionVariant.Secondary, "fa-solid fa-dumbbell"),
+            new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus")
+        }
+    };
+    var chips = new[]
+    {
+        ((string?)null, "Tất cả"),
+        ("own", "Của tôi"),
+        ("subscribed", "Đang theo học"),
+        ("shared", "Được chia sẻ")
+    };
+    var empty = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Chưa có bộ thẻ nào.",
+        Message = "Thêm vài bộ thẻ mẫu để thử ngay, hoặc tự tạo bộ thẻ đầu tiên."
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page ts-page ts-page--list">
+    <partial name="_PageHeader" model="header" />
+
+    <nav class="ts-chips k-seg" aria-label="Lọc bộ thẻ">
+        @foreach (var (key, label) in chips)
+        {
+            var active = (Model.Filter ?? string.Empty) == (key ?? string.Empty);
+            <a class="k-seg__item" aria-current="@(active ? "page" : null)"
+               href="@Url.Action("Index", "Set", new { filter = key })">@label</a>
+        }
+    </nav>
+
+    <partial name="_SetAlerts" />
+
+    @if (Model.IsEmpty)
+    {
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
+        <div class="ts-empty-actions">
+            <form method="post" asp-controller="Set" asp-action="AddSamples">
+                <button type="submit" class="btn btn-primary" data-ts-pending="Đang thêm…">Thêm bộ thẻ mẫu</button>
+            </form>
+            <a class="btn btn-outline-primary" href="@createUrl">Tạo bộ thẻ</a>
+        </div>
+    }
+    else
+    {
+        @foreach (var (id, title, items) in new[]
+        {
+            ("own", "Của tôi", Model.Own),
+            ("subscribed", "Đang theo học", Model.Subscribed),
+            ("shared", "Được chia sẻ", Model.Shared)
+        })
+        {
+            if (items.Count == 0)
+            {
+                continue;
+            }
+
+            <section class="ts-group" aria-labelledby="ts-group-@id">
+                <h2 class="ts-group-title" id="ts-group-@id">@title <span class="ts-group-count">@items.Count</span></h2>
+                <ul class="ts-grid">
+                    @foreach (var tile in items)
+                    {
+                        <li><partial name="_SetTile" model="tile" /></li>
+                    }
+                    @if (id == "own")
+                    {
+                        <li>
+                            <a class="ts-tile-add" href="@createUrl" aria-hidden="true" tabindex="-1">
+                                <span class="ts-tile-add-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                                <span class="ts-tile-add-title">Tạo bộ thẻ mới</span>
+                                <span class="ts-tile-add-note">hoặc nhập từ file CSV</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </section>
+        }
+    }
+
+    <a class="btn btn-primary tct-btn-icon ts-fab" href="@createUrl" aria-label="Tạo bộ thẻ"><i class="fa-solid fa-plus" aria-hidden="true"></i></a>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

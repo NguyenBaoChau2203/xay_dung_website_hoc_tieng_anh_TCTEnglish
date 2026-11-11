@@ -1,0 +1,187 @@
+@model TCTEnglish.ViewModels.Sets.CardComposeViewModel
+@using System.Text.Json
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = "Thêm từ";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Thêm từ",
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem(Model.SetName, Url.Action("Detail", "Set", new { id = Model.SetId })),
+            new PageBreadcrumbItem("Thêm từ")
+        }
+    };
+    var config = new
+    {
+        setId = Model.SetId,
+        userId = Model.UserId,
+        isPremium = Model.IsPremium,
+        initialTerm = Model.InitialTerm,
+        maxCards = 100,
+        chunk = 30,
+        targets = Model.Targets.Select(t => new { id = t.SetId, name = t.SetName }),
+        urls = new
+        {
+            batchBase = Url.Content("~/api/sets/"),
+            duplicates = Url.Content("~/api/sets/duplicates"),
+            enrich = Url.Content("~/api/vocab/enrich"),
+            enrichBatch = Url.Content("~/api/vocab/enrich-batch"),
+            images = Url.Content("~/api/vocab/images"),
+            cardImage = Url.Content("~/api/sets/card-image"),
+            cardBase = Url.Content("~/Sets/Cards/"),
+            setBase = Url.Content("~/Sets/"),
+            pricing = Url.Action("Pricing", "Billing")
+        }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--compose">
+    <partial name="_PageHeader" model="header" />
+
+    @if (Model.Targets.Count > 1)
+    {
+        <div class="ts-target-row">
+            <label class="form-label mb-0" for="ts-target">Vào bộ:</label>
+            <select class="form-select form-select-sm" id="ts-target">
+                @foreach (var target in Model.Targets)
+                {
+                    <option value="@target.SetId" selected="@(target.SetId == Model.SetId)">@target.SetName</option>
+                }
+            </select>
+        </div>
+    }
+
+    <div class="ts-mode k-seg" role="group" aria-label="Cách nhập">
+        <button type="button" class="k-seg__item active" data-ts-mode="single" aria-pressed="true">Từng thẻ</button>
+        <button type="button" class="k-seg__item" data-ts-mode="paste" aria-pressed="false">Dán danh sách</button>
+    </div>
+
+    @if (!Model.IsPremium)
+    {
+        <p class="ts-premium-hint">
+            <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            Nâng cấp Premium để tự điền nghĩa, ví dụ và ảnh bằng AI.
+            <a href="@Url.Action("Pricing", "Billing")">Xem gói Premium</a>
+        </p>
+    }
+
+    <section id="ts-pane-single" aria-label="Thêm từng thẻ">
+        <p class="ts-draft-bar" id="ts-draft-bar" hidden>
+            <span id="ts-draft-text">Đã khôi phục 0 thẻ chưa lưu.</span>
+            <button type="button" class="btn btn-link btn-sm" id="ts-draft-clear">Xóa nháp</button>
+        </p>
+        <ol class="ts-compose-list" id="ts-compose-list"></ol>
+        <button type="button" class="ts-add-card" id="ts-add-card"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i><span>Thêm thẻ</span></button>
+    </section>
+
+    <section id="ts-pane-paste" class="tct-card ts-paste" aria-label="Dán danh sách" hidden>
+        <label class="form-label" for="ts-paste-text">Danh sách từ</label>
+        <p class="form-text">Mỗi dòng một từ, có thể kèm dấu gạch ngang và nghĩa. AI sẽ điền phần còn lại (Premium).</p>
+        <textarea class="form-control ts-mono" id="ts-paste-text" rows="8" placeholder="apple - quả táo&#10;resilient&#10;borrow: mượn"></textarea>
+        <ul class="ts-line-errors" id="ts-paste-errors"></ul>
+        <div class="ts-paste-footer">
+            <a href="@Url.Action("Import", "Set", new { id = Model.SetId })">Nhập từ file CSV</a>
+            <button type="button" class="btn btn-primary" id="ts-paste-split" disabled>Tách thành thẻ</button>
+        </div>
+    </section>
+
+    <div class="ts-save-bar tct-card" id="ts-save-bar">
+        <span class="ts-save-status" id="ts-save-status" aria-live="polite">0 thẻ sẵn sàng</span>
+        <button type="button" class="btn btn-primary btn-lg ts-save-btn" id="ts-save" data-ts-pending="Đang lưu…">Lưu từ</button>
+    </div>
+
+    <template id="tsComposeCardTpl">
+        <li class="ts-compose-item">
+            <article class="tct-card ts-compose-card">
+                <header class="ts-compose-head">
+                    <span class="ts-compose-num" data-ref="num"></span>
+                    <span class="ts-valid" data-ref="valid" hidden><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">Hợp lệ</span></span>
+                    <span class="ts-compose-actions">
+                        <button type="button" class="btn btn-sm tct-btn-icon" data-ref="imageBtn"><i class="fa-regular fa-image" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-ref="detailBtn"><i class="fa-solid fa-sliders me-1" aria-hidden="true"></i><span class="ts-btn-text">Chi tiết</span></button>
+                        <button type="button" class="btn btn-sm tct-btn-icon" data-ref="removeBtn"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                    </span>
+                </header>
+                <div class="ts-compose-grid">
+                    <div class="ts-compose-main">
+                        <div class="ts-term-row">
+                            <input type="text" class="ts-term-input" data-ref="term" lang="en" autocomplete="off" spellcheck="false" autocapitalize="none" placeholder="resilient" maxlength="255" />
+                            <span class="spinner-border spinner-border-sm ts-term-spinner" data-ref="spinner" role="status" hidden><span class="visually-hidden">Đang gợi ý</span></span>
+                        </div>
+                        <div class="ts-sub-row">
+                            <span class="ts-sub-label">Từ</span>
+                            <input type="text" class="ts-ipa-input tct-phonetic" data-ref="ipa" maxlength="100" placeholder="/rɪˈzɪliənt/" />
+                            <button type="button" class="btn btn-sm btn-outline-primary ts-suggest-btn" data-ref="suggestBtn"><i class="fa-solid fa-lightbulb me-1" aria-hidden="true"></i>Gợi ý</button>
+                        </div>
+                        <div class="ts-senses" data-ref="senses" hidden></div>
+                        <p class="ts-did-you-mean" data-ref="didYouMean" hidden></p>
+                        <p class="ts-note ts-note--warn" data-ref="innerDup" hidden><i class="fa-solid fa-triangle-exclamation me-1" aria-hidden="true"></i><span></span></p>
+                        <p class="ts-note ts-note--warn" data-ref="otherDup" hidden></p>
+                        <p class="ts-note ts-note--danger" data-ref="saveError" hidden></p>
+                        <div class="ts-meaning-row">
+                            <span class="ts-sub-label">Nghĩa</span>
+                            <textarea class="form-control" data-ref="meaning" rows="2" maxlength="1000" placeholder="Ví dụ: kiên cường, mau phục hồi"></textarea>
+                        </div>
+                        <p class="ts-note ts-note--danger" data-ref="meaningError" hidden>Nhập nghĩa tiếng Việt</p>
+                        <p class="ts-note ts-note--danger" data-ref="enrichError" role="alert" hidden></p>
+                    </div>
+                    <div class="ts-compose-image">
+                        <button type="button" class="ts-image-tile" data-ref="imageTile"><span data-ref="imageTileText">Thêm ảnh</span></button>
+                    </div>
+                </div>
+                <p class="ts-summary" data-ref="summary"></p>
+            </article>
+        </li>
+    </template>
+
+    <div class="offcanvas offcanvas-end ts-drawer" tabindex="-1" id="tsCardDetails" aria-labelledby="tsCardDetailsTitle">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fs-5" id="tsCardDetailsTitle">Chi tiết thẻ</h2>
+            <button type="button" class="btn-close" id="ts-drawer-close" aria-label="Đóng"></button>
+        </div>
+        <div class="offcanvas-body">
+            @{
+                ViewData["Prefix"] = "drw";
+                ViewData["IsPremium"] = Model.IsPremium;
+                ViewData["Topics"] = Model.Topics;
+            }
+            <partial name="_CardDetailFields" />
+        </div>
+        <div class="offcanvas-footer ts-drawer-footer">
+            <button type="button" class="btn btn-primary w-100" id="ts-drawer-done">Xong</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tsDiscardDetails" tabindex="-1" aria-labelledby="tsDiscardTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="tsDiscardTitle">Bỏ thay đổi chi tiết?</h2>
+                </div>
+                <div class="modal-body">Các thay đổi bạn vừa nhập trong bảng chi tiết sẽ không được lưu vào thẻ.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Tiếp tục sửa</button>
+                    <button type="button" class="btn btn-danger" id="ts-discard-confirm">Bỏ thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_PremiumLockedModal" />
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite" aria-atomic="false"></div>
+    <script id="tsComposeConfig" type="application/json">@Html.Raw(JsonSerializer.Serialize(config))</script>
+    @Html.AntiForgeryToken()
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/set-import-parser.js" asp-append-version="true"></script>
+    <script src="~/js/set-card-form.js" asp-append-version="true"></script>
+    <script src="~/js/set-composer.js" asp-append-version="true"></script>
+}
