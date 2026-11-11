@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using TCTEnglish.Services.AI.Resilience;
 
 namespace TCTEnglish.Services.AI;
 
@@ -72,6 +73,7 @@ public sealed class OpenAiProviderClient(
         AiProviderException WithUsage(AiProviderException failure) => !chatSelection ? failure : failure.WithRecordedUsage(
             knownPrompt, knownCompletion, knownTotal, uncertainTokens);
 
+        AiOutageLease? outageLease = null;
         try
         {
             for (var attempt = 1; attempt <= maxAttempts; attempt++)
@@ -79,6 +81,21 @@ public sealed class OpenAiProviderClient(
                 budget.Token.ThrowIfCancellationRequested();
                 if (requestOptions?.ConfirmCurrent is not null && !await requestOptions.ConfirmCurrent(budget.Token))
                     throw WithUsage(new AiProviderException("The chat turn or evidence is no longer current.", AiProviderException.ErrorCodeCorpusStale, false));
+                if (outageLease is null)
+                {
+                    outageLease = AiOutageAmbient.Current.TryEnter(
+                        AiProviderFamily.Text,
+                        endpoint.AbsoluteUri,
+                        _options.Model,
+                        _options.ApiKey);
+                    if (!outageLease.Admitted)
+                    {
+                        throw new AiProviderException(
+                            "The text provider is paused after repeated interruptions.",
+                            AiProviderException.ErrorCodeCircuitOpen,
+                            false);
+                    }
+                }
                 AiProviderException failure;
                 TimeSpan? retryAfter = null;
                 var sent = false;
@@ -108,9 +125,10 @@ public sealed class OpenAiProviderClient(
                         var reply = ParseReply(body, response) with { UncertainTokenUpper = uncertainTokens };
                         MarkUnknown();
                         await ReportAsync();
-                        budget.Token.ThrowIfCancellationRequested();
-                        if (budget.Elapsed >= timeout) throw TimeoutFailure();
-                        return !chatSelection ? reply : reply with
+                    budget.Token.ThrowIfCancellationRequested();
+                    if (budget.Elapsed >= timeout) throw TimeoutFailure();
+                    outageLease!.CompleteSuccess();
+                    return !chatSelection ? reply : reply with
                         {
                             PromptTokens = knownPrompt,
                             CompletionTokens = knownCompletion,
@@ -143,6 +161,7 @@ public sealed class OpenAiProviderClient(
 
                 if (!failure.IsTransient || attempt == maxAttempts)
                 {
+                    AiOutagePolicy.Settle(outageLease, failure, sent, retryAfter);
                     throw WithUsage(failure);
                 }
                 var delay = retryAfter ?? TimeSpan.FromMilliseconds(250 * Math.Pow(2, attempt - 1));
@@ -154,15 +173,21 @@ public sealed class OpenAiProviderClient(
         }
         catch (OperationCanceledException) when (ct.IsCancellationRequested)
         {
+            outageLease?.Release();
             MarkUnknown();
             await ReportAsync();
             throw;
         }
         catch (OperationCanceledException)
         {
+            outageLease?.CompleteTransient(null);
             MarkUnknown();
             await ReportAsync();
             throw WithUsage(TimeoutFailure());
+        }
+        finally
+        {
+            outageLease?.Dispose();
         }
         throw new AiProviderException("OpenAI request failed.", AiProviderException.ErrorCodeUnknown, false);
     }

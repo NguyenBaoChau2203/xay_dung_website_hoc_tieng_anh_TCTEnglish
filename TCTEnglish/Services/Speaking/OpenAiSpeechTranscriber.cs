@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using TCTEnglish.Services.AI.Resilience;
 
 namespace TCTEnglish.Services.Speaking;
 
@@ -45,24 +46,41 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
         using var budget = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         budget.CancelAfter(TimeSpan.FromSeconds(budgetSeconds));
 
-        IAsyncDisposable? lease = null;
+        var endpoint = _httpClient.BaseAddress is { } baseAddress
+            ? new Uri(baseAddress, TranscriptionsRelativePath).AbsoluteUri
+            : TranscriptionsRelativePath;
+        using var outageLease = AiOutageAmbient.Current.TryEnter(
+            AiProviderFamily.Speech,
+            endpoint,
+            credentials.Model,
+            credentials.ApiKey);
+        if (!outageLease.Admitted)
+        {
+            return Unavailable("circuit_open", "Dịch vụ đánh giá đang gián đoạn.", credentials.Model);
+        }
+
+        IAsyncDisposable? limiterLease = null;
+        var sent = false;
         try
         {
             try
             {
-                lease = await _limiter.AcquireAsync(budget.Token);
+                limiterLease = await _limiter.AcquireAsync(budget.Token);
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
             {
+                outageLease.Release();
                 throw;
             }
             catch (OperationCanceledException)
             {
+                outageLease.Release();
                 return TimeoutResult(credentials.Model);
             }
 
-            if (lease == null)
+            if (limiterLease == null)
             {
+                outageLease.Release();
                 return Unavailable("engine_busy", "Hàng đợi nhận dạng đang đầy. Thử lại sau.", credentials.Model);
             }
 
@@ -78,47 +96,70 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
             };
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", credentials.ApiKey);
 
+            sent = true;
             using var response = await _httpClient.SendAsync(
                 request,
                 HttpCompletionOption.ResponseHeadersRead,
                 budget.Token);
 
-            return await MapResponseAsync(response, credentials.Model, budget.Token);
+            var mapped = await MapResponseAsync(response, credentials.Model, budget.Token);
+            if (mapped.Result.Status is SpeechTranscriptionStatus.Ok or SpeechTranscriptionStatus.NoSpeech)
+            {
+                outageLease.CompleteSuccess();
+            }
+            else if (mapped.TransientOutage)
+            {
+                outageLease.CompleteTransient(mapped.RetryAfter);
+            }
+            else
+            {
+                outageLease.CompleteNonTransient();
+            }
+
+            return mapped.Result;
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
+            outageLease.Release();
             throw;
         }
         catch (OperationCanceledException)
         {
+            if (sent) outageLease.CompleteTransient(null);
+            else outageLease.Release();
             return TimeoutResult(credentials.Model);
         }
         catch (JsonException ex)
         {
             _logger.LogWarning(ex, "OpenAI speech returned invalid JSON (status category only).");
+            outageLease.CompleteNonTransient();
             return Unavailable("invalid_schema", "ASR trả về dữ liệu không đọc được.", credentials.Model);
         }
         catch (HttpRequestException ex)
         {
             _logger.LogWarning(ex, "OpenAI speech HTTP request failed.");
+            outageLease.CompleteTransient(null);
             return Unavailable("engine_unavailable", "Không kết nối được dịch vụ nhận dạng.", credentials.Model);
         }
         catch (IOException ex)
         {
             // Body read after 200 headers can reset; map to unavailable, do not throw 500.
             _logger.LogWarning(ex, "OpenAI speech response body read failed.");
+            outageLease.CompleteTransient(null);
             return Unavailable("engine_unavailable", "Không kết nối được dịch vụ nhận dạng.", credentials.Model);
         }
         finally
         {
-            if (lease != null)
+            if (limiterLease != null)
             {
-                await lease.DisposeAsync();
+                await limiterLease.DisposeAsync();
             }
         }
     }
 
-    private async Task<SpeechTranscriptionResult> MapResponseAsync(
+    private readonly record struct MappedSpeech(SpeechTranscriptionResult Result, bool TransientOutage, TimeSpan? RetryAfter);
+
+    private async Task<MappedSpeech> MapResponseAsync(
         HttpResponseMessage response,
         string model,
         CancellationToken cancellationToken)
@@ -126,25 +167,45 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
         var statusCode = response.StatusCode;
         if (statusCode == HttpStatusCode.TooManyRequests)
         {
-            return Unavailable("engine_busy", "ASR đang quá tải.", model);
+            var billingQuota = await IsBillingQuotaAsync(response, cancellationToken);
+            if (billingQuota)
+            {
+                return new MappedSpeech(
+                    Unavailable("quota_exhausted", "Tính năng AI tạm thời chưa sẵn sàng.", model),
+                    false,
+                    null);
+            }
+
+            var retryAfter = response.Headers.RetryAfter?.Delta
+                ?? (response.Headers.RetryAfter?.Date is { } date ? date - DateTimeOffset.UtcNow : null);
+            var retrySeconds = retryAfter is { } delay && delay > TimeSpan.Zero
+                ? (int)Math.Clamp(Math.Ceiling(delay.TotalSeconds), 1, 120)
+                : (int?)null;
+            return new MappedSpeech(
+                Unavailable("engine_busy", "ASR đang quá tải.", model, retrySeconds),
+                true,
+                retryAfter);
         }
 
         if (statusCode is HttpStatusCode.Unauthorized or HttpStatusCode.Forbidden)
         {
             _logger.LogWarning("OpenAI speech auth/model access rejected with status {StatusCode}.", (int)statusCode);
-            return Unavailable("engine_auth", "Không có quyền dùng dịch vụ nhận dạng.", model);
+            return new MappedSpeech(Unavailable("engine_auth", "Không có quyền dùng dịch vụ nhận dạng.", model), false, null);
         }
 
         if (statusCode == HttpStatusCode.NotFound)
         {
             _logger.LogWarning("OpenAI speech model/endpoint not found.");
-            return Unavailable("engine_auth", "Không có quyền dùng dịch vụ nhận dạng.", model);
+            return new MappedSpeech(Unavailable("engine_auth", "Không có quyền dùng dịch vụ nhận dạng.", model), false, null);
         }
 
         if (!response.IsSuccessStatusCode)
         {
             _logger.LogWarning("OpenAI speech failed with status {StatusCode}.", (int)statusCode);
-            return Unavailable("engine_http_error", "Không thể nhận dạng giọng nói lúc này.", model);
+            return new MappedSpeech(
+                Unavailable("engine_http_error", "Không thể nhận dạng giọng nói lúc này.", model),
+                (int)statusCode >= 500,
+                null);
         }
 
         var maxBytes = Math.Clamp(_options.OpenAI.MaxResponseBytes, 1024, 2 * 1024 * 1024);
@@ -159,7 +220,7 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
             if (total > maxBytes)
             {
                 _logger.LogWarning("OpenAI speech response exceeded MaxResponseBytes.");
-                return Unavailable("response_too_large", "ASR trả về dữ liệu quá lớn.", model);
+                return new MappedSpeech(Unavailable("response_too_large", "ASR trả về dữ liệu quá lớn.", model), false, null);
             }
 
             await limited.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
@@ -167,7 +228,69 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
 
         limited.Position = 0;
         using var document = await JsonDocument.ParseAsync(limited, cancellationToken: cancellationToken);
-        return MapJson(document.RootElement, model);
+        return new MappedSpeech(MapJson(document.RootElement, model), false, null);
+    }
+
+    private const int MaxErrorMetadataBytes = 8192;
+
+    private static async Task<bool> IsBillingQuotaAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var (text, oversized) = await ReadBoundedUtf8Async(response.Content, MaxErrorMetadataBytes, cancellationToken);
+            if (oversized || string.IsNullOrEmpty(text))
+            {
+                return false;
+            }
+
+            using var document = JsonDocument.Parse(text);
+            if (document.RootElement.ValueKind != JsonValueKind.Object
+                || !document.RootElement.TryGetProperty("error", out var error)
+                || error.ValueKind != JsonValueKind.Object)
+            {
+                return false;
+            }
+
+            var code = error.TryGetProperty("code", out var codeValue) && codeValue.ValueKind == JsonValueKind.String
+                ? codeValue.GetString()
+                : null;
+            var type = error.TryGetProperty("type", out var typeValue) && typeValue.ValueKind == JsonValueKind.String
+                ? typeValue.GetString()
+                : null;
+            return code is "insufficient_quota" or "billing_hard_limit_reached"
+                || type is "insufficient_quota" or "billing_hard_limit_reached";
+        }
+        catch (Exception ex) when (ex is JsonException or IOException or ObjectDisposedException)
+        {
+            return false;
+        }
+    }
+
+    private static async Task<(string Text, bool Oversized)> ReadBoundedUtf8Async(
+        HttpContent content,
+        int maxBytes,
+        CancellationToken cancellationToken)
+    {
+        await using var stream = await content.ReadAsStreamAsync(cancellationToken);
+        var buffer = new byte[maxBytes + 1];
+        var total = 0;
+        while (total < buffer.Length)
+        {
+            var read = await stream.ReadAsync(buffer.AsMemory(total, buffer.Length - total), cancellationToken);
+            if (read == 0)
+            {
+                break;
+            }
+
+            total += read;
+        }
+
+        if (total > maxBytes)
+        {
+            return (string.Empty, true);
+        }
+
+        return (Encoding.UTF8.GetString(buffer, 0, total), false);
     }
 
     private SpeechTranscriptionResult MapJson(JsonElement root, string model)
@@ -226,13 +349,14 @@ public sealed class OpenAiSpeechTranscriber : ISpeechTranscriber
         Message = message
     };
 
-    private static SpeechTranscriptionResult Unavailable(string code, string message, string model) => new()
+    private static SpeechTranscriptionResult Unavailable(string code, string message, string model, int? retryAfterSeconds = null) => new()
     {
         Status = SpeechTranscriptionStatus.Unavailable,
         EngineName = EngineName,
         ModelIdentity = model,
         ErrorCode = code,
-        Message = message
+        Message = message,
+        RetryAfterSeconds = retryAfterSeconds
     };
 
     private static SpeechTranscriptionResult NoSpeechResult(string model) => new()

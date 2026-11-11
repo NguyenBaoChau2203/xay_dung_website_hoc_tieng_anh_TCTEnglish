@@ -20,6 +20,25 @@ public sealed class SpeakingAssessmentOutcome
     public bool CompletenessAvailable { get; init; }
     public bool CanCommitProgress { get; init; }
     public int? RetryAfterSeconds { get; init; }
+
+    public static SpeakingAssessmentOutcome FromTranscriptionFailure(SpeechTranscriptionResult transcription)
+    {
+        var code = string.IsNullOrWhiteSpace(transcription.ErrorCode) ? "engine_unavailable" : transcription.ErrorCode;
+        var busy = code == "engine_busy";
+        return new SpeakingAssessmentOutcome
+        {
+            Success = false,
+            StatusCode = busy
+                ? 429
+                : transcription.Status == SpeechTranscriptionStatus.Timeout ? 504 : 503,
+            ErrorCode = code,
+            Message = string.IsNullOrWhiteSpace(transcription.Message) ? "ASR chưa sẵn sàng." : transcription.Message,
+            RetryAfterSeconds = busy ? transcription.RetryAfterSeconds ?? 5 : null,
+            FluencyAvailable = false,
+            CompletenessAvailable = false,
+            CanCommitProgress = false
+        };
+    }
 }
 
 public interface ISpeakingAssessmentService
@@ -113,19 +132,7 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             or SpeechTranscriptionStatus.Unavailable
             or SpeechTranscriptionStatus.Timeout)
         {
-            return new SpeakingAssessmentOutcome
-            {
-                Success = false,
-                StatusCode = transcription.ErrorCode == "engine_busy"
-                    ? 429
-                    : transcription.Status == SpeechTranscriptionStatus.Timeout ? 504 : 503,
-                ErrorCode = transcription.ErrorCode ?? "engine_unavailable",
-                Message = transcription.Message ?? "ASR chưa sẵn sàng.",
-                RetryAfterSeconds = transcription.ErrorCode == "engine_busy" ? 5 : null,
-                FluencyAvailable = false,
-                CompletenessAvailable = false,
-                CanCommitProgress = false
-            };
+            return SpeakingAssessmentOutcome.FromTranscriptionFailure(transcription);
         }
 
         if (transcription.Status == SpeechTranscriptionStatus.InvalidAudio)

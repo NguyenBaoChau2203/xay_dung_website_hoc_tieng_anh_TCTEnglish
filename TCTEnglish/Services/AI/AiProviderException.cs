@@ -20,6 +20,7 @@ public sealed class AiProviderException : Exception
     public const string ErrorCodeRedirectRefused = "redirect_refused";
     public const string ErrorCodeBudgetExhausted = "budget_exhausted";
     public const string ErrorCodeCorpusStale = "corpus_stale";
+    public const string ErrorCodeCircuitOpen = "circuit_open";
 
     public AiProviderException(string message, string errorCode, bool isTransient, Exception? innerException = null)
         : base(message, innerException)

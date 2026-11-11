@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using TCTEnglish.Services.AI.Resilience;
 
 namespace TCTEnglish.Services.AI;
 
@@ -61,6 +62,7 @@ public sealed class OpenAiEmbeddingClient(
                 throw new AiProviderException("The chat turn no longer owns its embedding stage.", AiProviderException.ErrorCodeCorpusStale, false);
         }
 
+        AiOutageLease? outageLease = null;
         try
         {
             AiProviderException? previous = null;
@@ -69,6 +71,7 @@ public sealed class OpenAiEmbeddingClient(
                 deadline.Token.ThrowIfCancellationRequested();
                 if (invocation.ConfirmCurrent is not null && !await invocation.ConfirmCurrent(deadline.Token))
                 {
+                    outageLease?.Release();
                     throw new AiProviderException(
                         "Embeddings were not sent because the approved corpus changed.",
                         AiProviderException.ErrorCodeCorpusStale,
@@ -76,13 +79,31 @@ public sealed class OpenAiEmbeddingClient(
                 }
 
                 deadline.Token.ThrowIfCancellationRequested();
+                if (outageLease is null)
+                {
+                    outageLease = AiOutageAmbient.Current.TryEnter(
+                        AiProviderFamily.Embedding,
+                        endpoint.AbsoluteUri,
+                        EmbeddingOptions.ModelName,
+                        _text.ApiKey);
+                    if (!outageLease.Admitted)
+                    {
+                        throw new AiProviderException(
+                            "The embedding provider is paused after repeated interruptions.",
+                            AiProviderException.ErrorCodeCircuitOpen,
+                            false);
+                    }
+                }
+
                 if (ledger is not null && !ledger.TryReserveAttempt(inputTokenUpperBound))
                 {
                     if (previous is not null)
                     {
+                        AiOutagePolicy.Settle(outageLease, previous, sent: true, retryAfter: null);
                         throw previous;
                     }
 
+                    outageLease?.Release();
                     throw new AiProviderException(
                         "Embeddings were not sent because the request allowance is exhausted.",
                         AiProviderException.ErrorCodeBudgetExhausted,
@@ -117,12 +138,13 @@ public sealed class OpenAiEmbeddingClient(
                         {
                             var batch = ParseBatch(body, inputs.Count);
                             deadline.Token.ThrowIfCancellationRequested();
-                            if (clock.Elapsed >= timeout)
-                            {
-                                throw TimeoutFailure();
-                            }
+                        if (clock.Elapsed >= timeout)
+                        {
+                            throw TimeoutFailure();
+                        }
 
-                            return batch;
+                        outageLease!.CompleteSuccess();
+                        return batch;
                         }
 
                         failure = HttpFailure(response.StatusCode, body);
@@ -151,10 +173,11 @@ public sealed class OpenAiEmbeddingClient(
                         AiProviderException.ErrorCodeNetwork,
                         true);
                 }
-                catch (AiProviderException)
+                catch (AiProviderException ex)
                 {
                     ledger?.MarkPendingUsageUnknown();
                     await ReportAsync();
+                    AiOutagePolicy.Settle(outageLease, ex, sent: true, retryAfter: null);
                     throw;
                 }
                 catch (OperationCanceledException)
@@ -173,6 +196,7 @@ public sealed class OpenAiEmbeddingClient(
                 previous = failure;
                 if (!failure.IsTransient || attempt == maxAttempts || (ledger is not null && !ledger.CanAttempt))
                 {
+                    AiOutagePolicy.Settle(outageLease, failure, sent: true, retryAfter);
                     throw failure;
                 }
 
@@ -192,15 +216,21 @@ public sealed class OpenAiEmbeddingClient(
         }
         catch (OperationCanceledException) when (ct.IsCancellationRequested)
         {
+            outageLease?.Release();
             ledger?.MarkPendingUsageUnknown();
             await ReportAsync();
             throw;
         }
         catch (OperationCanceledException)
         {
+            outageLease?.CompleteTransient(null);
             ledger?.MarkPendingUsageUnknown();
             await ReportAsync();
             throw TimeoutFailure();
+        }
+        finally
+        {
+            outageLease?.Dispose();
         }
 
         throw new AiProviderException("OpenAI embeddings request failed.", AiProviderException.ErrorCodeUnknown, false);

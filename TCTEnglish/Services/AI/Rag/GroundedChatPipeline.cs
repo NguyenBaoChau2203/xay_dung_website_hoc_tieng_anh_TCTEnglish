@@ -171,7 +171,9 @@ public sealed class GroundedChatPipeline : IGroundedChatPipeline
                         }
                     }
                     catch (AiProviderException ex) when ((ex.ErrorCode is AiProviderException.ErrorCodeBudgetExhausted
-                        or AiProviderException.ErrorCodeInvalidConfiguration or AiProviderException.ErrorCodeCorpusStale)
+                        or AiProviderException.ErrorCodeInvalidConfiguration
+                        or AiProviderException.ErrorCodeCorpusStale
+                        or AiProviderException.ErrorCodeCircuitOpen)
                         && !ex.HasRecordedUsage && ex.RecordedUnknownTokens == 0)
                     {
                         if (journal is not null && !await journal.ClearUnknownAsync(AiQuotaTurnStage.Generating, ct))
@@ -179,8 +181,10 @@ public sealed class GroundedChatPipeline : IGroundedChatPipeline
                             return Lost(input);
                         }
 
-                        selectorStatus = ex.ErrorCode == AiProviderException.ErrorCodeInvalidConfiguration
-                            ? GroundedSelectorStatus.Unavailable : GroundedSelectorStatus.Invalid;
+                        selectorStatus = ex.ErrorCode is AiProviderException.ErrorCodeInvalidConfiguration
+                            or AiProviderException.ErrorCodeCircuitOpen
+                            ? GroundedSelectorStatus.Unavailable
+                            : GroundedSelectorStatus.Invalid;
                     }
                     catch (AiProviderException)
                     {
