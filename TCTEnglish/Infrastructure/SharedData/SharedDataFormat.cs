@@ -89,10 +89,10 @@ public static partial class SharedDataFormat
             {
                 AssertKey(row.Key);
                 var spec = SharedDataRegistry.Get(row.Kind);
-                if (!keys.Add(row.Key) || row.Values == null || row.References == null || !spec.Fields.Order().SequenceEqual(row.Values.Keys.Order()) ||
+                if (!keys.Add(row.Key) || row.Values == null || row.References == null || !spec.Fields.All(row.Values.ContainsKey) || row.Values.Keys.Except(spec.AllFields).Any() ||
                     !spec.References.Select(x => x.Property).Concat(spec.Owners).Order().SequenceEqual(row.References.Keys.Order()))
                     throw new SharedDataException($"Invalid fields/references or duplicate stable key: {row.Key}.");
-                foreach (var field in spec.Fields)
+                foreach (var field in row.Values.Keys)
                 {
                     var property = spec.Property(field);
                     try { _ = row.Values[field].Deserialize(property.PropertyType, Json); }

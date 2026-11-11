@@ -294,10 +294,3 @@ test('Account Security tab enforces 100% symmetrical horizontal and vertical OCD
     assert.ok(css.includes('.security-card--password') && css.includes('grid-row: 2;'), 'Password card must be in row 2 col 1');
     assert.ok(css.includes('.security-card--notifications') && css.includes('grid-row: 2;'), 'Notifications card must be in row 2 col 2');
 });
-
-
-
-
-
-
-

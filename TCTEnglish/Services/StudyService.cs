@@ -26,7 +26,7 @@ namespace TCTVocabulary.Services
             _logger = logger;
         }
 
-        public async Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null)
+        public async Task<StudyViewModel?> GetStudyViewModelAsync(int setId, int? userId = null, string? mode = null)
         {
             var viewModel = await _context.Sets
                 .AsNoTracking()
@@ -79,9 +79,36 @@ namespace TCTVocabulary.Services
                 .Select(lp => new
                 {
                     lp.CardId,
-                    lp.Status
+                    lp.Status,
+                    lp.IsSuspended,
+                    lp.NextReviewDate
                 })
                 .ToListAsync();
+
+            if (string.Equals(mode, "due", StringComparison.OrdinalIgnoreCase))
+            {
+                // Due = progress exists, not suspended, NextReviewDate <= now (ordered by that date); then up to 20 new cards.
+                var now = DateTime.UtcNow;
+                var byCard = progresses.ToDictionary(p => p.CardId);
+                var due = progresses
+                    .Where(p => !p.IsSuspended && p.NextReviewDate != null && p.NextReviewDate <= now)
+                    .OrderBy(p => p.NextReviewDate)
+                    .Select(p => p.CardId)
+                    .ToList();
+                var fresh = viewModel.Cards
+                    .Where(card => !byCard.TryGetValue(card.CardId, out var p) || (p.Status == null && !p.IsSuspended))
+                    .OrderBy(card => card.CardId)
+                    .Take(20)
+                    .Select(card => card.CardId)
+                    .ToList();
+
+                var ordered = due.Concat(fresh).Distinct().ToList();
+                var lookup = viewModel.Cards.ToDictionary(card => card.CardId);
+                viewModel.Cards = ordered.Where(lookup.ContainsKey).Select(id => lookup[id]).ToList();
+                viewModel.IsDueReview = true;
+                viewModel.StudyTotal = viewModel.Cards.Count;
+                progresses = progresses.Where(p => lookup.ContainsKey(p.CardId)).ToList();
+            }
 
             viewModel.MasteredCardIds = progresses
                 .Where(lp => lp.Status == "Mastered")

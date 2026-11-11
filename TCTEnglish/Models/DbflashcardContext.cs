@@ -25,6 +25,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<Folder> Folders { get; set; }
     public virtual DbSet<LearningProgress> LearningProgresses { get; set; }
     public virtual DbSet<Set> Sets { get; set; }
+    public virtual DbSet<SetSubscription> SetSubscriptions { get; set; }
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<SavedFolder> SavedFolders { get; set; }
     public virtual DbSet<ClassMessage> ClassMessages { get; set; }
@@ -111,6 +112,18 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.CardId).HasColumnName("CardID");
             entity.Property(e => e.SetId).HasColumnName("SetID");
             entity.Property(e => e.Term).HasMaxLength(255);
+            entity.Property(e => e.PartsOfSpeech).HasMaxLength(120).IsUnicode(false);
+            entity.Property(e => e.MeaningEn).HasMaxLength(400);
+            entity.Property(e => e.Cefr).HasMaxLength(2).IsUnicode(false);
+            entity.Property(e => e.PhoneticUk).HasMaxLength(100);
+            entity.Property(e => e.Emoji).HasMaxLength(16);
+            entity.Property(e => e.PersonalNote).HasMaxLength(1000);
+            entity.Property(e => e.DetailsJson).HasColumnType("longtext");
+            entity.Property(e => e.ImageSourceJson).HasMaxLength(1000);
+            entity.Property(e => e.AiGenerated).HasDefaultValue(false);
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.HasIndex(e => new { e.SetId, e.Term }, "IX_Cards_SetId_Term");
 
             entity.HasOne(d => d.Set).WithMany(p => p.Cards)
                 .HasForeignKey(d => d.SetId)
@@ -287,6 +300,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.WrongCount).HasDefaultValue(0);
             entity.Property(e => e.RepetitionCount).HasDefaultValue(0);
+            entity.Property(e => e.IsSuspended).HasDefaultValue(false);
 
             entity.HasOne(d => d.Card).WithMany(p => p.LearningProgresses)
                 .HasForeignKey(d => d.CardId)
@@ -311,6 +325,14 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.SetName).HasMaxLength(255);
             // [Feature: View_Count] - Cột đếm lượt truy cập
             entity.Property(e => e.ViewCount).HasDefaultValue(0);
+            entity.Property(e => e.Visibility)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .IsRequired()
+                .HasDefaultValue("Public");
+            entity.Property(e => e.ShareSlug).HasMaxLength(32).IsUnicode(false);
+            entity.HasIndex(e => e.ShareSlug, "IX_Sets_ShareSlug").IsUnique();
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
             entity.HasOne(d => d.Folder).WithMany(p => p.Sets)
                 .HasForeignKey(d => d.FolderId)
@@ -320,6 +342,21 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.OwnerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Sets__OwnerID__48CFD27E");
+        });
+        modelBuilder.Entity<SetSubscription>(entity =>
+        {
+            entity.ToTable("SetSubscriptions");
+            entity.HasKey(e => e.SetSubscriptionId);
+            entity.Property(e => e.SubscribedAt).HasColumnType("datetime");
+            entity.HasIndex(e => new { e.UserId, e.SetId }, "IX_SetSubscriptions_UserId_SetId").IsUnique();
+
+            entity.HasOne(e => e.User).WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.Set).WithMany(s => s.Subscriptions)
+                .HasForeignKey(e => e.SetId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
         modelBuilder.Entity<SavedFolder>(entity =>
         {

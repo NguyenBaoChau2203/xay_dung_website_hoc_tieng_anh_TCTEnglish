@@ -3792,6 +3792,20 @@ content, persisted model, migration, protected config or saved secret changed.
 No paid request, commit, push, CI or deploy. Dense/live evaluation stays BLOCKED.
 No matching entry in known-issues.md required a status change.
 
+### Personal sets redesign — B1–B7 (Set/Card/Study) — 2026-11-09
+
+**Symptom**: Editing a set via `POST /Home/EditSet` wiped learning progress and card phonetic/example/topic; deleting a set/card with progress failed on the FK; any `http(s)` card image URL was downloaded server-side; Study/Quiz/Write/Matching had no view check; the Study exit link went to `/Home/FolderDetail/0` for sets without a folder; `UpdateCardProgress` wrote progress for any card id.
+
+**Root Cause**: EditSet deleted every card and progress row then recreated cards; Delete/RemoveSetFromFolder removed cards without `LearningProgress`; `DownloadAndSaveExternalImageAsync` had no host/type/size limits; the Study controller never checked set access; the exit link used `FolderId ?? 0`; `UpdateCardProgressAsync` did not verify the card.
+
+**Solution**: `PersonalSetService.ApplyLegacyEditAsync` (non-destructive upsert: pair by term, then by position), `DeleteSetAsync`/bulk/card delete remove progress -> cards -> subscriptions -> set in one transaction, `ImportExternalImageAsync` (https Pixabay hosts only, 10 s, 5 MB, content type + signature), `CanViewSetAsync` in `StudyController` (legacy sets default to Public), exit links go to `/Sets/{id}`, `UpdateCardProgress` returns 404 for missing/unviewable cards.
+
+**Files Changed**: `Controllers/SetController*.cs`, `Controllers/StudyController.cs`, `Services/Sets/PersonalSetService*.cs`, `Services/StudyService.cs`, `Views/Study/*.cshtml`.
+
+**Regression tests**: `PersonalSetServiceTests`, `PersonalSetsIntegrationTests` (LegacyEdit, LegacyDeleteSet, UpdateCardProgress, Study redirects).
+
+**Notes**: Legacy EditSet pairing is by term first, then position, so a typo fix keeps progress. Residual: Pixabay redirects are followed by the default HttpClient (final host is re-checked after the request). Orphaned uploaded images are accepted.
+
 ### Speaking redesign intercepted server catalog filters — 2026-11-10
 
 **Symptom**: Selecting a topic or CEFR level after loading a partial catalog

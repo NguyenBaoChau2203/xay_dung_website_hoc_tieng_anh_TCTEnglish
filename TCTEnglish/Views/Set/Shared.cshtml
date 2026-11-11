@@ -1,0 +1,106 @@
+@model TCTEnglish.ViewModels.Sets.SharedSetViewModel
+@using TCTEnglish.ViewModels
+@{
+    ViewData["Title"] = Model.SetName;
+    var header = new PageHeaderViewModel
+    {
+        Title = Model.SetName,
+        Description = Model.Description
+    };
+    var first = Model.Cards.Take(5).ToList();
+    var rest = Model.Cards.Skip(5).ToList();
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tct-page--narrow ts-page ts-page--shared">
+    <partial name="_SetAlerts" />
+    <section class="ts-hero ts-hue-@Model.CoverHue">
+        <div class="ts-hero-art" aria-hidden="true"><span class="ts-hero-term">@Model.SampleTerm</span></div>
+        <div class="ts-hero-main">
+            <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
+            <p class="ts-hero-meta">
+                <span>@Model.WordCount từ</span>
+                <span class="ts-dot" aria-hidden="true"></span><span class="tct-break">của @Model.OwnerName</span>
+                @if (Model.LearnerCount > 0)
+                {
+                    <span class="ts-dot" aria-hidden="true"></span><span>@Model.LearnerCount người đang học</span>
+                }
+            </p>
+
+            <div class="ts-hero-actions">
+                @if (!Model.IsSignedIn)
+                {
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Login", "Account")">Đăng nhập để học bộ này</a>
+                }
+                else if (Model.IsSubscribed)
+                {
+                    <a class="btn btn-primary" href="@Url.Action("Detail", "Set", new { id = Model.SetId })">Bạn đang học bộ này, mở bộ thẻ</a>
+                    <form method="post" asp-controller="Set" asp-action="Clone">
+                        <input type="hidden" name="slug" value="@Model.Slug" />
+                        <button type="submit" class="btn btn-outline-primary" data-ts-pending="Đang sao chép…">Sao chép về bộ của tôi</button>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" asp-controller="Set" asp-action="Subscribe">
+                        <input type="hidden" name="slug" value="@Model.Slug" />
+                        <button type="submit" class="btn btn-primary" data-ts-pending="Đang lưu…">Lưu vào bộ thẻ của tôi</button>
+                    </form>
+                    <form method="post" asp-controller="Set" asp-action="Clone">
+                        <input type="hidden" name="slug" value="@Model.Slug" />
+                        <button type="submit" class="btn btn-outline-primary" data-ts-pending="Đang sao chép…">Sao chép về bộ của tôi</button>
+                    </form>
+                }
+            </div>
+            @if (!Model.IsSignedIn)
+            {
+                <p class="ts-hero-note">Miễn phí. Chưa có tài khoản thì đăng ký chỉ mất một phút.</p>
+            }
+            else if (!Model.IsSubscribed)
+            {
+                <p class="ts-hero-note">“Lưu vào bộ thẻ của tôi” tự cập nhật khi @Model.OwnerName thêm từ. “Sao chép” tạo bản riêng, bạn sửa thoải mái.</p>
+            }
+        </div>
+    </section>
+
+    <section class="ts-shared-words" aria-labelledby="ts-shared-title">
+        <h2 class="ts-section-title" id="ts-shared-title">Danh sách từ</h2>
+        @if (Model.Cards.Count == 0)
+        {
+            <p class="tct-text-muted">Bộ thẻ này chưa có từ nào.</p>
+        }
+        else
+        {
+            <ul class="ts-shared-tiles">
+                @foreach (var card in first)
+                {
+                    <li class="tct-card k-panel ts-shared-tile">
+                        <span class="ts-term tct-break" lang="en">@card.Term</span>
+                        @if (!string.IsNullOrWhiteSpace(card.Phonetic)) { <span class="tct-phonetic tct-text-muted">@card.Phonetic</span> }
+                        <span class="tct-break">@card.Definition</span>
+                    </li>
+                }
+            </ul>
+            @if (rest.Count > 0)
+            {
+                <ul class="ts-shared-list">
+                    @foreach (var card in rest)
+                    {
+                        <li><span class="ts-term tct-break" lang="en">@card.Term</span> <span class="tct-text-muted tct-break">— @card.Definition</span></li>
+                    }
+                </ul>
+            }
+            @if (Model.WordCount > Model.Cards.Count)
+            {
+                <p class="tct-text-muted">Đang hiện @Model.Cards.Count từ đầu tiên. Lưu hoặc sao chép để xem đủ @Model.WordCount từ.</p>
+            }
+        }
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

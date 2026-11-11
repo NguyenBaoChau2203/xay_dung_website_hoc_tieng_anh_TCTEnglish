@@ -1,0 +1,43 @@
+@model TCTEnglish.ViewModels.Sets.SetDetailViewModel
+<div class="dropdown ts-menu">
+    <button class="btn btn-outline-primary tct-btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Thêm tùy chọn cho bộ thẻ">
+        <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        @if (Model.CanEdit)
+        {
+            <li><a class="dropdown-item" href="@Url.Action("Import", "Set", new { id = Model.SetId })"><i class="fa-solid fa-file-import me-2" aria-hidden="true"></i>Nhập hàng loạt</a></li>
+        }
+        <li><a class="dropdown-item" href="/Practice?set=@Model.SetId"><i class="fa-solid fa-dumbbell me-2" aria-hidden="true"></i>Luyện tập</a></li>
+        @if (Model.CanManage)
+        {
+            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tsShareModal"><i class="fa-solid fa-share-nodes me-2" aria-hidden="true"></i>Chia sẻ</button></li>
+        }
+        <li><a class="dropdown-item" href="@Url.Action("Export", "Set", new { id = Model.SetId })"><i class="fa-solid fa-file-export me-2" aria-hidden="true"></i>Xuất CSV</a></li>
+        @if (!Model.IsOwner)
+        {
+            <li>
+                <form method="post" asp-controller="Set" asp-action="Clone">
+                    <input type="hidden" name="setId" value="@Model.SetId" />
+                    <button type="submit" class="dropdown-item"><i class="fa-regular fa-copy me-2" aria-hidden="true"></i>Sao chép về bộ của tôi</button>
+                </form>
+            </li>
+        }
+        @if (Model.CanManage || Model.IsSubscribed)
+        {
+            <li><hr class="dropdown-divider" /></li>
+        }
+        @if (Model.CanManage)
+        {
+            <li><a class="dropdown-item" href="@Url.Action("Settings", "Set", new { id = Model.SetId })"><i class="fa-solid fa-gear me-2" aria-hidden="true"></i>Cài đặt bộ thẻ</a></li>
+        }
+        @if (Model.IsSubscribed)
+        {
+            <li>
+                <form method="post" asp-controller="Set" asp-action="Unsubscribe" asp-route-id="@Model.SetId">
+                    <button type="submit" class="dropdown-item"><i class="fa-solid fa-bookmark me-2" aria-hidden="true"></i>Bỏ theo học</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>

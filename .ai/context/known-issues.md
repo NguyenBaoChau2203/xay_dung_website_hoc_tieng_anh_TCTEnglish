@@ -27,6 +27,17 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
+
+- Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên
+  `/Sets/{id}/Add` không mở được bảng chi tiết, và `/Sets/Cards/{id}/Edit` ghi lỗi
+  console `TypeError: Cannot set properties of null (setting 'textContent')`.
+- Nguyên nhân: `Object.setData` trong `wwwroot/js/set-card-form.js` (khoảng dòng 465)
+  gán `refs.imageResults.textContent` không kiểm tra, nhưng phần tìm ảnh chỉ được
+  render cho Premium (dòng kế bên đã kiểm `refs.imageQuery`). Có sẵn từ trước đợt
+  Study Clay (thấy ở baseline C0); tài khoản Premium mở bảng bình thường.
+- Chưa sửa vì đợt Study Clay chỉ đổi giao diện (không đổi logic JS). Hướng sửa gọn:
+  bọc dòng đó bằng `if (refs.imageResults)`; cần test hồi quy cho tài khoản Standard.
 ### STAGING-SOURCE-MEDIA-MISSING — confirmed05/11/2026
 
 - Owner đã yêu cầu copy toàn bộ production DB sang staging. Đã hoàn tất9.209
@@ -297,6 +308,20 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
   migration apply order, post-deploy query verification, and seed/idempotency
   validation for badge records.
 - **Effort**: Small.
+
+### TD-011: Practice Learn/Match/Test state is device-local [LOW]
+- **Files**: `wwwroot/js/practice-core.js` (`createStore`), `wwwroot/js/practice-learn.js`, `practice-match.js`, `practice-test.js`, `practice-hub.js`
+- **Issue**: Learn rounds, Match best times, the test draft and per-set stats (`tct:set-stats:{setId}` `learnPercent` / `testPercent` / `matchMs`) live in `localStorage` / `sessionStorage` on one browser. There is no migration or server table by design (plan P3).
+- **Impact**: A new browser, a cleared profile or private mode starts Learn from the first round and shows no record or "Lần trước" figure; nothing is lost on the server because review progress is still written through `UpdateCardProgress` when "Tính vào ôn tập" is on. Learn/Match progress is not shared between devices.
+- **Recommended fix**: Only if owners want cross-device records: add a small per-user table (migration with MariaDB verification) and keep the browser copy as a cache.
+- **Effort**: Medium.
+
+### TD-012: AI chat launcher can cover the edge of the practice start button [LOW]
+- **Files**: `wwwroot/css/practice.css` (`.tp-side`, `.tp-start-bar`), `Views/Practice/Index.cshtml`
+- **Issue**: At 1200px and wider the hub's setup panel is a sticky right column. On a viewport shorter than about 800px the fixed AI launcher (68px box, bottom-right) can sit over the last ~20px of the "Bắt đầu luyện" button. The label is not covered. The feedback sheet, the test submit bar and the phone layout keep their own clearance.
+- **Impact**: Cosmetic; the button stays clickable except under the launcher circle.
+- **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
+- **Effort**: Low.
 
 ---
 

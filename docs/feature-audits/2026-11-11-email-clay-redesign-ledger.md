@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-Hệ thống email của TCT English đã được tái thiết kế toàn diện theo ngôn ngữ **Claymorphism** thống nhất của dự án, thay thế hoàn toàn các đoạn HTML thô hoặc inline kiểu cũ. Toàn bộ các luồng gửi email thực tế (`SmtpAppEmailSender`, `AccountSecurityService`, `OutboundDeliveryProcessor`) đã được kết nối trực tiếp với renderer dùng chung (`TctEmailRenderer`). 
+Hệ thống email của TCT English đã được tái thiết kế toàn diện theo ngôn ngữ **Claymorphism** thống nhất của dự án, thay thế hoàn toàn các đoạn HTML thô hoặc inline kiểu cũ. Toàn bộ các luồng gửi email thực tế (`SmtpAppEmailSender`, `AccountSecurityService`, `OutboundDeliveryProcessor`) đã được kết nối trực tiếp với renderer dùng chung (`TctEmailRenderer`).
 
 Không có email thật nào được gửi ra ngoài; không thay đổi các ràng buộc bảo mật (token, thời hạn TTL, một lần dùng, xác thực CSRF, route, secret store); không chỉnh sửa `Program.cs`, `appsettings.json`, schema cơ sở dữ liệu hay thư viện website dùng chung.
 

@@ -10,8 +10,20 @@ public sealed record SharedReference(string Property, string Kind, bool Optional
 
 /// <summary>Explicit portable content contract. No arbitrary EF entity/table access.</summary>
 public sealed record SharedEntitySpec(Type Type, string Id, string[] Fields, SharedReference[] References,
-    string[] Owners, Func<DbflashcardContext, CancellationToken, Task<IList>> Load)
+    string[] Owners, Func<DbflashcardContext, CancellationToken, Task<IList>> Load, string[]? OptionalFieldNames = null)
 {
+    /// <summary>
+    /// Fields added after packages were first published. They are omitted from a record while they hold their
+    /// default (null/false), so older packages, projections and stored digests stay byte-identical; a package may
+    /// carry them or omit them. A missing optional field imports as the default value.
+    /// </summary>
+    public string[] OptionalFields => OptionalFieldNames ?? [];
+
+    public IEnumerable<string> AllFields => Fields.Concat(OptionalFields);
+
+    /// <summary>True when an optional field's current value equals the default and should not be written.</summary>
+    public bool IsDefaultOptionalValue(string field, object? value) => value == null || value is false;
+
     public PropertyInfo Property(string name) => Type.GetProperty(name) ?? throw new SharedDataException("Unknown content property.");
     public int GetId(object entity) => (int)Property(Id).GetValue(entity)!;
 }
@@ -19,15 +31,17 @@ public sealed record SharedEntitySpec(Type Type, string Id, string[] Fields, Sha
 public static class SharedDataRegistry
 {
     public static readonly string[] Roots = ["Folder", "Set", "ReadingPassage", "ListeningLesson", "SpeakingPlaylist", "SpeakingVideo", "WritingExercise", "PremiumPlan", "Class"];
-    private static SharedEntitySpec Spec<T>(string id, string fields, SharedReference[]? references = null, string[]? owners = null) where T : class
+    private static SharedEntitySpec Spec<T>(string id, string fields, SharedReference[]? references = null, string[]? owners = null, string? optionalFields = null) where T : class
         => new(typeof(T), id, fields.Split(' ', StringSplitOptions.RemoveEmptyEntries), references ?? [], owners ?? [],
-            async (db, ct) => await db.Set<T>().ToListAsync(ct));
+            async (db, ct) => await db.Set<T>().ToListAsync(ct),
+            optionalFields?.Split(' ', StringSplitOptions.RemoveEmptyEntries));
 
     public static readonly IReadOnlyDictionary<string, SharedEntitySpec> Entities = new Dictionary<string, SharedEntitySpec>(StringComparer.Ordinal)
     {
         ["Folder"] = Spec<Folder>("FolderId", "FolderName", [new("ParentFolderId", "Folder", true)], ["UserId"]),
         ["Set"] = Spec<Set>("SetId", "SetName Description", [new("FolderId", "Folder", true)], ["OwnerId"]),
-        ["Card"] = Spec<Card>("CardId", "Term Definition ImageUrl Phonetic Example ExampleTranslation Topic", [new("SetId", "Set")]),
+        ["Card"] = Spec<Card>("CardId", "Term Definition ImageUrl Phonetic Example ExampleTranslation Topic", [new("SetId", "Set")],
+            optionalFields: "PartsOfSpeech MeaningEn Cefr PhoneticUk Emoji DetailsJson ImageSourceJson"),
         ["ReadingPassage"] = Spec<ReadingPassage>("Id", "Title Content Level Topic ImageUrl IsPublished"),
         ["ReadingQuestion"] = Spec<ReadingQuestion>("Id", "QuestionText OrderIndex", [new("PassageId", "ReadingPassage")]),
         ["ReadingOption"] = Spec<ReadingOption>("Id", "OptionText IsCorrect", [new("QuestionId", "ReadingQuestion")]),
@@ -63,6 +77,8 @@ public static class SharedDataRegistry
     {
         if (row is ListeningLesson { OwnerUserId: not null } or SpeakingVideo { OwnerUserId: not null } or WritingExercise { UserId: not null })
             throw new SharedDataException("Private learner content cannot be exported/adopted as a shared catalog item.");
+        if (row is Set { Visibility: "Private" })
+            throw new SharedDataException("Private learner sets cannot be exported as shared content.");
         if (row is Class { HasPassword: true })
             throw new SharedDataException("Password-protected classes require an explicit private transfer, not a Git data package.");
     }

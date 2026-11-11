@@ -1,0 +1,40 @@
+@model string
+@* Decorative mode illustration. Coloured only through the .k-art classes in study-kit.css (token colours).
+   Keys: learn | test | match | flashcard. Unknown key renders nothing. *@
+@switch (Model)
+{
+    case "learn":
+        <svg class="k-art" viewBox="0 0 160 80" aria-hidden="true" focusable="false">
+            <path class="s-muted" d="M30 58 C55 58 60 30 85 30 S120 22 132 18" fill="none" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round" />
+            <circle class="f-success" cx="30" cy="58" r="10" /><path class="s-white" d="M25 58l4 4 7-8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <circle class="f-primary" cx="85" cy="30" r="13" /><path class="f-surface" d="M81 23v14l11-7z" />
+            <circle class="f-accent" cx="132" cy="18" r="9" /><path class="s-warning-text" d="M132 13v10M127 18h10" stroke-width="2.6" stroke-linecap="round" />
+        </svg>
+        break;
+    case "test":
+        <svg class="k-art" viewBox="0 0 160 80" aria-hidden="true" focusable="false">
+            <rect class="f-surface s-primary" x="54" y="8" width="52" height="64" rx="7" stroke-width="3" />
+            <rect class="f-primary" x="66" y="4" width="28" height="10" rx="4" />
+            <rect class="s-primary" x="63" y="26" width="8" height="8" rx="2" fill="none" stroke-width="2.4" /><path class="s-primary k-art-half" d="M75 30h22" stroke-width="2.6" stroke-linecap="round" />
+            <rect class="f-success" x="63" y="40" width="8" height="8" rx="2" /><path class="s-white" d="M64.5 44l2 2 3.5-4" stroke-width="1.8" fill="none" /><path class="s-primary k-art-half" d="M75 44h18" stroke-width="2.6" stroke-linecap="round" />
+            <rect class="s-primary" x="63" y="54" width="8" height="8" rx="2" fill="none" stroke-width="2.4" /><path class="s-primary k-art-half" d="M75 58h20" stroke-width="2.6" stroke-linecap="round" />
+            <circle class="f-primary" cx="108" cy="12" r="9" /><path class="s-white" d="M104 12l3 3 5-6" stroke-width="2.4" fill="none" stroke-linecap="round" />
+        </svg>
+        break;
+    case "match":
+        <svg class="k-art" viewBox="0 0 160 80" aria-hidden="true" focusable="false">
+            <rect class="f-surface s-warning" x="34" y="14" width="40" height="18" rx="6" stroke-width="3" /><path class="s-warning" d="M44 23h20" stroke-width="3" stroke-linecap="round" />
+            <rect class="s-muted" x="34" y="46" width="40" height="18" rx="6" fill="none" stroke-width="2.4" stroke-dasharray="4 4" />
+            <rect class="f-success-soft s-success" x="92" y="14" width="40" height="18" rx="6" stroke-width="3" /><path class="s-success-text" d="M102 23h20" stroke-width="3" stroke-linecap="round" />
+            <rect class="f-surface s-warning" x="92" y="46" width="40" height="18" rx="6" stroke-width="3" />
+            <path class="s-warning" d="M76 23h14" stroke-width="2.4" stroke-dasharray="2 4" stroke-linecap="round" /><circle class="f-warning" cx="83" cy="52" r="6" /><path class="s-white" d="M80 52l2 2 4-4" stroke-width="2" fill="none" />
+        </svg>
+        break;
+    case "flashcard":
+        <svg class="k-art" viewBox="0 0 160 80" aria-hidden="true" focusable="false">
+            <rect class="f-surface s-info" x="46" y="18" width="62" height="44" rx="8" stroke-width="3" transform="rotate(-8 77 40)" />
+            <rect class="f-surface s-info-text" x="54" y="14" width="62" height="44" rx="8" stroke-width="3" /><path class="s-info-text" d="M66 30h38M66 40h26" stroke-width="3" stroke-linecap="round" />
+            <path class="s-info-text" d="M118 50c10-2 14-10 12-20" fill="none" stroke-width="3" stroke-linecap="round" /><path class="s-info-text" d="M124 32l6-4 4 7" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        break;
+}

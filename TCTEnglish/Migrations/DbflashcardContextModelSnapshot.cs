@@ -1027,6 +1027,33 @@ namespace TCTEnglish.Migrations
                     b.ToTable("ReadingUserTranslations");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.SetSubscription", b =>
+                {
+                    b.Property<int>("SetSubscriptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("SetSubscriptionId"));
+
+                    b.Property<int>("SetId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SubscribedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SetSubscriptionId");
+
+                    b.HasIndex("SetId");
+
+                    b.HasIndex(new[] { "UserId", "SetId" }, "IX_SetSubscriptions_UserId_SetId")
+                        .IsUnique();
+
+                    b.ToTable("SetSubscriptions", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.SharedDataApplication", b =>
                 {
                     b.Property<string>("PackageId")
@@ -1488,9 +1515,29 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CardId"));
 
+                    b.Property<bool>("AiGenerated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Cefr")
+                        .HasMaxLength(2)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Definition")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("DetailsJson")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Emoji")
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
 
                     b.Property<string>("Example")
                         .HasColumnType("longtext");
@@ -1498,11 +1545,32 @@ namespace TCTEnglish.Migrations
                     b.Property<string>("ExampleTranslation")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImageSourceJson")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("MeaningEn")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<string>("PartsOfSpeech")
+                        .HasMaxLength(120)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("PersonalNote")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
                     b.Property<string>("Phonetic")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneticUk")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("SetId")
                         .HasColumnType("int")
@@ -1516,10 +1584,13 @@ namespace TCTEnglish.Migrations
                     b.Property<string>("Topic")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
                     b.HasKey("CardId")
                         .HasName("PK__Cards__55FECD8E2103FA66");
 
-                    b.HasIndex("SetId");
+                    b.HasIndex(new[] { "SetId", "Term" }, "IX_Cards_SetId_Term");
 
                     b.ToTable("Cards");
                 });
@@ -1861,6 +1932,11 @@ namespace TCTEnglish.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int")
                         .HasColumnName("CardID");
+
+                    b.Property<bool>("IsSuspended")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastReviewedDate")
                         .ValueGeneratedOnAdd()
@@ -2237,6 +2313,9 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("SetId"));
 
+                    b.Property<int?>("ClonedFromSetId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -2258,10 +2337,26 @@ namespace TCTEnglish.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("ShareSlug")
+                        .HasMaxLength(32)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("ViewCount")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
+
+                    b.Property<string>("Visibility")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(20)")
+                        .HasDefaultValue("Public");
 
                     b.HasKey("SetId")
                         .HasName("PK__Sets__7E08473D47BDA11E");
@@ -2269,6 +2364,9 @@ namespace TCTEnglish.Migrations
                     b.HasIndex("FolderId");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex(new[] { "ShareSlug" }, "IX_Sets_ShareSlug")
+                        .IsUnique();
 
                     b.ToTable("Sets");
                 });
@@ -3584,6 +3682,25 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.SetSubscription", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.Set", "Set")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("SetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Set");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserGoalTargetRevision", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -4336,6 +4453,8 @@ namespace TCTEnglish.Migrations
             modelBuilder.Entity("TCTVocabulary.Models.Set", b =>
                 {
                     b.Navigation("Cards");
+
+                    b.Navigation("Subscriptions");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.SpeakingPlaylist", b =>

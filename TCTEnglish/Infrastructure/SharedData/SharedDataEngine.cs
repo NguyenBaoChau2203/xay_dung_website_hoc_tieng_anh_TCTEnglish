@@ -201,10 +201,10 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
     private void ValidateValues(SharedRecord record, SharedEntitySpec spec)
     {
         var model = db.Model.FindEntityType(spec.Type)!;
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
+            if (!record.Values.TryGetValue(field, out var value)) continue;
             var property = model.FindProperty(field)!;
-            var value = record.Values[field];
             if (value.ValueKind == JsonValueKind.Null && !property.IsNullable) throw new SharedDataException($"Required content value missing: {record.Key}/{field}.");
             if (value.ValueKind == JsonValueKind.String && property.GetMaxLength() is int max && value.GetString()!.Length > max) throw new SharedDataException($"Content value exceeds schema length: {record.Key}/{field}.");
         }
@@ -212,10 +212,13 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
 
     private void SetValues(SharedRecord record, SharedEntitySpec spec, object row)
     {
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
             var property = spec.Property(field);
-            var value = record.Values[field].Deserialize(property.PropertyType, SharedDataFormat.Json);
+            // A missing optional field (older package) imports as the property default.
+            var value = record.Values.TryGetValue(field, out var element)
+                ? element.Deserialize(property.PropertyType, SharedDataFormat.Json)
+                : (property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null);
             if (field.EndsWith("Url", StringComparison.Ordinal) && value is string text && text.StartsWith("asset:", StringComparison.Ordinal)) value = "/uploads/shared/" + text[6..];
             property.SetValue(row, value);
         }
@@ -246,9 +249,10 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
     {
         var spec = SharedDataRegistry.Get(kind);
         var values = new Dictionary<string, JsonElement>(StringComparer.Ordinal);
-        foreach (var field in spec.Fields)
+        foreach (var field in spec.AllFields)
         {
             var value = spec.Property(field).GetValue(row);
+            if (spec.OptionalFields.Contains(field) && spec.IsDefaultOptionalValue(field, value) && expected?.Values.ContainsKey(field) != true) continue;
             if (field.EndsWith("Url", StringComparison.Ordinal) && value is string s && s.StartsWith("/uploads/shared/", StringComparison.Ordinal)) value = "asset:" + s[16..];
             values[field] = JsonSerializer.SerializeToElement(value, SharedDataFormat.Json);
         }
