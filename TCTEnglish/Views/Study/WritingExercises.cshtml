@@ -151,7 +151,8 @@
                             <form class="writing-create-form"
                                   data-writing-create-form
                                   data-create-url="@createFromAiUrl"
-                                  data-practice-url="@practiceUrl">
+                                  data-practice-url="@practiceUrl"
+                                  data-catalog-url="@(Url.Action("WritingExercises", "Study", new { level = Model.SelectedLevelKey, contentType = Model.SelectedContentTypeKey, topic = Model.SelectedTopic, status = Model.ShowProgressMetadata ? Model.SelectedStatus : null }))#system-catalog-heading">
                                 @Html.AntiForgeryToken()
                                 <div class="mb-2 position-relative">
                                     <label for="writingSourceText" class="visually-hidden">Nội dung bài viết</label>
@@ -502,5 +503,6 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/ai-availability.js" asp-append-version="true"></script>
     <script src="~/js/writing-exercises.js" asp-append-version="true"></script>
 }

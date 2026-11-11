@@ -3753,3 +3753,134 @@ spans. Update the AI/Admin/loader adoption rows to describe the integrated code
 without claiming every legacy Admin page or unobserved browser state passed.
 **Verification**: UTF-8/control-character inspection, existing asset paths and
 `git diff --check`. Documentation-only; no runtime or database change.
+
+### AI outage copy and unsent circuit accounting — 2026-11-11
+
+**Symptom**: A chat network failure told the learner the draft was simply ready
+to send again, which could be read as proof the turn was not processed. A
+pre-dispatch circuit rejection also needed to stay out of the unknown-usage
+catch.
+
+**Cause**: `describeSendError` treated `Failed to fetch` as an unprocessed
+draft. `GroundedChatPipeline` mapped every non-configuration provider exception
+that had no receipt to selector `Invalid` or to `RecordUnknownAsync`.
+
+**Fix**: Uncertain chat transport now says to reload history before sending
+again and does not fall back from SignalR to HTTP. `circuit_open` is returned
+before HTTP, clears only the unsent stage allowance, and is presented as a
+provider interruption. Self-practice, Writing catalog navigation, and the
+process-local guard are the same change set. No schema, secret, or release-gate
+edit.
+
+**Verification**: `AiOutageGuardTests` 13 passed. Focused provider/speaking
+filter 250 passed, 1 skipped live speech test. Full Release `TCTEnglish.Tests`
+1201 passed, 22 skipped, 0 failed. Node `scripts/tests/*.cjs` 152 passed, then
+35 speaking-script tests passed again after the self-practice status correction.
+Browser notes are in the execution ledger.
+
+**Limits**: The guard is process-local. A lost response after dispatch stays
+uncertain. No paid provider call was made for this fix.
+
+### AI outage probe lease could be cleared by an older request — 2026-11-11
+
+**Symptom**: After the circuit opened and one recovery probe was in flight, releasing or completing an older allowed request admitted another probe or an ordinary caller.
+
+**Cause**: `Release` and the completion methods cleared `_probeInFlight` or closed the circuit without an admission identity. An older in-flight lease still called those methods.
+
+**Fix**: `TryAdmit` returns an `AiOutageTicket` with epoch and probe id. A normal lease settles only its closed epoch. A probe lease settles or releases only the current probe id. Arm and close advance the epoch.
+
+**Regression evidence**: Before the ticket change, filter `OlderRelease|OlderCompletion|OlderInFlightSuccess` failed 4 and passed 1. Release expected `Rejected` and returned `Probe`. Success and nontransient expected `Rejected` and returned `Allowed`. The overlapping HTTP success expected `circuit_open` and returned `provider_unavailable`. After the fix, `AiOutageGuardTests` passed 18/18, then the repair-plan filter passed 259 with 1 live speech skip.
+
+**Limits**: The guard remains process-local. No matching open item in known-issues.md. No schema, secret, or release change.
+
+### Speech 429 metadata read the whole error body — 2026-11-11
+
+**Symptom**: Classifying a Speech HTTP 429 downloaded the entire error body and only then kept the first 8,192 characters.
+
+**Cause**: `IsBillingQuotaAsync` used `ReadAsStringAsync` before truncating the string.
+
+**Fix**: `ReadBoundedUtf8Async` reads at most 8,192 bytes plus one sentinel byte through `ReadAsStreamAsync`, using the caller's cancellation token. Oversized or malformed JSON stays on the safe `engine_busy` path. Cancellation is not swallowed.
+
+**Regression evidence**: `Speech429_StopsReadingAfterTheErrorBodyBound` failed first with 2,097,191 bytes read against the range 1–8193. After the bounded reader, that test passed inside the combined guard and `OpenAiSpeechTranscriberTests` run, 42 passed and 0 failed.
+
+**Limits**: The bound covers this error-classification read. It is not a general response-size policy for successful audio. No matching open item in known-issues.md.
+
+### Billing quota was presented as the learner sending too fast — 2026-11-11
+
+**Symptom**: `insufficient_quota` and `billing_hard_limit_reached` became public code `engine_busy`, HTTP 429, and the notice “Bạn đang gửi yêu cầu quá nhanh.”
+
+**Cause**: The 429 branch kept billing out of the transient circuit but still returned the busy code. Assessment mapped every `engine_busy` result to 429, and the page treated status 429 as a learner rate limit.
+
+**Fix**: Billing now returns `quota_exhausted`, “Tính năng AI tạm thời chưa sẵn sàng.”, and `TransientOutage` false. Assessment maps `engine_busy` to 429 and other unavailable failures, including `quota_exhausted`, to 503. A provider 429 without billing metadata stays `engine_busy` with “ASR đang quá tải.” The local queue message stays the queue copy. The page checks `quota_exhausted` before status 429 and offers self-practice for the unavailable notice.
+
+**Regression evidence**: The review reproduction showed `engine_busy` for `insufficient_quota` before this repair. This session did not record a separate red xUnit line before the mapping edit. After the change, the small billing-body tests, assessment status 503, and the Node case “billing quota offers self-practice and does not say the learner is too fast” passed. The full Node suite was 153 passed, 0 failed. Browser interception of `quota_exhausted` showed the unavailable copy and the self-practice offer, with no progress call.
+
+**Limits**: Browser failure cases were intercepted in the page. They were not live provider responses. No matching open item in known-issues.md. No paid call, schema, or secret change.
+
+### Speaking shortcuts overrode focused controls — 2026-11-11
+
+**Symptom**: Enter on **Tự luyện** started automatic recording. Space operated the video shortcut. Tab changed the sentence instead of moving focus.
+
+**Cause**: The practice `keydown` listener skipped only `INPUT` and `TEXTAREA`, then called `preventDefault` for Enter, Space, and Tab.
+
+**Fix**: Leave Tab, Shift+Tab, modified keys, composing events, and already-prevented events alone. Skip Enter and Space when the target is a button, link, field, media control, or editor. Background Space, Enter, and Shift+arrow shortcuts remain for the rest of the page.
+
+**Regression evidence**: The new script test failed first because Enter on the self-practice button was `defaultPrevented`. After the change it passed. Trusted Chrome keys then selected both choices with zero microphone calls, moved focus with Tab and Shift+Tab without changing sentence 1, and caused exactly one click on the record button.
+
+**Limits**: No matching open item in known-issues.md. No schema or secret change.
+
+### Speaking practice overflowed a 390px viewport — 2026-11-11
+
+**Symptom**: At a real 390px viewport the document `scrollWidth` was 627px while `.main` stayed 390px. The practice workspace measured about 611px.
+
+**Cause**: The stacked practice grid used `1fr`, so the column could not shrink below the YouTube iframe and the sentence strip. Icon ligatures also stayed `nowrap` before the icon font settled.
+
+**Fix**: Use `minmax(0, 1fr)` for the stacked practice column, give the player iframe an absolute box inside the 16:9 frame, let the sentence strip shrink and scroll, wrap long practice text, and clip practice icon glyphs to `1em`. Laptop columns above 1024px stay `minmax(0, 1fr) 360px`.
+
+**Regression evidence**: After the CSS, headless Chrome measured `scrollWidth` 1440, 768, and 390 at those viewports, including dictation at 390. The sentence strip still scrolls internally: visible width 239px and scroll width 492px. Computed zoom `2` kept `scrollWidth` 1440.
+
+**Limits**: This does not restyle the shared shell. No matching open item in known-issues.md.
+
+### Speaking media cleanup was not tied to pagehide — 2026-11-11
+
+**Symptom**: Dispatching `pagehide` left a self-practice clip attached. Only a direct `dispose()` call revoked it.
+
+**Cause**: `dispose` released the recorder and blob, but the practice page never registered it for `pagehide` or a persisted `pageshow`.
+
+**Fix**: Register one `pagehide` and `pageshow` listener. Both release the recorder, abort a pending assessment, and revoke the clip. A persisted restore does not start recording or upload. `dispose` removes the same listener.
+
+**Regression evidence**: The script tests failed while no `pagehide` listener existed. They then passed for a finished clip, a repeated `pagehide`, a persisted `pageshow`, a held recording, an aborted assessment, and a dictation-mode switch. In Chrome, leaving the practice page revoked the clip, and Back reloaded `/Speaking/Practice/53` with no blob and no new Speaking POST. That Back navigation was a fresh load, not a persisted page cache.
+
+**Limits**: No matching open item in known-issues.md. No paid call or schema change.
+
+### Speaking lifecycle cleanup left the active status — 2026-11-11
+
+**Symptom**: After pagehide canceled a recording or a pending assessment, the record button returned to idle but the status still said the page was recording or sending the audio.
+
+**Cause**: `releasePracticeForLifecycle` aborted the recorder and fetch, then reset the button, without replacing `#spk-assessment-status`.
+
+**Fix**: Remember whether a recording or send was active before abort. Replace only that status with a stop notice that tells the learner to reload results before recording again when a take may already have been sent. Revoking a finished local clip uses a separate notice and keeps the stored score. An idle stored result is left as it is. Repeated restoration and a late response do not put the active sentence back.
+
+**Regression evidence**: The tracked R4-D test failed first on “Đang thu để nghe lại. Bản này không gửi đi chấm.” After the fix, the full Node suite passed 157/157. Chrome reproduced the idle, self-practice, and held-assessment cases with a synthetic microphone and one intercepted assess POST. Score stayed `0`, choice stayed in the selected mode, and no progress POST was made.
+
+**Limits**: No matching open item in known-issues.md. Cancellation still cannot prove whether a request that already left the browser was processed. No schema, secret, or release change.
+
+### Switching to self-practice retained the automatic-mode notice — 2026-11-11
+
+**Symptom**: After choosing automatic assessment and then self-practice without
+a clip, the record button said `Thu và nghe lại` but the status still said
+`Đã về chấm tự động`.
+
+**Cause**: `setAssessmentChoice` replaced the self-practice status only when a
+finished clip existed. The empty-clip branch kept the previous mode's copy.
+
+**Fix**: Render an idle self-practice notice when no clip exists. Preserve stored
+scores and the existing clip/unassessed path; selecting a mode does not start
+recording or submit a request.
+
+**Verification**: A focused actual-script regression failed on the old automatic
+notice before the change. The full Node suite then passed 158/158. Trusted Chrome
+Enter/Space selected self-practice with the new notice and zero microphone calls.
+The final browser run also preserved lifecycle cleanup and late-response guards.
+
+**Limits**: No matching known issue. No schema, secret or hosting-setting change.

@@ -415,6 +415,8 @@
     let recordingEpoch = 0;
     let activeRecordingSnapshot = null;
     let activeAssessController = null;
+    let assessmentChoice = 'automatic';
+    let selfClip = null;
 
     // ────────────────────────────────────────────────────────────────
     //  YOUTUBE IFRAME API
@@ -427,6 +429,8 @@
 
     global.onYouTubeIframeAPIReady = function () {
         player = new YT.Player('youtube-player', {
+            width: '100%',
+            height: '100%',
             videoId: VIDEO_ID,
             playerVars: {
                 rel: 0,
@@ -469,6 +473,163 @@
     // ────────────────────────────────────────────────────────────────
     //  SENTENCE SELECTION
     // ────────────────────────────────────────────────────────────────
+    function isSelfPractice() {
+        return assessmentChoice === 'self';
+    }
+
+    function availabilityMessage(kind) {
+        const helper = global.TctAiAvailability;
+        if (helper && typeof helper.message === 'function') {
+            return helper.message(kind);
+        }
+        if (kind === 'selfPractice' || kind === 'self') {
+            return 'Bạn vẫn có thể luyện và nghe lại. Bản thu này chưa được chấm tự động.';
+        }
+        if (kind === 'unassessed') return 'Chưa chấm tự động';
+        if (kind === 'unavailable') return 'Tính năng AI tạm thời chưa sẵn sàng.';
+        if (kind === 'rate') return 'Bạn đang gửi yêu cầu quá nhanh.';
+        if (kind === 'access') return 'Phiên đăng nhập đã hết hoặc bạn không có quyền.';
+        if (kind === 'mic') return 'Mic bị từ chối hoặc không khả dụng — chưa lưu tiến độ.';
+        if (kind === 'nospeech') return 'Chưa nhận được lời nói — chưa lưu tiến độ.';
+        return 'Dịch vụ đánh giá đang gián đoạn.';
+    }
+
+    function pauseSelfAudio() {
+        const audio = $('spk-self-audio');
+        if (audio && typeof audio.pause === 'function') {
+            try { audio.pause(); } catch (_) { /* ignore */ }
+        }
+    }
+
+    function releaseSelfClip() {
+        pauseSelfAudio();
+        const urlApi = global.URL || global.webkitURL;
+        if (selfClip && selfClip.url && urlApi && typeof urlApi.revokeObjectURL === 'function') {
+            try { urlApi.revokeObjectURL(selfClip.url); } catch (_) { /* ignore */ }
+        }
+        selfClip = null;
+        const audio = $('spk-self-audio');
+        if (audio) {
+            audio.src = '';
+            if (typeof audio.removeAttribute === 'function') audio.removeAttribute('src');
+        }
+        const wrap = $('spk-self-playback');
+        if (wrap) wrap.hidden = true;
+    }
+
+    function showUnassessedBoard() {
+        const label = availabilityMessage('unassessed');
+        SCORE_METRICS.forEach(function (metric) {
+            const valEl = $(metric.id);
+            if (valEl) {
+                valEl.textContent = '—';
+                valEl.title = label;
+            }
+            const ringEl = $(metric.ringId);
+            if (ringEl) ringEl.setAttribute('stroke-dasharray', '0, 100');
+            const barEl = $(metric.barId);
+            if (barEl) barEl.style.width = '0%';
+        });
+    }
+
+    function syncChoiceButtons() {
+        const automatic = $('spk-choice-automatic');
+        const self = $('spk-choice-self');
+        const selfSelected = isSelfPractice();
+        if (automatic) {
+            automatic.classList.toggle('is-selected', !selfSelected);
+            automatic.setAttribute('aria-pressed', selfSelected ? 'false' : 'true');
+        }
+        if (self) {
+            self.classList.toggle('is-selected', selfSelected);
+            self.setAttribute('aria-pressed', selfSelected ? 'true' : 'false');
+        }
+        const note = $('spk-self-practice-note');
+        if (note) {
+            note.hidden = !selfSelected;
+            if (selfSelected) note.textContent = availabilityMessage('selfPractice');
+        }
+        if (!btnRecord) return;
+        const label = isSelfPractice() ? 'Thu và nghe lại' : 'Kiểm tra phát âm';
+        if (!isRecording && !isScoring && recordLabel) recordLabel.textContent = label;
+        if (!isRecording && !isScoring) btnRecord.setAttribute('aria-label', label);
+    }
+
+    function showSelfOffer(visible) {
+        const offer = $('spk-offer-self');
+        if (offer) offer.hidden = !visible;
+    }
+
+    function attachPlayback(snapshot, blob, asUnassessed) {
+        if (!blob || recordingEpoch !== snapshot.epoch) return;
+        const current = SENTENCES[activeSentIdx];
+        if (!current || current.id !== snapshot.sentenceId) return;
+        releaseSelfClip();
+        const urlApi = global.URL || global.webkitURL;
+        const url = urlApi && typeof urlApi.createObjectURL === 'function' ? urlApi.createObjectURL(blob) : '';
+        selfClip = { url: url, sentenceId: snapshot.sentenceId, epoch: snapshot.epoch };
+        const audio = $('spk-self-audio');
+        const wrap = $('spk-self-playback');
+        const playbackLabel = $('spk-self-playback-label');
+        if (audio && url) audio.src = url;
+        if (wrap) wrap.hidden = !url;
+        if (playbackLabel) playbackLabel.textContent = availabilityMessage('unassessed');
+        if (asUnassessed) {
+            showUnassessedBoard();
+            setAssessmentStatus(availabilityMessage('selfPractice'));
+            showSelfOffer(false);
+        }
+    }
+
+    function setAssessmentChoice(choice) {
+        const next = choice === 'self' ? 'self' : 'automatic';
+        if (next === assessmentChoice) {
+            syncChoiceButtons();
+            return;
+        }
+        assessmentChoice = next;
+        if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+            abortActiveRecognition('mode');
+        }
+        syncChoiceButtons();
+        if (next === 'self') {
+            if (selfClip) {
+                showUnassessedBoard();
+                setAssessmentStatus(availabilityMessage('selfPractice'));
+            } else {
+                setAssessmentStatus('Tự luyện: thu và nghe lại trên trình duyệt, không gửi đi chấm.');
+            }
+            showSelfOffer(false);
+            return;
+        }
+        releaseSelfClip();
+        showSelfOffer(false);
+        const sentence = SENTENCES[activeSentIdx];
+        if (sentence) updateScoreBoard(sentence, null);
+        setAssessmentStatus('Đã về chấm tự động. Hãy thu một bản mới; bản cũ không được gửi lại.');
+    }
+
+    function classifyAssessFailure(response, body) {
+        const helper = global.TctAiAvailability;
+        if (helper && typeof helper.classifySpeakingFailure === 'function') {
+            return helper.classifySpeakingFailure(response, body);
+        }
+        const status = response && response.status ? response.status : 0;
+        const code = body && (body.code || body.errorCode) ? String(body.code || body.errorCode) : '';
+        if ((response && response.redirected) || status === 401 || status === 403) {
+            if (!code || code === 'auth') return { kind: 'access', message: availabilityMessage('access') };
+        }
+        if (status === 404) return { kind: 'access', message: (body && body.error) || 'Không tìm thấy câu này.' };
+        if (code === 'engine_auth' || code === 'quota_exhausted') return { kind: 'unavailable', message: availabilityMessage('unavailable') };
+        if (code === 'engine_busy') {
+            const server = body && (body.error || body.message) ? String(body.error || body.message) : '';
+            if (/hàng đợi/i.test(server)) return { kind: 'busy', message: server };
+            return { kind: 'rate', message: availabilityMessage('rate') };
+        }
+        if (status === 429) return { kind: 'rate', message: availabilityMessage('rate') };
+        return { kind: 'outage', message: availabilityMessage('outage') };
+    }
+
     function abortActiveRecognition(reason) {
         recordingEpoch += 1;
         activeRecordingSnapshot = null;
@@ -496,6 +657,9 @@
         isScoring = false;
         setRecordUIState(false);
         setScoringUIState(false);
+        if (reason === 'sentence-change' || reason === 'tab-switch' || reason === 'dispose' || reason === 'replace') {
+            releaseSelfClip();
+        }
         if (reason === 'sentence-change') {
             setAssessmentStatus('Đã hủy ghi âm vì đổi câu — kết quả cũ không được gắn sang câu mới.');
             clearWordComparison();
@@ -505,8 +669,10 @@
     function selectSentence(idx, autoPlay = true) {
         if (idx < 0 || idx >= SENTENCES.length) return;
 
-        if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
-            abortActiveRecognition(activeSentIdx !== idx ? 'sentence-change' : 'reselect');
+        if (idx !== activeSentIdx) {
+            abortActiveRecognition(activeSentIdx >= 0 ? 'sentence-change' : 'init');
+        } else if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+            abortActiveRecognition('reselect');
         }
 
         activeSentIdx = idx;
@@ -749,6 +915,8 @@
 
         if (isScoring) return;
 
+        pauseSelfAudio();
+
         if (isRecording) {
             if (activePcmRecorder) {
                 finishPcmRecording();
@@ -772,11 +940,23 @@
             epoch,
             sentenceId: sentence.id,
             sentenceIndex: activeSentIdx,
-            expectedText: sentence.text || ''
+            expectedText: sentence.text || '',
+            choice: assessmentChoice
         };
         activeRecordingSnapshot = snapshot;
         // New recording epoch owns the comparison panel — drop prior result immediately.
         clearWordComparison();
+        releaseSelfClip();
+
+        if (isSelfPractice()) {
+            if (!(global.TctSpeechRecorder && global.TctSpeechRecorder.isSupported())) {
+                showToast('Trình duyệt chưa hỗ trợ thu âm trên máy. Bạn vẫn có thể nghe bài.', 'error');
+                setAssessmentStatus(availabilityMessage('mic'));
+                return;
+            }
+            startPcmRecording(snapshot);
+            return;
+        }
 
         if (global.TctSpeechRecorder && global.TctSpeechRecorder.isSupported()) {
             startPcmRecording(snapshot);
@@ -943,12 +1123,12 @@
             if (recordLabel) recordLabel.textContent = 'Đang ghi âm...';
         } else {
             btnRecord.classList.remove('is-recording', 'recording', 'spk-record-btn--active');
-            if (typeof btnRecord.removeAttribute === 'function') { btnRecord.removeAttribute('aria-busy'); } if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-label', 'Kiểm tra phát âm'); }
+            if (typeof btnRecord.removeAttribute === 'function') { btnRecord.removeAttribute('aria-busy'); }             if (typeof btnRecord.setAttribute === 'function') { btnRecord.setAttribute('aria-label', isSelfPractice() ? 'Thu và nghe lại' : 'Kiểm tra phát âm'); }
             if (recordIcon) {
                 recordIcon.className = 'material-symbols-outlined';
                 recordIcon.textContent = 'mic';
             }
-            if (recordLabel) recordLabel.textContent = 'Kiểm tra phát âm';
+            if (recordLabel) recordLabel.textContent = isSelfPractice() ? 'Thu và nghe lại' : 'Kiểm tra phát âm';
         }
     }
 
@@ -986,17 +1166,23 @@
                 }
                 isRecording = false;
                 setRecordUIState(false);
+                if (snapshot.choice === 'self') {
+                    attachPlayback(snapshot, blob, true);
+                    return;
+                }
                 assessAndCommitFromWav(snapshot, blob);
             },
             onError: function () {
                 if (recordingEpoch !== snapshot.epoch) return;
-                setAssessmentStatus('Thu âm lỗi — chưa lưu tiến độ.');
+                setAssessmentStatus(availabilityMessage('mic'));
             }
         });
         activePcmRecorder = recorder;
         isRecording = true;
         setRecordUIState(true);
-        setAssessmentStatus('Đang thu PCM — sẽ gửi máy chủ chấm (không dùng điểm trình duyệt).');
+        setAssessmentStatus(snapshot.choice === 'self'
+            ? 'Đang thu để nghe lại. Bản này không gửi đi chấm.'
+            : 'Đang thu PCM — sẽ gửi máy chủ chấm (không dùng điểm trình duyệt).');
         try {
             await recorder.start();
             if (recordingEpoch !== snapshot.epoch || activePcmRecorder !== recorder) {
@@ -1016,7 +1202,7 @@
             setRecordUIState(false);
             clearWordComparison();
             showToast('Không mở được micro — kiểm tra quyền mic/HTTPS.', 'error');
-            setAssessmentStatus('Mic bị từ chối hoặc không khả dụng — chưa lưu tiến độ.');
+            setAssessmentStatus(availabilityMessage('mic'));
         }
     }
 
@@ -1076,19 +1262,27 @@
             }
             const assessBody = await assessResponse.json().catch(() => ({}));
             if (recordingEpoch !== snapshot.epoch) return;
-            if (!assessResponse.ok || !assessBody.success) {
-                const code = assessBody.code || '';
-                showToast(assessBody.error || 'ASR máy chủ chưa sẵn sàng.', 'warning');
-                setAssessmentStatus(assessBody.error || 'Engine chưa sẵn sàng — nghe/thu được nhưng chưa lưu XP.');
+            if (assessBody.status === 'NoSpeech' || assessBody.code === 'no_speech') {
+                showToast(assessBody.message || 'Chưa nhận được lời nói.', 'warning');
+                setAssessmentStatus(assessBody.message || availabilityMessage('nospeech'));
                 clearWordComparison();
+                return;
+            }
+            if (!assessResponse.ok || !assessBody.success) {
+                const classified = classifyAssessFailure(assessResponse, assessBody);
+                showToast(classified.message, 'warning');
+                setAssessmentStatus(classified.message);
+                clearWordComparison();
+                if (classified.kind === 'outage' || classified.kind === 'unavailable' || classified.kind === 'rate' || classified.kind === 'busy') {
+                    attachPlayback(snapshot, wavBlob, false);
+                    showSelfOffer(true);
+                }
                 return;
             }
 
             if (!assessBody.canCommitProgress || !assessBody.assessmentId) {
                 showToast(assessBody.message || 'Chưa nhận được lời nói.', 'warning');
-                updateScoreBoard(s, null);
-                // The score render resets this label; keep the latest no-speech reason visible.
-                setAssessmentStatus(assessBody.message || 'Chưa nhận được lời nói — chưa lưu tiến độ.');
+                setAssessmentStatus(assessBody.message || availabilityMessage('nospeech'));
                 clearWordComparison();
                 return;
             }
@@ -1126,8 +1320,10 @@
             }
             console.error(ex);
             if (recordingEpoch !== snapshot.epoch) return;
-            showToast('Lỗi khi gửi bản thu.', 'error');
-            setAssessmentStatus('Lỗi mạng/máy chủ — chưa lưu tiến độ.');
+            showToast(availabilityMessage('outage'), 'error');
+            setAssessmentStatus(availabilityMessage('outage'));
+            attachPlayback(snapshot, wavBlob, false);
+            showSelfOffer(true);
         } finally {
             if (activeAssessController === controller) {
                 activeAssessController = null;
@@ -1404,6 +1600,9 @@
 
         // Record
         btnRecord?.addEventListener('click', startRecording);
+        $('spk-choice-automatic')?.addEventListener('click', function () { setAssessmentChoice('automatic'); });
+        $('spk-choice-self')?.addEventListener('click', function () { setAssessmentChoice('self'); });
+        $('spk-offer-self')?.addEventListener('click', function () { setAssessmentChoice('self'); });
 
         // Pronunciation slider arrows
         btnSliderPrev?.addEventListener('click', () => {
@@ -1469,7 +1668,7 @@
         const tabsTrack = $('spk-practice-tabs') || tabPronunciation?.parentElement;
 
         tabPronunciation?.addEventListener('click', function () {
-            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController || selfClip) {
                 abortActiveRecognition('tab-switch');
             }
             this.classList.add('spk-pill-active', 'spk-practice-tab--active');
@@ -1483,7 +1682,7 @@
         });
 
         tabDictation?.addEventListener('click', function () {
-            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController) {
+            if (isRecording || activeRecognition || activePcmRecorder || activeAssessController || selfClip) {
                 abortActiveRecognition('tab-switch');
             }
             this.classList.add('spk-pill-active', 'spk-practice-tab--active');
@@ -1497,22 +1696,45 @@
             setTimeout(() => dicInput?.focus(), 120);
         });
 
-        // Keyboard shortcuts
+        // Keyboard shortcuts and page lifecycle. Shortcuts stay on the
+        // document so a focused button, link, field, or editor keeps the
+        // browser's own Enter, Space, and Tab behavior.
         document.addEventListener('keydown', onKeyDown);
+        bindPageLifecycle();
+    }
+
+    function isShortcutBlockedTarget(node) {
+        let current = node;
+        while (current && current !== document && current !== document.documentElement) {
+            const tag = current.tagName ? String(current.tagName).toUpperCase() : '';
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'BUTTON' || tag === 'A' || tag === 'AUDIO' || tag === 'VIDEO' || tag === 'SUMMARY') {
+                return true;
+            }
+            if (current.isContentEditable) return true;
+            const role = typeof current.getAttribute === 'function' ? current.getAttribute('role') : '';
+            if (role === 'button' || role === 'link' || role === 'textbox' || role === 'searchbox' || role === 'slider' || role === 'tab' || role === 'menuitem' || role === 'checkbox' || role === 'radio' || role === 'switch' || role === 'combobox' || role === 'option' || role === 'listbox' || role === 'spinbutton') {
+                return true;
+            }
+            current = current.parentElement || current.parentNode;
+        }
+        return false;
     }
 
     function onKeyDown(e) {
-        if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+        if (!e || e.defaultPrevented || e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
+        if (e.code === 'Tab' || isShortcutBlockedTarget(e.target)) return;
 
         switch (e.code) {
             case 'Space':
+                if (e.shiftKey) return;
                 e.preventDefault();
-                if (player) {
+                if (player && typeof player.getPlayerState === 'function') {
                     if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
                     else player.playVideo();
                 }
                 break;
             case 'Enter':
+                if (e.shiftKey) return;
                 e.preventDefault();
                 startRecording();
                 break;
@@ -1520,11 +1742,58 @@
                 if (e.shiftKey) { e.preventDefault(); btnPrev?.click(); }
                 break;
             case 'ArrowRight':
-            case 'Tab':
-                if (e.code === 'Tab') e.preventDefault();
+                e.preventDefault();
                 btnNext?.click();
                 break;
         }
+    }
+
+    let pageLifecycleTarget = null;
+
+    function releasePracticeForLifecycle() {
+        const canceledRecording = isRecording || !!activePcmRecorder || !!activeRecognition;
+        const canceledSend = isScoring || !!activeAssessController;
+        const removedClip = !!selfClip;
+        abortActiveRecognition('pagehide');
+        releaseSelfClip();
+        if (playbackTimer) {
+            clearInterval(playbackTimer);
+            playbackTimer = null;
+        }
+        isScoring = false;
+        setScoringUIState(false);
+        setRecordUIState(false);
+        if (canceledRecording || canceledSend) {
+            setAssessmentStatus('Đã dừng thao tác trên trang này. Nếu bản thu đã được gửi, hãy tải lại kết quả trước khi thu lại.');
+        } else if (removedClip) {
+            setAssessmentStatus('Bản nghe lại đã được gỡ khi rời trang. Điểm đã lưu vẫn giữ nguyên.');
+        }
+    }
+
+    function onPageHide() {
+        releasePracticeForLifecycle();
+    }
+
+    function onPageShow(event) {
+        if (!event || event.persisted !== true) return;
+        releasePracticeForLifecycle();
+    }
+
+    function bindPageLifecycle() {
+        if (pageLifecycleTarget) return;
+        const host = typeof global.addEventListener === 'function' && typeof global.removeEventListener === 'function'
+            ? global
+            : document;
+        pageLifecycleTarget = host;
+        pageLifecycleTarget.addEventListener('pagehide', onPageHide);
+        pageLifecycleTarget.addEventListener('pageshow', onPageShow);
+    }
+
+    function unbindPageLifecycle() {
+        if (!pageLifecycleTarget) return;
+        pageLifecycleTarget.removeEventListener('pagehide', onPageHide);
+        pageLifecycleTarget.removeEventListener('pageshow', onPageShow);
+        pageLifecycleTarget = null;
     }
 
     // ────────────────────────────────────────────────────────────────
@@ -1532,6 +1801,7 @@
     // ────────────────────────────────────────────────────────────────
     function dispose() {
         abortActiveRecognition('dispose');
+        releaseSelfClip();
         if (playbackTimer) {
             clearInterval(playbackTimer);
             playbackTimer = null;
@@ -1541,6 +1811,7 @@
             toastTimer = null;
         }
         document.removeEventListener('keydown', onKeyDown);
+        unbindPageLifecycle();
         isScoring = false;
     }
 
@@ -1559,6 +1830,8 @@
         startRecording,
         selectSentence,
         dispose,
+        setAssessmentChoice,
+        getAssessmentChoice: function () { return assessmentChoice; },
         applyRecordingFeedback,
         renderDictationFeedback,
         isPreviewOnly: BROWSER_SCORE_PREVIEW_ONLY,

@@ -298,7 +298,7 @@
                         payload?.conversationId,
                         payload?.conversationTitle || draftConversationTitle);
                     const appended = appendMessage(elChatWindow, 'assistant', payload.text || '', elScrollToBottomBtn);
-                    attachGrounding(appended?.contentElement?.parentElement, payload.grounding);
+                    attachGrounding(appended?.contentElement?.parentElement, payload.grounding, payload.usage);
                 } else if (currentConversationId) {
                     touchConversationHistory(
                         historyElements,
@@ -316,11 +316,11 @@
                 setUiState('done', elForm, elSendBtn, elStopBtn, elTyping, false);
             } catch (error) {
                 setUiState('error', elForm, elSendBtn, elStopBtn, elTyping, false);
-                const learnerMessage = describeSendError(error);
                 restoreDraftIfEmpty(elInput, runtime.pendingDraft);
-                showStatus(elStatus, learnerMessage, { allowRetry: true });
+                const described = describeSendError(error);
+                showStatus(elStatus, described.message, { allowRetry: described.allowRetry });
                 removeTrailingTransportNotice(elChatWindow);
-                const notice = appendMessage(elChatWindow, 'system', learnerMessage, elScrollToBottomBtn);
+                const notice = appendMessage(elChatWindow, 'system', described.message, elScrollToBottomBtn);
                 if (notice?.containerElement) {
                     notice.containerElement.setAttribute('data-answer-state', 'temporary_unavailability');
                 }
@@ -364,7 +364,7 @@
                 runtime.hubAvailable = false;
                 if (runtime.isStreaming) {
                     finalizeStreaming(runtime);
-                    resolveStreamCompletion(runtime, false, { message: 'Kết nối bị gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
+                    resolveStreamCompletion(runtime, false, { message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.', shouldFallback: false });
                 }
 
                 showStatus(elStatus, 'Kết nối realtime đang gián đoạn. Hãy kiểm tra lịch sử trước khi gửi lại.');
@@ -377,7 +377,7 @@
                 runtime.hubAvailable = false;
                 if (runtime.isStreaming) {
                     finalizeStreaming(runtime);
-                    resolveStreamCompletion(runtime, false, { message: 'Kết nối đã ngắt. Hãy kiểm tra lịch sử trước khi gửi lại.', shouldFallback: false });
+                    resolveStreamCompletion(runtime, false, { message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.', shouldFallback: false });
                 }
                 showStatus(elStatus, 'Realtime đã ngắt kết nối. Hệ thống sẽ dùng AJAX.');
             }
@@ -512,7 +512,7 @@
                 row.classList.remove('d-none');
                 row.setAttribute('data-accepted', 'true');
             }
-            attachGrounding(runtime.streamMessageElement.parentElement || runtime.streamMessageElement.parentNode, payload?.grounding);
+            attachGrounding(runtime.streamMessageElement.parentElement || runtime.streamMessageElement.parentNode, payload?.grounding, payload?.usage);
             finalizeStreaming(runtime);
             resolveStreamCompletion(runtime, true);
         });
@@ -601,7 +601,7 @@
 
                 finalizeStreaming(runtime);
                 resolveStreamCompletion(runtime, false, {
-                    message: 'Kết nối bị gián đoạn sau khi gửi. Hãy kiểm tra lịch sử trước khi gửi lại.',
+                    message: 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.',
                     shouldFallback: false
                 });
             });
@@ -698,8 +698,12 @@
                 continue;
             }
 
-            const errorPayloadMessage = await tryGetErrorMessage(response);
-            throw new Error(errorPayloadMessage || getFriendlyErrorMessage(response.status));
+            const errorPayload = await readErrorPayload(response);
+            const error = new Error(errorPayload.message || getFriendlyErrorMessage(response.status));
+            error.status = response.status;
+            error.errorCode = errorPayload.errorCode || '';
+            error.uncertain = response.status >= 500;
+            throw error;
         }
 
         throw new Error('Xin lỗi, hệ thống AI đang bận. Vui lòng thử lại.');
@@ -833,7 +837,7 @@
         };
     }
 
-    function attachGrounding(bubble, grounding) {
+    function attachGrounding(bubble, grounding, usage) {
         if (!bubble) {
             return;
         }
@@ -855,7 +859,7 @@
             container.setAttribute('data-grounding-outcome', outcome);
         }
 
-        const label = learnerStateLabel(grounding);
+        const label = learnerStateLabel(grounding, usage);
         const showNotice = (status === 'changed' || status === 'snapshot')
             && typeof grounding.notice === 'string'
             && grounding.notice.trim();
@@ -929,7 +933,15 @@
         bubble.appendChild(section);
     }
 
-    function learnerStateLabel(grounding) {
+    function learnerStateLabel(grounding, usage) {
+        const model = usage && typeof usage.model === 'string' ? usage.model : '';
+        if (model === 'internal-chat-boundary' && (!grounding.outcome || grounding.outcome === 'answered')) {
+            const helper = window.TctAiAvailability;
+            return helper && typeof helper.message === 'function'
+                ? helper.message('internalChat')
+                : 'Trả lời từ dữ liệu trong hệ thống';
+        }
+
         const supplied = grounding.stateLabel;
         if (typeof supplied === 'string' && supplied.trim()) {
             return supplied.trim();
@@ -1142,13 +1154,40 @@
         return false;
     }
 
-    function describeSendError(error) {
-        const message = (error && error.message) || '';
-        if (!message || message === 'Failed to fetch' || message === 'NetworkError when attempting to fetch resource.' || message === 'Load failed') {
-            return 'Mạng bị gián đoạn. Bản nháp vẫn còn để bạn gửi lại.';
-        }
+    function unknownChatMessage() {
+        const helper = window.TctAiAvailability;
+        return helper && typeof helper.message === 'function'
+            ? helper.message('unknownChat')
+            : 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
+    }
 
-        return message;
+    function describeSendError(error) {
+        const code = error && error.errorCode ? String(error.errorCode) : '';
+        const status = error && error.status ? Number(error.status) : 0;
+        const message = (error && error.message) || '';
+        if (code === 'circuit_open') {
+            const helper = window.TctAiAvailability;
+            return {
+                message: helper && typeof helper.message === 'function' ? helper.message('outage') : 'Dịch vụ đánh giá đang gián đoạn.',
+                allowRetry: true
+            };
+        }
+        if (status === 401 || status === 403) {
+            return { message: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.', allowRetry: false };
+        }
+        if (status === 404) {
+            return { message: 'Không tìm thấy cuộc hội thoại hoặc bạn không có quyền truy cập.', allowRetry: false };
+        }
+        if (status === 429 || code === 'rate_limited') {
+            return {
+                message: message || 'Bạn đang gửi yêu cầu quá nhanh. Vui lòng chờ một chút rồi thử lại.',
+                allowRetry: true
+            };
+        }
+        if (!message || message === 'Failed to fetch' || message === 'NetworkError when attempting to fetch resource.' || message === 'Load failed' || error?.uncertain || status >= 500) {
+            return { message: unknownChatMessage(), allowRetry: false };
+        }
+        return { message: message, allowRetry: false };
     }
 
     function removeEmptyState(elChatWindow) {
@@ -1337,23 +1376,29 @@
         }
 
         if (statusCode === 503 || statusCode === 504) {
-            return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
+            return 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
         }
 
-        return 'Trợ lý tạm thời không trả lời được. Bản nháp vẫn còn để bạn gửi lại.';
+        return 'Chưa xác nhận được kết quả. Hãy tải lại lịch sử trước khi gửi lại.';
     }
 
-    async function tryGetErrorMessage(response) {
-        const contentType = response.headers.get('Content-Type') || '';
-        if (!contentType.includes('application/json')) {
-            return '';
+    async function readErrorPayload(response) {
+        const headerGet = response.headers && typeof response.headers.get === 'function'
+            ? response.headers.get.bind(response.headers)
+            : null;
+        const contentType = headerGet ? (headerGet('Content-Type') || headerGet('content-type') || '') : '';
+        if (!String(contentType).includes('application/json')) {
+            return { message: '', errorCode: '' };
         }
 
         try {
             const payload = await response.json();
-            return payload?.error || '';
+            return {
+                message: payload?.error || '',
+                errorCode: payload?.errorCode || payload?.code || ''
+            };
         } catch {
-            return '';
+            return { message: '', errorCode: '' };
         }
     }
 
