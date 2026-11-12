@@ -42,7 +42,28 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
-### Account profile, habits, outbound reminders and deletion — 2026-11-11
+### Auth Hero Illustration AI Speaking & Accuracy Pill text overlap — 2026-11-12
+
+**Symptom**: On the Auth / Login page (`/Account/Auth`), the custom hero illustration SVG (`auth-illustration.svg`) displayed colliding text in Floating Card 2 ("AI Speaking" bubble). The "AI Speaking" text and the green "98% Acc" accuracy pill overlapped, causing "AI Speaki" to jam directly into the green badge and obscure the characters "ng". In Card 1, "Fluent" and its phonetic transcription `/ˈfluː.ənt/` also lacked sufficient breathing room on fallback font renderers.
+
+**Root Cause**: In `auth-illustration.svg`, Card 2 had a fixed width of `150px`. The text `<text x="40" ...>AI Speaking</text>` spanned from `x=40` to `~107px`. The accuracy pill `<rect x="94" ... fill="#dcfce7"/>` started at `x=94px` and was declared after the text in document order, causing the opaque rectangle and the label "98% Acc" (`x=98px`) to be painted right over the characters "ng" of "AI Speaking".
+
+**Solution**:
+1. Expanded Card 2 width from `150px` to `164px` and adjusted bubble container position to `translate(300, 38)`.
+2. Adjusted mic icon and label "AI Speaking" (`x="38"`, `font-size="10.5"`), ending at `~96px`.
+3. Shifted the Accuracy Pill to start at `x="108"` with `text-anchor="middle"` at `x="130"`, providing 12px of clean whitespace gap between label and badge.
+4. Centered the 18 soundwave bars with `translate(20.5, 46)` for perfect horizontal symmetry.
+5. In Card 1, shifted `/ˈfluː.ənt/` to `x="66"` and added system fallback fonts to prevent any collision across platforms. Centered floating alphabet tokens (A, B, C) using `text-anchor="middle"`.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/images/auth/auth-illustration.svg`: Lines 170-171, 189-228, 268-280: resolve Card 2 text overlap, expand card, center elements.
+
+**Verification**:
+- Validated SVG XML structure with PowerShell XML parser (`XML valid: True`).
+- Verified C# compilation (`dotnet build TCTEnglish/TCTEnglish.csproj`) with 0 warnings, 0 errors.
+- Verified test suite (`dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj`), 1395 tests passing.
+
+**Commit**: `fix(auth): fix text collision between speaking label and accuracy pill in auth illustration`
 
 **Symptom**: Account profile showed a name hash as the account code, fixed study statistics and absolute security claims. Email and password changes could apply without a fresh proof. Activity tracking put the antiforgery token in the query string. Account deletion trusted a client-side CONFIRM gate.
 
