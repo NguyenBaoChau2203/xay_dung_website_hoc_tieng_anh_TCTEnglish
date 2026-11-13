@@ -790,7 +790,7 @@ git diff --check
 - Other gates: not applicable at L0 (no code change).
 
 ### L1 — Backend
-- Commit: (hash filled in at the L2 commit)
+- Commit: faebc47
 - Work: tests first (`ListeningIntegrationTests`, 23 cases) went red with 13 failures (B2, B3, B5, B14, B17, B4, the new view-model fields); then the service. `GetUsableLessonAsync` is the single access rule for `GetPracticeViewModelAsync`, `EvaluateQuizAsync` and `SaveProgressAsync`; `IsLessonComplete` and `ApplyProgressAsync` implement L-R3/L-R4 and the single Goals credit; index loads progress in one query and adds status, steps, overview numbers and "continue" lesson; quiz generation on a public lesson is Admin-only (L-R6); the import comment is corrected (B7); the controller passes the user id to `EvaluateQuiz` and normalises `level`. Interface changes are additive (optional `userId` / `CancellationToken`).
 - G1 build: pass (0 errors, warnings 43, L0 43; a first draft produced 44, fixed by dropping a needless `?.`)
 - G2 area: passed 61 / failed 0 / skipped 0
@@ -802,3 +802,19 @@ git diff --check
 - G8–G9, G11–G14: not applicable at L1 (no UI change). G10: behaviour covered by the HTTP integration tests (public lesson evaluate/save, old pages render for guest, Standard and Premium); no manual run at this phase.
 - G15 security: B2, B3, B8 and antiforgery tests green; no UI JS/Razor touched this phase.
 - Attempts / deferred / blocked: none. Test runs regenerate `docs/design-system/email-preview/*` (line endings); those regenerated files were restored with `git checkout` and are not part of any commit.
+
+### L2 — listening-core.js
+- Commit: (hash filled in at the L3 commit)
+- Work: new pure UMD module `wwwroot/js/listening-core.js` (`window.TctListening.core` in the browser) with the section 5 functions plus `mulberry32`, and 28 node tests in `scripts/tests/test_listening_core.cjs`.
+- G1 build: pass (0 errors, warnings 43, L0 43)
+- G2/G3 full: passed 1418 / failed 0 / skipped 29 (unchanged from L1)
+- G4 node: passed 257 / failed 0 (L0 229, +28)
+- G5 contracts: unchanged (no server or view change)
+- G6 tokens/diff: `git diff --check` clean for the two files; no CSS yet
+- G7 scope: `TCTEnglish/wwwroot/js/listening-core.js`, `scripts/tests/test_listening_core.cjs`
+- G8–G14: not applicable at L2 (no UI). G15: grep for `innerHTML|alert(|confirm(|console.log|on*=` in the new file prints nothing; the purity test forbids `document`, `window`, `fetch` and `localStorage`.
+- Decisions inside the spec (recorded as differences):
+  - `gradeDictation` also returns `extra` (typed words that matched no answer word). A perfect score with extra words is "near", not "correct", so "I like the red apples" does not pass for "I like red apples". The plan's thresholds are otherwise unchanged.
+  - `lineIndexAt` treats a range as `start <= time < end`, so a gap between two lines and the time after the last line's end return -1; the page keeps the previous highlight when it gets -1. A last line without `end` stays active.
+  - `requiredSteps` returns keys in page order (`transcript`, `vocab`, `quiz`). `parseFilterQuery` takes an optional list of known topics. `pickBlanks` also returns `blanks` (the count).
+- Attempts / deferred / blocked: none.
