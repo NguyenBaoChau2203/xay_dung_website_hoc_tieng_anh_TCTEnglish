@@ -820,7 +820,6 @@
         var fieldsets = Array.prototype.slice.call(quizForm.querySelectorAll('.tl-q'));
         var quizSubmit = byId('tlQuizSubmit');
         var quizCount = byId('tlQuizCount');
-        var graded = false;
 
         var chosenFor = function (fs) { var r = fs.querySelector('input:checked'); return r ? r.value : null; };
         var answeredCount = function () { return fieldsets.filter(function (fs) { return chosenFor(fs); }).length; };
@@ -851,7 +850,6 @@
         }
 
         function resetQuiz() {
-            graded = false;
             fieldsets.forEach(function (fs) {
                 clearMissing(fs);
                 Array.prototype.forEach.call(fs.querySelectorAll('input'), function (input) { input.checked = false; input.disabled = false; });
@@ -889,7 +887,6 @@
         }
 
         function showResult(data) {
-            graded = true;
             var byQuestion = {};
             (data.answers || []).forEach(function (a) { byQuestion[a.questionId] = a; });
             fieldsets.forEach(function (fs) {
