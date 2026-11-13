@@ -105,30 +105,40 @@ namespace TCTVocabulary.Controllers
         }
         
         [HttpGet("Listening")]
-        public async Task<IActionResult> Listening(string? level = null, string? topic = null)
+        public async Task<IActionResult> Listening(string? level = null, string? topic = null, CancellationToken ct = default)
         {
             var userId = TryGetCurrentUserId(out var currentUserId) ? currentUserId : (int?)null;
-            var viewModel = await _listeningService.GetIndexViewModelAsync(level, topic, userId);
+            var viewModel = await _listeningService.GetIndexViewModelAsync(NormalizeListeningLevel(level), topic, userId, ct);
             return View(viewModel);
         }
 
+        private static string? NormalizeListeningLevel(string? level)
+        {
+            var key = level?.Trim().ToUpperInvariant();
+            return key is "A1" or "A2" or "B1" or "B2" or "C1" ? key : null;
+        }
+
         [HttpGet("Listening/Practice/{id:int}")]
-        public async Task<IActionResult> ListeningPractice(int id)
+        public async Task<IActionResult> ListeningPractice(int id, CancellationToken ct = default)
         {
             TryGetCurrentUserId(out var userId);
-            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId);
+            var viewModel = await _listeningService.GetPracticeViewModelAsync(id, userId == 0 ? null : userId, ct);
             return viewModel == null ? NotFound() : View(viewModel);
         }
 
         [Authorize]
         [HttpPost("Listening/EvaluateQuiz")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto)
+        public async Task<IActionResult> EvaluateListeningQuiz([FromBody] ListeningQuizSubmitDto? dto, CancellationToken ct = default)
         {
             if (dto == null || dto.LessonId <= 0)
                 return BadRequest(new { error = "Dữ liệu không hợp lệ." });
 
-            var result = await _listeningService.EvaluateQuizAsync(dto);
+            if (!TryGetCurrentUserId(out var userId))
+                return Unauthorized(new { error = "Bạn cần đăng nhập." });
+
+            // Access, grading and best-score persistence are decided by the service (404 when the lesson is not usable).
+            var result = await _listeningService.EvaluateQuizAsync(dto, userId, ct);
             return result == null
                 ? NotFound(new { error = "Không tìm thấy bài nghe." })
                 : Json(new { success = true, data = result });

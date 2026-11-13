@@ -782,9 +782,23 @@ git diff --check
 - Final counts:
 
 ### L0 — Baseline
-- Commit: see `git log` (plan, prompt and L0 record)
+- Commit: 851d989
 - G1 build: pass (warnings 43, L0 43)
 - G3 full: passed 1395 / failed 0 / skipped 29
 - G4 node: passed 229 / failed 0
 - G8 render: before-screenshots only (3 roles × 2 pages × 3 sizes), `.tmp/listening/L0/`
 - Other gates: not applicable at L0 (no code change).
+
+### L1 — Backend
+- Commit: (hash filled in at the L2 commit)
+- Work: tests first (`ListeningIntegrationTests`, 23 cases) went red with 13 failures (B2, B3, B5, B14, B17, B4, the new view-model fields); then the service. `GetUsableLessonAsync` is the single access rule for `GetPracticeViewModelAsync`, `EvaluateQuizAsync` and `SaveProgressAsync`; `IsLessonComplete` and `ApplyProgressAsync` implement L-R3/L-R4 and the single Goals credit; index loads progress in one query and adds status, steps, overview numbers and "continue" lesson; quiz generation on a public lesson is Admin-only (L-R6); the import comment is corrected (B7); the controller passes the user id to `EvaluateQuiz` and normalises `level`. Interface changes are additive (optional `userId` / `CancellationToken`).
+- G1 build: pass (0 errors, warnings 43, L0 43; a first draft produced 44, fixed by dropping a needless `?.`)
+- G2 area: passed 61 / failed 0 / skipped 0
+- G3 full: passed 1418 / failed 0 / skipped 29 (L0 1395 / 29; +23 new)
+- G4 node: passed 229 / failed 0
+- G5 contracts: unchanged (URLs, verbs, antiforgery, JSON shapes; `EvaluateQuiz` gains `data.bestScorePercent`, `SaveProgress` still accepts `quizCompleted`/`quizScore`; the pinned `GoalsPhase5` replay test is green)
+- G6 tokens/diff: `git diff --check` clean for every file of this phase (the only hit is the owner's unstaged blank line in `TCTEnglish/appsettings.Development.json`, never staged); CSS grep not applicable (no CSS yet)
+- G7 scope: `Services/ListeningService.cs`, `Services/IListeningService.cs`, `ViewModels/ListeningViewModels.cs`, `Controllers/StudyController.cs` (Listening actions only), `TCTEnglish.Tests/ListeningIntegrationTests.cs`; no forbidden file
+- G8–G9, G11–G14: not applicable at L1 (no UI change). G10: behaviour covered by the HTTP integration tests (public lesson evaluate/save, old pages render for guest, Standard and Premium); no manual run at this phase.
+- G15 security: B2, B3, B8 and antiforgery tests green; no UI JS/Razor touched this phase.
+- Attempts / deferred / blocked: none. Test runs regenerate `docs/design-system/email-preview/*` (line endings); those regenerated files were restored with `git checkout` and are not part of any commit.

@@ -29,6 +29,23 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Whether the feature is locked for standard users.</summary>
         public bool IsMyLessonsSectionLocked { get; set; }
+
+        /// <summary>All published public lessons, ignoring the level/topic filter.</summary>
+        public int TotalLessons { get; set; }
+
+        /// <summary>Public lessons the user finished (same population as <see cref="TotalLessons"/>).</summary>
+        public int CompletedLessons { get; set; }
+
+        /// <summary>Public lessons the user started but has not finished.</summary>
+        public int InProgressLessons { get; set; }
+
+        /// <summary>The usable, unfinished lesson the user opened most recently (public or own).</summary>
+        public ListeningLessonCardViewModel? ContinueLesson { get; set; }
+
+        public bool IsAuthenticated { get; set; }
+
+        /// <summary>Premium or Admin: may import YouTube lessons.</summary>
+        public bool CanImport { get; set; }
     }
 
     public class ListeningLevelMetaViewModel
@@ -68,6 +85,18 @@ namespace TCTEnglish.ViewModels
         public int? QuizScore { get; set; }
         public bool? VocabReviewed { get; set; }
 
+        /// <summary>True when the lesson is finished (CompletedAt set, or every required section done).</summary>
+        public bool IsCompleted { get; set; }
+
+        /// <summary>"new" (no progress row), "progress" or "done".</summary>
+        public string Status { get; set; } = "new";
+
+        /// <summary>Required sections finished (0-3).</summary>
+        public int StepsDone { get; set; }
+
+        /// <summary>Sections that have content (0-3).</summary>
+        public int StepsTotal { get; set; }
+
         public bool IsPrivate { get; set; }
         public bool IsLocked { get; set; }
         public string? ImportStatus { get; set; }
@@ -103,6 +132,19 @@ namespace TCTEnglish.ViewModels
         public int? QuizScore { get; set; }
         public bool VocabReviewed { get; set; }
         public DateTime? CompletedAt { get; set; }
+
+        public bool IsOwnLesson { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public bool IsCompleted { get; set; }
+
+        /// <summary>Premium/Admin; for quiz generation also requires an own lesson or Admin.</summary>
+        public bool CanUseAi { get; set; }
+
+        /// <summary>Premium/Admin and allowed to translate this lesson.</summary>
+        public bool CanTranslate { get; set; }
+
+        /// <summary>Premium/Admin: playback speed control.</summary>
+        public bool CanUseSpeed { get; set; }
     }
 
     // ================================================================
@@ -168,6 +210,9 @@ namespace TCTEnglish.ViewModels
         public int CorrectCount { get; set; }
         public int ScorePercent { get; set; }
         public bool Passed { get; set; }
+
+        /// <summary>Best stored score for the signed-in user (null for callers without a user id).</summary>
+        public int? BestScorePercent { get; set; }
         public List<ListeningQuizAnswerResult> Answers { get; set; } = new();
     }
 
