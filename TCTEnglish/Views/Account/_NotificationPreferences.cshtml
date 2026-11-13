@@ -38,8 +38,10 @@
             <p class="text-secondary small mb-0">@Model.EmailState</p>
         </label>
     </div>
-    <button type="submit" class="btn btn-primary btn-sm mt-3">Lưu tùy chọn</button>
-    <button type="button" class="btn btn-outline-primary btn-sm mt-3" id="enablePushDevice" disabled="@(!Model.PushConfigured)">Đăng ký thiết bị này</button>
-    <button type="button" class="btn btn-outline-primary btn-sm mt-3" id="disablePushDevice">Hủy đăng ký thiết bị này</button>
+    <div class="d-flex flex-wrap gap-2 mt-3">
+        <button type="submit" class="btn btn-primary btn-sm">Lưu tùy chọn</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="enablePushDevice" disabled="@(!Model.PushConfigured)">Đăng ký thiết bị này</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="disablePushDevice">Hủy đăng ký thiết bị này</button>
+    </div>
     <p id="pushDeviceStatus" class="small text-secondary mt-2 mb-0" role="status" aria-live="polite"></p>
 </form>

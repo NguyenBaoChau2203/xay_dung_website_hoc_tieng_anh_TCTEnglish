@@ -4245,3 +4245,65 @@ zero speaker markers in list/serialized practice data, and matching text/highlig
 when selecting the screenshot's pasta sentence. Database still has477 original
 marker-bearing source rows and95 public videos. Health is ready on5100. Owner
 authorized a local commit of the whole catalog work; no push/deployment authority.
+
+### Account header and sidebar opened different settings screens — 2026-11-13
+
+**Symptom**: Header Cài đặt opened `/Account/Settings`, while the Account sidebar
+opened `/Account/Profile?tab=security`, with different layouts for the same task.
+
+**Cause**: Independent Settings GET/view/builder coexisted with the Profile security
+pane. Failed email/password submissions could also select the duplicate view via
+the legacy ReturnSurface field.
+
+**Fix**: Make Profile security the canonical surface. Point the header there,
+redirect legacy Settings URLs and render failed security results through Profile
+regardless of the old form surface. Remove the duplicate Settings Razor view and
+its unused builder. Keep form endpoints, antiforgery, posted nonsecret email,
+notification anchors and legacy return destinations compatible. Adapt the token
+test helper to follow one relative page redirect and update obsolete UI checks.
+
+**Files**: AccountController; shared _Layout; removed Views/Account/Settings.cshtml;
+Account UI/review/correctness tests and IntegrationTestClientHelper; existing
+dropdown Node tests; docs/superpowers/plans/2026-11-13-account-settings-navigation.md.
+
+**Verification**: Meaningful baseline: 3 failures/1 pass. Final focused .NET suite:
+92 passed, 0 failed, 0 skipped; Account/dropdown Node suite: 51 passed. Isolated
+Release build succeeds; git diff --check passes. Browser on 5101 confirms identical
+header/sidebar destinations and active panes, legacy notification-anchor redirect,
+0 horizontal overflow at 1440/768/390, keyboard activation and mobile Escape focus
+return. Readiness is 200. No schema/data or protected-config changes were required.
+
+**Limits**: Native 200% browser zoom was attempted but not confirmed; 720x450 reflow
+was observed separately. Existing app on 5100 is preserved and needs an owner
+restart to load changed binaries. No commit/push/CI/staging/production actions.
+
+### Account settings wasted vertical space through forced equal-height rows — 2026-11-13
+
+**Symptom**: Settings felt like a long vertical layout with excessive blank space.
+At 1440px the password and notifications cards were both 855px tall; the Account
+content measured 1807px. Settings also collapsed to one column below 992px.
+
+**Cause**: Desktop display:contents mapped cards onto explicit paired grid rows,
+stretching short forms to the longest neighbor. A separate bottom grid added more
+vertical space. Notifications used separate button margins and verification rows.
+
+**Fix**: Use two equal independent stacks from 768px, natural card heights and
+shared token spacing; one column below 768px. Left: email/password/linked accounts.
+Right: security health/notifications/deletion. Compact linked rows, password fields,
+notification actions and email verification without hiding controls. Retain form
+actions, inputs, IDs, antiforgery and the earlier unified navigation fix.
+
+**Files**: Views/Account/Profile.cshtml, _NotificationPreferences.cshtml and
+_AccountProofRequests.cshtml; wwwroot/css/account-ui.css; existing dropdown Node
+checks; docs/superpowers/plans/2026-11-13-account-settings-two-columns.md.
+
+**Verification**: Release build succeeds; 58 focused .NET and 51 Account/dropdown
+Node tests pass. Actual 1440px Account content is 1542px (265px / 14.7% shorter),
+password card 480px. Browser checks at 1440/1366/1280/1024/768/390 show all six
+cards, no horizontal overflow and no controls overflowing their cards. Eight POST
+forms retain antiforgery. Keyboard password toggle, proof disclosure and guarded
+delete modal/Escape pass. Readiness 200 on the rebuilt verification app at 5101.
+
+**Limits**: Native 200% zoom remains unverified; 720x450 reflow was checked
+separately. Existing app at 5100 is preserved. No schema, protected configuration,
+dependencies, commit, push or deployment changes.

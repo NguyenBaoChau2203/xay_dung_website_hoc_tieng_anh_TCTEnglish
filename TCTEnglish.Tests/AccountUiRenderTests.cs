@@ -16,6 +16,18 @@ public sealed class AccountUiRenderTests
 {
     private static string Text(string html) => WebUtility.HtmlDecode(html);
 
+    [Theory]
+    [InlineData("/Account/Settings")]
+    [InlineData("/Account/Profile?tab=security")]
+    public async Task Settings_AnonymousVisitorsMustSignIn(string route)
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        using var response = await client.GetAsync(route);
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
     [Fact]
     public async Task AU01_Auth_RendersSemanticForms_Antiforgery_AndOneH1()
     {
@@ -169,17 +181,26 @@ public sealed class AccountUiRenderTests
         var userId = TestDataIds.UserId;
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, userId, Roles.Standard);
 
-        using var response = await client.GetAsync("/Account/Settings");
+        using var legacyResponse = await client.GetAsync("/Account/Settings");
+        Assert.Equal(HttpStatusCode.Redirect, legacyResponse.StatusCode);
+        Assert.Equal("/Account/Profile?tab=security", legacyResponse.Headers.Location?.OriginalString);
+
+        using var response = await client.GetAsync(legacyResponse.Headers.Location);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         var html = await response.Content.ReadAsStringAsync();
 
         Assert.Contains("account-ui", html);
         Assert.Single(Regex.Matches(html, "<h1[\\s>]"));
-        Assert.Contains("id=\"section-security\"", html);
+        Assert.Contains("data-initial-tab=\"security\"", html);
+        Assert.Contains("id=\"tab-security\"", html);
         Assert.Contains("id=\"section-linked\"", html);
         Assert.Contains("id=\"section-notifications\"", html);
         Assert.Contains("id=\"section-danger\"", html);
-        Assert.Contains("id=\"settingsEmailInput\"", html);
+        Assert.Contains("id=\"profileEmailInput\"", html);
+        var document = new AngleSharp.Html.Parser.HtmlParser().ParseDocument(html);
+        var headerSettings = document.QuerySelector("#userDropdown .item-icon-box--settings")?.Closest("a");
+        Assert.NotNull(headerSettings);
+        Assert.Equal("/Account/Profile?tab=security", headerSettings.GetAttribute("href"));
         Assert.Contains("id=\"deleteAccountModal\"", html);
         Assert.Contains("id=\"deleteConfirmInput\"", html);
         Assert.Contains("id=\"deleteAccountBtn\"", html);

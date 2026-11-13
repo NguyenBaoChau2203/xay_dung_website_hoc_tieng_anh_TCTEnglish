@@ -182,14 +182,15 @@ public sealed class AccountReviewRepairTests
 
     [Theory]
     [InlineData("profile", "profileEmailInput")]
-    [InlineData("settings", "settingsEmailInput")]
+    [InlineData("settings", "profileEmailInput")]
+    [InlineData("", "profileEmailInput")]
     public async Task EmailValidation_PreservesOnlyNonSecretInput(string surface, string inputId)
     {
         await using var factory = new TestWebApplicationFactory();
         await factory.InitializeAsync();
         var id = await SeedUserAsync(factory);
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, id, Roles.Standard);
-        var html = await client.GetStringAsync("/Account/Settings");
+        var html = await client.GetStringAsync("/Account/Profile?tab=security");
         var token = Regex.Match(html, "name=\"__RequestVerificationToken\"[^>]*value=\"([^\"]+)\"").Groups[1].Value;
         using var response = await client.PostAsync("/Account/UpdateEmail", new FormUrlEncodedContent(new Dictionary<string, string>
         {

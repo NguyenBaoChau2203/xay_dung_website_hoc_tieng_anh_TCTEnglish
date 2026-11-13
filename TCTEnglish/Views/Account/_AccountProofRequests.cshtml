@@ -11,9 +11,13 @@
     <form asp-controller="Account" asp-action="VerifyCurrentEmail" method="post" class="mb-3">
         @Html.AntiForgeryToken()
         <input type="hidden" name="returnSurface" value="@Model" />
-        <label class="form-label" for="@(Model)-email-proof">Mã xác minh vừa nhận</label>
-        <input id="@(Model)-email-proof" name="proofCode" class="form-control mb-2" autocomplete="one-time-code" maxlength="128" required />
-        <button type="submit" class="btn btn-primary btn-sm">Xác minh email</button>
+        <div class="d-flex flex-wrap align-items-end gap-2">
+            <div class="account-proof-field">
+                <label class="form-label" for="@(Model)-email-proof">Mã xác minh vừa nhận</label>
+                <input id="@(Model)-email-proof" name="proofCode" class="form-control" autocomplete="one-time-code" maxlength="128" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Xác minh email</button>
+        </div>
     </form>
     <details>
         <summary class="small">Nhận mã cho thao tác cần xác thực lại</summary>

@@ -828,58 +828,49 @@ body:has(.account-ui) .tct-footer {
     margin-bottom: var(--tct-space-lg);
 }
 
-/* Security 2-column Bento Layout — 100% Symmetrical OCD Alignment */
-.account-ui .security-grid,
-.account-ui .security-bottom-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    gap: var(--tct-space-xl, 1.5rem);
-    align-items: stretch;
-}
-
+/* Settings use independent columns so a long form cannot stretch its neighbor. */
 .account-ui .security-grid {
-    margin-bottom: var(--tct-space-xl, 1.5rem);
-}
-
-.account-ui .security-bottom-grid {
-    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--tct-space-lg);
+    align-items: start;
 }
 
 .account-ui .security-main,
 .account-ui .security-side {
     display: grid;
-    gap: var(--tct-space-xl, 1.5rem);
+    gap: var(--tct-space-lg);
+    align-content: start;
     min-width: 0;
 }
 
-@media (min-width: 992px) {
-    .account-ui .security-main,
-    .account-ui .security-side {
-        display: contents !important;
-    }
-    .account-ui .security-card--email {
-        grid-column: 1;
-        grid-row: 1;
-    }
-    .account-ui .security-card--health {
-        grid-column: 2;
-        grid-row: 1;
-    }
-    .account-ui .security-card--password {
-        grid-column: 1;
-        grid-row: 2;
-    }
-    .account-ui .security-card--notifications {
-        grid-column: 2;
-        grid-row: 2;
-    }
+.account-ui .security-grid .security-card {
+    min-width: 0;
+    height: auto;
+    padding: var(--tct-space-lg);
 }
 
-.account-ui .security-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+.account-ui .security-card .panel-header {
+    flex-wrap: wrap;
+    gap: var(--tct-space-sm);
+}
+
+.account-ui .security-card .password-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--tct-space-md);
+}
+
+.account-ui .security-card .password-fields > .field:first-child {
+    grid-column: 1 / -1;
+}
+
+.account-ui .security-card--linked .linked-row {
+    padding-block: var(--tct-space-sm);
+}
+
+.account-ui .account-proof-field {
+    flex: 1 1 12rem;
+    min-width: 0;
 }
 
 /* Subscription Bento Hub */
@@ -1574,9 +1565,7 @@ body:has(.account-ui) .tct-footer {
 
 /* Responsive Media Queries */
 @media (max-width: 991.98px) {
-    .account-ui .profile-columns,
-    .account-ui .security-grid,
-    .account-ui .security-bottom-grid {
+    .account-ui .profile-columns {
         grid-template-columns: minmax(0, 1fr);
     }
     .account-ui .profile-main-stack,
@@ -1597,6 +1586,18 @@ body:has(.account-ui) .tct-footer {
 
 @media (max-width: 768px) {
     .account-ui .password-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .account-ui .security-card .password-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .account-ui .security-grid {
         grid-template-columns: minmax(0, 1fr);
     }
 }
