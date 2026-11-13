@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B2 - \u0110\u1ED2 \u0102N V\u1EC8A H\u00C8 -",
+        "Level": "B2",
+        "Topic": "\u0110\u1ED2 \u0102N V\u1EC8A H\u00C8",
+        "YoutubeId": "MxEmCaIW2BQ",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/MxEmCaIW2BQ/hqdefault.jpg",
+        "Duration": "19:04",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.ec3ae1fdbbbcd528c920cd204d0b4e43062963ef04538ddd11df53b5f6602221"
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-612b1c51889e6c84b2acde5b3c60ce9413d30413368cc0327014d05c607c8688",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.612b1c51889e6c84b2acde5b3c60ce9413d30413368cc0327014d05c607c8688",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "C1 Advanced (CAE) Listening Test 1 with answers",
+        "Level": "C1",
+        "Topic": "C1 Advanced exam practice",
+        "YoutubeId": "8GlGrsO0cQE",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/8GlGrsO0cQE/hqdefault.jpg",
+        "Duration": "38:25",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.612b1c51889e6c84b2acde5b3c60ce9413d30413368cc0327014d05c607c8688"
+}

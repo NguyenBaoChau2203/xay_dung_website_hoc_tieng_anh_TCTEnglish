@@ -461,8 +461,14 @@
         /* Hook into speaking.js: intercept selectSentence to update transcript panel */
         (function() {
             var _origSelect = window.selectSentence;
-            window.selectSentence = function(idx) {
-                if (typeof _origSelect === 'function') _origSelect(idx);
+            window.selectSentence = function(idx, autoPlay = true) {
+                // speaking.js loads after this inline bridge; resolve its API
+                // when the learner selects a cue, not before the module exists.
+                if (window.TctSpeakingPractice && typeof window.TctSpeakingPractice.selectSentence === 'function') {
+                    window.TctSpeakingPractice.selectSentence(idx, autoPlay);
+                } else if (typeof _origSelect === 'function') {
+                    _origSelect(idx, autoPlay);
+                }
                 /* Delay slightly so SPK_SENTENCES.isPracticed may have updated */
                 setTimeout(function() { updateTranscriptPanel(idx); }, 50);
             };

@@ -1,0 +1,1564 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B2 - C\u00D4 \u1EA4Y M\u1EA4T R\u1ED2I PH\u1EA6N 2 -",
+        "YoutubeId": "q5ELgWfX0Q4",
+        "Level": "B2",
+        "Topic": "Vui ch\u01A1i \u0026 gi\u1EA3i tr\u00ED",
+        "ThumbnailUrl": "https://img.youtube.com/vi/q5ELgWfX0Q4/hqdefault.jpg",
+        "Duration": "14:23",
+        "SourceUrl": "https://www.youtube.com/watch?v=q5ELgWfX0Q4",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.00cac41ed4b0474fa5842d2bb99b7c78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 768,
+        "EndTime": 774.639,
+        "Text": "body go completely soft and cold right next to me. You choked my baby to death.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.02e442c7c0404351a1f53cd5e4206cc2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 15.36,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.03defc68b88c49c6b71f1988d9262a8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 63.68,
+        "Text": "She is still here, you know, in the corner of my cell watching me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.057432376bdc454a8f6652ac764aa1be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 341.52,
+        "Text": "to face the monster one last time and force him to tell the absolute truth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.0639b477a7174e5a96d69b4a756c9b17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 521,
+        "EndTime": 528,
+        "Text": "looked so peaceful. Mrs. Collins, she looked like she belonged to me completely again. No more talk about",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.0a2a8aa7fdd84309bead1de9abcaa247",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 233.84,
+        "Text": "looked so peaceful, Mrs. Collins. She looked like she belonged to me completely again. No more talk about",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.11b1a21596104127ae5c94d51704dfea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 603,
+        "EndTime": 611.12,
+        "Text": "Mrs. Collins, wow, I am surprised. I didn\u0027t think you would ever want to see my face again. Look at you. You look so",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.11d2798b149f4343aac1e56834696b8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 732,
+        "EndTime": 737.279,
+        "Text": "and pulled her back into the passenger seat. I locked the doors. She screamed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.1579ede420564dc79a4b5d528d19bf70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 706,
+        "EndTime": 711.839,
+        "Text": "You told everyone she got out of the car and a random speeding car hit her.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.168237a11b1c418fa971f6546f47518e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 88.96,
+        "Text": "ever see my face. But before I leave this city tomorrow, look into my eyes and tell me the truth. Tell me exactly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.16887336c90b453ebdfaef6293ec2e49",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 357.759,
+        "Text": "She is still here, you know, in the corner of my cell watching me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.19712c73f2a44721bf31357f56437c62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 105,
+        "EndTime": 113.6,
+        "Text": "voices told me I had to do it because I loved her too much. I loved her so much that it was burning my chest every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.1c1ddccef76c4a0db20f0e206ce61c3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 661,
+        "EndTime": 669.6,
+        "Text": "voices told me I had to do it because I loved her too much. I loved her so much that it was burning my chest every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.1dc2b714e14140bca38e698bc8f1fb27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 287,
+        "EndTime": 294.88,
+        "Text": "I am not alone. I told you Emma is with me. She is standing right behind you right now, smiling at me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.1f51eef9730d49b695f79ef87d5c3c85",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 354.16,
+        "Text": "thin and pale. Did you come here to curse me or did you come to see Emma?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.20ed034345fa473fb91aab5b75ee7978",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 40,
+        "EndTime": 47.36,
+        "Text": "to face the monster one last time and force him to tell the absolute truth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.21c0c68c31454d04a6d513484fb4aee6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 10.759,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B2 and the topic is she passed away part two.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.224d4213615c4bf2a2af5dbaa41c8cdf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 30,
+        "EndTime": 40,
+        "Text": "schizophrenia, a dangerous mental illness. Before leaving the city forever, Mrs. Collins came to the prison",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.262fe22ab5bf44598af138c0213d889c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 249.2,
+        "Text": "road, and used my car to drive over her legs to make it look like a terrible hitand-run accident. Then I ran to your",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.26824d1872234aebb493fc2f7122099d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 498,
+        "EndTime": 506.8,
+        "Text": "squeeze harder. So, I squeezed harder and harder. I watched her light slowly disappear from her eyes. I watched her",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.26f1f9cac6a74212962fffe5e1fca318",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 692,
+        "EndTime": 700.56,
+        "Text": "Ryan, this is over. I don\u0027t love you anymore. I begged her. I cried. I went down in my knees while driving, but she",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.2b71a0da2d4e4d75afb91f29a3c00d8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 636,
+        "EndTime": 644.959,
+        "Text": "ever see my face. But before I leave this city tomorrow, look into my eyes and tell me the truth. Tell me exactly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.2cdcb09c974e40d790a01f7200234075",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 150.48,
+        "Text": "just screamed at me to stop the car. So, I stopped on that dark, empty road near Maple Street.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.309aebe69f0643ffb72cfc6603d60671",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 550,
+        "EndTime": 557.6,
+        "Text": "Collins, but you can never leave this memory. Your mind is locked in my nightmare forever. That is where you are",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.325abcc77227461c8c85c03c17d69295",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 843,
+        "EndTime": 850.88,
+        "Text": "I am not alone. I told you Emma is with me. She is standing right behind you right now, smiling at me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.35bd7c5938e64e58a7bdd3a55053d438",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 789,
+        "EndTime": 797.36,
+        "Text": "breaking up. But then the voices told me the police would come. So I dragged her body out of the car, laid her on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.3d9b409522d64805beaa9ebe8ecb6870",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 611,
+        "EndTime": 616,
+        "Text": "thin and pale. Did you come here to curse me or did you come to see Emma?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.3e84f38b119f49118fcdb488a0d0486e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 55.199,
+        "Text": "Mrs. Collins, wow, I am surprised. I didn\u0027t think you would ever want to see my face again. Look at you. You look so",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.3f1acfd050c241deb1ae84c45deceafa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 241.36,
+        "Text": "breaking up. But then the voices told me the police would come. So I dragged her body out of the car, laid her on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.431c2ac65bef4a91bd47fa6fe1ee24e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 63,
+        "EndTime": 71.52,
+        "Text": "Shut up, Ryan. Just shut your mouth. I didn\u0027t come here to listen to your sick madness. And I am done crying over a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4645f8a3f53449e8b76ff8ad91c2b611",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 15,
+        "EndTime": 22.16,
+        "Text": "Two weeks later, the police arrested Ryan for firstdegree murder. The court",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.467f0654a14440f19219e1886440d8c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 325,
+        "EndTime": 334.16,
+        "Text": "schizophrenia, a dangerous mental illness. Before leaving the city forever, Mrs. Collins came to the prison",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4a21f74c314c4ba384fc58449f025527",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 644,
+        "EndTime": 652.24,
+        "Text": "what you did to my daughter on that road. Stop lying to me. The truth? Yes, I can tell you now, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4a3d798d10bc4c2f92f56663aa42a2c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 181,
+        "EndTime": 188.72,
+        "Text": "She fought. She scratched my face. Look at the scars on my neck, Mrs. Collins. This is from your beautiful daughter.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4bbe11bdb4334525be7e12066df3c5d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 446,
+        "EndTime": 450,
+        "Text": "out of the car and a random speeding car hit her.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4cad58317da849d1b80aa6b55a1db9b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 341,
+        "EndTime": 349.28,
+        "Text": "Mrs. Collins, wow, I am surprised. I didn\u0027t think you would ever want to see my face again. Look at you. You look so",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4cdff2ca335c4a649ae108ea7d91b701",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 218.64,
+        "Text": "body go completely soft and cold right next to me. You choked my baby to death.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4ced8bf2063444b081d61cc57e0c5ff1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 543,
+        "EndTime": 550.399,
+        "Text": "house and cried like a pitiful innocent boyfriend. It was a perfect plan, wasn\u0027t it? You can leave the city, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4d53500344544a34b9900db174daccac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 155,
+        "EndTime": 161.2,
+        "Text": "I lied, Mrs. Collins. I lied to the police and I lied to the whole world.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.4e4fa9472dc946f79ecf1175eca5309c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 280,
+        "EndTime": 287.44,
+        "Text": "will grow old and rot in this tiny concrete box, alone with your rotten mind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.52de8504a782418d8f79a74c83d499b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 263,
+        "EndTime": 271.6,
+        "Text": "wrong, Ryan. For the past few weeks, I let your hatred consume me. But looking at you right now in this dirty room,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.55602c455c0b46dab2c5e74c99dcce11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 475.36,
+        "Text": "and pulled her back into the passenger seat. I locked the doors. She screamed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.58709d76241342c08675c7916c412530",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 752,
+        "EndTime": 760.399,
+        "Text": "pure terror in her eyes. She gasped for air, crying, \u0022Ryan, please, I\u0027m sorry.\u0022 But the voice in my head told me to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.5e75e422626e46ddb88f4e9be4fa6f27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 309,
+        "EndTime": 316.32,
+        "Text": "Two weeks later, the police arrested Ryan for firstdegree murder. The court",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.606b1e42babd440393062847184a277d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 679,
+        "EndTime": 686.48,
+        "Text": "Lately, Emma changed. She kept looking at me with those cold, disappointed eyes. She said I was a loser with no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.6266a4420be14ac6a42c4667c84bfe06",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 105.119,
+        "Text": "Collins. It doesn\u0027t matter anymore. The police think it was just a regular murder, but they don\u0027t understand. They don\u0027t hear the voices in my head. The",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.627ece3d84ff484d931ebd4115c7499a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 512,
+        "EndTime": 521.36,
+        "Text": "You choked her with your own hands. You are Satan. I sat there with her dead body for an hour, brushing her hair. She",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.680624020a944ac792c6aebe122f9823",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 850,
+        "EndTime": 857.519,
+        "Text": "No, she isn\u0027t. Emma is not in your dirty cell. She is in my heart where you can",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.69d5c2d39b7c48878894bb6fc4f8fb60",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 482,
+        "EndTime": 490.4,
+        "Text": "You crazy animal. You did something horrible to her. I put my hands around her small neck. She looked at me with",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.6ca082ae2fd3460b86c50d6894f26b46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 652,
+        "EndTime": 661.12,
+        "Text": "Collins. It doesn\u0027t matter anymore. The police think it was just a regular murder, but they don\u0027t understand. They don\u0027t hear the voices in my head. The",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.6fbfbcb89d4f4a59b5eaa9607a54a906",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 123,
+        "EndTime": 130.479,
+        "Text": "Lately, Emma changed. She kept looking at me with those cold, disappointed eyes. She said I was a loser with no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.717ca784698547acaa7db3df428dac74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 506,
+        "EndTime": 512.8,
+        "Text": "body go completely soft and cold right next to me. You choked my baby to death.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.726ff473c75c43809944245f88ad4c4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 407,
+        "EndTime": 417.36,
+        "Text": "What voices? You are a coldblooded murderer. Emma spent years with you and you destroyed her. Tell me how she died.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.72eb695614fd46ed986a1b831269edee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 113,
+        "EndTime": 123.2,
+        "Text": "What voices? You are a coldblooded murderer. Emma spent years with you and you destroyed her. Tell me how she died.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.767ca418fdd14b9b88ac4faa3090ef8d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 130,
+        "EndTime": 136.08,
+        "Text": "future, no ambition, and no money. That night in the car, she said it clearly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.778cec7cdedd4221a15502e5953ed2f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 744,
+        "EndTime": 752.24,
+        "Text": "You crazy animal. You did something horrible to her. I put my hands around her small neck. She looked at me with",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.789396fb46ab4b3390ed3d124e2899ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 176.319,
+        "Text": "my brain. It screamed, \u0022If you cannot have you, Emma, then nobody else in this world can have you.\u0022 I grabbed her hair",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7b730addbea34ce182a912bd439b34a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 857,
+        "EndTime": 863.434014,
+        "Text": "never ever touch her again. Goodbye, Ryan.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7b7f661a54ec4371b40e157e46e1f3c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 316,
+        "EndTime": 325.12,
+        "Text": "sentenced him to life in prison without parole, and medical experts revealed that Ryan suffered from severe",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7c2f75dc1f7f4713a86db55ffca6a0f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 383.039,
+        "Text": "ever see my face. But before I leave this city tomorrow, look into my eyes and tell me the truth. Tell me exactly",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7ea44d93f539460e93f192cdb8c6c06b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 760,
+        "EndTime": 768.639,
+        "Text": "squeeze harder. So, I squeezed harder and harder. I watched her light slowly disappear from her eyes. I watched her",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7ef0db1c2d3c4a1abb6e686e86de0db0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 581,
+        "EndTime": 589.04,
+        "Text": "I am not alone. I told you Emma is with me. She is standing right behind you right now, smiling at me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.7f896f6e18fb430885ac6c39c049c104",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 450,
+        "EndTime": 455.28,
+        "Text": "I lied, Mrs. Collins. I lied to the police and I lied to the whole world.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.81e192b63dda48b696f5de74bb84a871",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 700,
+        "EndTime": 706.48,
+        "Text": "just screamed at me to stop the car. So, I stopped on that dark, empty road near Maple Street.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.833b673b5bde4c9fa7888c865e53f6b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 256,
+        "EndTime": 263.44,
+        "Text": "Collins, but you can never leave this memory. Your mind is locked in my nightmare forever. That is where you are",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.86a8aa32801645c882767c417429fb63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 819,
+        "EndTime": 827.519,
+        "Text": "wrong, Ryan. For the past few weeks, I let your hatred consume me. But looking at you right now in this dirty room,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.8715846dd1f04a999967f530a864c573",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 168.239,
+        "Text": "When she opened the door to run away from me, something inside my head just snapped. A loud, heavy voice took over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.875629546a604ec3a6ee6576987a2c15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 627.519,
+        "Text": "Shut up, Ryan. Just shut your mouth. I didn\u0027t come here to listen to your sick madness, and I am done crying over a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.8b07d248db154992ab36bfcb75c513ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204,
+        "EndTime": 212.64,
+        "Text": "squeeze harder. So, I squeezed harder and harder. I watched her light slowly disappear from her eyes. I watched her",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.8c612f0d953540c082feeb698c35c38f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 301,
+        "EndTime": 307.759,
+        "Text": "never ever touch her again. Goodbye, Ryan.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.8d0a1f4bf5f7412d9e7e531dcb08ebd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 30.96,
+        "Text": "sentenced him to life in prison without parole. and medical experts revealed that Ryan suffered from severe",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.8d0bac3cbd2d496189cfc11eb981dcef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 399,
+        "EndTime": 407.759,
+        "Text": "voices told me I had to do it because I loved her too much. I loved her so much that it was burning my chest every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.96d58721f3c542538307b72aa9799aa2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 294,
+        "EndTime": 301.52,
+        "Text": "No, she isn\u0027t. Emma is not in your dirty cell. She is in my heart where you can",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.97f43dfe76ca421ca85f5024388c7dc5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 424,
+        "EndTime": 430.24,
+        "Text": "future, no ambition, and no money. That night in the car, she said it clearly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.9974fbf3b96742fbb316fca87197e976",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 565,
+        "EndTime": 574.959,
+        "Text": "talking to the walls and listening to fake voices, I realized something. You are already dead. Your life is over. You",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.9a6dca8342474ccfad5273d394e43921",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 136,
+        "EndTime": 144.56,
+        "Text": "Ryan, this is over. I don\u0027t love you anymore. I begged her. I cried. I went down in my knees while driving, but she",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.9ecb40b9a65f45f48f8dd47986042ec2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 462.4,
+        "Text": "When she opened the door to run away from me, something inside my head just snapped. A loud, heavy voice took over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.a54ad3c0dadc4c0b96df748126c18882",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 374.319,
+        "Text": "monster like you. Today is the last day I will ever step foot into this dark place. This is the last time you will",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.a6a8bb913c0247ae8e7a5c6563d91d8f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 711,
+        "EndTime": 717.2,
+        "Text": "I lied, Mrs. Collins. I lied to the police and I lied to the whole world.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.a7f471bfa10540b98cac05140f2a7c4e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 88,
+        "EndTime": 96.24,
+        "Text": "what you did to my daughter on that road. Stop lying to me. The truth? Yes, I can tell you now, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.a8231bab32f844779a26663118920537",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 535,
+        "EndTime": 543.36,
+        "Text": "road, and used my car to drive over her legs to make it look like a terrible hitand-run accident. Then I ran to your",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.aa02c190dc8d457bac56115e0c7ae283",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 470.479,
+        "Text": "my brain. It screamed, \u0022If you cannot have you, Emma, then nobody else in this world can have you.\u0022 I grabbed her hair",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.aaaf9ade895b49f79450416a94626c1e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 574,
+        "EndTime": 581.6,
+        "Text": "will grow old and rot in this tiny concrete box, alone with your rotten mind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ae62179899ff4b0cb92036c889e7456f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 249,
+        "EndTime": 256.239,
+        "Text": "house and cried like a pitiful innocent boyfriend. It was a perfect plan, wasn\u0027t it? You can leave the city, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.afa3a14a09864a639d8af9ce2e816d24",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 528,
+        "EndTime": 535.44,
+        "Text": "breaking up. But then the voices told me the police would come. So I dragged her body out of the car, laid her on the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.be71b53d6cf74d25925329e38ace7cb8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 417,
+        "EndTime": 424.639,
+        "Text": "Lately, Emma changed. She kept looking at me with those cold, disappointed eyes. She said I was a loser with no",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.bfba12a416ee44269954cac7b467e458",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 80.159,
+        "Text": "monster like you. Today is the last day I will ever step foot into this dark place. This is the last time you will",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c120c889eb2f407babe7e259a5258b86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 390.319,
+        "Text": "what you did to my daughter on that road. Stop lying to me. The truth? Yes, I can tell you now, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c2b1eaf2219048fb9da0bdcfa9b87eac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 155.84,
+        "Text": "You told everyone she got out of the car and a random speeding car hit her.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c30a58c204cf4d918a0e47e43075159c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 812,
+        "EndTime": 819.44,
+        "Text": "Collins, but you can never leave this memory. Your mind is locked in my nightmare forever. That is where you are",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c56e52a12815469c9504a888b5ffaa6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 797,
+        "EndTime": 805.2,
+        "Text": "road, and used my car to drive over her legs to make it look like a terrible hitand-run accident. Then I ran to your",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c60f74a06acf44bfa366ce266f6ceb7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 589,
+        "EndTime": 595.68,
+        "Text": "No, she isn\u0027t. Emma is not in your dirty cell. She is in my heart where you can",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c72cef432b174df0858cba23669913b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 365.68,
+        "Text": "Shut up, Ryan. Just shut your mouth. I didn\u0027t come here to listen to your sick madness. And I am done crying over a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.c9b01b02b3ee4ee69999ae801be9d94f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438,
+        "EndTime": 446.479,
+        "Text": "just screamed at me to stop the car. So, I stopped on that dark, empty road near Maple Street. You told everyone she got",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.cb989a3f9915486d912daf09f1e848b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774,
+        "EndTime": 783.2,
+        "Text": "You choked her with your own hands. You are Satan. I sat there with her dead body for an hour, brushing her hair. She",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.cd993538b5544edea06d77b4aa4ea9c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 475,
+        "EndTime": 482.879,
+        "Text": "She fought. She scratched my face. Look at the scars on my neck. Mrs. Collins, this is from your beautiful daughter.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d24d29896c484278a51536c89540ac4a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 737,
+        "EndTime": 744.72,
+        "Text": "She fought. She scratched my face. Look at the scars on my neck, Mrs. Collins. This is from your beautiful daughter.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d537f05055fd48c7b2dde0c886a9707d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271,
+        "EndTime": 280.8,
+        "Text": "talking to the walls and listening to fake voices, I realized something. You are already dead. Your life is over. You",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d56b1de4475849a98fb07a65de422863",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 390,
+        "EndTime": 399.199,
+        "Text": "Collins, it doesn\u0027t matter anymore. The police think it was just a regular murder. But they don\u0027t understand. They don\u0027t hear the voices in my head. The",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d72f4d51104d4a6589a7791ed9943a95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 783,
+        "EndTime": 789.839,
+        "Text": "looked so peaceful, Mrs. Collins. She looked like she belonged to me completely again. No more talk about",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d9b11f5db185402fa0a5e32fbab4f6bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 805,
+        "EndTime": 812.24,
+        "Text": "house and cried like a pitiful innocent boyfriend. It was a perfect plan, wasn\u0027t it? You can leave the city, Mrs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.d9e0dc22b8214530a0f9c3ba848915f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 669,
+        "EndTime": 679.2,
+        "Text": "What voices? You are a coldblooded murderer. Emma spent years with you and you destroyed her. Tell me how she died.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.dbac7eb79dc748979fdbc5de357cafca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 438.72,
+        "Text": "Ryan, this is over. I don\u0027t love you anymore. I begged her. I cried. I went down in my knees while driving, but she",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.dc73c15bfa1246b782b685c0cff628ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 188,
+        "EndTime": 196.239,
+        "Text": "You crazy animal. You did something horrible to her. I put my hands around her small neck. She looked at me with",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.dceea00cd387434781548a9d9dd905ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 724,
+        "EndTime": 732.32,
+        "Text": "my brain. It screamed, \u0022If you cannot have you, Emma, then nobody else in this world can have you.\u0022 I grabbed her hair",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.dcef66191e4f45ffbbefd64cb3284664",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 836,
+        "EndTime": 843.44,
+        "Text": "will grow old and rot in this tiny concrete box, alone with your rotten mind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.e4871e2d3ae14864b0936a1043388f8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 196,
+        "EndTime": 204.4,
+        "Text": "pure terror in her eyes. She gasped for air, crying, \u0022Ryan, please, I\u0027m sorry.\u0022 But the voice in my head told me to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.e6790c7fbd34450cb6f88b78d203b641",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 627,
+        "EndTime": 636.16,
+        "Text": "monster like you. Today is the last day I will ever step foot into this dark place. This is the last time you will",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ea273636b4f74171a08bdd9b006dcf55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 717,
+        "EndTime": 724.24,
+        "Text": "When she opened the door to run away from me, something inside my head just snapped. A loud, heavy voice took over",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ec51b26f4d004bd1a3d92d5d43b2b428",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 490,
+        "EndTime": 498.56,
+        "Text": "pure terror in her eyes. She gasped for air, crying, \u0022Ryan, please, I\u0027m sorry.\u0022 But the voice in my head told me to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ec5e10d1c8a44d1ea6f8ffa2a405724c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 176,
+        "EndTime": 181.28,
+        "Text": "and pulled her back into the passenger seat. I locked the doors. She screamed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ede2fe20280d48e584b5ac0c7a215fd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 55,
+        "EndTime": 60,
+        "Text": "thin and pale. Did you come here to curse me or did you come to see Emma?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.ef00ee12b19b4014957064487be97bf0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 827,
+        "EndTime": 836.8,
+        "Text": "talking to the walls and listening to fake voices, I realized something. You are already dead. Your life is over. You",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.f22771c85cf146bbb224236aa853c26c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 616,
+        "EndTime": 619.68,
+        "Text": "She is still here, you know, in the corner of my cell watching me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.f3d44851234747a1aa751dcc130a5bc2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 227.2,
+        "Text": "You choked her with your own hands. You are Satan. I sat there with her dead body for an hour, brushing her hair. She",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.f49c633ff40d4ea8a0cec8fda972a05c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 686,
+        "EndTime": 692.079,
+        "Text": "future, no ambition, and no money. That night in the car, she said it clearly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.fb872ac0cc6d4e579e3352cb46f64965",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 595,
+        "EndTime": 601.959,
+        "Text": "never ever touch her again. Goodbye, Ryan.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b.fc29e6c955a14bbab4d38c1196376b02",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 557,
+        "EndTime": 565.68,
+        "Text": "wrong, Ryan. For the past few weeks, I let your hatred consume me. But looking at you right now in this dirty room,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.1e2ce95795b546a65199e210d46571dcad6c902f6e12d1bafc3ad26b3224476b"
+}

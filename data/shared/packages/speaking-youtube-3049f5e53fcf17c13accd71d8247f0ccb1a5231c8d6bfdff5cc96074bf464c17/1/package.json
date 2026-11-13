@@ -1,0 +1,992 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- AI N\u1EA4U \u0102N??? -",
+        "YoutubeId": "5BcuIWIx2E0",
+        "Level": "A2",
+        "Topic": "\u0102n u\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/5BcuIWIx2E0/hqdefault.jpg",
+        "Duration": "7:59",
+        "SourceUrl": "https://www.youtube.com/watch?v=5BcuIWIx2E0",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.02fe8be2dec848acb4d486daf73e77ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 374.24,
+        "Text": "My mom works too, but she always cooks, cleans the house, and takes care of the children. Then go date your mom, not me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.048d324e86dc4134b89d6ce2100d67a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 265,
+        "EndTime": 274.08,
+        "Text": "Really? I am sorry. I think the old way from my mom and dad, but you were right. We both work, so we both help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.04cbd80f7edd4de6be82f11cba84a12b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 459.039,
+        "Text": "I love you, Emma. Sorry. Sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.07eb0f3899c24d95904a8fb7f0f82ad3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 389.039,
+        "Text": "But, no buts. If you do not help with housework, do not ask me to do it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.08fc9d9cb0a645629e9f17b15c735775",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 365.6,
+        "Text": "Girls job. John, today men and women are equal. We both work. We are both tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.15680e135a024084a78659c378e26613",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 303,
+        "EndTime": 306.639,
+        "Text": "I love you, too. But remember your promise. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.16739b1bf46a479786e14b036af7d503",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 180,
+        "EndTime": 184.239,
+        "Text": "out costs a lot of money and it is not good for health.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.17f3ff878796408690908cca5df28478",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 193,
+        "EndTime": 198.319,
+        "Text": "I work all day, too. Same as you. I do not stay home and play.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.18e6556ce97640e4b99b4061a2b6ed84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 333,
+        "EndTime": 340,
+        "Text": "Again, why don\u0027t we cook at home? Eating out costs a lot of money and it is not good for health.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.19c5e9d390554c448b7396620cb64a6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 118,
+        "EndTime": 120.32,
+        "Text": "Good. You see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.1a962cefd3d346b096a1e8601bff7cda",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 306,
+        "EndTime": 314.479,
+        "Text": "I remember forever. Now, let\u0027s go to the restaurant. My queen chooses the place. Yes, Italian food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.1bde0ea4dcf849f386158c7bf1f7151c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 173,
+        "EndTime": 180.48,
+        "Text": "Let\u0027s go out or order food. I want pizza or sushi again. Why don\u0027t we cook at home? Eating",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.23ad7c855b1b432c87c99b05daf4be3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 37,
+        "EndTime": 42.559,
+        "Text": "I work all day, too. Same as you. I do not stay home and play.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.249e0892a2a448c1b618025b3c8e08e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 209,
+        "EndTime": 218.48,
+        "Text": "My mom works too, but she always cooks, cleans the house, and takes care of the children. Then go date your mom, not me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.27052c3b19af40ce89d306dbba97c1bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 127.92,
+        "Text": "Tonight I do not ask you to cook. I take you to a restaurant. The best one. You choose. Restaurant?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.2f2242a834ca4b0b8f040c8c4891429d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 389,
+        "EndTime": 395.36,
+        "Text": "Today, everything is equal. Men and women have the same rights and the same duties.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.389b46f1e67b4bff91597c91fc317881",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 21,
+        "EndTime": 33.52,
+        "Text": "Again, why don\u0027t we cook at home? Eating out costs a lot of money and it is not good for health. I am very tired after work. I cannot cook. Why don\u0027t you cook?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.3dee15ba4c9a45a9aa199d9052315f34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 291,
+        "EndTime": 300.479,
+        "Text": "Yes. I learn from YouTube tonight. And we clean the house together on the weekend. We share. Oh, John. Thank you. I\u0027m happy now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.3f026dacd5c04a13a85c1f109a875c83",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 77.52,
+        "Text": "But, no buts. If you do not help with housework, do not ask me to do it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.46d307ee7aac4e5ab3e9fdf939bd845f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 459,
+        "EndTime": 462.4,
+        "Text": "I love you, too. But remember your promise. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.49fd67a2d153405b9845695eb291e1e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 300,
+        "EndTime": 303.28,
+        "Text": "I love you, Emma. Sorry. Sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.530c2f06a3324e1ca9b884eaf3a26cb2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 46,
+        "EndTime": 54,
+        "Text": "Girls job. John, today men and women are equal. We both work. We are both tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.540156186af94f3399ea3e4c6251eb2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 439,
+        "EndTime": 446.8,
+        "Text": "Yes. And tomorrow I cook for you. Simple food. But I try. I promise. You cook?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.55798cbc96bb43379d09bd29977e609e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 340,
+        "EndTime": 349.12,
+        "Text": "I am very tired after work. I cannot cook. Why don\u0027t you cook? Me? I work all day too. Very long hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.564763a12946439090a2730fbbab653b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 429,
+        "EndTime": 431.84,
+        "Text": "Good. You see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.58717c2e710546678f925bdff2acaec6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 158,
+        "EndTime": 168.44,
+        "Text": "Italian. Let\u0027s go. Hug first. Big hug. I love you, John. I love you more, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.5bf73bc9a1c44db18b9c45012aa829fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 11,
+        "EndTime": 14.48,
+        "Text": "Now listen carefully.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.5cc75e18cd864c0eb6cea9529fe54f6a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 328,
+        "EndTime": 333.44,
+        "Text": "Let\u0027s go out or order food. I want pizza or sushi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.613d75fef4a04ebe8443396a218bf1bd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 324.199,
+        "Text": "Italian. Let\u0027s go. Hug first. Big hug. I love you, John. I love you more, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.66cb132bf4044669a8d9d1d11eb82cfa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 147,
+        "EndTime": 150.879,
+        "Text": "I love you, too. But remember your promise. Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6ae21243219c4982b39b965bfaf6c3ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 118.32,
+        "Text": "Really? I am sorry. I think the old way from my mom and dad, but you were right. We both work, so we both help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6af284ed287942f3a96161c3de9fa9b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 233.28,
+        "Text": "But no butts. If you do not help with housework, do not ask me to do it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6bf5d45d1cb3436a9d94d7e3454588aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 470,
+        "EndTime": 478.725805,
+        "Text": "Italian. Let\u0027s go. Hug first. Big hug. I love you, John. I love you more, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6c98d6e96a6c45eeac5bb17b57487791",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 470.24,
+        "Text": "I remember forever. Now, let\u0027s go to the restaurant. My queen chooses the place. Yes. Italian food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6deb1b317ed647de986776a310e644ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 33,
+        "EndTime": 37.6,
+        "Text": "Me? I work all day, too. Very long hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.6e722848e09b40349ffe000134818deb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 202.08,
+        "Text": "But you are the girl. Cooking is a girl\u0027s job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.7f26bd7dffcb42ce9c6693259525fa31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 202,
+        "EndTime": 209.84,
+        "Text": "Girls job. John, today men and women are equal. We both work. We are both tired.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.7f53382003194d2d96f33c0164bc9eb5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 42,
+        "EndTime": 46.32,
+        "Text": "But you are the girl. Cooking is a girl\u0027s job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.86b35637e3fc4b2dad5c71ce47a9f220",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 354.08,
+        "Text": "I work all day too. Same as you. I do not stay home and play.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.89ef25880981416c96d34c97a09b5c39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 54,
+        "EndTime": 62.719,
+        "Text": "My mom works too, but she always cooks, cleans the house, and takes care of the children. Then go date your mom, not me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.8d8ee707bc074925a7f5d38e3aeb7603",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 395,
+        "EndTime": 406.96,
+        "Text": "But tradition, tradition is old. Now it is 2025. Wake up, John. If you love me, help me. Share the work or find an oldstyle girl.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.8f76777764054bee90cf9b60870d5632",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 135.28,
+        "Text": "Yes. And tomorrow I cook for you. Simple food. But I try. I promise. You cook?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.95326e3642db4ccdbd382de0b904f548",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 144.72,
+        "Text": "Yes. I learned from YouTube tonight. and we clean the house together on the weekend. We share. Oh, John, thank you. I\u0027m happy now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.9655f5c1edb0441ca06205f083bbbaaa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 421,
+        "EndTime": 429.84,
+        "Text": "Really? I am sorry. I think the old way from my mom and dad, but you were right. We both work, so we both help.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.98e9d29f2c3d462cafb1c07ae4342b89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 283.68,
+        "Text": "Tonight, I do not ask you to cook. I take you to a restaurant. The best one. You choose. restaurant.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.9a946c18eace4e6fb6d582d69b4255ca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 77,
+        "EndTime": 83.84,
+        "Text": "Today, everything is equal. Men and women have the same rights and the same duties.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.aa80d0a0891f4b87ad6e5fe0b122f970",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 95,
+        "EndTime": 97.6,
+        "Text": "Emma is very angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.af58610bff9249f6bac6c72b7d9ce015",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 283,
+        "EndTime": 291.04,
+        "Text": "Yes. And tomorrow I cook for you. Simple food, but I try. I promise. You cook?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.b0f546973a9941b9975f9479362f88a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 251,
+        "EndTime": 260.72,
+        "Text": "Emma is very angry. Yes, very angry. I love you, but I am not your slave. You must respect me or we finish.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.b5122131188d437c803e56c2577b32a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 326,
+        "EndTime": 328.8,
+        "Text": "Emma, what do you want for dinner tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.b56158d0d1e746e987ef2efb08d4f2b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 95.36,
+        "Text": "But tradition, tradition is old. Now it is 2025. Wake up, John. If you love me, help me. Share the work or find an oldstyle girl.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.c0060d841018406880fce7daca6c9543",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 265.36,
+        "Text": "Emma, wait. You are right. I am wrong. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.c137679ae1754923976f5a0160b49f7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 9.879,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is who cooks.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.c4d7442b16884c6d9cda67d7ab24792f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 144,
+        "EndTime": 147.52,
+        "Text": "I love you, Emma. Sorry. Sorry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.cac1c26997a14c0ab93eebd246da0060",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 62,
+        "EndTime": 71.68,
+        "Text": "Emma, no. You think I am your maid. I work 9 hours, come home and cook for you, clean for you. No way.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.cbeb4dcb6d324f9e8695fbf43d5d89c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 184,
+        "EndTime": 189.28,
+        "Text": "I am very tired after work. I cannot cook. Why don\u0027t you cook?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.cd3a95376ba94611bdf00497127ccc14",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 239,
+        "EndTime": 251.2,
+        "Text": "But tradition, tradition is old. Now it is 2025. Wake up, John. If you love me, help me. Share the work or find an oldstyle girl.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.d56ad0ed32c04c0593f7b69f8abe88ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 97,
+        "EndTime": 104.96,
+        "Text": "Yes, very angry. I love you, but I am not your slave. You must respect me or we finish.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.d5fa34a714ca4e9c836096c27565961f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 383.28,
+        "Text": "Emma, no. You think I am your maid. I work 9 hours, come home and cook for you, clean for you. No way.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.d879b3bafe94434ebbfd45400830b592",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 406,
+        "EndTime": 409.12,
+        "Text": "Emma is very angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.da05a933eea94bd497d1ce740137ea33",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 439.44,
+        "Text": "Tonight I do not ask you to cook. I take you to a restaurant. The best one. You choose. Restaurant?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.db0dac9c3c26484f8f3c2dfe913b2fb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 274,
+        "EndTime": 276.08,
+        "Text": "Good. You see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.e5910c5b02b5472ba0ddbeaa79903969",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 409,
+        "EndTime": 416.479,
+        "Text": "Yes, very angry. I love you, but I am not your slave. You must respect me or we finish.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.e9b2e84ad01f405a8f53cc08e8388660",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 227.44,
+        "Text": "Emma, no. You think I am your maid. I work 9 hours, come home and cook for you. clean for you? No way.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.e9c3ea4e45cc459bb08937d32a8cf710",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 239.599,
+        "Text": "Today, everything is equal. Men and women have the same rights and the same duties.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.ea022019ee4b4a93a9d3740690c7cc48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 446,
+        "EndTime": 456.24,
+        "Text": "Yes. I learned from YouTube tonight. and we clean the house together on the weekend. We share. Oh, John, thank you. I\u0027m happy now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.ec6ffd22145e4df89f79c09a46761323",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17,
+        "EndTime": 21.84,
+        "Text": "Let\u0027s go out or order food. I want pizza or sushi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.ef8ee3389b4e4b08870ce41a803f24b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 170,
+        "EndTime": 173.04,
+        "Text": "Emma, what do you want for dinner tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.f12e02ac41d14546a6f98ca08cca7275",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 104,
+        "EndTime": 109.6,
+        "Text": "Emma, wait. You are right. I am wrong. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.f611e521024645c78e6e9bbcbae57915",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 357.84,
+        "Text": "But you are the girl. Cooking is a girl\u0027s job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.f717680a450f43ebba76f9e218a7b0f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 158.72,
+        "Text": "I remember forever. Now, let\u0027s go to the restaurant. My queen chooses the place. Yes. Italian food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.fb376601bd0f449bb3eb81b3d749d4fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 416,
+        "EndTime": 421.12,
+        "Text": "Emma, wait. You are right. I am wrong. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.fb516fd372f44593bb626876a63712b4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 189,
+        "EndTime": 193.36,
+        "Text": "Me? I work all day, too. Very long hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17.ffd0013c8ecc4c8bb89a8d31182351fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 14,
+        "EndTime": 17.279,
+        "Text": "Emma, what do you want for dinner tonight?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.3049f5e53fcf17c13accd71d8247f0ccb1a5231c8d6bfdff5cc96074bf464c17"
+}

@@ -836,6 +836,22 @@ body:has(.spk-practice-wrapper) .tct-footer {
   display: none;
 }
 
+/* Subject discovery grows with the catalog; keep every category reachable
+   inside the existing Clay toolbar at desktop, tablet and phone widths. */
+.spk-page-wrapper .spk-library-toolbar .spk-filter-group--topics {
+  min-width: 0;
+  max-width: 100%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.spk-page-wrapper .spk-library-toolbar .spk-topic-chips {
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
 /* Why Feature Cards */
 .spk-why-section {
   margin-bottom: 2.5rem;

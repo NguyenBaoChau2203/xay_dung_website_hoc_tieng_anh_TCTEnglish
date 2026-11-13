@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Kỹ năng Nói — TCT English";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var groupByLevel = string.Equals(Context.Request.Query["group"], "level", StringComparison.Ordinal);
     int totalVideos = Model.PublicTotalCount > 0
         ? Model.PublicTotalCount
         : Model.VideosByLevel.Sum(kv => kv.Value.Count);
@@ -433,10 +434,10 @@
                 </div>
                 <div>
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <h2 class="spk-section-title spk-headline-md mb-0">Video luyện nói theo trình độ</h2>
+                        <h2 class="spk-section-title spk-headline-md mb-0">Video luyện nói theo chủ đề</h2>
                         <span class="spk-count-badge spk-library-count-badge">@totalVideos bài học</span>
                     </div>
-                    <p class="spk-library-subtitle mb-0">Được biên soạn theo khung chuẩn CEFR từ A1 đến C2</p>
+                    <p class="spk-library-subtitle mb-0">Chọn nội dung bạn quan tâm, kết hợp trình độ A1–C2 để tìm bài phù hợp.</p>
                 </div>
             </div>
             <div class="spk-library-toolbar-right spk-library-header-right">
@@ -450,7 +451,7 @@
                            autocomplete="off" />
                     @if (!string.IsNullOrEmpty(Model.ActiveSearch))
                     {
-                        <a href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic })" class="spk-search-clear" title="Xóa tìm kiếm" aria-label="Xóa tìm kiếm">
+                        <a href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic, group = groupByLevel ? "level" : null })" class="spk-search-clear" title="Xóa tìm kiếm" aria-label="Xóa tìm kiếm">
                             <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">close</span>
                         </a>
                     }
@@ -460,6 +461,13 @@
 
         @* Hairline Divider *@
         <div class="spk-toolbar-divider" aria-hidden="true"></div>
+        <nav class="d-flex flex-wrap align-items-center gap-2 mb-3" aria-label="Sắp xếp thư viện">
+            <span class="spk-filter-group-label">Xem theo</span>
+            <a class="spk-pill-btn @(!groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(!groupByLevel ? "page" : null)"
+               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Chủ đề</a>
+            <a class="spk-pill-btn @(groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(groupByLevel ? "page" : null)"
+               href="@Url.Action("Index", "Speaking", new { group = "level", level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Trình độ CEFR</a>
+        </nav>
 
         @* Row 2: Filter Controls (Trình độ + Chủ đề) *@
         <div class="spk-toolbar-filter-row spk-filter-row" role="region" aria-label="Bộ lọc danh mục video">
@@ -471,12 +479,12 @@
                 <div class="spk-filter-pills" role="toolbar" aria-label="Lọc theo trình độ">
                     <a class="level-filter-btn spk-pill-btn @(string.IsNullOrEmpty(Model.ActiveLevel) ? "spk-pill-btn--active" : null)"
                        data-level="all"
-                       href="@Url.Action("Index", "Speaking", new { topic = Model.ActiveTopic, search = Model.ActiveSearch })">Tất cả</a>
+                       href="@Url.Action("Index", "Speaking", new { topic = Model.ActiveTopic, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">Tất cả</a>
                     @foreach (var level in new[] { "A1", "A2", "B1", "B2", "C1", "C2" })
                     {
                         <a class="level-filter-btn spk-pill-btn @(Model.ActiveLevel == level ? "spk-pill-btn--active" : null)"
                            data-level="@level"
-                           href="@Url.Action("Index", "Speaking", new { level, topic = Model.ActiveTopic, search = Model.ActiveSearch })">@level</a>
+                           href="@Url.Action("Index", "Speaking", new { level, topic = Model.ActiveTopic, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">@level</a>
                     }
                 </div>
             </div>
@@ -492,12 +500,12 @@
                     <div class="spk-topic-chips spk-scroll-x" role="toolbar" aria-label="Lọc theo chủ đề">
                         <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
                            data-topic="all"
-                           href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch })">Tất cả chủ đề</a>
+                           href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">Tất cả chủ đề</a>
                         @foreach (var topic in Model.Topics)
                         {
                             <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
                                data-topic="@topic"
-                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch })">@topic</a>
+                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">@topic</a>
                         }
                     </div>
                 </div>
@@ -513,6 +521,34 @@
             <h3 class="spk-empty-title mt-2">Chưa có video công khai</h3>
             <p class="spk-empty-desc">Hệ thống đang cập nhật nội dung. Vui lòng quay lại sau!</p>
         </div>
+    }
+    else if (!groupByLevel)
+    {
+        var loadedVideos = Model.VideosByLevel.SelectMany(x => x.Value).ToList();
+        var topicIndex = 0;
+        foreach (var topicEntry in Model.PublicTotalByTopic.OrderBy(x => x.Key))
+        {
+            var topic = topicEntry.Key;
+            var topicVideos = loadedVideos.Where(x => (string.IsNullOrEmpty(x.Topic) ? "General" : x.Topic) == topic).OrderBy(x => x.Level).ThenBy(x => x.Id).ToList();
+            var trackKey = "topic-" + topicIndex++;
+            <section class="vi-level-section spk-level-section mb-5" data-level="@trackKey" data-catalog-topic="@topic" aria-label="Chủ đề @topic">
+                <div class="spk-level-section-header mb-3">
+                    <h3 class="spk-section-title mb-0">@(topic == "General" ? "Nội dung chung" : topic)</h3>
+                    <span class="spk-count-badge">@topicEntry.Value video</span>
+                </div>
+                <div class="spk-bento-grid spk-bento-grid--4" id="track-@trackKey">
+                    @foreach (var video in topicVideos)
+                    {
+                        <partial name="_CatalogVideoCard" model="video" />
+                    }
+                </div>
+                <div class="numbered-pagination-container d-flex justify-content-center gap-2 flex-wrap" data-level="@trackKey"></div>
+                @if (topicVideos.Count < topicEntry.Value)
+                {
+                    <a class="spk-pill-btn mt-3" href="@Url.Action("Index", "Speaking", new { topic, level = Model.ActiveLevel, search = Model.ActiveSearch, group = "level" })">Xem tất cả @topicEntry.Value video · @topic</a>
+                }
+            </section>
+        }
     }
     else
     {

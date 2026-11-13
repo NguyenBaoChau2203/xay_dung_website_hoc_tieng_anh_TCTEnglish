@@ -434,3 +434,24 @@ using new API settings. All four AI clients follow the shared launcher rule.
 | Goals phase-7 closure and reward hardening | Resolved with atomic speaking/writing completion transitions, removal of request-time writing migration, new replay regression coverage, and an explicit rollout close decision |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |
 | CI/CD test suite 14 failures (billing, speaking, DI, writing, AI host) | Resolved across 5 root cause groups; full suite verified green at 449/449 (2026-04-30) |
+
+Catalog correction13/11/2026: the exact90 selected videos belong to Speaking.
+All90 wrong Listening rows are now retired locally via immutable version2
+withdrawals; original6 public and7 private lessons remain. Public topic/filter
+privacy fixes are retained. After owner authorization, five inaccessible videos
+were replaced with verified same-level sources; original withdrawal keys remain
+unchanged. All90 current videos have real captions and complete measured audio,
+and all90 are now available in local Speaking for owner UAT, with95 public
+videos including the5 originals. This follows the owner's later clarification
+that local testing precedes staging/team review. Full content QA remains pending.
+CTC pilots produce219 A1 and108 A2 English cues without overlaps; low acoustic
+confidence, non-speech classification and required review evidence remain
+unresolved. The catalog now defaults to subject groups and retains CEFR filters.
+A real transcript-click initialization bug was fixed: selecting another cue now
+updates both reference text and highlight. No paid ASR budget/call is approved.
+Existing caption `>>` speaker markers are now removed in practice presentation,
+including the selected reference/dictation text; stored source cues, timing and
+learner history stay intact. Old video44 is browser-verified with121 clean cues.
+Existing Guest Listening practice404 and native200% zoom remain unverified/
+unchanged. Current evidence and exact blockers:
+[Speaking transfer ledger](../../docs/feature-audits/2026-11-13-speaking-transfer-transcript-ledger.md).

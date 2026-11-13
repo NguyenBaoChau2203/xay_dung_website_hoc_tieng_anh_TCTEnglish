@@ -29,6 +29,7 @@ namespace TCTVocabulary.ViewModels
         public bool PublicHasMore { get; set; }
         public Dictionary<string, int> PublicTotalByLevel { get; set; } = new();
         public Dictionary<string, bool> PublicHasMoreByLevel { get; set; } = new();
+        public Dictionary<string, int> PublicTotalByTopic { get; set; } = new();
 
         public int MyVideosTotalCount { get; set; }
         public bool MyVideosHasMore { get; set; }

@@ -1,0 +1,2682 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - CU\u1ED0I TU\u1EA6N -",
+        "YoutubeId": "6brq3fJtf1w",
+        "Level": "A1",
+        "Topic": "Vui ch\u01A1i \u0026 gi\u1EA3i tr\u00ED",
+        "ThumbnailUrl": "https://img.youtube.com/vi/6brq3fJtf1w/hqdefault.jpg",
+        "Duration": "19:34",
+        "SourceUrl": "https://www.youtube.com/watch?v=6brq3fJtf1w",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.005a2258b78d4c9ca7e2314e59d850f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1027,
+        "EndTime": 1029.76,
+        "Text": "Yeah, I guess I make excuses.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.03c2d690ae7a4d8d808e2b2ba0ef30c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 328.479,
+        "Text": "I didn\u0027t know that. I haven\u0027t been to a museum in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.04338a8990be403b864b8b999f1cc898",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1029,
+        "EndTime": 1036.24,
+        "Text": "We all make excuses sometimes. Do you like nature, trees, grass, fresh air?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0491ad26030047f5ab2a5b2aa9a7cab1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 712,
+        "EndTime": 716.079,
+        "Text": "I didn\u0027t know that. I haven\u0027t been to a museum in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.04bcb97af7ac47c4b67716e11a722589",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 622,
+        "EndTime": 630.64,
+        "Text": "Yes. Every time I leave my apartment, I spend $20. Food, bus tickets, coffee. It costs too much money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.05beabc2441b46bbb3be98638c1e329c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 477,
+        "EndTime": 485.36,
+        "Text": "And on Sunday, I went to the park with my sister. We walked for 2 hours. The weather was beautiful in the afternoon.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.06ab7666592044d3a846a964adbe1db6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 926,
+        "EndTime": 930.079,
+        "Text": "Really? You? But you were always so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.06d7ae9b53714e2aa225ae6dd275112b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 521,
+        "EndTime": 525.04,
+        "Text": "You can do anything you want. You are free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.075d0ee2f47c430e850ef36118128603",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 355,
+        "EndTime": 363.36,
+        "Text": "Sunday is your day to rest. You can stay home, clean your room, and watch TV. Just one day of TV.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0806463fa5e64a2982f7eb307e850ea9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 210,
+        "EndTime": 213.76,
+        "Text": "But you usually go out with your sister or your other friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.080bf1d6a8134c879f860726ef9848e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 656,
+        "EndTime": 657.279,
+        "Text": "Tell me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0828a96327d24c0e82fe69b317548421",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 791,
+        "EndTime": 797.36,
+        "Text": "You look very tired today. Is everything okay? I\u0027m fine. Just a little sleepy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0984be60a027471da73ac98edfc954ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1138,
+        "EndTime": 1145.039,
+        "Text": "Exactly. One day of going out, one day of resting. That is a good, healthy weekend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0c1f9cb6e7b1444894654a7bfe033d8a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 391,
+        "EndTime": 399.68,
+        "Text": "Oh, you\u0027re right. Let\u0027s work. I will text you the park address later tonight. Perfect. See you at lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0c2d367fb0f248c2806dda53152ecc43",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 514,
+        "EndTime": 521.599,
+        "Text": "But on Saturday morning, I wake up and I have no schedule. No one calls me. I don\u0027t know what to do with my free time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0ca0e15d880d47a6834f72b2969fc8d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 62,
+        "EndTime": 69.6,
+        "Text": "I didn\u0027t leave my house. I just ate noodles and slept again in the afternoon. That sounds very lonely, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0d807c072d6444e48825f58f125e3b33",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1052,
+        "EndTime": 1061.039,
+        "Text": "9:00 a.m. on a Saturday. That is very early. Mia, you need to wake up early. No more sleeping until 12:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0dece3ed4d9c49c18139019e885a9ebe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 941,
+        "EndTime": 942.399,
+        "Text": "What changed?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0eccdfcc68074475a444ca031737a574",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 100,
+        "EndTime": 108.88,
+        "Text": "I try to. I work hard all week from Monday to Friday. So on the weekend, I want to feel happy and see my friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0efba5ab5bd941a79a85673d8d65bd1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 750,
+        "EndTime": 757.36,
+        "Text": "Exactly. One day of going out, one day of resting. That is a good, healthy weekend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0f58463ae70e4f05bad0a8523b4ebd39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 725,
+        "EndTime": 729.68,
+        "Text": "Good. Are you going to cancel on me? Cancel? What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0f817bbc1b174f299c11f7cc39618e9f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1166,
+        "EndTime": 1173.559728,
+        "Text": "Oh, you\u0027re right. Let\u0027s work. I will text you the park address later tonight. Perfect. See you at lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.0fb7bb740ed74b6fbef69fea99ebfd81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 855,
+        "EndTime": 862.88,
+        "Text": "On Saturday, I met some friends. We went to a new cafe in the city center. The coffee was amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.122cf7f464b34c9caf53679eed7fe1bd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 534,
+        "EndTime": 539.04,
+        "Text": "I understand, Leo. Actually, I felt like that last year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.128ea46a71af40c88bd7e8bb5348c549",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 916,
+        "EndTime": 922.24,
+        "Text": "room. Then it is Sunday night and I feel sad because I wasted my weekend again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.12a37b375de3449db7c285cb7c499c56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 542,
+        "EndTime": 553.519,
+        "Text": "Yes, me. When I moved to this city, I didn\u0027t know anyone. I stayed in my apartment every weekend. I watched a lot of movies. I felt very sad and lonely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.1508fc514cdd492ba2e5ad1e2a8b7aa7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 995,
+        "EndTime": 1001.759,
+        "Text": "I don\u0027t know anymore. I forgot how to have fun. Okay, let\u0027s think. Do you like movies?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.16f56744946749e392258ced7d2e5485",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1018,
+        "EndTime": 1027.36,
+        "Text": "I understand, but you don\u0027t have to spend a lot of money to have fun. Really? Yeah. Walking is free. The park is free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.178f432b0e1c48a9aedcb5b226deed0a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 876,
+        "EndTime": 884.399,
+        "Text": "I try to. I work hard all week from Monday to Friday. So, on the weekend, I want to feel happy and see my friends. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.17f721f8ad66413689f12c84cb104417",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 576,
+        "EndTime": 579.6,
+        "Text": "You are not bothering people. People like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.19a5a7bb0e8f4e998bcc93f146924e6c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1040,
+        "EndTime": 1044.959,
+        "Text": "Okay, I have the perfect plan for this Saturday. Tell me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.19f009e24eee48b497fea31785978aca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1103,
+        "EndTime": 1112.799,
+        "Text": "See, a full plan. Morning walk, good coffee, and a free museum. How does that sound? It sounds really wonderful.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.1b5a32f2fff24a04b4f18fdacf93a7fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 837,
+        "EndTime": 844.88,
+        "Text": "I didn\u0027t leave my house. I just ate noodles and slept again in the afternoon. That sounds very lonely, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.1b60ec201be346a3974d9f9f36119e3d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 375,
+        "EndTime": 381.199,
+        "Text": "I\u0027m glad. It\u0027s important to have something to look forward to. It makes the work week easier.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.1c30a95f12034d01984529bf4353a47b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 808,
+        "EndTime": 811.36,
+        "Text": "No, I was just in my bed looking at my phone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.1e9dbc56b5004c9d899dd1193f3462b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 146,
+        "EndTime": 151.52,
+        "Text": "I understand, Leo. Actually, I felt like that last year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.21e95e36d24a471aada884394208356c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 243,
+        "EndTime": 252.08,
+        "Text": "I understand, but you don\u0027t have to spend a lot of money to have fun. Really? Yeah. Walking is free. The park is free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.21ef25da94b948d7a6181c2f59ab1c8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 291,
+        "EndTime": 298.88,
+        "Text": "We can talk. We can get some sun. The weather will be very good on Saturday. Are you sure? It rained a lot yesterday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.247250c950ed4b2fa5efc7ad53afec9f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 699,
+        "EndTime": 702.24,
+        "Text": "No, I can pay for my own coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.24c6471b63b447a2b222a0395b7a0084",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 134,
+        "EndTime": 137.44,
+        "Text": "You can do anything you want. You are free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.24ec4a7003ac4aa8b763a9316f4d6253",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1127,
+        "EndTime": 1131.039,
+        "Text": "Okay, I trust you. But what about Sunday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2526aa3b29c14b07b360de39ca49dc48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 818,
+        "EndTime": 825.6,
+        "Text": "I woke up at 12:00. I cleaned my room a little bit. Then I watched TV for 5 hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.25e06c2931814cefa101ca12117bbab2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 53.44,
+        "Text": "5 hours? That is a lot of TV.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.286045b231284253ac27ef8f1bafc45f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1156,
+        "EndTime": 1159.679,
+        "Text": "Thank you, Mia. Really? I needed this today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.28d01808f58849b18e8aba45b022744f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 273,
+        "EndTime": 277.52,
+        "Text": "Yes, that one. We will meet there at 9:00 a.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2be689b38e6840e0a268ab9ee431fdb7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 702,
+        "EndTime": 706.88,
+        "Text": "We can share. After that, we can go to the art museum in the city center.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2d2d21a30a1d4e6e98451a6722143502",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1006,
+        "EndTime": 1010,
+        "Text": "That\u0027s true. Everything in this city is expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2dfe163019ae478492188c7dbb6cde21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 201,
+        "EndTime": 207.12,
+        "Text": "Why? Because you are going out with me. What? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2e29673931bd49939da95d74116b4e50",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.16,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is weekend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.2f482270d1f940c2b44292ae685f6f47",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 437,
+        "EndTime": 443.68,
+        "Text": "5 hours? That is a lot of TV. I know. My eyes hurt after that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3251a1ab07b148cb977e7833852868ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462,
+        "EndTime": 468.08,
+        "Text": "My weekend was great. I was very busy, but it was fun. Where did you go?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.35ffd00865ff49b5b641b890bd956640",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 772,
+        "EndTime": 775.04,
+        "Text": "You\u0027re welcome, Leo. That\u0027s what friends are for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3a26cfd808c145708b475f596143c33f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 30,
+        "EndTime": 32.96,
+        "Text": "Why? Did you go out with your friends?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3cc7f32c86914d728d9df0fd5516bcb9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1061,
+        "EndTime": 1066.4,
+        "Text": "Okay. Okay. What will we do at the park? We will walk near the river for an hour.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3d1a33c34eb34ec4afe03ee224d7d359",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 265,
+        "EndTime": 269.68,
+        "Text": "Okay, I have the perfect plan for this Saturday. Tell me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3dd424dff9a14d0294d0d953282488c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 974,
+        "EndTime": 982.399,
+        "Text": "No, next weekend will be different. Why? Because you are going out with me. What? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.3e12ca300615439d8f930924009e8d2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 97,
+        "EndTime": 100.799,
+        "Text": "I see. You always have good weekends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.401eae05c32d4cb491bb82b705d05f59",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1044,
+        "EndTime": 1049.2,
+        "Text": "We will meet at the big park near the river. The South Park?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.40db8101971b477580b266b04989f9e9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 352,
+        "EndTime": 355.759,
+        "Text": "Okay, I trust you. But what about Sunday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.40e622bb073340f588f5291f439beaaf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1099,
+        "EndTime": 1103.76,
+        "Text": "I didn\u0027t know that. I haven\u0027t been to a museum in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.41ce537a2cbc432fb6873adc7b82aec5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1162,
+        "EndTime": 1166.4,
+        "Text": "I should probably start working now. The boss is looking at us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.46375fc9c361400982afe91ef236d232",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 601,
+        "EndTime": 607.519,
+        "Text": "That\u0027s okay. You can come with us or we can just do something together. What do you like to do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.46a0899822c9413da651e1585e00957a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 951,
+        "EndTime": 955.36,
+        "Text": "I want to leave the house, but going out alone is not fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.47bfea386fc642b7946957e65fdd3fb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1080,
+        "EndTime": 1087.6,
+        "Text": "And then I know a very good bakery near the park. They have the best bread and cheap coffee. My treat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.47f7740767444aa7bd0d20bfab680c40",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 126,
+        "EndTime": 134,
+        "Text": "But on Saturday morning, I wake up and I have no schedule. No one calls me. I don\u0027t know what to do with my free time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.49dc82e3694848db8bcc50348898a7e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1001,
+        "EndTime": 1006.16,
+        "Text": "Yes, I love movies, but cinema tickets are very expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.506a190c7c3746ef849383b934573d9e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 865,
+        "EndTime": 873.12,
+        "Text": "And on Sunday, I went to the park with my sister. We walked for 2 hours. The weather was beautiful in the afternoon.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.50bdae18b80d4a27a620b2bead08e843",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 265.28,
+        "Text": "Yes, I love fresh air. My room is very small and hot.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.525954719ff1442193c77244977e4489",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 743,
+        "EndTime": 750.959,
+        "Text": "Sunday is your day to rest. You can stay home, clean your room, and watch TV. Just one day of TV.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.528d4274c4f347b088f58e1dd55a4940",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 53,
+        "EndTime": 62.32,
+        "Text": "I know. My eyes hurt after that. And what about Sunday? Did you go anywhere? Sunday was worse. It rained all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.53042b5770b14f918400c7c8dff33ebf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 899,
+        "EndTime": 902.079,
+        "Text": "Yes, work is very busy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.53805f2425cb4d988d8063f7b23ecbce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1131,
+        "EndTime": 1138.64,
+        "Text": "Sunday is your day to rest. You can stay home, clean your room, and watch TV. Just one day of TV.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.539efc239d894682b7646d6af57a6385",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 811,
+        "EndTime": 818.8,
+        "Text": "How was your weekend? Did you do anything fun? No, my weekend was really boring. What did you do on Saturday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5520049fda2e4e0d80ba1c970f961ae9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 909,
+        "EndTime": 916.8,
+        "Text": "You can do anything you want. You are free. Being free is hard sometimes. If I don\u0027t have a plan, I just sit in my",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5713230bee764ebb956eb3f56bcca232",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 226,
+        "EndTime": 230.879,
+        "Text": "Yes, I love movies, but cinema tickets are very expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.574a624615154664b38b2b480ca24267",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 797,
+        "EndTime": 805.6,
+        "Text": "It\u0027s Monday morning. You should have a lot of energy today. Did you sleep well last night? Not really. I went to bed very late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.574d039d1d144aefa61a3cda386c5806",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 673,
+        "EndTime": 678.64,
+        "Text": "Okay. Okay. What will we do at the park? We will walk near the river for an hour.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.585ee046289343c49ae007b99c3c7e22",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 285,
+        "EndTime": 291.12,
+        "Text": "Okay. Okay. What will we do at the park? We will walk near the river for an hour.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.587dcc59835646f89f4e2cc3f6b87429",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 207,
+        "EndTime": 210.239,
+        "Text": "Yes, we are going to make a plan right now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5b3508e4fccd445599c7b735f74cf692",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 234,
+        "EndTime": 243.04,
+        "Text": "Yes, every time I leave my apartment, I spend $20. Food, bus tickets, coffee. It costs too much money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5bc0bc98dc444f9189dd817a4cb482d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1087,
+        "EndTime": 1089.919,
+        "Text": "No, I can pay for my own coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5c3f95ce3df64eec85631175035baeb0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 363,
+        "EndTime": 369.759,
+        "Text": "Exactly. One day of going out, one day of resting. That is a good, healthy weekend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5d622faeae914f80ad8346027db405bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 423,
+        "EndTime": 431.12,
+        "Text": "How was your weekend? Did you do anything fun? No, my weekend was really boring. What did you do on Saturday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5e81eb0ccc224308a110ca039a02538e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1089,
+        "EndTime": 1097.2,
+        "Text": "We can share. After that, we can go to the art museum in the city center. The big one. Isn\u0027t that expensive?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5fb4d0d7b99540aa84a631cb317c8686",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 269,
+        "EndTime": 273.919,
+        "Text": "We will meet at the big park near the river. The South Park?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.5fcb90bdf3e74b86b7565879cb5066f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 87.6,
+        "Text": "On Saturday, I met some friends. We went to a new cafe in the city center. The coffee was amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.61ffc6e8e61745b1851e70151736c05f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 706,
+        "EndTime": 712.16,
+        "Text": "The big one. Isn\u0027t that expensive? No, it is free on Saturday mornings.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.62479c001e724217a822aa2859af0810",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 321.919,
+        "Text": "We can share. After that, we can go to the art museum in the city center. The big one? Isn\u0027t that expensive?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.63c2083061c34046abf57bd0248668de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 989,
+        "EndTime": 995.199,
+        "Text": "That\u0027s okay. You can come with us or we can just do something together. What do you like to do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.64982bdfda584767a28a07857f473a01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 417,
+        "EndTime": 420.56,
+        "Text": "Why did you go out with your friends?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.65e5786d9bfb4f54ba82418a75116c46",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 252,
+        "EndTime": 260.959,
+        "Text": "Yeah, I guess I make excuses. We all make excuses sometimes. Do you like nature, trees, grass, fresh air?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6763838761e94038ad35a1f07ef25dea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 586,
+        "EndTime": 594.72,
+        "Text": "No, next weekend will be different. Why? Because you are going out with me. What? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6971737c5fdd433f87fe9de13743e088",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 409,
+        "EndTime": 417.84,
+        "Text": "It\u0027s Monday morning. You should have a lot of energy today. Did you sleep well last night? Not really. I went to bed very late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6c240c9a0da948e694d5e8a531bc26c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 437.919,
+        "Text": "I woke up at 12:00. I cleaned my room a little bit. Then I watched TV for 5 hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6ccab8809aab49158dd6c0d31df0e42d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 304,
+        "EndTime": 314.639,
+        "Text": "And then I know a very good bakery near the park. They have the best bread and cheap coffee. My treat. No, I can pay for my own coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6ce58f9a946f4c2a8618c5458b11a3fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 571,
+        "EndTime": 576.08,
+        "Text": "I guess, but everyone is busy. I don\u0027t want to bother people on their days off.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6dfcdb94b5a5435da137807ec8f37b5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1145,
+        "EndTime": 1150.32,
+        "Text": "You\u0027re right. I feel excited. I haven\u0027t felt excited for a weekend in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6f8c36cbf42b4370a2cc6b68e42cc8e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 554,
+        "EndTime": 564,
+        "Text": "I started making small plans. Just going for a walk or going to the supermarket to buy nice food. You have to leave the house, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.6ff30581fb174b479fcd25d8c6ee23c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 230,
+        "EndTime": 234.72,
+        "Text": "That\u0027s true. Everything in this city is expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7030bc23bef74053a04c507252af8c98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 369,
+        "EndTime": 375.039,
+        "Text": "You\u0027re right. I feel excited. I haven\u0027t felt excited for a weekend in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7054c85b9f6b42778bc1920de3687e54",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 22.08,
+        "Text": "You look very tired today. Is everything okay? I\u0027m fine. Just a little sleepy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.722f3d26f6fc4d429f02edaa0377331a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1036,
+        "EndTime": 1040.559,
+        "Text": "Yes, I love fresh air. My room is very small and hot.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.72a955decf8b45ed91945902fc7a9cd4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 298,
+        "EndTime": 304.96,
+        "Text": "I checked my phone this morning. It says it will be sunny and warm. That sounds nice, actually.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.78b121e1d42b42118f2d4722054f7dc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 328,
+        "EndTime": 337.52,
+        "Text": "See, a full plan. Morning walk, good coffee, and a free museum. How does that sound? It sounds really wonderful.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7a9b8ff03216429085d51d9ee1e9ae1a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 387,
+        "EndTime": 391.039,
+        "Text": "I should probably start working now. The boss is looking at us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7c567e381cf0420eaa1d4db5f28be219",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 805,
+        "EndTime": 808.24,
+        "Text": "Why? Did you go out with your friends?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7cea5fe04e8640a4924ed8f627c1f421",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 43.52,
+        "Text": "How was your weekend? Did you do anything fun? No, my weekend was really boring. What did you do on Saturday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7d56c9211ffe4ab985ee2778eec070a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 982,
+        "EndTime": 985.519,
+        "Text": "Yes, we are going to make a plan right now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.7f7061d0847d4e428a567bffbe586f56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 321,
+        "EndTime": 324.639,
+        "Text": "No, it is free on Saturday mornings.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.8181a827d1d34b4eafaeb9289afe9d8f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 686,
+        "EndTime": 692.56,
+        "Text": "I checked my phone this morning. It says it will be sunny and warm. That sounds nice, actually.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.81d5b98c9cb34a899214357c684dbe8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 80.479,
+        "Text": "My weekend was great. I was very busy, but it was fun. Where did you go?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.826d0703195d480aa3f579b179540160",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1117,
+        "EndTime": 1127.52,
+        "Text": "Are you going to text me on Saturday morning and say, \u0022Sorry, Mia, I want to sleep.\u0022 No, I promise I will not cancel. I really want to go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.83cffe40cb2b45bab09e6de6f4887a8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 873,
+        "EndTime": 876.079,
+        "Text": "I see. You always have good weekends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.85cb7d5f5f9947f1b4bd6a8d572bebeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 884,
+        "EndTime": 891.519,
+        "Text": "work hard too, but when the weekend comes, I just feel tired. I feel empty. Why do you feel empty?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.85d148baeba54f7fb0ba6775886b6294",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 449.84,
+        "Text": "And what about Sunday? Did you go anywhere? Sunday was worse. It rained all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.8639e90d8b844b7288f378774093405b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1150,
+        "EndTime": 1156.48,
+        "Text": "I\u0027m glad. It\u0027s important to have something to look forward to. It makes the work week easier.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.889072e24aa44092b9e11a9a4a50cacb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 503,
+        "EndTime": 514.399,
+        "Text": "I don\u0027t know. During the week, I have a schedule. I wake up. I go to work. My boss tells me what to do. I have things to do. Yes, work is very busy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.8988c35df02f401fa086aa922b696d07",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 985,
+        "EndTime": 989.04,
+        "Text": "But you usually go out with your sister or your other friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.89bc0d95892d464aaed1945977d03e68",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 850,
+        "EndTime": 855.76,
+        "Text": "My weekend was great. I was very busy, but it was fun. Where did you go?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.8b03954eb0994b14b4fb13fa278c03ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 183,
+        "EndTime": 188.56,
+        "Text": "I guess, but everyone is busy. I don\u0027t want to bother people on their days off.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.907e89ef264b40d9b522d609dc496a3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 902,
+        "EndTime": 909.279,
+        "Text": "But on Saturday morning, I wake up and I have no schedule. No one calls me. I don\u0027t know what to do with my free time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.93034a4bbb6a4042a2a394c067c4d4e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 154,
+        "EndTime": 165.92,
+        "Text": "Yes, me. When I moved to this city, I didn\u0027t know anyone. I stayed in my apartment every weekend. I watched a lot of movies. I felt very sad and lonely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.96f42bc2b57d47e59aec4c9515dd3262",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 277,
+        "EndTime": 285.759,
+        "Text": "9:00 a.m. on a Saturday. That is very early. Mia, you need to wake up early. No more sleeping until 12:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.977c8ceb386441fdba2792a1216ecf72",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 963,
+        "EndTime": 967.279,
+        "Text": "You are not bothering people. People like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.97855a2584234d71a501a06505db2192",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 475,
+        "EndTime": 477.759,
+        "Text": "That sounds nice. I like coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.986b69d404974426bab7623697269595",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 665,
+        "EndTime": 673.279,
+        "Text": "9:00 a.m. on a Saturday. That is very early. Mia, you need to wake up early. No more sleeping until 12:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.9c19cdb0cce54790a44b60004736e945",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 657,
+        "EndTime": 661.519,
+        "Text": "We will meet at the big park near the river. The South Park?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.9f1748bccc2b468491064b98c48bc16d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 124.479,
+        "Text": "I don\u0027t know. During the week, I have a schedule. I wake up, I go to work, my boss tells me what to do. I have things to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.a193dc421ccf47e7bea1fc004f9d9356",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 219.92,
+        "Text": "That\u0027s okay. You can come with us or we can just do something together. What do you like to do?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.a2c9374e173141a598276eeef7309d22",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 630,
+        "EndTime": 639.68,
+        "Text": "I understand, but you don\u0027t have to spend a lot of money to have fun. Really? Yeah. Walking is free. The park is free.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.a31b6caa63624002af45ce41f067d5b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 930,
+        "EndTime": 941.199,
+        "Text": "Yes, me. When I moved to this city, I didn\u0027t know anyone. I stayed in my apartment every weekend. I watched a lot of movies. I felt very sad and lonely.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.a9f34de060e24c808dd7fc47fb1f3c69",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 729,
+        "EndTime": 739.839,
+        "Text": "Are you going to text me on Saturday morning and say, \u0022Sorry, Mia, I want to sleep.\u0022 No, I promise I will not cancel. I really want to go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.aa1ea95b04b54e9b9844e9879ba3144a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1159,
+        "EndTime": 1162.799,
+        "Text": "You\u0027re welcome, Leo. That\u0027s what friends are for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.aace97a3cab34a80bbeead5342a52b63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 180,
+        "EndTime": 183.76,
+        "Text": "You are not alone. You have friends here. You have me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ab49818acdb54bf0a5699eff36a9f885",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 449,
+        "EndTime": 457.199,
+        "Text": "I didn\u0027t leave my house. I just ate noodles and slept again in the afternoon. That sounds very lonely, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.af620915ab794ac094afd30b6e33b912",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 384,
+        "EndTime": 387.44,
+        "Text": "You\u0027re welcome, Leo. That\u0027s what friends are for.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b03bccf787bb4eea811807634a25b53f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 22,
+        "EndTime": 30.24,
+        "Text": "It\u0027s Monday morning. You should have a lot of energy today. Did you sleep well last night? Not really. I went to bed very late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b070c02b5d2d45b8a2e63dbd0ef1bd28",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 337,
+        "EndTime": 342.16,
+        "Text": "Good. Are you going to cancel on me? Cancel? What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b0cb37bf46d1472c855dd53a4e478969",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 151,
+        "EndTime": 154.8,
+        "Text": "Really? You? But you were always so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b16376b612c5494f86f046d8aac38d7c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 942,
+        "EndTime": 951.68,
+        "Text": "I started making small plans. Just going for a walk or going to the supermarket to buy nice food. You have to leave the house, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b26458da7e9c4f328e841cf02568fbc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 967,
+        "EndTime": 974.32,
+        "Text": "Thank you, Mia. But it is hard to change. Next weekend will probably be the same. I\u0027ll just watch TV again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b2aba89da11d4cc6b97ad2b088784697",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 16.16,
+        "Text": "Now listen carefully. Hey Leo, good morning. Oh, hi Mia. Morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b5169cfad822495aa47fbc64fd949b1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 955,
+        "EndTime": 959.04,
+        "Text": "You are not alone. You have friends here. You have me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b54ff1791aec4c2983e9657b0eb14138",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 342,
+        "EndTime": 352.24,
+        "Text": "Are you going to text me on Saturday morning and say, \u0022Sorry, Mia, I want to sleep.\u0022 No, I promise I will not cancel. I really want to go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b6a2de1840b64c0c8bc59b5bc72cfd3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 922,
+        "EndTime": 926.8,
+        "Text": "I understand, Leo. Actually, I felt like that last year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b84ab2557eaa4cdbb802e42485217ee9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 403,
+        "EndTime": 409.68,
+        "Text": "You look very tired today. Is everything okay? I\u0027m fine. Just a little sleepy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b8af15c2b7b646c2a91f1caf1233c716",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 420,
+        "EndTime": 423.68,
+        "Text": "No, I was just in my bed looking at my phone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.b91ba2f008544cb2aac96d98fe54f6fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 607,
+        "EndTime": 614.079,
+        "Text": "I don\u0027t know anymore. I forgot how to have fun. Okay, let\u0027s think. Do you like movies?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.bb20d3c9bfba46549d0541bb4fbc1c1a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1112,
+        "EndTime": 1117.44,
+        "Text": "Good. Are you going to cancel on me? Cancel? What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.bb30df90ff594debbe7c71ac527b9b70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 757,
+        "EndTime": 762.639,
+        "Text": "You\u0027re right. I feel excited. I haven\u0027t felt excited for a weekend in a long time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.bbeb9b74dba04d208ee78b99f4d6fb0c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 739,
+        "EndTime": 743.36,
+        "Text": "Okay, I trust you. But what about Sunday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.be4534df6f7245ffb563d6afe7303d7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 778,
+        "EndTime": 787.44,
+        "Text": "Oh, you\u0027re right. Let\u0027s work. I will text you the park address later tonight. Perfect. See you at lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.be52b19602d24d04936f871170e35a10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 399,
+        "EndTime": 403.759,
+        "Text": "Hey Leo, good morning. Oh, hi Mia. Morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c023e9416689419483a3ea380d2605a1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 485,
+        "EndTime": 488.4,
+        "Text": "I see. You always have good weekends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c2b4e5743760476196c4800bf645e2aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 959,
+        "EndTime": 963.839,
+        "Text": "I guess, but everyone is busy. I don\u0027t want to bother people on their days off.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c3f4d7bd902244e0a5d6b730600efa3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 762,
+        "EndTime": 768.8,
+        "Text": "I\u0027m glad. It\u0027s important to have something to look forward to. It makes the work week easier.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c458a65d4ba94fd1ab074adca0977e43",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 661,
+        "EndTime": 665.12,
+        "Text": "Yes, that one. We will meet there at 9:00 a.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c5e7589c142940ca918a6d5161203e71",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 219,
+        "EndTime": 226.4,
+        "Text": "I don\u0027t know anymore. I forgot how to have fun. Okay, let\u0027s think. Do you like movies?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c889a0320c184e4493289d7ad0804e44",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 75.04,
+        "Text": "It was. I didn\u0027t speak to anyone for 2 days. How was your weekend?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c898d9defb25432fa94af62d4e414b6a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 579,
+        "EndTime": 586.64,
+        "Text": "Thank you, Mia. But it is hard to change. Next weekend will probably be the same. I\u0027ll just watch TV again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c9139dfa374c493faf2646365fa1e0b6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 32,
+        "EndTime": 36.079,
+        "Text": "No, I was just in my bed looking at my phone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c97cbac399544ef58f226abe999c551d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 108,
+        "EndTime": 116.159,
+        "Text": "I work hard, too, but when the weekend comes, I just feel tired. I feel empty. Why do you feel empty?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.c98d41abc572489b986add1da295ce2d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 539,
+        "EndTime": 542.399,
+        "Text": "Really? You? But you were always so happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.caf64daa11b24550997d15a6e48de9ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 862,
+        "EndTime": 865.44,
+        "Text": "That sounds nice. I like coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.cc596bc904aa4abb9c6f63f4f379b5d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 201.84,
+        "Text": "Thank you, Mia, but it is hard to change. Next weekend will probably be the same. I\u0027ll just watch TV again. No, next weekend will be different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ccb2c6833fbb4fbc8aac4ef00710d235",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 488,
+        "EndTime": 496.4,
+        "Text": "I try to. I work hard all week from Monday to Friday. So on the weekend, I want to feel happy and see my friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ce1125a26a72408786deaa1d92cc8c99",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 124,
+        "EndTime": 126.799,
+        "Text": "Yes, work is very busy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.cf541bf4c9b94cda9a0bd4d2fc030c26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1097,
+        "EndTime": 1099.919,
+        "Text": "No, it is free on Saturday mornings.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d39d59f7ae174d24962c415ca3c8391c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 175.2,
+        "Text": "I started making small plans. just going for a walk or going to the supermarket to buy nice food. You have to leave the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d4c80e56994446e68a20591a73e5466b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 137,
+        "EndTime": 146.959,
+        "Text": "Being free is hard sometimes. If I don\u0027t have a plan, I just sit in my room. Then it is Sunday night and I feel sad because I wasted my weekend again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d6324c4398474237abc06e4542ed6871",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 594,
+        "EndTime": 601.36,
+        "Text": "Yes, we are going to make a plan right now. But you usually go out with your sister or your other friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d6d6ca00a0544426ab107b36718caf2e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1066,
+        "EndTime": 1074.16,
+        "Text": "We can talk. We can get some sun. The weather will be very good on Saturday. Are you sure? It rained a lot yesterday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d814ad2432d140fea235dbd66b301dd0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 648,
+        "EndTime": 656.399,
+        "Text": "Yes, I love fresh air. My room is very small and hot. Okay, I have the perfect plan for this Saturday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.d8e9266470ca434a931ac041ff2d5ebb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 43,
+        "EndTime": 50.32,
+        "Text": "I woke up at 12:00. I cleaned my room a little bit. Then I watched TV for 5 hours.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.da4ba5c330b340cbbd3fc4203ee3ec11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 188,
+        "EndTime": 192,
+        "Text": "You are not bothering people. People like you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.da5a3820f4a14309a70b1135a41b1143",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 618,
+        "EndTime": 622.24,
+        "Text": "That\u0027s true. Everything in this city is expensive.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.da9b48a65bb64488817e32ebd98d4e29",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1010,
+        "EndTime": 1018.32,
+        "Text": "Yes. Every time I leave my apartment, I spend $20. Food, bus tickets, coffee. It costs too much money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.dc35af170089401bb1576a5e3774ae6a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 775,
+        "EndTime": 778.639,
+        "Text": "I should probably start working now. The boss is looking at us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ddb416d20e514bd4853da6ec512c5e20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 831,
+        "EndTime": 837.519,
+        "Text": "And what about Sunday? Did you go anywhere? Sunday was worse. It rained all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e07554a0b85848528a5eb6f30bd79686",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 525,
+        "EndTime": 534.56,
+        "Text": "Being free is hard sometimes. If I don\u0027t have a plan, I just sit in my room. Then it is Sunday night and I feel sad because I wasted my weekend again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e2f9810c05a441f097c1c4407c560e41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 180.08,
+        "Text": "house. Leo, I want to leave the house, but going out alone is not fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e343f079085d425dbacd97fd255f0364",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 614,
+        "EndTime": 618.399,
+        "Text": "Yes, I love movies, but cinema tickets are very expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e4040353373a41efa39b1e6e775cc82e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 165,
+        "EndTime": 167.12,
+        "Text": "What changed?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e590396aeb3f4bd89f9b260afe3f24ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 90,
+        "EndTime": 97.84,
+        "Text": "And on Sunday, I went to the park with my sister. We walked for two hours. The weather was beautiful in the afternoon.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e80f307cbb924d849403b92c112910bd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 678,
+        "EndTime": 686.48,
+        "Text": "We can talk. We can get some sun. The weather will be very good on Saturday. Are you sure? It rained a lot yesterday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e94e43a656f5420c97cb7518643c12f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1049,
+        "EndTime": 1052.799,
+        "Text": "Yes, that one. We will meet there at 9:00 a.m.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.e9779602ac964839bf8c08b9e4d7e139",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 90.159,
+        "Text": "That sounds nice. I like coffee.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ecab51d693894b31b70ed6d53986f964",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 844,
+        "EndTime": 850.32,
+        "Text": "It was. I didn\u0027t speak to anyone for 2 days. How was your weekend?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f37782730b0f45b0bbe140d47dd8c7c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 567.68,
+        "Text": "I want to leave the house, but going out alone is not fun.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f3e09e47fbba47c89ef49e5fd954c55a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 787,
+        "EndTime": 791.44,
+        "Text": "Hey, Leo. Good morning. Oh, hi Mia. Morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f4f5e693886a465b8b6a23b406a27e07",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 891,
+        "EndTime": 899.76,
+        "Text": "I don\u0027t know. During the week, I have a schedule. I wake up, I go to work, my boss tells me what to do. I have things to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f4f78aadc2724585bb70691128359e81",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 639,
+        "EndTime": 642.079,
+        "Text": "Yeah, I guess I make excuses.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f5e3d3d2e50f4f58bf410b04955cb0aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 642,
+        "EndTime": 648.56,
+        "Text": "We all make excuses sometimes. Do you like nature, trees, grass, fresh air?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f61d3d799af54fb49340ebd7da9e23cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 768,
+        "EndTime": 772,
+        "Text": "Thank you, Mia. Really? I needed this today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f6d7dc084f4e43d08a3a08b4642c9915",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 381,
+        "EndTime": 384.4,
+        "Text": "Thank you, Mia. Really, I needed this today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f7afa10122d94cd780208f0080129d8f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 468,
+        "EndTime": 475.199,
+        "Text": "On Saturday, I met some friends. We went to a new cafe in the city center. The coffee was amazing.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f7c92b678bb74811b5bfe3a7ada26a84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 716,
+        "EndTime": 725.04,
+        "Text": "See, a full plan. Morning walk, good coffee, and a free museum. How does that sound? It sounds really wonderful.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f86b3b8c856f4d6e80335deaac6ba08e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 567,
+        "EndTime": 571.36,
+        "Text": "You are not alone. You have friends here. You have me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f9bd7b181da54f9092c759d91be04a34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 692,
+        "EndTime": 699.92,
+        "Text": "And then I know a very good bakery near the park. They have the best bread and cheap coffee. My treat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.f9df21bcde274ab2890dc7db70114a7d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 553,
+        "EndTime": 554.64,
+        "Text": "What changed?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.fa9ef0888c7c4936a06403f314c45267",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 457,
+        "EndTime": 462.639,
+        "Text": "It was I didn\u0027t speak to anyone for two days. How was your weekend?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.fbecd36cad094b7cb93647ca13a2461d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 496,
+        "EndTime": 503.759,
+        "Text": "I work hard, too. But when the weekend comes, I just feel tired. I feel empty. Why do you feel empty?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.fed8e64dd708427695d8b7482154e0d0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1074,
+        "EndTime": 1080.24,
+        "Text": "I checked my phone this morning. It says it will be sunny and warm. That sounds nice, actually.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67.ff85717e3e3e4c5c832728b3fd96964d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 825,
+        "EndTime": 831.36,
+        "Text": "5 hours. That is a lot of TV. I know. My eyes hurt after that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.d3ecebc22c8cc3bbf8845c0e250a1fabd2946178fabbe78f4f951abba7ec0c67"
+}

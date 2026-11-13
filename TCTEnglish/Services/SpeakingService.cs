@@ -82,6 +82,7 @@ public sealed class SpeakingService : ISpeakingService
         var publicHasMoreByLevel = new Dictionary<string, bool>();
         var publicTotalCount = 0;
         var publicHasMore = false;
+        var publicTotalByTopic = new Dictionary<string, int>();
 
         if (!query.Mine)
         {
@@ -102,6 +103,10 @@ public sealed class SpeakingService : ISpeakingService
             var levelsToLoad = activeLevel is not null
                 ? levelOrder.Where(l => l == activeLevel)
                 : levelOrder;
+
+            var topicCounts = await publicBase.Where(v => levelOrder.Contains(v.Level!) && (activeLevel == null || v.Level == activeLevel))
+                .GroupBy(v => v.Topic ?? "General").Select(g => new { Topic = g.Key, Count = g.Count() }).ToListAsync();
+            publicTotalByTopic = topicCounts.ToDictionary(x => x.Topic, x => x.Count);
 
             foreach (var level in levelsToLoad)
             {
@@ -155,7 +160,8 @@ public sealed class SpeakingService : ISpeakingService
             PublicTotalCount = publicTotalCount,
             PublicHasMore = publicHasMore,
             PublicTotalByLevel = publicTotalByLevel,
-            PublicHasMoreByLevel = publicHasMoreByLevel
+            PublicHasMoreByLevel = publicHasMoreByLevel,
+            PublicTotalByTopic = publicTotalByTopic
         };
 
         if (!currentUserId.HasValue)
@@ -257,7 +263,7 @@ public sealed class SpeakingService : ISpeakingService
                         Id = s.Id,
                         StartTime = s.StartTime,
                         EndTime = s.EndTime,
-                        Text = s.Text,
+                        Text = TranscriptDisplayText.Format(s.Text),
                         VietnameseMeaning = s.VietnameseMeaning,
                         TotalScore = latestProgress?.TotalScore,
                         AccuracyScore = latestProgress?.AccuracyScore,

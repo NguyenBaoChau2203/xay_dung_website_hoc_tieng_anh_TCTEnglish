@@ -20,7 +20,10 @@ public static partial class SharedDataFormat
     public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true, UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
-        PropertyNameCaseInsensitive = false
+        PropertyNameCaseInsensitive = false,
+        // New releases must hash identical UTF-8 bytes on Windows and Linux.
+        // Legacy package reads/digests remain byte-based and are never rewritten.
+        NewLine = "\n"
     };
     [GeneratedRegex("^[a-z0-9][a-z0-9._-]{2,119}$", RegexOptions.CultureInvariant)] private static partial Regex PackageIdPattern();
     [GeneratedRegex("^[a-z0-9][a-z0-9._:-]{2,159}$", RegexOptions.CultureInvariant)] private static partial Regex KeyPattern();

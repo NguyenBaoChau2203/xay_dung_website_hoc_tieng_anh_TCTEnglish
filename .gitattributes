@@ -95,3 +95,7 @@ TCTEnglish/wwwroot/lib/pinned/provenance.json text eol=lf
 # Shared package hashes must survive Windows/Linux checkouts.
 data/shared/**/*.json text eol=lf
 data/shared/packages/**/assets/** -text
+# This locally authored batch was emitted by the canonical Windows exporter.
+# Preserve its immutable raw bytes (and catalog SHA256) across Git checkouts.
+# -text retains JSON diffs; it only disables line-ending conversion.
+data/shared/packages/listening-youtube-*/1/package.json -text

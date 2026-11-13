@@ -16,7 +16,7 @@ namespace TCTEnglish.Services
     public class ListeningService : IListeningService
     {
         // CEFR levels in display order
-        private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1" };
+        private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1", "C2" };
 
         private static readonly Dictionary<string, (string Title, string Description, string IconClass, string AccentColor)> LevelMeta =
             new(StringComparer.OrdinalIgnoreCase)
@@ -26,6 +26,7 @@ namespace TCTEnglish.Services
                 ["B1"] = ("Intermediate", "Main points on familiar topics", "bi bi-3-circle", "#2196F3"),
                 ["B2"] = ("Upper-Intermediate", "Complex texts and technical discussions", "bi bi-4-circle", "#9C27B0"),
                 ["C1"] = ("Advanced", "Flexible and effective language use", "bi bi-5-circle", "#FF5722"),
+                ["C2"] = ("Proficiency", "Nuanced meaning in complex spoken English", "fas fa-award", "var(--tct-primary-strong)"),
             };
 
         private readonly DbflashcardContext _context;
@@ -88,7 +89,7 @@ namespace TCTEnglish.Services
             // Distinct topics from ALL published lessons (pre-filter for topic dropdown)
             var allTopics = await _context.ListeningLessons
                 .AsNoTracking()
-                .Where(l => l.IsPublished)
+                .Where(l => l.OwnerUserId == null && l.IsPublished)
                 .Select(l => l.Topic)
                 .Distinct()
                 .OrderBy(t => t)

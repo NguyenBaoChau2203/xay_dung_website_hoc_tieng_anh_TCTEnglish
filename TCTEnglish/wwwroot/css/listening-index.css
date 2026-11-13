@@ -752,6 +752,7 @@
 .listening-index-page .li-level-icon-wrapper.lvl-b1 { background: #f59e0b; }
 .listening-index-page .li-level-icon-wrapper.lvl-b2 { background: #ef4444; }
 .listening-index-page .li-level-icon-wrapper.lvl-c1 { background: #8b5cf6; }
+.listening-index-page .li-level-icon-wrapper.lvl-c2 { background: var(--tct-primary-strong); }
 
 .listening-index-page .li-level-info h2 {
     margin: 0;

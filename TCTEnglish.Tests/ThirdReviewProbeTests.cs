@@ -46,6 +46,7 @@ public sealed class ThirdReviewProbeTests(ITestOutputHelper output)
                     YoutubeId = $"private-{i:D3}",
                     Level = "C2",
                     SourceType = "premium-user-youtube",
+                    Topic = "PrivateOnlySubject",
                     CreatedAt = DateTime.UtcNow.AddDays(-i)
                 });
             }
@@ -63,6 +64,10 @@ public sealed class ThirdReviewProbeTests(ITestOutputHelper output)
 
         // With true paging: first page may be capped, but topic filter / continuation must reach the tail video.
         Assert.True(vm.Topics.Contains("ThirdReviewTailOnlyTopic"), "Tail-only topic must remain listed.");
+        Assert.Equal(1, vm.PublicTotalByTopic["ThirdReviewTailOnlyTopic"]);
+        Assert.Equal(24, vm.PublicTotalByTopic["ThirdReviewOther"]);
+        Assert.DoesNotContain("PrivateOnlySubject", vm.Topics);
+        Assert.False(vm.PublicTotalByTopic.ContainsKey("PrivateOnlySubject"));
         var topicPage = await service.GetSpeakingIndexViewModelAsync(
             TestDataIds.UserId,
             new SpeakingCatalogQuery { Level = "C2", Topic = "ThirdReviewTailOnlyTopic", Page = 1, PageSize = 24 });

@@ -1,0 +1,2071 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level B1 - N\u00D4NG D\u00C2N -",
+        "YoutubeId": "lBHt3sd1TpI",
+        "Level": "B1",
+        "Topic": "H\u1ECDc t\u1EADp \u0026 c\u00F4ng vi\u1EC7c",
+        "ThumbnailUrl": "https://img.youtube.com/vi/lBHt3sd1TpI/hqdefault.jpg",
+        "Duration": "16:57",
+        "SourceUrl": "https://www.youtube.com/watch?v=lBHt3sd1TpI",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.05356a1d20be46e5ad87a0a549cf5632",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 339,
+        "EndTime": 343.039,
+        "Text": "It is getting very hot out there today. Good luck with the bugs, Paul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.0621714b871c4381a9e0233cc96677da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 23,
+        "EndTime": 31.92,
+        "Text": "4? I know you wake up early, but that is very early. Did something happen? One of my pigs had babies last night. 12 little",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.073a26df6c224637a3d466d03b43b050",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 788,
+        "EndTime": 796.32,
+        "Text": "Yes. They steal water and food from my vegetables, and I have to look for bugs every single day. Last week, little",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.08aaa18bdc0e40c5a9b2644230c78420",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 982,
+        "EndTime": 988.88,
+        "Text": "And my family always has fresh sweet vegetables. Hey, we should trade. Trade?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.0a1e2de7ce614f5fb38e5879b06c9c53",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 796,
+        "EndTime": 807.44,
+        "Text": "green bugs ate a lot of my tomato leaves. I had to spray them. That sounds stressful. It is. Crop farming is a big gamble. My biggest boss is the weather.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.0c4a8b4fd04c4e72bb70d5ed1ec67215",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 528.72,
+        "Text": "None taken. My farm is very loud. The pigs scream, the cows moo, the farm dogs bark. But honestly, I like the animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.0ee94285999842bbbc6c5df005bcee32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 864,
+        "EndTime": 867.44,
+        "Text": "Really? Even when they wake you up in the dark?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.0fb3b0f1e7d241cf9985059c295b19e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 599,
+        "EndTime": 610.16,
+        "Text": "finally, I get a break. I can stay inside, fix my tools, and actually rest for a few months. I\u0027m so jealous of your winter break. I don\u0027t get a break.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.11101859e14545b0b54fbd2e2b51a63d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 901,
+        "EndTime": 909.76,
+        "Text": "That is a big advantage for me. I only get money a few times a year. I work for months. I spend money on seeds and",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.1242e33224d146f09198d3c9bcb14a64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 760,
+        "EndTime": 764.88,
+        "Text": "Right now, I\u0027m growing corn, tomatoes, and some potatoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.14529bebc50d49c78c76a517bbe3fbaf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 685,
+        "EndTime": 690.24,
+        "Text": "Hey, Mark. Yes, sit down. I\u0027m just having some coffee before I go back to the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.163dc179d3024c368d95d38a4ff510b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 89,
+        "EndTime": 93.439,
+        "Text": "Right now, I\u0027m growing corn, tomatoes, and some potatoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.17c14e25f41b4f149eccb2c2c66ea0ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 881,
+        "EndTime": 887.519,
+        "Text": "I guess it feels like you\u0027re an animal doctor sometimes. A doctor, a cleaner, and a food server.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.1bfcfa16ab4b4306926a213ff94bb5c0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 754,
+        "EndTime": 760.8,
+        "Text": "Exactly. Plants don\u0027t cry when they\u0027re hungry. True, but they still need a lot of care.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.1fac678ff60640a788fdabb77c7a2993",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 264,
+        "EndTime": 270.88,
+        "Text": "finally, I get a break. I can stay inside, fix my tools, and actually rest for a few months.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.20ba85fbe00d4763b07122e1db5ebbc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 411,
+        "EndTime": 418.96,
+        "Text": "Thank you. Yes. Growing crops is very different from raising animals. I don\u0027t have to wake up at 4 in the morning to feed my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.223d83e33c2f402582053e8ea0cf55f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 711,
+        "EndTime": 721.839,
+        "Text": "Yes, it is. Being a livestock farmer is a 24-hour job. I have cows, pigs, and hundreds of chickens. They don\u0027t care about sleep. They just want to eat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.241b8bbdc6c04d20a96b7589811d2e8f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 764,
+        "EndTime": 770.079,
+        "Text": "So, what is a normal day for you? You just drive that big green tractor, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.25ac7fd1a89c42588416e4d9ec6e798e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 638,
+        "EndTime": 646.88,
+        "Text": "True. And we always have good food on our tables. Definitely. My family always has fresh milk, eggs, and meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.29667df6943547338c0ff3e22a1dcc85",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 629,
+        "EndTime": 638.56,
+        "Text": "Yeah, I am. But we both get to work outside in the fresh air. We don\u0027t have to sit in a boring office staring at a computer. We\u0027re our own bosses.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.29b7c1384fc24447bc4c023504161e09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1001,
+        "EndTime": 1010.56,
+        "Text": "Sounds great. Anyway, I need to finish this coffee. I have to go back to the barn and check on the baby pigs. And I need to go turn on the water pump.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.2a5f19bf67df4d2282604a2972119d96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 959,
+        "EndTime": 964.959,
+        "Text": "That is the hardest part of your job. I think you are tied to the barn every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.2c8feb7f265342068fa9d2d2c9a39c36",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 909,
+        "EndTime": 913.839,
+        "Text": "fertilizer. And I only get paid after the big harvest in autumn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.2dcb95cc0d6c4db59adedfbc674f071b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 434,
+        "EndTime": 442,
+        "Text": "I wish driving the tractor is only a small part. First, in the spring, I prepare the soil. Then, I plant the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.2e383f40ed5b4886ac55143f4e11203f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 695,
+        "EndTime": 700.64,
+        "Text": "4? I know you wake up early, but that is very early. Did something happen?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.2ef79d2ed9e14c59b7f45a305a28f691",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 67,
+        "EndTime": 68.4,
+        "Text": "I can smell it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.301f2bf5cb25462eb0c83b9e80a2be01",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 492,
+        "EndTime": 496.8,
+        "Text": "Do you actually enjoy it though? Walking in the hot sun all day?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.309543986f944b9babe3cf33f292edc1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 832,
+        "EndTime": 840.399,
+        "Text": "I do. I really love it. There is something amazing about it. I put a tiny seed in the dirt and a few months later",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.33235479eb63400d9201b1cba174fa0e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 330,
+        "EndTime": 339.12,
+        "Text": "Sounds great. Anyway, I need to finish this coffee. I have to go back to the barn and check on the baby pigs. And I need to go turn on the water pump.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.34ad7d355e204787a0eec763b8b0e769",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 209.92,
+        "Text": "get better, like those little pigs last night, I feel really good. I feel needed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.35123da4345044a398c722b50a162f25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 942,
+        "EndTime": 948.24,
+        "Text": "I\u0027m so jealous of your winter break. I don\u0027t get a break. Not even a small holiday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.37e58d885cb94da183360c7f8bf92ca1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 892,
+        "EndTime": 901.76,
+        "Text": "I sell milk and eggs every single week to the market. So, I get money every week. I can pay my electric bill and buy food for my family.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.381dd18fbf19404a9492cbe9111e8512",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 311.28,
+        "Text": "True. And we always have good food on our tables. Definitely. My family always has fresh milk, eggs, and meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.38550c02633448a2b33578a1bb661fe3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 146,
+        "Text": "If there is no rain, my plants get dry and die. If there is too much rain, the tomatoes rot in the mud. And if there is a big storm, the wind breaks my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3a5b9c3863ca4a7ba839b73f4139dd3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 583,
+        "EndTime": 590.64,
+        "Text": "Exactly. That is the biggest limitation of growing crops. You wait and you worry and you hope the plants grow well.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3cb549fc392e4974b94f64e9d2fcc376",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 393,
+        "EndTime": 402.72,
+        "Text": "first I feed the chickens and collect the eggs. Then I have to use the machines to milk the cows. After that I clean the pig pens. It is very dirty work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3d3b42e8530445798682c5bd3ae7801d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 623.12,
+        "Text": "5 years. If I leave, who will milk the cows?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3e26a552d8ad4d9a8ed1d41dbd62795a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 117,
+        "EndTime": 124.88,
+        "Text": "Yes. They steal water and food from my vegetables. And I have to look for bugs every single day. Last week, little",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3e5e90c2e531479cb87ca8d5d95000a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 371,
+        "EndTime": 375.12,
+        "Text": "Wow. 12? That is a lot of work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.3fb8e6738a4c44298d6845eef9cfca3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 855,
+        "EndTime": 864.56,
+        "Text": "None taken. My farm is very loud. The pigs scream. The cows moo. The farm dogs bark. But honestly, I like the animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.406027d0983d442693c1856a2ef139f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 486,
+        "EndTime": 492.72,
+        "Text": "Exactly. Weather is my biggest enemy. I check the weather app on my phone 10 times a day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.42c14fb1e09f4c42b63622ea8b591e47",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 770,
+        "EndTime": 777.839,
+        "Text": "I wish. Driving the tractor is only a small part. First, in the spring, I prepare the soil. Then, I plant the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.4349fc84f9664660868aed6111819f34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 926,
+        "EndTime": 928.079,
+        "Text": "So why do you do it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.438f69833c1d4d27a9e795c2e66b4eea",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 460,
+        "EndTime": 471.52,
+        "Text": "green bugs ate a lot of my tomato leaves. I had to spray them. That sounds stressful. It is. Crop farming is a big gamble. My biggest boss is the weather.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.444bb4668d0941cebf3f9ad47176d33f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 612,
+        "EndTime": 619.6,
+        "Text": "No. Animals need to eat on Christmas, on New Year\u0027s, and on my birthday. I haven\u0027t taken a holiday with my wife in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.45634a10e7eb4ebcbd47746e3f7c7170",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404,
+        "EndTime": 411.039,
+        "Text": "I know. I smell like a pig today, but that\u0027s the job. What about you? Your corn looks very tall this year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.46bf4b389eba4e01b5be109d60c9ddeb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 247,
+        "EndTime": 255.04,
+        "Text": "Exactly. That is the biggest limitation of growing crops. You wait and you worry and you hope the plants grow well.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.4b51916bf3f04b3f891019e3cc2f79e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 817,
+        "EndTime": 821.839,
+        "Text": "At least my animals are inside the barn when it rains. They\u0027re safe from the wind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.4c224b5c24944f099d2de0c0fff12a36",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 424,
+        "EndTime": 429.039,
+        "Text": "Right now, I\u0027m growing corn, tomatoes, and some potatoes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.4d17d468ade74b9ca8789ca8acb7535a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 555,
+        "EndTime": 563.12,
+        "Text": "What do you mean? I sell milk and eggs every single week to the market. So, I get money every week. I can pay my",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.4d6e5b247fb94ed3ab2a5a326f8f8d5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 996,
+        "EndTime": 1001.839,
+        "Text": "Deal. We can have a barbecue this weekend. You bring the meat. I\u0027ll bring the vegetables.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.51f1bf89e9c54f01a997ad01ea56ef66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354,
+        "EndTime": 359.199,
+        "Text": "I really need a large coffee today. I\u0027ve been awake since 4 in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.5342d19ead144ea782709f9c9dc1dcf6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 460.479,
+        "Text": "Yes. They steal water and food from my vegetables. And I have to look for bugs every single day. Last week, little",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.5676de609726455fb8935bb77ebe8ca4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 531,
+        "EndTime": 540.64,
+        "Text": "Yes, they all have different personalities. Some cows are very friendly and follow me around. Some pigs are grumpy. When I help a sick animal",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.576e816ec3624340b173aee99a48d866",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.16,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level B1 and the topic is farmer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.5c372df3300946cd9cb8371d0d12263f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 935,
+        "EndTime": 942.32,
+        "Text": "finally, I get a break. I can stay inside, fix my tools, and actually rest for a few months.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.5c8cc10366ca42e49ac6d2ca6ded4d23",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 785,
+        "EndTime": 788.639,
+        "Text": "Weeds are the bad wild plants, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.5edcd1062cc346e9a1325cf0c62144ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 678,
+        "EndTime": 685.2,
+        "Text": "Good luck with the pigs, Mark. See you this weekend. Hey, Paul. Is this seat free?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.63716145c5b64ad59663c6eb325318e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 577,
+        "EndTime": 583.04,
+        "Text": "That must be scary. If the harvest is bad, you have no money for the whole year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.637f4bb02647421cb6bd45392417bae5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 284,
+        "Text": "No. Animals need to eat on Christmas, on New Year\u0027s, and on my birthday. I haven\u0027t taken a holiday with my wife in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.6519de0c1f014ad9802b9483523b3a92",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 728,
+        "EndTime": 735.68,
+        "Text": "Well, first I feed the chickens and collect the eggs. Then I have to use the machines to milk the cows. After that, I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.688ec7b7683249b588490a988ae7ab73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 545,
+        "EndTime": 551.68,
+        "Text": "I guess it feels like you\u0027re an animal doctor sometimes. A doctor, a cleaner, and a food server.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.69c1795ee65b4212aeca0c2f315d5299",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 528,
+        "EndTime": 531.6,
+        "Text": "Really? Even when they wake you up in the dark?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.6a81723095554f85be2ecb8ed0c8a344",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 57.44,
+        "Text": "I always wonder about that. I just see your big red barn from my house. What exactly do you do every morning? Well,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.6b48f0d242e340bdbcb504c99c1b9718",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 876,
+        "EndTime": 881.44,
+        "Text": "get better, like those little pigs last night, I feel really good. I feel needed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.6d373d9685f042dda4331df100df37c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 700,
+        "EndTime": 707.36,
+        "Text": "One of my pigs had babies last night. 12 little pigs. I had to stay in the barn to make sure they were all okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.6d3b685df64949ee85f3e29f5dedd88b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 481.599,
+        "Text": "If there is no rain, my plants get dry and die. If there is too much rain, the tomatoes rot in the mud. And if there is a big storm, the wind breaks my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.71c2ca8beb614563aaec64b653f7bc86",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 13.759,
+        "Text": "Now listen carefully. Hey Paul, is this seat free?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.753cd58da6824ee6803d0a64930545bf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 89.28,
+        "Text": "Exactly. Plants don\u0027t cry when they\u0027re hungry. True, but they still need a lot of care.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.75ef612b1558479499b2b7c372f88773",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 964,
+        "EndTime": 974.48,
+        "Text": "Yeah, I am. But we both get to work outside in the fresh air. We don\u0027t have to sit in a boring office staring at a computer. We\u0027re our own bosses.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.76076c0c1fdd491bafabd652338f018c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 690,
+        "EndTime": 695.12,
+        "Text": "I really need a large coffee today. I\u0027ve been awake since 4 in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.76b223b1bd1e4de9b9a0b6c151527b90",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 196,
+        "EndTime": 205.04,
+        "Text": "Yes, they all have different personalities. Some cows are very friendly and follow me around. Some pigs are grumpy. When I help a sick animal",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.7832adeec9324edc8f473453309732c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 666,
+        "EndTime": 674.72,
+        "Text": "Sounds great. Anyway, I need to finish this coffee. I have to go back to the barn and check on the baby pigs. And I need to go turn on the water pump.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.7b400abfc57c47c0bdc33e0dff705f5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 31,
+        "EndTime": 39.52,
+        "Text": "pigs. I had to stay in the barn to make sure they were all okay. Wow. 12? That is a lot of work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.800d15a34d664be1ad092ad25f7a8c71",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 721,
+        "EndTime": 728.48,
+        "Text": "I always wonder about that. I just see your big red barn from my house. What exactly do you do every morning?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.81b792d20e634ef5b4ca91615471d260",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 974,
+        "EndTime": 982.8,
+        "Text": "True. And we always have good food on our tables. Definitely. My family always has fresh milk, eggs, and meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.822b583e82534c7abfc8990d49c1fb6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 821,
+        "EndTime": 828.639,
+        "Text": "Exactly. Weather is my biggest enemy. I check the weather app on my phone 10 times a day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.83be9b5c7c0c43c6b303ff599e389439",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 385,
+        "EndTime": 393.039,
+        "Text": "I always wonder about that. I just see your big red barn from my house. What exactly do you do every morning? Well,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.8998548d503b43a3a3908fe53a04c11f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 330.4,
+        "Text": "Deal. We can have a barbecue this weekend. You bring the meat. I\u0027ll bring the vegetables.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.8d11eb036f744d6b8a5eb5d0b7e7dbbe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 124,
+        "EndTime": 135.92,
+        "Text": "green bugs ate a lot of my tomato leaves. I had to spray them. That sounds stressful. It is. Crop farming is a big gamble. My biggest boss is the weather.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.8e28f8da433e49edaa5da0639fb91c0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 652,
+        "EndTime": 660.24,
+        "Text": "Yeah, I can give you some fresh eggs and maybe some bacon. And you can give me some of those nice red tomatoes and sweet corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.8ea9b3d589934c08ac510cbc81182d34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 519.76,
+        "Text": "It is very quiet, too. When I\u0027m in the middle of the field, I just hear the wind. Noisy animals. No offense, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.947006c337f84930a1308af250ca3460",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 146,
+        "EndTime": 150.4,
+        "Text": "At least my animals are inside the barn when it rains. They\u0027re safe from the wind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.947fa596e55b4f9da8020f2e76813f02",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 913,
+        "EndTime": 918.959,
+        "Text": "That must be scary. If the harvest is bad, you have no money for the whole year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.95e15123fae34c2e94e6688f97cfe0de",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 184,
+        "EndTime": 193.12,
+        "Text": "None taken. My farm is very loud. The pigs scream, the cows moo, the farm dogs bark. But honestly, I like the animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.98ccff8efad749a7a6dd75424226490b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 256,
+        "EndTime": 264,
+        "Text": "Because of the winter. After the autumn harvest, the ground gets cold. It freezes. The plants stop growing. And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9930c4e67b0f4a769640f2b01c763061",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 840,
+        "EndTime": 847.04,
+        "Text": "I have a big red tomato or a tall green plant. It feels like magic. That is pretty cool.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9b81ccc1fd4342e286b66b3b573d9692",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 867,
+        "EndTime": 876.48,
+        "Text": "Yes. They all have different personalities. Some cows are very friendly and follow me around. Some pigs are grumpy. When I help a sick animal",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9bff0a8e7a7649ccb47084c758443660",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 429,
+        "EndTime": 434.16,
+        "Text": "So, what is a normal day for you? You just drive that big green tractor, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9c4275b22831412896da6aa7567bfa4d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 592,
+        "EndTime": 599.6,
+        "Text": "Because of the winter. After the autumn harvest, the ground gets cold. It freezes. The plants stop growing. And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9d4a5eb8dc184295bab9fdd8a0ad1ab3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1014,
+        "EndTime": 1017.173333,
+        "Text": "Good luck with the pigs, Mark. See you this weekend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9e2e61824379446788a64d3fc570079b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 287,
+        "EndTime": 293.52,
+        "Text": "That is the hardest part of your job. I think you are tied to the barn every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9ed6ef7c92674ae98d6677c987b16252",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157,
+        "EndTime": 161.2,
+        "Text": "Do you actually enjoy it though? Walking in the hot sun all day?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.9eee31f7d44b4c3e8ec0b59d13aa4d2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 551,
+        "EndTime": 555.44,
+        "Text": "But the best benefit of raising animals is the regular money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a088e77864324142a376888c6aa689f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 359,
+        "EndTime": 364.72,
+        "Text": "4? I know you wake up early, but that is very early. Did something happen?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a162ff0d80554300bf05d5d53d7a062c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 270,
+        "EndTime": 276.72,
+        "Text": "I\u0027m so jealous of your winter break. I don\u0027t get a break. Not even a small holiday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a24ff226f5ec492b9cd8bab83db65a15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 114,
+        "EndTime": 117.119,
+        "Text": "Weeds are the bad wild plants, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a2c69f664a7e45daaa544ccb16d4b34d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293,
+        "EndTime": 302.96,
+        "Text": "Yeah, I am. But we both get to work outside in the fresh air. We don\u0027t have to sit in a boring office staring at a computer. We\u0027re our own bosses.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a6223dfee53f41cbb7d49a803197222d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 590,
+        "EndTime": 592.24,
+        "Text": "So why do you do it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.a7fdc34dbf5c4739a545d853c11bce83",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 354.32,
+        "Text": "Hey, Mark. Yes, sit down. I\u0027m just having some coffee before I go back to the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ab3d0d6bbf4c497a8401e64d014062d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 83.36,
+        "Text": "Thank you. Yes. Growing crops is very different from raising animals. I don\u0027t have to wake up at 4 in the morning to feed my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ab97b282ecf04cb8825f9f05859de8c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 610,
+        "EndTime": 612.32,
+        "Text": "Not even a small holiday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ac38b03acc734de0850965e61af0485a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 955,
+        "EndTime": 959.04,
+        "Text": "five years. If I leave, who will milk the cows?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.aee30243c00542f78576d4086b146ff3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 486,
+        "Text": "At least my animals are inside the barn when it rains. They\u0027re safe from the wind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.aef721e30a3f4ba48ec9260772e53e68",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 93,
+        "EndTime": 98.56,
+        "Text": "So, what is a normal day for you? You just drive that big green tractor, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.b0839fc7aa464070ae3dca8e282d2e82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 168,
+        "EndTime": 175.519,
+        "Text": "I have a big red tomato or a tall green plant. It feels like magic. That is pretty cool.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.b665d8f82ed64decb0f8b13444f40297",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 317,
+        "EndTime": 324.639,
+        "Text": "Yeah, I can give you some fresh eggs and maybe some bacon. And you can give me some of those nice red tomatoes and sweet corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.b904fdeb890444a49d5f0612c597d620",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 777,
+        "EndTime": 785.76,
+        "Text": "seeds. But now, because it is summer, I spend all day walking in the dirt. I water the plants and pull out the weeds.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.bb52bd3ff2b54ec99fb25887f67e6722",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 404,
+        "Text": "I can smell it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.bd104d7f6ae34763ba20c32deebbea17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 168.959,
+        "Text": "I do. I really love it. There is something amazing about it. I put a tiny seed in the dirt and a few months later",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.bf62a93e2ab04689875ea024dbe9c8d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 106,
+        "EndTime": 114.24,
+        "Text": "seeds. But now, because it is summer, I spend all day walking in the dirt. I water the plants and pull out the weeds.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c18a2d7a9216417cab34e9b142d7da96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 928,
+        "EndTime": 935.519,
+        "Text": "Because of the winter. After the autumn harvest, the ground gets cold. It freezes. The plants stop growing. And",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c21eb6885db6425593914fcb542ead34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 988,
+        "EndTime": 996.079,
+        "Text": "Yeah. I can give you some fresh eggs and maybe some bacon. And you can give me some of those nice red tomatoes and sweet corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c398821f3f5b4b38a62570d2897b78ff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 828,
+        "EndTime": 832.72,
+        "Text": "Do you actually enjoy it though? Walking in the hot sun all day?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c4417171f5be41f589aa8a8505e0aa11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 449,
+        "EndTime": 452.72,
+        "Text": "Weeds are the bad wild plants, right?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c4ebe54c36344367a806784e5870f821",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 735,
+        "EndTime": 739.839,
+        "Text": "clean the pig pens. It is very dirty work. I can smell it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c6ab2bb98b0a4f30bfc8d8a8f59a843f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 623,
+        "EndTime": 629.12,
+        "Text": "That is the hardest part of your job. I think you are tied to the barn every single day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c77d146dc5f44adb85a82a34145fbb2d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 18.72,
+        "Text": "Hey Mark. Yes. Sit down. I\u0027m just having some coffee before I go back to the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c8e3b84b9e5349d48f123dce4a994b74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 232.879,
+        "Text": "electric bill and buy food for my family. That is a big advantage for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c936616e521843f18a2545c5416a8749",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 193,
+        "EndTime": 196,
+        "Text": "Really? Even when they wake you up in the dark?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.c938093fc9024e009b1199f761685ff1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 343,
+        "EndTime": 349.36,
+        "Text": "Good luck with the pigs, Mark. See you this weekend. Hey, Paul. Is this seat free?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cb5d982010014890a2e525311b3bb87d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 209,
+        "EndTime": 216.08,
+        "Text": "I guess it feels like you\u0027re an animal doctor sometimes. A doctor, a cleaner, and a food server.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cb72d2a9a111498dae131db4406059d7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 660,
+        "EndTime": 666,
+        "Text": "Deal. We can have a barbecue this weekend. You bring the meat. I\u0027ll bring the vegetables.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cc442af19e2844f595a614c062fecaf2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 284,
+        "EndTime": 287.52,
+        "Text": "5 years. If I leave, who will milk the cows?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cc7ba1ffa4d942c1af89efc3fdfb8e91",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 646,
+        "EndTime": 652.959,
+        "Text": "And my family always has fresh sweet vegetables. Hey, we should trade. Trade?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cd503f482b4846658ffe8174ae463f10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 496,
+        "EndTime": 504.56,
+        "Text": "I do. I really love it. There is something amazing about it. I put a tiny seed in the dirt and a few months later",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ce6df7b63f24417a81bd7d673f273fa9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 256.639,
+        "Text": "So why do you do it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cf31812ba5c64da6aff7b5a90f002bc9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 98,
+        "EndTime": 106.399,
+        "Text": "I wish driving the tractor is only a small part. First, in the spring, I prepare the soil. Then, I plant the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.cf7a9257451f484481a403797127ba5e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 442,
+        "EndTime": 449.84,
+        "Text": "seeds. But now, because it is summer, I spend all day walking in the dirt. I water the plants and pull out the weeds.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d21b3ff940c14591b77fca5b1ae2f5e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 242,
+        "EndTime": 247.439,
+        "Text": "That must be scary. If the harvest is bad, you have no money for the whole year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d3374b2cb20f49678809bdafe44d4964",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 577.92,
+        "Text": "I only get money a few times a year. I work for months. I spend money on seeds and fertilizer. And I only get paid after the big harvest in autumn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d4188b7ab98e4630b88c33cbfcda2f05",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 57,
+        "EndTime": 67.119,
+        "Text": "first I feed the chickens and collect the eggs. Then I have to use the machines to milk the cows. After that I clean the pig pens. It is very dirty work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d661071087fa4357a671e2eddd4dadcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 216,
+        "EndTime": 219.84,
+        "Text": "But the best benefit of raising animals is the regular money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d753f1933c894e3792bdb0b7118f022f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 184.159,
+        "Text": "It is very quiet, too. When I\u0027m in the middle of the field, I just hear the wind. Noisy animals. No offense, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d90cc18bf5bd46899997d9a61397d03e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 563,
+        "EndTime": 568.48,
+        "Text": "electric bill and buy food for my family. That is a big advantage for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.d9190e61f70c48bda48075247db50b8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 887,
+        "EndTime": 892.399,
+        "Text": "But the best benefit of raising animals is the regular money. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.dac24538a4a94b74b83dceba17d4d128",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 68,
+        "EndTime": 75.439,
+        "Text": "I know. I smell like a pig today, but that\u0027s the job. What about you? Your corn looks very tall this year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.db3a3351229540eab83340b5431cbfba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 504,
+        "EndTime": 511.12,
+        "Text": "I have a big red tomato or a tall green plant. It feels like magic. That is pretty cool.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.e084db1273d74074b50bc4a9ae3a63f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1010,
+        "EndTime": 1014.48,
+        "Text": "It is getting very hot out there today. Good luck with the bugs, Paul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.e6bdeba139d84cd59c205b5eeaf0cdfe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 746,
+        "EndTime": 754.88,
+        "Text": "Thank you. Yes, growing crops is very different from raising animals. I don\u0027t have to wake up at 4 in the morning to feed my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.e93a369dbd744a7293bda96e884de84c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 219,
+        "EndTime": 227.519,
+        "Text": "What do you mean? I sell milk and eggs every single week to the market. So, I get money every week. I can pay my",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ea7aa8afb3cb4dd8958b806a5d637766",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 418,
+        "EndTime": 424.88,
+        "Text": "Exactly. Plants don\u0027t cry when they\u0027re hungry. True, but they still need a lot of care.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.eaeb208cfac74937b7c885425ff9f142",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 375,
+        "EndTime": 385.919,
+        "Text": "Yes, it is. Being a livestock farmer is a 24-hour job. I have cows, pigs, and hundreds of chickens. They don\u0027t care about sleep. They just want to eat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.eafd70d43e8a4c8981fd5d4cb214620a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 807,
+        "EndTime": 817.44,
+        "Text": "If there is no rain, my plants get dry and die. If there is too much rain, the tomatoes rot in the mud. And if there is a big storm, the wind breaks my corn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ed4c86c566f94879aa177822b37569a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 674,
+        "EndTime": 678.64,
+        "Text": "It is getting very hot out there today. Good luck with the bugs, Paul.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.edc6f90c510a46738c9e493129225936",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 371.44,
+        "Text": "One of my pigs had babies last night. 12 little pigs. I had to stay in the barn to make sure they were all okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f0e1cfd3d699412da013b79d84e76932",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 150,
+        "EndTime": 157.12,
+        "Text": "Exactly. Weather is my biggest enemy. I check the weather app on my phone 10 times a day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f1a34d14de4442cd8f011b9abb502253",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 18,
+        "EndTime": 23.6,
+        "Text": "I really need a large coffee today. I\u0027ve been awake since 4 in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f3b09a8d70bf4a958f997fa002d3f7e5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 39,
+        "EndTime": 50.32,
+        "Text": "Yes, it is. Being a livestock farmer is a 24-hour job. I have cows, pigs, and hundreds of chickens. They don\u0027t care about sleep. They just want to eat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f5ee06b2ba604ca8af3214a08182cb19",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 948,
+        "EndTime": 955.519,
+        "Text": "No. Animals need to eat on Christmas, on New Year\u0027s, and on my birthday. I haven\u0027t taken a holiday with my wife in",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f6708cbf3d204d20836243023cf9488c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 540,
+        "EndTime": 545.519,
+        "Text": "get better, like those little pigs last night, I feel really good. I feel needed.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f8042d99c790466583c6b2ce7e0decc6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 847,
+        "EndTime": 855.68,
+        "Text": "It is very quiet, too. When I\u0027m in the middle of the field, I just hear the wind. Noisy animals. No offense, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f85e57070d334786901037d55af1c671",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 707,
+        "EndTime": 711.04,
+        "Text": "Wow. 12? That is a lot of work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f8944937a76d46ba8d438fe644807958",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 242.319,
+        "Text": "I only get money a few times a year. I work for months. I spend money on seeds and fertilizer. And I only get paid after the big harvest in autumn.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.f98a05bd163347dc84513baa96028e0a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 739,
+        "EndTime": 746.959,
+        "Text": "I know. I smell like a pig today, but that\u0027s the job. What about you? Your corn looks very tall this year.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.fd1e808bf8574fd78679a27e716bf668",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 311,
+        "EndTime": 317.36,
+        "Text": "And my family always has fresh sweet vegetables. Hey, we should trade. Trade?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193.ffc0ae30c4634f559b4dcb806e9b2650",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 918,
+        "EndTime": 926.48,
+        "Text": "Exactly. That is the biggest limitation of growing crops. You wait and you worry and you hope the plants grow well.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.2e8fa993fa069b573e9e2f9008eabbd28adf2fbc905505922a10ca13c339f193"
+}

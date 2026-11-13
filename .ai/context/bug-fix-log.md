@@ -4129,3 +4129,119 @@ results are recorded in the release PR and owner handoff.
 **Files**: AccountDeletionService; AccountFunctionalCompletionTests;
 MariaDbAccountReviewAcceptanceTests; MariaDbAcceptanceFactory;
 scripts/verify-mariadb.ps1; DbflashcardContextModelSnapshot.
+
+### Listening catalog C2 visibility, public topics and filter empty state — 2026-11-13
+
+**Symptoms**: C2 public lessons were absent from the five-level catalog surface.
+Published private topics leaked into the public topic list. Selecting a level
+still counted cards in hidden levels, and no-result feedback stayed hidden.
+
+**Causes**: Level order/descriptions/Admin filter stopped at C1; topic enumeration
+lacked the public ownership predicate; JS counted topic/search matches without
+level intersection and used inline display against the li-hidden CSS class.
+
+**Fix**: Add C2 through service/Razor/Admin/scoped token style, keep public-topic
+queries aligned with public cards, count the intersection of filters and toggle
+the existing hidden class. Add repeat-safe local authoring,90 evidenced new public
+videos and90 canonical shared packages without changing persisted mappings.
+
+**Verification**: Initial C2 and filter/hidden-state regressions reproduced before
+fixes. Release focused43 passed/0 failed/2 environment skips; new MariaDB10.5.23
+acceptance passed separately. Browser all six levels/three pages,73 topic controls,
+search/empty states, Admin C2 edit/filter and six embedded playback samples. Data
+preservation and final package/sync evidence are in the execution ledger.
+
+**Files**: ListeningService; Study/Listening; Admin ListeningManagement/Index;
+listening-index.js/css; Infrastructure/ListeningCatalog; catalog tests; tools and
+scripts; data/listening and data/shared. The batch-specific Git byte-preservation
+rule retains canonical package hashes through checkout without rewriting packages.
+
+**Limits**: Captions-only retrieval did not obtain usable transcripts; new content
+is video-only, with no generated quiz/vocabulary/translations. Native browser200%
+zoom is unconfirmed; CSS200% and1440/768/390 widths were checked. Existing Guest
+practice404 is unchanged. No commit/push/deploy or paid AI/ASR call.
+
+See docs/feature-audits/2026-11-12-listening-reach-catalog-ledger.md.
+
+### Speaking destination correction and durable Listening withdrawal — 2026-11-13
+
+**Cause**: the prior90-video batch was authored into the wrong module. The old
+CLI remained an authoring entry point, and Windows-native JSON newlines would
+produce new package bytes inconsistent with Git LF conversion.
+
+**Local correction**: preserve exact selection/history; retire only90 Listening
+flags and export90 canonical version2 withdrawals without modifying v1. Reject
+the old Import command before build/DB. New Speaking writer stages outside
+public tables and requires full-duration coverage, source/media/cue hashes and
+successful beginning/middle/late/boundary quality evidence before atomic publish.
+New shared exports explicitly use LF. Source captions are obtained through the
+normal public transcript panel with missing/empty/timing failures distinguished.
+
+**Verification**: new quality regression demonstrated that a misplaced successful
+late review plus a failed tail review could pass; the gate now requires the same
+review to meet both quality and position thresholds.19 focused cases pass,2
+native cases pass separately on disposable MariaDB10.5.23 (ordinal identity,
+clean-recipient withdrawals, history/cue IDs, rollback after SQL). Canonical
+181-release validation, two syncs and all-original-row preservation over69 tables
+pass. Browser shows6 original Listening and5 original Speaking videos.
+
+**Open**:0/90 new Speaking publications; genuine captions90/90 still require
+whole-speech/timing/playback review. Audio403 and local alignment runtime issues
+are recorded in the current ledger. No paid requests or release operations.
+
+**Execution update**: the owner subsequently allowed same-level replacements.
+Five403 sources were replaced after caption+media validation; current selection
+has90 complete media/caption candidates, preserving the exact original90
+Listening withdrawals and cross-domain mappings. Native replacement/preservation
+tests pass. CTC supplied-text alignment uses the pinned local TorchAudio2.8
+acoustic weights and a bounded Viterbi implementation because the optional
+compiled extension is missing. Caption punctuation was incorrectly rejected as
+a clock; a failing regression preceded the correction. Clock/year/price reading
+normalization preserves original caption text; acoustic caches are separate
+from text/algorithm caches. Synthetic CTC/frame tests pass3/3. Quality=false
+remains explicit; confidence is not manually transcribed token accuracy.
+
+**Owner local-UAT clarification**: the manual QA gate previously prevented all
+local availability. The owner explicitly requested90 complete acquired
+transcripts on local Speaking before staging/team testing. Added a distinct
+loopback-only ImportLocalTest path retaining QA flags, source/media/cue hashes,
+ordered genuine caption text and measured-media bounds. All90 are imported with
+16,262 cues;95 public videos include5 untouched originals.90 Speaking v1
+packages are exported canonically, with no staging/production deployment.
+
+**Subject navigation and practice fix**: reviewed broad CatalogTopic categories
+preserve source topics/CEFR evidence. Topic groups are the default, with CEFR
+view and combined server filters retained. Private topics stay excluded. Wrapped
+subject chips prevent horizontal page overflow at1440/768/390. Transcript row
+clicks captured an undefined select function before speaking.js loaded; resolve
+the actual practice API at click time. A failing VM regression reproduced this;
+text/highlight selection now passes in live A1/C2 pages, including the43-minute
+tail. Read-only browser GETs confirm90/90 practice pages with transcripts.
+
+**Verification**:9 focused .NET cases,2 native MariaDB10.5.23 cases,14 catalog
+Node cases and30 Speaking interaction cases pass. Rerun preserves all public
+root/cue IDs/content and catalog bytes, creating0 roots/cues/package versions.
+69-table original-row preservation passes. Content accuracy/precise audio QA
+remains pending for owner testing and is not inferred from UI readiness.
+
+### Speaking transcript speaker-marker presentation — 2026-11-13
+
+**Symptom**: old Speaking transcripts display literal YouTube `>>` speaker
+markers at the start and inside sentences, including the screenshot's love
+question video. The same source text feeds the selected reference and dictation.
+
+**Cause/fix**: practice projection copied raw caption text directly into the
+ViewModel. Add presentation-only TranscriptDisplayText formatting for public and
+owned private practice cues; remove speaker markers and extra horizontal spaces,
+preserving words, punctuation, line breaks and ordinary numeric shift operators.
+Leave persisted source text, sentence IDs, timing, scores and package bytes intact.
+No schema migration/data export version is required for this presentation change.
+
+**Verification**: initial regressions reproduced6 failures; final focused .NET
+run passes25 with2 environment skips. New integration coverage verifies private
+ownership, IDs/timing, Vietnamese meaning, saved score and untouched raw text.
+30 Speaking interaction Node tests pass. Live local Practice44 shows121 cues,
+zero speaker markers in list/serialized practice data, and matching text/highlight
+when selecting the screenshot's pasta sentence. Database still has477 original
+marker-bearing source rows and95 public videos. Health is ready on5100. Owner
+authorized a local commit of the whole catalog work; no push/deployment authority.
