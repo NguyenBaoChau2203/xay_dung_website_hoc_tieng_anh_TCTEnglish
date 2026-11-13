@@ -614,7 +614,7 @@ test('R4-D lifecycle cancellation clears active recording and sending status', a
   bindLifecycleTarget(idleDom.document, idleEnv.sandbox);
   const idleApi = loadPractice(idleEnv.sandbox);
   const idleStatus = idleDom.byId['spk-assessment-status'].textContent;
-  assert.equal(idleStatus, '');
+  assert.match(idleStatus, /Đã lưu/);
   emitOn(idleDom.document, 'pagehide', { type: 'pagehide', persisted: true });
   emitOn(idleDom.document, 'pageshow', { type: 'pageshow', persisted: true });
   assert.equal(idleDom.byId['spk-assessment-status'].textContent, idleStatus);

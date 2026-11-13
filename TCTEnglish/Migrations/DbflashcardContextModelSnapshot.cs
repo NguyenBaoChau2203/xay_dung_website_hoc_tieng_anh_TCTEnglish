@@ -2379,6 +2379,9 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<double?>("CompletenessScore")
+                        .HasColumnType("double");
+
                     b.Property<bool>("Consumed")
                         .HasColumnType("tinyint(1)");
 
@@ -2395,6 +2398,12 @@ namespace TCTEnglish.Migrations
 
                     b.Property<DateTime>("ExpiresAtUtc")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<double?>("FluencyScore")
+                        .HasColumnType("double");
+
+                    b.Property<int?>("MetricVersion")
+                        .HasColumnType("int");
 
                     b.Property<string>("ModelIdentity")
                         .IsRequired()

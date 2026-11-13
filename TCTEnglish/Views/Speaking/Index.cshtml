@@ -15,6 +15,31 @@
         ["C1"] = ("Cao cấp",    "#ede9fe", "#5b21b6", "#8b5cf6", "💎"),
         ["C2"] = ("Thành thạo", "#111c2d", "#ffffff", "#263143", "👑"),
     };
+
+    var topicMeta = new Dictionary<string, (string Icon, string Color, string ClassModifier)>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["all"]                   = ("auto_awesome",      "#4255ff", "all"),
+        ["Tất cả chủ đề"]         = ("auto_awesome",      "#4255ff", "all"),
+        ["Ăn uống"]               = ("restaurant",        "#ea580c", "dining"),
+        ["General"]               = ("public",            "#475569", "general"),
+        ["Nội dung chung"]        = ("public",            "#475569", "general"),
+        ["Gia đình & đời sống"]   = ("home",              "#2563eb", "family"),
+        ["Học tập & công việc"]   = ("work",              "#7c3aed", "work"),
+        ["Khoa học & văn hóa"]   = ("science",           "#0891b2", "science"),
+        ["Luyện thi tổng hợp"]    = ("assignment",        "#d97706", "exam"),
+        ["Mua sắm & tài chính"]   = ("payments",          "#059669", "finance"),
+        ["Sức khỏe"]              = ("health_and_safety", "#dc2626", "health"),
+        ["Trò chuyện & tình cảm"] = ("forum",             "#db2777", "chat"),
+        ["Vui chơi & giải trí"]   = ("sports_esports",    "#8b5cf6", "leisure"),
+        ["Xã hội & di chuyển"]    = ("commute",           "#0284c7", "travel"),
+    };
+
+    (string Icon, string Color, string ClassModifier) GetTopicMeta(string? topicName)
+    {
+        if (string.IsNullOrWhiteSpace(topicName)) return ("auto_awesome", "#4255ff", "all");
+        if (topicMeta.TryGetValue(topicName, out var meta)) return meta;
+        return ("label", "#4255ff", "custom");
+    }
 }
 
 @section Styles {
@@ -409,16 +434,61 @@
             </div>
         </div>
 
-        @* Skeleton loading card *@
-        <div class="col-sm-6 col-md-4 col-lg-3 my-video-card my-video-card--skeleton d-none" id="mip-loading-card" aria-hidden="true">
-            <div class="spk-my-card" style="opacity:.75;">
-                <div class="spk-video-thumb bg-light placeholder-glow">
-                    <div class="placeholder w-100 h-100"></div>
+        @* Smart Clay Import Loading Card *@
+        <div class="my-video-card my-video-card--skeleton spk-import-loading-card d-none" id="mip-loading-card" aria-live="polite">
+            <div class="spk-my-card spk-my-card--importing">
+                @* Ambient top glowing strip *@
+                <div class="spk-import-shimmer-strip" aria-hidden="true"></div>
+
+                @* Thumbnail preview with real image or AI clay orb *@
+                <div class="spk-video-thumb spk-import-thumb">
+                    <img src="" alt="Thumbnail video đang nạp" class="spk-thumb-img spk-import-thumb-img d-none" id="mip-loading-thumb" />
+                    <div class="spk-import-thumb-placeholder" id="mip-loading-thumb-placeholder">
+                        <div class="spk-import-ai-orb" aria-hidden="true">
+                            <span class="material-symbols-outlined spk-import-ai-icon">auto_awesome</span>
+                        </div>
+                    </div>
+                    <div class="spk-import-thumb-overlay" aria-hidden="true"></div>
+
+                    @* Badge status with pulse dot *@
+                    <div class="spk-thumb-badge-tl">
+                        <span class="spk-badge spk-badge--importing">
+                            <span class="spk-import-pulse-dot" aria-hidden="true"></span>
+                            <span id="mip-loading-badge-text">AI ĐANG XỬ LÝ</span>
+                        </span>
+                    </div>
+
+                    @* Estimated duration badge *@
+                    <div class="spk-thumb-duration spk-import-duration" id="mip-loading-eta">
+                        <span class="material-symbols-outlined" style="font-size:12px;vertical-align:middle;" aria-hidden="true">timer</span>
+                        <span>~15-30s</span>
+                    </div>
                 </div>
-                <div class="spk-my-card-body placeholder-glow">
-                    <h3 class="placeholder col-8 mb-2"></h3>
-                    <p class="placeholder col-4 mb-3"></p>
-                    <div class="placeholder col-12 py-3 rounded-3"></div>
+
+                @* Card body with steps, title & progress bar *@
+                <div class="spk-my-card-body spk-import-card-body">
+                    <h3 class="spk-my-card-title spk-import-card-title" id="mip-loading-title">
+                        Đang tạo bài học từ YouTube...
+                    </h3>
+
+                    @* Step ticker *@
+                    <div class="spk-import-step-row" id="mip-loading-step-row">
+                        <span class="material-symbols-outlined spk-import-step-icon" id="mip-loading-step-icon" aria-hidden="true">sync</span>
+                        <span class="spk-import-step-text" id="mip-loading-step-text">Đang kết nối video YouTube...</span>
+                    </div>
+
+                    @* Clay Progress Bar *@
+                    <div class="spk-import-progress-track" role="progressbar" id="mip-loading-progress-track" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ tạo bài học">
+                        <div class="spk-import-progress-fill" id="mip-loading-progress-fill" style="width: 25%;"></div>
+                    </div>
+
+                    @* Action button *@
+                    <div class="spk-my-card-actions mt-3">
+                        <button type="button" class="spk-btn spk-btn--processing spk-btn--full" disabled>
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            <span id="mip-loading-btn-text">Đang tạo bài...</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -434,7 +504,7 @@
                 </div>
                 <div>
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <h2 class="spk-section-title spk-headline-md mb-0">Video luyện nói theo chủ đề</h2>
+                        <h2 class="spk-section-title spk-headline-md mb-0">@(groupByLevel ? "Video luyện nói theo trình độ" : "Video luyện nói theo chủ đề")</h2>
                         <span class="spk-count-badge spk-library-count-badge">@totalVideos bài học</span>
                     </div>
                     <p class="spk-library-subtitle mb-0">Chọn nội dung bạn quan tâm, kết hợp trình độ A1–C2 để tìm bài phù hợp.</p>
@@ -461,17 +531,25 @@
 
         @* Hairline Divider *@
         <div class="spk-toolbar-divider" aria-hidden="true"></div>
-        <nav class="d-flex flex-wrap align-items-center gap-2 mb-3" aria-label="Sắp xếp thư viện">
-            <span class="spk-filter-group-label">Xem theo</span>
-            <a class="spk-pill-btn @(!groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(!groupByLevel ? "page" : null)"
-               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Chủ đề</a>
-            <a class="spk-pill-btn @(groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(groupByLevel ? "page" : null)"
-               href="@Url.Action("Index", "Speaking", new { group = "level", level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Trình độ CEFR</a>
-        </nav>
 
-        @* Row 2: Filter Controls (Trình độ + Chủ đề) *@
-        <div class="spk-toolbar-filter-row spk-filter-row" role="region" aria-label="Bộ lọc danh mục video">
-            <div class="spk-filter-group">
+        @* Row 2: Display & Level Controls (Xem theo + Trình độ combined side-by-side) *@
+        <div class="spk-toolbar-controls-row" role="region" aria-label="Tùy chọn hiển thị và trình độ">
+            <nav class="spk-filter-group spk-filter-group--view-mode" aria-label="Sắp xếp thư viện">
+                <span class="spk-filter-group-label">
+                    <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">tune</span>
+                    Xem theo
+                </span>
+                <div class="spk-filter-pills" role="tablist">
+                    <a class="spk-pill-btn @(!groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(!groupByLevel ? "page" : null)"
+                       href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Chủ đề</a>
+                    <a class="spk-pill-btn @(groupByLevel ? "spk-pill-btn--active" : null)" aria-current="@(groupByLevel ? "page" : null)"
+                       href="@Url.Action("Index", "Speaking", new { group = "level", level = Model.ActiveLevel, topic = Model.ActiveTopic, search = Model.ActiveSearch })">Trình độ CEFR</a>
+                </div>
+            </nav>
+
+            <span class="spk-filter-divider" aria-hidden="true"></span>
+
+            <div class="spk-filter-group spk-filter-group--levels" role="region" aria-label="Bộ lọc trình độ">
                 <span class="spk-filter-group-label">
                     <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">school</span>
                     Trình độ
@@ -488,29 +566,55 @@
                     }
                 </div>
             </div>
+        </div>
 
-            @if (Model.Topics.Any())
-            {
-                <span class="spk-filter-divider" aria-hidden="true"></span>
+        <p id="spk-catalog-status" class="small mb-0" role="status" aria-live="polite"></p>
+
+        @* Row 3: Topic Chips Carousel (Dedicated compact single-line scroll row) *@
+        @if (Model.Topics.Any())
+        {
+            <div class="spk-toolbar-topics-row" role="region" aria-label="Bộ lọc chủ đề">
                 <div class="spk-filter-group spk-filter-group--topics">
                     <span class="spk-filter-group-label">
                         <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">label</span>
                         Chủ đề
                     </span>
-                    <div class="spk-topic-chips spk-scroll-x" role="toolbar" aria-label="Lọc theo chủ đề">
-                        <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
-                           data-topic="all"
-                           href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">Tất cả chủ đề</a>
-                        @foreach (var topic in Model.Topics)
-                        {
-                            <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
-                               data-topic="@topic"
-                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">@topic</a>
-                        }
+                    <div class="spk-topic-chips-carousel" id="spk-topic-chips-carousel">
+                        <button type="button" class="spk-topic-scroll-btn spk-topic-scroll-btn--prev d-none" id="spk-topic-scroll-prev" aria-label="Cuộn sang trái">
+                            <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">chevron_left</span>
+                        </button>
+                        <div class="spk-topic-chips spk-scroll-x" id="spk-topic-chips-track" role="toolbar" aria-label="Lọc theo chủ đề">
+                            @{
+                                var allMeta = GetTopicMeta("all");
+                            }
+                            <a class="topic-filter-btn spk-chip @(string.IsNullOrEmpty(Model.ActiveTopic) ? "spk-chip--active" : null)"
+                               data-topic="all"
+                               href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">
+                                <span class="spk-chip-icon spk-chip-icon--@allMeta.ClassModifier" style="--chip-icon-color:@allMeta.Color;" aria-hidden="true">
+                                    <span class="material-symbols-outlined">@allMeta.Icon</span>
+                                </span>
+                                <span>Tất cả chủ đề</span>
+                            </a>
+                            @foreach (var topic in Model.Topics)
+                            {
+                                var meta = GetTopicMeta(topic);
+                                <a class="topic-filter-btn spk-chip @(Model.ActiveTopic == topic ? "spk-chip--active" : null)"
+                                   data-topic="@topic"
+                                   href="@Url.Action("Index", "Speaking", new { level = Model.ActiveLevel, topic, search = Model.ActiveSearch, group = groupByLevel ? "level" : null })">
+                                    <span class="spk-chip-icon spk-chip-icon--@meta.ClassModifier" style="--chip-icon-color:@meta.Color;" aria-hidden="true">
+                                        <span class="material-symbols-outlined">@meta.Icon</span>
+                                    </span>
+                                    <span>@topic</span>
+                                </a>
+                            }
+                        </div>
+                        <button type="button" class="spk-topic-scroll-btn spk-topic-scroll-btn--next d-none" id="spk-topic-scroll-next" aria-label="Cuộn sang phải">
+                            <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">chevron_right</span>
+                        </button>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 
     @* ── LEVEL SECTIONS ──────────────────────────────────── *@
@@ -531,9 +635,15 @@
             var topic = topicEntry.Key;
             var topicVideos = loadedVideos.Where(x => (string.IsNullOrEmpty(x.Topic) ? "General" : x.Topic) == topic).OrderBy(x => x.Level).ThenBy(x => x.Id).ToList();
             var trackKey = "topic-" + topicIndex++;
+            var secMeta = GetTopicMeta(topic);
             <section class="vi-level-section spk-level-section mb-5" data-level="@trackKey" data-catalog-topic="@topic" aria-label="Chủ đề @topic">
                 <div class="spk-level-section-header mb-3">
-                    <h3 class="spk-section-title mb-0">@(topic == "General" ? "Nội dung chung" : topic)</h3>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="spk-topic-section-icon" style="background:@(secMeta.Color)14; color:@secMeta.Color;" aria-hidden="true">
+                            <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 1;">@secMeta.Icon</span>
+                        </span>
+                        <h3 class="spk-section-title mb-0">@(topic == "General" ? "Nội dung chung" : topic)</h3>
+                    </div>
                     <span class="spk-count-badge">@topicEntry.Value video</span>
                 </div>
                 <div class="spk-bento-grid spk-bento-grid--4" id="track-@trackKey">
@@ -545,7 +655,7 @@
                 <div class="numbered-pagination-container d-flex justify-content-center gap-2 flex-wrap" data-level="@trackKey"></div>
                 @if (topicVideos.Count < topicEntry.Value)
                 {
-                    <a class="spk-pill-btn mt-3" href="@Url.Action("Index", "Speaking", new { topic, level = Model.ActiveLevel, search = Model.ActiveSearch, group = "level" })">Xem tất cả @topicEntry.Value video · @topic</a>
+                    <a class="spk-pill-btn mt-3 spk-topic-more" href="@Url.Action("Index", "Speaking", new { topic, level = Model.ActiveLevel, search = Model.ActiveSearch, group = "level" })">Xem tất cả @topicEntry.Value video · @topic</a>
                 }
             </section>
         }
@@ -700,6 +810,31 @@
                     <span class="material-symbols-outlined" style="font-size:16px;" aria-hidden="true">delete_forever</span>
                     Xóa vĩnh viễn
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Import failures remain visible until dismissed; Bootstrap manages focus and Escape. *@
+<div class="modal fade tct-theme" id="speakingImportErrorModal" tabindex="-1"
+     aria-labelledby="speaking-import-error-title" aria-describedby="speaking-import-error-message speaking-import-error-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content spk-modal-content">
+            <div class="spk-modal-header">
+                <div class="spk-modal-header-icon spk-modal-header-icon--danger">
+                    <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                </div>
+                <h2 class="spk-modal-title flex-grow-1" id="speaking-import-error-title">Không thể tạo video cá nhân</h2>
+                <button type="button" class="spk-modal-close" data-bs-dismiss="modal" aria-label="Đóng thông báo">
+                    <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                </button>
+            </div>
+            <div class="spk-modal-body">
+                <p id="speaking-import-error-message" class="text-break"></p>
+                <p id="speaking-import-error-help" class="mb-0">Kiểm tra video có xem được và có phụ đề tiếng Anh. Bạn có thể chọn video khác hoặc đính kèm file phụ đề SRT/VTT tiếng Anh để thử lại.</p>
+            </div>
+            <div class="spk-modal-footer">
+                <button type="button" class="spk-btn spk-btn--primary" data-bs-dismiss="modal">Đã hiểu</button>
             </div>
         </div>
     </div>

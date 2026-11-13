@@ -42,6 +42,31 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Speaking YouTube Import Loading State Redesign & Empty State Polish — 2026-11-13
+
+**Symptom**: Khi người dùng dán link YouTube để nhập video cá nhân vào mục "Video của tôi", giao diện trạng thái tải là một thẻ skeleton Bootstrap xám đơn điệu (`placeholder-glow`, `opacity: .75`), không hiển thị thumbnail video, không có thông tin các bước xử lý của AI (trích xuất phụ đề, bóc tách câu, phiên âm IPA), và gây lệch bố cục khi tài khoản chưa có video nào (0 bài).
+
+**Root Cause**: Thẻ `#mip-loading-card` trong `Speaking/Index.cshtml` chỉ dùng các khối `placeholder` mặc định với các lớp cột Bootstrap `col-sm-6 col-md-4 col-lg-3` xung đột với bố cục `spk-bento-grid--4`. File `speaking.js` chưa trích xuất YouTube ID trên client để hiển thị ảnh thumbnail xem trước, chưa cập nhật tiến trình % theo trạng thái job (`queued` -> `running` -> `succeeded`), và không tạm ẩn banner empty state khi đang xử lý video đầu tiên.
+
+**Solution**:
+- Thiết kế lại `#mip-loading-card` theo chuẩn Claymorphism (`.spk-my-card--importing`) với dải ánh sáng động (`.spk-import-shimmer-strip`), biểu tượng AI Orb phát sáng xoay tròn, huy hiệu `AI ĐANG XỬ LÝ` với chấm pulse LED xanh dương và ước tính thời gian `~15-30s`.
+- Bổ sung trích xuất YouTube ID từ link nhập vào trong `speaking.js` để lập tức nạp thumbnail chính thức (`img.youtube.com/vi/{id}/hqdefault.jpg`).
+- Bổ sung thanh tiến trình Clay bo tròn mềm mại (`.spk-import-progress-track`) và ticker các bước theo thời gian thực (25% kết nối -> 45% hàng đợi -> 75% AI bóc tách câu thoại -> 100% hoàn tất).
+- Quản lý trạng thái hiển thị của `my-empty-state` mượt mà khi người dùng có 0 bài học, không để thẻ tải bị chen lấn.
+- Bổ sung test kiểm thử trong `test_speaking_import_behavior.cjs`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Speaking/Index.cshtml` — cập nhật cấu trúc Smart Clay Processing Card và chuẩn hóa thẻ đóng DOM.
+- `TCTEnglish/wwwroot/css/speaking.css` — thêm các quy tắc CSS scoped theo hệ thống token Clay của TCT English.
+- `TCTEnglish/wwwroot/js/speaking.js` — bổ sung trích xuất YouTube ID, hàm `setCardProgress()` và đồng bộ hóa tiến trình trong `watchJob()`.
+- `scripts/tests/dom_fixture.cjs` — bổ sung `insertBefore` cho DOM fixture.
+- `scripts/tests/test_speaking_import_behavior.cjs` — thêm unit test xác thực hiển thị thumbnail và tiến độ tải.
+
+**Verification**: `node scripts/tests/test_speaking_import_behavior.cjs` (8/8 pass), `dotnet build` (0 warnings, 0 errors), `dotnet test --filter Speaking` (76/76 pass).
+
+**Commit**: `fix(speaking): polish youtube personal video import loading card with smart clay preview and step progress`
+
+
 ### Auth Hero Illustration AI Speaking & Accuracy Pill text overlap — 2026-11-12
 
 **Symptom**: On the Auth / Login page (`/Account/Auth`), the custom hero illustration SVG (`auth-illustration.svg`) displayed colliding text in Floating Card 2 ("AI Speaking" bubble). The "AI Speaking" text and the green "98% Acc" accuracy pill overlapped, causing "AI Speaki" to jam directly into the green badge and obscure the characters "ng". In Card 1, "Fluent" and its phonetic transcription `/ˈfluː.ənt/` also lacked sufficient breathing room on fallback font renderers.
@@ -4224,6 +4249,134 @@ root/cue IDs/content and catalog bytes, creating0 roots/cues/package versions.
 69-table original-row preservation passes. Content accuracy/precise audio QA
 remains pending for owner testing and is not inferred from UI readiness.
 
+### Private Speaking YouTube import and failure popup — 2026-11-13
+
+**Symptom**: Admin submitted a YouTube watch URL including a playlist query,
+waited, and no private video appeared. Reload also lost visible job tracking.
+
+**Root cause**: YoutubeExplode's player/captions request reports
+VideoUnavailable for gOMypAhVaXE even though the public Show transcript panel
+returns27 genuine timed English cues. Runtime learner import had no public-panel
+fallback. JavaScript stored job identity without restoring it after reload, and
+terminal failures appeared only in inline feedback.
+
+**Fix**: Add a30-second public transcript fallback with fixed YouTube endpoints,
+validated video identity, section/timing/seek matching and existing English/time
+validation. Preserve source text/bounds; no ASR. Restore saved jobs using GET,
+clear terminal state, retain retry input and display an accessible Bootstrap
+failure modal using textContent. Explain that missing captions or upstream access
+restrictions can prevent import; offer another video or English SRT/VTT.
+
+**Verification**: Before implementation,2 new provider regressions and3 browser
+unit regressions failed. Focused Release checks pass42 .NET and28 Node cases.
+Real authenticated local import succeeds as private video171, “A2 English
+Listening Practice - Travel”, duration3:32,27 cues, bounds0–212.6s. The private
+practice page exposes all27 cues. An unavailable-video job reaches failed with
+no result video; the popup opens and the existing private count remains1.
+Reload resumes with GET only. Popup fits1440/768/390; Tab focus trap, Escape
+and return to the URL field pass in Chromium. Screenshot:
+output/playwright/speaking-import-failure-390.png (ignored).
+
+**Scope/limits**: Existing uncommitted Speaking visual/UAT changes preserved.
+No schema/config/dependency/public-content change, shared export or paid speech
+call. Public transcript UI/schema can change upstream. Native200% browser zoom
+and full content/timing accuracy review are not claimed. Local only; no new
+commit/push/CI/deployment. Execution/final runtime evidence:
+docs/superpowers/plans/2026-11-13-private-speaking-youtube-import-fix.md.
+
+### Reconcile Speaking filter carousel, eight-card slides and layout — 2026-11-13
+
+**Symptoms**: Topic controls overflowed the page and personal-card buttons did
+not align. The owner then supplied the prior Gemini requirements: one-line topic
+carousel/icons, no document reload for filtering/history and8 cards per slide.
+
+**Findings**: A surplus div close after the import placeholder put the public
+toolbar/sections outside the page/theme wrapper. Chrome1440 measured2304px page
+width. Short-title cards were19.594px shorter at1920. The Gemini carousel and
+8-item JS already existed uncommitted on fix/speaking-catalog-transcript-polish,
+but carousel/icon/page-button/page-hidden CSS was missing. There was no separate
+Gemini branch/stash to merge; the old Speaking UI branch is an ancestor.
+
+**Correction**: Restore valid nesting and equal card/title/action geometry.
+After the owner's clarification, retain the horizontal chip carousel rather
+than wrapping it; restore responsive arrows, wheel/touch reachability, topic
+icons and token-based Clay pagination. Fetch rendered public MVC sections without
+document navigation, collect continuations before sliding/counting, guard stale
+responses, and synchronize URL/Back/Forward. Keep private/import/practice controls
+and their fixes intact. All selected public sections show at most8 cards.
+
+**Evidence**: New navigation regressions fail before implementation and pass8/8
+afterward, covering partial catalogs,8/8/1 paging, multi-response data, failed
+reads, stale responses and history.144 shared DOM-fixture consumer checks pass;
+the existing helper now inserts DocumentFragments correctly and the old lifecycle
+test accepts the saved-score notice. Release build succeeds; diff check and5100
+readiness200 pass. Chrome MCP verifies95 cards loaded, no section above8 visible,
+A1=18 across3 slides and B2=15 across2. A JS document marker survives filters,
+group changes and Back/Forward.1440/768/390/375 have no page overflow; topics
+remain one horizontal row and mobile arrows hide. Desktop card/action spread is0.
+
+**Scope**: One checkout/branch, no commit/push/reset/branch deletion, schema,
+protected configuration, public-data mutation or paid AI call. UI/diff snapshot
+is ignored under .appdata/local/speaking-ui-reconcile-20261113. Screenshots were
+inspected inline in Chrome MCP; its file-export root rejected the D path, with
+no bypass. Native200% browser zoom remains unverified. Details:
+docs/superpowers/plans/2026-11-13-speaking-catalog-layout-consistency.md.
+
+### Speaking results disappear on sentence navigation; transcript visibility — 2026-11-13
+
+**Symptoms**: Returning from sentence2 to sentence1 keeps its numeric score but
+loses word feedback and changes unmeasured metrics to0. The hide button only
+masked duplicated center reference text while the side transcript stayed visible.
+
+**Root causes**: Sentence selection always cleared comparison. A successful
+commit cached only numbers, and practice GET projected no assessment comparison
+or availability. A scored0 was treated as unassessed. Two handlers controlled
+the old hide button independently in Razor and speaking.js.
+
+**Fix**: Cache committed comparison/availability per sentence and restore them
+on selection. On GET, batch-query only the current user's consumed Completed
+assessment matching the retained progress's sentence, score and commit timestamp;
+rebuild deterministic comparison without ASR. Add typed ViewModels, keep0 a saved
+result, and show unmeasured metrics as—. Remove center reference paragraphs and
+duplicate handlers. Move one accessible hide/show control to the transcript
+header; collapse the entire list including translations while keeping Show
+reachable across viewport sizes and sentence/tab changes. This is common code
+for all practice videos, with no video/user-ID exception.
+
+**Evidence**:3 Node and2 .NET regressions reproduced before implementation.
+Final expanded checks pass38 .NET and36 Node cases: public/private ownership,
+zero/nonzero results, multiple videos/sentences, foreign/unconsumed/later receipts,
+arbitrary navigation, safe rendering and existing recording lifecycle checks.
+Real MariaDB-backed private Sports172 has43 cues and saved90. Browser verifies
+the same90/90/—/— and21 comparison operations before/after1→2→1 and reload,
+with0 assess/progress requests. Another personal lesson starts without stale
+feedback.1440/768/390 have no horizontal overflow; Enter/Space toggle the list,
+collapsed header remains reachable, and tab/sentence changes retain state.
+CSS-simulated200% zoom has no horizontal overflow; native zoom is unverified.
+Launcher build succeeds, schema remains current, readiness returns200.
+
+**Scope/limits**: Only ViewModels/runtime projection/UI changed; no persisted
+mapping, migration, package export, paid request or protected configuration.
+Older numeric-only progress without its source receipt cannot supply invented
+word feedback. Existing owner visual work is preserved. Local only, no release.
+See docs/superpowers/plans/2026-11-13-speaking-score-restoration-transcript-toggle.md.
+
+### Remove unimplemented Speaking AI suggestion CTA — 2026-11-13
+
+**Symptom/cause**: The practice transcript footer advertised “Gợi ý cải thiện từ
+AI”, but its only handler toggled a CSS class. There was no suggestion request
+or result. The owner explicitly requested removal after source inspection.
+
+**Fix**: Remove the button and its footer from Views/Speaking/Practice.cshtml;
+remove the now-unused footer/suggestion selectors from wwwroot/css/speaking.css.
+Preserve transcript selection, recording, assessment and existing visual work.
+
+**Verification**:13 existing Speaking Clay/selection Node checks pass;
+source search confirms no remaining CTA/footer selectors. Authenticated browser
+Practice171 on5100 renders0 CTA buttons/footers and retains27 transcript cues.
+Debug build succeeds with0 errors; diff check passes; readiness returns HTTP200.
+No backend/schema/config changes.
+
 ### Speaking transcript speaker-marker presentation — 2026-11-13
 
 **Symptom**: old Speaking transcripts display literal YouTube `>>` speaker
@@ -4307,3 +4460,43 @@ delete modal/Escape pass. Readiness 200 on the rebuilt verification app at 5101.
 **Limits**: Native 200% zoom remains unverified; 720x450 reflow was checked
 separately. Existing app at 5100 is preserved. No schema, protected configuration,
 dependencies, commit, push or deployment changes.
+
+### Speaking component scores were placeholders; compact score summary — 2026-11-13
+
+**Symptom**: The total ring sat above three bars. Fluency and completeness stayed
+unavailable after grading because assessment/commit had never calculated them.
+
+**Cause**: The receipt persisted only transcript match, commit hardcoded both other
+scores to zero, and availability flags were always false. The score container was
+a column. Best-score persistence could also differ from a lower new take displayed
+immediately after commit.
+
+**Fix**: Add a deterministic component scorer: attempted reference-position coverage
+for completeness and an explicitly labeled PCM energy/pause/pace fluency estimate.
+Keep missing data nullable; never invent historical audio scores. Store authoritative
+metrics and method version on the receipt via an additive nullable migration, carry
+them through commit/restoration, and preserve valid zero. Historical transcripts
+can recover completeness. Equal totals refresh the take; a lower total returns the
+retained best metrics and its matching comparison. Put ring and bars in a two-column
+scoped grid with a keyboard-accessible scoring explanation. Preserve original
+text-match total and completion/XP semantics; one ASR result, no extra paid calls.
+
+**Files**: SpeakingComponentScorer; SpeakingAssessment model/service/controller;
+SpeakingService; Practice.cshtml; speaking.css/js; migration20261113112346, Designer
+and snapshot; scorer/integration/restoration/MariaDB/Node tests. Exact plan/evidence:
+docs/superpowers/plans/2026-11-13-speaking-component-scores.md.
+
+**Verification**: Baseline regression1 failed; core .NET37 passed. Broader focused
+.NET46 passed/1 skipped (existing MariaDB dual-completion acceptance). Node35 passed.
+Dedicated disposable MariaDB10.5.23 migration upgrade/repeat/preservation1 passed,
+including old nullable receipts and newly stored0; container removed. EF pending
+model check clean; final incremental Release build0 warnings/errors; diff check
+passes. Chrome MCP1440/768/390 shows bars to the right with0 horizontal overflow,
+keyboard explanation and correct private172 navigation/reload90/90/—/95. Public82
+also passes summary/transcript checks. Local affected tables backed up before the
+known checkout-owned web restart; readiness200 at5100. No new shared-data operations.
+
+**Limits**: Historical fluency requires a new recording. Current fluency is a
+transparent coaching heuristic, not validated phoneme/prosody assessment. Real-mic,
+paid-provider and native200% zoom checks were not run. No protected configuration,
+remote Git, CI or deployment changes.

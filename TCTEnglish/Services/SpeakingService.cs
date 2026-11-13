@@ -244,6 +244,20 @@ public sealed class SpeakingService : ISpeakingService
             return null;
         }
 
+        // Restore the receipt committed with the retained progress, not an
+        // uncommitted/newer take or another learner's transcript. One batch query.
+        var sentenceIds = video.SpeakingSentences.Select(s => s.Id).ToList();
+        var savedAssessments = await _context.SpeakingAssessments.AsNoTracking()
+            .Where(a => a.UserId == currentUserId && sentenceIds.Contains(a.SentenceId)
+                && a.Consumed && a.Status == "Completed"
+                && _context.UserSpeakingProgresses.Any(p => p.UserId == currentUserId
+                    && p.SentenceId == a.SentenceId && p.TotalScore == a.TextMatchScore
+                    && p.PracticedAt == a.ConsumedAtUtc))
+            .OrderByDescending(a => a.Id)
+            .Select(a => new { a.SentenceId, a.TranscriptText, a.FluencyScore, a.CompletenessScore, a.MetricVersion })
+            .ToListAsync();
+        var receipts = savedAssessments.GroupBy(a => a.SentenceId).ToDictionary(g => g.Key, g => g.First());
+
         return new SpeakingPracticeViewModel
         {
             VideoId = video.Id,
@@ -257,6 +271,10 @@ public sealed class SpeakingService : ISpeakingService
                     var latestProgress = s.UserSpeakingProgresses
                         .OrderByDescending(p => p.PracticedAt)
                         .FirstOrDefault();
+                    receipts.TryGetValue(s.Id, out var receipt);
+                    var comparison = receipt == null ? null : SpeakingTextAlignment.Compare(s.Text, receipt.TranscriptText);
+                    var completeness = receipt?.CompletenessScore
+                        ?? (comparison == null ? null : SpeakingComponentScorer.Completeness(comparison));
 
                     return new SpeakingSentenceViewModel
                     {
@@ -267,8 +285,21 @@ public sealed class SpeakingService : ISpeakingService
                         VietnameseMeaning = s.VietnameseMeaning,
                         TotalScore = latestProgress?.TotalScore,
                         AccuracyScore = latestProgress?.AccuracyScore,
-                        FluencyScore = latestProgress?.FluencyScore,
-                        CompletenessScore = latestProgress?.CompletenessScore
+                        FluencyScore = receipt?.FluencyScore ?? latestProgress?.FluencyScore,
+                        CompletenessScore = completeness ?? latestProgress?.CompletenessScore,
+                        FluencyAvailable = receipt != null ? receipt.FluencyScore.HasValue : latestProgress?.FluencyScore > 0,
+                        CompletenessAvailable = receipt != null ? completeness.HasValue : latestProgress?.CompletenessScore > 0,
+                        Comparison = comparison == null ? null : new SpeakingComparisonViewModel
+                        {
+                            Available = comparison.ComparisonAvailable,
+                            UnavailableReason = comparison.UnavailableReason,
+                            Operations = comparison.Operations.Select(op => new SpeakingComparisonOperationViewModel
+                            {
+                                Kind = op.Kind.ToString().ToLowerInvariant(),
+                                ReferenceToken = op.ReferenceToken,
+                                HypothesisToken = op.HypothesisToken
+                            }).ToList()
+                        }
                     };
                 }).ToList()
         };
@@ -311,7 +342,7 @@ public sealed class SpeakingService : ISpeakingService
         if (!transcriptResult.IsEnglishUsable || transcriptResult.Sentences.Count == 0)
         {
             return LearnerImportPreparation.Failed(SpeakingImportResult.Invalid(
-                "Video chưa có phụ đề tiếng Anh với mốc thời gian hợp lệ. Hãy chọn video có phụ đề hoặc tải file SRT/VTT tiếng Anh."));
+                "Không thể lấy phụ đề tiếng Anh với mốc thời gian hợp lệ. Video có thể chưa có phụ đề hoặc YouTube đang chặn truy cập. Hãy chọn video khác hoặc tải file SRT/VTT tiếng Anh."));
         }
 
         var metadata = await _youtubeTranscriptService.GetVideoMetadataAsync(normalizedYoutubeId);

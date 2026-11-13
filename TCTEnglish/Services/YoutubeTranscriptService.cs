@@ -32,6 +32,12 @@ public sealed record YoutubeVideoMetadata(
 public class YoutubeTranscriptService : IYoutubeTranscriptService
 {
     private const int MinTranscriptSentenceCount = 3;
+    private static readonly HttpClient PublicTranscriptHttp = new(new SocketsHttpHandler
+    {
+        PooledConnectionLifetime = TimeSpan.FromMinutes(5),
+        UseCookies = false,
+        AllowAutoRedirect = false
+    }) { Timeout = TimeSpan.FromSeconds(30) };
     private static readonly HashSet<string> CommonEnglishWords =
     [
         "the", "and", "to", "of", "in", "is", "you", "that", "it", "for",
@@ -41,11 +47,12 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
     private readonly YoutubeClient _youtubeClient;
     private readonly IAudioTranscriptImporter _audioImporter;
     private readonly ILogger<YoutubeTranscriptService> _logger;
+    private readonly HttpClient? _publicTranscriptHttp;
 
     public YoutubeTranscriptService(
         IAudioTranscriptImporter audioImporter,
         ILogger<YoutubeTranscriptService> logger)
-        : this(audioImporter, logger, new YoutubeClient())
+        : this(audioImporter, logger, new YoutubeClient(), PublicTranscriptHttp)
     {
     }
 
@@ -57,10 +64,20 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
         IAudioTranscriptImporter audioImporter,
         ILogger<YoutubeTranscriptService> logger,
         YoutubeClient youtubeClient)
+        : this(audioImporter, logger, youtubeClient, null)
+    {
+    }
+
+    public YoutubeTranscriptService(
+        IAudioTranscriptImporter audioImporter,
+        ILogger<YoutubeTranscriptService> logger,
+        YoutubeClient youtubeClient,
+        HttpClient? publicTranscriptHttp)
     {
         _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
         _audioImporter = audioImporter;
         _logger = logger;
+        _publicTranscriptHttp = publicTranscriptHttp;
     }
 
     public async Task<List<SpeakingSentence>> GetTranscriptAsync(string youtubeId)
@@ -124,7 +141,25 @@ public class YoutubeTranscriptService : IYoutubeTranscriptService
             _logger.LogWarning(ex, "Failed to load closed captions for video {YoutubeId}.", youtubeId);
         }
 
-        return new YoutubeTranscriptResult(new List<SpeakingSentence>(), false, null);
+        if (_publicTranscriptHttp != null)
+        {
+            try
+            {
+                var publicCaptions = await new YoutubePublicTranscriptClient(_publicTranscriptHttp).GetAsync(youtubeId, ct);
+                if (IsUsableEnglishTranscript(publicCaptions) && ValidateSentenceTimecodes(publicCaptions))
+                {
+                    _logger.LogInformation("Loaded {Count} public transcript cues for {YoutubeId}.", publicCaptions.Count, youtubeId);
+                    return new YoutubeTranscriptResult(publicCaptions, true, "youtube-public-transcript-panel");
+                }
+            }
+            catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Public transcript unavailable for {YoutubeId}.", youtubeId);
+            }
+        }
+
+        return new YoutubeTranscriptResult([], false, null) { ErrorCode = "english_captions_unavailable" };
     }
 
     private static bool ValidateSentenceTimecodes(IReadOnlyList<SpeakingSentence> sentences)

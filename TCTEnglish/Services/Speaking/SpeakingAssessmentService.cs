@@ -13,6 +13,8 @@ public sealed class SpeakingAssessmentOutcome
     public Guid? AssessmentId { get; init; }
     public string Status { get; init; } = string.Empty;
     public double TextMatchScore { get; init; }
+    public double? FluencyScore { get; init; }
+    public double? CompletenessScore { get; init; }
     public bool SpeechDetected { get; init; }
     public string TranscriptPreview { get; init; } = string.Empty;
     public SpeakingTextAlignmentResult? Comparison { get; init; }
@@ -163,6 +165,7 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             };
         }
 
+        var comparison = SpeakingTextAlignment.Compare(access.ReferenceText, transcription.Transcript);
         var assessment = new SpeakingAssessment
         {
             PublicId = Guid.NewGuid(),
@@ -178,6 +181,9 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
                 : transcription.ModelIdentity,
             TranscriptText = speechDetected ? transcription.Transcript : string.Empty,
             TextMatchScore = Math.Round(textMatch, 2),
+            FluencyScore = SpeakingComponentScorer.EstimateFluency(bytes, transcription.Transcript),
+            CompletenessScore = SpeakingComponentScorer.Completeness(comparison),
+            MetricVersion = SpeakingComponentScorer.Version,
             SpeechDetected = speechDetected,
             Status = speechDetected ? "Completed" : "NoSpeech",
             Consumed = false
@@ -194,9 +200,6 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             assessment.Status,
             assessment.TextMatchScore);
 
-        // Align on the full transcript before preview truncation; never a second ASR call.
-        var comparison = SpeakingTextAlignment.Compare(access.ReferenceText, assessment.TranscriptText);
-
         return new SpeakingAssessmentOutcome
         {
             Success = true,
@@ -206,8 +209,10 @@ public sealed class SpeakingAssessmentService : ISpeakingAssessmentService
             SpeechDetected = assessment.SpeechDetected,
             TranscriptPreview = Truncate(assessment.TranscriptText, 120),
             Comparison = comparison,
-            FluencyAvailable = false,
-            CompletenessAvailable = false,
+            FluencyScore = assessment.FluencyScore,
+            CompletenessScore = assessment.CompletenessScore,
+            FluencyAvailable = assessment.FluencyScore.HasValue,
+            CompletenessAvailable = assessment.CompletenessScore.HasValue,
             CanCommitProgress = assessment.SpeechDetected,
             Message = assessment.SpeechDetected
                 ? null

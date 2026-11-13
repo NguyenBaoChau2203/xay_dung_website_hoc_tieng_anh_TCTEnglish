@@ -93,6 +93,21 @@ function createElement(tagName, id) {
     el.children.push(child);
     return child;
   };
+  el.insertBefore = (newChild, refChild) => {
+    if (newChild.nodeType === 11) {
+      [...newChild.children].forEach(child => el.insertBefore(child, refChild));
+      return newChild;
+    }
+    if (newChild.parentNode) newChild.remove();
+    newChild.parentNode = el;
+    const idx = refChild ? el.children.indexOf(refChild) : -1;
+    if (idx >= 0) {
+      el.children.splice(idx, 0, newChild);
+    } else {
+      el.children.push(newChild);
+    }
+    return newChild;
+  };
   Object.defineProperty(el, 'firstChild', {
     get() {
       return el.children.length > 0 ? el.children[0] : null;

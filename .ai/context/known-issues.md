@@ -452,6 +452,42 @@ updates both reference text and highlight. No paid ASR budget/call is approved.
 Existing caption `>>` speaker markers are now removed in practice presentation,
 including the selected reference/dictation text; stored source cues, timing and
 learner history stay intact. Old video44 is browser-verified with121 clean cues.
+Private Speaking YouTube import follow-up (13/11/2026): the player/captions API
+can report VideoUnavailable for a video whose public transcript is available.
+The runtime caption service now falls back to the public transcript panel with
+source timing validation and no ASR. The owner's gOMypAhVaXE imports successfully
+as a private video with27 cues. Failed imports show an accessible error popup;
+reload resumes the saved job without a duplicate POST. Public panel structure is
+an upstream dependency; unavailable captions still fail explicitly with SRT/VTT
+guidance. See the private-speaking-youtube-import-fix execution plan.
+Speaking result restoration follow-up (13/11/2026): shared practice code now
+restores numeric/word feedback and metric availability across sentence navigation
+and reload. Batched receipt lookup is bound to current user and retained progress;
+zero scores stay assessed. The duplicate center reference is removed and the
+side transcript has one accessible hide/show control at every width. Regression
+coverage includes public/private videos, multiple sentences and separate users.
+Historical progress without a source receipt retains its numbers only.
+Speaking catalog reconciliation (13/11/2026): Gemini's uncommitted controls were
+already in the current Speaking checkout, with incomplete carousel/page CSS and
+an extra closing div breaking theme containment. Shared layout is corrected;
+the owner's one-line topic carousel/icons, no-reload filtering/history and8-card
+slides are retained. Async public-section loading accounts for pages absent from
+the current DOM; private cards and practice fixes are preserved. Chrome MCP and
+144 shared fixture checks pass. The final state stays on the current local
+Speaking branch; no unrelated branches or production were merged.
 Existing Guest Listening practice404 and native200% zoom remain unverified/
 unchanged. Current evidence and exact blockers:
 [Speaking transfer ledger](../../docs/feature-audits/2026-11-13-speaking-transfer-transcript-ledger.md).
+
+Speaking component scores follow-up (13/11/2026): both placeholder metrics are now
+implemented for the shared practice flow. Completeness estimates attempted reference
+positions; fluency explicitly estimates timing/pauses/pace from PCM using the existing
+energy planner. Three nullable receipt columns preserve availability and method
+version. Historical transcripts can recover completeness; historical fluency needs
+a new recording. Best-take metrics/comparison and measured zero restore consistently.
+The ring and bars share a row at1440/768/390 without overflow. Core .NET37, Node35
+and disposable MariaDB10.5.23 upgrade/repeat/preservation1 pass; broader focused
+.NET46 pass/1 existing concurrency acceptance skipped. Local migration is applied,
+backup is ignored, web/readiness are available on5100. Fluency remains a coaching
+estimate, with no phoneme/prosody claim; paid real-microphone and native200% zoom
+acceptance were not run. See speaking-component-scores execution plan.

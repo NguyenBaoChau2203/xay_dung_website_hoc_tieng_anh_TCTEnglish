@@ -18,7 +18,7 @@
     // ── DOM refs ─────────────────────────────────────────────────
     const searchInput = document.getElementById('vi-search');
     const videoCounter = document.getElementById('vi-video-count');
-    const levelSections = document.querySelectorAll('.vi-level-section');
+    let levelSections = document.querySelectorAll('.vi-level-section');
     const noResultsEl = document.getElementById('vi-no-results');
 
     // ── State ────────────────────────────────────────────────────
@@ -27,41 +27,296 @@
 
     const initialActiveTopicBtn = document.querySelector('.topic-filter-btn.spk-chip--active');
     let activeTopic = (initialActiveTopicBtn && initialActiveTopicBtn.dataset.topic) || 'all';
+    let catalogRequest = null;
+    let catalogEpoch = 0;
+    let catalogMatchCount = null;
+    let searchTimer = null;
+    const catalogStatus = document.getElementById('spk-catalog-status');
 
-    // Navigational anchors query the complete server catalog, including unloaded
-    // pages. Only non-navigational buttons may narrow the cards already loaded.
+    function modifiedClick(e) {
+        return e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || (e.button != null && e.button !== 0);
+    }
+
+    // Fetch rendered public sections only. Private cards, import controls and
+    // practice state remain in this document. Collect continuation pages before
+    // applying the eight-card slides; a filtered DOM is never a complete catalog.
+    async function loadCatalog() {
+        clearTimeout(searchTimer);
+        if (!noResultsEl || !noResultsEl.parentNode) return;
+        const epoch = ++catalogEpoch;
+        if (catalogRequest) catalogRequest.abort();
+        const controller = new AbortController();
+        catalogRequest = controller;
+        const toolbar = document.querySelector('.spk-library-toolbar');
+        if (toolbar) toolbar.setAttribute('aria-busy', 'true');
+        if (catalogStatus) catalogStatus.textContent = 'Đang lọc video…';
+        try {
+            const params = new URLSearchParams(window.location.search);
+            params.delete('mine');
+            params.set('pageSize', '100');
+            const sections = new Map();
+            const seen = new Set();
+            let total = 0;
+            let page = 1;
+            let heading = '';
+            do {
+                params.set('page', String(page));
+                const response = await fetch('/Speaking/Index?' + params.toString(), {
+                    credentials: 'same-origin', headers: { Accept: 'text/html' }, signal: controller.signal
+                });
+                if (!response.ok || (response.redirected && /\/Account\//i.test(response.url || ''))) throw new Error('Catalog unavailable');
+                const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
+                if (epoch !== catalogEpoch) return;
+                const counter = parsed.querySelector('#vi-video-count');
+                if (!counter) throw new Error('Invalid catalog response');
+                total = Number(counter.dataset.totalCount);
+                if (!Number.isFinite(total) || total < 0) throw new Error('Invalid catalog count');
+                heading = parsed.querySelector('.spk-library-toolbar h2')?.textContent || heading;
+                const previousCount = seen.size;
+                parsed.querySelectorAll('.vi-level-section').forEach(section => {
+                    const key = section.dataset.catalogTopic ? 'topic:' + section.dataset.catalogTopic : 'level:' + section.dataset.level;
+                    const existing = sections.get(key);
+                    if (!existing) sections.set(key, section);
+                    const target = (existing || section).querySelector('.spk-bento-grid');
+                    section.querySelectorAll('.vi-video-col').forEach(card => {
+                        if (seen.has(card.dataset.videoId)) return;
+                        seen.add(card.dataset.videoId);
+                        if (existing && target) target.appendChild(card);
+                    });
+                });
+                if (seen.size < total && seen.size === previousCount) throw new Error('Incomplete catalog response');
+                page += 1;
+            } while (seen.size < total);
+            if (epoch !== catalogEpoch) return;
+            levelSections.forEach(section => section.remove());
+            sections.forEach(section => {
+                section.querySelectorAll('.spk-load-more-public').forEach(button => button.parentNode.remove());
+                section.querySelectorAll('.spk-topic-more').forEach(link => link.remove());
+                noResultsEl.parentNode.insertBefore(section, noResultsEl);
+            });
+            levelSections = document.querySelectorAll('.vi-level-section');
+            catalogMatchCount = total;
+            const title = document.querySelector('.spk-library-toolbar h2');
+            if (title && heading) title.textContent = heading;
+            applyFilters();
+            if (catalogStatus) catalogStatus.textContent = '';
+        } catch (error) {
+            if (epoch === catalogEpoch && error.name !== 'AbortError' && catalogStatus) {
+                catalogStatus.textContent = 'Không thể tải kết quả lọc. Vui lòng thử lại; danh sách trước vẫn được giữ.';
+            }
+        } finally {
+            if (epoch === catalogEpoch && toolbar) toolbar.setAttribute('aria-busy', 'false');
+        }
+    }
+
+    function updateUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        if (activeLevel && activeLevel !== 'all') {
+            params.set('level', activeLevel);
+        } else {
+            params.delete('level');
+        }
+
+        if (activeTopic && activeTopic !== 'all') {
+            params.set('topic', activeTopic);
+        } else {
+            params.delete('topic');
+        }
+
+        const q = searchInput ? searchInput.value.trim() : '';
+        if (q) {
+            params.set('search', q);
+        } else {
+            params.delete('search');
+        }
+
+        params.delete('page');
+        params.delete('mine');
+        const qs = params.toString();
+        const newUrl = window.location.pathname + (qs ? ('?' + qs) : '');
+        window.history.pushState({ level: activeLevel, topic: activeTopic, search: q }, '', newUrl);
+        syncFilterLinks();
+    }
+
+    function syncFilterLinks() {
+        [ ...filterBtns, ...levelBtns ].forEach(link => {
+            const params = new URLSearchParams(window.location.search);
+            const key = link.classList.contains('topic-filter-btn') ? 'topic' : 'level';
+            const value = link.dataset[key] || 'all';
+            if (value === 'all') params.delete(key); else params.set(key, value);
+            params.delete('page');
+            link.setAttribute('href', window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
+        });
+    }
+
+    // Instant client-side filtering without reloading the page
     filterBtns.forEach(btn => {
-        if (btn.tagName === 'A') return;
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            if (modifiedClick(e)) return;
+            const targetTopic = btn.dataset.topic || 'all';
+            e.preventDefault();
             filterBtns.forEach(b => b.classList.remove('active', 'spk-chip--active'));
             btn.classList.add('active', 'spk-chip--active');
-            activeTopic = btn.dataset.topic || 'all';
-            applyFilters();
+            activeTopic = targetTopic;
+            updateUrlState();
+            loadCatalog();
+            centerTopic(btn);
         });
     });
 
     levelBtns.forEach(btn => {
-        if (btn.tagName === 'A') return;
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            if (modifiedClick(e)) return;
+            const targetLevel = btn.dataset.level || 'all';
+            e.preventDefault();
             levelBtns.forEach(b => b.classList.remove('active', 'spk-pill-btn--active'));
             btn.classList.add('active', 'spk-pill-btn--active');
-            activeLevel = btn.dataset.level || 'all';
-            applyFilters();
+            activeLevel = targetLevel;
+            updateUrlState();
+            loadCatalog();
         });
     });
 
-    // ── SEARCH (server query on Enter; live filter still narrows current page) ─
+    // Browser Back / Forward button navigation support (popstate)
+    window.addEventListener('popstate', () => {
+        const params = new URLSearchParams(window.location.search);
+        activeLevel = params.get('level') || 'all';
+        activeTopic = params.get('topic') || 'all';
+
+        levelBtns.forEach(btn => {
+            const lvl = btn.dataset.level || 'all';
+            if (lvl.toLowerCase() === activeLevel.toLowerCase()) {
+                btn.classList.add('active', 'spk-pill-btn--active');
+            } else {
+                btn.classList.remove('active', 'spk-pill-btn--active');
+            }
+        });
+
+        filterBtns.forEach(btn => {
+            const top = btn.dataset.topic || 'all';
+            if (top.toLowerCase() === activeTopic.toLowerCase()) {
+                btn.classList.add('active', 'spk-chip--active');
+                centerTopic(btn);
+            } else {
+                btn.classList.remove('active', 'spk-chip--active');
+            }
+        });
+
+        if (searchInput) {
+            searchInput.value = params.get('search') || '';
+        }
+
+        syncGroupButtons();
+        syncFilterLinks();
+        loadCatalog();
+    });
+
+    function syncGroupButtons() {
+        const byLevel = new URLSearchParams(window.location.search).get('group') === 'level';
+        document.querySelectorAll('[aria-label="Sắp xếp thư viện"] a').forEach(item => {
+            const target = new URLSearchParams((item.getAttribute('href') || '').split('?')[1] || '');
+            const targetsLevel = target.get('group') === 'level';
+            const selected = targetsLevel === byLevel;
+            const hrefParams = new URLSearchParams(window.location.search);
+            if (targetsLevel) hrefParams.set('group', 'level'); else hrefParams.delete('group');
+            hrefParams.delete('page');
+            item.setAttribute('href', window.location.pathname + (hrefParams.toString() ? '?' + hrefParams.toString() : ''));
+            item.classList.toggle('spk-pill-btn--active', selected);
+            if (selected) item.setAttribute('aria-current', 'page'); else item.removeAttribute('aria-current');
+        });
+    }
+
+    document.querySelectorAll('[aria-label="Sắp xếp thư viện"] a').forEach(link => {
+        link.addEventListener('click', e => {
+            if (modifiedClick(e)) return;
+            e.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            const target = new URLSearchParams((link.getAttribute('href') || '').split('?')[1] || '');
+            if (target.get('group') === 'level') params.set('group', 'level'); else params.delete('group');
+            params.delete('page');
+            window.history.pushState({}, '', window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
+            syncGroupButtons();
+            syncFilterLinks();
+            loadCatalog();
+        });
+    });
+
+    // ── TOPIC CHIPS CAROUSEL SCROLL ──
+    const topicTrack = document.getElementById('spk-topic-chips-track');
+    const topicPrevBtn = document.getElementById('spk-topic-scroll-prev');
+    const topicNextBtn = document.getElementById('spk-topic-scroll-next');
+
+    function centerTopic(chip) {
+        if (!topicTrack || !chip) return;
+        const delta = chip.getBoundingClientRect().left - topicTrack.getBoundingClientRect().left
+            - (topicTrack.clientWidth - chip.clientWidth) / 2;
+        const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        topicTrack.scrollBy({ left: delta, behavior: reduced ? 'auto' : 'smooth' });
+    }
+
+    if (topicTrack) {
+        function updateTopicScrollButtons() {
+            if (!topicPrevBtn || !topicNextBtn) return;
+            const maxScroll = topicTrack.scrollWidth - topicTrack.clientWidth;
+            if (maxScroll <= 4) {
+                topicPrevBtn.classList.add('d-none');
+                topicNextBtn.classList.add('d-none');
+                return;
+            }
+            if (topicTrack.scrollLeft > 6) {
+                topicPrevBtn.classList.remove('d-none');
+            } else {
+                topicPrevBtn.classList.add('d-none');
+            }
+            if (topicTrack.scrollLeft < maxScroll - 6) {
+                topicNextBtn.classList.remove('d-none');
+            } else {
+                topicNextBtn.classList.add('d-none');
+            }
+        }
+
+        topicPrevBtn?.addEventListener('click', () => {
+            topicTrack.scrollBy({ left: -220, behavior: 'smooth' });
+        });
+
+        topicNextBtn?.addEventListener('click', () => {
+            topicTrack.scrollBy({ left: 220, behavior: 'smooth' });
+        });
+
+        topicTrack.addEventListener('scroll', updateTopicScrollButtons, { passive: true });
+        window.addEventListener('resize', updateTopicScrollButtons, { passive: true });
+
+        // Wheel horizontal scroll support
+        topicTrack.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0 && topicTrack.scrollWidth > topicTrack.clientWidth) {
+                e.preventDefault();
+                topicTrack.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
+
+        // Scroll active chip into view on load
+        const activeChip = topicTrack.querySelector('.spk-chip--active');
+        if (activeChip) {
+            centerTopic(activeChip);
+        }
+
+        setTimeout(updateTopicScrollButtons, 50);
+    }
+
+    // ── SEARCH (instant live filter without reloading) ─
     if (searchInput) {
-        searchInput.addEventListener('input', () => { applyFilters(); });
+        searchInput.addEventListener('input', () => {
+            updateUrlState();
+            if (catalogRequest) catalogRequest.abort();
+            catalogEpoch += 1;
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(loadCatalog, 200);
+        });
         searchInput.addEventListener('keydown', e => {
             if (e.key !== 'Enter') return;
             e.preventDefault();
-            const params = new URLSearchParams(window.location.search);
-            const q = searchInput.value.trim();
-            if (q) params.set('search', q); else params.delete('search');
-            params.delete('page');
-            const qs = params.toString();
-            window.location.href = '/Speaking' + (qs ? ('?' + qs) : '');
+            updateUrlState();
+            loadCatalog();
         });
 
         document.addEventListener('keydown', e => {
@@ -73,8 +328,19 @@
         });
     }
 
-    // ── CORE FILTER & PAGINATION LOGIC ───────────────────────────
-    const ITEMS_PER_PAGE = 6;
+    const searchClearBtn = document.querySelector('.spk-search-clear');
+    if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (searchInput) searchInput.value = '';
+            searchClearBtn.style.display = 'none';
+            updateUrlState();
+            loadCatalog();
+        });
+    }
+
+    // ── CORE FILTER & PAGINATION LOGIC (8 items per slide) ───────
+    const ITEMS_PER_PAGE = 8;
 
     function applyFilters() {
         const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
@@ -99,26 +365,31 @@
                     totalVisibleCount++;
                 } else {
                     card.classList.add('vi-card-hidden');
+                    card.classList.remove('vi-card-page-hidden');
                 }
             });
 
             if (visibleCards.length === 0) {
                 section.classList.add('vi-section-hidden');
+                const container = document.querySelector(`.numbered-pagination-container[data-level="${level}"]`);
+                if (container) {
+                    container.innerHTML = '';
+                    container.classList.add('d-none');
+                }
             } else {
                 section.classList.remove('vi-section-hidden');
                 renderPagination(level, visibleCards);
             }
         });
 
+        const matchingCount = catalogMatchCount ?? Number(videoCounter?.dataset.totalCount || totalVisibleCount);
         if (videoCounter) {
-            videoCounter.textContent = query || activeTopic !== 'all'
-                ? `${totalVisibleCount} result${totalVisibleCount !== 1 ? 's' : ''}`
-                : `${videoCounter.dataset.totalCount || totalVisibleCount} videos`;
+            videoCounter.textContent = `${matchingCount} bài học`;
         }
 
         const libraryBadge = document.querySelector('.spk-library-count-badge');
         if (libraryBadge) {
-            libraryBadge.textContent = `${totalVisibleCount} bài học`;
+            libraryBadge.textContent = `${matchingCount} bài học`;
         }
 
         if (noResultsEl) {
@@ -131,58 +402,69 @@
         const track = document.getElementById(`track-${level}`);
         if (!container || !track) return;
 
-        visibleCards.forEach(card => card.classList.remove('vi-card-hidden'));
-
         const totalItems = visibleCards.length;
         const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
         container.innerHTML = '';
 
+        function showPage(pageNumber) {
+            const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+
+            visibleCards.forEach((card, idx) => {
+                if (idx >= startIndex && idx < endIndex) {
+                    card.classList.remove('vi-card-hidden', 'vi-card-page-hidden');
+                } else {
+                    card.classList.remove('vi-card-hidden');
+                    card.classList.add('vi-card-page-hidden');
+                }
+            });
+
+            container.querySelectorAll('.page-btn').forEach(b => {
+                const p = Number(b.dataset.page);
+                if (p === pageNumber) {
+                    b.classList.add('active');
+                    b.setAttribute('aria-current', 'page');
+                } else {
+                    b.classList.remove('active');
+                    b.removeAttribute('aria-current');
+                }
+            });
+        }
+
         if (totalPages <= 1) {
             container.classList.add('d-none');
+            visibleCards.forEach(card => card.classList.remove('vi-card-hidden', 'vi-card-page-hidden'));
             return;
         }
+
         container.classList.remove('d-none');
 
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
-            btn.className = 'page-btn';
+            btn.type = 'button';
+            btn.className = 'page-btn' + (i === 1 ? ' active' : '');
+            btn.dataset.page = String(i);
             btn.textContent = i;
-            if (i === 1) btn.classList.add('active');
+            btn.setAttribute('aria-label', `Trang ${i}`);
+            if (i === 1) btn.setAttribute('aria-current', 'page');
 
-            btn.addEventListener('click', () => {
-                container.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const firstCard = visibleCards[0];
-                if (firstCard) {
-                    const cardWidthWithGap = firstCard.offsetWidth + 16;
-                    track.scrollTo({ left: (i - 1) * ITEMS_PER_PAGE * cardWidthWithGap, behavior: 'smooth' });
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(i);
+
+                // Smooth scroll to track header if the section top is scrolled off-screen
+                const section = track.closest('.spk-level-section') || track;
+                const rect = section.getBoundingClientRect();
+                if (rect.top < 60) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
 
             container.appendChild(btn);
         }
 
-        track.scrollTo({ left: 0, behavior: 'smooth' });
+        showPage(1);
     }
-
-    levelSections.forEach(section => {
-        const level = section.dataset.level;
-        const track = document.getElementById(`track-${level}`);
-        if (track) {
-            track.addEventListener('scroll', () => {
-                const container = document.querySelector(`.numbered-pagination-container[data-level="${level}"]`);
-                if (!container) return;
-                const visibleCards = Array.from(track.querySelectorAll('.vi-video-col:not(.vi-card-hidden)'));
-                if (visibleCards.length === 0) return;
-                const cardWidthWithGap = visibleCards[0].offsetWidth + 16;
-                const currentPage = Math.floor(track.scrollLeft / (cardWidthWithGap * ITEMS_PER_PAGE)) + 1;
-                const buttons = container.querySelectorAll('.page-btn');
-                buttons.forEach(b => b.classList.remove('active'));
-                const activeBtn = buttons[currentPage - 1];
-                if (activeBtn) activeBtn.classList.add('active');
-            });
-        }
-    });
 
     applyFilters(); // ensure correct state on page load
 
@@ -381,6 +663,8 @@
     const btnDicSliderPrev = $('btn-dic-slider-prev');
     const btnDicSliderNext = $('btn-dic-slider-next');
     const btnHideText = $('btn-hide-text');
+    const transcriptPanel = $('spk-transcript-panel');
+    const transcriptList = $('spk-transcript-list');
     const progBar = $('prog-bar');
     const progText = $('prog-text');
     const progPct = $('prog-pct');
@@ -716,7 +1000,8 @@
 
         // Update score board from stored data
         updateScoreBoard(s);
-        clearWordComparison();
+        if (s.isPracticed && s.comparison) renderWordComparison(s.comparison);
+        else clearWordComparison();
 
         // YouTube seek
         if (player && typeof player.seekTo === 'function') {
@@ -833,7 +1118,7 @@
     }
 
     function updateScoreBoard(sentence, previewMatchPct = null) {
-        const hasStored = !!(sentence && sentence.isPracticed && sentence.totalScore > 0);
+        const hasStored = !!(sentence && sentence.isPracticed && Number.isFinite(sentence.totalScore));
         const isPreview = previewMatchPct != null;
 
         SCORE_METRICS.forEach(m => {
@@ -853,8 +1138,10 @@
                 }
             } else if (hasStored) {
                 const raw = sentence[m.val];
-                barPct = (raw && raw > 0) ? Math.round(raw) : 0;
-                display = formatScoreDisplay(raw);
+                unavailable = (m.val === 'fluencyScore' && (sentence.fluencyAvailable === false || (sentence.fluencyAvailable == null && !(raw > 0))))
+                    || (m.val === 'completenessScore' && (sentence.completenessAvailable === false || (sentence.completenessAvailable == null && !(raw > 0))));
+                barPct = !unavailable && raw > 0 ? Math.round(raw) : 0;
+                display = formatScoreDisplay(raw, { unavailable });
             } else {
                 display = '0';
                 barPct = 0;
@@ -876,7 +1163,9 @@
         if (isPreview) {
             setAssessmentStatus('Xem trước khớp lời nói — chưa lưu tiến độ / XP (chờ chấm phía máy chủ).');
         } else if (hasStored) {
-            setAssessmentStatus('');
+            setAssessmentStatus(sentence.fluencyAvailable === false || sentence.completenessAvailable === false
+                ? 'Đã lưu kết quả. Chỉ số thiếu dữ liệu hiển thị —; hãy thu lại để được chấm đầy đủ.'
+                : 'Đã lưu kết quả cho câu này. Lưu loát là điểm ước lượng theo nhịp nói và khoảng ngắt.');
         } else {
             setAssessmentStatus('Chưa có điểm đã lưu cho câu này.');
         }
@@ -1306,10 +1595,12 @@
             s.accuracyScore = progress.accuracyScore;
             s.fluencyScore = progress.fluencyScore;
             s.completenessScore = progress.completenessScore;
+            s.fluencyAvailable = progress.fluencyAvailable ?? assessBody.fluencyAvailable ?? false;
+            s.completenessAvailable = progress.completenessAvailable ?? assessBody.completenessAvailable ?? false;
+            s.comparison = progress.comparison !== undefined ? progress.comparison : (assessBody.comparison || null);
             updateScoreBoard(s, null);
             updateProgressUI();
             markSentenceDone(snapshot.sentenceIndex);
-            setAssessmentStatus('Đã lưu mức khớp lời nói (server). Fluency/prosody chưa đo.');
             showToast(`Đã lưu ~${Math.round(progress.totalScore)}% khớp lời nói`, 'success');
             if (progress.firstTimeVideoCompletion && progress.xpEarned > 0) {
                 showToast(`Hoàn thành bài — +${progress.xpEarned} XP`, 'success');
@@ -1642,15 +1933,14 @@
             renderDictationFeedback(dicInput.value, expected);
         });
 
-        // Hide text toggle
+        // Hide the complete transcript list; keep its header control reachable.
         btnHideText?.addEventListener('click', () => {
             isTextHidden = !isTextHidden;
             if (btnHideText) btnHideText.textContent = isTextHidden ? 'Hiện' : 'Ẩn';
-            if (transcriptEn) {
-                transcriptEn.textContent = isTextHidden
-                    ? '••••••••••••••••'
-                    : (transcriptEn.dataset.original || '');
-            }
+            btnHideText.setAttribute('aria-expanded', String(!isTextHidden));
+            btnHideText.setAttribute('aria-label', (isTextHidden ? 'Hiện' : 'Ẩn') + ' kịch bản bài học');
+            if (transcriptList) transcriptList.hidden = isTextHidden;
+            if (transcriptPanel) transcriptPanel.classList.toggle('spk-transcript-panel--collapsed', isTextHidden);
         });
 
         // Hide video toggle — shows black overlay over iframe to block subtitles
@@ -1866,11 +2156,60 @@
     const myEmptyState  = document.getElementById('my-empty-state');
     const mySecCount    = document.getElementById('my-sec-count');
     const loadingCard   = document.getElementById('mip-loading-card');
+    const loadingThumb            = document.getElementById('mip-loading-thumb');
+    const loadingThumbPlaceholder = document.getElementById('mip-loading-thumb-placeholder');
+    const loadingBadgeText        = document.getElementById('mip-loading-badge-text');
+    const loadingEta              = document.getElementById('mip-loading-eta');
+    const loadingTitle            = document.getElementById('mip-loading-title');
+    const loadingStepText         = document.getElementById('mip-loading-step-text');
+    const loadingStepIcon         = document.getElementById('mip-loading-step-icon');
+    const loadingProgressTrack    = document.getElementById('mip-loading-progress-track');
+    const loadingProgressFill     = document.getElementById('mip-loading-progress-fill');
+    const loadingBtnText          = document.getElementById('mip-loading-btn-text');
+    const errorModalEl  = document.getElementById('speakingImportErrorModal');
+    const errorMessage  = document.getElementById('speaking-import-error-message');
+    const errorModal    = errorModalEl && typeof bootstrap !== 'undefined'
+        ? new bootstrap.Modal(errorModalEl) : null;
+
+    if (errorModalEl) {
+        errorModalEl.addEventListener('hidden.bs.modal', function () {
+            if (urlInput && !urlInput.disabled) urlInput.focus();
+        });
+    }
 
     // ── Anti-forgery token ─────────────────────────────────────────
     function getToken() {
         const t = document.querySelector('input[name="__RequestVerificationToken"]');
         return t ? t.value : '';
+    }
+
+    // ── Helpers ────────────────────────────────────────────────────
+    function extractYoutubeId(url) {
+        if (!url || typeof url !== 'string') return null;
+        const trimmed = url.trim();
+        const m = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([a-zA-Z0-9_-]{11})/);
+        return m && m[1] ? m[1] : null;
+    }
+
+    function setCardProgress(percent, stepText, stepIcon, badgeText, btnText) {
+        if (loadingProgressFill) {
+            loadingProgressFill.style.width = Math.min(100, Math.max(0, percent)) + '%';
+        }
+        if (loadingProgressTrack) {
+            loadingProgressTrack.setAttribute('aria-valuenow', String(percent));
+        }
+        if (stepText && loadingStepText) {
+            loadingStepText.textContent = stepText;
+        }
+        if (stepIcon && loadingStepIcon) {
+            loadingStepIcon.textContent = stepIcon;
+        }
+        if (badgeText && loadingBadgeText) {
+            loadingBadgeText.textContent = badgeText;
+        }
+        if (btnText && loadingBtnText) {
+            loadingBtnText.textContent = btnText;
+        }
     }
 
     // ── Feedback helpers ───────────────────────────────────────────
@@ -1883,6 +2222,12 @@
         if (feedback) feedback.innerHTML = '';
     }
 
+    function showImportError(message) {
+        showFeedback('<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ' + escHtml(message), 'mip-feedback-error');
+        if (errorMessage) errorMessage.textContent = message;
+        if (errorModal) errorModal.show();
+    }
+
     function escHtml(str) {
         return (str || '')
             .replace(/&/g, '&amp;')
@@ -1892,9 +2237,10 @@
     }
 
     // ── Loading state ──────────────────────────────────────────────
-    function setLoading(loading) {
+    function setLoading(loading, youtubeUrl) {
         if (submitBtn)  submitBtn.disabled  = loading;
         if (urlInput)   urlInput.disabled   = loading;
+        if (subtitleInput) subtitleInput.disabled = loading;
 
         if (loading) {
             if (btnLabel) btnLabel.textContent = 'Đang xử lý...';
@@ -1903,10 +2249,47 @@
                 btnIcon.textContent = '';
             }
 
-            // Show skeleton card in my-videos grid
+            const rawUrl = youtubeUrl || (urlInput ? urlInput.value : '');
+            const ytId = extractYoutubeId(rawUrl);
+            if (ytId) {
+                if (loadingThumb) {
+                    loadingThumb.src = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+                    loadingThumb.classList.remove('d-none');
+                }
+                if (loadingThumbPlaceholder) {
+                    loadingThumbPlaceholder.classList.add('spk-import-thumb-has-img');
+                }
+                if (loadingTitle) {
+                    loadingTitle.textContent = 'Video YouTube • ' + ytId;
+                }
+            } else {
+                if (loadingThumb) {
+                    loadingThumb.classList.add('d-none');
+                    loadingThumb.src = '';
+                }
+                if (loadingThumbPlaceholder) {
+                    loadingThumbPlaceholder.classList.remove('spk-import-thumb-has-img');
+                }
+                if (loadingTitle) {
+                    loadingTitle.textContent = 'Đang tạo bài học từ YouTube...';
+                }
+            }
+
+            setCardProgress(25, 'Đang kết nối video YouTube...', 'sync', 'AI ĐANG XỬ LÝ', 'Đang tạo bài...');
+
+            // Hide empty state cleanly while importing so the loading card is front and center
+            if (myEmptyState) {
+                myEmptyState.style.display = 'none';
+            }
+
+            // Show smart loading card in my-videos grid
             if (loadingCard && myVideosGrid) {
                 loadingCard.classList.remove('d-none');
-                myVideosGrid.insertBefore(loadingCard, myVideosGrid.firstChild);
+                if (typeof myVideosGrid.insertBefore === 'function') {
+                    myVideosGrid.insertBefore(loadingCard, myVideosGrid.firstChild);
+                } else if (typeof myVideosGrid.prepend === 'function') {
+                    myVideosGrid.prepend(loadingCard);
+                }
             }
         } else {
             if (btnLabel) btnLabel.textContent = 'Thêm video';
@@ -1916,6 +2299,7 @@
             }
 
             if (loadingCard) loadingCard.classList.add('d-none');
+            updateCount();
         }
     }
 
@@ -1923,7 +2307,7 @@
     function updateCount() {
         if (!mySecCount || !myVideosGrid) return;
         const realCards = myVideosGrid.querySelectorAll(
-            '.my-video-card:not(.my-video-card--skeleton)'
+            '.my-video-card:not(.my-video-card--skeleton):not(.spk-import-loading-card)'
         );
         const serverTotal = Number(mySecCount.dataset.totalCount);
         const n = mySecCount.dataset.totalCount !== undefined && Number.isFinite(serverTotal)
@@ -1931,7 +2315,8 @@
         mySecCount.textContent = n + ' bài';
 
         if (myEmptyState) {
-            myEmptyState.style.display = n === 0 ? '' : 'none';
+            const isImporting = loadingCard && !loadingCard.classList.contains('d-none');
+            myEmptyState.style.display = (n === 0 && !isImporting) ? '' : 'none';
         }
     }
 
@@ -1950,6 +2335,11 @@
         try { sessionStorage.setItem('tct-speaking-import-job', String(jobId)); } catch (_) { /* ignore */ }
     }
 
+    function forgetJob() {
+        try { sessionStorage.removeItem('tct-speaking-import-job'); } catch (_) { /* ignore */ }
+        window.TctSpeakingImport.lastJobId = null;
+    }
+
     function statusLabel(status) {
         if (status === 'queued') return 'Đang chờ xử lý';
         if (status === 'running') return 'Đang tạo bài';
@@ -1964,6 +2354,7 @@
         const started = Date.now();
         let delayMs = initialDelayMs;
         rememberJob(jobId);
+        window.TctSpeakingImport.lastJobId = jobId;
         showFeedback(
             '<i class="fas fa-spinner fa-spin"></i> ' + escHtml('Đã nhận job ' + jobId + '. Đang theo dõi trạng thái.'),
             'mip-feedback-success'
@@ -1994,32 +2385,39 @@
             }
 
             if (!res.ok) {
-                showFeedback(
-                    '<i class="fas fa-exclamation-circle"></i> ' + escHtml(data.error || 'Không đọc được trạng thái job.'),
-                    'mip-feedback-error'
-                );
+                if (res.status === 404 || res.status === 401) forgetJob();
                 setLoading(false);
+                showImportError(data.error || 'Không đọc được trạng thái tạo video. Hãy đăng nhập lại hoặc thử theo dõi lại.');
                 return;
             }
 
             const status = data.status;
+            if (status === 'queued') {
+                setCardProgress(40, 'Đang trong hàng đợi xử lý AI...', 'schedule', 'HÀNG ĐỢI', 'Đang xử lý...');
+            } else if (status === 'running') {
+                const elapsedSec = Math.round((Date.now() - started) / 1000);
+                const progressPct = elapsedSec > 8 ? 85 : 70;
+                const progressMsg = elapsedSec > 8
+                    ? 'AI đang phân tích câu thoại & phiên âm IPA...'
+                    : 'AI đang bóc tách lời thoại và phụ đề...';
+                setCardProgress(progressPct, progressMsg, 'record_voice_over', 'ĐANG TẠO BÀI', 'AI đang xử lý...');
+            }
+
             if (status === 'succeeded' && data.videoId) {
+                setCardProgress(100, '✨ Đã hoàn tất! Đang mở bài học...', 'check_circle', 'HOÀN TẤT', 'Thành công!');
                 showFeedback(
                     '<i class="fas fa-check-circle"></i> Đã tạo bài. Đang tải lại trang...',
                     'mip-feedback-success'
                 );
-                try { sessionStorage.removeItem('tct-speaking-import-job'); } catch (_) { /* ignore */ }
+                forgetJob();
                 setTimeout(() => window.location.reload(), reloadDelayMs);
                 return;
             }
 
             if (status === 'failed' || status === 'cancelled') {
-                showFeedback(
-                    '<i class="fas fa-exclamation-circle"></i> '
-                    + escHtml((data.error || statusLabel(status)) + ' Bạn có thể gửi lại cùng URL.'),
-                    'mip-feedback-error'
-                );
+                forgetJob();
                 setLoading(false);
+                showImportError(data.error || 'Không thể tạo video. Hãy chọn video có phụ đề tiếng Anh hoặc đính kèm file SRT/VTT rồi thử lại.');
                 return;
             }
 
@@ -2041,18 +2439,16 @@
     }
 
     async function submitImport() {
+        if (submitBtn.disabled) return;
         const url = (urlInput ? urlInput.value : '').trim();
         if (!url) {
-            showFeedback(
-                '<i class="fas fa-exclamation-circle"></i> Vui lòng nhập YouTube URL.',
-                'mip-feedback-error'
-            );
+            showImportError('Vui lòng nhập YouTube URL.');
             if (urlInput) urlInput.focus();
             return;
         }
 
         clearFeedback();
-        setLoading(true);
+        setLoading(true, url);
         try {
             const formData = new FormData();
             formData.append('youtubeUrl', url);
@@ -2064,8 +2460,6 @@
             const res = await fetch(endpoint, { method: 'POST', body: formData });
             const data = await res.json().catch(() => ({}));
             if (res.status === 202 && data.jobId && data.statusUrl) {
-                if (urlInput) urlInput.value = '';
-                if (subtitleInput) subtitleInput.value = '';
                 await watchJob(data.jobId, data.statusUrl);
                 return;
             }
@@ -2081,16 +2475,9 @@
                 return;
             }
 
-            showFeedback(
-                '<i class="fas fa-exclamation-circle"></i> '
-                + escHtml(data.error || 'Đã xảy ra lỗi — vui lòng thử lại.'),
-                'mip-feedback-error'
-            );
+            showImportError(data.error || 'Không thể gửi yêu cầu tạo video. Vui lòng thử lại.');
         } catch (_err) {
-            showFeedback(
-                '<i class="fas fa-exclamation-circle"></i> Lỗi kết nối — vui lòng thử lại sau.',
-                'mip-feedback-error'
-            );
+            showImportError('Lỗi kết nối — vui lòng kiểm tra mạng rồi thử lại.');
         }
 
         setLoading(false);
@@ -2107,6 +2494,13 @@
             watchJob(id, '/api/speaking/imports/' + id);
         }
     };
+
+    try {
+        const savedJob = sessionStorage.getItem('tct-speaking-import-job');
+        if (savedJob && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(savedJob)) {
+            window.TctSpeakingImport.resume(savedJob);
+        }
+    } catch (_) { /* Session storage may be disabled. Import still works. */ }
 
     // Allow Enter key in URL input to trigger submit
     if (urlInput) {
