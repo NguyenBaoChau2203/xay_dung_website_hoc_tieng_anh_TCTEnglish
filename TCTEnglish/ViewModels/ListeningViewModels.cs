@@ -187,6 +187,20 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Premium/Admin: playback speed control.</summary>
         public bool CanUseSpeed { get; set; }
+
+        private static readonly Regex VideoIdPattern = new("^[A-Za-z0-9_-]{6,20}$", RegexOptions.Compiled);
+
+        /// <summary>The YouTube id when it is well formed (safe for a URL and for markup), otherwise null.</summary>
+        public string? SafeYoutubeId =>
+            !string.IsNullOrWhiteSpace(YoutubeId) && VideoIdPattern.IsMatch(YoutubeId) ? YoutubeId : null;
+
+        /// <summary>The audio URL when it is https or a local path, otherwise null.</summary>
+        public string? SafeAudioUrl =>
+            !string.IsNullOrWhiteSpace(AudioUrl)
+            && (AudioUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                || (AudioUrl.StartsWith("/", StringComparison.Ordinal) && !AudioUrl.StartsWith("//", StringComparison.Ordinal)))
+                ? AudioUrl
+                : null;
     }
 
     // ================================================================

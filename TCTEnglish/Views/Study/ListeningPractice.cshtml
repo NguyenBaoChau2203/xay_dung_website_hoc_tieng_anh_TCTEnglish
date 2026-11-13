@@ -1,633 +1,433 @@
 @using System.Globalization
+@using System.Text.Json
+@using TCTEnglish.ViewModels
 @model TCTEnglish.ViewModels.ListeningPracticeViewModel
 @{
-    var isPremiumUser = User.IsInRole("Premium") || User.IsInRole("Admin");
     ViewData["Title"] = "Luyện nghe — " + Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    // Country code → flag emoji helper
-    string FlagEmoji(string? country) {
-        var flags = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
-            ["US"] = "🇺🇸", ["UK"] = "🇬🇧", ["GB"] = "🇬🇧", ["AU"] = "🇦🇺",
-            ["CA"] = "🇨🇦", ["NZ"] = "🇳🇿", ["IE"] = "🇮🇪", ["ZA"] = "🇿🇦",
-            ["IN"] = "🇮🇳", ["SG"] = "🇸🇬", ["PH"] = "🇵🇭", ["VN"] = "🇻🇳",
-            ["United States"] = "🇺🇸", ["United Kingdom"] = "🇬🇧", ["Australia"] = "🇦🇺"
-        };
-        if (!string.IsNullOrWhiteSpace(country) && flags.TryGetValue(country, out var flag))
-            return flag;
-        return "🌍";
-    }
+    // CEFR level: hue and label (text always accompanies the colour).
+    var levelInfo = Model.Level switch
+    {
+        "A1" => (Label: "A1 · Sơ cấp", Hue: "success"),
+        "A2" => (Label: "A2 · Cơ bản", Hue: "info"),
+        "B1" => (Label: "B1 · Trung cấp", Hue: "primary"),
+        "B2" => (Label: "B2 · Trung cao cấp", Hue: "warning"),
+        "C1" => (Label: "C1 · Nâng cao", Hue: "danger"),
+        _ => (Label: Model.Level, Hue: "primary")
+    };
 
-    bool hasYoutube  = !string.IsNullOrEmpty(Model.YoutubeId);
-    bool hasAudio    = !string.IsNullOrEmpty(Model.AudioUrl);
-    bool hasSpeaker1 = !string.IsNullOrEmpty(Model.Speaker1Name);
-    bool hasSpeaker2 = !string.IsNullOrEmpty(Model.Speaker2Name);
+    var videoId = Model.SafeYoutubeId;
+    var audioUrl = Model.SafeAudioUrl;
+    bool hasVideo = videoId != null;
+    bool hasAudio = !hasVideo && audioUrl != null;
 
     int transcriptCount = Model.TranscriptLines.Count;
-    int quizCount       = Model.QuizQuestions.Count;
-    int vocabCount      = Model.VocabItems.Count;
+    int quizCount = Model.QuizQuestions.Count;
+    int vocabCount = Model.VocabItems.Count;
+    bool hasTimedLines = Model.TranscriptLines.Any(l => l.StartTime.HasValue);
+    bool anyTranslation = Model.TranscriptLines.Any(l => !string.IsNullOrWhiteSpace(l.VietnameseMeaning));
+    bool allTranslated = transcriptCount > 0 && Model.TranscriptLines.All(l => !string.IsNullOrWhiteSpace(l.VietnameseMeaning));
+
+    // Required steps, in page order (mirrors ListeningService.IsLessonComplete).
+    var steps = new List<(string Key, string Label, string Tab, bool Done)>();
+    if (transcriptCount > 0) { steps.Add(("transcript", "Nghe và đọc lời thoại", "transcript", Model.TranscriptCompleted)); }
+    if (vocabCount > 0) { steps.Add(("vocab", "Học từ vựng", "vocab", Model.VocabReviewed)); }
+    if (quizCount > 0) { steps.Add(("quiz", "Làm quiz", "quiz", Model.QuizCompleted)); }
+    bool allDone = Model.IsCompleted;
+
+    var header = new PageHeaderViewModel
+    {
+        Title = Model.Title,
+        Breadcrumbs = new[] { new PageBreadcrumbItem("Luyện nghe", "/Home/Listening"), new PageBreadcrumbItem(Model.Title) }
+    };
+
+    string Clock(double? seconds)
+    {
+        var total = (int)Math.Max(0, Math.Floor(seconds ?? 0));
+        var h = total / 3600; var m = total % 3600 / 60; var s = total % 60;
+        return h > 0 ? $"{h}:{m:00}:{s:00}" : $"{m}:{s:00}";
+    }
+
+    string Num(double value) => value.ToString("0.##", CultureInfo.InvariantCulture);
+
+    bool SafeImage(string? url) => !string.IsNullOrWhiteSpace(url)
+        && (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase) || (url.StartsWith("/", StringComparison.Ordinal) && !url.StartsWith("//", StringComparison.Ordinal)));
+
+    // Second distinct speaker gets the info hue.
+    var speakerOrder = Model.TranscriptLines.Select(l => l.Speaker).Distinct().ToList();
+
+    var config = new
+    {
+        lessonId = Model.LessonId,
+        youtubeId = videoId,
+        audioUrl = hasAudio ? audioUrl : null,
+        isAuthenticated = Model.IsAuthenticated,
+        canUseSpeed = Model.CanUseSpeed,
+        canTranslate = Model.CanTranslate,
+        canUseAi = Model.CanUseAi,
+        steps = new { transcript = transcriptCount, quiz = quizCount, vocab = vocabCount },
+        progress = new
+        {
+            transcriptCompleted = Model.TranscriptCompleted,
+            quizCompleted = Model.QuizCompleted,
+            quizScore = Model.QuizScore,
+            vocabReviewed = Model.VocabReviewed,
+            isCompleted = Model.IsCompleted
+        },
+        lines = Model.TranscriptLines.Select((l, i) => new
+        {
+            id = l.Id,
+            order = i,
+            speaker = l.Speaker,
+            text = l.Text,
+            vi = l.VietnameseMeaning,
+            start = l.StartTime,
+            end = l.EndTime
+        }),
+        urls = new
+        {
+            evaluate = "/Home/Listening/EvaluateQuiz",
+            save = $"/Home/Listening/SaveProgress/{Model.LessonId}",
+            translate = $"/Home/Listening/Translate/{Model.LessonId}",
+            generateQuiz = "/Home/Listening/My/GenerateQuiz",
+            index = "/Home/Listening",
+            premium = "/Account/Premium"
+        }
+    };
+    var configJson = JsonSerializer.Serialize(config, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+    var noAudio = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Bài nghe chưa có âm thanh." };
+    var noTranscript = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Bài nghe chưa có lời thoại." };
+    var noQuiz = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Bài nghe chưa có quiz." };
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/listening.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/listening-practice.css" asp-append-version="true" />
 }
 
-<div class="tct-theme tct-page tl-page tl-page--practice">
-<div class="lp-page">
+<div class="tct-theme tct-page tl-page tl-page--practice tl-hue-@levelInfo.Hue">
     @Html.AntiForgeryToken()
+    <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
-    <!-- ══════════════════════════════════════════════════════════
-         TOP BAR: Back + Breadcrumb + Level Badge
-    ══════════════════════════════════════════════════════════ -->
-    <div class="lp-topbar">
-        <a asp-controller="Study" asp-action="Listening" class="lp-back-btn" title="Quay lại danh sách">
-            <i class="fas fa-arrow-left"></i>
-        </a>
+    <p class="tl-meta">
+        <span class="tct-badge tct-badge--@levelInfo.Hue">@levelInfo.Label</span>
+        <span><i class="fa-solid fa-tag" aria-hidden="true"></i> @Model.Topic</span>
+        @if (!string.IsNullOrWhiteSpace(Model.Duration))
+        {
+            <span><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Speaker1Name))
+        {
+            <span><i class="fa-solid fa-user" aria-hidden="true"></i> @Model.Speaker1Name@(string.IsNullOrWhiteSpace(Model.Speaker1Country) ? "" : $" ({Model.Speaker1Country})")</span>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Speaker2Name))
+        {
+            <span><i class="fa-solid fa-user" aria-hidden="true"></i> @Model.Speaker2Name@(string.IsNullOrWhiteSpace(Model.Speaker2Country) ? "" : $" ({Model.Speaker2Country})")</span>
+        }
+    </p>
 
-        <nav class="lp-breadcrumb" aria-label="breadcrumb">
-            <a asp-controller="Study" asp-action="Listening">Listening</a>
-            <span class="lp-breadcrumb-sep">/</span>
-            <span class="lp-breadcrumb-current">@Model.Title</span>
-        </nav>
+    @if (!Model.IsAuthenticated)
+    {
+        <div class="tl-guest k-panel k-panel--quiet" role="note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <p class="tl-guest__text">Bạn đang học ở chế độ khách. Đăng nhập để lưu tiến độ.</p>
+            <a class="btn btn-primary btn-sm" href="/Account/Login">Đăng nhập</a>
+        </div>
+    }
 
-        <span class="lp-level-badge">@Model.Level</span>
-    </div>
+    <div class="tl-practice">
+        <aside class="tl-stage" aria-label="Trình phát và tiến độ">
+            <div class="tl-player k-panel">
+                @if (hasVideo)
+                {
+                    <div class="tl-video">
+                        <iframe id="tlYoutube" title="@Model.Title"
+                                src="https://www.youtube.com/embed/@videoId?enablejsapi=1&amp;rel=0&amp;modestbranding=1"
+                                loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="tl-player__notice" id="tlPlayerNotice" role="status" hidden>Không tải được trình phát YouTube. Bạn vẫn có thể đọc lời thoại và làm bài.</p>
+                }
+                else if (hasAudio)
+                {
+                    <div class="tl-audio">
+                        <span class="tl-audio__art k-art-box" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+                        <audio id="tlAudio" controls preload="metadata" src="@audioUrl"></audio>
+                    </div>
+                }
+                else
+                {
+                    <partial name="~/Views/Shared/_StateMessage.cshtml" model="noAudio" />
+                }
 
-    <!-- ══════════════════════════════════════════════════════════
-         MAIN CONTENT (max-width 800px centered)
-    ══════════════════════════════════════════════════════════ -->
-    <div class="lp-container">
-
-        <!-- ── Lesson Header ── -->
-        <div class="lp-lesson-header">
-            <h1 class="lp-lesson-title">@Model.Title</h1>
-
-            @if (hasSpeaker1 || hasSpeaker2)
-            {
-                <div class="lp-speaker-badges">
-                    @if (hasSpeaker1)
+                <div class="tl-controls" role="toolbar" aria-label="Điều khiển phát">
+                    <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlBack" aria-label="Lùi 5 giây"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary tl-controls__play" id="tlPlay" aria-label="Phát"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+                    <button type="button" class="btn k-btn--icon-surface tl-controls__btn" id="tlForward" aria-label="Tới 5 giây"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlLoop" aria-pressed="false"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Lặp câu</button>
+                </div>
+                <div class="tl-speed">
+                    @if (Model.CanUseSpeed)
                     {
-                        <span class="lp-speaker-badge">
-                            <span class="lp-speaker-flag">@FlagEmoji(Model.Speaker1Country)</span>
-                            @Model.Speaker1Name
-                            @if (!string.IsNullOrEmpty(Model.Speaker1Country))
+                        <div class="k-seg" role="radiogroup" aria-label="Tốc độ phát">
+                            @foreach (var rate in new[] { "0.5", "0.75", "1", "1.25", "1.5" })
                             {
-                                <span class="text-muted small">(@Model.Speaker1Country)</span>
+                                <input type="radio" class="btn-check" name="tlSpeed" id="tlSpeed-@rate" value="@rate" checked="@(rate == "1" ? "checked" : null)" />
+                                <label class="k-seg__item" for="tlSpeed-@rate">@(rate)×</label>
                             }
-                        </span>
-                    }
-                    @if (hasSpeaker2)
-                    {
-                        <span class="lp-speaker-badge">
-                            <span class="lp-speaker-flag">@FlagEmoji(Model.Speaker2Country)</span>
-                            @Model.Speaker2Name
-                            @if (!string.IsNullOrEmpty(Model.Speaker2Country))
-                            {
-                                <span class="text-muted small">(@Model.Speaker2Country)</span>
-                            }
-                        </span>
-                    }
-                </div>
-            }
-
-            <div class="lp-meta-row">
-                <span><i class="fas fa-tag"></i> @Model.Topic</span>
-                @if (!string.IsNullOrEmpty(Model.Duration))
-                {
-                    <span><i class="fas fa-clock"></i> @Model.Duration</span>
-                }
-                <span><i class="fas fa-file-alt"></i> @transcriptCount dòng transcript</span>
-                @if (quizCount > 0)
-                {
-                    <span><i class="fas fa-question-circle"></i> @quizCount câu hỏi</span>
-                }
-                @if (vocabCount > 0)
-                {
-                    <span><i class="fas fa-book"></i> @vocabCount từ vựng</span>
-                }
-            </div>
-        </div>
-
-        <!-- ── Player Section ── -->
-        <div class="lp-player-section">
-            @if (hasYoutube)
-            {
-                <!-- YouTube embed (16:9) — enablejsapi=1 required for IFrame API -->
-                <div class="lp-yt-wrapper">
-                    <iframe id="youtube-player"
-                            src="https://www.youtube.com/embed/@Model.YoutubeId?enablejsapi=1&rel=0&modestbranding=1"
-                            title="@Model.Title"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                    </iframe>
-                </div>
-            }
-            else if (hasAudio)
-            {
-                <!-- HTML5 Audio -->
-                <div class="lp-audio-wrapper">
-                    <div class="lp-audio-icon">
-                        <i class="fas fa-headphones"></i>
-                    </div>
-                    <audio id="lp-audio" class="lp-audio-player" controls preload="metadata">
-                        <source src="@Model.AudioUrl" />
-                        Trình duyệt của bạn không hỗ trợ phát audio.
-                    </audio>
-                </div>
-            }
-            else
-            {
-                <!-- No media -->
-                <div class="lp-empty py-4">
-                    <div class="lp-empty-icon"><i class="fas fa-volume-mute"></i></div>
-                    <h3>Chưa có file âm thanh</h3>
-                    <p>Bài học này chưa được tải lên media.</p>
-                </div>
-            }
-
-            <!-- Player Controls -->
-            <div class="lp-player-controls">
-                <!-- Speed Control -->
-                <div class="lp-speed-control">
-                    <span class="lp-speed-label">Tốc độ:</span>
-                    <div class="lp-speed-btns">
-                        @if (isPremiumUser)
-                        {
-                            <button type="button" class="lp-speed-btn" data-rate="0.5">0.5x</button>
-                            <button type="button" class="lp-speed-btn" data-rate="0.75">0.75x</button>
-                            <button type="button" class="lp-speed-btn lp-speed-active" data-rate="1">1x</button>
-                            <button type="button" class="lp-speed-btn" data-rate="1.25">1.25x</button>
-                            <button type="button" class="lp-speed-btn" data-rate="1.5">1.5x</button>
-                        }
-                        else
-                        {
-                            <button type="button" class="lp-speed-btn lp-speed-active" disabled title="Tốc độ 1x (Mặc định)">1x</button>
-                            <a href="/Account/Premium" class="lp-speed-btn lp-speed-locked" title="Nâng cấp Premium để mở khóa các tốc độ khác">
-                                <i class="fas fa-lock"></i>
-                            </a>
-                            <span class="lp-premium-hint">
-                                <a href="/Account/Premium">Nâng cấp Premium</a> để chỉnh tốc độ.
-                            </span>
-                        }
-                    </div>
-                </div>
-
-                <!-- Progress indicator -->
-                <div class="lp-progress-mini">
-                    <span class="lp-speed-label">Tiến độ:</span>
-                    <div class="lp-progress-dots">
-                        <div class="lp-dot @(Model.TranscriptCompleted ? "done" : "")" id="dot-transcript" title="Transcript"></div>
-                        <div class="lp-dot @(Model.QuizCompleted ? "done" : "")" id="dot-quiz" title="Quiz"></div>
-                    </div>
-                    @if (Model.TranscriptCompleted && Model.QuizCompleted)
-                    {
-                        <span class="text-success small"><i class="fas fa-check-circle"></i> Hoàn thành</span>
-                    }
-                </div>
-            </div>
-        </div>
-
-        <!-- ══════════════════════════════════════════════════════════
-             PILL TABS
-        ══════════════════════════════════════════════════════════ -->
-        <div class="lp-tabs" role="tablist" aria-label="Listening practice tabs">
-            <button type="button" id="tab-transcript" class="lp-tab-btn lp-tab-active" data-tab="transcript" role="tab" aria-selected="true" aria-controls="panel-transcript">
-                <i class="fas fa-file-alt"></i>
-                Transcript
-                @if (transcriptCount > 0)
-                {
-                    <span class="lp-tab-badge">@transcriptCount</span>
-                }
-                @if (Model.TranscriptCompleted)
-                {
-                    <i class="fas fa-check-circle text-success small"></i>
-                }
-            </button>
-            <button type="button" id="tab-quiz" class="lp-tab-btn" data-tab="quiz" role="tab" aria-selected="false" aria-controls="panel-quiz">
-                <i class="fas fa-question-circle"></i>
-                Quiz
-                @if (quizCount > 0)
-                {
-                    <span class="lp-tab-badge">@quizCount</span>
-                }
-                @if (Model.QuizCompleted)
-                {
-                    <i class="fas fa-check-circle text-success small"></i>
-                }
-            </button>
-        </div>
-
-        <!-- ══════════════════════════════════════════════════════════
-             TAB PANEL: TRANSCRIPT
-        ══════════════════════════════════════════════════════════ -->
-        <div id="panel-transcript" class="lp-tab-panel lp-panel-active" role="tabpanel" aria-labelledby="tab-transcript">
-            @if (transcriptCount == 0)
-            {
-                <div class="lp-empty">
-                    <div class="lp-empty-icon"><i class="fas fa-align-left"></i></div>
-                    <h3>Chưa có transcript</h3>
-                    <p>Nội dung transcript đang được chuẩn bị.</p>
-                </div>
-            }
-            else
-            {
-                <!-- ── Mode Selector ── -->
-                <div class="lp-mode-selector" id="lp-mode-selector">
-                    <div class="lp-mode-card active" data-mode="normal">
-                        <span class="lp-mode-icon">📖</span>
-                        <span class="lp-mode-label">Nghe<br>thường</span>
-                    </div>
-                    <div class="lp-mode-card" data-mode="dictation">
-                        <span class="lp-mode-icon">✍️</span>
-                        <span class="lp-mode-label">Chính<br>tả</span>
-                    </div>
-                    <div class="lp-mode-card" data-mode="fillin">
-                        <span class="lp-mode-icon">🔤</span>
-                        <span class="lp-mode-label">Điền<br>từ</span>
-                    </div>
-
-                </div>
-
-                <!-- ════════════════════════════════════════
-                     MODE 1: NORMAL (transcript)
-                ════════════════════════════════════════ -->
-                <div id="mode-normal" class="lp-mode-panel lp-mode-active">
-                    <!-- Unified mode header -->
-                    <div class="lp-mode-header">
-                        <div class="lp-mode-header-icon">📖</div>
-                        <div class="lp-mode-header-body">
-                            <div class="lp-mode-header-title">Nghe thường</div>
-                            <div class="lp-mode-header-desc">Click vào dòng hoặc nút ▶ để nghe lại từng câu.</div>
                         </div>
-                        <div class="lp-mode-header-actions">
-                            <button type="button" class="lp-action-btn" id="btn-toggle-all-vi">
-                                <i class="fas fa-language"></i> Xem tất cả bản dịch
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Transcript lines -->
-                    <div class="lp-transcript-list">
-                        @{ var speakers = new Dictionary<string, int>(); }
-                        @foreach (var line in Model.TranscriptLines.OrderBy(l => l.OrderIndex))
-                        {
-                            if (!speakers.ContainsKey(line.Speaker))
-                                speakers[line.Speaker] = speakers.Count;
-                            var speakerClass = speakers[line.Speaker] == 0 ? "" : "speaker-b";
-                            bool hasVi  = !string.IsNullOrEmpty(line.VietnameseMeaning);
-                            bool hasTimes = line.StartTime.HasValue;
-
-                            <div class="lp-transcript-line"
-                                 data-line-id="@line.Id"
-                                 @Html.Raw(hasTimes ? $"data-start=\"{line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)}\" data-end=\"{line.EndTime?.ToString("F2", CultureInfo.InvariantCulture) ?? (line.StartTime.GetValueOrDefault() + 5).ToString("F2", CultureInfo.InvariantCulture)}\"" : "")>
-
-                                <div class="lp-line-inner">
-                                    <span class="lp-line-speaker @speakerClass">@line.Speaker</span>
-                                    <div class="lp-line-body">
-                                        <div class="lp-line-text">@line.Text</div>
-                                        @if (hasVi)
-                                        {
-                                            <div class="lp-line-vi">🇻🇳 @line.VietnameseMeaning</div>
-                                        }
-                                    </div>
-                                    <div class="lp-line-actions">
-                                        @if (hasTimes)
-                                        {
-                                            <span class="lp-line-seek-hint">
-                                                <i class="fas fa-play-circle"></i> Click để nghe
-                                            </span>
-                                            <button class="lp-line-replay-btn" type="button"
-                                                    data-start="@line.StartTime?.ToString("F2", CultureInfo.InvariantCulture)"
-                                                    title="Nghe lại dòng này">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                        }
-                                        @if (hasVi)
-                                        {
-                                            <button class="lp-line-vi-btn" type="button" title="Xem/ẩn bản dịch">
-                                                Xem dịch
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <!-- Mark transcript done -->
-                    <button type="button" class="lp-mode-done-btn" id="btn-mark-transcript-read"
-                            @(Model.TranscriptCompleted ? "disabled" : "")>
-                        @if (Model.TranscriptCompleted)
-                        {
-                            <i class="fas fa-check-circle"></i>
-                            <span>Đã hoàn thành Transcript</span>
-                        }
-                        else
-                        {
-                            <i class="fas fa-check"></i>
-                            <span>Đánh dấu đã đọc hết</span>
-                        }
-                    </button>
-                </div>
-
-                <!-- ════════════════════════════════════════
-                     MODE 2: DICTATION
-                ════════════════════════════════════════ -->
-                <div id="mode-dictation" class="lp-mode-panel">
-                    <!-- Unified mode header -->
-                    <div class="lp-mode-header">
-                        <div class="lp-mode-header-icon">✍️</div>
-                        <div class="lp-mode-header-body">
-                            <div class="lp-mode-header-title">Chính tả</div>
-                            <div class="lp-mode-header-desc">Nghe và gõ lại từng câu. Nhấn <kbd>Tab</kbd> để nghe lại.</div>
-                        </div>
-                        <div class="lp-mode-header-actions">
-                            <div class="lp-progress-ring" id="dict-ring">
-                                <svg width="52" height="52" viewBox="0 0 60 60">
-                                    <circle class="lp-ring-track" cx="30" cy="30" r="24"/>
-                                    <circle class="lp-ring-progress" id="dict-ring-progress" cx="30" cy="30" r="24"
-                                            stroke-dasharray="150.796" stroke-dashoffset="150.796"/>
-                                </svg>
-                                <div class="lp-ring-label">
-                                    <span class="lp-ring-pct" id="dict-ring-pct">0%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dictation items rendered by JS from LP_TRANSCRIPT -->
-                    <div id="dictation-lines" class="lp-items-list"></div>
-
-                    <!-- Summary (shown when done) -->
-                    <div class="lp-dict-summary" id="dict-summary">
-                        <div class="lp-dict-summary-title">🎉 Kết quả Chính tả</div>
-                        <div class="lp-dict-summary-stats">
-                            <div class="lp-dict-stat correct">
-                                <span class="lp-dict-stat-num" id="dict-stat-correct">0</span>
-                                <span class="lp-dict-stat-label">Đúng</span>
-                            </div>
-                            <div class="lp-dict-stat near">
-                                <span class="lp-dict-stat-num" id="dict-stat-near">0</span>
-                                <span class="lp-dict-stat-label">Gần đúng</span>
-                            </div>
-                            <div class="lp-dict-stat wrong">
-                                <span class="lp-dict-stat-num" id="dict-stat-wrong">0</span>
-                                <span class="lp-dict-stat-label">Sai</span>
-                            </div>
-                        </div>
-                        <button type="button" class="lp-mode-done-btn" id="btn-dict-retry">
-                            <i class="fas fa-redo"></i> Làm lại
-                        </button>
-                    </div>
-                </div>
-
-                <!-- ════════════════════════════════════════
-                     MODE 3: FILL IN THE BLANKS
-                ════════════════════════════════════════ -->
-                <div id="mode-fillin" class="lp-mode-panel">
-                    <!-- Unified mode header -->
-                    <div class="lp-mode-header">
-                        <div class="lp-mode-header-icon">🔤</div>
-                        <div class="lp-mode-header-body">
-                            <div class="lp-mode-header-title">Điền từ</div>
-                            <div class="lp-mode-header-desc">Điền các từ còn thiếu vào chỗ trống.</div>
-                        </div>
-                        <div class="lp-mode-header-actions">
-                            <div class="lp-progress-ring" id="fillin-ring">
-                                <svg width="52" height="52" viewBox="0 0 60 60">
-                                    <circle class="lp-ring-track" cx="30" cy="30" r="24"/>
-                                    <circle class="lp-ring-progress" id="fillin-ring-progress" cx="30" cy="30" r="24"
-                                            stroke-dasharray="150.796" stroke-dashoffset="150.796"/>
-                                </svg>
-                                <div class="lp-ring-label">
-                                    <span class="lp-ring-pct" id="fillin-ring-pct">0%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fill-in items rendered by JS -->
-                    <div id="fillin-lines" class="lp-items-list"></div>
-
-                    <!-- Summary (shown when done) -->
-                    <div class="lp-dict-summary" id="fillin-summary">
-                        <div class="lp-dict-summary-title">🎉 Kết quả Điền từ</div>
-                        <div class="lp-dict-summary-stats">
-                            <div class="lp-dict-stat correct">
-                                <span class="lp-dict-stat-num" id="fillin-stat-correct">0</span>
-                                <span class="lp-dict-stat-label">Đúng</span>
-                            </div>
-                            <div class="lp-dict-stat wrong">
-                                <span class="lp-dict-stat-num" id="fillin-stat-wrong">0</span>
-                                <span class="lp-dict-stat-label">Sai</span>
-                            </div>
-                        </div>
-                        <button type="button" class="lp-mode-done-btn" id="btn-fillin-retry-summary">
-                            <i class="fas fa-redo"></i> Làm lại
-                        </button>
-                    </div>
-
-                    <div class="lp-fillin-footer" id="fillin-footer">
-                        <button type="button" class="lp-btn-check-all" id="btn-fillin-check">
-                            <i class="fas fa-check-double"></i> Kiểm tra tất cả
-                        </button>
-                        <button type="button" class="lp-mode-done-btn" id="btn-fillin-retry">
-                            <i class="fas fa-redo"></i> Làm lại
-                        </button>
-                        <div id="fillin-progress-text" class="lp-fillin-result-text"></div>
-                    </div>
-                </div>
-
-            }
-        </div>
-
-        <!-- ══════════════════════════════════════════════════════════
-             TAB PANEL: QUIZ
-        ══════════════════════════════════════════════════════════ -->
-        <div id="panel-quiz" class="lp-tab-panel" role="tabpanel" aria-labelledby="tab-quiz">
-            @if (quizCount == 0)
-            {
-                <div class="lp-empty">
-                    <div class="lp-empty-icon"><i class="fas fa-question-circle"></i></div>
-                    <h3>Chưa có bài tập</h3>
-                    <p>Bài quiz chưa được biên soạn cho video này.</p>
-                    @if (isPremiumUser)
-                    {
-                        <div class="mt-4">
-                            <button type="button" class="btn btn-primary" id="btnGenerateQuiz" data-lesson-id="@Model.LessonId">
-                                <i class="fas fa-magic"></i> Tạo quiz bằng AI
-                            </button>
-                        </div>
-                    }
-                </div>
-            }
-            else
-            {
-                <!-- Quiz instruction box -->
-                <div class="lp-quiz-instruction">
-                    <div class="lp-quiz-instruction-icon">💡</div>
-                    <div class="lp-quiz-instruction-text">
-                        <strong>Gợi ý trước khi làm quiz</strong>
-                        Nghe lại bài hội thoại rồi trả lời. Nên nghe ít nhất <strong>2 lần</strong> trước khi làm quiz để đạt kết quả tốt nhất.
-                    </div>
-                </div>
-
-                <div class="lp-quiz-list">
-                    @{ int qIdx = 0; }
-                    @foreach (var q in Model.QuizQuestions.OrderBy(x => x.OrderIndex))
-                    {
-                        qIdx++;
-                        <div class="lp-quiz-item" data-question-id="@q.Id">
-                            <div class="lp-quiz-question">
-                                <span class="lp-qnum">@qIdx</span>
-                                @q.QuestionText
-                            </div>
-                            <div class="lp-quiz-options">
-                                @if (!string.IsNullOrEmpty(q.OptionA))
-                                {
-                                    <label class="lp-option-label">
-                                        <input type="radio" name="q_@q.Id" value="A" @(Model.QuizCompleted ? "disabled" : "") />
-                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
-                                        <span class="fw-semibold me-1">A.</span> @q.OptionA
-                                    </label>
-                                }
-                                @if (!string.IsNullOrEmpty(q.OptionB))
-                                {
-                                    <label class="lp-option-label">
-                                        <input type="radio" name="q_@q.Id" value="B" @(Model.QuizCompleted ? "disabled" : "") />
-                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
-                                        <span class="fw-semibold me-1">B.</span> @q.OptionB
-                                    </label>
-                                }
-                                @if (!string.IsNullOrEmpty(q.OptionC))
-                                {
-                                    <label class="lp-option-label">
-                                        <input type="radio" name="q_@q.Id" value="C" @(Model.QuizCompleted ? "disabled" : "") />
-                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
-                                        <span class="fw-semibold me-1">C.</span> @q.OptionC
-                                    </label>
-                                }
-                                @if (!string.IsNullOrEmpty(q.OptionD))
-                                {
-                                    <label class="lp-option-label">
-                                        <input type="radio" name="q_@q.Id" value="D" @(Model.QuizCompleted ? "disabled" : "") />
-                                        <span class="lp-radio-circle"><span class="lp-radio-inner"></span></span>
-                                        <span class="fw-semibold me-1">D.</span> @q.OptionD
-                                    </label>
-                                }
-                            </div>
-                            <!-- Explanation shown after submit (populated by JS) -->
-                            <div class="lp-explanation"></div>
-                        </div>
-                    }
-                </div>
-
-                <!-- Submit + Result -->
-                <div class="lp-quiz-footer">
-                    @if (!Model.QuizCompleted)
-                    {
-                        <button type="button" class="lp-submit-btn" id="btn-submit-quiz">
-                            <i class="fas fa-paper-plane"></i> Nộp bài
-                        </button>
                     }
                     else
                     {
-                        <button type="button" class="lp-submit-btn" id="btn-submit-quiz" disabled>
-                            <i class="fas fa-check-circle"></i> Đã hoàn thành
-                            @if (Model.QuizScore.HasValue)
-                            {
-                                <span>(@Model.QuizScore%)</span>
-                            }
-                        </button>
+                        <span class="tl-speed__fixed">Tốc độ 1×</span>
+                        <a class="tl-speed__unlock" href="/Account/Premium"><i class="fa-solid fa-lock" aria-hidden="true"></i> Mở khóa tốc độ với Premium</a>
                     }
+                </div>
+            </div>
 
-                    <!-- Result panel (populated by JS) -->
-                    <div class="lp-result-panel @(Model.QuizCompleted && Model.QuizScore.HasValue ? (Model.QuizScore >= 70 ? "show lp-result-pass" : "show lp-result-fail") : "")"
-                         id="quiz-result-panel">
-                        <div class="lp-result-emoji" id="result-emoji">
-                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
+            <div class="tl-steps k-panel" aria-label="Tiến độ bài nghe" role="group">
+                <h2 class="tl-steps__title">Tiến độ bài nghe</h2>
+                @if (steps.Count > 0)
+                {
+                    <ol class="tl-steps__list">
+                        @foreach (var step in steps)
+                        {
+                            <li class="tl-step" data-step="@step.Key" data-done="@(step.Done ? "true" : "false")">
+                                <button type="button" class="tl-step__btn" data-tl-goto="@step.Tab">
+                                    <i class="@(step.Done ? "fa-solid fa-circle-check" : "fa-regular fa-circle") tl-step__icon" aria-hidden="true"></i>
+                                    <span class="tl-step__label">@step.Label</span>
+                                    <span class="visually-hidden tl-step__state">@(step.Done ? "đã xong" : "chưa xong")</span>
+                                </button>
+                            </li>
+                        }
+                    </ol>
+                }
+                <div class="tl-done k-soft tl-hue-success" id="tlDone" hidden="@(allDone ? null : "hidden")">
+                    <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                    <span>Bạn đã hoàn thành bài nghe này!</span>
+                    <a href="/Home/Listening">Bài nghe khác</a>
+                </div>
+            </div>
+
+            <p class="tl-keys" aria-hidden="true">
+                <span><kbd class="k-kbd">Space</kbd> phát / dừng</span>
+                <span><kbd class="k-kbd">←</kbd> <kbd class="k-kbd">→</kbd> câu trước / sau</span>
+                <span><kbd class="k-kbd">R</kbd> nghe lại câu</span>
+                <span><kbd class="k-kbd">L</kbd> lặp câu</span>
+            </p>
+        </aside>
+
+        <section class="tl-work" aria-label="Nội dung bài nghe">
+            <div class="tl-tabs k-seg" role="tablist" aria-label="Các phần của bài nghe">
+                <button type="button" role="tab" class="k-seg__item" id="tlTab-transcript" aria-controls="tlPanel-transcript" aria-selected="true" data-tl-tab="transcript">
+                    Lời thoại <span class="k-seg__count">@transcriptCount</span>
+                    @if (Model.TranscriptCompleted) { <i class="fa-solid fa-circle-check tl-tab__done" aria-hidden="true"></i><span class="visually-hidden">đã xong</span> }
+                </button>
+                @if (vocabCount > 0)
+                {
+                    <button type="button" role="tab" class="k-seg__item" id="tlTab-vocab" aria-controls="tlPanel-vocab" aria-selected="false" tabindex="-1" data-tl-tab="vocab">
+                        Từ vựng <span class="k-seg__count">@vocabCount</span>
+                        @if (Model.VocabReviewed) { <i class="fa-solid fa-circle-check tl-tab__done" aria-hidden="true"></i><span class="visually-hidden">đã xong</span> }
+                    </button>
+                }
+                <button type="button" role="tab" class="k-seg__item" id="tlTab-quiz" aria-controls="tlPanel-quiz" aria-selected="false" tabindex="-1" data-tl-tab="quiz">
+                    Quiz <span class="k-seg__count">@quizCount</span>
+                    @if (Model.QuizCompleted) { <i class="fa-solid fa-circle-check tl-tab__done" aria-hidden="true"></i><span class="visually-hidden">đã xong</span> }
+                </button>
+            </div>
+
+            @* ───────────── Lời thoại ───────────── *@
+            <div role="tabpanel" id="tlPanel-transcript" class="tl-panel" aria-labelledby="tlTab-transcript">
+                @if (transcriptCount == 0)
+                {
+                    <partial name="~/Views/Shared/_StateMessage.cshtml" model="noTranscript" />
+                }
+                else
+                {
+                    <div class="k-seg tl-modes" role="radiogroup" aria-label="Chế độ luyện lời thoại">
+                        <input type="radio" class="btn-check" name="tlMode" id="tlMode-normal" value="normal" checked />
+                        <label class="k-seg__item" for="tlMode-normal"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Nghe thường</label>
+                        <input type="radio" class="btn-check" name="tlMode" id="tlMode-dictation" value="dictation" />
+                        <label class="k-seg__item" for="tlMode-dictation"><i class="fa-solid fa-pen" aria-hidden="true"></i> Chính tả</label>
+                        <input type="radio" class="btn-check" name="tlMode" id="tlMode-fill" value="fill" />
+                        <label class="k-seg__item" for="tlMode-fill"><i class="fa-solid fa-spell-check" aria-hidden="true"></i> Điền từ</label>
+                    </div>
+
+                    <div id="tlModePanel-normal" class="tl-mode">
+                        <div class="tl-toolbar-row">
+                            <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlToggleVi" aria-pressed="false" disabled="@(anyTranslation ? null : "disabled")">Hiện bản dịch</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlToggleHide" aria-pressed="false">Ẩn lời thoại</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm tl-toggle" id="tlToggleScroll" aria-pressed="true">Tự cuộn theo âm thanh</button>
+                            @if (Model.CanTranslate && !allTranslated)
                             {
-                                @(Model.QuizScore >= 70 ? "🎉" : "😅")
+                                <button type="button" class="btn btn-outline-primary btn-sm" id="tlTranslate"><i class="fa-solid fa-language" aria-hidden="true"></i> Dịch bằng AI</button>
                             }
                         </div>
-                        <div class="lp-result-score" id="result-score">
-                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
-                            {
-                                @:@Model.QuizScore%
-                            }
+                        @if (!anyTranslation)
+                        {
+                            <p class="tl-hint" id="tlViHint">Chưa có bản dịch cho bài này.</p>
+                        }
+                        <div class="tl-lines-wrap k-panel k-panel--quiet">
+                            <ol class="tl-lines" id="tlLines">
+                                @for (var i = 0; i < Model.TranscriptLines.Count; i++)
+                                {
+                                    var line = Model.TranscriptLines[i];
+                                    var timed = line.StartTime.HasValue;
+                                    var end = line.EndTime ?? (line.StartTime.GetValueOrDefault() + 5);
+                                    var second = speakerOrder.IndexOf(line.Speaker) > 0;
+                                    <li class="tl-line" data-i="@i" data-start="@(timed ? Num(line.StartTime!.Value) : null)" data-end="@(timed ? Num(end) : null)">
+                                        <span class="tl-line__speaker tct-badge @(second ? "tct-badge--info" : "tct-badge--primary")">@line.Speaker</span>
+                                        <div class="tl-line__text">
+                                            @if (timed)
+                                            {
+                                                <button type="button" class="tl-line__seek" aria-label="Nghe từ câu @(i + 1)"><span class="tl-line__en" lang="en">@line.Text</span></button>
+                                            }
+                                            else
+                                            {
+                                                <span class="tl-line__en" lang="en">@line.Text</span>
+                                            }
+                                            <button type="button" class="tl-line__reveal btn btn-link btn-sm" hidden>Bấm để hiện</button>
+                                            @if (!string.IsNullOrWhiteSpace(line.VietnameseMeaning))
+                                            {
+                                                <span class="tl-line__vi" hidden>@line.VietnameseMeaning</span>
+                                            }
+                                        </div>
+                                        @if (timed)
+                                        {
+                                            <span class="tl-line__time">@Clock(line.StartTime)</span>
+                                        }
+                                    </li>
+                                }
+                            </ol>
                         </div>
-                        <div class="lp-result-msg" id="result-msg">
-                            @if (Model.QuizCompleted && Model.QuizScore.HasValue)
-                            {
-                                @(Model.QuizScore >= 70 ? "Xuất sắc! Bạn đã vượt qua bài kiểm tra." : "Chưa đạt. Hãy nghe lại và thử lại nhé!")
-                            }
-                        </div>
-                        <div class="mt-2 small text-muted" id="result-pct"></div>
-                        <div class="mt-3">
-                            <button type="button" class="btn btn-outline-primary btn-sm" id="btn-retry-quiz">
-                                <i class="fas fa-redo"></i> Làm lại quiz
+                        <div class="tl-footer-row">
+                            <button type="button" class="btn btn-primary" id="tlMarkDone" disabled="@(Model.TranscriptCompleted ? "disabled" : null)">
+                                @if (Model.TranscriptCompleted)
+                                {
+                                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i> <span>Đã nghe xong lời thoại</span>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-check" aria-hidden="true"></i> <span>Đánh dấu đã nghe xong</span>
+                                }
                             </button>
                         </div>
                     </div>
+
+                    <div id="tlModePanel-dictation" class="tl-mode" hidden></div>
+                    <div id="tlModePanel-fill" class="tl-mode" hidden></div>
+                }
+            </div>
+
+            @* ───────────── Từ vựng ───────────── *@
+            @if (vocabCount > 0)
+            {
+                <div role="tabpanel" id="tlPanel-vocab" class="tl-panel" aria-labelledby="tlTab-vocab" hidden>
+                    <ul class="tl-vocab">
+                        @foreach (var item in Model.VocabItems)
+                        {
+                            <li class="tl-vocab__item k-card">
+                                @if (SafeImage(item.ImageUrl))
+                                {
+                                    <div class="tl-vocab__image k-art-box"><img class="tl-thumb" src="@item.ImageUrl" alt="" width="320" height="180" loading="lazy" decoding="async" /></div>
+                                }
+                                <div class="tl-vocab__body">
+                                    <div class="tl-vocab__head">
+                                        <span class="tl-vocab__word" lang="en">@item.Word</span>
+                                        <button type="button" class="btn tct-btn-icon tl-vocab__speak" data-tl-speak="@item.Word" aria-label="Phát âm @item.Word" hidden><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
+                                    </div>
+                                    <p class="tl-vocab__def">@item.Definition</p>
+                                    @if (!string.IsNullOrWhiteSpace(item.ExampleSentence))
+                                    {
+                                        <p class="tl-vocab__example" lang="en">@item.ExampleSentence</p>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <div class="tl-footer-row">
+                        <button type="button" class="btn btn-primary" id="tlVocabDone" disabled="@(Model.VocabReviewed ? "disabled" : null)">
+                            @if (Model.VocabReviewed)
+                            {
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i> <span>Đã học xong từ vựng</span>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-check" aria-hidden="true"></i> <span>Đã học xong từ vựng</span>
+                            }
+                        </button>
+                    </div>
                 </div>
             }
-        </div>
 
+            @* ───────────── Quiz ───────────── *@
+            <div role="tabpanel" id="tlPanel-quiz" class="tl-panel" aria-labelledby="tlTab-quiz" hidden>
+                @if (quizCount == 0)
+                {
+                    <partial name="~/Views/Shared/_StateMessage.cshtml" model="noQuiz" />
+                    @if (Model.CanUseAi && transcriptCount > 0)
+                    {
+                        <div class="tl-empty-actions"><button type="button" class="btn btn-primary" id="tlGenerateQuiz"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Tạo quiz bằng AI</button></div>
+                    }
+                }
+                else
+                {
+                    <div class="tl-result k-panel" id="tlQuizResult" tabindex="-1" hidden></div>
+                    <form id="tlQuizForm" novalidate>
+                        <div class="tl-quiz">
+                            @for (var qi = 0; qi < Model.QuizQuestions.Count; qi++)
+                            {
+                                var question = Model.QuizQuestions[qi];
+                                var options = new[] { ("A", question.OptionA), ("B", question.OptionB), ("C", question.OptionC), ("D", question.OptionD) }
+                                    .Where(o => !string.IsNullOrWhiteSpace(o.Item2)).ToList();
+                                <fieldset class="tl-q k-panel" data-qid="@question.Id">
+                                    <legend class="tl-q__legend">Câu @(qi + 1). @question.QuestionText</legend>
+                                    <div class="tl-q__options">
+                                        @foreach (var (key, text) in options)
+                                        {
+                                            <label class="tl-option" data-key="@key">
+                                                <input type="radio" class="tl-option__input" name="q@(question.Id)" value="@key" />
+                                                <span class="tl-option__key" aria-hidden="true">@key</span>
+                                                <span class="tl-option__text" lang="en">@text</span>
+                                                <span class="tl-option__mark" aria-hidden="true"></span>
+                                            </label>
+                                        }
+                                    </div>
+                                    <p class="tl-q__missing" hidden><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Chưa chọn đáp án</p>
+                                    <p class="tl-q__explain" hidden></p>
+                                </fieldset>
+                            }
+                        </div>
+                        @if (Model.IsAuthenticated)
+                        {
+                            <div class="tl-quiz__bar k-panel">
+                                <span id="tlQuizCount" aria-live="polite">Đã chọn 0/@quizCount</span>
+                                <button type="submit" class="btn btn-primary" id="tlQuizSubmit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Nộp bài</button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="tl-guest k-panel k-panel--quiet" role="note">
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                <p class="tl-guest__text">Đăng nhập để làm quiz và lưu điểm.</p>
+                                <a class="btn btn-primary btn-sm" href="/Account/Login">Đăng nhập</a>
+                            </div>
+                        }
+                    </form>
+                    <p class="visually-hidden" id="tlQuizLive" role="status" aria-live="polite"></p>
+                }
+            </div>
+        </section>
     </div>
-    <!-- /lp-container -->
+
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite"></div>
 </div>
-<!-- /lp-page -->
-</div>
-
-<!-- Toast notification -->
-<div class="lp-toast" id="lp-toast" aria-live="polite"></div>
-
-@{
-    var transcriptJson = System.Text.Json.JsonSerializer.Serialize(Model.TranscriptLines.Select(l => new {
-        id = l.Id,
-        orderIndex = l.OrderIndex,
-        speaker = l.Speaker,
-        text = l.Text,
-        vi = l.VietnameseMeaning,
-        startTime = l.StartTime,
-        endTime = l.EndTime
-    }), new System.Text.Json.JsonSerializerOptions {
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-    });
-
-    var quizJson = System.Text.Json.JsonSerializer.Serialize(Model.QuizQuestions.Select(q => new {
-        id = q.Id,
-        orderIndex = q.OrderIndex,
-        questionText = q.QuestionText,
-        optA = q.OptionA,
-        optB = q.OptionB,
-        optC = q.OptionC,
-        optD = q.OptionD
-    }), new System.Text.Json.JsonSerializerOptions {
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-    });
-}
 
 @section Scripts {
-<script src="~/js/time-tracker.js" data-feature="Listening" defer></script>
-    <script>
-        // ── Data bridge: Razor → JS ───────────────────────────────
-        window.LP_LESSON_ID  = @Html.Raw(Model.LessonId);
-        window.LP_YOUTUBE_ID = @Html.Raw(string.IsNullOrEmpty(Model.YoutubeId) ? "null" : $"\"{Model.YoutubeId}\"");
-        window.LP_AUTH       = @Html.Raw(User.Identity?.IsAuthenticated == true ? "true" : "false");
-        window.LP_IS_PREMIUM = @Html.Raw(isPremiumUser ? "true" : "false");
-
-        window.LP_TRANSCRIPT = @Html.Raw(transcriptJson ?? "[]");
-        window.LP_QUIZ       = @Html.Raw(quizJson ?? "[]");
-
-        console.log('[LP] Inline data check:', {
-            lessonId: window.LP_LESSON_ID,
-            transcriptCount: window.LP_TRANSCRIPT ? window.LP_TRANSCRIPT.length : 0,
-            quizCount: window.LP_QUIZ ? window.LP_QUIZ.length : 0
-        });
-    </script>
+    <script src="~/js/time-tracker.js" data-feature="Listening" defer></script>
+    <script type="application/json" id="tlConfig">@Html.Raw(configJson)</script>
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/listening-core.js" asp-append-version="true"></script>
     <script src="~/js/listening-practice.js" asp-append-version="true"></script>
 }

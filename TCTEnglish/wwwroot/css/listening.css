@@ -231,6 +231,124 @@
 .tl-page .tl-card__action-link { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
 .tl-page .tl-card__delete { margin-inline-start: auto; }
 
+/* ---------------------------------------------------------------- practice: header meta and layout */
+.tl-page .tl-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-xs) var(--tct-space-md); margin: 0 0 var(--tct-space-lg); font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
+.tl-page .tl-meta i { margin-inline-end: var(--tct-space-xs); color: var(--tct-text-muted); }
+
+.tl-page .tl-practice { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--tct-space-lg); align-items: start; }
+.tl-page .tl-stage { display: grid; gap: var(--tct-space-md); min-width: 0; }
+.tl-page .tl-work { min-width: 0; }
+
+@media (min-width: 1200px) {
+    .tl-page .tl-practice { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--tct-space-xl); }
+    .tl-page .tl-stage { position: sticky; top: calc(var(--tct-header-h) + var(--tct-space-md)); }
+}
+
+/* Below 1200px the stage dissolves into the grid so the player alone can stay in view while the learner types. */
+@media (max-width: 1199.98px) {
+    .tl-page .tl-stage { display: contents; }
+}
+
+@media (max-width: 768px) {
+    .tl-page .tl-player { position: sticky; top: var(--tct-header-h); z-index: 3; padding: var(--tct-space-sm); gap: var(--tct-space-sm); }
+    .tl-page .tl-video { width: min(100%, calc(34vh * 16 / 9)); }
+}
+
+/* ---------------------------------------------------------------- practice: player and controls */
+.tl-page .tl-player { display: grid; gap: var(--tct-space-md); padding: var(--tct-space-md); }
+
+.tl-page .tl-video {
+    aspect-ratio: 16 / 9;
+    margin-inline: auto;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--tct-radius-lg);
+    background: var(--tct-surface-muted);
+}
+
+.tl-page .tl-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.tl-page .tl-player__notice { margin: 0; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-warning-text); }
+
+.tl-page .tl-audio { display: flex; align-items: center; gap: var(--tct-space-md); }
+.tl-page .tl-audio__art { flex: 0 0 64px; width: 64px; height: 64px; font-size: var(--tct-text-2xl); color: var(--k-fg, var(--tct-primary-strong)); }
+.tl-page .tl-audio audio { flex: 1 1 auto; min-width: 0; width: 100%; }
+
+.tl-page .tl-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--tct-space-sm); }
+.tl-page .tl-controls__btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; }
+.tl-page .tl-controls__play { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; padding: 0; border-radius: 50%; font-size: var(--tct-text-lg); }
+
+.tl-page .tl-toggle { display: inline-flex; align-items: center; gap: var(--tct-space-xs); }
+.tl-page .tl-toggle[aria-pressed="true"] {
+    background: var(--tct-primary-soft);
+    border-color: var(--tct-primary);
+    color: var(--tct-primary-strong);
+    font-weight: var(--tct-weight-bold);
+}
+
+.tl-page .tl-speed { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--tct-space-sm); font-size: var(--tct-text-sm); }
+.tl-page .tl-speed__fixed { color: var(--tct-text-secondary); }
+.tl-page .tl-speed__unlock { font-weight: var(--tct-weight-semibold); }
+
+/* ---------------------------------------------------------------- practice: steps */
+.tl-page .tl-steps { padding: var(--tct-space-md); }
+.tl-page .tl-steps__title { margin: 0 0 var(--tct-space-sm); font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); }
+.tl-page .tl-steps__list { display: grid; gap: var(--tct-space-xs); margin: 0; padding: 0; list-style: none; }
+
+.tl-page .tl-step__btn {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    width: 100%;
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border: 0;
+    border-radius: var(--tct-radius-md);
+    background: transparent;
+    color: inherit;
+    text-align: start;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+.tl-page .tl-step__btn:hover { background: var(--tct-primary-tint); }
+.tl-page .tl-step__icon { flex: 0 0 auto; color: var(--tct-text-muted); font-size: var(--tct-text-lg); }
+.tl-page .tl-step[data-done="true"] .tl-step__icon { color: var(--tct-success-text); }
+.tl-page .tl-step[data-done="true"] .tl-step__label { font-weight: var(--tct-weight-semibold); }
+
+.tl-page .tl-done { display: flex; align-items: center; flex-wrap: wrap; gap: var(--tct-space-sm); margin-top: var(--tct-space-md); padding: var(--tct-space-md); font-weight: var(--tct-weight-semibold); }
+.tl-page .tl-done a { margin-inline-start: auto; color: var(--k-fg); text-decoration: underline; }
+
+.tl-page .tl-keys { display: none; flex-wrap: wrap; gap: var(--tct-space-xs) var(--tct-space-md); margin: 0; font-size: var(--tct-text-xs); color: var(--tct-text-secondary); }
+
+@media (min-width: 992px) {
+    .tl-page .tl-keys { display: flex; }
+}
+
+/* ---------------------------------------------------------------- practice: tabs and panels */
+.tl-page .tl-tabs { display: flex; flex-wrap: nowrap; width: 100%; margin-bottom: var(--tct-space-md); }
+.tl-page .tl-tabs .k-seg__item { flex: 1 1 auto; justify-content: center; }
+.tl-page .tl-tab__done { margin-inline-start: var(--tct-space-xs); color: var(--tct-success-text); }
+
+/* The kit marks a selected segment with aria-pressed / aria-current / :checked; real tabs use aria-selected. */
+.tl-page .tl-tabs .k-seg__item[aria-selected="true"] {
+    border-color: var(--tct-border);
+    background: var(--tct-surface);
+    color: var(--tct-text);
+    font-weight: var(--tct-weight-semibold);
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.tl-page .tl-audio audio:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+.tl-page .tl-panel { min-width: 0; }
+.tl-page .tl-modes { margin-bottom: var(--tct-space-md); }
+.tl-page .tl-toolbar-row { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); margin-bottom: var(--tct-space-md); }
+.tl-page .tl-hint { margin: 0 0 var(--tct-space-md); font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
+.tl-page .tl-footer-row { display: flex; justify-content: flex-end; margin-top: var(--tct-space-md); }
+.tl-page .tl-footer-row .btn { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
+.tl-page .tl-empty-actions { margin-top: var(--tct-space-sm); text-align: center; }
+
 /* ---------------------------------------------------------------- forced colours
    Mirrors the kit: depth is gone, so surfaces keep a visible border and state keeps a thicker one. */
 @media (forced-colors: active) {
@@ -238,6 +356,15 @@
     .tl-page .tl-card__duration {
         box-shadow: none;
         border: 1px solid CanvasText;
+    }
+
+    .tl-page .tl-tabs .k-seg__item[aria-selected="true"] {
+        box-shadow: none;
+        border: 2px solid CanvasText;
+    }
+
+    .tl-page .tl-toggle[aria-pressed="true"] {
+        border-width: 2px;
     }
 }
 

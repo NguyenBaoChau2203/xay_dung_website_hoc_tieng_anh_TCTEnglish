@@ -533,6 +533,113 @@ public sealed class ListeningIntegrationTests
     }
 
     // ------------------------------------------------------------------
+    // Practice page contract (L6)
+    // ------------------------------------------------------------------
+
+    [Fact]
+    public async Task PracticePage_RendersWrapperConfigTabsAndNoLegacyHooks()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var html = await IndexHtmlAsync(guest, $"/Home/Listening/Practice/{PublicFullId}");
+        var text = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("class=\"tct-theme tct-page tl-page tl-page--practice", html, StringComparison.Ordinal);
+        Assert.Single(System.Text.RegularExpressions.Regex.Matches(html, "<h1[ >]"));
+        Assert.Contains("name=\"__RequestVerificationToken\"", html, StringComparison.Ordinal);
+        Assert.Matches(@"<script[^>]*src=""/js/time-tracker\.js[^>]*data-feature=""Listening""", html);
+        Assert.Contains("/js/listening-core.js", html, StringComparison.Ordinal);
+        Assert.Contains("/js/listening-practice.js", html, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlConfig\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("listening-practice.css", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("LP_", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("console.log", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("onclick=", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("correctAnswer", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("SECRET-EXPLANATION", html, StringComparison.Ordinal);
+        Assert.Contains("Bạn đang học ở chế độ khách. Đăng nhập để lưu tiến độ.", text, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlTab-vocab\"", html, StringComparison.Ordinal);
+        Assert.Matches(@"data-step=""transcript""[\s\S]*data-step=""vocab""[\s\S]*data-step=""quiz""", html);
+        Assert.Contains("Đăng nhập để làm quiz và lưu điểm.", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task PracticePage_LessonWithoutVocab_HasNoVocabTabOrStep()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var html = await IndexHtmlAsync(student, $"/Home/Listening/Practice/{PublicTranscriptOnlyId}");
+
+        Assert.DoesNotContain("tlTab-vocab", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-step=\"vocab\"", html, StringComparison.Ordinal);
+        Assert.Contains("data-step=\"transcript\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-step=\"quiz\"", html, StringComparison.Ordinal);
+        Assert.Contains("Bài nghe chưa có quiz.", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task PracticePage_SpeedControl_IsPremiumOnly_AndAiQuizButtonOnlyOnOwnQuizlessLessons()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var studentHtml = await IndexHtmlAsync(student, $"/Home/Listening/Practice/{PublicFullId}");
+        Assert.DoesNotContain("name=\"tlSpeed\"", studentHtml, StringComparison.Ordinal);
+        Assert.Contains("Mở khóa tốc độ với Premium", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
+
+        using var premium = Client(factory, PremiumOwnerId, Roles.Premium);
+        var own = await IndexHtmlAsync(premium, $"/Home/Listening/Practice/{PrivateNoQuizId}");
+        Assert.Contains("name=\"tlSpeed\"", own, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlGenerateQuiz\"", own, StringComparison.Ordinal);
+
+        var shared = await IndexHtmlAsync(premium, $"/Home/Listening/Practice/{PublicTranscriptOnlyId}");
+        Assert.Contains("name=\"tlSpeed\"", shared, StringComparison.Ordinal);
+        Assert.DoesNotContain("id=\"tlGenerateQuiz\"", shared, StringComparison.Ordinal); // shared lessons: Admin only
+
+        using var admin = Client(factory, TestDataIds.AdminUserId, Roles.Admin);
+        var adminHtml = await IndexHtmlAsync(admin, $"/Home/Listening/Practice/{PublicTranscriptOnlyId}");
+        Assert.Contains("id=\"tlGenerateQuiz\"", adminHtml, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task PracticePage_HostileLessonText_IsEncodedAndNeverBecomesMarkupOrAScriptBreakout()
+    {
+        await using var factory = await CreateFactoryAsync();
+        const string title = "<script>alert(1)</script>\"&";
+        const string badId = "x\"><script>alert(2)</script>";
+        const string line = "<img src=x onerror=alert(3)> </script><script>alert(4)</script>";
+        var id = await WithDbAsync(factory, async db =>
+        {
+            var lesson = Lesson(91050, title, "A1", "Daily", published: true, owner: null, lines: 0, questions: 0, vocab: 0);
+            lesson.YoutubeId = badId;
+            lesson.AudioUrl = "javascript:alert(5)";
+            lesson.TranscriptLines.Add(new ListeningTranscriptLine { OrderIndex = 1, Speaker = "<b>A</b>", Text = line, VietnameseMeaning = "</script><svg onload=alert(6)>" });
+            lesson.VocabItems.Add(new ListeningVocabItem { OrderIndex = 1, Word = "<u>w</u>", Definition = "<i>d</i>", ImageUrl = "javascript:alert(7)" });
+            db.ListeningLessons.Add(lesson);
+            await db.SaveChangesAsync();
+            return lesson.Id;
+        });
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var html = await IndexHtmlAsync(student, $"/Home/Listening/Practice/{id}");
+
+        Assert.DoesNotContain("<script>alert", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("</script><script>alert", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("<img src=x", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("<svg onload", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("id=\"tlYoutube\"", html, StringComparison.Ordinal); // malformed video id is not embedded
+        Assert.DoesNotContain("youtube.com/embed", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("javascript:alert", html, StringComparison.Ordinal); // unsafe audio and image URLs are dropped
+        Assert.DoesNotContain("<audio", html, StringComparison.Ordinal);
+        Assert.Contains("Bài nghe chưa có âm thanh.", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+
+        // The JSON config stays valid and cannot close its own script element.
+        var match = System.Text.RegularExpressions.Regex.Match(html, @"<script type=""application/json"" id=""tlConfig"">([\s\S]*?)</script>");
+        Assert.True(match.Success);
+        using var config = JsonDocument.Parse(match.Groups[1].Value);
+        Assert.Equal(line, config.RootElement.GetProperty("lines")[0].GetProperty("text").GetString());
+        Assert.True(config.RootElement.GetProperty("youtubeId").ValueKind == JsonValueKind.Null);
+    }
+
+    // ------------------------------------------------------------------
     // Practice view model flags
     // ------------------------------------------------------------------
 
