@@ -422,6 +422,117 @@ public sealed class ListeningIntegrationTests
     }
 
     // ------------------------------------------------------------------
+    // Index page contract (L4)
+    // ------------------------------------------------------------------
+
+    private static async Task<string> IndexHtmlAsync(HttpClient client, string url = "/Home/Listening")
+    {
+        using var response = await client.GetAsync(url);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        return await response.Content.ReadAsStringAsync();
+    }
+
+    [Fact]
+    public async Task IndexPage_RendersTheSharedWrapperConfigAndNoLegacyHooks()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var html = await IndexHtmlAsync(student);
+        var text = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("class=\"tct-theme tct-page tl-page tl-page--index", html, StringComparison.Ordinal);
+        Assert.Single(System.Text.RegularExpressions.Regex.Matches(html, "<h1[ >]"));
+        Assert.Contains("name=\"__RequestVerificationToken\"", html, StringComparison.Ordinal);
+        Assert.Contains("id=\"tlConfig\"", html, StringComparison.Ordinal);
+        Assert.Contains("/js/listening-core.js", html, StringComparison.Ordinal);
+        Assert.Contains("/js/listening-index.js", html, StringComparison.Ordinal);
+        Assert.Contains("/css/study-kit.css", html, StringComparison.Ordinal);
+        Assert.Contains("/css/listening.css", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("speaking.css", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("listening-index.css", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("placehold.co", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("onclick=", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("English Listening Lab", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Update hàng tuần", text, StringComparison.Ordinal);
+        Assert.Contains("Tiến độ nghe của bạn", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task IndexPage_ShowsStatusMarkersFromRealProgress()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await WithDbAsync(factory, async db =>
+        {
+            db.UserListeningProgresses.AddRange(
+                new UserListeningProgress { UserId = TestDataIds.UserId, LessonId = PublicFullId, TranscriptCompleted = true, LastAccessedAt = DateTime.UtcNow },
+                new UserListeningProgress { UserId = TestDataIds.UserId, LessonId = PublicTranscriptOnlyId, TranscriptCompleted = true, CompletedAt = DateTime.UtcNow, LastAccessedAt = DateTime.UtcNow });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var html = await IndexHtmlAsync(student);
+
+        Assert.Matches($"data-id=\"{PublicFullId}\"[^>]*data-status=\"progress\"", html);
+        Assert.Matches($"data-id=\"{PublicTranscriptOnlyId}\"[^>]*data-status=\"done\"", html);
+        Assert.Matches($"data-id=\"{PublicTranscriptQuizId}\"[^>]*data-status=\"new\"", html);
+    }
+
+    [Fact]
+    public async Task IndexPage_DeepLink_PreselectsButStillRendersEveryLesson()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var html = await IndexHtmlAsync(guest, "/Home/Listening?level=b1&topic=Travel");
+
+        Assert.Contains("\"selectedLevel\":\"B1\"", html, StringComparison.Ordinal);
+        Assert.Contains("\"selectedTopic\":\"Travel\"", html, StringComparison.Ordinal);
+        Assert.Contains($"data-id=\"{PublicFullId}\"", html, StringComparison.Ordinal); // an A1 lesson is still in the page
+        Assert.Contains($"data-id=\"{PublicTranscriptOnlyId}\"", html, StringComparison.Ordinal);
+
+        var invalid = await IndexHtmlAsync(guest, "/Home/Listening?level=Z9&topic=Nope");
+        Assert.Contains("\"selectedLevel\":\"all\"", invalid, StringComparison.Ordinal);
+        Assert.Contains("\"selectedTopic\":\"all\"", invalid, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task IndexPage_GuestSeesTheSignInNotice_StandardSeesTheLockedPanel_PremiumSeesTheImportForm()
+    {
+        await using var factory = await CreateFactoryAsync();
+
+        using var guest = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+        var guestText = WebUtility.HtmlDecode(await IndexHtmlAsync(guest));
+        Assert.Contains("Đăng nhập để lưu tiến độ và thêm bài nghe của riêng bạn.", guestText, StringComparison.Ordinal);
+        Assert.DoesNotContain("Tiến độ nghe của bạn", guestText, StringComparison.Ordinal);
+        Assert.DoesNotContain("tlImport", guestText, StringComparison.Ordinal);
+
+        using var student = Client(factory, TestDataIds.UserId, Roles.Standard);
+        var studentHtml = await IndexHtmlAsync(student);
+        Assert.Contains("Thêm bài nghe từ YouTube là tính năng Premium.", WebUtility.HtmlDecode(studentHtml), StringComparison.Ordinal);
+        Assert.DoesNotContain("id=\"tlImport\"", studentHtml, StringComparison.Ordinal);
+
+        using var premium = Client(factory, PremiumOwnerId, Roles.Premium);
+        var premiumHtml = await IndexHtmlAsync(premium);
+        Assert.Contains("id=\"tlImport\"", premiumHtml, StringComparison.Ordinal);
+        Assert.Contains("data-mine-id=\"" + PremiumPrivateId + "\"", premiumHtml, StringComparison.Ordinal);
+        Assert.Contains("data-tl-delete=\"" + PremiumPrivateId + "\"", premiumHtml, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-mine-id=\"" + StandardPrivateId + "\"", premiumHtml, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task IndexPage_DowngradedOwner_SeesALockedPrivateCardWithoutDeleteOrLink()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var owner = Client(factory, StandardOwnerId, Roles.Standard);
+        var html = await IndexHtmlAsync(owner);
+
+        Assert.Contains("data-mine-id=\"" + StandardPrivateId + "\"", html, StringComparison.Ordinal);
+        Assert.Contains("tl-card--locked", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-tl-delete", html, StringComparison.Ordinal);
+        Assert.DoesNotContain($"/Home/Listening/Practice/{StandardPrivateId}", html, StringComparison.Ordinal);
+        Assert.Contains("/Account/Premium", html, StringComparison.Ordinal);
+    }
+
+    // ------------------------------------------------------------------
     // Practice view model flags
     // ------------------------------------------------------------------
 

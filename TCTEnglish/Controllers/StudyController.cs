@@ -108,7 +108,10 @@ namespace TCTVocabulary.Controllers
         public async Task<IActionResult> Listening(string? level = null, string? topic = null, CancellationToken ct = default)
         {
             var userId = TryGetCurrentUserId(out var currentUserId) ? currentUserId : (int?)null;
-            var viewModel = await _listeningService.GetIndexViewModelAsync(NormalizeListeningLevel(level), topic, userId, ct);
+            // The page filters client-side, so it needs every lesson; level/topic only pick the initial selection.
+            var viewModel = await _listeningService.GetIndexViewModelAsync(null, null, userId, ct);
+            viewModel.SelectedLevel = NormalizeListeningLevel(level);
+            viewModel.SelectedTopic = !string.IsNullOrWhiteSpace(topic) && viewModel.Topics.Contains(topic) ? topic : null;
             return View(viewModel);
         }
 

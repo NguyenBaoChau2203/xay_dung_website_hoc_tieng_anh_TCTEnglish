@@ -820,7 +820,7 @@ git diff --check
 - Attempts / deferred / blocked: none.
 
 ### L3 — Kit scope extension and listening.css foundation
-- Commit: (hash filled in at the L4 commit)
+- Commit: f981a58
 - Work: `study-kit.css` scope lists gained `.tl-page` (142 `:is()` lists, the canvas rule and the six hue blocks with `.tl-hue-*`; comments updated). Proof that nothing else changed: undoing the scope extension mechanically gives a file byte-identical to the L2 kit. New `wwwroot/css/listening.css` (page frame, local thumbnail placeholder `.tl-thumb--empty`, forced-colours and reduced-motion blocks). Both views are wrapped in `tct-theme tct-page tl-page tl-page--index|practice` and load `study-kit.css` then `listening.css`.
 - Transitional decision: the old markup, scripts and old CSS (`listening-index.css`, `listening-practice.css`, and `speaking.css` on the index) stay loaded inside the new wrapper until L4 (index) and L6 (practice) replace the markup; dropping them earlier would unstyle markup the old scripts still need. Both pages stop loading the old files in those phases; the files are deleted at L10.
 - G1 build: pass (0 errors, 43 warnings = L0)
@@ -837,3 +837,24 @@ git diff --check
 - G14 clay grep: clean (no shadow or radius literals in `listening.css`).
 - G15 security: nothing new (no JS or data path changed).
 - Attempts / deferred / blocked: none.
+
+### L4 — Index: overview, filters, level sections, cards
+- Commit: (hash filled in at the L5 commit)
+- Work: `Listening.cshtml` rewritten (page header, signed-in overview with "Tiếp tục nghe", guest notice, toolbar with search/level/status/topic filters and a live count, level sections, empty states, "Bài nghe của tôi" markup, delete modal markup, JSON config); new partials `_ListeningLessonCard` and `_ListeningMyLessonCard`; `listening-index.js` rewritten (filters through `listening-core.js`, URL sync, "Xem thêm" per level with focus on the first new card, topic collapse above 8, thumbnail fallback); index styles added to `listening.css`; card view model gains `ThumbnailSrc` (https/local URL or a well-formed YouTube id, never an external placeholder) and `SpeakerText`; 5 new page-contract tests (`ListeningIntegrationTests` now 28).
+- Decision: the controller now asks the service for every lesson and only uses `level`/`topic` as the initial selection (invalid values fall back to "all"). The plan's 4.7 passed the level to the service, which would leave no other level in the page to switch to client-side. The service filter parameters stay and are covered by a test.
+- Decision: the import form and delete modal markup exist, but their scripts are L5 work, so the import and delete buttons do nothing in this commit (the old inline script was removed with the old view).
+- G1 build: pass (0 errors, 43 warnings = L0)
+- G2/G3 full: passed 1423 / failed 0 / skipped 29 (L0 1395 / 29; +28 Listening tests)
+- G4 node: passed 257 / failed 0
+- G5 contracts: unchanged (no endpoint, JSON shape or route touched)
+- G6 tokens/diff: the three `listening.css` greps print nothing; `git diff --check` clean for phase files
+- G7 scope: `Listening.cshtml`, `_ListeningLessonCard.cshtml`, `_ListeningMyLessonCard.cshtml`, `listening.css`, `listening-index.js`, `ListeningViewModels.cs`, `StudyController.cs` (Listening action), `ListeningIntegrationTests.cs`
+- G8 render: anonymous, Standard, Premium × 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640, 720×450 (200% zoom): per-element overflow 0 in all 21 combinations; the only console/network entry is the dev lesson's thumbnail URL returning 404 (data). Screenshots: `.tmp/listening/L4/`.
+- G9 design: matches plan 6.2–6.4 and the `/Sets` overview pattern. Differences: the level and status filters are `div[role=group]` of buttons with `aria-pressed` instead of `nav` (they filter, they do not navigate); the dev DB holds one lesson, so multi-lesson layouts were checked on a patched copy of the served HTML (below).
+- G10 behaviour (mouse and keyboard, scripted over a document patched to 15 lessons in A1/B1/B2 with 11 topics; Standard and Premium): level, status and topic filters alone and combined; search with and without accents (cuoc song = cuộc sống); URL updates and survives reload; deep link `?level=b2&topic=Nope&status=zzz` preselects B2 and ignores the rest; "Xem thêm" per level (6 then 8) with focus on the first new card; empty result and "Xóa bộ lọc" (focus returns to the search field); topic collapse/expand; Space and Enter on filter buttons; a broken thumbnail is replaced by the local placeholder; card status and steps match the database for a seeded user (integration tests); overview numbers, "Tiếp tục nghe" and the anonymous notice (integration tests). The live "Tiếp tục nghe" and quiz-score rendering with real progress are re-checked at L9.
+- G11 a11y: one h1; accessible names on every control; groups named; `aria-pressed`; polite live count; 16 Tab stops each with a visible focus indicator; no trap; forced-colors (cards keep a border, the pressed filter has a thicker border); reduced motion (transitions ~0s). Scripts: `a11y-index` (kept outside the repo).
+- G12 contrast (computed, anonymous/Standard/Premium): page title 15.45, description 8.41, overview title 13.18, stat number 4.23 (24px bold = large text, needs 3), stat label 7.17, hint 7.17, section title 15.45, import label 17.1, hint 9.31, count 8.41, pressed filter 17.1, unpressed 8.30, level description 8.41, card title 17.1, card meta 9.31, status badge 6.84, level count badge 6.84, guest text 17.1, locked text 17.1. Not rendered with the dev data (checked at L9): continue block, duration pill, speakers, quiz score, card action.
+- G13 regression: `/Sets`, `/Practice`, `/Home/Index` and `/Home/Listening/Practice/1` render with no console/network errors (Premium, 1440×900). `/Speaking` logs one `http 404` for a resource that is not loaded by any file of this module and was not captured at L0, so it is recorded as not compared. The AI-chat answer that links to `/Home/Listening` was not run (it needs a live or stubbed chat session); the link target still exists.
+- G14 clay grep: clean.
+- G15 security: grep for `innerHTML`, `alert(`, `confirm(`, `console.log`, inline `on*=` in the index JS and views prints nothing; `Html.Raw` appears only for the JSON config script; B2/B3/B8 tests green; all text goes through `textContent` or Razor encoding.
+- Attempts / deferred / blocked: none. A first run of the behaviour script failed two items: a test-harness Enter key without a text payload, and SignalR websocket noise caused by the request interception; both were harness issues and the rerun passed.

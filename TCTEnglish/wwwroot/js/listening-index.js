@@ -1,192 +1,194 @@
-/**
- * listening-index.js
- * Client-side logic for the TCT English Listening Index page.
+/*
+ * /Home/Listening: client-side filters, "Xem thêm" per level, thumbnail fallback.
+ * Needs window.TctSets (personal-sets-common.js) and window.TctListening.core (listening-core.js).
+ * DOM is built with createElement and textContent only; server data is never turned into markup.
  */
+(function () {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
-    const CONFIG = {
-        debounceDelay: 300,
-        itemsPerPage: 6,
-        animations: {
-            fadeTime: 300
-        }
-    };
+    var core = window.TctListening && window.TctListening.core;
+    var Sets = window.TctSets;
+    var page = document.querySelector('.tl-page--index');
+    if (!core || !Sets || !page) { return; }
 
-    let activeLevel = 'all';
-    let activeTopic = 'all';
-    let searchQuery = '';
+    var config = {};
+    try { config = JSON.parse(document.getElementById('tlConfig').textContent) || {}; } catch (e) { config = {}; }
+    var pageSize = config.pageSize > 0 ? config.pageSize : 6;
+    var TOPICS_COLLAPSED = 8;
 
-    // Cache selectors
-    const searchInput = document.getElementById('li-search');
-    const levelTabs = document.querySelectorAll('.btn-tab');
-    const topicPills = document.querySelectorAll('.pill-topic');
-    const sections = document.querySelectorAll('.li-level-section');
-    const emptyState = document.getElementById('li-no-results');
-    const totalCountText = document.getElementById('li-total-count');
+    // ------------------------------------------------------------------ thumbnails
 
-    // =================================================================
-    // INITIALIZATION
-    // =================================================================
-
-    function init() {
-        // Initial pagination for each level section
-        sections.forEach(function (section) {
-            paginateSection(section, 1);
-        });
-
-        // Event listeners
-        if (searchInput) {
-            searchInput.addEventListener('keyup', debounce(handleSearch, CONFIG.debounceDelay));
-        }
-        
-        levelTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const level = this.dataset.level;
-                levelTabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.setAttribute('aria-pressed', 'false');
-                });
-                this.classList.add('active');
-                this.setAttribute('aria-pressed', 'true');
-                activeLevel = level;
-                applyFilters();
-            });
-        });
-
-        topicPills.forEach(pill => {
-            pill.addEventListener('click', function() {
-                const topic = this.dataset.topic;
-                topicPills.forEach(p => {
-                    p.classList.remove('active');
-                    p.setAttribute('aria-pressed', 'false');
-                });
-                this.classList.add('active');
-                this.setAttribute('aria-pressed', 'true');
-                activeTopic = topic;
-                applyFilters();
-            });
-        });
+    function emptyThumb() {
+        var span = Sets.el('span', 'tl-thumb--empty');
+        span.setAttribute('aria-hidden', 'true');
+        span.appendChild(Sets.icon('fa-solid fa-headphones'));
+        return span;
     }
 
-    // =================================================================
-    // FILTERING LOGIC
-    // =================================================================
-
-    function handleSearch() {
-        searchQuery = searchInput.value.toLowerCase().trim();
-        applyFilters();
+    function swapBrokenThumb(img) {
+        if (!img || !img.parentNode || !img.classList.contains('tl-thumb')) { return; }
+        img.parentNode.replaceChild(emptyThumb(), img);
     }
 
-    function applyFilters() {
-        let visibleTotal = 0;
+    // error events do not bubble: listen in the capture phase for every image, including ones added later
+    page.addEventListener('error', function (event) {
+        if (event.target && event.target.tagName === 'IMG') { swapBrokenThumb(event.target); }
+    }, true);
+    Array.prototype.forEach.call(page.querySelectorAll('img.tl-thumb'), function (img) {
+        if (img.complete && img.naturalWidth === 0) { swapBrokenThumb(img); }
+    });
 
-        sections.forEach(function (section) {
-            const sectionLevel = section.dataset.level;
-            
-            // Level Filtering: if level is 'all' or matches section level
-            const levelMatches = (activeLevel === 'all' || activeLevel === sectionLevel);
+    // ------------------------------------------------------------------ filters
 
-            let visibleInLevel = 0;
-            const levelCards = section.querySelectorAll('.li-card-col');
+    var host = document.getElementById('tlLevelsHost');
+    var searchInput = document.getElementById('tlSearch');
+    var levelsGroup = document.getElementById('tlLevels');
+    var statusGroup = document.getElementById('tlStatuses');
+    var topicsGroup = document.getElementById('tlTopics');
+    var topicsToggle = document.getElementById('tlTopicsToggle');
+    var countEl = document.getElementById('tlCount');
+    var emptyEl = document.getElementById('tlEmpty');
+    var clearBtn = document.getElementById('tlClearFilters');
 
-            levelCards.forEach(function (cardCol) {
-                const cardTitle = (cardCol.dataset.title || '').toLowerCase();
-                const cardTopic = cardCol.dataset.topic || '';
+    if (host && levelsGroup) { initFilters(); }
 
-                // Topic filtering
-                const topicMatches = (activeTopic === 'all' || activeTopic === cardTopic);
-                
-                // Search filtering
-                const searchMatches = (searchQuery === '' || cardTitle.includes(searchQuery) || cardTopic.toLowerCase().includes(searchQuery));
+    function initFilters() {
+        var items = Array.prototype.map.call(host.querySelectorAll('.tl-grid__item'), function (el) {
+            return {
+                id: Number(el.getAttribute('data-id')),
+                title: el.getAttribute('data-title') || '',
+                topic: el.getAttribute('data-topic') || '',
+                level: el.getAttribute('data-level') || '',
+                status: el.getAttribute('data-status') || 'new',
+                el: el
+            };
+        });
+        var sections = Array.prototype.map.call(host.querySelectorAll('[data-level-section]'), function (section) {
+            return {
+                level: section.getAttribute('data-level-section'),
+                el: section,
+                count: section.querySelector('[data-level-count]'),
+                more: section.querySelector('[data-level-more]')
+            };
+        });
+        var lessons = items.map(function (it) { return { id: it.id, title: it.title, topic: it.topic, level: it.level, status: it.status }; });
+        var byId = {};
+        items.forEach(function (it) { byId[it.id] = it; });
 
-                if (topicMatches && searchMatches) {
-                    cardCol.classList.remove('card-filtered-out');
-                    cardCol.classList.add('card-visible');
-                    visibleInLevel++;
-                    visibleTotal++;
-                } else {
-                    cardCol.classList.add('card-filtered-out');
-                    cardCol.classList.remove('card-visible');
+        var state = core.parseFilterQuery(window.location.search, config.topics);
+        if (!config.isAuthenticated) { state.status = 'all'; }
+        var shown = {};
+        var topicsExpanded = false;
+
+        function resetShown() { sections.forEach(function (s) { shown[s.level] = pageSize; }); }
+        resetShown();
+
+        function syncPressed(group, attr, value) {
+            if (!group) { return; }
+            Array.prototype.forEach.call(group.querySelectorAll('button[' + attr + ']'), function (btn) {
+                btn.setAttribute('aria-pressed', btn.getAttribute(attr) === value ? 'true' : 'false');
+            });
+        }
+
+        function syncTopicsCollapse() {
+            if (!topicsGroup || !topicsToggle) { return; }
+            var buttons = Array.prototype.slice.call(topicsGroup.querySelectorAll('button[data-topic]')).filter(function (b) {
+                return b.getAttribute('data-topic') !== 'all';
+            });
+            if (buttons.length <= TOPICS_COLLAPSED) { topicsToggle.hidden = true; return; }
+            var activeIndex = buttons.findIndex(function (b) { return b.getAttribute('data-topic') === state.topic; });
+            var expanded = topicsExpanded || activeIndex >= TOPICS_COLLAPSED;
+            buttons.forEach(function (b, i) { b.hidden = !expanded && i >= TOPICS_COLLAPSED; });
+            topicsToggle.hidden = false;
+            topicsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            topicsToggle.textContent = expanded ? 'Thu gọn chủ đề' : 'Xem thêm chủ đề';
+        }
+
+        function render(revealFrom) {
+            var matching = {};
+            var matchIds = core.filterLessons(lessons, state);
+            matchIds.forEach(function (id) {
+                var it = byId[id];
+                (matching[it.level] = matching[it.level] || []).push(id);
+            });
+
+            var focusTarget = null;
+            sections.forEach(function (s) {
+                var ids = matching[s.level] || [];
+                var page_ = core.paginate(ids, shown[s.level]);
+                var visible = {};
+                page_.visible.forEach(function (id) { visible[id] = true; });
+                items.forEach(function (it) {
+                    if (it.level === s.level) { it.el.hidden = !visible[it.id]; }
+                });
+                s.el.hidden = ids.length === 0;
+                if (s.count) { s.count.textContent = ids.length + ' bài'; }
+                if (s.more) { s.more.hidden = !page_.hasMore; }
+                if (revealFrom && revealFrom.level === s.level && ids.length > revealFrom.index) {
+                    var first = byId[ids[revealFrom.index]];
+                    focusTarget = first && first.el.querySelector('a');
                 }
             });
 
-            // Show/Hide section based on level tab and visibility of cards
-            if (levelMatches && visibleInLevel > 0) {
-                section.style.display = '';
-                paginateSection(section, 1); // Reset to page 1 on filter
-            } else {
-                section.style.display = 'none';
-            }
+            countEl.textContent = matchIds.length + ' bài nghe';
+            if (emptyEl) { emptyEl.hidden = matchIds.length > 0; }
+
+            syncPressed(levelsGroup, 'data-level', state.level);
+            syncPressed(statusGroup, 'data-status', state.status);
+            syncPressed(topicsGroup, 'data-topic', state.topic);
+            syncTopicsCollapse();
+
+            var query = core.buildFilterQuery(state);
+            try { window.history.replaceState(null, '', window.location.pathname + query); } catch (e) { /* ignore */ }
+            if (focusTarget) { focusTarget.focus(); }
+        }
+
+        function change(patch) {
+            Object.keys(patch).forEach(function (k) { state[k] = patch[k]; });
+            resetShown();
+            render();
+        }
+
+        levelsGroup.addEventListener('click', function (event) {
+            var btn = event.target.closest('button[data-level]');
+            if (btn) { change({ level: btn.getAttribute('data-level') }); }
         });
-
-        // Update counts and empty state
-        if (totalCountText) {
-            totalCountText.textContent = `${visibleTotal} bài học`;
+        if (statusGroup) {
+            statusGroup.addEventListener('click', function (event) {
+                var btn = event.target.closest('button[data-status]');
+                if (btn) { change({ status: btn.getAttribute('data-status') }); }
+            });
         }
-        if (emptyState) {
-            if (visibleTotal === 0) {
-                emptyState.style.display = 'block';
-            } else {
-                emptyState.style.display = 'none';
-            }
+        if (topicsGroup) {
+            topicsGroup.addEventListener('click', function (event) {
+                var btn = event.target.closest('button[data-topic]');
+                if (btn) { change({ topic: btn.getAttribute('data-topic') }); }
+            });
         }
-    }
-
-    // =================================================================
-    // PAGINATION LOGIC
-    // =================================================================
-
-    function paginateSection(section, page) {
-        const visibleCards = Array.from(section.querySelectorAll('.li-card-col.card-visible'));
-        const total = visibleCards.length;
-        const totalPages = Math.ceil(total / CONFIG.itemsPerPage);
-
-        // Hide all visible cards then show only current page
-        visibleCards.forEach(card => card.style.display = 'none');
-        
-        const start = (page - 1) * CONFIG.itemsPerPage;
-        const end = start + CONFIG.itemsPerPage;
-        visibleCards.slice(start, end).forEach(card => {
-            card.style.display = 'block'; // basic show, no fade needed
+        if (topicsToggle) {
+            topicsToggle.addEventListener('click', function () { topicsExpanded = !topicsExpanded; syncTopicsCollapse(); });
+        }
+        if (searchInput) {
+            searchInput.value = state.q;
+            searchInput.addEventListener('input', Sets.debounce(function () { change({ q: searchInput.value.trim() }); }, 150));
+        }
+        sections.forEach(function (s) {
+            if (!s.more) { return; }
+            s.more.addEventListener('click', function () {
+                var from = shown[s.level];
+                shown[s.level] = from + pageSize;
+                render({ level: s.level, index: from });
+            });
         });
-
-        // Build pagination UI
-        const paginationContainer = section.querySelector('.li-pagination');
-        if (!paginationContainer) return;
-        
-        paginationContainer.innerHTML = '';
-
-        if (totalPages > 1) {
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.className = 'page-link';
-                btn.type = 'button';
-                btn.textContent = i;
-                btn.dataset.page = i;
-                
-                if (i === page) btn.classList.add('active');
-
-                btn.addEventListener('click', function() {
-                    paginateSection(section, i);
-                });
-
-                paginationContainer.appendChild(btn);
-            }
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function () {
+                state = { level: 'all', topic: 'all', status: 'all', q: '' };
+                if (searchInput) { searchInput.value = ''; searchInput.focus(); }
+                resetShown();
+                render();
+            });
         }
+
+        render();
     }
-
-    // =================================================================
-    // HELPERS
-    // =================================================================
-
-    function debounce(func, wait) {
-        let timeout;
-        return function () {
-            const context = this, args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
-
-    init();
-});
+}());

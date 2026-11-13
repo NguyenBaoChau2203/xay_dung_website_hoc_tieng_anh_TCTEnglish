@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace TCTEnglish.ViewModels
 {
@@ -101,6 +102,47 @@ namespace TCTEnglish.ViewModels
         public bool IsLocked { get; set; }
         public string? ImportStatus { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        private static readonly Regex YoutubeIdPattern = new("^[A-Za-z0-9_-]{6,20}$", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Safe thumbnail URL for the card: the stored URL when it is https or a local path, otherwise the YouTube
+        /// thumbnail of a well-formed video id, otherwise null (the page shows a local placeholder).
+        /// </summary>
+        public string? ThumbnailSrc
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(ThumbnailUrl)
+                    && (ThumbnailUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                        || (ThumbnailUrl.StartsWith("/", StringComparison.Ordinal) && !ThumbnailUrl.StartsWith("//", StringComparison.Ordinal))))
+                {
+                    return ThumbnailUrl;
+                }
+
+                if (!string.IsNullOrWhiteSpace(YoutubeId) && YoutubeIdPattern.IsMatch(YoutubeId))
+                {
+                    return $"https://img.youtube.com/vi/{YoutubeId}/hqdefault.jpg";
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>Speaker names for the card, or null when there is nothing meaningful to show (imports use "Speaker").</summary>
+        public string? SpeakerText
+        {
+            get
+            {
+                var first = IsRealSpeaker(Speaker1Name) ? Speaker1Name!.Trim() : null;
+                var second = IsRealSpeaker(Speaker2Name) ? Speaker2Name!.Trim() : null;
+                if (first == null) return second;
+                return second == null ? first : $"{first} và {second}";
+            }
+        }
+
+        private static bool IsRealSpeaker(string? name) =>
+            !string.IsNullOrWhiteSpace(name) && !string.Equals(name.Trim(), "Speaker", StringComparison.OrdinalIgnoreCase);
     }
 
     // ================================================================
