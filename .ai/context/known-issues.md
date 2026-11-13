@@ -27,6 +27,31 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### LISTENING-IMPORT-WAITS-FOR-AI — confirmed 13/11/2026
+
+- Việc thêm bài nghe từ YouTube (`CreateOwnedLessonAsync`) vẫn chờ AI sinh quiz xong
+  rồi mới trả lời (tối đa khoảng 20 giây của nhà cung cấp AI, cộng thời gian lấy phụ
+  đề). Giao diện nay hiển thị trạng thái chờ trung thực ("có thể mất đến một phút"),
+  và chú thích sai "without blocking" trong code đã sửa, nhưng hành vi chưa đổi.
+- Hướng sửa gọn (cần quyết định riêng): tạo bài trước, sinh quiz nền hoặc để người
+  dùng bấm "Tạo quiz bằng AI". Không làm trong đợt Listening để giữ nguyên hợp đồng
+  `My/Create`.
+
+### LISTENING-LEGACY-TOKEN-COMMENTS — confirmed 13/11/2026
+
+- `listening-index.css` và `listening-practice.css` đã bị xóa, nhưng
+  `DESIGN.md` (dòng ~363), `wwwroot/css/tct-learning-ui.css` (đầu file) và
+  `docs/design-system/team-ui-workflow.md` (dòng ~139) vẫn nhắc
+  `listening-index.css` là nơi dùng các token legacy. Các file chung này ngoài
+  phạm vi đợt Listening; chủ design system (Chau) cập nhật khi dọn token legacy.
+  Chỉ còn `auth-stitch.css` dùng các tên đó.
+
+### LISTENING-AI-LIVE-NOT-VERIFIED — confirmed 13/11/2026
+
+- "Tạo quiz bằng AI" và "Dịch bằng AI" ở trang Luyện nghe chỉ được kiểm tra với
+  câu trả lời server giả lập; chưa chạy với khóa AI thật. Cần một lần thử thủ công
+  bằng khóa cục bộ của chủ dự án trước khi coi là đã xác nhận.
+
 ### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
 
 - Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên

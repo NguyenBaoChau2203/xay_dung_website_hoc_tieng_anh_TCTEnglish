@@ -926,7 +926,7 @@ git diff --check
 - Attempts / deferred / blocked: three test-side mistakes fixed in the scripts (a wrong expected count, a click covered by the AI launcher, a regex lost in shell quoting); one real finding fixed (state border contrast).
 
 ### L9 — Vocabulary tab, quiz tab, AI quiz generation, completion
-- Commit: (hash filled in at the L10 commit)
+- Commit: 180dbf3
 - Work: `listening-practice.js` gained the vocabulary tab (speak buttons only when speech synthesis exists, a local placeholder for a broken image, "Đã học xong từ vựng" saves `vocabReviewed`), the quiz (unanswered guard with a per-question flag, text, focus and live message; grading through `EvaluateQuiz` with pending/failed states; per-question "Đáp án đúng"/"Bạn chọn" with an icon; explanations written with `textContent`; the result panel with the ring, "Đúng c/n", the remark and "Điểm cao nhất"; "Làm lại quiz"; the stored best score on load; the quiz step is set from the response and **no `SaveProgress` is sent for the quiz**), AI quiz generation (pending, failure toast with the server message, reload on success) and the completion banner. Vocabulary and quiz styles added to `listening.css`; the graded option colours now win over the "checked" tint.
 - G1 build: pass (0 errors, 43 warnings = L0). G2/G3 full: passed 1427 / failed 0 / skipped 29. G4 node: passed 258 / failed 0.
 - G5 contracts: unchanged (EvaluateQuiz posts the same body; `SaveProgress` gets `vocabReviewed` and `transcriptCompleted` only).
@@ -940,3 +940,12 @@ git diff --check
 - G14 clay grep: clean. G15 security: greps clean (`Html.Raw` only for the two JSON configs); explanations, words, definitions, examples and server messages are written with `textContent`; the hostile explanation proves it; no `alert`/`confirm`/`console.log` remains in the module.
 - Attempts / deferred / blocked: harness-side fixes only (a same-document navigation hid a reload, a click covered by the AI launcher earlier); one real finding fixed (a graded wrong option kept the primary "selected" tint).
 - Synthetic data: the two private lessons stay in the dev DB until the L11 pass and are removed at its end together with their progress rows; the credit counter of the synthetic Premium account was raised by one by the completion test (a count on a test account, not shared content).
+
+### L10 — Cleanup and docs
+- Commit: (hash filled in at the L11 commit)
+- Work: deleted `listening-index.css` and `listening-practice.css` after a tracked-file grep showed no view, script or test still loading them (only comments in `DESIGN.md`, `tct-learning-ui.css` and `team-ui-workflow.md` mention the old index file; those shared files are out of scope and recorded as a known issue). Removed the confirmed-dead level metadata (B16): the `LevelMeta` dictionary with its Bootstrap-icon classes and hex colours, `BuildLevelMeta`, `LevelOrder`, `ListeningIndexViewModel.Levels` and `ListeningLevelMetaViewModel`; `LP_QUIZ`/`quizJson` and the double `id`+`lessonId` delete post went with the view and script rewrites. Docs: the tracker row "Nghe" in `team-ui-workflow.md` section 6 (`study-kit.css` + `listening.css`, "Đã chuyển Clay 2026-11-13", Huỳnh Phú Trọng), a bug-fix-log entry, and three known issues (import waits for AI, stale legacy-token comments, live AI not verified). `docs/project-structure.md` lists no listening files by name, so it was left unchanged.
+- G1 build: pass (0 errors, 43 warnings = L0). G2/G3 full: passed 1427 / failed 0 / skipped 29. G4 node: passed 258 / failed 0. `dotnet ef migrations has-pending-model-changes`: "No changes have been made to the model since the last migration."
+- G5 contracts: unchanged (the removed members belonged to the view model only). G6: `git diff --check` clean. G7 scope: service and view model (dead code), the two CSS deletions, three docs.
+- G8–G14: no rendered change in this phase; the page-contract tests (which fail if the old stylesheets or classes returned) are green, and the full browser sweep is repeated in L11.
+- G15 security: greps clean (see L9).
+- Attempts / deferred / blocked: none.

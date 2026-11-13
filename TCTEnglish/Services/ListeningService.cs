@@ -15,19 +15,6 @@ namespace TCTEnglish.Services
 {
     public class ListeningService : IListeningService
     {
-        // CEFR levels in display order
-        private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1" };
-
-        private static readonly Dictionary<string, (string Title, string Description, string IconClass, string AccentColor)> LevelMeta =
-            new(StringComparer.OrdinalIgnoreCase)
-            {
-                ["A1"] = ("Beginner", "Basic everyday expressions and simple phrases", "bi bi-1-circle", "#4CAF50"),
-                ["A2"] = ("Elementary", "Common situations and simple language", "bi bi-2-circle", "#8BC34A"),
-                ["B1"] = ("Intermediate", "Main points on familiar topics", "bi bi-3-circle", "#2196F3"),
-                ["B2"] = ("Upper-Intermediate", "Complex texts and technical discussions", "bi bi-4-circle", "#9C27B0"),
-                ["C1"] = ("Advanced", "Flexible and effective language use", "bi bi-5-circle", "#FF5722"),
-            };
-
         private readonly DbflashcardContext _context;
         private readonly ILogger<ListeningService> _logger;
         private readonly IGoalsService _goalsService;
@@ -335,15 +322,9 @@ namespace TCTEnglish.Services
 
         private static void FinishIndexViewModel(ListeningIndexViewModel viewModel, List<ListeningLessonCardViewModel> cards)
         {
-            var cardsByLevel = cards
+            viewModel.LessonsByLevel = cards
                 .GroupBy(c => c.Level)
                 .ToDictionary(g => g.Key, g => g.ToList());
-
-            // Level metadata in canonical order
-            viewModel.LessonsByLevel = cardsByLevel;
-            viewModel.Levels = LevelOrder
-                .Select(key => BuildLevelMeta(key, cardsByLevel))
-                .ToList();
         }
 
         // ----------------------------------------------------------------
@@ -980,28 +961,6 @@ Chỉ trả JSON array of strings, không giải thích thêm.
             {
                 return new List<string>();
             }
-        }
-
-        // ----------------------------------------------------------------
-        // Private helpers
-        // ----------------------------------------------------------------
-
-        private static ListeningLevelMetaViewModel BuildLevelMeta(
-            string key,
-            Dictionary<string, List<ListeningLessonCardViewModel>> cardsByLevel)
-        {
-            LevelMeta.TryGetValue(key, out var meta);
-            cardsByLevel.TryGetValue(key, out var cards);
-
-            return new ListeningLevelMetaViewModel
-            {
-                Key = key,
-                Title = meta.Title ?? key,
-                Description = meta.Description ?? string.Empty,
-                IconClass = meta.IconClass ?? "bi bi-headphones",
-                AccentColor = meta.AccentColor ?? "#607D8B",
-                LessonCount = cards?.Count ?? 0,
-            };
         }
     }
 }
