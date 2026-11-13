@@ -191,4 +191,150 @@
 
         render();
     }
+
+    // ------------------------------------------------------------------ my lessons: import and delete
+
+    var importForm = document.getElementById('tlImport');
+    var mineGrid = document.getElementById('tlMineGrid');
+    var deleteModalEl = document.getElementById('tlDeleteLesson');
+    if (importForm) { initImport(); }
+    if (deleteModalEl) { initDelete(); }
+
+    function initImport() {
+        var urlInput = document.getElementById('tlImportUrl');
+        var submit = document.getElementById('tlImportSubmit');
+        var errorEl = document.getElementById('tlImportError');
+        var statusEl = document.getElementById('tlImportStatus');
+        var busy = false;
+
+        function setError(text) {
+            errorEl.textContent = text || '';
+            errorEl.hidden = !text;
+            if (text) { urlInput.setAttribute('aria-invalid', 'true'); } else { urlInput.removeAttribute('aria-invalid'); }
+        }
+
+        function setStatus(nodes) {
+            statusEl.textContent = '';
+            (nodes || []).forEach(function (n) { statusEl.appendChild(n); });
+        }
+
+        function setBusy(on) {
+            busy = on;
+            urlInput.disabled = on;
+            submit.disabled = on;
+            if (on) { submit.setAttribute('aria-busy', 'true'); } else { submit.removeAttribute('aria-busy'); }
+        }
+
+        function failure(message, upgrade) {
+            setBusy(false);
+            var nodes = [document.createTextNode(message)];
+            if (upgrade) {
+                nodes.push(document.createTextNode(' '));
+                var link = Sets.el('a', null, 'Nâng cấp Premium');
+                link.href = (config.urls && config.urls.premium) || '/Account/Premium';
+                nodes.push(link);
+            }
+            setStatus(nodes);
+        }
+
+        importForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (busy) { return; }
+            setError('');
+            setStatus([]);
+
+            var value = urlInput.value.trim();
+            if (!core.isYoutubeUrl(value)) {
+                setError('Link YouTube không hợp lệ.');
+                urlInput.focus();
+                return;
+            }
+
+            setBusy(true);
+            var spinner = Sets.el('span', 'spinner-border spinner-border-sm me-2');
+            spinner.setAttribute('role', 'presentation');
+            setStatus([spinner, document.createTextNode('Đang lấy phụ đề và tạo bài nghe… Việc này có thể mất đến một phút.')]);
+
+            var form = new FormData();
+            form.append('youtubeUrl', value);
+            Sets.fetchJson(config.urls.create, { method: 'POST', body: form }).then(function (data) {
+                var id = data && Number(data.lessonId);
+                if (!id) { failure('Không thêm được bài nghe. Hãy kiểm tra video có phụ đề tiếng Anh rồi thử lại.'); return; }
+                setStatus([document.createTextNode('Đã thêm bài nghe.')]);
+                window.location.assign(config.urls.practice + id);
+            }).catch(function (error) {
+                var data = error && error.data;
+                var message = data && typeof data.message === 'string' && data.message
+                    ? data.message
+                    : 'Không thêm được bài nghe. Hãy kiểm tra video có phụ đề tiếng Anh rồi thử lại.';
+                failure(message, !!(error && error.status === 403 && data && data.requiresUpgrade));
+            });
+        });
+
+        urlInput.addEventListener('input', function () { if (errorEl.textContent) { setError(''); } });
+    }
+
+    function initDelete() {
+        var bodyEl = document.getElementById('tlDeleteBody');
+        var confirmBtn = document.getElementById('tlDeleteConfirm');
+        var countEl = document.getElementById('tlMineCount');
+        var emptyEl = document.getElementById('tlMineEmpty');
+        var heading = document.getElementById('tl-mine-title');
+        var current = null;
+        var modal = null;
+
+        function getModal() {
+            if (!modal && window.bootstrap && window.bootstrap.Modal) { modal = window.bootstrap.Modal.getOrCreateInstance(deleteModalEl); }
+            return modal;
+        }
+
+        function afterHidden(fn) { deleteModalEl.addEventListener('hidden.bs.modal', fn, { once: true }); }
+
+        // Bootstrap only restores focus for data-api triggers; this modal is opened from code.
+        deleteModalEl.addEventListener('hidden.bs.modal', function () {
+            if (current && current.trigger && document.body.contains(current.trigger)) { current.trigger.focus(); }
+        });
+
+        document.addEventListener('click', function (event) {
+            var trigger = event.target.closest('[data-tl-delete]');
+            if (!trigger) { return; }
+            var m = getModal();
+            if (!m) { Sets.toast('Không mở được hộp thoại. Hãy tải lại trang.', { type: 'danger' }); return; }
+            current = { id: trigger.getAttribute('data-tl-delete'), title: trigger.getAttribute('data-title') || '', trigger: trigger };
+            bodyEl.textContent = 'Bài “' + current.title + '” và tiến độ học của bài sẽ bị xóa vĩnh viễn.';
+            m.show(trigger);
+        });
+
+        function removeCard(id) {
+            var item = mineGrid && mineGrid.querySelector('[data-mine-id="' + id + '"]');
+            if (item) { item.remove(); }
+            var left = mineGrid ? mineGrid.querySelectorAll('[data-mine-id]').length : 0;
+            if (countEl) { countEl.textContent = left + ' bài'; }
+            if (left === 0) {
+                if (mineGrid) { mineGrid.remove(); mineGrid = null; }
+                if (emptyEl) { emptyEl.hidden = false; }
+            }
+        }
+
+        confirmBtn.addEventListener('click', function () {
+            if (!current || confirmBtn.disabled) { return; }
+            var target = current;
+            Sets.pending(confirmBtn, true, 'Đang xóa…');
+            var form = new FormData();
+            form.append('lessonId', target.id);
+            Sets.fetchJson(config.urls.delete, { method: 'POST', body: form }).then(function () {
+                Sets.pending(confirmBtn, false);
+                afterHidden(function () {
+                    removeCard(target.id);
+                    Sets.toast('Đã xóa bài nghe.');
+                    if (heading) { heading.focus(); }
+                });
+                getModal().hide();
+            }).catch(function () {
+                Sets.pending(confirmBtn, false);
+                afterHidden(function () { Sets.toast('Không xóa được bài nghe. Vui lòng thử lại.', { type: 'danger' }); });
+                getModal().hide();
+            });
+        });
+    }
 }());

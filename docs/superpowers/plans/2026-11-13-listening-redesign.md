@@ -839,7 +839,7 @@ git diff --check
 - Attempts / deferred / blocked: none.
 
 ### L4 — Index: overview, filters, level sections, cards
-- Commit: (hash filled in at the L5 commit)
+- Commit: 96622cb
 - Work: `Listening.cshtml` rewritten (page header, signed-in overview with "Tiếp tục nghe", guest notice, toolbar with search/level/status/topic filters and a live count, level sections, empty states, "Bài nghe của tôi" markup, delete modal markup, JSON config); new partials `_ListeningLessonCard` and `_ListeningMyLessonCard`; `listening-index.js` rewritten (filters through `listening-core.js`, URL sync, "Xem thêm" per level with focus on the first new card, topic collapse above 8, thumbnail fallback); index styles added to `listening.css`; card view model gains `ThumbnailSrc` (https/local URL or a well-formed YouTube id, never an external placeholder) and `SpeakerText`; 5 new page-contract tests (`ListeningIntegrationTests` now 28).
 - Decision: the controller now asks the service for every lesson and only uses `level`/`topic` as the initial selection (invalid values fall back to "all"). The plan's 4.7 passed the level to the service, which would leave no other level in the page to switch to client-side. The service filter parameters stay and are covered by a test.
 - Decision: the import form and delete modal markup exist, but their scripts are L5 work, so the import and delete buttons do nothing in this commit (the old inline script was removed with the old view).
@@ -858,3 +858,20 @@ git diff --check
 - G14 clay grep: clean.
 - G15 security: grep for `innerHTML`, `alert(`, `confirm(`, `console.log`, inline `on*=` in the index JS and views prints nothing; `Html.Raw` appears only for the JSON config script; B2/B3/B8 tests green; all text goes through `textContent` or Razor encoding.
 - Attempts / deferred / blocked: none. A first run of the behaviour script failed two items: a test-harness Enter key without a text payload, and SignalR websocket noise caused by the request interception; both were harness issues and the rerun passed.
+
+### L5 — Index: "Bài nghe của tôi", import and delete
+- Commit: (hash filled in at the L6 commit)
+- Work: `listening-index.js` gained the import flow (client check with the new `isYoutubeUrl` in `listening-core.js`, locked form with the honest long-running status, success navigation, 403 `requiresUpgrade` with an upgrade link, fallback text that keeps the typed URL) and the delete flow (Bootstrap modal `#tlDeleteLesson`, POST of `lessonId` only, card removal, live count, toast, empty state on the last card, focus to the section heading). The page code restores focus to the delete button itself after the modal closes, because Bootstrap only does that for data-api triggers. Server text is always written with `textContent`. Core: `isYoutubeUrl` plus 1 node test (core suite is now 29).
+- G1 build: pass (0 errors, 43 warnings = L0)
+- G2/G3 full: passed 1423 / failed 0 / skipped 29 (unchanged; no server change this phase)
+- G4 node: passed 258 / failed 0 (L0 229, +29)
+- G5 contracts: unchanged (the scripts send the same form fields: `youtubeUrl`, `lessonId`, with the antiforgery header)
+- G6 tokens/diff: clean. G7 scope: `listening-index.js`, `listening-core.js`, `test_listening_core.cjs`.
+- G8 render: no markup or CSS change since L4 (L4 sweep applies); the screenshots of the two lesson cards before delete and the empty state after are in `.tmp/listening/L5/`.
+- G9 design: matches plan 6.5 (copy quoted exactly).
+- G10 behaviour (scripted in headless Chrome as Premium against the running app, 2 synthetic private lessons inserted for the Premium test account and removed again; row count back to 0, the owner's real account untouched): invalid link shows "Link YouTube không hợp lệ." and sends no request; a duplicate video returns the real server message "Video này đã có trong mục Bài nghe của tôi." with the form usable and the URL kept; long-running status text and locked form while the request is pending (server answer mocked with a 1.5 s delay); success navigates to the lesson; 403 `requiresUpgrade` shows the message and the "Nâng cấp Premium" link to `/Account/Premium`; other failure shows the fallback text and keeps the URL; delete modal opens with the exact title and body copy; a failed delete (mocked 500) closes the modal, shows the danger toast and keeps the card; cancel keeps the card; Enter opens the modal, Escape closes it, focus returns to the delete button; real delete removes the card, updates the count, shows the toast, deletes the DB row and focuses the heading; deleting the last card shows the empty state with no reload. The Standard locked panel and the downgraded owner's locked card are covered by integration tests. Not run: a real YouTube import (needs outbound network and an AI quiz call); the success path used a mocked server answer.
+- G11 a11y: the form field has a visible label, `aria-describedby`, `aria-invalid` on error, an `role="alert"` error line and a polite status region; the modal is labelled by its title and traps focus (Bootstrap); no keyboard trap (Escape works).
+- G12 contrast: import error 6.46, status 9.31, hint 9.31 (all ≥ 4.5).
+- G13 regression: no change outside the two listening scripts. G14: clean (no CSS change).
+- G15 security: grep for `innerHTML`, `alert(`, `confirm(`, `console.log`, inline handlers prints nothing in the listening scripts and views; the old `confirm`/`alert` calls are gone (B10); server messages go through `textContent` (B6).
+- Attempts / deferred / blocked: 3 failures on the first run were fixed: focus restore after the modal (code fix) and a harness regex and a hard-coded lesson id (script fixes).

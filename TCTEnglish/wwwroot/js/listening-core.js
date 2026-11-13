@@ -302,6 +302,32 @@
         return req.length > 0 && req.every(function (k) { return !!f[k]; });
     }
 
+    // ------------------------------------------------------------------ import form
+
+    var YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
+
+    /**
+     * True when the text looks like a YouTube video link the server can read: a bare 11-character id, youtu.be/ID,
+     * or a youtube.com link with ?v=ID or an /embed, /shorts, /live or /v path. The server stays the authority.
+     */
+    function isYoutubeUrl(text) {
+        var value = String(text == null ? '' : text).trim();
+        if (!value || value.length > 300) return false;
+        if (YOUTUBE_ID.test(value)) return true;
+        var url;
+        try { url = new URL(value); } catch (e) { return false; }
+        if (url.protocol !== 'https:' && url.protocol !== 'http:') return false;
+        var host = url.hostname.toLowerCase();
+        if (host === 'youtu.be' || host.endsWith('.youtu.be')) {
+            return YOUTUBE_ID.test(url.pathname.split('/').filter(Boolean)[0] || '');
+        }
+        if (host !== 'youtube.com' && !host.endsWith('.youtube.com')) return false;
+        var v = url.searchParams.get('v');
+        if (v && YOUTUBE_ID.test(v)) return true;
+        var parts = url.pathname.split('/').filter(Boolean);
+        return parts.length >= 2 && ['embed', 'shorts', 'live', 'v'].indexOf(parts[0]) >= 0 && YOUTUBE_ID.test(parts[1]);
+    }
+
     // ------------------------------------------------------------------ URL state of the index filters
 
     /** search = "?level=B1&topic=Daily&status=done&q=abc". Unknown or invalid values fall back to "all" (q to ""). */
@@ -340,6 +366,7 @@
         filterLessons: filterLessons, paginate: paginate,
         lineIndexAt: lineIndexAt, formatClock: formatClock,
         requiredSteps: requiredSteps, isComplete: isComplete,
-        parseFilterQuery: parseFilterQuery, buildFilterQuery: buildFilterQuery
+        parseFilterQuery: parseFilterQuery, buildFilterQuery: buildFilterQuery,
+        isYoutubeUrl: isYoutubeUrl
     };
 }));

@@ -307,6 +307,16 @@ test('buildFilterQuery: writes only non-default values and round-trips', () => {
     assert.deepEqual(core.parseFilterQuery(core.buildFilterQuery(state)), state);
 });
 
+test('isYoutubeUrl: accepts the link shapes the server reads and rejects everything else', () => {
+    const id = 'dQw4w9WgXcQ';
+    ['https://www.youtube.com/watch?v=' + id, 'https://youtube.com/watch?v=' + id + '&t=10s', 'https://m.youtube.com/watch?feature=share&v=' + id,
+        'https://youtu.be/' + id, 'https://youtu.be/' + id + '?si=abc', 'https://www.youtube.com/shorts/' + id, 'https://www.youtube.com/embed/' + id,
+        'https://www.youtube.com/live/' + id, '  ' + id + '  ', id].forEach((u) => assert.equal(core.isYoutubeUrl(u), true, u));
+    ['', '   ', null, undefined, 'hello', 'https://example.com/watch?v=' + id, 'https://notyoutube.com/watch?v=' + id,
+        'https://www.youtube.com/watch', 'https://www.youtube.com/watch?v=short', 'https://youtu.be/', 'https://www.youtube.com/channel/UC123',
+        'ftp://youtube.com/watch?v=' + id, 'javascript:alert(1)', 'https://www.youtube.com/watch?v=' + id + 'x'.repeat(300)].forEach((u) => assert.equal(core.isYoutubeUrl(u), false, String(u).slice(0, 60)));
+});
+
 test('mulberry32: same seed, same sequence; values in [0, 1)', () => {
     const a = rngOf(42), b = rngOf(42);
     for (let i = 0; i < 20; i++) {
