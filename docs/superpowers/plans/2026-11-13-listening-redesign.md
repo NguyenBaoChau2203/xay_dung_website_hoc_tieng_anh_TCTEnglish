@@ -804,7 +804,7 @@ git diff --check
 - Attempts / deferred / blocked: none. Test runs regenerate `docs/design-system/email-preview/*` (line endings); those regenerated files were restored with `git checkout` and are not part of any commit.
 
 ### L2 — listening-core.js
-- Commit: (hash filled in at the L3 commit)
+- Commit: cd86058
 - Work: new pure UMD module `wwwroot/js/listening-core.js` (`window.TctListening.core` in the browser) with the section 5 functions plus `mulberry32`, and 28 node tests in `scripts/tests/test_listening_core.cjs`.
 - G1 build: pass (0 errors, warnings 43, L0 43)
 - G2/G3 full: passed 1418 / failed 0 / skipped 29 (unchanged from L1)
@@ -817,4 +817,23 @@ git diff --check
   - `gradeDictation` also returns `extra` (typed words that matched no answer word). A perfect score with extra words is "near", not "correct", so "I like the red apples" does not pass for "I like red apples". The plan's thresholds are otherwise unchanged.
   - `lineIndexAt` treats a range as `start <= time < end`, so a gap between two lines and the time after the last line's end return -1; the page keeps the previous highlight when it gets -1. A last line without `end` stays active.
   - `requiredSteps` returns keys in page order (`transcript`, `vocab`, `quiz`). `parseFilterQuery` takes an optional list of known topics. `pickBlanks` also returns `blanks` (the count).
+- Attempts / deferred / blocked: none.
+
+### L3 — Kit scope extension and listening.css foundation
+- Commit: (hash filled in at the L4 commit)
+- Work: `study-kit.css` scope lists gained `.tl-page` (142 `:is()` lists, the canvas rule and the six hue blocks with `.tl-hue-*`; comments updated). Proof that nothing else changed: undoing the scope extension mechanically gives a file byte-identical to the L2 kit. New `wwwroot/css/listening.css` (page frame, local thumbnail placeholder `.tl-thumb--empty`, forced-colours and reduced-motion blocks). Both views are wrapped in `tct-theme tct-page tl-page tl-page--index|practice` and load `study-kit.css` then `listening.css`.
+- Transitional decision: the old markup, scripts and old CSS (`listening-index.css`, `listening-practice.css`, and `speaking.css` on the index) stay loaded inside the new wrapper until L4 (index) and L6 (practice) replace the markup; dropping them earlier would unstyle markup the old scripts still need. Both pages stop loading the old files in those phases; the files are deleted at L10.
+- G1 build: pass (0 errors, 43 warnings = L0)
+- G2/G3 full: passed 1418 / failed 0 / skipped 29
+- G4 node: passed 257 / failed 0
+- G5 contracts: unchanged (markup inside the wrapper is unchanged, ids/classes the old scripts use are intact)
+- G6 tokens/diff: the three `listening.css` greps print nothing; `git diff --check` clean for the phase files
+- G7 scope: `study-kit.css`, `listening.css`, `Views/Study/Listening.cshtml`, `Views/Study/ListeningPractice.cshtml`
+- G8 render: anonymous, Standard, Premium × both pages × 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640 and 720×450 (= 200% zoom of 1440): per-element overflow 0 everywhere, no failed CSS/JS. Console/network: the only entry is the dev lesson thumbnail `img.youtube.com/.../hqdefault.jpg` 404 on the index (data, as at L0). The anonymous practice page now renders (B17). Screenshots: `.tmp/listening/L3/`.
+- G9 design: transitional (old look inside the Clay canvas); the full spec match starts at L4/L6.
+- G10 behaviour: both pages load; the old scripts' markup is untouched; guests open public lessons.
+- G11 a11y / G12 contrast: no new text or controls this phase; checked from L4.
+- G13 regression: `/Sets`, `/Practice`, `/Home/Index`, `/Vocabulary/Index` render with no console/network errors at 1440×900 (Premium). `/Goals` logs two `jQuery is not defined` errors from the jquery-validation scripts; no file of this phase is loaded by `/Goals` and no L0 baseline of that page was captured, so this is recorded as not caused by this phase and not compared with L0. `/Speaking` and a pixel comparison of `/Sets*` and `/Practice*` were not run; the kit change is provably selector-list-only (see above).
+- G14 clay grep: clean (no shadow or radius literals in `listening.css`).
+- G15 security: nothing new (no JS or data path changed).
 - Attempts / deferred / blocked: none.

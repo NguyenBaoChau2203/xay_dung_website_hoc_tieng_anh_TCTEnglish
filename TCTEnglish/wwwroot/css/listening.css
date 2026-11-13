@@ -1,0 +1,65 @@
+/*
+    Listening pages: /Home/Listening (.tl-page--index) and /Home/Listening/Practice/{id} (.tl-page--practice).
+    Owner: Listening. Loaded AFTER study-kit.css (the shared Clay kit, scope extended with .tl-page).
+
+    Rules (DESIGN.md "Claymorphism implementation", docs/design-system/team-ui-workflow.md,
+    docs/superpowers/plans/2026-11-13-listening-redesign.md section 6.1)
+    - Every selector starts with .tl-page; the wrapper also carries .tct-theme and .tct-page.
+    - Values come from var(--tct-*) tokens only: no literal colours, no root selector, no forced
+      priority, weight <= 700.
+    - Depth comes only from the shared Clay tokens (--tct-clay-shadow, -quiet, -lift, -overlay,
+      -button, -pressed, -field). A focus/selection ring may be appended to a Clay token.
+    - Radii come from the in-theme tokens. Motion uses --tct-dur / --tct-ease and is switched off under
+      prefers-reduced-motion. Icons are Font Awesome 6.0.0 only.
+    - Exceptions (each with a plain-token fallback declared first): color-mix() between two tokens and
+      the transparent keyword.
+*/
+
+/* ---------------------------------------------------------------- page frame */
+.tl-page {
+    min-width: 0;
+    padding-block: var(--tct-space-sm) var(--tct-space-2xl);
+}
+
+/* ---------------------------------------------------------------- thumbnails
+   Shared by the index cards and the practice page. An image that fails to load is swapped by JS for
+   .tl-thumb--empty (a local placeholder; no external image is ever requested). */
+.tl-page .tl-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.tl-page .tl-thumb--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--tct-primary-soft);
+    background: var(--k-bg, var(--tct-primary-soft));
+    color: var(--tct-primary-strong);
+    color: var(--k-fg, var(--tct-primary-strong));
+    font-size: var(--tct-text-2xl);
+}
+
+/* ---------------------------------------------------------------- forced colours
+   Mirrors the kit: depth is gone, so surfaces keep a visible border and state keeps a thicker one. */
+@media (forced-colors: active) {
+    .tl-page .tl-thumb--empty {
+        border: 1px solid CanvasText;
+    }
+}
+
+/* ---------------------------------------------------------------- reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .tl-page *,
+    .tl-page *::before,
+    .tl-page *::after {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+        scroll-behavior: auto;
+    }
+}

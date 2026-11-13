@@ -17,12 +17,15 @@
 }
 
 @section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/listening.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/listening-index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
 }
 
 @Html.AntiForgeryToken()
 
+<div class="tct-theme tct-page tl-page tl-page--index">
 <div class="listening-index-page">
     <div class="li-container">
 
@@ -331,6 +334,7 @@
         </div>
 
     </div>
+</div>
 </div>
 
 @section Scripts {

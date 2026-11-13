@@ -29,9 +29,12 @@
 }
 
 @section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/listening.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/listening-practice.css" asp-append-version="true" />
 }
 
+<div class="tct-theme tct-page tl-page tl-page--practice">
 <div class="lp-page">
     @Html.AntiForgeryToken()
 
@@ -577,6 +580,7 @@
     <!-- /lp-container -->
 </div>
 <!-- /lp-page -->
+</div>
 
 <!-- Toast notification -->
 <div class="lp-toast" id="lp-toast" aria-live="polite"></div>
