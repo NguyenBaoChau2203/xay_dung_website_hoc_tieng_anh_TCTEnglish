@@ -408,6 +408,86 @@
     .tl-page .tl-line__en { font-size: var(--tct-text-base); }
 }
 
+/* ---------------------------------------------------------------- practice: dictation and fill-in */
+.tl-page .tl-dict__head { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-md); margin-bottom: var(--tct-space-sm); }
+.tl-page .tl-dict__rule { margin: 0; font-weight: var(--tct-weight-semibold); }
+.tl-page .tl-dict__list { display: grid; gap: var(--tct-space-md); }
+
+.tl-page .tl-ring {
+    position: relative;
+    display: grid;
+    flex: 0 0 56px;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--tct-primary-soft);
+    background: conic-gradient(var(--tct-primary) var(--p, 0%), var(--tct-primary-soft) 0);
+}
+
+.tl-page .tl-ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--tct-surface); }
+.tl-page .tl-ring__text { position: relative; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-bold); }
+
+.tl-page .tl-dcard { display: grid; gap: var(--tct-space-sm); padding: var(--tct-space-md); }
+.tl-page .tl-dcard__top { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-sm) var(--tct-space-md); }
+
+.tl-page .tl-dcard__num {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-bold);
+}
+
+.tl-page .tl-listen { display: inline-flex; align-items: center; gap: var(--tct-space-xs); margin-inline-start: auto; }
+.tl-page .tl-dcard__actions { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); }
+
+.tl-page .tl-feedback:empty { display: none; }
+.tl-page .tl-feedback { padding: var(--tct-space-sm) var(--tct-space-md); border-radius: var(--tct-radius-md); }
+.tl-page .tl-feedback p { margin: 0 0 var(--tct-space-xs); }
+.tl-page .tl-feedback p:last-child { margin-bottom: 0; }
+.tl-page .tl-feedback--correct { background: var(--tct-success-soft); }
+.tl-page .tl-feedback--near { background: var(--tct-warning-soft); }
+.tl-page .tl-feedback--wrong { background: var(--tct-danger-soft); }
+.tl-page .tl-feedback__title { font-weight: var(--tct-weight-bold); }
+.tl-page .tl-feedback--correct .tl-feedback__title { color: var(--tct-success-text); }
+.tl-page .tl-feedback--near .tl-feedback__title { color: var(--tct-warning-text); }
+.tl-page .tl-feedback--wrong .tl-feedback__title { color: var(--tct-danger-text); }
+.tl-page .tl-feedback__words { font-size: var(--tct-text-lg); color: var(--tct-text); }
+.tl-page .tl-feedback__legend,
+.tl-page .tl-feedback__answer { font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
+
+.tl-page .tl-w--near { text-decoration: underline dotted; text-decoration-thickness: 2px; text-decoration-color: var(--tct-warning-text); text-underline-offset: 4px; }
+.tl-page .tl-w--wrong,
+.tl-page .tl-w--missing { text-decoration: underline solid; text-decoration-thickness: 2px; text-decoration-color: var(--tct-danger-text); text-underline-offset: 4px; }
+
+.tl-page .tl-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: var(--tct-space-md); margin-top: var(--tct-space-md); padding: var(--tct-space-md); }
+.tl-page .tl-summary__tiles { display: flex; flex-wrap: wrap; gap: var(--tct-space-md); }
+.tl-page .tl-summary__tile { display: flex; flex-direction: column; min-width: 96px; padding: var(--tct-space-sm) var(--tct-space-md); }
+.tl-page .tl-summary__value { font-size: var(--tct-text-2xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); color: var(--k-fg); }
+.tl-page .tl-summary__label { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-secondary); }
+
+.tl-page .tl-fill__sentence { flex: 1 1 280px; min-width: 0; margin: 0; font-size: var(--tct-text-lg); line-height: 2.2; }
+.tl-page .tl-fill__footer { gap: var(--tct-space-sm); }
+
+.tl-page .tl-blank { display: inline-grid; grid-template-columns: auto auto; align-items: center; column-gap: var(--tct-space-xs); vertical-align: middle; }
+.tl-page .tl-blank__input.form-control { width: auto; min-height: 36px; padding: 2px var(--tct-space-sm); text-align: center; font-size: var(--tct-text-base); }
+.tl-page .tl-blank__answer { grid-column: 1 / -1; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); line-height: var(--tct-leading-tight); }
+.tl-page .tl-blank--correct .tl-blank__input.form-control { border: 2px solid var(--tct-success-text); }
+.tl-page .tl-blank--near .tl-blank__input.form-control { border: 2px solid var(--tct-warning-text); }
+.tl-page .tl-blank--wrong .tl-blank__input.form-control { border: 2px solid var(--tct-danger-text); }
+.tl-page .tl-blank--correct .tl-blank__mark { color: var(--tct-success-text); }
+.tl-page .tl-blank--near .tl-blank__mark,
+.tl-page .tl-blank--near .tl-blank__answer { color: var(--tct-warning-text); }
+.tl-page .tl-blank--wrong .tl-blank__mark,
+.tl-page .tl-blank--wrong .tl-blank__answer { color: var(--tct-danger-text); }
+
 /* ---------------------------------------------------------------- forced colours
    Mirrors the kit: depth is gone, so surfaces keep a visible border and state keeps a thicker one. */
 @media (forced-colors: active) {

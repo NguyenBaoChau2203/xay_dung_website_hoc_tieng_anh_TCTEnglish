@@ -499,5 +499,283 @@
         });
     }
 
+    // ------------------------------------------------------------------ practice modes: shared helpers
+
+    var TYPING_ATTRS = { lang: 'en', autocomplete: 'off', autocapitalize: 'none', autocorrect: 'off', spellcheck: 'false' };
+
+    function applyTypingAttrs(input) {
+        Object.keys(TYPING_ATTRS).forEach(function (name) { input.setAttribute(name, TYPING_ATTRS[name]); });
+    }
+
+    function playLine(order) {
+        var position = timedPosition(order);
+        if (position >= 0) { playTimed(position, true); }
+    }
+
+    function listenButton(order) {
+        var button = Sets.el('button', 'btn btn-outline-primary btn-sm tl-listen');
+        button.type = 'button';
+        setButtonContent(button, 'fa-solid fa-play', 'Nghe câu này');
+        if (timedPosition(order) < 0) {
+            button.disabled = true;
+            button.title = 'Câu này không có mốc thời gian';
+        } else {
+            button.addEventListener('click', function () { playLine(order); });
+        }
+        return button;
+    }
+
+    function srOnly(text) { return Sets.el('span', 'visually-hidden', text); }
+
+    var RESULT_ICON = { correct: 'fa-solid fa-circle-check', near: 'fa-solid fa-circle-exclamation', wrong: 'fa-solid fa-circle-xmark' };
+
+    function summaryTile(label, value, hue) {
+        var tile = Sets.el('div', 'tl-summary__tile k-pillow tl-hue-' + hue);
+        tile.appendChild(Sets.el('span', 'tl-summary__value', String(value)));
+        tile.appendChild(Sets.el('span', 'tl-summary__label', label));
+        return tile;
+    }
+
+    // ------------------------------------------------------------------ practice mode: dictation
+
+    modeHooks.dictation = function () {
+        var panel = byId('tlModePanel-dictation');
+        var statuses = lines.map(function () { return null; });
+        var feedback = [];
+        var inputs = [];
+
+        var head = Sets.el('div', 'tl-dict__head');
+        head.appendChild(Sets.el('p', 'tl-dict__rule', 'Nghe từng câu rồi gõ lại.'));
+        var ring = Sets.el('div', 'tl-ring');
+        ring.setAttribute('role', 'img');
+        var ringText = Sets.el('span', 'tl-ring__text', '0%');
+        ring.appendChild(ringText);
+        head.appendChild(ring);
+        panel.appendChild(head);
+        panel.appendChild(Sets.el('p', 'tl-hint', 'Enter: kiểm tra · Shift+Enter: xuống dòng · Alt+R: nghe lại câu · Tab: chuyển sang ô kế tiếp.'));
+
+        var list = Sets.el('div', 'tl-dict__list');
+        var summary = Sets.el('div', 'tl-summary k-panel');
+        summary.hidden = true;
+        summary.setAttribute('role', 'status');
+
+        function refresh() {
+            var checked = statuses.filter(Boolean).length;
+            var percent = lines.length ? Math.round(checked * 100 / lines.length) : 0;
+            ring.style.setProperty('--p', percent + '%');
+            ring.setAttribute('aria-label', percent + '% số câu đã kiểm tra');
+            ringText.textContent = percent + '%';
+            if (lines.length && checked === lines.length) {
+                var count = function (name) { return statuses.filter(function (s) { return s === name; }).length; };
+                summary.textContent = '';
+                var tiles = Sets.el('div', 'tl-summary__tiles');
+                tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
+                tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
+                tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
+                summary.appendChild(tiles);
+                var again = Sets.el('button', 'btn btn-outline-primary');
+                again.type = 'button';
+                setButtonContent(again, 'fa-solid fa-rotate-right', 'Làm lại');
+                again.addEventListener('click', reset);
+                summary.appendChild(again);
+                summary.hidden = false;
+            } else {
+                summary.hidden = true;
+            }
+        }
+
+        function showResult(i, result, revealed) {
+            var box = feedback[i];
+            box.textContent = '';
+            var status = revealed ? 'wrong' : result.status;
+            box.className = 'tl-feedback tl-feedback--' + status;
+            var title = Sets.el('p', 'tl-feedback__title');
+            title.appendChild(Sets.icon(RESULT_ICON[status]));
+            title.appendChild(document.createTextNode(' ' + (revealed ? 'Đáp án' : status === 'correct' ? 'Chính xác!' : status === 'near' ? 'Gần đúng' : 'Chưa đúng')));
+            box.appendChild(title);
+            if (!revealed) {
+                var words = Sets.el('p', 'tl-feedback__words');
+                words.setAttribute('lang', 'en');
+                result.words.forEach(function (w, k) {
+                    if (k) { words.appendChild(document.createTextNode(' ')); }
+                    words.appendChild(Sets.el('span', 'tl-w tl-w--' + w.state, w.text));
+                });
+                box.appendChild(words);
+                if (status !== 'correct') {
+                    box.appendChild(Sets.el('p', 'tl-feedback__legend', 'Từ gạch chấm: gần đúng. Từ gạch liền: sai hoặc thiếu.'));
+                }
+            }
+            var answer = Sets.el('p', 'tl-feedback__answer');
+            answer.appendChild(document.createTextNode('Câu đúng: '));
+            var sentence = Sets.el('span', null, lines[i].text);
+            sentence.setAttribute('lang', 'en');
+            answer.appendChild(sentence);
+            box.appendChild(answer);
+            statuses[i] = status;
+            refresh();
+        }
+
+        function check(i) { showResult(i, core.gradeDictation(inputs[i].value, lines[i].text), false); }
+
+        function reset() {
+            inputs.forEach(function (input, i) { input.value = ''; feedback[i].textContent = ''; feedback[i].className = 'tl-feedback'; statuses[i] = null; });
+            refresh();
+            if (inputs[0]) { inputs[0].focus(); }
+        }
+
+        lines.forEach(function (line, i) {
+            var card = Sets.el('div', 'tl-dcard k-panel');
+            var top = Sets.el('div', 'tl-dcard__top');
+            top.appendChild(Sets.el('span', 'tl-dcard__num', String(i + 1)));
+            top.appendChild(Sets.el('span', 'tl-dcard__speaker tct-badge tct-badge--primary', line.speaker || ''));
+            top.appendChild(listenButton(i));
+            card.appendChild(top);
+
+            var label = Sets.el('label', 'visually-hidden', 'Gõ lại câu ' + (i + 1));
+            var input = document.createElement('textarea');
+            input.className = 'form-control tl-dcard__input';
+            input.id = 'tlDict-' + i;
+            input.rows = 2;
+            applyTypingAttrs(input);
+            label.setAttribute('for', input.id);
+            input.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); check(i); }
+                else if (event.altKey && event.code === 'KeyR') { event.preventDefault(); playLine(i); }
+            });
+            inputs.push(input);
+            card.appendChild(label);
+            card.appendChild(input);
+
+            var actions = Sets.el('div', 'tl-dcard__actions');
+            var checkBtn = Sets.el('button', 'btn btn-primary btn-sm');
+            checkBtn.type = 'button';
+            checkBtn.textContent = 'Kiểm tra';
+            checkBtn.addEventListener('click', function () { check(i); });
+            var showBtn = Sets.el('button', 'btn btn-outline-primary btn-sm');
+            showBtn.type = 'button';
+            showBtn.textContent = 'Xem đáp án';
+            showBtn.addEventListener('click', function () { showResult(i, null, true); });
+            actions.appendChild(checkBtn);
+            actions.appendChild(showBtn);
+            card.appendChild(actions);
+
+            var box = Sets.el('div', 'tl-feedback');
+            box.setAttribute('aria-live', 'polite');
+            feedback.push(box);
+            card.appendChild(box);
+            list.appendChild(card);
+        });
+
+        panel.appendChild(list);
+        panel.appendChild(summary);
+        refresh();
+    };
+
+    // ------------------------------------------------------------------ practice mode: fill in the blanks
+
+    modeHooks.fill = function () {
+        var panel = byId('tlModePanel-fill');
+        var retry = 0;
+
+        function render() {
+            panel.textContent = '';
+            var rng = core.mulberry32(Number(config.lessonId) * 1000 + retry);
+            var blanks = [];
+
+            panel.appendChild(Sets.el('p', 'tl-hint', 'Điền từ còn thiếu trong mỗi câu. Enter: kiểm tra ô này và sang ô kế tiếp.'));
+            var list = Sets.el('div', 'tl-dict__list');
+            var summary = Sets.el('div', 'tl-summary k-panel');
+            summary.hidden = true;
+            summary.setAttribute('role', 'status');
+
+            function paint(blank, status) {
+                blank.status = status;
+                blank.wrap.className = 'tl-blank tl-blank--' + status;
+                blank.mark.textContent = '';
+                blank.mark.appendChild(Sets.icon(RESULT_ICON[status]));
+                blank.mark.appendChild(srOnly(status === 'correct' ? 'Đúng' : status === 'near' ? 'Gần đúng' : 'Sai'));
+                blank.answerEl.textContent = status === 'correct' ? '' : 'Đáp án: ' + blank.answer;
+                blank.answerEl.hidden = status === 'correct';
+            }
+
+            function refreshSummary() {
+                if (!blanks.length || blanks.some(function (b) { return !b.status; })) { summary.hidden = true; return; }
+                var count = function (name) { return blanks.filter(function (b) { return b.status === name; }).length; };
+                summary.textContent = '';
+                var tiles = Sets.el('div', 'tl-summary__tiles');
+                tiles.appendChild(summaryTile('Đúng', count('correct'), 'success'));
+                tiles.appendChild(summaryTile('Gần đúng', count('near'), 'warning'));
+                tiles.appendChild(summaryTile('Sai', count('wrong'), 'danger'));
+                summary.appendChild(tiles);
+                summary.hidden = false;
+            }
+
+            function checkBlank(blank) { paint(blank, core.gradeBlank(blank.input.value, blank.answer)); refreshSummary(); }
+
+            lines.forEach(function (line, i) {
+                var card = Sets.el('div', 'tl-dcard k-panel tl-fill__line');
+                var top = Sets.el('div', 'tl-dcard__top');
+                top.appendChild(Sets.el('span', 'tl-dcard__num', String(i + 1)));
+                var sentence = Sets.el('p', 'tl-fill__sentence');
+                sentence.setAttribute('lang', 'en');
+                var picked = core.pickBlanks(line.text, rng);
+                var k = 0;
+                picked.parts.forEach(function (part) {
+                    if (part.type === 'text') { sentence.appendChild(document.createTextNode(part.value)); return; }
+                    k += 1;
+                    var wrap = Sets.el('span', 'tl-blank');
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'form-control tl-blank__input';
+                    input.size = Math.max(3, part.answer.length + 1);
+                    input.setAttribute('aria-label', 'Từ còn thiếu ' + k + ' của câu ' + (i + 1));
+                    applyTypingAttrs(input);
+                    var mark = Sets.el('span', 'tl-blank__mark');
+                    var answerEl = Sets.el('span', 'tl-blank__answer');
+                    answerEl.hidden = true;
+                    wrap.appendChild(input);
+                    wrap.appendChild(mark);
+                    wrap.appendChild(answerEl);
+                    var blank = { input: input, wrap: wrap, mark: mark, answerEl: answerEl, answer: part.answer, status: null };
+                    blanks.push(blank);
+                    input.addEventListener('keydown', function (event) {
+                        if (event.key !== 'Enter' || event.isComposing) { return; }
+                        event.preventDefault();
+                        checkBlank(blank);
+                        var next = blanks[blanks.indexOf(blank) + 1];
+                        if (next) { next.input.focus(); }
+                    });
+                    sentence.appendChild(wrap);
+                });
+                top.appendChild(sentence);
+                top.appendChild(listenButton(i));
+                card.appendChild(top);
+                list.appendChild(card);
+            });
+
+            panel.appendChild(list);
+
+            if (!blanks.length) {
+                panel.appendChild(Sets.el('p', 'tl-hint', 'Chưa chọn được từ nào để điền trong bài này.'));
+            } else {
+                var footer = Sets.el('div', 'tl-footer-row tl-fill__footer');
+                var retryBtn = Sets.el('button', 'btn btn-outline-primary');
+                retryBtn.type = 'button';
+                setButtonContent(retryBtn, 'fa-solid fa-rotate-right', 'Làm lại');
+                retryBtn.addEventListener('click', function () { retry += 1; render(); var first = panel.querySelector('.tl-blank__input'); if (first) { first.focus(); } });
+                var allBtn = Sets.el('button', 'btn btn-primary');
+                allBtn.type = 'button';
+                setButtonContent(allBtn, 'fa-solid fa-check', 'Kiểm tra tất cả');
+                allBtn.addEventListener('click', function () { blanks.forEach(function (b) { paint(b, core.gradeBlank(b.input.value, b.answer)); }); refreshSummary(); });
+                footer.appendChild(retryBtn);
+                footer.appendChild(allBtn);
+                panel.appendChild(footer);
+            }
+            panel.appendChild(summary);
+        }
+
+        render();
+    };
+
     // ------------------------------------------------------------------ sections below are added phase by phase
 }());
