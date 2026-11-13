@@ -279,5 +279,225 @@
         }
     });
 
+    // ------------------------------------------------------------------ transcript: modes, lines, active line
+
+    var linesList = byId('tlLines');
+    var linesWrap = byId('tlLinesWrap');
+    var timed = [];
+    var lastActive = -1;
+    var segmentEnd = null;
+    var rafId = null;
+    var lastUserScroll = 0;
+    var AUTOSCROLL_KEY = 'tct.listening.autoscroll';
+    var SHOW_VI_KEY = 'tct.listening.showvi.' + config.lessonId;
+
+    if (linesList) {
+        Array.prototype.forEach.call(linesList.querySelectorAll('.tl-line'), function (li) {
+            var start = li.getAttribute('data-start');
+            if (start === null || start === '') { return; }
+            timed.push({ start: Number(start), end: Number(li.getAttribute('data-end')), el: li, index: Number(li.getAttribute('data-i')) });
+        });
+        timed.sort(function (a, b) { return a.start - b.start; });
+    }
+
+    function timedPosition(order) {
+        for (var i = 0; i < timed.length; i++) { if (timed[i].index === order) { return i; } }
+        return -1;
+    }
+
+    function setActive(position) {
+        if (position === lastActive || position < 0 || !timed[position]) { return; }
+        if (lastActive >= 0 && timed[lastActive]) {
+            timed[lastActive].el.classList.remove('is-active');
+            timed[lastActive].el.removeAttribute('aria-current');
+        }
+        lastActive = position;
+        var el = timed[position].el;
+        el.classList.add('is-active');
+        el.setAttribute('aria-current', 'true');
+        if (autoScrollOn && Date.now() - lastUserScroll > 3000) { el.scrollIntoView({ block: 'nearest', behavior: 'auto' }); }
+    }
+
+    function tick() {
+        rafId = null;
+        var time = player.time();
+        var position = core.lineIndexAt(timed, time);
+        if (position >= 0) { setActive(position); }
+        if (segmentEnd !== null && time >= segmentEnd) {
+            segmentEnd = null;
+            player.pause();
+        } else if (loopOn && lastActive >= 0 && timed[lastActive] && time >= timed[lastActive].end - 0.12) {
+            player.seek(timed[lastActive].start);
+        }
+        if (playing) { rafId = window.requestAnimationFrame(tick); }
+    }
+
+    function startTicking() { if (rafId === null && timed.length) { rafId = window.requestAnimationFrame(tick); } }
+
+    player.onState(function (state) {
+        if (state === 'playing') { startTicking(); }
+        if (state === 'paused' || state === 'ended') {
+            if (rafId !== null) { window.cancelAnimationFrame(rafId); rafId = null; }
+            segmentEnd = null;
+        }
+    });
+
+    /** Seek to a timed line and play it; with stopAtEnd the player pauses when the line ends. */
+    function playTimed(position, stopAtEnd) {
+        if (position < 0 || !timed[position]) { return; }
+        setActive(position);
+        segmentEnd = stopAtEnd ? timed[position].end : null;
+        player.seek(timed[position].start);
+        player.play();
+        startTicking();
+    }
+
+    function currentPosition() {
+        if (lastActive >= 0) { return lastActive; }
+        return Math.max(0, core.lineIndexAt(timed, player.time()));
+    }
+
+    lineApi.prev = function () { if (timed.length) { playTimed(Math.max(0, currentPosition() - 1)); } };
+    lineApi.next = function () { if (timed.length) { playTimed(Math.min(timed.length - 1, currentPosition() + 1)); } };
+    lineApi.replay = function () { if (timed.length) { playTimed(currentPosition()); } };
+
+    if (linesList) {
+        linesList.addEventListener('click', function (event) {
+            var seek = event.target.closest('.tl-line__seek');
+            if (seek) {
+                var order = Number(seek.closest('.tl-line').getAttribute('data-i'));
+                playTimed(timedPosition(order));
+                return;
+            }
+            var reveal = event.target.closest('.tl-line__reveal');
+            if (reveal) {
+                var li = reveal.closest('.tl-line');
+                li.setAttribute('data-revealed', 'true');
+                syncLineVisibility(li);
+                var seekBtn = li.querySelector('.tl-line__seek');
+                if (seekBtn) { seekBtn.focus(); }
+            }
+        });
+    }
+
+    // the learner's own scrolling wins for three seconds
+    if (linesWrap) {
+        ['wheel', 'touchmove', 'pointerdown', 'keydown'].forEach(function (name) {
+            linesWrap.addEventListener(name, function () { lastUserScroll = Date.now(); }, { passive: true });
+        });
+    }
+
+    // ------------------------------------------------------------------ transcript: toggles
+
+    var viBtn = byId('tlToggleVi');
+    var hideBtn = byId('tlToggleHide');
+    var scrollBtn = byId('tlToggleScroll');
+    var autoScrollOn = Sets.safeStorage.get(AUTOSCROLL_KEY) !== '0';
+
+    function setPressed(button, on) { if (button) { button.setAttribute('aria-pressed', on ? 'true' : 'false'); } }
+
+    function syncLineVisibility(li) {
+        var masked = hideBtn && hideBtn.getAttribute('aria-pressed') === 'true' && li.getAttribute('data-revealed') !== 'true';
+        var en = li.querySelector('.tl-line__en');
+        var reveal = li.querySelector('.tl-line__reveal');
+        var seek = li.querySelector('.tl-line__seek');
+        var mask = li.querySelector('.tl-line__mask');
+        if (en) { en.hidden = masked; }
+        if (reveal) { reveal.hidden = !masked; }
+        if (masked && seek && !mask) {
+            mask = Sets.el('span', 'tl-line__mask', '••••••');
+            mask.setAttribute('aria-hidden', 'true');
+            seek.appendChild(mask);
+        } else if (!masked && mask) {
+            mask.remove();
+        }
+        if (masked && !seek && !mask && en) {
+            var holder = Sets.el('span', 'tl-line__mask', '••••••');
+            holder.setAttribute('aria-hidden', 'true');
+            en.parentNode.insertBefore(holder, en);
+        } else if (!masked) {
+            var stray = li.querySelector('.tl-line__text > .tl-line__mask');
+            if (stray) { stray.remove(); }
+        }
+    }
+
+    function syncVi() {
+        var on = viBtn && viBtn.getAttribute('aria-pressed') === 'true';
+        Array.prototype.forEach.call(document.querySelectorAll('#tlLines .tl-line__vi'), function (el) { el.hidden = !on; });
+    }
+
+    if (viBtn) {
+        viBtn.addEventListener('click', function () {
+            if (viBtn.disabled) { return; }
+            setPressed(viBtn, viBtn.getAttribute('aria-pressed') !== 'true');
+            syncVi();
+        });
+    }
+    if (hideBtn) {
+        hideBtn.addEventListener('click', function () {
+            setPressed(hideBtn, hideBtn.getAttribute('aria-pressed') !== 'true');
+            Array.prototype.forEach.call(document.querySelectorAll('#tlLines .tl-line'), function (li) {
+                li.removeAttribute('data-revealed');
+                syncLineVisibility(li);
+            });
+        });
+    }
+    setPressed(scrollBtn, autoScrollOn);
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function () {
+            autoScrollOn = !autoScrollOn;
+            setPressed(scrollBtn, autoScrollOn);
+            Sets.safeStorage.set(AUTOSCROLL_KEY, autoScrollOn ? '1' : '0');
+        });
+    }
+
+    // translate with AI (Premium); a page reload brings the saved translation in
+    var translateBtn = byId('tlTranslate');
+    if (translateBtn) {
+        translateBtn.addEventListener('click', function () {
+            Sets.pending(translateBtn, true, 'Đang dịch…');
+            Sets.fetchJson(urls.translate, { method: 'POST' }).then(function () {
+                Sets.toast('Đã dịch lời thoại.');
+                Sets.safeStorage.set(SHOW_VI_KEY, '1');
+                window.setTimeout(function () { window.location.reload(); }, 700);
+            }).catch(function (error) {
+                Sets.pending(translateBtn, false);
+                var data = error && error.data;
+                Sets.toast((data && data.message) || 'Không dịch được lời thoại. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+    }
+    if (Sets.safeStorage.get(SHOW_VI_KEY) === '1') {
+        Sets.safeStorage.remove(SHOW_VI_KEY);
+        if (viBtn && !viBtn.disabled) { setPressed(viBtn, true); syncVi(); }
+    }
+
+    // ------------------------------------------------------------------ transcript: mode switch
+
+    var modeHooks = {};
+    var modeBuilt = {};
+
+    function showMode(mode) {
+        ['normal', 'dictation', 'fill'].forEach(function (name) { setHidden(byId('tlModePanel-' + name), name !== mode); });
+        if (!modeBuilt[mode] && typeof modeHooks[mode] === 'function') { modeHooks[mode](); modeBuilt[mode] = true; }
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="tlMode"]'), function (radio) {
+        radio.addEventListener('change', function () { if (radio.checked) { showMode(radio.value); } });
+    });
+
+    // ------------------------------------------------------------------ transcript: mark as heard
+
+    var markDoneBtn = byId('tlMarkDone');
+    if (markDoneBtn) {
+        markDoneBtn.addEventListener('click', function () {
+            if (markDoneBtn.disabled) { return; }
+            markDoneBtn.disabled = true;
+            setButtonContent(markDoneBtn, 'fa-solid fa-circle-check', 'Đã nghe xong lời thoại');
+            setStep('transcript', true);
+            saveProgress({ transcriptCompleted: true });
+        });
+    }
+
     // ------------------------------------------------------------------ sections below are added phase by phase
 }());

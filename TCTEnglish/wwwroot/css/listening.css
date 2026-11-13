@@ -349,6 +349,65 @@
 .tl-page .tl-footer-row .btn { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
 .tl-page .tl-empty-actions { margin-top: var(--tct-space-sm); text-align: center; }
 
+/* ---------------------------------------------------------------- practice: transcript (normal mode) */
+.tl-page .tl-lines-wrap { max-height: min(60vh, 34rem); overflow-y: auto; padding: var(--tct-space-sm); }
+.tl-page .tl-lines-wrap:focus-visible { outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring); outline-offset: var(--tct-focus-ring-offset); }
+.tl-page .tl-lines { display: grid; gap: var(--tct-space-xs); margin: 0; padding: 0; list-style: none; }
+
+.tl-page .tl-line {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+    gap: var(--tct-space-sm) var(--tct-space-md);
+    align-items: start;
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border-inline-start: 3px solid transparent;
+    border-radius: var(--tct-radius-md);
+    transition: background-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+.tl-page .tl-line:has(.tl-line__seek):hover { background: var(--tct-primary-tint); }
+
+.tl-page .tl-line.is-active {
+    border-inline-start-color: var(--tct-primary);
+    background: var(--tct-primary-tint);
+}
+
+.tl-page .tl-line__speaker { align-self: start; justify-self: start; max-width: 100%; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-page .tl-line__text { display: grid; gap: var(--tct-space-xs); min-width: 0; }
+.tl-page .tl-line__en { font-size: var(--tct-text-lg); line-height: var(--tct-leading-base); overflow-wrap: anywhere; }
+.tl-page .tl-line__vi { font-size: var(--tct-text-base); color: var(--tct-text-secondary); overflow-wrap: anywhere; }
+.tl-page .tl-line__mask { color: var(--tct-text-muted); font-size: var(--tct-text-lg); letter-spacing: 0.15em; }
+.tl-page .tl-line__time { margin-top: 3px; font-size: var(--tct-text-sm); font-variant-numeric: tabular-nums; color: var(--tct-text-secondary); }
+
+.tl-page .tl-line__seek {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+}
+
+/* The whole row is the seek control; the reveal button sits above the overlay. */
+.tl-page .tl-line__seek::after { content: ""; position: absolute; inset: 0; border-radius: var(--tct-radius-md); }
+.tl-page .tl-line__seek:focus-visible { outline: none; }
+.tl-page .tl-line:has(.tl-line__seek:focus-visible) {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+.tl-page .tl-line__reveal { position: relative; z-index: 2; justify-self: start; padding: 0; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+
+@media (max-width: 575.98px) {
+    .tl-page .tl-line { grid-template-columns: minmax(0, 1fr) auto; }
+    .tl-page .tl-line__speaker { grid-column: 1 / -1; justify-self: start; margin-top: 0; }
+    .tl-page .tl-line__en { font-size: var(--tct-text-base); }
+}
+
 /* ---------------------------------------------------------------- forced colours
    Mirrors the kit: depth is gone, so surfaces keep a visible border and state keeps a thicker one. */
 @media (forced-colors: active) {
@@ -365,6 +424,10 @@
 
     .tl-page .tl-toggle[aria-pressed="true"] {
         border-width: 2px;
+    }
+
+    .tl-page .tl-line.is-active {
+        border-inline-start: 5px solid CanvasText;
     }
 }
 
