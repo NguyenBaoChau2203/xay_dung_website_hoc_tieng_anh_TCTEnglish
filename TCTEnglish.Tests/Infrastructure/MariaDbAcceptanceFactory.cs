@@ -138,6 +138,7 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         "Notifications",
         "NotificationJobRuns",
         "UserSpeakingProgresses",
+        "UserSpeakingVideoVisits",
         "UserWritingAttempts",
         "UserWritingExerciseProgresses",
         "UserWritingSentenceProgresses",

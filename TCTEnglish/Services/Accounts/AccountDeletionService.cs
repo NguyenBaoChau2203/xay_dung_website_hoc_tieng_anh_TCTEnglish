@@ -250,6 +250,7 @@ public sealed class AccountDeletionService : IAccountDeletionService
 
     private async Task DeletePersonalRowsAsync(int userId, CancellationToken cancellationToken)
     {
+        await _context.UserSpeakingVideoVisits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningActivitySegments.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningActivitySessions.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.UserGoalTargetRevisions.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);

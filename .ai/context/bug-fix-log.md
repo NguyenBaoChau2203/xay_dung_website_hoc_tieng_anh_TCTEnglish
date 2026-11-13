@@ -4500,3 +4500,28 @@ known checkout-owned web restart; readiness200 at5100. No new shared-data operat
 transparent coaching heuristic, not validated phoneme/prosody assessment. Real-mic,
 paid-provider and native200% zoom checks were not run. No protected configuration,
 remote Git, CI or deployment changes.
+
+
+### Speaking recent history was unfinished; concurrent first visits could lose recency — 2026-11-14
+
+**Symptom/cause**: Gemini had created visit schema/ViewModels/tests, but service
+methods still threw NotImplementedException and there was no API/UI tracking.
+Initial tests also omitted required user fields and used InMemory for relational
+behavior. A later inline review found an UPDATE/existence-check insertion race
+that could retain an older timestamp even with one unique history row.
+
+**Fix**: Complete owned server history, antiforgery endpoints, current-access
+projection, recent Clay section and isolated page lifecycle module. Recover only
+unique-key insertion races and reapply a conditional monotonic UPDATE after the
+first-visit path, including when the competing row appears before existence check.
+Explicitly clean history on account removal/anonymization; preserve video cascade.
+Replace simulated cleanup with actual service tests on relational providers.
+
+**Verification**: Corrected missing-feature baseline10 failures; exact insertion-
+order race baseline1 failure. Final targeted .NET162 pass/6 environment skips;
+Node94 pass; dedicated disposable MariaDB10.5.23 upgrade/repeat/concurrency/cleanup1
+pass. Local migration keeps all pre-existing row-data SHA256 unchanged. Browser
+A→B→A, six-of-seven limit, separate Standard/Premium histories, Back, catalog
+filters/search and offline retry pass. Widths1440/1366/768/390 have no horizontal
+overflow. Native200% zoom remains unverified. See recent-videos ledger and plan.
+No protected configuration, shared content packages or remote release changes.

@@ -1,0 +1,53 @@
+@model IReadOnlyList<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel>
+
+<section class="spk-recent-section mb-5" id="speaking-recent-section"
+         data-speaking-recent-list data-recent-url="@Url.Action("RecentVideos", "Speaking")"
+         aria-labelledby="speaking-recent-title">
+    <div class="spk-recent-heading">
+        <div>
+            <h2 class="spk-section-title" id="speaking-recent-title">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                Luyện nói gần đây
+            </h2>
+            <p class="spk-recent-description">Mở lại những video bạn vừa vào luyện tập.</p>
+        </div>
+        <button type="button" class="spk-btn spk-btn--ghost spk-btn--sm" data-recent-retry hidden>Thử tải lại</button>
+    </div>
+    <p class="spk-recent-feedback" data-recent-feedback role="status" hidden></p>
+    <ul class="spk-recent-grid list-unstyled mb-0" data-recent-items>
+        @foreach (var video in Model)
+        {
+            <li class="spk-recent-item" data-recent-video-id="@video.Id">
+                <a asp-controller="Speaking" asp-action="Practice" asp-route-id="@video.Id"
+                   class="spk-recent-card" aria-label="Mở lại bài luyện nói: @video.Title">
+                    <div class="spk-recent-thumb">
+                        <img src="@video.ThumbnailUrl" alt="" loading="lazy" />
+                        @if (!string.IsNullOrWhiteSpace(video.Duration))
+                        {
+                            <span class="spk-recent-duration">@video.Duration</span>
+                        }
+                    </div>
+                    <div class="spk-recent-body">
+                        <div class="spk-recent-meta">
+                            @if (!string.IsNullOrWhiteSpace(video.Level)) { <span class="spk-level-chip">@video.Level</span> }
+                            @if (video.IsPrivate) { <span>Riêng tư</span> }
+                            @if (!string.IsNullOrWhiteSpace(video.Topic)) { <span class="text-truncate">@video.Topic</span> }
+                        </div>
+                        <h3 class="spk-recent-card-title">@video.Title</h3>
+                        <time class="spk-recent-time" data-recent-time datetime="@video.LastOpenedAtUtc.ToString("O")">
+                            @video.LastOpenedAtUtc.ToString("dd/MM/yyyy HH:mm") UTC
+                        </time>
+                        <span class="spk-recent-action">Mở lại bài luyện nói <span aria-hidden="true">→</span></span>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="spk-recent-empty" data-recent-empty hidden="@(Model.Count > 0)">
+        <span class="material-symbols-outlined" aria-hidden="true">video_library</span>
+        <div>
+            <h3>Bạn chưa mở video luyện nói nào</h3>
+            <p>Chọn một video bên dưới để bắt đầu. Bài vừa mở sẽ xuất hiện ở đây.</p>
+        </div>
+    </div>
+</section>

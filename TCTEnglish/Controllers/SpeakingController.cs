@@ -48,6 +48,7 @@ namespace TCTVocabulary.Controllers
 
         [HttpGet("/Speaking")]
         [HttpGet("/Speaking/Index")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Index(
             string? level = null,
             string? topic = null,
@@ -97,7 +98,7 @@ namespace TCTVocabulary.Controllers
                 PageSize = pageSize,
                 Mine = mine
             };
-            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query);
+            var viewModel = await _speakingService.GetSpeakingIndexViewModelAsync(currentUserId, query, includeRecent: false);
 
             if (mine)
             {
@@ -129,6 +130,7 @@ namespace TCTVocabulary.Controllers
 
         [HttpGet("/Speaking/Practice")]
         [HttpGet("/Speaking/Practice/{id:int}")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Practice(int id)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
@@ -139,6 +141,26 @@ namespace TCTVocabulary.Controllers
                 return NotFound();
 
             return View(viewModel);
+        }
+
+        [HttpGet("/api/speaking/recent")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecentVideos(CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            return Ok(new { success = true, data = await _speakingService.GetRecentVideosAsync(userId, ct: ct) });
+        }
+
+        [HttpPost("/api/speaking/{videoId:int}/recent")]
+        [ValidateAntiForgeryToken]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public async Task<IActionResult> RecordRecentVideo(int videoId, CancellationToken ct)
+        {
+            if (!TryGetCurrentUserId(out var userId)) return Unauthorized();
+            var openedAt = await _speakingService.RecordVideoVisitAsync(userId, videoId, ct);
+            return openedAt.HasValue
+                ? Ok(new { success = true, lastOpenedAtUtc = openedAt.Value })
+                : NotFound();
         }
 
         [HttpPost("/Speaking/My/Create")]

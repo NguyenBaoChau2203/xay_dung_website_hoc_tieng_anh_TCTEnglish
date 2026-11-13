@@ -491,3 +491,14 @@ and disposable MariaDB10.5.23 upgrade/repeat/preservation1 pass; broader focused
 backup is ignored, web/readiness are available on5100. Fluency remains a coaching
 estimate, with no phoneme/prosody claim; paid real-microphone and native200% zoom
 acceptance were not run. See speaking-component-scores execution plan.
+
+
+Speaking recent videos completion (14/11/2026): the partial Gemini scaffold is
+now implemented locally. Personal recent history is server-side, access-filtered,
+limited to six distinct cards and independent of scores/catalog filters. A
+concurrent first-insert timestamp race is covered by a failing-then-passing
+regression and monotonic update. Account anonymization explicitly clears visits.
+Local MariaDB migration preserves all old row data; provider/concurrency and
+browser acceptance are recorded in
+[recent-videos ledger](../../docs/feature-audits/2026-11-13-speaking-recent-videos-ledger.md).
+Native200% zoom remains unverified; no known recent-history defect remains.

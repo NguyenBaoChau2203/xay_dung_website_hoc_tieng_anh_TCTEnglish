@@ -27,7 +27,9 @@
 
 @Html.AntiForgeryToken()
 
-<div class="tct-theme tct-page spk-practice-wrapper">
+<div class="tct-theme tct-page spk-practice-wrapper"
+     data-speaking-visit-url="@(Model.Sentences.Count > 0 ? Url.Action("RecordRecentVideo", "Speaking", new { videoId = Model.VideoId }) : null)">
+    <p class="spk-recent-feedback" data-recent-visit-feedback role="status" hidden></p>
 
     @* ── TOP BAR ─────────────────────────────────────────────── *@
     <header class="spk-practice-topbar" aria-label="Thanh điều hướng bài học">
@@ -360,6 +362,7 @@
 <div id="spk-toast" class="spk-toast" aria-live="polite"></div>
 
 @section Scripts {
+    <script src="~/js/speaking-recent.js" asp-append-version="true"></script>
     <script>
         window.SPK_VIDEO_ID = '@Model.YoutubeId';
         window.SPK_SENTENCES = @Html.Raw(sentencesJson);

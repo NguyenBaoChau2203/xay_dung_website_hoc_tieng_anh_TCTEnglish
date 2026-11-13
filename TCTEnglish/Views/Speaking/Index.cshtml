@@ -179,6 +179,8 @@
         </div>
     </div>
 
+    <partial name="_RecentVideos" model="Model.RecentVideos" />
+
     @* ── WHY PRACTICE SPEAKING (Clay Feature Cards) ─────── *@
     <section class="spk-why-section mb-5" aria-label="Lợi ích luyện nói">
         <div class="spk-why-grid">
@@ -841,6 +843,7 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/speaking-recent.js" asp-append-version="true"></script>
     <script src="~/js/speaking.js" asp-append-version="true"></script>
     <script>
         (function() {

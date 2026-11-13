@@ -115,6 +115,7 @@ public partial class User
     public virtual ICollection<WritingAcceptedAnswer> WritingAcceptedAnswersApproved { get; set; } = new List<WritingAcceptedAnswer>();
     public virtual ICollection<WritingExercise> WritingExercises { get; set; } = new List<WritingExercise>();
     public virtual ICollection<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; } = new List<UserSpeakingVideoCompletion>();
+    public virtual ICollection<TCTEnglish.Models.UserSpeakingVideoVisit> UserSpeakingVideoVisits { get; set; } = new List<TCTEnglish.Models.UserSpeakingVideoVisit>();
     public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
     public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
     public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();

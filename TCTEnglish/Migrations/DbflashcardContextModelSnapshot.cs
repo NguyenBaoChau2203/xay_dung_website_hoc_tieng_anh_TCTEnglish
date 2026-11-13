@@ -1186,6 +1186,28 @@ namespace TCTEnglish.Migrations
                     b.ToTable("UserNotificationPreferences", (string)null);
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserSpeakingVideoVisit", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastOpenedAtUtc")
+                        .HasPrecision(6)
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UserId", "VideoId");
+
+                    b.HasIndex("VideoId");
+
+                    b.HasIndex("UserId", "LastOpenedAtUtc", "VideoId")
+                        .HasDatabaseName("IX_UserSpeakingVideoVisits_UserId_LastOpenedAtUtc_VideoId");
+
+                    b.ToTable("UserSpeakingVideoVisits", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSubscription", b =>
                 {
                     b.Property<long>("Id")
@@ -3732,6 +3754,27 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserSpeakingVideoVisit", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("UserSpeakingVideoVisits")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserSpeakingVideoVisits_Users");
+
+                    b.HasOne("TCTVocabulary.Models.SpeakingVideo", "SpeakingVideo")
+                        .WithMany("UserSpeakingVideoVisits")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserSpeakingVideoVisits_SpeakingVideos");
+
+                    b.Navigation("SpeakingVideo");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.UserSubscription", b =>
                 {
                     b.HasOne("TCTEnglish.Models.PaymentOrder", "ActivatedByPaymentOrder")
@@ -4481,6 +4524,8 @@ namespace TCTEnglish.Migrations
                     b.Navigation("SpeakingSentences");
 
                     b.Navigation("UserSpeakingVideoCompletions");
+
+                    b.Navigation("UserSpeakingVideoVisits");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
@@ -4518,6 +4563,8 @@ namespace TCTEnglish.Migrations
                     b.Navigation("UserSpeakingProgresses");
 
                     b.Navigation("UserSpeakingVideoCompletions");
+
+                    b.Navigation("UserSpeakingVideoVisits");
 
                     b.Navigation("UserWritingAttempts");
 

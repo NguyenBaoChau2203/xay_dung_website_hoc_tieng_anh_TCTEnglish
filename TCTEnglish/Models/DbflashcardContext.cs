@@ -54,6 +54,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<AiQuotaReservationLedger> AiQuotaReservationLedgers { get; set; }
     public virtual DbSet<WritingGenerationLog> WritingGenerationLogs { get; set; }
     public virtual DbSet<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; }
+    public virtual DbSet<TCTEnglish.Models.UserSpeakingVideoVisit> UserSpeakingVideoVisits { get; set; }
     public virtual DbSet<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; }
     public virtual DbSet<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; }
 
@@ -1356,6 +1357,32 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserSpeakingVideoCompletions_SpeakingVideos");
+        });
+
+        modelBuilder.Entity<TCTEnglish.Models.UserSpeakingVideoVisit>(entity =>
+        {
+            entity.ToTable("UserSpeakingVideoVisits");
+
+            entity.HasKey(e => new { e.UserId, e.VideoId });
+
+            entity.Property(e => e.LastOpenedAtUtc)
+                .HasColumnType("datetime(6)")
+                .HasPrecision(6);
+
+            entity.HasIndex(e => new { e.UserId, e.LastOpenedAtUtc, e.VideoId })
+                .HasDatabaseName("IX_UserSpeakingVideoVisits_UserId_LastOpenedAtUtc_VideoId");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.UserSpeakingVideoVisits)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingVideoVisits_Users");
+
+            entity.HasOne(d => d.SpeakingVideo)
+                .WithMany(p => p.UserSpeakingVideoVisits)
+                .HasForeignKey(d => d.VideoId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserSpeakingVideoVisits_SpeakingVideos");
         });
 
         // ─── Listening ───────────────────────────────────────────────────────
