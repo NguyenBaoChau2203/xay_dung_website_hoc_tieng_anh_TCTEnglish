@@ -488,6 +488,90 @@
 .tl-page .tl-blank--wrong .tl-blank__mark,
 .tl-page .tl-blank--wrong .tl-blank__answer { color: var(--tct-danger-text); }
 
+/* ---------------------------------------------------------------- practice: vocabulary */
+.tl-page .tl-vocab { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--tct-space-md); margin: 0; padding: 0; list-style: none; }
+.tl-page .tl-vocab__item { display: flex; flex-direction: column; gap: var(--tct-space-sm); padding: var(--tct-space-md); }
+.tl-page .tl-vocab__image { height: auto; aspect-ratio: 16 / 9; }
+.tl-page .tl-vocab__image .tl-thumb,
+.tl-page .tl-vocab__image .tl-thumb--empty { height: 100%; }
+.tl-page .tl-vocab__head { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-sm); }
+.tl-page .tl-vocab__word { font-size: var(--tct-text-xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); overflow-wrap: anywhere; }
+.tl-page .tl-vocab__def { margin: 0; }
+.tl-page .tl-vocab__example { margin: 0; font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
+
+/* ---------------------------------------------------------------- practice: quiz */
+.tl-page .tl-quiz { display: grid; gap: var(--tct-space-md); }
+.tl-page .tl-q { min-width: 0; margin: 0; padding: var(--tct-space-md); }
+.tl-page .tl-q--missing { border: 2px solid var(--tct-danger-text); }
+.tl-page .tl-q__legend { float: none; width: auto; margin: 0 0 var(--tct-space-sm); padding: 0; font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-base); }
+.tl-page .tl-q__options { display: grid; gap: var(--tct-space-sm); }
+.tl-page .tl-q__missing { margin: var(--tct-space-sm) 0 0; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-danger-text); }
+
+.tl-page .tl-q__explain {
+    margin: var(--tct-space-sm) 0 0;
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-info-soft);
+    color: var(--tct-text);
+    font-size: var(--tct-text-sm);
+    overflow-wrap: anywhere;
+}
+
+.tl-page .tl-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-md);
+    min-height: 48px;
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    cursor: pointer;
+    transition: box-shadow var(--tct-dur-fast) var(--tct-ease), background-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+.tl-page .tl-option:hover { box-shadow: var(--tct-clay-shadow-lift); }
+.tl-page .tl-option__input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.tl-page .tl-option:has(.tl-option__input:focus-visible) { outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring); outline-offset: var(--tct-focus-ring-offset); }
+.tl-page .tl-option:has(.tl-option__input:checked) { border-color: var(--tct-primary); background: var(--tct-primary-tint); font-weight: var(--tct-weight-semibold); }
+.tl-page .tl-option:has(.tl-option__input:disabled) { cursor: default; }
+
+.tl-page .tl-option__key {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-bold);
+}
+
+.tl-page .tl-option__text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.tl-page .tl-option__mark { flex: 0 0 auto; font-size: var(--tct-text-sm); font-weight: var(--tct-weight-bold); white-space: nowrap; }
+.tl-page .tl-option.tl-option--correct:has(.tl-option__input) { border: 2px solid var(--tct-success-text); background: var(--tct-success-soft); }
+.tl-page .tl-option--correct .tl-option__mark { color: var(--tct-success-text); }
+.tl-page .tl-option.tl-option--wrong:has(.tl-option__input) { border: 2px solid var(--tct-danger-text); background: var(--tct-danger-soft); }
+.tl-page .tl-option--wrong .tl-option__mark { color: var(--tct-danger-text); }
+
+.tl-page .tl-quiz__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--tct-space-md); margin-top: var(--tct-space-md); padding: var(--tct-space-md); }
+.tl-page .tl-quiz__bar .btn { display: inline-flex; align-items: center; gap: var(--tct-space-sm); }
+
+.tl-page .tl-result { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-lg); margin-bottom: var(--tct-space-md); padding: var(--tct-space-lg); }
+.tl-page .tl-result:focus { outline: none; }
+.tl-page .tl-result__body { display: grid; gap: var(--tct-space-xs); justify-items: start; }
+.tl-page .tl-result__body p { margin: 0; }
+.tl-page .tl-result__title { font-size: var(--tct-text-xl); font-weight: var(--tct-weight-bold); }
+.tl-page .tl-result__best { font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
+.tl-page .tl-ring--lg { flex-basis: 84px; width: 84px; height: 84px; }
+.tl-page .tl-ring--lg::before { inset: 8px; }
+.tl-page .tl-ring--lg .tl-ring__text { font-size: var(--tct-text-lg); }
+
 /* ---------------------------------------------------------------- forced colours
    Mirrors the kit: depth is gone, so surfaces keep a visible border and state keeps a thicker one. */
 @media (forced-colors: active) {
@@ -508,6 +592,16 @@
 
     .tl-page .tl-line.is-active {
         border-inline-start: 5px solid CanvasText;
+    }
+
+    .tl-page .tl-option {
+        box-shadow: none;
+    }
+
+    .tl-page .tl-option:has(.tl-option__input:checked),
+    .tl-page .tl-option--correct,
+    .tl-page .tl-option--wrong {
+        border: 3px solid CanvasText;
     }
 }
 

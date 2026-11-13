@@ -777,5 +777,214 @@
         render();
     };
 
-    // ------------------------------------------------------------------ sections below are added phase by phase
+    // ------------------------------------------------------------------ vocabulary tab
+
+    function swapBrokenImage(img) {
+        if (!img || !img.parentNode || !img.classList.contains('tl-thumb')) { return; }
+        var holder = Sets.el('span', 'tl-thumb--empty');
+        holder.setAttribute('aria-hidden', 'true');
+        holder.appendChild(Sets.icon('fa-solid fa-image'));
+        img.parentNode.replaceChild(holder, img);
+    }
+    page.addEventListener('error', function (event) {
+        if (event.target && event.target.tagName === 'IMG') { swapBrokenImage(event.target); }
+    }, true);
+    Array.prototype.forEach.call(page.querySelectorAll('img.tl-thumb'), function (img) {
+        if (img.complete && img.naturalWidth === 0) { swapBrokenImage(img); }
+    });
+
+    if (Sets.canSpeak()) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-tl-speak]'), function (button) {
+            button.hidden = false;
+            button.addEventListener('click', function () { Sets.speak(button.getAttribute('data-tl-speak')); });
+        });
+    }
+
+    var vocabDoneBtn = byId('tlVocabDone');
+    if (vocabDoneBtn) {
+        vocabDoneBtn.addEventListener('click', function () {
+            if (vocabDoneBtn.disabled) { return; }
+            vocabDoneBtn.disabled = true;
+            setButtonContent(vocabDoneBtn, 'fa-solid fa-circle-check', 'Đã học xong từ vựng');
+            setStep('vocab', true);
+            saveProgress({ vocabReviewed: true });
+        });
+    }
+
+    // ------------------------------------------------------------------ quiz tab
+
+    var quizForm = byId('tlQuizForm');
+    var quizResult = byId('tlQuizResult');
+
+    if (quizForm) {
+        var fieldsets = Array.prototype.slice.call(quizForm.querySelectorAll('.tl-q'));
+        var quizSubmit = byId('tlQuizSubmit');
+        var quizCount = byId('tlQuizCount');
+        var graded = false;
+
+        var chosenFor = function (fs) { var r = fs.querySelector('input:checked'); return r ? r.value : null; };
+        var answeredCount = function () { return fieldsets.filter(function (fs) { return chosenFor(fs); }).length; };
+
+        function syncQuizCount() {
+            if (quizCount) { quizCount.textContent = 'Đã chọn ' + answeredCount() + '/' + fieldsets.length; }
+        }
+
+        function clearMissing(fs) {
+            fs.classList.remove('tl-q--missing');
+            var note = fs.querySelector('.tl-q__missing');
+            if (note) { note.hidden = true; }
+        }
+
+        quizForm.addEventListener('change', function (event) {
+            var fs = event.target.closest('.tl-q');
+            if (fs) { clearMissing(fs); }
+            syncQuizCount();
+        });
+
+        function resultRing(percent, large) {
+            var ring = Sets.el('div', 'tl-ring' + (large ? ' tl-ring--lg' : ''));
+            ring.setAttribute('role', 'img');
+            ring.setAttribute('aria-label', 'Điểm ' + percent + '%');
+            ring.style.setProperty('--p', percent + '%');
+            ring.appendChild(Sets.el('span', 'tl-ring__text', percent + '%'));
+            return ring;
+        }
+
+        function resetQuiz() {
+            graded = false;
+            fieldsets.forEach(function (fs) {
+                clearMissing(fs);
+                Array.prototype.forEach.call(fs.querySelectorAll('input'), function (input) { input.checked = false; input.disabled = false; });
+                Array.prototype.forEach.call(fs.querySelectorAll('.tl-option'), function (option) {
+                    option.classList.remove('tl-option--correct', 'tl-option--wrong');
+                    var mark = option.querySelector('.tl-option__mark');
+                    if (mark) { mark.textContent = ''; }
+                });
+                var explain = fs.querySelector('.tl-q__explain');
+                if (explain) { explain.textContent = ''; explain.hidden = true; }
+            });
+            if (quizResult) { quizResult.hidden = true; quizResult.textContent = ''; }
+            if (quizSubmit) { quizSubmit.disabled = false; }
+            syncQuizCount();
+            var first = quizForm.querySelector('input');
+            if (first) { first.focus(); }
+        }
+
+        function retryButton() {
+            var button = Sets.el('button', 'btn btn-outline-primary');
+            button.type = 'button';
+            setButtonContent(button, 'fa-solid fa-rotate-right', 'Làm lại quiz');
+            button.addEventListener('click', resetQuiz);
+            return button;
+        }
+
+        function showStoredScore(score) {
+            quizResult.textContent = '';
+            quizResult.appendChild(resultRing(score, true));
+            var body = Sets.el('div', 'tl-result__body');
+            body.appendChild(Sets.el('p', 'tl-result__title', 'Điểm cao nhất: ' + score + '%'));
+            body.appendChild(retryButton());
+            quizResult.appendChild(body);
+            quizResult.hidden = false;
+        }
+
+        function showResult(data) {
+            graded = true;
+            var byQuestion = {};
+            (data.answers || []).forEach(function (a) { byQuestion[a.questionId] = a; });
+            fieldsets.forEach(function (fs) {
+                var answer = byQuestion[fs.getAttribute('data-qid')];
+                Array.prototype.forEach.call(fs.querySelectorAll('input'), function (input) { input.disabled = true; });
+                if (!answer) { return; }
+                Array.prototype.forEach.call(fs.querySelectorAll('.tl-option'), function (option) {
+                    var key = option.getAttribute('data-key');
+                    var mark = option.querySelector('.tl-option__mark');
+                    var text = null, icon = null, cls = null;
+                    if (key === answer.correctAnswer) { cls = 'tl-option--correct'; icon = 'fa-solid fa-circle-check'; text = 'Đáp án đúng'; }
+                    else if (key === answer.userAnswer) { cls = 'tl-option--wrong'; icon = 'fa-solid fa-circle-xmark'; text = 'Bạn chọn'; }
+                    if (cls && mark) {
+                        option.classList.add(cls);
+                        mark.textContent = '';
+                        mark.appendChild(Sets.icon(icon));
+                        mark.appendChild(document.createTextNode(' ' + text));
+                    }
+                });
+                var explain = fs.querySelector('.tl-q__explain');
+                if (explain) {
+                    if (answer.explanation) { explain.textContent = 'Giải thích: ' + answer.explanation; explain.hidden = false; }
+                    else { explain.textContent = ''; explain.hidden = true; }
+                }
+            });
+
+            quizResult.textContent = '';
+            quizResult.appendChild(resultRing(data.scorePercent, true));
+            var body = Sets.el('div', 'tl-result__body');
+            body.appendChild(Sets.el('p', 'tl-result__title', 'Đúng ' + data.correctCount + '/' + data.totalQuestions));
+            body.appendChild(Sets.el('p', 'tl-result__remark', data.passed ? 'Đạt! Bạn đã vượt qua bài quiz.' : 'Chưa đạt. Nghe lại rồi thử lần nữa nhé.'));
+            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) {
+                body.appendChild(Sets.el('p', 'tl-result__best', 'Điểm cao nhất: ' + data.bestScorePercent + '%'));
+            }
+            body.appendChild(retryButton());
+            quizResult.appendChild(body);
+            quizResult.hidden = false;
+            quizResult.focus();
+            if (data.bestScorePercent !== null && data.bestScorePercent !== undefined) { setStep('quiz', true); }
+        }
+
+        quizForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (!quizSubmit || quizSubmit.disabled) { return; }
+
+            var missing = fieldsets.filter(function (fs) { return !chosenFor(fs); });
+            if (missing.length) {
+                missing.forEach(function (fs) {
+                    fs.classList.add('tl-q--missing');
+                    var note = fs.querySelector('.tl-q__missing');
+                    if (note) { note.hidden = false; }
+                });
+                var firstInput = missing[0].querySelector('input');
+                if (firstInput) { firstInput.focus(); }
+                announce('tlQuizLive', 'Còn ' + missing.length + ' câu chưa trả lời.');
+                return;
+            }
+
+            var answers = {};
+            fieldsets.forEach(function (fs) { answers[fs.getAttribute('data-qid')] = chosenFor(fs); });
+            quizSubmit.disabled = true;
+            setButtonContent(quizSubmit, 'fa-solid fa-spinner fa-spin', 'Đang chấm…');
+            Sets.fetchJson(urls.evaluate, { method: 'POST', body: { lessonId: config.lessonId, answers: answers } }).then(function (response) {
+                setButtonContent(quizSubmit, 'fa-solid fa-paper-plane', 'Nộp bài');
+                showResult(response && response.data ? response.data : {});
+            }).catch(function () {
+                quizSubmit.disabled = false;
+                setButtonContent(quizSubmit, 'fa-solid fa-paper-plane', 'Nộp bài');
+                Sets.toast('Không chấm được bài. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+
+        // a finished quiz shows the stored best score; the questions stay answerable again
+        if (quizResult && progress.quizCompleted && progress.quizScore !== null && progress.quizScore !== undefined) {
+            showStoredScore(progress.quizScore);
+        }
+        syncQuizCount();
+    }
+
+    // ------------------------------------------------------------------ quiz generation with AI (own lessons, or Admin on shared ones)
+
+    var generateBtn = byId('tlGenerateQuiz');
+    if (generateBtn) {
+        generateBtn.addEventListener('click', function () {
+            Sets.pending(generateBtn, true, 'Đang soạn câu hỏi…');
+            var form = new FormData();
+            form.append('lessonId', String(config.lessonId));
+            Sets.fetchJson(urls.generateQuiz, { method: 'POST', body: form }).then(function () {
+                Sets.toast('Đã tạo quiz.');
+                window.setTimeout(function () { window.location.reload(); }, 600);
+            }).catch(function (error) {
+                Sets.pending(generateBtn, false);
+                var data = error && error.data;
+                Sets.toast((data && data.message) || 'Không tạo được quiz. Vui lòng thử lại.', { type: 'danger' });
+            });
+        });
+    }
 }());
