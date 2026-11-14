@@ -15,6 +15,7 @@ common = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(common)
 common.BRANCH = 'release/staging'
 STAGING_ORIGIN = 'https://staging.tctenglish.site'
+RECOVERY_PLAN = Path(__file__).resolve().parents[1] / 'data/releases/staging-recovery.json'
 WEBHOOK_PREFIX = 'https://peaceful-bartik.103-28-36-90.plesk.page:8443/modules/git/public/web-hook.php?'
 
 
@@ -72,6 +73,21 @@ def ensure_staging_release(tag, artifact, sha):
     return common.resolve_asset_sha256(release, local_digest)
 
 
+def reviewed_recovery(run_id):
+    if not RECOVERY_PLAN.is_file():
+        return None
+    recovery = json.loads(RECOVERY_PLAN.read_text(encoding='utf-8'))
+    if (not isinstance(recovery, dict) or set(recovery) != {'runNumber', 'commit', 'previousCommit'}
+            or type(recovery['runNumber']) is not int
+            or not 0 < recovery['runNumber'] < int(run_id)
+            or not re.fullmatch(r'[1-9][0-9]{0,17}', str(recovery['runNumber']))
+            or any(not isinstance(recovery[key], str) or not common.SHA_RE.fullmatch(recovery[key])
+                   for key in ('commit', 'previousCommit'))
+            or recovery['commit'] == recovery['previousCommit']):
+        raise SystemExit('Reviewed staging recovery identity is invalid; no hosting webhook was sent.')
+    return recovery
+
+
 def main_with_artifact(artifact_path):
     sha = os.environ.get('GITHUB_SHA', '')
     run_id = os.environ.get('GITHUB_RUN_ID', '')
@@ -87,11 +103,14 @@ def main_with_artifact(artifact_path):
     artifact = Path(artifact_path).resolve()
     if not artifact.is_file():
         raise SystemExit('Staging artifact is missing.')
+    recovery = reviewed_recovery(run_id)
     tag = 'staging-' + run_id + '-' + sha[:12]
     digest = ensure_staging_release(tag, artifact, sha)
     manifest = {'enabled': True, 'environment': 'Staging', 'sharedDataSchema': 1, 'repository': common.REPOSITORY,
         'commit': sha, 'runNumber': int(run_id), 'sha256': digest,
         'artifactUrl': 'https://github.com/' + common.REPOSITORY + '/releases/download/' + tag + '/' + common.RELEASE_ASSET}
+    if recovery is not None:
+        manifest['recoverImport'] = recovery
     common.update_branch({'release.json': json.dumps(manifest, indent=2),
         'deploy-staging.ps1': Path(__file__).with_name('deploy-staging.ps1').read_text(encoding='utf-8')})
     result = common.notify_plesk(webhook)

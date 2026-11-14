@@ -70,6 +70,18 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                 var completed = applied.Select(a => a.PackageId + ":" + a.Version).ToHashSet(StringComparer.Ordinal);
                 var kinds = pending.SelectMany(p => p.Package.Records.Select(r => r.Kind)).Concat(pending.SelectMany(p => p.Package.DeleteKeys).Where(bindings.ContainsKey).Select(k => bindings[k].Kind)).Distinct(StringComparer.Ordinal);
                 rows = await LoadRowsAsync(kinds, mysql, ct);
+                // Only rows that predate this batch can be adopted. A growing
+                // candidate scan rehashes every newly inserted cue for every
+                // later cue and makes large fresh catalogs quadratic or worse.
+                var occupied = bindings.Values.GroupBy(b => b.Kind, StringComparer.Ordinal)
+                    .ToDictionary(g => g.Key, g => g.Select(b => b.EntityId).ToHashSet(), StringComparer.Ordinal);
+                var adoption = rows.ToDictionary(pair => pair.Key, pair =>
+                {
+                    var spec = SharedDataRegistry.Get(pair.Key);
+                    occupied.TryGetValue(pair.Key, out var ids);
+                    return new SharedDataAdoptionIndex(pair.Value.Cast<object>()
+                        .Where(row => (ids == null || !ids.Contains(spec.GetId(row))) && IsShareable(row)));
+                }, StringComparer.Ordinal);
                 foreach (var package in OrderPackages(pending, completed))
                 {
                     var current = package.Package;
@@ -101,11 +113,21 @@ public sealed class SharedDataEngine(DbflashcardContext db, string webRoot, Dict
                             else
                             {
                                 // Adopt only a unique exact match, never a title/ID match or another owner's item.
-                                var occupied = bindings.Values.Where(x => x.Kind == record.Kind).Select(x => x.EntityId).ToHashSet();
-                                var candidates = rows[record.Kind].Cast<object>().Where(x => !occupied.Contains(spec.GetId(x)))
-                                    .Where(IsShareable).Where(x => SharedDataFormat.Digest(Project(record.Key, record.Kind, x, record)) == digest).ToList();
+                                // Projection depends on optional field presence and
+                                // resolved references/owner aliases. Separate contexts
+                                // preserve those contracts, including nested folders.
+                                var context = SharedDataFormat.Digest(new
+                                {
+                                    OptionalFields = spec.OptionalFields.Where(record.Values.ContainsKey).Order(StringComparer.Ordinal),
+                                    record.References
+                                });
+                                const string probeKey = "tct.shared.adoption";
+                                var candidateDigest = SharedDataFormat.Digest(record with { Key = probeKey });
+                                var candidates = adoption[record.Kind].Find(context, candidateDigest,
+                                    candidate => SharedDataFormat.Digest(Project(probeKey, record.Kind, candidate, record)));
                                 if (candidates.Count > 1) throw new SharedDataException($"Ambiguous existing data: {record.Key}. Bind the intended record explicitly before release.");
                                 row = candidates.SingleOrDefault() ?? Activator.CreateInstance(spec.Type)!;
+                                if (candidates.Count == 1) adoption[record.Kind].Claim(row);
                                 if (candidates.Count == 0)
                                 {
                                     SetValues(record, spec, row); SetCreationDates(row); db.Add(row); rows[record.Kind].Add(row);

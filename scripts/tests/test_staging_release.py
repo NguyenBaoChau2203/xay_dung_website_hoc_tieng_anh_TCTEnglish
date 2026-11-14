@@ -17,6 +17,7 @@ class StagingPublisherTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('stage_publisher', ROOT / 'scripts/publish-staging-release.py')
         self.module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(self.module)
+        self.module.RECOVERY_PLAN = ROOT / '.tmp/nonexistent-test-recovery-plan.json'
 
     def test_marker_rejects_production_even_with_same_commit_and_digest(self):
         marker = {'commit': 'a' * 40, 'runNumber': 12, 'sha256': 'b' * 64}
@@ -70,6 +71,39 @@ class StagingPublisherTests(unittest.TestCase):
         self.assertEqual(manifest['sharedDataSchema'], 1)
         self.assertEqual(self.module.common.BRANCH, 'release/staging')
         self.assertNotIn('test-only', json.dumps(files))
+
+    def test_reviewed_recovery_is_published_only_with_the_exact_valid_identity(self):
+        recovery = {'runNumber': 123, 'commit': 'c' * 40, 'previousCommit': 'd' * 40}
+        with tempfile.TemporaryDirectory() as directory:
+            plan = Path(directory) / 'recovery.json'; plan.write_text(json.dumps(recovery))
+            artifact = Path(directory) / 'release.zip'; artifact.write_bytes(b'test')
+            with mock.patch.object(self.module, 'RECOVERY_PLAN', plan), \
+                    mock.patch.dict(os.environ, self.valid_env(), clear=True), \
+                    mock.patch.object(self.module, 'ensure_staging_release', return_value='b' * 64), \
+                    mock.patch.object(self.module.common, 'update_branch') as update, \
+                    mock.patch.object(self.module.common, 'notify_plesk', return_value='accepted'), \
+                    mock.patch.object(self.module, 'wait_for_deployed_release', return_value=True):
+                self.module.main_with_artifact(artifact)
+            self.assertEqual(json.loads(update.call_args.args[0]['release.json'])['recoverImport'], recovery)
+
+    def test_invalid_recovery_stops_before_any_remote_write(self):
+        valid = {'runNumber': 123, 'commit': 'c' * 40, 'previousCommit': 'd' * 40}
+        invalid = [[], dict(valid, extra=True), dict(valid, runNumber=True), dict(valid, runNumber=123456),
+                   dict(valid, runNumber=-1), dict(valid, commit='../escape'), dict(valid, commit=None),
+                   dict(valid, previousCommit=valid['commit'])]
+        with tempfile.TemporaryDirectory() as directory:
+            plan = Path(directory) / 'recovery.json'; artifact = Path(directory) / 'release.zip'
+            artifact.write_bytes(b'test')
+            for value in invalid:
+                plan.write_text(json.dumps(value))
+                with self.subTest(value=value), mock.patch.object(self.module, 'RECOVERY_PLAN', plan), \
+                        mock.patch.dict(os.environ, self.valid_env(), clear=True), \
+                        mock.patch.object(self.module, 'ensure_staging_release') as create, \
+                        mock.patch.object(self.module.common, 'update_branch') as update, \
+                        mock.patch.object(self.module.common, 'notify_plesk') as notify:
+                    with self.assertRaises(SystemExit):
+                        self.module.main_with_artifact(artifact)
+                    create.assert_not_called(); update.assert_not_called(); notify.assert_not_called()
 
     def test_reused_release_requires_correct_tag_commit_and_digest(self):
         with tempfile.NamedTemporaryFile() as artifact, \
