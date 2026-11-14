@@ -559,3 +559,24 @@ Decisions:
 Owned tests changed on purpose (`VocabularyIntegrationTests.cs`): `Home_RendersTheNextLessonButtonDueButtonAndCourseCards` (the old "Học tiếp", "Ôn 1 từ đến hạn" and "Hôm nay bạn đã học 2 từ" strings became "Học bài mới", the due card, the ring label and the memory/forecast panels) and `Home_HidesTheLevelFilterWhenThereAreFewerThanTwoLevels_AndOmitsAZeroStreak` ("chuỗi học" and "Hôm nay bạn chưa học từ nào" became "Chuỗi " and "Bắt đầu với 5 từ đầu tiên nhé"). Intent unchanged.
 
 Data note: no data was reset or seeded. The existing synthetic learner `premium@tct.local` already had 10 system words from the previous run (legacy rows: 8 due, 2 mastered) and was used as the "learner with data"; `student@tct.local` has none and was the new learner.
+
+### Gate record S6 — Course page (2026-11-14)
+Commit: `feat(vocabulary): rebuild the course page with the review CTA, memory aside, level dots and word filters`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0; one xUnit2013 in a new test was fixed) |
+| G2/G3 | pass: Vocabulary area 152 green; full suite 1708 passed / 0 failed / 34 skipped before the one-line warning fix |
+| G4 | pass: node 316 tests, 315 pass, the one known CRLF failure |
+| G5 | pass: legacy routes and 404 rules unchanged; `course.DueUrl` kept as `/Vocabulary/Study?setId=..&mode=review` (an existing test asserts it; it renders the same review view as `/Vocabulary/Review?setId=`) |
+| G6 | pass: token-only greps clean on `vocabulary.css` |
+| G7 | pass: Detail, `_LessonRow`, `_WordRow`, `_LevelDots`, `vocabulary-course.js`, `vocabulary-core.js`, view model, service, tests |
+| G8 | pass: course and words tab rendered at 1440, 1366, 1024, 768, 390, 320 and 200 % zoom; no overflow; console clean (`.tmp/vocabulary-srs/s6/`) |
+| G9 | pass with differences: hero art tile, chips, CTAs, two columns, aside with memory and "Sắp ôn lại" as in `02-khoa-hoc.png`; the memory panel uses the compact 2×2 tiles instead of the mockup's list rows |
+| G10 | pass: 20 scripted checks (CTA order, due chip, lesson chips and dots, sticky aside under the top bar, ArrowRight tabs, 20 word rows with tile/dots/stage/next label, the four filters 8/10/10/20, empty filter text, example disclosure) |
+| G11/G12 | pass: forced colours verified; aside above the tabs on narrow screens; no new colour pairs beyond S5's checked tokens |
+| G13–G15 | pass: regression pages clean; antiforgery/404 unchanged |
+
+Decisions: word rows are a two-line grid at every width (the 7-column table collapsed the term to one letter per line next to the aside); `_LevelDots` takes an int (-1 = not learned) because a null partial model falls back to the page model; filters gained `due` and `learned` in `vocabulary-core.js` (node-tested). Owned tests changed on purpose: "Học tiếp bài 2" → "Học bài tiếp theo", "Ôn lại từ đầu" → "Học lại từ đầu".
+
+**Run status at the usage limit:** S0–S6 done and committed; S7 (lesson), S8 (review and result), S9 (cleanup and docs), S11 (full gate and end-to-end run) are NOT done. S10 skipped (D1 blank).

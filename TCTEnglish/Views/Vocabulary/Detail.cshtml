@@ -1,5 +1,6 @@
 @model TCTVocabulary.ViewModels.VocabularyCourseViewModel
 @using TCTEnglish.ViewModels
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
 @{
     var course = Model.Course;
     ViewData["Title"] = course.SetName + " · Từ vựng";
@@ -12,26 +13,22 @@
     crumbs.Add(new PageBreadcrumbItem(course.SetName));
     var header = new PageHeaderViewModel { Title = course.SetName, Breadcrumbs = crumbs };
 
-    var icon = course.IconKey switch
-    {
-        "food" => "fa-utensils",
-        "travel" => "fa-plane",
-        "jobs" => "fa-briefcase",
-        "colors" => "fa-palette",
-        "talk" => "fa-comments",
-        "star" => "fa-star",
-        _ => "fa-book-open"
-    };
-
     var wordsActive = Model.ActiveTab == "words";
     var empty = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Khóa này chưa có từ nào." };
     var noWordMatch = new StateMessageViewModel
     {
         Kind = StateMessageKind.Empty,
-        Title = "Không tìm thấy từ phù hợp.",
+        Title = "Không có từ nào ở mục này.",
         Message = "Thử tìm bằng từ khác hoặc bỏ bớt bộ lọc."
     };
-    var stateFilters = new[] { ("", "Tất cả"), ("new", "Chưa học"), ("learning", "Đang học"), ("known", "Đã thuộc") };
+    var stateFilters = new[] { ("", "Tất cả"), ("due", "Cần ôn"), ("new", "Chưa học"), ("learned", "Đã học") };
+    var memoryData = new ViewDataDictionary(ViewData)
+    {
+        ["Compact"] = true,
+        ["PanelTitle"] = "Trí nhớ khóa này",
+        ["PanelTitleId"] = "tvCourseMemoryTitle"
+    };
+    var emptyUpcoming = Model.Upcoming.Count == 0;
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
@@ -40,7 +37,7 @@
 
 <div class="tct-theme tct-page tv-page tv-page--course" data-active-tab="@Model.ActiveTab" data-topic-filter="@Model.TopicFilter">
     <section class="tv-hero tv-hue-@course.Hue">
-        <div class="tv-hero__icon k-pillow" aria-hidden="true"><i class="fa-solid @icon"></i></div>
+        <div class="tv-hero__art k-art-box tv-cover tv-cover--@course.ArtKey" aria-hidden="true"><partial name="_CourseArt" model="course.ArtKey" /></div>
         <div class="tv-hero__main">
             <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
             <p class="tv-meta tv-hero__meta">
@@ -52,7 +49,7 @@
                 <span><i class="fa-solid fa-layer-group" aria-hidden="true"></i>@course.LessonCount bài</span>
                 @if (course.DueCount > 0)
                 {
-                    <span class="tv-due">@course.DueCount từ cần ôn</span>
+                    <span class="tv-chipdue"><i class="fa-solid fa-rotate" aria-hidden="true"></i>@course.DueCount từ cần ôn</span>
                 }
             </p>
             <div class="k-progress" role="progressbar" aria-label="Tiến độ khóa học" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@course.ProgressPercent">
@@ -62,17 +59,21 @@
             @if (course.WordCount > 0)
             {
                 <div class="tv-hero__actions">
-                    @if (Model.NextLesson != null)
+                    @if (Model.DueUrl != null)
                     {
-                        <a class="btn btn-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>@(course.LearnedCount == 0 ? "Bắt đầu học" : "Học tiếp bài " + Model.NextLesson.Number)</a>
+                        <a class="btn btn-primary btn-lg" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @course.DueCount từ đến hạn</a>
+                        @if (Model.NextLesson != null)
+                        {
+                            <a class="btn btn-outline-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài tiếp theo</a>
+                        }
+                    }
+                    else if (Model.NextLesson != null)
+                    {
+                        <a class="btn btn-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài tiếp theo</a>
                     }
                     else if (Model.CourseComplete && Model.Lessons.Count > 0)
                     {
-                        <a class="btn btn-primary btn-lg" href="@Model.Lessons[0].Url"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn lại từ đầu</a>
-                    }
-                    @if (Model.DueUrl != null)
-                    {
-                        <a class="btn btn-outline-primary btn-lg" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @course.DueCount từ</a>
+                        <a class="btn k-btn--soft btn-lg" href="@Model.Lessons[0].Url"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Học lại từ đầu</a>
                     }
                     <a class="btn btn-outline-primary btn-lg" href="@Model.PracticeUrl"><i class="fa-solid fa-gamepad me-2" aria-hidden="true"></i>Luyện bằng trò chơi</a>
                 </div>
@@ -80,6 +81,38 @@
         </div>
     </section>
 
+    <div class="tv-cols">
+        <aside class="tv-cols__aside" aria-label="Trí nhớ và lịch ôn của khóa học">
+            <partial name="_MemoryPanel" model="Model.Memory" view-data="memoryData" />
+            <section class="tv-panel k-panel" aria-labelledby="tvUpcomingTitle">
+                <div class="tv-panel__head">
+                    <h2 class="tv-panel__title" id="tvUpcomingTitle"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Sắp ôn lại</h2>
+                </div>
+                @if (emptyUpcoming)
+                {
+                    <p class="tv-panel__empty">Chưa có từ nào trong lịch ôn.</p>
+                }
+                else
+                {
+                    <ul class="tv-upcoming">
+                        @foreach (var item in Model.Upcoming)
+                        {
+                            <li class="tv-upcoming__row">
+                                <span class="tv-emoji" aria-hidden="true">@(item.Emoji ?? item.Term.Substring(0, 1).ToUpperInvariant())</span>
+                                <span class="tv-upcoming__word">
+                                    <span class="tv-upcoming__term" lang="en">@item.Term</span>
+                                    <span class="tv-upcoming__def tct-clamp-2">@item.Definition</span>
+                                </span>
+                                <partial name="_LevelDots" model="item.Level" />
+                                <span class="tv-upcoming__label">@item.Label</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </section>
+        </aside>
+
+        <div class="tv-cols__main">
     <div class="k-seg" role="tablist" aria-label="Nội dung khóa học" id="tvTabs">
         <button type="button" class="k-seg__item" role="tab" id="tvTabLessons" aria-controls="tvPanelLessons"
                 aria-selected="@(wordsActive ? "false" : "true")" tabindex="@(wordsActive ? "-1" : "0")" data-tv-tab="lessons" data-hash="bai-hoc">
@@ -152,7 +185,8 @@
                             <th scope="col">Phiên âm</th>
                             <th scope="col">Nghĩa</th>
                             <th scope="col">Bài</th>
-                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Trí nhớ</th>
+                            <th scope="col">Ôn lại</th>
                             <th scope="col"><span class="visually-hidden">Thao tác</span></th>
                         </tr>
                     </thead>
@@ -163,6 +197,8 @@
                 </table>
             </div>
         }
+    </div>
+        </div>
     </div>
 </div>
 

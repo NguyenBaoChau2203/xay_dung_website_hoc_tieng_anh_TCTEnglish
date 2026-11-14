@@ -37,6 +37,8 @@ namespace TCTVocabulary.ViewModels
     public class VocabularyUpcomingWordViewModel
     {
         public string Term { get; set; } = string.Empty;
+        public string Definition { get; set; } = string.Empty;
+        public string? Emoji { get; set; }
         public int Level { get; set; }
         public string Stage { get; set; } = "new";
         /// <summary>"Hôm nay", "Ngày mai" or "Sau n ngày".</summary>

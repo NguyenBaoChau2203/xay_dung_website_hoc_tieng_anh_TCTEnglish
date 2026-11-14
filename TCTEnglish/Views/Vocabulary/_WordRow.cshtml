@@ -1,21 +1,17 @@
 @model TCTVocabulary.ViewModels.VocabularyWordRowViewModel
 @*
-    One word of a course, as its own <tbody> so an optional example row can sit under it.
+    One word of a course, as its own table body so an optional example row can sit under it.
     data-* feed the client-side filters (vocabulary-course.js). The speak button stays hidden until the browser can speak.
+    The picture is the card's emoji (or the dictionary's), otherwise a monogram; it is decorative, the term is text.
 *@
 @{
-    var (stateClass, stateIcon, stateText) = Model.State switch
-    {
-        "known" => ("tct-badge--success", "fa-check", "Đã thuộc"),
-        "learning" => ("tct-badge--warning", "fa-clock", "Đang học"),
-        _ => ("tct-badge--primary", (string?)null, "Chưa học")
-    };
     var hasExample = !string.IsNullOrWhiteSpace(Model.Example);
+    var picture = Model.Emoji ?? (Model.Term.Length > 0 ? Model.Term.Substring(0, 1).ToUpperInvariant() : "?");
 }
 <tbody class="tv-word" data-tv-word data-term="@Model.Term" data-definition="@Model.Definition"
-       data-state="@Model.State" data-lesson="@Model.LessonNumber" data-topic="@Model.Topic">
+       data-state="@Model.State" data-due="@(Model.IsDue ? "true" : "false")" data-lesson="@Model.LessonNumber" data-topic="@Model.Topic">
     <tr class="tv-word__row">
-        <td class="tv-word__term" lang="en">@Model.Term</td>
+        <td class="tv-word__term"><span class="tv-emoji" aria-hidden="true">@picture</span><span lang="en">@Model.Term</span></td>
         <td class="tv-word__ipa">
             @if (!string.IsNullOrWhiteSpace(Model.Phonetic))
             {
@@ -24,19 +20,11 @@
         </td>
         <td class="tv-word__def tct-break">@Model.Definition</td>
         <td class="tv-word__lesson">Bài @Model.LessonNumber</td>
-        <td class="tv-word__state">
-            <span class="tct-badge @stateClass">
-                @if (stateIcon != null)
-                {
-                    <i class="fa-solid @stateIcon" aria-hidden="true"></i>
-                }
-                @stateText
-            </span>
-            @if (Model.IsDue)
-            {
-                <span class="tct-badge tct-badge--danger"><i class="fa-solid fa-rotate" aria-hidden="true"></i>Cần ôn</span>
-            }
+        <td class="tv-word__mem">
+            <partial name="_LevelDots" model="(Model.Level ?? -1)" />
+            <span class="tv-word__stage@(Model.IsDue ? " tv-word__stage--due" : string.Empty)">@Model.StageLabel</span>
         </td>
+        <td class="tv-word__next">@Model.NextReviewLabel</td>
         <td class="tv-word__actions">
             <button type="button" class="btn k-btn--icon-surface tct-btn-icon tv-speak" data-tv-speak="@Model.Term" aria-label="Phát âm @Model.Term" hidden><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
             @if (hasExample)
@@ -48,7 +36,7 @@
     @if (hasExample)
     {
         <tr class="tv-word__example" id="tvEx@(Model.CardId)" hidden>
-            <td colspan="6">
+            <td colspan="7">
                 <div class="tv-example">
                     <p class="tv-example__en" lang="en">@Model.Example</p>
                     @if (!string.IsNullOrWhiteSpace(Model.ExampleTranslation))

@@ -270,6 +270,20 @@
     font-size: calc(var(--tct-text-3xl) * 1.5);
 }
 
+.tv-page .tv-hero__art {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 200px;
+    width: 200px;
+    height: auto;
+    border-radius: var(--tct-radius-xl);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+@media (max-width: 575.98px) {
+    .tv-page .tv-hero__art { flex-basis: 100%; width: 100%; max-width: 240px; }
+}
+
 .tv-page .tv-hero__main { position: relative; z-index: 1; flex: 1 1 20rem; min-width: 0; }
 .tv-page .tv-hero__main .tct-page-header { margin-bottom: var(--tct-space-sm); }
 .tv-page .tv-hero__main .tct-breadcrumb { font-size: var(--tct-text-sm); color: var(--tct-text-secondary); }
@@ -374,7 +388,6 @@
 .tv-page .tv-word:last-child { border-bottom: 0; }
 .tv-page .tv-word__term { font-weight: var(--tct-weight-semibold); font-size: var(--tct-text-base); }
 .tv-page .tv-word__lesson { color: var(--tct-text-secondary); white-space: nowrap; }
-.tv-page .tv-word__state .tct-badge { margin-inline-end: var(--tct-space-xs); }
 .tv-page .tv-example-toggle { min-width: 104px; }
 .tv-page .tv-word__actions { white-space: nowrap; text-align: end; }
 .tv-page .tv-word__actions > * + * { margin-inline-start: var(--tct-space-sm); }
@@ -405,7 +418,7 @@
     .tv-page .tv-word__row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
-        grid-template-areas: "term state" "ipa state" "def actions" "lesson actions";
+        grid-template-areas: "term mem" "ipa next" "def actions" "lesson actions";
         gap: var(--tct-space-xs) var(--tct-space-md);
         padding: var(--tct-space-sm) var(--tct-space-md);
     }
@@ -415,8 +428,8 @@
     .tv-page .tv-word__ipa { grid-area: ipa; }
     .tv-page .tv-word__def { grid-area: def; }
     .tv-page .tv-word__lesson { grid-area: lesson; font-size: var(--tct-text-sm); }
-    .tv-page .tv-word__state { grid-area: state; text-align: end; }
-    .tv-page .tv-word__state .tct-badge { margin-inline-end: 0; margin-inline-start: var(--tct-space-xs); }
+    .tv-page .tv-word__mem { grid-area: mem; justify-content: flex-end; }
+    .tv-page .tv-word__next { grid-area: next; text-align: end; }
     .tv-page .tv-word__actions { grid-area: actions; align-self: end; }
     .tv-page .tv-word__example td { padding: 0 var(--tct-space-md) var(--tct-space-sm); }
     .tv-page .tv-hero { padding: var(--tct-space-md); }
@@ -994,4 +1007,66 @@
 
 @media (prefers-reduced-motion: reduce) {
     .tv-page :is(.tv-ring__bar, .tv-bar__col) { animation: none; }
+}
+
+/* ---------------------------------------------------------------- course page: lesson rows, word rows, aside (S6) */
+.tv-page .tv-cols__aside { order: -1; }
+.tv-page .tv-cols__main { order: 0; }
+
+@media (min-width: 1200px) {
+    .tv-page .tv-cols__aside { order: 0; grid-column: 2; grid-row: 1; }
+    .tv-page .tv-cols__main { grid-column: 1; grid-row: 1; }
+}
+
+.tv-page .tv-lesson__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-xs) var(--tct-space-sm); }
+
+.tv-page .tv-word__term { display: flex; align-items: center; gap: var(--tct-space-sm); min-width: 0; }
+.tv-page .tv-word__mem { display: flex; align-items: center; gap: var(--tct-space-sm); white-space: nowrap; }
+.tv-page .tv-word__stage { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+.tv-page .tv-word__stage--due { color: var(--tct-danger-text); }
+.tv-page .tv-word__next { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); white-space: nowrap; }
+
+.tv-page .tv-upcoming__row { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+.tv-page .tv-upcoming__word { display: flex; flex-direction: column; min-width: 0; }
+.tv-page .tv-upcoming__def { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); }
+
+/* ---------------------------------------------------------------- course page: word rows as a grid at every width
+   The main column is only about 700 px next to the aside, so the 7-column table cannot hold. Each word is a two-line
+   grid (term, meaning, memory, actions over phonetic, lesson, next review); the column headers stay for screen readers. */
+.tv-page .tv-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+.tv-page .tv-word__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.9fr) auto;
+    grid-template-areas: "term def mem actions" "ipa lesson next actions";
+    align-items: center;
+    gap: var(--tct-space-xs) var(--tct-space-md);
+    padding: var(--tct-space-sm) var(--tct-space-md);
+}
+
+.tv-page .tv-word__row td { display: block; padding: 0; border: 0; }
+.tv-page .tv-word__term { grid-area: term; }
+.tv-page .tv-word__ipa { grid-area: ipa; }
+.tv-page .tv-word__def { grid-area: def; }
+.tv-page .tv-word__lesson { grid-area: lesson; font-size: var(--tct-text-sm); }
+.tv-page .tv-word__mem { grid-area: mem; }
+.tv-page .tv-word__next { grid-area: next; }
+.tv-page .tv-word__actions { grid-area: actions; align-self: center; }
+.tv-page .tv-word__example td { padding: 0 var(--tct-space-md) var(--tct-space-sm); }
+
+@media (max-width: 575.98px) {
+    .tv-page .tv-word__row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas: "term mem" "ipa next" "def actions" "lesson actions";
+    }
+
+    .tv-page .tv-word__mem { justify-content: flex-end; }
+    .tv-page .tv-word__next { text-align: end; }
+    .tv-page .tv-word__actions { align-self: end; }
 }

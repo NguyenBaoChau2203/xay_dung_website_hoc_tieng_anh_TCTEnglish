@@ -67,6 +67,7 @@
                 term: el.getAttribute('data-term') || '',
                 definition: el.getAttribute('data-definition') || '',
                 state: el.getAttribute('data-state') || '',
+                due: el.getAttribute('data-due') === 'true',
                 lesson: Number(el.getAttribute('data-lesson')) || 0,
                 topic: el.getAttribute('data-topic') || ''
             };

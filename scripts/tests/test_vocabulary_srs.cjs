@@ -287,3 +287,21 @@ test('the default review (without srs) keeps the two-pass behaviour', () => {
     assert.equal(state.srs, false);
     assert.equal(core.current(state).phase, 'choose');
 });
+
+// ---------------------------------------------------------------- course word filters (S6)
+test('filterWords: "due" keeps due words, "learned" keeps everything but new words, exact states still work', () => {
+    const list = [
+        { term: 'a', definition: 'x', state: 'new', due: false },
+        { term: 'b', definition: 'y', state: 'learning', due: true },
+        { term: 'c', definition: 'z', state: 'known', due: false },
+        { term: 'd', definition: 'w', state: 'known', due: true }
+    ];
+    const terms = (state) => core.filterWords(list, { state }).map((w) => w.term).join('');
+    assert.equal(terms('due'), 'bd');
+    assert.equal(terms('learned'), 'bcd');
+    assert.equal(terms('new'), 'a');
+    assert.equal(terms('known'), 'cd');
+    assert.equal(terms(''), 'abcd');
+    assert.equal(terms('all'), 'abcd');
+    assert.equal(core.filterWords(list, { state: 'due', q: 'D' }).map((w) => w.term).join(''), 'd');
+});

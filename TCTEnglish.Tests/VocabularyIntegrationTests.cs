@@ -428,8 +428,9 @@ public sealed class VocabularyIntegrationTests
         var text = WebUtility.HtmlDecode(html);
 
         Assert.Contains("Sprint One System Set", text, StringComparison.Ordinal);
-        Assert.Contains("Học tiếp bài 2", text, StringComparison.Ordinal);
-        Assert.Contains("Ôn 1 từ", text, StringComparison.Ordinal);
+        // SRS polish: with words due the primary action is the review and the lesson is the secondary one.
+        Assert.Contains("Học bài tiếp theo", text, StringComparison.Ordinal);
+        Assert.Contains("Ôn 1 từ đến hạn", text, StringComparison.Ordinal);
         Assert.Contains("href=\"/Practice?set=302\"", html, StringComparison.Ordinal);
         Assert.Contains("Luyện bằng trò chơi", text, StringComparison.Ordinal);
 
@@ -478,9 +479,9 @@ public sealed class VocabularyIntegrationTests
         var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={SecondSetId}");
         var text = WebUtility.HtmlDecode(html);
 
-        Assert.Contains("Ôn lại từ đầu", text, StringComparison.Ordinal);
+        Assert.Contains("Học lại từ đầu", text, StringComparison.Ordinal);
         Assert.Contains($"href=\"/Vocabulary/Study?setId={SecondSetId}&amp;lesson=1\"", html, StringComparison.Ordinal);
-        Assert.DoesNotContain("Học tiếp bài", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Học bài tiếp theo", text, StringComparison.Ordinal);
         Assert.DoesNotContain("aria-current=\"step\"", html, StringComparison.Ordinal);
     }
 

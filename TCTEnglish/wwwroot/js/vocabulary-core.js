@@ -507,13 +507,20 @@
         });
     }
 
-    /** Course words: [{ term, definition, state, lesson, topic }]. q matches the term or the meaning. */
+    /**
+     * Course words: [{ term, definition, state, lesson, topic, due }]. q matches the term or the meaning.
+     * state: "new" | "learning" | "known" (exact), "due" (word.due), or "learned" (anything but "new").
+     */
     function filterWords(words, filters) {
         var f = filters || {};
         var q = fold(f.q);
         var topic = isAll(f.topic) ? '' : fold(f.topic);
         return (words || []).filter(function (word) {
-            if (!isAll(f.state) && String(word.state || '') !== String(f.state)) { return false; }
+            if (f.state === 'due') {
+                if (!word.due) { return false; }
+            } else if (f.state === 'learned') {
+                if (String(word.state || '') === 'new') { return false; }
+            } else if (!isAll(f.state) && String(word.state || '') !== String(f.state)) { return false; }
             if (!isAll(f.lesson) && Number(word.lesson) !== Number(f.lesson)) { return false; }
             if (topic && fold(word.topic) !== topic) { return false; }
             return !q || fold(word.term).indexOf(q) >= 0 || fold(word.definition).indexOf(q) >= 0;

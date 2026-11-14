@@ -4,11 +4,11 @@
     shows its first words as chips and carries the primary action.
 *@
 @{
-    var statusText = Model.State switch
+    var (stateClass, stateText) = Model.State switch
     {
-        "done" => "Đã học xong",
-        "progress" => "Đã học " + Model.LearnedCount + " từ",
-        _ => "Chưa học"
+        "done" => ("tct-badge--success", "Đã xong"),
+        "progress" => ("tct-badge--warning", "Đang học " + Model.LearnedCount + "/" + Model.WordCount),
+        _ => ("tct-badge--primary", "Chưa học")
     };
 }
 <article class="tct-card k-card tv-lesson@(Model.IsNext ? " tv-lesson--next" : string.Empty)"
@@ -25,7 +25,23 @@
     </span>
     <div class="tv-lesson__body">
         <h3 class="tv-lesson__title tct-break">@Model.Title</h3>
-        <p class="tv-lesson__meta">@Model.WordCount từ · @statusText</p>
+        <p class="tv-lesson__meta">
+            <span>@Model.WordCount từ</span>
+            <span class="tct-badge @stateClass">@stateText</span>
+            @if (Model.DueCount > 0)
+            {
+                <span class="tv-chipdue"><i class="fa-solid fa-rotate" aria-hidden="true"></i>@Model.DueCount từ cần ôn</span>
+            }
+        </p>
+        @if (Model.WordStages.Count > 0)
+        {
+            <span class="tv-wdots" aria-hidden="true">
+                @foreach (var stage in Model.WordStages)
+                {
+                    <span class="tv-wdot tv-wdot--@stage"></span>
+                }
+            </span>
+        }
         @if (Model.PreviewTerms.Count > 0)
         {
             <ul class="tv-chips tv-list" aria-label="Một số từ trong bài">

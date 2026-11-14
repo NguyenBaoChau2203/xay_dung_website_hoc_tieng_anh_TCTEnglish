@@ -312,6 +312,7 @@ namespace TCTVocabulary.Services
 
             var nextPlan = plans.FirstOrDefault(plan => !IsLessonDone(plan, progress));
             var termById = cards.ToDictionary(card => card.CardId, card => card.Term);
+            var cardById = cards.ToDictionary(card => card.CardId);
             var lessonByCard = plans
                 .SelectMany(plan => plan.CardIds.Select(id => (Id: id, plan.Number)))
                 .ToDictionary(item => item.Id, item => item.Number);
@@ -339,6 +340,8 @@ namespace TCTVocabulary.Services
                 .Select(row => new VocabularyUpcomingWordViewModel
                 {
                     Term = termById[row.CardId],
+                    Definition = cardById[row.CardId].Definition,
+                    Emoji = VocabularyEmojiMap.For(cardById[row.CardId].Emoji, cardById[row.CardId].Term),
                     Level = VocabularyLevelOf(row),
                     Stage = SpacedRepetitionScheduler.StageFor(VocabularyLevelOf(row)),
                     Label = VocabularyDueLabel(row.NextReviewDate!.Value, businessToday)

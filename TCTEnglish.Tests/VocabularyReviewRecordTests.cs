@@ -559,6 +559,77 @@ public sealed class VocabularyReviewRecordTests
         Assert.DoesNotMatch(new System.Text.RegularExpressions.Regex("<[^>]*class=\"[^\"]*\btv-[^\"]*\"[^>]*style=\"[^\"]*(#[0-9a-f]{3,8}|rgb|color)", System.Text.RegularExpressions.RegexOptions.IgnoreCase), html);
     }
 
+    // ── course page (plan 5.4) ───────────────────────────────────────────
+
+    [Fact]
+    public async Task CoursePage_WithWordsDue_OffersTheReviewFirst_AndFillsTheAside()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory, ManyCardsStart + 4, "Reviewing", 2, now.AddHours(-1)); // "Dog"
+        await SeedProgressAsync(factory, ManyCardsStart, "Mastered", 6, now.AddDays(3));
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={TestDataIds.SystemSetId}");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Ôn 1 từ đến hạn", text, StringComparison.Ordinal);
+        Assert.Contains("Học bài tiếp theo", text, StringComparison.Ordinal);
+        Assert.Matches("class=\"btn btn-primary btn-lg\" href=\"/Vocabulary/Study\\?setId=302&amp;mode=review\"", html);
+        Assert.Contains("class=\"tv-chipdue\"", html, StringComparison.Ordinal);
+        Assert.Contains("Trí nhớ khóa này", text, StringComparison.Ordinal);
+        Assert.Contains("Sắp ôn lại", text, StringComparison.Ordinal);
+        Assert.Contains("tv-memory--compact", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Trả lời đúng, từ lên một bậc", text, StringComparison.Ordinal); // the explainer is home-only
+        Assert.Contains("🐶", text, StringComparison.Ordinal);                                  // emoji of "Dog" in Sắp ôn lại and its word row
+        Assert.Contains("Hôm nay", text, StringComparison.Ordinal);
+        Assert.Contains("Sau 3 ngày", text, StringComparison.Ordinal);
+        Assert.Contains("data-due=\"true\"", html, StringComparison.Ordinal);
+        Assert.Contains("data-due=\"false\"", html, StringComparison.Ordinal);
+        foreach (var filter in new[] { "Tất cả", "Cần ôn", "Chưa học", "Đã học" })
+        {
+            Assert.Contains(">" + filter + "</button>", text, StringComparison.Ordinal);
+        }
+
+        Assert.Contains("Không có từ nào ở mục này.", text, StringComparison.Ordinal);
+        Assert.Contains("class=\"tv-art\"", html, StringComparison.Ordinal);
+        Assert.Single(System.Text.RegularExpressions.Regex.Matches(html, "<h1[\\s>]"));
+    }
+
+    [Fact]
+    public async Task CoursePage_NewLearner_HasAnEmptyUpcomingList_AndLessonRowsWithDots()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={TestDataIds.SystemSetId}");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Chưa có từ nào trong lịch ôn.", text, StringComparison.Ordinal);
+        Assert.Contains("Học bài đầu tiên để bắt đầu theo dõi trí nhớ.", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("tv-chipdue", html, StringComparison.Ordinal);
+        Assert.Contains("tv-wdot tv-wdot--none", html, StringComparison.Ordinal);
+        Assert.Contains("Chưa học", text, StringComparison.Ordinal);
+        Assert.Contains("Học bài tiếp theo", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task CoursePage_LessonRowsShowStateChipsAndDueChips()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory, 402, "Mastered", 5, now.AddDays(30));
+        await SeedProgressAsync(factory, ManyCardsStart, "Reviewing", 1, now.AddHours(-1));
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={TestDataIds.SystemSetId}");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Đã xong", text, StringComparison.Ordinal);   // lesson 1 (card 402) is done
+        Assert.Contains("Đang học 1/10", text, StringComparison.Ordinal); // lesson 2 has 1 of 10 words learned
+        Assert.Single(System.Text.RegularExpressions.Regex.Matches(html, "<article[^>]*tv-lesson[^>]*>(?:(?!</article>).)*tv-chipdue", System.Text.RegularExpressions.RegexOptions.Singleline));
+    }
+
     // ── helpers ──────────────────────────────────────────────────────────
 
     private static HttpClient CreateClient(TestWebApplicationFactory factory) =>
