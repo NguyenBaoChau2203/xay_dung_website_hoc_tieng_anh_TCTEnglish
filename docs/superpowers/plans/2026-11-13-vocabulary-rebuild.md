@@ -886,7 +886,7 @@ git diff --check
 ### V4 — Home page
 - Commit: see `git log` (subject "feat(vocabulary): build the home page with today's status, next lesson and course filters")
 - G1 build: pass (warnings 43, V0 43)
-- G2 area: Vocabulary tests passed 56 / failed 0 (the 2 new home-markup tests included)
+- G2 area: tests whose name contains "Vocabulary" passed 68 / failed 0 (19 builder + 37 integration + others; the 2 new home-markup tests included)
 - G3 full: passed 1522 + 2 new / failed 0 / skipped 34 (the 1522 run was taken before the two markup tests were added; the Vocabulary filter was re-run after)
 - G4 node: passed 291 / failed 1 (pre-existing CRLF hash failure) / total 292
 - G5 contracts: unchanged; `/Vocabulary/Index`, `/Vocabulary` and FolderDetail answer 200; `/Home/Index` still links to `/Vocabulary/Index`
@@ -901,3 +901,20 @@ git diff --check
 - G14 Clay grep: clean. G15: tests green; greps clean (no `innerHTML`, `alert(`, `confirm(`, `console.log`, inline handlers, `Html.Raw`).
 - Local data used for G10: synthetic progress rows for `student@tct.local` on system cards, in `.tmp/vocabulary/progress-fixture.sql`; the matching `progress-cleanup.sql` restores user 2 to zero rows and streak 0 (which is what it had before).
 - Attempts / deferred / blocked: none. One script expectation (A1 count) was wrong in the checking script itself, not in the page; corrected and re-run, 21/21.
+
+### V5 — Course page
+- Commit: see `git log` (subject "feat(vocabulary): build the course page with lessons, word list and ARIA tabs")
+- G1 build: pass (warnings 43, V0 43)
+- G2 area: tests whose name contains "Vocabulary" passed (40 integration + 19 builder + others), 0 failed
+- G3 full: passed 1527 / failed 0 / skipped 34 (V0 1468; 59 new tests so far)
+- G4 node: passed 291 / failed 1 (pre-existing CRLF hash failure) / total 292
+- G5 contracts: unchanged; Detail, Topics and TopicDetail render the course view with the right tab; `data-active-tab` and `data-topic-filter` stay in the markup
+- G6/G14/G15: the CSS greps print nothing; the JS/Razor grep finds no `innerHTML`, `alert(`, `confirm(`, `console.log`, inline handler or `Html.Raw` in the new files. It still lists the legacy views `_MasteryButtons`, `FolderDetail`, `Topics`, `TopicDetail`, which V9 deletes. `git diff --check` clean.
+- G7 scope: `Views/Vocabulary/Detail.cshtml`, new `_LessonRow.cshtml` and `_WordRow.cshtml`, `wwwroot/css/vocabulary.css`, new `wwwroot/js/vocabulary-course.js`, `VocabularyIntegrationTests.cs`
+- G8 render: in-progress, complete and new course at 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640, plus the words tab and a topic filter; no horizontal scroll, console error or failed request; `.tmp/vocabulary/V5/`
+- G9 mockup (02): same structure and copy. Recorded differences: the breadcrumb sits inside the hero because the plan says "as on /Sets/{id}" (the mockup draws it above); a Font Awesome star/book icon replaces the emoji; the number disc of a finished lesson uses `--tct-success-text` (5.48:1) instead of the brighter `--tct-success` (2.54:1 with a white check); phones stack lesson rows and word rows, with each action full width.
+- G10 behaviour (32 scripted checks, all pass): hero title, breadcrumb, real counts, level, due text and progress; actions for an in-progress, a new ("Bắt đầu học") and a complete course ("Ôn lại từ đầu" to lesson 1, no current step); lesson rows follow the builder, one `aria-current="step"`, chips only on it; tabs by mouse, ArrowLeft/Right with wrap, Home/End, roving tabindex, `#bai-hoc` and `#tat-ca-tu`; `Topics` opens lessons, `TopicDetail` opens words, `topic=` filter with a removable chip that drops `?topic` and returns focus to the search; word search by term or meaning (accents, capitals), state filter and both combined, no-match state and live region; example disclosure; speak button (visible when the browser can speak, calls `speechSynthesis` with `en-US`); "Luyện bằng trò chơi" opens `/Practice?set=11` with the course preselected; keyboard reaches hero actions, tabs and lesson buttons.
+- G11 a11y: one `<h1>`, every control named, all tab stops have a visible outline (9 on the lessons tab, 32 on the words tab); `tabpanel`s carry no `tabindex` because they contain focusable controls; forced colours: cards, hero, discs, chips and examples get 1px borders and no shadow, the current lesson gets a 3px border, the selected tab a 2px border; reduced motion: no animation here; 200% zoom (720 px) and 320 px: page width equals the viewport.
+- G12 contrast: scripted over about 35 pairs on both tabs. One real failure found and fixed: white check on `--tct-success` was 2.54:1, now 5.48:1. Text pairs are 4.9 to 17:1. Progress-bar fills keep the kit colours (success 2.54:1 and warning 2.15:1 against the track) because the exact `x/y` count is always printed next to the bar, so the colour is not the only carrier of information.
+- G13 regression: `/Sets`, `/Sets/1`, `/Practice`, `/Practice/quiz`, `/Goals`, `/Home/Index`, `/Home/Study/1` all 200; `/Home/Index` still links to `/Vocabulary/Index`.
+- Attempts / deferred / blocked: none. One check expectation in my script was wrong (a roving-tabindex tablist only has the selected tab in the Tab order); the script was corrected, the page was right.

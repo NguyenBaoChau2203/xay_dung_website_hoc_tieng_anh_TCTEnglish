@@ -1,6 +1,37 @@
 @model TCTVocabulary.ViewModels.VocabularyCourseViewModel
+@using TCTEnglish.ViewModels
 @{
-    ViewData["Title"] = Model.Course.SetName + " · Từ vựng";
+    var course = Model.Course;
+    ViewData["Title"] = course.SetName + " · Từ vựng";
+
+    var crumbs = new List<PageBreadcrumbItem> { new("Từ vựng", Url.Action("Index", "Vocabulary")) };
+    if (Model.FolderId.HasValue && !string.IsNullOrWhiteSpace(Model.FolderName))
+    {
+        crumbs.Add(new PageBreadcrumbItem(Model.FolderName!, Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.FolderId.Value })));
+    }
+    crumbs.Add(new PageBreadcrumbItem(course.SetName));
+    var header = new PageHeaderViewModel { Title = course.SetName, Breadcrumbs = crumbs };
+
+    var icon = course.IconKey switch
+    {
+        "food" => "fa-utensils",
+        "travel" => "fa-plane",
+        "jobs" => "fa-briefcase",
+        "colors" => "fa-palette",
+        "talk" => "fa-comments",
+        "star" => "fa-star",
+        _ => "fa-book-open"
+    };
+
+    var wordsActive = Model.ActiveTab == "words";
+    var empty = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Khóa này chưa có từ nào." };
+    var noWordMatch = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Không tìm thấy từ phù hợp.",
+        Message = "Thử tìm bằng từ khác hoặc bỏ bớt bộ lọc."
+    };
+    var stateFilters = new[] { ("", "Tất cả"), ("new", "Chưa học"), ("learning", "Đang học"), ("known", "Đã thuộc") };
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
@@ -8,25 +39,136 @@
 }
 
 <div class="tct-theme tct-page tv-page tv-page--course" data-active-tab="@Model.ActiveTab" data-topic-filter="@Model.TopicFilter">
-    <h1>@Model.Course.SetName</h1>
-    <p>@Model.Course.WordCount từ · @Model.Course.LessonCount bài · @Model.Course.LearnedCount/@Model.Course.WordCount đã học</p>
+    <section class="tv-hero tv-hue-@course.Hue">
+        <div class="tv-hero__icon k-pillow" aria-hidden="true"><i class="fa-solid @icon"></i></div>
+        <div class="tv-hero__main">
+            <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
+            <p class="tv-meta tv-hero__meta">
+                @if (!string.IsNullOrEmpty(course.Level))
+                {
+                    <span class="tct-badge tct-badge--primary">@course.Level</span>
+                }
+                <span><i class="fa-solid fa-book" aria-hidden="true"></i>@course.WordCount từ</span>
+                <span><i class="fa-solid fa-layer-group" aria-hidden="true"></i>@course.LessonCount bài</span>
+                @if (course.DueCount > 0)
+                {
+                    <span class="tv-due">@course.DueCount từ cần ôn</span>
+                }
+            </p>
+            <div class="k-progress" role="progressbar" aria-label="Tiến độ khóa học" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@course.ProgressPercent">
+                <span class="k-progress__fill" style="--p:@(course.ProgressPercent)%"></span>
+            </div>
+            <p class="tv-hero__progress-text">Đã học @course.LearnedCount/@course.WordCount từ · Đã thuộc @course.KnownCount</p>
+            @if (course.WordCount > 0)
+            {
+                <div class="tv-hero__actions">
+                    @if (Model.NextLesson != null)
+                    {
+                        <a class="btn btn-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>@(course.LearnedCount == 0 ? "Bắt đầu học" : "Học tiếp bài " + Model.NextLesson.Number)</a>
+                    }
+                    else if (Model.CourseComplete && Model.Lessons.Count > 0)
+                    {
+                        <a class="btn btn-primary btn-lg" href="@Model.Lessons[0].Url"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn lại từ đầu</a>
+                    }
+                    @if (Model.DueUrl != null)
+                    {
+                        <a class="btn btn-outline-primary btn-lg" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @course.DueCount từ</a>
+                    }
+                    <a class="btn btn-outline-primary btn-lg" href="@Model.PracticeUrl"><i class="fa-solid fa-gamepad me-2" aria-hidden="true"></i>Luyện bằng trò chơi</a>
+                </div>
+            }
+        </div>
+    </section>
 
-    @if (Model.NextLesson != null)
-    {
-        <p><a data-tv="next-lesson" href="@Model.NextLesson.Url">Học tiếp bài @Model.NextLesson.Number</a></p>
-    }
+    <div class="k-seg" role="tablist" aria-label="Nội dung khóa học" id="tvTabs">
+        <button type="button" class="k-seg__item" role="tab" id="tvTabLessons" aria-controls="tvPanelLessons"
+                aria-selected="@(wordsActive ? "false" : "true")" tabindex="@(wordsActive ? "-1" : "0")" data-tv-tab="lessons" data-hash="bai-hoc">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>Bài học <span class="k-seg__count">@course.LessonCount</span>
+        </button>
+        <button type="button" class="k-seg__item" role="tab" id="tvTabWords" aria-controls="tvPanelWords"
+                aria-selected="@(wordsActive ? "true" : "false")" tabindex="@(wordsActive ? "0" : "-1")" data-tv-tab="words" data-hash="tat-ca-tu">
+            <i class="fa-solid fa-list" aria-hidden="true"></i>Tất cả từ <span class="k-seg__count">@course.WordCount</span>
+        </button>
+    </div>
 
-    <ol data-tv="lessons">
-        @foreach (var lesson in Model.Lessons)
+    <div id="tvPanelLessons" role="tabpanel" aria-labelledby="tvTabLessons" @(wordsActive ? "hidden" : null)>
+        @if (Model.Lessons.Count == 0)
         {
-            <li data-state="@lesson.State"><a href="@lesson.Url">@lesson.Title</a> · @lesson.WordCount từ</li>
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
         }
-    </ol>
-
-    <ul data-tv="words">
-        @foreach (var word in Model.Words)
+        else
         {
-            <li data-state="@word.State">@word.Term · @word.Definition</li>
+            <ol class="tv-lessons tv-list">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <li><partial name="_LessonRow" model="lesson" /></li>
+                }
+            </ol>
         }
-    </ul>
+    </div>
+
+    <div id="tvPanelWords" role="tabpanel" aria-labelledby="tvTabWords" @(wordsActive ? null : "hidden")>
+        @if (Model.Words.Count == 0)
+        {
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
+        }
+        else
+        {
+            <div class="tv-toolbar" role="search">
+                <div class="tv-toolbar__search">
+                    <label class="visually-hidden" for="tvWordSearch">Tìm từ hoặc nghĩa</label>
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input id="tvWordSearch" type="search" class="form-control" placeholder="Tìm từ hoặc nghĩa…" maxlength="80" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="k-seg" role="group" aria-label="Lọc theo trạng thái" data-tv-filter="state">
+                    @foreach (var (value, label) in stateFilters)
+                    {
+                        <button type="button" class="k-seg__item" data-value="@value" aria-pressed="@(value == "" ? "true" : "false")">@label</button>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(Model.TopicFilter))
+                {
+                    <span class="tv-topic-chip" id="tvTopicChip">
+                        <span>Chủ đề: <span class="tct-break">@Model.TopicFilter</span></span>
+                        <button type="button" class="btn btn-sm tv-topic-chip__remove" id="tvTopicRemove" aria-label="Bỏ lọc chủ đề @Model.TopicFilter"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+                    </span>
+                }
+            </div>
+
+            <p class="visually-hidden" id="tvWordStatus" role="status" aria-live="polite"></p>
+
+            <div id="tvWordNoMatch" hidden>
+                <partial name="~/Views/Shared/_StateMessage.cshtml" model="noWordMatch" />
+            </div>
+
+            <div class="tct-table-wrap k-panel k-panel--quiet tv-words" id="tvWordTable">
+                <table class="tct-table tv-table">
+                    <caption class="visually-hidden">Tất cả từ trong khóa @course.SetName</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Từ</th>
+                            <th scope="col">Phiên âm</th>
+                            <th scope="col">Nghĩa</th>
+                            <th scope="col">Bài</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"><span class="visually-hidden">Thao tác</span></th>
+                        </tr>
+                    </thead>
+                    @foreach (var word in Model.Words)
+                    {
+                        <partial name="_WordRow" model="word" />
+                    }
+                </table>
+            </div>
+        }
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/practice-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-course.js" asp-append-version="true"></script>
+}

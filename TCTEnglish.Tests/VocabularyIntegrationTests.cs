@@ -406,6 +406,76 @@ public sealed class VocabularyIntegrationTests
         Assert.Contains("Sprint One System Set", WebUtility.HtmlDecode(detail), StringComparison.Ordinal);
     }
 
+    [Fact]
+    public async Task Course_RendersHeroTabsLessonRowsAndWordRows()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory,
+            (TestDataIds.UserId, 402, "Mastered", now.AddDays(1), now),
+            (TestDataIds.UserId, 1001, "Learning", now.AddMinutes(-3), now));
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={TestDataIds.SystemSetId}");
+        var text = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Sprint One System Set", text, StringComparison.Ordinal);
+        Assert.Contains("Học tiếp bài 2", text, StringComparison.Ordinal);
+        Assert.Contains("Ôn 1 từ", text, StringComparison.Ordinal);
+        Assert.Contains("href=\"/Practice?set=302\"", html, StringComparison.Ordinal);
+        Assert.Contains("Luyện bằng trò chơi", text, StringComparison.Ordinal);
+
+        // ARIA tabs: lessons selected on the server, words hidden.
+        Assert.Contains("role=\"tablist\"", html, StringComparison.Ordinal);
+        Assert.Matches("id=\"tvTabLessons\"[^>]*aria-selected=\"true\"", html);
+        Assert.Matches("id=\"tvTabWords\"[^>]*aria-selected=\"false\"", html);
+        Assert.Matches("id=\"tvPanelWords\"[^>]*hidden", html);
+
+        // One row per lesson; exactly one is the current step; only it has the preview chips.
+        Assert.Equal(4, Regex.Matches(html, "<article[^>]*tv-lesson").Count);
+        Assert.Single(Regex.Matches(html, "aria-current=\"step\""));
+        Assert.Contains("Bài 2 · Animals · phần 1", text, StringComparison.Ordinal);
+        Assert.Contains("+5", text, StringComparison.Ordinal);
+
+        // Every word has a row; words with an example get a disclosure button.
+        Assert.Equal(21, Regex.Matches(html, "<tbody[^>]*data-tv-word").Count);
+        Assert.Contains("data-tv-example", html, StringComparison.Ordinal);
+        Assert.Contains("Cần ôn", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("tabindex=\"0\" hidden", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Course_ShowsTheEmptyStateAndNoStudyButtonsWhenThereAreNoWords()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var text = WebUtility.HtmlDecode(await client.GetStringAsync($"/Vocabulary/Detail?setId={EmptySetId}"));
+
+        Assert.Contains("Khóa này chưa có từ nào.", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Học tiếp", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Bắt đầu học", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Luyện bằng trò chơi", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Course_ACompleteCourseOffersARestartInsteadOfContinue()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory, Enumerable.Range(1201, 5)
+            .Select(id => (TestDataIds.UserId, id, "Mastered", (DateTime?)now.AddDays(1), (DateTime?)now)).ToArray());
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var html = await client.GetStringAsync($"/Vocabulary/Detail?setId={SecondSetId}");
+        var text = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Ôn lại từ đầu", text, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Vocabulary/Study?setId={SecondSetId}&amp;lesson=1\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Học tiếp bài", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("aria-current=\"step\"", html, StringComparison.Ordinal);
+    }
+
     // ── lesson payload ───────────────────────────────────────────────────
 
     [Fact]
