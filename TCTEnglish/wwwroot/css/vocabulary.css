@@ -1,5 +1,138 @@
 /*
- * Vocabulary (system courses) page styles.
- * Every selector starts with .tv-page and takes its values from the shared
- * --tct-* tokens only. The foundation is added in phase V3.
- */
+    System Vocabulary (Từ vựng): home, course and lesson screens.
+
+    Rules (DESIGN.md, docs/design-system/team-ui-workflow.md, docs/superpowers/plans/2026-11-13-vocabulary-rebuild.md)
+    - Every selector starts with .tv-page; the page wrapper also carries .tct-theme and tct-page.
+    - Values come from var(--tct-*) tokens only: no literal colours, no root selector, no forced priority, weight <= 700.
+    - Components come from the shared kit (study-kit.css, scope extended with .tv-page); this file owns layout only.
+    - Depth uses the Clay tokens; radii use the in-theme radius tokens.
+    - The lesson screen also carries .tp-page--session, so practice.css owns its shell.
+    - Any motion added later uses --tct-dur* / --tct-ease and is switched off under prefers-reduced-motion.
+*/
+
+/* ---------------------------------------------------------------- page rhythm */
+.tv-page--home,
+.tv-page--course {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-lg);
+    min-width: 0;
+}
+
+.tv-page :is(.tv-section) { min-width: 0; }
+
+.tv-page .tv-section__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--tct-space-sm) var(--tct-space-md);
+    margin-bottom: var(--tct-space-md);
+}
+
+.tv-page .tv-section__title {
+    margin: 0;
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-section__count {
+    color: var(--tct-text-secondary);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+}
+
+/* ---------------------------------------------------------------- lists and grids */
+.tv-page .tv-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tv-page .tv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: var(--tct-space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tv-page .tv-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-md);
+}
+
+/* ---------------------------------------------------------------- toolbar (search + segmented filters) */
+.tv-page .tv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tct-space-md);
+}
+
+.tv-page .tv-toolbar__search { flex: 1 1 260px; min-width: 0; max-width: 420px; }
+
+.tv-page .tv-toolbar .k-seg { max-width: 100%; overflow-x: auto; }
+
+/* ---------------------------------------------------------------- stat tiles (home summary, result KPIs) */
+.tv-page .tv-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tct-space-md);
+    margin: 0;
+}
+
+.tv-page .tv-stat {
+    display: flex;
+    flex-direction: column-reverse;
+    min-width: 110px;
+    margin: 0;
+    padding: var(--tct-space-sm) var(--tct-space-md);
+}
+
+.tv-page .tv-stat dd {
+    margin: 0;
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--tct-leading-tight);
+    color: var(--k-fg);
+}
+
+.tv-page .tv-stat dt {
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text-secondary);
+}
+
+/* ---------------------------------------------------------------- small helpers */
+.tv-page .tv-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tct-space-xs) var(--tct-space-md);
+    color: var(--tct-text-secondary);
+    font-size: var(--tct-text-sm);
+}
+
+.tv-page .tv-meta i { margin-inline-end: var(--tct-space-xs); }
+
+.tv-page [hidden] { display: none; }
+
+@media (max-width: 575.98px) {
+    .tv-page--home,
+    .tv-page--course { gap: var(--tct-space-md); }
+
+    .tv-page .tv-toolbar__search { flex-basis: 100%; max-width: none; }
+    .tv-page .tv-stat { flex: 1 1 calc(50% - var(--tct-space-md)); min-width: 0; }
+}
+
+/* ---------------------------------------------------------------- forced colours: shapes stay visible without shadows */
+@media (forced-colors: active) {
+    .tv-page :is(.k-card, .k-panel, .k-soft, .k-pillow, .k-seg, .tv-stat) {
+        box-shadow: none;
+        border: 1px solid CanvasText;
+    }
+}

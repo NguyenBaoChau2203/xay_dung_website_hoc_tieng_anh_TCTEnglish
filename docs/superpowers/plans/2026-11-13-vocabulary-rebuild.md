@@ -867,3 +867,18 @@ git diff --check
 - Interpretation recorded (plan 5.7 "accuracy"): `asked` counts each distinct (word, pass) question once, `right` counts those answered correctly on the first try ("close" included), so a retry after a miss is neither a new question nor a first-try answer. Result shows "câu đúng {right}/{asked}".
 - API additions beyond the plan table, all pure: `initSession` also takes `pool` (distractor candidates), `answer` returns an event `{ ignored, correct, finished, grade, phaseChanged, roundChanged }`, plus `markSaved`, `roundInfo`, `fold`.
 - Attempts / deferred / blocked: none.
+
+### V3 — Kit scope extension and `vocabulary.css` foundation
+- Commit: see `git log` (subject "feat(vocabulary): extend the shared kit scope to .tv-page and add the stylesheet foundation")
+- G1 build: pass, unchanged (CSS only; warnings 43)
+- G2/G3: full run passed 1522 / failed 0 / skipped 34 (includes the tests that read the kit)
+- G4 node: passed 291 / failed 1 (pre-existing CRLF hash failure) / total 292
+- G5 contracts: unchanged
+- G6 tokens/diff: the three greps on `vocabulary.css` print nothing (no hex, `rgb()`, `:root`, `!important`, weight 800+, no non-token shadow, no px radius); `git diff --check` clean
+- G7 scope: `wwwroot/css/study-kit.css` (append-only), `wwwroot/css/vocabulary.css`
+- G8 render: home, folder, course, lesson, review placeholders at 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640; one `<h1>` each, no horizontal scroll, no console error, no failed request; `.tmp/vocabulary/V3/vocab/`. The Clay canvas covers `.main`/`body` (`rgb(240,243,255)` plus glow, identical to `/Sets`); header and sidebar unchanged. 200% zoom is covered by the 640-wide viewport rows and re-checked on the real pages in V4-V8.
+- G9–G12: not applicable to data placeholders (no styled components yet)
+- G13 regression: `/Sets`, `/Sets/1`, `/Practice`, `/Practice/learn?set=1&n=10` rendered with the old and the new `study-kit.css` at 1440 and 390: PNG files byte-identical. `/Practice/quiz` is not comparable byte for byte because its question order is random (two shots with the same CSS differ too); its scroll height is the same (1327 px) with both kits.
+- G14 Clay grep: clean
+- Kit change in detail: 142 scope lists `:is(.ts-page, .tp-page)` became `:is(.ts-page, .tp-page, .tv-page)`; the six hue blocks gained `tv-hue-*` (descendant form and `.tv-page.tv-hue-*`); only header comments otherwise. No selector removed or reordered, specificity unchanged.
+- Attempts / deferred / blocked: none.
