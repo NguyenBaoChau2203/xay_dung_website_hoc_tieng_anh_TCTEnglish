@@ -289,6 +289,46 @@ public sealed class VocabularyIntegrationTests
         Assert.Equal(TestDataIds.SystemFolderId, Assert.Single(filtered.Collections).FolderId);
     }
 
+    [Fact]
+    public async Task Home_RendersTheNextLessonButtonDueButtonAndCourseCards()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory,
+            (TestDataIds.UserId, 402, "Learning", now.AddMinutes(-1), now),
+            (TestDataIds.UserId, 1201, "Reviewing", now.AddDays(1), now));
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var html = await client.GetStringAsync("/Vocabulary/Index");
+        var text = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("BÀI TIẾP THEO", text, StringComparison.Ordinal);
+        Assert.Contains("Bài 2 · Animals · phần 1", text, StringComparison.Ordinal);
+        Assert.Contains("href=\"/Vocabulary/Study?setId=302&amp;lesson=2\"", html, StringComparison.Ordinal);
+        Assert.Contains("Học tiếp", text, StringComparison.Ordinal);
+        Assert.Contains("Ôn 1 từ đến hạn", text, StringComparison.Ordinal);
+        Assert.Contains("href=\"/Vocabulary/Review\"", html, StringComparison.Ordinal);
+        Assert.Contains("Hôm nay bạn đã học 2 từ", text, StringComparison.Ordinal);
+        Assert.Equal(4, Regex.Matches(html, "<article[^>]*data-tv-course").Count);
+        Assert.Contains("data-status=\"progress\"", html, StringComparison.Ordinal);
+        Assert.Contains("aria-label=\"Mở khóa Sprint One System Set\"", text, StringComparison.Ordinal);
+        Assert.Contains("1/21 từ", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Home_HidesTheLevelFilterWhenThereAreFewerThanTwoLevels_AndOmitsAZeroStreak()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var html = await client.GetStringAsync("/Vocabulary/Index");
+
+        Assert.DoesNotContain("data-tv-filter=\"level\"", html, StringComparison.Ordinal);
+        Assert.Contains("data-tv-filter=\"status\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("chuỗi học", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        Assert.Contains("Hôm nay bạn chưa học từ nào", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+    }
+
     // ── course ───────────────────────────────────────────────────────────
 
     [Fact]
@@ -626,7 +666,7 @@ public sealed class VocabularyIntegrationTests
         var html = await client.GetStringAsync(route);
 
         Assert.Contains("class=\"tct-theme tct-page tv-page " + pageClass, html, StringComparison.Ordinal);
-        Assert.Equal(1, Regex.Matches(html, "<h1[\\s>]").Count);
+        Assert.Single(Regex.Matches(html, "<h1[\\s>]"));
         Assert.Contains("/css/study-kit.css", html, StringComparison.Ordinal);
         Assert.Contains("/css/vocabulary.css", html, StringComparison.Ordinal);
         Assert.DoesNotContain("vocabulary-system.css", html, StringComparison.Ordinal);

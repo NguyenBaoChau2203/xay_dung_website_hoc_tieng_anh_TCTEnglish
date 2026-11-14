@@ -74,7 +74,18 @@
 
 .tv-page .tv-toolbar__search { flex: 1 1 260px; min-width: 0; max-width: 420px; }
 
-.tv-page .tv-toolbar .k-seg { max-width: 100%; overflow-x: auto; }
+/* One field: the icon cell and the input share the same border. */
+.tv-page .tv-toolbar__search .input-group-text {
+    border-color: var(--tct-border-control);
+    border-inline-end: 0;
+    background: var(--tct-surface);
+    color: var(--tct-text-secondary);
+}
+
+.tv-page .tv-toolbar__search .form-control { border-inline-start: 0; }
+
+.tv-page .tv-toolbar .k-seg { max-width: 100%; flex-wrap: nowrap; overflow-x: auto; }
+.tv-page .tv-toolbar .k-seg__item { flex: 0 0 auto; white-space: nowrap; }
 
 /* ---------------------------------------------------------------- stat tiles (home summary, result KPIs) */
 .tv-page .tv-stats {
@@ -107,6 +118,111 @@
     color: var(--tct-text-secondary);
 }
 
+.tv-page .tv-section__link { color: inherit; text-decoration: none; }
+.tv-page .tv-section__link:hover { color: var(--tct-primary-strong); text-decoration: underline; }
+
+/* ---------------------------------------------------------------- home: today panel + recommended lesson */
+.tv-page .tv-today {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tct-space-lg);
+    align-items: center;
+    padding: var(--tct-space-lg);
+    border-radius: var(--tct-radius-xl);
+    background: var(--tct-surface);
+    background: linear-gradient(135deg, var(--k-tint), var(--tct-surface) 62%);
+}
+
+@media (min-width: 992px) {
+    .tv-page .tv-today {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+        gap: var(--tct-space-xl);
+        padding: var(--tct-space-lg) var(--tct-space-xl);
+    }
+}
+
+.tv-page .tv-today__main { min-width: 0; }
+
+.tv-page .tv-today__title {
+    margin: 0 0 var(--tct-space-sm);
+    font-size: var(--tct-text-3xl);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-today__text { margin: 0 0 var(--tct-space-md); color: var(--tct-text-secondary); }
+
+.tv-page .tv-next {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-sm);
+    padding: var(--tct-space-md) var(--tct-space-lg);
+    min-width: 0;
+}
+
+.tv-page .tv-next__label { margin: 0; letter-spacing: 0.04em; }
+.tv-page .tv-next__title { margin: 0; font-size: var(--tct-text-xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); }
+.tv-page .tv-next__meta { margin: 0; color: var(--tct-text-secondary); }
+.tv-page .tv-next__go,
+.tv-page .tv-next__due { width: 100%; margin-top: var(--tct-space-xs); }
+
+/* ---------------------------------------------------------------- home: course card */
+.tv-page .tv-course {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-sm);
+    height: 100%;
+    padding: var(--tct-space-sm) var(--tct-space-sm) var(--tct-space-md);
+}
+
+.tv-page .tv-course__link { position: absolute; inset: 0; z-index: 1; border-radius: var(--tct-radius-lg); }
+
+.tv-page .tv-course__cover { position: relative; height: 112px; color: var(--k-fg); }
+.tv-page .tv-course__icon { font-size: var(--tct-text-3xl); color: var(--k-fg); }
+.tv-page .tv-course__level { position: absolute; top: var(--tct-space-sm); inset-inline-start: var(--tct-space-sm); }
+.tv-page .tv-course__status { position: absolute; top: var(--tct-space-sm); inset-inline-end: var(--tct-space-sm); }
+
+.tv-page .tv-course__name {
+    margin: var(--tct-space-xs) var(--tct-space-xs) 0;
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-course__meta { padding-inline: var(--tct-space-xs); }
+
+.tv-page .tv-course__progress {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    margin-top: auto;
+    padding-inline: var(--tct-space-xs);
+}
+
+.tv-page .tv-course__progress .k-progress { flex: 1 1 auto; min-width: 0; }
+
+/* The bar colour follows the status, not the cover hue: amber while learning, green when done. */
+.tv-page .tv-course[data-status="progress"] .k-progress__fill { background: var(--tct-warning); }
+.tv-page .tv-course[data-status="done"] .k-progress__fill { background: var(--tct-success); }
+
+.tv-page .tv-course__count {
+    flex: 0 0 auto;
+    color: var(--tct-text-secondary);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- home: no match */
+.tv-page .tv-nomatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tct-space-md);
+}
+
 /* ---------------------------------------------------------------- small helpers */
 .tv-page .tv-meta {
     display: flex;
@@ -127,6 +243,9 @@
 
     .tv-page .tv-toolbar__search { flex-basis: 100%; max-width: none; }
     .tv-page .tv-stat { flex: 1 1 calc(50% - var(--tct-space-md)); min-width: 0; }
+    .tv-page .tv-today { padding: var(--tct-space-md); }
+    .tv-page .tv-today__title { font-size: var(--tct-text-2xl); }
+    .tv-page .tv-next { padding: var(--tct-space-md); }
 }
 
 /* ---------------------------------------------------------------- forced colours: shapes stay visible without shadows */

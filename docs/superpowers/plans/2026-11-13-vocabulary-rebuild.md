@@ -882,3 +882,22 @@ git diff --check
 - G14 Clay grep: clean
 - Kit change in detail: 142 scope lists `:is(.ts-page, .tp-page)` became `:is(.ts-page, .tp-page, .tv-page)`; the six hue blocks gained `tv-hue-*` (descendant form and `.tv-page.tv-hue-*`); only header comments otherwise. No selector removed or reordered, specificity unchanged.
 - Attempts / deferred / blocked: none.
+
+### V4 — Home page
+- Commit: see `git log` (subject "feat(vocabulary): build the home page with today's status, next lesson and course filters")
+- G1 build: pass (warnings 43, V0 43)
+- G2 area: Vocabulary tests passed 56 / failed 0 (the 2 new home-markup tests included)
+- G3 full: passed 1522 + 2 new / failed 0 / skipped 34 (the 1522 run was taken before the two markup tests were added; the Vocabulary filter was re-run after)
+- G4 node: passed 291 / failed 1 (pre-existing CRLF hash failure) / total 292
+- G5 contracts: unchanged; `/Vocabulary/Index`, `/Vocabulary` and FolderDetail answer 200; `/Home/Index` still links to `/Vocabulary/Index`
+- G6 tokens/diff: the three CSS greps and the JS/Razor greps print nothing; `git diff --check` clean
+- G7 scope: `Views/Vocabulary/Index.cshtml`, new `_CourseCard.cshtml`, `wwwroot/css/vocabulary.css`, new `wwwroot/js/vocabulary-home.js`, `VocabularyIntegrationTests.cs`
+- G8 render: home at 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640, plus the no-match state; no horizontal scroll, no console error, no failed request; `.tmp/vocabulary/V4/`. 200% zoom = 720 CSS px wide and 320 px: page width equals viewport; the level/status segmented control scrolls inside itself at 320.
+- G9 mockup (01, 06): same structure and copy. Recorded differences: emoji cover art is replaced by Font Awesome icons (plan 6.1); the mockup's sample numbers are real data here; the status filter stays on phones (the mockup shows only the level filter) because the plan lists both; segmented controls scroll horizontally instead of wrapping.
+- G10 behaviour (21 scripted checks, all pass): numbers equal the database fixture (23 learned, 10 known, 2 due, 13 today, streak 5); "Học tiếp" = `/Vocabulary/Study?setId=11&lesson=2` "Bài 2 · Greetings (Chào hỏi)", 5 new words; due button opens `/Vocabulary/Review`; level, status and search alone and combined, with and without accents or capitals; URL state survives reload and invalid values are ignored; empty collections hide and counts update; no-match state and live region; "Xóa bộ lọc" resets and focuses the search; FolderDetail shows one collection with its breadcrumb; keyboard Tab/Enter on filters.
+- G11 a11y: one `<h1>`, `lang="vi"`, every control named; 22 tab stops, all with a visible 2px outline; forced-colors: cards get a 1px border and no shadow; reduced motion: no animation in this page; no keyboard trap.
+- G12 contrast (scripted over 40+ element/background pairs): lowest ratios 4.95 to 5.9:1 for coloured text (stat "10" 5.48, "Học tiếp" 5.28, "Đã xong" 5.21, "BÀI TIẾP THEO" 5.87); body and heading text 8.3 to 17.1:1; zero failures.
+- G13 regression: `/Sets`, `/Sets/1`, `/Practice`, `/Practice/quiz`, `/Goals`, `/Home/Index`, `/Home/Study/1` all 200 (kit unchanged since V3).
+- G14 Clay grep: clean. G15: tests green; greps clean (no `innerHTML`, `alert(`, `confirm(`, `console.log`, inline handlers, `Html.Raw`).
+- Local data used for G10: synthetic progress rows for `student@tct.local` on system cards, in `.tmp/vocabulary/progress-fixture.sql`; the matching `progress-cleanup.sql` restores user 2 to zero rows and streak 0 (which is what it had before).
+- Attempts / deferred / blocked: none. One script expectation (A1 count) was wrong in the checking script itself, not in the page; corrected and re-run, 21/21.

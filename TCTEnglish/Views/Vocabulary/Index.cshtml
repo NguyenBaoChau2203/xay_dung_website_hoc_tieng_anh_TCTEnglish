@@ -1,6 +1,43 @@
 @model TCTVocabulary.ViewModels.VocabularyHomeViewModel
+@using TCTEnglish.ViewModels
 @{
-    ViewData["Title"] = Model.FilterFolderName != null ? Model.FilterFolderName + " · Từ vựng" : "Từ vựng";
+    var filtered = Model.FilterFolderId.HasValue;
+    ViewData["Title"] = filtered ? Model.FilterFolderName + " · Từ vựng" : "Từ vựng";
+
+    var header = filtered
+        ? new PageHeaderViewModel
+        {
+            Title = Model.FilterFolderName ?? "Từ vựng",
+            Breadcrumbs = new[]
+            {
+                new PageBreadcrumbItem("Từ vựng", Url.Action("Index", "Vocabulary")),
+                new PageBreadcrumbItem(Model.FilterFolderName ?? "Thư mục")
+            }
+        }
+        : new PageHeaderViewModel
+        {
+            Title = "Từ vựng",
+            Description = "Chọn một khóa có sẵn và học mỗi ngày vài phút. Không cần tự tạo thẻ."
+        };
+
+    var stats = Model.Stats;
+    var courseCount = Model.Collections.Sum(collection => collection.Courses.Count);
+    var hasWords = stats.TotalCards > 0;
+
+    var emptyCatalog = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Chưa có khóa từ vựng nào.",
+        Message = "Nội dung đang được cập nhật."
+    };
+    var noMatch = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Không tìm thấy khóa học phù hợp.",
+        Message = "Thử bỏ bớt bộ lọc hoặc tìm bằng từ khác."
+    };
+
+    var statusFilters = new[] { ("", "Tất cả"), ("new", "Chưa học"), ("progress", "Đang học"), ("done", "Đã xong") };
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
@@ -8,37 +45,132 @@
 }
 
 <div class="tct-theme tct-page tv-page tv-page--home">
-    <h1>@(Model.FilterFolderName ?? "Từ vựng")</h1>
+    <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
-    <p data-tv="stats">
-        <span data-tv="learned">@Model.Stats.LearnedCards</span> từ đã học ·
-        <span data-tv="known">@Model.Stats.KnownCards</span> từ đã thuộc ·
-        <span data-tv="due">@Model.Stats.DueCards</span> từ cần ôn
-    </p>
-
-    @if (Model.Next != null)
+    @if (courseCount == 0 && !filtered)
     {
-        <p data-tv="next"><a href="@Model.Next.Url">@Model.Next.LessonTitle · @Model.Next.SetName</a> (@Model.Next.NewWordCount từ mới)</p>
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="emptyCatalog" />
     }
-
-    @if (Model.DueUrl != null)
+    else
     {
-        <p><a data-tv="due-link" href="@Model.DueUrl">Ôn @Model.Stats.DueCards từ đến hạn</a></p>
-    }
+        <section class="tv-today k-panel tv-hue-primary" aria-labelledby="tvTodayTitle">
+            <div class="tv-today__main">
+                <h2 id="tvTodayTitle" class="tv-today__title">
+                    @if (stats.LearnedToday > 0)
+                    {
+                        @:Hôm nay bạn đã học @stats.LearnedToday từ
+                    }
+                    else
+                    {
+                        @:Hôm nay bạn chưa học từ nào
+                    }
+                </h2>
+                <p class="tv-today__text">Mỗi bài chỉ khoảng 5 phút với 10 từ. Học đều để giữ chuỗi ngày học.</p>
+                <dl class="tv-stats">
+                    <div class="tv-stat k-pillow tv-hue-primary"><dt>từ đã học</dt><dd>@stats.LearnedCards</dd></div>
+                    <div class="tv-stat k-pillow tv-hue-success"><dt>từ đã thuộc</dt><dd>@stats.KnownCards</dd></div>
+                    <div class="tv-stat k-pillow tv-hue-warning"><dt>từ cần ôn</dt><dd>@stats.DueCards</dd></div>
+                    @if (stats.Streak > 0)
+                    {
+                        <div class="tv-stat k-pillow tv-hue-danger"><dt>chuỗi học</dt><dd>@stats.Streak ngày</dd></div>
+                    }
+                </dl>
+            </div>
 
-    @foreach (var collection in Model.Collections)
-    {
-        <section>
-            <h2>@collection.FolderName</h2>
-            <ul>
-                @foreach (var course in collection.Courses)
+            <div class="tv-next k-card">
+                @if (Model.Next != null)
                 {
-                    <li>
-                        <a href="@Url.Action("Detail", "Vocabulary", new { setId = course.SetId })">@course.SetName</a>
-                        · @course.WordCount từ · @course.LessonCount bài · @course.LearnedCount/@course.WordCount
-                    </li>
+                    <p class="k-label tv-next__label">BÀI TIẾP THEO</p>
+                    <h3 class="tv-next__title tct-break">@Model.Next.LessonTitle</h3>
+                    <p class="tv-next__meta tct-break">@Model.Next.SetName · @Model.Next.NewWordCount từ mới</p>
+                    <a class="btn btn-primary btn-lg tv-next__go" href="@Model.Next.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học tiếp</a>
                 }
-            </ul>
+                else if (hasWords)
+                {
+                    <h3 class="tv-next__title">Bạn đã học hết các bài hiện có</h3>
+                    <p class="tv-next__meta">Ôn lại để nhớ lâu hơn.</p>
+                }
+                else
+                {
+                    <h3 class="tv-next__title">Chưa có bài nào để học</h3>
+                    <p class="tv-next__meta">Nội dung đang được cập nhật.</p>
+                }
+                @if (Model.DueUrl != null)
+                {
+                    <a class="btn btn-outline-primary tv-next__due" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @stats.DueCards từ đến hạn</a>
+                }
+            </div>
         </section>
+
+        <div class="tv-toolbar" role="search" id="tvToolbar">
+            <div class="tv-toolbar__search">
+                <label class="visually-hidden" for="tvSearch">Tìm khóa học</label>
+                <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="tvSearch" type="search" class="form-control" placeholder="Tìm khóa học…" maxlength="80" autocomplete="off" />
+                </div>
+            </div>
+            @if (Model.Levels.Count >= 2)
+            {
+                <div class="k-seg" role="group" aria-label="Lọc theo trình độ" data-tv-filter="level">
+                    <button type="button" class="k-seg__item" data-value="" aria-pressed="true">Tất cả</button>
+                    @foreach (var level in Model.Levels)
+                    {
+                        <button type="button" class="k-seg__item" data-value="@level" aria-pressed="false">@level</button>
+                    }
+                </div>
+            }
+            <div class="k-seg" role="group" aria-label="Lọc theo tiến độ" data-tv-filter="status">
+                @foreach (var (value, label) in statusFilters)
+                {
+                    <button type="button" class="k-seg__item" data-value="@value" aria-pressed="@(value == "" ? "true" : "false")">@label</button>
+                }
+            </div>
+        </div>
+
+        <p class="visually-hidden" id="tvResultStatus" role="status" aria-live="polite"></p>
+
+        <div id="tvNoMatch" class="tv-nomatch" hidden>
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="noMatch" />
+            <button type="button" class="btn btn-outline-primary" id="tvClear">Xóa bộ lọc</button>
+        </div>
+
+        @foreach (var collection in Model.Collections)
+        {
+            <section class="tv-section" data-tv-collection aria-labelledby="tvCollection@(collection.FolderId)">
+                <div class="tv-section__head">
+                    <h2 class="tv-section__title tct-break" id="tvCollection@(collection.FolderId)">
+                        @if (filtered)
+                        {
+                            @collection.FolderName
+                        }
+                        else
+                        {
+                            <a class="tv-section__link" href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = collection.FolderId })">@collection.FolderName</a>
+                        }
+                    </h2>
+                    <span class="tv-section__count" data-tv-count>@collection.Courses.Count khóa</span>
+                </div>
+                @if (collection.Courses.Count == 0)
+                {
+                    <p class="tv-meta">Chưa có khóa nào trong thư mục này.</p>
+                }
+                else
+                {
+                    <ul class="tv-grid">
+                        @foreach (var course in collection.Courses)
+                        {
+                            <li><partial name="_CourseCard" model="course" /></li>
+                        }
+                    </ul>
+                }
+            </section>
+        }
     }
 </div>
+
+@section Scripts {
+    <script src="~/js/practice-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-home.js" asp-append-version="true"></script>
+}
