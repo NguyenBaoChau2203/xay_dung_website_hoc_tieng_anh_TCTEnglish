@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-6768d2ebd50b367d461d3981e09c576ab3498c358d3252b6f022a02c34444667",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.6768d2ebd50b367d461d3981e09c576ab3498c358d3252b6f022a02c34444667",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "C2 Proficiency (CPE) Listening Test 21 with answers",
+        "Level": "C2",
+        "Topic": "C2 Proficiency exam practice",
+        "YoutubeId": "T_noZwfZ1P8",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/T_noZwfZ1P8/hqdefault.jpg",
+        "Duration": "41:04",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.6768d2ebd50b367d461d3981e09c576ab3498c358d3252b6f022a02c34444667"
+}

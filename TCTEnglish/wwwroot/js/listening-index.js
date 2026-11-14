@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Search filtering
                 const searchMatches = (searchQuery === '' || cardTitle.includes(searchQuery) || cardTopic.toLowerCase().includes(searchQuery));
 
-                if (topicMatches && searchMatches) {
+                if (levelMatches && topicMatches && searchMatches) {
                     cardCol.classList.remove('card-filtered-out');
                     cardCol.classList.add('card-visible');
                     visibleInLevel++;
@@ -124,11 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             totalCountText.textContent = `${visibleTotal} bài học`;
         }
         if (emptyState) {
-            if (visibleTotal === 0) {
-                emptyState.style.display = 'block';
-            } else {
-                emptyState.style.display = 'none';
-            }
+            emptyState.classList.toggle('li-hidden', visibleTotal !== 0);
         }
     }
 

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - TI\u1EBET KI\u1EC6M -",
+        "Level": "A1",
+        "Topic": "TI\u1EBET KI\u1EC6M",
+        "YoutubeId": "UEpAkOQ9-Hg",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/UEpAkOQ9-Hg/hqdefault.jpg",
+        "Duration": "9:45",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": true,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+}

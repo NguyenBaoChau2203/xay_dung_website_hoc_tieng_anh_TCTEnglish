@@ -14,8 +14,11 @@
             accuracyScore = s.AccuracyScore,
             fluencyScore = s.FluencyScore,
             completenessScore = s.CompletenessScore,
+            fluencyAvailable = s.FluencyAvailable,
+            completenessAvailable = s.CompletenessAvailable,
+            comparison = s.Comparison,
             isPracticed = s.IsPracticed
-        }));
+        }), new System.Text.Json.JsonSerializerOptions(System.Text.Json.JsonSerializerDefaults.Web));
 }
 
 @section Styles {
@@ -24,7 +27,9 @@
 
 @Html.AntiForgeryToken()
 
-<div class="tct-theme tct-page spk-practice-wrapper">
+<div class="tct-theme tct-page spk-practice-wrapper"
+     data-speaking-visit-url="@(Model.Sentences.Count > 0 ? Url.Action("RecordRecentVideo", "Speaking", new { videoId = Model.VideoId }) : null)">
+    <p class="spk-recent-feedback" data-recent-visit-feedback role="status" hidden></p>
 
     @* ── TOP BAR ─────────────────────────────────────────────── *@
     <header class="spk-practice-topbar" aria-label="Thanh điều hướng bài học">
@@ -135,15 +140,7 @@
                         <div class="spk-sentence-card-body">
                             <div class="spk-sentence-card-top">
                                 <span class="spk-sentence-badge" id="sent-indicator">Câu 1/...</span>
-                                <button class="spk-btn spk-btn--ghost spk-btn--sm" id="btn-hide-text" onclick="toggleText()">
-                                    <span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span>
-                                    <span class="d-none d-sm-inline">Ẩn text</span>
-                                </button>
                             </div>
-                            <p class="spk-sentence-en" id="current-transcript-en" style="min-height:72px;">...</p>
-                            <p class="spk-sentence-vi" id="current-transcript-vi">...</p>
-
-                            <hr class="spk-divider" />
 
                             @* Score + Controls *@
                             <div class="spk-score-controls-row">
@@ -186,6 +183,12 @@
                                         </div>
                                     </div>
                                     <p id="spk-assessment-status" class="small text-muted mb-0 mt-2" aria-live="polite"></p>
+                                    <details class="spk-score-method">
+                                        <summary>Cách tính điểm</summary>
+                                        <p>Chính xác và điểm tổng: tỷ lệ từ khớp đúng thứ tự với câu mẫu. Hoàn thiện: tỷ lệ vị trí từ đã đọc, kể cả từ đọc khác; từ bỏ sót không được tính và từ thừa không cộng điểm.</p>
+                                        <p>Lưu loát là điểm ước lượng theo tốc độ nói và khoảng ngắt trong bản ghi, không đánh giá ngữ điệu hay âm vị. Khoảng lặng đầu và cuối được bỏ qua. Bản ghi quá ngắn, không đủ lời nói hoặc bản ghi cũ thiếu dữ liệu sẽ hiển thị —; hãy thu lại để được chấm.</p>
+                                        <p>Hệ thống giữ lượt có điểm tổng cao nhất; khi bằng điểm, lượt mới được cập nhật cùng các chỉ số.</p>
+                                    </details>
                                     <section id="spk-word-comparison"
                                              class="spk-word-comparison"
                                              hidden
@@ -317,10 +320,8 @@
                             <h3 class="spk-transcript-title">Kịch bản bài học</h3>
                             <span class="spk-count-badge" id="spk-transcript-count">0 / @Model.Sentences.Count</span>
                         </div>
-                        <button class="spk-transcript-collapse-btn d-md-none" id="btn-collapse-transcript"
-                                onclick="toggleTranscriptPanel()" aria-label="Thu gọn kịch bản">
-                            <span class="material-symbols-outlined" style="font-size:18px;">keyboard_arrow_down</span>
-                        </button>
+                        <button class="spk-btn spk-btn--ghost spk-btn--sm" type="button" id="btn-hide-text"
+                                aria-controls="spk-transcript-list" aria-expanded="true" aria-label="Ẩn kịch bản bài học">Ẩn</button>
                     </div>
                     <div class="spk-transcript-list spk-scrollbar" id="spk-transcript-list">
                         @for (int i = 0; i < Model.Sentences.Count; i++)
@@ -351,13 +352,6 @@
                             </div>
                         }
                     </div>
-                    <div class="spk-transcript-footer">
-                        <button class="spk-btn spk-btn--ai-suggest spk-btn--full" type="button"
-                                onclick="this.classList.toggle('spk-btn--active')">
-                            <span class="material-symbols-outlined" style="font-size:16px;">auto_awesome</span>
-                            Gợi ý cải thiện từ AI
-                        </button>
-                    </div>
                 </aside>
 
         </div>
@@ -368,23 +362,10 @@
 <div id="spk-toast" class="spk-toast" aria-live="polite"></div>
 
 @section Scripts {
+    <script src="~/js/speaking-recent.js" asp-append-version="true"></script>
     <script>
         window.SPK_VIDEO_ID = '@Model.YoutubeId';
         window.SPK_SENTENCES = @Html.Raw(sentencesJson);
-
-        /* ── toggleText: Ẩn / hiện văn bản câu hiện tại ── */
-        function toggleText() {
-            const el = document.getElementById('current-transcript-en');
-            const btn = document.getElementById('btn-hide-text');
-            if (el.textContent === '••••••••••••••••') {
-                el.textContent = el.dataset.original;
-                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span> <span class="d-none d-sm-inline">Ẩn text</span>';
-            } else {
-                el.dataset.original = el.textContent;
-                el.textContent = '••••••••••••••••';
-                btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility</span> <span class="d-none d-sm-inline">Hiện text</span>';
-            }
-        }
 
         /* ── toggleVideo: Ẩn / hiện video trong tab nghe chép ── */
         function toggleVideo() {
@@ -398,19 +379,6 @@
                 overlay.classList.add('d-none');
                 btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">visibility_off</span> Ẩn video';
                 btn.classList.remove('spk-btn--secondary');
-            }
-        }
-
-        /* ── toggleTranscriptPanel: Collapsible trên mobile ── */
-        function toggleTranscriptPanel() {
-            const panel = document.getElementById('spk-transcript-panel');
-            const btn   = document.getElementById('btn-collapse-transcript');
-            const list  = document.getElementById('spk-transcript-list');
-            if (!panel) return;
-            const isCollapsed = panel.classList.toggle('spk-transcript-panel--collapsed');
-            if (btn) {
-                btn.querySelector('.material-symbols-outlined').textContent =
-                    isCollapsed ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
             }
         }
 
@@ -461,8 +429,14 @@
         /* Hook into speaking.js: intercept selectSentence to update transcript panel */
         (function() {
             var _origSelect = window.selectSentence;
-            window.selectSentence = function(idx) {
-                if (typeof _origSelect === 'function') _origSelect(idx);
+            window.selectSentence = function(idx, autoPlay = true) {
+                // speaking.js loads after this inline bridge; resolve its API
+                // when the learner selects a cue, not before the module exists.
+                if (window.TctSpeakingPractice && typeof window.TctSpeakingPractice.selectSentence === 'function') {
+                    window.TctSpeakingPractice.selectSentence(idx, autoPlay);
+                } else if (typeof _origSelect === 'function') {
+                    _origSelect(idx, autoPlay);
+                }
                 /* Delay slightly so SPK_SENTENCES.isPracticed may have updated */
                 setTimeout(function() { updateTranscriptPanel(idx); }, 50);
             };

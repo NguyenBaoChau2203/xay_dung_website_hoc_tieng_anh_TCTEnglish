@@ -1,0 +1,3020 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - \u0102N CHAY -",
+        "YoutubeId": "CzXqkWprDjY",
+        "Level": "A1",
+        "Topic": "\u0102n u\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/CzXqkWprDjY/hqdefault.jpg",
+        "Duration": "23:09",
+        "SourceUrl": "https://www.youtube.com/watch?v=CzXqkWprDjY",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.04c4e3a6dbe346ceb65372213060ca3f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 63,
+        "EndTime": 72.799,
+        "Text": "So, what do you like to eat? The cafeteria has great beef burgers or the fried chicken. Everyone loves the fried chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0736ffbb30b6434983cc9573175008e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 72,
+        "EndTime": 75.68,
+        "Text": "Oh, um, I don\u0027t eat chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0757b3525e274cddadee03b3ff898967",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 256,
+        "EndTime": 260,
+        "Text": "That makes sense. Also, it\u0027s very good for my health.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.08971922c3c348c389964f7f53f3d2ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 903,
+        "EndTime": 911.12,
+        "Text": "For talking to me. It\u0027s interesting. I never talked to a vegetarian before. I thought you only ate sad little carrots.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.08ed4055dfc846178f1e7f618aa8724e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1344,
+        "EndTime": 1352.159,
+        "Text": "Really? You don\u0027t have to do that for me. I\u0027m not doing it for you. I want to see if I have more energy for football.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0905e9c1b15842ba8acfc9742f78d7d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 425,
+        "EndTime": 428,
+        "Text": "Really? You don\u0027t have to do that for me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.09e60da8f8fc43a0885eb1e9aa018739",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 659,
+        "EndTime": 665.279,
+        "Text": "I am. And sometimes people make fun of me. Really? What do they say?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0b299f53793846d6b3acf7e25d83a68b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 642,
+        "EndTime": 650.72,
+        "Text": "But not in restaurants. When I go out with my friends, they want to eat BBQ or hot pot. Oh, right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0b399805641a47739fc459fa650d6a48",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 451.44,
+        "Text": "For talking to me. It\u0027s interesting. I never talked to a vegetarian before. I thought you only ate sad little carrots.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0bd921a8970343688f9d927b068f6b38",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1029,
+        "EndTime": 1034.079,
+        "Text": "But meat is so good. Why don\u0027t you eat it? Do you hate the taste?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.0f26593a89a04e1780ba387b69cfe57b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 635,
+        "EndTime": 638.56,
+        "Text": "Sometimes, yes, it can be very hard.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.1282b0ead4874e68a2ea48fae4821173",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 759,
+        "EndTime": 768.639,
+        "Text": "But I play football, Mia. I run a lot. I feel like I need meat for my muscles. Many famous athletes are vegetarians.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.140b0f316f4948c187877f665237adcb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1021,
+        "EndTime": 1029.039,
+        "Text": "I eat a lot of things. I eat rice, vegetables, fruit, bread, eggs, tofu, and cheese.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.14c620e80774445a934d5d679d2ab880",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 931,
+        "EndTime": 936.24,
+        "Text": "Hi. Are you new here? Yes, today is my first day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.16f5da60e48b433c80894b5cc88b6b78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 264,
+        "EndTime": 274.96,
+        "Text": "No, I\u0027m not weak at all. I get protein from beans, tofu, and nuts. Actually, I have a lot of energy. I never feel tired after lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.179fc96a759b46848e5bc895fa363adb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 274,
+        "EndTime": 281.6,
+        "Text": "Really? Every day after lunch, I feel so sleepy. I sit in class and my eyes close.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.17a0feb291e548e0bf79aac421981cf7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1278,
+        "EndTime": 1284.32,
+        "Text": "I can try that. My mom will be very surprised. She will think I am sick.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.1b963c87a6f549cb87a8f68a6addac49",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 923,
+        "EndTime": 931.56,
+        "Text": "You never have to eat alone. Come on, let\u0027s get our sandwiches. I know a good table near the window.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.1e2727c994e54427aad726e9c0762d42",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1063,
+        "EndTime": 1068.24,
+        "Text": "He looked at me with his big eyes. He was like a pet. Like a dog?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.1e7c308511ae49e882526b430e21a3c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157,
+        "EndTime": 160.56,
+        "Text": "remembered the little pig. I couldn\u0027t eat it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.1fdcff5fb5d748b0814d4392b18eb412",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 741,
+        "EndTime": 752.079,
+        "Text": "That is because meat is heavy. Your body works very hard to digest it. Vegetables and fruits are light. My stomach always feels good. My skin is better, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.23ddcafad6a94719a26dbdc0c80f5e18",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 190,
+        "EndTime": 197.599,
+        "Text": "When we go to a BBQ restaurant, there is no food for me. I just eat a little salad or white rice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.24123eedf1f54017b110db8ad150e2f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 83.52,
+        "Text": "That\u0027s fine. We can get the fish and rice. I don\u0027t eat fish either. Oh, are you allergic to seafood?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.24445b36703b4be9834b850129704f38",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 334.56,
+        "Text": "They say bad things to people who eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.248e3a3654484bd5b5ba4ec2569b95e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1184,
+        "EndTime": 1194.48,
+        "Text": "No, I\u0027m not weak at all. I get protein from beans, tofu, and nuts. Actually, I have a lot of energy. I never feel tired after lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.28283aed5b9d477cbac33581378f8cb2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 561,
+        "EndTime": 569.2,
+        "Text": "I eat a lot of things. I eat rice, vegetables, fruit, bread, eggs, tofu, and cheese.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.2b0a5fef05284a2fb12328429e15ce33",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1194,
+        "EndTime": 1201.12,
+        "Text": "Really? Every day after lunch, I feel so sleepy. I sit in class and my eyes close.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.2d782589dc844ce3aaf3c4a5f0935b5f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 608,
+        "EndTime": 617.12,
+        "Text": "Yes, exactly like a dog. That night, my mom cooked pork for dinner. I looked at the food and I started to cry. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.2e4c30f98a134bf88a94dae21dbbb7aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1251,
+        "EndTime": 1254.08,
+        "Text": "They say bad things to people who eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.2f8d5ba5b2624285968b380822444ede",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1047,
+        "EndTime": 1055.6,
+        "Text": "I understand. Many people do, but for me, it feels wrong. When I was 10 years old, my family visited a big farm.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.313c711439d84da8b85835edd1ba0218",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 845,
+        "EndTime": 850.959,
+        "Text": "No, there\u0027s a cheese and tomato sandwich. Oh, that sounds very good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.31c653169c1d49ccb8aa20149d217cd6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 35,
+        "EndTime": 42.879,
+        "Text": "It is very big. I feel a little lost. I don\u0027t have any friends here yet. Well, you have one friend now. Me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.33ee6afd7e3f4b43828b0c109cbd8e70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1007,
+        "EndTime": 1015.6,
+        "Text": "Wait, you don\u0027t eat meat at all? No, no meat. Wow. Never?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.342f344195544a918bc713f98daeea92",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 56,
+        "EndTime": 63.92,
+        "Text": "Yes, of course. Come with me. The food here is actually very good. Okay, thank you, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3539776012ac4ce0a63996cadcb1dec5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 212.239,
+        "Text": "They say, \u0022Why are you eating grass?\u0022 Or, \u0022You need meat to be strong.\u0022 That is not nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.35e08e0372944297a3204567470cec7b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 964,
+        "EndTime": 970.32,
+        "Text": "The morning classes are finally over. I am so hungry. Me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.36f5a590d2b148e29284c985fa3a8d9a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 954,
+        "EndTime": 962.399,
+        "Text": "It is very big. I feel a little lost. I don\u0027t have any friends here yet. Well, you have one friend now. Me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3707f292a6e5483fac23365535433501",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 556,
+        "EndTime": 561.839,
+        "Text": "I am surprised. I don\u0027t know many vegetarians. What do you eat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3713c997c9fb4920a6ccc446921c17cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 502,
+        "EndTime": 505.039,
+        "Text": "Thank you. You are very kind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.37988de54f9d4594a4ee6e644f9a71f3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 752,
+        "EndTime": 759.6,
+        "Text": "Maybe you\u0027re right. After I eat a big burger, I just want to sleep for 2 hours. Exactly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.391dc93237a94506b260f05d9c253463",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 626,
+        "EndTime": 635.279,
+        "Text": "That is normal. Most people don\u0027t think about it, but I do. So, from that day, I stopped eating meat. Is it hard?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3953a6c892034ec78cc0fced342c6fcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 340,
+        "EndTime": 349.199,
+        "Text": "I like that. You don\u0027t tell me what to do. No, but maybe you can eat a little more vegetables. Just a little?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3a2fd4841a7c421fa36607972c9d2dd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 620,
+        "EndTime": 626.72,
+        "Text": "Wow. I never thought about that. I just see food on my plate. I don\u0027t think about the animal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3b092c08664d4ebc83a8147a70fcd331",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 794,
+        "EndTime": 800.48,
+        "Text": "I don\u0027t do that. You are my friend. You eat what you want. I eat what I want. We\u0027re just different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3bf8c6893c3445c3b3eb279c0ff1736b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 27,
+        "EndTime": 31.519,
+        "Text": "I moved here from another city. My dad got a new job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3c4c718fa9ae45fd964a0ca4be197839",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 197,
+        "EndTime": 205.599,
+        "Text": "You must be very hungry after that. I am. And sometimes people make fun of me. Really? What do they say?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3d387d5503684a559c318984258a91c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 476.4,
+        "Text": "Hi. Are you new here? Yes, today is my first day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3ee78dc1e4e44c638dd1d6d113a8e2cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 983,
+        "EndTime": 992.32,
+        "Text": "So, what do you like to eat? The cafeteria has great beef burgers or the fried chicken. Everyone loves the fried chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.3f65bdfc11a64084a851727f66dc142e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1095,
+        "EndTime": 1098.4,
+        "Text": "Sometimes yes, it can be very hard.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.40d899ca40f34eb2a379dc726835f21e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 582,
+        "EndTime": 587.2,
+        "Text": "I love animals, too. I have a dog, but I still eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.44175d45db554d1593fc27a2a7f5c5aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 555,
+        "EndTime": 556.64,
+        "Text": "Never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.45161dd115ae45218b4ecaca042e0273",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 250,
+        "EndTime": 256,
+        "Text": "First, I feel very happy. I know I\u0027m not hurting animals. That gives me peace.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.45cf69fa571a4449b09a4b27908297f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1125,
+        "EndTime": 1131.76,
+        "Text": "They say, \u0022Why are you eating grass?\u0022 Or, \u0022You need meat to be strong.\u0022 That is not nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4683c278e33646809ded1b23b9d28fe9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1179,
+        "EndTime": 1184,
+        "Text": "Really? But you don\u0027t get protein from meat. Are you weak?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.471caff36d714739971bff198cd3832e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 800,
+        "EndTime": 803.44,
+        "Text": "I like that. You don\u0027t tell me what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4756639d1f7f4877b2f2968630e9e6fe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1080,
+        "EndTime": 1086.559,
+        "Text": "Wow. I never thought about that. I just see food on my plate. I don\u0027t think about the animal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.48207125cf3842348115291fbb40e162",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 391,
+        "EndTime": 394.319,
+        "Text": "And they have a big green salad with eggs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4a2ded493d2a412ab34d94b917b3cb53",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 167,
+        "EndTime": 175.599,
+        "Text": "That is normal. Most people don\u0027t think about it, but I do. So from that day I stopped eating meat. Is it hard?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4ad0d603491d4fee8d3b2bcd2955c261",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1131,
+        "EndTime": 1141.2,
+        "Text": "It makes me sad sometimes. I don\u0027t want to be a problem. I don\u0027t want to make my friends feel bad. Sometimes I feel very lonely because I\u0027m different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4b99a9a41c8245d182729d415e559ca5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 681,
+        "EndTime": 688.399,
+        "Text": "I am sorry, Mia. I didn\u0027t know it was so difficult. What about your family? Are they vegetarians?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4d782134d7d74b9da522a92faa82f870",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1254,
+        "EndTime": 1260.32,
+        "Text": "I don\u0027t do that. You are my friend. You eat what you want. I eat what I want. We\u0027re just different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4dbc57bc68e447ca9e4d9c8e95d9a2b6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 976,
+        "EndTime": 983.44,
+        "Text": "Yes, of course. Come with me. The food here is actually very good. Okay, thank you, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4dcc4ce387b94e29bed1b91111d49b19",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 899,
+        "EndTime": 903.199,
+        "Text": "That is fair. Thank you, Mia. For what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.4e3198a716f54a6985b26567b8ec9847",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 816,
+        "EndTime": 819.12,
+        "Text": "Yes, that is a good idea.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.512fc4819bbd4f0ab3fbf2699dd4f587",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 175,
+        "EndTime": 178.879,
+        "Text": "Sometimes yes it can be very hard.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.534c8c83ca2b4817afb6ca037c8406f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1068,
+        "EndTime": 1076.96,
+        "Text": "Yes, exactly like a dog. That night, my mom cooked pork for dinner. I looked at the food and I started to cry. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.5742c1a43f8d49f6bcfe6d02ab1c2e60",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 808,
+        "EndTime": 816.959,
+        "Text": "Yes. Maybe one day a week you don\u0027t eat meat just to see how you feel. H no meat Monday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.57e7387c99f442c9859456fbbe138c7d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 936,
+        "EndTime": 944.32,
+        "Text": "I thought so. I know everyone in this class, but I don\u0027t know you. I\u0027m Lear. I\u0027m Mia. Nice to meet you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.582bfc84c1c74a4fbeb476ba8cadada0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 443.52,
+        "Text": "Okay. Okay, I take the blame. But I\u0027m getting extra cheese. That is fair. Thank you, Mia. For what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.584e0e6d65d14641b664e8dcb4431653",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 143,
+        "EndTime": 148.72,
+        "Text": "He looked at me with his big eyes. He was like a pet. Like a dog?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.587562aaf7eb4616ab9b4ae9567e97bd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 548,
+        "EndTime": 555.76,
+        "Text": "Wait, you don\u0027t eat meat at all? No, no meat. Wow. Never?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.587a610851f84b7d934ee2f9c7d077c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 299,
+        "EndTime": 308.96,
+        "Text": "But I play football, Mia. I run a lot. I feel like I need meat for my muscles. Many famous athletes are vegetarians.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.5a2beb10007a4d44af4944ba44318f1f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 42,
+        "EndTime": 45.28,
+        "Text": "Thank you. You are very kind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.5c34bfe8eced4eef9e909a124b17777e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1219,
+        "EndTime": 1228.48,
+        "Text": "But I play football, Mia. I run a lot. I feel like I need meat for my muscles. Many famous athletes are vegetarians.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.5c5b3517af3642e6b3961a52f13ce25c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 136,
+        "EndTime": 137.68,
+        "Text": "What happened at the farm?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.5ed9874d6c884c82b8417d2bb0922369",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 703,
+        "EndTime": 709.839,
+        "Text": "But there must be good things about it, right? Yes, a lot of good things. Like what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.601640aa31a14f3ca866b778ca5859dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 381,
+        "EndTime": 382.08,
+        "Text": "Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.60991f60d5a04cb6b626f01c6494c533",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1234,
+        "EndTime": 1244.48,
+        "Text": "I don\u0027t know. I love meat too much. I love the smell of fried chicken. I love big dinners with my family. I don\u0027t think I can stop eating meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.60c6746424e84e56b83cf9acf79013d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 359,
+        "EndTime": 364.8,
+        "Text": "I can try that. My mom will be very surprised. She will think I am sick.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.626651109410485db69b24692b480dbf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 86,
+        "EndTime": 93.759,
+        "Text": "I am a vegetarian. Wait, you don\u0027t eat meat at all? No, no meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6296a50e1ed74738b9eed6c98f311aca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 879,
+        "EndTime": 884.72,
+        "Text": "So, so I think I will get the cheese sandwich, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.662f40a989964f5c9838074572423e91",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 31,
+        "EndTime": 35.12,
+        "Text": "That is a big change. Do you like this school?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.67504c0ca978413c858bac974181a4cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 334,
+        "EndTime": 340.8,
+        "Text": "I don\u0027t do that. You are my friend. You eat what you want. I eat what I want. We\u0027re just different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.67eed323207b42df8a5c721081c0aacd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 148,
+        "EndTime": 157.44,
+        "Text": "Yes, exactly like a dog. That night, my mom cooked pork for dinner. I looked at the food and I started to cry. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.68d686d31a484f7097e272d1f9d4f166",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1016,
+        "EndTime": 1021.68,
+        "Text": "I am surprised. I don\u0027t know many vegetarians. What do you eat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.698ca9b89a064325af9736fe17c6c34d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1268,
+        "EndTime": 1276.72,
+        "Text": "Yes. Maybe one day a week you don\u0027t eat meat just to see how you feel. H no meat Monday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6b4a2dee81964dd5b428955cd833aa76",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 724,
+        "EndTime": 734.639,
+        "Text": "No, I\u0027m not weak at all. I get protein from beans, tofu, and nuts. Actually, I have a lot of energy. I never feel tired after lunch.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6b56dde2aff24dc18beffef6e05e8abd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 373.36,
+        "Text": "You can tell her you are trying something new. Okay, I will try it next week for you. Thank you, Leo. That makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6d27b1f1000144c6be873e6baaf26c3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 595,
+        "EndTime": 597.36,
+        "Text": "What happened at the farm?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6eb66b3cafe14f07ac9a96e7a2ecb893",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 425.039,
+        "Text": "So, so I think I will get the cheese sandwich, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6f5fe6c63010484c88ba899aa45c2ba8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182,
+        "EndTime": 190.959,
+        "Text": "But not in restaurants. When I go out with my friends, they want to eat BBQ or hot pot. Oh right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.6ff47a89133b4f5780f89a39d8cb5c2c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 428,
+        "EndTime": 435.44,
+        "Text": "I\u0027m not doing it for you. I want to see if I have more energy for football. If I play bad, it is your fault.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.71277108d986454882c78d5512dc955a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 995,
+        "EndTime": 1000.079,
+        "Text": "That\u0027s fine. We can get the fish and rice. I don\u0027t eat fish either.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7148341f40304e73b3a39facfa8b1f0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24,
+        "EndTime": 27.68,
+        "Text": "Nice to meet you, too. Where are you from?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.725599f7cbea4178ad1b18c6d8396c67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 382,
+        "EndTime": 389.039,
+        "Text": "There\u0027s chicken soup. No, you can\u0027t eat that. No. There\u0027s a cheese and tomato sandwich.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.72c83733350e4e2b9a85e2538239027d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1308,
+        "EndTime": 1310.72,
+        "Text": "Oh, that sounds very good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.741a88e5ee06474fa209647397ff7027",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 458,
+        "EndTime": 463.599,
+        "Text": "For what? for talking to the new girl. I was really worried about eating lunch alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.75658104e25a426e8bfdbbb4350b3924",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1042,
+        "EndTime": 1047.039,
+        "Text": "I love animals, too. I have a dog, but I still eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.77d899af1a9444cd92a560c2e4f93c1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 587,
+        "EndTime": 595.76,
+        "Text": "I understand many people do, but for me, it feels wrong. When I was 10 years old, my family visited a big farm.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.77fb15f9af5142799dab4b90b7b49118",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1301,
+        "EndTime": 1308.559,
+        "Text": "There\u0027s chicken soup. No, you can\u0027t eat that. No. There\u0027s a cheese and tomato sandwich.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.79e9f945163549689f45c5c365890bc5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1057,
+        "EndTime": 1063.2,
+        "Text": "I saw a lot of cows and pigs. They were very smart. I played with a little pig.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7b02a7d755174ee39c86dd0e7bc66818",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 114,
+        "EndTime": 123.119,
+        "Text": "No, it\u0027s not the taste. I actually liked the taste when I was a kid. Then why did you stop? Because I really love animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7bf70d82ca394cf9960d9aa699d3217b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 803,
+        "EndTime": 808.88,
+        "Text": "No, but maybe you can eat a little more vegetables. Just a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7ca3dbf505064623b244ceba59f4d75d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 532.48,
+        "Text": "So, what do you like to eat? The cafeteria has great beef burgers or the fried chicken. Everyone loves the fried chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7d79ce9013ec44819ec198dca2eaaeb4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 264.479,
+        "Text": "Really? But you don\u0027t get protein from meat. Are you weak?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7ea25e1d0618491186ff16ad8a20a157",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 716,
+        "EndTime": 719.68,
+        "Text": "Also, it\u0027s very good for my health.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.7fe57ed9f9d44946857672610ba5b7f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1383,
+        "EndTime": 1388.855147,
+        "Text": "You never have to eat alone. Come on, let\u0027s get our sandwiches. I know a good table near the",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8146bd37ee9d401cbc481b84cb7dcbc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 884,
+        "EndTime": 892.32,
+        "Text": "Really? You don\u0027t have to do that for me. I\u0027m not doing it for you. I want to see if I have more energy for football.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.81f63c9d06ae4cc9accb88fcaa0000d0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1015,
+        "EndTime": 1016.48,
+        "Text": "Never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.820c279ac48a47558aef2f99115a3c34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1322,
+        "EndTime": 1330.88,
+        "Text": "Okay, I\u0027m going to get the fried chicken and rice. Enjoy your chicken. Wait, give me a second. What\u0027s wrong?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.825f716647404373897b4f794a8fa35e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 123,
+        "EndTime": 127.52,
+        "Text": "I love animals, too. I have a dog, but I still eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.851837e3f72149bf88107f1120799d57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 841,
+        "EndTime": 845.279,
+        "Text": "There\u0027s chicken soup. No, you can\u0027t eat that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.852d667aaffe4917b5e35805a09d2a77",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 671,
+        "EndTime": 681.36,
+        "Text": "It makes me sad sometimes. I don\u0027t want to be a problem. I don\u0027t want to make my friends feel bad. Sometimes I feel very lonely because I\u0027m different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.85d8708a16a84867a7b73d79ed462765",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 944,
+        "EndTime": 947.199,
+        "Text": "Nice to meet you, too. Where are you from?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.85f1de8fac824898ab9f857a00579bef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 451,
+        "EndTime": 454.56,
+        "Text": "And I thought you only talked about football.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8615841206a64a36a06b893e7832aeae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 719,
+        "EndTime": 724.16,
+        "Text": "Really? But you don\u0027t get protein from meat. Are you weak?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.86ab0b67d4f04bb6a8464739416f225b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1292,
+        "EndTime": 1300.72,
+        "Text": "Look, we are here. This is the cafeteria. It smells good. But what can I eat here? Let\u0027s look at the menu.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.88b16808fe2a4840b71046ddff3e5c3d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 389,
+        "EndTime": 391.199,
+        "Text": "Oh, that sounds very good.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8a8849b01f594d20ab2efb222a41ebc3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 102.159,
+        "Text": "I am surprised. I don\u0027t know many vegetarians. What do you eat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8abb315a859a4cbea4f65fc020cfe76a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 403,
+        "EndTime": 411.36,
+        "Text": "Okay, I\u0027m going to get the fried chicken and rice. Enjoy your chicken. Wait, give me a second. What\u0027s wrong?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8e63475bf74548d8bbeb51e89e955ade",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1163,
+        "EndTime": 1169.6,
+        "Text": "But there must be good things about it, right? Yes, a lot of good things. Like what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.8e9ef9527298416ebb15fd50ddbc7fd1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 357.199,
+        "Text": "Yes. Maybe one day a week you don\u0027t eat meat just to see how you feel. H no meat Monday.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9033ebfdbbe24a9ba26a57a24d626bcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 569,
+        "EndTime": 574.32,
+        "Text": "But meat is so good. Why don\u0027t you eat it? Do you hate the taste?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9037bd0114ef4603b1b7eeb26cd8c1bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 484.479,
+        "Text": "I thought so. I know everyone in this class, but I don\u0027t know you. I\u0027m Lear. I\u0027m Mia. Nice to meet you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.907150132105461fb19cc3d3fdd637e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 784,
+        "EndTime": 791.6,
+        "Text": "And that is okay. Are you angry with me? Why would I be angry? Some people get angry on the internet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.91718f95e6044a0eafafa354d272bd95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1300,
+        "EndTime": 1301.6,
+        "Text": "Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9231fc2dbd0448bebe02595f464ea00c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 93,
+        "EndTime": 96.96,
+        "Text": "Wow. Never? Never.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.92d8bcbb4911401f9881792e5dae7c89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 50,
+        "EndTime": 56.559,
+        "Text": "Do you want to eat lunch with me? I can show you the cafeteria. Really? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.94734e1e75be415bb6ea74de5b65b798",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 109.52,
+        "Text": "I eat a lot of things. I eat rice, vegetables, fruit, bread, eggs, tofu, and cheese.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.96186dd7b45240999f8cd8275441b88c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 45,
+        "EndTime": 50.8,
+        "Text": "The morning classes are finally over. I am so hungry. Me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.98111cb2aeea42c69c958ce8a3a5c1f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 535,
+        "EndTime": 540.32,
+        "Text": "That\u0027s fine. We can get the fish and rice. I don\u0027t eat fish either.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.996021ca93c94e968943c63bc66b82cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 970,
+        "EndTime": 976.079,
+        "Text": "Do you want to eat lunch with me? I can show you the cafeteria. Really? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9b02c6c7eba043eba2fadce03f2871ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 221.68,
+        "Text": "It makes me sad sometimes. I don\u0027t want to be a problem. I don\u0027t want to make my friends feel bad. Sometimes I feel very lonely because I\u0027m different.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9b0409d41259463aac274ab0add2d337",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.16,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is vegetarian.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.9e8df6f3560048bcad3a875900600c1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1228,
+        "EndTime": 1234.24,
+        "Text": "Really? Yes. You don\u0027t need meat to be strong. You just need good food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a1b93ba78e4145dcbb0aa4e974bef6ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 768,
+        "EndTime": 774.399,
+        "Text": "Really? Yes. You don\u0027t need meat to be strong. You just need good food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a2ad36668d3b4c4ea2a5e09e1ae26b2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 650,
+        "EndTime": 659.76,
+        "Text": "When we go to a BBQ restaurant, there is no food for me. I just eat a little salad or white rice. You must be very hungry after that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a2c07f80fa7e42efad258f40bcd2d33a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1102,
+        "EndTime": 1110.48,
+        "Text": "But not in restaurants. When I go out with my friends, they want to eat BBQ or hot pot. Oh, right.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a484bcb5d0af4b9d93c8aa67fb585d65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1330,
+        "EndTime": 1339.039,
+        "Text": "You know what? I feel a little heavy today and I have football practice after school. I don\u0027t want to fall asleep on the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a4b55010067c42b6bf50a58b69290fdb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 178,
+        "EndTime": 182.879,
+        "Text": "Why? You just eat vegetables. Vegetables are everywhere.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a5116e5187e54357927d069f7b5a2957",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1034,
+        "EndTime": 1042.64,
+        "Text": "No, it\u0027s not the taste. I actually liked the taste when I was a kid. Then why did you stop? Because I really love animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a58367172b2d40ccace54051e55581bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1176,
+        "EndTime": 1179.52,
+        "Text": "Also, it\u0027s very good for my health.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a784d5b0e663499c88c1a5c625072ba6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 230,
+        "EndTime": 233.519,
+        "Text": "Your mom must cook a lot of food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a88e9b5e2de3401da9b12da0c6929faa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 854,
+        "EndTime": 859.44,
+        "Text": "Perfect. I will get the sandwich and the salad. Is that enough for you? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.a9ac87b19b954bc69ab474053c92980c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 914,
+        "EndTime": 918.72,
+        "Text": "Hey, I\u0027m joking. Thank you, Leo. For what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.aad4daf83ad24217a662c77fe15f0205",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 871,
+        "EndTime": 879.279,
+        "Text": "You know what? I feel a little heavy today and I have football practice after school. I don\u0027t want to fall asleep on the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ab16cb4c20ec4870bf1dc7ce50f265bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 244,
+        "EndTime": 250.08,
+        "Text": "But there must be good things about it, right? Yes. A lot of good things. Like what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ac55573241224328bac57db2d99b5cd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 494.8,
+        "Text": "That is a big change. Do you like this school?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.af6f19a9a4734936a83c97256de62d25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 791,
+        "EndTime": 794.24,
+        "Text": "They say bad things to people who eat meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.af70eb44127240b78f53758a2485eedf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 962,
+        "EndTime": 964.8,
+        "Text": "Thank you. You are very kind.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b0055878a26d43c98f3b6665131022ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1000,
+        "EndTime": 1007.92,
+        "Text": "Oh, are you allergic to seafood? No, I don\u0027t eat beef, chicken, or fish. I am a vegetarian.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b0ebb1caa3a349e186c18103bb857939",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 833,
+        "EndTime": 840.959,
+        "Text": "Look, we are here. This is the cafeteria. It smells good. But what can I eat here? Let\u0027s look at the menu.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b2847302c39a452c8b8eeb28f9ab0f0c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1374,
+        "EndTime": 1378.48,
+        "Text": "Hey, I\u0027m joking. Thank you, Leo. For what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b3614034361c4809b98edfe86dfee1fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 532,
+        "EndTime": 535.44,
+        "Text": "Oh, um I don\u0027t eat chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b41b3e716ba04faf876b023cc467c817",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 688,
+        "EndTime": 693.2,
+        "Text": "No, I\u0027m the only one. Your mom must cook a lot of food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b67249a28b43427f95eba426837f846d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 357,
+        "EndTime": 359.44,
+        "Text": "Yes, that is a good idea.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b6d4f942f8e94426ad4afb0e02ddc77f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 709,
+        "EndTime": 716.959,
+        "Text": "First, I feel very happy. I know I\u0027m not hurting animals. That gives me peace. That makes sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b7469bb9dd0a49af80e00b3406a878bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1153,
+        "EndTime": 1163.52,
+        "Text": "Yes, she\u0027s very tired. She cooks meat for my dad and my brother. Then she cooks a special dish for me. I feel bad for her. I try to cook my own food now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b79927139fa047469cc2c7f3fddb7ca9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 992,
+        "EndTime": 995.199,
+        "Text": "Oh, um I don\u0027t eat chicken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b7c0daee613c4c2eb8faa8a29d1bd0ac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 540,
+        "EndTime": 548.08,
+        "Text": "Oh. Are you allergic to seafood? No, I don\u0027t eat beef, chicken, or fish. I am a vegetarian.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b8377371bdb84c53accfa9ff9ede9a3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 824,
+        "EndTime": 833.12,
+        "Text": "You can tell her you were trying something new. Okay, I will try it next week for you. Thank you, Leo. That makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b912dd1859a046e4bebc4af5ecc17135",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 859,
+        "EndTime": 862.88,
+        "Text": "Yes, Leo. I eat a lot. Don\u0027t worry about me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.b946d91d19454d1d9c11d0d04bde5f78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 454,
+        "EndTime": 458,
+        "Text": "Hey, I\u0027m joking. Thank you, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.bb209f3974e34ff7b772a597a964bd3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 911,
+        "EndTime": 914.24,
+        "Text": "And I thought you only talked about football.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.bd4b2895f108405f86afe654058d7768",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 24.8,
+        "Text": "I thought so. I know everyone in this class, but I don\u0027t know you. I\u0027m Lear. I\u0027m Mia. Nice to meet you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.bf2a490518f94c4a9e78e7edc62d79e1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1098,
+        "EndTime": 1102.4,
+        "Text": "Why? You just eat vegetables. Vegetables are everywhere.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.bf4f8bf0be364a7fb8ff16604dd14e41",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1378,
+        "EndTime": 1383.039,
+        "Text": "For talking to the new girl. I was really worried about eating lunch alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c16472eef99d47e38e41f08cd9293bcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10,
+        "EndTime": 16.72,
+        "Text": "Now listen carefully. Hi. Are you new here? Yes, today is my first day.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c3276e1a46cd4f92a8f02067d7861b07",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1276,
+        "EndTime": 1278.96,
+        "Text": "Yes, that is a good idea.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c3d75c554ffc40fd8a9aa790c899d7e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1352,
+        "EndTime": 1359.6,
+        "Text": "If I play bad, it is your fault. Okay. Okay. I take the blame. But I\u0027m getting extra cheese.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c4cc827eac1540468aaa5dcdfe0aec73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1363,
+        "EndTime": 1370.96,
+        "Text": "For talking to me. It\u0027s interesting. I never talked to a vegetarian before. I thought you only ate sad little carrots.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c4f7cb0e0cba4a37b71111d309909f5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 862,
+        "EndTime": 871.12,
+        "Text": "Okay, I\u0027m going to get the fried chicken and rice. Enjoy your chicken. Wait, give me a second. What\u0027s wrong?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c5639b7da939401bad921093432f698e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1310,
+        "EndTime": 1313.76,
+        "Text": "And they have a big green salad with eggs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c72022af291e440a9fdb080eca515f00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 484,
+        "EndTime": 491.199,
+        "Text": "Nice to meet you, too. Where are you from? I moved here from another city. My dad got a new job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c78f106f391f4226b7e04de77958c8f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 603,
+        "EndTime": 608.48,
+        "Text": "He looked at me with his big eyes. He was like a pet. Like a dog?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c793f639f99c433b9f6bfe28db94f3d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 324,
+        "EndTime": 331.84,
+        "Text": "And that is okay. Are you angry with me? Why would I be angry? Some people get angry on the internet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c7d7fe7738db47aa854cecbef79a48d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 617,
+        "EndTime": 620.24,
+        "Text": "remembered the little pig. I couldn\u0027t eat it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c9807452d06c44e9ad16c2ebd3852e59",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 136.08,
+        "Text": "I understand. Many people do, but for me, it feels wrong. When I was 10 years old, my family visited a big farm.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.c9d6493180ca475e8dc2a2b3c7863874",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1359,
+        "EndTime": 1363.039,
+        "Text": "That is fair. Thank you, Mia. For what?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.caa8b01ccfeb4dcf898d651f405f2842",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1076,
+        "EndTime": 1080.08,
+        "Text": "remembered the little pig. I couldn\u0027t eat it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.cabb5c9dedc244caa82a11f94e4e3ca8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1313,
+        "EndTime": 1319.2,
+        "Text": "Perfect. I will get the sandwich and the salad. Is that enough for you? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.cb05cce1fe0a4e629f4db9ca8eb3f290",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1260,
+        "EndTime": 1263.28,
+        "Text": "I like that. You don\u0027t tell me what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.cc6fe897b607493089a5bffb6bc4c287",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 505,
+        "EndTime": 510.479,
+        "Text": "The morning classes are finally over. I am so hungry. Me, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ccc50914c3494f22b7fad158d0753ee2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1119,
+        "EndTime": 1125.12,
+        "Text": "I am. And sometimes people make fun of me. Really? What do they say?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.cd083edaf5ee4739951a0dcabb32359a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 840,
+        "EndTime": 841.839,
+        "Text": "Okay.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ce15f91992d94c0c8a8571960bb598e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1169,
+        "EndTime": 1176.799,
+        "Text": "First, I feel very happy. I know I\u0027m not hurting animals. That gives me peace. That makes sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.cf70a50a219248fb9e83eea99a241dd3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1141,
+        "EndTime": 1148.24,
+        "Text": "I am sorry, Mia. I didn\u0027t know it was so difficult. What about your family? Are they vegetarians?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d01c8243e15f45ddabc4697b68697524",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 308,
+        "EndTime": 314.72,
+        "Text": "Really? Yes. You don\u0027t need meat to be strong. You just need good food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d3f76cbf5a1d4c539ae33a08458b1755",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 411,
+        "EndTime": 419.52,
+        "Text": "You know what? I feel a little heavy today and I have football practice after school. I don\u0027t want to fall asleep on the field.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d4128f11c49f4824aaf21e88152af61a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 137,
+        "EndTime": 143.68,
+        "Text": "I saw a lot of cows and pigs. They were very smart. I played with a little pig.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d4cd8afc2b874f37ac9df3f764f93c80",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 471.84,
+        "Text": "You never have to eat alone. Come on, let\u0027s get our sandwiches. I know a good table near the window.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d561f89acb5348cba72e6e8c41b854da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 734,
+        "EndTime": 741.279,
+        "Text": "Really? Every day after lunch, I feel so sleepy. I sit in class and my eyes close.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d6ce3e2a44e84ceda1ec837f7ff97433",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 693,
+        "EndTime": 703.68,
+        "Text": "Yes, she\u0027s very tired. She cooks meat for my dad and my brother. Then she cooks a special dish for me. I feel bad for her. I try to cook my own food now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.d9987c03ec9942a685798a98a206e477",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 114.64,
+        "Text": "But meat is so good. Why don\u0027t you eat it? Do you hate the taste?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.db0b76e5aa754ad09dead34c8970a736",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1110,
+        "EndTime": 1119.6,
+        "Text": "When we go to a BBQ restaurant, there is no food for me. I just eat a little salad or white rice. You must be very hungry after that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.db1d15d15e6046dc854769cb1ce5f984",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 597,
+        "EndTime": 603.44,
+        "Text": "I saw a lot of cows and pigs. They were very smart. I played with a little pig.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.dc5d4dac229345bfb3e4e35644e38f08",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 517,
+        "EndTime": 523.68,
+        "Text": "Come with me. The food here is actually very good. Okay, thank you, Leo.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.dd91361cd4384d2e988f2a4321f43e09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 892,
+        "EndTime": 899.839,
+        "Text": "If I play bad, it is your fault. Okay. Okay. I take the blame. But I\u0027m getting extra cheese.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.dda888924afb48fb9b6f3b95194e2e7f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 399,
+        "EndTime": 403.12,
+        "Text": "Yes, Leo. I eat a lot. Don\u0027t worry about me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ddbb2a26472d43318f9c5864a510b45a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1086,
+        "EndTime": 1095.12,
+        "Text": "That is normal. Most people don\u0027t think about it, but I do. So, from that day, I stopped eating meat. Is it hard?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ddd8a90de1094f0095f7c141624445eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 665,
+        "EndTime": 671.92,
+        "Text": "They say, \u0022Why are you eating grass?\u0022 Or, \u0022You need meat to be strong.\u0022 That is not nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.dee712e290284078b5655f635685b741",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1211,
+        "EndTime": 1219.44,
+        "Text": "Maybe you\u0027re right. After I eat a big burger, I just want to sleep for 2 hours. Exactly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.deef2a4c28c743058e36ebadda360b78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 160,
+        "EndTime": 167.04,
+        "Text": "Wow. I never thought about that. I just see food on my plate. I don\u0027t think about the animal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e068aab3d9c44782b33adc5be6da9a51",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1319,
+        "EndTime": 1322.64,
+        "Text": "Yes, Leo. I eat a lot. Don\u0027t worry about me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e2976b1b33a149868888421d14420bee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 819,
+        "EndTime": 824.48,
+        "Text": "I can try that. My mom will be very surprised. She will think I am sick.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e316da569a9844909dd59bee0b82ef55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 574,
+        "EndTime": 582.88,
+        "Text": "No, it\u0027s not the taste. I actually liked the taste when I was a kid. Then why did you stop? Because I really love animals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e37cf956f30540e3abbc8e708966c75c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 83,
+        "EndTime": 86.56,
+        "Text": "No, I don\u0027t eat beef, chicken, or fish.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e527779592574bff9bd3b7beed1f1178",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 951,
+        "EndTime": 954.639,
+        "Text": "That is a big change. Do you like this school?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e67367892fcc470e95b4caab16f09ff8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 510,
+        "EndTime": 517.44,
+        "Text": "Do you want to eat lunch with me? I can show you the cafeteria. Really? Are you sure? Yes, of course.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e6b4b8e4bc66416e97b93a0d5913dc2b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 947,
+        "EndTime": 951.04,
+        "Text": "I moved here from another city. My dad got a new job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e786ba30c3e24278957358b60d2facfc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 324.96,
+        "Text": "I don\u0027t know. I love meat too much. I love the smell of fried chicken. I love big dinners with my family. I don\u0027t think I can stop eating meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e8fc932a2b0a4a61bc8064101b7e2968",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 299.919,
+        "Text": "Maybe you\u0027re right. After I eat a big burger, I just want to sleep for 2 hours. Exactly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.e993f333a48c47e1a631ac108ee4a8be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 494,
+        "EndTime": 502.56,
+        "Text": "It is very big. I feel a little lost. I don\u0027t have any friends here yet. Well, you have one friend now. Me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ecec7003d5c442fa985f6abe5ba075dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1055,
+        "EndTime": 1057.2,
+        "Text": "What happened at the farm?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.edf5b82feb92474ea0f77e1d61ccc855",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 918,
+        "EndTime": 923.279,
+        "Text": "For talking to the new girl. I was really worried about eating lunch alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ee8303dcd316460993e3bad117aa426a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 399.759,
+        "Text": "Perfect. I will get the sandwich and the salad. Is that enough for you? Are you sure?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.ef6ff2a402a34ac9bb0efa7be116b7e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 638,
+        "EndTime": 642.64,
+        "Text": "Why? You just eat vegetables. Vegetables are everywhere.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f0bb6e759ff24f01b554267e49d66090",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 233,
+        "EndTime": 244,
+        "Text": "Yes, she\u0027s very tired. She cooks meat for my dad and my brother. Then she cooks a special dish for me. I feel bad for her. I try to cook my own food now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f423cdabe21245c6acc411fdef0c0fa7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1339,
+        "EndTime": 1344.559,
+        "Text": "So, so I think I will get the cheese sandwich, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f54c157272174c709860224d675357a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1148,
+        "EndTime": 1153.039,
+        "Text": "No, I\u0027m the only one. Your mom must cook a lot of food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f673e0d00fa54f82bf0eb6150eb82ee4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774,
+        "EndTime": 784.639,
+        "Text": "I don\u0027t know. I love meat too much. I love the smell of fried chicken. I love big dinners with my family. I don\u0027t think I can stop eating meat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f8ac57d7040c42b6b3331b088f7a79a9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1370,
+        "EndTime": 1374.08,
+        "Text": "And I thought you only talked about football.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.f8b4d1366edd41c3816ade0838ce25cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1244,
+        "EndTime": 1251.36,
+        "Text": "And that is okay. Are you angry with me? Why would I be angry? Some people get angry on the internet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fb3011a73a214d2b95aa57089807ee3e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 221,
+        "EndTime": 230.72,
+        "Text": "I am sorry, Mia. I didn\u0027t know it was so difficult. What about your family? Are they vegetarians? No, I\u0027m the only one.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fb51aee82b2f497d8c8a6e052e55bc0e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1201,
+        "EndTime": 1211.919,
+        "Text": "That is because meat is heavy. Your body works very hard to digest it. Vegetables and fruits are light. My stomach always feels good. My skin is better, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fbd14e20f94d44e7b18b53d3fed4449d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 373,
+        "EndTime": 381.199,
+        "Text": "Look, we are here. This is the cafeteria. It smells good. But what can I eat here? Let\u0027s look at the menu.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fc220f02ee174741b7d6bb85584039d8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 850,
+        "EndTime": 854,
+        "Text": "And they have a big green salad with eggs.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fd331ebaf5bf44ab8d8c4246d7642332",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1284,
+        "EndTime": 1292.88,
+        "Text": "You can tell her you are trying something new. Okay, I will try it next week for you. Thank you, Leo. That makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fd67528098954776993fcfbbef2575d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 281,
+        "EndTime": 292.4,
+        "Text": "That is because meat is heavy. Your body works very hard to digest it. Vegetables and fruits are light. My stomach always feels good. My skin is better, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180.fe740f29b1854a219557ad3d4129d535",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1263,
+        "EndTime": 1268.72,
+        "Text": "No, but maybe you can eat a little more vegetables. Just a little.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.a589930bbc02810ce10088ce8764ae16bc1b2e9030b6167cae25d08d2d49a180"
+}

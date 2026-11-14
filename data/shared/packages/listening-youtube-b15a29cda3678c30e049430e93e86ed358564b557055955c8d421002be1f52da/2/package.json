@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "listening-youtube-b15a29cda3678c30e049430e93e86ed358564b557055955c8d421002be1f52da",
+  "version": 2,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.listening.youtube.b15a29cda3678c30e049430e93e86ed358564b557055955c8d421002be1f52da",
+      "kind": "ListeningLesson",
+      "values": {
+        "Title": "C2 Proficiency (CPE) Listening Test 32 with answers",
+        "Level": "C2",
+        "Topic": "C2 Proficiency exam practice",
+        "YoutubeId": "Yw49B-Dk18I",
+        "AudioUrl": null,
+        "ThumbnailUrl": "https://img.youtube.com/vi/Yw49B-Dk18I/hqdefault.jpg",
+        "Duration": "44:19",
+        "Speaker1Name": null,
+        "Speaker2Name": null,
+        "Speaker1Country": null,
+        "Speaker2Country": null,
+        "IsPublished": false,
+        "TranscriptSource": null
+      },
+      "references": {}
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.listening.youtube.b15a29cda3678c30e049430e93e86ed358564b557055955c8d421002be1f52da"
+}

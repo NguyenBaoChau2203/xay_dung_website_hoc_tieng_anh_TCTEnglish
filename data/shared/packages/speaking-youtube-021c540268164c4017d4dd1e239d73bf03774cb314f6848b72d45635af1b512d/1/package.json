@@ -1,0 +1,2877 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - B\u1EA0N TRAI B\u1ECA B\u1EC6NH -",
+        "YoutubeId": "F5QyH36MnVo",
+        "Level": "A1",
+        "Topic": "S\u1EE9c kh\u1ECFe",
+        "ThumbnailUrl": "https://img.youtube.com/vi/F5QyH36MnVo/hqdefault.jpg",
+        "Duration": "20:15",
+        "SourceUrl": "https://www.youtube.com/watch?v=F5QyH36MnVo",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0348bc2c2f5e45f9a4c92337df2ba70e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 493.3425,
+        "EndTime": 498.0825,
+        "Text": "Nothing. I just went to school. Then I played football with Tom in the rain.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.03f79237b70d44ec890da11bc3ab6f91",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36.3825,
+        "EndTime": 38.0025,
+        "Text": "It\u0027s okay. I\u0027m fine. Don\u0027t worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.042b1720f62442088a14835a3ede0349",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331.0825,
+        "EndTime": 338.0825,
+        "Text": "Jack, do you want me to leave and never come back? No. Give it to me. Gulp. Done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.058f7799034a4f6a9fc6e53c0bc716f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 440.5025,
+        "EndTime": 447.2825,
+        "Text": "Be quiet. Put your head here. Oh my god, Jack. You are so hot. You have a huge fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0636aac4b9ac4b109055bd8a5e660569",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 296.9825,
+        "EndTime": 300.4025,
+        "Text": "Stop it. That will not work today. I am still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0676fbd43ff24dca8dedfa44793638c7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248.64249999999998,
+        "EndTime": 257.5425,
+        "Text": "I took a taxi. I was in class. The teacher was talking, but I couldn\u0027t focus. I kept looking at my phone. I was waiting for you to reply.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.077fb4886f884513890e09dbb9505bc7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 545.6025,
+        "EndTime": 549.1225,
+        "Text": "You are very mean girlfriend today. You don\u0027t love me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.089086c2b1a340dda0b6ab6161a6c702",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 354.6025,
+        "EndTime": 359.3225,
+        "Text": "If you don\u0027t sleep in 5 minutes, I will hit your head with my bag and you will sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0cc187790f544d648c95a12d2efa7ed7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 229.0225,
+        "EndTime": 232.1825,
+        "Text": "Eat more. Can I have a hug first? I miss you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0d647ebdec674c5f843a9e9988e2fb35",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198.2025,
+        "EndTime": 203.4625,
+        "Text": "Jack, it is 2:00 in the afternoon. You need food to take your medicine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.0ef900a4e7aa412aa8f25a74c01b37c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1142.2625,
+        "EndTime": 1145.0425,
+        "Text": "Good. Now, lie down. Will you stay with me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.113f0a5bae0f432890dd0f9da3a36ad0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 97.02250000000001,
+        "EndTime": 102.6425,
+        "Text": "It was only a little rain, Jack. It rained very hard yesterday. Did you wear a jacket?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.117e0b1ffd634552b2369bce416f4693",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1097.0425,
+        "EndTime": 1099.7825,
+        "Text": "You never think I think about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.124abc58a7794d36b375e9721c968d4e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 462.8625,
+        "EndTime": 468.2625,
+        "Text": "My phone? Oh, it is on the table. It has no battery. I slept all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.12fa3ef8dd33401bb2a652fc8bf05b57",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1163.5025,
+        "EndTime": 1167.2825,
+        "Text": "You are very violent today. Okay, I\u0027m closing my eyes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1315b4d3430843f887f306c5aa1b832b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1072.1825,
+        "EndTime": 1074.5225,
+        "Text": "You scared me, Jack. You live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1545ff8645384940a89f8695d59914ab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 852.6225,
+        "EndTime": 859.7025,
+        "Text": "It is winter. The room is very cold. Go to bed right now. Okay. Okay. Don\u0027t push me. I\u0027m going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.16101fd292a348e9bcba469e60dd30ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 338.7425,
+        "EndTime": 341.5225,
+        "Text": "Good. Now, lie down. Will you stay with me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.19d2a3b052ed43b2ab6693829ff14c76",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 761.8225,
+        "EndTime": 765.6025,
+        "Text": "You are very violent today. Okay, I\u0027m closing my eyes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1ac3505068a646b7a17fa44daf8e3b61",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 785.6825,
+        "EndTime": 788.5625,
+        "Text": "Do you still love me? Even when I\u0027m sick and ugly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1adda85f924f46f785c0bba328c2b8b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 91.4825,
+        "EndTime": 96.2225,
+        "Text": "Nothing. I just went to school. Then I played football with Tom in the rain.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1aec0c5046414d6c9ffceba5e6a76d9c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 220.4025,
+        "EndTime": 228.4425,
+        "Text": "Okay. Okay. Uh, is it hot? It is perfect. It is very delicious. Thank you, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1e6d156b69684914ae03d84a784b9196",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1203.2825,
+        "EndTime": 1207.0225,
+        "Text": "You promise? I promise. No more making you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1eab2171046249699ed1142e585f57a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 821.2825,
+        "EndTime": 831.9425,
+        "Text": "What took you so long? I called you 10 times. Jack. Oh my god. What is wrong with your face? Hi, Emma. My face is normal. I just feel a little cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1f0ca513f31942a9ab52a1922df6cc5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364.3625,
+        "EndTime": 366.4625,
+        "Text": "Put the blanket over your chest. It\u0027s cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1f39073e43844171aabe4d898221e0cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 805.9425,
+        "EndTime": 810.2425,
+        "Text": "Good. Now, shut up and sleep. I\u0027m going to wash your bowl. Good night, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.1feb737f8812493bb97edafd276f2093",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 177.2025,
+        "EndTime": 181.48250000000002,
+        "Text": "You are so annoying. Stop talking and sit up. What is in the bag?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.208a3be65e2748d4bcfb056f82d69b3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 82.0625,
+        "EndTime": 85.7025,
+        "Text": "Why are you angry? I am the sick person here. My body hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2268738d4c5d4cddb041c11d54ee70b2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 67.0025,
+        "EndTime": 73.6425,
+        "Text": "I was so worried. I sent you 20 messages. I thought something bad happened to you. I almost called the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2285269dc92240d2a3ea4415718f1ef2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1032.5625,
+        "EndTime": 1035.7025,
+        "Text": "Eat more. Can I have a hug first? I miss you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.23b58149cfaf4159bc65d2785e52cc15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404.1025,
+        "EndTime": 408.3825,
+        "Text": "Good. Now, shut up and sleep. I\u0027m going to wash your bowl. Good night, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.24aaa8e6f5ad46d6a2124bcd0b59ccd7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 306.5425,
+        "EndTime": 312.9025,
+        "Text": "Give me the bowl. I will eat everything by myself. See, I am eating very fast. I am a strong man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.25848481c2a14fd49303b31755e4e35d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 450.9425,
+        "EndTime": 458.0225,
+        "Text": "It is winter. The room is very cold. Go to bed right now. Okay. Okay. Don\u0027t push me. I\u0027m going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.28a2afd750444e30b5b0db8036ce90c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 531.3225,
+        "EndTime": 535.3225,
+        "Text": "It is bad. You are a baby. You don\u0027t know how to live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2a750c8469d54867bb1d256d36bcf7ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 240.2225,
+        "EndTime": 244.5425,
+        "Text": "No. Eat your soup. You are really angry at me, aren\u0027t you? Yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2b2c9bec5ed843db85d4865416049e08",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 536.1025,
+        "EndTime": 539.4625,
+        "Text": "I\u0027m sorry. Don\u0027t be mad. My head really hurts now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2c95273318fc44d898bfefa8311055f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 498.8625,
+        "EndTime": 504.4825,
+        "Text": "It was only a little rain, Jack. It rained very hard yesterday. Did you wear a jacket?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2e2b3f64f177463c9ad4666bae47becf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 143.7425,
+        "EndTime": 147.2825,
+        "Text": "You are very mean girlfriend today. You don\u0027t love me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.2e3db7f3894841278e264a9f019092ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271.3825,
+        "EndTime": 278.8025,
+        "Text": "Your family is far away. If you are really sick, who will help you? What if you faint in the bathroom? I have you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3510e3ccd4384d9fa5db9a90b9e1c249",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 744.0025,
+        "EndTime": 746.9425,
+        "Text": "I have to go back to school. I have another class at 4:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.35c583dc4081444b96aec904ccbfb5f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 732.9225,
+        "EndTime": 739.9425,
+        "Text": "Jack, do you want me to leave and never come back? No. Give it to me. Gulp. Done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.35c78c6cf81d4a7b919e0b5f415988ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 929.8025,
+        "EndTime": 932.3225,
+        "Text": "When you say it like that, it sounds really bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.37b9a835cd7c44ee95c94fdeffe1082c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 189.7425,
+        "EndTime": 193.3825,
+        "Text": "Wow, you\u0027re like a superhero. I\u0027m very hungry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3aec9e9bc0214302940c655524bd59a2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 315.9825,
+        "EndTime": 320.4825,
+        "Text": "I am a good boy. Look at me. I am very good. The soup is all gone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3ca37789717d470186727a6118cd29c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 600.0425,
+        "EndTime": 605.3025,
+        "Text": "Jack, it is 2:00 in the afternoon. You need food to take your medicine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3ccc2d71a3a24af0a8f9705e0e8743e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1124.6025,
+        "EndTime": 1132.6825,
+        "Text": "You are impossible. Here, drink this warm water. Now, take this white pill. It looks big. I don\u0027t like big pills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3cec0c3e85754e29a8fad117e8c7ea1b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293.5025,
+        "EndTime": 296.2425,
+        "Text": "You never think I think about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3da928eb7832400ba256dbec33796f63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 910.9225,
+        "EndTime": 915.0225,
+        "Text": "And after football, did you take a warm shower? Did you dry your hair?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.3fb8e00aecc34fe18f1c56f6b6f64568",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 329.5225,
+        "EndTime": 330.3425,
+        "Text": "They taste bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.400665767e7e49f9974ef26292ccc524",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1117.1025,
+        "EndTime": 1118.7825,
+        "Text": "Slow down. You will choke.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.40d542afaa1341e480143cc75585bef9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 789.2025,
+        "EndTime": 792.2625,
+        "Text": "Yes, I still love you. But I\u0027m still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.43090dd5c3274865bd9b0ea7fcfd8b72",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1167.8825,
+        "EndTime": 1169.9825,
+        "Text": "Put the blanket over your chest. It\u0027s cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.44ba54defd524d02add8cc8812aaba4f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 138.2625,
+        "EndTime": 143.0825,
+        "Text": "Good. Your head should hurt. You need to remember this pain so you don\u0027t do it again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.45bfb048337f41a5858bc4c75fdd6245",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 549.8225,
+        "EndTime": 556.5425,
+        "Text": "Yes, I am mean because if you get sick like this again, I will not be your girlfriend. I will break up with you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.45c480efb6d94090a8e98835c06f13e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 520.7025,
+        "EndTime": 527.4625,
+        "Text": "I cannot believe you. You sat in wet clothes with wet hair in a cold room to play video games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.48e82743f9184613bec70231a7eb5c62",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 849.6025,
+        "EndTime": 851.9825,
+        "Text": "Really? I just thought the room was hot today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.4a0317e32fba45c2b74e07e91ab21d10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 941.8025,
+        "EndTime": 946.6225,
+        "Text": "Good. Your head should hurt. You need to remember this pain so you don\u0027t do it again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.4a13cd4064d9404a93b7a2ee8e41610e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 540.1025,
+        "EndTime": 544.9425,
+        "Text": "Good. Your head should hurt. You need to remember this pain so you don\u0027t do it again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.4df1b8a04be34ff79eb217a2ade932e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 882.1025,
+        "EndTime": 889.2225,
+        "Text": "Do not call me cute. I am very angry at you. Why are you angry? I\u0027m the sick person here. My body hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.4e646f6b8ef24f959d335f28575b18ba",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 409.0025,
+        "EndTime": 416.9225,
+        "Text": "It\u0027s the afternoon, Jack. Just go to sleep. Jack, are you in there? Open the door.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.4f2e25f6a01f42c6a747fb3ebd0b8cc1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1036.3825,
+        "EndTime": 1043.0625,
+        "Text": "No, don\u0027t touch me. You have a virus. If you hug me, I will get sick, too. Just a small hug.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5055959df2494786b03df1ab63779496",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1082.9625,
+        "EndTime": 1090.1625,
+        "Text": "But what if my phone was off? What if I had a big test? You need to take care of yourself. You are 20 years old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5090cb4294134b9885e4c0adaba247a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 774.6825,
+        "EndTime": 776.6025,
+        "Text": "You just like it when people buy you food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.50bbd9a7b09247e79baec9b61a220545",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 391.0425,
+        "EndTime": 399.1225,
+        "Text": "That\u0027s fair. Next time it rains, I will wear my jacket. I will dry my hair. I will charge my phone. I will be a smart boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.51c08333e3064f64abd2845e6b93df2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1023.9225,
+        "EndTime": 1031.9625,
+        "Text": "Okay. Okay. Uh, is it hot? It is perfect. It is very delicious. Thank you, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.51f6511c93c948cab74d8b7911b8df98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 980.7425,
+        "EndTime": 985.0025,
+        "Text": "You are so annoying. Stop talking and sit up. What is in the bag?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5303a2b562964dedad3e6b6d810d8e6a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 647.1625,
+        "EndTime": 649.8025,
+        "Text": "You look very tired, too. Did you run here?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.53215dd017e24de6851ed28a2ce294a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 756.4425,
+        "EndTime": 761.1625,
+        "Text": "If you don\u0027t sleep in 5 minutes, I will hit your head with my bag and you will sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.53a59578fbd7483da70aa1162b898fbc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 630.8825,
+        "EndTime": 634.0225,
+        "Text": "Eat more. Can I have a hug first? I miss you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.55045a82bf9d4d878a1ad9978c700df9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 708.4025,
+        "EndTime": 714.7625,
+        "Text": "Give me the bowl. I will eat everything by myself. See, I am eating very fast. I am a strong man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.570692c1ff8c4223a9a3094c8800024c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 287.3025,
+        "EndTime": 292.8225,
+        "Text": "You\u0027re right. I was careless. I just wanted to play with Tom. I didn\u0027t think I would get a fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.58f4a46e3d9e4774b619dffed82b086d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 514.0425,
+        "EndTime": 520.0025,
+        "Text": "Well, Tom wanted to play a new video game, so we played the game first. My hair dried by itself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5bb660523c9e43cf9727ce9435674302",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 157.2425,
+        "EndTime": 165.7625,
+        "Text": "Yes, I will. I will find a new boyfriend. A smart boyfriend. A boyfriend who wears a jacket in the rain and dries his hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5ddd906ac98f49b18d80774a6b80ebd4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260.3425,
+        "EndTime": 267.9625,
+        "Text": "Yes, because I\u0027m stupid, too. I like a stupid boy, so I do stupid things. I am sorry I made you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5dec8a0e5594467094c42b4ed8580a4d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 10.3825,
+        "EndTime": 17.2025,
+        "Text": "Now listen carefully. Jack, are you in there? Open the door. I\u0027m coming. Wait a second.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5e996853c0d54bf1899d9580eea061d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 387.3625,
+        "EndTime": 390.4025,
+        "Text": "Yes, I still love you. But I\u0027m still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5f22bae049694706b56779e3868dd129",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346.1425,
+        "EndTime": 353.9425,
+        "Text": "Please, just for a little bit. My head still hurts. I will stay until you sleep. If I don\u0027t sleep, you can\u0027t leave.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.5f24d951f3844b1faa5238155b4f7880",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 832.6025,
+        "EndTime": 839.3025,
+        "Text": "A little cold. You look terrible. Your face is red. You are shaking. Let me touch your head.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.62c14c7f362f44bd90374440b805f526",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 46.0625,
+        "EndTime": 48.442499999999995,
+        "Text": "Really? I just thought the room was hot today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.649063227f6c4f35938a5e8c5947a7c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 61.0225,
+        "EndTime": 66.4225,
+        "Text": "My phone? Oh, it is on the table. It has no battery. I slept all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.64c948c6dcbe436b85c731e325033b39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 214.7425,
+        "EndTime": 219.7025,
+        "Text": "Open your mouth. I will feed you. If you drop soup on the bed, I will hit you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.64cd625f042544508905ca72ad3e2e6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 509.2425,
+        "EndTime": 513.3425,
+        "Text": "And after football, did you take a warm shower? Did you dry your hair?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6503610b3b624991b4018a36f5e4e5c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1061.7225,
+        "EndTime": 1063.1625,
+        "Text": "You left your class for me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6530bbfaeb2c41b2a89e6ea9facefbb8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 673.2425,
+        "EndTime": 680.6425,
+        "Text": "Your family is far away. If you are really sick, who will help you? What if you faint in the bathroom? I have you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.659bbc37289948709731677a4712c9d0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1063.8825,
+        "EndTime": 1071.4825,
+        "Text": "Yes, because I\u0027m stupid, too. I like a stupid boy, so I do stupid things. I am sorry I made you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6632edb0e0514bf990999519160500a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 38.642500000000005,
+        "EndTime": 45.4225,
+        "Text": "Be quiet. Put your head here. Oh my god, Jack. You are so hot. You have a huge fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.67cb42e6af374d87b04e5ad209f7158c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 342.1625,
+        "EndTime": 345.0825,
+        "Text": "I have to go back to school. I have another class at 4:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.68957e820e7f46c6aaf09c64abe7f968",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 166.4225,
+        "EndTime": 171.1625,
+        "Text": "But I\u0027m your favorite boyfriend. You are my only boyfriend, but I can change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6a93e367122f4d5cbc3212c1e567200d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383.8225,
+        "EndTime": 386.72249999999997,
+        "Text": "Do you still love me? Even when I\u0027m sick and ugly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6b961d482d4d4fb38261b90826d78d6a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1176.3625,
+        "EndTime": 1178.2825,
+        "Text": "You just like it when people buy you food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6de270c906304bd5a606006e10c48543",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 528.1225,
+        "EndTime": 530.6225,
+        "Text": "When you say it like that, it sounds really bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6eb2956ad5e94d7a85fb273175ac1d96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 279.4425,
+        "EndTime": 286.6425,
+        "Text": "But what if my phone was off? What if I had a big test? You need to take care of yourself. You are 20 years old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6f844e44e03440df93e6dd069c3b0200",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 969.9425,
+        "EndTime": 974.6825,
+        "Text": "But I\u0027m your favorite boyfriend. You are my only boyfriend, but I can change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.6fd3b47a32214c28b0ed019601a93919",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1090.8425,
+        "EndTime": 1096.3625,
+        "Text": "You\u0027re right. I was careless. I just wanted to play with Tom. I didn\u0027t think I would get a fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.703c4ed6107a4480aa401d3467b80573",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 417.6425,
+        "EndTime": 419.0625,
+        "Text": "I\u0027m coming. Wait a second.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.72185c24112c4ed885d4b422aa571c7e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1018.2625,
+        "EndTime": 1023.2425,
+        "Text": "Open your mouth. I will feed you. If you drop soup on the bed, I will hit you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.7278e0e0b8ca4bd4ab7cfde4b3f48e6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 819.3025,
+        "EndTime": 820.7425,
+        "Text": "I\u0027m coming. Wait a second.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.730eebc80ded4041af2bd66efebbbe21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 268.6425,
+        "EndTime": 270.9825,
+        "Text": "You scared me, Jack. You live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.743b81edc7254a5780e08bde767b924f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1194.5625,
+        "EndTime": 1202.6625,
+        "Text": "That\u0027s fair. Next time it rains, I will wear my jacket. I will dry my hair. I will charge my phone. I will be a smart boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.746d962a51e24df0ac238687a19280ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 616.5825,
+        "EndTime": 621.5625,
+        "Text": "Open your mouth. I will feed you. If you drop soup on the bed, I will hit you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.75d21caaaacd484694fe2752c6f61630",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 103.30250000000001,
+        "EndTime": 106.7825,
+        "Text": "No. It\u0027s hard to play football in a jacket. You get too hot.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.764cd585cd5f48a992447fbada589aab",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1015.5625,
+        "EndTime": 1017.5825,
+        "Text": "I can eat by myself. I\u0027m not a baby.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.78113b8f209f400186196cfe2612b02e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 480.4225,
+        "EndTime": 487.5425,
+        "Text": "Do not call me cute. I am very angry at you. Why are you angry? I\u0027m the sick person here. My body hurts.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.79e033c95abe4636a0fad8ce5a11b4cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 960.7825,
+        "EndTime": 969.3025,
+        "Text": "Yes, I will. I will find a new boyfriend. A smart boyfriend. A boyfriend who wears a jacket in the rain and dries his hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.79e6decbc6fc4bf89b6a8e9601a3959e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 889.9025,
+        "EndTime": 894.3225,
+        "Text": "Because you are stupid. Why are you sick? What did you do yesterday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.7a061fc971674dd5996df4895f08a567",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 313.5625,
+        "EndTime": 315.2425,
+        "Text": "Slow down. You will choke.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.7da80da48263473383fa01a3f39c72be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1100.5225,
+        "EndTime": 1103.9425,
+        "Text": "Stop it. That will not work today. I am still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.7e19412d88684a2f9c41a85236a8348e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 792.8825,
+        "EndTime": 800.9825,
+        "Text": "That\u0027s fair. Next time it rains, I will wear my jacket. I will dry my hair. I will charge my phone. I will be a smart boyfriend.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.810fd942eebb4104ae6c2a78cb109e0f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 321.0825,
+        "EndTime": 329.1425,
+        "Text": "You are impossible. Here, drink this warm water. Now, take this white pill. It looks big. I don\u0027t like big pills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.815fd60efe0b470b908855b7ca2f3d6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 842.1825,
+        "EndTime": 848.9625,
+        "Text": "Be quiet. Put your head here. Oh my god, Jack. You are so hot. You have a huge fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.81761e88a2184aa69cdf26932e3323d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 488.2225,
+        "EndTime": 492.6425,
+        "Text": "Because you are stupid. Why are you sick? What did you do yesterday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.819cf97954824c25bfb5285564e6291b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 702.8825,
+        "EndTime": 707.5825,
+        "Text": "Are you really going to find a new boyfriend? If you don\u0027t finish the soup, yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.824266c2ebc148fd89fbf4b3193a5a5c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1158.1225,
+        "EndTime": 1162.8625,
+        "Text": "If you don\u0027t sleep in 5 minutes, I will hit your head with my bag and you will sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.826148182aef472e847e5b0339fc724f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1145.6825,
+        "EndTime": 1148.6225,
+        "Text": "I have to go back to school. I have another class at 4:00.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.8273bcbfac4d4340b207e1ea88f9335f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 49.0825,
+        "EndTime": 56.1625,
+        "Text": "It is winter. The room is very cold. Go to bed right now. Okay. Okay. Don\u0027t push me. I\u0027m going.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.8276bbb97acc41b4b1d1617de89a7df2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1207.6225,
+        "EndTime": 1211.9225,
+        "Text": "Good. Now, shut up and sleep. I\u0027m going to wash your bowl. Good night, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.82c0c00b276d4e81af9e2e4e5a543603",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 468.8625,
+        "EndTime": 475.4825,
+        "Text": "I was so worried. I sent you 20 messages. I thought something bad happened to you. I almost called the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.83ac84484e6847b98d4ce8f2d6c6d97d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 399.7425,
+        "EndTime": 403.4825,
+        "Text": "You promise? I promise. No more making you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.852657a7576747f68ce09ce8c04e9f12",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 301.0425,
+        "EndTime": 305.7425,
+        "Text": "Are you really going to find a new boyfriend? If you don\u0027t finish the soup, yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.8598251547c44e7d952e418416879d85",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 583.9825,
+        "EndTime": 590.9425,
+        "Text": "I bought some chicken soup and some medicine. I knew you were sick when you didn\u0027t call me this morning. You always call me in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.85df1b05952248ada2e82bde284031ef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 662.2025,
+        "EndTime": 669.8025,
+        "Text": "Yes, because I\u0027m stupid, too. I like a stupid boy, so I do stupid things. I am sorry I made you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.86cfeeba37bb43b2988bd62e63efe8a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1104.5625,
+        "EndTime": 1109.2825,
+        "Text": "Are you really going to find a new boyfriend? If you don\u0027t finish the soup, yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.86f2b5a8333e4d1aa12e6dfddbb58c77",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1074.9225,
+        "EndTime": 1082.3425,
+        "Text": "Your family is far away. If you are really sick, who will help you? What if you faint in the bathroom? I have you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.88768e85e9714445bea80dcd86cabddb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1110.0825,
+        "EndTime": 1116.4425,
+        "Text": "Give me the bowl. I will eat everything by myself. See, I am eating very fast. I am a strong man.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.88aebd7d1c114d22bc8e8dda8f217a93",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 695.3825,
+        "EndTime": 698.1025,
+        "Text": "You never think I think about you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.895afdb263274b67a1514ee1d82daf9d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 86.3625,
+        "EndTime": 90.80250000000001,
+        "Text": "Because you are stupid. Why are you sick? What did you do yesterday?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.89f2339157504bcd83d0a969c17aa12e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 438.2625,
+        "EndTime": 439.8425,
+        "Text": "It\u0027s okay. I\u0027m fine. Don\u0027t worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.8eb2297900314baa8bcf04fa43999f73",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 670.4825,
+        "EndTime": 672.8225,
+        "Text": "You scared me, Jack. You live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.92093bff9c9d4cb4baae4021e91f8a92",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1052.1625,
+        "EndTime": 1061.0625,
+        "Text": "I took a taxi. I was in class. The teacher was talking, but I couldn\u0027t focus. I kept looking at my phone. I was waiting for you to reply.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9450fd6b1a964fc985bd7d503bd67099",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 958.8425,
+        "EndTime": 960.1625,
+        "Text": "What? No, you won\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.94aa08e72d8a4443ba8c884c851d8a4f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 870.5425,
+        "EndTime": 877.1625,
+        "Text": "I was so worried. I sent you 20 messages. I thought something bad happened to you. I almost called the police.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.95d8efb0a40d4e17bcdc56c48606dc3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 777.2825,
+        "EndTime": 785.0225,
+        "Text": "No, I like it when you buy me food and I like it when you yell at me. It means you care about me. You are crazy. Go to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9884305b582c46ab9f5f69c72b29b299",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419.6025,
+        "EndTime": 430.2625,
+        "Text": "What took you so long? I called you 10 times. Jack. Oh my god. What is wrong with your face? Hi, Emma. My face is normal. I just feel a little cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9a85e9b5bb03457e82dab57ac4e43679",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 24.042499999999997,
+        "EndTime": 35.7825,
+        "Text": "Hi, Emma. My face is normal. I just feel a little cold. A little cold. You look terrible. Your face is red. You are shaking. Let me touch your head.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9a8ff6bae8734339b4e471d2932dbae1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 900.5425,
+        "EndTime": 906.1625,
+        "Text": "It was only a little rain, Jack. It rained very hard yesterday. Did you wear a jacket?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9b49e8972ee546f6911b298a020ff3c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17.7425,
+        "EndTime": 24.0025,
+        "Text": "What took you so long? I called you 10 times. Jack. Oh my god. What is wrong with your face?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9b6854f6c17e4725a2faf44e67c5d1e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 458.7025,
+        "EndTime": 462.2225,
+        "Text": "Why didn\u0027t you tell me you were sick? Why didn\u0027t you answer your phone?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9c63a138589b45b5b14092bcbab5b80c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 194.0425,
+        "EndTime": 197.4625,
+        "Text": "Did you eat anything today? I drank a glass of water.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9d9badaf8a61431ba803dd65480de73e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 642.0825,
+        "EndTime": 646.3825,
+        "Text": "No. Eat your soup. You are really angry at me, aren\u0027t you? Yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9f0f5a03a1d0480392ebb3097c6870dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1178.9625,
+        "EndTime": 1186.7025,
+        "Text": "No, I like it when you buy me food and I like it when you yell at me. It means you care about me. You are crazy. Go to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9f13d7225fdf436cb7269d613f4cc4f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 613.8625,
+        "EndTime": 615.9025,
+        "Text": "I can eat by myself. I\u0027m not a baby.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9f1d56bec45e4dadaf2995b507d41682",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 748.0025,
+        "EndTime": 755.7825,
+        "Text": "Please, just for a little bit. My head still hurts. I will stay until you sleep. If I don\u0027t sleep, you can\u0027t leave.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.9ff70e9aaeb64a649f1316ce34cfb8bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 134.2225,
+        "EndTime": 137.6025,
+        "Text": "I\u0027m sorry. Don\u0027t be mad. My head really hurts now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a17143c6db974034a34444c337d21770",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 937.7825,
+        "EndTime": 941.1425,
+        "Text": "I\u0027m sorry. Don\u0027t be mad. My head really hurts now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a372ed9f232347a38f85c94706236500",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 74.3625,
+        "EndTime": 77.9425,
+        "Text": "The police? For a cold? Emma, you are so cute.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a4f41b9421184259aeb94b6271929b89",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 895.0025,
+        "EndTime": 899.7625,
+        "Text": "Nothing. I just went to school. Then I played football with Tom in the rain.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a5f332072f854396b705e6ec9e49fce6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1119.5025,
+        "EndTime": 1124.0225,
+        "Text": "I am a good boy. Look at me. I am very good. The soup is all gone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a86eec3969a54a0c800fde7101dacb25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 56.862500000000004,
+        "EndTime": 60.3625,
+        "Text": "Why didn\u0027t you tell me you were sick? Why didn\u0027t you answer your phone?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.a9b39d30db9544e1941ab927ca068b00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 606.0025,
+        "EndTime": 613.1425,
+        "Text": "I know, I know, but I was too tired to cook and I didn\u0027t want to go outside. My legs feel weak. Open your mouth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ac4304584d2e41de9896428058182ad5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 147.98250000000002,
+        "EndTime": 154.7025,
+        "Text": "Yes, I am mean because if you get sick like this again, I will not be your girlfriend. I will break up with you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ac931862eea3470d8ece0f42b84fb967",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 557.1625,
+        "EndTime": 558.4825,
+        "Text": "What? No, you won\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ae141cce86fb4da4b28f072575f01d5d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 689.1625,
+        "EndTime": 694.6825,
+        "Text": "You\u0027re right. I was careless. I just wanted to play with Tom. I didn\u0027t think I would get a fever.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ae8ef558616d411ca8ec18f504ab590e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 634.7025,
+        "EndTime": 641.3625,
+        "Text": "No, don\u0027t touch me. You have a virus. If you hug me, I will get sick, too. Just a small hug.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.afc3fe4445574e1ea715c6e827973add",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 810.8625,
+        "EndTime": 818.6025,
+        "Text": "It\u0027s the afternoon, Jack. Just go to sleep. Jack, are you in there? Open the door.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.afda8fa586cd414d8d959787926f035e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 681.2825,
+        "EndTime": 688.4825,
+        "Text": "But what if my phone was off? What if I had a big test? You need to take care of yourself. You are 20 years old.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b0a47dd617a64c05b2bd4919d6fe9da1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1190.8825,
+        "EndTime": 1193.9425,
+        "Text": "Yes, I still love you. But I\u0027m still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b1b15a1477134f36ba8069576f7f205f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 951.5025,
+        "EndTime": 958.2425,
+        "Text": "Yes, I am mean because if you get sick like this again, I will not be your girlfriend. I will break up with you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b2e73a7e83634bc981e5b199ab888add",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204.1625,
+        "EndTime": 211.3225,
+        "Text": "I know, I know, but I was too tired to cook and I didn\u0027t want to go outside. My legs feel weak. Open your mouth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b4228175107840f39645cdce688892ce",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476.2225,
+        "EndTime": 479.7825,
+        "Text": "The police? For a cold? Emma, you are so cute.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b45f6631338647d69712ecf43c16c7f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1048.8425,
+        "EndTime": 1051.5025,
+        "Text": "You look very tired, too. Did you run here?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b57eeeb8000f420d906be0903fbcaddc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568.2625,
+        "EndTime": 573.0025,
+        "Text": "But I\u0027m your favorite boyfriend. You are my only boyfriend, but I can change that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b65be499affd4e8183bd38020e15fc66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 860.3825,
+        "EndTime": 863.8825,
+        "Text": "Why didn\u0027t you tell me you were sick? Why didn\u0027t you answer your phone?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b6e90f34a1df46c3a0eb5f50434ed555",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 155.3025,
+        "EndTime": 156.64249999999998,
+        "Text": "What? No, you won\u0027t.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.b8cc6b2db73f4d899b2d3ed837d4dc16",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 715.4225,
+        "EndTime": 717.1025,
+        "Text": "Slow down. You will choke.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ba4611b011e54a838443bd32da5ac226",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1007.6825,
+        "EndTime": 1014.8425,
+        "Text": "I know, I know, but I was too tired to cook and I didn\u0027t want to go outside. My legs feel weak. Open your mouth.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.bab7738fa9e44e338a50a260445e0c39",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 573.5825,
+        "EndTime": 578.4225,
+        "Text": "Please don\u0027t change that. I will wear three jackets next time. I will wear a jacket in the summer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.bb4469c15d934354a82fefc719b12e1b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 975.2625,
+        "EndTime": 980.1025,
+        "Text": "Please don\u0027t change that. I will wear three jackets next time. I will wear a jacket in the summer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.bc1cc3d6924c4a6b9f1485442c116083",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 78.5825,
+        "EndTime": 81.4025,
+        "Text": "Do not call me cute. I am very angry at you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.bc4f18179b824e2c9e762209bf8dd768",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 367.1225,
+        "EndTime": 372.1425,
+        "Text": "Emma, what now? Thank you for coming. I really feel better when you are here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.bdb7c05ff767480e8ded5d805d5c41b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 698.8425,
+        "EndTime": 702.2625,
+        "Text": "Stop it. That will not work today. I am still angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.be086fa9ef634b68a1f920cc12553b66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430.9225,
+        "EndTime": 437.6225,
+        "Text": "A little cold. You look terrible. Your face is red. You are shaking. Let me touch your head.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.c3fb8a1f4f59453099795ca098dbb12f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 717.8225,
+        "EndTime": 722.3425,
+        "Text": "I am a good boy. Look at me. I am very good. The soup is all gone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.c4cffab6e2034a73a20bff154c8c2d61",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 591.6025,
+        "EndTime": 599.3225,
+        "Text": "Wow, you are like a superhero. I\u0027m very hungry. Did you eat anything today? I drank a glass of water.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.c505049381ad468583c4718244de7ce1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 915.7425,
+        "EndTime": 921.6825,
+        "Text": "Well, Tom wanted to play a new video game, so we played the game first. My hair dried by itself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.c5d6ee03b8c6410ba5b5f7aef44a0fcb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 906.8425,
+        "EndTime": 910.3225,
+        "Text": "No. It\u0027s hard to play football in a jacket. You get too hot.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.c69deb6cd2be4e23a76d11189e4de32f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 126.2825,
+        "EndTime": 128.7825,
+        "Text": "When you say it like that, it sounds really bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.cc44fe8c8fc649c08a5d76c510a52278",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 985.6625,
+        "EndTime": 992.6225,
+        "Text": "I bought some chicken soup and some medicine. I knew you were sick when you didn\u0027t call me this morning. You always call me in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ce017731ecd345918433400884157636",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 115.36250000000001,
+        "EndTime": 118.1425,
+        "Text": "played the game first. My hair dried by itself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ceeaa59f375641378e61951d7f1ec979",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 947.2825,
+        "EndTime": 950.8225,
+        "Text": "You are very mean girlfriend today. You don\u0027t love me anymore.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.cf079e96fb284773a9fd7cca125b4559",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 359.9625,
+        "EndTime": 363.7425,
+        "Text": "You are very violent today. Okay, I\u0027m closing my eyes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.cfe111215aca405e8bdfd90cc4b4df21",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 245.3025,
+        "EndTime": 247.9625,
+        "Text": "You look very tired, too. Did you run here?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d0f8cf3f6925405f895263a47b3db7ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 182.14249999999998,
+        "EndTime": 189.1025,
+        "Text": "I bought some chicken soup and some medicine. I knew you were sick when you didn\u0027t call me this morning. You always call me in the morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d32d6f348ac94d7dac67f2f7103ebd0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107.4025,
+        "EndTime": 115.2825,
+        "Text": "And after football, did you take a warm shower? Did you dry your hair? Well, Tom wanted to play a new video game, so we",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d35782d302de4c0eba3d157a91f4b415",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 766.2025,
+        "EndTime": 768.3225,
+        "Text": "Put the blanket over your chest. It\u0027s cold.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d3a246c4dddd4ee2bbbd560781bf8c94",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 722.9225,
+        "EndTime": 730.9825,
+        "Text": "You are impossible. Here, drink this warm water. Now, take this white pill. It looks big. I don\u0027t like big pills.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d40a98eca426420e81c385725af5a5b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 171.7225,
+        "EndTime": 176.5825,
+        "Text": "Please don\u0027t change that. I will wear three jackets next time. I will wear a jacket in the summer.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d4df11110f39411d882cf2b24f383ea3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 579.0425,
+        "EndTime": 583.3225,
+        "Text": "You are so annoying. Stop talking and sit up. What is in the bag?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d4f29a127f6e4584aa757eaf43eea0e2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 447.9225,
+        "EndTime": 450.3025,
+        "Text": "Really? I just thought the room was hot today.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d6430f9690724acfbecfa64139ba9461",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1170.6625,
+        "EndTime": 1175.6825,
+        "Text": "Emma, what now? Thank you for coming. I really feel better when you are here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.d6f199d98f414331a97fd299d00df857",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1149.6625,
+        "EndTime": 1157.4625,
+        "Text": "Please, just for a little bit. My head still hurts. I will stay until you sleep. If I don\u0027t sleep, you can\u0027t leave.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.da28fc9064b74f02b7b91a3c03a06ba6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 731.3625,
+        "EndTime": 732.1825,
+        "Text": "They taste bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.dbea2cb29a9a4a12bf23ca148f74a10e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 375.4225,
+        "EndTime": 383.1825,
+        "Text": "No, I like it when you buy me food and I like it when you yell at me. It means you care about me. You are crazy. Go to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.dc8e0abf9b014a70b2588e3ca2092594",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1001.7225,
+        "EndTime": 1006.9825,
+        "Text": "Jack, it is 2:00 in the afternoon. You need food to take your medicine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e012ef05fddf417abc237ee7cfde736c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 505.1625,
+        "EndTime": 508.6225,
+        "Text": "No. It\u0027s hard to play football in a jacket. You get too hot.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e09c7a60b8624fdea1890dca5869fe3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258.2025,
+        "EndTime": 259.6225,
+        "Text": "You left your class for me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e4a83f4e9e4e46a69b33e5d59529cf96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1043.7625,
+        "EndTime": 1048.0825,
+        "Text": "No. Eat your soup. You are really angry at me, aren\u0027t you? Yes.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e52a1304bd0d4bc6a067c449701bb3c4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 864.5425,
+        "EndTime": 869.9425,
+        "Text": "My phone? Oh, it is on the table. It has no battery. I slept all morning.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e5369a7f4f014fbda50f9b056e79cf95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1133.0425,
+        "EndTime": 1133.8625,
+        "Text": "They taste bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e5900155e595477eaaf83803578af7e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1187.3625,
+        "EndTime": 1190.2625,
+        "Text": "Do you still love me? Even when I\u0027m sick and ugly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e659c0ff4e6c442292672e0a1d69160d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 839.9625,
+        "EndTime": 841.5425,
+        "Text": "It\u0027s okay. I\u0027m fine. Don\u0027t worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e78c1285fdd543f4bf542b35d8ee93f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1212.5425,
+        "EndTime": 1215.0625,
+        "Text": "It\u0027s the afternoon, Jack. Just go to sleep.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.e8f5d609965c433db494eb9949e81d96",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 129.4625,
+        "EndTime": 133.4625,
+        "Text": "It is bad. You are a baby. You don\u0027t know how to live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.eab933415cb14307bde7f72d4afe6e70",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 877.9025,
+        "EndTime": 881.4625,
+        "Text": "The police? For a cold? Emma, you are so cute.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.eae274598a7a4497b372d3b71947b60e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 650.4825,
+        "EndTime": 659.3825,
+        "Text": "I took a taxi. I was in class. The teacher was talking, but I couldn\u0027t focus. I kept looking at my phone. I was waiting for you to reply.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.eb0832ba87504287a0c0d7948fe55522",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 768.9825,
+        "EndTime": 774.0025,
+        "Text": "Emma, what now? Thank you for coming. I really feel better when you are here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.eb40ac5bf5534b4d88ed85feef0e89f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212.0225,
+        "EndTime": 214.0425,
+        "Text": "I can eat by myself. I\u0027m not a baby.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.edce3d3adae249708359d9ef747ecc71",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 922.3825,
+        "EndTime": 929.1625,
+        "Text": "I cannot believe you. You sat in wet clothes with wet hair in a cold room to play video games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.eecdbcef37ad43c986f89303d119ab3a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 993.2825,
+        "EndTime": 1001.0025,
+        "Text": "Wow, you are like a superhero. I\u0027m very hungry. Did you eat anything today? I drank a glass of water.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ef842699816842dd9ffcb82dc6382d25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 118.8625,
+        "EndTime": 125.6225,
+        "Text": "I cannot believe you. You sat in wet clothes with wet hair in a cold room to play video games.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f037f2ae66234902b6111c639170d274",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 933.0025,
+        "EndTime": 937.0025,
+        "Text": "It is bad. You are a baby. You don\u0027t know how to live alone.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f550ca36c9e444f5a60ea28cc464b26d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 559.1025,
+        "EndTime": 567.6225,
+        "Text": "Yes, I will. I will find a new boyfriend. A smart boyfriend. A boyfriend who wears a jacket in the rain and dries his hair.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f70360c16eba4edd8dab0aaccc257774",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232.8425,
+        "EndTime": 239.5225,
+        "Text": "No, don\u0027t touch me. You have a virus. If you hug me, I will get sick, too. Just a small hug.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f7d3e455cc7346c194811863e7318859",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 622.2425,
+        "EndTime": 630.2825,
+        "Text": "Okay. Okay. Uh, is it hot? It is perfect. It is very delicious. Thank you, Emma.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f894a9837d124d9ea13adaa1d44e79dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 372.8225,
+        "EndTime": 374.7625,
+        "Text": "You just like it when people buy you food.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f93b7b2f13b74da691995ad2168d4194",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0.8225,
+        "EndTime": 7.1225,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is my boyfriend is sick.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.f9bdd04f96dd4df8bbe86756b7102b7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 740.5825,
+        "EndTime": 743.3625,
+        "Text": "Good. Now, lie down. Will you stay with me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.fa59183dbf3b4d28a378513ca7d59b88",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1134.6025,
+        "EndTime": 1141.6225,
+        "Text": "Jack, do you want me to leave and never come back? No. Give it to me. Gulp. Done.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ff1b7898082442eaaa734fbee858f747",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 801.6025,
+        "EndTime": 805.3425,
+        "Text": "You promise? I promise. No more making you worry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d.ffd96c8cef6c4dc99bd4ed08921e966c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 660.0425,
+        "EndTime": 661.4825,
+        "Text": "You left your class for me?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.021c540268164c4017d4dd1e239d73bf03774cb314f6848b72d45635af1b512d"
+}

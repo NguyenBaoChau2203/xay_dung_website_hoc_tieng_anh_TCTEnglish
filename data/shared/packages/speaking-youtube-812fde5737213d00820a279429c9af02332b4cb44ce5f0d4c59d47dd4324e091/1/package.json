@@ -1,0 +1,1408 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A2- CU\u1ED8C CHI\u1EBEN SOCOLA-",
+        "YoutubeId": "c-rI2L21KjA",
+        "Level": "A2",
+        "Topic": "\u0102n u\u1ED1ng",
+        "ThumbnailUrl": "https://img.youtube.com/vi/c-rI2L21KjA/hqdefault.jpg",
+        "Duration": "9:41",
+        "SourceUrl": "https://www.youtube.com/watch?v=c-rI2L21KjA",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.00d011d5d39e419eb85f7fc28a33b0d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 241,
+        "EndTime": 248.159,
+        "Text": "I\u0027m not twisting anything. You said all girls love chocolate. That means you know all the girls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.06437059274e43eca0c0302cc64dda16",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 329,
+        "EndTime": 336.88,
+        "Text": "Jenny, what do you want me to do? Give you a pizza next time? Don\u0027t shout at me? I\u0027m not shouting. I\u0027m explaining.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.089cf196fece470c8d1db8b449409185",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 166,
+        "EndTime": 171.44,
+        "Text": "Yes. Really? Even when you\u0027re mad. Even when you shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.09918c70fdd541f086a58782248514e0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 573,
+        "EndTime": 581.079365,
+        "Text": "What? A girl can\u0027t ask for both? I\u0027m broke already. Then start saving, honey.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.0a92fb5300104b748d5b137ae0d403fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 313,
+        "EndTime": 319.84,
+        "Text": "Yes. You said this chocolate is my favorite. Okay, maybe I said that. Finally. Thank you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.0f5d1f025b1641cf85c361d452b079fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 23,
+        "EndTime": 32,
+        "Text": "I know. Wait, how do you know that? Easy. All girls love chocolate. Excuse me? All girls?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.12ecba783ecf4d2f96c3807148d8cffe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 94,
+        "EndTime": 98.4,
+        "Text": "What did you say? Did you just call me crazy?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.13efcaa556a7465f847577451f434b1c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 361.199,
+        "Text": "Yes. Really? Even when you\u0027re mad. Even when you shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.157008435ba142f5a8f08a356582faac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 368,
+        "EndTime": 376.16,
+        "Text": "Unbelievable. And that\u0027s why you love me. Yeah, you\u0027re impossible. And you\u0027re mine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.17f308d9144540dcb545befd5de49b1b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 345,
+        "EndTime": 351.36,
+        "Text": "I changed my mind. Give it back. No way. It\u0027s mine now. You really don\u0027t love me anymore, huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.18e69fff0bb846e9be475e51b3118d53",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 498,
+        "EndTime": 502.96,
+        "Text": "Because you told me last week you like that brand. Oh, did I?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.1cbbfe5557bf46fcbbeee7bcf59d2602",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 118,
+        "EndTime": 123.52,
+        "Text": "Because you told me last week you like that brand. Oh, did I?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.1f3ab3bfdcb046179b3503d6ce4155c2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 550,
+        "EndTime": 558,
+        "Text": "Fine. You can give me half the chocolate. Half? You said you didn\u0027t want it. I changed my mind again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.209759cf04ef4959b788526c99046406",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 494,
+        "EndTime": 498.4,
+        "Text": "Then why do you know what brand she likes? You said it last time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.21def047489e4dd5a4c59f3f06f62794",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 336,
+        "EndTime": 345.039,
+        "Text": "Fine. Don\u0027t give me chocolate anymore. Fine. I\u0027ll eat it myself. What? You\u0027re so mean. You said you don\u0027t want it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.23c5361971674ec7ad8ed6eb8f2d3e15",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 319,
+        "EndTime": 322.639,
+        "Text": "But still, you should have asked before buying it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.266ed501bb654afea7f58bcf7ea3b83e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 477,
+        "EndTime": 481.919,
+        "Text": "No, no, I didn\u0027t mean that. I mean cute crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.2719a66fb312411688abc5f79d57a816",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 52,
+        "EndTime": 58.399,
+        "Text": "I\u0027m not twisting anything. You said all girls love chocolate. That means you know other girls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.2e282d11f3d0453fbc9d64559f51abde",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 113.119,
+        "Text": "Sweet? Yeah, maybe you gave the same one to your ex, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.2ffb206ffa0f43329b63d36e5e49992c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 541,
+        "EndTime": 546.08,
+        "Text": "Oh my god, Jenny. I love you more than chocolate. Okay. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.3a4468c62f0743b88f489251b49d74cd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 441,
+        "EndTime": 445.199,
+        "Text": "Oh, really? Then why did you like your ex\u0027s post last night?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.3a5d8014ee1f44c3affd6854026aa3c8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 58,
+        "EndTime": 61.68,
+        "Text": "I know many people. That doesn\u0027t mean I love them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.3e00231a46bc4ccb83d175f6c373e6bb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 70,
+        "EndTime": 77.36,
+        "Text": "Her cat? Sure. You wrote, \u0022So cute.\u0022 Who\u0027s cute? Huh? Her or the cat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.3eb6162820904591a899b75033deb054",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 178,
+        "EndTime": 186.48,
+        "Text": "Unbelievable. And that\u0027s why you love me. Yeah, you\u0027re impossible. And you\u0027re mine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.3ee8c6a3efdf44c598cb1c10b74f25e7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 132,
+        "EndTime": 139.599,
+        "Text": "What? I buy your favorite chocolate and now it\u0027s wrong, too. It\u0027s not wrong. It\u0027s just suspicious.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.421b8e6c694a4e5e8d15d4fe7b1e081e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 351,
+        "EndTime": 356.32,
+        "Text": "Oh my god, Jenny. I love you more than chocolate. Okay. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.4d35e4aedc59468da73ec44fff08cb2f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 32,
+        "EndTime": 34.32,
+        "Text": "Yeah. I mean, most girls do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.4d69cb264a2744e0a49871e7986b4d1f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 40,
+        "EndTime": 42.64,
+        "Text": "Don\u0027t lie. You said it like you\u0027re an expert.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.4eff7c7960844850b869c20d40991cee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 534,
+        "EndTime": 541.12,
+        "Text": "I changed my mind. Give it back. No way. It\u0027s mine now. You really don\u0027t love me anymore, huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.54635bfbfda6415496698c09d091338a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 77,
+        "EndTime": 84.32,
+        "Text": "The cat, Jenny. The cat. I don\u0027t care about her. You don\u0027t care? Then why follow her?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.5a842e0c1491403093ac19489b8c88bc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 113,
+        "EndTime": 118.96,
+        "Text": "I didn\u0027t. I swear. Then why do you know what brand she likes? You said it last time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.6657f569505547bd985c4f19a1bd6930",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 255,
+        "EndTime": 260.639,
+        "Text": "Oh my god, not again. It was just a picture of her cat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.66d9e612977e4f80bdb9a6de5ac72b82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 224,
+        "EndTime": 229.76,
+        "Text": "Oh, so you gave chocolate to other girls before, right? What? No, of course not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.69e8889effc64bafad9561050306e3cc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 565,
+        "EndTime": 573.92,
+        "Text": "Okay. Okay. Let\u0027s eat the chocolate together. Deal. But next time buy flowers, too. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.6bccf1790512474cbd49f95340abd5b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 322,
+        "EndTime": 329.36,
+        "Text": "What? I buy your favorite chocolate and now it\u0027s wrong, too. It\u0027s not wrong. It\u0027s just suspicious.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.6d7ec041336042d5af7c2d292bacc66d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 213,
+        "EndTime": 221.76,
+        "Text": "I know. Wait, how do you know that? Easy. All girls love chocolate. Excuse me? All girls?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.6daf74a83b064f9da64b50bc83072078",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 384.16,
+        "Text": "Okay. Okay. Let\u0027s eat the chocolate together. Deal. But next time buy flowers, too. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.6ddfef3969f94957966782152bea4155",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 221,
+        "EndTime": 224.08,
+        "Text": "Yeah, I mean, most girls do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.72451dac5f0c4962bbc5a5dc56e5184d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 251.439,
+        "Text": "I know many people. That doesn\u0027t mean I love them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.75bd3743db5e4e199bb915c82523f079",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 284,
+        "EndTime": 288.08,
+        "Text": "What did you say? Did you just call me crazy?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.7613cb921d2c491d96e088e39b44c4a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 450,
+        "EndTime": 456.8,
+        "Text": "Her cat? Sure. You wrote, \u0022So cute.\u0022 Who\u0027s cute? Huh? Her or the cat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.76884e2496c44c5eb8d098266e717c7a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 384,
+        "EndTime": 392.199,
+        "Text": "What? A girl can\u0027t ask for both. I\u0027m broke already. Then start saving, honey.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.7844b675316643889734fcf85bb5d38e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 123,
+        "EndTime": 130.08,
+        "Text": "Yes. You said this chocolate is my favorite. Okay, maybe I said that. Finally. Thank you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.7b069adee036416eb90e0abd4e41ae5a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 422,
+        "EndTime": 425.199,
+        "Text": "I\u0027m not an expert. It\u0027s just common sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.7b4fdf82c659474c9b653802760e4dcf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 61,
+        "EndTime": 65.76,
+        "Text": "Oh, really? Then why did you like your ex\u0027s post last night?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.80c3f86221544d47bba36324a69608e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1,
+        "EndTime": 10.04,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A2 and the topic is chocolate fight.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.81aa9c72145a4457bce3b91778f6b105",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 467,
+        "EndTime": 474.16,
+        "Text": "Liar. You remember the cat but not to unfollow her. Jenny, please. You\u0027re being crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.81d526922fab44bc8ce9758f812b9c67",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 397,
+        "EndTime": 402.829,
+        "Text": "Chocolate. Your favorite one. Oh, chocolate. Wow, I love chocolate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.8486cba5265e444db029c2819f35739c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 437,
+        "EndTime": 441.12,
+        "Text": "I know many people. That doesn\u0027t mean I love them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.84a3c0f938094f7d81c6884c26c7856d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 12,
+        "EndTime": 20.16,
+        "Text": "Now listen carefully. Hey Jenny, look what I got for you. Huh? What is it? Chocolate. Your favorite one.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.85f0ccd47d814605bbfd237d10e0d6a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 130,
+        "EndTime": 132.959,
+        "Text": "But still, you should have asked before buying it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.869e575e34c14a1cb548a40a419ecf72",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 186,
+        "EndTime": 194.48,
+        "Text": "Okay. Okay. Let\u0027s eat the chocolate together. Deal. But next time, buy flowers, too. What?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.882c3ad8ed4b4a21ac6d74371ae3b217",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 288,
+        "EndTime": 293.68,
+        "Text": "No, no, I didn\u0027t mean that. I mean you\u0027re cute crazy. Don\u0027t me now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.88d9cb304a9d47c7a374af2054eeb313",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 277,
+        "EndTime": 284.4,
+        "Text": "Liar. You remember the cat but not to unfollow her? Jenny, please. You\u0027re being crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.8938fb8c44734e81a3922f5ce34e0f64",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 502,
+        "EndTime": 509.599,
+        "Text": "Yes. You said this chocolate is my favorite. Okay, maybe I said that. Finally. Thank you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.8b4e1a7c57bb4fb5bdac5d5248de0bd2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 402,
+        "EndTime": 403.36,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.8e3c23dcce6843fe886f48917e474998",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 267.04,
+        "Text": "Her cat. Sure. You wrote, \u0022So cute.\u0022 Who\u0027s cute? Huh? Her or the cat?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.9027da6342f6454eba3f7c4ca768701c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 467.52,
+        "Text": "Because I forgot to unfollow. I don\u0027t even look at her page.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.9664159233ac4a2293222393aad1a93c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 166.64,
+        "Text": "Oh my god. Jenny, I love you more than chocolate. Okay. Really?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.98f7aa160a864267bd930140bbb305e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 512,
+        "EndTime": 519.039,
+        "Text": "What? I buy your favorite chocolate and now it\u0027s wrong, too. It\u0027s not wrong. It\u0027s just suspicious.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.99e3f2f2332a4c0eb3a7940fc1b4cecd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 98,
+        "EndTime": 103.92,
+        "Text": "No, no, I didn\u0027t mean that. I mean, you\u0027re cute crazy. Don\u0027t me now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.99f494f2a0d24abf81d3a12dfb84673f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 546,
+        "EndTime": 550.88,
+        "Text": "Yes. Really? Even when you\u0027re mad. Even when you shout.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.9c3ec6c7fc7144f3b7c44cbba4a2057c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 304,
+        "EndTime": 308.72,
+        "Text": "Then why do you know what brand she likes? You said it last time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.9f1c466605c64156b96e04dd2498e69d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 488,
+        "EndTime": 494.479,
+        "Text": "Sweet? Yeah. Maybe you gave the same one to your ex, too. I didn\u0027t. I swear.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.a354360a4db046a2af7cc6005671cb4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 393,
+        "EndTime": 397.6,
+        "Text": "Hey, Jenny, look what I got for you. Huh? What is it?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ac358d5db8554c67a42b18c890cd4556",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 403,
+        "EndTime": 404.72,
+        "Text": "I know.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.adeb319727e14dd28f00921386edba83",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 229,
+        "EndTime": 232.4,
+        "Text": "Don\u0027t lie. You said it like you\u0027re an expert.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b30fd73faecb4579b7cf05db12f5dd90",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 509,
+        "EndTime": 512.399,
+        "Text": "But still, you should have asked before buying it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b3b852ec975344a0a1ddc7d3d4dcd8d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 45,
+        "EndTime": 52.16,
+        "Text": "Common sense? Wow. So, you study girls now. Jenny, stop twisting my words.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b3ef2344a4ff4fff8a195258206f202a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 20,
+        "EndTime": 23.58,
+        "Text": "Oh, chocolate. Wow. I love chocolate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b8e60eba154944a89668b2220279c083",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 34,
+        "EndTime": 40.079,
+        "Text": "Oh, so you gave chocolate to other girls before, right? What? No, of course not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b9d2c8f36e8d44ae8a7dc5d60a147545",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 274,
+        "Text": "The cat, Jenny. The cat. I don\u0027t care about her. You don\u0027t care? Then why follow her?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.b9e5ced84317426dad304979e69712dc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 212,
+        "EndTime": 213.599,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.bd118a50464546758641163476d27651",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 139,
+        "EndTime": 143.04,
+        "Text": "Jenny, what do you want me to do? Give you a pizza next time?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.bde643c2b5334da2b8dfff784f84e49b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 361,
+        "EndTime": 368.24,
+        "Text": "Fine. You can give me half the chocolate. Half? You said you didn\u0027t want it. I changed my mind again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.c155dd31094445428530d296ae100d0a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404,
+        "EndTime": 413.84,
+        "Text": "Wait, how do you [clears throat] know that? Easy. All girls love chocolate. Excuse me? All girls? Yeah, I mean, most girls do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.c6c9691e0d854e2b8507409487f74b8e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 171,
+        "EndTime": 178.56,
+        "Text": "Fine. You can give me half the chocolate. Half? You said you didn\u0027t want it. I changed my mind again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.c7419ad1d271467d91cc8bb089c6fdc1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 308,
+        "EndTime": 313.199,
+        "Text": "Because you told me last week you like that brand. Oh, did I?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.cc907f760e7845f3a2d8c0d132d7bc80",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 526,
+        "EndTime": 534.72,
+        "Text": "Fine. Don\u0027t give me chocolate anymore. Fine. I\u0027ll eat it myself. What? You\u0027re so mean. You said you don\u0027t want it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ce7601f573a844cd80cccfe4451c9c95",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 251,
+        "EndTime": 255.439,
+        "Text": "Oh, really? Then why did you like your ex\u0027s post last night?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.d1354d3b21944758bbb96cb3c7e28457",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 474,
+        "EndTime": 477.84,
+        "Text": "What did you say? Did you just call me crazy?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.d1a798eb91da48c6847f2326451b8a10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 103,
+        "EndTime": 109.04,
+        "Text": "Jenny, please. I just wanted to give you chocolate. A sweet gift.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.d1b67f9b39ef4404b504f6a76ba943c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 425,
+        "EndTime": 431.599,
+        "Text": "Common sense? Wow. So, you study girls now? Jenny, stop twisting my words.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.d4dc0e7d5d6e487593d9be28891f1b82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 23,
+        "EndTime": 23.92,
+        "Text": "[laughter]",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.d6cee45b1e1e43c5b6caca328ea90910",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 413,
+        "EndTime": 419.52,
+        "Text": "Oh, so you gave chocolate to other girls before, right? What? No, of course not.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.dba2abbb71bf4489a8e5da98e1ab9429",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 298,
+        "EndTime": 304.8,
+        "Text": "Sweet? Yeah, maybe you gave the same one to your ex, too. I didn\u0027t. I swear.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.df16495052cd4eab852871d27dbe1b85",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293,
+        "EndTime": 298.8,
+        "Text": "Jenny, please. I just wanted to give you chocolate. A sweet gift.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.df308395cb584a178b23c6d431b859e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 481,
+        "EndTime": 488.479,
+        "Text": "Don\u0027t me now, Jenny. Please. I just wanted to give you chocolate. A sweet gift.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e0641d85d31f4f5e8c985cd7bb419438",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 194,
+        "EndTime": 202.519,
+        "Text": "What? A girl can\u0027t ask for both? I\u0027m broke already. Then start saving, honey.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e0f72f1b46ad498eb5585779e253182f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 445,
+        "EndTime": 450.4,
+        "Text": "Oh my god. Not again. It was just a picture of her cat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e4f7ba71ae2548479b39595340f2e8fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 84,
+        "EndTime": 88.08,
+        "Text": "Because I forgot to unfollow. I don\u0027t even look at her page.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e5b210ccfe754c49a940a3eacecae611",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 274,
+        "EndTime": 277.759,
+        "Text": "Because I forgot to unfollow. I don\u0027t even look at her page.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e6463e2518e7470e8b2597dd77b46c3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 204,
+        "EndTime": 212.877,
+        "Text": "Hey, Jenny. Look what I got for you. Huh? What is it? Chocolate. Your favorite one. Oh, chocolate. Wow. I love chocolate.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e68b4a9fac814a2d8701f77f1f1fb895",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 151,
+        "EndTime": 159.04,
+        "Text": "What? You\u0027re so mean. You said you don\u0027t want it. I changed my mind. Give it back. No way. It\u0027s mine now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.e8350218b01e4dff96a7bedea12e2845",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 431,
+        "EndTime": 437.84,
+        "Text": "I\u0027m not twisting anything. You said all girls love chocolate. That means you know all the girls.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ea652d86b3554d73ad9b44a8ecac8fca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 526.64,
+        "Text": "Jenny, what do you want me to do? Give you a pizza next time? Don\u0027t shout at me. I\u0027m not shouting. I\u0027m explaining.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ec22aba6867545b3a6dfb5daeac2b677",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 88,
+        "EndTime": 94.64,
+        "Text": "Liar. You remember the cat but not to unfollow her? Jenny, please. You\u0027re being crazy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ed31620fda834faf931fb51542831fff",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 463.759,
+        "Text": "The cat? Jenny, the cat? I don\u0027t care about her. You don\u0027t care? Then why follow her?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.ee78b9e1d70744c6bec670ef6e857be1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 422.16,
+        "Text": "Don\u0027t lie. You said it like you\u0027re an expert.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.f351d74c7918430e915d24edb3d250e6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 558,
+        "EndTime": 565.92,
+        "Text": "Unbelievable. And that\u0027s why you love me. Yeah, you\u0027re impossible. And you\u0027re mine.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.f3854b913bbe4ad380b4278570d0e7e4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 159,
+        "EndTime": 161.68,
+        "Text": "You really don\u0027t love me anymore. Huh?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.f77b92e55a474f5bba4501e8de0bd660",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 42,
+        "EndTime": 45.76,
+        "Text": "I\u0027m not an expert. It\u0027s just common sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.f82dac3f081d4e3a896f6190aa707091",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 232,
+        "EndTime": 235.44,
+        "Text": "I\u0027m not an expert. It\u0027s just common sense.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.f9abbac8b4164cd2b9a812c31944bf20",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 65,
+        "EndTime": 70.88,
+        "Text": "Oh my god, not again. It was just a picture of her cat.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.fb859d400d284586b46f4268cfbe779e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 235,
+        "EndTime": 241.84,
+        "Text": "Common sense? Wow. So, you study girls now. Jenny, stop twisting my words.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091.fbc9f299966f4e47a436d84e2c989bef",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 143,
+        "EndTime": 151.76,
+        "Text": "Don\u0027t shout at me. I\u0027m not shouting. I\u0027m explaining. Fine. Don\u0027t give me chocolate anymore. Fine. I\u0027ll eat it myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.812fde5737213d00820a279429c9af02332b4cb44ce5f0d4c59d47dd4324e091"
+}

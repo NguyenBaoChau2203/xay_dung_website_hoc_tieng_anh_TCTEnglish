@@ -1,0 +1,1434 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - TI\u1EBET KI\u1EC6M -",
+        "YoutubeId": "UEpAkOQ9-Hg",
+        "Level": "A1",
+        "Topic": "Mua s\u1EAFm \u0026 t\u00E0i ch\u00EDnh",
+        "ThumbnailUrl": "https://img.youtube.com/vi/UEpAkOQ9-Hg/hqdefault.jpg",
+        "Duration": "9:45",
+        "SourceUrl": "https://www.youtube.com/watch?v=UEpAkOQ9-Hg",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.01ced3642b28423b831fedbeacba83b0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 195,
+        "EndTime": 203.76,
+        "Text": "Let\u0027s sleep. We have to wake up early tomorrow to make our coffee at home. Deal. Good night. Good night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.03213bf6f62d4390bb17e65989dbba8c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 504,
+        "EndTime": 511.039,
+        "Text": "I know you do. You\u0027re a great husband and father. But time together is more important than extra money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.0696bda29d5e441fbcd222a697233f03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 346,
+        "EndTime": 353.28,
+        "Text": "And we can take lunch to work. No more buying food outside. That is a great idea. We can do that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.082a59c34421488ebae2be233cb10a78",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 236,
+        "EndTime": 238.799,
+        "Text": "But his education is important.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.09e3c73600364ab393d2553caaefbea6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 71,
+        "EndTime": 75.92,
+        "Text": "You\u0027re right. A meal outside is expensive for the three of us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.0e6e7c8de3674c7d9a40cc674dc1d5c3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 372,
+        "EndTime": 376.88,
+        "Text": "Yes, we are. We\u0027ll fix this together. Please don\u0027t stress too much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.0f3ed562efa94a3192db824b02822188",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 312,
+        "EndTime": 319.199,
+        "Text": "I know you do. You\u0027re a great husband and father, but time together is more important than extra money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.10f1b77e90a442e082bcbcce913c8cd6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 474,
+        "EndTime": 479.12,
+        "Text": "I know. We don\u0027t have much savings right now. Maybe I should get a second job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.115a8425724242d78b3afe25d797a95a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 528,
+        "EndTime": 538,
+        "Text": "That sounds nice. Second, we stop buying coffee at the cafe. We can make coffee at home before work. Okay, that saves money every week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.11a65cefecb54f869504dffe722bfddc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 407,
+        "EndTime": 411.6,
+        "Text": "Yes, it is. We spent way too much money this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.163d39de2a1a4d149ce2bc4f82ec5f2a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 548,
+        "EndTime": 554.399,
+        "Text": "But what about Leo? He needs new shoes for school next week. We\u0027ll buy his shoes. He\u0027s a growing boy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.1689241866cd49e2b20e3562e6c2d611",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 319,
+        "EndTime": 323.36,
+        "Text": "So, what do we do? We can\u0027t live like this every month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.19bb1c721a4244c2a0edde8f653013eb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 44,
+        "EndTime": 47.2,
+        "Text": "But his education is important.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.19e36af714a34adcbe6c0caf7c5637f9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 263,
+        "EndTime": 267.52,
+        "Text": "You\u0027re right. A meal outside is expensive for the three of us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.1a88c1f7fa174fdd87909867d9f52ba6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 463,
+        "EndTime": 468.319,
+        "Text": "Don\u0027t worry. We can buy cheaper food at the market. We can eat simple meals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.1bea381dea7f4781a15f2287a73c452c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 323,
+        "EndTime": 327.52,
+        "Text": "Let\u0027s make a plan. Let\u0027s cut our expenses. How?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.1d1bf02b162d4bf39280fca3e6a5ca6d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 554,
+        "EndTime": 561.279,
+        "Text": "We just won\u0027t buy anything for ourselves this month. No new clothes? No new clothes. We don\u0027t need them.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.1db8c784748c47bbba3b0e161b31bf31",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 47,
+        "EndTime": 53.28,
+        "Text": "Yes, it is. But then my motorbike broke down. The repair was almost $100.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.21544af78f3341b5a54d6518625df795",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 53,
+        "EndTime": 60.16,
+        "Text": "I forgot about the motorbike. That was bad luck. And we also ate at restaurants a lot last week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.2244bd8cb6fe49b885f166022ef67696",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 120.96,
+        "Text": "But I want to give you and Leo a good life. I feel really stressed about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.22d1b3177e4c43e6a873fe9c6244aaa3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 203,
+        "EndTime": 205.28,
+        "Text": "Are you still awake?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.237cb7f2f5b34b33807109639e1a302a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 568,
+        "EndTime": 571.68,
+        "Text": "I feel much better now. Thank you, Sarah.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.244b9f5874ea447691e9f957834ba475",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 571,
+        "EndTime": 578.88,
+        "Text": "You\u0027re welcome. Now, put your phone away. Looking at the bank account won\u0027t give us more money. That is very true.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.248064f4740a4f4581b827b732dccda1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 185,
+        "EndTime": 188.239,
+        "Text": "I feel much better now. Thank you, Sarah.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.283c9bd6ccc9471daa48997842c6a046",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 60,
+        "EndTime": 69.04,
+        "Text": "Three times. I know. I was just so tired after work. I didn\u0027t have the energy to cook. I understand, Sarah. You work hard, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.2cac97a79b80417c8f3e50aae7692ddc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 23,
+        "EndTime": 28.16,
+        "Text": "Yes, it is. We spent way too much money this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.2d31f2b2370546e588f640e40c2e5120",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 174,
+        "EndTime": 180.72,
+        "Text": "No new clothes. No new clothes. We don\u0027t need them. Okay, you\u0027re right. We are a team.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.325a242a2cde48bd8d87d79700a6a11f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 251,
+        "EndTime": 260.639,
+        "Text": "Three times. I know. I was just so tired after work. I didn\u0027t have the energy to cook. I understand, Sarah. You work hard, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.328a22eb66864b4e83906b07eafb7d0c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 455,
+        "EndTime": 459.28,
+        "Text": "You\u0027re right. A meal outside is expensive for the three of us.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.33a66b14f97f4d01b0bcba10e73027b8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 523.36,
+        "Text": "First, no more restaurants. I\u0027ll cook dinner every night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3497b3ce48bf4f48b1663ef6526ad4b7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 276,
+        "EndTime": 285.199,
+        "Text": "It is not just about this month. We need to save money for the future. What if someone gets sick? I know. We don\u0027t have much savings right now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.36a405d56a8f444cab4ec19b1534c3da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 79,
+        "EndTime": 87.2,
+        "Text": "Don\u0027t worry. We can buy cheaper food at the market. We can eat simple meals. It is not just about this month. We need to",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.38459c05eedb4698b27092e73e2c5bf1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 109,
+        "EndTime": 116,
+        "Text": "No, Saturday is for our family. Leo wants to play with you and I want to see you, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.38c38428c73b452fa1afa67ab253c0d0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 376,
+        "EndTime": 379.84,
+        "Text": "I feel much better now. Thank you, Sarah.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3b238b73ed0a4befbeb9baec527ef980",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 152,
+        "EndTime": 154.64,
+        "Text": "Okay, that saves money every week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3c56f6821bae40f9a7b80cdb8a69578c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 307,
+        "EndTime": 312.56,
+        "Text": "But I want to give you and Leo a good life. I feel really stressed about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3de4a45d6cf04ab38175f853fee10371",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 209,
+        "EndTime": 215.519,
+        "Text": "I am looking at our bank account on my phone. Oh, you look worried. Is it bad?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3e315ba11b8944539fcf4b655a480a09",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 479,
+        "EndTime": 485.68,
+        "Text": "A second job? When I can work at the supermarket on Saturday mornings or drive a taxi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.3f048c9a5ef346c7b1ab2d3c1f0e77b9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 293,
+        "EndTime": 300.96,
+        "Text": "No, Mark. You already work from Monday to Friday. You come home very late. But we need the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.411bb9045a9a4be79b6de656d9debb32",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 227,
+        "EndTime": 236.4,
+        "Text": "Well, Leo\u0027s school fee was very high this month. They asked for money for the new books. That\u0027s true. School is so expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.4321ed1fced74c8a92a1e1e8d92911a2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 145,
+        "EndTime": 152.08,
+        "Text": "That sounds nice. Second, we stop buying coffee at the cafe. We can make coffee at home before work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.494789ba47cc493396d2f8a9d3872b6c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 289,
+        "EndTime": 293.919,
+        "Text": "I can work at the supermarket on Saturday mornings or drive a taxi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.497f2f17c31342f088a81370dda03033",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 188,
+        "EndTime": 195.44,
+        "Text": "You\u0027re welcome. Now, put your phone away. Looking at the bank account won\u0027t give us more money. That is very true.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.4d01814c63954d44bdde13ba3bdaa619",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 336.639,
+        "Text": "You are too tired to cook every night. I will help you cook. We can do it together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.4d26c742bf1b495997595a2166bd6d3c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 443,
+        "EndTime": 452.4,
+        "Text": "Three times. I know. I was just so tired after work. I didn\u0027t have the energy to cook. I understand, Sarah. You work hard, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.4e6b69640f104abfba1a1755f3d26c27",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 164,
+        "EndTime": 174,
+        "Text": "But what about Leo? He needs new shoes for school next week. We\u0027ll buy his shoes. He\u0027s a growing boy. We just won\u0027t buy anything for ourselves this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.4faf41b14d0e4df3b8f7736b5127b7f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 215,
+        "EndTime": 223.2,
+        "Text": "Yes, it is. We spent way too much money this month. Really, we didn\u0027t buy anything special.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.52b0bb5748794b5bbeec989fd304bc37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 511,
+        "EndTime": 515.2,
+        "Text": "So, what do we do? We can\u0027t live like this every month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.535b61ce938b40b9b57089d50d20a389",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 13,
+        "EndTime": 17.44,
+        "Text": "Yes, I am reading a book. What are you doing? It is late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.5478d33a691d4e18ab974390ae899a36",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 135,
+        "EndTime": 143.68,
+        "Text": "First, no more restaurants. I\u0027ll cook dinner every night. You are too tired to cook every night. I will help you cook.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.56ed9b7e5c1243a39858188e5940aab5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 499,
+        "EndTime": 504.319,
+        "Text": "But I want to give you and Leo a good life. I feel really stressed about money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.5969e4ac9a5448e6835cc497f943bde9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 69,
+        "EndTime": 71.76,
+        "Text": "But eating out costs a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.5a973e44e28e496698a4976a9ecad3aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 248,
+        "EndTime": 251.76,
+        "Text": "And we also ate at restaurants a lot last week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.5f094ae254254d9aaee3176a9060a721",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 28,
+        "EndTime": 36.239,
+        "Text": "Really? But we didn\u0027t buy anything special. I know, but the money is almost gone. How is that possible?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.638a76c7c1eb4f0fb6c4bf4927b2f8fa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 271,
+        "EndTime": 276.479,
+        "Text": "Don\u0027t worry. We can buy cheaper food at the market. We can eat simple meals.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.63ca72c6738741c6bf42636b14f0375d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 260,
+        "EndTime": 263.36,
+        "Text": "But eating out costs a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.64112fadfba2443c865fed9c4bd7d345",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 13.679,
+        "Text": "Now listen carefully. Are you still awake?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.667b7f81a6cb4f1c99388a0eda9b395e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 538,
+        "EndTime": 545.12,
+        "Text": "And we can take lunch to work. No more buying food outside. That is a great idea. We can do that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.6e71ec2c165b42f6a597626c151c776a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 452,
+        "EndTime": 455.12,
+        "Text": "But eating out costs a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.6ecdc17c41ac462a9f98439b2e96bf87",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 397,
+        "EndTime": 400.88,
+        "Text": "Yes, I\u0027m reading a book. What are you doing? It is late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.7122beed30d7481ebe4006ad92656a43",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 419,
+        "EndTime": 428.24,
+        "Text": "Well, Leo\u0027s school fee was very high this month. They asked for money for the new books. That\u0027s true. School is so expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.728fdbbed22847afb1921329bca26a82",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 300,
+        "EndTime": 307.6,
+        "Text": "No, Saturday is for our family. Leo wants to play with you, and I want to see you, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.7448fe2da7254d56bcb5847d763a9c05",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 362.639,
+        "Text": "But what about Leo? He needs new shoes for school next week. We\u0027ll buy his shoes. He\u0027s a growing boy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.74623460ec0d4c398d42fa172044fb5b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 97,
+        "EndTime": 102.32,
+        "Text": "I can work at the supermarket on Saturday mornings or drive a taxi.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.75c648a13cbb425e8b52b642aac143c9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 578,
+        "EndTime": 585.073197,
+        "Text": "Let\u0027s sleep. We have to wake up early tomorrow to make our coffee at home. Deal. Good night. Good night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.77d28e154fec419a90c133a069299c03",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.16,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is saving.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.799f9dfb7cda4c17b7899ab12a95b610",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 327,
+        "EndTime": 331.6,
+        "Text": "First, no more restaurants. I\u0027ll cook dinner every night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.7c2bebf5841e432d845b14085a471585",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 523,
+        "EndTime": 528.399,
+        "Text": "You are too tired to cook every night. I will help you cook. We can do it together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.7d6c0bd413fd4df69fa8de5af0733013",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 120,
+        "EndTime": 127.6,
+        "Text": "I know you do. You\u0027re a great husband and father, but time together is more important than extra money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.7f90133a625443e7b0e05f2e77504922",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 17,
+        "EndTime": 23.92,
+        "Text": "I am looking at our bank account on my phone. Oh, you look worried. Is it bad?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.8271a535b4f44f30b83aea32780b8a6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 209.04,
+        "Text": "Yes, I\u0027m reading a book. What are you doing? It is late.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.860c914bda1545f7bb03600decd3a3f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 102,
+        "EndTime": 109.36,
+        "Text": "No, Mark. You already work from Monday to Friday. You come home very late. But we need the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.88855df7115c4e778b751f690a45bfd5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 459,
+        "EndTime": 463.36,
+        "Text": "Exactly. We only have a little money left for the rest of the month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.8abfbc54e91b4662898379e3f79de730",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 267,
+        "EndTime": 271.52,
+        "Text": "Exactly. We only have a little money left for the rest of the month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.8d9a36894ea047e1a653e00a20a316a2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 44.8,
+        "Text": "Well, Leo\u0027s school fee was very high this month. They asked for money for the new books. That\u0027s true. School is so expensive now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.8f841fdb470b40c48715a638e073a078",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 387,
+        "EndTime": 395.52,
+        "Text": "Let\u0027s sleep. We have to wake up early tomorrow to make our coffee at home. Deal. Good night. Good night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.953e17105c3243c0a85dca28165eac68",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 436,
+        "EndTime": 439.919,
+        "Text": "I forgot about the motorbike. That was bad luck.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.9a52f0ebd3e94b2aa0b6af1eb5d5f30c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 439,
+        "EndTime": 443.52,
+        "Text": "And we also ate at restaurants a lot last week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.9ce74691c433461882d8f3e25d3c4d84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 238,
+        "EndTime": 244.879,
+        "Text": "Yes, it is. But then my motorbike broke down. The repair was almost $100.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.9e81a205ee724c0890ebf0cbcb856199",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 365,
+        "EndTime": 372.319,
+        "Text": "No new clothes. No new clothes. We don\u0027t need them. Okay, you\u0027re right. We are a team.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.a0a439d1ce1e4e1590da6f914fa36a23",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 143,
+        "EndTime": 145.04,
+        "Text": "We can do it together.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.a27cf4567f38416d8a0d2f853539d648",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 411,
+        "EndTime": 419.68,
+        "Text": "Really? But we didn\u0027t buy anything special. I know, but the money is almost gone. How is that possible?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.a5881bebb5d54d35a7acd9d27616e136",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 468,
+        "EndTime": 474,
+        "Text": "It is not just about this month. We need to save money for the future. What if someone gets sick?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.ab21ee286dfd49a2b3401ba1f6ea6c84",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 161,
+        "EndTime": 164.56,
+        "Text": "See, we just need to change small habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.b1b93e7b881f4bdaa5df465215c76abe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 154,
+        "EndTime": 161.68,
+        "Text": "And we can take lunch to work. No more buying food outside. That is a great idea. We can do that.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.bbd20e58890444ca9de835b6b2fe0713",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 223,
+        "EndTime": 227.92,
+        "Text": "I know, but the money is almost gone. How is that possible?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.bf90478d08e44ed1b476f898afaed90e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 545,
+        "EndTime": 548,
+        "Text": "See, we just need to change small habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c47b84f38e3443999814815a17871cbc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 428,
+        "EndTime": 430.639,
+        "Text": "But his education is important.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c4aa158875854a10853ac0e13ab62eac",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 436.639,
+        "Text": "Yes, it is. But then my motorbike broke down. The repair was almost $100.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c6728e4dccdf4e228d26145085ebf490",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 515,
+        "EndTime": 519.36,
+        "Text": "Let\u0027s make a plan. Let\u0027s cut our expenses. How?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c72079e8aa844851a73e89bd407e3346",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 90.56,
+        "Text": "save money for the future. What if someone gets sick?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c7647f1bbaed42b1b50d48ec890c221d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 75,
+        "EndTime": 79.92,
+        "Text": "Exactly. We only have a little money left for the rest of the month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c84ea4d8e52c42fbba08c8ef6765c1c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 492,
+        "EndTime": 499.36,
+        "Text": "No. Saturday is for our family. Leo wants to play with you, and I want to see you, too.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c93d3612b1f74538a28b549f5c998868",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 285,
+        "EndTime": 289.52,
+        "Text": "Maybe I should get a second job. A second job? When?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.c9c12e3d4bee4ab6882d8b409e12e17a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 485,
+        "EndTime": 492.8,
+        "Text": "No, Mark. You already work from Monday to Friday. You come home very late. But we need the money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.d4a333b358ac4348be3bba25a5946091",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 343,
+        "EndTime": 346.24,
+        "Text": "Okay, that saves money every week.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.d55bd0db579e4c3ebb2689130aab88aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 336,
+        "EndTime": 343.68,
+        "Text": "That sounds nice. Second, we stop buying coffee at the cafe. We can make coffee at home before work.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.dc20727409b54a6f8a9b446327a79648",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 131,
+        "EndTime": 135.92,
+        "Text": "Let\u0027s make a plan. Let\u0027s cut our expenses. How?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.df9b8b63ab9041378a091a2a2d9a49ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 127,
+        "EndTime": 131.76,
+        "Text": "So, what do we do? We can\u0027t live like this every month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.e35ae0cb228541849be2159fba383bc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 180,
+        "EndTime": 185.28,
+        "Text": "Yes, we are. We\u0027ll fix this together. Please don\u0027t stress too much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.f48c65ebb7d04c4fb822f619692ec129",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 561,
+        "EndTime": 568.72,
+        "Text": "Okay, you\u0027re right. We are a team. Yes, we are. We\u0027ll fix this together. Please don\u0027t stress too much.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.f6a05907009d47a4814208798f6d8ada",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 90,
+        "EndTime": 97.92,
+        "Text": "I know. We don\u0027t have much savings right now. Maybe I should get a second job. A second job? When?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.f6d1869d2b864969a4453ee5439571dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 395,
+        "EndTime": 397.039,
+        "Text": "Are you still awake?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.f74c3f0ea23d47d29c51a293b075b0d3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 400,
+        "EndTime": 407.36,
+        "Text": "I am looking at our bank account on my phone. Oh, you look worried. Is it bad?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.fa3216994df74d1abdd238f0c2bd2ae3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 353,
+        "EndTime": 356.16,
+        "Text": "See, we just need to change small habits.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.fa7544c5fec1463684d631869801b6d1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 362,
+        "EndTime": 365.6,
+        "Text": "We just won\u0027t buy anything for ourselves this month.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.fab9d1b95c4242aabfdc98b032b597ed",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 244,
+        "EndTime": 248.159,
+        "Text": "I forgot about the motorbike. That was bad luck.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58.fd2b3a8472eb4d429d6a86b2402ecf4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 379,
+        "EndTime": 387.12,
+        "Text": "You\u0027re welcome. Now, put your phone away. Looking at the bank account won\u0027t give us more money. That is very true.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.1a72c253ca34971f3403b117d6d64d21212c3ec36b8b2a08647d349cd6ad7b58"
+}

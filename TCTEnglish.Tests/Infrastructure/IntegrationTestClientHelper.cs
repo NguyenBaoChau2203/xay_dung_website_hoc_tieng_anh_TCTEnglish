@@ -33,7 +33,13 @@ public static class IntegrationTestClientHelper
 
     public static async Task<string> GetAntiForgeryTokenAsync(HttpClient client, string route)
     {
-        using var response = await client.GetAsync(route);
+        using var initialResponse = await client.GetAsync(route);
+        // Legacy page URLs may redirect once to their canonical form surface.
+        using var redirectedResponse = initialResponse.StatusCode == System.Net.HttpStatusCode.Redirect
+            && initialResponse.Headers.Location is { IsAbsoluteUri: false } location
+                ? await client.GetAsync(location)
+                : null;
+        var response = redirectedResponse ?? initialResponse;
         var body = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {

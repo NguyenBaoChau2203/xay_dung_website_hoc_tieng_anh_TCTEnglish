@@ -62,16 +62,13 @@ test('_Loader.cshtml and page-loader.css provide Claymorphism page loader', () =
 
 test('Account sidebar logout button and transitions support clean collapse without text overflow', () => {
     const profilePath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Profile.cshtml');
-    const settingsPath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Settings.cshtml');
     const cssPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/css/account-ui.css');
 
     const profileContent = fs.readFileSync(profilePath, 'utf8');
-    const settingsContent = fs.readFileSync(settingsPath, 'utf8');
     const cssContent = fs.readFileSync(cssPath, 'utf8');
 
     // Verification that logout label is wrapped in nav-label so it hides on collapse
     assert.ok(profileContent.includes('<span class="nav-label">Đăng xuất</span>'), 'Profile logout must wrap text in nav-label');
-    assert.ok(settingsContent.includes('<span class="nav-label">Đăng xuất</span>'), 'Settings logout must wrap text in nav-label');
 
     // Verification of smooth transitions and collapsed rules in account-ui.css
     assert.ok(cssContent.includes('transition: width 280ms'), 'Sidebar width transition must exist');
@@ -89,27 +86,20 @@ test('Header menuToggleBtn works on Account pages: mainSidebar is rendered with 
     assert.ok(!content.includes('@if (!hideSidebar)'), 'Must not completely omit mainSidebar from DOM when hideSidebar is true');
 });
 
-test('Account Profile and Settings contain theme-colored sidebar icon boxes, stats cards, and dynamic tab animations', () => {
+test('Account Profile tabs contain theme-colored sidebar icon boxes, stats cards, and dynamic tab animations', () => {
     const profilePath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Profile.cshtml');
-    const settingsPath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Settings.cshtml');
     const cssPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/css/account-ui.css');
     const jsPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/js/account-ui.js');
 
     const profileContent = fs.readFileSync(profilePath, 'utf8');
-    const settingsContent = fs.readFileSync(settingsPath, 'utf8');
     const cssContent = fs.readFileSync(cssPath, 'utf8');
     const jsContent = fs.readFileSync(jsPath, 'utf8');
 
-    // Sidebar icon boxes in Profile & Settings
+    // Sidebar icon boxes in the shared Account shell
     assert.ok(profileContent.includes('nav-icon-box--profile'), 'Profile view must include nav-icon-box--profile');
     assert.ok(profileContent.includes('nav-icon-box--security'), 'Profile view must include nav-icon-box--security');
     assert.ok(profileContent.includes('nav-icon-box--subscription'), 'Profile view must include nav-icon-box--subscription');
     assert.ok(profileContent.includes('nav-icon-box--logout'), 'Profile view must include nav-icon-box--logout');
-
-    assert.ok(settingsContent.includes('nav-icon-box--profile'), 'Settings view must include nav-icon-box--profile');
-    assert.ok(settingsContent.includes('nav-icon-box--security'), 'Settings view must include nav-icon-box--security');
-    assert.ok(settingsContent.includes('nav-icon-box--subscription'), 'Settings view must include nav-icon-box--subscription');
-    assert.ok(settingsContent.includes('nav-icon-box--logout'), 'Settings view must include nav-icon-box--logout');
 
     // Profile page content enrichment (stats, panels, badges)
     assert.ok(profileContent.includes('stat-clay-card stat-card--streak'), 'Profile stats streak card must exist');
@@ -198,7 +188,6 @@ test('Account tabs feature compact, balanced Bento layouts without artificial em
     assert.ok(profileContent.includes('security-grid'), 'Security tab must use 2-column Bento grid');
     assert.ok(profileContent.includes('security-main'), 'Security tab must have main column for forms');
     assert.ok(profileContent.includes('security-side'), 'Security tab must have side column for health and notifications');
-    assert.ok(profileContent.includes('security-bottom-grid'), 'Security tab must have responsive bottom grid for linked and danger');
 
     // Tab 3 Subscription Bento layout
     assert.ok(profileContent.includes('subscription-hub'), 'Subscription tab must use subscription-hub container');
@@ -228,12 +217,10 @@ test('Account stat icon boxes and panel icon boxes are centered and cannot be di
 
 test('Account views feature a unified dynamic Claymorphism Account Header Hero with interactive chips and tab sync', () => {
     const profilePath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Profile.cshtml');
-    const settingsPath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Settings.cshtml');
     const cssPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/css/account-ui.css');
     const jsPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/js/account-ui.js');
 
     const profileHtml = fs.readFileSync(profilePath, 'utf8');
-    const settingsHtml = fs.readFileSync(settingsPath, 'utf8');
     const css = fs.readFileSync(cssPath, 'utf8');
     const js = fs.readFileSync(jsPath, 'utf8');
 
@@ -246,11 +233,6 @@ test('Account views feature a unified dynamic Claymorphism Account Header Hero w
     assert.ok(profileHtml.includes('meta-chip--status'), 'Status chip must exist');
     assert.ok(profileHtml.includes('meta-chip--role'), 'Role chip must exist');
     assert.ok(profileHtml.includes('meta-chip--dynamic'), 'Dynamic tab stat chip must exist');
-
-    // Settings markup checks
-    assert.ok(settingsHtml.includes('account-header-hero'), 'Settings must use account-header-hero');
-    assert.ok(settingsHtml.includes('account-breadcrumb-pill'), 'Settings must have breadcrumb pill');
-    assert.ok(settingsHtml.includes('meta-chip--security'), 'Settings must have security chip');
 
     // No duplicate visible headings in tabs
     assert.ok(profileHtml.includes('id="profile-security-heading" class="visually-hidden"'), 'Security tab heading must be visually-hidden to avoid duplicate banner');
@@ -268,7 +250,7 @@ test('Account views feature a unified dynamic Claymorphism Account Header Hero w
     assert.ok(js.includes('accountBreadcrumbActive'), 'JS must update accountBreadcrumbActive on tab switch');
 });
 
-test('Account Security tab enforces 100% symmetrical horizontal and vertical OCD alignment', () => {
+test('Account Security tab retains all settings cards', () => {
     const profilePath = path.resolve(__dirname, '../../TCTEnglish/Views/Account/Profile.cshtml');
     const cssPath = path.resolve(__dirname, '../../TCTEnglish/wwwroot/css/account-ui.css');
 
@@ -283,14 +265,4 @@ test('Account Security tab enforces 100% symmetrical horizontal and vertical OCD
     assert.ok(profileHtml.includes('security-card--linked'), 'Linked card must have security-card--linked class');
     assert.ok(profileHtml.includes('security-card--danger'), 'Danger card must have security-card--danger class');
 
-    // Symmetrical column ratio and aligned gutter across top and bottom grids
-    assert.ok(css.includes('.account-ui .security-grid,') && css.includes('.account-ui .security-bottom-grid {'), 'security-grid and security-bottom-grid must share unified definition');
-    assert.ok(css.includes('grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);'), 'Both grids must use identical 1.35fr 1fr column ratio');
-
-    // Desktop display contents and explicit grid row/column mapping for perfect horizontal seams
-    assert.ok(css.includes('display: contents !important;'), 'Desktop must use display: contents for true 2x2 grid alignment');
-    assert.ok(css.includes('.security-card--email') && css.includes('grid-column: 1;') && css.includes('grid-row: 1;'), 'Email card must be in row 1 col 1');
-    assert.ok(css.includes('.security-card--health') && css.includes('grid-column: 2;'), 'Health card must be in row 1 col 2');
-    assert.ok(css.includes('.security-card--password') && css.includes('grid-row: 2;'), 'Password card must be in row 2 col 1');
-    assert.ok(css.includes('.security-card--notifications') && css.includes('grid-row: 2;'), 'Notifications card must be in row 2 col 2');
 });

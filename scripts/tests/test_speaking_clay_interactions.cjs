@@ -262,7 +262,7 @@ test('Index.cshtml combines library header and filters into a single unified too
 
   // Verify the unified toolbar contains both the library title, search input, and filter controls
   const unifiedToolbarHtml = indexHtml.substring(unifiedToolbarPos, indexHtml.indexOf('class="vi-level-section', unifiedToolbarPos));
-  assert.match(unifiedToolbarHtml, /Video luyện nói theo trình độ/, 'Unified toolbar must contain library title');
+  assert.match(unifiedToolbarHtml, /Video luyện nói theo chủ đề/, 'Unified toolbar must contain the subject-first library title');
   assert.match(unifiedToolbarHtml, /id="vi-search"/, 'Unified toolbar must contain search input');
   assert.match(unifiedToolbarHtml, /class="spk-toolbar-divider"/, 'Unified toolbar must contain visual divider');
   assert.match(unifiedToolbarHtml, /level-filter-btn spk-pill-btn/, 'Unified toolbar must contain level filter buttons');

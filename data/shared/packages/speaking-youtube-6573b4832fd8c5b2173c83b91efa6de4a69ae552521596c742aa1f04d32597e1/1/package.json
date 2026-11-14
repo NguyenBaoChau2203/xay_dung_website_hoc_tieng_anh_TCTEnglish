@@ -1,0 +1,2838 @@
+{
+  "schemaVersion": 1,
+  "id": "speaking-youtube-6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1",
+      "kind": "SpeakingVideo",
+      "values": {
+        "Title": "Luy\u1EC7n Nghe Ti\u1EBFng Anh Level A1 - S\u1EDE TH\u00CDCH -",
+        "YoutubeId": "xvYJO5JpuJ4",
+        "Level": "A1",
+        "Topic": "Vui ch\u01A1i \u0026 gi\u1EA3i tr\u00ED",
+        "ThumbnailUrl": "https://img.youtube.com/vi/xvYJO5JpuJ4/hqdefault.jpg",
+        "Duration": "22:09",
+        "SourceUrl": "https://www.youtube.com/watch?v=xvYJO5JpuJ4",
+        "SourceType": "youtube",
+        "TranscriptSource": "youtube-captions",
+        "ImportStatus": "ready"
+      },
+      "references": {
+        "PlaylistId": null
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.01bfb50b43e84c4086a71ae615e785d5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 931,
+        "EndTime": 938.88,
+        "Text": "Oh, I forgot. I am so sorry. I was just sitting here for 3 hours. I forgot about the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.01ddb2789c9c4614b75dd8e73dc7158a",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 638,
+        "EndTime": 645.2,
+        "Text": "Something that doesn\u0027t make you healthy and doesn\u0027t make you money? Not really. Did you ever have one?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.02964a3702c1430080e551b922e84078",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1280,
+        "EndTime": 1283.6,
+        "Text": "The strings are probably old and broken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.02ba8cd20b554664bbf9d6841ae9d495",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 519,
+        "EndTime": 527.519,
+        "Text": "It did, but I wanted a hobby. I needed to do something after work. But you are not very good at it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.02ccfceb2f6644eb8885a58a0a0f1536",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 383,
+        "EndTime": 388.88,
+        "Text": "But you look happy. Your face is relaxed. You look different than you do at the office.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.044c77aa4f894a4fb76f2e121b77dcb4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 675,
+        "EndTime": 682.16,
+        "Text": "could play very fast songs. They could learn a new song in one day. And you couldn\u0027t?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.044f4f4432fb45299ce571a088e2b319",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 205,
+        "EndTime": 211.44,
+        "Text": "A long time ago when I was in university. What was it? I played the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.0476e06d6f4d4634a7f8a96004038aee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1104,
+        "EndTime": 1108.16,
+        "Text": "Because I wasn\u0027t getting better. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.04e99fefb84e4d6c973d18c0adf27bb6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 900,
+        "EndTime": 908.16,
+        "Text": "I am painting. Watch out. Don\u0027t step on that blue paper. It is still wet. Painting you?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.04eeea322e814199abac59bd79d5e99d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 779,
+        "EndTime": 785.68,
+        "Text": "We don\u0027t have to be successful at everything, Mark. Sometimes we just have to be human.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.05fc58db9de745fd8579630e28dee6a4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 645,
+        "EndTime": 651.2,
+        "Text": "A long time ago when I was in university. What was it? I played the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.066b14a0c4b3406b877b2d925bbaa29b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 619,
+        "EndTime": 627.44,
+        "Text": "So what? Adults can\u0027t have fun. Adults can\u0027t do silly things. I just don\u0027t understand how you can feel relaxed when",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.06d24025e7cf48d393e72f8762d7d5be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 843,
+        "EndTime": 851.839,
+        "Text": "So, buy new strings and play a slow song. Don\u0027t record it. Don\u0027t put it on the internet. Don\u0027t tell your friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.07edb0a810d84f9996a6ca75e59a8bc2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 31,
+        "EndTime": 36.88,
+        "Text": "I don\u0027t know. I just didn\u0027t know you liked art. Your hands are completely green.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.0bb1854456e24d1bb4f4d89b17097ef8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1130,
+        "EndTime": 1138.16,
+        "Text": "loser. So, one day, I just put the guitar in the closet. I never touched it again. That\u0027s really sad, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.0f13145e400945e88f0a63912c7eafc0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1235,
+        "EndTime": 1237.84,
+        "Text": "They are not boring.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.11fc888db0cd4edd93d8ab7f4a82abe8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 747,
+        "EndTime": 754.32,
+        "Text": "Yes. You open Facebook and you see a perfect picture. Exactly. Someone bakes a beautiful cake.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.126aca9668a14714b3e9c6f27e143c43",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 426,
+        "EndTime": 430.56,
+        "Text": "I can finish my ugly tree tomorrow. Good. Let\u0027s go get pizza.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.14403a21fd7e4275b5f50598bc2d7030",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 272,
+        "EndTime": 280.72,
+        "Text": "It was quiet. Just me in my bedroom at night. I didn\u0027t think about school or tests or money. I just listened to the sound.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.14f4361ad4ea4f59ad9141695a630e37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 430,
+        "EndTime": 435.199,
+        "Text": "Wait, give me a second. I need to put the paper away. Do you need help?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.15466ec77d584060ab06762a23ba4caf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1245,
+        "EndTime": 1252.32,
+        "Text": "Well, now you know why I\u0027m painting an ugly tree on a Friday night. It\u0027s not that ugly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.16aefdad3d54490d99490b788093c8e3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 611,
+        "EndTime": 619.279,
+        "Text": "don\u0027t want a reason for everything. I just want to play like a child. Play? We\u0027re adults, Sarah.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.182594b0d70146b6909e457540f6af22",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1274,
+        "EndTime": 1280.48,
+        "Text": "Maybe maybe I should open my closet when I go home. You should take out the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.19d5868859ba4ac28169bb9753aa3133",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 250,
+        "EndTime": 258.639,
+        "Text": "loser. So, one day, I just put the guitar in the closet. I never touched it again. That\u0027s really sad, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.1d26fc25e1584dcf8d5c18efe118b525",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 286,
+        "EndTime": 292.56,
+        "Text": "Good enough for who? You didn\u0027t play for your friends. You played for you in your bedroom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.1d9ed90eac6b4ce3839b910fbc70d812",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1199,
+        "EndTime": 1202.799,
+        "Text": "And if you can\u0027t do that, you feel like you shouldn\u0027t try.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.205eda975d9d4b54be9544497a274271",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 705,
+        "EndTime": 710.56,
+        "Text": "Was it a waste of time? Did you like playing? Yes, I loved it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.20cb00c325ca4339b4a9b23b7a5b5c0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 87,
+        "EndTime": 89.28,
+        "Text": "Excuse me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.213011e1f50e4fd9986d51d91cf0d9ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 720,
+        "EndTime": 725.839,
+        "Text": "But you stopped because of your friends. I stopped because I wasn\u0027t good enough.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.225e2df32fa64cccba91bea17f8d8b10",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 224,
+        "EndTime": 228.64,
+        "Text": "Because I wasn\u0027t getting better. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.228d157d6fb3456bbd75736f12191c56",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 171,
+        "EndTime": 179.519,
+        "Text": "don\u0027t want a reason for everything. I just want to play like a child. Play? We\u0027re adults, Sarah.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.237365dbd8ad4212bcdf100063713798",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 80,
+        "EndTime": 87.759,
+        "Text": "It did, but I wanted a hobby. I needed to do something after work. But you are not very good at it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.2401796ba0b843129678bd3d7eaa3390",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1298,
+        "EndTime": 1304.24,
+        "Text": "So, are you going to finish this painting or are we going to get dinner? I\u0027m really hungry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.244f1682b24240a5b15b8c281dadc39b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1056,
+        "EndTime": 1064.32,
+        "Text": "play. We\u0027re adults. Sarah, so what? Adults can\u0027t have fun. Adults can\u0027t do silly things.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.273c6415ebbb43a7941f3232c3c489c5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1293,
+        "EndTime": 1298.559,
+        "Text": "Maybe I will, but if my fingers hurt, I\u0027m stopping. Deal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.29aaa6038fcc4485bc4f62910cf98ea0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1182,
+        "EndTime": 1187.2,
+        "Text": "The internet, social media. We see everyone else\u0027s hobbies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.2bedadf6b78b423ea30a5f9f2ce79495",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1010,
+        "EndTime": 1016.16,
+        "Text": "You don\u0027t look happy. When I walked in, you looked angry. You were frowning at the paper.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.2c371858ab7946fb997a9e96eb8a5868",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1042,
+        "EndTime": 1050.88,
+        "Text": "So, when I come home, I don\u0027t want any rules. I want to make a mistake. I want to paint a tree that looks like a dog. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.2fd54edfbd5e46cbb33bd3ef55e7684d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1262,
+        "EndTime": 1268.4,
+        "Text": "But you look happy. Your face is relaxed. You look different than you do at the office.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.30a34a90835348fb890ad3ea7ff12ad7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 236,
+        "EndTime": 242.4,
+        "Text": "could play very fast songs. They could learn a new song in one day. And you couldn\u0027t?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.31ed39eab1d04c15932567933959e288",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 946,
+        "EndTime": 950,
+        "Text": "You don\u0027t have to lie. I know it looks bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.3629b81f1574417293ba797b8cd54fc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1165,
+        "EndTime": 1172.08,
+        "Text": "Good enough for who? You didn\u0027t play for your friends. You played for you in your bedroom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.373a279bdc7d4322a6031db8afe5621d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 834,
+        "EndTime": 840.72,
+        "Text": "Maybe. Maybe I should open my closet when I go home. You should take out the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.376a0c53a82d41008862d60e939b2c98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 67,
+        "EndTime": 70.4,
+        "Text": "You don\u0027t have to lie. I know it looks bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.377d9568874c427ba3d0cd32571f79dd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 725,
+        "EndTime": 732.32,
+        "Text": "Good enough for who? You didn\u0027t play for your friends. You played for you in your bedroom.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.38acd44b0e2e4a238c9d7fea8f2d3379",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 484,
+        "EndTime": 491.28,
+        "Text": "I\u0027m back. So, why are you here? We said we were going to get dinner. Remember? It is Friday night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.38d19618055940c8aefa5748520dd3a8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1004,
+        "EndTime": 1010.32,
+        "Text": "reason. What is the reason for this tree? The reason is that it makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.391788e986fa4e06801ef48e2f359544",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 593,
+        "EndTime": 602.48,
+        "Text": "If I\u0027m late for a meeting, people look at me. I have to follow the rules all day. I understand. My job is the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.3dad8c914c974e19964a908f577d4492",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 44,
+        "EndTime": 51.52,
+        "Text": "I\u0027m back. So, why are you here? We said we were going to get dinner. Remember? It is Friday night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.3fd8f14a675f4fe3b6d958a4304a8d30",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 698,
+        "EndTime": 705.2,
+        "Text": "It\u0027s not sad. It\u0027s smart. I stopped wasting my time. I used that time to study instead.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.40af56f6eeca4fd6b004fb3701f65f0f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1304,
+        "EndTime": 1310.159,
+        "Text": "We can go get dinner. I can finish my ugly tree tomorrow. Good. Let\u0027s go get pizza.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4341db72937e49aea6b302a72923cc50",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 589,
+        "EndTime": 593.839,
+        "Text": "And I have to be perfect. If I make a mistake in an email, my boss is angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4365d45415534cda84f26be93f366271",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 302,
+        "EndTime": 307.68,
+        "Text": "The internet, social media. We see everyone else\u0027s hobbies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.43af57f134cb4bcdbb9984d62d73a769",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 664,
+        "EndTime": 668.399,
+        "Text": "Because I wasn\u0027t getting better. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.43ba3bb5dab34851a39df044c08427ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 179,
+        "EndTime": 184.8,
+        "Text": "So what? Adults can\u0027t have fun. Adults can\u0027t do silly things.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.43d4daddc3e64261974a5e65541323aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1291,
+        "EndTime": 1293.76,
+        "Text": "Just play it for yourself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.44af5b0e3bf243e4bd961cc7f18d34aa",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 908,
+        "EndTime": 916.399,
+        "Text": "Yes. Why are you looking at me like that? I don\u0027t know. I just didn\u0027t know you liked art. Your hands are completely green.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.45584a133fe9434f94a37df92ccce76e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 823,
+        "EndTime": 828.639,
+        "Text": "But you look happy. Your face is relaxed. You look different than you do at the office.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.45c5d0ff76f749cc8c9ca2c390202c6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 147,
+        "EndTime": 149.2,
+        "Text": "Yes, that is a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4669b5d8cbcd4252af34a4ca9c6905cf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 394,
+        "EndTime": 400.96,
+        "Text": "Maybe. Maybe I should open my closet when I go home. You should take out the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.471f3bdf3f034ca399b1ea3b54f2d6c6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 805,
+        "EndTime": 814.639,
+        "Text": "Well, now you know why I\u0027m painting an ugly tree on a Friday night. It\u0027s not that ugly. Now you\u0027re lying again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.488e1086908c4c5a9e1a52f53490c59c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 796,
+        "EndTime": 804.079,
+        "Text": "They are not boring. They are very boring. When was the last time you did something just because it was fun?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4a40c2522dd64b269de0ae1414acde34",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 9,
+        "EndTime": 16.8,
+        "Text": "Now listen carefully. Hello. The door is open. In here I am in the living room.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4a684bac1f614ae8b747dca0565e04be",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 536,
+        "EndTime": 539.279,
+        "Text": "Why does everything have to be good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4b010acc8e5141d8993345b62bf97439",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 882,
+        "EndTime": 891.6,
+        "Text": "Sarah, what? You still have green paint on your nose. Oh no. I\u0027ll go wash it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.4d0a9c7c69c34d81a9647fc819fd64ae",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 242,
+        "EndTime": 250.64,
+        "Text": "No, my fingers were slow. I could only play simple, slow songs. When we played together, I felt stupid. I felt like a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.52144a4a8b7343fab34f0e3c3366ab11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 89,
+        "EndTime": 96.72,
+        "Text": "I\u0027m sorry. I didn\u0027t mean to be rude. I just mean, why do you want to spend your time and money on something you\u0027re bad at?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.533c470490b943efbd6a9f5d78a13860",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 292,
+        "EndTime": 298.479,
+        "Text": "I know, but it\u0027s hard. When you see other people doing something better than you, you feel bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.54c322681e49441684a24080f6c1003c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1259,
+        "EndTime": 1262.96,
+        "Text": "I couldn\u0027t find the green paint at first.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.55b7566d38a64088b257bcded0ada8f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 854,
+        "EndTime": 858.8,
+        "Text": "Maybe I will, but if my fingers hurt, I\u0027m stopping. Deal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.56f941626bf74269a63105c62067d276",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 314,
+        "EndTime": 319.6,
+        "Text": "Someone runs 20 kilometers. Someone plays a perfect song on the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.58aa372d832c4569a3f752aa7edcf755",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 70,
+        "EndTime": 80.08,
+        "Text": "I am not lying. It is a very interesting tree. But why did you buy all these expensive paints? This looks like it cost a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.58eed0fe7bb94d9491e99d857cb3cb74",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 738,
+        "EndTime": 742.639,
+        "Text": "I think that\u0027s the biggest problem today. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.59c6c9c4bfbe4d948895b052e65ae7a6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1310,
+        "EndTime": 1314.799,
+        "Text": "Wait, give me a second. I need to put the paper away. Do you need help?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.5a98312a6ee04d769f94198865178082",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 864,
+        "EndTime": 870.32,
+        "Text": "We can go get dinner. I can finish my ugly tree tomorrow. Good. Let\u0027s go get pizza.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.5bb504009e2242cc827f1228cda887d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 372,
+        "EndTime": 374.88,
+        "Text": "Now you\u0027re lying again.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.5e358f31e02e4e598af604c7d9182660",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 657,
+        "EndTime": 664.8,
+        "Text": "That\u0027s because it\u0027s in the back of my closet. I haven\u0027t opened it in 5 years. Why did you stop?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.5e727f933cec42b78fd81f74d1e43382",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 820,
+        "EndTime": 823.2,
+        "Text": "I couldn\u0027t find the green paint at first.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.62bff9c93c6c4a5981b5f42d67a1cad8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 635,
+        "EndTime": 638.32,
+        "Text": "Do you have a hobby just for fun?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.63245cb140394dfba3ad602875d98b17",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 51,
+        "EndTime": 59.359,
+        "Text": "Oh, I forgot. I am so sorry. I was just sitting here for 3 hours. I forgot about the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.63cfa365a6384012a04a213c165f1be2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 828,
+        "EndTime": 834.24,
+        "Text": "I feel different. My brain feels slow and quiet. It\u0027s nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.651580f085f64499be5e90a39e8923fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 374,
+        "EndTime": 380.4,
+        "Text": "Okay. Yes, it is very ugly. The leaves are brown and the trunk is blue.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.655d8ec785a04626936aec0482f08202",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 732,
+        "EndTime": 738.24,
+        "Text": "I know, but it\u0027s hard. When you see other people doing something better than you, you feel bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6866e70c961f451688942b59904f6048",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 59,
+        "EndTime": 67.2,
+        "Text": "3 hours. What are you painting? Is it a dog? It is a tree. Oh, I see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.68d8cddf02c44ddeb2f0801b30a60ed9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 412,
+        "EndTime": 414.24,
+        "Text": "Just play it for yourself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6acdde00e71a499ba59e86b3fb4a02f1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 364,
+        "EndTime": 372.8,
+        "Text": "I don\u0027t remember. Well, now you know why I\u0027m painting an ugly tree on a Friday night. It\u0027s not that ugly.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6ca15b492e9d45faa1209c5eb964ec1d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 499,
+        "EndTime": 506.96,
+        "Text": "3 hours? What are you painting? Is it a dog? It is a tree. Oh, I see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6ea8dd8bd1064e618cae9cfd1af9c7f8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 28,
+        "EndTime": 31.599,
+        "Text": "Yes. Why are you looking at me like that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6ef8a2b7fb9e47a28e97ca4446313b6b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 759,
+        "EndTime": 763.04,
+        "Text": "And if you can\u0027t do that, you feel like you shouldn\u0027t try.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.6f7779c01a40454997a94acfa4c177fe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 742,
+        "EndTime": 747.44,
+        "Text": "The internet, social media, we see everyone else\u0027s hobbies.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7242f85c6d894a33bd51b2b7b8dbd617",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1050,
+        "EndTime": 1056.24,
+        "Text": "don\u0027t want a reason for everything. I just want to play like a child.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.725a9526e06e4e50bf636b432d4968d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 298,
+        "EndTime": 302.8,
+        "Text": "I think that\u0027s the biggest problem today. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7489b631fbaa4e64917a26c21b6cc4f7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 804,
+        "EndTime": 805.92,
+        "Text": "I don\u0027t remember.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.74971f5b3ba2473d9c52089a041f0300",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 916,
+        "EndTime": 923.839,
+        "Text": "I\u0027m trying something new. Give me a second. I need to wash my hands. Okay, I will just stand here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.77130ea9834649ae8bcb857c649bb554",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 602,
+        "EndTime": 611.12,
+        "Text": "So when I come home, I don\u0027t want any rules. I want to make a mistake. I want to paint a tree that looks like a dog. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.771a5f1879cd4784a917765a0f68d34e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 96,
+        "EndTime": 99.6,
+        "Text": "Why does everything have to be good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.77319d7dd5524b76a78a70d824ce33f6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 345,
+        "EndTime": 349.12,
+        "Text": "You\u0027re right. Maybe I\u0027m too hard on myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.781c44432a88417d8cc81c5ccb4b8233",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1028,
+        "EndTime": 1033.6,
+        "Text": "And I have to be perfect. If I make a mistake in an email, my boss is angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.784eed656f1a471192fd1a1aac9027f0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 468,
+        "EndTime": 471.36,
+        "Text": "Yes. Why are you looking at me like that?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.795a2cbcfd41402a8fea7d0935c2a129",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 967,
+        "EndTime": 968.8,
+        "Text": "Excuse me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7989eac6e7fb4b48ba8591c77c308cc8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 456,
+        "EndTime": 460.639,
+        "Text": "What are you doing? Why is there paper everywhere on the floor?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7c1af83bb321482eb797f9aa56945dca",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 228,
+        "EndTime": 236,
+        "Text": "I played for a whole year. I practiced every night. But my friends played, too, and they were much better than me. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7c75799490fe44fcba7e88e8c25ef63d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 690,
+        "EndTime": 698.399,
+        "Text": "loser. So, one day, I just put the guitar in the closet. I never touched it again. That\u0027s really sad, Mark.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7ec0613f803e44cbbfb657e7fcda39b3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1252,
+        "EndTime": 1259.919,
+        "Text": "Now you\u0027re lying again. Okay. Yes, it is very ugly. The leaves are brown and the trunk is blue.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7f09010f2b254a00b597d1b660d33cf9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 851,
+        "EndTime": 854,
+        "Text": "Just play it for yourself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7f1a71852cef45f7924201eb868dd5d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 870,
+        "EndTime": 875.04,
+        "Text": "Wait, give me a second. I need to put the paper away. Do you need help?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.7f48d566a5fa4aed88314df0beb2c90c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 896,
+        "EndTime": 900.399,
+        "Text": "What are you doing? Why is there paper everywhere on the floor?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.81d14265449d41f2bbd7040c7cba7010",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 556,
+        "EndTime": 564.24,
+        "Text": "The gym makes my body healthy. Or I read books about business. That helps me get more money at my job. Everything has a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8380fbdf7eea491d8253e07c6178f598",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1283,
+        "EndTime": 1291.6,
+        "Text": "So, buy new strings and play a slow song. Don\u0027t record it. Don\u0027t put it on the internet. Don\u0027t tell your friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.84113abe91784d8fb0f63a31dceb1ca1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1083,
+        "EndTime": 1090.96,
+        "Text": "Did you ever have one? a long time ago when I was in university. What was it? I played the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.845a6a4f59134686b1c19501eb288375",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 218,
+        "EndTime": 224.959,
+        "Text": "That\u0027s because it\u0027s in the back of my closet. I haven\u0027t opened it in 5 years. Why did you stop?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.85b1309aa5d64b9ab872a8e1c8cbf251",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1268,
+        "EndTime": 1274,
+        "Text": "I feel different. My brain feels slow and quiet. It\u0027s nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8a3e5c6b844247a59669ce4692464e8d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1121,
+        "EndTime": 1130.24,
+        "Text": "No, my fingers were slow. I could only play simple, slow songs. When we played together, I felt stupid. I felt like a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8b16637235854645b25889b3cc0f1d26",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 771,
+        "EndTime": 773.2,
+        "Text": "It\u0027s to make your mind quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8d36b2d8d7924864836384b6034c5155",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 124,
+        "EndTime": 130.8,
+        "Text": "reason. What is the reason for this tree? The reason is that it makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8e1019a2d509419b8f8d0d041ff59bf1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1144,
+        "EndTime": 1151.6,
+        "Text": "Was it a waste of time? Did you like playing? Yes, I loved it. Tell me about it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8eb3fe386efe420ca52c64ec86d7ff7e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 950,
+        "EndTime": 959.6,
+        "Text": "I am not lying. It is a very interesting tree. But why did you buy all these expensive paints? This looks like it cost a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.8fcd4cd24417486094fa607ad11d9402",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 976,
+        "EndTime": 979.12,
+        "Text": "Why does everything have to be good?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9119e42555954d2fb27695e6f518ccfe",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1314,
+        "EndTime": 1322.4,
+        "Text": "No, don\u0027t touch anything. Your hands are clean. Fine, I will wait by the door. Okay, I\u0027m ready. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9366d3243f574321a6caf807c87daddb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 280,
+        "EndTime": 286.08,
+        "Text": "But you stopped because of your friends. I stopped because I wasn\u0027t good enough.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9423067d013f48959329871a9c0eeea9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 587,
+        "EndTime": 589.04,
+        "Text": "Yes, that is a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.94d6c6f68c994c8191a6c3c6fea1659e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 527,
+        "EndTime": 529.04,
+        "Text": "Excuse me.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.968c0d158bbc4c66826a90051fcb3466",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 36,
+        "EndTime": 44.32,
+        "Text": "I\u0027m trying something new. Give me a second. I need to wash my hands. Okay, I will just stand here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.98738a6fb926462085b7a83cfc3908d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 476,
+        "EndTime": 484.08,
+        "Text": "I\u0027m trying something new. Give me a second. I need to wash my hands. Okay, I will just stand here.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.99d11c78c48440e0b29b19cab4062564",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1237,
+        "EndTime": 1245.679,
+        "Text": "They are very boring. When was the last time you did something just because it was fun? I don\u0027t remember.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9ab965b8aeb14c969dd8e85dbe6689a5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 840,
+        "EndTime": 843.92,
+        "Text": "The strings are probably old and broken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9b071b20f5994158ad2277509433e3b5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 547,
+        "EndTime": 556.56,
+        "Text": "That\u0027s how you think about work. This is not work. I know it is not work, but look at me. When I have free time, I go to the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.9bc64bffc2854765bcdbe1a784cce3fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 651,
+        "EndTime": 657.76,
+        "Text": "Really? I didn\u0027t know that. I have known you for three years and I never saw a guitar in your house.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a16373110ff84230a357dd637ddb86d6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 149,
+        "EndTime": 154.08,
+        "Text": "And I have to be perfect. If I make a mistake in an email, my boss is angry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a17c8682153f41a6983cba9a6af5834b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 754,
+        "EndTime": 759.36,
+        "Text": "Someone runs 20 km. Someone plays a perfect song on the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a2355a3140374ea0832c66171aff23b1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 342,
+        "EndTime": 345.919,
+        "Text": "Mark. Sometimes we just have to be human.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a2c54f752be04e9ebf874650534d3ae2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 627,
+        "EndTime": 635.68,
+        "Text": "the painting looks bad. If I do something, I want to be the best. That sounds really tiring. It is.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a32c3cf7af55451784be94f9846ed4fc",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 814,
+        "EndTime": 820.16,
+        "Text": "Okay. Yes, it is very ugly. The leaves are brown and the trunk is blue.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a3f06434394e4c0eabd59ee57ff0eb7e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 979,
+        "EndTime": 987.36,
+        "Text": "Because time is important. We don\u0027t have a lot of free time. If I spend 3 hours doing something, I want a good result.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.a5025009e785427ab651e0fe9f5c0cd3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1090,
+        "EndTime": 1097.52,
+        "Text": "Really? I didn\u0027t know that. I have known you for three years and I never saw a guitar in your house.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.abb17dc353b4432585fdf22dc3749d53",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 414,
+        "EndTime": 418.96,
+        "Text": "Maybe I will, but if my fingers hurt, I\u0027m stopping. Deal.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ad48661650af41218909a86789285d4c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 442,
+        "EndTime": 451.759,
+        "Text": "Sarah, what? You still have green paint on your nose. Oh, no. I\u0027ll go wash it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.aec1d94aed364aa9af1a8ac1e37f4686",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 136,
+        "EndTime": 147.36,
+        "Text": "I was focusing. Listen, Mark. Every day I wake up at 7 in the morning. I go to the office. I sit at my computer. My boss tells me what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.af076b71651343f8b92cbf9d53379c11",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 333,
+        "EndTime": 342.4,
+        "Text": "I guess I never thought about it that way. I always thought a hobby was just another way to be successful. We don\u0027t have to be successful at everything,",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b2dcee6d7a194627a22baa96db333d4b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 358,
+        "EndTime": 364.319,
+        "Text": "They are very boring. When was the last time you did something just because it was fun?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b30b1856ff2d4d9faa7ec1e1a9d8a9d2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 265,
+        "EndTime": 272.08,
+        "Text": "Was it a waste of time? Did you like playing? Yes, I loved it. Tell me about it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b4c7ccf7214f4465a291da6663f6abf0",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1219,
+        "EndTime": 1228.64,
+        "Text": "We don\u0027t have to be successful at everything, Mark. Sometimes we just have to be human. You\u0027re right. Maybe I\u0027m too hard on myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b4f26fe45d71491a833820ca643ed6ad",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 0,
+        "EndTime": 9.08,
+        "Text": "Welcome to my channel. Let\u0027s practice your listening skill with video level A1 and the topic is hobby.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b6d1f962b2f0462f8a3b8734a045180e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 858,
+        "EndTime": 864.48,
+        "Text": "So, are you going to finish this painting or are we going to get dinner? I\u0027m really hungry.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.b9364739e4144089bf07824fa22d9edf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1160,
+        "EndTime": 1165.679,
+        "Text": "But you stopped because of your friends. I stopped because I wasn\u0027t good enough.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bab0f7f2f0d9452f98fcef6c6e8c2f2e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 515,
+        "EndTime": 519.839,
+        "Text": "all these expensive paints? This looks like it cost a lot of money.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bbead557ccdc4b4a92e9edbb725503f2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 788,
+        "EndTime": 796.16,
+        "Text": "You are always hard on yourself. You work all weekend. You\u0027re always reading those boring business books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bc37ccf438d74272bf39dcea35526f47",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1187,
+        "EndTime": 1194.16,
+        "Text": "Yes. You open Facebook and you see a perfect picture. Exactly. Someone bakes a beautiful cake.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bd4fdc833753403a9ee2360a8d4c739c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 323,
+        "EndTime": 331.28,
+        "Text": "Yes. You feel like your hobby has to be perfect or it\u0027s a waste of time. But that\u0027s wrong. A hobby is just for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.be2e9b98a01249229de3b377f6803f9e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 130,
+        "EndTime": 136.64,
+        "Text": "You don\u0027t look happy. When I walked in, you looked angry. You were frowning at the paper.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.be48839fe27942dd99592588cd142a18",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 923,
+        "EndTime": 931.04,
+        "Text": "I\u0027m back. So, why are you here? We said we were going to get dinner. Remember? It is Friday night.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bf20df2ade074bf9ad50c31c8874a5a3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 938,
+        "EndTime": 946.72,
+        "Text": "3 hours? What are you painting? Is it a dog? It is a tree. Oh, I see it now.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bf33ca95751c479e92b1d5d17f163a25",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1322,
+        "EndTime": 1329.435283,
+        "Text": "Sarah, what? You still have green paint on your nose. Oh, no. I\u0027ll go wash it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.bfa062c925ed4fdcad3b04f41a5f1205",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1033,
+        "EndTime": 1042.24,
+        "Text": "If I\u0027m late for a meeting, people look at me. I have to follow the rules all day. I understand. My job is the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c00a7e06761440c2add191745af08f66",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 996,
+        "EndTime": 1004,
+        "Text": "The gym makes my body healthy. Or I read books about business that helps me get more money at my job. Everything has a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c15e4fd64cbe4364bac490fcab888eb6",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 162,
+        "EndTime": 171.44,
+        "Text": "So, when I come home, I don\u0027t want any rules. I want to make a mistake. I want to paint a tree that looks like a dog. I",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c3331f290b6648d7ad8c8621e0873bf3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1210,
+        "EndTime": 1212.96,
+        "Text": "It\u0027s to make your mind quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c3ba1949d3c145c289e04842a4fd5bc4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 418,
+        "EndTime": 426,
+        "Text": "So, are you going to finish this painting or are we going to get dinner? I\u0027m really hungry. We can go get dinner.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c4606bd60ed345f39469be09d1679fe4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 400,
+        "EndTime": 404.08,
+        "Text": "The strings are probably old and broken.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c5b2ab198c774e65a6588f32ac4129c1",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 959,
+        "EndTime": 967.279,
+        "Text": "It did, but I wanted a hobby. I needed to do something after work. But you are not very good at it.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c7ec9d8321a1435cb4f4ba75e3fa6ca3",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1138,
+        "EndTime": 1144.96,
+        "Text": "It\u0027s not sad. It\u0027s smart. I stopped wasting my time. I used that time to study instead.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c86a59303ee642a9a3644bbff169a914",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1194,
+        "EndTime": 1199.12,
+        "Text": "Someone runs 20 km. Someone plays a perfect song on the guitar.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c90344ec2af54333a2be25310ef74fa2",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 356,
+        "EndTime": 358.32,
+        "Text": "They are not boring.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c91ef49dffb34abf8283c250fc64ce38",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1097,
+        "EndTime": 1104.559,
+        "Text": "That\u0027s because it\u0027s in the back of my closet. I haven\u0027t opened it in 5 years. Why did you stop?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.c9e1412d0a574070a0228b167a1ee68b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 529,
+        "EndTime": 536.48,
+        "Text": "I\u0027m sorry. I didn\u0027t mean to be rude. I just mean, why do you want to spend your time and money on something you\u0027re bad at?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ca5c256d01754332881c7c6e081e5ae8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 331,
+        "EndTime": 333.44,
+        "Text": "It\u0027s to make your mind quiet.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.cacc1daa163c4e9f82380fd7e9c8c7ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 388,
+        "EndTime": 394.4,
+        "Text": "I feel different. My brain feels slow and quiet. It\u0027s nice.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ccf6bc22d83c4beb8ac0eeb845eddc37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 211,
+        "EndTime": 218,
+        "Text": "Really? I didn\u0027t know that. I have known you for 3 years and I never saw a guitar in your house.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.cd164bb0ac0e4be3b52879fe52ca5c55",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 198,
+        "EndTime": 205.44,
+        "Text": "Something that doesn\u0027t make you healthy and doesn\u0027t make you money. Not really. Did you ever have one?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d0273eb7801a4fac84447f1bc534cd98",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1078,
+        "EndTime": 1083.039,
+        "Text": "Something that doesn\u0027t make you healthy and doesn\u0027t make you money? Not really.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d170c42ddc3549d6b280114b3d69f660",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 506,
+        "EndTime": 515.36,
+        "Text": "You don\u0027t have to lie. I know it looks bad. I am not lying. It is a very interesting tree. But why did you buy",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d3ee1f70b5e940648c7ce74c091e7b6f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1108,
+        "EndTime": 1115.6,
+        "Text": "I played for a whole year. I practiced every night, but my friends played too, and they were much better than me. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d457164a7f6a4d2c93dc7d646545a7da",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 576,
+        "EndTime": 587.12,
+        "Text": "I was focusing. Listen, Mark. Every day I wake up at 7 in the morning. I go to the office. I sit at my computer. My boss tells me what to do.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d580bf292a1a4e9498b46dfb6a2cd2d9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 192,
+        "EndTime": 198.56,
+        "Text": "That sounds really tiring. It is. Do you have a hobby just for fun?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d78f5d7c289d41c29337009ced1db20c",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 99,
+        "EndTime": 107.84,
+        "Text": "Because time is important. We don\u0027t have a lot of free time. If I spend 3 hours doing something, I want a good result.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d79f141047364593a0764dedb1023ed4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1178,
+        "EndTime": 1182.4,
+        "Text": "I think that\u0027s the biggest problem today. What do you mean?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d86227d083bb4c218f2ccba7c4aea540",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1172,
+        "EndTime": 1178,
+        "Text": "I know, but it\u0027s hard. When you see other people doing something better than you, you feel bad.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d8a81a62834b4e4e9e89fa8e3979c61e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 968,
+        "EndTime": 976.24,
+        "Text": "I\u0027m sorry. I didn\u0027t mean to be rude. I just mean, why do you want to spend your time and money on something you\u0027re bad at?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.d8deb3adde72434898ed4a56a371c679",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 184,
+        "EndTime": 192.239,
+        "Text": "I just don\u0027t understand how you can feel relaxed when the painting looks bad. If I do something, I want to be the best.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.da7c3aa06eec42848329880c0fcf6cf9",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1151,
+        "EndTime": 1160.24,
+        "Text": "It was quiet. Just me in my bedroom at night. I didn\u0027t think about school or tests or money. I just listened to the sound.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.df4d4ed0d97b414c821ca0286a820f63",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 539,
+        "EndTime": 547.6,
+        "Text": "Because time is important. We don\u0027t have a lot of free time. If I spend 3 hours doing something, I want a good result.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.dfc889cc57654c1f8077b8256584daec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 491,
+        "EndTime": 499.12,
+        "Text": "Oh, I forgot. I am so sorry. I was just sitting here for 3 hours. I forgot about the time.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.dff5f1ff2a694cd6a70fd8f1f10eae65",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 710,
+        "EndTime": 720.48,
+        "Text": "Tell me about it. It was quiet, just me in my bedroom at night. I didn\u0027t think about school or tests or money. I just listened to the sound.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e04088a8d776484c9418f3162e992bdf",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 319,
+        "EndTime": 323.28,
+        "Text": "And if you can\u0027t do that, you feel like you shouldn\u0027t try.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e0dcbaef96e0438c9957a2069d39095e",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 380,
+        "EndTime": 383.36,
+        "Text": "I couldn\u0027t find the green paint at first.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e10a9e7d37f64b70bcba05c912047980",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 349,
+        "EndTime": 356.4,
+        "Text": "You are always hard on yourself. You work all weekend. You\u0027re always reading those boring business books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e220b3fd8aa443078492f59e7bbfd032",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 16,
+        "EndTime": 20.8,
+        "Text": "What are you doing? Why is there paper everywhere on the floor?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e2c1dd27020c4d7ca75559f7b71ee1fd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1071,
+        "EndTime": 1078.08,
+        "Text": "That sounds really tiring. It is. Do you have a hobby just for fun?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e2d8d3528d8840739fcd0008f0bdb1a7",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 116,
+        "EndTime": 124.479,
+        "Text": "The gym makes my body healthy. Or I read books about business that helps me get more money at my job. Everything has a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e32880b5b595403c867344072667fa00",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 107,
+        "EndTime": 116.799,
+        "Text": "That\u0027s how you think about work. This is not work. I know it is not work, but look at me. When I have free time, I go to the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e3692a21eabe45878d367a580eec5b8b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 471,
+        "EndTime": 476.639,
+        "Text": "I don\u0027t know. I just didn\u0027t know you liked art. Your hands are completely green.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e53ef33105854b81b2c574b7a4085efd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 435,
+        "EndTime": 442.88,
+        "Text": "No, don\u0027t touch anything. Your hands are clean. Fine. I will wait by the door. Okay, I\u0027m ready. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e615eab1973c420f9edc27130a2a4c37",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 668,
+        "EndTime": 675.76,
+        "Text": "I played for a whole year. I practiced every night, but my friends played too, and they were much better than me. They",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e816449720be46928835128867914108",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 307,
+        "EndTime": 314.56,
+        "Text": "Yes. You open Facebook and you see a perfect picture. Exactly. Someone bakes a beautiful cake.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e82cc227ed6941139f56217f156ef6fb",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 987,
+        "EndTime": 996.32,
+        "Text": "That\u0027s how you think about work. This is not work. I know it is not work, but look at me. When I have free time, I go to the gym.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e89ef9fba3c04200ae948b567baa55ee",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 773,
+        "EndTime": 779.36,
+        "Text": "I guess I never thought about it that way. I always thought a hobby was just another way to be successful.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e8a7df32a74c464f875071b6f5c578f4",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1064,
+        "EndTime": 1071.84,
+        "Text": "I just don\u0027t understand how you can feel relaxed when the painting looks bad. If I do something, I want to be the best.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.e9b06855878a46a48a9c1606b49c434d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 460,
+        "EndTime": 468.4,
+        "Text": "I am painting. Watch out. Don\u0027t step on that blue paper. It is still wet. Painting you?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ec3c761ba8eb46bfb468bff1283ddd04",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 154,
+        "EndTime": 162.72,
+        "Text": "If I\u0027m late for a meeting, people look at me. I have to follow the rules all day. I understand. My job is the same.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.edeca65b02eb4ed09488fe1c58b73332",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1228,
+        "EndTime": 1235.919,
+        "Text": "You are always hard on yourself. You work all weekend. You\u0027re always reading those boring business books.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ef7e71faa24746ea83395942df7ef91d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 785,
+        "EndTime": 788.88,
+        "Text": "You\u0027re right. Maybe I\u0027m too hard on myself.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f07e739953154699b6594df896335896",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 451,
+        "EndTime": 456.56,
+        "Text": "Hello. The door is open in here. I am in the living room.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f1b5a2a2738d4820beb9641d116f0455",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1115,
+        "EndTime": 1121.919,
+        "Text": "could play very fast songs. They could learn a new song in one day. And you couldn\u0027t?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f1f3da901f3444e19d2887c7dd7dfeda",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 20,
+        "EndTime": 28.64,
+        "Text": "I am painting. Watch out. Don\u0027t step on that blue paper. It is still wet. Painting you?",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f22f227967a745ccaf5796346d34131b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1202,
+        "EndTime": 1210.799,
+        "Text": "Yes. You feel like your hobby has to be perfect or it\u0027s a waste of time. But that\u0027s wrong. A hobby is just for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f23ecec292994ba2b14fe7bcd5f99d0d",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 570,
+        "EndTime": 576.399,
+        "Text": "You don\u0027t look happy. When I walked in, you looked angry. You were frowning at the paper.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f294b1b4e637404ebf735f9963d9c24f",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 875,
+        "EndTime": 882.639,
+        "Text": "No, don\u0027t touch anything. Your hands are clean. Fine. I will wait by the door. Okay, I\u0027m ready. Let\u0027s go.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f2b65cf387ae4af7ac6d711bc8b9d1f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1024,
+        "EndTime": 1028.799,
+        "Text": "boss tells me what to do. Yes, that is a job.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f34e01ca3aa9412397726e1ee258dbdd",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1212,
+        "EndTime": 1219.12,
+        "Text": "I guess I never thought about it that way. I always thought a hobby was just another way to be successful.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f5e96e939d1644a09313511edb5e2ca5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 891,
+        "EndTime": 896.32,
+        "Text": "Hello. The door is open. In here. I am in the living room.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.f6906de64daa4237b93a5267fa33d8f5",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 1016,
+        "EndTime": 1024.799,
+        "Text": "I was focusing. Listen, Mark. Every day I wake up at 7 in the morning. I go to the office. I sit at my computer. My",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.fcc7dbe2a9db479a81fcfdc01678faf8",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 682,
+        "EndTime": 690.48,
+        "Text": "No. My fingers were slow. I could only play simple, slow songs. When we played together, I felt stupid. I felt like a",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.fd7f765819fc45e3bfed49fc7cc37774",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 258,
+        "EndTime": 265.44,
+        "Text": "It\u0027s not sad. It\u0027s smart. I stopped wasting my time. I used that time to study instead.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.fe0347a3d183422d9242fef5d14e8c91",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 564,
+        "EndTime": 570.56,
+        "Text": "reason. What is the reason for this tree? The reason is that it makes me happy.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.fe99944959724eed830c0ac3c82a55ec",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 404,
+        "EndTime": 412.08,
+        "Text": "So, buy new strings and play a slow song. Don\u0027t record it. Don\u0027t put it on the internet. Don\u0027t tell your friends.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    },
+    {
+      "key": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1.ff22b18777504b6cb5fe9d223eb19c3b",
+      "kind": "SpeakingSentence",
+      "values": {
+        "StartTime": 763,
+        "EndTime": 771.04,
+        "Text": "Yes. You feel like your hobby has to be perfect or it\u0027s a waste of time. But that\u0027s wrong. A hobby is just for you.",
+        "VietnameseMeaning": ""
+      },
+      "references": {
+        "VideoId": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "tct.speaking.youtube.6573b4832fd8c5b2173c83b91efa6de4a69ae552521596c742aa1f04d32597e1"
+}

@@ -144,11 +144,15 @@ public class SpeakingAssessmentIntegrationTests
             client,
             TestDataIds.SpeakingSentenceOneId,
             token,
-            SpeakingAssessmentTestHelper.CreateSilentPcm16Mono16kWav(0.3));
+            CreateVoicedWav());
         Assert.Equal(HttpStatusCode.OK, assessResponse.StatusCode);
         var assessBody = await assessResponse.Content.ReadAsStringAsync();
         using var assessJson = JsonDocument.Parse(assessBody);
         Assert.True(assessJson.RootElement.GetProperty("canCommitProgress").GetBoolean());
+        Assert.True(assessJson.RootElement.GetProperty("fluencyAvailable").GetBoolean());
+        Assert.True(assessJson.RootElement.GetProperty("completenessAvailable").GetBoolean());
+        Assert.InRange(assessJson.RootElement.GetProperty("fluencyScore").GetDouble(), 1, 100);
+        Assert.Equal(100, assessJson.RootElement.GetProperty("completenessScore").GetDouble());
         Assert.True(assessJson.RootElement.TryGetProperty("comparison", out var comparison));
         Assert.True(comparison.GetProperty("available").GetBoolean());
         Assert.True(comparison.GetProperty("operations").GetArrayLength() > 0);
@@ -169,6 +173,66 @@ public class SpeakingAssessmentIntegrationTests
         var progressBody = await progressResponse.Content.ReadAsStringAsync();
         using var progressJson = JsonDocument.Parse(progressBody);
         Assert.True(progressJson.RootElement.GetProperty("totalScore").GetDouble() >= 70);
+        Assert.Equal(assessJson.RootElement.GetProperty("fluencyScore").GetDouble(),
+            progressJson.RootElement.GetProperty("fluencyScore").GetDouble());
+        Assert.Equal(100, progressJson.RootElement.GetProperty("completenessScore").GetDouble());
+
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var saved = await db.UserSpeakingProgresses.SingleAsync(p => p.UserId == TestDataIds.UserId
+            && p.SentenceId == TestDataIds.SpeakingSentenceOneId);
+        Assert.Equal(progressJson.RootElement.GetProperty("fluencyScore").GetDouble(), saved.FluencyScore);
+        Assert.Equal(100, saved.CompletenessScore);
+    }
+
+    private static byte[] CreateVoicedWav()
+    {
+        var wav = SpeakingAssessmentTestHelper.CreateSilentPcm16Mono16kWav(2);
+        for (var sample = 0; sample < 32000; sample++)
+            BitConverter.GetBytes((short)(5000 * Math.Sin(sample * 2 * Math.PI * 180 / 16000)))
+                .CopyTo(wav, 44 + sample * 2);
+        return wav;
+    }
+
+    [Theory]
+    [InlineData(80, 90, 44, "old")]
+    [InlineData(90, 90, 83, "new")]
+    [InlineData(95, 95, 83, "new")]
+    public async Task ProgressRetainsOneCoherentTakeAndRefreshesMetricsWhenTotalTies(double newTotal, double expectedTotal, double expectedFluency, string expectedToken)
+    {
+        await using var factory = new TestWebApplicationFactory(); await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        var token = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, $"/Speaking/Practice?id={TestDataIds.SpeakingVideoId}");
+        var at = DateTime.UtcNow.AddHours(-1);
+        Guid newId;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            db.UserSpeakingProgresses.Add(new() { UserId = TestDataIds.UserId, SentenceId = TestDataIds.SpeakingSentenceOneId,
+                TotalScore = 90, AccuracyScore = 90, FluencyScore = 44, CompletenessScore = 55, PracticedAt = at });
+            db.SpeakingAssessments.Add(new() { PublicId = Guid.NewGuid(), UserId = TestDataIds.UserId, SentenceId = TestDataIds.SpeakingSentenceOneId,
+                TextMatchScore = 90, FluencyScore = 44, CompletenessScore = 55, MetricVersion = 1, TranscriptText = "old take",
+                Status = "Completed", SpeechDetected = true, Consumed = true, ConsumedAtUtc = at, CreatedAtUtc = at, ExpiresAtUtc = at.AddMinutes(10) });
+            newId = Guid.NewGuid();
+            db.SpeakingAssessments.Add(new() { PublicId = newId, UserId = TestDataIds.UserId, SentenceId = TestDataIds.SpeakingSentenceOneId,
+                TextMatchScore = newTotal, FluencyScore = 83, CompletenessScore = 70, MetricVersion = 1, TranscriptText = "new take",
+                Status = "Completed", SpeechDetected = true, CreatedAtUtc = DateTime.UtcNow, ExpiresAtUtc = DateTime.UtcNow.AddMinutes(10) });
+            await db.SaveChangesAsync();
+        }
+        using var request = new HttpRequestMessage(HttpMethod.Post, $"/api/speaking/{TestDataIds.SpeakingSentenceOneId}/progress") {
+            Content = new StringContent($$"""{"assessmentId":"{{newId}}","fluencyScore":999,"completenessScore":999}""", System.Text.Encoding.UTF8, "application/json") };
+        request.Headers.Add("RequestVerificationToken", token);
+        using var response = await client.SendAsync(request); Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        Assert.Equal(expectedTotal, json.RootElement.GetProperty("totalScore").GetDouble());
+        Assert.Equal(expectedFluency, json.RootElement.GetProperty("fluencyScore").GetDouble());
+        Assert.True(json.RootElement.GetProperty("fluencyAvailable").GetBoolean());
+        Assert.Contains(expectedToken, json.RootElement.GetProperty("comparison").ToString());
+        using var scopeAfter = factory.Services.CreateScope();
+        var after = scopeAfter.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var saved = await after.UserSpeakingProgresses.SingleAsync(p => p.UserId == TestDataIds.UserId && p.SentenceId == TestDataIds.SpeakingSentenceOneId);
+        Assert.Equal(expectedTotal, saved.TotalScore); Assert.Equal(expectedFluency, saved.FluencyScore);
+        Assert.True((await after.SpeakingAssessments.SingleAsync(a => a.PublicId == newId)).Consumed);
     }
 
     [Fact]

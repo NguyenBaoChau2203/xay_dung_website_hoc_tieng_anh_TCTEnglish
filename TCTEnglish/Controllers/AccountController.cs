@@ -535,20 +535,10 @@ namespace TCTVocabulary.Controllers
         // GET: /Account/Settings
         [Microsoft.AspNetCore.Authorization.Authorize]
         [HttpGet]
-        public async Task<IActionResult> Settings()
+        public IActionResult Settings()
         {
-            if (!TryGetCurrentUserId(out var userId)) return RedirectToAction("Login");
-
-            // OPTIMIZE: AsNoTracking — read-only query for display
-            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
-
-            if (user == null)
-            {
-                return RedirectToAction("Login");
-            }
-
-            var model = await BuildSettingsModelAsync(user);
-            return View("~/Views/Account/Settings.cshtml", model);
+            // Keep bookmarked and emailed settings URLs on the same surface as the sidebar.
+            return RedirectToAction("Profile", new { tab = "security" });
         }
 
         // POST: /Account/UpdateEmail
@@ -808,13 +798,8 @@ namespace TCTVocabulary.Controllers
                 TempData["ErrorMessage"] = result.Error;
                 ModelState.Clear(); // Never render submitted passwords or one-time codes again.
                 ViewData["EmailChangeInput"] = postedEmail;
-                if (returnSurface == "profile")
-                {
-                    var page = await _profiles.BuildAsync(user.UserId, Request.IsHttps, "security", null);
-                    return View("~/Views/Account/Profile.cshtml", page);
-                }
-
-                return View("~/Views/Account/Settings.cshtml", await BuildSettingsModelAsync(user));
+                var page = await _profiles.BuildAsync(user.UserId, Request.IsHttps, "security", null);
+                return View("~/Views/Account/Profile.cshtml", page);
             }
 
             if (result.ReissueSession)
@@ -828,38 +813,6 @@ namespace TCTVocabulary.Controllers
                 ? RedirectToAction("Profile", new { tab = "security" })
                 : RedirectToAction("Settings");
         }
-
-        private async Task<SecuritySettingsViewModel> BuildSettingsModelAsync(User user)
-        {
-            var preferences = await _preferences.ReadAsync(user.UserId, _outboundOptions.Value.PushConfigured);
-            var pending = await _context.AccountSecurityChallenges.AsNoTracking()
-                .Where(row => row.UserId == user.UserId && row.Purpose == AccountProofPurpose.EmailChange && row.ConsumedAtUtc == null && row.ExpiresAtUtc > DateTime.UtcNow)
-                .OrderByDescending(row => row.Id)
-                .Select(row => row.NewEmail)
-                .FirstOrDefaultAsync();
-            return new SecuritySettingsViewModel
-            {
-                Email = user.Email,
-                IsGoogleLinked = false,
-                IsFacebookLinked = false,
-                HasUnconfirmedSocialLoginMarker = _security.IsSocialLoginMarker(user),
-                PendingEmail = pending,
-                PasswordStateText = user.PasswordHash != null && user.PasswordHash.StartsWith("SOCIAL_LOGIN_", StringComparison.Ordinal)
-                    ? "Có dấu SOCIAL_LOGIN, chưa có mật khẩu cục bộ đã kiểm chứng"
-                    : "Đổi mật khẩu cần mật khẩu hiện tại",
-                EmailVerificationText = user.EmailVerifiedAt.HasValue ? "Email đã xác minh" : "Email chưa được xác minh",
-                DailyReminderEnabled = preferences.DailyReminderEnabled,
-                ReminderHour = preferences.ReminderHour,
-                ReminderMinute = preferences.ReminderMinute,
-                TimeZoneId = preferences.TimeZoneId,
-                PushOptIn = preferences.PushOptIn,
-                WeeklyEmailOptIn = preferences.WeeklyEmailOptIn,
-                PushState = preferences.PushState,
-                EmailState = preferences.EmailState,
-                PushConfigured = _outboundOptions.Value.PushConfigured
-            };
-        }
-
 
         /// <summary>
         /// Structural gate only. Prefix/length can still fail at Verify (bad cost/salt) — callers must catch.

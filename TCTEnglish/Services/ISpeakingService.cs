@@ -15,8 +15,10 @@ public sealed class SpeakingCatalogQuery
 
 public interface ISpeakingService
 {
-    Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(int? currentUserId, SpeakingCatalogQuery? query = null);
+    Task<SpeakingIndexViewModel> GetSpeakingIndexViewModelAsync(int? currentUserId, SpeakingCatalogQuery? query = null, bool includeRecent = true);
     Task<SpeakingPracticeViewModel?> GetSpeakingPracticeViewModelAsync(int videoId, int currentUserId);
+    Task<DateTime?> RecordVideoVisitAsync(int userId, int videoId, CancellationToken ct = default);
+    Task<IReadOnlyList<TCTEnglish.ViewModels.RecentSpeakingVideoViewModel>> GetRecentVideosAsync(int userId, int limit = 6, CancellationToken ct = default);
     Task<SpeakingImportResult> CreateOwnedVideoAsync(int userId, string youtubeUrl, CancellationToken ct = default);
     Task<LearnerImportPreparation> PrepareYoutubeCaptionsAsync(int userId, string youtubeUrl, CancellationToken ct = default);
     Task<LearnerImportPreparation> PrepareSubtitleImportAsync(int userId, string youtubeUrl, string subtitleText, CancellationToken ct = default);

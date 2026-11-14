@@ -434,3 +434,77 @@ using new API settings. All four AI clients follow the shared launcher rule.
 | Goals phase-7 closure and reward hardening | Resolved with atomic speaking/writing completion transitions, removal of request-time writing migration, new replay regression coverage, and an explicit rollout close decision |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |
 | CI/CD test suite 14 failures (billing, speaking, DI, writing, AI host) | Resolved across 5 root cause groups; full suite verified green at 449/449 (2026-04-30) |
+
+Catalog correction13/11/2026: the exact90 selected videos belong to Speaking.
+All90 wrong Listening rows are now retired locally via immutable version2
+withdrawals; original6 public and7 private lessons remain. Public topic/filter
+privacy fixes are retained. After owner authorization, five inaccessible videos
+were replaced with verified same-level sources; original withdrawal keys remain
+unchanged. All90 current videos have real captions and complete measured audio,
+and all90 are now available in local Speaking for owner UAT, with95 public
+videos including the5 originals. This follows the owner's later clarification
+that local testing precedes staging/team review. Full content QA remains pending.
+CTC pilots produce219 A1 and108 A2 English cues without overlaps; low acoustic
+confidence, non-speech classification and required review evidence remain
+unresolved. The catalog now defaults to subject groups and retains CEFR filters.
+A real transcript-click initialization bug was fixed: selecting another cue now
+updates both reference text and highlight. No paid ASR budget/call is approved.
+Existing caption `>>` speaker markers are now removed in practice presentation,
+including the selected reference/dictation text; stored source cues, timing and
+learner history stay intact. Old video44 is browser-verified with121 clean cues.
+Private Speaking YouTube import follow-up (13/11/2026): the player/captions API
+can report VideoUnavailable for a video whose public transcript is available.
+The runtime caption service now falls back to the public transcript panel with
+source timing validation and no ASR. The owner's gOMypAhVaXE imports successfully
+as a private video with27 cues. Failed imports show an accessible error popup;
+reload resumes the saved job without a duplicate POST. Public panel structure is
+an upstream dependency; unavailable captions still fail explicitly with SRT/VTT
+guidance. See the private-speaking-youtube-import-fix execution plan.
+Speaking result restoration follow-up (13/11/2026): shared practice code now
+restores numeric/word feedback and metric availability across sentence navigation
+and reload. Batched receipt lookup is bound to current user and retained progress;
+zero scores stay assessed. The duplicate center reference is removed and the
+side transcript has one accessible hide/show control at every width. Regression
+coverage includes public/private videos, multiple sentences and separate users.
+Historical progress without a source receipt retains its numbers only.
+Speaking catalog reconciliation (13/11/2026): Gemini's uncommitted controls were
+already in the current Speaking checkout, with incomplete carousel/page CSS and
+an extra closing div breaking theme containment. Shared layout is corrected;
+the owner's one-line topic carousel/icons, no-reload filtering/history and8-card
+slides are retained. Async public-section loading accounts for pages absent from
+the current DOM; private cards and practice fixes are preserved. Chrome MCP and
+144 shared fixture checks pass. The final state stays on the current local
+Speaking branch; no unrelated branches or production were merged.
+Existing Guest Listening practice404 and native200% zoom remain unverified/
+unchanged. Current evidence and exact blockers:
+[Speaking transfer ledger](../../docs/feature-audits/2026-11-13-speaking-transfer-transcript-ledger.md).
+
+Speaking component scores follow-up (13/11/2026): both placeholder metrics are now
+implemented for the shared practice flow. Completeness estimates attempted reference
+positions; fluency explicitly estimates timing/pauses/pace from PCM using the existing
+energy planner. Three nullable receipt columns preserve availability and method
+version. Historical transcripts can recover completeness; historical fluency needs
+a new recording. Best-take metrics/comparison and measured zero restore consistently.
+The ring and bars share a row at1440/768/390 without overflow. Core .NET37, Node35
+and disposable MariaDB10.5.23 upgrade/repeat/preservation1 pass; broader focused
+.NET46 pass/1 existing concurrency acceptance skipped. Local migration is applied,
+backup is ignored, web/readiness are available on5100. Fluency remains a coaching
+estimate, with no phoneme/prosody claim; paid real-microphone and native200% zoom
+acceptance were not run. See speaking-component-scores execution plan.
+
+
+Speaking recent videos completion (14/11/2026): the partial Gemini scaffold is
+now implemented locally. Personal recent history is server-side, access-filtered,
+limited to six distinct cards and independent of scores/catalog filters. A
+concurrent first-insert timestamp race is covered by a failing-then-passing
+regression and monotonic update. Account anonymization explicitly clears visits.
+Local MariaDB migration preserves all old row data; provider/concurrency and
+browser acceptance are recorded in
+[recent-videos ledger](../../docs/feature-audits/2026-11-13-speaking-recent-videos-ledger.md).
+Native200% zoom remains unverified; no known recent-history defect remains.
+
+
+PR136 CI portability (14/11/2026): catalog regression no longer reads ignored
+local transcript drafts. Public acquisition summaries now provide cue digests,
+counts and measured-duration bounds on clean runners. Raw media/private receipts
+stay ignored; content acoustic QA remains pending. See PR136 release ledger.

@@ -89,7 +89,49 @@ public sealed class YoutubeClientFixtureCompatibilityTests
     }
 
     private static YoutubeTranscriptService Service(YoutubeClient youtube, LocalYoutubeFixture fixture) =>
-        new(fixture.Importer, NullLogger<YoutubeTranscriptService>.Instance, youtube);
+        new(fixture.Importer, NullLogger<YoutubeTranscriptService>.Instance, youtube, fixture.CreateClient());
+
+    [Fact]
+    public async Task BlockedPlayer_UsesPublicTranscriptWithSourceTimingAndNoAudio()
+    {
+        using var fixture = new LocalYoutubeFixture(LocalYoutubeFixture.Mode.PublicPanel);
+        using var youtube = new YoutubeClient(fixture.CreateClient());
+        var captions = await Service(youtube, fixture).GetEnglishCaptionsOnlyAsync(VideoId);
+
+        Assert.True(captions.IsEnglishUsable);
+        Assert.Equal("youtube-public-transcript-panel", captions.TranscriptSource);
+        Assert.Equal(3, captions.Sentences.Count);
+        Assert.Equal("The cat and the dog went to the park with you.", captions.Sentences[0].Text);
+        Assert.Equal(2.5, captions.Sentences[1].StartTime);
+        Assert.Equal(4.75, captions.Sentences[1].EndTime);
+        Assert.Equal(0, fixture.Importer.Calls);
+        Assert.Equal(1, fixture.PanelRequests);
+    }
+
+    [Fact]
+    public async Task PublicTranscript_RejectsMismatchedTimingWithoutFabricatingCues()
+    {
+        using var fixture = new LocalYoutubeFixture(LocalYoutubeFixture.Mode.BadPanelTiming);
+        using var youtube = new YoutubeClient(fixture.CreateClient());
+        var captions = await Service(youtube, fixture).GetEnglishCaptionsOnlyAsync(VideoId);
+        Assert.False(captions.IsEnglishUsable);
+        Assert.Empty(captions.Sentences);
+        Assert.Equal(1, fixture.PanelRequests);
+        Assert.Equal(0, fixture.Importer.Calls);
+    }
+
+    [Fact]
+    public async Task PublicTranscriptCancellation_PropagatesWithoutCallingAudio()
+    {
+        using var fixture = new LocalYoutubeFixture(LocalYoutubeFixture.Mode.WaitPanel);
+        using var youtube = new YoutubeClient(fixture.CreateClient());
+        using var cts = new CancellationTokenSource();
+        var pending = Service(youtube, fixture).GetEnglishCaptionsOnlyAsync(VideoId, cts.Token);
+        await fixture.PanelStarted.Task.WaitAsync(TimeSpan.FromSeconds(5));
+        cts.Cancel();
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await pending);
+        Assert.Equal(0, fixture.Importer.Calls);
+    }
 
     private sealed class RecordingImporter : IAudioTranscriptImporter
     {
@@ -105,14 +147,16 @@ public sealed class YoutubeClientFixtureCompatibilityTests
 
     private sealed class LocalYoutubeFixture : HttpMessageHandler
     {
-        public enum Mode { Success, RejectPlayer, WaitForCancellation }
+        public enum Mode { Success, RejectPlayer, WaitForCancellation, PublicPanel, BadPanelTiming, WaitPanel }
 
         private readonly Mode _mode;
         public RecordingImporter Importer { get; } = new();
         public TaskCompletionSource RequestStarted { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        public TaskCompletionSource PanelStarted { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
         public List<string> Hosts { get; } = [];
         public int WatchRequests { get; private set; }
         public int CaptionRequests { get; private set; }
+        public int PanelRequests { get; private set; }
 
         public LocalYoutubeFixture(Mode mode) => _mode = mode;
 
@@ -150,7 +194,7 @@ public sealed class YoutubeClientFixtureCompatibilityTests
 
             if (path.Contains("/youtubei/v1/player", StringComparison.Ordinal))
             {
-                if (_mode == Mode.RejectPlayer)
+                if (_mode is Mode.RejectPlayer or Mode.PublicPanel or Mode.BadPanelTiming or Mode.WaitPanel)
                 {
                     return new HttpResponseMessage(HttpStatusCode.NotFound);
                 }
@@ -162,6 +206,35 @@ public sealed class YoutubeClientFixtureCompatibilityTests
             {
                 CaptionRequests++;
                 return Text(CaptionXml, "application/xml");
+            }
+
+            if (path.Contains("/youtubei/v1/get_panel", StringComparison.Ordinal))
+            {
+                PanelRequests++;
+                PanelStarted.TrySetResult();
+                if (_mode == Mode.RejectPlayer) return Text("{}", "application/json");
+                if (_mode == Mode.WaitPanel) await Task.Delay(Timeout.Infinite, cancellationToken);
+                var body = await request.Content!.ReadAsStringAsync(cancellationToken);
+                Assert.Contains("PAmodern_transcript_view", body);
+                Assert.Contains(Convert.ToBase64String([0xaa, 0x09, 0x0f, 0x0a, 0x0b, .. Encoding.ASCII.GetBytes(VideoId), 0x18, 0x01]), body);
+                var texts = new[] { "The cat and the dog went to the park with you.", "You have this book for the class and it is good.", "It is on the table or in the bag." };
+                return Text(System.Text.Json.JsonSerializer.Serialize(new {
+                    content = new { engagementPanelSectionListRenderer = new { content = new { sectionListRenderer = new { contents = new[] {
+                        new { itemSectionRenderer = new { sectionIdentifier = "section-en", contents = texts.Select((text, i) => new {
+                            macroMarkersPanelItemViewModel = new {
+                                item = new { timelineItemViewModel = new { contentItems = new[] { new { transcriptSegmentViewModel = new { simpleText = text } } } } },
+                                onTap = new { innertubeCommand = new { watchEndpoint = new { startTimeSeconds = i * 2 } } }
+                            }
+                        }) } }
+                    } } } } },
+                    frameworkUpdates = new { entityBatchUpdate = new { mutations = new[] { new { payload = new {
+                        timedMarkersListSyncEntity = new { timedListData = new { sections = new[] { new {
+                            sectionId = "section-en", timedSyncDataList = Enumerable.Range(0, _mode == Mode.BadPanelTiming ? 2 : 3).Select(i => new {
+                                videoTimeMs = (i * 2000 + (i == 1 ? 500 : 0)).ToString(), endTimeMs = (i * 2000 + 2750).ToString()
+                            })
+                        } } } }
+                    } } } } }
+                }), "application/json");
             }
 
             throw new InvalidOperationException("Fixture has no response for this YouTube path.");
@@ -208,7 +281,7 @@ public sealed class YoutubeClientFixtureCompatibilityTests
             "<meta itemprop=\"uploadDate\" content=\"2020-01-02\">" +
             "</head><body><div id=\"player\"></div><script>var ytInitialPlayerResponse = " +
             string.Concat(PlayerJson.Where(character => character is not '\r' and not '\n')) +
-            ";</script></body></html>";
+            ";</script><script>ytcfg.set({\"INNERTUBE_CONTEXT\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"fixture\",\"hl\":\"en\"}}});</script></body></html>";
 
         private const string CaptionXml = """
             <?xml version="1.0" encoding="utf-8"?>
