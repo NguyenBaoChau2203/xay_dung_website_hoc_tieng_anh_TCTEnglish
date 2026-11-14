@@ -14,5 +14,11 @@ namespace TCTVocabulary.Services
         Task<StudyViewModel?> GetVocabularyStudyViewModelAsync(int setId, int currentUserId, string? topic, int index, string mode);
         Task<VocabularyFolderDetailViewModel?> GetVocabularyFolderDetailViewModelAsync(int folderId, int currentUserId);
         Task<bool> TryIncrementVocabularySetViewCountAsync(int setId);
+
+        // Rebuilt Vocabulary module. A null result means the folder or set is not a system folder or set.
+        Task<VocabularyHomeViewModel?> GetVocabularyHomeAsync(int userId, int? folderId = null);
+        Task<VocabularyCourseViewModel?> GetVocabularyCourseAsync(int setId, int userId);
+        Task<VocabularyLessonViewModel?> GetVocabularyLessonAsync(int setId, int userId, int? lesson, string? topic, bool review);
+        Task<VocabularyLessonViewModel> GetVocabularyReviewAsync(int userId);
     }
 }

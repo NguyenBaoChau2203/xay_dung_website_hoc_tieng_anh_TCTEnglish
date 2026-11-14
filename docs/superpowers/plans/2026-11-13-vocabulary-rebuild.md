@@ -834,3 +834,22 @@ git diff --check
 - G4 node: passed 270 / failed 1 (pre-existing CRLF hash) / total 271
 - G8 render: six legacy pages at 1440×900, 1366×768 and 390, screenshots in `.tmp/vocabulary/before/`. One `<h1>` each (Study has 2), no console errors, no failed requests, no horizontal scroll.
 - G2, G5–G7, G9–G15: not applicable at V0 (no code change); G7: only the plan file is added.
+
+### V1 — Backend
+- Commit: see `git log` (subject "feat(vocabulary): add the lesson builder, course services and placeholder views")
+- G1 build: pass (warnings 43, V0 43)
+- G2 area: passed 147 / failed 0 / skipped 0
+- G3 full: passed 1522 / failed 0 / skipped 34 (V0: 1468 / 0 / 34; +54 new tests)
+- G4 node: passed 270 / failed 1 (same pre-existing CRLF hash failure as V0) / total 271
+- G5 contracts: unchanged. Every legacy URL answers 200 (Index, FolderDetail, Detail, Topics, TopicDetail, Study with `setId`, `topic`, `index`, `mode=review`); user-owned and unknown set/folder ids give 404; the `record` request/response is untouched and was re-proved from the new lesson page token (`Record_FromTheLessonPageToken_StillCreditsGoalsForASystemCard`).
+- G6 tokens/diff: `vocabulary.css` grep prints nothing; `git diff --check` flags only the pre-existing trailing blank line in the owner's unstaged `appsettings.Development.json` (never staged).
+- G7 scope: `VocabularyController.cs`, `IStudyService.cs`, `StudyService.Vocabulary.cs`, `VocabularyPageViewModels.cs`, `Services/Vocabulary/VocabularyLessonBuilder.cs`, `Views/Vocabulary/{Index,Detail,Study}.cshtml` (placeholders), `wwwroot/css/vocabulary.css` (comment-only stub), `VocabularyIntegrationTests.cs`, `VocabularyLessonBuilderTests.cs`. No forbidden file.
+- G8–G14: not run (the plan lists only G1–G7 and G15 for V1/V2; the views are data placeholders).
+- G15 security: access tests green (user-owned set/folder 404 on every route; anonymous never gets 200; the other user's progress is not counted; pool stays in the system scope; image URLs limited to https or local paths; a term containing `</script>` stays data). Grep: the only `Html.Raw` is the lesson config JSON (`Study.cshtml:29`, built by `ToConfigJson()` whose default encoder escapes `<`, `>`, `&`).
+- Decisions and plan corrections:
+  - `/Vocabulary` was a 404 (default route action is `Landing`). Added `[HttpGet("/Vocabulary/Index", Order = 0)]` + `[HttpGet("/Vocabulary", Order = 1)]` on `Index`; `Order 0` keeps generated sidebar/dashboard links on `/Vocabulary/Index` (asserted by `GeneratedLinksToTheHome_KeepTheCanonicalIndexUrl`).
+  - Old view models and old `GetVocabulary*ViewModelAsync` methods are kept until V9 because the still-present `FolderDetail`, `Topics` and `TopicDetail` views compile against them (now unreachable).
+  - The home "Bài {n} · {LessonTitle}" in 6.2 would repeat "Bài"; `LessonTitle` holds the full "Bài 5 · Animals" and the view prints it once (mockup 01 shows one prefix).
+  - Icon key uses tag order (first tag with a mapping wins); level = first `#a1…#c2` tag.
+  - Course-scoped review uses the existing URL `/Vocabulary/Study?setId=&mode=review`; global review is `/Vocabulary/Review`; `Review?setId=` is also accepted.
+- Attempts / deferred / blocked: none.
