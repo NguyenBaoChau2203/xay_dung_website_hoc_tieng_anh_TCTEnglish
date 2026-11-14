@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace TCTEnglish.ViewModels
 {
@@ -9,14 +10,11 @@ namespace TCTEnglish.ViewModels
 
     public class ListeningIndexViewModel
     {
-        /// <summary>Lessons grouped by CEFR level key (A1, A2, B1, B2, C1).</summary>
+        /// <summary>Lessons grouped by CEFR level key (A1, A2, B1, B2, C1, C2).</summary>
         public Dictionary<string, List<ListeningLessonCardViewModel>> LessonsByLevel { get; set; } = new();
 
         /// <summary>All distinct topic names for the filter UI.</summary>
         public List<string> Topics { get; set; } = new();
-
-        /// <summary>Level metadata (display name, icon, description) ordered A1→C1.</summary>
-        public List<ListeningLevelMetaViewModel> Levels { get; set; } = new();
 
         /// <summary>Currently active level filter (null = all).</summary>
         public string? SelectedLevel { get; set; }
@@ -29,16 +27,23 @@ namespace TCTEnglish.ViewModels
 
         /// <summary>Whether the feature is locked for standard users.</summary>
         public bool IsMyLessonsSectionLocked { get; set; }
-    }
 
-    public class ListeningLevelMetaViewModel
-    {
-        public string Key { get; set; } = string.Empty;      // "A1", "B2" …
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public string IconClass { get; set; } = string.Empty;
-        public string AccentColor { get; set; } = string.Empty;
-        public int LessonCount { get; set; }
+        /// <summary>All published public lessons, ignoring the level/topic filter.</summary>
+        public int TotalLessons { get; set; }
+
+        /// <summary>Public lessons the user finished (same population as <see cref="TotalLessons"/>).</summary>
+        public int CompletedLessons { get; set; }
+
+        /// <summary>Public lessons the user started but has not finished.</summary>
+        public int InProgressLessons { get; set; }
+
+        /// <summary>The usable, unfinished lesson the user opened most recently (public or own).</summary>
+        public ListeningLessonCardViewModel? ContinueLesson { get; set; }
+
+        public bool IsAuthenticated { get; set; }
+
+        /// <summary>Premium or Admin: may import YouTube lessons.</summary>
+        public bool CanImport { get; set; }
     }
 
     // ================================================================
@@ -68,10 +73,63 @@ namespace TCTEnglish.ViewModels
         public int? QuizScore { get; set; }
         public bool? VocabReviewed { get; set; }
 
+        /// <summary>True when the lesson is finished (CompletedAt set, or every required section done).</summary>
+        public bool IsCompleted { get; set; }
+
+        /// <summary>"new" (no progress row), "progress" or "done".</summary>
+        public string Status { get; set; } = "new";
+
+        /// <summary>Required sections finished (0-3).</summary>
+        public int StepsDone { get; set; }
+
+        /// <summary>Sections that have content (0-3).</summary>
+        public int StepsTotal { get; set; }
+
         public bool IsPrivate { get; set; }
         public bool IsLocked { get; set; }
         public string? ImportStatus { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        private static readonly Regex YoutubeIdPattern = new("^[A-Za-z0-9_-]{6,20}$", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Safe thumbnail URL for the card: the stored URL when it is https or a local path, otherwise the YouTube
+        /// thumbnail of a well-formed video id, otherwise null (the page shows a local placeholder).
+        /// </summary>
+        public string? ThumbnailSrc
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(ThumbnailUrl)
+                    && (ThumbnailUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                        || (ThumbnailUrl.StartsWith("/", StringComparison.Ordinal) && !ThumbnailUrl.StartsWith("//", StringComparison.Ordinal))))
+                {
+                    return ThumbnailUrl;
+                }
+
+                if (!string.IsNullOrWhiteSpace(YoutubeId) && YoutubeIdPattern.IsMatch(YoutubeId))
+                {
+                    return $"https://img.youtube.com/vi/{YoutubeId}/hqdefault.jpg";
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>Speaker names for the card, or null when there is nothing meaningful to show (imports use "Speaker").</summary>
+        public string? SpeakerText
+        {
+            get
+            {
+                var first = IsRealSpeaker(Speaker1Name) ? Speaker1Name!.Trim() : null;
+                var second = IsRealSpeaker(Speaker2Name) ? Speaker2Name!.Trim() : null;
+                if (first == null) return second;
+                return second == null ? first : $"{first} và {second}";
+            }
+        }
+
+        private static bool IsRealSpeaker(string? name) =>
+            !string.IsNullOrWhiteSpace(name) && !string.Equals(name.Trim(), "Speaker", StringComparison.OrdinalIgnoreCase);
     }
 
     // ================================================================
@@ -103,6 +161,33 @@ namespace TCTEnglish.ViewModels
         public int? QuizScore { get; set; }
         public bool VocabReviewed { get; set; }
         public DateTime? CompletedAt { get; set; }
+
+        public bool IsOwnLesson { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public bool IsCompleted { get; set; }
+
+        /// <summary>Premium/Admin; for quiz generation also requires an own lesson or Admin.</summary>
+        public bool CanUseAi { get; set; }
+
+        /// <summary>Premium/Admin and allowed to translate this lesson.</summary>
+        public bool CanTranslate { get; set; }
+
+        /// <summary>Premium/Admin: playback speed control.</summary>
+        public bool CanUseSpeed { get; set; }
+
+        private static readonly Regex VideoIdPattern = new("^[A-Za-z0-9_-]{6,20}$", RegexOptions.Compiled);
+
+        /// <summary>The YouTube id when it is well formed (safe for a URL and for markup), otherwise null.</summary>
+        public string? SafeYoutubeId =>
+            !string.IsNullOrWhiteSpace(YoutubeId) && VideoIdPattern.IsMatch(YoutubeId) ? YoutubeId : null;
+
+        /// <summary>The audio URL when it is https or a local path, otherwise null.</summary>
+        public string? SafeAudioUrl =>
+            !string.IsNullOrWhiteSpace(AudioUrl)
+            && (AudioUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                || (AudioUrl.StartsWith("/", StringComparison.Ordinal) && !AudioUrl.StartsWith("//", StringComparison.Ordinal)))
+                ? AudioUrl
+                : null;
     }
 
     // ================================================================
@@ -168,6 +253,9 @@ namespace TCTEnglish.ViewModels
         public int CorrectCount { get; set; }
         public int ScorePercent { get; set; }
         public bool Passed { get; set; }
+
+        /// <summary>Best stored score for the signed-in user (null for callers without a user id).</summary>
+        public int? BestScorePercent { get; set; }
         public List<ListeningQuizAnswerResult> Answers { get; set; } = new();
     }
 

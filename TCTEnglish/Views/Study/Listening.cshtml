@@ -1,476 +1,278 @@
 @model TCTEnglish.ViewModels.ListeningIndexViewModel
+@using System.Text.Json
+@using TCTEnglish.ViewModels
 @{
     ViewData["Title"] = "Luyện nghe tiếng Anh - TCT English";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    int totalLessons = Model.LessonsByLevel.Sum(kv => kv.Value.Count);
-
-    // Hardcoded level metadata for UI aesthetics (mapping keys from Service/ViewModel)
-    var levelDescriptions = new Dictionary<string, (string Desc, string Icon, string ColorClass)>
+    // CEFR levels in display order: label, description, icon and hue (text always accompanies the colour).
+    var levels = new[]
     {
-        ["A1"] = ("Easy English, slow speech", "fas fa-seedling", "lvl-a1"),
-        ["A2"] = ("Clear speech, common vocabulary", "fas fa-leaf", "lvl-a2"),
-        ["B1"] = ("Natural English at normal speed", "fas fa-fire", "lvl-b1"),
-        ["B2"] = ("Wider range of vocabulary", "fas fa-bolt", "lvl-b2"),
-        ["C1"] = ("Fast, natural speech", "fas fa-rocket", "lvl-c1"),
-        ["C2"] = ("Nuance, idiom and complex spoken English", "fas fa-award", "lvl-c2"),
+        (Key: "A1", Label: "A1 · Sơ cấp", Desc: "Tiếng Anh dễ, nói chậm", Icon: "fa-seedling", Hue: "success"),
+        (Key: "A2", Label: "A2 · Cơ bản", Desc: "Nói rõ, từ vựng thông dụng", Icon: "fa-leaf", Hue: "info"),
+        (Key: "B1", Label: "B1 · Trung cấp", Desc: "Tốc độ tự nhiên, chủ đề quen thuộc", Icon: "fa-fire", Hue: "primary"),
+        (Key: "B2", Label: "B2 · Trung cao cấp", Desc: "Vốn từ rộng hơn", Icon: "fa-bolt", Hue: "warning"),
+        (Key: "C1", Label: "C1 · Nâng cao", Desc: "Nói nhanh, tự nhiên", Icon: "fa-rocket", Hue: "danger"),
+        (Key: "C2", Label: "C2 · Thành thạo", Desc: "Sắc thái, thành ngữ, tiếng Anh nói phức tạp", Icon: "fa-award", Hue: "accent")
     };
+
+    var header = new PageHeaderViewModel
+    {
+        Title = "Luyện nghe",
+        Description = "Nghe hội thoại thực tế, xem lời thoại, luyện chính tả và làm quiz."
+    };
+
+    var visibleLevels = levels.Where(l => Model.LessonsByLevel.TryGetValue(l.Key, out var list) && list.Count > 0).ToList();
+    var lessonCount = visibleLevels.Sum(l => Model.LessonsByLevel[l.Key].Count);
+    var hasLessons = lessonCount > 0;
+    var percentDone = Model.TotalLessons > 0 ? (int)Math.Round(100.0 * Model.CompletedLessons / Model.TotalLessons) : 0;
+    var selectedLevel = Model.SelectedLevel ?? "all";
+    var selectedTopic = Model.SelectedTopic ?? "all";
+
+    var config = new
+    {
+        isAuthenticated = Model.IsAuthenticated,
+        canImport = Model.CanImport,
+        selectedLevel,
+        selectedTopic,
+        topics = Model.Topics,
+        pageSize = 6,
+        urls = new
+        {
+            create = "/Home/Listening/My/Create",
+            delete = "/Home/Listening/My/Delete",
+            practice = "/Home/Listening/Practice/",
+            premium = "/Account/Premium"
+        }
+    };
+    var configJson = JsonSerializer.Serialize(config, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+    var noLessons = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Chưa có bài nghe nào.", Message = "Nội dung đang được cập nhật." };
+    var noResults = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Không tìm thấy bài nghe phù hợp.", Message = "Thử từ khóa khác hoặc bỏ bớt bộ lọc." };
+    var noMine = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Chưa có bài nghe nào.", Message = "Dán link YouTube ở trên để tạo bài luyện nghe riêng." };
+
+    var statusLabels = new[] { (Key: "all", Label: "Tất cả"), (Key: "new", Label: "Chưa học"), (Key: "progress", Label: "Đang học"), (Key: "done", Label: "Đã xong") };
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/listening-index.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/speaking.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/listening.css" asp-append-version="true" />
 }
 
-@Html.AntiForgeryToken()
+<div class="tct-theme tct-page tl-page tl-page--index">
+    @Html.AntiForgeryToken()
+    <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
-<div class="tct-theme listening-index-page">
-    <div class="li-container">
-
-        @* ── HERO SECTION ──────────────────────────────────────────── *@
-        <header class="li-hero">
-            <div class="li-hero-badge">
-                <i class="fas fa-headphones-alt"></i>
-                Luyện nghe Tiếng Anh
+    @if (Model.IsAuthenticated)
+    {
+        <section class="tl-overview k-panel tl-hue-primary" aria-labelledby="tl-overview-title">
+            <div class="tl-overview__main">
+                <h2 id="tl-overview-title" class="tl-overview__title">Tiến độ nghe của bạn</h2>
+                <dl class="tl-overview__stats">
+                    <div class="tl-overview__stat k-pillow tl-hue-success"><dt>bài đã xong</dt><dd>@Model.CompletedLessons</dd></div>
+                    <div class="tl-overview__stat k-pillow tl-hue-warning"><dt>đang học</dt><dd>@Model.InProgressLessons</dd></div>
+                    <div class="tl-overview__stat k-pillow tl-hue-primary"><dt>tổng số bài</dt><dd>@Model.TotalLessons</dd></div>
+                </dl>
+                <div class="k-progress k-progress--thin k-progress--success" role="img" aria-label="Đã xong @Model.CompletedLessons/@Model.TotalLessons bài">
+                    <span class="k-progress__fill" style="--p:@(percentDone)%"></span>
+                </div>
             </div>
-            <h1 class="li-hero-title">English Listening Lab</h1>
-            <p class="li-hero-subtitle">
-                Cải thiện kỹ năng nghe qua các cuộc hội thoại thực tế, transcript chi tiết và bài tập thực hành.
-            </p>
-
-            <div class="li-search-container">
-                <i class="fas fa-search li-search-icon"></i>
-                <input type="text"
-                       id="li-search"
-                       class="li-search-input"
-                       placeholder="Tìm kiếm bài nghe hoặc chủ đề..."
-                       autocomplete="off"
-                       aria-label="Tìm kiếm bài nghe hoặc chủ đề" />
-            </div>
-        </header>
-
-        @* ── STATS ROW ────────────────────────────────────────────── *@
-        <div class="li-stats-row">
-            <span class="li-stat-chip"><i class="fas fa-play-circle"></i> <span id="li-total-count">@totalLessons bài học</span></span>
-            <span class="li-stat-chip"><i class="fas fa-layer-group"></i> @Model.Levels.Count cấp độ</span>
-            <span class="li-stat-chip"><i class="fas fa-tags"></i> @Model.Topics.Count chủ đề</span>
-            <span class="li-stat-chip li-stat-chip--fresh"><i class="fas fa-check-circle li-stat-chip-icon--fresh"></i> Update hàng tuần</span>
-        </div>
-
-        @if (User.Identity?.IsAuthenticated == true)
-        {
-            @* ─────────────────────────────────────────────────────────── *@
-            @* ── IMPORT PANEL (visible to all authenticated users) ────── *@
-            @* ─────────────────────────────────────────────────────────── *@
-            <section class="mip-panel" id="my-import-panel" aria-label="Thêm video YouTube của tôi">
-                <div class="mip-inner">
-                    <div class="mip-left">
-                        <span class="mip-yt-chip">
-                            <i class="fab fa-youtube mip-yt-icon"></i> YouTube
-                        </span>
-                        <h2 class="mip-heading">
-                            Luyện nghe với<br>video YouTube của bạn
-                        </h2>
-                        <p class="mip-sub">
-                            Dán link YouTube — hệ thống tự động tải transcript<br>
-                            và tạo bài luyện nghe cá nhân.
-                        </p>
-                    </div>
-                    <div class="mip-right">
-                        <div class="mip-form-area">
-                            <div class="mip-input-wrap">
-                                <i class="fab fa-youtube mip-input-icon mip-yt-icon"></i>
-                                <input type="url"
-                                       id="mip-url-input"
-                                       class="mip-input"
-                                       placeholder="Dán link YouTube vào đây..."
-                                       autocomplete="off"
-                                       aria-label="YouTube video URL" />
-                            </div>
-                            <button type="button" id="mip-submit-btn" class="mip-cta-btn">
-                                <i class="fas fa-plus" id="mip-btn-icon"></i>
-                                <span id="mip-btn-label">Thêm bài nghe</span>
-                            </button>
+            <div class="tl-overview__side">
+                @if (Model.ContinueLesson is { } resume)
+                {
+                    var resumeThumb = resume.ThumbnailSrc;
+                    <div class="tl-continue k-card">
+                        <div class="tl-continue__thumb k-art-box">
+                            @if (resumeThumb != null)
+                            {
+                                <img class="tl-thumb" src="@resumeThumb" alt="" width="160" height="90" loading="lazy" decoding="async" />
+                            }
+                            else
+                            {
+                                <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+                            }
                         </div>
-                        <div class="mip-feedback" id="mip-feedback" aria-live="polite" role="alert"></div>
-                        <p class="mip-hint">
-                            <i class="fas fa-info-circle"></i>
-                            Chỉ hỗ trợ video tiếng Anh có phụ đề. Yêu cầu tính năng Premium.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            @* ─────────────────────────────────────────────────────────── *@
-            @* ── BÀI NGHE CỦA TÔI ─────────────────────────────────────── *@
-            @* ─────────────────────────────────────────────────────────── *@
-            <section class="my-videos-section" id="my-videos-section" aria-label="Bài nghe của tôi">
-                <div class="my-sec-head">
-                    <div class="my-sec-title-wrap">
-                        <h2 class="my-sec-title">
-                            <i class="fas fa-user-circle"></i>
-                            Bài nghe của tôi
-                        </h2>
-                        @if (Model.IsMyLessonsSectionLocked)
-                        {
-                            <span class="my-locked-badge">
-                                <i class="fas fa-lock"></i> Tính năng đã khóa
-                            </span>
-                        }
-                    </div>
-                    <span class="my-sec-count" id="my-sec-count">
-                        @Model.MyLessons.Count bài
-                    </span>
-                </div>
-
-                @if (!Model.MyLessons.Any())
-                {
-                    <div class="my-empty-state" id="my-empty-state">
-                        <div class="my-empty-icon"><i class="fas fa-headphones"></i></div>
-                        <p class="my-empty-title">Chưa có bài nghe nào.</p>
-                        <p class="my-empty-sub">Hãy dán link YouTube ở trên để thêm bài luyện nghe cá nhân.</p>
+                        <div class="tl-continue__body">
+                            <p class="tl-continue__label">Tiếp tục nghe</p>
+                            <p class="tl-continue__title tct-clamp-2 tct-break">@resume.Title</p>
+                            <p class="tl-continue__meta">
+                                <span class="tct-badge tct-badge--primary">@resume.Level</span>
+                                @resume.StepsDone/@resume.StepsTotal phần
+                            </p>
+                            <a class="btn btn-primary btn-sm" href="/Home/Listening/Practice/@resume.Id"><i class="fa-solid fa-play" aria-hidden="true"></i> Nghe tiếp</a>
+                        </div>
                     </div>
                 }
-                else
+                else if (Model.TotalLessons > 0)
                 {
-                    <div class="my-videos-grid" id="my-videos-grid">
-                        @foreach (var v in Model.MyLessons)
-                        {
-                            var thumb = !string.IsNullOrWhiteSpace(v.ThumbnailUrl)
-                                ? v.ThumbnailUrl
-                                : (!string.IsNullOrWhiteSpace(v.YoutubeId)
-                                    ? $"https://img.youtube.com/vi/{v.YoutubeId}/hqdefault.jpg"
-                                    : "https://placehold.co/600x400?text=No+Thumbnail");
-
-                            string statusLabel;
-                            string statusCls;
-                            if (v.IsLocked) { statusLabel = "Đã khóa"; statusCls = "my-badge-locked"; }
-                            else { statusLabel = "Sẵn sàng"; statusCls = "my-badge-ready"; }
-
-                            <article class="my-video-card @(v.IsLocked ? "my-video-card--locked" : "")"
-                                     data-id="@v.Id"
-                                     data-title="@v.Title">
-                                <div class="my-vc-thumb">
-                                    <img src="@thumb" alt="@v.Title" class="my-vc-img" loading="lazy" />
-                                    @if (v.IsLocked)
-                                    {
-                                        <div class="my-vc-lock-overlay">
-                                            <div class="my-vc-lock-icon">
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                    }
-                                    <span class="my-vc-private-badge">
-                                        <i class="fas fa-user-shield"></i> Riêng tư
-                                    </span>
-                                </div>
-                                <div class="my-vc-body">
-                                    <h3 class="my-vc-title">@v.Title</h3>
-                                    <div class="my-vc-meta">
-                                        <span class="my-vc-status @statusCls">@statusLabel</span>
-                                        @if (!string.IsNullOrEmpty(v.Duration))
-                                        {
-                                            <span class="my-vc-duration">
-                                                <i class="far fa-clock"></i> @v.Duration
-                                            </span>
-                                        }
-                                        <span class="my-vc-date">
-                                            <i class="far fa-calendar-alt"></i> @v.CreatedAt.ToString("dd/MM/yyyy")
-                                        </span>
-                                    </div>
-                                    <div class="my-vc-actions">
-                                        @if (v.IsLocked)
-                                        {
-                                            <a href="/Account/Premium" class="my-btn my-btn-upgrade">
-                                                <i class="fas fa-crown"></i> Nâng cấp để mở khóa
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="@Url.Action("ListeningPractice", "Study", new { id = v.Id })" class="my-btn my-btn-practice">
-                                                <i class="fas fa-play"></i> Luyện ngay
-                                            </a>
-                                            <button type="button"
-                                                    class="my-btn my-btn-delete li-delete-btn"
-                                                    data-id="@v.Id"
-                                                    data-title="@v.Title"
-                                                    aria-label="Xóa @v.Title">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                            </article>
-                        }
-                    </div>
-                }
-            </section>
-        }
-
-        @* ── FILTERS ──────────────────────────────────────────────── *@
-        <section class="li-filters">
-            <div class="li-filter-tabs">
-                <button type="button" class="btn-tab active" data-level="all" aria-pressed="true">Tất cả trình độ</button>
-                @foreach (var level in Model.Levels)
-                {
-                    <button type="button" class="btn-tab" data-level="@level.Key" aria-pressed="false">@level.Key @level.Title</button>
+                    <p class="tl-overview__hint">Chọn một bài bên dưới để bắt đầu.</p>
                 }
             </div>
-
-            @if (Model.Topics.Any())
-            {
-                <div class="li-topic-pills">
-                    <button type="button" class="pill-topic active" data-topic="all" aria-pressed="true">Tất cả chủ đề</button>
-                    @foreach (var topic in Model.Topics)
-                    {
-                        <button type="button" class="pill-topic" data-topic="@topic" aria-pressed="false">@topic</button>
-                    }
-                </div>
-            }
         </section>
+    }
+    else
+    {
+        <div class="tl-guest k-panel k-panel--quiet" role="note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <p class="tl-guest__text">Đăng nhập để lưu tiến độ và thêm bài nghe của riêng bạn.</p>
+            <a class="btn btn-primary btn-sm" href="/Account/Login">Đăng nhập</a>
+        </div>
+    }
 
-        @* ── LEVEL SECTIONS ───────────────────────────────────────── *@
-        <div id="li-sections-wrapper">
-            @if (!Model.LessonsByLevel.Any())
+    @if (Model.IsAuthenticated)
+    {
+        <section class="tl-mine" aria-labelledby="tl-mine-title">
+            <header class="tl-mine__head">
+                <h2 id="tl-mine-title" class="tl-section-title" tabindex="-1">Bài nghe của tôi</h2>
+                <span class="tct-badge tct-badge--primary" id="tlMineCount">@Model.MyLessons.Count bài</span>
+                @if (Model.IsMyLessonsSectionLocked)
+                {
+                    <span class="tct-badge tct-badge--warning"><i class="fa-solid fa-lock" aria-hidden="true"></i> Cần Premium</span>
+                }
+            </header>
+
+            @if (Model.CanImport)
             {
-                <div class="li-empty">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h3>Chưa có bài học nào</h3>
-                    <p>Chúng tôi đang cập nhật thêm nội dung mới. Vui lòng quay lại sau!</p>
-                </div>
+                <form id="tlImport" class="tl-import k-panel" novalidate>
+                    <label class="tl-import__label" for="tlImportUrl">Dán link YouTube</label>
+                    <div class="tl-import__row">
+                        <input id="tlImportUrl" name="youtubeUrl" type="url" class="form-control" required maxlength="300"
+                               placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" aria-describedby="tlImportHint tlImportError" />
+                        <button type="submit" class="btn btn-primary" id="tlImportSubmit"><i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm bài nghe</button>
+                    </div>
+                    <p class="tl-import__hint" id="tlImportHint">Chỉ hỗ trợ video tiếng Anh có phụ đề.</p>
+                    <p class="tl-import__error" id="tlImportError" role="alert" hidden></p>
+                    <div class="tl-import__status" id="tlImportStatus" role="status" aria-live="polite"></div>
+                </form>
             }
             else
             {
-                foreach (var level in Model.Levels.OrderBy(l => l.Key))
+                <div class="tl-locked k-panel">
+                    <i class="fa-solid fa-crown" aria-hidden="true"></i>
+                    <p class="tl-locked__text">Thêm bài nghe từ YouTube là tính năng Premium.</p>
+                    <a class="btn btn-primary" href="/Account/Premium">Nâng cấp Premium</a>
+                </div>
+            }
+
+            @if (Model.MyLessons.Count > 0)
+            {
+                <ul class="tl-grid" id="tlMineGrid">
+                    @foreach (var mine in Model.MyLessons)
+                    {
+                        <partial name="_ListeningMyLessonCard" model="mine" />
+                    }
+                </ul>
+            }
+            <div id="tlMineEmpty" hidden="@(Model.MyLessons.Count > 0 || !Model.CanImport ? "hidden" : null)">
+                <partial name="~/Views/Shared/_StateMessage.cshtml" model="noMine" />
+            </div>
+        </section>
+    }
+
+    @if (!hasLessons)
+    {
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="noLessons" />
+    }
+    else
+    {
+        <div class="tl-toolbar" role="search">
+            <div class="tl-search">
+                <label class="visually-hidden" for="tlSearch">Tìm bài nghe</label>
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input id="tlSearch" type="search" class="form-control" maxlength="80" autocomplete="off"
+                       placeholder="Tìm theo tên bài hoặc chủ đề…" />
+            </div>
+            <div class="tl-filters">
+                <div class="k-seg" id="tlLevels" role="group" aria-label="Lọc theo trình độ">
+                    <button type="button" class="k-seg__item" data-level="all" aria-pressed="@(selectedLevel == "all" ? "true" : "false")">Tất cả</button>
+                    @foreach (var lvl in levels)
+                    {
+                        <button type="button" class="k-seg__item" data-level="@lvl.Key" aria-pressed="@(selectedLevel == lvl.Key ? "true" : "false")">@lvl.Key</button>
+                    }
+                </div>
+                @if (Model.IsAuthenticated)
                 {
-                    if (!Model.LessonsByLevel.ContainsKey(level.Key)) continue;
-
-                    var lessons = Model.LessonsByLevel[level.Key];
-                    var meta = levelDescriptions.ContainsKey(level.Key) 
-                        ? levelDescriptions[level.Key] 
-                        : (Desc: "Học tiếng Anh qua bài nghe", Icon: "fas fa-headphones", ColorClass: "lvl-a1");
-
-                    <section class="li-level-section" data-level="@level.Key">
-                        <header class="li-level-header">
-                            <div class="li-level-icon-wrapper @meta.ColorClass">
-                                <i class="@meta.Icon"></i>
-                            </div>
-                            <div class="li-level-info">
-                                <h2>@level.Key @level.Title</h2>
-                                <p class="li-level-desc">@meta.Desc</p>
-                            </div>
-                            <div class="li-level-count-badge">
-                                @lessons.Count lesson@(lessons.Count != 1 ? "s" : "")
-                            </div>
-                        </header>
-
-                        <div class="li-card-grid">
-                            @foreach (var item in lessons)
-                            {
-                                var lessonThumb = !string.IsNullOrWhiteSpace(item.ThumbnailUrl)
-                                    ? item.ThumbnailUrl
-                                    : (!string.IsNullOrWhiteSpace(item.YoutubeId)
-                                        ? $"https://img.youtube.com/vi/{item.YoutubeId}/hqdefault.jpg"
-                                        : "https://placehold.co/600x400?text=No+Thumbnail");
-
-                                <div class="li-card-col card-visible" 
-                                     data-title="@item.Title" 
-                                     data-topic="@item.Topic" 
-                                     data-level="@item.Level">
-                                    <a asp-controller="Study" asp-action="ListeningPractice" asp-route-id="@item.Id" class="li-card">
-                                        <div class="li-card-top">
-                                            <img src="@lessonThumb" alt="@item.Title" class="li-card-thumb" loading="lazy" />
-                                            @if (item.QuizCompleted == true)
-                                            {
-                                                <span class="li-status-badge badge-completed">
-                                                    <i class="fas fa-check"></i> @item.QuizScore%
-                                                </span>
-                                            }
-                                            else if (item.TranscriptCompleted == true)
-                                            {
-                                                <span class="li-status-badge badge-progress">Đang học</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="li-status-badge badge-new">Mới</span>
-                                            }
-                                        </div>
-
-                                        <h3 class="li-card-title">@item.Title</h3>
-
-                                        <div class="li-card-meta">
-                                            <span class="li-meta-tag tag-topic"><i class="fas fa-tag"></i> @item.Topic</span>
-                                            <span class="li-meta-tag"><i class="far fa-clock"></i> @item.Duration</span>
-                                            <span class="li-meta-tag"><i class="fas fa-question-circle"></i> @item.QuizQuestionCount Qs</span>
-                                        </div>
-
-                                        <div class="li-card-footer">
-                                            <div class="li-speaker-info">
-                                                <i class="fas fa-user-friends"></i>
-                                                <span class="li-speaker-name">@item.Speaker1Name</span>
-                                            </div>
-                                            <div class="li-arrow-icon ms-auto">
-                                                <i class="fas fa-arrow-right"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            }
-                        </div>
-
-                        <div class="li-pagination"></div>
-                    </section>
+                    <div class="k-seg" id="tlStatuses" role="group" aria-label="Lọc theo trạng thái">
+                        @foreach (var st in statusLabels)
+                        {
+                            <button type="button" class="k-seg__item" data-status="@st.Key" aria-pressed="@(st.Key == "all" ? "true" : "false")">@st.Label</button>
+                        }
+                    </div>
                 }
+            </div>
+            @if (Model.Topics.Count > 0)
+            {
+                <div class="tl-topics">
+                    <div class="k-seg k-seg--wrap" id="tlTopics" role="group" aria-label="Lọc theo chủ đề">
+                        <button type="button" class="k-seg__item" data-topic="all" aria-pressed="@(selectedTopic == "all" ? "true" : "false")">Tất cả chủ đề</button>
+                        @foreach (var topic in Model.Topics)
+                        {
+                            <button type="button" class="k-seg__item" data-topic="@topic" aria-pressed="@(selectedTopic == topic ? "true" : "false")">@topic</button>
+                        }
+                    </div>
+                    <button type="button" class="btn btn-link tl-topics__toggle" id="tlTopicsToggle" aria-expanded="false" hidden>Xem thêm chủ đề</button>
+                </div>
+            }
+            <p class="tl-count" id="tlCount" aria-live="polite">@lessonCount bài nghe</p>
+        </div>
+
+        <div id="tlEmpty" hidden>
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="noResults" />
+            <div class="tl-empty-actions"><button type="button" class="btn btn-outline-primary" id="tlClearFilters">Xóa bộ lọc</button></div>
+        </div>
+
+        <div id="tlLevelsHost">
+            @foreach (var lvl in visibleLevels)
+            {
+                var cards = Model.LessonsByLevel[lvl.Key];
+                <section class="tl-level tl-hue-@lvl.Hue" data-level-section="@lvl.Key" aria-labelledby="tl-level-@lvl.Key">
+                    <header class="tl-level__head">
+                        <span class="tl-level__icon k-pillow" aria-hidden="true"><i class="fa-solid @lvl.Icon"></i></span>
+                        <div class="tl-level__titles">
+                            <h2 id="tl-level-@lvl.Key" class="tl-section-title">@lvl.Label</h2>
+                            <p class="tl-level__desc">@lvl.Desc</p>
+                        </div>
+                        <span class="tct-badge tct-badge--primary tl-level__count" data-level-count>@cards.Count bài</span>
+                    </header>
+                    <ul class="tl-grid" data-level-grid>
+                        @foreach (var card in cards)
+                        {
+                            @await Html.PartialAsync("_ListeningLessonCard", card, new ViewDataDictionary(ViewData) { { "Auth", Model.IsAuthenticated } })
+                        }
+                    </ul>
+                    <div class="tl-level__more"><button type="button" class="btn btn-outline-primary" data-level-more hidden>Xem thêm</button></div>
+                </section>
             }
         </div>
+    }
 
-        @* ── NO RESULTS STATE ──────────────────────────────────── *@
-        <div id="li-no-results" class="li-empty li-hidden">
-            <i class="fas fa-search"></i>
-            <h3>Không tìm thấy kết quả</h3>
-            <p>Hãy thử từ khóa khác hoặc xóa bớt các bộ lọc.</p>
+    <div id="tsToastHost" class="toast-container ts-toast-host" aria-live="polite"></div>
+
+    @if (Model.IsAuthenticated && Model.CanImport)
+    {
+        <div class="modal fade" id="tlDeleteLesson" tabindex="-1" aria-labelledby="tlDeleteTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tlDeleteTitle">Xóa bài nghe?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-0" id="tlDeleteBody"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-danger" id="tlDeleteConfirm">Xóa bài nghe</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
+    }
 </div>
 
 @section Scripts {
+    <script type="application/json" id="tlConfig">@Html.Raw(configJson)</script>
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/listening-core.js" asp-append-version="true"></script>
     <script src="~/js/listening-index.js" asp-append-version="true"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('mip-submit-btn');
-            const input = document.getElementById('mip-url-input');
-            const feedback = document.getElementById('mip-feedback');
-            const btnIcon = document.getElementById('mip-btn-icon');
-            const btnLabel = document.getElementById('mip-btn-label');
-
-            if (btn) {
-                btn.addEventListener('click', function() {
-                    const url = input.value.trim();
-                    if (!url) return;
-
-                    btn.disabled = true;
-                    btnIcon.classList.remove('fa-plus');
-                    btnIcon.classList.add('fa-spinner', 'fa-spin');
-                    btnLabel.textContent = 'Đang xử lý...';
-                    
-                    feedback.style.display = 'none';
-                    feedback.className = 'mip-feedback mip-status-msg'; // Reset all classes
-
-                    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
-                    const token = tokenInput ? tokenInput.value : '';
-
-                    const formData = new FormData();
-                    if (document.querySelector('form')) {
-                        // Just to be safe, sometimes form serialization is easier, but explicit is fine
-                    }
-                    formData.append('youtubeUrl', url);
-                    if (token) formData.append('__RequestVerificationToken', token);
-
-                    fetch('/Home/Listening/My/Create', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(async response => {
-                        let data = null;
-                        try {
-                            data = await response.json();
-                        } catch(e) {}
-
-                        if (response.ok && data && data.success) {
-                            feedback.textContent = 'Thêm video thành công! Nội dung đang tải lại...';
-                            feedback.classList.add('mip-success');
-                            feedback.style.display = 'block';
-                            setTimeout(() => location.reload(), 1500);
-                        } else {
-                            if (response.status === 403 && data && data.requiresUpgrade) {
-                                feedback.innerHTML = `
-                                    <i class="fas fa-crown"></i> 
-                                    ${data.message || 'Tính năng dành riêng cho Premium.'} 
-                                    <a href="/Account/Premium" class="mip-link-upgrade">Nâng cấp ngay</a>
-                                `;
-                                feedback.classList.add('mip-upgrade');
-                                feedback.style.display = 'block';
-                                resetBtn();
-                                return;
-                            }
-                            
-                            const msg = data?.message || data?.error || 'Có lỗi xảy ra. Hãy chắc chắn video có phụ đề CC, nội dung tiếng Anh hợp lệ.';
-                            showError(msg);
-                        }
-                    })
-                    .catch(err => {
-                        console.error('Fetch error:', err);
-                        showError('Có lỗi xảy ra. Vui lòng thử lại.');
-                    });
-                });
-            }
-
-            function showError(msg) {
-                feedback.textContent = msg;
-                feedback.classList.add('mip-error');
-                feedback.style.display = 'block';
-                resetBtn();
-            }
-
-            function resetBtn() {
-                if (btn) btn.disabled = false;
-                if (btnIcon) {
-                    btnIcon.classList.remove('fa-spinner', 'fa-spin');
-                    btnIcon.classList.add('fa-plus');
-                }
-                if (btnLabel) btnLabel.textContent = 'Thêm bài nghe';
-            }
-
-            const deleteBtns = document.querySelectorAll('.li-delete-btn');
-            deleteBtns.forEach(dbtn => {
-                dbtn.addEventListener('click', function(e) {
-                    const title = this.dataset.title || '';
-                    if(!confirm('Bạn có chắc chắn muốn xóa bài nghe "' + title + '" không? Tiến trình học cũng sẽ bị xóa vĩnh viễn.')) return;
-
-                    const lessonId = this.dataset.id;
-                    const card = this.closest('.my-video-card');
-                    
-                    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
-                    const token = tokenInput ? tokenInput.value : '';
-
-                    const formData = new FormData();
-                    formData.append('id', lessonId); // Use 'id' to match controller generic pattern or lessonId if named so
-                    formData.append('lessonId', lessonId); // append both just in case! 
-                    if (token) formData.append('__RequestVerificationToken', token);
-
-                    fetch('/Home/Listening/My/Delete', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(async response => {
-                        if (response.ok) {
-                            card.style.transition = 'opacity 0.3s ease';
-                            card.style.opacity = '0';
-                            setTimeout(() => {
-                                card.remove();
-                                checkEmptyGrid();
-                            }, 300);
-                        } else {
-                            alert('Xóa thất bại, vui lòng thử lại.');
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        alert('Xóa thất bại, vui lòng thử lại.');
-                    });
-                });
-            });
-
-            function checkEmptyGrid() {
-                const count = document.querySelectorAll('.my-video-card').length;
-                const countBadge = document.getElementById('my-sec-count');
-                if (countBadge) countBadge.textContent = count + ' bài';
-                
-                if (count === 0) {
-                    location.reload(); 
-                }
-            }
-        });
-    </script>
 }

@@ -15,20 +15,6 @@ namespace TCTEnglish.Services
 {
     public class ListeningService : IListeningService
     {
-        // CEFR levels in display order
-        private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1", "C2" };
-
-        private static readonly Dictionary<string, (string Title, string Description, string IconClass, string AccentColor)> LevelMeta =
-            new(StringComparer.OrdinalIgnoreCase)
-            {
-                ["A1"] = ("Beginner", "Basic everyday expressions and simple phrases", "bi bi-1-circle", "#4CAF50"),
-                ["A2"] = ("Elementary", "Common situations and simple language", "bi bi-2-circle", "#8BC34A"),
-                ["B1"] = ("Intermediate", "Main points on familiar topics", "bi bi-3-circle", "#2196F3"),
-                ["B2"] = ("Upper-Intermediate", "Complex texts and technical discussions", "bi bi-4-circle", "#9C27B0"),
-                ["C1"] = ("Advanced", "Flexible and effective language use", "bi bi-5-circle", "#FF5722"),
-                ["C2"] = ("Proficiency", "Nuanced meaning in complex spoken English", "fas fa-award", "var(--tct-primary-strong)"),
-            };
-
         private readonly DbflashcardContext _context;
         private readonly ILogger<ListeningService> _logger;
         private readonly IGoalsService _goalsService;
@@ -50,14 +36,97 @@ namespace TCTEnglish.Services
         }
 
         // ----------------------------------------------------------------
+        // Access + completion helpers (plan L-R3, L-R5)
+        // ----------------------------------------------------------------
+
+        private sealed record LessonAccess(int Id, int? OwnerUserId, int TranscriptCount, int QuizCount, int VocabCount);
+
+        private sealed record ProgressSnapshot(
+            bool TranscriptCompleted, bool QuizCompleted, int? QuizScore, bool VocabReviewed,
+            DateTime? CompletedAt, DateTime LastAccessedAt);
+
+        /// <summary>
+        /// The single rule that decides whether a user may use (read, grade, save progress for) a lesson.
+        /// Usable = published and (public, or owned by this user). A private lesson is not usable by a
+        /// Standard-role owner (the import feature is Premium). Returns null when not usable, so callers answer 404.
+        /// </summary>
+        private async Task<LessonAccess?> GetUsableLessonAsync(int lessonId, int? userId, CancellationToken ct = default)
+        {
+            var lesson = await _context.ListeningLessons
+                .AsNoTracking()
+                .Where(l => l.Id == lessonId && l.IsPublished
+                    && (l.OwnerUserId == null || (userId.HasValue && l.OwnerUserId == userId.Value)))
+                .Select(l => new LessonAccess(
+                    l.Id,
+                    l.OwnerUserId,
+                    l.TranscriptLines.Count,
+                    l.QuizQuestions.Count,
+                    l.VocabItems.Count))
+                .FirstOrDefaultAsync(ct);
+
+            if (lesson == null)
+                return null;
+
+            if (lesson.OwnerUserId.HasValue && userId.HasValue
+                && await GetNormalizedRoleAsync(userId.Value) == Roles.Standard)
+            {
+                return null; // Premium locked
+            }
+
+            return lesson;
+        }
+
+        /// <summary>A lesson is complete when every section that has content is done.</summary>
+        private static bool IsLessonComplete(bool transcriptDone, bool quizDone, bool vocabDone,
+            int transcriptCount, int quizCount, int vocabCount) =>
+            (transcriptCount == 0 || transcriptDone) &&
+            (quizCount == 0 || quizDone) &&
+            (vocabCount == 0 || vocabDone) &&
+            (transcriptCount + quizCount + vocabCount) > 0;
+
+        private static bool IsLessonComplete(UserListeningProgress p, LessonAccess lesson) =>
+            IsLessonComplete(p.TranscriptCompleted, p.QuizCompleted, p.VocabReviewed,
+                lesson.TranscriptCount, lesson.QuizCount, lesson.VocabCount);
+
+        /// <summary>Fills status/progress fields of a card from the user's progress row (null = not started).</summary>
+        private static void ApplyProgress(ListeningLessonCardViewModel card, ProgressSnapshot? progress)
+        {
+            card.StepsTotal = (card.TranscriptLineCount > 0 ? 1 : 0)
+                + (card.QuizQuestionCount > 0 ? 1 : 0)
+                + (card.VocabItemCount > 0 ? 1 : 0);
+
+            if (progress == null)
+            {
+                card.Status = "new";
+                return;
+            }
+
+            card.TranscriptCompleted = progress.TranscriptCompleted;
+            card.QuizCompleted = progress.QuizCompleted;
+            card.QuizScore = progress.QuizScore;
+            card.VocabReviewed = progress.VocabReviewed;
+
+            card.StepsDone = (card.TranscriptLineCount > 0 && progress.TranscriptCompleted ? 1 : 0)
+                + (card.QuizQuestionCount > 0 && progress.QuizCompleted ? 1 : 0)
+                + (card.VocabItemCount > 0 && progress.VocabReviewed ? 1 : 0);
+
+            card.IsCompleted = progress.CompletedAt != null
+                || IsLessonComplete(progress.TranscriptCompleted, progress.QuizCompleted, progress.VocabReviewed,
+                    card.TranscriptLineCount, card.QuizQuestionCount, card.VocabItemCount);
+            card.Status = card.IsCompleted ? "done" : "progress";
+        }
+
+        // ----------------------------------------------------------------
         // GetIndexViewModelAsync
         // ----------------------------------------------------------------
 
-        public async Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic, int? userId = null)
+        public async Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic, int? userId = null, CancellationToken ct = default)
         {
-            var query = _context.ListeningLessons
+            var publicLessons = _context.ListeningLessons
                 .AsNoTracking()
                 .Where(l => l.OwnerUserId == null && l.IsPublished);
+
+            var query = publicLessons;
 
             if (!string.IsNullOrWhiteSpace(level))
                 query = query.Where(l => l.Level == level);
@@ -84,61 +153,97 @@ namespace TCTEnglish.Services
                     QuizQuestionCount = l.QuizQuestions.Count,
                     VocabItemCount = l.VocabItems.Count,
                 })
-                .ToListAsync();
+                .ToListAsync(ct);
 
-            // Distinct topics from ALL published lessons (pre-filter for topic dropdown)
-            var allTopics = await _context.ListeningLessons
-                .AsNoTracking()
-                .Where(l => l.OwnerUserId == null && l.IsPublished)
+            // Distinct topics from ALL published public lessons (pre-filter list for the topic filter).
+            // Private lessons (topic "My Lessons") never appear here.
+            var allTopics = await publicLessons
                 .Select(l => l.Topic)
                 .Distinct()
                 .OrderBy(t => t)
-                .ToListAsync();
+                .ToListAsync(ct);
 
-            var cardsByLevel = lessons
-                .GroupBy(l => l.Level)
-                .ToDictionary(
-                    g => g.Key,
-                    g => g.Select(l => new ListeningLessonCardViewModel
-                    {
-                        Id = l.Id,
-                        Title = l.Title,
-                        Level = l.Level,
-                        Topic = l.Topic,
-                        YoutubeId = l.YoutubeId,
-                        ThumbnailUrl = l.ThumbnailUrl,
-                        Duration = l.Duration,
-                        Speaker1Name = l.Speaker1Name,
-                        Speaker2Name = l.Speaker2Name,
-                        Speaker1Country = l.Speaker1Country,
-                        Speaker2Country = l.Speaker2Country,
-                        TranscriptLineCount = l.TranscriptLineCount,
-                        QuizQuestionCount = l.QuizQuestionCount,
-                        VocabItemCount = l.VocabItemCount,
-                    }).ToList()
-                );
+            var totalLessons = await publicLessons.CountAsync(ct);
 
-            // Level metadata in canonical order
-            var levelMetas = LevelOrder
-                .Select(key => BuildLevelMeta(key, cardsByLevel))
+            var cards = lessons
+                .Select(l => new ListeningLessonCardViewModel
+                {
+                    Id = l.Id,
+                    Title = l.Title,
+                    Level = l.Level,
+                    Topic = l.Topic,
+                    YoutubeId = l.YoutubeId,
+                    ThumbnailUrl = l.ThumbnailUrl,
+                    Duration = l.Duration,
+                    Speaker1Name = l.Speaker1Name,
+                    Speaker2Name = l.Speaker2Name,
+                    Speaker1Country = l.Speaker1Country,
+                    Speaker2Country = l.Speaker2Country,
+                    TranscriptLineCount = l.TranscriptLineCount,
+                    QuizQuestionCount = l.QuizQuestionCount,
+                    VocabItemCount = l.VocabItemCount,
+                })
                 .ToList();
 
             var viewModel = new ListeningIndexViewModel
             {
-                LessonsByLevel = cardsByLevel,
                 Topics = allTopics,
-                Levels = levelMetas,
                 SelectedLevel = level,
                 SelectedTopic = topic,
+                TotalLessons = totalLessons,
+                IsAuthenticated = userId.HasValue,
             };
 
-            if (!userId.HasValue) return viewModel;
+            if (!userId.HasValue)
+            {
+                foreach (var card in cards) ApplyProgress(card, null);
+                FinishIndexViewModel(viewModel, cards);
+                return viewModel;
+            }
 
-            var currentRole = await GetNormalizedRoleAsync(userId.Value);
+            var uid = userId.Value;
+            var currentRole = await GetNormalizedRoleAsync(uid);
             var isLocked = currentRole == Roles.Standard;
+            viewModel.CanImport = currentRole is Roles.Admin or Roles.Premium;
+
+            // One query for every progress row of the user on lessons they may see
+            // (public published lessons and their own private ones).
+            var progressRows = await _context.UserListeningProgresses
+                .AsNoTracking()
+                .Where(p => p.UserId == uid && p.Lesson.IsPublished
+                    && (p.Lesson.OwnerUserId == null || p.Lesson.OwnerUserId == uid))
+                .Select(p => new
+                {
+                    p.LessonId,
+                    IsPrivate = p.Lesson.OwnerUserId != null,
+                    p.TranscriptCompleted,
+                    p.QuizCompleted,
+                    p.QuizScore,
+                    p.VocabReviewed,
+                    p.CompletedAt,
+                    p.LastAccessedAt,
+                    TranscriptCount = p.Lesson.TranscriptLines.Count,
+                    QuizCount = p.Lesson.QuizQuestions.Count,
+                    VocabCount = p.Lesson.VocabItems.Count,
+                })
+                .ToListAsync(ct);
+
+            var progressByLesson = progressRows.ToDictionary(
+                p => p.LessonId,
+                p => new ProgressSnapshot(p.TranscriptCompleted, p.QuizCompleted, p.QuizScore, p.VocabReviewed, p.CompletedAt, p.LastAccessedAt));
+
+            foreach (var card in cards)
+                ApplyProgress(card, progressByLesson.GetValueOrDefault(card.Id));
+
+            // Overview numbers use every public lesson, never the level/topic filter.
+            var publicProgress = progressRows.Where(p => !p.IsPrivate).ToList();
+            viewModel.CompletedLessons = publicProgress.Count(p => p.CompletedAt != null
+                || IsLessonComplete(p.TranscriptCompleted, p.QuizCompleted, p.VocabReviewed, p.TranscriptCount, p.QuizCount, p.VocabCount));
+            viewModel.InProgressLessons = publicProgress.Count - viewModel.CompletedLessons;
+
             var myLessons = await _context.ListeningLessons
                 .AsNoTracking()
-                .Where(l => l.OwnerUserId == userId.Value)
+                .Where(l => l.OwnerUserId == uid)
                 .OrderByDescending(l => l.CreatedAt)
                 .Select(l => new ListeningLessonCardViewModel
                 {
@@ -157,37 +262,93 @@ namespace TCTEnglish.Services
                     ImportStatus = "ready", // For now we keep it simple
                     CreatedAt = l.CreatedAt
                 })
-                .ToListAsync();
+                .ToListAsync(ct);
+
+            foreach (var card in myLessons)
+                ApplyProgress(card, progressByLesson.GetValueOrDefault(card.Id));
 
             viewModel.MyLessons = myLessons;
             viewModel.IsMyLessonsSectionLocked = isLocked;
 
+            // "Continue listening": the usable, unfinished lesson opened most recently.
+            var usableIds = myLessons.Where(c => !c.IsLocked).Select(c => c.Id).ToHashSet();
+            var continueRow = progressRows
+                .Where(p => !p.IsPrivate || usableIds.Contains(p.LessonId))
+                .Where(p => progressByLesson.TryGetValue(p.LessonId, out var s)
+                    && s.CompletedAt == null
+                    && !IsLessonComplete(s.TranscriptCompleted, s.QuizCompleted, s.VocabReviewed, p.TranscriptCount, p.QuizCount, p.VocabCount))
+                .OrderByDescending(p => p.LastAccessedAt)
+                .FirstOrDefault();
+
+            if (continueRow != null)
+            {
+                var continueCard = cards.FirstOrDefault(c => c.Id == continueRow.LessonId)
+                    ?? myLessons.FirstOrDefault(c => c.Id == continueRow.LessonId);
+
+                if (continueCard == null)
+                {
+                    // A public lesson hidden by the active level/topic filter.
+                    continueCard = await publicLessons
+                        .Where(l => l.Id == continueRow.LessonId)
+                        .Select(l => new ListeningLessonCardViewModel
+                        {
+                            Id = l.Id,
+                            Title = l.Title,
+                            Level = l.Level,
+                            Topic = l.Topic,
+                            YoutubeId = l.YoutubeId,
+                            ThumbnailUrl = l.ThumbnailUrl,
+                            Duration = l.Duration,
+                            Speaker1Name = l.Speaker1Name,
+                            Speaker2Name = l.Speaker2Name,
+                            Speaker1Country = l.Speaker1Country,
+                            Speaker2Country = l.Speaker2Country,
+                            TranscriptLineCount = l.TranscriptLines.Count,
+                            QuizQuestionCount = l.QuizQuestions.Count,
+                            VocabItemCount = l.VocabItems.Count,
+                        })
+                        .FirstOrDefaultAsync(ct);
+
+                    if (continueCard != null)
+                        ApplyProgress(continueCard, progressByLesson.GetValueOrDefault(continueCard.Id));
+                }
+
+                viewModel.ContinueLesson = continueCard;
+            }
+
+            FinishIndexViewModel(viewModel, cards);
             return viewModel;
+        }
+
+        private static void FinishIndexViewModel(ListeningIndexViewModel viewModel, List<ListeningLessonCardViewModel> cards)
+        {
+            viewModel.LessonsByLevel = cards
+                .GroupBy(c => c.Level)
+                .ToDictionary(g => g.Key, g => g.ToList());
         }
 
         // ----------------------------------------------------------------
         // GetPracticeViewModelAsync
         // ----------------------------------------------------------------
 
-        public async Task<ListeningPracticeViewModel?> GetPracticeViewModelAsync(int lessonId, int? userId)
+        public async Task<ListeningPracticeViewModel?> GetPracticeViewModelAsync(int lessonId, int? userId, CancellationToken ct = default)
         {
+            var access = await GetUsableLessonAsync(lessonId, userId, ct);
+            if (access == null)
+                return null;
+
             var role = userId.HasValue ? await GetNormalizedRoleAsync(userId.Value) : Roles.Standard;
 
             var lesson = await _context.ListeningLessons
                 .AsNoTracking()
-                .Where(l => l.Id == lessonId && l.IsPublished && (l.OwnerUserId == null || l.OwnerUserId == userId))
+                .Where(l => l.Id == lessonId)
                 .Include(l => l.TranscriptLines)
                 .Include(l => l.QuizQuestions)
                 .Include(l => l.VocabItems)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(ct);
 
             if (lesson == null)
                 return null;
-
-            if (lesson.OwnerUserId == userId && role == Roles.Standard)
-            {
-                return null; // Premium locked
-            }
 
             // Load user progress (may be null for guests / first-time visitors)
             UserListeningProgress? progress = null;
@@ -195,8 +356,11 @@ namespace TCTEnglish.Services
             {
                 progress = await _context.UserListeningProgresses
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(p => p.UserId == userId.Value && p.LessonId == lessonId);
+                    .FirstOrDefaultAsync(p => p.UserId == userId.Value && p.LessonId == lessonId, ct);
             }
+
+            var isPremiumOrAdmin = role is Roles.Admin or Roles.Premium;
+            var isOwnLesson = lesson.OwnerUserId.HasValue && lesson.OwnerUserId == userId;
 
             return new ListeningPracticeViewModel
             {
@@ -257,6 +421,14 @@ namespace TCTEnglish.Services
                 QuizScore = progress?.QuizScore,
                 VocabReviewed = progress?.VocabReviewed ?? false,
                 CompletedAt = progress?.CompletedAt,
+
+                IsAuthenticated = userId.HasValue,
+                IsOwnLesson = isOwnLesson,
+                IsCompleted = progress != null && (progress.CompletedAt != null || IsLessonComplete(progress, access)),
+                CanUseSpeed = isPremiumOrAdmin,
+                CanTranslate = isPremiumOrAdmin,
+                // Quiz generation on a shared (public) lesson is Admin-only; Premium users keep it for their own lessons.
+                CanUseAi = isPremiumOrAdmin && (isOwnLesson || role == Roles.Admin),
             };
         }
 
@@ -264,27 +436,35 @@ namespace TCTEnglish.Services
         // EvaluateQuizAsync
         // ----------------------------------------------------------------
 
-        public async Task<ListeningQuizResultViewModel?> EvaluateQuizAsync(ListeningQuizSubmitDto dto)
+        public async Task<ListeningQuizResultViewModel?> EvaluateQuizAsync(ListeningQuizSubmitDto dto, int? userId = null, CancellationToken ct = default)
         {
             if (dto == null || dto.LessonId <= 0)
+                return null;
+
+            var access = await GetUsableLessonAsync(dto.LessonId, userId, ct);
+            if (access == null)
                 return null;
 
             var questions = await _context.ListeningQuizQuestions
                 .AsNoTracking()
                 .Where(q => q.LessonId == dto.LessonId)
                 .OrderBy(q => q.OrderIndex)
-                .ToListAsync();
+                .ToListAsync(ct);
 
             if (!questions.Any())
                 return null;
 
+            var submitted = dto.Answers ?? new Dictionary<int, string>();
             var results = new List<ListeningQuizAnswerResult>();
             int correctCount = 0;
 
+            // Only the lesson's own question ids are graded; any other key in the body is ignored.
             foreach (var q in questions)
             {
-                dto.Answers.TryGetValue(q.Id, out var userAnswer);
-                bool isCorrect = string.Equals(userAnswer, q.CorrectAnswer, StringComparison.OrdinalIgnoreCase);
+                submitted.TryGetValue(q.Id, out var rawAnswer);
+                var userAnswer = NormalizeAnswerLetter(rawAnswer);
+                bool isCorrect = userAnswer != null
+                    && string.Equals(userAnswer, q.CorrectAnswer.Trim(), StringComparison.OrdinalIgnoreCase);
                 if (isCorrect) correctCount++;
 
                 results.Add(new ListeningQuizAnswerResult
@@ -302,7 +482,7 @@ namespace TCTEnglish.Services
             int total = questions.Count;
             int scorePercent = total > 0 ? (int)Math.Round((double)correctCount / total * 100) : 0;
 
-            return new ListeningQuizResultViewModel
+            var result = new ListeningQuizResultViewModel
             {
                 LessonId = dto.LessonId,
                 TotalQuestions = total,
@@ -311,6 +491,37 @@ namespace TCTEnglish.Services
                 Passed = scorePercent >= 60,
                 Answers = results,
             };
+
+            if (userId.HasValue)
+            {
+                try
+                {
+                    var progress = await ApplyProgressAsync(userId.Value, access, p =>
+                    {
+                        p.QuizCompleted = true;
+                        p.QuizScore = Math.Max(p.QuizScore ?? 0, scorePercent);
+                    }, ct);
+                    result.BestScorePercent = progress.QuizScore;
+                }
+                catch (Exception ex) when (ex is not OperationCanceledException)
+                {
+                    // The learner still gets the graded result; the score is simply not stored this time.
+                    _logger.LogError(ex, "EvaluateQuizAsync could not store progress for userId={UserId}, lessonId={LessonId}", userId, dto.LessonId);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>Accepts only A-D (case-insensitive); anything else counts as unanswered.</summary>
+        private static string? NormalizeAnswerLetter(string? answer)
+        {
+            var trimmed = answer?.Trim();
+            if (string.IsNullOrEmpty(trimmed) || trimmed.Length != 1)
+                return null;
+
+            var upper = char.ToUpperInvariant(trimmed[0]);
+            return upper is >= 'A' and <= 'D' ? upper.ToString() : null;
         }
 
         // ----------------------------------------------------------------
@@ -321,60 +532,26 @@ namespace TCTEnglish.Services
         {
             try
             {
-                // Verify lesson exists (also prevents saving progress for non-existent lessons)
-                bool lessonExists = await _context.ListeningLessons
-                    .AnyAsync(l => l.Id == lessonId && l.IsPublished);
-
-                if (!lessonExists)
+                // Same access rule as every other path: published and (public or own and still allowed).
+                var access = await GetUsableLessonAsync(lessonId, userId);
+                if (access == null)
                     return false;
 
-                // Anti-IDOR: ownership is enforced by using the server-side userId
-                var progress = await _context.UserListeningProgresses
-                    .FirstOrDefaultAsync(p => p.UserId == userId && p.LessonId == lessonId);
-
-                if (progress == null)
+                await ApplyProgressAsync(userId, access, progress =>
                 {
-                    // Insert new record
-                    progress = new UserListeningProgress
-                    {
-                        UserId = userId,
-                        LessonId = lessonId,
-                        LastAccessedAt = DateTime.UtcNow,
-                    };
-                    _context.UserListeningProgresses.Add(progress);
-                }
+                    // Selective update — only apply fields sent by the client
+                    if (dto.TranscriptCompleted.HasValue)
+                        progress.TranscriptCompleted = dto.TranscriptCompleted.Value;
 
-                // Selective update — only apply fields sent by the client
-                if (dto.TranscriptCompleted.HasValue)
-                    progress.TranscriptCompleted = dto.TranscriptCompleted.Value;
+                    if (dto.QuizCompleted.HasValue)
+                        progress.QuizCompleted = dto.QuizCompleted.Value;
 
-                if (dto.QuizCompleted.HasValue)
-                    progress.QuizCompleted = dto.QuizCompleted.Value;
+                    if (dto.QuizScore.HasValue)
+                        progress.QuizScore = Math.Max(progress.QuizScore ?? 0, Math.Clamp(dto.QuizScore.Value, 0, 100));
 
-                if (dto.QuizScore.HasValue)
-                    progress.QuizScore = dto.QuizScore.Value;
-
-                if (dto.VocabReviewed.HasValue)
-                    progress.VocabReviewed = dto.VocabReviewed.Value;
-
-                progress.LastAccessedAt = DateTime.UtcNow;
-
-                // Mark fully completed when all three sections done
-                var wasCompleted = progress.CompletedAt != null;
-                if (progress.TranscriptCompleted && progress.QuizCompleted && progress.VocabReviewed
-                    && progress.CompletedAt == null)
-                {
-                    progress.CompletedAt = DateTime.UtcNow;
-                }
-
-                await _context.SaveChangesAsync();
-
-                var isNewCompletion = !wasCompleted && progress.CompletedAt != null;
-                if (isNewCompletion)
-                {
-                    var activityUpdate = _goalsService.BuildListeningCompletionActivityUpdate();
-                    await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
-                }
+                    if (dto.VocabReviewed.HasValue)
+                        progress.VocabReviewed = dto.VocabReviewed.Value;
+                });
 
                 return true;
             }
@@ -383,6 +560,49 @@ namespace TCTEnglish.Services
                 _logger.LogError(ex, "SaveProgressAsync failed for userId={UserId}, lessonId={LessonId}", userId, lessonId);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Upserts the user's progress row, applies the completion rule (plan 4.4) and, on the transition
+        /// from not-completed to completed, records exactly one Listening credit for Goals.
+        /// </summary>
+        private async Task<UserListeningProgress> ApplyProgressAsync(
+            int userId, LessonAccess lesson, Action<UserListeningProgress> apply, CancellationToken ct = default)
+        {
+            // Anti-IDOR: ownership is enforced by using the server-side userId
+            var progress = await _context.UserListeningProgresses
+                .FirstOrDefaultAsync(p => p.UserId == userId && p.LessonId == lesson.Id, ct);
+
+            if (progress == null)
+            {
+                progress = new UserListeningProgress
+                {
+                    UserId = userId,
+                    LessonId = lesson.Id,
+                    LastAccessedAt = DateTime.UtcNow,
+                };
+                _context.UserListeningProgresses.Add(progress);
+            }
+
+            apply(progress);
+            progress.LastAccessedAt = DateTime.UtcNow;
+
+            var wasCompleted = progress.CompletedAt != null;
+            if (!wasCompleted && IsLessonComplete(progress, lesson))
+            {
+                progress.CompletedAt = DateTime.UtcNow;
+            }
+
+            await _context.SaveChangesAsync(ct);
+
+            var isNewCompletion = !wasCompleted && progress.CompletedAt != null;
+            if (isNewCompletion)
+            {
+                var activityUpdate = _goalsService.BuildListeningCompletionActivityUpdate();
+                await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
+            }
+
+            return progress;
         }
 
         // ----------------------------------------------------------------
@@ -472,7 +692,8 @@ namespace TCTEnglish.Services
 
             _logger.LogInformation("User {UserId} imported private listening lesson {LessonId} ({YoutubeId}).", userId, createdLessonId, normalizedYoutubeId);
 
-            // Auto-generate AI Quiz without blocking
+            // Auto-generate an AI quiz. The import request WAITS for it (bounded by the AI provider timeout);
+            // a failure is logged and the lesson is still created without a quiz.
             try 
             { 
                  await GenerateQuizFromTranscriptAsync(createdLessonId, userId, ct); 
@@ -524,6 +745,10 @@ namespace TCTEnglish.Services
 
             if (lesson.OwnerUserId.HasValue && lesson.OwnerUserId != userId)
                 return OperationResult.Invalid("Bạn không có quyền truy cập bài nghe này.");
+
+            // Shared (public) lessons: only an Admin may write AI content onto them.
+            if (lesson.OwnerUserId == null && role != Roles.Admin)
+                return OperationResult.Invalid("Chỉ quản trị viên mới tạo được quiz cho bài nghe chung.");
 
             if (lesson.QuizQuestions.Any())
                 return OperationResult.Invalid("Bài nghe đã có quiz.");
@@ -736,28 +961,6 @@ Chỉ trả JSON array of strings, không giải thích thêm.
             {
                 return new List<string>();
             }
-        }
-
-        // ----------------------------------------------------------------
-        // Private helpers
-        // ----------------------------------------------------------------
-
-        private static ListeningLevelMetaViewModel BuildLevelMeta(
-            string key,
-            Dictionary<string, List<ListeningLessonCardViewModel>> cardsByLevel)
-        {
-            LevelMeta.TryGetValue(key, out var meta);
-            cardsByLevel.TryGetValue(key, out var cards);
-
-            return new ListeningLevelMetaViewModel
-            {
-                Key = key,
-                Title = meta.Title ?? key,
-                Description = meta.Description ?? string.Empty,
-                IconClass = meta.IconClass ?? "bi bi-headphones",
-                AccentColor = meta.AccentColor ?? "#607D8B",
-                LessonCount = cards?.Count ?? 0,
-            };
         }
     }
 }

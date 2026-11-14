@@ -1,0 +1,76 @@
+@model TCTEnglish.ViewModels.ListeningLessonCardViewModel
+@*
+    One public lesson card on /Home/Listening (plan 6.4). The whole card is one stretched link; the status badge,
+    duration pill and progress bar are decorative extras inside it. ViewData["Auth"] = true shows the progress bar.
+*@
+@{
+    var signedIn = ViewData["Auth"] is true;
+    var thumb = Model.ThumbnailSrc;
+    var statusClass = Model.Status switch
+    {
+        "done" => "tct-badge--success",
+        "progress" => "tct-badge--warning",
+        _ => "tct-badge--primary"
+    };
+    var statusText = Model.Status switch
+    {
+        "done" => "Đã xong",
+        "progress" => "Đang học",
+        _ => "Mới"
+    };
+}
+<li class="tl-grid__item" data-id="@Model.Id" data-title="@Model.Title" data-topic="@Model.Topic" data-level="@Model.Level" data-status="@Model.Status">
+    <article class="tl-card k-card tct-card--interactive">
+        <a class="tl-card__link stretched-link" href="/Home/Listening/Practice/@Model.Id" aria-label="Mở bài nghe @Model.Title"></a>
+        <div class="tl-card__thumb k-art-box">
+            @if (thumb != null)
+            {
+                <img class="tl-thumb" src="@thumb" alt="" width="320" height="180" loading="lazy" decoding="async" />
+            }
+            else
+            {
+                <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+            }
+            <span class="tl-card__status tct-badge @statusClass">
+                @if (Model.Status == "done")
+                {
+                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                }
+                @statusText
+            </span>
+            @if (!string.IsNullOrWhiteSpace(Model.Duration))
+            {
+                <span class="tl-card__duration"><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
+            }
+        </div>
+        <div class="tl-card__body">
+            <h3 class="tl-card__title tct-clamp-2 tct-break">@Model.Title</h3>
+            <p class="tl-card__meta">
+                <span><i class="fa-solid fa-tag" aria-hidden="true"></i> @Model.Topic</span>
+                @if (Model.QuizQuestionCount > 0)
+                {
+                    <span>@Model.QuizQuestionCount câu hỏi</span>
+                }
+                @if (Model.VocabItemCount > 0)
+                {
+                    <span>@Model.VocabItemCount từ</span>
+                }
+            </p>
+            @if (Model.SpeakerText != null)
+            {
+                <p class="tl-card__speakers"><i class="fa-solid fa-user-group" aria-hidden="true"></i> @Model.SpeakerText</p>
+            }
+            @if (signedIn && Model.StepsTotal > 0)
+            {
+                <div class="tl-card__steps">
+                    <div class="k-progress k-progress--thin" aria-hidden="true"><span class="k-progress__fill" style="--p:@(Model.StepsDone * 100 / Model.StepsTotal)%"></span></div>
+                    <span class="visually-hidden">@Model.StepsDone/@Model.StepsTotal phần đã xong</span>
+                    @if (Model.Status == "done" && Model.QuizScore.HasValue)
+                    {
+                        <span class="tl-card__score">Quiz @Model.QuizScore%</span>
+                    }
+                </div>
+            }
+        </div>
+    </article>
+</li>

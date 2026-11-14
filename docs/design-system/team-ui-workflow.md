@@ -149,7 +149,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
 | Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
 | Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
+| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `study-kit.css` + `listening.css` | `var(--tct-*)` dùng chung (kit `k-*` mở rộng cho `.tl-page`) | Đã chuyển Clay 2026-11-13 | Huỳnh Phú Trọng |
 | Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
 | Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
