@@ -1,0 +1,17 @@
+@using TCTVocabulary.Services.Vocabulary
+@model int?
+@*
+    The five-dot memory meter (plan 4.1). Filled dots = min(level, 5); level 6 shows five dots in the success hue.
+    No level (word not learned yet) shows five empty dots. Decorative: aria-hidden; the stage label is always text beside it.
+*@
+@{
+    var level = Model;
+    var stage = level.HasValue ? SpacedRepetitionScheduler.StageFor(level.Value) : "none";
+    var filled = level.HasValue ? Math.Min(level.Value, 5) : 0;
+}
+<span class="tv-dots tv-dots--@stage" aria-hidden="true">
+    @for (var i = 1; i <= 5; i++)
+    {
+        <span class="tv-dot@(i <= filled ? " is-on" : string.Empty)"></span>
+    }
+</span>

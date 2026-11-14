@@ -503,3 +503,26 @@ Decisions:
 - `planReview(words)` keeps the server's oldest-first order and caps at 20; it takes no rng because the order must not be shuffled (the plan's `rng` argument is therefore not used; determinism is tested by identical input giving identical output). A word is asked once; a wrong answer goes to the end up to two extra times, so a word is asked at most three times and ends as `hard` (1 miss), `again` (2 or more).
 - Choice prompt in an srs review alternates by position (even: meaning → term, odd: term → meaning); level 2–3 words alternate choose/type by position; terms with spaces or over 24 characters stay on choose.
 - Recording bookkeeping: `claimRecord` returns a finished word's outcome exactly once, `releaseRecord` re-opens it after a failed call, `markRecorded` stores the server answer, `unsaved` lists words not yet saved; `summary()` adds `words[]` (level, stage, label, promoted, outcome, saved) and `xp`.
+
+### Gate record S4 — CSS foundation and partials (2026-11-14)
+Commit: `feat(vocabulary): add the SRS styling foundation and the art, dots, memory and forecast partials`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0); the four new partials compile |
+| G2 | pass: Vocabulary / SpacedRepetition / LearningApi / Goals area green (part of the full run) |
+| G3 | pass: 1699 passed / 0 failed / 34 skipped (= S2) |
+| G4 | pass: node untouched (315 tests, the one known failure) |
+| G5 | pass: no URL, endpoint or existing view touched |
+| G6 | pass: grep on `vocabulary.css` finds no hex, `rgb(`, `:root`, `!important`, weight above 700 or non-token `box-shadow`; braces balance; `git diff --check` clean |
+| G7 | pass: `wwwroot/css/vocabulary.css` and the four partials `_CourseArt`, `_LevelDots`, `_MemoryPanel`, `_ReviewForecast` (section 2.1/2.2) |
+| G8–G13 | n-a for S4: no page consumes the new CSS yet, so nothing renders; the components are rendered and compared with the mockups in S5 (home) and S6 (course), and fixes land in those commits |
+| G14 | pass: depth only through `--tct-clay-shadow*`; radii through `--tct-radius-*`; the review card uses a token border, not a literal shadow |
+| G15 | pass: no secrets, no inline colours (only the `--tv-n` / `--tv-h` custom properties are inline) |
+
+Decisions:
+- The home banner is `.tv-banner` (not `.tv-hero`): `.tv-hero` is still the course-page header until S6.
+- Token names: the plan's `--tct-clay-lift` is `--tct-clay-shadow-lift`; there are no "strong" hue tokens, so `fSk`/`fWk`/`fIk` and strokes use the `-text` tokens; the muted art fill (`fM`) is a `color-mix` of `--tct-text-muted` with the surface, with `--tct-border` as the plain fallback.
+- `<text>` is a Razor transition tag inside a code block, so the one SVG `<text>` element ("Aa") is emitted through `Html.Raw` in `_CourseArt.cshtml`.
+- The ring is an SVG (decorative) with its figures as real text over it; `pathLength=100` lets `--tv-p` be the percentage. Bars and the segmented memory bar get their sizes from inline custom properties.
+- Banner chips use `--tct-primary-strong` with `--tct-on-primary` text for contrast on the primary surface (checked in S5 by script).

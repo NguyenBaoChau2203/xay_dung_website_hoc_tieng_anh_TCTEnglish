@@ -610,3 +610,386 @@
     .tv-page .tv-phase.is-current { border-width: 3px; }
     .tv-page .tv-lesson--next { border-width: 3px; }
 }
+
+/* ==================================================================================================
+   Spaced repetition and visual polish (plan 2026-11-14-vocabulary-srs-polish, sections 4 and 5)
+   New components: home banner + ring, panels, memory panel, forecast chart, level dots, course art, chips,
+   two-column course layout. Tokens only; depth only through --tct-clay-*; one forced-colors and one
+   prefers-reduced-motion block per component group.
+   ================================================================================================== */
+
+/* ---------------------------------------------------------------- course cover art (7 illustrations) */
+.tv-page .tv-art { display: block; width: 100%; height: 100%; }
+
+.tv-page .tv-art .fP { fill: var(--tct-primary); }
+.tv-page .tv-art .fPk { fill: var(--tct-primary-strong); }
+.tv-page .tv-art .fS { fill: var(--tct-success); }
+.tv-page .tv-art .fSk { fill: var(--tct-success-text); }
+.tv-page .tv-art .fW { fill: var(--tct-warning); }
+.tv-page .tv-art .fWk { fill: var(--tct-warning-text); }
+.tv-page .tv-art .fD { fill: var(--tct-danger); }
+.tv-page .tv-art .fI { fill: var(--tct-info); }
+.tv-page .tv-art .fIk { fill: var(--tct-info-text); }
+.tv-page .tv-art .fA { fill: var(--tct-accent); }
+.tv-page .tv-art .fSf { fill: var(--tct-surface); }
+.tv-page .tv-art .fT { fill: var(--tct-text); }
+.tv-page .tv-art .fM { fill: var(--tct-border); }
+.tv-page .tv-art .fM { fill: color-mix(in srgb, var(--tct-text-muted) 35%, var(--tct-surface)); }
+
+.tv-page .tv-art .sSf { stroke: var(--tct-surface); fill: none; }
+.tv-page .tv-art .sP { stroke: var(--tct-primary); fill: none; }
+.tv-page .tv-art .sM { stroke: var(--tct-border-control); fill: none; }
+.tv-page .tv-art .sT { stroke: var(--tct-text); fill: none; }
+.tv-page .tv-art .sWk { stroke: var(--tct-warning-text); fill: none; }
+.tv-page .tv-art .sIk { stroke: var(--tct-info-text); fill: none; }
+
+.tv-page .tv-art .tx { font-family: var(--tct-font); font-size: 26px; font-weight: var(--tct-weight-bold); }
+.tv-page .tv-art .o5 { opacity: 0.5; }
+.tv-page .tv-art .o3 { opacity: 0.3; }
+
+/* The cover background follows the art key, so the drawing always sits on a matching tint. */
+.tv-page .tv-cover { aspect-ratio: 200 / 120; height: auto; width: 100%; }
+.tv-page .tv-cover--star,
+.tv-page .tv-cover--food { background: var(--tct-warning-soft); }
+.tv-page .tv-cover--talk { background: var(--tct-info-soft); }
+.tv-page .tv-cover--book { background: var(--tct-success-soft); }
+.tv-page .tv-cover--travel,
+.tv-page .tv-cover--colors { background: var(--tct-primary-soft); }
+.tv-page .tv-cover--jobs { background: var(--tct-danger-soft); }
+
+.tv-page .tv-course__cover.tv-cover { height: auto; }
+
+/* ---------------------------------------------------------------- chips on course covers and rows */
+.tv-page .tv-chipdue {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-xs);
+    padding: 2px var(--tct-space-sm);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-danger-soft);
+    color: var(--tct-danger-text);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-bold);
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- level dots (five, decorative) */
+.tv-page .tv-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    vertical-align: middle;
+}
+
+.tv-page .tv-dot {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--tct-border-control);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-surface);
+}
+
+.tv-page .tv-dots--new .tv-dot.is-on { border-color: var(--tct-warning); background: var(--tct-warning); }
+.tv-page .tv-dots--growing .tv-dot.is-on { border-color: var(--tct-info); background: var(--tct-info); }
+.tv-page .tv-dots--strong .tv-dot.is-on { border-color: var(--tct-primary); background: var(--tct-primary); }
+.tv-page .tv-dots--long .tv-dot.is-on { border-color: var(--tct-success); background: var(--tct-success); }
+
+/* A row of per-word dots in a lesson row: coloured by stage, outline only for a word not learned yet. */
+.tv-page .tv-wdots { display: flex; flex-wrap: wrap; gap: 3px; margin-top: var(--tct-space-sm); }
+.tv-page .tv-wdot { width: 8px; height: 8px; border: 1px solid var(--tct-border-control); border-radius: var(--tct-radius-pill); background: var(--tct-surface); }
+.tv-page .tv-wdot--new { border-color: var(--tct-warning); background: var(--tct-warning); }
+.tv-page .tv-wdot--growing { border-color: var(--tct-info); background: var(--tct-info); }
+.tv-page .tv-wdot--strong { border-color: var(--tct-primary); background: var(--tct-primary); }
+.tv-page .tv-wdot--long { border-color: var(--tct-success); background: var(--tct-success); }
+
+/* ---------------------------------------------------------------- panels (memory, forecast, aside) */
+.tv-page .tv-panels { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--tct-space-md); }
+
+@media (min-width: 992px) {
+    .tv-page .tv-panels { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--tct-space-lg); }
+}
+
+.tv-page .tv-panel { display: flex; flex-direction: column; gap: var(--tct-space-md); padding: var(--tct-space-lg); }
+
+.tv-page .tv-panel__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--tct-space-xs) var(--tct-space-md); }
+
+.tv-page .tv-panel__title {
+    margin: 0;
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-panel__title i { margin-inline-end: var(--tct-space-sm); color: var(--tct-primary-strong); }
+.tv-page .tv-panel__aside { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+.tv-page .tv-panel__empty { margin: 0; padding: var(--tct-space-md) 0; color: var(--tct-text-secondary); }
+
+/* ---------------------------------------------------------------- memory panel */
+.tv-page .tv-memory__bar {
+    display: flex;
+    height: 14px;
+    overflow: hidden;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-primary-soft);
+}
+
+.tv-page .tv-memory__seg { flex: var(--tv-n, 1) 1 0; min-width: 6px; }
+.tv-page .tv-memory__seg + .tv-memory__seg { border-inline-start: 2px solid var(--tct-surface); }
+.tv-page .tv-memory__seg--new { background: var(--tct-warning); }
+.tv-page .tv-memory__seg--growing { background: var(--tct-info); }
+.tv-page .tv-memory__seg--strong { background: var(--tct-primary); }
+.tv-page .tv-memory__seg--long { background: var(--tct-success); }
+
+.tv-page .tv-memory__tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--tct-space-sm); }
+
+@media (min-width: 576px) {
+    .tv-page .tv-memory:not(.tv-memory--compact) .tv-memory__tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.tv-page .tv-tile { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: var(--tct-space-sm) var(--tct-space-md); }
+
+.tv-page .tv-tile__count {
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-tile__label { font-size: var(--tct-text-base); font-weight: var(--tct-weight-bold); }
+.tv-page .tv-tile__hint { font-size: var(--tct-text-sm); line-height: var(--tct-leading-base); }
+.tv-page .tv-memory__explain { margin: 0; color: var(--tct-text-secondary); font-size: var(--tct-text-sm); line-height: var(--tct-leading-base); }
+
+/* ---------------------------------------------------------------- forecast chart (7 bars) */
+.tv-page .tv-forecast__chart { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--tct-space-sm); }
+
+.tv-page .tv-bar { display: flex; flex-direction: column; align-items: stretch; gap: var(--tct-space-xs); min-width: 0; }
+
+.tv-page .tv-bar__track {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    height: 140px;
+}
+
+.tv-page .tv-bar__n {
+    margin-bottom: var(--tct-space-xs);
+    color: var(--tct-text);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-bold);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.tv-page .tv-bar__col {
+    display: block;
+    height: calc(var(--tv-h, 0%) * 0.8);
+    min-height: 6px;
+    border-radius: var(--tct-radius-sm);
+    background: var(--tct-primary-soft);
+    background: color-mix(in srgb, var(--tct-primary) 30%, var(--tct-surface));
+    transform-origin: bottom;
+}
+
+.tv-page .tv-bar.is-today .tv-bar__col { background: var(--tct-warning); }
+.tv-page .tv-bar__l { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); text-align: center; white-space: nowrap; }
+.tv-page .tv-bar.is-today .tv-bar__l { color: var(--tct-warning-text); }
+
+@media (max-width: 575.98px) {
+    .tv-page .tv-panel { padding: var(--tct-space-md); }
+    .tv-page .tv-forecast__chart { gap: var(--tct-space-xs); }
+    .tv-page .tv-bar__l { font-size: var(--tct-text-xs); }
+}
+
+@keyframes tv-bar-in { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: no-preference) {
+    .tv-page .tv-bar__col { animation: tv-bar-in var(--tct-dur) var(--tct-ease) both; }
+}
+
+/* ---------------------------------------------------------------- home banner: ring + review + next lesson */
+.tv-page .tv-banner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tct-space-lg);
+    align-items: stretch;
+    padding: var(--tct-space-lg);
+    overflow: hidden;
+    border-radius: var(--tct-radius-xl);
+    background: var(--tct-primary);
+    background: linear-gradient(135deg, var(--tct-primary), var(--tct-primary-strong));
+    box-shadow: var(--tct-clay-shadow-lift);
+    color: var(--tct-on-primary);
+}
+
+.tv-page .tv-banner > * { position: relative; min-width: 0; }
+
+@media (min-width: 768px) {
+    .tv-page .tv-banner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--tct-space-xl); }
+    .tv-page .tv-banner__goal { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1200px) {
+    .tv-page .tv-banner { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .tv-page .tv-banner__goal { grid-column: auto; }
+}
+
+.tv-page .tv-banner__goal { display: flex; flex-wrap: wrap; align-items: center; gap: var(--tct-space-lg); }
+.tv-page .tv-banner__text { flex: 1 1 11rem; min-width: 0; }
+
+.tv-page .tv-banner__title {
+    margin: 0 0 var(--tct-space-md);
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+    line-height: var(--tct-leading-tight);
+    color: var(--tct-on-primary);
+}
+
+@media (min-width: 1200px) {
+    .tv-page .tv-banner__title { font-size: var(--tct-text-3xl); }
+}
+
+.tv-page .tv-banner__chips { display: flex; flex-wrap: wrap; gap: var(--tct-space-sm); margin: 0; padding: 0; list-style: none; }
+
+.tv-page .tv-banner__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-xs);
+    padding: var(--tct-space-xs) var(--tct-space-md);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-primary-strong);
+    color: var(--tct-on-primary);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-bold);
+}
+
+/* The goal ring: an inline SVG (decorative) with the figures as real text on top. */
+.tv-page .tv-ring { position: relative; flex: 0 0 auto; width: 144px; height: 144px; }
+.tv-page .tv-ring svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
+.tv-page .tv-ring__track { fill: none; stroke: var(--tct-primary-strong); stroke-width: 11; }
+.tv-page .tv-ring__bar { fill: none; stroke: var(--tct-accent); stroke-width: 11; stroke-linecap: round; stroke-dasharray: var(--tv-p, 0) 100; }
+
+.tv-page .tv-ring__label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: var(--tct-leading-tight);
+}
+
+.tv-page .tv-ring__value { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); font-variant-numeric: tabular-nums; }
+.tv-page .tv-ring__caption { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+
+@keyframes tv-ring-in { from { stroke-dasharray: 0 100; } }
+
+@media (prefers-reduced-motion: no-preference) {
+    .tv-page .tv-ring__bar { animation: tv-ring-in 600ms var(--tct-ease) both; }
+}
+
+/* The two cards inside the banner. The review card gets an accent border so it reads as the main action. */
+.tv-page .tv-bcard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tct-space-sm);
+    min-width: 0;
+    padding: var(--tct-space-md) var(--tct-space-lg);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg);
+    background: var(--tct-clay-surface);
+    box-shadow: var(--tct-clay-shadow);
+    color: var(--tct-text);
+}
+
+.tv-page .tv-bcard--review { border: 3px solid var(--tct-accent); }
+.tv-page .tv-bcard__label { margin: 0; display: flex; align-items: center; gap: var(--tct-space-sm); color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-bold); letter-spacing: 0.04em; }
+.tv-page .tv-bcard__label i { color: var(--tct-primary-strong); }
+
+.tv-page .tv-bcard__big { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--tct-space-sm); }
+.tv-page .tv-bcard__number { color: var(--tct-warning-text); font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); font-variant-numeric: tabular-nums; line-height: var(--tct-leading-tight); }
+.tv-page .tv-bcard__unit { color: var(--tct-text); font-size: var(--tct-text-xl); font-weight: var(--tct-weight-bold); }
+.tv-page .tv-bcard__title { margin: 0; font-size: var(--tct-text-xl); font-weight: var(--tct-weight-bold); line-height: var(--tct-leading-tight); }
+.tv-page .tv-bcard__note { margin: 0; color: var(--tct-text-secondary); }
+.tv-page .tv-bcard__go { width: 100%; margin-top: auto; }
+.tv-page .tv-bcard__check { color: var(--tct-success-text); font-size: var(--tct-text-2xl); }
+
+/* ---------------------------------------------------------------- course page: two columns (aside from 1200 px) */
+.tv-page .tv-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--tct-space-lg); align-items: start; }
+.tv-page .tv-cols__aside { display: flex; flex-direction: column; gap: var(--tct-space-md); min-width: 0; }
+.tv-page .tv-cols__main { min-width: 0; }
+
+@media (min-width: 1200px) {
+    .tv-page .tv-cols { grid-template-columns: minmax(0, 1fr) 340px; }
+    .tv-page .tv-cols__aside { position: sticky; top: calc(var(--tct-header-h, 72px) + var(--tct-space-md)); }
+}
+
+/* "Sắp ôn lại" rows */
+.tv-page .tv-upcoming { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+
+.tv-page .tv-upcoming__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    padding: var(--tct-space-sm) 0;
+    border-bottom: 1px solid var(--tct-border);
+}
+
+.tv-page .tv-upcoming__row:last-child { border-bottom: 0; }
+.tv-page .tv-upcoming__term { font-weight: var(--tct-weight-semibold); overflow-wrap: anywhere; }
+.tv-page .tv-upcoming__label { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); white-space: nowrap; }
+
+/* ---------------------------------------------------------------- word picture tile (emoji or monogram) */
+.tv-page .tv-emoji {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--tct-radius-md);
+    background: var(--k-bg, var(--tct-primary-soft));
+    color: var(--k-fg, var(--tct-primary-strong));
+    font-size: var(--tct-text-xl);
+    font-weight: var(--tct-weight-bold);
+    line-height: 1;
+    box-shadow: var(--tct-clay-shadow-field);
+}
+
+/* ---------------------------------------------------------------- forced colours: the drawing, ring and bars stay visible */
+@media (forced-colors: active) {
+    .tv-page :is(.tv-panel, .tv-tile, .tv-bcard, .tv-banner, .tv-emoji, .tv-chipdue, .tv-banner__chip) {
+        box-shadow: none;
+        border: 1px solid CanvasText;
+    }
+
+    .tv-page .tv-bcard--review { border-width: 3px; }
+
+    .tv-page .tv-art :is(.fP, .fPk, .fS, .fSk, .fW, .fWk, .fD, .fI, .fIk, .fA, .fT, .fM) { fill: CanvasText; }
+    .tv-page .tv-art .fSf { fill: Canvas; }
+    .tv-page .tv-art :is(.sP, .sM, .sT, .sWk, .sIk) { stroke: CanvasText; }
+    .tv-page .tv-art .sSf { stroke: Canvas; }
+    .tv-page .tv-art .tx { fill: Canvas; }
+
+    .tv-page .tv-ring__track { stroke: GrayText; }
+    .tv-page .tv-ring__bar { stroke: Highlight; }
+
+    .tv-page .tv-memory__bar,
+    .tv-page .tv-bar__col { border: 1px solid CanvasText; }
+    .tv-page .tv-bar__col,
+    .tv-page .tv-memory__seg { background: GrayText; }
+    .tv-page .tv-bar.is-today .tv-bar__col { background: Highlight; }
+    .tv-page .tv-memory__seg + .tv-memory__seg { border-inline-start-color: Canvas; }
+
+    .tv-page .tv-dot,
+    .tv-page .tv-wdot { border-color: CanvasText; background: Canvas; }
+    .tv-page .tv-dot.is-on,
+    .tv-page :is(.tv-wdot--new, .tv-wdot--growing, .tv-wdot--strong, .tv-wdot--long) { background: CanvasText; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tv-page :is(.tv-ring__bar, .tv-bar__col) { animation: none; }
+}

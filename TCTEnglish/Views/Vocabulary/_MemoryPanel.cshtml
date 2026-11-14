@@ -1,0 +1,59 @@
+@model TCTVocabulary.ViewModels.VocabularyMemoryViewModel
+@*
+    "Trí nhớ của bạn" (plan 5.1): how many learned words sit in each of the four stages.
+    ViewData["Compact"] = true gives the course-page aside variant (2 x 2 tiles, no explainer);
+    ViewData["Title"] overrides the heading ("Trí nhớ khóa này"); ViewData["TitleId"] keeps ids unique.
+*@
+@{
+    var compact = ViewData["Compact"] is true;
+    var title = ViewData["Title"] as string ?? "Trí nhớ của bạn";
+    var titleId = ViewData["TitleId"] as string ?? "tvMemoryTitle";
+    var total = Model.Total;
+    var tiles = new[]
+    {
+        (Key: "new", Hue: "warning", Label: "Mới học", Hint: "ôn sau 10 phút – 1 ngày", Count: Model.New),
+        (Key: "growing", Hue: "info", Label: "Đang nhớ", Hint: "ôn sau 3 – 7 ngày", Count: Model.Growing),
+        (Key: "strong", Hue: "primary", Label: "Nhớ tốt", Hint: "ôn sau 14 – 30 ngày", Count: Model.Strong),
+        (Key: "long", Hue: "success", Label: "Thuộc lâu", Hint: "ôn sau 60 ngày", Count: Model.Long)
+    };
+    var barLabel = string.Join(", ", tiles.Select(tile => tile.Label + " " + tile.Count));
+}
+<section class="tv-panel tv-memory k-panel@(compact ? " tv-memory--compact" : string.Empty)" aria-labelledby="@titleId">
+    <div class="tv-panel__head">
+        <h2 class="tv-panel__title" id="@titleId"><i class="fa-solid fa-brain" aria-hidden="true"></i>@title</h2>
+        @if (total > 0)
+        {
+            <span class="tv-panel__aside">@total từ đã học</span>
+        }
+    </div>
+    @if (total == 0)
+    {
+        <p class="tv-panel__empty">Học bài đầu tiên để bắt đầu theo dõi trí nhớ.</p>
+    }
+    else
+    {
+        <div class="tv-memory__bar" role="img" aria-label="@barLabel">
+            @foreach (var tile in tiles.Where(tile => tile.Count > 0))
+            {
+                <span class="tv-memory__seg tv-memory__seg--@tile.Key" style="--tv-n:@tile.Count"></span>
+            }
+        </div>
+    }
+    <ul class="tv-memory__tiles tv-list">
+        @foreach (var tile in tiles)
+        {
+            <li class="tv-tile k-soft tv-hue-@tile.Hue">
+                <span class="tv-tile__count">@tile.Count</span>
+                <span class="tv-tile__label">@tile.Label</span>
+                @if (!compact)
+                {
+                    <span class="tv-tile__hint">@tile.Hint</span>
+                }
+            </li>
+        }
+    </ul>
+    @if (!compact)
+    {
+        <p class="tv-memory__explain">Trả lời đúng, từ lên một bậc và lâu hơn mới phải ôn: 1 → 3 → 7 → 14 → 30 → 60 ngày. Quên thì quay về đầu.</p>
+    }
+</section>
