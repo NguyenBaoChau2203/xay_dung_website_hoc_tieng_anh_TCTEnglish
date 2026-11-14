@@ -819,13 +819,15 @@ git diff --check
 - Local data and environment:
   - The local Docker DB had no system user or system vocabulary (`Database:SeedOnStartup` is false and also drives other seeders, so it was not enabled). The 3 folders, 8 sets and 92 cards were inserted with an idempotent SQL fixture generated from `system-vocabulary.json` (system user id 5, folders 4-6, sets 11-18). It is the content the seeder would create and no existing row was touched. The fixture and the JSON term snapshot are in ignored `.tmp/vocabulary/`.
   - Docker Desktop was stopped and was started for this run. App on port 5100 via `scripts/start-local.ps1 -NoBrowser -Configuration Release -WebPort 5100`.
-- Old methods / views / CSS removed or kept (with reason):
-- Mockup vs rule differences:
-- `color-mix` uses:
-- Contrast results:
+- Old methods / views / CSS removed or kept (with reason): see the V9 record below. Removed the four legacy views, `vocabulary-system.css`, the six old service methods and the legacy page view models (git grep proved nothing else used them). Kept `StudyViewModel`, `VocabularySetSummaryViewModel`, `VocabularyCardItemViewModel` (legacy `Views/Study/*` use them) and the file name `VocabularyPageViewModels.cs` (a smoke test checks it exists).
+- Mockup vs rule differences: emoji art became Font Awesome icons or a letter tile (plan 6.1); the course breadcrumb sits inside the hero (plan 6.3, "as on /Sets/{id}"); the done-lesson disc uses `--tct-success-text` (5.48:1) rather than the brighter `--tct-success` (2.54:1); the status filter stays on phones; segmented controls scroll horizontally instead of wrapping; progress-bar colours follow status (amber/green) with the exact count always printed beside them; the 12 px hero bar is the kit's 12 px `k-progress` override; picture tiles are 132 px as in the plan. Where the plan and a token disagreed, the token won.
+- `color-mix` uses: none added in `vocabulary.css` (the kit and `practice.css` keep their own, unchanged).
+- Contrast results: scripted over about 150 element/background pairs on home, course (both tabs) and every lesson state; one failure found and fixed (white check on `--tct-success`, 2.54:1, now 5.48:1). Lowest passing text ratios are 4.9 to 5.9:1 for coloured text (primary button 5.28, success text 5.21 to 5.48, warning text 6.84); body and headings 8.3 to 17.1:1. Progress-bar fills against their track are 2.15 to 2.54:1 and are documented as non-essential (a count is always shown).
 - Browser coverage / not verified:
-- For the owner: F1 (set names vs real counts), F2 (hotlinked images), F8 (`record` access check):
-- Final counts:
+  - Verified in headless Chrome (fresh profile): home, course (lessons and words tabs, topic filter), lesson (intro, choice, typing, feedback, round break, result, three empty states) at 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640; 200% zoom as 720 and 320 CSS px wide; forced colours; reduced motion; keyboard-only end to end at 1366×768; the `record` retry and "Chưa lưu" paths with injected network failures; database state after each flow.
+  - Not verified: Safari and Firefox; touch input on a real phone; a real speech voice (the `speechSynthesis` call was observed, not heard); a no-cards course in the browser (integration test only); an AI chat answer linking to Vocabulary (paid model, not run); native browser zoom beyond the viewport-width equivalent; the 25-due-words limit in the browser (integration test only).
+- For the owner: F1 (set names vs real counts: "1000 từ…" has 20 cards, "3000 từ vựng Oxford A1" has 10, the UI shows real counts and the sets were not renamed); F2 (62 cards hotlink third-party pictures, some local seed picture paths return 404, lessons fall back to a letter tile); F8 (`LearningApi/record` accepts any card id, for Châu; TD-013); D1 was blank so no content was added (V10 skipped); lessons are computed (TD-015). Local data: the dev database had no system vocabulary, so 3 folders, 8 sets and 92 cards (user `system@tct.local`, id 5) were inserted from `system-vocabulary.json` with an idempotent SQL fixture; they stay in the Docker database. The synthetic progress rows, streak and daily-activity row created for `student@tct.local` were removed afterwards (total `learningprogress` rows are back to 22); its activity-session log rows and badges earned by the verification runs were left because they could not be told apart from earlier ones.
+- Final counts: build 0 errors, 43 warnings (V0 43). `dotnet test` Release: passed 1529 / failed 0 / skipped 34 (V0 1468 / 0 / 34; +61 tests). Node: 291 passed, 1 failed (pre-existing CRLF hash failure), 292 total (V0 270 / 1 / 271; +21 tests). `dotnet ef migrations has-pending-model-changes`: no changes. Behaviour scripts: home 21, course 32, lesson V6 20, V7 21, V8 21, keyboard end to end 14, all passing.
 
 ### V0 — Baseline
 - Commit: this commit (docs only: the plan)
@@ -959,3 +961,22 @@ git diff --check
 - Browser re-run after the deletion: home 21/21, course 32/32, lesson V6 20/20, V7 21/21, V8 21/21.
 - G8–G12 / G13: unchanged from V4-V8 (no view or style changed in this phase).
 - Attempts / deferred / blocked: none.
+
+### V10 — Content
+- Skipped: D1 was blank, which the prompt and plan treat as KHÔNG. `wwwroot/data/system-vocabulary.json` is unchanged. The UI shows the real counts (92 words in 8 sets).
+
+### V11 — Full gate and final review
+- Commit: see `git log` (subject "docs(vocabulary): record the V11 full gate and the final execution notes")
+- G1 build: pass (0 errors, warnings 43, V0 43)
+- G2/G3 tests: `dotnet test TCTEnglish.Tests -c Release` passed 1529 / failed 0 / skipped 34 (V0 1468 / 0 / 34)
+- G4 node: 291 passed / 1 failed (pre-existing, same as V0) / 292 total
+- EF: `dotnet ef migrations has-pending-model-changes` reports no changes; no migration, `Program.cs`, appsettings or `.csproj` change on the branch.
+- G5 contracts: every legacy URL answers 200, user-owned and unknown ids answer 404, the `record` contract is unchanged and was re-proved end to end (one call per word, correct `masteryLevel`, Goals daily row +5 reviewed and +5 new).
+- G6 / G14 / G15: CSS, JS and Razor greps print nothing (the only `Html.Raw` is the lesson config JSON); `git diff --check` clean except the owner's unstaged `appsettings.Development.json`, which was never staged.
+- G7 scope: `git diff --name-status origin/master...HEAD` lists only plan section 2 files plus the plan and docs; a check for forbidden files (`Program.cs`, appsettings, `.csproj`, migrations, `Models/**`, `LearningApiController`, Goals and AI services, Admin area, shared layout and CSS, `time-tracker.js`, `personal-sets-common.js`, `practice-*.js`) found none; existing tests are unedited.
+- G8-G12: see V4 to V8; re-run after the V9 deletion (home, course, lesson suites all pass).
+- G13 regression: `/Sets`, `/Sets/1`, `/Practice`, `/Practice/quiz`, `/Goals`, `/Home/Index`, `/Home/Study/1` all 200 and visually unchanged (V3 byte comparison of the kit change).
+- Fresh-profile end to end at 1366×768 first, keyboard only: Tab to "Học tiếp", Enter, five intro cards by Enter, ten answers by digit keys or typed text plus Enter, result focus on the title, Tab to "Học bài 3", Enter opens lesson 3. 14/14 checks, no console error.
+- Before/after screenshots: `.tmp/vocabulary/before/` (six legacy pages at 1440, 1366, 390) and `.tmp/vocabulary/after/`; per-phase shots in `.tmp/vocabulary/V3` to `V8`.
+- Definition of Done (section 10): all items met with the evidence above. Two qualifications: the node suite keeps its one pre-existing failure (unrelated, CRLF), and the checks that were not run are listed in "Browser coverage / not verified".
+- Final self-review against AGENTS.md: async all the way; access enforced in every query by the system-owner rule and answered with `NotFound()`; identity through the base controller helper; no new POST action (the existing `record` keeps its antiforgery); views receive view models, display queries use `AsNoTracking` and projections, no query in a loop; thin controller, logic in `StudyService.Vocabulary.cs` and the pure `VocabularyLessonBuilder`; Bootstrap and shared Clay tokens only, inline styles only for the `--p` data variable; no hex, font, icon family, package or CDN added. DESIGN.md: Clay kit components, laptop first, tokens only, forced-colours block, reduced motion.
