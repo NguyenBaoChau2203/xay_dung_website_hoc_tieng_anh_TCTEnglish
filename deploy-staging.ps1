@@ -28,6 +28,68 @@ function Assert-ChildPath([string]$Root, [string]$Path) {
     return $resolved
 }
 function Write-Json([string]$Path, $Value) { [IO.File]::WriteAllText($Path, ($Value | ConvertTo-Json -Depth 24), $utf8) }
+function Invoke-OwnedStagingImportRecovery([string]$SiteRoot, [string]$StateRoot, $Plan) {
+    # Explicit reviewed recovery only: never a generic unlock/offline bypass.
+    if ((Split-Path -Leaf $SiteRoot) -cne 'staging.tctenglish.site' -or (Split-Path -Leaf $StateRoot) -cne 'tctenglish-staging-state') { throw 'Recovery requires the isolated staging roots.' }
+    $subscription = Split-Path -Parent $SiteRoot
+    if ([IO.Path]::GetFullPath((Split-Path -Parent $StateRoot)) -ine [IO.Path]::GetFullPath((Join-Path $subscription 'private'))) { throw 'Recovery state escaped the subscription private directory.' }
+    Assert-NoReparsePath $SiteRoot
+    Assert-NoReparsePath $StateRoot
+    if ([string]$Plan.runNumber -notmatch '^[1-9][0-9]{0,17}$' -or $Plan.commit -notmatch '^[0-9a-f]{40}$' -or $Plan.previousCommit -notmatch '^[0-9a-f]{40}$') { throw 'Invalid reviewed recovery identity.' }
+    $offline = Join-Path $SiteRoot 'app_offline.htm'
+    if (-not (Test-Path -LiteralPath $offline)) { return }
+    $oldRoot = Assert-ChildPath $StateRoot (Join-Path $StateRoot ([string]$Plan.runNumber + '-' + $Plan.commit.Substring(0,12)))
+    Assert-NoReparsePath $oldRoot
+    $owner = Get-Content -Raw -LiteralPath (Join-Path $oldRoot 'owner.json') | ConvertFrom-Json
+    $current = Get-Content -Raw -LiteralPath (Join-Path $StateRoot 'current.json') | ConvertFrom-Json
+    if ($owner.environment -cne 'Staging' -or $owner.commit -cne $Plan.commit -or [long]$owner.runNumber -ne [long]$Plan.runNumber -or $current.commit -cne $Plan.previousCommit) { throw 'Recovery owner/current marker does not match the reviewed failed run.' }
+    $backup = Assert-ChildPath $oldRoot (Join-Path $oldRoot 'previous-app')
+    $dump = Assert-ChildPath $oldRoot (Join-Path $oldRoot 'database-before.sql')
+    Assert-NoReparsePath $backup
+    Assert-NoReparsePath $dump
+    if (-not (Test-Path -LiteralPath $dump) -or (Get-Item -LiteralPath $dump).Length -lt 1000) { throw 'Recovery requires the preserved database backup.' }
+    $migration = Get-Content -Raw -LiteralPath (Join-Path $oldRoot 'migration.log')
+    $applied = @([regex]::Matches($migration, "Applying migration '([^']+)'") | ForEach-Object { $_.Groups[1].Value })
+    $approved = @('20261113112346_AddSpeakingAssessmentComponentScores','20261113125249_AddSpeakingVideoVisits')
+    if ($migration -notmatch 'Done\.' -or ($applied -join '|') -cne ($approved -join '|')) { throw 'Recovery schema evidence is not the reviewed additive nullable-metrics/visits upgrade.' }
+    $marker = Get-Content -Raw -LiteralPath (Join-Path $SiteRoot 'wwwroot\tct-release.json') | ConvertFrom-Json
+    if ($marker.environment -cne 'Staging' -or $marker.commit -cne $Plan.previousCommit) { throw 'Recovery would reopen an unverified application version.' }
+    $files = @(Get-ChildItem -LiteralPath $backup -Recurse -File -Force)
+    if ($files.Count -eq 0) { throw 'Recovery application backup is empty.' }
+    foreach ($file in $files) {
+        $relative = $file.FullName.Substring($backup.TrimEnd('\').Length + 1)
+        $live = Assert-ChildPath $SiteRoot (Join-Path $SiteRoot $relative)
+        if (($file.Attributes -band [IO.FileAttributes]::ReparsePoint) -or -not (Test-Path -LiteralPath $live) -or ((Get-Item -LiteralPath $live).Attributes -band [IO.FileAttributes]::ReparsePoint) -or (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash -cne (Get-FileHash -LiteralPath $live -Algorithm SHA256).Hash) { throw 'Recovery requires an unchanged previous application; preserve maintenance for operator review.' }
+    }
+    $allowedOffline = @('<html><body>He thong dang duoc cap nhat. Vui long quay lai sau it phut.</body></html>', '<html><body>Maintenance: release recovery is required.</body></html>')
+    if ($allowedOffline -cnotcontains ([IO.File]::ReadAllText($offline).Trim())) { throw 'Recovery does not own this maintenance file.' }
+    $expectedExe = Assert-ChildPath $oldRoot (Join-Path $oldRoot 'stage\app\TCTEnglish.exe')
+    $imports = @(Get-CimInstance Win32_Process -Filter "Name='TCTEnglish.exe'" | Where-Object { $_.CommandLine -like '*--shared-data=sync*' -and $_.CommandLine -like '*--shared-target=staging*' })
+    $owned = @($imports | Where-Object { $_.ExecutablePath -ieq $expectedExe -and $_.CommandLine.Contains($oldRoot) })
+    if ($imports.Count -ne $owned.Count -or $owned.Count -gt 1) { throw 'Recovery found a different or ambiguous staging import; no process was stopped.' }
+    foreach ($process in $owned) { Stop-Process -Id $process.ProcessId -ErrorAction Stop }
+    # Closing the owned process releases its uncommitted import transaction.
+    # Wait for the original release parent to retain maintenance and release its
+    # OS lock; never delete a lock file or remove another deployment's lock.
+    $recoveryLock = $null
+    for ($attempt=0; $attempt -lt 60; $attempt++) {
+        try { $recoveryLock = [IO.File]::Open((Join-Path $StateRoot 'deploy.lock'), [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None); break } catch { Start-Sleep -Milliseconds 500 }
+    }
+    if (-not $recoveryLock) { throw 'Original release lock is still held; maintenance retained.' }
+    try {
+        $current = Get-Content -Raw -LiteralPath (Join-Path $StateRoot 'current.json') | ConvertFrom-Json
+        if ($current.commit -cne $Plan.previousCommit) { throw 'Current release changed during recovery; maintenance retained.' }
+        $failure = Get-Content -Raw -LiteralPath (Join-Path $StateRoot 'last-failure.json') | ConvertFrom-Json
+        if ($failure.release -cne $Plan.commit -or $failure.maintenanceRetained -ne $true -or [IO.Path]::GetFullPath([string]$failure.recoveryDirectory) -ine $oldRoot) { throw 'Original parent has not confirmed its failed-release cleanup.' }
+        $remaining = @(Get-CimInstance Win32_Process -Filter "Name='TCTEnglish.exe'" | Where-Object { $_.ExecutablePath -ieq $expectedExe })
+        if ($remaining.Count -ne 0) { throw 'Owned import still exists; maintenance retained.' }
+        if ($allowedOffline -cnotcontains ([IO.File]::ReadAllText($offline).Trim())) { throw 'Maintenance ownership changed during recovery.' }
+        $preserved = Assert-ChildPath $oldRoot (Join-Path $oldRoot 'recovered-app-offline.htm')
+        if (Test-Path -LiteralPath $preserved) { throw 'Recovery receipt already exists; inspect the previous recovery.' }
+        Move-Item -LiteralPath $offline -Destination $preserved
+        Write-Output 'Reviewed staging import recovery completed; previous application preserved and backups retained.'
+    } finally { $recoveryLock.Dispose() }
+}
 function Is-Persistent([string]$Relative) {
     return $Relative -match '^(wwwroot[\\/](uploads|images[\\/](avatars|cards|classes))([\\/]|$)|logs([\\/]|$)|\.appdata([\\/]|$)|app_offline\.htm$)'
 }
@@ -144,6 +206,7 @@ foreach ($key in @('DOTNET_ENVIRONMENT','ASPNETCORE_ENVIRONMENT','ConnectionStri
     $previousEnvironment[$key] = [Environment]::GetEnvironmentVariable($key, 'Process')
 }
 $runRoot = Assert-ChildPath $StateRoot (Join-Path $StateRoot ([string]$manifest.runNumber + '-' + $manifest.commit.Substring(0,12)))
+if ($manifest.recoverImport) { Invoke-OwnedStagingImportRecovery $SiteRoot $StateRoot $manifest.recoverImport }
 try {
     $lock = [IO.File]::Open((Join-Path $StateRoot 'deploy.lock'), [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
     $statePath = Join-Path $StateRoot 'current.json'
