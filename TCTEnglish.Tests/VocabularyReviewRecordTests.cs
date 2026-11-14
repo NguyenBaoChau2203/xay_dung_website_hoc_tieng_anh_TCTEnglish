@@ -630,6 +630,55 @@ public sealed class VocabularyReviewRecordTests
         Assert.Single(System.Text.RegularExpressions.Regex.Matches(html, "<article[^>]*tv-lesson[^>]*>(?:(?!</article>).)*tv-chipdue", System.Text.RegularExpressions.RegexOptions.Singleline));
     }
 
+    // ── lesson and review pages (S7, S8) ─────────────────────────────────
+
+    [Fact]
+    public async Task ReviewPage_NothingDue_OffersTheNextLessonAndNamesTheNextDueWord()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedProgressAsync(factory, 402, "Mastered", 4, DateTime.UtcNow.AddDays(1));
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync("/Vocabulary/Review");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Hôm nay không có từ nào cần ôn", text, StringComparison.Ordinal);
+        Assert.Contains("Từ tiếp theo đến hạn: Ngày mai", text, StringComparison.Ordinal);
+        Assert.Contains("Học bài mới", text, StringComparison.Ordinal);
+        Assert.Contains("Về trang Từ vựng", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task ReviewPage_HasTheReviewStepsAndTheSrsConfig()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedProgressAsync(factory, 402, "Reviewing", 3, DateTime.UtcNow.AddHours(-1));
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync("/Vocabulary/Review");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("1 · Ôn tập hôm nay", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-label=\"Làm quen\"", text, StringComparison.Ordinal);
+        Assert.Contains("data-label=\"Kết quả\"", text, StringComparison.Ordinal);
+        Assert.Contains("\"remainingDue\":0", html, StringComparison.Ordinal);
+        Assert.Contains("\"level\":3", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task LessonConfig_OfALesson_CarriesTheNumberOfDueWordsForTheResultButton()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedProgressAsync(factory, ManyCardsStart + 20, "Reviewing", 1, DateTime.UtcNow.AddHours(-1));
+        await SeedProgressAsync(factory, ManyCardsStart + 21, "Reviewing", 1, DateTime.UtcNow.AddHours(-2));
+        using var scope = factory.Services.CreateScope();
+
+        var model = await scope.ServiceProvider.GetRequiredService<IStudyService>()
+            .GetVocabularyLessonAsync(TestDataIds.SystemSetId, TestDataIds.UserId, 2, null, review: false);
+
+        Assert.Equal(2, model!.RemainingDue);
+    }
+
     // ── helpers ──────────────────────────────────────────────────────────
 
     private static HttpClient CreateClient(TestWebApplicationFactory factory) =>

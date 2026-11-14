@@ -1070,3 +1070,81 @@
     .tv-page .tv-word__next { text-align: end; }
     .tv-page .tv-word__actions { align-self: end; }
 }
+
+/* ---------------------------------------------------------------- lesson and review (S7, S8): picture, memory chip, schedule row, result list */
+.tv-page .tv-pic { width: 120px; height: 120px; }
+.tv-page .tv-pic__emoji { font-size: 3.5rem; line-height: 1; }
+.tv-page .tv-pic--mini { width: 40px; height: 40px; border-radius: var(--tct-radius-md); box-shadow: var(--tct-clay-shadow-field); }
+.tv-page .tv-pic--mini .tv-pic__emoji { font-size: var(--tct-text-xl); }
+.tv-page .tv-pic--mini .tv-pic__letter { font-size: var(--tct-text-lg); }
+
+/* One dot per word of the round, top right of the word card; the current one is filled. */
+.tv-page .tv-rdots { position: absolute; top: var(--tct-space-md); inset-inline-end: var(--tct-space-md); display: flex; gap: 5px; }
+.tv-page .tv-rdot { width: 10px; height: 10px; border: 2px solid var(--tct-border-control); border-radius: var(--tct-radius-pill); background: var(--tct-surface); }
+.tv-page .tv-rdot.is-current { border-color: var(--tct-primary); background: var(--tct-primary); }
+
+/* Memory chip under the question: dots + "Đang nhớ · lần ôn thứ 3", or "Từ mới". */
+.tv-page .tv-memchip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    margin: 0 0 var(--tct-space-sm);
+    padding: var(--tct-space-xs) var(--tct-space-md);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+}
+
+/* Schedule row in the feedback panel: when the word comes back. */
+.tv-page .tv-sched {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tct-space-sm) var(--tct-space-md);
+    margin-top: var(--tct-space-sm);
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+    color: var(--tct-text);
+    font-size: var(--tct-text-sm);
+    box-shadow: var(--tct-clay-shadow-field);
+}
+
+.tv-page .tv-sched:empty { display: none; }
+.tv-page .tv-sched__icon { color: var(--tct-primary-strong); }
+.tv-page .tv-sched__title { font-weight: var(--tct-weight-bold); }
+.tv-page .tv-sched__when { margin-inline-start: auto; font-weight: var(--tct-weight-bold); color: var(--tct-primary-strong); white-space: nowrap; }
+.tv-page .tv-sched__when--soon { color: var(--tct-danger-text); }
+.tv-page .tv-sched.is-error .tv-sched__icon { color: var(--tct-danger-text); }
+.tv-page .tv-sched__retry { margin-inline-start: auto; }
+
+/* Result list: picture, word, meaning, dots, when it comes back. */
+.tv-page .tv-resultrow {
+    grid-template-columns: auto minmax(90px, 0.9fr) minmax(0, 1.4fr) auto minmax(110px, auto);
+}
+
+.tv-page .tv-resultrow__dots { min-width: 1px; }
+.tv-page .tv-resultrow__label { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); text-align: end; }
+.tv-page .tv-resultrow__label--soon { color: var(--tct-danger-text); }
+
+@media (max-width: 575.98px) {
+    .tv-page .tv-resultrow {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-areas: "pic term label" "pic def dots";
+    }
+
+    .tv-page .tv-resultrow > .tv-pic { grid-area: pic; }
+    .tv-page .tv-resultrow__term { grid-area: term; }
+    .tv-page .tv-resultrow__def { grid-area: def; }
+    .tv-page .tv-resultrow__dots,
+    .tv-page .tv-resultrow > .tv-dots { grid-area: dots; justify-self: end; }
+    .tv-page .tv-resultrow__label { grid-area: label; }
+}
+
+@media (forced-colors: active) {
+    .tv-page :is(.tv-sched, .tv-memchip, .tv-pic--mini) { box-shadow: none; border: 1px solid CanvasText; }
+    .tv-page .tv-rdot { border-color: CanvasText; background: Canvas; }
+    .tv-page .tv-rdot.is-current { background: CanvasText; }
+}

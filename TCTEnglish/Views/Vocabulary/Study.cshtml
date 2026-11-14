@@ -7,7 +7,9 @@
     var hasIntro = Model.Kind == "learn";
     var steps = hasIntro
         ? new[] { ("intro", "Làm quen"), ("practice", "Luyện tập"), ("result", "Kết quả") }
-        : new[] { ("practice", "Luyện tập"), ("result", "Kết quả") };
+        : Model.Kind == "review"
+            ? new[] { ("practice", "Ôn tập hôm nay"), ("result", "Kết quả") }
+            : new[] { ("practice", "Luyện tập"), ("result", "Kết quả") };
     var firstPhase = hasIntro ? "intro" : "practice";
 
     StateMessageViewModel? emptyState = null;
@@ -43,10 +45,16 @@
             emptyState = new StateMessageViewModel
             {
                 Kind = StateMessageKind.Empty,
-                Title = "Không có từ nào đến hạn ôn.",
-                ActionLabel = "Về trang Từ vựng",
-                ActionUrl = Model.HomeUrl
+                Title = "Hôm nay không có từ nào cần ôn",
+                Message = string.IsNullOrEmpty(Model.NextDueLabel) ? null : "Từ tiếp theo đến hạn: " + Model.NextDueLabel,
+                ActionLabel = Model.NextLessonUrl != null ? "Học bài mới" : "Về trang Từ vựng",
+                ActionUrl = Model.NextLessonUrl ?? Model.HomeUrl
             };
+            if (Model.NextLessonUrl != null)
+            {
+                secondAction = "Về trang Từ vựng";
+                secondUrl = Model.HomeUrl;
+            }
             break;
     }
 }

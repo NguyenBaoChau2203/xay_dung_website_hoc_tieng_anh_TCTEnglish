@@ -580,3 +580,35 @@ Commit: `feat(vocabulary): rebuild the course page with the review CTA, memory a
 Decisions: word rows are a two-line grid at every width (the 7-column table collapsed the term to one letter per line next to the aside); `_LevelDots` takes an int (-1 = not learned) because a null partial model falls back to the page model; filters gained `due` and `learned` in `vocabulary-core.js` (node-tested). Owned tests changed on purpose: "Học tiếp bài 2" → "Học bài tiếp theo", "Ôn lại từ đầu" → "Học lại từ đầu".
 
 **Run status at the usage limit:** S0–S6 done and committed; S7 (lesson), S8 (review and result), S9 (cleanup and docs), S11 (full gate and end-to-end run) are NOT done. S10 skipped (D1 blank).
+
+### Gate record S7 + S8 — Lesson, review and result (2026-11-14)
+Commit: `feat(vocabulary): record lessons and reviews on the memory ladder with a schedule row and a per-word result`
+
+S7 and S8 share `vocabulary-lesson.js`, `Study.cshtml` and the same CSS block, so they were built and gated together and committed once; every item below covers both.
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) |
+| G2/G3 | pass: Vocabulary area 155; full suite 1711 passed / 0 failed / 34 skipped |
+| G4 | pass: node 317 tests, 316 pass, the one known CRLF failure |
+| G5 | pass: legacy routes and 404 rules unchanged; `LearningApiController.cs` diff empty; the lesson script no longer calls `/api/LearningApi/record` (asserted by a node test and by the browser run: no call to it) |
+| G6 | pass: token-only greps clean; no inline colours; `git diff --check` clean |
+| G7 | pass: `vocabulary-lesson.js`, `Study.cshtml`, `vocabulary.css`, `StudyService.Vocabulary.cs`, the owned and new tests |
+| G8 | pass: lesson intro and review page rendered at 1366×768, 1024×768, 768×1024, 390×844, 320×640 with no overflow and a clean console; 1440 screens (intro, feedback, result) in `.tmp/vocabulary-srs/play/` and `s7/` |
+| G9 | partial: compared by eye with `03-lam-quen.png`, `04-on-tap.png`, `05-ket-qua.png`: picture tile, round dots, soft "Tôi đã biết từ này", memory chip, schedule row, four tiles, word list with dots and labels all present; pixel-level comparison not done |
+| G10 | pass (browser, mouse): see "Behaviour run" below. Keyboard-only play of the whole session was not scripted; the existing Enter/1–4/R handlers are unchanged |
+| G11 | partial: the schedule row is written into the existing live region without moving focus; forced colours and reduced-motion rules added for the new components but not captured in a screenshot for these screens |
+| G12 | not re-run: the new colour pairs reuse tokens already checked in S5 (`primary-strong` on `primary-soft`, `danger-text` on surface, `text-secondary` on surface) |
+| G13 | partial: the legacy endpoint test for a personal card is green; `/Sets`, `/Practice`, `/Home/Index` were checked after S5 and are untouched since |
+| G14/G15 | pass: tokens only; the POST keeps antiforgery (header from the page token) and answers 404 for non-system cards |
+
+**Behaviour run** (real Chrome, `premium@tct.local`, real endpoint, no SQL):
+- Lesson 2 (5 new words): "Tôi đã biết từ này" on the first word → `known` (level 4, +14 days, "Ôn lại sau 14 ngày"); three clean words → `good` (level 1, +1 day); one word with one wrong answer → `hard` (level 1, `WrongCount` unchanged, "Giữ nguyên bậc nhớ"). Exactly 5 POSTs, one per word, no legacy call; the database rows match the labels on screen; Goals daily activity rose (+55 XP shown).
+- Replaying that lesson (not due): five "Lịch ôn giữ nguyên" rows, levels and dates unchanged (early review).
+- Review of 8 due words: 8 POSTs; Cat wrong twice → `again` (level 0, +10 min, `WrongCount` +1, "Từ này sẽ quay lại sớm" / "Ôn lại sau 10 phút", red label on the result row); Bird wrong once → `hard` (level 1); the other six `good` (+1 or +3 days); 6/8 correct, +40 XP, result rows equal the 8 words.
+- Simulated failure (requests answered 500): after the immediate retry the row shows "Chưa lưu được tiến độ" and "Thử lại", the session continues, and "Thử lại" then saves and shows the schedule.
+- Review cap of 20, oldest first, `RemainingDue` and the nothing-due state are covered by the integration tests (`Review_IsCappedAtTwentyOldestFirst...`, `ReviewPage_NothingDue...`).
+
+Decisions: the lesson's "Ôn n từ đến hạn" button uses `RemainingDue`, which for a lesson is the number of due words in that course at page load and for a review is the number that did not fit in the 20; the empty review state now reads "Hôm nay không có từ nào cần ôn" with "Từ tiếp theo đến hạn: …", "Học bài mới" and "Về trang Từ vựng" (owned test updated: the old "Không có từ nào đến hạn ôn."). A replayed lesson still says "Lịch ôn mới đã được xếp cho từng từ" in its sub-title even though every row says "Lịch ôn giữ nguyên"; left as is.
+
+Not verified in a browser: the rebuilt nothing-due screen (the running app was not restarted after that last view edit; covered by render tests), 200 % zoom and forced colours on the lesson screens, full keyboard-only session.

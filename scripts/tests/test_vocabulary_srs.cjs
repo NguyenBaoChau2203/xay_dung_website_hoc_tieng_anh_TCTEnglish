@@ -305,3 +305,15 @@ test('filterWords: "due" keeps due words, "learned" keeps everything but new wor
     assert.equal(terms('all'), 'abcd');
     assert.equal(core.filterWords(list, { state: 'due', q: 'D' }).map((w) => w.term).join(''), 'd');
 });
+
+// ---------------------------------------------------------------- the lesson script saves through the new endpoint only (S7)
+test('vocabulary-lesson.js records through /Vocabulary/Review/Record and never through the legacy endpoint', () => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const source = fs.readFileSync(path.join(__dirname, '../../TCTEnglish/wwwroot/js/vocabulary-lesson.js'), 'utf8');
+    assert.ok(source.includes('/Vocabulary/Review/Record'));
+    assert.ok(!source.includes('/api/LearningApi/record'));
+    assert.ok(!/innerHTML/.test(source), 'rendering stays createElement / textContent only');
+    ['Chưa lưu được tiến độ', 'Thử lại', 'Nhớ tốt lên một bậc', 'Giữ nguyên bậc nhớ', 'Từ này sẽ quay lại sớm', 'Lịch ôn giữ nguyên']
+        .forEach((text) => assert.ok(source.includes(text), text));
+});

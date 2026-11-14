@@ -443,6 +443,9 @@ namespace TCTVocabulary.Services
                     : null
             };
 
+            // A lesson's result offers "Ôn n từ đến hạn" for the words of this course that are due; a review overwrites this.
+            model.RemainingDue = cards.Count(card => progress.TryGetValue(card.CardId, out var dueRow) && IsVocabularyDue(dueRow, utcNow));
+
             if (cards.Count == 0)
             {
                 model.Kind = review ? "review" : "learn";
@@ -468,6 +471,8 @@ namespace TCTVocabulary.Services
                 {
                     model.EmptyReason = "nothing-due";
                     model.NextDueLabel = NextVocabularyDueLabel(progress.Values, utcNow, BusinessDateHelper.Today);
+                    var nextPlan = plans.FirstOrDefault(p => !IsLessonDone(p, progress));
+                    model.NextLessonUrl = nextPlan == null ? null : VocabularyLessonUrl(setId, nextPlan.Number);
                     return model;
                 }
             }
@@ -557,6 +562,7 @@ namespace TCTVocabulary.Services
             {
                 model.EmptyReason = "nothing-due";
                 model.NextDueLabel = NextVocabularyDueLabel(progress.Values, utcNow, BusinessDateHelper.Today);
+                model.NextLessonUrl = (await GetVocabularyHomeAsync(userId))?.Next?.Url;
                 return model;
             }
 

@@ -689,7 +689,7 @@ public sealed class VocabularyIntegrationTests
         Assert.Contains($"href=\"/Vocabulary/Study?setId={SecondSetId}&amp;lesson=1\"", complete, StringComparison.Ordinal);
         Assert.Contains("Về khóa học", completeText, StringComparison.Ordinal);
         Assert.Contains("Bài này chưa có từ nào.", WebUtility.HtmlDecode(noCards), StringComparison.Ordinal);
-        Assert.Contains("Không có từ nào đến hạn ôn.", WebUtility.HtmlDecode(nothingDue), StringComparison.Ordinal);
+        Assert.Contains("Hôm nay không có từ nào cần ôn", WebUtility.HtmlDecode(nothingDue), StringComparison.Ordinal);
         Assert.Contains("Về trang Từ vựng", WebUtility.HtmlDecode(nothingDue), StringComparison.Ordinal);
 
         foreach (var html in new[] { complete, noCards, nothingDue })
