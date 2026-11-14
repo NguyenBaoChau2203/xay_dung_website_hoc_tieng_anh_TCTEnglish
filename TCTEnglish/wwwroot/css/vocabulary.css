@@ -729,6 +729,7 @@
     display: flex;
     height: 14px;
     overflow: hidden;
+    border: 1px solid var(--tct-border-control);
     border-radius: var(--tct-radius-pill);
     background: var(--tct-primary-soft);
 }
@@ -785,13 +786,14 @@
     display: block;
     height: calc(var(--tv-h, 0%) * 0.8);
     min-height: 6px;
+    border: 1px solid var(--tct-border-control);
     border-radius: var(--tct-radius-sm);
     background: var(--tct-primary-soft);
     background: color-mix(in srgb, var(--tct-primary) 30%, var(--tct-surface));
     transform-origin: bottom;
 }
 
-.tv-page .tv-bar.is-today .tv-bar__col { background: var(--tct-warning); }
+.tv-page .tv-bar.is-today .tv-bar__col { border-color: var(--tct-warning-text); background: var(--tct-warning); }
 .tv-page .tv-bar__l { color: var(--tct-text-secondary); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); text-align: center; white-space: nowrap; }
 .tv-page .tv-bar.is-today .tv-bar__l { color: var(--tct-warning-text); }
 

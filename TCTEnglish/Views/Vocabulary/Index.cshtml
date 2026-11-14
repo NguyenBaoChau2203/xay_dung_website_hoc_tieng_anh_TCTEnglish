@@ -17,10 +17,19 @@
         : new PageHeaderViewModel
         {
             Title = "Từ vựng",
-            Description = "Chọn một khóa có sẵn và học mỗi ngày vài phút. Không cần tự tạo thẻ."
+            Description = "Học từ có sẵn theo bài ngắn, rồi ôn lại đúng lúc sắp quên."
         };
 
     var stats = Model.Stats;
+    var due = Model.DueCount;
+    var target = Model.DailyTarget;
+    var todayCount = Model.TodayCount;
+    var ringPercent = target > 0 ? Math.Min(100, todayCount * 100 / target) : 0;
+    var goalTitle = todayCount >= target
+        ? "Đã đạt mục tiêu hôm nay!"
+        : todayCount == 0 && Model.LearnedCount == 0
+            ? "Bắt đầu với 5 từ đầu tiên nhé"
+            : $"Còn {target - todayCount} từ nữa là đạt mục tiêu hôm nay";
     var courseCount = Model.Collections.Sum(collection => collection.Courses.Count);
     var hasWords = stats.TotalCards > 0;
 
@@ -53,54 +62,75 @@
     }
     else
     {
-        <section class="tv-today k-panel tv-hue-primary" aria-labelledby="tvTodayTitle">
-            <div class="tv-today__main">
-                <h2 id="tvTodayTitle" class="tv-today__title">
-                    @if (stats.LearnedToday > 0)
+        @if (!filtered)
+        {
+            <section class="tv-banner" aria-labelledby="tvGoalTitle">
+                <div class="tv-banner__goal">
+                    <div class="tv-ring" role="img" aria-label="Hôm nay đã học @todayCount trên @target từ">
+                        <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                            <circle class="tv-ring__track" cx="60" cy="60" r="52" />
+                            <circle class="tv-ring__bar" cx="60" cy="60" r="52" pathLength="100" style="--tv-p:@ringPercent" />
+                        </svg>
+                        <span class="tv-ring__label" aria-hidden="true">
+                            <span class="tv-ring__value">@todayCount/@target</span>
+                            <span class="tv-ring__caption">từ hôm nay</span>
+                        </span>
+                    </div>
+                    <div class="tv-banner__text">
+                        <h2 id="tvGoalTitle" class="tv-banner__title">@goalTitle</h2>
+                        <ul class="tv-banner__chips">
+                            @if (Model.Streak > 0)
+                            {
+                                <li class="tv-banner__chip"><i class="fa-solid fa-fire" aria-hidden="true"></i>Chuỗi @Model.Streak ngày</li>
+                            }
+                            <li class="tv-banner__chip"><i class="fa-solid fa-book" aria-hidden="true"></i>@Model.LearnedCount từ đã học</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <section class="tv-bcard tv-bcard--review" aria-labelledby="tvReviewLabel">
+                    <p class="tv-bcard__label" id="tvReviewLabel"><i class="fa-solid fa-rotate" aria-hidden="true"></i>ÔN TẬP HÔM NAY</p>
+                    @if (due > 0)
                     {
-                        @:Hôm nay bạn đã học @stats.LearnedToday từ
+                        <p class="tv-bcard__big"><span class="tv-bcard__number">@due</span><span class="tv-bcard__unit">từ đến hạn</span></p>
+                        <p class="tv-bcard__note">Ôn trước khi học bài mới để không quên. Khoảng @Model.DueMinutes phút.</p>
+                        <a class="btn btn-primary btn-lg tv-bcard__go" href="@(Model.DueUrl ?? "/Vocabulary/Review")"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn ngay</a>
                     }
                     else
                     {
-                        @:Hôm nay bạn chưa học từ nào
+                        <p class="tv-bcard__title"><i class="fa-solid fa-circle-check tv-bcard__check me-2" aria-hidden="true"></i>Hôm nay không có từ nào cần ôn</p>
+                        @if (!string.IsNullOrEmpty(Model.NextDueLabel))
+                        {
+                            <p class="tv-bcard__note">Từ tiếp theo đến hạn: @Model.NextDueLabel</p>
+                        }
                     }
-                </h2>
-                <p class="tv-today__text">Mỗi bài chỉ khoảng 5 phút với 10 từ. Học đều để giữ chuỗi ngày học.</p>
-                <dl class="tv-stats">
-                    <div class="tv-stat k-pillow tv-hue-primary"><dt>từ đã học</dt><dd>@stats.LearnedCards</dd></div>
-                    <div class="tv-stat k-pillow tv-hue-success"><dt>từ đã thuộc</dt><dd>@stats.KnownCards</dd></div>
-                    <div class="tv-stat k-pillow tv-hue-warning"><dt>từ cần ôn</dt><dd>@stats.DueCards</dd></div>
-                    @if (stats.Streak > 0)
-                    {
-                        <div class="tv-stat k-pillow tv-hue-danger"><dt>chuỗi học</dt><dd>@stats.Streak ngày</dd></div>
-                    }
-                </dl>
-            </div>
+                </section>
 
-            <div class="tv-next k-card">
-                @if (Model.Next != null)
-                {
-                    <p class="k-label tv-next__label">BÀI TIẾP THEO</p>
-                    <h3 class="tv-next__title tct-break">@Model.Next.LessonTitle</h3>
-                    <p class="tv-next__meta tct-break">@Model.Next.SetName · @Model.Next.NewWordCount từ mới</p>
-                    <a class="btn btn-primary btn-lg tv-next__go" href="@Model.Next.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học tiếp</a>
-                }
-                else if (hasWords)
-                {
-                    <h3 class="tv-next__title">Bạn đã học hết các bài hiện có</h3>
-                    <p class="tv-next__meta">Ôn lại để nhớ lâu hơn.</p>
-                }
-                else
-                {
-                    <h3 class="tv-next__title">Chưa có bài nào để học</h3>
-                    <p class="tv-next__meta">Nội dung đang được cập nhật.</p>
-                }
-                @if (Model.DueUrl != null)
-                {
-                    <a class="btn btn-outline-primary tv-next__due" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @stats.DueCards từ đến hạn</a>
-                }
+                <section class="tv-bcard tv-bcard--next" aria-labelledby="tvNextLabel">
+                    <p class="tv-bcard__label" id="tvNextLabel"><i class="fa-solid fa-play" aria-hidden="true"></i>BÀI TIẾP THEO</p>
+                    @if (Model.Next != null)
+                    {
+                        <h3 class="tv-bcard__title tct-break">@Model.Next.LessonTitle</h3>
+                        <p class="tv-bcard__note tct-break">@Model.Next.SetName · @Model.Next.NewWordCount từ mới</p>
+                        <a class="btn btn-lg tv-bcard__go @(due > 0 ? "k-btn--soft" : "btn-primary")" href="@Model.Next.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài mới</a>
+                    }
+                    else if (hasWords)
+                    {
+                        <h3 class="tv-bcard__title">Bạn đã học hết các bài hiện có</h3>
+                    }
+                    else
+                    {
+                        <h3 class="tv-bcard__title">Chưa có bài nào để học</h3>
+                        <p class="tv-bcard__note">Nội dung đang được cập nhật.</p>
+                    }
+                </section>
+            </section>
+
+            <div class="tv-panels">
+                <partial name="_MemoryPanel" model="Model.Memory" />
+                <partial name="_ReviewForecast" model="Model.Forecast" />
             </div>
-        </section>
+        }
 
         <div class="tv-toolbar" role="search" id="tvToolbar">
             <div class="tv-toolbar__search">

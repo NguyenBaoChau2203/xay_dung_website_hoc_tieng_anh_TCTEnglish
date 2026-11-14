@@ -456,6 +456,109 @@ public sealed class VocabularyReviewRecordTests
         Assert.Equal(5, json.GetProperty("words")[0].GetProperty("level").GetInt32());
     }
 
+    // ── home page states (plan 5.1) ──────────────────────────────────────
+
+    [Fact]
+    public async Task HomePage_NewLearner_ShowsTheStartStateAndAPrimaryLessonButton()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync("/Vocabulary/Index");
+        var text = System.Net.WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Bắt đầu với 5 từ đầu tiên nhé", text, StringComparison.Ordinal);
+        Assert.Contains("aria-label=\"Hôm nay đã học 0 trên 10 từ\"", text, StringComparison.Ordinal);
+        Assert.Contains("Hôm nay không có từ nào cần ôn", text, StringComparison.Ordinal);
+        Assert.Contains("Học bài đầu tiên để bắt đầu theo dõi trí nhớ.", text, StringComparison.Ordinal);
+        Assert.Contains("Chưa có lịch ôn. Học một bài để hệ thống xếp lịch cho bạn.", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Ôn ngay", text, StringComparison.Ordinal);
+        Assert.Matches("class=\"btn btn-lg tv-bcard__go btn-primary\"", html);
+        Assert.DoesNotContain("Chuỗi ", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task HomePage_WithWordsDue_PutsTheReviewFirstAndTheLessonButtonSoft()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedProgressAsync(factory, 402, "Reviewing", 2, DateTime.UtcNow.AddHours(-1));
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync("/Vocabulary/Index");
+
+        Assert.Contains("Ôn ngay", System.Net.WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        Assert.Matches("class=\"btn btn-lg tv-bcard__go k-btn--soft\"", html);
+        Assert.Contains("Khoảng 1 phút", System.Net.WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        Assert.Contains("class=\"tv-chipdue\"", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task HomePage_WithNothingDue_NamesTheNextDueWord_AndHasNoReviewButton()
+    {
+        await using var factory = await CreateFactoryAsync();
+        await SeedProgressAsync(factory, 402, "Mastered", 4, DateTime.UtcNow.AddDays(1));
+        using var client = CreateClient(factory);
+
+        var text = System.Net.WebUtility.HtmlDecode(await client.GetStringAsync("/Vocabulary/Index"));
+
+        Assert.Contains("Hôm nay không có từ nào cần ôn", text, StringComparison.Ordinal);
+        Assert.Contains("Từ tiếp theo đến hạn: Ngày mai", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Ôn ngay", text, StringComparison.Ordinal);
+        Assert.Contains("1 từ đã học", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task HomePage_WhenTheDailyTargetIsReached_SaysSo_AndWhenEveryLessonIsDone_OffersNoLessonButton()
+    {
+        await using var factory = await CreateFactoryAsync();
+        List<int> allIds;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            allIds = await context.Cards.Where(card => card.Set.Owner!.Email == "system@tct.local").Select(card => card.CardId).ToListAsync();
+        }
+
+        foreach (var id in allIds)
+        {
+            await SeedProgressAsync(factory, id, "Mastered", 4, DateTime.UtcNow.AddDays(10), last: DateTime.UtcNow);
+        }
+
+        using var client = CreateClient(factory);
+        var text = System.Net.WebUtility.HtmlDecode(await client.GetStringAsync("/Vocabulary/Index"));
+
+        Assert.True(allIds.Count >= 10);
+        Assert.Contains("Đã đạt mục tiêu hôm nay!", text, StringComparison.Ordinal);
+        Assert.Contains("Bạn đã học hết các bài hiện có", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("Học bài mới", text, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task HomePage_FolderView_HasNoSrsBannerOrPanels()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync($"/Vocabulary/FolderDetail?folderId={TestDataIds.SystemFolderId}");
+
+        Assert.DoesNotContain("tv-banner", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("tv-memory", html, StringComparison.Ordinal);
+        Assert.Contains("data-tv-course", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task CourseCards_CarryTheIllustrationAndNoInlineColours()
+    {
+        await using var factory = await CreateFactoryAsync();
+        using var client = CreateClient(factory);
+
+        var html = await client.GetStringAsync("/Vocabulary/Index");
+
+        Assert.Contains("class=\"tv-art\"", html, StringComparison.Ordinal);
+        Assert.Contains("tv-cover tv-cover--", html, StringComparison.Ordinal);
+        // Only custom properties (--tv-*) may be set inline on the page's own elements; never a colour.
+        Assert.DoesNotMatch(new System.Text.RegularExpressions.Regex("<[^>]*class=\"[^\"]*\btv-[^\"]*\"[^>]*style=\"[^\"]*(#[0-9a-f]{3,8}|rgb|color)", System.Text.RegularExpressions.RegexOptions.IgnoreCase), html);
+    }
+
     // ── helpers ──────────────────────────────────────────────────────────
 
     private static HttpClient CreateClient(TestWebApplicationFactory factory) =>
@@ -537,7 +640,7 @@ public sealed class VocabularyReviewRecordTests
     }
 
     private static async Task SeedProgressAsync(
-        TestWebApplicationFactory factory, int cardId, string status, int repetitionCount, DateTime next, bool suspended = false)
+        TestWebApplicationFactory factory, int cardId, string status, int repetitionCount, DateTime next, bool suspended = false, DateTime? last = null)
     {
         using var scope = factory.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
@@ -548,7 +651,7 @@ public sealed class VocabularyReviewRecordTests
             Status = status,
             RepetitionCount = repetitionCount,
             NextReviewDate = next,
-            LastReviewedDate = DateTime.UtcNow.AddDays(-1),
+            LastReviewedDate = last ?? DateTime.UtcNow.AddDays(-1),
             IsSuspended = suspended
         });
         await context.SaveChangesAsync();

@@ -305,10 +305,18 @@ public sealed class VocabularyIntegrationTests
         Assert.Contains("BÀI TIẾP THEO", text, StringComparison.Ordinal);
         Assert.Contains("Bài 2 · Animals · phần 1", text, StringComparison.Ordinal);
         Assert.Contains("href=\"/Vocabulary/Study?setId=302&amp;lesson=2\"", html, StringComparison.Ordinal);
-        Assert.Contains("Học tiếp", text, StringComparison.Ordinal);
-        Assert.Contains("Ôn 1 từ đến hạn", text, StringComparison.Ordinal);
+        // SRS polish: with words due the primary action is "Ôn ngay" and the lesson button is the soft one.
+        Assert.Contains("Học bài mới", text, StringComparison.Ordinal);
+        Assert.Contains("ÔN TẬP HÔM NAY", text, StringComparison.Ordinal);
+        Assert.Matches("tv-bcard__number\">1</span><span class=\"tv-bcard__unit\">từ đến hạn", html);
+        Assert.Contains("Ôn ngay", text, StringComparison.Ordinal);
         Assert.Contains("href=\"/Vocabulary/Review\"", html, StringComparison.Ordinal);
-        Assert.Contains("Hôm nay bạn đã học 2 từ", text, StringComparison.Ordinal);
+        Assert.Contains("aria-label=\"Hôm nay đã học 2 trên 10 từ\"", text, StringComparison.Ordinal);
+        Assert.Contains("Còn 8 từ nữa là đạt mục tiêu hôm nay", text, StringComparison.Ordinal);
+        Assert.Contains("2 từ đã học", text, StringComparison.Ordinal);
+        Assert.Contains("1 từ cần ôn", text, StringComparison.Ordinal);
+        Assert.Contains("Lịch ôn 7 ngày tới", text, StringComparison.Ordinal);
+        Assert.Contains("Trí nhớ của bạn", text, StringComparison.Ordinal);
         Assert.Equal(4, Regex.Matches(html, "<article[^>]*data-tv-course").Count);
         Assert.Contains("data-status=\"progress\"", html, StringComparison.Ordinal);
         Assert.Contains("aria-label=\"Mở khóa Sprint One System Set\"", text, StringComparison.Ordinal);
@@ -325,8 +333,8 @@ public sealed class VocabularyIntegrationTests
 
         Assert.DoesNotContain("data-tv-filter=\"level\"", html, StringComparison.Ordinal);
         Assert.Contains("data-tv-filter=\"status\"", html, StringComparison.Ordinal);
-        Assert.DoesNotContain("chuỗi học", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
-        Assert.Contains("Hôm nay bạn chưa học từ nào", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        Assert.DoesNotContain("Chuỗi ", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
+        Assert.Contains("Bắt đầu với 5 từ đầu tiên nhé", WebUtility.HtmlDecode(html), StringComparison.Ordinal);
     }
 
     // ── course ───────────────────────────────────────────────────────────

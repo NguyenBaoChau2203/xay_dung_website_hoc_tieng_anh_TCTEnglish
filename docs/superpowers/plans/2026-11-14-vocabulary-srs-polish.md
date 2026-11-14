@@ -526,3 +526,36 @@ Decisions:
 - `<text>` is a Razor transition tag inside a code block, so the one SVG `<text>` element ("Aa") is emitted through `Html.Raw` in `_CourseArt.cshtml`.
 - The ring is an SVG (decorative) with its figures as real text over it; `pathLength=100` lets `--tv-p` be the percentage. Bars and the segmented memory bar get their sizes from inline custom properties.
 - Banner chips use `--tct-primary-strong` with `--tct-on-primary` text for contrast on the primary surface (checked in S5 by script).
+
+### Gate record S5 — Home (2026-11-14)
+Commit: `feat(vocabulary): rebuild the home with the goal ring, review card, memory panel, forecast and illustrated covers`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) on a `--no-incremental` build |
+| G2 | pass: `Vocabulary*`, `SpacedRepetition*`, `LearningApi*`, `Goals*` green (part of the full run) |
+| G3 | pass: 1705 passed / 0 failed / 34 skipped (S4 1699 + 6 new home-state render tests) |
+| G4 | pass: node 315 tests, 314 pass, the one known CRLF failure |
+| G5 | pass: every legacy `/Vocabulary/*` route still 200 and user-owned ids still 404 (existing route tests green); `LearningApiController.cs` diff empty |
+| G6 | pass: no hex, `rgb(`, `:root`, `!important` or weight above 700 in `vocabulary.css`; no inline colours in the views (test `CourseCards_CarryTheIllustrationAndNoInlineColours`); `git diff --check` clean for the changed paths |
+| G7 | pass: `Views/Vocabulary/{Index,_CourseCard,_MemoryPanel}.cshtml`, `wwwroot/css/vocabulary.css`, `TCTEnglish.Tests/{VocabularyIntegrationTests,VocabularyReviewRecordTests}.cs` |
+| G8 | pass: home rendered at 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640 and at 200 % zoom (720 css px) for a new learner and a learner with data; no horizontal overflow (only the scrollable segmented filter at 320 px, by design); console and network clean (`.tmp/vocabulary-srs/s5/`) |
+| G9 | pass with differences: laid out like `01-tu-vung.png` / `06-mobile-tu-vung.png`; consistent with `/Sets` and `/Practice` (same kit, cards and tokens). See "differences" below |
+| G10 | pass: 27 scripted checks by mouse and keyboard — new learner (start headline, empty memory/forecast texts, no review button, primary lesson button, ring 0/10), learner with data (due 8, "Ôn ngay" primary, lesson button soft, ring label equals ring text, chips, memory tiles sum to learned words, 7 bars + hidden table, art on every card, due chip, search filters to 2 courses, Tab reaches "Ôn ngay" with a 2 px focus outline then "Học bài mới"); the remaining states (due = 0 with next-due text, target reached, all lessons done, folder view) are covered by render tests |
+| G11 | pass: names and roles (ring `role="img"` with label, bar chart hidden from AT with a table, memory bar `role="img"` reading the four numbers); focus order; forced colours (`home-forced-colors-1440.png`: cards bordered, art and bars visible); `prefers-reduced-motion`: ring and bars have no animation; no keyboard trap |
+| G12 | pass: contrast script — all text pairs ≥ 4.5:1 (lowest: info-text on info-soft 5.15, white on primary 5.28) and UI parts ≥ 3:1 (ring arc on primary 3.52, bar and dot outlines 3.66). The four filled memory-bar segments and the non-today bars are decorative redundancy (their numbers and labels are text beside them); their fills alone are 2.15–2.54:1, so each bar/segment container has a 3.66:1 outline |
+| G13 | pass: `/Sets`, `/Practice`, `/Home/Index` render with a clean console; the legacy endpoint still records a personal card (`TheLegacyEndpoint_StillWorksForAPersonalCard`). `/Goals` logs "jQuery is not defined" from the validation scripts: pre-existing, on a page this phase does not touch |
+| G14 | pass: depth only through `--tct-clay-shadow*`; radii through tokens |
+| G15 | pass: no secrets; the new view has no raw HTML; no screenshot, mockup or `.tmp` path staged |
+
+Differences from the mockups (and why): the "Lặp lại ngắt quãng" chip row in the memory panel is the plan's sentence ("Trả lời đúng, từ lên một bậc ... 1 → 3 → 7 → 14 → 30 → 60 ngày. Quên thì quay về đầu."); at 1366 px the ring sits above the headline (three banner columns need about 1400 px for ring and text side by side); course group titles and counts are the real catalogue; the floating AI launcher overlaps the lower right of the page as on every page.
+
+Decisions:
+- `.tv-banner` replaces `.tv-today`; its CSS (`.tv-today*`, `.tv-stat*`, `.tv-next*`, `.tv-course__icon`) is now unused and is removed in S9.
+- The banner and the two panels show on the unfiltered home only; the folder view (`FolderDetail`) keeps header, toolbar and its collection.
+- `ViewData["Title"]` is the page title and is shared with partials, so `_MemoryPanel` reads `PanelTitle`/`PanelTitleId` instead (found by the first render test).
+- `vocabulary-home.js` is unchanged: its filters work on `[data-tv-course]`, which the new card keeps.
+
+Owned tests changed on purpose (`VocabularyIntegrationTests.cs`): `Home_RendersTheNextLessonButtonDueButtonAndCourseCards` (the old "Học tiếp", "Ôn 1 từ đến hạn" and "Hôm nay bạn đã học 2 từ" strings became "Học bài mới", the due card, the ring label and the memory/forecast panels) and `Home_HidesTheLevelFilterWhenThereAreFewerThanTwoLevels_AndOmitsAZeroStreak` ("chuỗi học" and "Hôm nay bạn chưa học từ nào" became "Chuỗi " and "Bắt đầu với 5 từ đầu tiên nhé"). Intent unchanged.
+
+Data note: no data was reset or seeded. The existing synthetic learner `premium@tct.local` already had 10 system words from the previous run (legacy rows: 8 due, 2 mastered) and was used as the "learner with data"; `student@tct.local` has none and was the new learner.

@@ -2,12 +2,13 @@
 @*
     "Trí nhớ của bạn" (plan 5.1): how many learned words sit in each of the four stages.
     ViewData["Compact"] = true gives the course-page aside variant (2 x 2 tiles, no explainer);
-    ViewData["Title"] overrides the heading ("Trí nhớ khóa này"); ViewData["TitleId"] keeps ids unique.
+    ViewData["PanelTitle"] overrides the heading ("Trí nhớ khóa này"); ViewData["PanelTitleId"] keeps ids unique.
+    (Not "Title": a partial shares the page's ViewData, where "Title" is the page title.)
 *@
 @{
     var compact = ViewData["Compact"] is true;
-    var title = ViewData["Title"] as string ?? "Trí nhớ của bạn";
-    var titleId = ViewData["TitleId"] as string ?? "tvMemoryTitle";
+    var title = ViewData["PanelTitle"] as string ?? "Trí nhớ của bạn";
+    var titleId = ViewData["PanelTitleId"] as string ?? "tvMemoryTitle";
     var total = Model.Total;
     var tiles = new[]
     {
