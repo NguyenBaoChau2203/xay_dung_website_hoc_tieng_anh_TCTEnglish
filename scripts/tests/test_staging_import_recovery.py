@@ -41,6 +41,11 @@ class OwnedStagingImportRecoveryTests(unittest.TestCase):
             harness.write_text(r'''param($Source,$Root,$Site,$State,$Mode)
 $ErrorActionPreference='Stop'
 Import-Module (Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1') -Force
+# Mirror the real entry point before invoking extracted functions. Windows CI
+# TEMP can contain an 8.3 RUNNER~1 alias that .NET expands during path validation.
+$Root=[IO.Path]::GetFullPath($Root)
+$Site=[IO.Path]::GetFullPath($Site).TrimEnd('\')
+$State=[IO.Path]::GetFullPath($State).TrimEnd('\')
 $tokens=$null;$errors=$null
 $ast=[Management.Automation.Language.Parser]::ParseFile($Source,[ref]$tokens,[ref]$errors)
 if($errors.Count) { throw 'Shipped staging script does not parse.' }
