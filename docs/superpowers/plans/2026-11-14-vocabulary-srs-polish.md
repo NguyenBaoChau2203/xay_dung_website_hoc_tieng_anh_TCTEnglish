@@ -435,3 +435,21 @@ With a synthetic learner from `.appdata/local/access.json` (never print the pass
 | G5–G15 | n-a (no code change in S0; plan and prompt copied only) |
 
 Decisions: D1 = KHÔNG; the prompt file is also saved at `.ai/prompts/claude-code-vocabulary-srs-polish.md` as its header instructs. Mockup differences: none yet.
+
+### Gate record S1 — Scheduler (2026-11-14)
+Commit: `feat(vocabulary): add the pure spaced-repetition scheduler with its unit tests`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) |
+| G2 | pass: `SpacedRepetition*` 100 tests (every row of 4.3 from levels 0–6, caps, seven intervals, new word, early review per outcome, due exactly now, legacy mapping, `TryParseOutcome` rejects) |
+| G3 | pass: 1629 passed / 0 failed / 34 skipped (S0 1529 + 100 new) |
+| G4 | pass: node untouched (S0 counts hold) |
+| G5 | pass: no controller, endpoint or view touched; `LearningApiController.cs` diff empty |
+| G6 | n-a: no CSS or view; `git diff --check` clean |
+| G7 | pass: only `Services/Vocabulary/SpacedRepetitionScheduler.cs` and `TCTEnglish.Tests/SpacedRepetitionSchedulerTests.cs` (section 2.1) |
+| G8–G13 | n-a: no UI in this phase |
+| G14 | n-a |
+| G15 | pass: pure static code, no I/O, no secrets |
+
+Decisions: `StageLabelFor`, `NextReviewLabelFor` and the `Status*` constants live in the scheduler (same file, additive to the 4.4 signature) so the service, endpoint and views share one source for the Vietnamese labels. `Promoted` is `newLevel > startLevel`, so a first `good` or `hard` on a new word reports `promoted = true` (0 → 1); the client picks its feedback text from the outcome first. Early review applies only when a row exists, `NextReviewUtc > now` and the outcome is not `again`; a row without a date counts as due.
