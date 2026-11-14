@@ -1,3 +1,4 @@
+using TCTVocabulary.Services.Vocabulary;
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Services
@@ -14,5 +15,7 @@ namespace TCTVocabulary.Services
         Task<VocabularyCourseViewModel?> GetVocabularyCourseAsync(int setId, int userId);
         Task<VocabularyLessonViewModel?> GetVocabularyLessonAsync(int setId, int userId, int? lesson, string? topic, bool review);
         Task<VocabularyLessonViewModel> GetVocabularyReviewAsync(int userId);
+        /// <summary>Records one word's session outcome on the memory ladder. Null when the card is not a system card.</summary>
+        Task<VocabularyReviewRecordResult?> RecordVocabularyReviewAsync(int userId, int cardId, ReviewOutcome outcome);
     }
 }

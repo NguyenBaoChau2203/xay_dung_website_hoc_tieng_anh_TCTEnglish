@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TCTVocabulary.Models;
 using TCTVocabulary.Services.Vocabulary;
 using TCTVocabulary.ViewModels;
 
@@ -42,9 +43,116 @@ namespace TCTVocabulary.Services
         private sealed record VocabularyCardKeyRow(int CardId, int SetId, string? Topic);
         private sealed record VocabularyCardRow(
             int CardId, string Term, string? Phonetic, string Definition,
-            string? Example, string? ExampleTranslation, string? ImageUrl, string? Topic);
+            string? Example, string? ExampleTranslation, string? ImageUrl, string? Topic, string? Emoji);
         private sealed record VocabularyProgressRow(
-            int CardId, string? Status, DateTime? NextReviewDate, DateTime? LastReviewedDate);
+            int CardId, string? Status, DateTime? NextReviewDate, DateTime? LastReviewedDate,
+            int RepetitionCount, bool IsSuspended);
+
+        /// <summary>Estimated seconds per due word, for the "Khoảng n phút" note.</summary>
+        private const int VocabularySecondsPerDueWord = 15;
+        private static readonly string[] VocabularyWeekdayLabels = { "CN", "T2", "T3", "T4", "T5", "T6", "T7" };
+
+        private static int VocabularyLevelOf(VocabularyProgressRow row) =>
+            SpacedRepetitionScheduler.LevelFrom(row.RepetitionCount, row.Status);
+
+        /// <summary>"Hôm nay" (today or overdue), "Ngày mai" or "Sau n ngày", by business date.</summary>
+        internal static string VocabularyDueLabel(DateTime nextReviewUtcStorage, DateTime businessToday)
+        {
+            var days = (BusinessDateHelper.ToBusinessDateFromUtcStorage(nextReviewUtcStorage) - businessToday).Days;
+            return days <= 0 ? "Hôm nay" : days == 1 ? "Ngày mai" : $"Sau {days} ngày";
+        }
+
+        private static VocabularyMemoryViewModel BuildVocabularyMemory(IEnumerable<VocabularyProgressRow> rows)
+        {
+            var memory = new VocabularyMemoryViewModel();
+            foreach (var row in rows)
+            {
+                switch (SpacedRepetitionScheduler.StageFor(VocabularyLevelOf(row)))
+                {
+                    case "new": memory.New++; break;
+                    case "growing": memory.Growing++; break;
+                    case "strong": memory.Strong++; break;
+                    default: memory.Long++; break;
+                }
+            }
+
+            return memory;
+        }
+
+        private static List<VocabularyForecastDayViewModel> BuildVocabularyForecast(
+            IEnumerable<VocabularyProgressRow> rows, DateTime businessToday)
+        {
+            var counts = new int[7];
+            foreach (var row in rows)
+            {
+                if (row.IsSuspended || !row.NextReviewDate.HasValue)
+                {
+                    continue;
+                }
+
+                var day = (BusinessDateHelper.ToBusinessDateFromUtcStorage(row.NextReviewDate.Value) - businessToday).Days;
+                if (day <= 0)
+                {
+                    counts[0]++;
+                }
+                else if (day < 7)
+                {
+                    counts[day]++;
+                }
+            }
+
+            var max = counts.Max();
+            var forecast = new List<VocabularyForecastDayViewModel>();
+            for (var index = 0; index < 7; index++)
+            {
+                var date = businessToday.AddDays(index);
+                forecast.Add(new VocabularyForecastDayViewModel
+                {
+                    Label = index == 0 ? "Hôm nay" : VocabularyWeekdayLabels[(int)date.DayOfWeek],
+                    Count = counts[index],
+                    IsToday = index == 0,
+                    HeightPercent = max == 0 || counts[index] == 0 ? 0 : Math.Max(8, counts[index] * 100 / max)
+                });
+            }
+
+            return forecast;
+        }
+
+        /// <summary>The label of the nearest future review among rows that are not due now; null when none.</summary>
+        private static string? NextVocabularyDueLabel(
+            IEnumerable<VocabularyProgressRow> rows, DateTime utcNow, DateTime businessToday)
+        {
+            var next = rows
+                .Where(row => !row.IsSuspended && row.NextReviewDate.HasValue && row.NextReviewDate.Value > utcNow)
+                .Select(row => row.NextReviewDate!.Value)
+                .DefaultIfEmpty()
+                .Min();
+
+            return next == default ? null : VocabularyDueLabel(next, businessToday);
+        }
+
+        private static VocabularyLessonWordViewModel ToVocabularyLessonWord(
+            VocabularyCardRow card, IReadOnlyDictionary<int, VocabularyProgressRow>? progress = null)
+        {
+            VocabularyProgressRow? row = null;
+            progress?.TryGetValue(card.CardId, out row);
+            int? level = row == null ? null : VocabularyLevelOf(row);
+
+            return new VocabularyLessonWordViewModel
+            {
+                Id = card.CardId,
+                Term = card.Term,
+                Phonetic = card.Phonetic,
+                Definition = card.Definition,
+                Example = card.Example,
+                ExampleVi = card.ExampleTranslation,
+                ImageUrl = SafeVocabularyImageUrl(card.ImageUrl),
+                Level = level,
+                Stage = level.HasValue ? SpacedRepetitionScheduler.StageFor(level.Value) : "none",
+                StageLabel = level.HasValue ? SpacedRepetitionScheduler.StageLabelFor(level.Value) : null,
+                Emoji = VocabularyEmojiMap.For(card.Emoji, card.Term)
+            };
+        }
 
         public async Task<VocabularyHomeViewModel?> GetVocabularyHomeAsync(int userId, int? folderId = null)
         {
@@ -130,7 +238,15 @@ namespace TCTVocabulary.Services
             {
                 Stats = stats,
                 DueUrl = stats.DueCards > 0 ? "/Vocabulary/Review" : null,
-                Next = BuildVocabularyNextLesson(courses.Select(c => (c.Card, c.Plans)).ToList(), progress, setByCard)
+                Next = BuildVocabularyNextLesson(courses.Select(c => (c.Card, c.Plans)).ToList(), progress, setByCard),
+                DueCount = stats.DueCards,
+                DueMinutes = Math.Max(1, (stats.DueCards * VocabularySecondsPerDueWord + 59) / 60),
+                TodayCount = stats.LearnedToday,
+                Streak = streak,
+                LearnedCount = stats.LearnedCards,
+                Memory = BuildVocabularyMemory(progress.Values),
+                Forecast = BuildVocabularyForecast(progress.Values, today),
+                NextDueLabel = stats.DueCards == 0 ? NextVocabularyDueLabel(progress.Values, utcNow, today) : null
             };
 
             var visibleFolders = folderId.HasValue
@@ -210,8 +326,24 @@ namespace TCTVocabulary.Services
                     ? null
                     : new VocabularyLessonLinkViewModel { Number = nextPlan.Number, Url = VocabularyLessonUrl(setId, nextPlan.Number) },
                 DueUrl = summary.DueCount > 0 ? $"/Vocabulary/Study?setId={setId}&mode=review" : null,
-                PracticeUrl = $"/Practice?set={setId}"
+                PracticeUrl = $"/Practice?set={setId}",
+                Memory = BuildVocabularyMemory(progress.Values)
             };
+
+            var businessToday = BusinessDateHelper.Today;
+            model.Upcoming = progress.Values
+                .Where(row => !row.IsSuspended && row.NextReviewDate.HasValue && termById.ContainsKey(row.CardId))
+                .OrderBy(row => row.NextReviewDate)
+                .ThenBy(row => row.CardId)
+                .Take(6)
+                .Select(row => new VocabularyUpcomingWordViewModel
+                {
+                    Term = termById[row.CardId],
+                    Level = VocabularyLevelOf(row),
+                    Stage = SpacedRepetitionScheduler.StageFor(VocabularyLevelOf(row)),
+                    Label = VocabularyDueLabel(row.NextReviewDate!.Value, businessToday)
+                })
+                .ToList();
 
             foreach (var plan in plans)
             {
@@ -224,7 +356,13 @@ namespace TCTVocabulary.Services
                     LearnedCount = learned,
                     State = learned == plan.CardIds.Count ? "done" : learned > 0 ? "progress" : "new",
                     Url = VocabularyLessonUrl(setId, plan.Number),
-                    IsNext = nextPlan != null && plan.Number == nextPlan.Number
+                    IsNext = nextPlan != null && plan.Number == nextPlan.Number,
+                    DueCount = plan.CardIds.Count(id => progress.TryGetValue(id, out var due) && IsVocabularyDue(due, utcNow)),
+                    WordStages = plan.CardIds
+                        .Select(id => progress.TryGetValue(id, out var stageRow)
+                            ? SpacedRepetitionScheduler.StageFor(VocabularyLevelOf(stageRow))
+                            : "none")
+                        .ToList()
                 };
 
                 if (row.IsNext)
@@ -239,6 +377,7 @@ namespace TCTVocabulary.Services
             foreach (var card in cards)
             {
                 progress.TryGetValue(card.CardId, out var row);
+                int? level = row == null ? null : VocabularyLevelOf(row);
                 model.Words.Add(new VocabularyWordRowViewModel
                 {
                     CardId = card.CardId,
@@ -251,7 +390,16 @@ namespace TCTVocabulary.Services
                     LessonNumber = lessonByCard.GetValueOrDefault(card.CardId),
                     Topic = VocabularyLessonBuilder.NormalizeTopic(card.Topic),
                     State = row == null ? "new" : row.Status == "Mastered" ? "known" : "learning",
-                    IsDue = row != null && IsVocabularyDue(row, utcNow)
+                    IsDue = row != null && IsVocabularyDue(row, utcNow),
+                    Level = level,
+                    Stage = level.HasValue ? SpacedRepetitionScheduler.StageFor(level.Value) : "none",
+                    StageLabel = level.HasValue ? SpacedRepetitionScheduler.StageLabelFor(level.Value) : "Chưa học",
+                    NextReviewLabel = row == null
+                        ? "Chưa học"
+                        : row.NextReviewDate == null || row.IsSuspended
+                            ? "Chưa có lịch"
+                            : VocabularyDueLabel(row.NextReviewDate.Value, businessToday),
+                    Emoji = VocabularyEmojiMap.For(card.Emoji, card.Term)
                 });
             }
 
@@ -305,16 +453,18 @@ namespace TCTVocabulary.Services
             {
                 model.Kind = "review";
                 model.LessonTitle = "Ôn tập";
-                sessionCards = cards
+                var dueCards = cards
                     .Where(card => progress.TryGetValue(card.CardId, out var row) && IsVocabularyDue(row, utcNow))
                     .OrderBy(card => progress[card.CardId].NextReviewDate)
                     .ThenBy(card => card.CardId)
-                    .Take(VocabularyReviewLimit)
                     .ToList();
+                sessionCards = dueCards.Take(VocabularyReviewLimit).ToList();
+                model.RemainingDue = dueCards.Count - sessionCards.Count;
 
                 if (sessionCards.Count == 0)
                 {
                     model.EmptyReason = "nothing-due";
+                    model.NextDueLabel = NextVocabularyDueLabel(progress.Values, utcNow, BusinessDateHelper.Today);
                     return model;
                 }
             }
@@ -358,7 +508,7 @@ namespace TCTVocabulary.Services
                     .ToList();
             }
 
-            model.Words = sessionCards.Select(ToVocabularyLessonWord).ToList();
+            model.Words = sessionCards.Select(card => ToVocabularyLessonWord(card, progress)).ToList();
 
             var sessionIds = sessionCards.Select(card => card.CardId).ToHashSet();
             model.Pool = cards
@@ -392,17 +542,18 @@ namespace TCTVocabulary.Services
             var sys = systemUserId.Value;
             var utcNow = DateTime.UtcNow;
             var progress = await LoadSystemProgressAsync(userId, sys);
-            var dueIds = progress.Values
+            var allDue = progress.Values
                 .Where(row => IsVocabularyDue(row, utcNow))
                 .OrderBy(row => row.NextReviewDate)
                 .ThenBy(row => row.CardId)
-                .Take(VocabularyReviewLimit)
-                .Select(row => row.CardId)
                 .ToList();
+            var dueIds = allDue.Take(VocabularyReviewLimit).Select(row => row.CardId).ToList();
+            model.RemainingDue = allDue.Count - dueIds.Count;
 
             if (dueIds.Count == 0)
             {
                 model.EmptyReason = "nothing-due";
+                model.NextDueLabel = NextVocabularyDueLabel(progress.Values, utcNow, BusinessDateHelper.Today);
                 return model;
             }
 
@@ -411,7 +562,7 @@ namespace TCTVocabulary.Services
                 .Where(card => dueIds.Contains(card.CardId) && card.Set.OwnerId == sys)
                 .Select(card => new VocabularyCardRow(
                     card.CardId, card.Term, card.Phonetic, card.Definition,
-                    card.Example, card.ExampleTranslation, card.ImageUrl, card.Topic))
+                    card.Example, card.ExampleTranslation, card.ImageUrl, card.Topic, card.Emoji))
                 .ToListAsync();
 
             var byId = rows.ToDictionary(row => row.CardId);
@@ -422,7 +573,7 @@ namespace TCTVocabulary.Services
                 return model;
             }
 
-            model.Words = ordered.Select(ToVocabularyLessonWord).ToList();
+            model.Words = ordered.Select(row => ToVocabularyLessonWord(row, progress)).ToList();
             var sessionIds = ordered.Select(row => row.CardId).ToHashSet();
             model.Pool = await _context.Cards
                 .AsNoTracking()
@@ -433,6 +584,129 @@ namespace TCTVocabulary.Services
                 .ToListAsync();
 
             return model;
+        }
+
+        public async Task<VocabularyReviewRecordResult?> RecordVocabularyReviewAsync(
+            int userId, int cardId, ReviewOutcome outcome)
+        {
+            var systemUserId = await GetSystemUserIdAsync();
+            if (!systemUserId.HasValue)
+            {
+                return null;
+            }
+
+            var inScope = await _context.Cards
+                .AsNoTracking()
+                .AnyAsync(card => card.CardId == cardId && card.Set.OwnerId == systemUserId.Value);
+            if (!inScope)
+            {
+                return null;
+            }
+
+            // A concurrent request can create the row first (unique UserId + CardId): reload once and apply on top of it.
+            for (var attempt = 0; ; attempt++)
+            {
+                var progress = await _context.LearningProgresses
+                    .FirstOrDefaultAsync(row => row.UserId == userId && row.CardId == cardId);
+                var isNew = progress == null;
+                var previousStatus = progress?.Status;
+                var utcNow = DateTime.UtcNow;
+
+                if (progress != null && progress.IsSuspended)
+                {
+                    var suspendedLevel = SpacedRepetitionScheduler.LevelFrom(progress.RepetitionCount, progress.Status);
+                    return await BuildRecordResultAsync(
+                        userId, cardId, suspendedLevel, progress.NextReviewDate,
+                        SpacedRepetitionScheduler.ScheduleUnchangedLabel, false, false, 0, null);
+                }
+
+                var current = progress == null
+                    ? new SrsState(0, null, false)
+                    : new SrsState(
+                        SpacedRepetitionScheduler.LevelFrom(progress.RepetitionCount, progress.Status),
+                        progress.NextReviewDate,
+                        true);
+                var result = SpacedRepetitionScheduler.Apply(current, outcome, utcNow);
+
+                if (progress == null)
+                {
+                    progress = new LearningProgress { UserId = userId, CardId = cardId, WrongCount = 0 };
+                    _context.LearningProgresses.Add(progress);
+                }
+
+                progress.LastReviewedDate = utcNow;
+                if (!result.EarlyReview)
+                {
+                    progress.RepetitionCount = result.Level;
+                    progress.Status = result.Status;
+                    progress.NextReviewDate = result.NextReviewUtc;
+                    if (result.CountsWrong)
+                    {
+                        progress.WrongCount = (progress.WrongCount ?? 0) + 1;
+                    }
+                }
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException) when (isNew && attempt == 0)
+                {
+                    _context.ChangeTracker.Clear();
+                    continue;
+                }
+
+                var xp = 0;
+                int? streak = null;
+                if (!result.EarlyReview)
+                {
+                    var update = _goalsService.BuildVocabularyActivityUpdate(isNew, previousStatus, result.Status);
+                    var activity = await _goalsService.RecordLearningActivityAsync(userId, update);
+                    if (activity.Status == OperationStatus.Success)
+                    {
+                        xp = update.XpEarned;
+                        streak = activity.Streak;
+                    }
+                    else
+                    {
+                        _logger.LogWarning(
+                            "Vocabulary review for user {UserId}, card {CardId} was saved but the activity was not credited ({Status})",
+                            userId, cardId, activity.Status);
+                    }
+                }
+
+                var label = result.EarlyReview
+                    ? SpacedRepetitionScheduler.ScheduleUnchangedLabel
+                    : SpacedRepetitionScheduler.NextReviewLabelFor(result.Level);
+                return await BuildRecordResultAsync(
+                    userId, cardId, result.Level, progress.NextReviewDate, label,
+                    result.Promoted, result.Demoted, xp, streak);
+            }
+        }
+
+        private async Task<VocabularyReviewRecordResult> BuildRecordResultAsync(
+            int userId, int cardId, int level, DateTime? next, string label,
+            bool promoted, bool demoted, int xp, int? streak)
+        {
+            streak ??= await _context.Users
+                .AsNoTracking()
+                .Where(user => user.UserId == userId)
+                .Select(user => user.Streak ?? 0)
+                .FirstOrDefaultAsync();
+
+            return new VocabularyReviewRecordResult
+            {
+                CardId = cardId,
+                Level = level,
+                Stage = SpacedRepetitionScheduler.StageFor(level),
+                StageLabel = SpacedRepetitionScheduler.StageLabelFor(level),
+                NextReviewDate = next,
+                NextReviewLabel = label,
+                Promoted = promoted,
+                Demoted = demoted,
+                XpEarned = xp,
+                Streak = streak.Value
+            };
         }
 
         private async Task<VocabularySetSource?> LoadSystemSetAsync(int setId, int systemUserId)
@@ -456,7 +730,7 @@ namespace TCTVocabulary.Services
                 .OrderBy(card => card.CardId)
                 .Select(card => new VocabularyCardRow(
                     card.CardId, card.Term, card.Phonetic, card.Definition,
-                    card.Example, card.ExampleTranslation, card.ImageUrl, card.Topic))
+                    card.Example, card.ExampleTranslation, card.ImageUrl, card.Topic, card.Emoji))
                 .ToListAsync();
         }
 
@@ -474,7 +748,8 @@ namespace TCTVocabulary.Services
 
             var rows = await query
                 .Select(progress => new VocabularyProgressRow(
-                    progress.CardId, progress.Status, progress.NextReviewDate, progress.LastReviewedDate))
+                    progress.CardId, progress.Status, progress.NextReviewDate, progress.LastReviewedDate,
+                    progress.RepetitionCount, progress.IsSuspended))
                 .ToListAsync();
 
             return rows
@@ -543,7 +818,8 @@ namespace TCTVocabulary.Services
                 ProgressPercent = words > 0 ? learned * 100 / words : 0,
                 Status = words > 0 && learned == words ? "done" : learned > 0 ? "progress" : "new",
                 IconKey = GetVocabularyIconKey(description),
-                Hue = VocabularyHues[setId % VocabularyHues.Length]
+                Hue = VocabularyHues[setId % VocabularyHues.Length],
+                ArtKey = VocabularyLessonBuilder.ArtKeyFor(setName, setId)
             };
         }
 
@@ -601,26 +877,12 @@ namespace TCTVocabulary.Services
 
         private static bool IsVocabularyDue(VocabularyProgressRow row, DateTime utcNow)
         {
-            return row.NextReviewDate.HasValue && row.NextReviewDate.Value <= utcNow;
+            return !row.IsSuspended && row.NextReviewDate.HasValue && row.NextReviewDate.Value <= utcNow;
         }
 
         private static string VocabularyLessonUrl(int setId, int lessonNumber)
         {
             return $"/Vocabulary/Study?setId={setId}&lesson={lessonNumber}";
-        }
-
-        private static VocabularyLessonWordViewModel ToVocabularyLessonWord(VocabularyCardRow card)
-        {
-            return new VocabularyLessonWordViewModel
-            {
-                Id = card.CardId,
-                Term = card.Term,
-                Phonetic = card.Phonetic,
-                Definition = card.Definition,
-                Example = card.Example,
-                ExampleVi = card.ExampleTranslation,
-                ImageUrl = SafeVocabularyImageUrl(card.ImageUrl)
-            };
         }
 
         /// <summary>Only an absolute https URL or a site-local path may reach an img src.</summary>

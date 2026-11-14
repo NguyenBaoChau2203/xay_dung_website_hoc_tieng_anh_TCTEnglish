@@ -72,5 +72,54 @@ namespace TCTVocabulary.Services.Vocabulary
         {
             return string.IsNullOrWhiteSpace(topic) ? DefaultTopic : topic.Trim();
         }
+
+        /// <summary>The seven cover illustrations, in the order used for the stable fallback.</summary>
+        public static readonly IReadOnlyList<string> ArtKeys =
+            new[] { "star", "talk", "book", "food", "travel", "jobs", "colors" };
+
+        // First match wins. Keywords are whole words or word sequences, lower case.
+        private static readonly (string Key, string[] Keywords)[] ArtRules =
+        {
+            ("talk", new[] { "giao tiếp" }),
+            ("book", new[] { "oxford" }),
+            ("food", new[] { "ăn", "uống", "thực phẩm" }),
+            ("travel", new[] { "du lịch", "địa điểm" }),
+            ("jobs", new[] { "nghề", "công việc" }),
+            ("colors", new[] { "màu" }),
+            ("star", new[] { "thông dụng", "1000" })
+        };
+
+        /// <summary>
+        /// The cover illustration key of a course: by words in its name, otherwise by <c>setId % 7</c>
+        /// so a course keeps the same cover.
+        /// </summary>
+        public static string ArtKeyFor(string? setName, int setId)
+        {
+            var padded = " " + string.Join(' ', SplitWords(setName)) + " ";
+            foreach (var (key, keywords) in ArtRules)
+            {
+                foreach (var keyword in keywords)
+                {
+                    if (padded.Contains(" " + keyword + " ", StringComparison.Ordinal))
+                    {
+                        return key;
+                    }
+                }
+            }
+
+            return ArtKeys[((setId % ArtKeys.Count) + ArtKeys.Count) % ArtKeys.Count];
+        }
+
+        private static IEnumerable<string> SplitWords(string? text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return Array.Empty<string>();
+            }
+
+            var lower = text.Normalize(System.Text.NormalizationForm.FormC).ToLowerInvariant();
+            var chars = lower.Select(c => char.IsLetterOrDigit(c) ? c : ' ').ToArray();
+            return new string(chars).Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        }
     }
 }

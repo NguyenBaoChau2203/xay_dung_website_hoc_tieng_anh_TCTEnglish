@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TCTVocabulary.Services;
+using TCTVocabulary.Services.Vocabulary;
 
 namespace TCTVocabulary.Controllers
 {
@@ -97,6 +98,31 @@ namespace TCTVocabulary.Controllers
             return View("Study", viewModel);
         }
 
+        /// <summary>
+        /// Records one system word's outcome of a lesson or review session. The client sends only the outcome
+        /// (again, hard, good or known); the server computes the level and the date. System cards only.
+        /// </summary>
+        [HttpPost("/Vocabulary/Review/Record")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RecordReview([FromBody] VocabularyReviewRecordRequest? request)
+        {
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid
+                || request == null
+                || request.CardId <= 0
+                || !SpacedRepetitionScheduler.TryParseOutcome(request.Outcome, out var outcome))
+            {
+                return BadRequest();
+            }
+
+            var result = await _studyService.RecordVocabularyReviewAsync(currentUserId, request.CardId, outcome);
+            return result == null ? NotFound() : Ok(result);
+        }
+
         private async Task<IActionResult> RenderCourseAsync(int setId, string activeTab, string? topic, bool trackView)
         {
             if (!TryGetCurrentUserId(out var currentUserId))
@@ -145,5 +171,11 @@ namespace TCTVocabulary.Controllers
         {
             return $"ViewedSet_{setId}";
         }
+    }
+
+    public sealed class VocabularyReviewRecordRequest
+    {
+        public int CardId { get; set; }
+        public string? Outcome { get; set; }
     }
 }

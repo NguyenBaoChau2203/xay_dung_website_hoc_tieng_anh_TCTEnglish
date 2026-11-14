@@ -453,3 +453,31 @@ Commit: `feat(vocabulary): add the pure spaced-repetition scheduler with its uni
 | G15 | pass: pure static code, no I/O, no secrets |
 
 Decisions: `StageLabelFor`, `NextReviewLabelFor` and the `Status*` constants live in the scheduler (same file, additive to the 4.4 signature) so the service, endpoint and views share one source for the Vietnamese labels. `Promoted` is `newLevel > startLevel`, so a first `good` or `hard` on a new word reports `promoted = true` (0 → 1); the client picks its feedback text from the outcome first. Early review applies only when a row exists, `NextReviewUtc > now` and the outcome is not `again`; a row without a date counts as due.
+
+### Gate record S2 — Service, endpoint, read models, art key, emoji map (2026-11-14)
+Commit: `feat(vocabulary): record outcomes on the memory ladder and expose the SRS read models`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) on a `--no-incremental` build |
+| G2 | pass: `Vocabulary*`, `SpacedRepetition*`, `LearningApi*`, `Goals*` = 300 passed, 0 failed |
+| G3 | pass: 1699 passed / 0 failed / 34 skipped (S1 1629 + 70 new) |
+| G4 | pass: node untouched |
+| G5 | pass: all legacy `/Vocabulary/*` routes still 200, user-owned ids still 404 (existing `VocabularyIntegrationTests` unchanged and green); `LearningApiController.cs` diff empty; the legacy endpoint is re-proved for a personal card (`TheLegacyEndpoint_StillWorksForAPersonalCard`) |
+| G6 | n-a: no CSS or view changed; `git diff --check` clean |
+| G7 | pass: `Controllers/VocabularyController.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Services/Vocabulary/VocabularyLessonBuilder.cs`, `Services/Vocabulary/VocabularyEmojiMap.cs`, `ViewModels/VocabularyPageViewModels.cs`, the two new test files |
+| G8–G11 | n-a: no rendered change in this phase |
+| G12–G14 | n-a |
+| G15 | pass: `[ValidateAntiForgeryToken]` on the POST (missing token → 400 test); user-owned, another user's private and missing cards → 404 and nothing written; bad outcome (easy, perfect, "1", " good", empty, missing), `cardId <= 0`, a non-numeric id, malformed or empty JSON → 400; anonymous → denied; no secrets |
+
+S2 behaviour checklist (8.4): new word × 4 outcomes store the expected level, status and date; a second `good` is an early review (level, status and date unchanged, label "Lịch ôn giữ nguyên"); a due word promotes (2 → 3, +7 d); `again` demotes (3 → 0, `WrongCount` 1, +10 min) even before the due date; a legacy Mastered row with count 1 reads as level 4 and becomes 5; a suspended row is untouched and credits nothing; Goals is credited once (`CardsReviewed` 1, `NewCardsLearned` 1) across good + good + hard; bad outcome 400; user-owned and foreign cards 404.
+
+Decisions:
+- Endpoint DTO `VocabularyReviewRecordRequest` lives in `VocabularyController.cs`; the response type `VocabularyReviewRecordResult` in the view-model file. The response is camelCase JSON with `success, cardId, level, stage, stageLabel, nextReviewDate, nextReviewLabel, promoted, demoted, xpEarned, streak`.
+- Early review updates `LastReviewedDate` only and does **not** credit Goals (nothing changed); an `again` always applies and is credited.
+- A concurrent first record for the same word (unique `UserId, CardId`) is retried once on top of the row the other request created.
+- If Goals refuses the activity after the progress is saved, the response is still 200 with `xpEarned = 0` and a warning is logged; a retry would be an early review.
+- Suspended rows no longer count as due on the home, course and review pages (they are "hidden from review"); previously the due check ignored `IsSuspended`.
+- Word rows with a progress row but no date show "Chưa có lịch".
+- `Card.Emoji` is used first, capped at 16 characters; `IconKey` is kept for now (the existing tests assert it) and is removed or left in S9.
+- Query count: home = system user, folders, cards, progress, streak (5 queries, unchanged shape); the new panels are computed from the already loaded progress rows, so no per-card queries were added. The record call is user, card check, progress, save, goals.

@@ -302,3 +302,115 @@ public sealed class SpacedRepetitionSchedulerTests
         Assert.False(SpacedRepetitionScheduler.TryParseOutcome(raw, out _));
     }
 }
+
+public sealed class VocabularyEmojiMapTests
+{
+    [Fact]
+    public void EveryEntry_HasAnEmoji_AndNoFlagsOrSkinTones()
+    {
+        Assert.NotEmpty(TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.KnownTerms);
+        foreach (var term in TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.KnownTerms)
+        {
+            var emoji = TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.Lookup(term);
+            Assert.False(string.IsNullOrWhiteSpace(emoji), $"'{term}' has no emoji.");
+            // Regional indicators (flags) and Fitzpatrick modifiers (skin tones) are not allowed.
+            Assert.DoesNotContain(emoji!.EnumerateRunes(), rune => rune.Value is >= 0x1F1E6 and <= 0x1F1FF);
+            Assert.DoesNotContain(emoji.EnumerateRunes(), rune => rune.Value is >= 0x1F3FB and <= 0x1F3FF);
+        }
+    }
+
+    [Theory]
+    [InlineData("Dog", "🐶")]
+    [InlineData("dog", "🐶")]
+    [InlineData("  DOG  ", "🐶")]
+    [InlineData("Thank you", "😊")]
+    [InlineData("airport", "✈️")]
+    public void Lookup_IgnoresCaseAndSurroundingSpaces(string term, string expected)
+    {
+        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.Lookup(term));
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData("serendipity")]
+    public void Lookup_ReturnsNullForUnknownOrEmptyTerms(string? term)
+    {
+        Assert.Null(TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.Lookup(term));
+    }
+
+    [Fact]
+    public void For_PrefersTheCardsOwnEmoji_ThenTheDictionary_ThenNothing()
+    {
+        Assert.Equal("🦄", TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.For(" 🦄 ", "Dog"));
+        Assert.Equal("🐶", TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.For(null, "Dog"));
+        Assert.Equal("🐶", TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.For("  ", "Dog"));
+        Assert.Equal("🐶", TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.For(new string('x', 40), "Dog"));
+        Assert.Null(TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.For(null, "serendipity"));
+    }
+
+    [Fact]
+    public void ItCoversTheCommonSeedWords()
+    {
+        foreach (var term in new[] { "Please", "Thank you", "Sorry", "Horse", "Rice", "Airport", "Doctor", "Red" })
+        {
+            Assert.NotNull(TCTVocabulary.Services.Vocabulary.VocabularyEmojiMap.Lookup(term));
+        }
+    }
+}
+
+public sealed class VocabularyArtKeyTests
+{
+    [Theory]
+    [InlineData("Từ vựng tiếng Anh giao tiếp", 11, "talk")]
+    [InlineData("3000 từ vựng Oxford A1", 13, "book")]
+    [InlineData("3000 từ vựng OXFORD A2", 14, "book")]
+    [InlineData("Đồ ăn & Thức uống", 15, "food")]
+    [InlineData("Thực phẩm hằng ngày", 15, "food")]
+    [InlineData("Du lịch & Địa điểm", 16, "travel")]
+    [InlineData("Nghề nghiệp", 17, "jobs")]
+    [InlineData("Công việc văn phòng", 17, "jobs")]
+    [InlineData("Màu sắc", 18, "colors")]
+    [InlineData("1000 từ tiếng Anh thông dụng", 12, "star")]
+    [InlineData("Từ vựng thông dụng", 12, "star")]
+    public void ArtKeyFor_PicksTheFirstMatchingKeyword(string name, int setId, string expected)
+    {
+        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor(name, setId));
+    }
+
+    [Fact]
+    public void ArtKeyFor_DoesNotMatchInsideAWord()
+    {
+        // "Văn hóa" contains the letters "ăn" but is not the word "ăn": the set id (4) decides.
+        var key = TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("Văn hóa", 4);
+        Assert.Equal("travel", key);
+    }
+
+    [Theory]
+    [InlineData(0, "star")]
+    [InlineData(1, "talk")]
+    [InlineData(2, "book")]
+    [InlineData(3, "food")]
+    [InlineData(4, "travel")]
+    [InlineData(5, "jobs")]
+    [InlineData(6, "colors")]
+    [InlineData(7, "star")]
+    [InlineData(20, "colors")]
+    public void ArtKeyFor_FallsBackToSetIdModuloSeven(int setId, string expected)
+    {
+        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("Unrelated name", setId));
+        Assert.Equal(expected, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor(null, setId));
+    }
+
+    [Fact]
+    public void ArtKeyFor_IsStableAndAlwaysOneOfTheSevenKeys()
+    {
+        for (var id = -3; id < 50; id++)
+        {
+            var key = TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("x", id);
+            Assert.Contains(key, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeys);
+            Assert.Equal(key, TCTVocabulary.Services.Vocabulary.VocabularyLessonBuilder.ArtKeyFor("x", id));
+        }
+    }
+}

@@ -12,6 +12,37 @@ namespace TCTVocabulary.ViewModels
         public int TotalCards { get; set; }
     }
 
+    /// <summary>How many learned words sit in each of the four learner-facing memory stages.</summary>
+    public class VocabularyMemoryViewModel
+    {
+        public int New { get; set; }
+        public int Growing { get; set; }
+        public int Strong { get; set; }
+        public int Long { get; set; }
+        public int Total => New + Growing + Strong + Long;
+    }
+
+    /// <summary>One bar of the "Lịch ôn 7 ngày tới" chart.</summary>
+    public class VocabularyForecastDayViewModel
+    {
+        /// <summary>"Hôm nay", then "T2".."T7", "CN".</summary>
+        public string Label { get; set; } = string.Empty;
+        public int Count { get; set; }
+        public bool IsToday { get; set; }
+        /// <summary>Bar height 0-100, relative to the busiest day.</summary>
+        public int HeightPercent { get; set; }
+    }
+
+    /// <summary>A row of "Sắp ôn lại".</summary>
+    public class VocabularyUpcomingWordViewModel
+    {
+        public string Term { get; set; } = string.Empty;
+        public int Level { get; set; }
+        public string Stage { get; set; } = "new";
+        /// <summary>"Hôm nay", "Ngày mai" or "Sau n ngày".</summary>
+        public string Label { get; set; } = string.Empty;
+    }
+
     /// <summary>The lesson the home page recommends.</summary>
     public class VocabularyNextLessonViewModel
     {
@@ -39,6 +70,8 @@ namespace TCTVocabulary.ViewModels
         public string Status { get; set; } = "new";
         public string IconKey { get; set; } = "book";
         public string Hue { get; set; } = "primary";
+        /// <summary>One of star, talk, book, food, travel, jobs, colors: the cover illustration.</summary>
+        public string ArtKey { get; set; } = "star";
     }
 
     public class VocabularyCollectionViewModel
@@ -57,6 +90,22 @@ namespace TCTVocabulary.ViewModels
         public List<string> Levels { get; set; } = new();
         public int? FilterFolderId { get; set; }
         public string? FilterFolderName { get; set; }
+
+        public const int DailyTargetWords = 10;
+
+        public int DueCount { get; set; }
+        /// <summary>Estimated minutes for the due words: ceil(due x 15 s / 60), at least 1.</summary>
+        public int DueMinutes { get; set; } = 1;
+        /// <summary>Distinct system words reviewed or learned today (business date).</summary>
+        public int TodayCount { get; set; }
+        public int DailyTarget { get; set; } = DailyTargetWords;
+        public int Streak { get; set; }
+        public int LearnedCount { get; set; }
+        public VocabularyMemoryViewModel Memory { get; set; } = new();
+        /// <summary>Seven days starting today; day 0 includes everything overdue.</summary>
+        public List<VocabularyForecastDayViewModel> Forecast { get; set; } = new();
+        /// <summary>Label of the nearest future due date when nothing is due now (for example "Ngày mai"); null when there is none.</summary>
+        public string? NextDueLabel { get; set; }
     }
 
     public class VocabularyLessonRowViewModel
@@ -69,6 +118,10 @@ namespace TCTVocabulary.ViewModels
         public string State { get; set; } = "new";
         public string Url { get; set; } = string.Empty;
         public bool IsNext { get; set; }
+        /// <summary>Words of this lesson that are due now.</summary>
+        public int DueCount { get; set; }
+        /// <summary>One stage key per word ("none" for an unlearned word); drives the row of dots.</summary>
+        public List<string> WordStages { get; set; } = new();
         public List<string> PreviewTerms { get; set; } = new();
         public int MoreCount { get; set; }
     }
@@ -87,6 +140,14 @@ namespace TCTVocabulary.ViewModels
         /// <summary>"new", "learning" or "known".</summary>
         public string State { get; set; } = "new";
         public bool IsDue { get; set; }
+        /// <summary>Memory level 0-6; null when the word has not been learned yet.</summary>
+        public int? Level { get; set; }
+        /// <summary>"none", "new", "growing", "strong" or "long".</summary>
+        public string Stage { get; set; } = "none";
+        public string StageLabel { get; set; } = "Chưa học";
+        /// <summary>"Hôm nay", "Ngày mai", "Sau n ngày" or "Chưa học".</summary>
+        public string NextReviewLabel { get; set; } = "Chưa học";
+        public string? Emoji { get; set; }
     }
 
     public class VocabularyLessonLinkViewModel
@@ -109,6 +170,9 @@ namespace TCTVocabulary.ViewModels
         /// <summary>"lessons" or "words"; set by the controller from the requested URL.</summary>
         public string ActiveTab { get; set; } = "lessons";
         public string? TopicFilter { get; set; }
+        public VocabularyMemoryViewModel Memory { get; set; } = new();
+        /// <summary>Up to six words with the nearest review date.</summary>
+        public List<VocabularyUpcomingWordViewModel> Upcoming { get; set; } = new();
     }
 
     /// <summary>A session word as the lesson script receives it.</summary>
@@ -121,6 +185,12 @@ namespace TCTVocabulary.ViewModels
         public string? Example { get; set; }
         public string? ExampleVi { get; set; }
         public string? ImageUrl { get; set; }
+        /// <summary>Memory level 0-6; null for a word that has no progress yet.</summary>
+        public int? Level { get; set; }
+        /// <summary>"none", "new", "growing", "strong" or "long".</summary>
+        public string Stage { get; set; } = "none";
+        public string? StageLabel { get; set; }
+        public string? Emoji { get; set; }
     }
 
     /// <summary>A card used only as a wrong-answer distractor.</summary>
@@ -152,6 +222,10 @@ namespace TCTVocabulary.ViewModels
         public string? RestartUrl { get; set; }
         /// <summary>URL that studies the same lesson again as a "relearn" session.</summary>
         public string? RelearnUrl { get; set; }
+        /// <summary>Review sessions: due words that did not fit in this batch of 20.</summary>
+        public int RemainingDue { get; set; }
+        /// <summary>When nothing is due: the label of the nearest future review ("Ngày mai", ...); null when there is none.</summary>
+        public string? NextDueLabel { get; set; }
 
         /// <summary>JSON for the page's config script. The default encoder escapes &lt; &gt; &amp;, so it is safe inside a script tag.</summary>
         public string ToConfigJson()
@@ -173,8 +247,26 @@ namespace TCTVocabulary.ViewModels
                 homeUrl = HomeUrl,
                 restartUrl = RestartUrl,
                 relearnUrl = RelearnUrl,
-                emptyReason = EmptyReason
+                emptyReason = EmptyReason,
+                remainingDue = RemainingDue,
+                nextDueLabel = NextDueLabel
             }, options);
         }
+    }
+
+    /// <summary>The answer of POST /Vocabulary/Review/Record.</summary>
+    public class VocabularyReviewRecordResult
+    {
+        public bool Success { get; set; } = true;
+        public int CardId { get; set; }
+        public int Level { get; set; }
+        public string Stage { get; set; } = "new";
+        public string StageLabel { get; set; } = string.Empty;
+        public DateTime? NextReviewDate { get; set; }
+        public string NextReviewLabel { get; set; } = string.Empty;
+        public bool Promoted { get; set; }
+        public bool Demoted { get; set; }
+        public int XpEarned { get; set; }
+        public int Streak { get; set; }
     }
 }
