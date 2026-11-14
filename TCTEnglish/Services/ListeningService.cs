@@ -320,11 +320,21 @@ namespace TCTEnglish.Services
             return viewModel;
         }
 
+        // CEFR levels in display order (the page itself builds its section headings from the same keys).
+        private static readonly string[] LevelOrder = { "A1", "A2", "B1", "B2", "C1", "C2" };
+
         private static void FinishIndexViewModel(ListeningIndexViewModel viewModel, List<ListeningLessonCardViewModel> cards)
         {
             viewModel.LessonsByLevel = cards
                 .GroupBy(c => c.Level)
                 .ToDictionary(g => g.Key, g => g.ToList());
+            viewModel.Levels = LevelOrder
+                .Select(key => new ListeningLevelMetaViewModel
+                {
+                    Key = key,
+                    LessonCount = viewModel.LessonsByLevel.TryGetValue(key, out var inLevel) ? inLevel.Count : 0
+                })
+                .ToList();
         }
 
         // ----------------------------------------------------------------

@@ -16,6 +16,9 @@ namespace TCTEnglish.ViewModels
         /// <summary>All distinct topic names for the filter UI.</summary>
         public List<string> Topics { get; set; } = new();
 
+        /// <summary>The CEFR levels in display order (A1 to C2) with their public lesson counts.</summary>
+        public List<ListeningLevelMetaViewModel> Levels { get; set; } = new();
+
         /// <summary>Currently active level filter (null = all).</summary>
         public string? SelectedLevel { get; set; }
 
@@ -280,5 +283,12 @@ namespace TCTEnglish.ViewModels
         public bool? QuizCompleted { get; set; }
         public int? QuizScore { get; set; }
         public bool? VocabReviewed { get; set; }
+    }
+
+    /// <summary>One CEFR level of the Listening catalogue: key and how many public lessons it holds.</summary>
+    public class ListeningLevelMetaViewModel
+    {
+        public string Key { get; set; } = string.Empty;      // "A1", "B2" ...
+        public int LessonCount { get; set; }
     }
 }

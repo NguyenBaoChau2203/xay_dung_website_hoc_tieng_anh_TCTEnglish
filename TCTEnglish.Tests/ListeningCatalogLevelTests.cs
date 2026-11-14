@@ -34,7 +34,7 @@ public sealed class ListeningCatalogLevelTests
         using var client = factory.CreateClient();
         var html = await client.GetStringAsync("/Home/Listening");
         Assert.Contains("Public C2 fixture", html);
-        Assert.Contains("lvl-c2", html);
+        Assert.Contains("data-level-section=\"C2\"", html); // the redesigned page marks each level section
         Assert.DoesNotContain("Private C2 fixture", html);
         Assert.DoesNotContain("Draft C2 fixture", html);
     }
