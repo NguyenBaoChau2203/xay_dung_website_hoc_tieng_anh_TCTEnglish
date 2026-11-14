@@ -481,3 +481,25 @@ Decisions:
 - Word rows with a progress row but no date show "Chưa có lịch".
 - `Card.Emoji` is used first, capped at 16 characters; `IconKey` is kept for now (the existing tests assert it) and is removed or left in S9.
 - Query count: home = system user, folders, cards, progress, streak (5 queries, unchanged shape); the new panels are computed from the already loaded progress rows, so no per-card queries were added. The record call is user, card check, progress, save, goals.
+
+### Gate record S3 — `vocabulary-core.js` (2026-11-14)
+Commit: `feat(vocabulary): add the spaced-repetition helpers to the pure lesson core`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: no C# change; build unchanged (0 errors, 58 warnings at S2) |
+| G2 | pass: `Vocabulary*`, `SpacedRepetition*`, `LearningApi*` re-run = green |
+| G3 | pass: C# untouched since the S2 full run (1699 passed / 34 skipped) |
+| G4 | pass: node 315 tests, 314 pass, 1 fail (the known CRLF hash failure); `test_vocabulary_core.cjs` 21/21 untouched and green; `test_vocabulary_srs.cjs` 23 new tests green |
+| G5 | pass: no URL, endpoint or contract touched |
+| G6 | n-a: no CSS or view; `git diff --check` clean |
+| G7 | pass: `wwwroot/js/vocabulary-core.js` and `scripts/tests/test_vocabulary_srs.cjs` (both in section 2) |
+| G8–G14 | n-a: not wired into a page yet (S7/S8) |
+| G15 | pass: pure module, the purity test (no DOM, network or window access) still passes |
+
+Decisions:
+- The new review flow is opt-in: `initSession({ kind: 'review', srs: true, ... })`. Without `srs`, `review` keeps the two-pass behaviour so the 21 existing tests did not change. S8 passes `srs: true` for review sessions; S9 decides whether the old review path stays (it is still used by tests only).
+- Every finished word now carries `outcome` (`again | hard | good | known`) beside the old `grade`; `gradeFor` is unchanged. `answer()` events gain `outcome`.
+- `planReview(words)` keeps the server's oldest-first order and caps at 20; it takes no rng because the order must not be shuffled (the plan's `rng` argument is therefore not used; determinism is tested by identical input giving identical output). A word is asked once; a wrong answer goes to the end up to two extra times, so a word is asked at most three times and ends as `hard` (1 miss), `again` (2 or more).
+- Choice prompt in an srs review alternates by position (even: meaning → term, odd: term → meaning); level 2–3 words alternate choose/type by position; terms with spaces or over 24 characters stay on choose.
+- Recording bookkeeping: `claimRecord` returns a finished word's outcome exactly once, `releaseRecord` re-opens it after a failed call, `markRecorded` stores the server answer, `unsaved` lists words not yet saved; `summary()` adds `words[]` (level, stage, label, promoted, outcome, saved) and `xp`.

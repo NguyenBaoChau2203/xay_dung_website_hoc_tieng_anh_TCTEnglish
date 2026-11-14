@@ -7,6 +7,10 @@
  * intro card per word; then every kind practises the round with pass A (choose) and pass B (type).
  * A wrong answer re-queues the word at the end of the same pass. A word is finished when it passes pass B,
  * and is graded once (plan 4.4). The state is a plain object that the helpers mutate and return.
+ *
+ * Spaced repetition (SRS plan 5.6, 5.8): every finished word also gets an `outcome` for the server
+ * (again | hard | good | known) from its misses. A review started with `srs: true` asks each word once, re-queues a
+ * wrong word at the end (at most 2 extra tries) and picks choose/type from the word's memory level.
  */
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) {
@@ -23,6 +27,12 @@
     var ROUND_SIZE = 5;
     var ROUND_MIN_TAIL = 3;
     var KINDS = ['learn', 'relearn', 'review'];
+    var REVIEW_LIMIT = 20;
+    var REVIEW_MAX_EXTRA_TRIES = 2;
+    var MAX_LEVEL = 6;
+    var LONG_TERM_LENGTH = 24;
+    var STAGE_LABELS = { none: 'Chưa học', new: 'Mới học', growing: 'Đang nhớ', strong: 'Nhớ tốt', long: 'Thuộc lâu' };
+    var STAGE_HUES = { none: 'none', new: 'warning', growing: 'info', strong: 'primary', long: 'success' };
 
     // ------------------------------------------------------------------ text helpers
 
@@ -69,10 +79,66 @@
         return misses === 1 ? 'good' : 'hard';
     }
 
+    // ------------------------------------------------------------------ spaced repetition (plan 4.3, 5.8)
+
+    /** The outcome sent to POST /Vocabulary/Review/Record: known | good (0 misses) | hard (1) | again (2+). */
+    function outcomeFor(misses, known) {
+        if (known) { return 'known'; }
+        var m = Number(misses) || 0;
+        return m <= 0 ? 'good' : m === 1 ? 'hard' : 'again';
+    }
+
+    function levelOf(level) {
+        if (level == null || level === '' || isNaN(Number(level))) { return null; }
+        return Math.max(0, Math.min(MAX_LEVEL, Math.floor(Number(level))));
+    }
+
+    /** "none" (no level), "new" (0-1), "growing" (2-3), "strong" (4-5) or "long" (6). */
+    function stageFor(level) {
+        var l = levelOf(level);
+        if (l === null) { return 'none'; }
+        return l <= 1 ? 'new' : l <= 3 ? 'growing' : l <= 5 ? 'strong' : 'long';
+    }
+
+    function stageLabel(level) { return STAGE_LABELS[stageFor(level)]; }
+
+    /** The five-dot meter: filled = min(level, 5); level 6 shows five dots in the success hue. */
+    function dotsFor(level) {
+        var l = levelOf(level);
+        return { filled: l === null ? 0 : Math.min(l, 5), hue: STAGE_HUES[stageFor(level)] };
+    }
+
+    /** Question type of a review word: level 0-1 choose, 2-3 alternate by position, 4+ type; long terms stay on choose. */
+    function reviewQuestionType(level, term, index) {
+        var text = String(term == null ? '' : term).trim();
+        if (/\s/.test(text) || text.length > LONG_TERM_LENGTH) { return 'choose'; }
+        var l = levelOf(level);
+        if (l === null || l <= 1) { return 'choose'; }
+        if (l <= 3) { return (Number(index) || 0) % 2 === 0 ? 'choose' : 'type'; }
+        return 'type';
+    }
+
+    /**
+     * The review queue: the server's due list in its order (oldest first), at most 20 words, with the question
+     * type of each word. A wrong word is re-queued by answer() at most `maxExtraTries` times.
+     */
+    function planReview(words) {
+        var list = practice.dedupeById(words || []).slice(0, REVIEW_LIMIT);
+        var plan = { queue: [], types: {}, maxExtraTries: REVIEW_MAX_EXTRA_TRIES };
+        list.forEach(function (w, index) {
+            plan.queue.push(w.id);
+            plan.types[String(w.id)] = reviewQuestionType(w.level, w.term, index);
+        });
+        return plan;
+    }
+
     // ------------------------------------------------------------------ session state
 
     function newWordState() {
-        return { misses: 0, known: false, finished: false, grade: null, saved: false, tried: { choose: false, type: false } };
+        return {
+            misses: 0, known: false, finished: false, grade: null, outcome: null, saved: false, claimed: false, server: null,
+            tried: { choose: false, type: false, review: false }
+        };
     }
 
     function key(id) { return String(id); }
@@ -153,12 +219,29 @@
             candidates: practice.dedupeById(words.concat(o.pool || [])),
             answered: 0,
             asked: 0,
-            firstTryRight: 0
+            firstTryRight: 0,
+            srs: false,
+            plan: null
         };
         words.forEach(function (w) {
             state.byId[key(w.id)] = w;
             state.words[key(w.id)] = newWordState();
         });
+        if (o.srs === true && state.kind === 'review') {
+            // One question per word; the whole due list is a single round.
+            var plan = planReview(words);
+            var planned = plan.queue.map(String);
+            state.srs = true;
+            state.plan = plan;
+            state.rounds = plan.queue.length ? [plan.queue.slice()] : [];
+            state.phase = plan.queue.length ? 'review' : 'result';
+            state.queue = plan.queue.slice();
+            // Only the planned (capped) words take part in the session.
+            Object.keys(state.words).forEach(function (id) {
+                if (planned.indexOf(id) < 0) { delete state.words[id]; delete state.byId[id]; }
+            });
+            return state;
+        }
         return startRound(state);
     }
 
@@ -192,6 +275,7 @@
         w.known = true;
         w.finished = true;
         w.grade = 'easy';
+        w.outcome = 'known';
         return introNext(state);
     }
 
@@ -205,6 +289,7 @@
         var item = current(state);
         if (!item || item.phase === 'intro' || key(item.wordId) !== key(wordId)) { return event; }
         if (outcome !== 'correct' && outcome !== 'close' && outcome !== 'wrong') { return event; }
+        if (state.srs) { return answerSrs(state, item, outcome, event); }
 
         event.ignored = false;
         var pass = item.phase;
@@ -228,8 +313,10 @@
         if (pass === 'type') {
             w.finished = true;
             w.grade = gradeFor(state.kind, w);
+            w.outcome = outcomeFor(w.misses, false);
             event.finished = true;
             event.grade = w.grade;
+            event.outcome = w.outcome;
         }
         if (state.queue.length === 0) {
             if (pass === 'choose') {
@@ -243,6 +330,39 @@
         return event;
     }
 
+    /** One answer of an srs review: a wrong word goes to the end again until it has used its extra tries. */
+    function answerSrs(state, item, outcome, event) {
+        event.ignored = false;
+        var w = state.words[key(item.wordId)];
+        var first = !w.tried.review;
+        state.answered += 1;
+        if (first) {
+            w.tried.review = true;
+            state.asked += 1;
+        }
+
+        state.queue.shift();
+        if (outcome === 'wrong') {
+            w.misses += 1;
+            if (w.misses <= state.plan.maxExtraTries) {
+                state.queue.push(item.wordId);
+                return event;
+            }
+        } else {
+            event.correct = true;
+            if (first) { state.firstTryRight += 1; }
+        }
+
+        w.finished = true;
+        w.grade = gradeFor('review', w);
+        w.outcome = outcomeFor(w.misses, false);
+        event.finished = true;
+        event.grade = w.grade;
+        event.outcome = w.outcome;
+        if (state.queue.length === 0) { state.phase = 'result'; }
+        return event;
+    }
+
     /**
      * The question for a word. Pass A: a 4-option choice (prompt "term" shows the term and asks for the meaning;
      * prompt "meaning" shows the meaning and asks for the term; review sessions use "meaning").
@@ -252,11 +372,14 @@
         var word = state.byId[key(wordId)];
         if (!word) { return null; }
         var typing = { id: word.id + ':typing', kind: 'typing', word: word };
-        if (state.phase !== 'choose') { return typing; }
+        if (state.srs) {
+            if (state.plan.types[key(wordId)] !== 'choose') { return typing; }
+        } else if (state.phase !== 'choose') { return typing; }
         var candidates = practice.dedupeById(state.candidates.concat(pool || []));
         var options = practice.choiceOptions(word, candidates, rng || state.rng);
         if (options.length < 3) { return typing; }
         var prompt = state.kind === 'review' ? 'meaning' : 'term';
+        if (state.srs) { prompt = state.plan.queue.map(String).indexOf(key(wordId)) % 2 === 0 ? 'meaning' : 'term'; }
         return {
             id: word.id + ':choice:' + prompt,
             kind: 'choice',
@@ -272,6 +395,49 @@
         var w = state && state.words[key(wordId)];
         if (w) { w.saved = saved !== false; }
         return state;
+    }
+
+    /**
+     * Claims the right to send the record call of a finished word; returns its outcome once, then null
+     * (a word is never reported for recording twice). Call `releaseRecord` after a failed call to allow a retry.
+     */
+    function claimRecord(state, wordId) {
+        var w = state && state.words[key(wordId)];
+        if (!w || !w.finished || w.claimed || w.saved) { return null; }
+        w.claimed = true;
+        return w.outcome;
+    }
+
+    function releaseRecord(state, wordId) {
+        var w = state && state.words[key(wordId)];
+        if (w && !w.saved) { w.claimed = false; }
+        return state;
+    }
+
+    /** Stores the server's answer for a word: { level, stage, stageLabel, nextReviewLabel, promoted, demoted, xpEarned }. */
+    function markRecorded(state, wordId, serverResult) {
+        var w = state && state.words[key(wordId)];
+        if (!w) { return state; }
+        var r = serverResult || {};
+        w.saved = true;
+        w.claimed = true;
+        w.server = {
+            level: levelOf(r.level),
+            stage: r.stage || stageFor(r.level),
+            stageLabel: r.stageLabel || stageLabel(r.level),
+            nextReviewLabel: r.nextReviewLabel || '',
+            promoted: !!r.promoted,
+            demoted: !!r.demoted,
+            xp: Number(r.xpEarned) || 0
+        };
+        return state;
+    }
+
+    /** Ids of finished words whose record call has not succeeded. */
+    function unsaved(state) {
+        return Object.keys(state.words)
+            .filter(function (id) { return state.words[id].finished && !state.words[id].saved; })
+            .map(function (id) { return state.byId[id].id; });
     }
 
     function progress(state) {
@@ -300,7 +466,23 @@
             else { remembered += 1; }
             if (!w.saved) { unsaved += 1; }
         });
+        var wordsOut = ids.map(function (id) {
+            var w = state.words[id];
+            var server = w.server;
+            return {
+                id: state.byId[id].id,
+                outcome: w.outcome,
+                saved: w.saved,
+                level: server ? server.level : null,
+                stage: server ? server.stage : 'none',
+                label: server ? server.nextReviewLabel : '',
+                promoted: server ? server.promoted : false
+            };
+        });
+        var xp = ids.reduce(function (sum, id) { var w = state.words[id]; return sum + (w.server ? w.server.xp : 0); }, 0);
         return {
+            words: wordsOut,
+            xp: xp,
             total: ids.length,
             remembered: remembered,
             needReview: needReview,
@@ -350,6 +532,18 @@
         answer: answer,
         questionFor: questionFor,
         gradeFor: gradeFor,
+        outcomeFor: outcomeFor,
+        stageFor: stageFor,
+        stageLabel: stageLabel,
+        dotsFor: dotsFor,
+        reviewQuestionType: reviewQuestionType,
+        planReview: planReview,
+        claimRecord: claimRecord,
+        releaseRecord: releaseRecord,
+        markRecorded: markRecorded,
+        unsaved: unsaved,
+        REVIEW_LIMIT: REVIEW_LIMIT,
+        REVIEW_MAX_EXTRA_TRIES: REVIEW_MAX_EXTRA_TRIES,
         markSaved: markSaved,
         progress: progress,
         roundInfo: roundInfo,
