@@ -629,6 +629,68 @@ public sealed class VocabularyIntegrationTests
         Assert.DoesNotContain("<img src=x onerror=alert(1)>", html, StringComparison.Ordinal);
     }
 
+    [Fact]
+    public async Task Lesson_RendersTheSessionShellWithTheRightStepsAndScriptOrder()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory, Enumerable.Range(1201, 5)
+            .Select(id => (TestDataIds.UserId, id, "Mastered", (DateTime?)now.AddDays(1), (DateTime?)now)).ToArray());
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var learn = await client.GetStringAsync($"/Vocabulary/Study?setId={TestDataIds.SystemSetId}&lesson=2");
+        var relearn = await client.GetStringAsync($"/Vocabulary/Study?setId={SecondSetId}&lesson=1");
+
+        foreach (var id in new[] { "tpStage", "tpFeedback", "tpProgress", "tpProgressFill", "tpCounter", "tpSlot", "tpExit", "tpExitModal", "tsToastHost", "tvPhases" })
+        {
+            Assert.Contains($"id=\"{id}\"", learn, StringComparison.Ordinal);
+        }
+
+        Assert.Contains($"id=\"tpExit\" href=\"/Vocabulary/Detail?setId={TestDataIds.SystemSetId}\"", learn, StringComparison.Ordinal);
+        Assert.Contains("Cần bật JavaScript để học từ vựng.", WebUtility.HtmlDecode(learn), StringComparison.Ordinal);
+        Assert.Equal(3, Regex.Matches(learn, "<li class=\"tv-phase").Count);
+        Assert.Equal(2, Regex.Matches(relearn, "<li class=\"tv-phase").Count);
+        Assert.Contains("data-phase=\"intro\"", learn, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-phase=\"intro\"", relearn, StringComparison.Ordinal);
+        Assert.Contains("data-tv-kind=\"relearn\"", relearn, StringComparison.Ordinal);
+
+        // The practice helpers load before the lesson script that uses them.
+        var order = new[] { "personal-sets-common.js", "practice-core.js", "practice-ui.js", "vocabulary-core.js", "vocabulary-lesson.js" }
+            .Select(name => learn.IndexOf("/js/" + name, StringComparison.Ordinal)).ToArray();
+        Assert.All(order, index => Assert.True(index > 0));
+        Assert.Equal(order.OrderBy(index => index), order);
+    }
+
+    [Fact]
+    public async Task Lesson_EmptyStatesOfferTheRightButtonsAndLoadNoLessonScript()
+    {
+        await using var factory = await CreateFactoryAsync();
+        var now = DateTime.UtcNow;
+        await SeedProgressAsync(factory, Enumerable.Range(1201, 5)
+            .Select(id => (TestDataIds.UserId, id, "Mastered", (DateTime?)now.AddDays(1), (DateTime?)now)).ToArray());
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+        var complete = await client.GetStringAsync($"/Vocabulary/Study?setId={SecondSetId}");
+        var noCards = await client.GetStringAsync($"/Vocabulary/Study?setId={EmptySetId}");
+        var nothingDue = await client.GetStringAsync("/Vocabulary/Review");
+
+        var completeText = WebUtility.HtmlDecode(complete);
+        Assert.Contains("Bạn đã học hết khóa này.", completeText, StringComparison.Ordinal);
+        Assert.Contains("Ôn lại để nhớ lâu hơn.", completeText, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Vocabulary/Study?setId={SecondSetId}&amp;lesson=1\"", complete, StringComparison.Ordinal);
+        Assert.Contains("Về khóa học", completeText, StringComparison.Ordinal);
+        Assert.Contains("Bài này chưa có từ nào.", WebUtility.HtmlDecode(noCards), StringComparison.Ordinal);
+        Assert.Contains("Không có từ nào đến hạn ôn.", WebUtility.HtmlDecode(nothingDue), StringComparison.Ordinal);
+        Assert.Contains("Về trang Từ vựng", WebUtility.HtmlDecode(nothingDue), StringComparison.Ordinal);
+
+        foreach (var html in new[] { complete, noCards, nothingDue })
+        {
+            Assert.DoesNotContain("id=\"tpStage\"", html, StringComparison.Ordinal);
+            Assert.DoesNotContain("vocabulary-lesson.js", html, StringComparison.Ordinal);
+            Assert.Contains("__RequestVerificationToken", html, StringComparison.Ordinal);
+        }
+    }
+
     // ── review across courses and empty states ───────────────────────────
 
     [Fact]

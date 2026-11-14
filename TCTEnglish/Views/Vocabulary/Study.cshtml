@@ -1,7 +1,54 @@
 @model TCTVocabulary.ViewModels.VocabularyLessonViewModel
+@using TCTEnglish.ViewModels
 @{
     var heading = string.IsNullOrEmpty(Model.LessonTitle) ? Model.SetName : Model.LessonTitle + " · " + Model.SetName;
     ViewData["Title"] = heading;
+
+    var hasIntro = Model.Kind == "learn";
+    var steps = hasIntro
+        ? new[] { ("intro", "Làm quen"), ("practice", "Luyện tập"), ("result", "Kết quả") }
+        : new[] { ("practice", "Luyện tập"), ("result", "Kết quả") };
+    var firstPhase = hasIntro ? "intro" : "practice";
+
+    StateMessageViewModel? emptyState = null;
+    string? secondAction = null;
+    string? secondUrl = null;
+    switch (Model.EmptyReason)
+    {
+        case "no-cards":
+            emptyState = new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Bài này chưa có từ nào.",
+                ActionLabel = "Về khóa học",
+                ActionUrl = Model.CourseUrl
+            };
+            break;
+        case "complete":
+            emptyState = new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Bạn đã học hết khóa này.",
+                Message = "Ôn lại để nhớ lâu hơn.",
+                ActionLabel = Model.RestartUrl != null ? "Ôn lại từ đầu" : "Về khóa học",
+                ActionUrl = Model.RestartUrl ?? Model.CourseUrl
+            };
+            if (Model.RestartUrl != null)
+            {
+                secondAction = "Về khóa học";
+                secondUrl = Model.CourseUrl;
+            }
+            break;
+        case "nothing-due":
+            emptyState = new StateMessageViewModel
+            {
+                Kind = StateMessageKind.Empty,
+                Title = "Không có từ nào đến hạn ôn.",
+                ActionLabel = "Về trang Từ vựng",
+                ActionUrl = Model.HomeUrl
+            };
+            break;
+    }
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
@@ -12,18 +59,61 @@
 <div class="tct-theme tct-page tv-page tv-page--lesson tp-page tp-page--session tp-hue-primary" data-tv-kind="@Model.Kind">
     <h1 class="visually-hidden">@heading</h1>
 
-    @if (Model.EmptyReason != null)
+    @if (emptyState != null)
     {
-        <p data-tv="empty" data-reason="@Model.EmptyReason">@Model.EmptyReason</p>
+        <div class="tp-empty" data-reason="@Model.EmptyReason">
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="emptyState" />
+            @if (secondAction != null)
+            {
+                <a class="btn btn-outline-primary" href="@secondUrl">@secondAction</a>
+            }
+        </div>
     }
     else
     {
-        <ul data-tv="words">
-            @foreach (var word in Model.Words)
+        <header class="tp-bar">
+            <a class="btn k-btn--icon-surface tct-btn-icon tp-exit" id="tpExit" href="@Model.CourseUrl" aria-label="Thoát"><i class="fa-solid fa-xmark" aria-hidden="true"></i></a>
+            <div class="tp-progress k-progress k-progress--success" id="tpProgress" role="progressbar" aria-label="Tiến độ bài học" aria-valuemin="0" aria-valuemax="@Model.Words.Count" aria-valuenow="0">
+                <span class="tp-progress__fill k-progress__fill" id="tpProgressFill"></span>
+            </div>
+            <span class="tp-counter" id="tpCounter" aria-hidden="true">0/@Model.Words.Count</span>
+            <div class="tp-slot" id="tpSlot"></div>
+        </header>
+
+        <ol class="tv-phases tv-list" id="tvPhases" aria-label="Các bước của bài học">
+            @for (var i = 0; i < steps.Length; i++)
             {
-                <li>@word.Term · @word.Definition</li>
+                var (key, label) = steps[i];
+                <li class="tv-phase@(key == firstPhase ? " is-current" : string.Empty)" data-phase="@key" data-num="@(i + 1)" data-label="@label" aria-current="@(key == firstPhase ? "step" : null)">@(i + 1) · @label</li>
             }
-        </ul>
+        </ol>
+
+        <noscript>
+            <div class="tp-empty">
+                <partial name="~/Views/Shared/_StateMessage.cshtml" model="@(new StateMessageViewModel { Kind = StateMessageKind.Error, Title = "Cần bật JavaScript để học từ vựng.", Message = "Hãy bật JavaScript trong trình duyệt rồi tải lại trang." })" />
+            </div>
+        </noscript>
+
+        <main id="tpStage" class="tp-stage" tabindex="-1"></main>
+        <div id="tpFeedback" class="tp-feedback-host" aria-live="polite"></div>
+
+        <div class="modal fade" id="tpExitModal" tabindex="-1" aria-labelledby="tpExitTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tpExitTitle">Thoát bài học?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">Những từ bạn đã học xong vẫn được lưu. Các từ còn lại sẽ học tiếp lần sau.</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ở lại</button>
+                        <a class="btn btn-primary" id="tpExitConfirm" href="@Model.CourseUrl">Thoát</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tsToastHost" class="toast-container tp-toast-host" aria-live="polite" aria-atomic="false"></div>
     }
 
     <script id="tvLesson" type="application/json">@Html.Raw(Model.ToConfigJson())</script>
@@ -32,4 +122,12 @@
 
 @section Scripts {
     <script src="~/js/time-tracker.js" data-feature="Flashcard" defer></script>
+    @if (emptyState == null)
+    {
+        <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+        <script src="~/js/practice-core.js" asp-append-version="true"></script>
+        <script src="~/js/practice-ui.js" asp-append-version="true"></script>
+        <script src="~/js/vocabulary-core.js" asp-append-version="true"></script>
+        <script src="~/js/vocabulary-lesson.js" asp-append-version="true"></script>
+    }
 }
