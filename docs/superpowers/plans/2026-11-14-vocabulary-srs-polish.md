@@ -629,3 +629,34 @@ Commit: `chore(vocabulary): remove the dead home and lesson styles and the icon 
 Removed: CSS rules for `.tv-today*`, `.tv-stats`, `.tv-stat*`, `.tv-next*`, `.tv-course__icon`, `.tv-hero__icon`, `.tv-due`, `.tv-resultrow__ipa`, `.tv-resultrow__badge`; `CourseCard.IconKey` and `GetVocabularyIconKey` (the art key replaced them). Kept on purpose: `gradeFor` and the two-pass `review` flow in `vocabulary-core.js` (21 existing tests and the relearn flow use them).
 Owned tests changed on purpose: `Home_CourseCardsCarryRealCountsLevelIconAndStatus` was renamed to `...LevelArtAndStatus` and asserts `ArtKey` (`jobs` for set 390, `talk` for set 302) instead of `IconKey`.
 Docs: tracker row "Từ vựng", `docs/project-structure.md`, `.ai/context/known-issues.md` (TD-013 update, new TD-016), `.ai/context/bug-fix-log.md`.
+
+### Gate record S11 — Full gate and end-to-end run (2026-11-14)
+Commit: `docs(vocabulary): record the S11 full gate and the end-to-end run`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) |
+| G2/G3 | pass: 1711 passed / 0 failed / 34 skipped (S0: 1529 + 182 new); one unexplained single failure in one full run at S9, not reproduced in two reruns |
+| G4 | pass: node 317 tests, 316 pass, the one known CRLF failure (S0: 292/291) |
+| G5 | pass: legacy routes 200 and 404 rules (tests); `LearningApiController.cs` and its tests have an empty diff since `e1da1d1` |
+| G6 | pass: token-only greps clean; `git diff e1da1d1..HEAD --check` clean |
+| G7 | pass: every changed path of the 9 commits is in section 2.1/2.2 (checked by name); no migration, `Models`, `Program.cs`, `.csproj` or `appsettings*` change; `dotnet ef migrations has-pending-model-changes`: none |
+| G8 | pass for the pages rendered: home, course (lessons and words), lesson intro, nothing-due review at 1440×900, 1366×768, 390 in `.tmp/vocabulary-srs/after/`, and the earlier S5/S6/S7 runs at 1024, 768, 320 and 200 % zoom; no overflow; console clean (the 404 page logs its 404) |
+| G9 | partial: eye comparison with the six mockups; no pixel comparison |
+| G10 | pass: S5, S6 and S7/S8 behaviour runs (mouse). Keyboard-only: Tab order and focus style checked on the home, tab arrows on the course page; a full keyboard-only lesson was **not** scripted |
+| G11 | partial: forced colours verified on the home and the course page, reduced motion on the home; **not** captured on the lesson, review and result screens |
+| G12 | pass for the home/course pairs (script); lesson and result screens reuse the same tokens, not re-scripted |
+| G13 | partial: `/Sets`, `/Practice`, `/Home/Index` clean after S5; Goals credited by the new endpoint (below); personal sets still use the legacy endpoint (test) |
+| G14/G15 | pass |
+
+**End-to-end run (plan 8.5), `premium@tct.local`, real endpoints:**
+1. Lesson 2 played (one word known, one miss): levels and dates in the database matched the labels; 5 POSTs for 5 words.
+2. Targeted update (the only SQL write, recorded): `UPDATE LearningProgress SET NextReviewDate = UTC_TIMESTAMP() - INTERVAL 1 HOUR WHERE UserID = 3 AND CardID IN (184, 185);`
+3. Home then showed "Ôn ngay" with 3 words due (Cat from the earlier review, Goodbye and Good morning), ring 16/10, memory tiles 8/5/3/0, chips "Chuỗi 2 ngày" and "16 từ đã học".
+4. Review of the 3 words: Goodbye right → level 1→2 (+3 days); Cat right → level 0→1 (+1 day); Good morning wrong twice → `again`, level 1→0, +10 min, `WrongCount` 0→1. 3 POSTs, 3 result rows, "Ôn xong 3 từ!", 2/3 correct, +15 XP.
+5. Home afterwards: the due card became "Hôm nay không có từ nào cần ôn" (the 10-minute word is not due yet), tiles 7/6/3/0, forecast shows 1 word today.
+6. Goals daily activity for the learner: `CardsReviewed` 24 → 27, `XpEarned` 225 → 240, `NewCardsLearned` unchanged at 16: one credit per word, no double crediting.
+
+Self-review against AGENTS.md and DESIGN.md: async I/O only; ownership enforced (system cards only, 404 otherwise, no `Forbid`); antiforgery on the POST; thin controller, logic in services; views get view models; no raw entities; tokens-only CSS, no new font, icon family, package or CDN; shared layout, shared CSS and `LearningApiController` untouched. Known gaps are listed in the handoff.
+
+Definition of Done (section 10): scheduler, service and endpoint with tests — done; `LearningApiController` untouched — done; one record per word through the new endpoint — done (browser-verified); home in its states (new learner, due, nothing due, target reached, all lessons done) — done (browser plus render tests); course page — done; lesson pictures, chip, schedule row, per-word result — done; review capped at 20 and ordered with the empty state — done (tests; empty state seen in the browser); laptop sizes first then 1024/768/390/320/zoom — done for the pages listed above; keyboard, forced colours, reduced motion, contrast — recorded as partial where noted; tokens/Clay greps, no forbidden file, no pending migration — done; gate record per phase and docs — done (S7 and S8 share one record); D1 content — not applicable (D1 = KHÔNG).
