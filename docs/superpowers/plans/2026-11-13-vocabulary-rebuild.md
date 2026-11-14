@@ -853,3 +853,17 @@ git diff --check
   - Icon key uses tag order (first tag with a mapping wins); level = first `#a1…#c2` tag.
   - Course-scoped review uses the existing URL `/Vocabulary/Study?setId=&mode=review`; global review is `/Vocabulary/Review`; `Review?setId=` is also accepted.
 - Attempts / deferred / blocked: none.
+
+### V2 — `vocabulary-core.js`
+- Commit: see `git log` (subject "feat(vocabulary): add the pure lesson-session logic and its node tests")
+- G1 build: pass (warnings 43, V0 43)
+- G2/G3: C# unchanged since V1; full run passed 1522 / failed 0 / skipped 34
+- G4 node: passed 291 / failed 1 (same pre-existing CRLF hash failure) / total 292; the 21 new tests in `test_vocabulary_core.cjs` pass
+- G5 contracts: unchanged (no C# or view change)
+- G6 tokens/diff: `git diff --check` clean for the new files; no CSS touched
+- G7 scope: `wwwroot/js/vocabulary-core.js`, `scripts/tests/test_vocabulary_core.cjs` only
+- G8–G14: not applicable (no UI in this phase)
+- G15: grep for `innerHTML|alert(|confirm(|console.log|on*=` in the module prints nothing; a test asserts the module has no `document`, `fetch`, `window`, `localStorage` or `console.` outside the UMD wrapper
+- Interpretation recorded (plan 5.7 "accuracy"): `asked` counts each distinct (word, pass) question once, `right` counts those answered correctly on the first try ("close" included), so a retry after a miss is neither a new question nor a first-try answer. Result shows "câu đúng {right}/{asked}".
+- API additions beyond the plan table, all pure: `initSession` also takes `pool` (distractor candidates), `answer` returns an event `{ ignored, correct, finished, grade, phaseChanged, roundChanged }`, plus `markSaved`, `roundInfo`, `fold`.
+- Attempts / deferred / blocked: none.
