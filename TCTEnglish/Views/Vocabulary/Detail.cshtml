@@ -1,704 +1,210 @@
-@model TCTVocabulary.ViewModels.VocabularySetDetailViewModel
-@using System.Linq
+@model TCTVocabulary.ViewModels.VocabularyCourseViewModel
+@using TCTEnglish.ViewModels
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
 @{
-    ViewData["Title"] = Model.Set.SetName;
+    var course = Model.Course;
+    ViewData["Title"] = course.SetName + " · Từ vựng";
 
-    var topics = Model.Topics;
-    var topicsCount = topics.Count;
-    var tags = Model.Tags;
-    var totalCards = Model.Stats.TotalCards;
-    var learnedCards = Model.Stats.LearnedCards;
-    var remainingCards = Model.Stats.RemainingCards;
-    var accuracy = Model.Stats.Accuracy;
-    var newCards = Model.Stats.NewCards;
-    var reviewingCards = Model.Stats.ReviewingCards;
-    var masteredCards = Model.Stats.MasteredCards;
-    var dueToday = Model.Stats.DueToday;
+    var crumbs = new List<PageBreadcrumbItem> { new("Từ vựng", Url.Action("Index", "Vocabulary")) };
+    if (Model.FolderId.HasValue && !string.IsNullOrWhiteSpace(Model.FolderName))
+    {
+        crumbs.Add(new PageBreadcrumbItem(Model.FolderName!, Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.FolderId.Value })));
+    }
+    crumbs.Add(new PageBreadcrumbItem(course.SetName));
+    var header = new PageHeaderViewModel { Title = course.SetName, Breadcrumbs = crumbs };
+
+    var wordsActive = Model.ActiveTab == "words";
+    var empty = new StateMessageViewModel { Kind = StateMessageKind.Empty, Title = "Khóa này chưa có từ nào." };
+    var noWordMatch = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Không có từ nào ở mục này.",
+        Message = "Thử tìm bằng từ khác hoặc bỏ bớt bộ lọc."
+    };
+    var stateFilters = new[] { ("", "Tất cả"), ("due", "Cần ôn"), ("new", "Chưa học"), ("learned", "Đã học") };
+    var memoryData = new ViewDataDictionary(ViewData)
+    {
+        ["Compact"] = true,
+        ["PanelTitle"] = "Trí nhớ khóa này",
+        ["PanelTitleId"] = "tvCourseMemoryTitle"
+    };
+    var emptyUpcoming = Model.Upcoming.Count == 0;
 }
-
 @section Styles {
-    <link rel="stylesheet" href="~/css/vocabulary-system.css" />
-    <style>
-        /* Additional styles for phonetic and examples */
-        .word-phonetic {
-            font-size: 0.9rem;
-            color: #64748b;
-            font-family: 'Courier New', monospace;
-            margin-left: 0.5rem;
-            font-weight: normal;
-        }
-
-        .example {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(66, 85, 255, 0.05);
-            border-radius: 12px;
-            border-left: 4px solid #4255ff;
-        }
-
-            .example .label {
-                font-weight: 600;
-                color: #4255ff;
-                font-size: 0.85rem;
-                display: block;
-                margin-bottom: 0.5rem;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
-        .example-text {
-            font-style: italic;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-
-        .example-translation {
-            color: #64748b;
-            font-size: 0.95rem;
-            padding-left: 1rem;
-            border-left: 2px solid #cbd5e1;
-            margin-top: 0.25rem;
-        }
-
-        .word-info {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .word-term {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        /* Topics preview styles */
-        .topics-preview-section {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 4px 6px -2px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-            .section-header h2 {
-                font-size: 1.25rem;
-                font-weight: 600;
-                color: #0f172a;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin: 0;
-            }
-
-                .section-header h2 i {
-                    color: #4255ff;
-                    background: #F0F9FF;
-                    padding: 0.5rem;
-                    border-radius: 12px;
-                }
-
-        .view-all-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #4255ff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            background: #F8FAFC;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s;
-        }
-
-            .view-all-link:hover {
-                background: #F0F9FF;
-                border-color: #4255ff;
-                transform: translateY(-2px);
-            }
-
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .topic-preview-card {
-            background: #F8FAFC;
-            border-radius: 16px;
-            padding: 1.25rem;
-            border: 1px solid #e2e8f0;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-            display: block;
-        }
-
-            .topic-preview-card:hover {
-                border-color: #4255ff;
-                box-shadow: 0 4px 12px rgba(66, 85, 255, 0.1);
-                transform: translateY(-2px);
-                background: white;
-            }
-
-        .topic-preview-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .topic-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4255ff;
-            font-size: 1.2rem;
-        }
-
-        .topic-preview-name {
-            font-weight: 600;
-            color: #0f172a;
-            font-size: 1rem;
-        }
-
-        .topic-preview-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .topic-count {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-            .topic-count strong {
-                color: #0f172a;
-                font-weight: 600;
-            }
-
-        .topic-percent {
-            color: #4255ff;
-            font-weight: 600;
-            background: #F0F9FF;
-            padding: 0.2rem 0.6rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-        }
-
-        .progress-bar-mini {
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 100px;
-            overflow: hidden;
-        }
-
-        .progress-fill-mini {
-            height: 100%;
-            background: linear-gradient(90deg, #4255ff, #a5b4fc);
-            border-radius: 100px;
-        }
-
-        .view-all-container {
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-
-        .btn-view-all {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #4255ff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.75rem 2rem;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 100px;
-            transition: all 0.2s;
-        }
-
-            .btn-view-all:hover {
-                background: #F0F9FF;
-                border-color: #4255ff;
-                gap: 1rem;
-            }
-
-        /* Responsive */
-        @@media (max-width: 640px) {
-            .topics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-        }
-    </style>
-
-    <style>
-        .due-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeIn 0.3s ease-out;
-        }
-        .due-modal-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 36px;
-            max-width: 440px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: scaleIn 0.4s ease-out;
-            position: relative;
-        }
-        .due-modal-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: none;
-            border: none;
-            color: #9CA3AF;
-            font-size: 1.3rem;
-            cursor: pointer;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, color 0.2s;
-        }
-        .due-modal-close:hover {
-            background: #F3F4F6;
-            color: #374151;
-        }
-        .due-modal-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, #F97316, #EF4444);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
-            color: white;
-            animation: bellRing 1s ease-in-out 0.5s;
-            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.35);
-        }
-        .due-modal-count {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #F97316, #EF4444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 6px;
-        }
-        .due-modal-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1F2937;
-            margin-bottom: 8px;
-        }
-        .due-modal-desc {
-            font-size: 0.9rem;
-            color: #6B7280;
-            margin-bottom: 28px;
-            line-height: 1.5;
-        }
-        .due-modal-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .due-modal-btn-primary {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #F97316, #EF4444);
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
-        }
-        .due-modal-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
-            color: white;
-        }
-        .due-modal-btn-secondary {
-            background: none;
-            border: 1px solid #E5E7EB;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #6B7280;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .due-modal-btn-secondary:hover {
-            background: #F9FAFB;
-            color: #374151;
-        }
-        @@keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @@keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.85); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @@keyframes bellRing {
-            0%, 100% { transform: rotate(0); }
-            20% { transform: rotate(15deg); }
-            40% { transform: rotate(-15deg); }
-            60% { transform: rotate(10deg); }
-            80% { transform: rotate(-10deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/vocabulary.css" asp-append-version="true" />
 }
 
-@if (dueToday > 0)
-{
-    <div class="due-modal-overlay" id="dueModal">
-        <div class="due-modal-card">
-            <button class="due-modal-close" onclick="document.getElementById('dueModal').remove()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="due-modal-icon">
-                <i class="fas fa-bell"></i>
-            </div>
-            <div class="due-modal-count">@dueToday</div>
-            <div class="due-modal-title">từ đến hạn ôn tập!</div>
-            <div class="due-modal-desc">
-                Bạn có <strong>@dueToday từ vựng</strong> trong bộ <strong>@Model.Set.SetName</strong> cần được ôn tập.<br>
-                Hãy ôn ngay để ghi nhớ lâu hơn nhé! 🧠
-            </div>
-            <div class="due-modal-actions">
-                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId, mode = "review" })" class="due-modal-btn-primary">
-                    <i class="fas fa-play"></i> Ôn tập ngay
-                </a>
-                <button class="due-modal-btn-secondary" onclick="document.getElementById('dueModal').remove()">
-                    Để sau
-                </button>
-            </div>
-        </div>
-    </div>
-}
-
-<div class="set-detail-modern">
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav">
-        <a href="@Url.Action("Index", "Vocabulary")">
-            <i class="fas fa-home"></i> Trang chủ
-        </a>
-        <i class="fas fa-chevron-right separator"></i>
-        <a href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = Model.Set.FolderId })">@(Model.Set.FolderName ?? "Từ vựng")</a>
-        <i class="fas fa-chevron-right separator"></i>
-        <span>@Model.Set.SetName</span>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="set-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="set-badge">
-                <i class="fas fa-layer-group"></i>
-                <span>@totalCards từ vựng</span>
-            </div>
-            <h1 class="set-title">@Model.Set.SetName</h1>
-            <div class="set-tags">
-                @foreach (var tag in tags)
+<div class="tct-theme tct-page tv-page tv-page--course" data-active-tab="@Model.ActiveTab" data-topic-filter="@Model.TopicFilter">
+    <section class="tv-hero tv-hue-@course.Hue">
+        <div class="tv-hero__art k-art-box tv-cover tv-cover--@course.ArtKey" aria-hidden="true"><partial name="_CourseArt" model="course.ArtKey" /></div>
+        <div class="tv-hero__main">
+            <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
+            <p class="tv-meta tv-hero__meta">
+                @if (!string.IsNullOrEmpty(course.Level))
                 {
-                    <span class="tag">@tag</span>
+                    <span class="tct-badge tct-badge--primary">@course.Level</span>
                 }
-            </div>
-
-            <!-- Study Stats -->
-            <div class="study-stats">
-                <div class="stat-group">
-                    <div class="stat-item">
-                        <span class="stat-value">@learnedCards</span>
-                        <span class="stat-label">Đã học</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">@remainingCards</span>
-                        <span class="stat-label">Còn lại</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">@accuracy%</span>
-                        <span class="stat-label">Độ chính xác</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="hero-actions">
-                <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId })" class="btn-study">
-                    <i class="fas fa-play"></i>
-                    <span>@(learnedCards > 0 ? "Tiếp tục học" : "Bắt đầu học")</span>
-                </a>
-                @if (dueToday > 0)
+                <span><i class="fa-solid fa-book" aria-hidden="true"></i>@course.WordCount từ</span>
+                <span><i class="fa-solid fa-layer-group" aria-hidden="true"></i>@course.LessonCount bài</span>
+                @if (course.DueCount > 0)
                 {
-                    <a href="@Url.Action("Study", "Vocabulary", new { setId = Model.Set.SetId, mode = "review" })" class="btn-study" style="background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);">
-                        <i class="fas fa-clock"></i>
-                        <span>Ôn tập @dueToday từ đến hạn</span>
-                    </a>
+                    <span class="tv-chipdue"><i class="fa-solid fa-rotate" aria-hidden="true"></i>@course.DueCount từ cần ôn</span>
                 }
-                <button class="btn-bookmark">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <button class="btn-share">
-                    <i class="fas fa-share-alt"></i>
-                </button>
+            </p>
+            <div class="k-progress" role="progressbar" aria-label="Tiến độ khóa học" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@course.ProgressPercent">
+                <span class="k-progress__fill" style="--p:@(course.ProgressPercent)%"></span>
             </div>
-        </div>
-    </div>
-
-    <!-- Quick Stats Cards -->
-    <div class="quick-stats">
-        <div class="stat-card new">
-            <div class="stat-icon">
-                <i class="fas fa-star"></i>
-            </div>
-            <div class="stat-detail">
-                <span class="stat-number">@newCards</span>
-                <span class="stat-label">Từ mới</span>
-            </div>
-        </div>
-        <div class="stat-card reviewing">
-            <div class="stat-icon">
-                <i class="fas fa-sync-alt"></i>
-            </div>
-            <div class="stat-detail">
-                <span class="stat-number">@reviewingCards</span>
-                <span class="stat-label">Đang ôn</span>
-            </div>
-        </div>
-        <div class="stat-card mastered">
-            <div class="stat-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="stat-detail">
-                <span class="stat-number">@masteredCards</span>
-                <span class="stat-label">Thành thạo</span>
-            </div>
-        </div>
-        <div class="stat-card due">
-            <div class="stat-icon">
-                <i class="fas fa-clock"></i>
-            </div>
-            <div class="stat-detail">
-                <span class="stat-number">@dueToday</span>
-                <span class="stat-label">Đến hạn</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Study Progress Section -->
-    <div class="study-progress-section">
-        <div class="section-header">
-            <h2>Tiến độ học tập</h2>
-            <div class="progress-summary">
-                <span class="completed">@learnedCards hoàn thành</span>
-                <span class="total">/ @totalCards từ</span>
-            </div>
-        </div>
-
-        <div class="progress-visual">
-            <div class="progress-circle" data-progress="@accuracy">
-                <div class="progress-circle-inner">
-                    <span class="percentage">@accuracy%</span>
-                    <span class="label">Hoàn thành</span>
-                </div>
-            </div>
-            <div class="progress-bars">
-                <div class="progress-bar-item">
-                    <div class="bar-label">
-                        <span><i class="fas fa-circle" style="color: #4facfe"></i> Mới</span>
-                        <span>@newCards từ</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: @((newCards * 100) / (totalCards > 0 ? totalCards : 1))%"></div>
-                    </div>
-                </div>
-                <div class="progress-bar-item">
-                    <div class="bar-label">
-                        <span><i class="fas fa-circle" style="color: #fbbf24"></i> Đang học</span>
-                        <span>@reviewingCards từ</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: @((reviewingCards * 100) / (totalCards > 0 ? totalCards : 1))%; background: #fbbf24"></div>
-                    </div>
-                </div>
-                <div class="progress-bar-item">
-                    <div class="bar-label">
-                        <span><i class="fas fa-circle" style="color: #43e97b"></i> Thành thạo</span>
-                        <span>@masteredCards từ</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: @((masteredCards * 100) / (totalCards > 0 ? totalCards : 1))%; background: #43e97b"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Topics Preview Section -->
-    @if (topics.Any())
-    {
-        <div class="topics-preview-section">
-            <div class="section-header">
-                <h2>
-                    <i class="fas fa-tags"></i>
-                    Danh sách chủ đề
-                </h2>
-                <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.Set.SetId })" class="view-all-link">
-                    <span>Xem tất cả @topicsCount chủ đề</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="topics-grid">
-                @foreach (var topic in topics.Take(4))
-                {
-                    <a href="@Url.Action("TopicDetail", "Vocabulary", new { setId = Model.Set.SetId, topic = topic.TopicName })"
-                       class="topic-preview-card">
-                        <div class="topic-preview-header">
-                            <div class="topic-icon">
-                                <i class="fas fa-folder"></i>
-                            </div>
-                            <span class="topic-preview-name">@topic.TopicName</span>
-                        </div>
-
-                        <div class="topic-preview-stats">
-                            <span class="topic-count">
-                                <strong>@topic.LearnedCards</strong>/@topic.TotalCards
-                            </span>
-                            <span class="topic-percent">@topic.Progress%</span>
-                        </div>
-
-                        <div class="progress-bar-mini">
-                            <div class="progress-fill-mini" style="width: @topic.Progress%"></div>
-                        </div>
-                    </a>
-                }
-            </div>
-
-            @if (topics.Count > 4)
+            <p class="tv-hero__progress-text">Đã học @course.LearnedCount/@course.WordCount từ · Đã thuộc @course.KnownCount</p>
+            @if (course.WordCount > 0)
             {
-                <div class="view-all-container">
-                    <a href="@Url.Action("Topics", "Vocabulary", new { setId = Model.Set.SetId })" class="btn-view-all">
-                        <span>Xem tất cả @topicsCount chủ đề</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                <div class="tv-hero__actions">
+                    @if (Model.DueUrl != null)
+                    {
+                        <a class="btn btn-primary btn-lg" href="@Model.DueUrl"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn @course.DueCount từ đến hạn</a>
+                        @if (Model.NextLesson != null)
+                        {
+                            <a class="btn btn-outline-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài tiếp theo</a>
+                        }
+                    }
+                    else if (Model.NextLesson != null)
+                    {
+                        <a class="btn btn-primary btn-lg" href="@Model.NextLesson.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài tiếp theo</a>
+                    }
+                    else if (Model.CourseComplete && Model.Lessons.Count > 0)
+                    {
+                        <a class="btn k-btn--soft btn-lg" href="@Model.Lessons[0].Url"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Học lại từ đầu</a>
+                    }
+                    <a class="btn btn-outline-primary btn-lg" href="@Model.PracticeUrl"><i class="fa-solid fa-gamepad me-2" aria-hidden="true"></i>Luyện bằng trò chơi</a>
                 </div>
             }
         </div>
-    }
+    </section>
 
-    <!-- Related Sets -->
-    @if (Model.RelatedSets.Any())
-    {
-        <div class="related-section">
-            <h2>Bộ từ cùng danh mục</h2>
-            <div class="related-grid">
-                @foreach (var relatedSet in Model.RelatedSets)
+    <div class="tv-cols">
+        <aside class="tv-cols__aside" aria-label="Trí nhớ và lịch ôn của khóa học">
+            <partial name="_MemoryPanel" model="Model.Memory" view-data="memoryData" />
+            <section class="tv-panel k-panel" aria-labelledby="tvUpcomingTitle">
+                <div class="tv-panel__head">
+                    <h2 class="tv-panel__title" id="tvUpcomingTitle"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Sắp ôn lại</h2>
+                </div>
+                @if (emptyUpcoming)
                 {
+                    <p class="tv-panel__empty">Chưa có từ nào trong lịch ôn.</p>
+                }
+                else
+                {
+                    <ul class="tv-upcoming">
+                        @foreach (var item in Model.Upcoming)
+                        {
+                            <li class="tv-upcoming__row">
+                                <span class="tv-emoji" aria-hidden="true">@(item.Emoji ?? item.Term.Substring(0, 1).ToUpperInvariant())</span>
+                                <span class="tv-upcoming__word">
+                                    <span class="tv-upcoming__term" lang="en">@item.Term</span>
+                                    <span class="tv-upcoming__def tct-clamp-2">@item.Definition</span>
+                                </span>
+                                <partial name="_LevelDots" model="item.Level" />
+                                <span class="tv-upcoming__label">@item.Label</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </section>
+        </aside>
 
-                    <div class="related-card">
-                        <div class="related-header">
-                            <span class="related-icon">📚</span>
-                        </div>
-                        <div class="related-body">
-                            <h3>@relatedSet.SetName</h3>
-                            <div class="related-meta">
-                                <span><i class="fas fa-layer-group"></i> @relatedSet.CardCount từ</span>
-                                @if (relatedSet.Tags.Any())
-                                {
-                                    <span class="related-tag">@relatedSet.Tags.First()</span>
-                                }
-                            </div>
-                            <a href="@Url.Action("Detail", "Vocabulary", new { setId = relatedSet.SetId })" class="related-link">
-                                Xem chi tiết <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
+        <div class="tv-cols__main">
+    <div class="k-seg" role="tablist" aria-label="Nội dung khóa học" id="tvTabs">
+        <button type="button" class="k-seg__item" role="tab" id="tvTabLessons" aria-controls="tvPanelLessons"
+                aria-selected="@(wordsActive ? "false" : "true")" tabindex="@(wordsActive ? "-1" : "0")" data-tv-tab="lessons" data-hash="bai-hoc">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>Bài học <span class="k-seg__count">@course.LessonCount</span>
+        </button>
+        <button type="button" class="k-seg__item" role="tab" id="tvTabWords" aria-controls="tvPanelWords"
+                aria-selected="@(wordsActive ? "true" : "false")" tabindex="@(wordsActive ? "0" : "-1")" data-tv-tab="words" data-hash="tat-ca-tu">
+            <i class="fa-solid fa-list" aria-hidden="true"></i>Tất cả từ <span class="k-seg__count">@course.WordCount</span>
+        </button>
+    </div>
+
+    <div id="tvPanelLessons" role="tabpanel" aria-labelledby="tvTabLessons" @(wordsActive ? "hidden" : null)>
+        @if (Model.Lessons.Count == 0)
+        {
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
+        }
+        else
+        {
+            <ol class="tv-lessons tv-list">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <li><partial name="_LessonRow" model="lesson" /></li>
+                }
+            </ol>
+        }
+    </div>
+
+    <div id="tvPanelWords" role="tabpanel" aria-labelledby="tvTabWords" @(wordsActive ? null : "hidden")>
+        @if (Model.Words.Count == 0)
+        {
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
+        }
+        else
+        {
+            <div class="tv-toolbar" role="search">
+                <div class="tv-toolbar__search">
+                    <label class="visually-hidden" for="tvWordSearch">Tìm từ hoặc nghĩa</label>
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input id="tvWordSearch" type="search" class="form-control" placeholder="Tìm từ hoặc nghĩa…" maxlength="80" autocomplete="off" />
                     </div>
+                </div>
+                <div class="k-seg" role="group" aria-label="Lọc theo trạng thái" data-tv-filter="state">
+                    @foreach (var (value, label) in stateFilters)
+                    {
+                        <button type="button" class="k-seg__item" data-value="@value" aria-pressed="@(value == "" ? "true" : "false")">@label</button>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(Model.TopicFilter))
+                {
+                    <span class="tv-topic-chip" id="tvTopicChip">
+                        <span>Chủ đề: <span class="tct-break">@Model.TopicFilter</span></span>
+                        <button type="button" class="btn btn-sm tv-topic-chip__remove" id="tvTopicRemove" aria-label="Bỏ lọc chủ đề @Model.TopicFilter"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+                    </span>
                 }
             </div>
+
+            <p class="visually-hidden" id="tvWordStatus" role="status" aria-live="polite"></p>
+
+            <div id="tvWordNoMatch" hidden>
+                <partial name="~/Views/Shared/_StateMessage.cshtml" model="noWordMatch" />
+            </div>
+
+            <div class="tct-table-wrap k-panel k-panel--quiet tv-words" id="tvWordTable">
+                <table class="tct-table tv-table">
+                    <caption class="visually-hidden">Tất cả từ trong khóa @course.SetName</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Từ</th>
+                            <th scope="col">Phiên âm</th>
+                            <th scope="col">Nghĩa</th>
+                            <th scope="col">Bài</th>
+                            <th scope="col">Trí nhớ</th>
+                            <th scope="col">Ôn lại</th>
+                            <th scope="col"><span class="visually-hidden">Thao tác</span></th>
+                        </tr>
+                    </thead>
+                    @foreach (var word in Model.Words)
+                    {
+                        <partial name="_WordRow" model="word" />
+                    }
+                </table>
+            </div>
+        }
+    </div>
         </div>
-    }
+    </div>
 </div>
 
 @section Scripts {
-    <script>
-        // Animate progress circle
-        const circle = document.querySelector('.progress-circle');
-        if (circle) {
-            const progress = circle.dataset.progress;
-            const radius = 15.9155;
-            const circumference = 2 * Math.PI * radius;
-            const offset = circumference - (progress / 100) * circumference;
-
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 36 36');
-            svg.classList.add('progress-svg');
-
-            const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            bgCircle.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
-            bgCircle.classList.add('progress-bg');
-
-            const fillCircle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            fillCircle.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
-            fillCircle.classList.add('progress-fill');
-            fillCircle.setAttribute('stroke-dasharray', circumference);
-            fillCircle.setAttribute('stroke-dashoffset', offset);
-
-            svg.appendChild(bgCircle);
-            svg.appendChild(fillCircle);
-            circle.prepend(svg);
-        }
-    </script>
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+    <script src="~/js/practice-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-course.js" asp-append-version="true"></script>
 }

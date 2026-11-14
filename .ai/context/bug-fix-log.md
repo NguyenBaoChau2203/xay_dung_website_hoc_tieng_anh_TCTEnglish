@@ -4574,3 +4574,40 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 **Files**: ListeningService; IListeningService; ListeningViewModels; StudyController (Listening actions); Views/Study/Listening, ListeningPractice, _ListeningLessonCard, _ListeningMyLessonCard; wwwroot/css/listening.css, study-kit.css (scope lists); wwwroot/js/listening-core.js, listening-index.js, listening-practice.js; removed listening-index.css and listening-practice.css; ListeningIntegrationTests; scripts/tests/test_listening_core.cjs.
 
 **Notes**: Finding B17 (guests got 404 on public lessons) was not in the review and was found while baselining. No migration: no persisted model changed.
+
+
+### System Vocabulary rebuild: dead call, unchecked "Mastered", made-up minutes, `/Vocabulary` 404 — 2026-11-14
+
+**Symptom**: The old study page posted to `/api/LearningApi/important`, which does not exist. A learner could mark a word "Mastered" on first sight with the "Dễ" button, with no check. Course cards showed `EstimatedMinutes = CardCount * 2` and raw `#tags`. `/Vocabulary` (without `/Index`) answered 404 because the default route action is `Landing`.
+
+**Root Cause**: Six legacy views (about 6,500 lines of Razor with inline script) wrote their own flow: four self-rating buttons, a call to a missing endpoint, invented numbers, and no attribute route for the bare controller URL.
+
+**Solution**: Rebuilt the module as three screens (home, course, three-step lesson). Grading is automatic: 0 or 1 misses send `good`, 2 or more send `hard`, "Tôi đã biết từ này" sends `easy`, one `POST /api/LearningApi/record` per finished word, with one immediate retry and a "Chưa lưu" marker. Counts shown are real. `Index` got `[HttpGet("/Vocabulary/Index", Order = 0)]` and `[HttpGet("/Vocabulary", Order = 1)]`; `Order 0` keeps generated links on `/Vocabulary/Index`.
+
+**Files Changed**:
+- `Controllers/VocabularyController.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Services/Vocabulary/VocabularyLessonBuilder.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow}.cshtml` (old `FolderDetail`, `Topics`, `TopicDetail`, `_MasteryButtons` deleted)
+- `wwwroot/css/vocabulary.css` (replaces `vocabulary-system.css`), `wwwroot/css/study-kit.css` (scope list only), `wwwroot/js/vocabulary-{core,home,course,lesson}.js`
+- Tests: `VocabularyLessonBuilderTests.cs`, `VocabularyIntegrationTests.cs`, `scripts/tests/test_vocabulary_core.cjs`
+
+**Verification**: Full .NET suite 1529 passed / 0 failed; node 291 of 292 (the one failure, `test_speaking_catalog_packages.cjs`, predates this work: a Windows CRLF checkout changes a catalog hash). Browser checklists for home, course and lesson (scripted, 70+ checks) and accessibility/contrast passes are recorded in `docs/superpowers/plans/2026-11-13-vocabulary-rebuild.md` section 12.
+
+**Notes**: Reused the Practice shell (`practice-ui.js`) and the Clay kit (same owner). `LearningApi/record` was not changed; see TD-013 for its missing card access check.
+
+
+### System Vocabulary: no real spaced repetition, a word "Mastered" after one lesson, flat pages — 2026-11-14
+
+**Symptom**: A word answered perfectly became "Mastered" after one lesson and came back after one day; there was no ladder, no view of when a word returns, and the home and course pages were flat (one icon per course, a letter tile per word, no due information).
+
+**Root Cause**: The lesson saved through the shared `/api/LearningApi/record` (hard / good / easy with 1 min to 7 d), which has no long ladder and no access check, and nothing in the pages read the schedule.
+
+**Solution**: Added a pure scheduler (levels 0-6, intervals 10 min, 1, 3, 7, 14, 30, 60 days; early review never promotes), a system-only endpoint `POST /Vocabulary/Review/Record` (client sends again | hard | good | known, the server computes level and date, Goals credited once), read models for the home, course and review pages, and rebuilt screens (goal ring, review card, memory panel, 7-day forecast, illustrated covers, level dots, schedule row after each word, per-word result). The level is stored in the existing `RepetitionCount`; no migration.
+
+**Files Changed**:
+- `Services/Vocabulary/{SpacedRepetitionScheduler,VocabularyEmojiMap,VocabularyLessonBuilder}.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Controllers/VocabularyController.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow,_CourseArt,_LevelDots,_MemoryPanel,_ReviewForecast}.cshtml`, `wwwroot/css/vocabulary.css`, `wwwroot/js/vocabulary-{core,course,lesson}.js`
+- Tests: `SpacedRepetitionSchedulerTests.cs`, `VocabularyReviewRecordTests.cs`, `VocabularyIntegrationTests.cs` (copy changes), `scripts/tests/test_vocabulary_srs.cjs`
+
+**Verification**: Full .NET suite and node suite green except the one known CRLF node failure; real-browser runs of a lesson, a review, an early-review replay and a simulated save failure matched the database rows. `LearningApiController` is unchanged. See the SRS polish plan section 12.
+
+**Notes**: See TD-016. The legacy endpoint still lacks a card access check (TD-013, Châu).

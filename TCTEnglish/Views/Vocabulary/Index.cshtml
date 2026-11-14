@@ -1,1780 +1,206 @@
-    @model TCTVocabulary.ViewModels.VocabularyIndexViewModel
-    @{
-        ViewData["Title"] = "Từ vựng Hệ thống";
-
-        var allTags = Model.AllTags;
-        var totalCards = Model.Stats.TotalCards;
-        var totalSets = Model.Stats.TotalSets;
-        var dueToday = Model.Stats.DueToday;
-        var masteredCards = Model.Stats.MasteredCards;
-        var continueLearning = Model.ContinueLearning;
-    }
-
-    @section Styles {
-        <link rel="stylesheet" href="~/css/vocabulary-system.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    }
-
-    <style>
-        :root {
-            --primary: #4255ff; /* Xanh nước sáng */
-            --primary-light: #eef0ff; /* Xanh nước siêu nhạt */
-            --primary-dark: #2e3ed1; /* Xanh nước đậm hơn */
-            --primary-soft: #f5f6ff; /* Nền xanh nhẹ */
-            --secondary: #a5b4fc; /* Xanh nước sáng hơn */
-            --accent: #6478ff; /* Xanh ngọc */
-
-            --neutral-50: #F8FAFC;
-            --neutral-100: #F1F5F9;
-            --neutral-200: #E2E8F0;
-            --neutral-300: #CBD5E1;
-            --neutral-400: #94A3B8;
-            --neutral-500: #64748B;
-            --neutral-600: #475569;
-            --neutral-700: #334155;
-            --neutral-800: #1E293B;
-            --neutral-900: #0F172A;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --error: #EF4444;
-            --white: #FFFFFF;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -2px rgba(66, 85, 255, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(66, 85, 255, 0.15);
-            --shadow-xl: 0 20px 25px -5px rgba(66, 85, 255, 0.2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FFFFFF 0%, #f5f6ff 100%);
-            color: var(--neutral-800);
-            line-height: 1.5;
-            min-height: 100vh;
-        }
-
-        .vocab-pro {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-        }
-
-            /* Decorative Elements */
-            .vocab-pro::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 600px;
-                height: 600px;
-                background: radial-gradient(circle, rgba(66, 85, 255, 0.03) 0%, transparent 70%);
-                border-radius: 50%;
-                z-index: -1;
-                pointer-events: none;
-            }
-
-            .vocab-pro::after {
-                content: '';
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 400px;
-                height: 400px;
-                background: radial-gradient(circle, rgba(45, 212, 191, 0.03) 0%, transparent 70%);
-                border-radius: 50%;
-                z-index: -1;
-                pointer-events: none;
-            }
-
-        /* Welcome Header */
-        .welcome-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            padding: 0 0.5rem;
-        }
-
-        .welcome-title h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--neutral-900) 0%, var(--primary-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.25rem;
-        }
-
-        .welcome-title p {
-            color: var(--neutral-500);
-            font-size: 0.95rem;
-        }
-
-        .date-badge {
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(10px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            color: var(--neutral-700);
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-            .date-badge i {
-                color: var(--primary);
-            }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 24px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .stat-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary), var(--accent));
-                opacity: 0.5;
-            }
-
-            .stat-card:hover {
-                transform: translateY(-4px);
-                border-color: var(--primary);
-                box-shadow: var(--shadow-lg);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.5rem;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .stat-trend {
-            padding: 0.25rem 0.75rem;
-            background: rgba(255,255,255,0.5);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--neutral-600);
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-            .stat-trend.positive {
-                background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
-                color: var(--primary-dark);
-                border-color: var(--primary);
-            }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--neutral-900);
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--neutral-500);
-            display: block;
-        }
-
-        /* Section Header */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 0 0.5rem;
-        }
-
-            .section-header h2 {
-                font-size: 1.25rem;
-                font-weight: 600;
-                color: var(--neutral-800);
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-                .section-header h2 i {
-                    color: var(--primary);
-                    font-size: 1.1rem;
-                    background: var(--primary-light);
-                    padding: 0.5rem;
-                    border-radius: 12px;
-                }
-
-        .view-all {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            background: rgba(255,255,255,0.5);
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-            .view-all:hover {
-                gap: 0.75rem;
-                background: white;
-                border-color: var(--primary);
-                box-shadow: var(--shadow-md);
-            }
-
-        /* Continue Learning */
-        .continue-section {
-            margin-bottom: 3rem;
-        }
-
-        .continue-grid {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 1.5rem;
-        }
-
-        .continue-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            padding: 1.75rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-            .continue-card:hover {
-                border-color: var(--primary);
-                box-shadow: var(--shadow-lg);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .set-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .continue-info {
-            flex: 1;
-        }
-
-        .set-name {
-            font-weight: 600;
-            color: var(--neutral-900);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .progress-info {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .progress-stats {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--neutral-600);
-            font-size: 0.9rem;
-        }
-
-            .stat-item i {
-                color: var(--primary);
-                width: 18px;
-            }
-
-        .progress-bar-container {
-            flex: 1;
-            height: 8px;
-            background: rgba(226, 232, 240, 0.5);
-            border-radius: 100px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 100px;
-            width: 45%;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .progress-bar::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-                animation: shimmer 2s infinite;
-            }
-
-
-        .continue-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            border: none;
-            padding: 0.875rem 2rem;
-            border-radius: 18px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            box-shadow: var(--shadow-md);
-        }
-
-            .continue-btn:hover {
-                transform: translateY(-2px) scale(1.02);
-                box-shadow: var(--shadow-lg);
-            }
-
-        .goal-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            padding: 1.75rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-            .goal-card:hover {
-                border-color: var(--primary);
-                box-shadow: var(--shadow-lg);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .goal-circle {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1rem;
-            position: relative;
-        }
-
-            .goal-circle svg {
-                width: 100%;
-                height: 100%;
-                transform: rotate(-90deg);
-            }
-
-        .goal-circle-bg {
-            stroke: rgba(203, 213, 225, 0.3);
-            stroke-width: 8;
-            fill: none;
-        }
-
-        .goal-circle-progress {
-            stroke: var(--primary);
-            stroke-width: 8;
-            fill: none;
-            stroke-linecap: round;
-            stroke-dasharray: 283;
-            stroke-dashoffset: 70.75;
-            filter: drop-shadow(0 4px 6px var(--primary-light));
-        }
-
-        .goal-number {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .goal-label {
-            font-size: 0.9rem;
-            color: var(--neutral-500);
-            margin: 0.5rem 0;
-        }
-
-        .goal-value {
-            font-weight: 600;
-            color: var(--neutral-800);
-            font-size: 1.1rem;
-        }
-
-        /* Due Today */
-        .due-section {
-            margin-bottom: 3rem;
-        }
-
-        .due-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .due-item {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            padding: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .due-item:hover {
-                border-color: var(--primary);
-                transform: translateX(4px);
-                box-shadow: var(--shadow-md);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .due-word {
-            font-weight: 600;
-            color: var(--neutral-900);
-            margin-bottom: 0.25rem;
-            font-size: 1.1rem;
-        }
-
-        .due-meta {
-            font-size: 0.8rem;
-            color: var(--neutral-500);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .due-set {
-            color: var(--neutral-600);
-        }
-
-        .due-time {
-            color: var(--warning);
-            font-size: 0.75rem;
-            padding: 0.15rem 0.5rem;
-            background: #FEF3C7;
-            border-radius: 100px;
-        }
-
-            .due-time.urgent {
-                background: #FEE2E2;
-                color: var(--error);
-            }
-
-        .due-btn {
-            background: var(--primary-light);
-            border: 1px solid rgba(66, 85, 255, 0.3);
-            color: var(--primary);
-            padding: 0.5rem 1.25rem;
-            border-radius: 14px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-            .due-btn:hover {
-                background: var(--primary);
-                color: white;
-                border-color: var(--primary);
-                transform: scale(1.05);
-            }
-
-        /* Categories */
-        .categories-section {
-            margin-bottom: 3rem;
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .tab {
-            padding: 0.5rem 1.25rem;
-            border-radius: 100px;
-            background: rgba(255,255,255,0.5);
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            color: var(--neutral-600);
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(5px);
-        }
-
-            .tab:hover {
-                border-color: var(--primary);
-                color: var(--primary);
-                background: white;
-            }
-
-            .tab.active {
-                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-                border-color: var(--primary);
-                color: white;
-                box-shadow: var(--shadow-md);
-            }
-
-        .folder-group {
-            margin-bottom: 2.5rem;
-        }
-
-        .folder-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.25rem;
-            padding: 0 0.5rem;
-        }
-
-        .folder-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-            .folder-title h3 {
-                font-weight: 600;
-                color: var(--neutral-800);
-                font-size: 1.1rem;
-            }
-
-        .folder-count {
-            background: rgba(255,255,255,0.5);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--primary);
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .sets-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .set-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .set-card:hover {
-                transform: translateY(-6px);
-                box-shadow: var(--shadow-xl);
-                border-color: var(--primary);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .card-header {
-            padding: 1.5rem 1.5rem 0.5rem;
-            background: linear-gradient(135deg, rgba(66, 85, 255, 0.02) 0%, transparent 100%);
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
-            color: var(--primary-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .card-title {
-            font-weight: 600;
-            color: var(--neutral-800);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-body {
-            padding: 0.5rem 1.5rem 1.25rem;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--neutral-600);
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-            .meta-item i {
-                color: var(--primary);
-                width: 16px;
-            }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--neutral-700);
-        }
-
-            .rating i {
-                color: #FBBF24;
-            }
-
-        .card-footer {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(66, 85, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.5);
-        }
-
-        .learners {
-            font-size: 0.85rem;
-            color: var(--neutral-500);
-        }
-
-            .learners i {
-                color: var(--primary);
-                margin-right: 0.25rem;
-            }
-
-        .explore-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-            .explore-link:hover {
-                gap: 0.75rem;
-                color: var(--primary-dark);
-            }
-
-        /* Recommended Section */
-        .recommended-section {
-            margin-bottom: 3rem;
-        }
-
-        .recommended-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .recommend-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            padding: 1.5rem;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .recommend-card:hover {
-                transform: translateY(-4px);
-                border-color: var(--primary);
-                box-shadow: var(--shadow-lg);
-                background: rgba(255,255,255,0.95);
-            }
-
-        .recommend-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
-            color: var(--primary-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .recommend-content h4 {
-            font-weight: 600;
-            color: var(--neutral-800);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-            padding-right: 5rem;
-        }
-
-        .recommend-content p {
-            color: var(--neutral-500);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .recommend-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: var(--neutral-600);
-        }
-
-            .recommend-meta i {
-                color: var(--primary);
-                margin-right: 0.25rem;
-            }
-
-        /* Leaderboard */
-        .leaderboard-section {
-            margin-bottom: 2rem;
-        }
-
-        .leaderboard-list {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-            padding: 1rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .rank-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem;
-            border-radius: 18px;
-            transition: all 0.2s ease;
-        }
-
-            .rank-item:hover {
-                background: rgba(255,255,255,0.8);
-                transform: translateX(4px);
-            }
-
-        .rank-number {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.8);
-            border-radius: 12px;
-            font-weight: 600;
-            color: var(--neutral-700);
-            font-size: 0.9rem;
-            border: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .rank-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: var(--primary-light);
-            border: 2px solid white;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .rank-avatar img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-        .rank-info {
-            flex: 1;
-        }
-
-        .rank-name {
-            font-weight: 600;
-            color: var(--neutral-800);
-            display: block;
-            font-size: 0.95rem;
-            margin-bottom: 0.15rem;
-        }
-
-        .rank-points {
-            font-size: 0.85rem;
-            color: var(--neutral-500);
-        }
-
-        .rank-badge {
-            font-size: 1.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-
-        /* Footer */
-        .vocab-footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(66, 85, 255, 0.2);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-brand h4 {
-            color: var(--neutral-800);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--neutral-800) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-brand p {
-            color: var(--neutral-500);
-            font-size: 0.9rem;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-            .footer-links a {
-                color: var(--neutral-500);
-                text-decoration: none;
-                font-size: 0.95rem;
-                transition: color 0.2s ease;
-            }
-
-                .footer-links a:hover {
-                    color: var(--primary);
-                }
-
-        .footer-social {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-            .footer-social a {
-                width: 44px;
-                height: 44px;
-                background: rgba(255,255,255,0.5);
-                border-radius: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--neutral-500);
-                transition: all 0.2s ease;
-                border: 1px solid rgba(66, 85, 255, 0.2);
-                font-size: 1.2rem;
-            }
-
-                .footer-social a:hover {
-                    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-                    color: white;
-                    transform: translateY(-4px);
-                    border-color: transparent;
-                }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 1.5rem 0 0;
-            color: var(--neutral-500);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(66, 85, 255, 0.1);
-        }
-
-        /* Responsive */
-        @@media (max-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .continue-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sets-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @@media (max-width: 768px) {
-            .vocab-pro {
-                padding: 1rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .due-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sets-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .recommended-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .category-tabs {
-                display: none;
-            }
-        }
-
-        /* Glassmorphism effects */
-        .glass-effect {
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--primary-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 100px;
-        }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background: var(--primary-dark);
-            }
-            /* Filter Section */
-.filter-section {
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    border: 1px solid rgba(66, 85, 255, 0.2);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.filter-container {
-    display: grid;
-    grid-template-columns: 2fr 3fr 1.5fr 1.5fr;
-    gap: 1rem;
-    align-items: end;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.filter-label {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--neutral-600);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.filter-label i {
-    color: var(--primary);
-    font-size: 0.9rem;
-}
-
-.filter-input,
-.filter-select {
-    padding: 0.75rem 1rem;
-    border-radius: 14px;
-    border: 1px solid rgba(66, 85, 255, 0.2);
-    background: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    color: var(--neutral-800);
-    transition: all 0.2s ease;
-    width: 100%;
-}
-
-.filter-input:focus,
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(66, 85, 255, 0.1);
-}
-
-.filter-input::placeholder {
-    color: var(--neutral-400);
-}
-
-.tag-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    max-height: 120px;
-    overflow-y: auto;
-    padding: 0.25rem;
-}
-
-.tag-filter-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid rgba(66, 85, 255, 0.2);
-    background: white;
-    color: var(--neutral-600);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tag-filter-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: var(--primary-light);
-}
-
-.tag-filter-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: white;
-    border-color: transparent;
-}
-
-.clear-filters-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid var(--error);
-    background: white;
-    color: var(--error);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.clear-filters-btn:hover {
-    background: var(--error);
-    color: white;
-}
-
-.active-filters {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(66, 85, 255, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.active-filters-label {
-    font-size: 0.9rem;
-    color: var(--neutral-500);
-    font-weight: 500;
-}
-
-.filter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.filter-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 1rem;
-    background: var(--primary-light);
-    border-radius: 100px;
-    font-size: 0.85rem;
-    color: var(--primary-dark);
-    border: 1px solid rgba(66, 85, 255, 0.2);
-}
-
-.filter-tag i {
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.filter-tag i:hover {
-    color: var(--error);
-}
-
-
-    </style>
-
-    <div class="vocab-pro">
-        <!-- Welcome Header -->
-        <div class="welcome-header">
-            <div class="welcome-title">
-                <h1>Chào mừng trở lại! 👋</h1>
-                <p>Tiếp tục hành trình chinh phục từ vựng của bạn</p>
-            </div>
-            <div class="date-badge">
-                <i class="far fa-calendar-alt"></i>
-                @DateTime.Now.ToString("dddd, dd MMMM yyyy")
-            </div>
-            <a class="date-badge" asp-controller="Set" asp-action="Index">
-                <i class="fas fa-layer-group"></i>
-                Bộ thẻ của tôi
-            </a>
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <span class="stat-trend positive"></span>
-                </div>
-                <div class="stat-value">@totalCards</div>
-                <span class="stat-label">Tổng số từ vựng</span>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon">
-                        <i class="fas fa-check-double"></i>
-                    </div>
-                    <span class="stat-trend positive"></span>
-                </div>
-                <div class="stat-value">@masteredCards</div>
-                <span class="stat-label">Đã thành thạo</span>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <span class="stat-trend">Cần ôn tập</span>
-                </div>
-                <div class="stat-value">@dueToday</div>
-                <span class="stat-label">Từ cần ôn hôm nay</span>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <span class="stat-trend">Kỷ lục: @Model.Stats.LongestStreak</span>
-                </div>
-                <div class="stat-value">@Model.Stats.Streak</div>
-                <span class="stat-label">Ngày học liên tiếp</span>
-            </div>
-        </div>
-
-        <!-- Continue Learning -->
-        <div class="continue-section">
-            <div class="section-header">
-                <h2>
-                    <i class="fas fa-play-circle"></i>
-                    Tiếp tục học
-                </h2>
-                <a href="#" class="view-all">
-                    Xem tất cả
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="continue-grid">
-                @if (continueLearning != null)
-                {
-                    <div class="continue-card">
-                        <div class="set-icon">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <div class="continue-info">
-                            <div class="set-name">@continueLearning.SetName</div>
-                            <div class="progress-info">
-                                <div class="progress-stats">
-                                    <span class="stat-item">
-                                        <i class="fas fa-layer-group"></i>
-                                        @continueLearning.CardCount từ
-                                    </span>
-                                    <span class="stat-item">
-                                        <i class="fas fa-hourglass-half"></i>
-                                        @(continueLearning.HasProgress
-                                            ? $"Còn {continueLearning.RemainingCardCount} từ"
-                                            : "Chưa học")
-                                    </span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: @(continueLearning.ProgressPercentage)%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="@Url.Action("Study", "Vocabulary", new { setId = continueLearning.SetId })" class="continue-btn">
-                            <span>@(continueLearning.HasProgress ? "Tiếp tục" : "Bắt đầu")</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                }
-               
-            </div>
-        </div>
-  <!-- Filter Section -->
-<div class="filter-section">
-    <div class="section-header">
-        <h2>
-            <i class="fas fa-filter"></i>
-            Bộ lọc
-        </h2>
-        <button class="clear-filters-btn" onclick="clearAllFilters()" style="display: none;">
-            <i class="fas fa-times"></i>
-            Xóa bộ lọc
-        </button>
-    </div>
-
-    <div class="filter-container">
-        <!-- Search Filter -->
-        <div class="filter-group">
-            <label class="filter-label">
-                <i class="fas fa-search"></i>
-                Tìm kiếm
-            </label>
-            <input type="text" 
-                   id="searchFilter" 
-                   class="filter-input" 
-                   placeholder="Tìm theo tên bộ từ..."
-                   onkeyup="applyFilters()">
-        </div>
-
-        <!-- Tag Filter -->
-        <div class="filter-group">
-            <label class="filter-label">
-                <i class="fas fa-tags"></i>
-                Thẻ
-            </label>
-            <div class="tag-filters">
-                <button class="tag-filter-btn active" data-tag="all" onclick="filterByTag('all')">
-                    Tất cả
-                </button>
-                @foreach (var tag in allTags)
-                {
-                    <button class="tag-filter-btn" data-tag="@tag" onclick="filterByTag('@tag')">
-                        @tag
-                    </button>
-                }
-            </div>
-        </div>
-
-        <!-- Sort Filter -->
-        <div class="filter-group">
-            <label class="filter-label">
-                <i class="fas fa-sort-amount-down"></i>
-                Sắp xếp
-            </label>
-            <select id="sortFilter" class="filter-select" onchange="applyFilters()">
-                <option value="name-asc">Tên A-Z</option>
-                <option value="name-desc">Tên Z-A</option>
-                <option value="cards-desc">Nhiều từ nhất</option>
-                <option value="cards-asc">Ít từ nhất</option>
-                <option value="newest">Mới nhất</option>
-            </select>
-        </div>
-
-        <!-- Progress Filter -->
-        <div class="filter-group">
-            <label class="filter-label">
-                <i class="fas fa-chart-line"></i>
-                Tiến độ
-            </label>
-            <select id="progressFilter" class="filter-select" onchange="applyFilters()">
-                <option value="all">Tất cả</option>
-                <option value="not-started">Chưa bắt đầu</option>
-                <option value="in-progress">Đang học</option>
-                <option value="mastered">Đã thành thạo</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Active Filters -->
-    <div class="active-filters" id="activeFilters" style="display: none;">
-        <span class="active-filters-label">Đang lọc:</span>
-        <div class="filter-tags" id="filterTags">
-            <!-- Active filter tags will be added here dynamically -->
-        </div>
-    </div>
-</div>
-
-        <!-- Categories & Sets -->
-        <div class="categories-section">
-            <div class="section-header">
-                <h2>
-                    <i class="fas fa-folder"></i>
-                    Danh mục bộ từ
-                </h2>
-                
-            </div>
-
-            @foreach (var folder in Model.Folders)
+@model TCTVocabulary.ViewModels.VocabularyHomeViewModel
+@using TCTEnglish.ViewModels
+@{
+    var filtered = Model.FilterFolderId.HasValue;
+    ViewData["Title"] = filtered ? Model.FilterFolderName + " · Từ vựng" : "Từ vựng";
+
+    var header = filtered
+        ? new PageHeaderViewModel
+        {
+            Title = Model.FilterFolderName ?? "Từ vựng",
+            Breadcrumbs = new[]
             {
-                <div class="folder-group">
-                    <div class="folder-header">
-                        <div class="folder-title">
-                            <h3>@folder.FolderName</h3>
-                            <span class="folder-count">@folder.SetCount bộ</span>
-                        </div>
-                        <a href="#" class="view-all">
-                            Xem thêm
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="sets-grid">
-                        @foreach (var set in folder.Sets.Take(3))
-                        {
-                            var tags = set.Tags;
-
-                            <div class="set-card">
-                                <div class="card-header">
-                                    <div class="card-tags">
-                                        @foreach (var tag in tags.Take(2))
-                                        {
-                                            <span class="tag">@tag</span>
-                                        }
-                                    </div>
-                                    <div class="card-title">@set.SetName</div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-meta">
-                                        <span class="meta-item">
-                                            <i class="fas fa-layer-group"></i>
-                                            @set.CardCount từ
-                                        </span>
-                                        <span class="rating">
-                                            <i class="fas fa-star"></i>
-                                            4.8
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <span class="learners">
-                                        <i class="fas fa-users"></i>
-                                        @* [Feature: View_Count] - Hiển thị lượt truy cập thật *@
-                                        @set.ViewCount lượt học
-                                    </span>
-                                    <a href="@Url.Action("Detail", "Vocabulary", new { setId = set.SetId })" class="explore-link">
-                                        Khám phá
-                                        <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
+                new PageBreadcrumbItem("Từ vựng", Url.Action("Index", "Vocabulary")),
+                new PageBreadcrumbItem(Model.FilterFolderName ?? "Thư mục")
             }
-        </div>
-        
-
-        <!-- Footer -->
-       
-    </div>
-    @section Scripts {
-    <script>
-        // Store original sets data
-        let originalFolders = @Html.Raw(Json.Serialize(Model.Folders.Select(f => new {
-            f.FolderName,
-            Sets = f.Sets.Select(s => new {
-                s.SetId,
-                s.SetName,
-                CardsCount = s.CardCount,
-                Description = s.Description,
-                s.Tags
-            })
-        })));
-
-        let currentFilters = {
-            search: '',
-            tag: 'all',
-            sort: 'name-asc',
-            progress: 'all'
+        }
+        : new PageHeaderViewModel
+        {
+            Title = "Từ vựng",
+            Description = "Học từ có sẵn theo bài ngắn, rồi ôn lại đúng lúc sắp quên."
         };
 
-        function applyFilters() {
-            // Update search filter
-            currentFilters.search = document.getElementById('searchFilter').value.toLowerCase();
-            
-            // Update sort filter
-            currentFilters.sort = document.getElementById('sortFilter').value;
-            
-            // Update progress filter
-            currentFilters.progress = document.getElementById('progressFilter').value;
-            
-            filterAndDisplaySets();
-            updateActiveFiltersDisplay();
-        }
+    var stats = Model.Stats;
+    var due = Model.DueCount;
+    var target = Model.DailyTarget;
+    var todayCount = Model.TodayCount;
+    var ringPercent = target > 0 ? Math.Min(100, todayCount * 100 / target) : 0;
+    var goalTitle = todayCount >= target
+        ? "Đã đạt mục tiêu hôm nay!"
+        : todayCount == 0 && Model.LearnedCount == 0
+            ? "Bắt đầu với 5 từ đầu tiên nhé"
+            : $"Còn {target - todayCount} từ nữa là đạt mục tiêu hôm nay";
+    var courseCount = Model.Collections.Sum(collection => collection.Courses.Count);
+    var hasWords = stats.TotalCards > 0;
 
-        function filterByTag(tag) {
-            currentFilters.tag = tag;
-            
-            // Update active state of tag buttons
-            document.querySelectorAll('.tag-filter-btn').forEach(btn => {
-                if (btn.dataset.tag === tag) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            
-            filterAndDisplaySets();
-            updateActiveFiltersDisplay();
-        }
+    var emptyCatalog = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Chưa có khóa từ vựng nào.",
+        Message = "Nội dung đang được cập nhật."
+    };
+    var noMatch = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Không tìm thấy khóa học phù hợp.",
+        Message = "Thử bỏ bớt bộ lọc hoặc tìm bằng từ khác."
+    };
 
-        function filterAndDisplaySets() {
-            let filteredFolders = originalFolders.map(folder => {
-                let filteredSets = folder.sets.filter(set => {
-                    // Search filter
-                    if (currentFilters.search && !set.setName.toLowerCase().includes(currentFilters.search)) {
-                        return false;
-                    }
-                    
-                    // Tag filter
-                    if (currentFilters.tag !== 'all' && !set.tags.includes(currentFilters.tag)) {
-                        return false;
-                    }
-                    
-                    // Progress filter (you'll need to implement actual progress checking)
-                    if (currentFilters.progress !== 'all') {
-                        // This is a placeholder - you need to implement actual progress tracking
-                        // For now, we'll just return true
-                        return true;
-                    }
-                    
-                    return true;
-                });
+    var statusFilters = new[] { ("", "Tất cả"), ("new", "Chưa học"), ("progress", "Đang học"), ("done", "Đã xong") };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/vocabulary.css" asp-append-version="true" />
+}
 
-                // Apply sorting
-                filteredSets = sortSets(filteredSets, currentFilters.sort);
-                
-                return {
-                    folderName: folder.folderName,
-                    sets: filteredSets
-                };
-            });
+<div class="tct-theme tct-page tv-page tv-page--home">
+    <partial name="~/Views/Shared/_PageHeader.cshtml" model="header" />
 
-            // Remove folders with no sets
-            filteredFolders = filteredFolders.filter(f => f.sets.length > 0);
-            
-            renderFilteredSets(filteredFolders);
-        }
-
-        function sortSets(sets, sortType) {
-            return [...sets].sort((a, b) => {
-                switch(sortType) {
-                    case 'name-asc':
-                        return a.setName.localeCompare(b.setName);
-                    case 'name-desc':
-                        return b.setName.localeCompare(a.setName);
-                    case 'cards-desc':
-                        return b.cardsCount - a.cardsCount;
-                    case 'cards-asc':
-                        return a.cardsCount - b.cardsCount;
-                    case 'newest':
-                        // Assuming you have a CreatedDate field
-                        return (b.createdDate || 0) - (a.createdDate || 0);
-                    default:
-                        return 0;
-                }
-            });
-        }
-
-        function renderFilteredSets(filteredFolders) {
-            const categoriesSection = document.querySelector('.categories-section');
-            if (!categoriesSection) return;
-            
-            // Get the section header and keep it
-            const sectionHeader = categoriesSection.querySelector('.section-header');
-            
-            // Clear everything except the section header
-            categoriesSection.innerHTML = '';
-            categoriesSection.appendChild(sectionHeader);
-            
-            if (filteredFolders.length === 0) {
-                // Show no results message
-                categoriesSection.innerHTML += `
-                    <div class="no-results">
-                        <i class="fas fa-search fa-3x" style="color: var(--neutral-300); margin-bottom: 1rem;"></i>
-                        <h3 style="color: var(--neutral-600); margin-bottom: 0.5rem;">Không tìm thấy bộ từ nào</h3>
-                        <p style="color: var(--neutral-500);">Thử điều chỉnh bộ lọc của bạn</p>
+    @if (courseCount == 0 && !filtered)
+    {
+        <partial name="~/Views/Shared/_StateMessage.cshtml" model="emptyCatalog" />
+    }
+    else
+    {
+        @if (!filtered)
+        {
+            <section class="tv-banner" aria-labelledby="tvGoalTitle">
+                <div class="tv-banner__goal">
+                    <div class="tv-ring" role="img" aria-label="Hôm nay đã học @todayCount trên @target từ">
+                        <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                            <circle class="tv-ring__track" cx="60" cy="60" r="52" />
+                            <circle class="tv-ring__bar" cx="60" cy="60" r="52" pathLength="100" style="--tv-p:@ringPercent" />
+                        </svg>
+                        <span class="tv-ring__label" aria-hidden="true">
+                            <span class="tv-ring__value">@todayCount/@target</span>
+                            <span class="tv-ring__caption">từ hôm nay</span>
+                        </span>
                     </div>
-                `;
-            } else {
-                // Render filtered folders
-                filteredFolders.forEach(folder => {
-                    const folderHtml = createFolderHtml(folder);
-                    categoriesSection.innerHTML += folderHtml;
-                });
-            }
-        }
-
-        function createFolderHtml(folder) {
-            let setsHtml = '';
-            folder.sets.forEach(set => {
-                setsHtml += `
-                    <div class="set-card">
-                        <div class="card-header">
-                            <div class="card-tags">
-                                ${set.tags.slice(0, 2).map(tag => `<span class="tag">${tag}</span>`).join('')}
-                            </div>
-                            <div class="card-title">${set.setName}</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="meta-item">
-                                    <i class="fas fa-layer-group"></i>
-                                    ${set.cardsCount} từ
-                                </span>
-                                <span class="rating">
-                                    <i class="fas fa-star"></i>
-                                    4.8
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="learners">
-                                <i class="fas fa-users"></i>
-                                1.2k học viên
-                            </span>
-                            <a href="/Vocabulary/Detail?setId=${set.setId}" class="explore-link">
-                                Khám phá
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-            });
-
-            return `
-                <div class="folder-group">
-                    <div class="folder-header">
-                        <div class="folder-title">
-                            <h3>${folder.folderName}</h3>
-                            <span class="folder-count">${folder.sets.length} bộ</span>
-                        </div>
-                        <a href="#" class="view-all">
-                            Xem thêm
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="sets-grid">
-                        ${setsHtml}
+                    <div class="tv-banner__text">
+                        <h2 id="tvGoalTitle" class="tv-banner__title">@goalTitle</h2>
+                        <ul class="tv-banner__chips">
+                            @if (Model.Streak > 0)
+                            {
+                                <li class="tv-banner__chip"><i class="fa-solid fa-fire" aria-hidden="true"></i>Chuỗi @Model.Streak ngày</li>
+                            }
+                            <li class="tv-banner__chip"><i class="fa-solid fa-book" aria-hidden="true"></i>@Model.LearnedCount từ đã học</li>
+                        </ul>
                     </div>
                 </div>
-            `;
+
+                <section class="tv-bcard tv-bcard--review" aria-labelledby="tvReviewLabel">
+                    <p class="tv-bcard__label" id="tvReviewLabel"><i class="fa-solid fa-rotate" aria-hidden="true"></i>ÔN TẬP HÔM NAY</p>
+                    @if (due > 0)
+                    {
+                        <p class="tv-bcard__big"><span class="tv-bcard__number">@due</span><span class="tv-bcard__unit">từ đến hạn</span></p>
+                        <p class="tv-bcard__note">Ôn trước khi học bài mới để không quên. Khoảng @Model.DueMinutes phút.</p>
+                        <a class="btn btn-primary btn-lg tv-bcard__go" href="@(Model.DueUrl ?? "/Vocabulary/Review")"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn ngay</a>
+                    }
+                    else
+                    {
+                        <p class="tv-bcard__title"><i class="fa-solid fa-circle-check tv-bcard__check me-2" aria-hidden="true"></i>Hôm nay không có từ nào cần ôn</p>
+                        @if (!string.IsNullOrEmpty(Model.NextDueLabel))
+                        {
+                            <p class="tv-bcard__note">Từ tiếp theo đến hạn: @Model.NextDueLabel</p>
+                        }
+                    }
+                </section>
+
+                <section class="tv-bcard tv-bcard--next" aria-labelledby="tvNextLabel">
+                    <p class="tv-bcard__label" id="tvNextLabel"><i class="fa-solid fa-play" aria-hidden="true"></i>BÀI TIẾP THEO</p>
+                    @if (Model.Next != null)
+                    {
+                        <h3 class="tv-bcard__title tct-break">@Model.Next.LessonTitle</h3>
+                        <p class="tv-bcard__note tct-break">@Model.Next.SetName · @Model.Next.NewWordCount từ mới</p>
+                        <a class="btn btn-lg tv-bcard__go @(due > 0 ? "k-btn--soft" : "btn-primary")" href="@Model.Next.Url"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>Học bài mới</a>
+                    }
+                    else if (hasWords)
+                    {
+                        <h3 class="tv-bcard__title">Bạn đã học hết các bài hiện có</h3>
+                    }
+                    else
+                    {
+                        <h3 class="tv-bcard__title">Chưa có bài nào để học</h3>
+                        <p class="tv-bcard__note">Nội dung đang được cập nhật.</p>
+                    }
+                </section>
+            </section>
+
+            <div class="tv-panels">
+                <partial name="_MemoryPanel" model="Model.Memory" />
+                <partial name="_ReviewForecast" model="Model.Forecast" />
+            </div>
         }
 
-        function updateActiveFiltersDisplay() {
-            const activeFiltersDiv = document.getElementById('activeFilters');
-            const filterTagsDiv = document.getElementById('filterTags');
-            const clearBtn = document.querySelector('.clear-filters-btn');
-            
-            let activeFilters = [];
-            
-            if (currentFilters.search) {
-                activeFilters.push({
-                    type: 'search',
-                    label: `Tìm: "${currentFilters.search}"`
-                });
+        <div class="tv-toolbar" role="search" id="tvToolbar">
+            <div class="tv-toolbar__search">
+                <label class="visually-hidden" for="tvSearch">Tìm khóa học</label>
+                <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="tvSearch" type="search" class="form-control" placeholder="Tìm khóa học…" maxlength="80" autocomplete="off" />
+                </div>
+            </div>
+            @if (Model.Levels.Count >= 2)
+            {
+                <div class="k-seg" role="group" aria-label="Lọc theo trình độ" data-tv-filter="level">
+                    <button type="button" class="k-seg__item" data-value="" aria-pressed="true">Tất cả</button>
+                    @foreach (var level in Model.Levels)
+                    {
+                        <button type="button" class="k-seg__item" data-value="@level" aria-pressed="false">@level</button>
+                    }
+                </div>
             }
-            
-            if (currentFilters.tag !== 'all') {
-                activeFilters.push({
-                    type: 'tag',
-                    label: currentFilters.tag
-                });
-            }
-            
-            if (currentFilters.progress !== 'all') {
-                const progressLabels = {
-                    'not-started': 'Chưa bắt đầu',
-                    'in-progress': 'Đang học',
-                    'mastered': 'Đã thành thạo'
-                };
-                activeFilters.push({
-                    type: 'progress',
-                    label: progressLabels[currentFilters.progress]
-                });
-            }
-            
-            if (activeFilters.length > 0) {
-                activeFiltersDiv.style.display = 'flex';
-                clearBtn.style.display = 'inline-flex';
-                
-                filterTagsDiv.innerHTML = activeFilters.map(filter => `
-                    <span class="filter-tag">
-                        ${filter.label}
-                        <i class="fas fa-times" onclick="removeFilter('${filter.type}')"></i>
-                    </span>
-                `).join('');
-            } else {
-                activeFiltersDiv.style.display = 'none';
-                clearBtn.style.display = 'none';
-            }
-        }
-
-        function removeFilter(filterType) {
-            switch(filterType) {
-                case 'search':
-                    currentFilters.search = '';
-                    document.getElementById('searchFilter').value = '';
-                    break;
-                case 'tag':
-                    currentFilters.tag = 'all';
-                    filterByTag('all');
-                    return;
-                case 'progress':
-                    currentFilters.progress = 'all';
-                    document.getElementById('progressFilter').value = 'all';
-                    break;
-            }
-            filterAndDisplaySets();
-            updateActiveFiltersDisplay();
-        }
-
-        function clearAllFilters() {
-            currentFilters = {
-                search: '',
-                tag: 'all',
-                sort: 'name-asc',
-                progress: 'all'
-            };
-            
-            // Reset all inputs
-            document.getElementById('searchFilter').value = '';
-            document.getElementById('sortFilter').value = 'name-asc';
-            document.getElementById('progressFilter').value = 'all';
-            
-            // Reset tag buttons
-            document.querySelectorAll('.tag-filter-btn').forEach(btn => {
-                if (btn.dataset.tag === 'all') {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
+            <div class="k-seg" role="group" aria-label="Lọc theo tiến độ" data-tv-filter="status">
+                @foreach (var (value, label) in statusFilters)
+                {
+                    <button type="button" class="k-seg__item" data-value="@value" aria-pressed="@(value == "" ? "true" : "false")">@label</button>
                 }
-            });
-            
-            filterAndDisplaySets();
-        }
+            </div>
+        </div>
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Store original folders data for filtering
-            // Note: You'll need to pass the actual data from server
-            console.log('Filter system initialized');
-        });
-    </script>
+        <p class="visually-hidden" id="tvResultStatus" role="status" aria-live="polite"></p>
+
+        <div id="tvNoMatch" class="tv-nomatch" hidden>
+            <partial name="~/Views/Shared/_StateMessage.cshtml" model="noMatch" />
+            <button type="button" class="btn btn-outline-primary" id="tvClear">Xóa bộ lọc</button>
+        </div>
+
+        @foreach (var collection in Model.Collections)
+        {
+            <section class="tv-section" data-tv-collection aria-labelledby="tvCollection@(collection.FolderId)">
+                <div class="tv-section__head">
+                    <h2 class="tv-section__title tct-break" id="tvCollection@(collection.FolderId)">
+                        @if (filtered)
+                        {
+                            @collection.FolderName
+                        }
+                        else
+                        {
+                            <a class="tv-section__link" href="@Url.Action("FolderDetail", "Vocabulary", new { folderId = collection.FolderId })">@collection.FolderName</a>
+                        }
+                    </h2>
+                    <span class="tv-section__count" data-tv-count>@collection.Courses.Count khóa</span>
+                </div>
+                @if (collection.Courses.Count == 0)
+                {
+                    <p class="tv-meta">Chưa có khóa nào trong thư mục này.</p>
+                }
+                else
+                {
+                    <ul class="tv-grid">
+                        @foreach (var course in collection.Courses)
+                        {
+                            <li><partial name="_CourseCard" model="course" /></li>
+                        }
+                    </ul>
+                }
+            </section>
+        }
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/practice-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-core.js" asp-append-version="true"></script>
+    <script src="~/js/vocabulary-home.js" asp-append-version="true"></script>
 }

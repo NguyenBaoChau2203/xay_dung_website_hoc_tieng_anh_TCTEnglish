@@ -71,14 +71,14 @@ even when the public URL still uses `/Home/...`.
 - `PracticeController` (`/Practice`, `/Practice/{mode}`, `/Practice/HardWords`) serves the practice hub, the eight session pages (learn, test, match, flashcard, quiz, typing, listening, cloze) and the hard-words list. It only selects words (`IPersonalSetService.GetPracticeHubAsync/GetPracticeAsync/GetHardWordsAsync`, `PracticeModes`); grading, Learn/Match state and the test draft run in the browser (`wwwroot/js/practice-core.js`, `practice-ui.js`, one file per mode, `wwwroot/css/practice.css`). Review schedules move only through the existing `POST /Home/UpdateCardProgress`, and only when the user turns on "Tính vào ôn tập". The legacy `/Home/Study|QuizMode|WriteMode|MatchingMode` pages are unchanged.
 - `StudyController` owns study-mode views such as quiz, matching, write, reading, listening, and related practice pages.
 - `ChatController` owns chat upload and class chat HTTP endpoints.
-- `VocabularyController` remains the vocabulary landing/detail/topic area and now leans on `IStudyService`.
+- `VocabularyController` serves the system Vocabulary module: home (`/Vocabulary`, `/Vocabulary/Index`, `FolderDetail`), course page (`Detail`, `Topics`, `TopicDetail`) and the lesson screen (`Study`, `Review`). It leans on `IStudyService` (`StudyService.Vocabulary.cs`); lessons are computed by `Services/Vocabulary/VocabularyLessonBuilder.cs`, progress is saved through its own `POST /Vocabulary/Review/Record` (memory level 0-6 in `LearningProgress.RepetitionCount`, intervals 10 min, 1, 3, 7, 14, 30, 60 days, computed by `Services/Vocabulary/SpacedRepetitionScheduler.cs`); `VocabularyEmojiMap.cs` supplies word pictures. `POST /api/LearningApi/record` is still used by personal sets only. Client logic: `wwwroot/js/vocabulary-core.js` (pure), `vocabulary-home.js`, `vocabulary-course.js`, `vocabulary-lesson.js`; styles: `vocabulary.css` on top of `study-kit.css` and `practice.css`.
 - `SpeakingController` remains the speaking playlist and practice area.
 
 ### Views
 
 - `Views/Home/` now contains only dashboard/public pages and shared home-specific partials.
 - `Views/Class/`, `Views/Folder/`, `Views/Set/`, and `Views/Study/` are the canonical feature view folders created by the refactor.
-- `Views/Vocabulary/` and `Views/Speaking/` remain feature folders for those domains.
+- `Views/Vocabulary/` (`Index`, `Detail`, `Study` and the partials `_CourseCard`, `_LessonRow`, `_WordRow`, `_CourseArt`, `_LevelDots`, `_MemoryPanel`, `_ReviewForecast`) and `Views/Speaking/` remain feature folders for those domains.
 - `Areas/Admin/Views/` stays isolated inside the admin area.
 
 ## ViewModel Placement Rules

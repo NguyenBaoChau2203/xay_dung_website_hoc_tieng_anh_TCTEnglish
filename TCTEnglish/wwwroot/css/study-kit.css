@@ -1,10 +1,10 @@
 /*
-    Study kit: components shared by the personal sets (.ts-page), practice (.tp-page) and listening (.tl-page) areas.
-    Owner: Set/Card, study modes and Listening. Loaded BEFORE personal-sets.css / practice.css / listening.css.
+    Study kit: components shared by the personal sets (.ts-page), practice (.tp-page) and listening (.tl-page, .tv-page) areas.
+    Owner: Set/Card, study modes, Listening and Vocabulary. Loaded BEFORE personal-sets.css / practice.css / listening.css.
 
     Rules (DESIGN.md "Claymorphism implementation", docs/design-system/team-ui-workflow.md,
     docs/superpowers/plans/2026-11-11-study-clay.md)
-    - Every selector is scoped with :is(.ts-page, .tp-page, .tl-page); the page wrapper also carries .tct-theme.
+    - Every selector is scoped with :is(.ts-page, .tp-page, .tl-page, .tv-page); the page wrapper also carries .tct-theme.
     - Values come from var(--tct-*) tokens only: no literal colours, no root selector, no forced
       priority, weight <= 700.
     - Depth comes only from the shared Clay tokens (--tct-clay-shadow, -quiet, -lift, -overlay,
@@ -19,14 +19,14 @@
 */
 
 /* ---------------------------------------------------------------- page canvas (C-R3)
-   Clay canvas behind the Set, Practice and Listening pages, same idea as goals.css but with no forced priority:
+   Clay canvas behind the Set, Practice, Listening and Vocabulary pages, same idea as goals.css but with no forced priority:
    the :has() selectors out-rank layout.css (.main / body). The glows are decorative backgrounds. */
-body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
-.main:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)) {
+body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page, .tv-page)),
+.main:has(.tct-theme:is(.ts-page, .tp-page, .tl-page, .tv-page)) {
     background-color: var(--tct-clay-canvas);
 }
 
-.main:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)) {
+.main:has(.tct-theme:is(.ts-page, .tp-page, .tl-page, .tv-page)) {
     background-image:
         radial-gradient(circle at 92% 6%, color-mix(in srgb, var(--tct-accent) 13%, transparent), transparent 32%),
         radial-gradient(circle at 4% 96%, color-mix(in srgb, var(--tct-primary) 8%, transparent), transparent 40%);
@@ -34,10 +34,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 }
 
 /* ---------------------------------------------------------------- hue variables (one helper, six token pairs) */
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-primary, .tp-hue-primary, .tl-hue-primary),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-primary, .tp-hue-primary, .tl-hue-primary, .tv-hue-primary),
 .ts-page.ts-hue-primary,
 .tp-page.tp-hue-primary,
-.tl-page.tl-hue-primary {
+.tl-page.tl-hue-primary,
+.tv-page.tv-hue-primary {
     --k-bg: var(--tct-primary-soft);
     --k-fg: var(--tct-primary-strong);
     --k-fill: var(--tct-primary);
@@ -47,10 +48,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --k-sq-fg: var(--tct-on-primary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-success, .tp-hue-success, .tl-hue-success),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-success, .tp-hue-success, .tl-hue-success, .tv-hue-success),
 .ts-page.ts-hue-success,
 .tp-page.tp-hue-success,
-.tl-page.tl-hue-success {
+.tl-page.tl-hue-success,
+.tv-page.tv-hue-success {
     --k-bg: var(--tct-success-soft);
     --k-fg: var(--tct-success-text);
     --k-fill: var(--tct-success);
@@ -60,10 +62,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --k-sq-fg: var(--tct-on-primary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-warning, .tp-hue-warning, .tl-hue-warning),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-warning, .tp-hue-warning, .tl-hue-warning, .tv-hue-warning),
 .ts-page.ts-hue-warning,
 .tp-page.tp-hue-warning,
-.tl-page.tl-hue-warning {
+.tl-page.tl-hue-warning,
+.tv-page.tv-hue-warning {
     --k-bg: var(--tct-warning-soft);
     --k-fg: var(--tct-warning-text);
     --k-fill: var(--tct-warning);
@@ -73,10 +76,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --k-sq-fg: var(--tct-on-primary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-danger, .tp-hue-danger, .tl-hue-danger),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-danger, .tp-hue-danger, .tl-hue-danger, .tv-hue-danger),
 .ts-page.ts-hue-danger,
 .tp-page.tp-hue-danger,
-.tl-page.tl-hue-danger {
+.tl-page.tl-hue-danger,
+.tv-page.tv-hue-danger {
     --k-bg: var(--tct-danger-soft);
     --k-fg: var(--tct-danger-text);
     --k-fill: var(--tct-danger);
@@ -86,10 +90,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --k-sq-fg: var(--tct-on-primary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-info, .tp-hue-info, .tl-hue-info),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-info, .tp-hue-info, .tl-hue-info, .tv-hue-info),
 .ts-page.ts-hue-info,
 .tp-page.tp-hue-info,
-.tl-page.tl-hue-info {
+.tl-page.tl-hue-info,
+.tv-page.tv-hue-info {
     --k-bg: var(--tct-info-soft);
     --k-fg: var(--tct-info-text);
     --k-fill: var(--tct-info);
@@ -99,10 +104,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --k-sq-fg: var(--tct-on-primary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) :is(.ts-hue-accent, .tp-hue-accent, .tl-hue-accent),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.ts-hue-accent, .tp-hue-accent, .tl-hue-accent, .tv-hue-accent),
 .ts-page.ts-hue-accent,
 .tp-page.tp-hue-accent,
-.tl-page.tl-hue-accent {
+.tl-page.tl-hue-accent,
+.tv-page.tv-hue-accent {
     --k-bg: var(--tct-accent);
     --k-bg: color-mix(in srgb, var(--tct-accent) 30%, var(--tct-surface));
     --k-fg: var(--tct-on-accent);
@@ -117,7 +123,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
    The shared Clay buttons (.tct-theme .btn in tct-learning-ui.css) draw every .btn, .btn-primary,
    .btn-outline-primary and .btn-outline-danger on these pages. Only the large size and the helper
    colour variants are owned here; every variant takes a Clay button / pressed shadow (C-R5). */
-:is(.ts-page, .tp-page, .tl-page) .btn.btn-lg {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.btn-lg {
     min-height: 56px;
     font-size: var(--tct-text-lg);
     border-radius: var(--tct-radius-md);
@@ -125,7 +131,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 
 /* Helper buttons: combine with .btn. Colours go through the Bootstrap button variables, so hover,
    active and disabled states follow without extra selectors. */
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--success {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--success {
     --bs-btn-bg: var(--tct-success-text);
     --bs-btn-color: var(--tct-on-primary);
     --bs-btn-border-color: var(--tct-success-text);
@@ -139,7 +145,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --bs-btn-disabled-border-color: var(--tct-success-text);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--danger {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--danger {
     --bs-btn-bg: var(--tct-danger);
     --bs-btn-color: var(--tct-on-primary);
     --bs-btn-border-color: var(--tct-danger);
@@ -153,7 +159,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --bs-btn-disabled-border-color: var(--tct-danger);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--warning {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--warning {
     --bs-btn-bg: var(--tct-warning-text);
     --bs-btn-color: var(--tct-on-primary);
     --bs-btn-border-color: var(--tct-warning-text);
@@ -167,20 +173,20 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --bs-btn-disabled-border-color: var(--tct-warning-text);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--success:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--danger:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--warning:not(.btn-link) { box-shadow: var(--tct-clay-shadow-button); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--success:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--danger:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--warning:not(.btn-link) { box-shadow: var(--tct-clay-shadow-button); }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--success:not(.btn-link):not(:disabled):not(.disabled):active,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--danger:not(.btn-link):not(:disabled):not(.disabled):active,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--warning:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--success:not(.btn-link):not(:disabled):not(.disabled):active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--danger:not(.btn-link):not(:disabled):not(.disabled):active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--warning:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--success:hover,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--danger:hover,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--warning:hover { filter: brightness(1.06); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--success:hover,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--danger:hover,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--warning:hover { filter: brightness(1.06); }
 
 /* Soft button: hue tint, quiet depth. */
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--soft {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--soft {
     --bs-btn-bg: var(--k-bg, var(--tct-primary-soft));
     --bs-btn-color: var(--k-fg, var(--tct-primary-strong));
     --bs-btn-border-color: transparent;
@@ -196,11 +202,11 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --bs-btn-border-width: 0;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--soft:hover { filter: brightness(0.97); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--soft:hover { filter: brightness(0.97); }
 
 /* Mark buttons (flashcard): surface with a coloured 2px border plus text colour, never the shadow alone. */
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-learning,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-known {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-learning,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-known {
     --bs-btn-bg: var(--tct-surface);
     --bs-btn-color: var(--k-mark-text, var(--tct-text));
     --bs-btn-border-color: var(--k-mark, var(--tct-border));
@@ -216,14 +222,14 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     --bs-btn-disabled-border-color: var(--k-mark, var(--tct-border));
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-learning { --k-mark: var(--tct-warning); --k-mark-text: var(--tct-warning-text); }
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-known { --k-mark: var(--tct-success); --k-mark-text: var(--tct-success-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-learning { --k-mark: var(--tct-warning); --k-mark-text: var(--tct-warning-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-known { --k-mark: var(--tct-success); --k-mark-text: var(--tct-success-text); }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-learning:hover,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-known:hover { filter: brightness(0.97); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-learning:hover,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-known:hover { filter: brightness(0.97); }
 
 /* White icon button (exit, previous/next, slot speak): surface, quiet depth, no border. */
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--icon-surface {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--icon-surface {
     --bs-btn-bg: var(--tct-surface);
     --bs-btn-color: var(--tct-text-secondary);
     --bs-btn-border-color: transparent;
@@ -240,20 +246,20 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 }
 
 /* Quiet depth for the soft, mark and white-icon variants; pressed on :active; none when disabled. */
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--soft:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-learning:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-known:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--icon-surface:not(.btn-link) { box-shadow: var(--tct-clay-shadow-quiet); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--soft:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-learning:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-known:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--icon-surface:not(.btn-link) { box-shadow: var(--tct-clay-shadow-quiet); }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--soft:not(.btn-link):not(:disabled):not(.disabled):active,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-learning:not(.btn-link):not(:disabled):not(.disabled):active,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--mark-known:not(.btn-link):not(:disabled):not(.disabled):active,
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--icon-surface:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--soft:not(.btn-link):not(:disabled):not(.disabled):active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-learning:not(.btn-link):not(:disabled):not(.disabled):active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--mark-known:not(.btn-link):not(:disabled):not(.disabled):active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--icon-surface:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: var(--tct-clay-shadow-pressed); }
 
-:is(.ts-page, .tp-page, .tl-page) .btn:is(.k-btn--success, .k-btn--danger, .k-btn--warning, .k-btn--soft, .k-btn--mark-learning, .k-btn--mark-known, .k-btn--icon-surface):is(:disabled, .disabled, [aria-disabled="true"]):not(.btn-link) { box-shadow: none; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn:is(.k-btn--success, .k-btn--danger, .k-btn--warning, .k-btn--soft, .k-btn--mark-learning, .k-btn--mark-known, .k-btn--icon-surface):is(:disabled, .disabled, [aria-disabled="true"]):not(.btn-link) { box-shadow: none; }
 
 /* Small round-rect icon button (speak, play). The ::after keeps a 44px hit area around a 36px visual. */
-:is(.ts-page, .tp-page, .tl-page) .k-btn--icon {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--icon {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -265,21 +271,21 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     padding: 0;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-btn--icon::after { content: ""; position: absolute; inset: -4px; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--icon::after { content: ""; position: absolute; inset: -4px; }
 
-:is(.ts-page, .tp-page, .tl-page) .k-btn--ghost {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--ghost {
     background: transparent;
     border: 0;
     color: var(--tct-text-secondary);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--ghost:not(.btn-link),
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--ghost:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: none; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--ghost:not(.btn-link),
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--ghost:not(.btn-link):not(:disabled):not(.disabled):active { box-shadow: none; }
 
-:is(.ts-page, .tp-page, .tl-page) .btn.k-btn--ghost:hover { background: var(--tct-disabled-bg); color: var(--tct-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn.k-btn--ghost:hover { background: var(--tct-disabled-bg); color: var(--tct-text); }
 
 /* ---------------------------------------------------------------- surfaces (shared Clay tokens only) */
-:is(.ts-page, .tp-page, .tl-page) .k-card {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-card {
     background: var(--tct-clay-surface);
     border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-lg);
@@ -289,15 +295,15 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-card:is(:hover, :focus-within) { box-shadow: var(--tct-clay-shadow-lift); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-card:is(:hover, :focus-within) { box-shadow: var(--tct-clay-shadow-lift); }
 
 /* The shared .tct-card--interactive lifts by translateY on hover; Clay cards on these pages only deepen the shadow. */
-:is(.ts-page, .tp-page, .tl-page) .k-card.tct-card--interactive:is(:hover, :focus-within) {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-card.tct-card--interactive:is(:hover, :focus-within) {
     box-shadow: var(--tct-clay-shadow-lift);
     transform: none;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-panel {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-panel {
     background: var(--tct-clay-surface);
     border: 1px solid var(--tct-border);
     border-radius: var(--tct-radius-lg);
@@ -307,9 +313,9 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 }
 
 /* Dense content (tables, long word lists, result lists): a quiet container, never one emboss per row. */
-:is(.ts-page, .tp-page, .tl-page) .k-panel.k-panel--quiet { box-shadow: var(--tct-clay-shadow-quiet); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-panel.k-panel--quiet { box-shadow: var(--tct-clay-shadow-quiet); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-soft {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-soft {
     background: var(--k-bg, var(--tct-primary-soft));
     color: var(--k-fg, var(--tct-primary-strong));
     border: 0;
@@ -318,7 +324,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 }
 
 /* Raised white block inside a coloured area (hero art, overview stats, chips). */
-:is(.ts-page, .tp-page, .tl-page) .k-pillow {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-pillow {
     background: var(--tct-clay-surface);
     border-radius: var(--tct-radius-md);
     box-shadow: var(--tct-clay-shadow-quiet);
@@ -327,7 +333,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 /* ---------------------------------------------------------------- segmented control
    Track = inset field in a faint primary tint. The selected item is a raised white chip that also
    differs by weight and has its own 1px border, so the state never depends on the shadow. */
-:is(.ts-page, .tp-page, .tl-page) .k-seg {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
@@ -339,9 +345,9 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-field);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-seg--wrap { border-radius: var(--tct-radius-lg); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg--wrap { border-radius: var(--tct-radius-lg); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-seg__item {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -360,12 +366,12 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: background-color var(--tct-dur-fast) var(--tct-ease), color var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-seg__item:hover { color: var(--tct-text); text-decoration: none; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item:hover { color: var(--tct-text); text-decoration: none; }
 
-:is(.ts-page, .tp-page, .tl-page) .k-seg__item[aria-current="page"],
-:is(.ts-page, .tp-page, .tl-page) .k-seg__item[aria-pressed="true"],
-:is(.ts-page, .tp-page, .tl-page) .k-seg__item.is-active,
-:is(.ts-page, .tp-page, .tl-page) .btn-check:checked + .k-seg__item {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item[aria-current="page"],
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item[aria-pressed="true"],
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item.is-active,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn-check:checked + .k-seg__item {
     border-color: var(--tct-border);
     background: var(--tct-surface);
     color: var(--tct-text);
@@ -373,15 +379,15 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-quiet);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn-check:focus-visible + .k-seg__item {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn-check:focus-visible + .k-seg__item {
     outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
     outline-offset: var(--tct-focus-ring-offset);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-seg__count { color: var(--tct-text-muted); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__count { color: var(--tct-text-muted); font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); }
 
 /* ---------------------------------------------------------------- pills and tags */
-:is(.ts-page, .tp-page, .tl-page) .form-select.k-pill-select {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-select.k-pill-select {
     height: 40px;
     min-height: 40px;
     padding-block: 0;
@@ -393,7 +399,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-field);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .form-select.k-pill-select.ts-filter--active {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-select.k-pill-select.ts-filter--active {
     border-color: var(--tct-primary);
     background-color: var(--tct-primary-tint);
     color: var(--tct-primary-strong);
@@ -401,7 +407,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-quiet);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-dot-badge::before {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-dot-badge::before {
     content: "";
     display: inline-block;
     width: 8px;
@@ -412,7 +418,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     vertical-align: baseline;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-cefr {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-cefr {
     display: inline-block;
     padding: 1px 6px;
     border: 1.5px solid var(--tct-border-control);
@@ -426,7 +432,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 
 /* ---------------------------------------------------------------- progress
    Track is an inset field; the fill is flat colour with no shadow of its own. */
-:is(.ts-page, .tp-page, .tl-page) .k-progress {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress {
     display: block;
     height: 14px;
     overflow: hidden;
@@ -437,9 +443,9 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-field);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-progress--thin { height: 8px; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress--thin { height: 8px; }
 
-:is(.ts-page, .tp-page, .tl-page) .k-progress__fill {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress__fill {
     display: block;
     width: var(--p, 0%);
     height: 100%;
@@ -448,12 +454,12 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: width var(--tct-dur) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-progress--success .k-progress__fill { background: var(--tct-success); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress--success .k-progress__fill { background: var(--tct-success); }
 
 /* Three-part bar: mastered, learning, new (the track shows through) */
-:is(.ts-page, .tp-page, .tl-page) .k-progress--split { display: flex; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress--split { display: flex; }
 
-:is(.ts-page, .tp-page, .tl-page) .k-progress__part {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress__part {
     display: block;
     flex: 0 0 auto;
     width: var(--w, 0%);
@@ -461,25 +467,25 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: width var(--tct-dur) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-progress__part--done { background: var(--tct-success); border-radius: var(--tct-radius-pill) 0 0 var(--tct-radius-pill); }
-:is(.ts-page, .tp-page, .tl-page) .k-progress__part--learning { background: var(--tct-warning); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress__part--done { background: var(--tct-success); border-radius: var(--tct-radius-pill) 0 0 var(--tct-radius-pill); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-progress__part--learning { background: var(--tct-warning); }
 
 /* ---------------------------------------------------------------- typography helpers */
-:is(.ts-page, .tp-page, .tl-page) .k-display {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-display {
     font-size: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
     font-weight: var(--tct-weight-bold);
     letter-spacing: -0.02em;
     line-height: 1.05;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-title-lg { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-title-lg { font-size: var(--tct-text-3xl); font-weight: var(--tct-weight-bold); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-label { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-muted); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-label { font-size: var(--tct-text-sm); font-weight: var(--tct-weight-semibold); color: var(--tct-text-muted); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-num { font-variant-numeric: tabular-nums; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-num { font-variant-numeric: tabular-nums; }
 
 /* ---------------------------------------------------------------- key hints */
-:is(.ts-page, .tp-page, .tl-page) .k-kbd {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-kbd {
     display: inline-grid;
     place-items: center;
     min-width: 24px;
@@ -496,20 +502,20 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 }
 
 /* A key hint inside a coloured button reads on a translucent chip. */
-:is(.ts-page, .tp-page, .tl-page) .btn .k-kbd {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn .k-kbd {
     background: var(--tct-surface);
     background: color-mix(in srgb, var(--tct-surface) 22%, transparent);
     color: inherit;
     box-shadow: none;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .btn-outline-primary .k-kbd,
-:is(.ts-page, .tp-page, .tl-page) .btn-outline-danger .k-kbd,
-:is(.ts-page, .tp-page, .tl-page) .k-btn--mark-learning .k-kbd,
-:is(.ts-page, .tp-page, .tl-page) .k-btn--mark-known .k-kbd { background: var(--tct-primary-tint); box-shadow: var(--tct-clay-shadow-field); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn-outline-primary .k-kbd,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .btn-outline-danger .k-kbd,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--mark-learning .k-kbd,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--mark-known .k-kbd { background: var(--tct-primary-tint); box-shadow: var(--tct-clay-shadow-field); }
 
 /* ---------------------------------------------------------------- icon square (skill modes) */
-:is(.ts-page, .tp-page, .tl-page) .k-icon-sq {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-icon-sq {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -524,7 +530,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
 
 /* ---------------------------------------------------------------- switch (button role=switch and Bootstrap form-switch)
    The track is an inset field; on/off also changes colour and the knob side, not only the shadow. */
-:is(.ts-page, .tp-page, .tl-page) .k-switch {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch {
     position: relative;
     flex: 0 0 46px;
     width: 46px;
@@ -538,7 +544,7 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: background-color var(--tct-dur-fast) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-switch::after {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch::after {
     content: "";
     position: absolute;
     top: 3px;
@@ -550,15 +556,15 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     transition: transform var(--tct-dur-fast) var(--tct-ease);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-switch[aria-checked="true"],
-:is(.ts-page, .tp-page, .tl-page) .k-switch[aria-pressed="true"] { background: var(--tct-primary); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-checked="true"],
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-pressed="true"] { background: var(--tct-primary); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-switch[aria-checked="true"]::after,
-:is(.ts-page, .tp-page, .tl-page) .k-switch[aria-pressed="true"]::after { transform: translateX(20px); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-checked="true"]::after,
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-pressed="true"]::after { transform: translateX(20px); }
 
-:is(.ts-page, .tp-page, .tl-page) .form-switch { padding-left: calc(46px + var(--tct-space-sm)); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch { padding-left: calc(46px + var(--tct-space-sm)); }
 
-:is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input {
     width: 46px;
     height: 26px;
     margin-top: 0;
@@ -572,25 +578,25 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-field);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input:checked {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input:checked {
     background-color: var(--tct-primary);
     background-image: radial-gradient(circle at calc(100% - 13px) 13px, var(--tct-surface) 0 10px, transparent 10.5px);
     background-position: 0 0;
 }
 
-:is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input:focus {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input:focus {
     background-image: radial-gradient(circle at 13px 13px, var(--tct-surface) 0 10px, transparent 10.5px);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input:checked:focus {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input:checked:focus {
     background-image: radial-gradient(circle at calc(100% - 13px) 13px, var(--tct-surface) 0 10px, transparent 10.5px);
 }
 
 /* ---------------------------------------------------------------- illustrations (_ModeArt) */
-:is(.ts-page, .tp-page, .tl-page) .k-art { display: block; width: 100%; height: 100%; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art { display: block; width: 100%; height: 100%; }
 
 /* Inset "pressed into clay" box for mode art, set covers and sentence blocks. */
-:is(.ts-page, .tp-page, .tl-page) .k-art-box {
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -601,76 +607,76 @@ body:has(.tct-theme:is(.ts-page, .tp-page, .tl-page)),
     box-shadow: var(--tct-clay-shadow-field);
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-art-box--detail { height: 84px; }
-:is(.ts-page, .tp-page, .tl-page) .k-art-box--hub { height: 96px; }
-:is(.ts-page, .tp-page, .tl-page) .k-art-box--start { width: 160px; height: 80px; margin-inline: auto; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box--detail { height: 84px; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box--hub { height: 96px; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box--start { width: 160px; height: 80px; margin-inline: auto; }
 
 @media (max-width: 575.98px) {
-    :is(.ts-page, .tp-page, .tl-page) .k-art-box { height: 64px; }
-    :is(.ts-page, .tp-page, .tl-page) .k-art-box--start { height: 80px; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box { height: 64px; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art-box--start { height: 80px; }
 }
 
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-primary { fill: var(--tct-primary); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-success { fill: var(--tct-success); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-success-soft { fill: var(--tct-success-soft); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-accent { fill: var(--tct-accent); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-warning { fill: var(--tct-warning); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-warning-text { fill: var(--tct-warning-text); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .f-surface { fill: var(--tct-surface); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-primary { fill: var(--tct-primary); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-success { fill: var(--tct-success); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-success-soft { fill: var(--tct-success-soft); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-accent { fill: var(--tct-accent); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-warning { fill: var(--tct-warning); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-warning-text { fill: var(--tct-warning-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .f-surface { fill: var(--tct-surface); }
 
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-primary { stroke: var(--tct-primary); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-primary-strong { stroke: var(--tct-primary-strong); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-success { stroke: var(--tct-success); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-success-text { stroke: var(--tct-success-text); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-warning { stroke: var(--tct-warning); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-warning-text { stroke: var(--tct-warning-text); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-info { stroke: var(--tct-info); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-info-text { stroke: var(--tct-info-text); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-muted { stroke: var(--tct-border-control); opacity: 0.5; }
-:is(.ts-page, .tp-page, .tl-page) .k-art .s-white { stroke: var(--tct-surface); }
-:is(.ts-page, .tp-page, .tl-page) .k-art .k-art-half { opacity: 0.55; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-primary { stroke: var(--tct-primary); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-primary-strong { stroke: var(--tct-primary-strong); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-success { stroke: var(--tct-success); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-success-text { stroke: var(--tct-success-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-warning { stroke: var(--tct-warning); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-warning-text { stroke: var(--tct-warning-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-info { stroke: var(--tct-info); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-info-text { stroke: var(--tct-info-text); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-muted { stroke: var(--tct-border-control); opacity: 0.5; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .s-white { stroke: var(--tct-surface); }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-art .k-art-half { opacity: 0.55; }
 
 /* ---------------------------------------------------------------- motion */
 @keyframes k-pop { from { transform: scale(0.96); opacity: 0.6; } to { transform: scale(1); opacity: 1; } }
 @keyframes k-wiggle { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 @keyframes k-rise { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-:is(.ts-page, .tp-page, .tl-page) .k-anim-pop { animation: k-pop var(--tct-dur) var(--tct-ease) both; }
-:is(.ts-page, .tp-page, .tl-page) .k-anim-wiggle { animation: k-wiggle 400ms var(--tct-ease) both; }
-:is(.ts-page, .tp-page, .tl-page) .k-anim-rise { animation: k-rise var(--tct-dur) var(--tct-ease) both; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-pop { animation: k-pop var(--tct-dur) var(--tct-ease) both; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-wiggle { animation: k-wiggle 400ms var(--tct-ease) both; }
+:is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-rise { animation: k-rise var(--tct-dur) var(--tct-ease) both; }
 
 @media (prefers-reduced-motion: reduce) {
-    :is(.ts-page, .tp-page, .tl-page) .k-anim-pop,
-    :is(.ts-page, .tp-page, .tl-page) .k-anim-wiggle,
-    :is(.ts-page, .tp-page, .tl-page) .k-anim-rise { animation: none; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-pop,
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-wiggle,
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-anim-rise { animation: none; }
 
-    :is(.ts-page, .tp-page, .tl-page) .k-card,
-    :is(.ts-page, .tp-page, .tl-page) .k-seg__item { transition: none; }
-    :is(.ts-page, .tp-page, .tl-page) .k-switch::after { transition: none; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-card,
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item { transition: none; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch::after { transition: none; }
 }
 
 /* ---------------------------------------------------------------- forced colours (C-R6)
    Clay depth is decorative. System colours keep every boundary; selected / correct / wrong keep a
    thicker border so the state stays visible without any shadow. Page files add their own classes. */
 @media (forced-colors: active) {
-    :is(.ts-page, .tp-page, .tl-page) :is(.k-card, .k-panel, .k-soft, .k-pillow, .k-seg, .k-art-box, .k-kbd, .k-progress, .k-switch, .k-btn--soft, .k-btn--success, .k-btn--danger, .k-btn--warning, .k-btn--mark-learning, .k-btn--mark-known, .k-btn--icon-surface, .k-pill-select),
-    :is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input {
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) :is(.k-card, .k-panel, .k-soft, .k-pillow, .k-seg, .k-art-box, .k-kbd, .k-progress, .k-switch, .k-btn--soft, .k-btn--success, .k-btn--danger, .k-btn--warning, .k-btn--mark-learning, .k-btn--mark-known, .k-btn--icon-surface, .k-pill-select),
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input {
         box-shadow: none;
         border: 1px solid CanvasText;
     }
 
-    :is(.ts-page, .tp-page, .tl-page) .k-seg__item { border: 1px solid transparent; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item { border: 1px solid transparent; }
 
-    :is(.ts-page, .tp-page, .tl-page) .k-seg__item:is([aria-current="page"], [aria-pressed="true"], .is-active),
-    :is(.ts-page, .tp-page, .tl-page) .btn-check:checked + .k-seg__item {
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-seg__item:is([aria-current="page"], [aria-pressed="true"], .is-active),
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .btn-check:checked + .k-seg__item {
         box-shadow: none;
         border: 2px solid CanvasText;
     }
 
-    :is(.ts-page, .tp-page, .tl-page) .k-btn--mark-learning,
-    :is(.ts-page, .tp-page, .tl-page) .k-btn--mark-known { border-width: 2px; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--mark-learning,
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-btn--mark-known { border-width: 2px; }
 
-    :is(.ts-page, .tp-page, .tl-page) .k-switch[aria-checked="true"],
-    :is(.ts-page, .tp-page, .tl-page) .k-switch[aria-pressed="true"],
-    :is(.ts-page, .tp-page, .tl-page) .form-switch .form-check-input:checked { border-width: 2px; }
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-checked="true"],
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .k-switch[aria-pressed="true"],
+    :is(.ts-page, .tp-page, .tl-page, .tv-page) .form-switch .form-check-input:checked { border-width: 2px; }
 }

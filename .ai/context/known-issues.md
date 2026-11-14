@@ -348,6 +348,35 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
 - **Effort**: Low.
 
+### TD-013: `POST /api/LearningApi/record` does not check that the user may view the card [MEDIUM]
+- **Update 14/11/2026**: the system Vocabulary pages no longer use this endpoint; they save through `POST /Vocabulary/Review/Record`, which accepts system cards only (404 otherwise). The endpoint is still open to any card id for personal sets and other callers, so the fix below is still needed (Châu).
+- **Files**: `Controllers/LearningApiController.cs` (`Record`, the `LearningProgresses` lookup by `cardId` and the current user)
+- **Issue**: Any card id is accepted. A signed-in user can create a progress row, and earn Goals/XP credit, for a card they cannot open (for example a private set of another user). The Vocabulary lesson only ever sends ids of system cards it was given, so the new screens do not depend on this.
+- **Impact**: Authenticated users could probe or farm credit through card ids. File belongs to another owner (Châu); it was not changed in the Vocabulary rebuild.
+- **Recommended fix**: Before saving, require that the card's set is system-owned, public, owned by the user or shared with them (same rule as `PersonalSetService`); answer `NotFound()` otherwise. Pin it with a regression test.
+- **Effort**: Low.
+
+### TD-014: System Vocabulary content is small, its names promise more, and some pictures are not ours [MEDIUM]
+- **Files**: `wwwroot/data/system-vocabulary.json`, `Models/JsonVocabularySeeder.cs`
+- **Issue**: The file holds 3 folders, 8 sets and 92 cards. "1000 từ tiếng Anh thông dụng" has 20 cards and "3000 từ vựng Oxford A1" has 10. 62 cards hotlink pictures from a third-party shopping CDN (`down-vn.img.susercontent.com`), and some local seed paths (`/images/greetings/*.jpg`) do not exist on disk (the lesson shows a letter tile instead). The seeder matches sets by name and deletes cards missing from the JSON, so renaming a set would strand learner progress.
+- **Impact**: Learners see real counts (the UI never repeats the set name's number), but the names overpromise; pictures can disappear or change without notice.
+- **Recommended fix**: Owner decision: rename carefully (add new sets, keep old ones) or expand the content with reviewed, additive data and a validator; host or drop the pictures. Do not reuse a publisher's word-list name for new content.
+- **Effort**: Medium (content work).
+
+### TD-016: Spaced repetition: level kept in `RepetitionCount`, fixed daily target, system cards only [LOW]
+- **Files**: `Services/Vocabulary/SpacedRepetitionScheduler.cs`, `Services/StudyService.Vocabulary.cs`, `LearningProgress`
+- **Issue**: The memory level (0-6) lives in the existing `RepetitionCount` column, legacy rows are read through a mapping (Mastered below level 4 reads as 4, Learning reads as 0) and are normalised only when recorded again. The daily target is the constant 10 words. Personal sets keep the old schedule (1 h to 7 d).
+- **Impact**: A legacy row can show a different level than the learner expects until it is next reviewed; two ladders exist side by side. Suspended rows are no longer counted as due on the Vocabulary pages.
+- **Recommended fix**: Only if wanted: a migration with an explicit level column, a settings page for the target, and the same ladder for personal sets (needs the owner of `LearningApiController`).
+- **Effort**: Medium.
+
+### TD-015: Vocabulary lessons are computed, so their membership shifts when cards change [LOW]
+- **Files**: `Services/Vocabulary/VocabularyLessonBuilder.cs`
+- **Issue**: Lessons are groups of about 10 cards by `Card.Topic` and `CardId`; nothing is stored. When an admin adds or deletes cards of a course, lesson numbers and the words inside a lesson can change.
+- **Impact**: Progress is per card, so nothing is lost; a learner may see "Bài 4" hold different words than yesterday. The recommended next lesson always follows current data.
+- **Recommended fix**: Only if it matters: store lesson numbers per card in a migration. Otherwise accept and avoid bulk re-topicking of live courses.
+- **Effort**: Medium.
+
 ---
 
 ## Architecture Warnings
@@ -540,3 +569,19 @@ follow-up; full disposable MariaDB catalog/repeat and guarded recovery tests pas
 Staging is not recovered until the new expected marker and readiness are observed.
 See docs/superpowers/plans/2026-11-14-staging-shared-data-performance.md and PR136
 release ledger; production stays disabled.
+
+
+System Vocabulary rebuild (14/11/2026): `/Vocabulary/*` is now three screens (home with
+"Học tiếp", course page with lessons and a word list, three-step lesson) on the shared
+Clay kit. Automatic grading replaces the four self-rating buttons; each finished word is
+saved once through the unchanged `LearningApi/record`. Old views, `vocabulary-system.css`
+and the old service methods were removed. Open items for owners: TD-013 (record access
+check, Châu), TD-014 (content size, names, pictures), TD-015 (computed lessons). Safari
+and Firefox, and a real speech voice, were not checked. See the Vocabulary rebuild plan
+section 12 for evidence.
+
+System Vocabulary spaced repetition and polish (14/11/2026): every system word has a memory
+level 0-6 (10 min, 1, 3, 7, 14, 30, 60 days) computed on the server from the lesson answers
+(`POST /Vocabulary/Review/Record`); the home shows the daily ring, the due words ("Ôn
+ngay"), "Trí nhớ của bạn" and "Lịch ôn 7 ngày tới"; course covers have illustrations and
+words have emoji pictures. See TD-016 and the SRS polish plan section 12.

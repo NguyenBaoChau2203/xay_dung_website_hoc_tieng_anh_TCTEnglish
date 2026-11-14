@@ -1,0 +1,69 @@
+@model string?
+@*
+    Course cover illustration (plan 5.2). The model is an art key: star, talk, book, food, travel, jobs or colors
+    (anything else draws "star"). The SVGs carry classes only; vocabulary.css maps them to tokens under .tv-art.
+    Decorative: aria-hidden, the course name is always text next to it.
+*@
+@switch ((Model ?? string.Empty).Trim().ToLowerInvariant())
+{
+    case "talk":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="170" cy="20" r="32"/><circle class="fSf o3" cx="24" cy="104" r="24"/>
+<path class="fI" d="M44 28h72a14 14 0 0 1 14 14v26a14 14 0 0 1-14 14H74L56 96V82H44a14 14 0 0 1-14-14V42a14 14 0 0 1 14-14z"/>
+<circle class="fSf" cx="62" cy="55" r="5"/><circle class="fSf" cx="80" cy="55" r="5"/><circle class="fSf" cx="98" cy="55" r="5"/>
+<path class="fP" d="M112 54h50a12 12 0 0 1 12 12v18a12 12 0 0 1-12 12h-6v12l-15-12h-29a12 12 0 0 1-12-12V66a12 12 0 0 1 12-12z"/>
+<path class="sSf" d="M120 70h34M120 82h22" stroke-width="5" stroke-linecap="round"/></svg>
+        break;
+    case "book":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="30" cy="20" r="30"/><circle class="fSf o3" cx="176" cy="104" r="26"/>
+<path class="fS" d="M100 34c-14-10-36-12-54-8v62c18-4 40-2 54 8z"/><path class="fSk" d="M100 34c14-10 36-12 54-8v62c-18-4-40-2-54 8z"/>
+<path class="sSf" d="M58 44c10-1 22 1 32 6M58 58c10-1 22 1 32 6M58 72c10-1 22 1 32 6" stroke-width="4" stroke-linecap="round"/>
+<path class="sSf o5" d="M110 50c10-5 22-7 32-6M110 64c10-5 22-7 32-6" stroke-width="4" stroke-linecap="round"/>
+<path class="fA" d="M130 22h16v30l-8-7-8 7z"/>
+<path class="fW" d="M168 30l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
+        break;
+    case "food":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="172" cy="22" r="32"/><circle class="fSf o3" cx="22" cy="100" r="24"/>
+<path class="sWk" d="M76 26c-6 6 6 10 0 16M98 22c-6 6 6 10 0 16M120 26c-6 6 6 10 0 16" stroke-width="4" stroke-linecap="round"/>
+<path class="fW" d="M40 54h116c0 26-22 44-58 44S40 80 40 54z"/><rect class="fWk" x="34" y="48" width="128" height="10" rx="5"/>
+<path class="fA" d="M62 58h72c-4 6-18 10-36 10s-32-4-36-10z"/>
+<path class="sT" d="M128 30l34 22M136 24l34 22" stroke-width="4" stroke-linecap="round"/>
+<rect class="fWk" x="78" y="98" width="40" height="8" rx="4"/></svg>
+        break;
+    case "travel":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="28" cy="22" r="30"/><circle class="fSf o3" cx="178" cy="102" r="26"/>
+<path class="sM" d="M36 92c30-34 70-10 96-44" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+<path class="fD" d="M150 18c12 0 21 9 21 20 0 15-21 34-21 34s-21-19-21-34c0-11 9-20 21-20z"/><circle class="fSf" cx="150" cy="38" r="8"/>
+<rect class="fP" x="42" y="62" width="62" height="42" rx="9"/><path class="sP" d="M60 62v-8a6 6 0 0 1 6-6h14a6 6 0 0 1 6 6v8" stroke-width="5"/>
+<path class="sSf" d="M58 72v22M88 72v22" stroke-width="4" stroke-linecap="round"/>
+<path class="fI" d="M96 34l26-9-7 12 12 6-5 4-13-3-8 10-3-1 2-12-10-4z"/></svg>
+        break;
+    case "jobs":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="172" cy="20" r="32"/><circle class="fSf o3" cx="24" cy="102" r="24"/>
+<rect class="fT" x="46" y="46" width="92" height="56" rx="11"/><path class="sT" d="M74 46v-8a7 7 0 0 1 7-7h22a7 7 0 0 1 7 7v8" stroke-width="6"/>
+<rect class="fA" x="46" y="66" width="92" height="8"/><rect class="fW" x="84" y="60" width="16" height="20" rx="4"/>
+<rect class="fSf" x="128" y="24" width="38" height="50" rx="8" transform="rotate(10 147 49)"/>
+<circle class="fP" cx="148" cy="42" r="8"/><path class="sP" d="M138 62h20" stroke-width="4" stroke-linecap="round" transform="rotate(10 147 49)"/></svg>
+        break;
+    case "colors":
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="30" cy="22" r="30"/><circle class="fSf o3" cx="176" cy="100" r="26"/>
+<path class="fSf" d="M96 22c34 0 60 20 60 46 0 16-12 22-24 22h-10c-7 0-9 7-5 12 3 4-1 10-9 10-36 0-62-22-62-48 0-24 22-42 50-42z"/>
+<circle class="fD" cx="76" cy="50" r="9"/><circle class="fW" cx="102" cy="40" r="9"/><circle class="fS" cx="128" cy="52" r="9"/><circle class="fP" cx="70" cy="76" r="9"/><circle class="fI" cx="94" cy="92" r="8"/>
+<path class="fWk" d="M150 96l30-56 8 4-30 56z"/><path class="fP" d="M150 96l8 4-4 10c-2 4-10 2-9-3z"/></svg>
+        break;
+    default:
+<svg class="tv-art" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+<circle class="fSf o5" cx="168" cy="18" r="34"/><circle class="fSf o3" cx="22" cy="108" r="26"/>
+<rect class="fSf" x="38" y="34" width="74" height="54" rx="12" transform="rotate(-8 75 61)"/>
+<rect class="fP" x="62" y="26" width="84" height="62" rx="14"/>
+@* "<text>" is a Razor transition tag inside a code block, so this one element is written through Html.Raw. *@
+@Html.Raw("<text class=\"tx fSf\" x=\"78\" y=\"68\">Aa</text>")
+<path class="fA" d="M150 62l6.5 13.5 14.8 2-10.8 10.3 2.7 14.7L150 95.4l-13.2 7.1 2.7-14.7-10.8-10.3 14.8-2z"/>
+<circle class="fS" cx="48" cy="28" r="7"/><circle class="fW" cx="170" cy="50" r="5"/></svg>
+        break;
+}

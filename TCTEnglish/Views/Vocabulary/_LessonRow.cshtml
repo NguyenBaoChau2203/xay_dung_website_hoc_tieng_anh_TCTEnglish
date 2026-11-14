@@ -1,0 +1,75 @@
+@model TCTVocabulary.ViewModels.VocabularyLessonRowViewModel
+@*
+    One lesson of a course. The recommended lesson (first one not done) is marked aria-current="step",
+    shows its first words as chips and carries the primary action.
+*@
+@{
+    var (stateClass, stateText) = Model.State switch
+    {
+        "done" => ("tct-badge--success", "Đã xong"),
+        "progress" => ("tct-badge--warning", "Đang học " + Model.LearnedCount + "/" + Model.WordCount),
+        _ => ("tct-badge--primary", "Chưa học")
+    };
+}
+<article class="tct-card k-card tv-lesson@(Model.IsNext ? " tv-lesson--next" : string.Empty)"
+         data-state="@Model.State" aria-current="@(Model.IsNext ? "step" : null)">
+    <span class="tv-lesson__num tv-lesson__num--@(Model.State == "done" ? "done" : Model.IsNext ? "next" : "idle")" aria-hidden="true">
+        @if (Model.State == "done")
+        {
+            <i class="fa-solid fa-check"></i>
+        }
+        else
+        {
+            @Model.Number
+        }
+    </span>
+    <div class="tv-lesson__body">
+        <h3 class="tv-lesson__title tct-break">@Model.Title</h3>
+        <p class="tv-lesson__meta">
+            <span>@Model.WordCount từ</span>
+            <span class="tct-badge @stateClass">@stateText</span>
+            @if (Model.DueCount > 0)
+            {
+                <span class="tv-chipdue"><i class="fa-solid fa-rotate" aria-hidden="true"></i>@Model.DueCount từ cần ôn</span>
+            }
+        </p>
+        @if (Model.WordStages.Count > 0)
+        {
+            <span class="tv-wdots" aria-hidden="true">
+                @foreach (var stage in Model.WordStages)
+                {
+                    <span class="tv-wdot tv-wdot--@stage"></span>
+                }
+            </span>
+        }
+        @if (Model.PreviewTerms.Count > 0)
+        {
+            <ul class="tv-chips tv-list" aria-label="Một số từ trong bài">
+                @foreach (var term in Model.PreviewTerms)
+                {
+                    <li class="tv-chip" lang="en">@term</li>
+                }
+                @if (Model.MoreCount > 0)
+                {
+                    <li class="tv-chip tv-chip--more">+@Model.MoreCount</li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="tv-lesson__progress">
+        <div class="k-progress k-progress--thin" aria-hidden="true"><span class="k-progress__fill" style="--p:@(Model.WordCount > 0 ? Model.LearnedCount * 100 / Model.WordCount : 0)%"></span></div>
+        <span class="tv-lesson__count">@Model.LearnedCount/@Model.WordCount<span class="visually-hidden"> từ đã học</span></span>
+    </div>
+    @if (Model.State == "done")
+    {
+        <a class="btn btn-outline-primary tv-lesson__go" href="@Model.Url" aria-label="Ôn lại @Model.Title"><i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Ôn lại</a>
+    }
+    else if (Model.IsNext)
+    {
+        <a class="btn btn-primary tv-lesson__go" href="@Model.Url" aria-label="@(Model.LearnedCount > 0 ? "Học tiếp" : "Học") @Model.Title"><i class="fa-solid fa-play me-2" aria-hidden="true"></i>@(Model.LearnedCount > 0 ? "Học tiếp" : "Học")</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-primary tv-lesson__go" href="@Model.Url" aria-label="Học @Model.Title">Học</a>
+    }
+</article>
