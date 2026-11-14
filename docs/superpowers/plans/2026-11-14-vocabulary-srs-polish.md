@@ -612,3 +612,20 @@ S7 and S8 share `vocabulary-lesson.js`, `Study.cshtml` and the same CSS block, s
 Decisions: the lesson's "Ôn n từ đến hạn" button uses `RemainingDue`, which for a lesson is the number of due words in that course at page load and for a review is the number that did not fit in the 20; the empty review state now reads "Hôm nay không có từ nào cần ôn" with "Từ tiếp theo đến hạn: …", "Học bài mới" and "Về trang Từ vựng" (owned test updated: the old "Không có từ nào đến hạn ôn."). A replayed lesson still says "Lịch ôn mới đã được xếp cho từng từ" in its sub-title even though every row says "Lịch ôn giữ nguyên"; left as is.
 
 Not verified in a browser: the rebuilt nothing-due screen (the running app was not restarted after that last view edit; covered by render tests), 200 % zoom and forced colours on the lesson screens, full keyboard-only session.
+
+### Gate record S9 — Cleanup and docs (2026-11-14)
+Commit: `chore(vocabulary): remove the dead home and lesson styles and the icon key, update the docs`
+
+| Gate | Result |
+| --- | --- |
+| G1 | pass: 0 errors, 58 warnings (= S0) |
+| G2/G3 | pass on the second and third full runs: 1711 passed / 0 failed / 34 skipped. **The first full run of this phase reported 1 failed test whose name I did not capture; two reruns of the whole suite were green, so I could not reproduce or identify it** (the Vocabulary area is green: 155) |
+| G4 | pass: node 317 tests, 316 pass, the one known CRLF failure |
+| G5 | pass: `LearningApiController.cs` diff empty; routes unchanged |
+| G6 | pass: token-only greps clean on the pruned CSS; braces balance |
+| G7 | pass: `vocabulary.css`, `StudyService.Vocabulary.cs`, `VocabularyPageViewModels.cs`, `VocabularyIntegrationTests.cs`, tracker row, `project-structure.md`, `known-issues.md`, `bug-fix-log.md`, this plan |
+| G8–G15 | n-a / unchanged: no page markup changed; the removed rules matched no class in any view or script (grep over `Views` and `wwwroot/js`), but the pages were not re-rendered after the prune |
+
+Removed: CSS rules for `.tv-today*`, `.tv-stats`, `.tv-stat*`, `.tv-next*`, `.tv-course__icon`, `.tv-hero__icon`, `.tv-due`, `.tv-resultrow__ipa`, `.tv-resultrow__badge`; `CourseCard.IconKey` and `GetVocabularyIconKey` (the art key replaced them). Kept on purpose: `gradeFor` and the two-pass `review` flow in `vocabulary-core.js` (21 existing tests and the relearn flow use them).
+Owned tests changed on purpose: `Home_CourseCardsCarryRealCountsLevelIconAndStatus` was renamed to `...LevelArtAndStatus` and asserts `ArtKey` (`jobs` for set 390, `talk` for set 302) instead of `IconKey`.
+Docs: tracker row "Từ vựng", `docs/project-structure.md`, `.ai/context/known-issues.md` (TD-013 update, new TD-016), `.ai/context/bug-fix-log.md`.

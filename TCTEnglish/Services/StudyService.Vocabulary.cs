@@ -826,7 +826,6 @@ namespace TCTVocabulary.Services
                 DueCount = due,
                 ProgressPercent = words > 0 ? learned * 100 / words : 0,
                 Status = words > 0 && learned == words ? "done" : learned > 0 ? "progress" : "new",
-                IconKey = GetVocabularyIconKey(description),
                 Hue = VocabularyHues[setId % VocabularyHues.Length],
                 ArtKey = VocabularyLessonBuilder.ArtKeyFor(setName, setId)
             };
@@ -926,39 +925,6 @@ namespace TCTVocabulary.Services
             }
 
             return null;
-        }
-
-        /// <summary>Icon for a course cover: the first tag that has a mapping wins.</summary>
-        internal static string GetVocabularyIconKey(string? description)
-        {
-            foreach (var tag in ExtractTags(description))
-            {
-                switch (tag.TrimStart('#').ToLowerInvariant())
-                {
-                    case "food":
-                    case "drink":
-                        return "food";
-                    case "travel":
-                    case "places":
-                        return "travel";
-                    case "jobs":
-                    case "profession":
-                        return "jobs";
-                    case "colors":
-                        return "colors";
-                    case "communication":
-                    case "conversation":
-                        return "talk";
-                    case "oxford":
-                    case "essential":
-                        return "book";
-                    case "common":
-                    case "basic":
-                        return "star";
-                }
-            }
-
-            return "book";
         }
 
         private async Task<int?> GetSystemUserIdAsync()

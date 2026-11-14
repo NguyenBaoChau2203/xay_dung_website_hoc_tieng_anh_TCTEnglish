@@ -70,7 +70,6 @@ namespace TCTVocabulary.ViewModels
         public int ProgressPercent { get; set; }
         /// <summary>"new", "progress" or "done".</summary>
         public string Status { get; set; } = "new";
-        public string IconKey { get; set; } = "book";
         public string Hue { get; set; } = "primary";
         /// <summary>One of star, talk, book, food, travel, jobs, colors: the cover illustration.</summary>
         public string ArtKey { get; set; } = "star";

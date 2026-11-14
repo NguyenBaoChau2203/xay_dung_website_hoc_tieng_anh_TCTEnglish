@@ -324,6 +324,7 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Effort**: Low.
 
 ### TD-013: `POST /api/LearningApi/record` does not check that the user may view the card [MEDIUM]
+- **Update 14/11/2026**: the system Vocabulary pages no longer use this endpoint; they save through `POST /Vocabulary/Review/Record`, which accepts system cards only (404 otherwise). The endpoint is still open to any card id for personal sets and other callers, so the fix below is still needed (Châu).
 - **Files**: `Controllers/LearningApiController.cs` (`Record`, the `LearningProgresses` lookup by `cardId` and the current user)
 - **Issue**: Any card id is accepted. A signed-in user can create a progress row, and earn Goals/XP credit, for a card they cannot open (for example a private set of another user). The Vocabulary lesson only ever sends ids of system cards it was given, so the new screens do not depend on this.
 - **Impact**: Authenticated users could probe or farm credit through card ids. File belongs to another owner (Châu); it was not changed in the Vocabulary rebuild.
@@ -336,6 +337,13 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Impact**: Learners see real counts (the UI never repeats the set name's number), but the names overpromise; pictures can disappear or change without notice.
 - **Recommended fix**: Owner decision: rename carefully (add new sets, keep old ones) or expand the content with reviewed, additive data and a validator; host or drop the pictures. Do not reuse a publisher's word-list name for new content.
 - **Effort**: Medium (content work).
+
+### TD-016: Spaced repetition: level kept in `RepetitionCount`, fixed daily target, system cards only [LOW]
+- **Files**: `Services/Vocabulary/SpacedRepetitionScheduler.cs`, `Services/StudyService.Vocabulary.cs`, `LearningProgress`
+- **Issue**: The memory level (0-6) lives in the existing `RepetitionCount` column, legacy rows are read through a mapping (Mastered below level 4 reads as 4, Learning reads as 0) and are normalised only when recorded again. The daily target is the constant 10 words. Personal sets keep the old schedule (1 h to 7 d).
+- **Impact**: A legacy row can show a different level than the learner expects until it is next reviewed; two ladders exist side by side. Suspended rows are no longer counted as due on the Vocabulary pages.
+- **Recommended fix**: Only if wanted: a migration with an explicit level column, a settings page for the target, and the same ladder for personal sets (needs the owner of `LearningApiController`).
+- **Effort**: Medium.
 
 ### TD-015: Vocabulary lessons are computed, so their membership shifts when cards change [LOW]
 - **Files**: `Services/Vocabulary/VocabularyLessonBuilder.cs`
@@ -539,3 +547,9 @@ and the old service methods were removed. Open items for owners: TD-013 (record 
 check, Châu), TD-014 (content size, names, pictures), TD-015 (computed lessons). Safari
 and Firefox, and a real speech voice, were not checked. See the Vocabulary rebuild plan
 section 12 for evidence.
+
+System Vocabulary spaced repetition and polish (14/11/2026): every system word has a memory
+level 0-6 (10 min, 1, 3, 7, 14, 30, 60 days) computed on the server from the lesson answers
+(`POST /Vocabulary/Review/Record`); the home shows the daily ring, the due words ("Ôn
+ngay"), "Trí nhớ của bạn" and "Lịch ôn 7 ngày tới"; course covers have illustrations and
+words have emoji pictures. See TD-016 and the SRS polish plan section 12.

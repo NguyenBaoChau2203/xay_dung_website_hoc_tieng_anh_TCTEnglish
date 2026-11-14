@@ -4564,3 +4564,21 @@ PR136 release ledger. This repairs test portability without skipping coverage.
 **Verification**: Full .NET suite 1529 passed / 0 failed; node 291 of 292 (the one failure, `test_speaking_catalog_packages.cjs`, predates this work: a Windows CRLF checkout changes a catalog hash). Browser checklists for home, course and lesson (scripted, 70+ checks) and accessibility/contrast passes are recorded in `docs/superpowers/plans/2026-11-13-vocabulary-rebuild.md` section 12.
 
 **Notes**: Reused the Practice shell (`practice-ui.js`) and the Clay kit (same owner). `LearningApi/record` was not changed; see TD-013 for its missing card access check.
+
+
+### System Vocabulary: no real spaced repetition, a word "Mastered" after one lesson, flat pages — 2026-11-14
+
+**Symptom**: A word answered perfectly became "Mastered" after one lesson and came back after one day; there was no ladder, no view of when a word returns, and the home and course pages were flat (one icon per course, a letter tile per word, no due information).
+
+**Root Cause**: The lesson saved through the shared `/api/LearningApi/record` (hard / good / easy with 1 min to 7 d), which has no long ladder and no access check, and nothing in the pages read the schedule.
+
+**Solution**: Added a pure scheduler (levels 0-6, intervals 10 min, 1, 3, 7, 14, 30, 60 days; early review never promotes), a system-only endpoint `POST /Vocabulary/Review/Record` (client sends again | hard | good | known, the server computes level and date, Goals credited once), read models for the home, course and review pages, and rebuilt screens (goal ring, review card, memory panel, 7-day forecast, illustrated covers, level dots, schedule row after each word, per-word result). The level is stored in the existing `RepetitionCount`; no migration.
+
+**Files Changed**:
+- `Services/Vocabulary/{SpacedRepetitionScheduler,VocabularyEmojiMap,VocabularyLessonBuilder}.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Controllers/VocabularyController.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow,_CourseArt,_LevelDots,_MemoryPanel,_ReviewForecast}.cshtml`, `wwwroot/css/vocabulary.css`, `wwwroot/js/vocabulary-{core,course,lesson}.js`
+- Tests: `SpacedRepetitionSchedulerTests.cs`, `VocabularyReviewRecordTests.cs`, `VocabularyIntegrationTests.cs` (copy changes), `scripts/tests/test_vocabulary_srs.cjs`
+
+**Verification**: Full .NET suite and node suite green except the one known CRLF node failure; real-browser runs of a lesson, a review, an early-review replay and a simulated save failure matched the database rows. `LearningApiController` is unchanged. See the SRS polish plan section 12.
+
+**Notes**: See TD-016. The legacy endpoint still lacks a card access check (TD-013, Châu).
