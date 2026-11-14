@@ -508,3 +508,10 @@ PR136 CI portability (14/11/2026): catalog regression no longer reads ignored
 local transcript drafts. Public acquisition summaries now provide cue digests,
 counts and measured-duration bounds on clean runners. Raw media/private receipts
 stay ignored; content acoustic QA remains pending. See PR136 release ledger.
+
+PR136 staging import (14/11/2026): release43538144629 timed out while its hosting
+import remained active under maintenance. Adoption cost is bounded by the focused
+follow-up; full disposable MariaDB catalog/repeat and guarded recovery tests pass.
+Staging is not recovered until the new expected marker and readiness are observed.
+See docs/superpowers/plans/2026-11-14-staging-shared-data-performance.md and PR136
+release ledger; production stays disabled.

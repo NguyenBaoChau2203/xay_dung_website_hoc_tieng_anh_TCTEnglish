@@ -4545,3 +4545,18 @@ The repaired test passes in a fresh portable fixture containing only its test,
 public manifests/evidence and packages, with no .appdata directory. Full Node
 regression results and the final GitHub/staging outcome are recorded in the
 PR136 release ledger. This repairs test portability without skipping coverage.
+
+### Staging Speaking import exceeded release budget - 2026-11-14
+
+Symptom/cause: PR136 master CI passed, but staging run43538144629 timed out while
+hosting kept importing under maintenance. Backup/migrations completed. Adoption
+repeatedly scanned growing rows/bindings and reprojected already-owned new cues.
+Fix: snapshot initial unbound shareable rows and cache exact candidate digests by
+reference/optional-field context. Preserve ownership, ambiguity and transactions.
+A narrowly pinned staging recovery validates prior app bytes, backup, additive
+migration log and exact owned process/parent cleanup before reopening the old app.
+No lock deletion, database restoration, production or Plesk settings changes.
+Verification: scan baseline1 fail; shared suite39 pass/3 gated skips; disposable
+MariaDB10.5.23 full271-package import23.212s/16262 cues, repeat0.129s/zero operations,
+private and old learner data preserved. Windows PowerShell5.1 release/recovery25
+pass. Final CI and staging evidence must be recorded in the release ledger/PR.
