@@ -4525,3 +4525,23 @@ A→B→A, six-of-seven limit, separate Standard/Premium histories, Back, catalo
 filters/search and offline retry pass. Widths1440/1366/768/390 have no horizontal
 overflow. Native200% zoom remains unverified. See recent-videos ledger and plan.
 No protected configuration, shared content packages or remote release changes.
+
+
+### PR136 CI depended on ignored local transcript receipts — 2026-11-14
+
+**Symptom/cause**: PR run43536075626 passed application tests but failed the
+browser-regression step (269/270). The public catalog package test read draft
+caption receipts from ignored .appdata/local, which do not exist on a clean runner.
+
+**Fix**: Commit a nonsecret acquisition-evidence summary for the90 public sources
+(cue count, measured duration, normalized cue digest and unresolved QA status).
+Validate exported package bytes, exact normalized transcript digest, child FK,
+timing bounds and source metadata against that portable evidence. Keep private
+receipts/media out of Git and retain the explicit full-acoustic-QA-pending state.
+No immutable package bytes or application behavior changed.
+
+**Verification**: Original CI reproduces ENOENT on the first source receipt.
+The repaired test passes in a fresh portable fixture containing only its test,
+public manifests/evidence and packages, with no .appdata directory. Full Node
+regression results and the final GitHub/staging outcome are recorded in the
+PR136 release ledger. This repairs test portability without skipping coverage.

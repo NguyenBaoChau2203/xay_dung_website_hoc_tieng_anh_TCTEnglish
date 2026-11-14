@@ -502,3 +502,9 @@ Local MariaDB migration preserves all old row data; provider/concurrency and
 browser acceptance are recorded in
 [recent-videos ledger](../../docs/feature-audits/2026-11-13-speaking-recent-videos-ledger.md).
 Native200% zoom remains unverified; no known recent-history defect remains.
+
+
+PR136 CI portability (14/11/2026): catalog regression no longer reads ignored
+local transcript drafts. Public acquisition summaries now provide cue digests,
+counts and measured-duration bounds on clean runners. Raw media/private receipts
+stay ignored; content acoustic QA remains pending. See PR136 release ledger.
