@@ -4545,3 +4545,22 @@ The repaired test passes in a fresh portable fixture containing only its test,
 public manifests/evidence and packages, with no .appdata directory. Full Node
 regression results and the final GitHub/staging outcome are recorded in the
 PR136 release ledger. This repairs test portability without skipping coverage.
+
+
+### System Vocabulary rebuild: dead call, unchecked "Mastered", made-up minutes, `/Vocabulary` 404 — 2026-11-14
+
+**Symptom**: The old study page posted to `/api/LearningApi/important`, which does not exist. A learner could mark a word "Mastered" on first sight with the "Dễ" button, with no check. Course cards showed `EstimatedMinutes = CardCount * 2` and raw `#tags`. `/Vocabulary` (without `/Index`) answered 404 because the default route action is `Landing`.
+
+**Root Cause**: Six legacy views (about 6,500 lines of Razor with inline script) wrote their own flow: four self-rating buttons, a call to a missing endpoint, invented numbers, and no attribute route for the bare controller URL.
+
+**Solution**: Rebuilt the module as three screens (home, course, three-step lesson). Grading is automatic: 0 or 1 misses send `good`, 2 or more send `hard`, "Tôi đã biết từ này" sends `easy`, one `POST /api/LearningApi/record` per finished word, with one immediate retry and a "Chưa lưu" marker. Counts shown are real. `Index` got `[HttpGet("/Vocabulary/Index", Order = 0)]` and `[HttpGet("/Vocabulary", Order = 1)]`; `Order 0` keeps generated links on `/Vocabulary/Index`.
+
+**Files Changed**:
+- `Controllers/VocabularyController.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Services/Vocabulary/VocabularyLessonBuilder.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow}.cshtml` (old `FolderDetail`, `Topics`, `TopicDetail`, `_MasteryButtons` deleted)
+- `wwwroot/css/vocabulary.css` (replaces `vocabulary-system.css`), `wwwroot/css/study-kit.css` (scope list only), `wwwroot/js/vocabulary-{core,home,course,lesson}.js`
+- Tests: `VocabularyLessonBuilderTests.cs`, `VocabularyIntegrationTests.cs`, `scripts/tests/test_vocabulary_core.cjs`
+
+**Verification**: Full .NET suite 1529 passed / 0 failed; node 291 of 292 (the one failure, `test_speaking_catalog_packages.cjs`, predates this work: a Windows CRLF checkout changes a catalog hash). Browser checklists for home, course and lesson (scripted, 70+ checks) and accessibility/contrast passes are recorded in `docs/superpowers/plans/2026-11-13-vocabulary-rebuild.md` section 12.
+
+**Notes**: Reused the Practice shell (`practice-ui.js`) and the Clay kit (same owner). `LearningApi/record` was not changed; see TD-013 for its missing card access check.

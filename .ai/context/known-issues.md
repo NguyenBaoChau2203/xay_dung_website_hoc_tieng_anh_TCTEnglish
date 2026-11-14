@@ -323,6 +323,27 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
 - **Effort**: Low.
 
+### TD-013: `POST /api/LearningApi/record` does not check that the user may view the card [MEDIUM]
+- **Files**: `Controllers/LearningApiController.cs` (`Record`, the `LearningProgresses` lookup by `cardId` and the current user)
+- **Issue**: Any card id is accepted. A signed-in user can create a progress row, and earn Goals/XP credit, for a card they cannot open (for example a private set of another user). The Vocabulary lesson only ever sends ids of system cards it was given, so the new screens do not depend on this.
+- **Impact**: Authenticated users could probe or farm credit through card ids. File belongs to another owner (Châu); it was not changed in the Vocabulary rebuild.
+- **Recommended fix**: Before saving, require that the card's set is system-owned, public, owned by the user or shared with them (same rule as `PersonalSetService`); answer `NotFound()` otherwise. Pin it with a regression test.
+- **Effort**: Low.
+
+### TD-014: System Vocabulary content is small, its names promise more, and some pictures are not ours [MEDIUM]
+- **Files**: `wwwroot/data/system-vocabulary.json`, `Models/JsonVocabularySeeder.cs`
+- **Issue**: The file holds 3 folders, 8 sets and 92 cards. "1000 từ tiếng Anh thông dụng" has 20 cards and "3000 từ vựng Oxford A1" has 10. 62 cards hotlink pictures from a third-party shopping CDN (`down-vn.img.susercontent.com`), and some local seed paths (`/images/greetings/*.jpg`) do not exist on disk (the lesson shows a letter tile instead). The seeder matches sets by name and deletes cards missing from the JSON, so renaming a set would strand learner progress.
+- **Impact**: Learners see real counts (the UI never repeats the set name's number), but the names overpromise; pictures can disappear or change without notice.
+- **Recommended fix**: Owner decision: rename carefully (add new sets, keep old ones) or expand the content with reviewed, additive data and a validator; host or drop the pictures. Do not reuse a publisher's word-list name for new content.
+- **Effort**: Medium (content work).
+
+### TD-015: Vocabulary lessons are computed, so their membership shifts when cards change [LOW]
+- **Files**: `Services/Vocabulary/VocabularyLessonBuilder.cs`
+- **Issue**: Lessons are groups of about 10 cards by `Card.Topic` and `CardId`; nothing is stored. When an admin adds or deletes cards of a course, lesson numbers and the words inside a lesson can change.
+- **Impact**: Progress is per card, so nothing is lost; a learner may see "Bài 4" hold different words than yesterday. The recommended next lesson always follows current data.
+- **Recommended fix**: Only if it matters: store lesson numbers per card in a migration. Otherwise accept and avoid bulk re-topicking of live courses.
+- **Effort**: Medium.
+
 ---
 
 ## Architecture Warnings
@@ -508,3 +529,13 @@ PR136 CI portability (14/11/2026): catalog regression no longer reads ignored
 local transcript drafts. Public acquisition summaries now provide cue digests,
 counts and measured-duration bounds on clean runners. Raw media/private receipts
 stay ignored; content acoustic QA remains pending. See PR136 release ledger.
+
+
+System Vocabulary rebuild (14/11/2026): `/Vocabulary/*` is now three screens (home with
+"Học tiếp", course page with lessons and a word list, three-step lesson) on the shared
+Clay kit. Automatic grading replaces the four self-rating buttons; each finished word is
+saved once through the unchanged `LearningApi/record`. Old views, `vocabulary-system.css`
+and the old service methods were removed. Open items for owners: TD-013 (record access
+check, Châu), TD-014 (content size, names, pictures), TD-015 (computed lessons). Safari
+and Firefox, and a real speech voice, were not checked. See the Vocabulary rebuild plan
+section 12 for evidence.

@@ -147,7 +147,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Chủ sở hữu |
 | --- | --- | --- | --- | --- | --- |
 | Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
+| Từ vựng | `/Vocabulary/*` (trang chủ, khóa học, màn học 3 bước) | `vocabulary.css` + kit `study-kit.css` (phạm vi `.tv-page`) + `practice.css` cho màn học | `var(--tct-*)` dùng chung | Đã chuyển code (làm lại 13/11/2026); chưa duyệt trên nhánh chính | Trọng |
 | Nói | `/Speaking`, `/Speaking/Practice` + `/Admin/SpeakingVideoManagement*` | `speaking.css`, `admin-speaking-video.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
 | Viết | `/Home/Writing*` + `/Admin/WritingExerciseManagement*` | `writing-index.css`, `writing-exercises.css`, `writing.css`, `admin-writing-exercise.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |

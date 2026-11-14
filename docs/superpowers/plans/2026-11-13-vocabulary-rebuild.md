@@ -944,3 +944,18 @@ git diff --check
 - **G11 a11y (all lesson states):** one `<h1>`; every control named (the only unnamed input is the hidden antiforgery token); a visible outline on every tab stop; `aria-live` regions for feedback; progress bar is a `progressbar`; step pills use `aria-current="step"`; forced colours: KPI tiles, list, pills get a 1px border and no shadow, the current step a 3px border; reduced motion: animation names are `none` and transitions are about 0 s; no keyboard trap (the global handlers ignore keys while typing and while a modal is open).
 - **G12 contrast:** about 63 element/background pairs over intro, choice question, feedback after a wrong answer, typing question, diff and result; zero failures.
 - Not verified: Safari/Firefox rendering; a real speech voice (the browser call is observed, not heard); an empty `no-cards` course in the browser (covered by an integration test only, the dev database has none).
+
+### V9 — Cleanup and docs
+- Commit: see `git log` (subject "chore(vocabulary): remove the legacy views, stylesheet and service code and update the docs")
+- G1 build: pass (warnings 43, V0 43)
+- G3 full: passed 1529 / failed 0 / skipped 34 (V0 1468)
+- G4 node: passed 291 / failed 1 (pre-existing CRLF hash failure) / total 292
+- G5 contracts: every legacy URL still answers 200 in the browser after the deletion (`/Vocabulary`, `/Vocabulary/Index`, `FolderDetail`, `Detail`, `Topics`, `TopicDetail` with and without `topic`, `Study` with `topic` and `index`, `mode=review`, `Review`, `Review?setId=`); user-owned set and folder ids give 404.
+- G7 scope: removed `Views/Vocabulary/{FolderDetail,Topics,TopicDetail,_MasteryButtons}.cshtml`, `wwwroot/css/vocabulary-system.css`; trimmed `StudyService.Vocabulary.cs` (1216 to 713 lines), `IStudyService.cs`, `VocabularyPageViewModels.cs` (308 to 181 lines). Docs: tracker row "Từ vựng" in `docs/design-system/team-ui-workflow.md`, `docs/project-structure.md`, `.ai/context/bug-fix-log.md`, `.ai/context/known-issues.md` (TD-013, TD-014, TD-015 and a resolved note).
+- Old methods / views / CSS removed or kept (with reason):
+  - Removed: the six legacy `GetVocabulary*ViewModelAsync` methods and their private helpers, the legacy page view models, the four legacy views and the 4,741-line stylesheet. Proof before deleting: `git grep` showed the stylesheet and `_MasteryButtons` were used only by the legacy views, and each legacy method or view model only by itself and those views.
+  - Kept: `TryIncrementVocabularySetViewCountAsync`; `StudyViewModel`, `VocabularySetSummaryViewModel`, `VocabularyCardItemViewModel` (used by the legacy `Views/Study/*` pages and `StudyService.cs`); the file name `VocabularyPageViewModels.cs` (`Sprint4SmokeTests` checks it exists).
+- Stale references: none (`vocabulary-system`, `_MasteryButtons`, `recordMastery`, `LearningApi/important` no longer appear in `TCTEnglish` or `scripts`).
+- Browser re-run after the deletion: home 21/21, course 32/32, lesson V6 20/20, V7 21/21, V8 21/21.
+- G8–G12 / G13: unchanged from V4-V8 (no view or style changed in this phase).
+- Attempts / deferred / blocked: none.
