@@ -5,6 +5,7 @@
     var pageTitle = "TCT English — Học tiếng Anh mỗi ngày 15 phút";
     var pageDescription = "Học từ vựng, nghe, nói, đọc và viết tiếng Anh theo bài ngắn. TCT English tự xếp lịch ôn để bạn nhớ lâu.";
     var pageUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Url.Content("~/")}";
+    var shareImage = $"{Context.Request.Scheme}://{Context.Request.Host}{Url.Content("~/images/landing/og-landing.png")}";
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,7 +21,12 @@
     <meta property="og:title" content="@pageTitle" />
     <meta property="og:description" content="@pageDescription" />
     <meta property="og:url" content="@pageUrl" />
+    <meta property="og:image" content="@shareImage" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trang chủ TCT English: Tiếng Anh ngấm dần, mỗi ngày 15 phút" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="@shareImage" />
     <script>document.documentElement.classList.add('lp-js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

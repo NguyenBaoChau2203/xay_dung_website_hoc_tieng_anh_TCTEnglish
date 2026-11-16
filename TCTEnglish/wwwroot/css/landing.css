@@ -283,7 +283,8 @@ html { scroll-padding-top: 104px; }
     border-radius: 26px;
     background: var(--lp-frame-bg);
     box-shadow: 0 60px 120px var(--lp-frame-glow), 0 0 0 1px var(--lp-frame-ring), 0 0 0 10px var(--lp-frame-ring-soft);
-    transform: rotateX(14deg);
+    --lp-tilt: 14deg;
+    transform: rotateX(var(--lp-tilt));
     transform-origin: 50% 0;
 }
 .lp-frame-bar { display: flex; gap: 8px; padding: 4px 6px 14px; }
@@ -310,10 +311,11 @@ html { scroll-padding-top: 104px; }
 .lp-chip img { width: 40px; height: 40px; }
 .lp-chip .lp-chip-avatar { width: 52px; height: 52px; border-radius: 50%; }
 .lp-chip-icon { color: var(--lp-success-strong); font-size: 22px; }
-.lp-chip--1 { left: -90px; top: 120px; transform: rotate(-5deg); }
-.lp-chip--2 { right: -100px; top: 60px; transform: rotate(4deg); }
-.lp-chip--3 { right: -70px; top: 330px; transform: rotate(-3deg); }
-.lp-chip--4 { left: -60px; top: 380px; transform: rotate(4deg); }
+/* individual transform properties, so the load animation (scale) and the drift (translate) never overwrite the tilt */
+.lp-chip--1 { left: -90px; top: 120px; rotate: -5deg; }
+.lp-chip--2 { right: -100px; top: 60px; rotate: 4deg; }
+.lp-chip--3 { right: -70px; top: 330px; rotate: -3deg; }
+.lp-chip--4 { left: -60px; top: 380px; rotate: 4deg; }
 
 /* the screenshot fades into the page background */
 .lp-fade { position: relative; height: 150px; margin-top: -150px; background: linear-gradient(180deg, transparent, var(--lp-bg)); pointer-events: none; }
@@ -587,7 +589,7 @@ html { scroll-padding-top: 104px; }
     .lp-sub { font-size: 17.5px; }
     .lp-cta { flex-direction: column; align-items: stretch; }
     .lp-shot { margin-top: 44px; }
-    .lp-frame { padding: 8px; border-radius: 18px; transform: rotateX(8deg); }
+    .lp-frame { --lp-tilt: 8deg; padding: 8px; border-radius: 18px; }
     .lp-frame-bar { padding: 2px 4px 8px; }
     .lp-frame-img { height: 300px; object-fit: cover; object-position: 0 0; border-radius: 10px; }
     .lp-chip { padding: 9px 12px; border-radius: 14px; font-size: 13px; }
@@ -623,16 +625,37 @@ html { scroll-padding-top: 104px; }
 
 /* ------------------------------------------------------------------ forced colours and reduced motion */
 @media (forced-colors: active) {
-    .lp-nav, .lp-card, .lp-pill, .lp-btn, .lp-nav-toggle, .lp-quiz, .lp-option, .lp-quiz-feedback, .lp-faq-item, .lp-end, .lp-tiles li, .lp-ladder li, .lp-bubble { border: 1px solid CanvasText; }
+    .lp-nav, .lp-card, .lp-pill, .lp-btn, .lp-nav-toggle, .lp-quiz, .lp-option, .lp-quiz-feedback, .lp-faq-item, .lp-end, .lp-tiles li, .lp-ladder li, .lp-bubble, .lp-chip, .lp-frame, .lp-skill-icon { border: 1px solid CanvasText; }
     .lp-option.is-correct, .lp-option.is-wrong { outline: 3px solid Highlight; }
+    .lp-nav { background: Canvas; backdrop-filter: none; -webkit-backdrop-filter: none; }
     .lp-hero h1 { background: none; -webkit-text-fill-color: currentColor; color: CanvasText; }
     .lp-btn { forced-color-adjust: none; background: ButtonFace; color: ButtonText; box-shadow: none; }
 }
 
-/* Motion is opt-in: transitions and smooth scrolling exist only when the visitor allows motion. */
+/* Motion is opt-in: everything below exists only when the visitor allows motion.
+   The load sequence is pure CSS and plays once (about 0.9 s). It depends only on the lp-js class set in the page head,
+   so a failed script never leaves the hero hidden, and without JavaScript every element is already in its final state. */
 @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
     .lp .lp-btn { transition: transform .15s ease, background-color .15s ease; }
+    .lp .lp-card--skill, .lp .lp-option { transition: translate .2s ease, background-color .15s ease; }
+    .lp .lp-card--skill:hover { translate: 0 -3px; }
+
+    @keyframes lp-rise { from { opacity: 0; translate: 0 12px; } }
+    @keyframes lp-tilt-in { from { opacity: .6; transform: rotateX(calc(var(--lp-tilt) + 8deg)); } }
+    @keyframes lp-pop { from { opacity: 0; scale: .85; } }
+    @keyframes lp-drift { 50% { translate: 0 -6px; } }
+
+    .lp-js .lp-pill { animation: lp-rise .5s ease-out both; }
+    .lp-js .lp-hero h1 { animation: lp-rise .5s .08s ease-out both; }
+    .lp-js .lp-sub { animation: lp-rise .5s .16s ease-out both; }
+    .lp-js .lp-cta { animation: lp-rise .5s .24s ease-out both; }
+    .lp-js .lp-frame { animation: lp-tilt-in .6s .3s ease-out both; }
+    .lp-js .lp-chip { animation: lp-pop .3s ease-out both, lp-drift 7s ease-in-out infinite; }
+    .lp-js .lp-chip--1 { animation-delay: .4s, 1s; animation-duration: .3s, 6s; }
+    .lp-js .lp-chip--2 { animation-delay: .45s, 1.4s; animation-duration: .3s, 7s; }
+    .lp-js .lp-chip--3 { animation-delay: .5s, .8s; animation-duration: .3s, 8s; }
+    .lp-js .lp-chip--4 { animation-delay: .55s, 1.8s; animation-duration: .3s, 6.5s; }
 }
 @media (prefers-reduced-motion: reduce) {
     .lp .lp-btn:hover, .lp .lp-btn:active { transform: none; }

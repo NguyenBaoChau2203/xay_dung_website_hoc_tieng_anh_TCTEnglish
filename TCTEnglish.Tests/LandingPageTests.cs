@@ -299,6 +299,58 @@ public sealed class LandingPageTests
     }
 
     [Fact]
+    public async Task Landing_ShareImage_IsAnAbsoluteUrlToAnExistingSmallPng()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        var html = WebUtility.HtmlDecode(await client.GetStringAsync("/Home/Landing"));
+        var image = Regex.Match(html, "<meta property=\"og:image\" content=\"([^\"]+)\"").Groups[1].Value;
+
+        Assert.Matches("^https?://[^/]+/images/landing/og-landing\\.png$", image);
+        Assert.Contains("property=\"og:image:width\" content=\"1200\"", html, StringComparison.Ordinal);
+        Assert.Contains("property=\"og:image:height\" content=\"630\"", html, StringComparison.Ordinal);
+        Assert.Contains($"<meta name=\"twitter:image\" content=\"{image}\"", html, StringComparison.Ordinal);
+
+        using var file = await client.GetAsync(new Uri(image).AbsolutePath);
+        Assert.Equal(HttpStatusCode.OK, file.StatusCode);
+        Assert.Equal("image/png", file.Content.Headers.ContentType?.MediaType);
+        var bytes = await file.Content.ReadAsByteArrayAsync();
+        Assert.InRange(bytes.Length, 10_000, 300 * 1024);
+
+        // PNG header, then the IHDR width and height: 1200 x 630.
+        Assert.Equal(new byte[] { 0x89, 0x50, 0x4E, 0x47 }, bytes.Take(4).ToArray());
+        var width = (bytes[16] << 24) | (bytes[17] << 16) | (bytes[18] << 8) | bytes[19];
+        var height = (bytes[20] << 24) | (bytes[21] << 16) | (bytes[22] << 8) | bytes[23];
+        Assert.Equal((1200, 630), (width, height));
+    }
+
+    [Fact]
+    public async Task Landing_Stylesheet_KeepsTheMotionOptInAndTheNoScriptFallback()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        var css = await client.GetStringAsync("/css/landing.css");
+        var html = await client.GetStringAsync("/Home/Landing");
+
+        // Every keyframe animation lives inside the no-preference block; nothing animates for reduced motion.
+        var noPreference = css.IndexOf("@media (prefers-reduced-motion: no-preference)", StringComparison.Ordinal);
+        Assert.True(noPreference >= 0, "no-preference block missing");
+        Assert.True(css.IndexOf("@keyframes", StringComparison.Ordinal) > noPreference, "a @keyframes rule sits outside the no-preference block");
+        Assert.DoesNotContain("!important", css, StringComparison.Ordinal);
+        Assert.Contains("@media (forced-colors: active)", css, StringComparison.Ordinal);
+        Assert.Contains("@media (prefers-reduced-motion: reduce)", css, StringComparison.Ordinal);
+
+        // Nothing is hidden until a script runs: no reveal classes, and no inline visibility styles.
+        Assert.DoesNotContain("class=\"reveal", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("IntersectionObserver", await client.GetStringAsync("/js/landing.js"), StringComparison.Ordinal);
+        Assert.DoesNotContain("opacity:0", html.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public async Task Landing_RootServesThePageAndAnonymousDashboardRedirectsToIt()
     {
         await using var factory = new TestWebApplicationFactory();
