@@ -736,6 +736,81 @@ public sealed class SetFoldersIntegrationTests
         Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", page, StringComparison.Ordinal);
     }
 
+    // ------------------------------------------------------------------ create a set inside a folder, breadcrumbs
+
+    private static string SelectedFolderOption(string html)
+        => Regex.Match(html, "<select[^>]*name=\"FolderId\"[^>]*>.*?</select>", RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task CreateSet_WithAManageableFolderPreselectsItAndShowsItInTheBreadcrumb()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, $"/Home/CreateSet?folderId={TestDataIds.DeletableUserFolderId}");
+        var select = SelectedFolderOption(html);
+        var breadcrumb = Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>");
+
+        Assert.Matches($"<option[^>]*value=\"{TestDataIds.DeletableUserFolderId}\"[^>]*selected", select);
+        Assert.DoesNotMatch($"<option[^>]*value=\"{TestDataIds.UserFolderId}\"[^>]*selected", select);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.DeletableUserFolderId}\"", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Sprint One Delete Folder", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ", breadcrumb, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("?folderId=202")]
+    [InlineData("?folderId=987654")]
+    public async Task CreateSet_IgnoresAMissingOrForeignFolderWithoutAnError(string query)
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Home/CreateSet" + query);
+
+        Assert.DoesNotMatch("<option[^>]*selected", SelectedFolderOption(html));
+        Assert.DoesNotContain("/Sets/Folders/", Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>"), StringComparison.Ordinal);
+        Assert.DoesNotContain("System Sprint Folder", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task CreateSet_PostInsideAFolderStoresItThereAndGoesToAddWords()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var response = await PostAsync(client, "/Sets/Create", $"SetName=Trong+th%C6%B0+m%E1%BB%A5c&Visibility=Private&FolderId={TestDataIds.DeletableUserFolderId}", token);
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        var match = Regex.Match(Location(response), "^/Sets/(\\d+)/Add$");
+        Assert.True(match.Success, "unexpected redirect: " + Location(response));
+        var set = await DbAsync(factory, db => db.Sets.AsNoTracking().SingleAsync(s => s.SetId == int.Parse(match.Groups[1].Value)));
+        Assert.Equal(TestDataIds.DeletableUserFolderId, set.FolderId);
+        Assert.Equal(TestDataIds.UserId, set.OwnerId);
+
+        var page = await PageAsync(client, $"/Sets/Folders/{TestDataIds.DeletableUserFolderId}");
+        Assert.Contains($"href=\"/Sets/{set.SetId}\"", page, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetDetail_BreadcrumbLinksTheOwnerToTheNewFolderPage()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var member = ClientFor(factory, TestDataIds.MemberUserId);
+        var route = $"/Sets/{TestDataIds.UserSetId}";
+
+        var ownerCrumb = Between(await PageAsync(owner, route), "<nav class=\"tct-breadcrumb\"", "</nav>");
+        var memberCrumb = Between(await PageAsync(member, route), "<nav class=\"tct-breadcrumb\"", "</nav>");
+
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", ownerCrumb, StringComparison.Ordinal);
+        Assert.Contains("Sprint One Folder", ownerCrumb, StringComparison.Ordinal);
+        Assert.DoesNotContain("/Home/FolderDetail", ownerCrumb, StringComparison.Ordinal);
+        Assert.DoesNotContain("Sprint One Folder", memberCrumb, StringComparison.Ordinal);
+    }
+
     // ------------------------------------------------------------------ legacy create
 
     [Fact]

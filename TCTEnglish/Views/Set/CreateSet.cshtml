@@ -2,15 +2,15 @@
 @using TCTEnglish.ViewModels
 @{
     ViewData["Title"] = "Tạo bộ thẻ";
-    var header = new PageHeaderViewModel
+    var breadcrumbs = new List<PageBreadcrumbItem> { new("Bộ thẻ", Url.Action("Index", "Set")) };
+    // Coming from a folder page: show that folder in the trail (only a folder the form lists, i.e. one of the owner's).
+    var folderCrumb = Model.FolderId.HasValue ? Model.AvailableFolders.FirstOrDefault(f => f.FolderId == Model.FolderId.Value) : null;
+    if (folderCrumb != null)
     {
-        Title = "Tạo bộ thẻ",
-        Breadcrumbs = new[]
-        {
-            new PageBreadcrumbItem("Bộ thẻ", Url.Action("Index", "Set")),
-            new PageBreadcrumbItem("Tạo bộ thẻ")
-        }
-    };
+        breadcrumbs.Add(new PageBreadcrumbItem(folderCrumb.FolderName, Url.Action("FolderPage", "Set", new { id = folderCrumb.FolderId })));
+    }
+    breadcrumbs.Add(new PageBreadcrumbItem("Tạo bộ thẻ"));
+    var header = new PageHeaderViewModel { Title = "Tạo bộ thẻ", Breadcrumbs = breadcrumbs };
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
