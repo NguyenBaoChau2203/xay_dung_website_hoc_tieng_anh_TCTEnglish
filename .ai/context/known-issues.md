@@ -85,6 +85,20 @@ proposing follow-up work so they do not optimize already-completed items.
   owner does not persist. Node harness `test_writing_draft_isolation.cjs` green.
 - **Browser verified04–05/11**: Standard draft retained in localStorage; logout→
   Premium in the same context does not restore it. No owner data was cleared.
+- **Stage02 follow-up14/11**: in-flight guard blocks repeated Ctrl+Enter; Accepted
+  responses only clear a matching stored draft and preserve newer typing/selection.
+  Node regressions and Chrome synthetic Razor capture verified same-user multi-tab
+  preservation. Full live account switching was not repeated in this stage.
+
+### WRITING-CONCURRENT-COMPLETION: Final submits deadlocked [P1] — fixed local14/11/2026
+- **Was**: two MariaDB final submissions entered progress upsert concurrently and
+  one failed with deadlock. Writing did not lock the user before attempt FK writes.
+- **Fix**: user row FOR UPDATE at the start of the existing transaction; progress,
+  credit and award intents remain atomic. MariaDB10.5.23 barrier, actual credit
+  rejection/retry, outbox/cancellation and migration-repeat tests passed.
+- **Boundary**: per-accepted-sentence confirmed practice days still belong to stage03;
+  lifetime exercise credit/20XP stays once-only. See
+  [stage02 audit](../../docs/feature-audits/2026-11-14-writing-goals/02-writing-backend.md).
 
 ### WRITING-REVIEW-STATE: NeedsReview can render as redo [P2] — fixed 04/11/2026
 - **Was**: normalize dropped AssessmentStatus/ReviewRequired; label used “Làm lại”.
@@ -234,7 +248,8 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Impact**: Product inconsistency, missing activity/XP telemetry, and weaker
   guidance for future changes.
 - **Recommended fix**: Keep dashboard values model-driven, ensure daily
-  challenge writes activity through `IGoalsService.RecordActivityAsync(...)`,
+  challenge writes activity through `IGoalsService.RecordLearningActivityAsync(...)`
+  so counters/streak/XP share one transaction and business instant,
   and keep docs plus phased goals tests aligned with the live reward contract.
 - **Effort**: Small ongoing.
 
@@ -429,7 +444,7 @@ using new API settings. All four AI clients follow the shared launcher rule.
 | Dashboard SQLite random ordering failure | Fixed with provider-safe fallback logic |
 | Duplicate `ViewModel/` vs `ViewModels/` folders | Normalized to `ViewModels/` only |
 | BUG-006 Goals placeholder page | Resolved with real `GoalsController` + `IGoalsService` read/write flow and integration tests |
-| Goals business-date badge/streak alignment | Resolved with business-date normalization plus service-level learning activity orchestration |
+| Goals business-date badge/streak alignment | Stage03 (2026-11-14): injectable UTC+7 operation clock, shared streak expiry for Goals/Profile/dashboard, persisted Accepted partial/replay practice, unique daily bonus/lifetime completion and typed study/goal-day projections; see stage03 ledger |
 | Goals phase-5 documentation closeout | Resolved by removing stale placeholder descriptions from backlog/instruction docs and aligning known-issues with real Goals state |
 | Goals phase-7 closure and reward hardening | Resolved with atomic speaking/writing completion transitions, removal of request-time writing migration, new replay regression coverage, and an explicit rollout close decision |
 | Daily challenge trusted client `correctCardId` | Resolved by server-signed challenge token validation in `HomeController.CheckAnswer` |
@@ -515,3 +530,68 @@ follow-up; full disposable MariaDB catalog/repeat and guarded recovery tests pas
 Staging is not recovered until the new expected marker and readiness are observed.
 See docs/superpowers/plans/2026-11-14-staging-shared-data-performance.md and PR136
 release ledger; production stays disabled.
+
+
+Writing/Goals stage04 completion (14/11/2026):10 new server-earned awards and safe
+mystery projection are implemented locally; all old12 IDs/codes and earned history
+remain. Unknown/invalid-rule grants and reproduced cross-user deadlocks are fixed.
+Broad application361 pass/24 gated skip; disposable MariaDB10.5.23 final29/29;
+Node25/25; build/pending-model clean. Local catch-up adds7 silent retroactive
+awards after a63-user dry-run; repeat0, old42 grants/XP/streak/history preserved.
+Stage05 now expands the local public Writing catalog from10 to118 lessons
+(108 original new lessons, exactly6 in each of18 level/format cells); the13/25/50
+milestones have enough public content by count. Advanced36 completes108/108.
+Final112 focused tests pass; advanced fresh MariaDB10.5.23 roundtrip/repeat,
+canonical379-release Validate/Sync twice and all-three zero-create reruns pass.
+All42,409 original rows and44,209 pre-advanced rows/72 tables,343 previous package
+versions and production.json are preserved. Same-agent editorial evidence covers
+all108 lessons across the three authoring batches; no independent teacher review.
+No fake credits or threshold reduction. See05-content-matrix.md,
+05-beginner-ledger.md,05-intermediate-ledger.md and05-advanced-ledger.md. Stage06
+still owns final tier/filter/earned-secret visual binding and native zoom/live
+login acceptance. See docs/feature-audits/2026-11-14-writing-goals/04-badges.md and
+04-badges-contract.md. No CI/staging/production or paid-call claim.
+
+Writing/Goals stage07 integration (14/11/2026): supersedes the stage06-pending
+note above. Header totals, filter keyboard/stale state, Goals label associations,
+paused-target copy and narrow legend/history defects are fixed and verified.
+Final full1,575 pass/50 gated skip, focused98 and Node46 pass; MariaDB29 plus
+combined108-package repeat/preservation1 pass. Real-cookie account isolation,
+earned mystery/Profile and24 viewport cases are evidenced in ledger07. Native
+browser200% zoom remains a manual check; live paid providers remain out of scope.
+Initial three full-suite failures did not reproduce; their original logs remain.
+
+Writing recent exercises completion (15/11/2026): personal visit history now
+includes initialized practice pages without submissions, across catalog levels
+and formats, without learning credit. Separate additive schema, current access
+checks, account cleanup locking and monotonic concurrency are implemented locally.
+Final full1,584 pass/51 gated skip, Node42 pass and disposable MariaDB provider
+checks are recorded in
+[Writing recent ledger](../../docs/feature-audits/2026-11-15-writing-recent-exercises-ledger.md).
+Native200% zoom and a genuinely restored bfcache/native focus account-switch
+session remain manual observations; controlled lifecycle/owner-mismatch tests
+pass. Native Back in the inspected Chrome uses a fresh document because of
+no-store/websocket restrictions. Instant-close tracking is best-effort; unsent
+drafts remain browser-local. Initial isolated/full classifier flake did not
+reproduce in the final full suite. No shared content or release authority changed.
+Writing brief backend step01 (15/11/2026): strict composition from a description,
+durable private receipt/recovery, shared UTC five-success quota and21 limited
+bilingual template profiles are implemented locally. Matched free descriptions
+require explicit acceptance of the frame and omitted details; no arbitrary offline
+translation/topic coverage is promised. Refusal/cancel/entitlement/application
+quota never bypass through a template. Fake-provider/MariaDB concurrency and
+restart evidence do not certify live model quality. Step02 UI binding and browser
+acceptance remain outstanding; migration was verified on disposable MariaDB, not
+applied to the existing dev web. See
+[step01 ledger](../../docs/feature-audits/2026-11-15-writing-ai-brief-hybrid/01-backend.md)
+and its backend contract. No paid call or remote release was performed.
+
+Writing step02 review (15/11/2026) supersedes the UI-pending note above: receipt
+storage/recovery, stale callbacks/account activation, false cancel success,
+shared quota display, bilingual previews/slot labels and390px overflow are fixed.
+Full1,630 pass/53 skip and Node72 pass; real browser/MariaDB flows are documented
+in [final review](../../docs/feature-audits/2026-11-15-writing-ai-brief-hybrid/03-review-and-local-handoff.md).
+Native200% zoom remains unverified. One accidental live generation after browser
+reload used741 known tokens (cost unknown); remaining checks used a process-level
+loopback boundary. The review must not be reported as having zero paid calls.
+Final local web uses port5100 and saved configuration; no remote release.
