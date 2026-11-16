@@ -46,7 +46,7 @@
                             @{
                                 var ownerDisplay = Model.AvailableOwners?.FirstOrDefault(o => o.UserId == Model.OwnerId);
                             }
-                            <input type="text" class="form-control" readonly 
+                            <input type="text" class="form-control" readonly aria-label="Chủ sở hữu"
                                    value="@(ownerDisplay?.DisplayName ?? "N/A")" />
                             <input type="hidden" asp-for="OwnerId" />
                             <div class="form-text">Không thể thay đổi người sở hữu.</div>
@@ -81,5 +81,4 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

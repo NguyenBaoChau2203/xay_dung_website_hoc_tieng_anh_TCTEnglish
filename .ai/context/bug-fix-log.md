@@ -4628,3 +4628,22 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 **Verification**: Node tests for the new file 3/3 pass; the full suites are recorded in the landing-night plan section 12 (N1).
 
 **Notes**: Known issue SETS-CARD-DETAILS-NONPREMIUM-NULL moved to resolved.
+
+
+
+### Bug sweep of the owner modules: jQuery errors and unnamed controls — 2026-11-16
+
+**Symptom**: Opening an admin form (Set create/edit, Listening create/edit, Notification create) logged `ReferenceError: jQuery is not defined` twice. Several controls had no accessible name: Folder detail three-dot buttons, admin list search boxes, filters and row menus, the four speaker inputs, billing filters, the read-only owner field; the notification labels pointed at ids that did not exist.
+
+**Root Cause**: `_AdminLayout.cshtml` does not load jQuery, yet six views include `_ValidationScriptsPartial` (jquery.validate), which throws on load and registers nothing. The other findings were missing `aria-label` attributes, and `<label asp-for="Title">` generated `for="Title"` while the input id was overridden to `titleInput`.
+
+**Solution**: Removed the dead partial include from the six views (behaviour unchanged: it never ran), added `aria-label` to the unnamed controls, and set `for="titleInput"` / `for="messageInput"` on the two labels. The shared admin layout was not touched.
+
+**Files Changed**:
+- `Areas/Admin/Views/{SetManagement/{Index,Create,Edit,AddCard,EditCard},ListeningManagement/{Index,CreateEdit},BillingManagement/{Index,PremiumUsers},NotificationManagement/Create}.cshtml`
+- `Views/Folder/FolderDetail.cshtml`
+- `scripts/tests/test_owner_admin_views_sweep.cjs` — new, 7 source-level regression tests; all failed before the fixes.
+
+**Verification**: Scripted sweep of 204 page views (guest, Standard, Premium, Admin at 1440 and 390) before and after: the jQuery errors and the listed unnamed controls are gone. Full results and the triage table are in the landing-night plan section 12.
+
+**Notes**: Other owners' admin views (Speaking, Writing) include the same partial; reported as SWEEP-ADMIN-LAYOUT-NO-JQUERY. Footer `#` icons, a broken YouTube thumbnail, missing sample images, the missing `h1` on Folder and the AI launcher overlap were reported, not fixed.

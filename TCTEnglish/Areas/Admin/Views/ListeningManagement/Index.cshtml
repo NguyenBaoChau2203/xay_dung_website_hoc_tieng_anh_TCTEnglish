@@ -31,12 +31,12 @@
                     <label class="form-label small fw-bold">Tìm kiếm</label>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
-                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" placeholder="Tiêu đề hoặc chủ đề..." />
+                        <input type="text" name="q" value="@Model.SearchToken" class="form-control border-start-0" aria-label="Tìm kiếm bài nghe" placeholder="Tiêu đề hoặc chủ đề..." />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label small fw-bold">Cấp độ</label>
-                    <select name="level" class="form-select">
+                    <select name="level" class="form-select" aria-label="Lọc theo cấp độ">
                         <option value="All" selected="@(string.IsNullOrEmpty(Model.LevelFilter) || Model.LevelFilter == "All")">Tất cả</option>
                         <option value="A1" selected="@(Model.LevelFilter == "A1")">A1 - Beginner</option>
                         <option value="A2" selected="@(Model.LevelFilter == "A2")">A2 - Elementary</option>
@@ -121,7 +121,7 @@
                             <td class="small text-muted">@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                             <td class="text-end pe-4">
                                 <div class="dropdown">
-                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown" aria-label="Thao tác với bài nghe">
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end shadow">

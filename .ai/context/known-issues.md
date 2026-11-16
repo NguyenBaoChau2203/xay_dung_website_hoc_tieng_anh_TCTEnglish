@@ -27,6 +27,34 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### SWEEP-FOOTER-SOCIAL-HASH-LINKS — confirmed 16/11/2026
+
+- Triệu chứng: footer dùng chung (layout chính) có 3 icon Facebook/GitHub/YouTube với `href="#"`; mọi trang dùng layout đó (ví dụ `/Home/Listening`) có 3 liên kết chết, không có tên truy cập.
+- Nguyên nhân: footer nằm trong layout/partial dùng chung, không phải file của một module. Landing mới không sao chép phần này.
+- Chưa sửa vì file dùng chung nằm ngoài phạm vi đợt này; chủ layout (Châu) quyết định bỏ icon hoặc thêm URL thật.
+
+### SWEEP-ADMIN-LAYOUT-NO-JQUERY — confirmed 16/11/2026
+
+- Triệu chứng: `_AdminLayout.cshtml` không nạp jQuery, nhưng `SpeakingVideoManagement/{Create,Edit}` và `WritingExerciseManagement/{Create,Edit}` vẫn include `_ValidationScriptsPartial` (jquery.validate) → `ReferenceError: jQuery is not defined` ở console (suy ra từ mã nguồn, chưa mở các trang này trong trình duyệt vì thuộc người khác).
+- Các view của Trọng (SetManagement, ListeningManagement, NotificationManagement) đã gỡ include này; test `scripts/tests/test_owner_admin_views_sweep.cjs` canh lại khi layout có jQuery.
+- Hướng sửa: chủ các module Speaking/Writing gỡ include tương tự, hoặc chủ layout admin nạp jQuery (đổi hành vi: bật validation phía client).
+
+### SWEEP-LISTENING-YOUTUBE-THUMB-404 — confirmed 16/11/2026
+
+- Triệu chứng: `/Home/Listening` có một ảnh bìa trả 404 (`img.youtube.com/vi/9F8o8eH_Hms/hqdefault.jpg`), khung ảnh vỡ.
+- Nguyên nhân: dữ liệu bài nghe trỏ tới video YouTube không còn; lỗi dữ liệu, không phải mã.
+- Hướng sửa: admin gỡ hoặc thay bài nghe đó; có thể thêm ảnh dự phòng khi ảnh lỗi (đổi giao diện, chưa làm).
+
+### SWEEP-ADMIN-SET-SAMPLE-IMAGES-404 — confirmed 16/11/2026
+
+- Triệu chứng: `/Admin/SetManagement/Cards/11` có 10 ảnh thẻ `/images/animals/*.jpg`, `/images/greetings/hello.jpg` trả 404.
+- Nguyên nhân: dữ liệu mẫu tham chiếu ảnh không có trong `wwwroot/images`; lỗi dữ liệu mẫu cục bộ.
+
+### SWEEP-FOLDER-NO-H1 — confirmed 16/11/2026
+
+- Triệu chứng: `/Home/Folder` không có `h1` (chỉ có `h2` "Your folders" / "Saved folders"), tiêu đề tab "Folders" bằng tiếng Anh; các trang khác của Trọng đều có đúng một `h1`.
+- Chưa sửa vì đổi cấp tiêu đề/ngôn ngữ ảnh hưởng CSS và là việc thiết kế lại trang Thư mục (D3: chỉ sửa lỗi nhỏ).
+
 ### LISTENING-IMPORT-WAITS-FOR-AI — confirmed 13/11/2026
 
 - Việc thêm bài nghe từ YouTube (`CreateOwnedLessonAsync`) vẫn chờ AI sinh quiz xong
@@ -337,6 +365,8 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
 - **Effort**: Low.
 
+
+Sweep 16/11/2026 xác nhận thêm: "Bắt đầu luyện" (`/Practice`, 1440), "Bắt đầu chặng 1" (`/Practice/learn`, 390) và "Học bài mới" (`/Vocabulary`, 390, Premium) bị nút AI che một phần. Cùng cách xử lý: chừa khoảng trống dưới cùng cho launcher.
 ### TD-013: `POST /api/LearningApi/record` does not check that the user may view the card [MEDIUM]
 - **Update 14/11/2026**: the system Vocabulary pages no longer use this endpoint; they save through `POST /Vocabulary/Review/Record`, which accepts system cards only (404 otherwise). The endpoint is still open to any card id for personal sets and other callers, so the fix below is still needed (Châu).
 - **Files**: `Controllers/LearningApiController.cs` (`Record`, the `LearningProgresses` lookup by `cardId` and the current user)

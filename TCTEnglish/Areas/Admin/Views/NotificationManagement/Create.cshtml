@@ -47,7 +47,7 @@
                 <form id="announcementForm" method="post" asp-action="Create" novalidate>
                     @Html.AntiForgeryToken()
                     <div class="mb-4">
-                        <label asp-for="Title" class="form-label fw-semibold">
+                        <label asp-for="Title" for="titleInput" class="form-label fw-semibold">
                             Tiêu đề <span class="text-danger">*</span>
                         </label>
                         <input asp-for="Title"
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label asp-for="Message" class="form-label fw-semibold">
+                        <label asp-for="Message" for="messageInput" class="form-label fw-semibold">
                             Nội dung <span class="text-danger">*</span>
                         </label>
                         <textarea asp-for="Message"
@@ -175,7 +175,6 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
     <script>
         (function () {
             const elTitle      = document.getElementById('titleInput');

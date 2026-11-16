@@ -75,12 +75,12 @@
                 <label class="form-label small fw-semibold mb-1">Tìm kiếm</label>
                 <div class="input-group input-group-sm">
                     <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                    <input type="text" name="q" value="@Model.SearchQuery" class="form-control" placeholder="UserId, email, tên, mã đơn..." />
+                    <input type="text" name="q" value="@Model.SearchQuery" class="form-control" aria-label="Tìm kiếm người dùng Premium" placeholder="UserId, email, tên, mã đơn..." />
                 </div>
             </div>
             <div class="col-md-5">
                 <label class="form-label small fw-semibold mb-1">Bộ lọc</label>
-                <select name="filter" class="form-select form-select-sm">
+                <select name="filter" class="form-select form-select-sm" aria-label="Bộ lọc">
                     @foreach (var filter in Model.Filters)
                     {
                         <option value="@filter" selected="@(Model.Filter == filter ? "selected" : null)">@FilterLabel(filter)</option>

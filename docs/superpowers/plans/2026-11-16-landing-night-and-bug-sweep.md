@@ -414,3 +414,44 @@ Phase, date, commit subject; G1–G16 each with pass / n-a / deferred / blocked 
 - G8/G10 browser (headless Chrome, synthetic accounts, app on :5100): Standard `/Sets/1/Add`: image-search block absent, "Chi tiết" offcanvas opens, console clean; `/Sets/Cards/5/Edit` console clean. Premium `/Sets/3/Add`: image-search block present, details open, console clean; `/Sets/Cards/8/Edit` clean. Image search itself was not triggered (it calls an external provider).
 - G9/G11/G12/G14/G16 n-a (no visual change). G13 smoke covered by the browser run above. G15 pass: no new `innerHTML`, no credentials printed.
 - Docs: known issue SETS-CARD-DETAILS-NONPREMIUM-NULL moved to resolved; bug-fix-log entry appended.
+
+
+### N2 — Bug sweep (2026-11-16) — `fix(sweep): name unlabeled controls and drop the dead jQuery validation includes`
+
+**Method.** Headless Chrome driven over DevTools (scripts in the ignored `.tmp/bug-sweep/`, outside Git). Four roles (guest, Standard, Premium, Admin) log in with the synthetic accounts, crawl the owner's modules from seed pages by following same-origin links (query strings kept; logout/delete/pay/send/export/api links excluded; at most two pages per URL pattern), and audit every page at 1440×900 and 390×844: console errors, failed requests, broken images, empty links, unnamed controls, unlabeled inputs, horizontal overflow, AI-launcher overlap. Run 1: 204 page views (guest 9, Standard 70, Premium 70, Admin 70 URLs; both sizes). The sweep submits nothing. A separate smoke then drove the primary actions on throwaway data.
+
+**Route corrections.** `/Notification` is 404 (the page is `/Notification/Index`); pricing is `/Premium`, not `/Billing/Pricing`; Folder is `/Home/Folder` and `/Home/FolderDetail/{id}`; Practice modes are radio cards of one form (`learn, test, match, flashcard, quiz, typing, listening, cloze`), not links. The legacy `/Vocabulary/Study|Detail|FolderDetail` URLs answer an empty 404 when the required query value is missing (by design); with the query they render.
+
+**Smoke of primary actions (Standard, throwaway data, all removed; DB check: 0 leftover rows).** Create set through the form, add three cards (batch API, the route the composer uses), set detail shows cards, edit set name through the form, create/rename/delete folder (POST with antiforgery), folder detail loads, notifications page and list API, pricing page as Standard: all pass, console clean. All eight practice modes plus HardWords load and start at both sizes with a clean console (the `test` mode start click pressed "Nộp bài"; it was run once on the synthetic account, no answers). Not driven: the card composer UI (cards added by API), a full practice round with answers, a vocabulary lesson step, listening play/pause and dictation check, marking a notification read, Premium pricing view, admin form submissions, shared-set page `/s/{slug}` (no slug known), payment result pages. These are recorded as not swept.
+
+**Triage.**
+
+| Id | Page / role | Symptom | Cause | Owner | Action |
+| --- | --- | --- | --- | --- | --- |
+| S1 | Admin Set create/edit/add-card/edit-card, Listening create/edit, Notification create | `ReferenceError: jQuery is not defined` ×2 per page | `_AdminLayout` has no jQuery; six views include `_ValidationScriptsPartial` | Trọng (views) | **Fixed**: include removed (it never ran). Test `test_owner_admin_views_sweep.cjs` |
+| S2 | Folder detail (Standard, Premium) | Two three-dot buttons without a name | missing `aria-label` | Trọng | **Fixed** + test |
+| S3 | Admin Set and Listening lists | Search box, two filters and the row menu button unnamed | missing `aria-label` | Trọng | **Fixed** + test |
+| S4 | Admin Listening create/edit | Four speaker inputs unnamed | label not tied to the input | Trọng | **Fixed** + test |
+| S5 | Admin Billing orders and premium users | Search and filters unnamed | missing `aria-label` | Trọng | **Fixed** + test |
+| S6 | Admin Notification create | Title and message labels point at ids that do not exist | `asp-for` label vs overridden input id | Trọng | **Fixed** + test |
+| S7 | Admin Set edit | Read-only owner field unnamed | missing `aria-label` | Trọng | **Fixed** + test |
+| R1 | every page with the main layout footer | Three `href="#"` icons without a name | shared footer | layout owner (Châu) | Reported: SWEEP-FOOTER-SOCIAL-HASH-LINKS |
+| R2 | Admin Speaking, Writing create/edit (inferred from source, not opened) | same jQuery error as S1 | same partial, other owners | Speaking, Writing owners | Reported: SWEEP-ADMIN-LAYOUT-NO-JQUERY |
+| R3 | `/Home/Listening` | Thumbnail `9F8o8eH_Hms` returns 404 | data | content | Reported |
+| R4 | Admin Set cards (set 11) | 10 sample images 404 | sample data | data | Reported |
+| R5 | `/Home/Folder` | no `h1`, English tab title | page design | Trọng, redesign | Reported (D3: no redesign) |
+| R6 | `/Practice`, `/Practice/learn` (390), `/Vocabulary` (390, Premium) | AI launcher overlaps a primary button | known TD-012 | layout / owners | Reported: TD-012 extended |
+
+Fix budget: 7 of 15 used.
+
+**Gates.**
+- G1 pass: 0 errors, 58 warnings (the clean-rebuild baseline).
+- G2 pass: area tests (Admin, Set, Listening, Billing, Notification, Folder) 323 passed, 10 skipped, 0 failed after the final whitespace cleanup.
+- G3 pass: full suite 1745 passed, 35 skipped, 0 failed (equals N0), run before the whitespace-only cleanup.
+- G4 pass: node 354 / 355; the one failure is the known 	est_speaking_catalog_packages.cjs (N1: 347 / 348, +7 new tests).
+- G5 pass: no route, JSON or antiforgery change; only attributes and one script include per view.
+- G6 pass: no CSS touched; no raw colour added.
+- G7 pass: changed files are `Areas/Admin/Views/{SetManagement,ListeningManagement,BillingManagement,NotificationManagement}`, `Views/Folder/FolderDetail.cshtml`, the new node test and docs, all in 2.2.
+- G8/G10 pass for the swept routes (see Method); the sweep re-run after S1–S6 shows the jQuery errors and those unnamed controls gone (156 of 204 page views still carry findings: R1 on every layout page, R3, R4, R5, R6). S7 was fixed after that re-run and is covered by its test only, not by a second browser pass.
+- G9/G11/G12/G14/G16 n-a (no visual change). G13 pass: launcher and `/Sets`, `/Practice`, `/Vocabulary`, `/Home/Listening` load in the sweep. G15 pass: no credentials printed, no data left behind.
+
