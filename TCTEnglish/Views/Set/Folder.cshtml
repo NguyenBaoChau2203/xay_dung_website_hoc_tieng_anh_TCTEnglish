@@ -1,0 +1,38 @@
+@model TCTEnglish.ViewModels.Sets.SetFolderPageViewModel
+@using TCTEnglish.ViewModels
+@using TCTEnglish.ViewModels.Sets
+@{
+    ViewData["Title"] = Model.Name;
+    var header = new PageHeaderViewModel
+    {
+        Title = Model.Name,
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Bộ thẻ của tôi", Url.Action("Index", "Set")),
+            new PageBreadcrumbItem("Thư mục")
+        }
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page ts-page ts-page--list">
+    <partial name="_PageHeader" model="header" />
+    <partial name="_SetAlerts" />
+
+    <section class="ts-group" aria-labelledby="ts-folder-sets">
+        <h2 class="ts-group-title" id="ts-folder-sets">Bộ thẻ trong thư mục <span class="ts-group-count">@Model.Sets.Count</span></h2>
+        <ul class="ts-grid">
+            @foreach (var tile in Model.Sets)
+            {
+                <li><partial name="_SetTile" model="tile" /></li>
+            }
+        </ul>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

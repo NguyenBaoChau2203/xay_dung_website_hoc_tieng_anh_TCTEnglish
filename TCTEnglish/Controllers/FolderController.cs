@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TCTEnglish.Services.Sets;
 using TCTVocabulary.Models;
+using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
 namespace TCTVocabulary.Controllers
@@ -57,27 +58,20 @@ namespace TCTVocabulary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateFolder(string folderName)
         {
-            if (string.IsNullOrWhiteSpace(folderName))
-            {
-                return RedirectToAction("Folder", "Folder");
-            }
-
             if (!TryGetCurrentUserId(out var userId))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var folder = new Folder
+            // Same rules as the new /Sets dialog (trim, 1-100 characters, unique per owner); the folder page lives under /Sets.
+            var result = await _personalSets.CreateFolderAsync(userId, folderName);
+            if (result.Status == OperationStatus.Success)
             {
-                FolderName = folderName.Trim(),
-                UserId = userId,
-                ParentFolderId = null
-            };
+                return RedirectToAction("FolderPage", "Set", new { id = result.Value });
+            }
 
-            _context.Folders.Add(folder);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(FolderDetail), "Folder", new { id = folder.FolderId });
+            TempData["SetError"] = result.ErrorMessage ?? "Không tạo được thư mục.";
+            return RedirectToAction("Index", "Set");
         }
 
         [Authorize]
