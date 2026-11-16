@@ -103,6 +103,31 @@ public sealed class LandingPageTests
     }
 
     [Fact]
+    public async Task Landing_Hero_ShowsTheRealProductShotWithSizesAltAndDecorativeChips()
+    {
+        var (_, html, decoded) = await GetLandingAsync(signedIn: false);
+
+        var shot = Regex.Match(decoded, "<img\\b[^>]*hero-home-1120\\.webp[^>]*>", RegexOptions.Singleline);
+        Assert.True(shot.Success, "hero product image missing");
+        Assert.Contains("hero-home-2240.webp", shot.Value, StringComparison.Ordinal);
+        Assert.Contains("fetchpriority=\"high\"", shot.Value, StringComparison.Ordinal);
+        Assert.DoesNotContain("loading=\"lazy\"", shot.Value, StringComparison.Ordinal);
+        Assert.Matches("width=\"\\d+\"", shot.Value);
+        Assert.Matches("height=\"\\d+\"", shot.Value);
+        Assert.Contains("alt=\"Trang Từ vựng của TCT English: mục tiêu hôm nay, từ cần ôn và lịch ôn 7 ngày\"", shot.Value, StringComparison.Ordinal);
+
+        // The four floating chips are decoration: hidden from assistive technology, no invented figures.
+        var chips = Regex.Matches(decoded, "<div class=\"lp-chip[^\"]*\"[^>]*>", RegexOptions.Singleline).Select(m => m.Value).ToList();
+        Assert.Equal(4, chips.Count);
+        Assert.All(chips, c => Assert.Contains("aria-hidden=\"true\"", c, StringComparison.Ordinal));
+        Assert.DoesNotContain("XP", decoded, StringComparison.Ordinal);
+        Assert.DoesNotContain("Chuỗi 5 ngày", decoded, StringComparison.Ordinal);
+
+        // Both hero images exist as static files under the app.
+        Assert.Contains("/images/landing/hero-home-1120.webp", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task Landing_RootServesThePageAndAnonymousDashboardRedirectsToIt()
     {
         await using var factory = new TestWebApplicationFactory();
