@@ -401,3 +401,16 @@ Phase, date, commit subject; G1–G16 each with pass / n-a / deferred / blocked 
 - `/` returned 200 for an anonymous request in this probe (plan 2.4 expects landing; re-check at G5, the controller is not touched).
 - Before-screenshots: `.tmp/landing/before/landing-{1440,1366,390}.png`.
 - Product claims for 5.7/5.8: to be verified in N6/N7 (not yet checked).
+
+
+### N1 — Sets card details for Standard accounts (2026-11-16) — `fix(sets): open the card details panel for Standard accounts`
+- Root cause (F8 confirmed): `setData` in `set-card-form.js` cleared `refs.imageResults`, which exists only in the Premium markup. Fix: `if (refs.imageResults)` guard. The other image-search refs are only reached from handlers inside `if (refs.imageSearch)`.
+- Test first: `scripts/tests/test_set_card_form_nonpremium.cjs` (3 tests). Before the fix the two Standard tests failed with `TypeError: Cannot set properties of null (setting 'textContent')`; the Premium control passed. After: 3/3 pass.
+- G1 pass: 0 errors. Warning baseline correction: the N0 figure of 0 came from an incremental no-op build; a clean rebuild reports 58 pre-existing nullable/analyzer warnings (CS8618 ×48 etc.). N1 changed no C#.
+- G2/G3 pass: 1745 passed, 35 skipped, 0 failed (equals N0).
+- G4 pass: 347 / 348; the one failure is the known `test_speaking_catalog_packages.cjs` (N0 baseline 344 / 345, +3 new tests).
+- G5 pass: no route, JSON or markup contract touched. G6 pass: no CSS touched; `git diff --check` flags only the unrelated blank line in `appsettings.Development.json` (not staged).
+- G7 pass: files are `set-card-form.js`, the new node test, `known-issues.md`, `bug-fix-log.md` and this plan.
+- G8/G10 browser (headless Chrome, synthetic accounts, app on :5100): Standard `/Sets/1/Add`: image-search block absent, "Chi tiết" offcanvas opens, console clean; `/Sets/Cards/5/Edit` console clean. Premium `/Sets/3/Add`: image-search block present, details open, console clean; `/Sets/Cards/8/Edit` clean. Image search itself was not triggered (it calls an external provider).
+- G9/G11/G12/G14/G16 n-a (no visual change). G13 smoke covered by the browser run above. G15 pass: no new `innerHTML`, no credentials printed.
+- Docs: known issue SETS-CARD-DETAILS-NONPREMIUM-NULL moved to resolved; bug-fix-log entry appended.

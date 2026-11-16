@@ -52,17 +52,6 @@ proposing follow-up work so they do not optimize already-completed items.
   câu trả lời server giả lập; chưa chạy với khóa AI thật. Cần một lần thử thủ công
   bằng khóa cục bộ của chủ dự án trước khi coi là đã xác nhận.
 
-### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
-
-- Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên
-  `/Sets/{id}/Add` không mở được bảng chi tiết, và `/Sets/Cards/{id}/Edit` ghi lỗi
-  console `TypeError: Cannot set properties of null (setting 'textContent')`.
-- Nguyên nhân: `Object.setData` trong `wwwroot/js/set-card-form.js` (khoảng dòng 465)
-  gán `refs.imageResults.textContent` không kiểm tra, nhưng phần tìm ảnh chỉ được
-  render cho Premium (dòng kế bên đã kiểm `refs.imageQuery`). Có sẵn từ trước đợt
-  Study Clay (thấy ở baseline C0); tài khoản Premium mở bảng bình thường.
-- Chưa sửa vì đợt Study Clay chỉ đổi giao diện (không đổi logic JS). Hướng sửa gọn:
-  bọc dòng đó bằng `if (refs.imageResults)`; cần test hồi quy cho tài khoản Standard.
 ### STAGING-SOURCE-MEDIA-MISSING — confirmed05/11/2026
 
 - Owner đã yêu cầu copy toàn bộ production DB sang staging. Đã hoàn tất9.209
@@ -402,6 +391,8 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 ---
 
 ## Recently Resolved / Verified
+
+SETS-CARD-DETAILS-NONPREMIUM-NULL, resolved 16/11/2026: `refs.imageResults` in `set-card-form.js` `setData` is now guarded, so the "Chi tiết" panel opens for Standard accounts and the edit page logs no error. Regression test: `scripts/tests/test_set_card_form_nonpremium.cjs`.
 
 Pre-merge security04/11: pending browser bundle upgraded DOMPurify3.2.6 to
 3.4.17 with immutable upstream source/hash/license and portable vendor bytes.

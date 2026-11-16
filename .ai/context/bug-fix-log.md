@@ -4611,3 +4611,20 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 **Verification**: Full .NET suite and node suite green except the one known CRLF node failure; real-browser runs of a lesson, a review, an early-review replay and a simulated save failure matched the database rows. `LearningApiController` is unchanged. See the SRS polish plan section 12.
 
 **Notes**: See TD-016. The legacy endpoint still lacks a card access check (TD-013, Châu).
+
+
+### Sets card details panel did not open for Standard accounts — 2026-11-16
+
+**Symptom**: With a Standard (non-Premium) account the "Chi tiết" button on `/Sets/{id}/Add` did nothing, and `/Sets/Cards/{id}/Edit` logged `TypeError: Cannot set properties of null (setting 'textContent')`.
+
+**Root Cause**: `setData` in `wwwroot/js/set-card-form.js` cleared `refs.imageResults` without a check. The image search block (`[data-ts-image-results]`) is rendered only for Premium accounts, so for Standard the reference was null and `setData` threw before the panel could be filled.
+
+**Solution**: Guard the line with `if (refs.imageResults)`, like the neighbouring `refs.imageQuery` line. No other use of the image search refs is reachable without the block (the handlers sit inside `if (refs.imageSearch)`).
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/set-card-form.js` — `setData`: guard `refs.imageResults`.
+- `scripts/tests/test_set_card_form_nonpremium.cjs` — new: Standard `setData` with and without data does not throw; Premium still clears results and query. Two of the three tests failed before the fix.
+
+**Verification**: Node tests for the new file 3/3 pass; the full suites are recorded in the landing-night plan section 12 (N1).
+
+**Notes**: Known issue SETS-CARD-DETAILS-NONPREMIUM-NULL moved to resolved.
