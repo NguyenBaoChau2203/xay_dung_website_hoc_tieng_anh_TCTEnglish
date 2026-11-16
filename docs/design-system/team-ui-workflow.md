@@ -156,11 +156,11 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Mục tiêu | `/Goals` | `goals.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Tài khoản | `/Account/Profile`, `/Account/Settings`, `/Account/AccessDenied` | `account-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
 | Đăng nhập / khôi phục mật khẩu | `/Account/Login`, `/Account/ForgotPassword*`, `/Account/ResetPassword` (`Layout = null`) | `account-auth-ui.css` + `tct-learning-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code (sửa theo review) | Chau |
-| Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
+| Lớp học, thư mục | `/Class/*`, `/Folder/*` (trang thư mục mới: dòng "Bộ thẻ cá nhân") | `Class-Detail.css` | Giá trị cố định | Lớp học chưa chuyển; danh sách và trang thư mục đã chuyển Clay 2026-11-16 | _chủ dự án gán_ |
 | Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chau |
 | Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Bộ thẻ cá nhân | `/Sets`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `study-kit.css` + `personal-sets.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
+| Bộ thẻ cá nhân | `/Sets`, `/Sets/Folders/{id}`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `study-kit.css` + `personal-sets.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
 | Luyện tập | `/Practice`, `/Practice/{mode}`, `/Practice/HardWords` | `study-kit.css` + `practice.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
 | Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chau |
 | Loader đăng nhập | Overlay trong `Views/Account/Auth.cshtml` | `account-auth-ui.css` | `var(--tct-*)` dùng chung | Đã chuyển code; xem ledger 10/11 | Chau |

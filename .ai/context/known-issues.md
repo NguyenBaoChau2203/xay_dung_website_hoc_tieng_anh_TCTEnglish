@@ -397,6 +397,20 @@ Sweep 16/11/2026 xác nhận thêm: "Bắt đầu luyện" (`/Practice`, 1440), 
 - **Recommended fix**: Owner decision: rename carefully (add new sets, keep old ones) or expand the content with reviewed, additive data and a validator; host or drop the pictures. Do not reuse a publisher's word-list name for new content.
 - **Effort**: Medium (content work).
 
+### TD-018: Folders: shared-file edits for the owner of the layout, and two leftovers [LOW]
+- **Files**: `Views/Shared/_Layout.cshtml`, `wwwroot/js/layout.js`, `Views/Shared/_CreateFolderDialog.cshtml`, `Controllers/FolderController.cs`, `Views/Folder/*`
+- **Issue**: The folders work (2026-11-16) edited two shared files that belong to Châu: in `_Layout.cshtml` the "Thư viện của bạn" group is active for the Set controller, the "Thư mục của tôi" entry is removed, the footer link points to `/Sets` and the create-folder modal is replaced by the `_CreateFolderDialog` partial (ids `newFolderBtn`, `folderModal`, `cancelFolderBtn` kept); in `layout.js` the create-folder block was rewritten (counter, blank guard, pending state, bfcache reset, reopen on error, focus return, `#tao-thu-muc` link). Leftovers: `FolderController.BuildFolderPageViewModelAsync` is now unused, and the legacy `Views/Folder/*` pages (reachable at `/Home/FolderDetail/{id}` for class links and old bookmarks) still use the old look.
+- **Impact**: None for users. A reviewer of the layout should look at those two blocks; a later cleanup can delete the dead method and move the legacy folder detail onto `/Sets/Folders/{id}`.
+- **Recommended fix**: Châu reviews the two shared-file blocks in the PR; remove the unused method and retire `Views/Folder/*` once class links point to the new folder page (`Views/Class/**` is another owner's).
+- **Effort**: Small.
+
+### TD-017: Practice has no folder scope, so the folder page has no "Luyện từ đến hạn" [LOW]
+- **Files**: `Controllers/PracticeController*.cs`, `Views/Set/Folder.cshtml`
+- **Issue**: `/Practice` takes one `set` or a list of words and cannot practise a whole folder, so the plan's optional "Luyện x từ đến hạn" button was left out of the folder page.
+- **Impact**: A learner practises a folder set by set.
+- **Recommended fix**: If wanted, add a folder scope to Practice (a source rule, not a view change) and then the button; needs the Practice contract to be extended with its tests.
+- **Effort**: Small to medium.
+
 ### TD-016: Spaced repetition: level kept in `RepetitionCount`, fixed daily target, system cards only [LOW]
 - **Files**: `Services/Vocabulary/SpacedRepetitionScheduler.cs`, `Services/StudyService.Vocabulary.cs`, `LearningProgress`
 - **Issue**: The memory level (0-6) lives in the existing `RepetitionCount` column, legacy rows are read through a mapping (Mastered below level 4 reads as 4, Learning reads as 0) and are normalised only when recorded again. The daily target is the constant 10 words. Personal sets keep the old schedule (1 h to 7 d).

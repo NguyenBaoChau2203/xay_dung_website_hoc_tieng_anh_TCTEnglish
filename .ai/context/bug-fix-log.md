@@ -4650,6 +4650,25 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 
 
 
+### Sets and folders: a folder had no page of its own, the create dialog was a bare English modal — 2026-11-16
+
+**Symptom**: "Thư mục của tôi" in the sidebar led to a separate list that mixed in classes, the create-folder modal was English and gave no feedback on errors, and a folder could only be managed through the legacy `/Home/FolderDetail` screen; sets could not be moved in or out of a folder from the Sets area.
+
+**Root Cause**: Folder rules lived in `FolderController` and the legacy views, outside `PersonalSetService`, so the Sets workspace had no folder concept beyond a dropdown on the set form.
+
+**Solution**: Folder rules moved into `PersonalSetService` (list, page, create, rename, delete, move in/out, unsave) behind new `/Sets/Folders/*` routes on `SetController.Personal`; the sidebar and `/Sets` show folders (own and saved) with a Vietnamese native-dialog create flow; the folder page has rename/delete dialogs, create-in and move in/out; the legacy routes stay and the legacy create goes through the service. No schema change.
+
+**Files Changed**:
+- `Services/Sets/*`, `ViewModels/Sets/*`, `Controllers/SetController.Personal.cs`, `Controllers/FolderController.cs`
+- `Views/Set/{Index,Folder,_FolderTile,_FolderMoveRows,_SetTile,CreateSet,Detail}.cshtml`, `Views/Shared/_CreateFolderDialog.cshtml`, `wwwroot/css/personal-sets.css`, `wwwroot/js/{personal-sets-common,layout}.js`, `Views/Shared/_Layout.cshtml` (shared, see TD-018)
+- Tests: `SetFolderServiceTests` (27), `SetFoldersIntegrationTests`, `scripts/tests/test_folder_dialog.cjs` (20)
+
+**Verification**: Full .NET suite and node suite per phase (see the plan section 12); scripted browser runs at seven sizes, keyboard, forced colours and contrast.
+
+**Notes**: Plan `docs/superpowers/plans/2026-11-16-sets-folders.md`. See TD-017 and TD-018.
+
+---
+
 ### Landing page: login-tab buttons, dead footer icons, blank page when the script fails, stale copy — 2026-11-16
 
 **Symptom**: Every "Bắt đầu miễn phí" and "Tạo tài khoản miễn phí" button opened the login tab; the three footer social icons were `href="#"`; every section stayed hidden until a script added a class, so a script error or no JavaScript left the page blank; the copy still said "4 chế độ", "kéo thả ghép thẻ", "Trợ lý AI OpenAI" and "dành cho nhân viên công ty TCT"; no description or share tags; two icon and font CDNs plus nine font weights.
