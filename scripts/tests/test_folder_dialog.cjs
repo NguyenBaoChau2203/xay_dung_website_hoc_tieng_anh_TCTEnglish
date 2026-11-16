@@ -253,3 +253,59 @@ test('layout.js builds no HTML strings for the dialog', () => {
   assert.ok(block.length > 500, 'dialog block found');
   assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write/.test(block));
 });
+
+// ---------------------------------------------------------------- modal helpers of personal-sets-common.js (rename dialog on the folder page)
+
+const COMMON = fs.readFileSync(path.join(__dirname, '..', '..', 'TCTEnglish', 'wwwroot', 'js', 'personal-sets-common.js'), 'utf8');
+
+function loadCommon({ autofocusModals = [], reopenModals = [], withBootstrap = true } = {}) {
+  const shown = [];
+  const doc = {
+    readyState: 'complete',
+    listeners: {},
+    addEventListener(type, fn) { (doc.listeners[type] = doc.listeners[type] || []).push(fn); },
+    querySelector: () => null,
+    querySelectorAll(selector) {
+      if (selector === '.modal[data-ts-autofocus]') return autofocusModals;
+      if (selector === '.modal[data-ts-open-on-load]') return reopenModals;
+      return [];
+    },
+    createElement: () => ({ setAttribute() {} }),
+  };
+  const win = {
+    TctSets: undefined,
+    localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    speechSynthesis: undefined,
+  };
+  if (withBootstrap) win.bootstrap = { Modal: { getOrCreateInstance: (el) => ({ show: () => shown.push(el) }) } };
+  vm.runInNewContext(COMMON, { window: win, document: doc, console, setTimeout, HTMLFormElement: function HTMLFormElement() {}, fetch: () => Promise.reject(new Error('no network')) });
+  return { shown, doc, win };
+}
+
+function modalWithField() {
+  const field = { focusCount: 0, selected: false, focus() { this.focusCount += 1; }, select() { this.selected = true; } };
+  const modal = { listeners: {}, addEventListener(type, fn) { (this.listeners[type] = this.listeners[type] || []).push(fn); }, querySelector: (s) => (s === '[data-ts-autofocus-target]' ? field : null) };
+  return { modal, field };
+}
+
+test('a modal marked for autofocus focuses and selects its field once it is shown', () => {
+  const { modal, field } = modalWithField();
+  loadCommon({ autofocusModals: [modal] });
+  assert.equal(field.focusCount, 0);
+
+  modal.listeners['shown.bs.modal'].forEach((fn) => fn());
+
+  assert.equal(field.focusCount, 1);
+  assert.equal(field.selected, true);
+});
+
+test('a modal marked data-ts-open-on-load is opened through Bootstrap', () => {
+  const { modal } = modalWithField();
+  const t = loadCommon({ reopenModals: [modal] });
+  assert.deepEqual(t.shown, [modal]);
+});
+
+test('without Bootstrap the open-on-load helper does nothing and does not throw', () => {
+  const { modal } = modalWithField();
+  assert.doesNotThrow(() => loadCommon({ reopenModals: [modal], withBootstrap: false }));
+});

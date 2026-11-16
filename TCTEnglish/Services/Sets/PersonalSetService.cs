@@ -367,18 +367,28 @@ public sealed partial class PersonalSetService : IPersonalSetService
         if (canManage)
         {
             // Only sets of the folder's owner can be moved in, so a folder never mixes owners.
-            page.MovableSets = await ManageableSets(userId, isAdmin).AsNoTracking()
+            var movable = await ManageableSets(userId, isAdmin).AsNoTracking()
                 .Where(s => s.OwnerId == folder.UserId && s.FolderId != folderId)
                 .OrderBy(s => s.SetName)
                 .Take(MaxOwnedSets)
-                .Select(s => new SetFolderMovableSetViewModel
+                .Select(s => new
                 {
-                    SetId = s.SetId,
-                    SetName = s.SetName,
+                    s.SetId,
+                    s.SetName,
                     WordCount = s.Cards.Count,
+                    SampleTerm = s.Cards.OrderBy(c => c.CardId).Select(c => c.Term).FirstOrDefault(),
                     CurrentFolderName = s.Folder != null ? s.Folder.FolderName : null,
                 })
                 .ToListAsync(ct);
+            page.MovableSets = movable.Select(m => new SetFolderMovableSetViewModel
+            {
+                SetId = m.SetId,
+                SetName = m.SetName,
+                WordCount = m.WordCount,
+                SampleTerm = SampleOf(m.SampleTerm, m.SetName),
+                CoverHue = SetCoverColor.For(m.SetId),
+                CurrentFolderName = m.CurrentFolderName?.Trim(),
+            }).ToList();
         }
 
         return page;

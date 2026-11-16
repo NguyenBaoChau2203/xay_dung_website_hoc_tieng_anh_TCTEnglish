@@ -552,6 +552,190 @@ public sealed class SetFoldersIntegrationTests
         Assert.Matches("<button[^>]*data-open-folder-dialog[^>]*>\\s*(<i[^>]*></i>\\s*)?Tạo thư mục\\s*</button>", actions);
     }
 
+    // ------------------------------------------------------------------ folder page
+
+    private static string Between(string html, string startPattern, string endPattern)
+        => Regex.Match(html, startPattern + ".*?" + endPattern, RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task FolderPage_OwnerSeesNameFactsActionsModalsAndRemoveButtons()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var id = TestDataIds.UserFolderId;
+
+        var html = await PageAsync(client, $"/Sets/Folders/{id}");
+
+        Assert.Matches("<h1[^>]*>\\s*Sprint One Folder\\s*</h1>", html);
+        Assert.Matches("1 bộ thẻ", html);
+        var breadcrumb = Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>");
+        Assert.Contains("href=\"/Sets\"", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Bộ thẻ của tôi", breadcrumb, StringComparison.Ordinal);
+
+        Assert.Matches($"<a[^>]*href=\"/Home/CreateSet\\?folderId={id}\"[^>]*>[^<]*(<i[^>]*></i>)?\\s*Tạo bộ thẻ trong thư mục", html);
+        Assert.Matches("<button[^>]*data-bs-target=\"#tsRenameFolderModal\"[^>]*>\\s*(<i[^>]*></i>\\s*)?Đổi tên", html);
+        Assert.Matches("<button[^>]*data-bs-target=\"#tsDeleteFolderModal\"[^>]*>\\s*(<i[^>]*></i>\\s*)?Xóa thư mục", html);
+
+        var rename = Between(html, "<div class=\"modal fade\" id=\"tsRenameFolderModal\"", "</form>");
+        Assert.Contains($"action=\"/Sets/Folders/{id}/Rename\"", rename, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", rename, StringComparison.Ordinal);
+        Assert.Matches("name=\"name\"[^>]*maxlength=\"100\"|maxlength=\"100\"[^>]*name=\"name\"", rename);
+        Assert.Contains("value=\"Sprint One Folder\"", rename, StringComparison.Ordinal);
+        Assert.Contains("Lưu tên", rename, StringComparison.Ordinal);
+
+        var delete = Between(html, "<div class=\"modal fade\" id=\"tsDeleteFolderModal\"", "</form>");
+        Assert.Contains($"action=\"/Sets/Folders/{id}/Delete\"", delete, StringComparison.Ordinal);
+        Assert.Contains("Xóa thư mục “Sprint One Folder”?", delete, StringComparison.Ordinal);
+        Assert.Contains("Các bộ thẻ bên trong không bị xóa, chúng chỉ ra khỏi thư mục.", delete, StringComparison.Ordinal);
+
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", html, StringComparison.Ordinal);
+        var remove = Between(html, "<form[^>]*action=\"/Sets/" + TestDataIds.UserSetId + "/MoveToFolder\"", "</form>");
+        Assert.Contains("name=\"folderId\" value=\"\"", remove, StringComparison.Ordinal);
+        Assert.Contains($"name=\"returnUrl\" value=\"/Sets/Folders/{id}\"", remove, StringComparison.Ordinal);
+        Assert.Contains("Bỏ khỏi thư mục", remove, StringComparison.Ordinal);
+        Assert.DoesNotContain("Thêm bộ thẻ có sẵn", html, StringComparison.Ordinal); // no other set to move in
+    }
+
+    [Fact]
+    public async Task FolderPage_EmptyFolderShowsTheEmptyStateAndTheListOfSetsToMoveIn()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var id = TestDataIds.DeletableUserFolderId;
+
+        var html = await PageAsync(client, $"/Sets/Folders/{id}");
+
+        Assert.Contains("Thư mục này chưa có bộ thẻ nào", html, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ mới ngay trong thư mục, hoặc chuyển bộ thẻ có sẵn vào đây.", html, StringComparison.Ordinal);
+        Assert.Contains("Chuyển bộ thẻ có sẵn vào thư mục", html, StringComparison.Ordinal);
+        var row = Between(html, "<li class=\"ts-move-row\"", "</li>");
+        Assert.Contains("đang ở Sprint One Folder", row, StringComparison.Ordinal);
+        Assert.Contains($"action=\"/Sets/{TestDataIds.UserSetId}/MoveToFolder\"", row, StringComparison.Ordinal);
+        Assert.Contains($"name=\"folderId\" value=\"{id}\"", row, StringComparison.Ordinal);
+        Assert.Contains($"name=\"returnUrl\" value=\"/Sets/Folders/{id}\"", row, StringComparison.Ordinal);
+        Assert.Matches("<button[^>]*>\\s*Chuyển vào\\s*</button>", row);
+    }
+
+    [Fact]
+    public async Task FolderPage_WithoutAnyOwnSetOffersOnlyTheCreateButton()
+    {
+        await using var factory = await NewFactoryAsync();
+        var folderId = await DbAsync(factory, async db =>
+        {
+            var folder = new Folder { FolderName = "Trống", UserId = TestDataIds.OutsiderUserId };
+            db.Folders.Add(folder);
+            await db.SaveChangesAsync();
+            return folder.FolderId;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{folderId}");
+
+        Assert.Contains("Thư mục này chưa có bộ thẻ nào", html, StringComparison.Ordinal);
+        Assert.Contains($"/Home/CreateSet?folderId={folderId}", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Chuyển bộ thẻ có sẵn vào thư mục", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("ts-move-row", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_SavedFollowerGetsAReadOnlyViewWithUnsave()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.Contains("Đã lưu", html, StringComparison.Ordinal);
+        var unsave = Between(html, "<form[^>]*action=\"/Sets/Folders/" + TestDataIds.UserFolderId + "/Unsave\"", "</form>");
+        Assert.Contains("Bỏ lưu", unsave, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", unsave, StringComparison.Ordinal);
+        foreach (var gone in new[] { "tsRenameFolderModal", "tsDeleteFolderModal", "Tạo bộ thẻ trong thư mục", "Bỏ khỏi thư mục", "/MoveToFolder" })
+        {
+            Assert.DoesNotContain(gone, html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task FolderPage_ClassMemberSeesTheSetsWithoutAnyEditAction()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.MemberUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", html, StringComparison.Ordinal);
+        foreach (var gone in new[] { "tsRenameFolderModal", "tsDeleteFolderModal", "Tạo bộ thẻ trong thư mục", "Bỏ khỏi thư mục", "/Unsave", "Bỏ lưu" })
+        {
+            Assert.DoesNotContain(gone, html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task FolderPage_WithChildFoldersExplainsWhyItCannotBeDeletedHere()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.Folders.Add(new Folder { FolderName = "Con", UserId = TestDataIds.UserId, ParentFolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.DoesNotContain("tsDeleteFolderModal", html, StringComparison.Ordinal);
+        Assert.Contains("còn thư mục con", html, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Home/FolderDetail/{TestDataIds.UserFolderId}\"", html, StringComparison.Ordinal);
+        Assert.Contains("tsRenameFolderModal", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_AFailedRenameReopensTheModalOnceWithTheMessageAndTheTypedName()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}";
+
+        using var failed = await PostAsync(client, route + "/Rename", "name=" + Uri.EscapeDataString("sprint one delete folder"), token);
+        var html = await PageAsync(client, route);
+        var modal = Between(html, "<div class=\"modal fade\" id=\"tsRenameFolderModal\"", "</form>");
+
+        Assert.Equal(HttpStatusCode.Redirect, failed.StatusCode);
+        Assert.Contains("data-ts-open-on-load", modal, StringComparison.Ordinal);
+        Assert.Contains("value=\"sprint one delete folder\"", modal, StringComparison.Ordinal);
+        Assert.Contains("Bạn đã có thư mục tên này.", modal, StringComparison.Ordinal);
+
+        var later = await PageAsync(client, route);
+        Assert.DoesNotContain("data-ts-open-on-load", later, StringComparison.Ordinal);
+        Assert.DoesNotContain("Bạn đã có thư mục tên này.", later, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_ShowsTheSuccessMessageAfterRenameAndAfterMove()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var renamed = await PostAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}/Rename", "name=" + Uri.EscapeDataString("Tên mới"), token);
+        Assert.Equal(HttpStatusCode.Redirect, renamed.StatusCode);
+        Assert.Contains("Đã đổi tên thư mục.", await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}"), StringComparison.Ordinal);
+
+        using var moved = await PostAsync(client, $"/Sets/{TestDataIds.UserSetId}/MoveToFolder", $"folderId={TestDataIds.DeletableUserFolderId}&returnUrl=" + Uri.EscapeDataString($"/Sets/Folders/{TestDataIds.DeletableUserFolderId}"), token);
+        Assert.Equal(HttpStatusCode.Redirect, moved.StatusCode);
+        var page = await PageAsync(client, $"/Sets/Folders/{TestDataIds.DeletableUserFolderId}");
+        Assert.Contains("Đã chuyển bộ thẻ vào \"Sprint One Delete Folder\".", page, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", page, StringComparison.Ordinal);
+    }
+
     // ------------------------------------------------------------------ legacy create
 
     [Fact]

@@ -213,6 +213,21 @@
             sync();
         });
 
+        // A modal that asks for a value focuses it when it opens (data-ts-autofocus on the modal, data-ts-autofocus-target on the field).
+        document.querySelectorAll('.modal[data-ts-autofocus]').forEach(function (modal) {
+            modal.addEventListener('shown.bs.modal', function () {
+                var field = modal.querySelector('[data-ts-autofocus-target]');
+                if (!field) { return; }
+                field.focus();
+                if (typeof field.select === 'function') { field.select(); }
+            });
+        });
+
+        // A modal marked data-ts-open-on-load opens again after the server sent the user back with a message (a failed rename).
+        document.querySelectorAll('.modal[data-ts-open-on-load]').forEach(function (modal) {
+            if (window.bootstrap && window.bootstrap.Modal) { window.bootstrap.Modal.getOrCreateInstance(modal).show(); }
+        });
+
         // Live cover preview on the create/settings form.
         var source = document.querySelector('[data-ts-preview-source]');
         var target = document.querySelector('[data-ts-preview-target]');

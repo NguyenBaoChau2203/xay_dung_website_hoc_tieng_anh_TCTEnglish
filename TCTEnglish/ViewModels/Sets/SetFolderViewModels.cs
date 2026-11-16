@@ -27,6 +27,10 @@ public sealed class SetFolderMovableSetViewModel
     public string SetName { get; set; } = string.Empty;
     public int WordCount { get; set; }
 
+    /// <summary>First word of the set, shown on the small cover; the cover hue is picked from the set id.</summary>
+    public string SampleTerm { get; set; } = string.Empty;
+    public string CoverHue { get; set; } = "primary";
+
     /// <summary>Null when the set is not in any folder yet.</summary>
     public string? CurrentFolderName { get; set; }
 }

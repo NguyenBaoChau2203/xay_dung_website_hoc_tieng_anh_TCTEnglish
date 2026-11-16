@@ -1,0 +1,22 @@
+@model TCTEnglish.ViewModels.Sets.SetFolderPageViewModel
+@* Rows that move one of the owner's sets into this folder: inline for an empty folder, inside a panel otherwise. *@
+@{
+    var folderUrl = Url.Action("FolderPage", "Set", new { id = Model.FolderId })!;
+}
+<ul class="ts-move-list" aria-label="Bộ thẻ có thể chuyển vào thư mục">
+    @foreach (var m in Model.MovableSets)
+    {
+        <li class="ts-move-row">
+            <span class="ts-move-cover ts-hue-@m.CoverHue" aria-hidden="true">@(m.SampleTerm.Length > 3 ? m.SampleTerm[..3] : m.SampleTerm)</span>
+            <div class="ts-move-text">
+                <strong class="tct-break">@m.SetName</strong>
+                <span class="ts-move-meta">@m.WordCount từ · @(m.CurrentFolderName != null ? $"đang ở {m.CurrentFolderName}" : "chưa có thư mục")</span>
+            </div>
+            <form method="post" asp-controller="Set" asp-action="MoveToFolder" asp-route-setId="@m.SetId">
+                <input type="hidden" name="folderId" value="@Model.FolderId" />
+                <input type="hidden" name="returnUrl" value="@folderUrl" />
+                <button type="submit" class="btn btn-outline-primary btn-sm" data-ts-pending="Đang chuyển…" aria-label="Chuyển bộ thẻ @m.SetName vào thư mục @Model.Name">Chuyển vào</button>
+            </form>
+        </li>
+    }
+</ul>
