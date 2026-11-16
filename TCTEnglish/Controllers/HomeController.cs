@@ -22,6 +22,7 @@ namespace TCTVocabulary.Controllers
         private readonly IAppEmailSender _emailSender;
         private readonly IGoalsService _goalsService;
         private readonly ILogger<HomeController> _logger;
+        private readonly TCTEnglish.Services.Notifications.LearningBusinessClock _clock;
         private readonly IDataProtector _dailyChallengeProtector;
 
         public HomeController(
@@ -29,12 +30,14 @@ namespace TCTVocabulary.Controllers
             IAppEmailSender emailSender,
             IGoalsService goalsService,
             IDataProtectionProvider dataProtectionProvider,
-            ILogger<HomeController> logger)
+            ILogger<HomeController> logger,
+            TCTEnglish.Services.Notifications.LearningBusinessClock clock)
         {
             _context = context;
             _emailSender = emailSender;
             _goalsService = goalsService;
             _logger = logger;
+            _clock = clock;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
 
@@ -65,13 +68,14 @@ namespace TCTVocabulary.Controllers
 
         private async Task<DashboardViewModel?> BuildDashboardViewModelAsync(int userId)
         {
+            using var operation = _clock.BeginOperation();
             var user = await _context.Users
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(u => u.Folders)
                     .ThenInclude(f => f.Sets)
                 .Include(u => u.Sets)
-                .FirstOrDefaultAsync(u => u.UserId == userId);
+                .FirstOrDefaultAsync(u => u.UserId == userId && u.AnonymizedAt == null);
 
             if (user == null)
             {
@@ -102,6 +106,15 @@ namespace TCTVocabulary.Controllers
             var newCount = Math.Max(0, cardCount - masteredCount - learningCount);
 
             var heatmapCells = await BuildDashboardHeatmapAsync(userId);
+            var today = _clock.BusinessDate;
+            var goalsSnapshot = await _goalsService.GetGoalsAsync(userId);
+            var xpTotals = await _context.UserDailyActivities.AsNoTracking()
+                .Where(a => a.UserId == userId && a.ActivityDate <= today)
+                .GroupBy(_ => 1).Select(g => new
+                {
+                    Total = g.Sum(a => a.XpEarned),
+                    Today = g.Sum(a => a.ActivityDate == today ? a.XpEarned : 0)
+                }).FirstOrDefaultAsync();
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
@@ -126,7 +139,16 @@ namespace TCTVocabulary.Controllers
             {
                 FullName = user.FullName,
                 Role = user.Role,
-                Streak = user.Streak ?? 0,
+                Streak = TCTEnglish.Services.Learning.StudyDayProjection.CurrentStreak(user.LastStudyDate, user.Streak, _clock.BusinessDate),
+                TotalXp = xpTotals?.Total ?? 0,
+                TodayXp = xpTotals?.Today ?? 0,
+                DailyGoalPercent = goalsSnapshot?.ProgressPercent ?? 0,
+                ActiveGoalCount = goalsSnapshot?.GoalCards.Count(c => c.TargetValue > 0) ?? 0,
+                MetGoalCount = goalsSnapshot?.GoalCards.Count(c => c.TargetValue > 0 && c.TodayProgressValue >= c.TargetValue) ?? 0,
+                DailyGoalSummary = string.Join("; ", goalsSnapshot?.GoalCards.Where(c => c.TargetValue > 0)
+                    .Select(c => $"{c.AreaLabel}: {c.TodayProgressValue}/{c.TargetValue} {c.UnitLabel}") ?? []),
+                BusinessHour = _clock.UtcNow.AddHours(7).Hour,
+                StudyDays = goalsSnapshot?.StudyDays ?? [],
                 Goal = user.Goal ?? 0,
                 FolderCount = user.Folders.Count,
                 SetCount = user.Sets.Count,
@@ -144,7 +166,7 @@ namespace TCTVocabulary.Controllers
 
         private async Task<List<DashboardHeatmapCellViewModel>> BuildDashboardHeatmapAsync(int userId)
         {
-            var today = BusinessDateHelper.Today;
+            var today = _clock.BusinessDate;
             var startDate = today.AddDays(-27);
 
             var activityByDate = await _context.UserDailyActivities
@@ -189,7 +211,7 @@ namespace TCTVocabulary.Controllers
         /// </summary>
         private async Task<List<DailyFeatureTimeViewModel>> BuildFeatureTimeBreakdownAsync(int userId)
         {
-            var today = BusinessDateHelper.Today;
+            var today = _clock.BusinessDate;
             int daysSinceMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
             if (daysSinceMonday < 0)
             {
@@ -282,7 +304,7 @@ namespace TCTVocabulary.Controllers
                     XpEarned = DailyChallengeXp
                 };
 
-                var activityResult = await _goalsService.RecordActivityAsync(userId, activityUpdate);
+                var activityResult = await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
                 if (activityResult.Status == OperationStatus.NotFound)
                 {
                     _logger.LogWarning("Daily challenge activity record skipped because user {userId} was not found", userId);
@@ -295,7 +317,6 @@ namespace TCTVocabulary.Controllers
                     return BadRequest();
                 }
 
-                await _goalsService.UpdateStreakAndRewardsAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 

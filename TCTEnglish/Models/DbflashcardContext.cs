@@ -620,6 +620,8 @@ public partial class DbflashcardContext : DbContext
 
             entity.Property(e => e.ThresholdValue);
             entity.Property(e => e.SortOrder);
+            entity.Property(e => e.DifficultyKey).HasMaxLength(30);
+            entity.Property(e => e.IsSecret).HasDefaultValue(false);
 
             entity.HasData(BadgeSeedData.CreateBadges());
         });
@@ -627,6 +629,7 @@ public partial class DbflashcardContext : DbContext
         modelBuilder.Entity<UserBadge>(entity =>
         {
             entity.ToTable("UserBadges");
+            entity.Property(e => e.IsRetroactive).HasDefaultValue(false);
 
             entity.HasKey(e => e.Id);
 

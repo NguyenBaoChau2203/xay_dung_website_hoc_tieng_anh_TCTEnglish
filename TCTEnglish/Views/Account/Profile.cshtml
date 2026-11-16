@@ -322,7 +322,7 @@
                                     </div>
                                     <div class="quick-action-meta">
                                         <strong>Mục Tiêu &amp; Lộ Trình Hàng Ngày</strong>
-                                        <p class="small text-secondary mb-0">Theo dõi tiến độ, bảng xếp hạng và chuỗi ngày Streak</p>
+                                        <p class="small text-secondary mb-0">Theo dõi tiến độ học tập, huy hiệu và chuỗi ngày Streak</p>
                                     </div>
                                     <i class="fa-solid fa-arrow-right text-muted ms-auto quick-action-arrow" aria-hidden="true"></i>
                                 </a>
@@ -391,7 +391,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between small text-secondary mb-1">
-                                    <span>Mục tiêu từ vựng hôm nay</span>
+                                    <span>Mục tiêu kỹ năng hôm nay</span>
                                     <span class="fw-bold text-dark">@Model.TodayGoalText</span>
                                 </div>
                                 @if (Model.TodayGoalPercent.HasValue)
@@ -491,42 +491,10 @@
                             {
                                 Kind = StateMessageKind.Empty,
                                 Title = "Chưa có danh hiệu",
-                                Message = "Bạn chưa mở khóa danh hiệu nào. Hãy hoàn thành các thử thách học tập bên dưới để mở khóa huy hiệu vinh danh!",
-                                ActionLabel = "Bắt đầu học ngay",
-                                ActionUrl = "/Vocabulary"
+                                Message = "Bạn chưa mở khóa danh hiệu nào. Hãy hoàn thành các mục tiêu rèn luyện để mở khóa huy hiệu vinh danh!",
+                                ActionLabel = "Xem mục tiêu & huy hiệu",
+                                ActionUrl = Url.Action("Index", "Goals")
                             })
-                        </div>
-                        <div class="badge-showcase-grid">
-                            <div class="badge-showcase-card locked">
-                                <div class="badge-icon-box" aria-hidden="true">
-                                    <i class="fa-solid fa-seedling"></i>
-                                </div>
-                                <div class="badge-meta">
-                                    <strong>Khởi đầu chủ động</strong>
-                                    <p class="text-secondary small mb-1">Hoàn thành bài học từ vựng đầu tiên</p>
-                                    <span class="badge bg-light text-secondary border">Mục tiêu: 0/1 bài học</span>
-                                </div>
-                            </div>
-                            <div class="badge-showcase-card locked">
-                                <div class="badge-icon-box" aria-hidden="true">
-                                    <i class="fa-solid fa-fire"></i>
-                                </div>
-                                <div class="badge-meta">
-                                    <strong>Ngọn lửa kiên trì</strong>
-                                    <p class="text-secondary small mb-1">Duy trì chuỗi học tập 7 ngày liên tục</p>
-                                    <span class="badge bg-light text-secondary border">Tiến độ: @Model.StreakDays/7 ngày</span>
-                                </div>
-                            </div>
-                            <div class="badge-showcase-card locked">
-                                <div class="badge-icon-box" aria-hidden="true">
-                                    <i class="fa-solid fa-brain"></i>
-                                </div>
-                                <div class="badge-meta">
-                                    <strong>Trí nhớ siêu phàm</strong>
-                                    <p class="text-secondary small mb-1">Thuộc 50 từ vựng qua Spaced Repetition</p>
-                                    <span class="badge bg-light text-secondary border">Mục tiêu: 0/50 từ</span>
-                                </div>
-                            </div>
                         </div>
                     }
                     else
@@ -534,13 +502,33 @@
                         <ul class="badge-list">
                             @foreach (var badge in Model.EarnedBadges.Where(b => b.IsUnlocked))
                             {
+                                var awardedVn = badge.AwardedAt.HasValue
+                                    ? TCTVocabulary.Services.BusinessDateHelper.ToBusinessDateFromUtcStorage(badge.AwardedAt.Value)
+                                    : (DateTime?)null;
                                 <li class="badge-item">
                                     <div class="badge-icon-box" aria-hidden="true">
                                         <i class="@(string.IsNullOrEmpty(badge.IconClass) ? "fa-solid fa-award" : badge.IconClass)"></i>
                                     </div>
-                                    <div class="badge-meta">
-                                        <strong>@badge.Name</strong>
-                                        <p class="text-secondary small mb-0">@badge.Description</p>
+                                    <div class="badge-meta flex-grow-1">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-1">
+                                            <strong>@badge.Name</strong>
+                                            <div class="d-flex align-items-center gap-1">
+                                                @if (badge.IsRecentlyUnlocked)
+                                                {
+                                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle small">Mới hôm nay!</span>
+                                                }
+                                                <span class="badge bg-light text-secondary border small">@badge.DisplayGroupLabel</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-secondary small mb-1">@badge.Description</p>
+                                        @if (badge.IsRetroactive)
+                                        {
+                                            <span class="text-muted small"><i class="fa-solid fa-clock-rotate-left me-1"></i>Đã ghi nhận thành tích trước đây</span>
+                                        }
+                                        else if (awardedVn.HasValue)
+                                        {
+                                            <span class="text-muted small"><i class="fa-regular fa-calendar-check me-1"></i>Đạt ngày @awardedVn.Value.ToString("dd/MM/yyyy") (giờ Việt Nam)</span>
+                                        }
                                     </div>
                                 </li>
                             }

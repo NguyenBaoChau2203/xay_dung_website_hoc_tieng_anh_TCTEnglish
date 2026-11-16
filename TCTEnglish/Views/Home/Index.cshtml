@@ -4,22 +4,14 @@
     ViewData["Title"] = "Dashboard";
     var userName   = Model.FullName ?? User.Identity?.Name ?? "Bạn";
     var initials   = userName.Length > 0 ? userName[0].ToString().ToUpper() : "U";
-    var xpCurrent  = Model.CardCount * 5 + Model.Streak * 20;
-    var xpNext     = Math.Max(xpCurrent + 500, 1000);
-    var xpPct      = Math.Min((int)((double)xpCurrent / xpNext * 100), 100);
-    int litDays    = Math.Min(Model.Streak % 7 == 0 && Model.Streak > 0 ? 7 : Model.Streak % 7, 7);
-    string[] dayNames = { "T2","T3","T4","T5","T6","T7","CN" };
-    // Xác định hôm nay là index nào trong tuần (0=T2 ... 6=CN)
-    int todayDow    = (int)DateTime.Now.DayOfWeek; // Sun=0,Mon=1,...
-    int todayInWeek = todayDow == 0 ? 6 : todayDow - 1;
-    int streakStart = Math.Max(0, todayInWeek - litDays + 1);
+    var xpCurrent = Model.TotalXp;
     var totalProgress = Math.Max(Model.MasteredCount + Model.LearningCount + Model.NewCount, 1);
     var masteredPct = (int)Math.Round(Model.MasteredCount * 100d / totalProgress);
     var learningPct = (int)Math.Round(Model.LearningCount * 100d / totalProgress);
     var newPct = Math.Max(0, 100 - masteredPct - learningPct);
     var featureTimeJson = JsonSerializer.Serialize(Model.FeatureTimeBreakdown);
     // Time-based greeting
-    var nowHour = DateTime.Now.Hour;
+    var nowHour = Model.BusinessHour;
     var greetingText = nowHour < 12 ? "Chào buổi sáng ☀️"
                      : nowHour < 18 ? "Chào buổi chiều 🌤️"
                      : "Chào buổi tối 🌙";
@@ -65,18 +57,15 @@
     <div class="col-12 col-lg-7">
         <div class="db-card h-100">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="db-label">Level Progress</span>
-                <span class="db-pill">Lv Explorer</span>
+                <span class="db-label">XP đã tích lũy</span>
+                <span class="db-pill">Đã ghi nhận</span>
             </div>
 
             <div class="d-flex justify-content-between align-items-baseline mb-2">
                 <span class="db-xp-current">@xpCurrent <span class="db-xp-unit">XP</span></span>
-                <span class="db-xp-max">@xpNext XP</span>
+                <span class="db-xp-max">Hôm nay: @Model.TodayXp XP</span>
             </div>
-            <div class="db-xp-track mb-1">
-                <div class="db-xp-fill" style="width:@xpPct%"></div>
-            </div>
-            <p class="db-xp-hint mb-3">@(xpNext - xpCurrent) XP đến level tiếp theo</p>
+            <p class="db-xp-hint mb-3">XP từ hoạt động học đã lưu. Ngày học tính theo UTC+7.</p>
 
             <div class="row g-2">
                 <div class="col-4">
@@ -107,10 +96,10 @@
             <span class="db-flame">🔥</span>
             <p class="db-streak-num">@Model.Streak</p>
             <p class="db-streak-label">Day Streak</p>
-            <div class="db-week-dots mt-2">
-                @for (int i = 0; i < 7; i++)
+            <div class="db-week-dots mt-2" aria-label="Ngày học đã xác nhận trong 7 ngày qua, UTC+7">
+                @foreach (var day in Model.StudyDays)
                 {
-                    <span class="db-day-dot @(i >= streakStart && i <= todayInWeek ? "db-day-dot--on" : "") @(i == todayInWeek ? "db-day-dot--today" : "")">@dayNames[i]</span>
+                    <span class="db-day-dot @(day.HasConfirmedStudy ? "db-day-dot--on" : "") @(day.IsToday ? "db-day-dot--today" : "")" title="@day.FullLabel: @day.StudyLabel">@day.DayLabel</span>
                 }
             </div>
         </div>
@@ -124,17 +113,17 @@
                 <div class="db-chart-skeleton"></div>
             </div>
             <div class="row g-1 text-center" style="font-size:12px;">
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <span class="db-dot db-dot--green"></span>
                     <span class="text-muted">Mastered</span><br>
                     <strong>@Model.MasteredCount</strong>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <span class="db-dot db-dot--yellow"></span>
                     <span class="text-muted">Learning</span><br>
                     <strong>@Model.LearningCount</strong>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <span class="db-dot db-dot--blue"></span>
                     <span class="text-muted">New</span><br>
                     <strong>@Model.NewCount</strong>
@@ -156,8 +145,12 @@
             <div class="db-cta-deco db-cta-deco--bot"></div>
             <a asp-controller="Goals" asp-action="Index" style="position:relative;z-index:1;text-decoration:none;color:inherit;">
                 <span class="db-cta-tag">Mục tiêu hôm nay</span>
-                <h2 class="db-cta-title">Mục tiêu: <strong>@Model.Goal @Html.Raw("từ")<br>@Html.Raw("cần")</strong> <span style="font-size:16px;opacity:0.9">ôn mỗi ngày</span></h2>
-                <p class="db-cta-sub">Hãy bắt đầu ngay để không gián đoạn streak!</p>
+                <h2 class="db-cta-title">Mục tiêu hôm nay: <strong>@Model.DailyGoalPercent%</strong></h2>
+                <p class="db-cta-sub">@(Model.ActiveGoalCount > 0 ? $"Đã đạt {Model.MetGoalCount}/{Model.ActiveGoalCount} mục tiêu kỹ năng (UTC+7)." : "Chưa có mục tiêu đang chạy. Chọn kỹ năng và đặt mục tiêu của bạn.")</p>
+                @if (Model.ActiveGoalCount > 0)
+                {
+                    <p class="db-cta-sub">@Model.DailyGoalSummary</p>
+                }
             </a>
             @if (Model.TodayFolders.Any())
             {

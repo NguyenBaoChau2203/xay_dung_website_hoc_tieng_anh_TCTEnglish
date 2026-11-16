@@ -8,6 +8,7 @@
     var writingCard = Model.GoalCards.FirstOrDefault(g => g.GoalArea == GoalArea.Writing);
     var readingCard = Model.GoalCards.FirstOrDefault(g => g.GoalArea == GoalArea.Reading);
     var listeningCard = Model.GoalCards.FirstOrDefault(g => g.GoalArea == GoalArea.Listening);
+    var hasRunningGoals = Model.GoalCards.Any(g => g.TargetValue > 0);
 }
 
 @section Styles {
@@ -68,17 +69,18 @@
                 <div class="goals-streak-value">@Model.CurrentStreak ngày</div>
                 <p class="goals-streak-msg">@Model.StreakMessage</p>
                 <p class="goals-streak-record">Kỷ lục tốt nhất: <strong>@Model.LongestStreak ngày</strong></p>
+                <p class="small text-muted mb-0 mt-1">Hoàn thành ít nhất một bài học mỗi ngày trước 24:00 để giữ chuỗi (chỉ đăng nhập sẽ chưa tính bạn nhé).</p>
             </div>
 
-            @if (Model.HasWeeklyActivity)
+            @if (Model.StudyDays.Count > 0)
             {
-                <div class="goals-mini-streak" aria-label="Chuỗi học 7 ngày qua">
-                    @foreach (var day in Model.WeeklyActivity)
+                <div class="goals-mini-streak" aria-label="Ngày học đã xác nhận trong 7 ngày qua, UTC+7">
+                    @foreach (var day in Model.StudyDays)
                     {
-                        var isActive = day.ActivityCount > 0;
+                        var isActive = day.HasConfirmedStudy;
                         var dayBarClass = day.IsToday ? "goals-mini-bar--today" : (isActive ? "goals-mini-bar--active" : "");
                         var dayTextClass = day.IsToday ? "text-primary fw-bold" : "";
-                        <div class="goals-mini-bar-col" title="@day.FullLabel: @day.ActivityCount thẻ">
+                        <div class="goals-mini-bar-col" title="@day.FullLabel: @day.StudyLabel">
                             <span class="goals-mini-label @dayTextClass">@day.DayLabel</span>
                             <div class="goals-mini-bar @dayBarClass"></div>
                         </div>
@@ -110,9 +112,16 @@
 
             @if (Model.HasGoalCards)
             {
-                <p class="goals-section-subtitle mt-2 mb-3">
-                    Bạn đã hoàn thành <strong>@Model.ProgressPercent%</strong> mục tiêu ngày hôm nay. Cố gắng lên!
-                </p>
+                @if (hasRunningGoals)
+                {
+                    <p class="goals-section-subtitle mt-2 mb-3">
+                        Bạn đã hoàn thành <strong>@Model.ProgressPercent%</strong> mục tiêu ngày hôm nay. Cố gắng lên!
+                    </p>
+                }
+                else
+                {
+                    <p class="goals-section-subtitle mt-2 mb-3" role="status">Các mục tiêu đang tạm dừng. Đặt chỉ tiêu lớn hơn 0 khi bạn muốn tiếp tục theo dõi.</p>
+                }
 
                 <div class="goals-daily-content">
                     <div class="goals-daily-list">
@@ -122,17 +131,29 @@
                             <div class="goals-item-row">
                                 <div class="goals-item-header">
                                     <span class="goals-item-name">@goal.AreaLabel</span>
-                                    <span class="goals-item-score">@goal.TodayProgressValue/@goal.TargetValue @goal.UnitLabel</span>
+                                    @if (goal.TargetValue > 0)
+                                    {
+                                        <span class="goals-item-score">@goal.TodayProgressValue/@goal.TargetValue @goal.UnitLabel</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="goals-item-score text-muted">Đang tạm dừng</span>
+                                    }
                                 </div>
-                                <div class="goals-progress-track" role="progressbar" aria-valuenow="@goal.ProgressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ @goal.AreaLabel: @goal.ProgressPercent%">
-                                    <div class="goals-progress-fill @(isComplete ? "goals-progress-fill--complete" : "")" style="width: @Math.Min(goal.ProgressPercent, 100)%"></div>
-                                </div>
-                                <p class="mb-0 mt-1 small text-muted">@goal.ProgressLabel</p>
+                                @if (goal.TargetValue > 0)
+                                {
+                                    <div class="goals-progress-track" role="progressbar" aria-valuenow="@goal.ProgressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ @goal.AreaLabel: @goal.ProgressPercent%">
+                                        <div class="goals-progress-fill @(isComplete ? "goals-progress-fill--complete" : "")" style="width: @Math.Min(goal.ProgressPercent, 100)%"></div>
+                                    </div>
+                                    <p class="mb-0 mt-1 small text-muted">@goal.ProgressLabel</p>
+                                }
                             </div>
                         }
                     </div>
 
                     <!-- Circular Radial Progress -->
+                    @if (hasRunningGoals)
+                    {
                     <div class="goals-circle-progress-wrap">
                         <div class="goals-circle-box">
                             <svg class="goals-circle-svg" viewBox="0 0 100 100">
@@ -147,31 +168,32 @@
                         <span class="d-block fw-bold small text-dark mt-2">Tổng tiến độ</span>
                         <span class="d-block text-muted" style="font-size: 11px;">Trung bình các kỹ năng</span>
                     </div>
+                    }
                 </div>
 
-                @if (Model.HasWeeklyActivity)
+                @if (Model.StudyDays.Count > 0)
                 {
-                    <div class="goals-day-dots" aria-label="Trạng thái hoàn thành 7 ngày qua">
-                        @foreach (var day in Model.WeeklyActivity)
+                    <div class="goals-day-dots" aria-label="Trạng thái mục tiêu ngày trong 7 ngày qua, UTC+7">
+                        @foreach (var day in Model.StudyDays)
                         {
-                            var isActive = day.ActivityCount > 0;
-                            if (day.IsToday)
+                            var isActive = day.AllGoalsMet == true;
+                            if (day.IsToday && !isActive)
                             {
-                                <div class="goals-day-dot goals-day-dot--today" title="Hôm nay">
+                                <div class="goals-day-dot goals-day-dot--today" title="@day.FullLabel: @day.GoalLabel; @day.StudyLabel">
                                     <span class="goals-day-dot__label text-primary fw-bold">@day.DayLabel</span>
                                     <span class="goals-day-dot__status text-primary"><i class="fa-solid fa-circle" style="font-size: 8px;"></i></span>
                                 </div>
                             }
                             else if (isActive)
                             {
-                                <div class="goals-day-dot" title="@day.FullLabel: Đã hoàn thành">
+                                <div class="goals-day-dot" title="@day.FullLabel: @day.GoalLabel; @day.StudyLabel">
                                     <span class="goals-day-dot__label">@day.DayLabel</span>
                                     <span class="goals-day-dot__status text-success"><i class="fa-solid fa-circle-check"></i></span>
                                 </div>
                             }
                             else
                             {
-                                <div class="goals-day-dot" title="@day.FullLabel: Chưa có hoạt động">
+                                <div class="goals-day-dot" title="@day.FullLabel: @day.GoalLabel; @day.StudyLabel">
                                     <span class="goals-day-dot__label text-muted">@day.DayLabel</span>
                                     <span class="goals-day-dot__status text-muted opacity-50"><i class="fa-regular fa-circle" style="font-size: 8px;"></i></span>
                                 </div>
@@ -225,14 +247,15 @@
                     </div>
                 }
 
-                @if (Model.Badges.Any(b => !b.IsUnlocked))
+                @if (Model.Badges.Any(b => b.CanRecommend))
                 {
-                    var nextBadge = Model.Badges.First(b => !b.IsUnlocked);
+                    var nextBadge = Model.Badges.First(b => b.CanRecommend);
+                    var nextPercent = nextBadge.ProgressPercent ?? 0;
                     <div class="goals-next-badge-box">
                         <div class="goals-next-badge-title">Nhiệm vụ tiếp theo</div>
                         <p class="goals-next-badge-desc mb-2">@nextBadge.Name — @nextBadge.Description</p>
-                        <div class="goals-progress-track" role="progressbar" aria-valuenow="@nextBadge.ProgressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ huy hiệu: @nextBadge.ProgressPercent%">
-                            <div class="goals-progress-fill" style="width: @nextBadge.ProgressPercent%"></div>
+                        <div class="goals-progress-track" role="progressbar" aria-valuenow="@nextPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ huy hiệu: @(nextPercent)%">
+                            <div class="goals-progress-fill" style="width: @(nextPercent)%"></div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-1">
                             <span class="small text-muted" style="font-size: 11px;">@nextBadge.MetricLabel</span>
@@ -269,7 +292,7 @@
                 var vocabPercent = vocabCard?.ProgressPercent ?? 0;
                 var isVocabDone = hasVocab && vocabPercent >= 100;
             }
-            <a asp-controller="Vocabulary" asp-action="Index" class="goals-skill-card" aria-label="Từ vựng: @(hasVocab ? $"{vocabCard!.TodayProgressValue}/{vocabCard.TargetValue} {vocabCard.UnitLabel}" : "Chưa đặt chỉ tiêu")">
+            <a asp-controller="Vocabulary" asp-action="Index" class="goals-skill-card" aria-label="Từ vựng: @(hasVocab ? $"{vocabCard!.TodayProgressValue}/{vocabCard.TargetValue} {vocabCard.UnitLabel}" : vocabCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu")">
                 <div>
                     <div class="goals-skill-top">
                         <div class="goals-skill-icon-pill goals-skill-icon-pill--vocab" aria-hidden="true">
@@ -299,7 +322,7 @@
                     }
                     else
                     {
-                        <div class="small text-muted mb-2">Chưa đặt chỉ tiêu ngày</div>
+                        <div class="small text-muted mb-2">@(vocabCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu ngày")</div>
                         <div class="goals-progress-track">
                             <div class="goals-progress-fill" style="width: 0%"></div>
                         </div>
@@ -318,7 +341,7 @@
                 var speakingPercent = speakingCard?.ProgressPercent ?? 0;
                 var isSpeakingDone = hasSpeaking && speakingPercent >= 100;
             }
-            <a asp-controller="Speaking" asp-action="Index" class="goals-skill-card" aria-label="Luyện nói: @(hasSpeaking ? $"{speakingCard!.TodayProgressValue}/{speakingCard.TargetValue} {speakingCard.UnitLabel}" : "Chưa đặt chỉ tiêu")">
+            <a asp-controller="Speaking" asp-action="Index" class="goals-skill-card" aria-label="Luyện nói: @(hasSpeaking ? $"{speakingCard!.TodayProgressValue}/{speakingCard.TargetValue} {speakingCard.UnitLabel}" : speakingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu")">
                 <div>
                     <div class="goals-skill-top">
                         <div class="goals-skill-icon-pill goals-skill-icon-pill--speaking" aria-hidden="true">
@@ -348,7 +371,7 @@
                     }
                     else
                     {
-                        <div class="small text-muted mb-2">Chưa đặt chỉ tiêu ngày</div>
+                        <div class="small text-muted mb-2">@(speakingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu ngày")</div>
                         <div class="goals-progress-track">
                             <div class="goals-progress-fill" style="width: 0%"></div>
                         </div>
@@ -367,7 +390,7 @@
                 var writingPercent = writingCard?.ProgressPercent ?? 0;
                 var isWritingDone = hasWriting && writingPercent >= 100;
             }
-            <a asp-controller="Study" asp-action="Writing" class="goals-skill-card" aria-label="Kỹ năng viết: @(hasWriting ? $"{writingCard!.TodayProgressValue}/{writingCard.TargetValue} {writingCard.UnitLabel}" : "Chưa đặt chỉ tiêu")">
+            <a asp-controller="Study" asp-action="Writing" class="goals-skill-card" aria-label="Kỹ năng viết: @(hasWriting ? $"{writingCard!.TodayProgressValue}/{writingCard.TargetValue} {writingCard.UnitLabel}" : writingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu")">
                 <div>
                     <div class="goals-skill-top">
                         <div class="goals-skill-icon-pill goals-skill-icon-pill--writing" aria-hidden="true">
@@ -387,6 +410,7 @@
 
                     <h3 class="goals-skill-name">Kỹ năng viết</h3>
                     <p class="text-muted small mb-2">Writing</p>
+                    <p class="small text-muted">Đếm bài hoàn thành lần đầu. Luyện lại vẫn có thể giữ streak.</p>
 
                     @if (hasWriting)
                     {
@@ -397,7 +421,7 @@
                     }
                     else
                     {
-                        <div class="small text-muted mb-2">Chưa đặt chỉ tiêu ngày</div>
+                        <div class="small text-muted mb-2">@(writingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu ngày")</div>
                         <div class="goals-progress-track">
                             <div class="goals-progress-fill" style="width: 0%"></div>
                         </div>
@@ -416,7 +440,7 @@
                 var readingPercent = readingCard?.ProgressPercent ?? 0;
                 var isReadingDone = hasReading && readingPercent >= 100;
             }
-            <a asp-controller="Study" asp-action="Reading" class="goals-skill-card" aria-label="Kỹ năng đọc: @(hasReading ? $"{readingCard!.TodayProgressValue}/{readingCard.TargetValue} {readingCard.UnitLabel}" : "Chưa đặt chỉ tiêu")">
+            <a asp-controller="Study" asp-action="Reading" class="goals-skill-card" aria-label="Kỹ năng đọc: @(hasReading ? $"{readingCard!.TodayProgressValue}/{readingCard.TargetValue} {readingCard.UnitLabel}" : readingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu")">
                 <div>
                     <div class="goals-skill-top">
                         <div class="goals-skill-icon-pill goals-skill-icon-pill--reading" aria-hidden="true">
@@ -446,7 +470,7 @@
                     }
                     else
                     {
-                        <div class="small text-muted mb-2">Chưa đặt chỉ tiêu ngày</div>
+                        <div class="small text-muted mb-2">@(readingCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu ngày")</div>
                         <div class="goals-progress-track">
                             <div class="goals-progress-fill" style="width: 0%"></div>
                         </div>
@@ -465,7 +489,7 @@
                 var listeningPercent = listeningCard?.ProgressPercent ?? 0;
                 var isListeningDone = hasListening && listeningPercent >= 100;
             }
-            <a asp-controller="Study" asp-action="Listening" class="goals-skill-card" aria-label="Kỹ năng nghe: @(hasListening ? $"{listeningCard!.TodayProgressValue}/{listeningCard.TargetValue} {listeningCard.UnitLabel}" : "Chưa đặt chỉ tiêu")">
+            <a asp-controller="Study" asp-action="Listening" class="goals-skill-card" aria-label="Kỹ năng nghe: @(hasListening ? $"{listeningCard!.TodayProgressValue}/{listeningCard.TargetValue} {listeningCard.UnitLabel}" : listeningCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu")">
                 <div>
                     <div class="goals-skill-top">
                         <div class="goals-skill-icon-pill goals-skill-icon-pill--listening" aria-hidden="true">
@@ -495,7 +519,7 @@
                     }
                     else
                     {
-                        <div class="small text-muted mb-2">Chưa đặt chỉ tiêu ngày</div>
+                        <div class="small text-muted mb-2">@(listeningCard != null ? "Đang tạm dừng" : "Chưa đặt chỉ tiêu ngày")</div>
                         <div class="goals-progress-track">
                             <div class="goals-progress-fill" style="width: 0%"></div>
                         </div>
@@ -560,7 +584,7 @@
                     }
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-3 text-muted small">
-                    <span><i class="fa-regular fa-clock me-1"></i> Cập nhật theo thời gian thực</span>
+                    <span><i class="fa-regular fa-clock me-1"></i> Dữ liệu làm mới khi tải trang</span>
                     <span>Đơn vị: <strong>Số thẻ ôn</strong></span>
                 </div>
             }
@@ -601,49 +625,128 @@
 
             @if (Model.HasBadges)
             {
-                <div class="goals-badge-grid flex-grow-1">
-                    @foreach (var badge in Model.Badges)
+                var displayGroupOrder = new[] { "chill", "cuon", "chien-than", "trum-cuoi", "bi-an", "other" };
+                var availableGroups = Model.Badges
+                    .GroupBy(b => b.DisplayGroupKey)
+                    .Select(g => new
                     {
-                        if (badge.IsUnlocked)
-                        {
-                            <div class="goals-badge-tile goals-badge-tile--unlocked"
-                                 data-badge-code="@badge.Code"
-                                 title="@badge.Name — @badge.Description (Đã mở khóa)">
-                                <div class="goals-badge-icon-wrap goals-badge-icon-wrap--unlocked" aria-hidden="true">
-                                    <i class="@badge.IconClass" style="font-size: 16px;"></i>
-                                </div>
-                                <span class="goals-badge-name">@badge.Name</span>
-                                @if (badge.IsRecentlyUnlocked)
-                                {
-                                    <span class="goals-badge-recent-dot" title="Mở khóa hôm nay"></span>
-                                }
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="goals-badge-tile goals-badge-tile--locked"
-                                 data-badge-code="@badge.Code"
-                                 title="@badge.Name — @badge.Description (@badge.ProgressLabel)">
-                                <div class="goals-badge-icon-wrap goals-badge-icon-wrap--locked" aria-hidden="true">
-                                    <i class="fa-solid fa-lock" style="font-size: 14px;"></i>
-                                </div>
-                                <span class="goals-badge-name goals-badge-name--locked">@badge.Name</span>
-                            </div>
-                        }
+                        Key = g.Key,
+                        Label = g.First().DisplayGroupLabel,
+                        Total = g.Count(),
+                        Unlocked = g.Count(b => b.IsUnlocked)
+                    })
+                    .OrderBy(g =>
+                    {
+                        var idx = Array.IndexOf(displayGroupOrder, g.Key);
+                        return idx >= 0 ? idx : 999;
+                    })
+                    .ToList();
+
+                <div class="goals-badge-filter-bar d-flex flex-wrap gap-2 mb-3" role="tablist" aria-label="Bộ lọc nhóm danh hiệu">
+                    <button type="button"
+                            class="btn btn-sm btn-primary rounded-pill goals-badge-filter-btn is-active"
+                            data-badge-filter="all"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="goalsBadgeGrid">
+                        Tất cả (@Model.UnlockedBadgeCount/@Model.Badges.Count)
+                    </button>
+                    @foreach (var group in availableGroups)
+                    {
+                        <button type="button"
+                                class="btn btn-sm btn-outline-secondary rounded-pill goals-badge-filter-btn"
+                                data-badge-filter="@group.Key"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="goalsBadgeGrid">
+                            @group.Label (@group.Unlocked/@group.Total)
+                        </button>
                     }
                 </div>
 
-                @if (Model.Badges.Any(b => !b.IsUnlocked))
+                <div class="goals-badge-grid flex-grow-1" id="goalsBadgeGrid" role="region" aria-label="Danh sách huy hiệu">
+                    @foreach (var badge in Model.Badges)
+                    {
+                        var isMysteryLocked = badge.IsRedacted;
+                        var isUnlocked = badge.IsUnlocked;
+                        var tileClass = isUnlocked
+                            ? "goals-badge-tile--unlocked"
+                            : (isMysteryLocked ? "goals-badge-tile--locked goals-badge-tile--mystery-locked" : "goals-badge-tile--locked");
+                        var iconWrapClass = isUnlocked
+                            ? "goals-badge-icon-wrap--unlocked"
+                            : (isMysteryLocked ? "goals-badge-icon-wrap--locked goals-badge-icon-wrap--mystery" : "goals-badge-icon-wrap--locked");
+                        var statusCopy = isUnlocked
+                            ? (badge.IsRetroactive ? "Đã ghi nhận thành tích trước đây" : "Đã mở khóa")
+                            : (isMysteryLocked ? "Chưa khám phá" : badge.ProgressLabel);
+                        var tooltipText = $"{badge.Name} — {badge.Description} ({statusCopy})";
+                        var awardedVn = (isUnlocked && badge.AwardedAt.HasValue)
+                            ? TCTVocabulary.Services.BusinessDateHelper.ToBusinessDateFromUtcStorage(badge.AwardedAt.Value).ToString("dd/MM/yyyy")
+                            : string.Empty;
+
+                        <div class="goals-badge-tile @tileClass"
+                             data-badge-code="@badge.Code"
+                             data-badge-group="@badge.DisplayGroupKey"
+                             data-badge-status="@(isUnlocked ? "unlocked" : "locked")"
+                             data-badge-name="@badge.Name"
+                             data-badge-desc="@badge.Description"
+                             data-badge-icon="@badge.IconClass"
+                             data-badge-group-label="@badge.DisplayGroupLabel"
+                             data-badge-status-text="@badge.StatusText"
+                             data-badge-unlocked="@(isUnlocked ? "true" : "false")"
+                             data-badge-redacted="@(isMysteryLocked ? "true" : "false")"
+                             data-badge-progress-label="@badge.ProgressLabel"
+                             data-badge-progress-percent="@(badge.ProgressPercent?.ToString() ?? "")"
+                             data-badge-has-progress="@(badge.HasKnownProgress ? "true" : "false")"
+                             data-badge-progress-val="@(badge.ProgressValue?.ToString() ?? "")"
+                             data-badge-target-val="@(badge.TargetValue?.ToString() ?? "")"
+                             data-badge-metric="@badge.MetricLabel"
+                             data-badge-awarded="@awardedVn"
+                             data-badge-retroactive="@(badge.IsRetroactive ? "true" : "false")"
+                             data-badge-recent="@(badge.IsRecentlyUnlocked ? "true" : "false")"
+                             tabindex="0"
+                             role="button"
+                             aria-haspopup="dialog"
+                             aria-label="@badge.Name: @statusCopy"
+                             title="@tooltipText">
+                            <div class="goals-badge-icon-wrap @iconWrapClass" aria-hidden="true">
+                                @if (isMysteryLocked)
+                                {
+                                    <i class="fa-solid fa-question" style="font-size: 15px;"></i>
+                                }
+                                else if (isUnlocked)
+                                {
+                                    <i class="@badge.IconClass" style="font-size: 16px;"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-lock" style="font-size: 14px;"></i>
+                                }
+                            </div>
+                            <span class="goals-badge-name @(!isUnlocked ? "goals-badge-name--locked" : "")">@badge.Name</span>
+                            @if (badge.IsRecentlyUnlocked)
+                            {
+                                <span class="goals-badge-recent-dot" title="Mở khóa hôm nay"></span>
+                            }
+                        </div>
+                    }
+
+                    <div class="goals-badge-filter-empty text-center py-4 d-none w-100" id="badgeFilterEmptyState">
+                        <p class="text-muted small mb-0"><i class="fa-solid fa-filter me-1"></i>Không có huy hiệu nào trong nhóm này.</p>
+                    </div>
+                </div>
+
+                @if (Model.Badges.Any(b => b.CanRecommend))
                 {
-                    var nextBadge = Model.Badges.First(b => !b.IsUnlocked);
+                    var nextBadge = Model.Badges.First(b => b.CanRecommend);
+                    var nextPercent = nextBadge.ProgressPercent ?? 0;
                     <div class="goals-next-badge-box mt-auto">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <span class="goals-next-badge-title mb-0">Mục tiêu tiếp theo</span>
-                            <span class="badge bg-primary-subtle text-primary" style="font-size: 10px;">@nextBadge.ProgressPercent%</span>
+                            <span class="badge bg-primary-subtle text-primary" style="font-size: 10px;">@(nextPercent)%</span>
                         </div>
                         <p class="goals-next-badge-desc mb-2">@nextBadge.Description</p>
-                        <div class="goals-progress-track" role="progressbar" aria-valuenow="@nextBadge.ProgressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ @nextBadge.Name: @nextBadge.ProgressPercent%">
-                            <div class="goals-progress-fill" style="width: @nextBadge.ProgressPercent%;"></div>
+                        <div class="goals-progress-track" role="progressbar" aria-valuenow="@nextPercent" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ @nextBadge.Name: @(nextPercent)%">
+                            <div class="goals-progress-fill" style="width: @(nextPercent)%;"></div>
                         </div>
                     </div>
                 }
@@ -692,7 +795,7 @@
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger small mb-3"></div>
 
                     <div class="goal-field-group mb-3">
-                        <label asp-for="GoalEditor.GoalArea" class="form-label goal-form-label">
+                        <label asp-for="GoalEditor.GoalArea" for="goalAreaSelect" class="form-label goal-form-label">
                             <i class="fa-solid fa-layer-group text-primary me-1"></i>
                             <span>Kỹ năng rèn luyện</span>
                         </label>
@@ -709,11 +812,11 @@
 
                     <div class="goal-field-group mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label asp-for="GoalEditor.TargetValue" class="form-label goal-form-label mb-0">
+                            <label asp-for="GoalEditor.TargetValue" for="goalTargetInput" class="form-label goal-form-label mb-0">
                                 <i class="fa-solid fa-crosshairs text-primary me-1"></i>
                                 <span>Mục tiêu mỗi ngày</span>
                             </label>
-                            <span class="goal-unit-badge" id="goalUnitBadge">từ / ngày</span>
+                            <span class="goal-unit-badge" id="goalUnitBadge">thẻ / ngày</span>
                         </div>
 
                         <div class="goal-stepper-box">
@@ -760,6 +863,56 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Badge Detail Modal (Purely Informational, Accessible, No Client-Side Unlocks) -->
+<div class="modal fade tct-theme badge-detail-modal"
+     id="badgeDetailModal"
+     tabindex="-1"
+     aria-labelledby="badgeDetailModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content goal-modal-content text-center p-3">
+            <div class="modal-header border-0 pb-0 justify-content-end">
+                <button type="button" class="goal-modal-close-btn" data-bs-dismiss="modal" aria-label="Đóng">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body pt-0 pb-2">
+                <div class="badge-detail-icon-box mx-auto mb-3" id="badgeDetailIconBox" aria-hidden="true">
+                    <i class="fa-solid fa-award" id="badgeDetailIcon"></i>
+                </div>
+                <h5 class="fw-bold text-dark mb-1" id="badgeDetailModalTitle">Tên huy hiệu</h5>
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-2 flex-wrap">
+                    <span class="badge rounded-pill bg-light text-secondary border small" id="badgeDetailGroupBadge">Nhóm</span>
+                    <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle small" id="badgeDetailStatusBadge">Trạng thái</span>
+                </div>
+                <p class="text-secondary small mb-3" id="badgeDetailDesc">Mô tả huy hiệu</p>
+
+                <!-- Progress bar (hidden if unlocked or redacted or unknown) -->
+                <div id="badgeDetailProgressWrap" class="mb-3 d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="small text-muted" id="badgeDetailMetricLabel">Tiến độ</span>
+                        <span class="small fw-bold text-primary" id="badgeDetailProgressText">0%</span>
+                    </div>
+                    <div class="goals-progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="badgeDetailProgressBar" aria-label="Tiến độ huy hiệu">
+                        <div class="goals-progress-fill" id="badgeDetailProgressFill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- Awarded Date info (shown if unlocked) -->
+                <div id="badgeDetailAwardedWrap" class="p-2 rounded-3 bg-light border small text-muted d-none">
+                    <i class="fa-regular fa-calendar-check text-primary me-1" aria-hidden="true"></i>
+                    <span id="badgeDetailAwardedText">Đạt ngày: --</span>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0 justify-content-center">
+                <button type="button" class="btn btn-outline-primary rounded-pill px-4" data-bs-dismiss="modal" id="badgeDetailCloseBtn">
+                    Đóng
+                </button>
+            </div>
         </div>
     </div>
 </div>

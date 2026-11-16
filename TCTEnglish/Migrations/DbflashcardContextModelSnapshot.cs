@@ -1366,10 +1366,19 @@ namespace TCTEnglish.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
+                    b.Property<string>("DifficultyKey")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
                     b.Property<string>("IconClass")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("IsSecret")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("MetricType")
                         .HasColumnType("int");
@@ -1399,7 +1408,9 @@ namespace TCTEnglish.Migrations
                             Id = 1,
                             Code = "first-session",
                             Description = "Hoàn thành ngày học đầu tiên để bắt đầu hành trình.",
+                            DifficultyKey = "chill",
                             IconClass = "fas fa-seedling",
+                            IsSecret = false,
                             MetricType = 3,
                             Name = "Khởi động",
                             SortOrder = 1,
@@ -1410,7 +1421,9 @@ namespace TCTEnglish.Migrations
                             Id = 2,
                             Code = "three-day-streak",
                             Description = "Duy trì streak học tập trong 3 ngày liên tiếp.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-fire",
+                            IsSecret = false,
                             MetricType = 1,
                             Name = "Giữ nhịp",
                             SortOrder = 2,
@@ -1421,7 +1434,9 @@ namespace TCTEnglish.Migrations
                             Id = 3,
                             Code = "seven-day-peak",
                             Description = "Chạm mốc streak dài nhất 7 ngày.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-bolt",
+                            IsSecret = false,
                             MetricType = 2,
                             Name = "Bền bỉ",
                             SortOrder = 3,
@@ -1432,7 +1447,9 @@ namespace TCTEnglish.Migrations
                             Id = 4,
                             Code = "active-week",
                             Description = "Có hoạt động học tập trong 7 ngày khác nhau.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-calendar-check",
+                            IsSecret = false,
                             MetricType = 3,
                             Name = "Cả tuần chăm chỉ",
                             SortOrder = 4,
@@ -1443,7 +1460,9 @@ namespace TCTEnglish.Migrations
                             Id = 5,
                             Code = "xp-collector",
                             Description = "Tích lũy đủ 50 XP từ các hoạt động học tập.",
+                            DifficultyKey = "chill",
                             IconClass = "fas fa-star",
+                            IsSecret = false,
                             MetricType = 4,
                             Name = "Tích điểm",
                             SortOrder = 5,
@@ -1454,7 +1473,9 @@ namespace TCTEnglish.Migrations
                             Id = 6,
                             Code = "xp-champion",
                             Description = "Đạt 200 XP để mở khóa cột mốc cao hơn.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-trophy",
+                            IsSecret = false,
                             MetricType = 4,
                             Name = "Bứt phá",
                             SortOrder = 6,
@@ -1465,7 +1486,9 @@ namespace TCTEnglish.Migrations
                             Id = 7,
                             Code = "speaking-first-video",
                             Description = "Hoàn thành video Speaking đầu tiên.",
+                            DifficultyKey = "chill",
                             IconClass = "fas fa-microphone",
+                            IsSecret = false,
                             MetricType = 5,
                             Name = "Khởi động Speaking",
                             SortOrder = 7,
@@ -1476,7 +1499,9 @@ namespace TCTEnglish.Migrations
                             Id = 8,
                             Code = "speaking-five-videos",
                             Description = "Hoàn thành 5 video Speaking để duy trì luyện tập.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-comments",
+                            IsSecret = false,
                             MetricType = 5,
                             Name = "Nói trôi chảy",
                             SortOrder = 8,
@@ -1487,7 +1512,9 @@ namespace TCTEnglish.Migrations
                             Id = 9,
                             Code = "vocabulary-first-mastered",
                             Description = "Hoàn thành 1 thẻ Vocabulary ở trạng thái Mastered.",
+                            DifficultyKey = "chill",
                             IconClass = "fas fa-book-open",
+                            IsSecret = false,
                             MetricType = 6,
                             Name = "Mở khóa Từ vựng",
                             SortOrder = 9,
@@ -1498,7 +1525,9 @@ namespace TCTEnglish.Migrations
                             Id = 10,
                             Code = "vocabulary-ten-mastered",
                             Description = "Hoàn thành 10 thẻ Vocabulary ở trạng thái Mastered.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-spell-check",
+                            IsSecret = false,
                             MetricType = 6,
                             Name = "Nhịp từ vựng",
                             SortOrder = 10,
@@ -1509,7 +1538,9 @@ namespace TCTEnglish.Migrations
                             Id = 11,
                             Code = "writing-first-exercise",
                             Description = "Hoàn thành bài Writing đầu tiên.",
+                            DifficultyKey = "chill",
                             IconClass = "fas fa-pen",
+                            IsSecret = false,
                             MetricType = 7,
                             Name = "Mở khóa Writing",
                             SortOrder = 11,
@@ -1520,11 +1551,143 @@ namespace TCTEnglish.Migrations
                             Id = 12,
                             Code = "writing-five-exercises",
                             Description = "Hoàn thành 5 bài Writing để duy trì thói quen luyện viết.",
+                            DifficultyKey = "cuon",
                             IconClass = "fas fa-pen-fancy",
+                            IsSecret = false,
                             MetricType = 7,
                             Name = "Viết chắc tay",
                             SortOrder = 12,
                             ThresholdValue = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Code = "writing-mood",
+                            Description = "Hoàn thành lần đầu 3 bài Writing khác nhau.",
+                            DifficultyKey = "chill",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 8,
+                            Name = "Bút mới lên mood",
+                            SortOrder = 13,
+                            ThresholdValue = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Code = "study-checkin",
+                            Description = "Có 3 ngày học đã xác nhận.",
+                            DifficultyKey = "chill",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 3,
+                            Name = "Check-in bằng bài học",
+                            SortOrder = 14,
+                            ThresholdValue = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Code = "writing-deadline",
+                            Description = "Hoàn thành lần đầu 10 bài Writing khác nhau.",
+                            DifficultyKey = "cuon",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 8,
+                            Name = "Deadline cũng phải nể",
+                            SortOrder = 15,
+                            ThresholdValue = 10
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Code = "xp-mood",
+                            Description = "Tích lũy 500 XP từ hoạt động học tập.",
+                            DifficultyKey = "cuon",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 4,
+                            Name = "XP lên mood",
+                            SortOrder = 16,
+                            ThresholdValue = 500
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Code = "keyboard-form",
+                            Description = "Hoàn thành lần đầu 25 bài Writing khác nhau.",
+                            DifficultyKey = "chien-than",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 8,
+                            Name = "Bàn phím vào form",
+                            SortOrder = 17,
+                            ThresholdValue = 25
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Code = "steady-flame",
+                            Description = "Có chuỗi 14 ngày học liên tiếp đã xác nhận.",
+                            DifficultyKey = "chien-than",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 9,
+                            Name = "Giữ lửa không seen",
+                            SortOrder = 18,
+                            ThresholdValue = 14
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Code = "keyboard-boss",
+                            Description = "Hoàn thành lần đầu 50 bài Writing khác nhau.",
+                            DifficultyKey = "trum-cuoi",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 8,
+                            Name = "Trùm cuối bàn phím",
+                            SortOrder = 19,
+                            ThresholdValue = 50
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Code = "monthly-flame",
+                            Description = "Có chuỗi 30 ngày học liên tiếp đã xác nhận.",
+                            DifficultyKey = "trum-cuoi",
+                            IconClass = "fas fa-award",
+                            IsSecret = false,
+                            MetricType = 9,
+                            Name = "Giữ lửa xuyên tháng",
+                            SortOrder = 20,
+                            ThresholdValue = 30
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Code = "secret-plot-twist",
+                            Description = "Hoàn thành lần đầu 13 bài Writing khác nhau.",
+                            DifficultyKey = "chien-than",
+                            IconClass = "fas fa-award",
+                            IsSecret = true,
+                            MetricType = 8,
+                            Name = "Plot twist thứ 13",
+                            SortOrder = 21,
+                            ThresholdValue = 13
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Code = "secret-quiet-effort",
+                            Description = "Có 21 ngày học đã xác nhận.",
+                            DifficultyKey = "chien-than",
+                            IconClass = "fas fa-award",
+                            IsSecret = true,
+                            MetricType = 3,
+                            Name = "Hệ chăm ngầm",
+                            SortOrder = 22,
+                            ThresholdValue = 21
                         });
                 });
 
@@ -2816,6 +2979,11 @@ namespace TCTEnglish.Migrations
                     b.Property<int>("BadgeId")
                         .HasColumnType("int")
                         .HasColumnName("BadgeID");
+
+                    b.Property<bool>("IsRetroactive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int")

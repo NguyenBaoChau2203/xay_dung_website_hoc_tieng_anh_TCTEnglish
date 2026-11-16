@@ -291,6 +291,7 @@ public class NotificationWorker : BackgroundService
     {
         var today = clock.BusinessDate;
         var badges = await context.Badges.AsNoTracking()
+            .Where(b => !b.IsSecret)
             .OrderBy(b => b.SortOrder)
             .ThenBy(b => b.Id)
             .ToListAsync(ct);

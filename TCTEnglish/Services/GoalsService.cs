@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Common;
 using TCTVocabulary.Models;
 using TCTEnglish.Services.Learning;
+using TCTEnglish.Services.Notifications;
 using TCTEnglish.ViewModels;
 
 namespace TCTVocabulary.Services
@@ -31,6 +32,8 @@ namespace TCTVocabulary.Services
         private readonly INotificationService _notificationService;
         private readonly DirectNotificationGate _directNotificationGate;
         private readonly ILogger<GoalsService> _logger;
+        private readonly LearningBusinessClock _clock;
+        private readonly ILearningNotificationIntentWriter _intentWriter;
         private UserDailyActivityColumnSupport? _userDailyActivityColumnSupport;
 
         public GoalsService(
@@ -38,48 +41,42 @@ namespace TCTVocabulary.Services
             IStreakService streakService,
             INotificationService notificationService,
             DirectNotificationGate directNotificationGate,
-            ILogger<GoalsService> logger)
+            ILogger<GoalsService> logger,
+            LearningBusinessClock clock,
+            ILearningNotificationIntentWriter intentWriter)
         {
             _context = context;
             _streakService = streakService;
             _notificationService = notificationService;
             _directNotificationGate = directNotificationGate;
             _logger = logger;
+            _clock = clock;
+            _intentWriter = intentWriter;
         }
 
         public async Task<IReadOnlyList<GoalsBadgeViewModel>> GetEarnedBadgesForProfileAsync(int userId)
         {
+            using var operation = _clock.BeginOperation();
             var today = ResolveBusinessDate();
             var awarded = await (
                 from userBadge in _context.UserBadges.AsNoTracking()
                 join badge in _context.Badges.AsNoTracking() on userBadge.BadgeId equals badge.Id
                 where userBadge.UserId == userId
                 orderby badge.SortOrder, badge.Id
-                select new { badge, userBadge.AwardedAt })
+                select new { badge, userBadge.AwardedAt, userBadge.IsRetroactive })
                 .ToListAsync();
 
-            return awarded.Select(row => new GoalsBadgeViewModel
-            {
-                Code = row.badge.Code,
-                Name = row.badge.Name,
-                Description = row.badge.Description ?? string.Empty,
-                IconClass = string.IsNullOrWhiteSpace(row.badge.IconClass) ? "fas fa-award" : row.badge.IconClass,
-                IsUnlocked = true,
-                IsRecentlyUnlocked = row.AwardedAt.Date >= today.AddDays(-7),
-                ProgressValue = row.badge.ThresholdValue,
-                TargetValue = row.badge.ThresholdValue,
-                ProgressPercent = 100,
-                ProgressLabel = "Đã mở khóa",
-                MetricLabel = row.badge.MetricType.ToString(),
-                AwardedAt = row.AwardedAt
-            }).ToList();
+            return awarded.Select(row => BadgeProjection.Build(row.badge, row.badge.ThresholdValue,
+                row.AwardedAt, _clock.ToBusinessDateFromUtcStorage(row.AwardedAt) == today,
+                row.IsRetroactive)).ToList();
         }
 
         public async Task<GoalsViewModel?> GetGoalsAsync(int userId)
         {
+            using var operation = _clock.BeginOperation();
             var user = await _context.Users
                 .AsNoTracking()
-                .Where(u => u.UserId == userId)
+                .Where(u => u.UserId == userId && u.AnonymizedAt == null)
                 .Select(u => new
                 {
                     u.Goal,
@@ -150,6 +147,9 @@ namespace TCTVocabulary.Services
                 activity => activity.Date.Date,
                 activity => activity.CardsReviewed);
             var weeklyActivity = BuildWeeklyActivity(weekStart, today, dailyGoal, activityByDate);
+            var columnSupport = await GetUserDailyActivityColumnSupportAsync();
+            var studyDays = await GoalDayProjection.BuildAsync(_context, userId, today, activeGoals, _clock,
+                columnSupport.HasAllPhase2AreaCounters);
             var hasWeeklyActivity = weeklyActivity.Any(day => day.ActivityCount > 0);
             var todayProgressValue = vocabularyGoal?.TodayProgressValue
                 ?? (activityByDate.TryGetValue(today, out var reviewedToday) ? reviewedToday : 0);
@@ -166,6 +166,8 @@ namespace TCTVocabulary.Services
 
             return new GoalsViewModel
             {
+                BusinessDate = today,
+                StudyDays = studyDays,
                 CurrentStreak = currentStreak,
                 LongestStreak = longestStreak,
                 StreakMessage = BuildStreakMessage(currentStreak, user.LastStudyDate, today),
@@ -228,6 +230,7 @@ namespace TCTVocabulary.Services
 
         private async Task<OperationResult> UpdateGoalCoreAsync(int userId, GoalArea goalArea, int targetValue)
         {
+            using var operation = _clock.BeginOperation();
             if (!Enum.IsDefined(goalArea))
             {
                 return OperationResult.Invalid("Kỹ năng mục tiêu không hợp lệ.");
@@ -245,7 +248,7 @@ namespace TCTVocabulary.Services
             }
 
             var user = await _context.Users
-                .Where(u => u.UserId == userId)
+                .Where(u => u.UserId == userId && u.AnonymizedAt == null)
                 .FirstOrDefaultAsync();
 
             if (user == null)
@@ -266,8 +269,8 @@ namespace TCTVocabulary.Services
                     GoalArea = goalArea,
                     TargetValue = targetValue,
                     IsActive = true,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
+                    CreatedAt = _clock.UtcNow,
+                    UpdatedAt = _clock.UtcNow
                 };
 
                 _context.UserGoals.Add(userGoal);
@@ -276,7 +279,7 @@ namespace TCTVocabulary.Services
             {
                 userGoal.TargetValue = targetValue;
                 userGoal.IsActive = true;
-                userGoal.UpdatedAt = DateTime.UtcNow;
+                userGoal.UpdatedAt = _clock.UtcNow;
             }
 
             if (goalArea == GoalArea.Vocabulary)
@@ -290,7 +293,7 @@ namespace TCTVocabulary.Services
                 goalArea,
                 targetValue,
                 isActive: true,
-                DateTime.UtcNow);
+                _clock.UtcNow);
 
             await _context.SaveChangesAsync();
 
@@ -302,13 +305,22 @@ namespace TCTVocabulary.Services
             return OperationResult.Success();
         }
 
-        public async Task<OperationResult> RecordActivityAsync(int userId, GoalsActivityUpdate update)
-        {
-            return await RecordActivityCoreAsync(userId, update, refreshBadgesAfterPersist: true);
-        }
+        public Task<OperationResult> RecordActivityAsync(int userId, GoalsActivityUpdate update)
+            => TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId,
+                () => RecordActivityCoreAsync(userId, update, refreshBadgesAfterPersist: true),
+                result => result.Status == OperationStatus.Success, CancellationToken.None);
 
-        public async Task<GoalsActivityRecordResult> RecordLearningActivityAsync(int userId, GoalsActivityUpdate update)
+        public Task<GoalsActivityRecordResult> RecordLearningActivityAsync(int userId, GoalsActivityUpdate update)
+            => TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId,
+                () => RecordLearningActivityCoreAsync(userId, update),
+                result => result.Status == OperationStatus.Success, CancellationToken.None);
+
+        private async Task<GoalsActivityRecordResult> RecordLearningActivityCoreAsync(int userId, GoalsActivityUpdate update)
         {
+            using var operation = _clock.BeginOperation();
+            if (!update.HasChanges)
+                return await _context.Users.AsNoTracking().AnyAsync(u => u.UserId == userId && u.AnonymizedAt == null)
+                    ? GoalsActivityRecordResult.Success(0) : GoalsActivityRecordResult.NotFound();
             var activityResult = await RecordActivityCoreAsync(userId, update, refreshBadgesAfterPersist: false);
             if (activityResult.Status == OperationStatus.NotFound)
             {
@@ -355,8 +367,13 @@ namespace TCTVocabulary.Services
             return activityRecordResult;
         }
 
-        public async Task<StreakUpdateResult> UpdateStreakAndRewardsAsync(int userId)
+        public Task<StreakUpdateResult> UpdateStreakAndRewardsAsync(int userId)
+            => TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId,
+                () => UpdateStreakAndRewardsCoreAsync(userId), _ => true, CancellationToken.None);
+
+        private async Task<StreakUpdateResult> UpdateStreakAndRewardsCoreAsync(int userId)
         {
+            using var operation = _clock.BeginOperation();
             var streakResult = await _streakService.UpdateStreakWithMetadataAsync(userId);
             if (!streakResult.DidIncrease)
             {
@@ -403,6 +420,9 @@ namespace TCTVocabulary.Services
             {
                 return OperationResult.Invalid("Goals activity increments must be non-negative.");
             }
+
+            if (!await _context.Users.AsNoTracking().AnyAsync(u => u.UserId == userId && u.AnonymizedAt == null))
+                return OperationResult.NotFound();
 
             if (!update.HasChanges)
             {
@@ -491,7 +511,7 @@ namespace TCTVocabulary.Services
             var awardedLookup = await _context.UserBadges
                 .AsNoTracking()
                 .Where(userBadge => userBadge.UserId == userId)
-                .ToDictionaryAsync(userBadge => userBadge.BadgeId, userBadge => userBadge.AwardedAt);
+                .ToDictionaryAsync(userBadge => userBadge.BadgeId);
 
             return badges
                 .Select(badge => BuildBadgeViewModel(badge, metrics, awardedLookup, today))
@@ -508,7 +528,7 @@ namespace TCTVocabulary.Services
             {
                 var user = await _context.Users
                     .AsNoTracking()
-                    .Where(candidate => candidate.UserId == userId)
+                    .Where(candidate => candidate.UserId == userId && candidate.AnonymizedAt == null)
                     .Select(candidate => new
                     {
                         candidate.LastStudyDate,
@@ -535,7 +555,7 @@ namespace TCTVocabulary.Services
             var totals = columnSupport.HasAllPhase2AreaCounters
                 ? await _context.UserDailyActivities
                     .AsNoTracking()
-                    .Where(activity => activity.UserId == userId)
+                    .Where(activity => activity.UserId == userId && activity.ActivityDate <= today)
                     .GroupBy(_ => 1)
                     .Select(group => new DailyActivityTotals
                     {
@@ -551,11 +571,38 @@ namespace TCTVocabulary.Services
                 .AsNoTracking()
                 .CountAsync(completion => completion.UserId == userId && completion.IsCompleted);
 
+            var confirmedDays = await StudyDayProjection.ReadAsync(_context, userId, null, today, _clock,
+                includeAreaCounters: columnSupport.HasAllPhase2AreaCounters);
+            var confirmedLongest = 0;
+            var run = 0;
+            DateTime? previous = null;
+            foreach (var day in confirmedDays.OrderBy(day => day))
+            {
+                run = previous == day.AddDays(-1) ? run + 1 : 1;
+                confirmedLongest = Math.Max(confirmedLongest, run);
+                previous = day;
+            }
+            var completedExercises = (await _context.UserWritingExerciseProgresses.AsNoTracking()
+                .Where(p => p.UserId == userId && p.IsCompleted && p.CompletedAt != null && p.CompletedAt <= _clock.UtcNow)
+                .Select(p => p.WritingExerciseId).ToListAsync()).ToHashSet();
+            var creditKeys = await _context.LearningCompletionCredits.AsNoTracking()
+                .Where(c => c.UserId == userId && c.Feature == "Writing" && c.CreatedAtUtc <= _clock.UtcNow
+                    && c.BusinessDate <= today)
+                .Select(c => c.ContentKey).Distinct().ToListAsync();
+            foreach (var key in creditKeys)
+            {
+                var suffix = key.StartsWith("exercise:", StringComparison.Ordinal) ? key[9..]
+                    : key.StartsWith("writing-exercise:", StringComparison.Ordinal) ? key[17..] : null;
+                if (int.TryParse(suffix, out var exerciseId) && exerciseId > 0) completedExercises.Add(exerciseId);
+            }
+
             return new GoalsBadgeMetrics
             {
                 CurrentStreak = currentStreak,
                 LongestStreak = longestStreak,
-                TotalDaysActive = totals?.TotalDaysActive ?? 0,
+                TotalDaysActive = confirmedDays.Count,
+                ConfirmedLongestStreak = confirmedLongest,
+                DistinctWritingExercisesCompleted = completedExercises.Count,
                 TotalXp = totals?.TotalXp ?? 0,
                 SpeakingVideosCompleted = speakingVideosCompleted,
                 VocabularyCompletions = totals?.VocabularyCompletions ?? 0,
@@ -563,8 +610,42 @@ namespace TCTVocabulary.Services
             };
         }
 
-        private async Task<IReadOnlyList<int>> RefreshUserBadgesAsync(int userId, GoalsBadgeMetrics? existingMetrics = null)
+        private static readonly HashSet<string> NewBadgeCodes = BadgeSeedData.CreateBadges()
+            .Where(b => b.Id >= 13).Select(b => b.Code).ToHashSet(StringComparer.Ordinal);
+
+        public async Task<IReadOnlyList<BadgeReconciliationResult>> ReconcileNewBadgesAsync(
+            IReadOnlyCollection<int> userIds, bool dryRun = true, CancellationToken cancellationToken = default)
         {
+            if (userIds.Count is < 1 or > 100 || userIds.Any(id => id <= 0))
+                throw new ArgumentException("Supply 1–100 explicit positive user IDs.", nameof(userIds));
+            using var operation = _clock.BeginOperation();
+            var results = new List<BadgeReconciliationResult>();
+            foreach (var userId in userIds.Distinct().Order())
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var row = await TCTEnglish.Services.Accounts.UserMutationScope.ExecuteAsync(_context, userId, async () =>
+                {
+                    var metrics = await BuildBadgeMetricsAsync(userId);
+                    if (metrics == null) return new BadgeReconciliationResult(userId, dryRun, Array.Empty<int>());
+                    if (!dryRun)
+                        return new BadgeReconciliationResult(userId, false,
+                            await RefreshUserBadgesAsync(userId, metrics, retroactive: true));
+                    var awarded = await _context.UserBadges.AsNoTracking().Where(b => b.UserId == userId)
+                        .Select(b => b.BadgeId).ToListAsync(cancellationToken);
+                    var catalog = await _context.Badges.AsNoTracking().ToListAsync(cancellationToken);
+                    return new BadgeReconciliationResult(userId, true, catalog.Where(b => NewBadgeCodes.Contains(b.Code)
+                        && !awarded.Contains(b.Id) && BadgeProjection.HasSupportedRule(b)
+                        && GetMetricValue(metrics, b.MetricType) >= b.ThresholdValue).Select(b => b.Id).ToList());
+                }, _ => !dryRun, cancellationToken);
+                results.Add(row);
+            }
+            return results;
+        }
+
+        private async Task<IReadOnlyList<int>> RefreshUserBadgesAsync(int userId, GoalsBadgeMetrics? existingMetrics = null, bool retroactive = false)
+        {
+            // Flush completion credits/progress in the caller's transaction before evaluating durable evidence.
+            await _context.SaveChangesAsync();
             var metrics = existingMetrics ?? await BuildBadgeMetricsAsync(userId);
             if (metrics == null)
             {
@@ -591,6 +672,8 @@ namespace TCTVocabulary.Services
             var badgesToAward = badgeCatalog
                 .Where(badge =>
                     !existingBadgeIdSet.Contains(badge.Id)
+                    && BadgeProjection.HasSupportedRule(badge)
+                    && (!retroactive || NewBadgeCodes.Contains(badge.Code))
                     && GetMetricValue(metrics, badge.MetricType) >= badge.ThresholdValue)
                 .ToList();
 
@@ -599,13 +682,14 @@ namespace TCTVocabulary.Services
                 return Array.Empty<int>();
             }
 
-            var awardedAt = DateTime.UtcNow;
+            var awardedAt = _clock.UtcNow;
             var newUserBadges = badgesToAward
                 .Select(badge => new UserBadge
                 {
                     UserId = userId,
                     BadgeId = badge.Id,
-                    AwardedAt = awardedAt
+                    AwardedAt = awardedAt,
+                    IsRetroactive = retroactive
                 })
                 .ToList();
 
@@ -640,64 +724,36 @@ namespace TCTVocabulary.Services
                 userId,
                 string.Join(", ", badgesToAward.Select(badge => badge.Code)));
 
-            // ── Notification: badge earned ───────────────────────────────
-            if (!_directNotificationGate.SuppressDirect)
+            // Grant and intent share a transaction. Explicit catch-up is durably marked and silent.
+            if (!retroactive)
             {
-                foreach (var awardedBadge in badgesToAward)
-                {
-                    try
+                await _intentWriter.EnqueueAsync(userId, "Badges", "earned", awardedAt,
+                    new LearningActivityTransition { NewlyAwardedBadgeIds = badgesToAward.Select(b => b.Id).ToList() },
+                    CancellationToken.None);
+                await _context.SaveChangesAsync();
+                if (!_directNotificationGate.SuppressDirect)
+                    foreach (var badge in badgesToAward)
                     {
-                        await _notificationService.GenerateBadgeNotificationAsync(userId, awardedBadge.Id);
+                        try { await _notificationService.GenerateBadgeNotificationAsync(userId, badge.Id); }
+                        catch (Exception ex) { _logger.LogWarning(ex, "Badge delivery deferred to outbox for {UserId}/{BadgeId}", userId, badge.Id); }
                     }
-                    catch (Exception ex)
-                    {
-                        _logger.LogWarning(ex,
-                            "Failed to generate badge notification for user {UserId}, badge {BadgeId}",
-                            userId, awardedBadge.Id);
-                    }
-                }
             }
 
             return badgesToAward.Select(badge => badge.Id).ToList();
         }
 
-        private static GoalsBadgeViewModel BuildBadgeViewModel(
-            Badge badge,
-            GoalsBadgeMetrics metrics,
-            IReadOnlyDictionary<int, DateTime> awardedLookup,
-            DateTime today)
+        private GoalsBadgeViewModel BuildBadgeViewModel(Badge badge, GoalsBadgeMetrics metrics,
+            IReadOnlyDictionary<int, UserBadge> awardedLookup, DateTime today)
         {
-            var isUnlocked = awardedLookup.TryGetValue(badge.Id, out var awardedAt);
-            var currentValue = Math.Min(GetMetricValue(metrics, badge.MetricType), badge.ThresholdValue);
-
-            return new GoalsBadgeViewModel
-            {
-                Code = badge.Code,
-                Name = badge.Name,
-                Description = badge.Description,
-                IconClass = badge.IconClass,
-                IsUnlocked = isUnlocked,
-                IsRecentlyUnlocked = isUnlocked && BusinessDateHelper.ToBusinessDateFromUtcStorage(awardedAt) == today,
-                ProgressValue = currentValue,
-                TargetValue = badge.ThresholdValue,
-                ProgressPercent = CalculateProgressPercent(currentValue, badge.ThresholdValue),
-                ProgressLabel = BuildBadgeProgressLabel(badge.MetricType, currentValue, badge.ThresholdValue),
-                MetricLabel = GetBadgeMetricLabel(badge.MetricType),
-                AwardedAt = isUnlocked ? awardedAt : null
-            };
+            awardedLookup.TryGetValue(badge.Id, out var award);
+            return BadgeProjection.Build(badge, GetMetricValue(metrics, badge.MetricType), award?.AwardedAt,
+                award != null && _clock.ToBusinessDateFromUtcStorage(award.AwardedAt) == today,
+                award?.IsRetroactive ?? false);
         }
 
         private static int ComputeCurrentStreak(DateTime? lastStudyDate, int? storedStreak, DateTime today)
         {
-            var lastStudy = lastStudyDate?.Date;
-            if (!lastStudy.HasValue)
-            {
-                return 0;
-            }
-
-            return lastStudy.Value >= today.AddDays(-1)
-                ? Math.Max(storedStreak ?? 0, 0)
-                : 0;
+            return StudyDayProjection.CurrentStreak(lastStudyDate, storedStreak, today);
         }
 
         private static string BuildStreakMessage(int currentStreak, DateTime? lastStudyDate, DateTime today)
@@ -1033,9 +1089,10 @@ SELECT
     {(columnSupport.HasVocabularyCompletedCount ? "COALESCE(SUM(VocabularyCompletedCount), 0)" : "0")} AS VocabularyCompletions,
     {(columnSupport.HasWritingCompletedCount ? "COALESCE(SUM(WritingCompletedCount), 0)" : "0")} AS WritingExercisesCompleted
 FROM UserDailyActivities
-WHERE UserID = @userId";
+WHERE UserID = @userId AND ActivityDate <= @today";
 
                 AddIntParameter(command, "@userId", userId);
+                AddDateParameter(command, "@today", ResolveBusinessDate());
 
                 using var reader = await command.ExecuteReaderAsync();
                 if (!await reader.ReadAsync())
@@ -1356,9 +1413,9 @@ WHERE TABLE_NAME = 'UserDailyActivities'";
                 : VocabularyActivityKind.Review;
         }
 
-        private static DateTime ResolveBusinessDate()
+        private DateTime ResolveBusinessDate()
         {
-            return BusinessDateHelper.Today;
+            return _clock.BusinessDate;
         }
 
         private async Task<int> RefreshBadgesIfNeededAsync(int userId, bool refreshBadgesAfterPersist)
@@ -1455,6 +1512,8 @@ WHERE TABLE_NAME = 'UserDailyActivities'";
                 BadgeMetricType.SpeakingVideosCompleted => metrics.SpeakingVideosCompleted,
                 BadgeMetricType.VocabularyCompletions => metrics.VocabularyCompletions,
                 BadgeMetricType.WritingExercisesCompleted => metrics.WritingExercisesCompleted,
+                BadgeMetricType.DistinctWritingExercisesCompleted => metrics.DistinctWritingExercisesCompleted,
+                BadgeMetricType.ConfirmedLongestStreak => metrics.ConfirmedLongestStreak,
                 _ => 0
             };
         }
@@ -1658,6 +1717,8 @@ WHERE UserID = @userId
             public int VocabularyCompletions { get; init; }
 
             public int WritingExercisesCompleted { get; init; }
+            public int DistinctWritingExercisesCompleted { get; init; }
+            public int ConfirmedLongestStreak { get; init; }
         }
 
         private sealed class DailyActivityTotals

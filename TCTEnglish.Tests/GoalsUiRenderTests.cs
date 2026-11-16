@@ -17,6 +17,47 @@ namespace TCTEnglish.Tests;
 /// </summary>
 public sealed class GoalsUiRenderTests
 {
+    [Theory]
+    [InlineData(GoalArea.Vocabulary, "Từ vựng")]
+    [InlineData(GoalArea.Speaking, "Luyện nói")]
+    [InlineData(GoalArea.Writing, "Kỹ năng viết")]
+    [InlineData(GoalArea.Reading, "Kỹ năng đọc")]
+    [InlineData(GoalArea.Listening, "Kỹ năng nghe")]
+    public async Task GoalsPausedTargets_RenderPausedInsteadOfZeroPercentOrUnconfigured(GoalArea area, string skillLabel)
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using (var scope = factory.Services.CreateScope())
+            await scope.ServiceProvider.GetRequiredService<TCTVocabulary.Services.IGoalsService>()
+                .UpdateGoalAsync(TestDataIds.UserId, area, 0);
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Goals");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var text = WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
+        Assert.Contains("Các mục tiêu đang tạm dừng", text);
+        Assert.Contains($"aria-label=\"{skillLabel}: Đang tạm dừng\"", text);
+        Assert.DoesNotContain("Bạn đã hoàn thành", text);
+        Assert.DoesNotContain("0/0", text);
+    }
+
+    [Fact]
+    public async Task GoalsPausedTarget_AlongsideRunningTarget_DoesNotRenderZeroDenominatorProgress()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        using (var scope = factory.Services.CreateScope())
+        {
+            var service = scope.ServiceProvider.GetRequiredService<TCTVocabulary.Services.IGoalsService>();
+            await service.UpdateGoalAsync(TestDataIds.UserId, GoalArea.Writing, 0);
+            await service.UpdateGoalAsync(TestDataIds.UserId, GoalArea.Speaking, 2);
+        }
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        var text = WebUtility.HtmlDecode(await client.GetStringAsync("/Goals"));
+        Assert.Contains("aria-label=\"Kỹ năng viết: Đang tạm dừng\"", text);
+        Assert.Contains("0/2 video", text);
+        Assert.DoesNotContain("0/0", text);
+    }
+
     private static async Task SeedFullGoalsDataAsync(TestWebApplicationFactory factory)
     {
         using var scope = factory.Services.CreateScope();
@@ -148,6 +189,8 @@ public sealed class GoalsUiRenderTests
         Assert.Contains("name=\"__RequestVerificationToken\"", html);
         Assert.Contains("name=\"GoalEditor.GoalArea\"", html);
         Assert.Contains("name=\"GoalEditor.TargetValue\"", html);
+        Assert.Contains("for=\"goalAreaSelect\"", html);
+        Assert.Contains("for=\"goalTargetInput\"", html);
         Assert.Contains("class=\"form-control form-control-lg goal-input\"", html);
         Assert.Contains("goal-stepper-btn", html);
         Assert.Contains("goal-modal-icon-badge", html);
@@ -201,5 +244,53 @@ public sealed class GoalsUiRenderTests
         Assert.Contains("data-testid=\"goal-modal-submit\" data-goal-mode=\"create\"", html);
         Assert.Contains("chart-empty-state", html);
         Assert.Contains("Biểu đồ sẽ sáng dần khi bạn bắt đầu ôn thẻ", html);
+    }
+
+    [Fact]
+    public async Task GoalsPage_RendersBadgeTierFilters_AndBadgeDetailModal_WithoutLeakingSecrets()
+    {
+        await using var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        await SeedFullGoalsDataAsync(factory);
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+        using var response = await client.GetAsync("/Goals");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var html = await response.Content.ReadAsStringAsync();
+
+        var text = WebUtility.HtmlDecode(html);
+
+        // 1. Badge Tier Filter bar & Group tabs
+        Assert.Contains("goals-badge-filter-bar", html);
+        Assert.Contains("data-badge-filter=\"all\"", html);
+        Assert.Contains("data-badge-filter=\"chill\"", html);
+        Assert.Contains("data-badge-filter=\"cuon\"", html);
+        Assert.Contains("data-badge-filter=\"chien-than\"", html);
+        Assert.Contains("data-badge-filter=\"trum-cuoi\"", html);
+        Assert.Contains("data-badge-filter=\"bi-an\"", html);
+
+        // 2. GenZ Vietnamese labels
+        Assert.Contains("Nhập môn chill", text);
+        Assert.Contains("Bắt đầu cuốn", text);
+        Assert.Contains("Hệ chiến thần", text);
+        Assert.Contains("Trùm cuối server", text);
+        Assert.Contains("Ủa, bí mật nè!", text);
+
+        // 3. Locked mystery badges & Mystery styling
+        Assert.Contains("goals-badge-tile--mystery-locked", html);
+        Assert.Contains("goals-badge-icon-wrap--mystery", html);
+
+        // 4. Mystery redaction: no secret codes or criteria leaked in rendered HTML
+        Assert.DoesNotContain("secret-plot-twist", html);
+        Assert.DoesNotContain("secret-quiet-effort", html);
+        Assert.DoesNotContain("Plot twist thứ 13", text);
+        Assert.DoesNotContain("Hệ chăm ngầm", text);
+        Assert.DoesNotContain("13 bài Writing khác nhau", text);
+        Assert.DoesNotContain("21 ngày học đã xác nhận", text);
+
+        // 5. Accessible detail modal
+        Assert.Contains("id=\"badgeDetailModal\"", html);
+        Assert.Contains("id=\"badgeDetailModalTitle\"", html);
+        Assert.Contains("id=\"badgeDetailCloseBtn\"", html);
     }
 }

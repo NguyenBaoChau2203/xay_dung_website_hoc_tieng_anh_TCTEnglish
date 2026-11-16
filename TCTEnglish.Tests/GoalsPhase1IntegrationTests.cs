@@ -181,8 +181,9 @@ public sealed class GoalsPhase1IntegrationTests
         var body = await response.Content.ReadAsStringAsync();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        // Use a more robust regex that handles optional whitespace and self-closing tags
-        Assert.Matches(new Regex(@"18\s*t[^\s<]*\s*<br\s*/?>\s*c[^\s<]*n", RegexOptions.IgnoreCase | RegexOptions.Singleline), body);
+        var text = WebUtility.HtmlDecode(body);
+        Assert.Contains("0/18 thẻ", text);
+        Assert.Contains("Mục tiêu hôm nay:", text);
     }
 
     private static async Task SeedGoalDataAsync(

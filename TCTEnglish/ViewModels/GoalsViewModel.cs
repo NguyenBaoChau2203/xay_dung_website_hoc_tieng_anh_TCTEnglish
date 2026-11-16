@@ -15,6 +15,8 @@ namespace TCTEnglish.ViewModels
         public int TodayProgressMax { get; set; }
         public int ProgressPercent { get; set; }
         public List<GoalsWeekDayViewModel> WeeklyActivity { get; set; } = new();
+        public DateTime BusinessDate { get; set; }
+        public List<GoalsStudyDayViewModel> StudyDays { get; set; } = new();
         public string WeeklyActivityMessage { get; set; } = string.Empty;
         public List<GoalsBadgeViewModel> Badges { get; set; } = new();
         public UpdateGoalInputViewModel GoalEditor { get; set; } = new();
@@ -58,6 +60,24 @@ namespace TCTEnglish.ViewModels
         public bool IsToday { get; set; }
     }
 
+    public sealed class GoalsStudyDayViewModel
+    {
+        public DateTime BusinessDate { get; init; }
+        public string DayLabel { get; init; } = string.Empty;
+        public string FullLabel => BusinessDate.ToString("dd/MM/yyyy");
+        public bool IsToday { get; init; }
+        public bool HasConfirmedStudy { get; init; }
+        public int? ActiveGoalCount { get; init; }
+        public int? MetGoalCount { get; init; }
+        // null: unknown history or no positive target; false: known unmet targets.
+        public bool? AllGoalsMet => ActiveGoalCount is > 0 && MetGoalCount.HasValue
+            ? MetGoalCount == ActiveGoalCount : null;
+        public string StudyLabel => HasConfirmedStudy ? "Có ngày học đã xác nhận" : "Chưa ghi nhận ngày học";
+        public string GoalLabel => AllGoalsMet == true ? "Đã đạt mọi mục tiêu"
+            : AllGoalsMet == false ? "Chưa đạt mọi mục tiêu"
+            : ActiveGoalCount == 0 ? "Không có mục tiêu đang chạy" : "Chưa đủ lịch sử mục tiêu";
+    }
+
     public class GoalsBadgeViewModel
     {
         public string Code { get; set; } = string.Empty;
@@ -66,13 +86,24 @@ namespace TCTEnglish.ViewModels
         public string IconClass { get; set; } = "fas fa-award";
         public bool IsUnlocked { get; set; }
         public bool IsRecentlyUnlocked { get; set; }
-        public int ProgressValue { get; set; }
-        public int TargetValue { get; set; }
-        public int ProgressPercent { get; set; }
+        public int? ProgressValue { get; set; }
+        public int? TargetValue { get; set; }
+        public int? ProgressPercent { get; set; }
         public string ProgressLabel { get; set; } = string.Empty;
         public string MetricLabel { get; set; } = string.Empty;
         public DateTime? AwardedAt { get; set; }
-        public string StatusText => IsUnlocked ? "Đã mở khóa" : "Đang theo dõi";
+        public string? DifficultyKey { get; set; }
+        public string DifficultyLabel { get; set; } = string.Empty;
+        public string DisplayGroupKey { get; set; } = string.Empty;
+        public string DisplayGroupLabel { get; set; } = string.Empty;
+        public bool IsSecret { get; set; }
+        public bool IsRedacted { get; set; }
+        public bool HasKnownProgress => ProgressValue.HasValue && TargetValue.HasValue;
+        public bool IsAvailable { get; set; }
+        public bool CanRecommend => !IsUnlocked && !IsRedacted && IsAvailable;
+        public bool IsRetroactive { get; set; }
+        public string StatusText => IsUnlocked ? (IsRetroactive ? "Đã ghi nhận thành tích trước đây" : "Đã mở khóa")
+            : IsRedacted ? "Chưa khám phá" : IsAvailable ? "Đang theo dõi" : "Chưa có quy tắc hỗ trợ";
     }
 
     public class UpdateGoalInputViewModel

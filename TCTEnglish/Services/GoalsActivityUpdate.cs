@@ -2,6 +2,8 @@ namespace TCTVocabulary.Services
 {
     public sealed class GoalsActivityUpdate
     {
+        // Set only after the owned accepted attempt has been persisted in the same unit.
+        internal bool ConfirmedWritingPractice { get; init; }
         public int XpEarned { get; init; }
         public int CardsReviewed { get; init; }
         public int NewCardsLearned { get; init; }
@@ -13,7 +15,7 @@ namespace TCTVocabulary.Services
         public int ListeningCompletedCount { get; init; }
 
         public bool HasChanges =>
-            XpEarned > 0
+            ConfirmedWritingPractice || XpEarned > 0
             || CardsReviewed > 0
             || NewCardsLearned > 0
             || VocabularyCompletedCount > 0

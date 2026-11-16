@@ -49,7 +49,8 @@ public sealed class LearningNotificationIntentWriter : ILearningNotificationInte
             .Where(g => g.UserId == userId && g.IsActive && g.TargetValue > 0)
             .ToListAsync(cancellationToken);
 
-        var activity = await _context.UserDailyActivities
+        // Badge grants do not need goal counters (including legacy schemas missing area columns).
+        var activity = feature == "Badges" ? null : await _context.UserDailyActivities
             .AsNoTracking()
             .Where(a => a.UserId == userId && a.ActivityDate == businessDate)
             .FirstOrDefaultAsync(cancellationToken);
