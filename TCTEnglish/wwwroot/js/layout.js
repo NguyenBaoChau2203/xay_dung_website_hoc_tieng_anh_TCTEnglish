@@ -173,12 +173,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             if (target && typeof target.focus === "function") target.focus();
         };
+        // "Tạo thư mục" in a page header is a plain link to /Sets#tao-thu-muc (it works without JavaScript); the hash is dropped once the dialog closes.
+        const clearFolderHash = () => {
+            if (window.location && window.location.hash === "#tao-thu-muc" && window.history && typeof window.history.replaceState === "function") {
+                window.history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+        };
         const closeFolderDialog = () => {
             if (typeof folderModal.close === "function") folderModal.close();
             else folderModal.removeAttribute("open");
         };
 
-        document.querySelectorAll("#newFolderBtn, [data-open-folder-dialog]").forEach((trigger) => {
+        document.querySelectorAll("#newFolderBtn, [data-open-folder-dialog], a[href$='#tao-thu-muc']").forEach((trigger) => {
             trigger.addEventListener("click", (e) => {
                 e.preventDefault();
                 openFolderDialog(trigger);
@@ -191,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         folderModal.addEventListener("close", () => {
             resetFolderSubmit();
+            clearFolderHash();
             returnFolderFocus();
         });
         folderInput?.addEventListener("input", () => {
@@ -210,9 +217,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
         window.addEventListener("pageshow", resetFolderSubmit);
+        // Back/forward or a changed hash on the same page.
+        window.addEventListener("hashchange", () => {
+            if (window.location && window.location.hash === "#tao-thu-muc") openFolderDialog(null);
+        });
 
         // After a failed create the server redirects back and asks for the dialog to reopen with the message.
-        if (folderModal.hasAttribute("data-open-on-load")) openFolderDialog(null);
+        if (folderModal.hasAttribute("data-open-on-load") || (window.location && window.location.hash === "#tao-thu-muc")) openFolderDialog(null);
     }
 
     // 4. XỬ LÝ USER DROPDOWN (AVATAR)

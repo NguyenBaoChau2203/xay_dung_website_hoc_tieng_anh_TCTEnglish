@@ -36,14 +36,16 @@ function element(extra = {}) {
 }
 
 // Builds the dialog, its trigger buttons and a document, then runs layout.js and fires DOMContentLoaded.
-function setup({ openOnLoad = false, nativeDialog = true, withDialog = true, triggerInert = false } = {}) {
+function setup({ openOnLoad = false, nativeDialog = true, withDialog = true, triggerInert = false, hash = '' } = {}) {
   const doc = { activeElement: null, listeners: {} };
-  const win = { listeners: {}, matchMedia: () => ({ matches: false, addEventListener() {} }) };
+  const replaced = [];
+  const win = { listeners: {}, location: { hash, pathname: '/Sets', search: '?filter=own' }, history: { replaceState: (...args) => replaced.push(args) }, matchMedia: () => ({ matches: false, addEventListener() {} }) };
   win.addEventListener = (type, fn) => { (win.listeners[type] = win.listeners[type] || []).push(fn); };
 
   const make = (extra) => { const el = element(extra); el.ownerDocument = doc; return el; };
 
   const menuButton = make();
+  const headerLink = make();
   const sidebarTrigger = make(triggerInert ? { closest: (selector) => (selector === "[inert]" ? {} : null) } : {});
   const pageTrigger = make();
   const cancel = make();
@@ -77,12 +79,12 @@ function setup({ openOnLoad = false, nativeDialog = true, withDialog = true, tri
   const byId = { folderModal: withDialog ? dialog : null, newFolderBtn: sidebarTrigger, cancelFolderBtn: cancel, menuToggleBtn: menuButton };
   doc.getElementById = (id) => byId[id] || null;
   doc.querySelector = () => null;
-  doc.querySelectorAll = (selector) => (selector.includes('newFolderBtn') ? [sidebarTrigger, pageTrigger] : []);
+  doc.querySelectorAll = (selector) => (selector.includes('newFolderBtn') ? [sidebarTrigger, pageTrigger, headerLink] : []);
   doc.addEventListener = (type, fn) => { (doc.listeners[type] = doc.listeners[type] || []).push(fn); };
 
   vm.runInNewContext(SOURCE, { document: doc, window: win, console, setTimeout, localStorage: { getItem: () => null, setItem() {} } });
   (doc.listeners.DOMContentLoaded || []).forEach((fn) => fn());
-  return { doc, win, menuButton, dialog, sidebarTrigger, pageTrigger, cancel, input, count, error, submit, form };
+  return { replaced, headerLink, doc, win, menuButton, dialog, sidebarTrigger, pageTrigger, cancel, input, count, error, submit, form };
 }
 
 test('layout.js starts without a dialog on the page', () => {
@@ -173,6 +175,40 @@ test('when the phone drawer made the trigger inert, focus goes to the menu butto
 
   assert.equal(t.dialog.open, false);
   assert.equal(t.doc.activeElement, t.menuButton);
+});
+
+test('the header link to #tao-thu-muc opens the dialog without navigating', () => {
+  const t = setup();
+  const evt = t.headerLink.dispatch('click');
+
+  assert.equal(evt.defaultPrevented, true);
+  assert.equal(t.dialog.open, true);
+  assert.equal(t.input.focusCount, 1);
+});
+
+test('arriving on /Sets#tao-thu-muc opens the dialog, and closing it drops the hash', () => {
+  const t = setup({ hash: '#tao-thu-muc' });
+  assert.equal(t.dialog.open, true);
+
+  t.cancel.dispatch('click');
+
+  assert.deepEqual(t.replaced, [[null, '', '/Sets?filter=own']]);
+});
+
+test('changing the hash to #tao-thu-muc on the page opens the dialog', () => {
+  const t = setup();
+  assert.equal(t.dialog.open, false);
+
+  t.win.location.hash = '#tao-thu-muc';
+  t.win.listeners.hashchange.forEach((fn) => fn());
+
+  assert.equal(t.dialog.open, true);
+});
+
+test('any other hash leaves the dialog closed and the address alone', () => {
+  const t = setup({ hash: '#something-else' });
+  assert.equal(t.dialog.open, false);
+  assert.deepEqual(t.replaced, []);
 });
 
 test('a click on the backdrop closes the dialog but a click inside the form does not', () => {

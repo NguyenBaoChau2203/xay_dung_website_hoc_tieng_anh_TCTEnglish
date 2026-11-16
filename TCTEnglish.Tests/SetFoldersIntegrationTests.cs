@@ -444,6 +444,114 @@ public sealed class SetFoldersIntegrationTests
         Assert.Equal("/Sets", Location(response));
     }
 
+    // ------------------------------------------------------------------ /Sets: folder row and set chips
+
+    private static string FolderRow(string html)
+        => Regex.Match(html, "<section class=\"ts-group ts-folders\".*?</section>", RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task SetsList_ShowsTheFolderRowWithNamedLinksCountsAndTheDashedCreateTile()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var row = FolderRow(html);
+
+        Assert.NotEmpty(row);
+        Assert.Matches("<h2[^>]*id=\"ts-group-folders\"[^>]*>\\s*Thư mục\\s*<span class=\"ts-group-count\">2</span>", row);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", row, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.DeletableUserFolderId}\"", row, StringComparison.Ordinal);
+        Assert.Matches("Thư mục Sprint One Folder, 1 bộ thẻ, \\d+ từ", row);
+        Assert.Matches("Thư mục Sprint One Delete Folder, 0 bộ thẻ, 0 từ", row);
+        var add = Regex.Match(row, "<button[^>]*data-open-folder-dialog[^>]*>.*?</button>", RegexOptions.Singleline).Value;
+        Assert.Contains("Tạo thư mục mới", add, StringComparison.Ordinal);
+        Assert.Contains("type=\"button\"", add, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_HeaderOffersCreateFolderBesideCreateSet()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var actions = Regex.Match(html, "<div class=\"tct-page-header__actions\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.Contains("href=\"/Sets#tao-thu-muc\"", actions, StringComparison.Ordinal);
+        Assert.Contains("Tạo thư mục", actions, StringComparison.Ordinal);
+        Assert.True(actions.IndexOf("Tạo thư mục", StringComparison.Ordinal) < actions.IndexOf("Tạo bộ thẻ", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task SetsList_ShowsTheFolderChipOnASetInAFolder()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var tile = Regex.Match(html, "<article class=\"[^\"]*ts-tile\".*?</article>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(tile);
+        Assert.Matches("<p class=\"ts-tile-folder\"><span class=\"ts-folder-chip\"><i class=\"fa-solid fa-folder\" aria-hidden=\"true\"></i>\\s*Sprint One Folder\\s*</span></p>", tile);
+    }
+
+    [Fact]
+    public async Task SetsList_WithoutFoldersOffersOnlyTheFirstFolderTile()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var row = FolderRow(html);
+
+        Assert.NotEmpty(row);
+        Assert.DoesNotContain("id=\"ts-group-folders\"", html, StringComparison.Ordinal);
+        Assert.Contains("Tạo thư mục đầu tiên để gom các bộ thẻ cùng chủ đề.", row, StringComparison.Ordinal);
+        Assert.Contains("data-open-folder-dialog", row, StringComparison.Ordinal);
+        Assert.DoesNotContain("/Sets/Folders/", row, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_ShowsSavedFoldersWithTheSavedChipAndTheOwnerOnTheRightFilters()
+    {
+        await using var factory = await NewFactoryAsync();
+        var ownerName = await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return (await db.Users.AsNoTracking().SingleAsync(u => u.UserId == TestDataIds.UserId)).FullName;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var all = FolderRow(await PageAsync(client, "/Sets"));
+        var shared = FolderRow(await PageAsync(client, "/Sets?filter=shared"));
+        var own = FolderRow(await PageAsync(client, "/Sets?filter=own"));
+        var subscribed = await PageAsync(client, "/Sets?filter=subscribed");
+
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", all, StringComparison.Ordinal);
+        Assert.Contains("Đã lưu", all, StringComparison.Ordinal);
+        Assert.Contains(System.Net.WebUtility.HtmlDecode(ownerName ?? string.Empty), all, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", shared, StringComparison.Ordinal);
+        Assert.DoesNotContain($"/Sets/Folders/{TestDataIds.UserFolderId}", own, StringComparison.Ordinal);
+        Assert.DoesNotContain("ts-folders", subscribed, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_EmptyStateKeepsItsActionsAndAddsCreateFolder()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var actions = Regex.Match(html, "<div class=\"ts-empty-actions\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(actions);
+        Assert.Contains("Thêm bộ thẻ mẫu", actions, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ", actions, StringComparison.Ordinal);
+        Assert.Matches("<button[^>]*data-open-folder-dialog[^>]*>\\s*(<i[^>]*></i>\\s*)?Tạo thư mục\\s*</button>", actions);
+    }
+
     // ------------------------------------------------------------------ legacy create
 
     [Fact]

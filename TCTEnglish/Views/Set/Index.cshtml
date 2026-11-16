@@ -17,6 +17,8 @@
     {
         headerActions.Add(new PageHeaderAction("Luyện tập", "/Practice", PageActionVariant.Secondary, "fa-solid fa-dumbbell"));
     }
+    // A link so it works without JavaScript; layout.js opens the create-folder dialog for this address.
+    headerActions.Add(new PageHeaderAction("Tạo thư mục", "/Sets#tao-thu-muc", PageActionVariant.Secondary, "fa-solid fa-folder-plus"));
     headerActions.Add(new PageHeaderAction("Tạo bộ thẻ", createUrl, PageActionVariant.Primary, "fa-solid fa-plus"));
     var header = new PageHeaderViewModel
     {
@@ -91,6 +93,31 @@
 
     <partial name="_SetAlerts" />
 
+    @if (Model.Folders.Count > 0 || Model.Filter is null or "own")
+    {
+        <section class="ts-group ts-folders" aria-labelledby="@(Model.Folders.Count > 0 ? "ts-group-folders" : null)" aria-label="@(Model.Folders.Count == 0 ? "Thư mục" : null)">
+            @if (Model.Folders.Count > 0)
+            {
+                <h2 class="ts-group-title" id="ts-group-folders">Thư mục <span class="ts-group-count">@Model.Folders.Count</span></h2>
+            }
+            <ul class="ts-folder-grid">
+                @foreach (var folder in Model.Folders)
+                {
+                    <li><partial name="_FolderTile" model="folder" /></li>
+                }
+                @if (Model.Filter != "shared")
+                {
+                    <li>
+                        <button type="button" class="ts-folder-add" data-open-folder-dialog>
+                            <span class="ts-folder-add-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+                            <span class="ts-folder-add-text">@(Model.Folders.Count == 0 ? "Tạo thư mục đầu tiên để gom các bộ thẻ cùng chủ đề." : "Tạo thư mục mới")</span>
+                        </button>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+
     @if (Model.IsEmpty)
     {
         <partial name="~/Views/Shared/_StateMessage.cshtml" model="empty" />
@@ -99,6 +126,7 @@
                 <button type="submit" class="btn btn-primary" data-ts-pending="Đang thêm…">Thêm bộ thẻ mẫu</button>
             </form>
             <a class="btn btn-outline-primary" href="@createUrl">Tạo bộ thẻ</a>
+            <button type="button" class="btn btn-outline-primary" data-open-folder-dialog><i class="fa-solid fa-folder-plus me-1" aria-hidden="true"></i>Tạo thư mục</button>
         </div>
     }
     else

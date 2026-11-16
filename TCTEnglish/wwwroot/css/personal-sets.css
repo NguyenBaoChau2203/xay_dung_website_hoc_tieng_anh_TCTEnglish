@@ -235,6 +235,139 @@
 .ts-page .ts-tile-add-title { font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); }
 .ts-page .ts-tile-add-note { font-size: var(--tct-text-sm); color: var(--tct-text-muted); }
 
+/* ---------------------------------------------------------------- folders: the "Thư mục" row and the folder chip on a set tile */
+.ts-page .ts-folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: var(--tct-space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ts-page .ts-folder {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-md);
+    height: 100%;
+    min-height: 88px;
+    padding: var(--tct-space-md);
+}
+
+.ts-page .ts-folder-link { position: absolute; inset: 0; z-index: 1; border-radius: var(--tct-radius-lg); }
+
+.ts-page .ts-folder-icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--tct-radius-md);
+    background: var(--k-bg);
+    box-shadow: var(--tct-clay-shadow-field);
+    color: var(--k-fg);
+    font-size: var(--tct-text-xl);
+}
+
+.ts-page .ts-folder-body { flex: 1; min-width: 0; }
+.ts-page .ts-folder-name { margin: 0; font-size: var(--tct-text-lg); font-weight: var(--tct-weight-bold); line-height: 1.25; }
+
+.ts-page .ts-folder-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tct-space-xs) 0;
+    margin: var(--tct-space-xs) 0 0;
+    font-size: var(--tct-text-sm);
+    color: var(--tct-text-muted);
+}
+
+.ts-page .ts-folder-meta .ts-dot { margin-inline: var(--tct-space-sm); }
+.ts-page .ts-folder-meta .tct-badge { margin-left: var(--tct-space-sm); }
+
+.ts-page .ts-folder-saved {
+    margin-right: var(--tct-space-sm);
+    padding: 1px var(--tct-space-sm);
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    font-weight: var(--tct-weight-semibold);
+}
+
+.ts-page .ts-folder-go { flex: none; color: var(--tct-text-muted); }
+
+.ts-page .ts-folder-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tct-space-md);
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    padding: var(--tct-space-md);
+    border: 2px dashed var(--tct-border-control);
+    border: 2px dashed color-mix(in srgb, var(--tct-border-control) 60%, transparent);
+    border-radius: var(--tct-radius-lg);
+    background: color-mix(in srgb, var(--tct-surface) 45%, transparent);
+    color: var(--tct-text-secondary);
+    font: inherit;
+    font-weight: var(--tct-weight-semibold);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease), border-color var(--tct-dur-fast) var(--tct-ease);
+}
+
+.ts-page .ts-folder-add:hover { border-color: var(--tct-primary); background: var(--tct-primary-tint); color: var(--tct-primary-strong); }
+
+.ts-page .ts-folder-add-icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-surface);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    color: var(--tct-primary-strong);
+    font-size: var(--tct-text-lg);
+}
+
+.ts-page .ts-folder-link:focus-visible,
+.ts-page .ts-folder-add:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+.ts-page .ts-tile-folder { margin: var(--tct-space-xs) 0 0; min-width: 0; }
+
+.ts-page .ts-folder-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-xs);
+    max-width: 100%;
+    padding: 1px var(--tct-space-sm);
+    overflow: hidden;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-warning-soft);
+    color: var(--tct-warning-text);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (forced-colors: active) {
+    .ts-page :is(.ts-folder, .ts-folder-icon, .ts-folder-saved, .ts-folder-chip, .ts-folder-add-icon) {
+        box-shadow: none;
+        border: 1px solid CanvasText;
+    }
+
+    .ts-page .ts-folder-add { border-color: CanvasText; background: transparent; }
+}
+
 /* ---------------------------------------------------------------- list overview (due words, totals, practice links) */
 .ts-page .ts-overview {
     display: flex;
