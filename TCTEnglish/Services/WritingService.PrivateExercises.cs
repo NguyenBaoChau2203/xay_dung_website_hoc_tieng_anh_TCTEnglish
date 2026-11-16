@@ -83,15 +83,11 @@ public partial class WritingService
 
     private async Task<WritingPracticeExerciseRow?> ResolveWritingExerciseAccessAsync(int exerciseId, int userId)
     {
-        var accessContext = await ResolveWritingAccessContextAsync(userId);
+        var accessContext = await RecentWritingAccessAsync(userId, CancellationToken.None);
+        if (accessContext == null) return null;
 
-        return await _context.WritingExercises
-            .AsNoTracking()
+        return await ViewableWritingExercises(accessContext)
             .Where(exercise => exercise.Id == exerciseId)
-            .Where(exercise =>
-                accessContext.IsAdmin
-                || (exercise.UserId == null && exercise.IsPublished)
-                || (exercise.UserId == userId && accessContext.CanAccessOwnedPrivateExercises))
             .Select(exercise => new WritingPracticeExerciseRow
             {
                 Id = exercise.Id,
@@ -99,10 +95,17 @@ public partial class WritingService
                 Level = exercise.Level,
                 ContentType = exercise.ContentType,
                 Topic = exercise.Topic,
-                PreviewText = exercise.PreviewText
+                PreviewText = exercise.PreviewText,
+                Origin = new WritingGenerationOriginViewModel(exercise.InputMode, exercise.GenerationMethod, exercise.TemplateKey, exercise.TemplateVersion, exercise.FallbackReason),
+                IsPrivate = exercise.UserId != null
             })
             .FirstOrDefaultAsync();
     }
+
+    private IQueryable<WritingExercise> ViewableWritingExercises(WritingAccessContext access) =>
+        _context.WritingExercises.AsNoTracking().Where(exercise => access.IsAdmin
+            || (exercise.UserId == null && exercise.IsPublished)
+            || (exercise.UserId == access.UserId && access.CanAccessOwnedPrivateExercises));
 
     private async Task<string> GetNormalizedWritingRoleAsync(int userId)
     {

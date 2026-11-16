@@ -16,38 +16,45 @@
             <div class="writing-header-badge">
                 <i class="fa-solid fa-pen-fancy me-1" aria-hidden="true"></i> Writing Mastery
             </div>
-            <h1 class="writing-header-title">Kỹ năng Viết</h1>
-            <p class="writing-header-subtitle">
-                Hoàn thiện khả năng diễn đạt ý tưởng qua văn bản với các bài tập chuyên sâu từ email công việc đến báo cáo phân tích.
-            </p>
+            <div class="writing-header-hero-row d-flex align-items-start gap-3 mt-2">
+                <div class="writing-header-icon-clay" aria-hidden="true">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <div>
+                    <h1 class="writing-header-title">Kỹ năng Viết</h1>
+                    <p class="writing-header-subtitle">
+                        <i class="fa-solid fa-compass-drafting me-1 text-primary opacity-75" aria-hidden="true"></i>
+                        Hoàn thiện khả năng diễn đạt ý tưởng qua văn bản với các bài tập chuyên sâu từ email công việc đến báo cáo phân tích.
+                    </p>
+                </div>
+            </div>
         </header>
 
-        @* ── Bento Top Grid (Continue + Stats) ───────────────── *@
+        @* ── Bento Top Grid (Overview + Highlights) ──────────── *@
         <div class="writing-bento-grid">
 
-            @* Continue Learning Card *@
+            @* Overview / Call-to-action Card *@
             <article class="writing-continue-card">
                 <div class="writing-continue-body">
                     <span class="writing-continue-badge">
-                        <i class="fa-solid fa-bolt me-1" aria-hidden="true"></i> Tiếp tục học
+                        <i class="fa-solid fa-pen-nib me-1" aria-hidden="true"></i> Lộ trình bài bản
                     </span>
-                    <h2 class="writing-continue-title">Viết Email Chuyên Nghiệp</h2>
+                    <h2 class="writing-continue-title">Luyện Viết Song Ngữ Theo Ngữ Cảnh</h2>
                     <p class="writing-continue-desc">
-                        Bạn đã hoàn thành 65% bài học này. Tiếp tục để làm chủ cấu trúc email trang trọng và phong thái chuyên nghiệp.
+                        Rèn luyện phản xạ diễn đạt ý tưởng qua các tình huống thực tế từ email, nhật ký đến bài luận. Hệ thống chấm câu thông minh giúp bạn hoàn thiện từng câu văn.
                     </p>
-                    <div class="writing-continue-progress-wrap">
-                        <div class="writing-continue-progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ bài học Viết Email Chuyên Nghiệp">
-                            <div class="writing-continue-progress-fill" style="width: 65%"></div>
-                        </div>
-                        <span class="writing-continue-progress-label">65%</span>
+                    <div class="d-flex align-items-center flex-wrap gap-3">
+                        <a asp-controller="Study"
+                           asp-action="WritingExercises"
+                           asp-route-level="@Model.SelectedLevelKey"
+                           class="writing-continue-btn">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            Bắt đầu ngay
+                        </a>
+                        <span class="text-secondary small">
+                            <i class="fa-solid fa-layer-group me-1 text-primary" aria-hidden="true"></i> Cấp độ: <strong>@Model.SelectedLevelTitle</strong>
+                        </span>
                     </div>
-                    <a asp-controller="Study"
-                       asp-action="WritingExercises"
-                       asp-route-level="@Model.SelectedLevelKey"
-                       class="writing-continue-btn">
-                        <i class="fas fa-play" aria-hidden="true"></i>
-                        Bắt đầu ngay
-                    </a>
                 </div>
                 <div class="writing-continue-img-wrap" aria-hidden="true">
                     <img class="writing-continue-img"
@@ -59,26 +66,26 @@
                 </div>
             </article>
 
-            @* Stats Column *@
+            @* Highlights Column *@
             <div class="writing-stats-column">
                 <div class="writing-stat-card">
-                    <div class="writing-stat-icon writing-stat-icon--streak">
-                        <i class="fas fa-fire" aria-hidden="true"></i>
+                    <div class="writing-stat-icon writing-stat-icon--words">
+                        <i class="fa-solid fa-shapes" aria-hidden="true"></i>
                     </div>
                     <div class="writing-stat-content">
-                        <p class="writing-stat-label">Chuỗi ngày học</p>
-                        <p class="writing-stat-value">12 Ngày</p>
-                        <span class="writing-stat-sub">Phong độ xuất sắc!</span>
+                        <p class="writing-stat-label">Thể loại bài học</p>
+                        <p class="writing-stat-value">@Model.ContentTypes.Count Dạng bài</p>
+                        <span class="writing-stat-sub">Đa dạng tình huống học tập</span>
                     </div>
                 </div>
                 <div class="writing-stat-card">
-                    <div class="writing-stat-icon writing-stat-icon--words">
-                        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+                    <div class="writing-stat-icon writing-stat-icon--streak">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
                     </div>
                     <div class="writing-stat-content">
-                        <p class="writing-stat-label">Tổng số từ đã viết</p>
-                        <p class="writing-stat-value">4,250 Từ</p>
-                        <span class="writing-stat-sub">+350 từ tuần này</span>
+                        <p class="writing-stat-label">Đánh giá câu viết</p>
+                        <p class="writing-stat-value">Thời gian thực</p>
+                        <span class="writing-stat-sub">Gợi ý chỉnh câu tự nhiên</span>
                     </div>
                 </div>
             </div>
@@ -87,10 +94,23 @@
         @* ── Level Selection ──────────────────────────────────── *@
         <section class="writing-section" aria-labelledby="writing-level-heading">
             <div class="writing-section-heading">
-                <h2 id="writing-level-heading" class="writing-section-title">Chọn cấp độ của bạn</h2>
-                <p class="writing-section-subtitle" data-writing-selected-level-copy>
-                    Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.
-                </p>
+                <div class="d-flex align-items-center gap-3 mb-1">
+                    <div class="writing-section-icon-clay" aria-hidden="true">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <h2 id="writing-level-heading" class="writing-section-title mb-0">Chọn cấp độ của bạn</h2>
+                            <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">
+                                <i class="fa-solid fa-stairs me-1" aria-hidden="true"></i>@Model.Levels.Count cấp độ
+                            </span>
+                        </div>
+                        <p class="writing-section-subtitle d-flex align-items-center gap-2 mb-0 mt-1">
+                            <i class="fa-solid fa-circle-check text-success flex-shrink-0" aria-hidden="true"></i>
+                            <span data-writing-selected-level-copy>Chế độ @Model.SelectedLevelTitle đã sẵn sàng. Hãy chọn dạng bài để bắt đầu luyện viết.</span>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div class="writing-level-grid" data-writing-level-grid>
@@ -125,8 +145,23 @@
         @* ── Content Topics ───────────────────────────────────── *@
         <section class="writing-section" aria-labelledby="writing-content-heading">
             <div class="writing-section-heading">
-                <h2 id="writing-content-heading" class="writing-section-title">Chủ đề viết phổ biến</h2>
-                <p class="writing-section-subtitle">Lựa chọn thể loại bài viết phù hợp với mục tiêu học tập và công việc hàng ngày của bạn.</p>
+                <div class="d-flex align-items-center gap-3 mb-1">
+                    <div class="writing-section-icon-clay" aria-hidden="true">
+                        <i class="fa-solid fa-shapes"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <h2 id="writing-content-heading" class="writing-section-title mb-0">Chủ đề viết phổ biến</h2>
+                            <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">
+                                <i class="fa-solid fa-table-cells-large me-1" aria-hidden="true"></i>@Model.ContentTypes.Count thể loại
+                            </span>
+                        </div>
+                        <p class="writing-section-subtitle d-flex align-items-center gap-2 mb-0 mt-1">
+                            <i class="fa-solid fa-compass me-1 text-primary opacity-75" aria-hidden="true"></i>
+                            <span>Lựa chọn thể loại bài viết phù hợp với mục tiêu học tập và công việc hàng ngày của bạn.</span>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div class="writing-content-grid">

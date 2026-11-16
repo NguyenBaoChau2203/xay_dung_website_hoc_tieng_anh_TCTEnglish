@@ -396,11 +396,11 @@ namespace TCTVocabulary.Services
             int? selectedExerciseId;
             if (exerciseId.HasValue)
             {
-                selectedExerciseId = await _context.WritingExercises.AsNoTracking()
-                    .Where(e => e.Id == exerciseId.Value && e.Level == exerciseListViewModel.SelectedLevelKey
-                        && e.ContentType == exerciseListViewModel.SelectedContentTypeKey
-                        && ((e.UserId == null && e.IsPublished) || (e.UserId == userId && !exerciseListViewModel.IsMyExercisesLocked)))
-                    .Select(e => (int?)e.Id).FirstOrDefaultAsync();
+                var accessibleExercise = await ResolveWritingExerciseAccessAsync(exerciseId.Value, userId);
+                selectedExerciseId = accessibleExercise != null
+                    && accessibleExercise.Level == exerciseListViewModel.SelectedLevelKey
+                    && accessibleExercise.ContentType == exerciseListViewModel.SelectedContentTypeKey
+                        ? accessibleExercise.Id : null;
             }
             else
             {
@@ -661,6 +661,8 @@ namespace TCTVocabulary.Services
 
             return new WritingPracticeDataViewModel
             {
+                Origin = exercise.Origin,
+                IsPrivate = exercise.IsPrivate,
                 SelectedLevelKey = exercise.Level,
                 SelectedLevelTitle = ResolveWritingLevelTitle(exercise.Level),
                 SelectedContentTypeKey = exercise.ContentType,
@@ -689,6 +691,8 @@ namespace TCTVocabulary.Services
         {
             return new WritingPracticeViewModel
             {
+                Origin = practiceData.Origin,
+                IsPrivate = practiceData.IsPrivate,
                 SelectedLevelKey = exerciseListViewModel.SelectedLevelKey,
                 SelectedLevelTitle = exerciseListViewModel.SelectedLevelTitle,
                 SelectedContentTypeKey = exerciseListViewModel.SelectedContentTypeKey,
@@ -2115,6 +2119,8 @@ namespace TCTVocabulary.Services
 
         private sealed class WritingPracticeExerciseRow
         {
+            public WritingGenerationOriginViewModel? Origin { get; set; }
+            public bool IsPrivate { get; set; }
             public int Id { get; set; }
             public string Title { get; set; } = string.Empty;
             public string Level { get; set; } = string.Empty;

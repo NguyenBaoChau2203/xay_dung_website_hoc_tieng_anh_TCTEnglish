@@ -745,11 +745,12 @@ public class WritingExerciseManagementController : BaseController
                 sentence.EnglishMeaning,
                 Variants = sentence.WritingAcceptedAnswers
                     .OrderBy(answer => answer.Id)
-                    .Select(answer => new WritingAcceptedAnswerItemViewModel
+                    .Select(answer => new
                     {
-                        Id = answer.Id,
-                        AnswerText = answer.AnswerText,
-                        ApprovedAtUtc = answer.ApprovedAtUtc
+                        answer.Id,
+                        answer.AnswerText,
+                        answer.ApprovedAtUtc,
+                        answer.NormalizedHash
                     })
                     .ToList()
             })
@@ -762,7 +763,12 @@ public class WritingExerciseManagementController : BaseController
             VietnameseText = sentence.VietnameseText,
             CanonicalEnglishMeaning = sentence.EnglishMeaning,
             VariantCount = sentence.Variants.Count,
-            Variants = sentence.Variants,
+            Variants = sentence.Variants.Select(variant => new WritingAcceptedAnswerItemViewModel
+            {
+                Id = variant.Id,
+                AnswerText = variant.AnswerText,
+                ApprovedAtUtc = variant.ApprovedAtUtc
+            }).ToList(),
             ExpectedStateToken = WritingAssessmentPolicy.BuildAcceptedAnswersStateToken(
                 exerciseId,
                 sentence.Id,
@@ -770,7 +776,7 @@ public class WritingExerciseManagementController : BaseController
                 sentence.EnglishMeaning,
                 sentence.Variants.Select(variant => (
                     variant.Id,
-                    WritingAssessmentPolicy.ComputeNormalizedHash(variant.AnswerText),
+                    variant.NormalizedHash,
                     variant.ApprovedAtUtc.Ticks)))
         }).ToList();
     }

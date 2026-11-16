@@ -32,6 +32,9 @@ namespace TCTEnglish.ViewModels
 
     public class WritingExerciseListViewModel
     {
+        public int? RecentOwnerUserId { get; set; }
+        public bool RecentLoadFailed { get; set; }
+        public IReadOnlyList<RecentWritingExerciseViewModel> RecentExercises { get; set; } = Array.Empty<RecentWritingExerciseViewModel>();
         public string SelectedLevelKey { get; set; } = string.Empty;
         public string SelectedLevelTitle { get; set; } = string.Empty;
         public string SelectedContentTypeKey { get; set; } = string.Empty;
@@ -84,6 +87,8 @@ namespace TCTEnglish.ViewModels
 
     public class WritingExerciseCardViewModel
     {
+        public WritingGenerationOriginViewModel? Origin { get; set; }
+
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string PreviewText { get; set; } = string.Empty;
@@ -103,6 +108,9 @@ namespace TCTEnglish.ViewModels
 
     public class WritingPracticeDataViewModel
     {
+        public WritingGenerationOriginViewModel? Origin { get; set; }
+        public bool IsPrivate { get; set; }
+
         public string SelectedLevelKey { get; set; } = string.Empty;
         public string SelectedLevelTitle { get; set; } = string.Empty;
         public string SelectedContentTypeKey { get; set; } = string.Empty;
@@ -124,6 +132,9 @@ namespace TCTEnglish.ViewModels
 
     public class WritingPracticeViewModel
     {
+        public WritingGenerationOriginViewModel? Origin { get; set; }
+        public bool IsPrivate { get; set; }
+
         public string SelectedLevelKey { get; set; } = string.Empty;
         public string SelectedLevelTitle { get; set; } = string.Empty;
         public string SelectedContentTypeKey { get; set; } = string.Empty;
@@ -242,4 +253,9 @@ namespace TCTEnglish.ViewModels
         public string EvaluationSource { get; set; } = string.Empty;
         public string TimestampDisplay { get; set; } = string.Empty;
     }
+}
+
+namespace TCTEnglish.ViewModels
+{
+    public sealed record WritingGenerationOriginViewModel(string? InputMode, string? GenerationMethod, string? TemplateKey, int? TemplateVersion, string? FallbackReason);
 }

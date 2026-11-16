@@ -1257,6 +1257,28 @@ namespace TCTEnglish.Migrations
                     b.ToTable("UserSubscriptions");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserWritingExerciseVisit", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WritingExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastOpenedAtUtc")
+                        .HasPrecision(6)
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UserId", "WritingExerciseId");
+
+                    b.HasIndex("WritingExerciseId");
+
+                    b.HasIndex("UserId", "LastOpenedAtUtc", "WritingExerciseId")
+                        .HasDatabaseName("IX_UserWritingExerciseVisits_UserId_Opened_Exercise");
+
+                    b.ToTable("UserWritingExerciseVisits", (string)null);
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.WebPushSubscription", b =>
                 {
                     b.Property<long>("Id")
@@ -1346,6 +1368,126 @@ namespace TCTEnglish.Migrations
                         .HasDatabaseName("IX_WritingGenerationLogs_UserId_RequestType_RequestedAtUtc");
 
                     b.ToTable("WritingGenerationLogs", (string)null);
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.WritingGenerationOperation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("CandidateKeys")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int>("CatalogVersion")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConfirmationHash")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("ContentType")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ErrorCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int?>("ExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Fence")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("GenerationMethod")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("IdempotencyKey")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("InputMode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<int>("KnownProviderTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LeaseExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Length")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Level")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime?>("OfferExpiresAtUtc")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PayloadHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<bool>("ProviderOutcomeUncertain")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("QuotaDayUtc")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("QuotaSettled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("Reserved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("SentenceCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("TemplateKey")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("TemplateVersion")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tone")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<int>("UncertainProviderTokenUpper")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("UserId", "IdempotencyKey")
+                        .IsUnique();
+
+                    b.HasIndex("UserId", "Reserved", "LeaseExpiresAtUtc");
+
+                    b.ToTable("WritingGenerationOperations", (string)null);
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.Badge", b =>
@@ -3562,6 +3704,18 @@ namespace TCTEnglish.Migrations
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("(UTC_TIMESTAMP(6))");
 
+                    b.Property<string>("FallbackReason")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("GenerationMethod")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("InputMode")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
                     b.Property<bool>("IsPublished")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
@@ -3583,6 +3737,13 @@ namespace TCTEnglish.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasDefaultValue("admin");
+
+                    b.Property<string>("TemplateKey")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("TemplateVersion")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -3968,6 +4129,25 @@ namespace TCTEnglish.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TCTEnglish.Models.UserWritingExerciseVisit", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.WritingExercise", "WritingExercise")
+                        .WithMany()
+                        .HasForeignKey("WritingExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("WritingExercise");
+                });
+
             modelBuilder.Entity("TCTEnglish.Models.WebPushSubscription", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.User", "User")
@@ -3987,6 +4167,24 @@ namespace TCTEnglish.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_WritingGenerationLogs_Users");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTEnglish.Models.WritingGenerationOperation", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.WritingExercise", "Exercise")
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exercise");
 
                     b.Navigation("User");
                 });

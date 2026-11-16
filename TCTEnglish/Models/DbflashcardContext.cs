@@ -56,6 +56,7 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<UserSpeakingVideoCompletion> UserSpeakingVideoCompletions { get; set; }
     public virtual DbSet<TCTEnglish.Models.UserSpeakingVideoVisit> UserSpeakingVideoVisits { get; set; }
     public virtual DbSet<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; }
+    public virtual DbSet<TCTEnglish.Models.UserWritingExerciseVisit> UserWritingExerciseVisits { get; set; }
     public virtual DbSet<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; }
 
     // ─── Listening feature ───────────────────────────────────────────────────
@@ -107,6 +108,7 @@ public partial class DbflashcardContext : DbContext
     // Cấu hình chi tiết các bảng (Mapping)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        ConfigureWritingGeneration(modelBuilder);
         modelBuilder.Entity<Card>(entity =>
         {
             entity.HasKey(e => e.CardId).HasName("PK__Cards__55FECD8E2103FA66");
@@ -1386,6 +1388,17 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.VideoId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_UserSpeakingVideoVisits_SpeakingVideos");
+        });
+
+        modelBuilder.Entity<TCTEnglish.Models.UserWritingExerciseVisit>(entity =>
+        {
+            entity.ToTable("UserWritingExerciseVisits");
+            entity.HasKey(e => new { e.UserId, e.WritingExerciseId });
+            entity.Property(e => e.LastOpenedAtUtc).HasColumnType("datetime(6)").HasPrecision(6);
+            entity.HasIndex(e => new { e.UserId, e.LastOpenedAtUtc, e.WritingExerciseId })
+                .HasDatabaseName("IX_UserWritingExerciseVisits_UserId_Opened_Exercise");
+            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.WritingExercise).WithMany().HasForeignKey(e => e.WritingExerciseId).OnDelete(DeleteBehavior.Cascade);
         });
 
         // ─── Listening ───────────────────────────────────────────────────────

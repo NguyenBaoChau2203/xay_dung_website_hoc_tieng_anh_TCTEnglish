@@ -70,15 +70,47 @@ body:has(.writing-index-page) {
 .writing-header-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.25rem 0.85rem;
-    background: var(--tct-primary-soft);
+    gap: 0.45rem;
+    padding: 0.35rem 0.95rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
     color: var(--tct-primary-strong);
+    border: 1px solid rgba(66, 85, 255, 0.18);
     border-radius: var(--tct-radius-pill);
     font-size: var(--tct-text-xs);
-    font-weight: var(--tct-weight-semibold);
-    margin-bottom: var(--tct-space-sm);
+    font-weight: var(--tct-weight-bold);
     box-shadow: var(--tct-clay-shadow-quiet);
+    margin-bottom: var(--tct-space-xs);
+    transition: transform var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-header-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+
+.writing-header-hero-row {
+    margin-top: var(--tct-space-xs);
+}
+
+.writing-header-icon-clay {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--tct-radius-md, 16px);
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
+    border: 1px solid rgba(66, 85, 255, 0.16);
+    box-shadow: var(--tct-clay-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--tct-primary);
+    flex-shrink: 0;
+    transition: transform var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-header-icon-clay:hover {
+    transform: translateY(-2px) scale(1.03);
 }
 
 .writing-header-title {
@@ -337,6 +369,26 @@ body:has(.writing-index-page) {
 
 .writing-section-heading {
     margin-bottom: var(--tct-space-md);
+}
+
+.writing-section-icon-clay {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--tct-radius-md, 14px);
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
+    border: 1px solid rgba(66, 85, 255, 0.15);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--tct-primary);
+    flex-shrink: 0;
+    transition: transform var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-section-icon-clay:hover {
+    transform: translateY(-1px);
 }
 
 .writing-section-title {
