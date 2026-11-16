@@ -128,6 +128,46 @@ public sealed class LandingPageTests
     }
 
     [Fact]
+    public async Task Landing_Demo_RendersQuestionOneAsPlainMarkupForVisitorsWithoutJavaScript()
+    {
+        var (_, html, decoded) = await GetLandingAsync(signedIn: false);
+
+        var card = Regex.Match(decoded, "<div class=\"lp-quiz\".*?<div class=\"lp-quiz-result\"", RegexOptions.Singleline);
+        Assert.True(card.Success, "demo card missing");
+        Assert.Contains("Học thử · câu 1/3", card.Value, StringComparison.Ordinal);
+        Assert.Contains("đàm phán", card.Value, StringComparison.Ordinal);
+        foreach (var option in new[] { "accomplish", "negotiate", "schedule", "confirm" })
+        {
+            Assert.Contains(option, card.Value, StringComparison.Ordinal);
+        }
+
+        // No JavaScript: options are plain text (no dead buttons) and a real link leads to registration.
+        var options = Regex.Match(card.Value, "<ul class=\"lp-quiz-options\".*?</ul>", RegexOptions.Singleline).Value;
+        Assert.DoesNotContain("<button", options, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains(Anchors(card.Value), a => a.Href == "/Account/Register" && a.Text == "Bắt đầu miễn phí");
+
+        // Accessibility hooks the script relies on: a labelled option group and a polite live region.
+        Assert.Contains("role=\"group\" aria-label=\"Chọn đáp án đúng\"", card.Value, StringComparison.Ordinal);
+        Assert.Contains("aria-live=\"polite\"", card.Value, StringComparison.Ordinal);
+
+        // The pure core is loaded before the page script, both deferred, with a cache-busting version.
+        Assert.Matches("(?s)/js/landing-core\\.js\\?v=[^\"]+\"[^>]*defer.*?/js/landing\\.js\\?v=[^\"]+\"[^>]*defer", html);
+
+        // The demo adds no network call of its own: no endpoint, fetch target or form on the card.
+        Assert.DoesNotContain("<form", card.Value, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task Landing_Demo_SignedInVisitorIsSentToTheDashboardInsteadOfRegistration()
+    {
+        var (_, _, decoded) = await GetLandingAsync(signedIn: true);
+
+        Assert.Contains("data-lp-cta-href=\"/Home/Index\"", decoded, StringComparison.Ordinal);
+        Assert.Contains("data-lp-cta-label=\"Vào trang học\"", decoded, StringComparison.Ordinal);
+        Assert.DoesNotContain("/Account/Register", decoded, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task Landing_RootServesThePageAndAnonymousDashboardRedirectsToIt()
     {
         await using var factory = new TestWebApplicationFactory();

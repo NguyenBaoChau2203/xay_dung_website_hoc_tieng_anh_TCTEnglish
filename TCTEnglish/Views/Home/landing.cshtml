@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/ai-chat-launcher.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+    <script src="~/js/landing-core.js" asp-append-version="true" defer></script>
     <script src="~/js/landing.js" asp-append-version="true" defer></script>
 </head>
 <body class="lp">
@@ -123,8 +124,42 @@
 
     <div class="lp-wrap">
         <section class="lp-sec" id="hoc-thu" aria-labelledby="lp-try-title">
-            <h2 id="lp-try-title">Thử một câu trước khi đăng ký.</h2>
-            <p class="lp-lead">Ba câu hỏi từ vựng, trả lời ngay trên trang này. Không cần tài khoản.</p>
+            <div class="lp-try">
+                <div class="lp-try-copy">
+                    <h2 id="lp-try-title">Thử một câu trước khi đăng ký.</h2>
+                    <p class="lp-lead">Ba câu hỏi từ vựng, trả lời ngay trên trang này. Không cần tài khoản.</p>
+                    <ul class="lp-tick">
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Hệ thống tự chấm, bạn chỉ cần chọn đáp án</li>
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Mỗi từ đúng được xếp ngày ôn lại</li>
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Dùng phím 1 đến 4 để trả lời nhanh</li>
+                    </ul>
+                </div>
+
+                <div class="lp-quiz" data-lp-demo
+                     data-lp-cta-href="@(isAuthenticated ? "/Home/Index" : "/Account/Register")"
+                     data-lp-cta-label="@(isAuthenticated ? "Vào trang học" : "Tạo tài khoản miễn phí")"
+                     data-lp-result-note="@(isAuthenticated ? "Vào trang học để lưu tiến độ và học tiếp." : "Tạo tài khoản để lưu tiến độ và học tiếp.")">
+                    <div class="lp-quiz-play" data-lp-demo-play>
+                        <div class="lp-quiz-head">
+                            <span data-lp-demo-progress>Học thử · câu 1/3</span>
+                            <b class="lp-quiz-tag">Từ mới</b>
+                        </div>
+                        <p class="lp-quiz-ask" data-lp-demo-prompt>Từ nào có nghĩa này?</p>
+                        <p class="lp-quiz-word" data-lp-demo-word>đàm phán</p>
+                        <ul class="lp-quiz-options" role="group" aria-label="Chọn đáp án đúng" data-lp-demo-options>
+                            <li class="lp-option"><kbd>1</kbd><span class="lp-option-label">accomplish</span></li>
+                            <li class="lp-option"><kbd>2</kbd><span class="lp-option-label">negotiate</span></li>
+                            <li class="lp-option"><kbd>3</kbd><span class="lp-option-label">schedule</span></li>
+                            <li class="lp-option"><kbd>4</kbd><span class="lp-option-label">confirm</span></li>
+                        </ul>
+                        <div class="lp-quiz-feedback" aria-live="polite" data-lp-demo-feedback></div>
+                        <div class="lp-quiz-nojs">
+                            <a class="lp-btn lp-btn--sm" href="@(isAuthenticated ? "/Home/Index" : "/Account/Register")">@(isAuthenticated ? "Vào trang học" : "Bắt đầu miễn phí")</a>
+                        </div>
+                    </div>
+                    <div class="lp-quiz-result" data-lp-demo-result hidden></div>
+                </div>
+            </div>
         </section>
 
         <section class="lp-sec" id="ky-nang" aria-labelledby="lp-skills-title">

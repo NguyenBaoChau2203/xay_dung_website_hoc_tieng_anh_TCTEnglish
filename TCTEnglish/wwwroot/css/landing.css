@@ -47,6 +47,13 @@
     --lp-frame-ring-soft: rgba(255, 255, 255, .06);
     --lp-frame-glow: rgba(66, 85, 255, .55);
     --lp-chip-shadow: rgba(3, 8, 40, .55);
+    --lp-card-soft: #f3f5ff;
+    --lp-primary-soft: #eef2ff;
+    --lp-primary-ink: #2136e7;
+    --lp-quiz-shadow: rgba(66, 85, 255, .45);
+    --lp-quiz-ring: rgba(255, 255, 255, .07);
+    --lp-tick: #6ee7b7;
+    --lp-tick-text: #dfe4ff;
 
     --lp-radius-sm: 14px;
     --lp-radius-md: 22px;
@@ -324,6 +331,91 @@ html { scroll-padding-top: 104px; }
 
 .lp-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 22px; margin-top: 50px; }
 
+/* ------------------------------------------------------------------ "hoc thu" demo */
+.lp-try { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; margin-top: 20px; }
+.lp-try .lp-try-copy h2, .lp-try .lp-try-copy .lp-lead { margin-left: 0; text-align: left; }
+.lp-tick { display: grid; gap: 12px; margin-top: 24px; color: var(--lp-tick-text); font-size: 17px; }
+.lp-tick li { display: flex; align-items: flex-start; gap: 12px; }
+.lp-tick i { margin-top: 5px; color: var(--lp-tick); }
+
+.lp-quiz {
+    padding: 30px;
+    border-radius: 32px;
+    background: var(--lp-card);
+    color: var(--lp-on-accent);
+    box-shadow: 0 40px 90px var(--lp-quiz-shadow), 0 0 0 8px var(--lp-quiz-ring);
+}
+.lp-quiz-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--lp-card-muted); font-size: 14.5px; font-weight: 600; }
+.lp-quiz-tag { padding: 6px 12px; border-radius: 99px; background: var(--lp-primary-soft); color: var(--lp-primary-ink); font-weight: 600; }
+.lp-quiz-ask { margin-top: 18px; color: var(--lp-card-muted); font-size: 16px; }
+.lp-quiz-word { margin-bottom: 20px; font-size: clamp(32px, 3.2vw, 44px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; overflow-wrap: anywhere; }
+
+.lp-quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lp-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 18px;
+    background: var(--lp-card-soft);
+    color: var(--lp-on-accent);
+    font: 600 18px/1.3 var(--lp-font);
+    text-align: left;
+}
+.lp-option kbd {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--lp-card);
+    color: var(--lp-card-muted);
+    font: 600 13px/1 var(--lp-font);
+}
+.lp-option-label { flex: 1; overflow-wrap: anywhere; }
+.lp-option-mark { margin-left: auto; font-size: 18px; }
+.lp-quiz.is-live .lp-option { cursor: pointer; }
+.lp-quiz.is-live .lp-option:hover { background: var(--lp-primary-soft); }
+.lp-quiz .lp-option:focus-visible, .lp-quiz .lp-quiz-again:focus-visible, .lp-quiz a:focus-visible, .lp-quiz .lp-btn:focus-visible {
+    outline: 3px solid var(--lp-primary);
+    outline-offset: 2px;
+}
+.lp-option.is-correct { background: var(--lp-success-soft); color: var(--lp-success-strong); outline: 3px solid var(--lp-success-strong); }
+.lp-option.is-wrong { background: var(--lp-danger-soft); color: var(--lp-danger); outline: 3px solid var(--lp-danger); }
+.lp-option.is-correct:hover, .lp-option.is-wrong:hover { background: inherit; }
+
+.lp-quiz-feedback:empty { display: none; }
+.lp-quiz-feedback { margin-top: 16px; padding: 14px 18px; border-radius: 18px; font-weight: 600; }
+.lp-quiz-feedback.is-correct { background: var(--lp-success-soft); color: var(--lp-success-strong); }
+.lp-quiz-feedback.is-wrong { background: var(--lp-danger-soft); color: var(--lp-danger); }
+.lp-quiz-feedback-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.lp-quiz-detail { font-weight: 500; }
+.lp-quiz-schedule { margin-left: auto; color: var(--lp-on-accent); font-weight: 500; font-size: 15.5px; }
+.lp-quiz-next { margin-top: 12px; }
+
+.lp-quiz-nojs { margin-top: 18px; }
+.lp-js .lp-quiz-nojs { display: none; }
+
+.lp-quiz-result { padding: 14px 0; text-align: center; }
+.lp-quiz-score { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+.lp-quiz-score:focus { outline: none; }
+.lp-quiz-note { margin: 8px auto 22px; max-width: 360px; color: var(--lp-card-muted); }
+.lp-quiz-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; }
+.lp-quiz-again {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 0;
+    background: none;
+    color: var(--lp-primary-ink);
+    font: 700 16px/1 var(--lp-font);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* ------------------------------------------------------------------ footer (basic; completed in the footer phase) */
 .lp-foot { padding: 60px 0 36px; color: var(--lp-dim); font-size: 15.5px; }
 .lp-foot a:hover { color: var(--lp-text); }
@@ -355,6 +447,7 @@ html { scroll-padding-top: 104px; }
     .lp-header .lp-wrap { position: relative; }
     .lp-nav-links a { min-height: 48px; }
     .lp-grid { grid-template-columns: 1fr; gap: 18px; }
+    .lp-try { grid-template-columns: 1fr; gap: 28px; }
 }
 
 /* Below the full desktop width the chips move inside the frame edges so nothing leaves the viewport. */
@@ -389,6 +482,9 @@ html { scroll-padding-top: 104px; }
     .lp-chip--2 { right: -4px; top: 150px; }
     .lp-chip--3, .lp-chip--4 { display: none; }
     .lp-sec { padding-top: 64px; }
+    .lp-quiz { padding: 20px; border-radius: 24px; margin-bottom: 56px; }
+    .lp-quiz-options { grid-template-columns: 1fr; }
+    .lp-quiz-schedule { margin-left: 0; }
     .lp-card { padding: 22px; border-radius: 24px; }
     .lp-lead { font-size: 17px; }
 }
@@ -400,7 +496,8 @@ html { scroll-padding-top: 104px; }
 
 /* ------------------------------------------------------------------ forced colours and reduced motion */
 @media (forced-colors: active) {
-    .lp-nav, .lp-card, .lp-pill, .lp-btn, .lp-nav-toggle { border: 1px solid CanvasText; }
+    .lp-nav, .lp-card, .lp-pill, .lp-btn, .lp-nav-toggle, .lp-quiz, .lp-option, .lp-quiz-feedback { border: 1px solid CanvasText; }
+    .lp-option.is-correct, .lp-option.is-wrong { outline: 3px solid Highlight; }
     .lp-hero h1 { background: none; -webkit-text-fill-color: currentColor; color: CanvasText; }
     .lp-btn { forced-color-adjust: none; background: ButtonFace; color: ButtonText; box-shadow: none; }
 }
