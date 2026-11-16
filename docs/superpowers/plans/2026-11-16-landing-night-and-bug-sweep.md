@@ -361,17 +361,17 @@ Phase, date, commit subject; G1–G16 each with pass / n-a / deferred / blocked 
 - Plan and code comments in English; UI copy in Vietnamese exactly as written here.
 
 ## 10. Definition of Done
-- [ ] F8 fixed with a regression test; known issue closed.
-- [ ] Bug sweep done for every listed route and role; triage table in section 12; each fix tested; the rest reported.
-- [ ] Landing page matches direction D on laptop and phone, with every section of 5.4–5.10.
-- [ ] No inline style block; colours only through `--lp-*`; fonts and CDNs reduced as in 5.1.
-- [ ] Every primary action leads to registration (or "Vào trang học" when signed in); no dead links.
-- [ ] Demo works by mouse and keyboard, with no network use; node tests green.
-- [ ] Page is complete and readable without JavaScript, with reduced motion and in forced colours.
-- [ ] Contrast script, performance budgets and all sizes recorded.
-- [ ] Every claim on the page is true today; no invented numbers or reviews.
-- [ ] `/` redirect, AI launcher and other owners' tests unaffected.
-- [ ] Tracker, known-issues and section 12 updated.
+- [x] F8 fixed with a regression test; known issue closed. (N1)
+- [ ] Bug sweep done for every listed route and role; triage table in section 12; each fix tested; the rest reported. PARTLY: 204 page views swept and the triage table is complete, but several interactions were not driven (see "Not driven" in N2).
+- [x] Landing page matches direction D on laptop and phone, with every section of 5.4–5.10. (N3–N7; differences recorded)
+- [x] No inline style block; colours only through `--lp-*`; fonts and CDNs reduced as in 5.1.
+- [x] Every primary action leads to registration (or "Vào trang học" when signed in); no dead links.
+- [x] Demo works by mouse and keyboard, with no network use; node tests green. (369 of 370; the one failure is the known Speaking package hash)
+- [x] Page is complete and readable without JavaScript, with reduced motion and in forced colours. (screenshots reviewed in N10)
+- [x] Contrast script, performance budgets and all sizes recorded.
+- [x] Every claim on the page is true today; no invented numbers or reviews. (checked in N6/N7; two marketing phrases are not measurable, see N10)
+- [x] `/` behaviour, AI launcher and other owners' tests unaffected.
+- [x] Tracker, known-issues and section 12 updated.
 
 ## 11. Risks
 | Risk | Mitigation |
@@ -538,3 +538,16 @@ Fix budget: 7 of 15 used.
 - `.ai/context/known-issues.md`: LANDING-SCREENSHOTS-STALE (maintenance note with the capture steps), LANDING-DARK-THEME-D1 (decision for the project lead), LANDING-READING-LOGIN-RETURN (the Reading page drops the return URL; the landing links around it). Sweep findings and the closed SETS issue were recorded in N1 and N2.
 - `.ai/context/bug-fix-log.md`: one entry for the landing defects (login-tab buttons, dead footer icons, blank page when the script fails, stale copy).
 - Gates: docs only. G3 and G4 not re-run for code (nothing compiled changed); node 369 / 370 re-run after the edits (known Speaking failure only). G6 and G7 pass: `git diff --check` clean (apart from the unrelated, unstaged `appsettings.Development.json` blank line); changed paths are docs and the plan, all in 2.2.
+
+
+### N10 — Full gate and self-review (2026-11-16) — `docs(landing): record the final gate`
+- G1 pass: clean rebuild (`--no-incremental`) 0 errors, 58 warnings (equals the clean-rebuild baseline; all pre-existing nullable and analyzer warnings). `dotnet ef migrations has-pending-model-changes` (repo-local tool 9.0.4): "No changes have been made to the model since the last migration." No file under `Models/`, `Migrations/`, `.csproj`, `Program.cs` or `appsettings*.json` is in the branch diff.
+- G2/G3 pass: full .NET suite 1760 passed (N0 baseline 1745 + 15 landing tests), 35 skipped, 0 failed. G4 pass: node 369 / 370 (baseline 344 / 345 + 3 + 7 + 15 new); the one failure is the known `test_speaking_catalog_packages.cjs` (Speaking owner, predates this work).
+- G5 pass: `/` returns the landing page (default route) and anonymous `/Home/Index` redirects to it; `HomeController` is untouched; landing returns 200 anonymously and signed in.
+- G6/G15 pass (scripts): colours only inside the `.lp` block, no `:root`, no `!important`, no `<style>`, no HTML strings or `eval` in the landing JS; `git diff --check` clean (the only flag is the unrelated blank line in `appsettings.Development.json`, never staged). Branch diff review: 31 changed paths, every one inside plan 2.1 or 2.2; the only binary besides the WebP images is `og-landing.png` (a deliverable). No credentials, mockups, working screenshots or `.tmp/` content in the diff.
+- G8/G10/G11/G13 on the final build (headless Chrome, app on :5100): 31 common checks (seven sizes plus 200% zoom, anchors under the sticky nav, phone menu, launcher open and `Esc`, signed-in variant), 32 hero, 20 demo, 31 skills, 16 FAQ/CTA/footer and 17 motion/keyboard/forced-colour/performance checks: all pass. N1 in the browser: Standard `/Sets/1/Add` details open, `/Sets/Cards/5/Edit` clean; Premium same, image-search block present. Sweep re-run for Standard and Admin (136 page views): no `jQuery is not defined`, no unlabeled control, no unnamed control except the shared footer icons; the remaining findings are exactly the reported ones (footer `#` icons, YouTube 404, Folder without `h1`, launcher overlap).
+- G11 reviewed by eye: forced-colour screenshots (ladder, demo, nav), the no-JavaScript render at 390 (nav as a wrapped row, question 1 as plain text with a registration link, FAQ and footer present), reduced-motion render; contrast: every pair in the script passes (lowest white on primary 5.28; large text 3.47).
+- G12 pass. G14 n-a (no non-landing CSS touched). G16: `landing.css` 27.4 KB (30), `landing.js` + `landing-core.js` 13.1 KB (14), first-view landing images 43 / 95 / 43 KB (350 / 350 / 150), share image 289.9 KB (300), layout shift 0.000.
+- Self-review against `AGENTS.md`: one agent, no subagents; Git limited to local commits on `feature/landing-night`; no push, PR, merge or deployment; no schema, protected-config or shared-file change; antiforgery, ownership checks and routes untouched; no new package, font or CDN (the CDN Bootstrap and the second font family were removed); `Layout = null` page with scoped tokens, so no shared UI file changed (D1 recorded for the lead).
+- Not observed: a real phone, Safari and Firefox, a screen reader (live region and focus order checked structurally and by keyboard), the share card on a real network, Standard-account and Premium checkout flows, and the interactions listed under "Not driven" in N2. Two phrases are marketing rather than measurable and were kept from the owner's copy: the hero pill "Có trợ lý AI trả lời mọi câu hỏi tiếng Anh" and the AI card title "Trợ lý AI trả lời bất cứ lúc nào" (the free allowance is 15 messages a day).
+- Remaining risks: D1 (dark page versus the team's Clay language) needs the lead's decision before merge; the screenshots go stale when the Vocabulary UI changes (known-issues); `/Home/Reading` drops the return URL (known-issues).
