@@ -216,6 +216,89 @@ public sealed class LandingPageTests
     }
 
     [Fact]
+    public async Task Landing_Faq_HasFiveNativeDetailsWithTheFirstOpenAndOnlyVerifiedAnswers()
+    {
+        var (_, _, decoded) = await GetLandingAsync(signedIn: false);
+
+        Assert.Contains("<h2", decoded, StringComparison.Ordinal);
+        Assert.Matches("<h2[^>]*>Câu hỏi thường gặp</h2>", decoded);
+
+        var items = Regex.Matches(decoded, "<details\\b[^>]*>.*?</details>", RegexOptions.Singleline).Select(m => m.Value).ToList();
+        Assert.Equal(5, items.Count);
+        Assert.Contains("open", Regex.Match(items[0], "<details\\b[^>]*>").Value, StringComparison.Ordinal);
+        Assert.All(items.Skip(1), i => Assert.DoesNotContain("open", Regex.Match(i, "<details\\b[^>]*>").Value, StringComparison.Ordinal));
+
+        var questions = items.Select(i => Regex.Replace(Regex.Match(i, "<summary[^>]*>(.*?)</summary>", RegexOptions.Singleline).Groups[1].Value, "<[^>]+>", " ").Trim())
+            .Select(q => Regex.Replace(q, "\\s+", " ")).ToList();
+        Assert.Equal(new[]
+        {
+            "TCT English có miễn phí không?",
+            "Mỗi ngày cần học bao lâu?",
+            "Lịch ôn tập hoạt động thế nào?",
+            "Tôi mới bắt đầu thì học được không?",
+            "Có cần cài ứng dụng không?",
+        }, questions);
+
+        // Answers match what the product does today (checked against Pricing.cshtml and the code in N6/N7).
+        Assert.Contains("1, 3, 7, 14, 30 rồi 60 ngày", items[2], StringComparison.Ordinal);
+        Assert.Contains("Mục tiêu từ vựng mỗi ngày hiện là 10 từ.", items[1], StringComparison.Ordinal);
+        Assert.Contains("có hạn mức mỗi ngày", items[0], StringComparison.Ordinal);
+        Assert.Contains("A1", items[3], StringComparison.Ordinal);
+        Assert.DoesNotContain("không giới hạn", decoded, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Mục tiêu mặc định", decoded, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Landing_FinalCallToActionAndFooter_HaveRealLinksAndNoSocialPlaceholders()
+    {
+        var (_, _, decoded) = await GetLandingAsync(signedIn: false);
+        var anchors = Anchors(decoded).ToList();
+
+        Assert.Contains("Học những từ đầu tiên ngay tối nay.", decoded, StringComparison.Ordinal);
+        Assert.Contains("Tài khoản miễn phí, học ngay trên trình duyệt.", decoded, StringComparison.Ordinal);
+
+        var footer = Regex.Match(decoded, "<footer\\b.*?</footer>", RegexOptions.Singleline).Value;
+        Assert.NotEmpty(footer);
+        Assert.Contains("© 2026 TCT English", footer, StringComparison.Ordinal);
+        Assert.Contains("Học từ vựng, nghe, nói, đọc và viết tiếng Anh theo bài ngắn, có lịch ôn tập tự động.", footer, StringComparison.Ordinal);
+        Assert.DoesNotContain("nhân viên", footer, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("fa-facebook", decoded, StringComparison.Ordinal);
+        Assert.DoesNotContain("fa-github", decoded, StringComparison.Ordinal);
+        Assert.DoesNotContain("fa-youtube", decoded, StringComparison.Ordinal);
+
+        var inFooter = Anchors(footer).ToDictionary(a => a.Text, a => a.Href, StringComparer.Ordinal);
+        Assert.Equal("/Vocabulary", inFooter["Từ vựng"]);
+        Assert.Equal("/Home/Listening", inFooter["Nghe"]);
+        Assert.Equal("/Speaking", inFooter["Nói"]);
+        Assert.Equal("/Home/Writing", inFooter["Viết"]);
+        Assert.Equal("/Account/Login?returnUrl=%2FHome%2FReading", inFooter["Đọc"]);
+        Assert.Equal("/Account/Login", inFooter["Đăng nhập"]);
+        Assert.Equal("/Account/Register", inFooter["Tạo tài khoản"]);
+        Assert.Equal("/Premium", inFooter["Gói Premium"]);
+        Assert.Equal("/Home/Introduction", inFooter["Giới thiệu"]);
+        Assert.Equal("/Home/Contact", inFooter["Liên hệ"]);
+        Assert.Equal("/Home/Privacypolicy", inFooter["Quyền riêng tư"]);
+        Assert.Equal("/Home/Termsofuse", inFooter["Điều khoản"]);
+        Assert.All(anchors, a => Assert.False(string.IsNullOrWhiteSpace(a.Href) || a.Href == "#", $"dead link: {a.Text}"));
+    }
+
+    [Fact]
+    public async Task Landing_SignedInFooterAndFinalCallToAction_LeadToTheDashboard()
+    {
+        var (_, _, decoded) = await GetLandingAsync(signedIn: true);
+        var footer = Regex.Match(decoded, "<footer\\b.*?</footer>", RegexOptions.Singleline).Value;
+        var inFooter = Anchors(footer).ToDictionary(a => a.Text, a => a.Href, StringComparer.Ordinal);
+
+        Assert.Equal("/Home/Index", inFooter["Vào trang học"]);
+        Assert.Equal("/Premium", inFooter["Gói Premium"]);
+        Assert.Equal("/Home/Reading", inFooter["Đọc"]);
+        Assert.DoesNotContain("Tạo tài khoản", footer, StringComparison.Ordinal);
+        Assert.DoesNotContain("Đăng nhập", decoded, StringComparison.Ordinal);
+        var end = Regex.Match(decoded, "<section class=\"lp-end\".*?</section>", RegexOptions.Singleline).Value;
+        Assert.Contains(Anchors(end), a => a.Href == "/Home/Index" && a.Text == "Vào trang học");
+    }
+
+    [Fact]
     public async Task Landing_RootServesThePageAndAnonymousDashboardRedirectsToIt()
     {
         await using var factory = new TestWebApplicationFactory();

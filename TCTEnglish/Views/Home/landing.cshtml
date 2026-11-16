@@ -240,10 +240,91 @@
                 </article>
             </div>
         </section>
+
+        <section class="lp-sec" id="cau-hoi" aria-labelledby="lp-faq-title">
+            <h2 id="lp-faq-title">Câu hỏi thường gặp</h2>
+            <div class="lp-faq">
+                <details class="lp-faq-item" open>
+                    <summary>TCT English có miễn phí không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Có. Tài khoản miễn phí học được từ vựng, nghe, nói, đọc, viết và dùng trợ lý AI (có hạn mức mỗi ngày). Gói Premium mở thêm video riêng tư để luyện nói, tạo bài viết bằng AI, dịch lời thoại và quiz AI cho bài nghe.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Mỗi ngày cần học bao lâu?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Khoảng 15 phút: ôn các từ đến hạn, học vài từ mới hoặc làm một bài nghe. Mục tiêu từ vựng mỗi ngày hiện là 10 từ.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Lịch ôn tập hoạt động thế nào?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Mỗi từ có một bậc nhớ. Trả lời đúng, từ lên một bậc và khoảng cách ôn dài dần: 1, 3, 7, 14, 30 rồi 60 ngày. Quên thì từ quay về bậc đầu.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Tôi mới bắt đầu thì học được không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Được. Từ vựng và bài nghe có từ trình độ A1; bạn chọn bài theo trình độ của mình.</p>
+                </details>
+                <details class="lp-faq-item">
+                    <summary>Có cần cài ứng dụng không?<span class="lp-faq-icon" aria-hidden="true"></span></summary>
+                    <p>Không. TCT English chạy trên trình duyệt của máy tính và điện thoại.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="lp-end" aria-labelledby="lp-end-title">
+            <h2 id="lp-end-title">Học những từ đầu tiên ngay tối nay.</h2>
+            <p>Tài khoản miễn phí, học ngay trên trình duyệt.</p>
+            @if (isAuthenticated)
+            {
+                <a class="lp-btn lp-btn--accent" href="/Home/Index">Vào trang học</a>
+            }
+            else
+            {
+                <a class="lp-btn lp-btn--accent" href="/Account/Register">Bắt đầu miễn phí</a>
+            }
+        </section>
     </div>
 
     <footer class="lp-foot">
-        <div class="lp-wrap">© 2026 TCT English</div>
+        <div class="lp-wrap">
+            <div class="lp-foot-grid">
+                <div class="lp-foot-brand">
+                    <a class="lp-logo" href="/">TCT English</a>
+                    <p>Học từ vựng, nghe, nói, đọc và viết tiếng Anh theo bài ngắn, có lịch ôn tập tự động.</p>
+                </div>
+                <nav aria-labelledby="lp-foot-skills">
+                    <h2 class="lp-foot-title" id="lp-foot-skills">Kỹ năng</h2>
+                    <ul>
+                        <li><a href="/Vocabulary">Từ vựng</a></li>
+                        <li><a href="/Home/Listening">Nghe</a></li>
+                        <li><a href="/Speaking">Nói</a></li>
+                        <li><a href="/Home/Writing">Viết</a></li>
+                        <li><a href="@(isAuthenticated ? "/Home/Reading" : "/Account/Login?returnUrl=%2FHome%2FReading")">Đọc</a></li>
+                    </ul>
+                </nav>
+                <nav aria-labelledby="lp-foot-account">
+                    <h2 class="lp-foot-title" id="lp-foot-account">Tài khoản</h2>
+                    <ul>
+                        @if (isAuthenticated)
+                        {
+                            <li><a href="/Home/Index">Vào trang học</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Account/Login">Đăng nhập</a></li>
+                            <li><a href="/Account/Register">Tạo tài khoản</a></li>
+                        }
+                        <li><a href="/Premium">Gói Premium</a></li>
+                    </ul>
+                </nav>
+                <nav aria-labelledby="lp-foot-info">
+                    <h2 class="lp-foot-title" id="lp-foot-info">Thông tin</h2>
+                    <ul>
+                        <li><a href="/Home/Introduction">Giới thiệu</a></li>
+                        <li><a href="/Home/Contact">Liên hệ</a></li>
+                        <li><a href="/Home/Privacypolicy">Quyền riêng tư</a></li>
+                        <li><a href="/Home/Termsofuse">Điều khoản</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="lp-copy">© 2026 TCT English</p>
+        </div>
     </footer>
 
     <script src="~/js/ai-chat-launcher.js" asp-append-version="true"></script>
