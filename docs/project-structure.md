@@ -77,6 +77,7 @@ even when the public URL still uses `/Home/...`.
 ### Views
 
 - `Views/Home/` now contains only dashboard/public pages and shared home-specific partials.
+- The public landing page (`Views/Home/landing.cshtml`, `Layout = null`) is a standalone dark page: styles in `wwwroot/css/landing.css` (scoped `--lp-*` tokens), behaviour in `wwwroot/js/landing.js` plus the pure, node-tested `wwwroot/js/landing-core.js` (the client-only demo), screenshots and the share image in `wwwroot/images/landing/`, tests in `TCTEnglish.Tests/LandingPageTests.cs` and `scripts/tests/test_landing_core.cjs`.
 - `Views/Class/`, `Views/Folder/`, `Views/Set/`, and `Views/Study/` are the canonical feature view folders created by the refactor.
 - `Views/Vocabulary/` (`Index`, `Detail`, `Study` and the partials `_CourseCard`, `_LessonRow`, `_WordRow`, `_CourseArt`, `_LevelDots`, `_MemoryPanel`, `_ReviewForecast`) and `Views/Speaking/` remain feature folders for those domains.
 - `Areas/Admin/Views/` stays isolated inside the admin area.

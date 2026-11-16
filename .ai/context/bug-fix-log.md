@@ -4647,3 +4647,21 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 **Verification**: Scripted sweep of 204 page views (guest, Standard, Premium, Admin at 1440 and 390) before and after: the jQuery errors and the listed unnamed controls are gone. Full results and the triage table are in the landing-night plan section 12.
 
 **Notes**: Other owners' admin views (Speaking, Writing) include the same partial; reported as SWEEP-ADMIN-LAYOUT-NO-JQUERY. Footer `#` icons, a broken YouTube thumbnail, missing sample images, the missing `h1` on Folder and the AI launcher overlap were reported, not fixed.
+
+
+
+### Landing page: login-tab buttons, dead footer icons, blank page when the script fails, stale copy — 2026-11-16
+
+**Symptom**: Every "Bắt đầu miễn phí" and "Tạo tài khoản miễn phí" button opened the login tab; the three footer social icons were `href="#"`; every section stayed hidden until a script added a class, so a script error or no JavaScript left the page blank; the copy still said "4 chế độ", "kéo thả ghép thẻ", "Trợ lý AI OpenAI" and "dành cho nhân viên công ty TCT"; no description or share tags; two icon and font CDNs plus nine font weights.
+
+**Root Cause**: A 794-line view with a 420-line inline `<style>` and its own palette, a scroll-reveal script that hid content by default, and copy that had not followed the product.
+
+**Solution**: Rebuilt as a standalone dark page with scoped `--lp-*` tokens in `landing.css`, `landing.js` and a pure `landing-core.js`. Content is real markup (no hiding), the register buttons lead to `/Account/Register`, no social icons, head with description, Open Graph and Twitter tags and a share image, one font family, Font Awesome 6.0.0 as in the layout, local Bootstrap CSS (the AI launcher needs a few utilities) and no CDN Bootstrap. A client-only three-question demo, product screenshots, a review ladder and an FAQ were added; every claim was checked against the product and unverified ones were reworded (see the plan, sections N6 and N7).
+
+**Files Changed**:
+- `Views/Home/landing.cshtml`, `wwwroot/css/landing.css`, `wwwroot/js/landing.js`, `wwwroot/js/landing-core.js`, `wwwroot/images/landing/*`
+- Tests: `TCTEnglish.Tests/LandingPageTests.cs` (15 tests), `scripts/tests/test_landing_core.cjs` (15 tests)
+
+**Verification**: Full .NET suite 1760 passed / 0 failed; node 369 of 370 (the one failure is the known Speaking package hash). Scripted browser runs at seven sizes, with the keyboard only, with reduced motion, in forced colours and without JavaScript; contrast, colour discipline and performance budgets recorded in `docs/superpowers/plans/2026-11-16-landing-night-and-bug-sweep.md` section 12.
+
+**Notes**: See LANDING-SCREENSHOTS-STALE, LANDING-DARK-THEME-D1 and LANDING-READING-LOGIN-RETURN in known-issues. `HomeController` was not changed.

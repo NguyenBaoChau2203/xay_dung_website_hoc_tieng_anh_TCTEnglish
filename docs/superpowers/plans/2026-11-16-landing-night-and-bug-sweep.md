@@ -530,3 +530,11 @@ Fix budget: 7 of 15 used.
 - G9: no layout change from N7 (full page compared with `D-full-1440.png` and `D-mobile-390.png`). G12 pass (all pairs; the new forced-colour rule uses only system colours). G13 pass. G14 n-a. G15 pass.
 - G16 measured (fresh browser per case, so the image is chosen for the screen from the first request): landing images on first view 43 KB at 1440 × 1x, 95 KB at 1440 × 2x, 43 KB at 390 × 3x (budgets 350, 350, 150 KB); `landing.css` 27.4 KB (budget 30); `landing.js` + `landing-core.js` 13.1 KB (budget 14); layout shift 0.000; the only hosts are the page's own, Google Fonts and cdnjs (the CDN Bootstrap host is gone); web font is `display=swap` over a system stack, so the `h1` paints first.
 - Not observed: a real phone (checked with desktop-Chrome emulation at 390, 320 and DPR 2 and 3), Safari and Firefox, a screen reader (live region and focus order are checked structurally and by keyboard, not by listening), the share card on a real network (only the tags and the file are checked).
+
+
+### N9 — Documentation (2026-11-16) — `docs(landing): record the landing work in the tracker, structure and known issues`
+- Tracker (`docs/design-system/team-ui-workflow.md`): new "Landing" row (dark `--lp-*` page, branch `feature/landing-night`, not yet merged); the "Từ vựng" row corrected from "chưa duyệt trên nhánh chính" to merged (`22c53ab`, F9 closed).
+- `docs/project-structure.md`: the standalone landing page and its files.
+- `.ai/context/known-issues.md`: LANDING-SCREENSHOTS-STALE (maintenance note with the capture steps), LANDING-DARK-THEME-D1 (decision for the project lead), LANDING-READING-LOGIN-RETURN (the Reading page drops the return URL; the landing links around it). Sweep findings and the closed SETS issue were recorded in N1 and N2.
+- `.ai/context/bug-fix-log.md`: one entry for the landing defects (login-tab buttons, dead footer icons, blank page when the script fails, stale copy).
+- Gates: docs only. G3 and G4 not re-run for code (nothing compiled changed); node 369 / 370 re-run after the edits (known Speaking failure only). G6 and G7 pass: `git diff --check` clean (apart from the unrelated, unstaged `appsettings.Development.json` blank line); changed paths are docs and the plan, all in 2.2.

@@ -27,6 +27,21 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### LANDING-SCREENSHOTS-STALE — maintenance note 16/11/2026
+
+- Trang Landing dùng ảnh chụp thật của trang Từ vựng (`hero-home-*.webp`), của một câu hỏi trong bài học (`lesson-card-*.webp`) và ảnh chia sẻ `og-landing.png` (1200 × 630). Khi giao diện Từ vựng hoặc bài học đổi, các ảnh này sẽ cũ đi và cần chụp lại.
+- Cách chụp lại: đăng nhập tài khoản mẫu Premium (có tiến độ), cửa sổ 1440 × 900, hệ số điểm ảnh 2, ẩn launcher AI trong trang rồi chụp vùng nội dung (không có thanh bên, thanh trên, tên hay avatar); xuất WebP bằng canvas (`toBlob("image/webp", .8)`), rộng 2220 và 1110 px (≤ 97 KB và ≤ 44 KB), thẻ bài học rộng 1632 và 816 px. Ảnh chia sẻ: chụp 1200 × 630 phần đầu trang đã hoàn chỉnh, nén lại không mất dữ liệu cho ≤ 300 KB. Chi tiết trong plan `2026-11-16-landing-night-and-bug-sweep` mục 12 (N4, N8).
+
+### LANDING-DARK-THEME-D1 — quyết định chờ chủ dự án 16/11/2026
+
+- Landing mới có nền tối ("Đêm học"), khác ngôn ngữ Clay sáng mà nhóm dùng cho các trang đã làm lại. Đây là quyết định D1 của Trọng (trang độc lập, `Layout = null`, stylesheet riêng, token `--lp-*` có phạm vi `.lp`, không đổi file dùng chung).
+- Cần báo Châu (chủ hướng thiết kế) trước khi hợp vào `master`. Nếu Châu muốn tông sáng, chỉ phải đổi khối token `.lp` trong `landing.css` và hai ảnh chụp.
+
+### LANDING-READING-LOGIN-RETURN — confirmed 16/11/2026
+
+- Triệu chứng: khách bấm `/Home/Reading` bị chuyển tới `/Account/Login` mà không có `ReturnUrl` (các trang Từ vựng, Nói, Premium đều có), nên sau khi đăng nhập không quay lại bài đọc.
+- Landing đã đi vòng bằng liên kết `/Account/Login?returnUrl=%2FHome%2FReading` cho khách; nguyên nhân thật nằm ở bộ điều khiển trang Đọc (không thuộc đợt này).
+
 ### SWEEP-FOOTER-SOCIAL-HASH-LINKS — confirmed 16/11/2026
 
 - Triệu chứng: footer dùng chung (layout chính) có 3 icon Facebook/GitHub/YouTube với `href="#"`; mọi trang dùng layout đó (ví dụ `/Home/Listening`) có 3 liên kết chết, không có tên truy cập.
