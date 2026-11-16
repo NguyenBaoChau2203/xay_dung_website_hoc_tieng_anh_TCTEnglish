@@ -324,6 +324,126 @@ public sealed class SetFoldersIntegrationTests
         Assert.False(await DbAsync(factory, db => db.SavedFolders.AnyAsync(s => s.FolderId == TestDataIds.UserFolderId)));
     }
 
+    // ------------------------------------------------------------------ sidebar and dialog (shared layout)
+
+    private static async Task<string> PageAsync(HttpClient client, string route)
+    {
+        using var response = await client.GetAsync(route);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        return System.Net.WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
+    }
+
+    [Fact]
+    public async Task Sidebar_KeepsOnlyCreateFolderAndMySetsUnderFolders()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var menu = Regex.Match(html, "<div class=\"nav-dropdown-menu\" id=\"folderDropdownMenu\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(menu);
+        Assert.Contains("Tạo thư mục mới", menu, StringComparison.Ordinal);
+        Assert.Contains("Bộ thẻ của tôi", menu, StringComparison.Ordinal);
+        Assert.DoesNotContain("Thư mục của tôi", html, StringComparison.Ordinal);
+        Assert.Equal(2, Regex.Matches(menu, "class=\"nav-sub-item").Count);
+        Assert.Contains("id=\"newFolderBtn\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("href=\"/Home/Folder\"", html, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("/Sets", true)]
+    [InlineData("/Sets/Folders/201", true)]
+    [InlineData("/Home/Index", false)]
+    public async Task Sidebar_FolderGroupIsActiveOnlyOnTheSetAndFolderPages(string route, bool active)
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, route);
+
+        Assert.Equal(active, Regex.IsMatch(html, "class=\"nav-dropdown-item active\"[^>]*id=\"folderDropdownBtn\""));
+    }
+
+    [Fact]
+    public async Task Dialog_IsVietnameseAndPostsToTheServiceWithATokenAndTheCurrentPath()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets?filter=own");
+        var dialog = Regex.Match(html, "<dialog id=\"folderModal\".*?</dialog>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(dialog);
+        foreach (var text in new[] { "Tạo thư mục mới", "Dùng thư mục để gom các bộ thẻ cùng chủ đề. Thư mục hiện ngay trong Bộ thẻ của tôi.", "Tên thư mục", "Hủy", "Tạo thư mục", "0/100" })
+        {
+            Assert.Contains(text, dialog, StringComparison.Ordinal);
+        }
+
+        Assert.DoesNotContain("Create new folder", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Decline", html, StringComparison.Ordinal);
+        var formTag = Regex.Match(dialog, "<form[^>]*>").Value;
+        Assert.Contains("action=\"/Sets/Folders/Create\"", formTag, StringComparison.Ordinal);
+        Assert.Contains("method=\"post\"", formTag, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", dialog, StringComparison.Ordinal);
+        Assert.Matches("name=\"name\"[^>]*maxlength=\"100\"|maxlength=\"100\"[^>]*name=\"name\"", dialog);
+        Assert.Contains("name=\"returnUrl\" value=\"/Sets?filter=own\"", dialog, StringComparison.Ordinal);
+        Assert.Contains("id=\"cancelFolderBtn\"", dialog, StringComparison.Ordinal);
+        Assert.Contains("aria-labelledby=\"folderDialogTitle\"", dialog, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-open-on-load", dialog, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Dialog_ReopensOnceWithTheMessageAndTheTypedNameAfterAFailedCreate()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var empty = await PostAsync(client, "/Sets/Folders/Create", "name=+&returnUrl=%2FSets", token);
+        var afterEmpty = await PageAsync(client, "/Sets");
+        Assert.Equal(HttpStatusCode.Redirect, empty.StatusCode);
+        Assert.Contains("data-open-on-load", afterEmpty, StringComparison.Ordinal);
+        Assert.Contains("Hãy nhập tên thư mục.", afterEmpty, StringComparison.Ordinal);
+
+        using var duplicate = await PostAsync(client, "/Sets/Folders/Create", "name=sprint+one+folder&returnUrl=%2FSets", token);
+        var afterDuplicate = await PageAsync(client, "/Sets");
+        Assert.Contains("data-open-on-load", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("Bạn đã có thư mục tên này.", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("value=\"sprint one folder\"", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("17/100", afterDuplicate, StringComparison.Ordinal);
+
+        var later = await PageAsync(client, "/Sets");
+        Assert.False(later.Contains("data-open-on-load", StringComparison.Ordinal), Regex.Match(later, ".{0,120}data-open-on-load.{0,120}", RegexOptions.Singleline).Value);
+        Assert.DoesNotContain("Bạn đã có thư mục tên này.", later, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Pages_AlwaysCarryAnAntiforgeryTokenSoTheLegacyFolderTestsKeepWorking()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        foreach (var route in new[] { "/Sets", "/Home/Index", $"/Sets/Folders/{TestDataIds.UserFolderId}" })
+        {
+            var html = await PageAsync(client, route);
+            Assert.Contains("name=\"__RequestVerificationToken\"", html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task LegacyFolderList_RedirectsToSetsWithARelativeLocation()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        using var response = await client.GetAsync("/Home/Folder");
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.False(response.Headers.Location!.IsAbsoluteUri);
+        Assert.Equal("/Sets", Location(response));
+    }
+
     // ------------------------------------------------------------------ legacy create
 
     [Fact]

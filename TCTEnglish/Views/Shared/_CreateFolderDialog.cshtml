@@ -1,0 +1,90 @@
+@* Create-folder dialog, shown on every page that uses _Layout. Opened by #newFolderBtn (sidebar) and by any element with
+   data-open-folder-dialog; behaviour lives in layout.js. A native <dialog> gives Esc, focus trapping and the backdrop.
+   The ids newFolderBtn, folderModal and cancelFolderBtn are kept from the old overlay. *@
+@{
+    var folderDialogError = TempData["FolderDialogError"] as string;
+    var folderDialogName = TempData["FolderDialogName"] as string;
+    var folderReturnUrl = Context.Request.Path.Value + Context.Request.QueryString.Value;
+}
+<dialog id="folderModal"
+        class="tct-theme tct-folder-dialog"
+        aria-labelledby="folderDialogTitle"
+        aria-describedby="folderDialogText"
+        @(string.IsNullOrEmpty(folderDialogError) ? null : "data-open-on-load")>
+    <form class="tct-folder-dialog__body" asp-controller="Set" asp-action="CreateFolder" method="post" novalidate>
+        <input type="hidden" name="returnUrl" value="@folderReturnUrl" />
+
+        <div class="tct-folder-dialog__head">
+            <span class="tct-folder-dialog__icon" aria-hidden="true"><i class="fa-solid fa-folder-plus"></i></span>
+            <h2 class="tct-folder-dialog__title" id="folderDialogTitle">Tạo thư mục mới</h2>
+        </div>
+        <p class="tct-folder-dialog__text" id="folderDialogText">Dùng thư mục để gom các bộ thẻ cùng chủ đề. Thư mục hiện ngay trong Bộ thẻ của tôi.</p>
+
+        <label class="tct-folder-dialog__label" for="folderNameInput">Tên thư mục</label>
+        <input id="folderNameInput"
+               class="form-control"
+               type="text"
+               name="name"
+               value="@folderDialogName"
+               maxlength="100"
+               required
+               autocomplete="off"
+               aria-describedby="folderNameError folderNameCount" />
+        <div class="tct-folder-dialog__meta">
+            <p class="tct-folder-dialog__error" id="folderNameError" role="alert" data-folder-error @(string.IsNullOrEmpty(folderDialogError) ? "hidden" : null)>@folderDialogError</p>
+            <span class="tct-folder-dialog__count" id="folderNameCount" data-folder-count>@((folderDialogName ?? string.Empty).Length)/100</span>
+        </div>
+
+        <div class="tct-folder-dialog__actions">
+            <button type="button" class="btn btn-outline-primary" id="cancelFolderBtn">Hủy</button>
+            <button type="submit" class="btn btn-primary" data-pending="Đang tạo…"><i class="fa-solid fa-check" aria-hidden="true"></i>Tạo thư mục</button>
+        </div>
+    </form>
+</dialog>
+
+<style>
+    /* Scoped to this dialog and built only from shared tokens (proposal for the layout owner: move to a shared stylesheet). */
+    .tct-folder-dialog {
+        /* the shared reset sets margin: 0 on every element, which would pin a modal dialog to the top-left corner */
+        inset: 0;
+        margin: auto;
+        width: min(480px, calc(100vw - 32px));
+        max-width: none;
+        max-height: calc(100vh - 32px);
+        padding: 0;
+        border: 0;
+        border-radius: var(--tct-clay-radius-dialog);
+        background: var(--tct-clay-surface);
+        color: var(--tct-text);
+        box-shadow: var(--tct-clay-shadow-overlay);
+    }
+    .tct-folder-dialog::backdrop { background: color-mix(in srgb, var(--tct-text) 45%, transparent); }
+    .tct-folder-dialog__body { display: block; padding: var(--tct-space-xl); }
+    .tct-folder-dialog__head { display: flex; align-items: center; gap: var(--tct-space-md); }
+    .tct-folder-dialog__icon {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 3rem;
+        height: 3rem;
+        border-radius: var(--tct-radius-lg);
+        background: var(--tct-warning-soft);
+        color: var(--tct-warning-text);
+        font-size: var(--tct-text-lg);
+    }
+    .tct-folder-dialog__title { margin: 0; font-size: var(--tct-text-xl); font-weight: 800; }
+    .tct-folder-dialog__text { margin: var(--tct-space-md) 0 var(--tct-space-lg); color: var(--tct-text-muted); }
+    .tct-folder-dialog__label { display: block; margin-bottom: var(--tct-space-xs); font-weight: 700; }
+    .tct-folder-dialog__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--tct-space-md); min-height: 1.5rem; margin-top: var(--tct-space-xs); }
+    .tct-folder-dialog__error { margin: 0; color: var(--tct-danger-text); font-weight: 600; }
+    .tct-folder-dialog__count { margin-left: auto; color: var(--tct-text-muted); font-size: var(--tct-text-sm); }
+    .tct-folder-dialog__actions .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--tct-space-sm); white-space: nowrap; }
+    .tct-folder-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--tct-space-md); margin-top: var(--tct-space-lg); }
+    @@media (forced-colors: active) {
+        .tct-folder-dialog { border: 2px solid CanvasText; }
+    }
+    @@media (max-width: 480px) {
+        .tct-folder-dialog__body { padding: var(--tct-space-lg); }
+        .tct-folder-dialog__actions .btn { flex: 1 1 8rem; }
+    }
+</style>

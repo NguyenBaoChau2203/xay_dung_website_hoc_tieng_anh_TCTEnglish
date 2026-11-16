@@ -24,15 +24,10 @@ namespace TCTVocabulary.Controllers
         [Authorize]
         [HttpGet("Folder")]
         [ActionName("Folder")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            if (!TryGetCurrentUserId(out var currentUserId))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var vm = await BuildFolderPageViewModelAsync(currentUserId);
-            return View("Folder", vm);
+            // Folders now live inside "Bộ thẻ của tôi"; every old link to the list lands there.
+            return RedirectToAction("Index", "Set");
         }
 
         [Authorize]

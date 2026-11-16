@@ -127,36 +127,92 @@ document.addEventListener("DOMContentLoaded", function () {
     setupSidebarDropdown("folderDropdownBtn", "folderDropdown", "folderDropdownMenu");
     setupSidebarDropdown("classDropdownBtn", "classDropdown", "classDropdownMenu");
 
-    // 3. XỬ LÝ MODAL (NEW FOLDER)
-    const newFolderBtn = document.getElementById("newFolderBtn");
+    // 3. HỘP THOẠI TẠO THƯ MỤC (thẻ <dialog> gốc: Esc, khóa focus và nền mờ do trình duyệt xử lý)
     const folderModal = document.getElementById("folderModal");
-    const cancelFolderBtn = document.getElementById("cancelFolderBtn");
 
-    if (newFolderBtn && folderModal) {
-        newFolderBtn.addEventListener("click", () => {
-            folderModal.classList.add("active");
-            const input = folderModal.querySelector("input[name='folderName']");
-            if (input) input.focus();
+    if (folderModal) {
+        const folderForm = folderModal.querySelector("form");
+        const folderInput = folderModal.querySelector("input[name='name']");
+        const folderCount = folderModal.querySelector("[data-folder-count]");
+        const folderError = folderModal.querySelector("[data-folder-error]");
+        const folderSubmit = folderModal.querySelector("button[type='submit']");
+        const cancelFolderBtn = document.getElementById("cancelFolderBtn");
+        const folderSubmitNodes = folderSubmit ? Array.from(folderSubmit.childNodes, (n) => n.cloneNode(true)) : [];
+        let folderTrigger = null;
+
+        const showFolderError = (message) => {
+            if (!folderError) return;
+            folderError.textContent = message;
+            folderError.hidden = !message;
+        };
+        const syncFolderCount = () => {
+            if (folderCount && folderInput) folderCount.textContent = folderInput.value.length + "/100";
+        };
+        const resetFolderSubmit = () => {
+            if (!folderSubmit) return;
+            folderSubmit.disabled = false;
+            folderSubmit.replaceChildren(...folderSubmitNodes.map((n) => n.cloneNode(true)));
+        };
+        const openFolderDialog = (trigger) => {
+            folderTrigger = trigger || document.getElementById("newFolderBtn");
+            if (!folderModal.open) {
+                if (typeof folderModal.showModal === "function") folderModal.showModal();
+                else folderModal.setAttribute("open", "");
+            }
+            syncFolderCount();
+            if (folderInput) {
+                folderInput.focus();
+                if (typeof folderInput.select === "function") folderInput.select();
+            }
+        };
+        // The phone drawer closes (and becomes inert) behind the dialog; then the menu button is the place to return to.
+        const returnFolderFocus = () => {
+            let target = folderTrigger;
+            if (!target || (typeof target.closest === "function" && target.closest("[inert]"))) {
+                target = document.getElementById("menuToggleBtn");
+            }
+            if (target && typeof target.focus === "function") target.focus();
+        };
+        const closeFolderDialog = () => {
+            if (typeof folderModal.close === "function") folderModal.close();
+            else folderModal.removeAttribute("open");
+        };
+
+        document.querySelectorAll("#newFolderBtn, [data-open-folder-dialog]").forEach((trigger) => {
+            trigger.addEventListener("click", (e) => {
+                e.preventDefault();
+                openFolderDialog(trigger);
+            });
         });
 
-        cancelFolderBtn?.addEventListener("click", () => {
-            folderModal.classList.remove("active");
-            newFolderBtn.focus();
-        });
-
+        cancelFolderBtn?.addEventListener("click", closeFolderDialog);
         folderModal.addEventListener("click", (e) => {
-            if (e.target === folderModal) {
-                folderModal.classList.remove("active");
-                newFolderBtn.focus();
+            if (e.target === folderModal) closeFolderDialog(); // click on the backdrop
+        });
+        folderModal.addEventListener("close", () => {
+            resetFolderSubmit();
+            returnFolderFocus();
+        });
+        folderInput?.addEventListener("input", () => {
+            syncFolderCount();
+            showFolderError("");
+        });
+        folderForm?.addEventListener("submit", (e) => {
+            if (!folderInput || !folderInput.value.trim()) {
+                e.preventDefault();
+                showFolderError("Hãy nhập tên thư mục.");
+                if (folderInput) folderInput.focus();
+                return;
+            }
+            if (folderSubmit) {
+                folderSubmit.disabled = true; // one click, one folder
+                folderSubmit.textContent = folderSubmit.getAttribute("data-pending") || "Đang tạo…";
             }
         });
+        window.addEventListener("pageshow", resetFolderSubmit);
 
-        folderModal.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                folderModal.classList.remove("active");
-                newFolderBtn.focus();
-            }
-        });
+        // After a failed create the server redirects back and asks for the dialog to reopen with the message.
+        if (folderModal.hasAttribute("data-open-on-load")) openFolderDialog(null);
     }
 
     // 4. XỬ LÝ USER DROPDOWN (AVATAR)
