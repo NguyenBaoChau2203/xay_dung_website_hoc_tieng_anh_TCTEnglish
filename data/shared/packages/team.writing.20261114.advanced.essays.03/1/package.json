@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.advanced.essays.03",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.advanced.essays.03",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Minh b\u1EA1ch c\u00F3 c\u1EA7n gi\u1EA3i th\u00EDch?",
+        "Level": "advanced",
+        "ContentType": "essays",
+        "Topic": "Truy\u1EC1n th\u00F4ng c\u00F4ng c\u1ED9ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i lu\u1EADn ph\u00E2n bi\u1EC7t c\u00F4ng b\u1ED1 d\u1EEF li\u1EC7u v\u1EDBi kh\u1EA3 n\u0103ng hi\u1EC3u v\u00E0 ch\u1EA5t v\u1EA5n quy\u1EBFt \u0111\u1ECBnh, c\u00E2n nh\u1EAFc r\u1EE7i ro \u0111\u01A1n gi\u1EA3n h\u00F3a qu\u00E1 m\u1EE9c.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.0066e298b8f342328275ccca62a89058",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "V\u00EC v\u1EADy, minh b\u1EA1ch n\u00EAn bao g\u1ED3m l\u1EDDi gi\u1EA3i th\u00EDch c\u00F3 th\u1EC3 ch\u1EA5t v\u1EA5n, c\u00F9ng v\u1EDBi quy\u1EC1n ti\u1EBFp c\u1EADn d\u1EEF li\u1EC7u g\u1ED1c.",
+        "EnglishMeaning": "Transparency should therefore include an explanation that can be challenged, alongside access to the underlying information on which that explanation depends.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.088ad6b36f4c43dc8e1b01083e8e103c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Tuy nhi\u00EAn, di\u1EC5n gi\u1EA3i d\u1EC5 hi\u1EC3u kh\u00F4ng \u0111\u01B0\u1EE3c bi\u1EBFn th\u00E0nh c\u00E2u chuy\u1EC7n qu\u00E1 g\u1ECDn, che \u0111i nh\u1EEFng chi ti\u1EBFt b\u1EA5t l\u1EE3i cho ng\u01B0\u1EDDi c\u00F4ng b\u1ED1.",
+        "EnglishMeaning": "However, an accessible account must not become a convenient story that conceals details which are inconvenient for the organisation publishing it.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.362a258edc0349cca615cd18283cd692",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "M\u1ED9t b\u1EA3n t\u00F3m t\u1EAFt t\u1ED1t c\u1EA7n d\u1EABn t\u1EDBi ph\u01B0\u01A1ng ph\u00E1p \u0111\u1EA7y \u0111\u1EE7 v\u00E0 cho ph\u00E9p ng\u01B0\u1EDDi \u0111\u1ECDc ki\u1EC3m tra c\u00E1ch chuy\u1EC3n t\u1EEB b\u1EB1ng ch\u1EE9ng sang k\u1EBFt lu\u1EADn.",
+        "EnglishMeaning": "A useful summary should link to the full method and allow readers to examine how the evidence was translated into a conclusion.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.36bef3b49912434085eb4e3021596e64",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The amount of explanation should be proportionate to a decision\u0027s consequences, rather than identical in detail for every routine announcement.",
+        "NormalizedHash": "0ae7e02472fb32ba53e31bdcf6097d3072037b104f26c4d1f660dbee350b03c1"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.advanced.essays.03.69ca11bc68c64de0a15d2d7ab7558ae9",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.3cbe3bdca9d647569c9a44c31e806c07",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "D\u00F9 v\u1EADy, s\u1EF1 m\u01A1 h\u1ED3 c\u0169ng t\u1EA1o chi ph\u00ED khi ng\u01B0\u1EDDi d\u00E2n ph\u1EA3i li\u00EAn t\u1EE5c h\u1ECFi l\u1EA1i ho\u1EB7c hi\u1EC3u sai quy\u1EC1n l\u1EE3i c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "Nevertheless, ambiguity also creates costs when people repeatedly seek clarification or misunderstand the services and entitlements that a decision affects.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.43df81cfae0a475ba82063cf6e6806a8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Minh b\u1EA1ch c\u00F3 \u00FD ngh\u0129a khi th\u00F4ng tin gi\u00FAp ng\u01B0\u1EDDi kh\u00E1c ki\u1EC3m tra quy\u1EC1n l\u1EF1c, ch\u1EE9 kh\u00F4ng ch\u1EC9 cho th\u1EA5y r\u1EB1ng t\u00E0i li\u1EC7u \u0111\u00E3 \u0111\u01B0\u1EE3c \u0111\u0103ng.",
+        "EnglishMeaning": "Transparency becomes meaningful when information enables people to scrutinise power, rather than merely demonstrate that an organisation has placed documents online.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.6486b566db354243b2c9161bdebb0541",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "C\u00F4ng b\u1ED1 d\u1EEF li\u1EC7u th\u01B0\u1EDDng \u0111\u01B0\u1EE3c xem l\u00E0 b\u1EB1ng ch\u1EE9ng c\u1EE7a minh b\u1EA1ch, nh\u01B0ng kh\u1EA3 n\u0103ng t\u1EA3i m\u1ED9t t\u1EC7p xu\u1ED1ng kh\u00F4ng b\u1EA3o \u0111\u1EA3m kh\u1EA3 n\u0103ng hi\u1EC3u quy\u1EBFt \u0111\u1ECBnh.",
+        "EnglishMeaning": "Publishing data is often treated as proof of transparency, yet being able to download a file does not guarantee understanding of a decision.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.69ca11bc68c64de0a15d2d7ab7558ae9",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "M\u1EE9c gi\u1EA3i th\u00EDch n\u00EAn t\u01B0\u01A1ng x\u1EE9ng v\u1EDBi t\u00E1c \u0111\u1ED9ng c\u1EE7a quy\u1EBFt \u0111\u1ECBnh, thay v\u00EC \u00E1p d\u1EE5ng c\u00F9ng m\u1ED9t \u0111\u1ED9 chi ti\u1EBFt cho m\u1ECDi th\u00F4ng b\u00E1o.",
+        "EnglishMeaning": "The level of explanation should be proportionate to a decision\u0027s consequences, rather than identical in detail for every routine announcement.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.80c1d58305c24b19b917874da3d75ddf",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Ng\u01B0\u1EDDi d\u00E2n thi\u1EBFu th\u1EDDi gian ho\u1EB7c ki\u1EBFn th\u1EE9c chuy\u00EAn m\u00F4n d\u1EC5 b\u1ECB lo\u1EA1i kh\u1ECFi cu\u1ED9c th\u1EA3o lu\u1EADn d\u00F9 th\u00F4ng tin \u0111\u00E3 \u0111\u01B0\u1EE3c m\u1EDF cho t\u1EA5t c\u1EA3.",
+        "EnglishMeaning": "People lacking time or specialist knowledge may be excluded from discussion even when the information is formally available to everyone without restriction.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.9024569401ca447fb3fbc8460bf895dc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "\u00DD ki\u1EBFn ph\u1EA3n \u0111\u1ED1i th\u01B0\u1EDDng nh\u1EA5n m\u1EA1nh r\u1EB1ng gi\u1EA3i th\u00EDch m\u1ECDi l\u1EF1a ch\u1ECDn s\u1EBD t\u1ED1n th\u1EDDi gian v\u00E0 khi\u1EBFn quy tr\u00ECnh h\u00E0nh ch\u00EDnh ch\u1EADm h\u01A1n.",
+        "EnglishMeaning": "One objection is that explaining every choice would consume staff time and make administrative processes slower than they already need to be.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.9a877142a2c44924a7c8a59012c93e93",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "\u0110i\u1EC1u n\u00E0y \u0111\u1EB7c bi\u1EC7t quan tr\u1ECDng khi m\u1ED9t quy\u1EBFt \u0111\u1ECBnh ph\u00E2n b\u1ED5 ngu\u1ED3n l\u1EF1c gi\u1EEFa c\u00E1c nh\u00F3m c\u00F3 nhu c\u1EA7u kh\u00F4ng gi\u1ED1ng nhau.",
+        "EnglishMeaning": "This is particularly important when a decision allocates limited resources among groups whose needs cannot be described by a single simple measure.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.fb81c22789304c05a2a858f6e0396adf",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "L\u1EDDi gi\u1EA3i th\u00EDch c\u1EA7n n\u00EAu l\u00FD do ch\u1ECDn ti\u00EAu ch\u00ED, nh\u1EEFng l\u1EF1a ch\u1ECDn \u0111\u00E3 b\u1ECB lo\u1EA1i v\u00E0 m\u1EE9c \u0111\u1ED9 kh\u00F4ng ch\u1EAFc ch\u1EAFn c\u00F2n l\u1EA1i.",
+        "EnglishMeaning": "The explanation should state why criteria were chosen, which alternatives were rejected and how much uncertainty remains in the assessment being presented.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.essays.03.feca7fcfb9764e72a6f7774bfca3e2e5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1ED9t b\u1EA3ng t\u00EDnh c\u00F3 th\u1EC3 ch\u00EDnh x\u00E1c v\u1EC1 k\u1EF9 thu\u1EADt m\u00E0 v\u1EABn kh\u00F4ng cho bi\u1EBFt nh\u1EEFng gi\u1EA3 \u0111\u1ECBnh n\u00E0o \u0111\u00E3 \u0111\u1ECBnh h\u00ECnh k\u1EBFt qu\u1EA3.",
+        "EnglishMeaning": "A spreadsheet can be technically accurate while revealing little about the assumptions that shaped its categories, calculations and eventual conclusions.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.essays.03"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.advanced.essays.03"
+}

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.free-play",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.free-play",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Th\u1EDDi gian vui ch\u01A1i sau gi\u1EDD h\u1ECDc",
+        "Level": "beginner",
+        "ContentType": "essays",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc",
+        "SourceType": "original-20261114",
+        "PreviewText": "\u0110o\u1EA1n lu\u1EADn b\u1EA3o v\u1EC7 th\u1EDDi gian ngh\u1EC9 v\u00E0 vui ch\u01A1i ph\u00F9 h\u1EE3p.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.0876e39146e8472b95664511ff0c2280",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "V\u1EDBi t\u00F4i, h\u1ECDc t\u1EADp v\u00E0 vui ch\u01A1i \u0111\u1EC1u c\u1EA7n c\u00F3 ch\u1ED7 trong ng\u00E0y.",
+        "EnglishMeaning": "For me, both study and play need a place in the day.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.179e8d9e6ff04996bb562dccf1708209",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "T\u00F4i ngh\u0129 h\u1ECDc sinh c\u1EA7n c\u00F3 th\u1EDDi gian vui ch\u01A1i sau gi\u1EDD h\u1ECDc.",
+        "EnglishMeaning": "I think students need time to play after school.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.61a043baa99d4d40a95071362ea49656",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ED9t k\u1EBF ho\u1EA1ch r\u00F5 r\u00E0ng gi\u00FAp bu\u1ED5i t\u1ED1i b\u1EDBt c\u0103ng th\u1EB3ng.",
+        "EnglishMeaning": "A clear plan makes the evening less stressful.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.6270238eec284298b62513508acf0f99",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "C\u00E1c em \u0111\u00E3 d\u00E0nh nhi\u1EC1u gi\u1EDD \u0111\u1EC3 nghe gi\u1EA3ng v\u00E0 l\u00E0m b\u00E0i.",
+        "EnglishMeaning": "They have already spent many hours listening and doing exercises.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.634e222b948f4ac6946aafc2f1e06aaa",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Gia \u0111\u00ECnh c\u00F3 th\u1EC3 th\u1ED1ng nh\u1EA5t m\u1ED9t gi\u1EDD h\u1ECDc v\u00E0 m\u1ED9t gi\u1EDD ngh\u1EC9 ph\u00F9 h\u1EE3p.",
+        "EnglishMeaning": "Families can agree on a suitable time to study and a time to rest.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.9c60f8e5b60b4dd39885a73fdf1903df",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Th\u1EDDi gian vui ch\u01A1i kh\u00F4ng c\u00F3 ngh\u0129a l\u00E0 b\u1ECF qu\u00EAn b\u00E0i t\u1EADp.",
+        "EnglishMeaning": "Playtime does not mean forgetting about homework.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.bd2837dc4f0c449bb0ffa5c2f63099b5",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Having time to play does not mean forgetting about homework.",
+        "NormalizedHash": "97fb8351c65625cc1d64959b97010fe457e01213e00a0ff38ea0bd4f47deca13"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.free-play.9c60f8e5b60b4dd39885a73fdf1903df",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.c264dac440804c80a3502c19701c4f46",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Khi ch\u01A1i c\u00F9ng b\u1EA1n, c\u00E1c em c\u0169ng h\u1ECDc c\u00E1ch chia s\u1EBB v\u00E0 ch\u1EDD l\u01B0\u1EE3t.",
+        "EnglishMeaning": "When playing with friends, they also learn to share and wait their turn.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play.eec1a8777b5941a0a482ee433feb542a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED9t tr\u00F2 ch\u01A1i \u0111\u01A1n gi\u1EA3n c\u00F3 th\u1EC3 gi\u00FAp c\u00E1c em th\u01B0 gi\u00E3n.",
+        "EnglishMeaning": "A simple game can help them relax.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.free-play"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.free-play"
+}

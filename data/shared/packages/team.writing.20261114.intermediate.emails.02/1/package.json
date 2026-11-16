@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.emails.02",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.emails.02",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Y\u00EAu c\u1EA7u x\u1EED l\u00FD \u0111\u01A1n h\u00E0ng b\u1ECB thi\u1EBFu",
+        "Level": "intermediate",
+        "ContentType": "emails",
+        "Topic": "Mua s\u1EAFm",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email b\u00E1o thi\u1EBFu s\u1EA3n ph\u1EA9m, cung c\u1EA5p th\u00F4ng tin v\u00E0 y\u00EAu c\u1EA7u giao b\u1ED5 sung.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.04830a44aec04182863a26624c97ed19",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "T\u00F4i \u0111\u00EDnh k\u00E8m \u1EA3nh h\u1ED9p h\u00E0ng v\u00E0 b\u1EA3n sao x\u00E1c nh\u1EADn mua h\u00E0ng.",
+        "EnglishMeaning": "I have attached a photograph of the box and a copy of the purchase confirmation.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.0be21e3ce8084450afb5b0dbd9022643",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi b\u1ED9 ph\u1EADn h\u1ED7 tr\u1EE3, t\u00F4i nh\u1EADn \u0111\u01B0\u1EE3c \u0111\u01A1n h\u00E0ng v\u0103n ph\u00F2ng ph\u1EA9m h\u00F4m qua.",
+        "EnglishMeaning": "Dear support team, I received my stationery order yesterday afternoon.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.0cc6f06259c241c492f51fea2832f13d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "T\u00F4i kh\u00F4ng y\u00EAu c\u1EA7u thay th\u1EBF nh\u1EEFng s\u1EA3n ph\u1EA9m \u0111\u00E3 \u0111\u01B0\u1EE3c giao \u0111\u00FAng.",
+        "EnglishMeaning": "I am not requesting replacements for the items that arrived correctly.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.1275b759652b4b498f5dfcf27ffd9684",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Would it be possible to send the missing items before Friday?",
+        "NormalizedHash": "54ed096f1378815d2cbfb537000ceef5e4627fad95f512bfff46d8dc3042ad7d"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.emails.02.1515d63a15e84361ab3341be5d57a21c",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.1515d63a15e84361ab3341be5d57a21c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Qu\u00FD c\u00F4ng ty c\u00F3 th\u1EC3 g\u1EEDi ph\u1EA7n h\u00E0ng c\u00F2n thi\u1EBFu tr\u01B0\u1EDBc th\u1EE9 S\u00E1u kh\u00F4ng?",
+        "EnglishMeaning": "Could you send the missing items before Friday, please?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.1ab3acbacaa744f7b1347ba9ba8262f1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "C\u00E1c cu\u1ED1n s\u1ED5 n\u00E0y \u0111\u01B0\u1EE3c \u0111\u1EB7t cho m\u1ED9t bu\u1ED5i t\u1EADp hu\u1EA5n v\u00E0o th\u1EE9 Hai t\u1EDBi.",
+        "EnglishMeaning": "These notebooks were ordered for a training workshop taking place next Monday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.2178a6c954f0418fbd8e9410d9038145",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "Xin h\u00E3y x\u00E1c nh\u1EADn r\u1EB1ng t\u00F4i s\u1EBD kh\u00F4ng ph\u1EA3i tr\u1EA3 th\u00EAm ph\u00ED v\u1EADn chuy\u1EC3n.",
+        "EnglishMeaning": "Please confirm that I will not have to pay an additional delivery charge.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.226aa9cd3a2744e9af480183ec2851b6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "C\u1EA3m \u01A1n qu\u00FD c\u00F4ng ty \u0111\u00E3 gi\u00FAp gi\u1EA3i quy\u1EBFt v\u1EA5n \u0111\u1EC1 n\u00E0y tr\u01B0\u1EDBc bu\u1ED5i t\u1EADp hu\u1EA5n.",
+        "EnglishMeaning": "Thank you for helping to resolve this problem before the workshop.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.5cff45e50954457d905e04132b869488",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1EB7c d\u00F9 h\u1ED9p c\u00F2n nguy\u00EAn v\u1EB9n, hai cu\u1ED1n s\u1ED5 m\u00E0 t\u00F4i \u0111\u00E3 thanh to\u00E1n l\u1EA1i b\u1ECB thi\u1EBFu.",
+        "EnglishMeaning": "Although the box was undamaged, two notebooks I had paid for were missing.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.79d450f2a53d48a3a607d852100b8736",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Phi\u1EBFu giao h\u00E0ng ghi \u0111\u1EE7 s\u00E1u s\u1EA3n ph\u1EA9m, nh\u01B0ng b\u00EAn trong ch\u1EC9 c\u00F3 b\u1ED1n.",
+        "EnglishMeaning": "The delivery note lists six items, but there were only four inside.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.8096467746e14fad9540d37348b117da",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "T\u00F4i c\u00F3 th\u1EC3 cung c\u1EA5p th\u00EAm th\u00F4ng tin n\u1EBFu qu\u00FD c\u00F4ng ty c\u1EA7n \u0111\u1EC3 ki\u1EC3m tra \u0111\u01A1n h\u00E0ng.",
+        "EnglishMeaning": "I can provide further information if you need it to check the order.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.9017fc4d3dcc4ce8ae416ec4bed72b59",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "N\u1EBFu kh\u00F4ng th\u1EC3 giao k\u1ECBp, t\u00F4i mu\u1ED1n \u0111\u01B0\u1EE3c ho\u00E0n ti\u1EC1n cho hai s\u1EA3n ph\u1EA9m \u0111\u00F3.",
+        "EnglishMeaning": "If delivery is not possible in time, I would prefer a refund for those two items.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.02.a6fe018332724485beb3fa317e99e105",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "T\u00F4i \u0111\u00E3 ki\u1EC3m tra gi\u1EA5y g\u00F3i c\u1EA9n th\u1EADn tr\u01B0\u1EDBc khi li\u00EAn h\u1EC7 v\u1EDBi qu\u00FD c\u00F4ng ty.",
+        "EnglishMeaning": "I checked the wrapping carefully before getting in touch with your company.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.02"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.emails.02"
+}

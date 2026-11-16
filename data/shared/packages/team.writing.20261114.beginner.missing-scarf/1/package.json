@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.missing-scarf",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "H\u1ECFi t\u00ECm chi\u1EBFc kh\u0103n b\u1ECF qu\u00EAn",
+        "Level": "beginner",
+        "ContentType": "emails",
+        "Topic": "Th\u1EA5t l\u1EA1c",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email m\u00F4 t\u1EA3 \u0111\u1ED3 v\u1EADt v\u00E0 h\u1ECFi c\u00E1ch nh\u1EADn l\u1EA1i.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.1c732ba0dfa4493095b06f08627fd1e8",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "If so, I can pick it up this afternoon.",
+        "NormalizedHash": "a1a8bc5be4639d706baba44d438973d1156f2305539d33e2a29a567036016147"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.missing-scarf.d083705bcd1d4890a52e66ac332ae2c1",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.1daf4d3e9fbd492eac79f3f3446c30f0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Chi\u1EBFc kh\u0103n m\u00E0u xanh l\u00E1 v\u00E0 c\u00F3 nh\u1EEFng ng\u00F4i sao nh\u1ECF m\u00E0u tr\u1EAFng.",
+        "EnglishMeaning": "The scarf is green with small white stars.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.2d495f44af0945b681659426eaf275f2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Anh ch\u1ECB c\u00F3 t\u00ECm th\u1EA5y chi\u1EBFc kh\u0103n sau khi ch\u00FAng em r\u1EDDi \u0111i kh\u00F4ng \u1EA1?",
+        "EnglishMeaning": "Did you find the scarf after we left?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.51debaaed5fd4e3bb041ddc01f208381",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Em c\u1EA3m \u01A1n anh ch\u1ECB \u0111\u00E3 d\u00E0nh th\u1EDDi gian ki\u1EC3m tra gi\u00FAp em.",
+        "EnglishMeaning": "Thank you for taking the time to check for me.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.99dc947c20034860b580373087de120a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Em ngh\u0129 m\u00ECnh \u0111\u00E3 \u0111\u1EC3 qu\u00EAn m\u1ED9t chi\u1EBFc kh\u0103n tr\u00EAn gh\u1EBF.",
+        "EnglishMeaning": "I think I left a scarf on my chair.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.b5f86bc04f024f0d8a2573259aad13a5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Xin h\u00E3y cho em bi\u1EBFt th\u1EDDi gian n\u00E0o thu\u1EADn ti\u1EC7n cho qu\u00E1n.",
+        "EnglishMeaning": "Please let me know what time is convenient for you.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.c438118d2f7249788e0813ac7cf95ea0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Em ng\u1ED3i \u1EDF b\u00E0n g\u1EA7n c\u1EEDa s\u1ED5 c\u00F9ng ch\u1ECB g\u00E1i.",
+        "EnglishMeaning": "I sat at the table near the window with my sister.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.c4f2ae608c3d48908fc4e98aeee19f9a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi anh ch\u1ECB, h\u00F4m qua em \u0111\u00E3 \u0103n t\u1ED1i t\u1EA1i qu\u00E1n c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "Dear team, I had dinner at your restaurant yesterday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf.d083705bcd1d4890a52e66ac332ae2c1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "N\u1EBFu c\u00F3, em c\u00F3 th\u1EC3 \u0111\u1EBFn nh\u1EADn v\u00E0o chi\u1EC1u nay.",
+        "EnglishMeaning": "If so, I can collect it this afternoon.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.missing-scarf"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.missing-scarf"
+}

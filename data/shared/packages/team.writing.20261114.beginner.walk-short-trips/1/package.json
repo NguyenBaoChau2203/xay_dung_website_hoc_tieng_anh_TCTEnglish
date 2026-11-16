@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.walk-short-trips",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "\u0110i b\u1ED9 cho nh\u1EEFng chuy\u1EBFn \u0111i ng\u1EAFn",
+        "Level": "beginner",
+        "ContentType": "essays",
+        "Topic": "L\u1ED1i s\u1ED1ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "\u0110o\u1EA1n lu\u1EADn \u0111\u01B0a ra l\u00FD do ch\u1ECDn \u0111i b\u1ED9 khi ph\u00F9 h\u1EE3p.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.2a402cd081c84a7abf6d678a19a82705",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Ch\u00FAng ta kh\u00F4ng c\u1EA7n xe m\u00E1y m\u1ED7i khi \u0111\u1EBFn m\u1ED9t c\u1EEDa h\u00E0ng g\u1EA7n nh\u00E0.",
+        "EnglishMeaning": "We do not need a motorbike every time we visit a nearby shop.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.2da686a26fb84e6d986f1313a64fca71",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "However, we should choose a safe road that has enough light.",
+        "NormalizedHash": "69d771b0085c57d78876101ba9aa702d79c7a239b997898faf3056e9c12ab90a"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.walk-short-trips.fd972789a6884888a145c271190fbc02",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.3b089698a312405095e48337f2bb3d47",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "\u0110i b\u1ED9 gi\u00FAp ch\u00FAng ta v\u1EADn \u0111\u1ED9ng sau nhi\u1EC1u gi\u1EDD ng\u1ED3i h\u1ECDc.",
+        "EnglishMeaning": "Walking helps us move after many hours of sitting and studying.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.3e469e59b075447fb55cd41ed79080cd",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "M\u1ED9t th\u00F3i quen nh\u1ECF nh\u01B0 v\u1EADy c\u00F3 th\u1EC3 l\u00E0m ng\u00E0y c\u1EE7a ch\u00FAng ta vui h\u01A1n.",
+        "EnglishMeaning": "A small habit like this can make our day more enjoyable.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.566942a233ae4b3495c2142ae6685e19",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Ch\u00FAng ta c\u0169ng c\u00F3 th\u1EC3 nh\u00ECn r\u00F5 h\u01A1n nh\u1EEFng thay \u0111\u1ED5i quanh m\u00ECnh.",
+        "EnglishMeaning": "We can also notice changes around us more easily.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.5910ed6f0b7540d08bffab3f7c1c43bc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "V\u00E0o nh\u1EEFng ng\u00E0y qu\u00E1 n\u00F3ng, \u0111i xe bu\u00FDt c\u00F3 th\u1EC3 ph\u00F9 h\u1EE3p h\u01A1n.",
+        "EnglishMeaning": "On very hot days, taking a bus may be a better choice.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.a771384cd47f4e22b79cd48182aa5ace",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "T\u00F4i ngh\u0129 \u0111i b\u1ED9 l\u00E0 m\u1ED9t l\u1EF1a ch\u1ECDn t\u1ED1t cho nh\u1EEFng chuy\u1EBFn \u0111i ng\u1EAFn.",
+        "EnglishMeaning": "I think walking is a good choice for short trips.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.c5b66007c56c452bb79358983fad9798",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ED7i ng\u01B0\u1EDDi c\u00F3 th\u1EC3 b\u1EAFt \u0111\u1EA7u b\u1EB1ng m\u1ED9t chuy\u1EBFn \u0111i b\u1ED9 ng\u1EAFn m\u1ED7i tu\u1EA7n.",
+        "EnglishMeaning": "Everyone can start with one short walk each week.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips.fd972789a6884888a145c271190fbc02",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Tuy nhi\u00EAn, ch\u00FAng ta n\u00EAn ch\u1ECDn con \u0111\u01B0\u1EDDng an to\u00E0n v\u00E0 \u0111\u1EE7 \u00E1nh s\u00E1ng.",
+        "EnglishMeaning": "However, we should choose a safe road with enough light.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.walk-short-trips"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.walk-short-trips"
+}

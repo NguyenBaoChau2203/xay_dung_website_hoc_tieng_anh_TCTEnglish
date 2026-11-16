@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.share-chores",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.share-chores",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "C\u00F9ng nhau l\u00E0m vi\u1EC7c nh\u00E0",
+        "Level": "beginner",
+        "ContentType": "essays",
+        "Topic": "Gia \u0111\u00ECnh",
+        "SourceType": "original-20261114",
+        "PreviewText": "\u0110o\u1EA1n lu\u1EADn v\u1EC1 tr\u00E1ch nhi\u1EC7m v\u00E0 c\u00E1ch chia vi\u1EC7c \u0111\u01A1n gi\u1EA3n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.0f1e2853d61d4106915ce7c7efeb7e18",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "\u0110\u00F4i khi ch\u00FAng ta c\u0169ng c\u1EA7n gi\u00FAp ng\u01B0\u1EDDi \u0111ang b\u1EADn ho\u1EB7c m\u1EC7t.",
+        "EnglishMeaning": "Sometimes we also need to help someone who is busy or tired.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.27647a72afda43a3a7e92644d1a3ba7a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Theo t\u00F4i, m\u1ECDi th\u00E0nh vi\u00EAn trong gia \u0111\u00ECnh n\u00EAn c\u00F9ng l\u00E0m vi\u1EC7c nh\u00E0.",
+        "EnglishMeaning": "In my opinion, everyone in a family should help with housework.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.2a18e4e5403e42c1ae3279cde8bf460e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "V\u00EC th\u1EBF, chia s\u1EBB vi\u1EC7c nh\u00E0 l\u00E0 m\u1ED9t c\u00E1ch th\u1EC3 hi\u1EC7n s\u1EF1 quan t\u00E2m.",
+        "EnglishMeaning": "So sharing housework is a way to show that we care.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.45144c40344041a891a7b255c58134cb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Khi c\u00F9ng l\u00E0m, c\u1EA3 nh\u00E0 c\u00F3 th\u00EAm th\u1EDDi gian ngh\u1EC9 ng\u01A1i b\u00EAn nhau.",
+        "EnglishMeaning": "When we work together, the family has more time to relax together.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.50d02082ba2b4bcf978adba49a3e1c75",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Chia vi\u1EC7c r\u00F5 r\u00E0ng gi\u00FAp ch\u00FAng ta bi\u1EBFt m\u00ECnh c\u1EA7n l\u00E0m g\u00EC.",
+        "EnglishMeaning": "Sharing tasks clearly helps us know what we need to do.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.695272797a064fc09d46b7aa173f0bef",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1ED9t ng\u01B0\u1EDDi kh\u00F4ng n\u00EAn ph\u1EA3i d\u1ECDn d\u1EB9p t\u1EA5t c\u1EA3 sau m\u1ED9t ng\u00E0y d\u00E0i.",
+        "EnglishMeaning": "One person should not have to clean everything after a long day.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.84362e4e278a470d9b0156d22e303aed",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Small children can put their toys away or arrange shoes neatly.",
+        "NormalizedHash": "827cf6e56576d386110134c5bc495e938bb51671313ac944c51b0a97f84f5734"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.share-chores.f5a9fad29a214ad7856b4a427d0151dd",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.9380b2da75e1480a8663f917785ab92f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Nh\u1EEFng ng\u01B0\u1EDDi l\u1EDBn h\u01A1n c\u00F3 th\u1EC3 r\u1EEDa b\u00E1t v\u00E0 chu\u1EA9n b\u1ECB b\u1EEFa t\u1ED1i.",
+        "EnglishMeaning": "Older family members can wash dishes and prepare dinner.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores.f5a9fad29a214ad7856b4a427d0151dd",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Tr\u1EBB nh\u1ECF c\u00F3 th\u1EC3 c\u1EA5t \u0111\u1ED3 ch\u01A1i ho\u1EB7c x\u1EBFp gi\u00E0y g\u1ECDn g\u00E0ng.",
+        "EnglishMeaning": "Young children can put away toys or arrange shoes neatly.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.share-chores"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.share-chores"
+}

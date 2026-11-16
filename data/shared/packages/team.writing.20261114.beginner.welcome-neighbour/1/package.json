@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.welcome-neighbour",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Ch\u00E0o \u0111\u00F3n ng\u01B0\u1EDDi h\u00E0ng x\u00F3m m\u1EDBi",
+        "Level": "beginner",
+        "ContentType": "articles",
+        "Topic": "C\u1ED9ng \u0111\u1ED3ng",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i vi\u1EBFt g\u1EE3i \u00FD c\u00E1ch ch\u00E0o h\u1ECFi l\u1ECBch s\u1EF1 v\u00E0 t\u00F4n tr\u1ECDng ri\u00EAng t\u01B0.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.09dd4b036a2a4a1cb52fe6248333ac1b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t l\u1EDDi ch\u00E0o th\u00E2n thi\u1EC7n c\u00F3 th\u1EC3 gi\u00FAp h\u00E0ng x\u00F3m m\u1EDBi th\u1EA5y d\u1EC5 ch\u1ECBu.",
+        "EnglishMeaning": "A friendly greeting can help a new neighbour feel welcome.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.3d14db9412b14a6f86ca9c8d3b45c551",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Keep the conversation short if they are busy moving boxes.",
+        "NormalizedHash": "309ee5110f9c09c16cb26c3d7919ec64ad977eafccf9021c86b7d3fd6c17a04a"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.welcome-neighbour.81b49385c53f45feb8ef15422129d81d",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.407c805139644e4f8cb5aab2c6f1f377",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "H\u1ECFi xem h\u1ECD c\u00F3 c\u1EA7n ch\u1EC9 \u0111\u01B0\u1EDDng \u0111\u1EBFn c\u1EEDa h\u00E0ng g\u1EA7n nh\u1EA5t kh\u00F4ng.",
+        "EnglishMeaning": "Ask if they need directions to the nearest shop.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.4b41e4ce2a964a63b886122147aef0dc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "B\u1EA1n c\u00F3 th\u1EC3 gi\u1EDBi thi\u1EC7u t\u00EAn khi g\u1EB7p h\u1ECD \u1EDF l\u1ED1i v\u00E0o.",
+        "EnglishMeaning": "You can introduce yourself when you meet them at the entrance.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.81b49385c53f45feb8ef15422129d81d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "N\u1EBFu h\u1ECD \u0111ang b\u1EADn chuy\u1EC3n \u0111\u1ED3, h\u00E3y n\u00F3i chuy\u1EC7n th\u1EADt ng\u1EAFn g\u1ECDn.",
+        "EnglishMeaning": "If they are busy moving boxes, keep the conversation short.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.87d8d0ae269b467aa1316db74a93c508",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "H\u00E3y \u0111\u1EC3 h\u1ECD c\u00F3 th\u1EDDi gian ngh\u1EC9 v\u00E0 s\u1EAFp x\u1EBFp nh\u00E0 c\u1EEDa.",
+        "EnglishMeaning": "Give them time to rest and arrange their home.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.8ad2938a17134cac8e164bb70be20e8a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "B\u1EA1n c\u0169ng c\u00F3 th\u1EC3 cho bi\u1EBFt n\u01A1i \u0111\u1EC3 r\u00E1c chung c\u1EE7a khu nh\u00E0.",
+        "EnglishMeaning": "You can also show them the building\u0027s shared rubbish area.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.a983e61870c3432bbab71e21ee2f70a4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "S\u1EF1 quan t\u00E2m nh\u1ECF v\u00E0 \u0111\u00FAng l\u00FAc c\u00F3 th\u1EC3 b\u1EAFt \u0111\u1EA7u m\u1ED9t t\u00ECnh b\u1EA1n.",
+        "EnglishMeaning": "A little kindness at the right time can start a friendship.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour.d2cb79ab80984bc9ac6436b8d1ac1d97",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Kh\u00F4ng c\u1EA7n h\u1ECFi nh\u1EEFng c\u00E2u ri\u00EAng t\u01B0 ngay trong l\u1EA7n g\u1EB7p \u0111\u1EA7u.",
+        "EnglishMeaning": "There is no need to ask personal questions at the first meeting.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.welcome-neighbour"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.welcome-neighbour"
+}

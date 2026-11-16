@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.picnic-pack",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chu\u1EA9n b\u1ECB m\u1ED9t bu\u1ED5i d\u00E3 ngo\u1EA1i ng\u1EAFn",
+        "Level": "beginner",
+        "ContentType": "articles",
+        "Topic": "D\u00E3 ngo\u1EA1i",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i h\u01B0\u1EDBng d\u1EABn chu\u1EA9n b\u1ECB \u0111\u1ED3 v\u00E0 gi\u1EEF n\u01A1i c\u00F4ng c\u1ED9ng s\u1EA1ch s\u1EBD.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.499ad31dc67b4b68a5ba199cc48af867",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t bu\u1ED5i d\u00E3 ngo\u1EA1i ng\u1EAFn kh\u00F4ng c\u1EA7n qu\u00E1 nhi\u1EC1u \u0111\u1ED3 \u0111\u1EA1c.",
+        "EnglishMeaning": "A short picnic does not need a lot of equipment.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.4f84eaadb4484d458d0d34f143f58cb2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Mang n\u01B0\u1EDBc u\u1ED1ng, m\u1ED9t \u00EDt \u0111\u1ED3 \u0103n v\u00E0 m\u1ED9t t\u1EA5m tr\u1EA3i s\u1EA1ch.",
+        "EnglishMeaning": "Bring drinking water, some food and a clean picnic mat.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.7621230beb854c289d7dd122fd19886e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "M\u1ED9t chi\u1EBFc t\u00FAi nh\u1ECF \u0111\u1EC3 \u0111\u1EF1ng r\u00E1c c\u0169ng r\u1EA5t c\u1EA7n thi\u1EBFt.",
+        "EnglishMeaning": "A small bag for rubbish is also very useful.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.ba531b56d0a94a5e9709ebbf07be44c6",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "First, choose a safe place near your home.",
+        "NormalizedHash": "6432d1ead25599eebfe38b3d839303bc0ca508723d770f867a9828572e32dc20"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.picnic-pack.c6bb6c1f91dc499c931881a68b140132",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.c6bb6c1f91dc499c931881a68b140132",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Tr\u01B0\u1EDBc ti\u00EAn, h\u00E3y ch\u1ECDn m\u1ED9t n\u01A1i an to\u00E0n g\u1EA7n nh\u00E0.",
+        "EnglishMeaning": "First, choose a safe place close to home.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.cc52fe3c4eca483e88ad5169e7fb6873",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ch\u1ECDn \u0111\u1ED3 \u0103n d\u1EC5 mang theo v\u00E0 d\u1EC5 chia cho m\u1ECDi ng\u01B0\u1EDDi.",
+        "EnglishMeaning": "Choose food that is easy to carry and share.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.ea6a950750574bdbbd634fc0495cd8e7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Xem d\u1EF1 b\u00E1o th\u1EDDi ti\u1EBFt tr\u01B0\u1EDBc khi quy\u1EBFt \u0111\u1ECBnh gi\u1EDD \u0111i.",
+        "EnglishMeaning": "Check the weather forecast before deciding when to leave.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.f3cdcf2d9fb341beafa775f6dec14026",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Tr\u01B0\u1EDBc khi v\u1EC1, h\u00E3y ki\u1EC3m tra quanh ch\u1ED7 ng\u1ED3i c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "Before leaving, check the area around your seat.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack.fa6d1733e9b040999b3d813675d64ee6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "M\u1ED9t bu\u1ED5i \u0111i ch\u01A1i vui n\u00EAn k\u1EBFt th\u00FAc v\u1EDBi m\u1ED9t n\u01A1i s\u1EA1ch s\u1EBD.",
+        "EnglishMeaning": "A happy outing should end with a clean place.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.picnic-pack"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.picnic-pack"
+}

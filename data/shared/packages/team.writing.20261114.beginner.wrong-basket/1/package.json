@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.wrong-basket",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Hai chi\u1EBFc gi\u1ECF gi\u1ED1ng nhau",
+        "Level": "beginner",
+        "ContentType": "stories",
+        "Topic": "Mua s\u1EAFm",
+        "SourceType": "original-20261114",
+        "PreviewText": "C\u00E2u chuy\u1EC7n v\u1EC1 m\u1ED9t nh\u1EA7m l\u1EABn \u0111\u01B0\u1EE3c gi\u1EA3i quy\u1EBFt b\u1EB1ng giao ti\u1EBFp.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.2196ce765ab24d1c80416010372d4866",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Lan mua t\u00E1o \u1EDF ch\u1EE3 v\u00E0 \u0111\u1EB7t gi\u1ECF xu\u1ED1ng c\u1EA1nh qu\u1EA7y.",
+        "EnglishMeaning": "Lan bought apples at the market and put her basket beside the stall.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.61c2330591df4e29a8886277ff4dff99",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "\u00D4ng m\u1EC9m c\u01B0\u1EDDi v\u00E0 cho c\u00F4 xem nh\u1EEFng qu\u1EA3 t\u00E1o trong gi\u1ECF.",
+        "EnglishMeaning": "He smiled and showed her the apples in his basket.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.69ece941467d41a89ae35c63987ba299",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "He smiled and showed her the apples inside his basket.",
+        "NormalizedHash": "8ae23caac3e1af5f235fd672fe79b18f96aabf1011a2f4800175dce3d78d2f03"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.wrong-basket.61c2330591df4e29a8886277ff4dff99",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.8d8eb8e389704a9697007aaee82dc9d9",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Khi quay l\u1EA1i, c\u00F4 th\u1EA5y hai chi\u1EBFc gi\u1ECF m\u00E0u xanh gi\u1ED1ng nhau.",
+        "EnglishMeaning": "When she returned, she saw two identical blue baskets.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.a206f4a8961048e8ab378dbe66b4a276",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "T\u1EEB h\u00F4m \u0111\u00F3, Lan bu\u1ED9c m\u1ED9t d\u1EA3i ruy b\u0103ng v\u00E0ng v\u00E0o gi\u1ECF.",
+        "EnglishMeaning": "From that day on, Lan tied a yellow ribbon to her basket.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.b93363014e764eaa94ed0d8168ad824b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u1ED9t ng\u01B0\u1EDDi \u0111\u00E0n \u00F4ng g\u1EA7n \u0111\u00F3 c\u0169ng \u0111ang nh\u00ECn v\u00E0o gi\u1ECF c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "A man nearby was also looking into his basket.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.c72bc4bb1f144a73b1b37f3aeea4907b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "H\u1ECD \u0111\u1ED5i l\u1EA1i gi\u1ECF v\u00E0 c\u00F9ng c\u01B0\u1EDDi v\u00EC s\u1EF1 nh\u1EA7m l\u1EABn.",
+        "EnglishMeaning": "They exchanged baskets and laughed about the mistake.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.ed8ca6031706478ebff977b4cd214b96",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Lan h\u1ECFi li\u1EC7u \u00F4ng c\u00F3 \u0111ang t\u00ECm nh\u1EEFng qu\u1EA3 c\u00E0 chua kh\u00F4ng.",
+        "EnglishMeaning": "Lan asked if he was looking for some tomatoes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket.f70cd02b039f4905a64e8c58f8c78260",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "C\u00F4 c\u1EA7m m\u1ED9t chi\u1EBFc l\u00EAn nh\u01B0ng b\u00EAn trong to\u00E0n l\u00E0 c\u00E0 chua.",
+        "EnglishMeaning": "She picked one up, but it was full of tomatoes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.wrong-basket"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.wrong-basket"
+}

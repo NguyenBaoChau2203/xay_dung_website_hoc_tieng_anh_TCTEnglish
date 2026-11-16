@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.reports.01",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.reports.01",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "\u0110\u00E1nh gi\u00E1 khu t\u1EF1 h\u1ECDc bu\u1ED5i t\u1ED1i",
+        "Level": "intermediate",
+        "ContentType": "reports",
+        "Topic": "C\u01A1 s\u1EDF h\u1ECDc t\u1EADp",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o gi\u1EA3 \u0111\u1ECBnh v\u1EC1 ch\u1ED7 ng\u1ED3i, \u00E1nh s\u00E1ng v\u00E0 \u0111\u1EC1 xu\u1EA5t th\u1EED nghi\u1EC7m khu t\u1EF1 h\u1ECDc.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.41da6c9dfe2a41e1acf8d11a8444a137",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "M\u1ED9t cu\u1ED9c kh\u1EA3o s\u00E1t ti\u1EBFp theo sau hai tu\u1EA7n s\u1EBD gi\u00FAp \u0111\u00E1nh gi\u00E1 c\u00E1c thay \u0111\u1ED5i.",
+        "EnglishMeaning": "A follow-up survey after two weeks would help assess the changes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.4429fa1352b84e73b50252268ae30a09",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u01B0\u1EDDi b\u1ED1n ng\u01B0\u1EDDi cho r\u1EB1ng b\u00E0n \u0111\u1EE7 r\u1ED9ng \u0111\u1EC3 d\u00F9ng c\u1EA3 s\u00E1ch v\u00E0 m\u00E1y t\u00EDnh.",
+        "EnglishMeaning": "Fourteen people thought the tables were wide enough for books and a laptop.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.463af6b5fd134afbaf3f0f98cd72c731",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Trong t\u00ECnh hu\u1ED1ng n\u00E0y, nh\u00F3m \u0111\u00E3 h\u1ECFi hai m\u01B0\u01A1i ng\u01B0\u1EDDi s\u1EED d\u1EE5ng khu v\u1EF1c trong m\u1ED9t tu\u1EA7n.",
+        "EnglishMeaning": "In this scenario, the team asked twenty users about the area over one week.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.52836dbfac364a6587df03822eff0841",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "A second survey two weeks later would help evaluate the changes.",
+        "NormalizedHash": "1265ad63d7599887e960f158aef6e16cf81460572c2896d789324c182031ca9a"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.reports.01.41da6c9dfe2a41e1acf8d11a8444a137",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.63422f17c31b4e22928d387bbf5d5eea",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "C\u00E1c \u00FD ki\u1EBFn \u0111\u01B0\u1EE3c chia th\u00E0nh ba nh\u00F3m: ch\u1ED7 ng\u1ED3i, \u00E1nh s\u00E1ng v\u00E0 ti\u1EBFng \u1ED3n.",
+        "EnglishMeaning": "Comments were divided into three groups: seating, lighting and noise.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.63a020333fc341c799d6b0d4b11127f5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "Tr\u01B0\u1EDBc khi th\u00EAm \u1ED5 c\u1EAFm, ng\u01B0\u1EDDi ph\u1EE5 tr\u00E1ch c\u1EA7n nh\u1EDD nh\u00E2n vi\u00EAn chuy\u00EAn m\u00F4n ki\u1EC3m tra.",
+        "EnglishMeaning": "Before adding sockets, the supervisor should arrange an inspection by qualified staff.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.cfc94b98f77944f286885c4427468cfb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Nh\u00F3m \u0111\u1EC1 xu\u1EA5t th\u1EED \u0111\u1EB7t bi\u1EC3n nh\u1EAFc gi\u1EEF y\u00EAn l\u1EB7ng v\u00E0 \u0111i\u1EC1u ch\u1EC9nh v\u1ECB tr\u00ED hai \u0111\u00E8n.",
+        "EnglishMeaning": "The team recommends testing a quiet reminder sign and repositioning two lamps.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.d13d8735d2af406c85b174d4a23a68a4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Ti\u1EBFng n\u00F3i chuy\u1EC7n \u1EDF c\u1EEDa ra v\u00E0o l\u00E0 v\u1EA5n \u0111\u1EC1 \u0111\u01B0\u1EE3c nh\u1EAFc \u0111\u1EBFn th\u01B0\u1EDDng xuy\u00EAn nh\u1EA5t.",
+        "EnglishMeaning": "Conversation near the entrance was the problem mentioned most frequently.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.d47f6b299a5d4ef098b698b185ac265a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1EE5c \u0111\u00EDch l\u00E0 t\u00ECm nh\u1EEFng thay \u0111\u1ED5i nh\u1ECF c\u00F3 th\u1EC3 gi\u00FAp vi\u1EC7c h\u1ECDc thu\u1EADn ti\u1EC7n h\u01A1n.",
+        "EnglishMeaning": "The aim was to identify small changes that could make studying more convenient.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.dd41bd423c174e928ab712898293661f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "V\u00EC m\u1EABu nh\u1ECF, c\u00E1c k\u1EBFt qu\u1EA3 gi\u1EA3 \u0111\u1ECBnh n\u00E0y kh\u00F4ng \u0111\u1EA1i di\u1EC7n cho to\u00E0n b\u1ED9 sinh vi\u00EAn.",
+        "EnglishMeaning": "Because the sample is small, these fictional findings do not represent all students.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.e8f610b5066b41fc87ae081b9c1c3d39",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o n\u00E0y tr\u00ECnh b\u00E0y m\u1ED9t cu\u1ED9c kh\u1EA3o s\u00E1t gi\u1EA3 \u0111\u1ECBnh v\u1EC1 khu t\u1EF1 h\u1ECDc bu\u1ED5i t\u1ED1i.",
+        "EnglishMeaning": "This report presents a fictional survey of an evening study area.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.efe7d2a86c6441658766babac747034e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Tuy nhi\u00EAn, t\u00E1m ng\u01B0\u1EDDi n\u00F3i h\u1ECD kh\u00F3 t\u00ECm \u0111\u01B0\u1EE3c ch\u1ED7 g\u1EA7n \u1ED5 c\u1EAFm \u0111i\u1EC7n.",
+        "EnglishMeaning": "However, eight said they struggled to find a seat near a power socket.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.reports.01.f40d8294a14c47caaa91248633d8fdb6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1ED9t s\u1ED1 ng\u01B0\u1EDDi c\u0169ng nh\u1EADn th\u1EA5y h\u00E0ng gh\u1EBF cu\u1ED1i t\u1ED1i h\u01A1n c\u00E1c khu v\u1EF1c kh\u00E1c.",
+        "EnglishMeaning": "Several users also noticed that the back row was darker than other areas.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.reports.01"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.reports.01"
+}

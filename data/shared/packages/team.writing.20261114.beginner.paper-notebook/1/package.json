@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.paper-notebook",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "M\u1ED9t cu\u1ED1n s\u1ED5 nh\u1ECF \u0111\u1EC3 h\u1ECDc",
+        "Level": "beginner",
+        "ContentType": "essays",
+        "Topic": "H\u1ECDc t\u1EADp",
+        "SourceType": "original-20261114",
+        "PreviewText": "\u0110o\u1EA1n lu\u1EADn gi\u1EA3i th\u00EDch l\u1EE3i \u00EDch v\u00E0 gi\u1EDBi h\u1EA1n c\u1EE7a s\u1ED5 gi\u1EA5y.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.227aa402fd1a4a788e8ec3b7e9cbddb2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Cu\u1ED1n s\u1ED5 c\u0169ng d\u1EC5 mang theo tr\u00EAn xe bu\u00FDt ho\u1EB7c \u0111\u1EBFn c\u00F4ng vi\u00EAn.",
+        "EnglishMeaning": "The notebook is also easy to carry on the bus or to the park.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.2b6cf16413984df8b34b2bcdb82446c5",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Hai c\u00E1ch h\u1ECDc n\u00E0y c\u00F3 th\u1EC3 h\u1ED7 tr\u1EE3 nhau r\u1EA5t t\u1ED1t.",
+        "EnglishMeaning": "These two ways of learning can work very well together.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.37ba1f99098d4fe3a59cc04abbb00e67",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "I like to use a small paper notebook when I learn new words.",
+        "NormalizedHash": "c5eacc1b6cdf1019d7e7b3c3e63ae1c6b4ff2464a3821469e9f36664e1f614ff"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.paper-notebook.5d6082a9a8314e94b039f5505153e8c3",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.5d6082a9a8314e94b039f5505153e8c3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "T\u00F4i th\u00EDch d\u00F9ng m\u1ED9t cu\u1ED1n s\u1ED5 gi\u1EA5y nh\u1ECF khi h\u1ECDc t\u1EEB m\u1EDBi.",
+        "EnglishMeaning": "I like using a small paper notebook when I learn new words.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.5d831a5b11ed4e9ea1b18cf4283b85ab",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Vi\u1EC7c n\u00E0y gi\u00FAp t\u00F4i nh\u1EDB ngh\u0129a c\u1EE7a t\u1EEB d\u1EC5 h\u01A1n.",
+        "EnglishMeaning": "This helps me remember the meaning of the word more easily.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.64f6862dcb6e4758b6e109dec3e7e55e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "T\u00F4i th\u01B0\u1EDDng nghe tr\u01B0\u1EDBc r\u1ED3i ghi m\u1ED9t v\u00ED d\u1EE5 v\u00E0o s\u1ED5.",
+        "EnglishMeaning": "I usually listen first and then write an example in my notebook.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.671d424aa4c040d087960100eb5caee6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "T\u1EA5t nhi\u00EAn, \u0111i\u1EC7n tho\u1EA1i c\u00F3 th\u1EC3 ph\u00E1t \u00E2m nh\u1EEFng t\u1EEB t\u00F4i ch\u01B0a bi\u1EBFt.",
+        "EnglishMeaning": "Of course, a phone can pronounce words that I do not know.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.73174dc717944df1b7218313539192fb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i c\u00F3 th\u1EC3 vi\u1EBFt m\u1ED9t t\u1EEB v\u00E0 v\u1EBD h\u00ECnh b\u00EAn c\u1EA1nh.",
+        "EnglishMeaning": "I can write a word and draw a picture beside it.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook.b51744d2796d4155bc91cbf101ce78c4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "\u0110i\u1EC1u quan tr\u1ECDng l\u00E0 xem l\u1EA1i nh\u1EEFng g\u00EC m\u00ECnh \u0111\u00E3 ghi.",
+        "EnglishMeaning": "The important thing is to review what we have written.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.paper-notebook"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.paper-notebook"
+}
