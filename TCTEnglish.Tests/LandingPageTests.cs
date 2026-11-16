@@ -168,6 +168,54 @@ public sealed class LandingPageTests
     }
 
     [Fact]
+    public async Task Landing_Features_ShowTheLessonShotTheReviewLadderTheFourSkillsAndTheAiExample()
+    {
+        var (_, html, decoded) = await GetLandingAsync(signedIn: false);
+
+        // Lesson card: real screenshot, lazy, with dimensions and an honest alt text.
+        var lesson = Regex.Match(decoded, "<img\\b[^>]*lesson-card-780\\.webp[^>]*>", RegexOptions.Singleline);
+        Assert.True(lesson.Success, "lesson screenshot missing");
+        Assert.Contains("lesson-card-1560.webp", lesson.Value, StringComparison.Ordinal);
+        Assert.Contains("loading=\"lazy\"", lesson.Value, StringComparison.Ordinal);
+        Assert.Matches("width=\"\\d+\"", lesson.Value);
+        Assert.Matches("height=\"\\d+\"", lesson.Value);
+        Assert.Contains("alt=\"Câu hỏi luyện tập trong một bài học từ vựng của TCT English\"", lesson.Value, StringComparison.Ordinal);
+
+        // Review ladder: an ordered list the reader can follow as text, plus a spoken summary.
+        var ladder = Regex.Match(decoded, "<ol class=\"lp-ladder\".*?</ol>", RegexOptions.Singleline).Value;
+        var steps = Regex.Matches(ladder, "<li[^>]*>(.*?)</li>", RegexOptions.Singleline)
+            .Select(m => Regex.Replace(m.Groups[1].Value, "<[^>]+>", " ").Replace("\r", " ").Replace("\n", " ").Trim()).ToList();
+        Assert.Equal(new[] { "1 ngày", "3 ngày", "7 ngày", "14 ngày", "30 ngày", "60 ngày" }, steps.Select(s => Regex.Replace(s, "\\s+", " ")));
+        Assert.Contains("Khoảng cách ôn: 1, 3, 7, 14, 30 rồi 60 ngày.", decoded, StringComparison.Ordinal);
+        Assert.Contains("id=\"on-tap\"", decoded, StringComparison.Ordinal);
+
+        // The four skills and the goal tiles carry labels only: no invented counts.
+        foreach (var skill in new[] { "Nghe", "Nói", "Viết", "Đọc" })
+        {
+            Assert.Matches($"<h3[^>]*>{skill}</h3>", decoded);
+        }
+        foreach (var tile in new[] { "Chuỗi ngày học", "Mục tiêu mỗi ngày", "Huy hiệu" })
+        {
+            Assert.Contains(tile, decoded, StringComparison.Ordinal);
+        }
+
+        // AI example: static, labelled as an example, in an element with the right id for the nav link.
+        Assert.Contains("id=\"tro-ly-ai\"", decoded, StringComparison.Ordinal);
+        Assert.Contains("aria-label=\"Ví dụ hội thoại với trợ lý AI\"", decoded, StringComparison.Ordinal);
+        Assert.Contains("“Deadline” và “due date” khác nhau thế nào?", decoded, StringComparison.Ordinal);
+
+        // Only the ladder bar heights may use an inline style, and only as a custom property.
+        var inlineStyles = Regex.Matches(html, "\\sstyle=\"([^\"]*)\"").Select(m => m.Groups[1].Value).ToList();
+        Assert.All(inlineStyles, s => Assert.StartsWith("--lp-h:", s, StringComparison.Ordinal));
+        Assert.Equal(6, inlineStyles.Count);
+
+        // Claims that are not true today must not come back.
+        Assert.DoesNotContain("AI chấm bài", decoded, StringComparison.Ordinal);
+        Assert.DoesNotContain("phụ đề song ngữ", decoded, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("sáu kỹ năng", decoded, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public async Task Landing_RootServesThePageAndAnonymousDashboardRedirectsToIt()
     {
         await using var factory = new TestWebApplicationFactory();
