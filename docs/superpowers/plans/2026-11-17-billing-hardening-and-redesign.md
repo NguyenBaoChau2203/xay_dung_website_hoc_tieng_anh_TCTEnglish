@@ -832,3 +832,77 @@ No severity-A finding was disproved, so no design change is needed.
 - `.ai/context/known-issues.md`: `BILLING-ROLE-CHANGE-SIGNS-OUT` (the ready-to-apply proposal for Châu: renew instead of reject when only the role differs, plus honouring a local `returnUrl` on login), `BILLING-MOMO-QUERY-UNVERIFIED`, `BILLING-RECONCILIATION-WORKER-OFF` (recommended setting), `BILLING-ROLE-CLAIM-PREMIUM-CHECKS`. `.ai/context/bug-fix-log.md`: one entry for the whole change.
 
 **Mockup differences.** none. **Owned tests changed.** none (only three `Assert.Equal(1, …Count)` → `Assert.Single` in my own new test file). **Orders created.** none.
+
+
+### Gate record — B12 Full gate and end-to-end runs (2026-11-17) — `test(billing): record the final gate, the end-to-end runs and the event-conflict regression`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors, **57 warnings (B0: 58)** on a full `--no-incremental` rebuild |
+| G2 | pass | area filter 648 total: 647 passed, 1 skipped, 0 failed |
+| G3 | pass | **2362 total = 2327 passed, 35 skipped, 0 failed** (B0: 1867 total, 1831 passed, 1 failed). Four regression tests for F7 (`BillingEventConflictTests`) were added after this run and pass in their focused run (4 of 4) |
+| G4 | pass | node 405 total, 404 passed (B0: 391 / 390); only the B0 speaking-catalog hash failure |
+| G5 | pass | `git diff master` is empty for `VnPaySignatureHelper.cs`, `MoMoSignatureHelper.cs`, `appsettings.json`, the `.csproj` and every migration and model; the four provider callbacks answer as before (IPN codes `00/01/02/04/97/99`, MoMo 204, return URLs unchanged, redirect target differs only for a verified return); order code format and prices unchanged; `dotnet ef migrations has-pending-model-changes`: "No changes have been made to the model since the last migration." |
+| G6 | pass | token grep over `billing.css` empty; **zero** `bi bi-`, inline `<style>`/`<script>` or `style=` in any learner billing view (grep count 0, tests); `git diff --check` clean for committed files |
+| G7 | pass | whole-branch file scope: no file outside plan 2.1/2.2; **`Program.cs` +3 lines, all DI registrations** (`IPaymentConfirmationService`, `IPaymentQueryService`, the `IMoMoQueryClient` HTTP client); **`_Layout.cshtml` +1/−1 line** (the D2 string); `appsettings.Development.json` stayed an unstaged local edit and was never committed |
+| G8 | pass | headless Chrome on the local Release app at 1440×900, 1366×768, 1280, 1024, 768, 390, 320 and 200 % zoom for `/Premium` (free, Premium, admin), the order page in all eight states, `/Billing/History` (table, cards, paging, empty); no overflow, no console error, no failing request that is not an intentional 404 (see the end-to-end log); screenshots in `.tmp/billing/before/` and `.tmp/billing/after/` (ignored) |
+| G9 | pass | compared with mockups 1–7 in each phase; differences recorded in the B7–B9 records (truthful benefit rows, no "chưa bị trừ tiền" claim, history table from 1280 px) |
+| G10 | pass | behaviour checklists B7–B10 verified by mouse and keyboard in the phase records; end-to-end runs below |
+| G11 | pass | fieldsets/legends, captioned tables, `aria-live` status line, 2 px focus outline on every control reached by Tab, forced-colours and reduced-motion screenshots, no-JS checkout |
+| G12 | pass | scripted WCAG AA contrast over every text node of every billing page state: zero failures after the one fix in B7 |
+| G13 | pass | full suite (Premium gate tests, speaking/writing premium tests, `VocabApiController` image search); login/logout; the Premium-only listening speed control changes from "Mở khóa tốc độ với Premium" to five speed options after the purchase; admin billing pages open |
+| G14 | pass | Clay tokens only; status is icon + words |
+| G15 | pass | owner-only 404s, antiforgery 400s, admin refusals, https-only stored addresses, dev-only mock box; secret grep over the whole-branch diff finds only test dummies (`SECRET123456`, an old test constant) and the SHA-256 hashes of two vendored files |
+| G16 | **pass** | `Status = PaymentOrderStatuses.Paid` appears only in `PaymentConfirmationService.cs`; `PaymentSingleConfirmationPathTests` guards it and checks that IPN, the query service and the admin action call `ConfirmPaidAsync` and that the return handlers never do |
+
+**End-to-end runs (plan 8.5) — local Release app, MoMo mock mode through process variables, fixture learners cloned from the synthetic Standard account.** *Deviation recorded:* the three synthetic accounts keep their roles (the real Standard account is shared with other work), so the "standard learner" was `billing-fx3` and the "second learner" `billing-fx5`; both are fresh free accounts with the Standard account's role and password.
+1. **fx3 buys the yearly plan.** Before: the listening page offered only "Tốc độ 1×" and "Mở khóa tốc độ với Premium"; `/Premium` read "Bạn đang dùng gói Miễn phí". Checkout → `/Billing/Order/TCT-20261117090720219-05786385` (stage waiting, mock box present) → "Giả lập thanh toán thành công" → the next request landed on `/Account/Login?ReturnUrl=%2FBilling%2FOrder%2F…` (finding F1, reproduced again) → signed in again (landed on `/Home/Index`: the login page ignores `returnUrl`, known issue) → the order page shows "Thanh toán thành công — Premium của bạn có hiệu lực đến 17/11/2027." → `/Premium` reads "Bạn đang dùng Premium · Có hiệu lực đến 17/11/2027 (còn 365 ngày)…" → history's first row is the order with "Đã thanh toán" and "Xem biên nhận" → the listening page now shows five speed options (0.5× … 1.5×). Database: order `paid`, `PaidAtUtc` and `ActivatedAtUtc` set; events `checkout_created`, `ipn`, `grant_premium`; one subscription to 2027-11-17.
+2. **fx3 buys the monthly plan.** The summary said "30 ngày, đến 17/12/2027"; after the mock confirmation the session continued (no role change this time) and the page read "…hiệu lực đến 17/12/2027". Database: the new subscription starts at the previous end (`2027-11-17 09:07:22.99`) and ends 30 days later; `/Premium` then shows "còn 395 ngày".
+3. **fx5 starts MoMo and lets it expire.** The one targeted update (recorded): `UPDATE PaymentOrders SET ExpiresAtUtc = TIMESTAMPADD(MINUTE,-2,UTC_TIMESTAMP(6)) WHERE OrderCode='TCT-20261117090750405-E3F00C3C'`. The order page then read "Thanh toán chưa hoàn tất — Đơn đã hết hạn trước khi được thanh toán. Nếu tài khoản của bạn đã bị trừ tiền, hãy liên hệ hỗ trợ kèm mã đơn." and "Thanh toán lại" led to `/Premium`.
+4. **Admin on `/Premium`.** No form, no pay button; "Tài khoản của bạn có quyền Premium không thời hạn."
+5. **Another learner asks for someone else's order.** fx5 requesting fx3's order page and status JSON: HTTP 404 both.
+
+The only failed requests in the end-to-end log were the two deliberate 404s of run 5 and a YouTube thumbnail 404 on the listening page (known issue `SWEEP-LISTENING-YOUTUBE-THUMB-404`).
+
+**Orders created by checks (all stay in the dev database).** `TCT-20261117072308906-BE895D28` (B0, fx1, yearly, paid), `TCT-20261117080914540-38807DBA` (B7, fx2, expired unpaid), `TCT-20261117082530903-05F1C9C8` (B8, fx2, yearly, paid), `TCT-20261117090720219-05786385` (fx3 yearly, paid), `TCT-20261117090736747-A37B78CA` (fx3 monthly, paid), `TCT-20261117090750405-E3F00C3C` (fx5, expired). Fixture rows inserted by SQL: `TCT-FIXTURE-*` for `billing-fx4` (eight states; `-REVIEW` was confirmed through the admin UI) and `TCT-FIXTURE-MANY-01..25` for `billing-fx3`; the two seed plans and learners `billing-fx1..5@tct.local`.
+
+#### Definition of Done (plan section 10)
+- [x] Every finding F1–F22 is fixed, mitigated as decided, or disproved with evidence — see the table below.
+- [x] One confirmation path and one state machine; G16 proves it.
+- [x] A paid order is confirmed without an IPN (verified query, `BillingReturnConfirmationTests`, `PaymentReconciliationServiceTests`) and never from the return alone (tests with unknown, none, wrong-amount and failed answers). *Not exercised against a live VNPay or MoMo sandbox (no credentials in the repo).*
+- [x] Provider URLs, response codes and signatures unchanged (G5).
+- [x] `/Premium`, the order page and the history match the mockups in every state, on laptop and phone, with keyboard, no-JS checkout, forced colours and reduced motion (differences recorded).
+- [x] Learner copy is plain Vietnamese with diacritics; times are Vietnam time; icons render; no false feature claim (verified benefit list with file and line).
+- [x] Premium users see their end date; buying again extends it; admins cannot buy (run 1, 2, 4; `BillingCheckoutRulesTests`).
+- [x] Admin confirmation is atomic; admin messages are Vietnamese (`AdminBillingStateRulesTests`; DB evidence in B10).
+- [x] The sign-out problem is handled per D1 (mitigation) and the proposal is written (`BILLING-ROLE-CHANGE-SIGNS-OUT`). *The login page ignoring `returnUrl` limits the mitigation; added to the proposal.*
+- [x] All tests green; other owners' tests unedited (only the eight billing tests of plan 2.2 changed, each with a reason); no migration; no secret anywhere.
+- [x] Payment docs, tracker, known issues and section 12 updated (B11).
+
+#### Final verdict on the findings
+| # | Result | Evidence (test or run) |
+| --- | --- | --- |
+| F1 | **Mitigated** (D1 = TẠM) + proposal | reproduced in B0 and in the final run; notice text, session-ended handling in `billing-core.js` (node tests) and `billing-order.js` (browser run), `BILLING-ROLE-CHANGE-SIGNS-OUT` |
+| F2 | Fixed | `BillingReturnConfirmationTests.VnPay_SuccessfulReturn_WithAVerifiedQuery_ConfirmsTheOrder_WithoutAnIpn`, `PaymentReconciliationServiceTests.RecentlyExpiredVnPayOrder_WithVerifiedSuccess_IsPaid_NotLeftExpiredForever` |
+| F3 | Fixed | `PaymentReconciliationServiceTests.UnknownAnswer_LeavesThePendingOrderAlone_EvenWhenOlderThanFiveMinutes`, `ProviderQueryClientTests.VnPay_EverythingElse_IsUnknown_AndNeverSuccess`, `PaymentQueryServiceTests.VerifiedSuccess_WithAWrongOrMissingAmount_DoesNotConfirm` |
+| F4 | Fixed | `IpnTransitionTests.FailureCallback_CannotChangeAnOrderOutsidePending`, `SuccessCallback_CannotReviveRefundedOrManualReviewOrders`, `PaymentOrderStateMachineTests` |
+| F5 | Fixed | `AdminBillingStateRulesTests.ConfirmPaid_IsOneTransaction_ThatSetsEveryTimestampAndTheActivation` + DB evidence |
+| F6 | Fixed | `IpnTransitionTests.VnPayFailureCallback_WhenTheEventInsertHitsAUniqueError_IsStillAcknowledged` (MariaDB and SQLite shapes), `PaymentConfirmationServiceTests.LosingTheGrantRace_…` |
+| F7 | Fixed | `BillingEventConflictTests` (checkout and return events, both database shapes, other errors still surface) |
+| F8 | Fixed | `IpnTransitionTests.SuccessCallback_MoreThanADayAfterExpiry_GoesToManualReview_ForBothProviders`, `PaymentConfirmationServiceTests.LateSuccess_AfterTwentyFourHours_…` |
+| F9 | Fixed | `MoMoIpnBodyHandlingTests` |
+| F10 | Fixed | `PremiumStatusAndExpiryTests.RolePremiumSubscriber_SeesTheEndDate_…`, `BillingPagesIntegrationTests.Pricing_ForAPremiumLearner_ShowsTheEndDateAndDaysLeft…`, end-to-end run 1 |
+| F11 | Fixed | grep count 0 in learner billing views and view models; `BillingPagesIntegrationTests.Pricing_UsesFontAwesome_…`; icons seen in screenshots |
+| F12 | Fixed | `BillingCheckoutRulesTests` (admin blocked, open order resumed, VNPay URL stored); one form (test); double-click sent one POST (browser run) |
+| F13 | Fixed | `BillingControllerTests.VnPayReturn_ValidSignature_AnonymousUser_RedirectsToLogin` (now with the order `returnUrl`); the browser run followed `returnUrl` to the login page |
+| F14 | Fixed | learner HTML has no "IPN" or "Manual review" (`BillingPagesIntegrationTests`), one status mapping (`PaymentOrderLabels`) |
+| F15 | Fixed | `BillingDisplayHelpersTests.Benefits_AreBackedByAGate_…`, B0 gate table, "Tạm thời chưa dùng được" instead of "chưa cấu hình" |
+| F16 | Fixed | `AdminBillingStateRulesTests` source guards, `BillingCheckoutRulesTests.LearnerMessages_…`, `MoMoGateway_Failures_AreShownInCorrectVietnamese` |
+| F17 | Fixed | `BillingDisplayHelpersTests` (Vietnam time), admin view guard against fixed offsets, node tests |
+| F18 | Fixed | pinned `qrcode-1.0.0.min.js` + provenance, no CDN reference (`BillingPagesIntegrationTests`), pinned-asset test passes |
+| F19 | Fixed | `BillingClientIpTests` (18 rows) and `BillingControllerMessageTests.Checkout_PassesTheServiceError…` |
+| F20 | Fixed | history paging, actions, empty state (`BillingPagesIntegrationTests.History_*`, browser run with 25 orders) |
+| F21 | Fixed | `SubscriptionService.ExpireForUserAsync` called by the Premium page, the history and the order page (`PremiumStatusAndExpiryTests`, `BillingControllerMessageTests`) |
+| F22 | Fixed | `_Layout.cshtml` one line (`AdminBillingStateRulesTests.TheHeaderButton_IsInVietnamese`, browser run) |
+
+**What was not verified.** No live VNPay or MoMo sandbox call (no credentials were used or needed); the MoMo query request format and the VNPay `vnp_TransactionStatus` meanings beyond `00`/`02` are unverified against the providers; no production or staging behaviour; no real payment. Notification to the buyer after activation is not sent (no per-user notification API).
