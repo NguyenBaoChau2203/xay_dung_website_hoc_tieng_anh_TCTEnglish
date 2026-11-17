@@ -58,3 +58,25 @@ public sealed class NotificationCategoryCounts
     public IReadOnlyDictionary<NotificationCategory, NotificationCategoryCount> ByCategory { get; init; }
         = new Dictionary<NotificationCategory, NotificationCategoryCount>();
 }
+
+/// <summary>The read-only reminder settings and "when you get notified" card beside the list.</summary>
+public sealed class NotificationSidePanelViewModel
+{
+    /// <summary>False when the preference read failed: only the "change settings" button is shown.</summary>
+    public bool HasSettings { get; init; }
+    public string DailyReminder { get; init; } = string.Empty;   // "Bật · 20:00" / "Tắt"
+    public string BrowserPush { get; init; } = string.Empty;     // "Bật" / "Tắt"
+    public string WeeklyEmail { get; init; } = string.Empty;     // "Bật" / "Tắt"
+    public string SettingsUrl { get; init; } = "/Account/Profile#section-notifications";
+    public int RetentionDays { get; init; } = 30;
+}
+
+/// <summary>Everything the notification page renders.</summary>
+public sealed class NotificationPageViewModel
+{
+    public NotificationListViewModel List { get; init; } = new();
+    public string Filter { get; init; } = "all";                 // all | unread
+    public string? Category { get; init; }                       // learning | badge | payment | system | null
+    public NotificationCategoryCounts Counts { get; init; } = new();
+    public NotificationSidePanelViewModel Side { get; init; } = new();
+}

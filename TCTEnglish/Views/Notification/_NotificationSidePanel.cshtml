@@ -1,0 +1,42 @@
+@model TCTVocabulary.ViewModels.NotificationSidePanelViewModel
+@*
+    The right column of /Notification (plan 5.1, decision P10). Reminder values are read-only here: the settings
+    belong to the Account area, so the button only links to them.
+*@
+<aside class="tn-side" aria-label="Nhắc học và các loại thông báo">
+    <section class="k-panel tn-side-card" aria-labelledby="tnReminderTitle">
+        <h2 class="tn-side-card__title" id="tnReminderTitle">Nhắc học</h2>
+        @if (Model.HasSettings)
+        {
+            <dl class="tn-settings">
+                <div class="tn-setting">
+                    <dt class="tn-setting__name">Nhắc học mỗi ngày</dt>
+                    <dd class="tn-setting__value">@Model.DailyReminder</dd>
+                </div>
+                <div class="tn-setting">
+                    <dt class="tn-setting__name">Thông báo trên trình duyệt</dt>
+                    <dd class="tn-setting__value">@Model.BrowserPush</dd>
+                </div>
+                <div class="tn-setting">
+                    <dt class="tn-setting__name">Email tổng kết tuần</dt>
+                    <dd class="tn-setting__value">@Model.WeeklyEmail</dd>
+                </div>
+            </dl>
+        }
+        <a class="btn btn-outline-primary w-100" href="@Model.SettingsUrl">
+            <i class="fa-solid fa-gear me-2" aria-hidden="true"></i>Đổi cài đặt
+        </a>
+    </section>
+
+    <section class="k-panel tn-side-card" aria-labelledby="tnWhenTitle">
+        <h2 class="tn-side-card__title" id="tnWhenTitle">Bạn sẽ nhận thông báo khi</h2>
+        <ul class="tn-bullets">
+            <li>Đạt hoặc gần đạt mục tiêu ngày</li>
+            <li>Lập kỷ lục chuỗi ngày học</li>
+            <li>Nhận hoặc sắp nhận huy hiệu</li>
+            <li>Thanh toán Premium thành công</li>
+            <li>Có thông báo chung từ TCT English</li>
+        </ul>
+        <p class="tn-note">Thông báo đã đọc được giữ @Model.RetentionDays ngày.</p>
+    </section>
+</aside>

@@ -693,3 +693,31 @@ Record database evidence.
 **Differences from the mockup.** None (admin only, no mockup).
 **Tests changed.** None edited; three new files.
 **Event keys of rows created.** None in the dev database.
+
+### Gate record — T5 UI foundation (2026-11-17) — `feat(notifications): add the page styles, item and side-panel partials and the pure notification core`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild (Razor views compile in Debug): 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | no .NET behaviour changed in this phase; the notification, billing and Goals tests run inside G3 |
+| G3 | pass | **2581 total = 2546 passed, 35 skipped, 0 failed** (T4: 2581, unchanged) |
+| G4 | pass | node **421 total, 420 passed, 1 failed** (T0: 405 / 404 / 1): +16 new tests in `scripts/tests/test_notification_core.cjs`; the one failure is the T0 speaking-catalog hash failure |
+| G5 | pass | no route or JSON change; `has-pending-model-changes`: none |
+| G6 | pass | `notification-page.css`: 0 hex/`rgb()`/`hsl()`, 0 `:root`, 0 `!important`, 0 literal `font-weight`, 0 `font-family`; no `style=` or `<script>` in the two partials; no `innerHTML` in `notification-core.js`; `git diff --check` clean |
+| G7 | pass | new: `notification-page.css` (rewrite), `Views/Notification/_NotificationItem.cshtml`, `_NotificationSidePanel.cshtml`, `wwwroot/js/notification-core.js`, `scripts/tests/test_notification_core.cjs`; edited: `ViewModels/NotificationViewModel.cs` (additive), `study-kit.css` (**only** `.tn-page` added to the 143 page-scope `:is(...)` lists and to the header comment; no rule added or changed) |
+| G8–G12 | n/a until T6 | the partials and the stylesheet are not rendered until the page view is switched in T6 |
+| G13 | pass | full suite green and unedited |
+| G14 | pass (static) | Clay tokens only (`--tct-clay-surface`, `-shadow-quiet`, `-lift`, `-button`, `-overlay`, radii, spacing, type, `--tct-z-dropdown`); no new palette, font, icon family or package |
+| G15 | pass | partials render only server-validated `Tone`, `IconClass`, `Url`; all text Razor-encoded; the core mirrors the local-link rule with the same rejection cases as the C# tests |
+
+**Decisions.**
+- **Deviation: `notifications.css` (bell panel) is rewritten in T7, not T5.** Its selectors and the panel markup and script change together; rewriting the stylesheet alone would leave the live bell unstyled for a commit. T7 carries it.
+- **Known intermediate state:** the committed T5 `notification-page.css` replaces the old class names, so the old `Views/Notification/Index.cshtml` is unstyled between this commit and T6. Nothing is deployed from this branch; T6 switches the page to the new markup.
+- Tone → token mapping (the rule beats the mockup, which uses a purple crown tile and orange flame tile; there is no such token and the plan forbids a new palette): streak = `danger-soft` / `danger-text`, goal = `success`, badge = `warning`, payment = `--tct-accent` with `--tct-on-accent`, system = `primary`.
+- Item markup: `<li class="tn-item tn-tone--…">` with an `h3` title, a `<time datetime>` and, with a link, a real anchor `data-notification-link`; unread items carry a dot with visually hidden "Chưa đọc" and a `data-notification-read` button (`aria-label="Đánh dấu đã đọc: {title}"`, 44 px); a card without a link has no interactive element except that button.
+- `NotificationPageViewModel` / `NotificationSidePanelViewModel` were added for T6 (list, filter, category, counts, side panel with `HasSettings`).
+- `notification-core.js` (UMD, `window.TctNotificationCore`) holds: badge text, bell accessible label, "n mới" chip, page summary, mark-all toast text, `safeLocalUrl` (mirror of the C# rule), day grouping, id de-duplication, cursor query, empty-state kind, the mark-read / restore / mark-all reducer, tab-arrow index, near-bottom test and the poll back-off.
+
+**Differences from the mockup.** Tile hues as above (rule over mockup); the rest is built in T6.
+**Tests changed.** None edited; one new node test file.
+**Event keys of rows created.** None.
