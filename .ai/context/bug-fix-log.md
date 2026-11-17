@@ -42,6 +42,33 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Publication integration: stale Writing/Profile fixtures and catalog checkout bytes — 2026-11-18
+
+**Symptom/cause**: After merging current master with the completed learning/chat
+branch, the full Node gate had494 passes/4 failures. Two old Writing outage
+fixtures lacked AbortController/timers or valid minimum-length input, so they did
+not reach the server seam; they also expected the superseded pre-receipt error
+handling. The Profile layout test demanded decorative badge previews replaced by
+actual server-earned grants. Windows autocrlf changed the superseded Listening
+catalog's checkout bytes, violating the SHA256 pinned by the Speaking catalog.
+
+**Fix**: Supply the real browser primitives and valid text in the isolated test
+fixtures. Assert unknown-result recovery/catalog guidance and403 personal-panel
+invalidation/reload, without claiming an outage or silently retrying creation.
+Assert truthful empty/unlocked badges and the Goals action. Pin only the hashed
+catalog to LF in .gitattributes; verify its committed blob against the existing
+supersedes SHA256 and preserve those exact bytes. No published package/hash,
+application behavior, credential, release gate or schema was changed by this fix.
+
+**Verification**: The three affected Node files pass29/29 after the four red
+cases. Full post-integration Node/.NET verification is recorded by the publication
+plan and CI, rather than treating this focused result as the full gate.
+
+**Files**: .gitattributes, scripts/tests/test_ai_outage_ui.cjs,
+scripts/tests/test_user_dropdown_and_loader.cjs. No matching known-issues entry.
+Commit group: test(ci). Owner authorizes grouped commits, PR/master merge and
+staging only; production remains disabled.
+
 ### General learning-roadmap questions fell back to missing personal data — 2026-11-18
 
 **Symptom**: The owner's mixed A1→C1 / TOEIC450 / IELTS4.5 question received
