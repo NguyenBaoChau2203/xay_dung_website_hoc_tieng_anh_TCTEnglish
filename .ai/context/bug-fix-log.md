@@ -42,6 +42,73 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### General learning-roadmap questions fell back to missing personal data — 2026-11-18
+
+**Symptom**: The owner's mixed A1→C1 / TOEIC450 / IELTS4.5 question received
+the missing-personal-data/create-first-set answer. Similar demo questions were
+not covered by the single-file guide catalog or an older classifier.
+
+**Root Cause**: General guidance depended on a narrow starter recommendation
+path. Composition rejected other available guides without live recommendation
+data, and runtime/corpus readers did not share support for explicitly included
+topic files. A bare beginner cue also overrode more specific feature questions.
+
+**Solution**: Add six reviewed static topic packs (60 guides/480 question
+variants), explicit bounded includes and a shared asynchronous catalog reader.
+Preserve per-pack versions, corpus admission, retirement/access restrictions and
+live personal recommendations. Route reviewed phrases/concept combinations and
+bounded roadmaps before stale classification; compose available general guidance
+without requiring an owned set. Negative regressions also enforce the existing
+OTP/credential and unrelated-homework refusal boundaries before static guidance.
+
+**Files Changed**: WebsiteGuideCatalog.cs, WebsiteGuideRetriever.cs,
+AiChatAnswerService.cs, TemplateAnswerComposer.cs, CorpusAdapters.cs,
+ChatDisclosurePolicy.cs, ChatExternalFactPolicy.cs, website-guides.json and six
+guide-packs JSON files/README; ChatDemoKnowledgeTests.cs, AiRagCorpusBm25Tests.cs,
+two AiDemo fixtures, the scoped plan and the observed-results audit.
+
+**Verification**: Initial 15 regressions:13 failed/2 passed before repair. Final
+related .NET690/690, new class rerun277/277 (overlapping), chat Node26/26 and
+Release build succeed. The759 variants and120 novel paraphrases pass with both
+current and stale classifiers;12 negatives have exact expected non-answer
+outcomes/empty evidence. No held-out normalized question is in runtime examples.
+Actual5100 browser: screenshot HTTP200, full-chat SignalR7 chunks, floating
+IELTS SignalR10 chunks, full/embedded history source parity,418px iframe icons,
+native Writing CTA navigation and1440/768/emulated390 without horizontal overflow.
+
+**Commit**: Not created; local-only owner authority.
+
+**Notes**: Extends the2026-11-17 learning-guidance fix; T1/R1–R4 and the exact
+host/model delegation policy remain in place. No matching known-issues entry
+needed a status change. The owned web was restarted on5100; MariaDB/data and
+saved secrets were preserved, readiness is ready, speech is configured but not
+live-verified. No schema/export, paid request, branch, subagent or publication.
+Curated wording coverage is not universal NLP or multi-turn context reasoning.
+Full evidence/fixture expectation corrections:
+docs/feature-audits/2026-11-18-chatbot-demo-knowledge.md.
+
+### Friendly Chatbot Presentation & Clean CTA Layout — 2026-11-17
+
+**Symptom**: Chatbot responses displayed routine technical state badges (e.g. "Trả lời từ dữ liệu trong hệ thống", "Đã trả lời từ nguồn được phép xem") and a raw "Nguồn" heading and list, and assistant copy was overly formal and repeated raw system routes in prose.
+
+**Root Cause**: `_ChatSources.cshtml` and `ai-chat.js` bundled technical grounding provenance and metadata labels unconditionally with action buttons; `TemplateAnswerComposer.cs` used formal assistant wording and dumped raw navigation paths into response prose.
+
+**Solution**: Completely decoupled safe learning action buttons from routine metadata in `_ChatSources.cshtml` and `ai-chat.js`, removing routine state labels and the "Nguồn" list while retaining material content-change notices; added route-mapped SVG icons in `LearnerSourceLink.cs` and warm "mình–bạn" assistant tone with restrained friendly emojis (`👋 🌱 📚 🎙️ ✍️ 🎧 📖 🎯 🏆 🔎`) across all reply families in `TemplateAnswerComposer.cs`.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/LearnerSourceLink.cs` — Added `ActionIcon` mapping routes to SVG icons.
+- `TCTEnglish/Views/Ai/_ChatSources.cshtml` — Removed routine state labels and source list; added action icon/label spans and `data-source-key`.
+- `TCTEnglish/wwwroot/js/ai-chat.js` — Removed routine technical labels and source list; added action SVG rendering.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Added `:empty { display: none; }` and styled `.ai-chat-action` flex layout with gap and hover transition.
+- `TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs` — Polished copy across all reply families to warm "mình–bạn" companion tone with restrained emojis.
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` — Bumped version to `2.1.0` and polished starter guide bodies.
+
+**Verification**: `node scripts/tests/test_ai_chat_phase6_sources.cjs` (11/11 passed), `test_ai_chat_clay_ui_and_logo.cjs` (6/6 passed), `test_ai_chat_load_older_order.cjs` (2/2 passed), `test_ai_chat_submit_guard.cjs` (5/5 passed), targeted .NET RAG/Integration suites (126/126 passed), core baseline tests (99/99 passed). Total >225 .NET tests and 24 JS tests passed.
+
+**Commit**: `None (local task authority only)`
+
+**Notes**: Stale/revoked sources strictly do not render action buttons; grounding DTOs and backend citation integrity remain completely intact.
+
 ### Writing exercises tags: Vibrant topic/level/type palettes with contextual icons — 2026-11-15
 
 **Symptom**: Exercise topic tags (e.g., "Đi lại", "Nghỉ ngơi", "Nấu ăn") rendered as monotone gray text badges with no icons, and recent card tags (Level, Type, Privacy) shared an undifferentiated light blue palette without visual distinction.
@@ -5046,3 +5113,105 @@ issue. Native200% zoom, production topology and protected shared-footer cleanup
 remain unverified/out of scope. No shared layout/config/secret/schema change or
 Git publication. Full-suite stage01 cancellation failures are not declared fixed.
 See `docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md`.
+
+### Chatbot no-history dead end, stale guide coverage and missing learning CTAs — 2026-11-17
+
+**Symptom**: Asking what to study returned a lack-of-data message and required
+creating a vocabulary set even though public learning areas existed. Vietnamese
+skill/navigation questions could be misclassified, and source links did not
+provide obvious learning actions or escape the embedded chat frame.
+
+**Cause**: Study recommendations required eligible owned vocabulary data; there
+was no general starter path. Guide aliases/content lagged implemented features,
+and deployed intent models could predate them. Chat rendered citations without
+a separate read-only navigation policy/action presentation.
+
+**Fix**: Add reviewed general starter guide snippets while preserving actual
+personal recommendations. Expand to64 admitted guide entries and279 authored
+question examples, retain deterministic/accentless matching and exact reviewed
+FAQ routing, and include questions in corpus metadata. Correct stale routes/
+claims. Render up to3 CTAs from current revalidated sources in new/streamed/
+older messages and server-rendered history, with local read-only route checks
+and `_top` iframe navigation. Retain security refusals, ownership, source
+revocation, citations, chat quota and cancellation protections.
+
+**Evidence**: Initial behavioral tests9 failed/9 passed; CTA regression failed
+before implementation. Focused .NET336/336, subsequent chatbot/held-out36/36,
+chat Node24/24. Native Chrome verified the exact user prompt, three starter
+actions, history reload, focus/Tab/Shift+Tab, widths1440/768/390 and25 route
+destinations returning200. Full-suite status and remaining limits are tracked
+in docs/feature-audits/2026-11-17-chatbot-learning-guidance.md.
+
+**Scope**: FAQ/source/retrieval/composition and scoped chat UI/tests. No schema,
+shared lesson package, protected config, paid AI test or remote release change.
+No matching existing known-issues entry required a status change.
+
+### Default development test host inherited SMTP transport — 2026-11-17
+
+**Symptom/cause**: A broader verification run unexpectedly passed an email-change
+dispatch path in a test named WithoutSmtp. Development configuration can contain
+working local SMTP settings; the default web factory blocked AI/audio but left
+the production SMTP transport registered. The initial run was stopped; no claim
+of zero initial SMTP activity or mailbox arrival is made.
+
+**Fix**: Replace only the default test host's SMTP transport with a blocker;
+explicit test-specific fake overrides remain available. Preserve production
+registrations and saved secrets. Regressions assert the network boundary before
+calling it and prove an explicit fake still works.
+
+**Evidence**: Both isolation cases and the original email-change-without-SMTP
+case pass in the focused336-test run. No app SMTP/configuration change. See the
+chatbot ledger for full-run history and verification limits.
+
+
+### Antigravity Windows hook quoting and chatbot uncertainty/action presentation — 2026-11-17
+
+**Symptoms**: Antigravity PreToolUse reported Node `[eval]:1`, `"const`,
+`Unterminated string constant`. Unverified retained answers lost their caution;
+client CTAs lost source identity until reload. New SVG maps departed from the
+existing icon family, and the initial presentation report overstated copy coverage.
+
+**Causes**: Quoted inline `node -e` source crossed a Windows cmd.exe argument
+boundary before policy evaluation. The presentation only retained changed/snapshot
+notices and omitted DOM source-key assignment. After replacing SVG maps, a real
+floating-iframe check exposed its separate missing Font Awesome stylesheet.
+
+**Fix**: Only Antigravity's four configured hooks now invoke the existing local
+file from the open workspace root, with canonical generation and validation aligned.
+The exact model/host delegation policy, other host definitions and native trust
+remain intact. Razor/client render one friendly unverified caution, distinguish
+metadata-absent legacy rows, preserve revoked-body suppression and omit unsafe CTAs.
+Restore client source keys through setAttribute; use fixed existing Font Awesome
+6 classes and the same 6.0.0 stylesheet already used by the main layout in the
+standalone embed. Finish the authored-copy inventory, remove false button promises,
+and correct the audit while retaining its superseded submission as history.
+
+**Red/green evidence**: Windows regression initially failed five cmd.exe model
+subcases, then passed in relocated paths with spaces through cmd.exe/pwsh. Node
+initially had five failures; corrupt/future Razor history had two failures and
+legacy passed; nine icon cases and six copy/button cases failed before fixes.
+An added embedded-document check failed before its stylesheet fix. Final focused
+.NET 240/240, chat Node26/26, setup Node11/11, Python153 total (150 pass/3 skip),
+tooling validator and configured-command smoke checks pass. Release rebuild has
+0 errors/42 existing warnings. No unrelated assertion or security check removed.
+
+**Browser**: Real HTTP starter response, actual SignalR completion, source-key
+parity after reload, keyboard Tab/Shift+Tab and actual 1440/768/emulated390 widths
+were checked. Production older-message rendering received transient safe fixtures
+for unverified/legacy/changed/snapshot/unavailable/hostile-title states. HTTP503
+fixture retained draft/unknown-outcome guidance. Actual 418px Dashboard iframe
+rendered Font Awesome glyphs and its Writing CTA navigated the top page.
+
+**Limits/scope**: Native Antigravity loading/transport/subagent execution and native
+200% browser zoom remain unverified. Three Python skips are platform/runtime
+requirements, not passes. Process-only loopback AI and blank SMTP-password
+configuration prevented paid AI/SMTP transport; saved secrets were preserved.
+No stored history rewrite, schema/shared-data/protected app-config/release change, subagent or
+Git publication. No matching existing known-issues entry required a status change.
+Details: docs/feature-audits/2026-11-17-chatbot-friendly-presentation.md.
+
+Final environment state after those successful browser checks: another local
+launcher start hit Docker Desktop `context deadline exceeded`; docker info found
+no Linux-engine named pipe and desktop status was unavailable. Port5102 is not
+left serving. Earlier observed browser evidence is retained; a new live run is
+blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
