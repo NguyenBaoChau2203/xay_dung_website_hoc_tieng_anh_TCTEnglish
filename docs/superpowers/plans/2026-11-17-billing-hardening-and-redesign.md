@@ -744,3 +744,35 @@ No severity-A finding was disproved, so no design change is needed.
 - New: 22 integration tests in `BillingPagesIntegrationTests` (36 in all with B7), `OrderPageBuilderTests` (21), and three tests in `BillingControllerMessageTests`.
 
 **Orders created / fixture rows.** Real checks: `TCT-20261117082530903-05F1C9C8` (fx2, MoMo mock, yearly; paid through the mock endpoint at the end of the run; subscription to 17/11/2027). Synthetic fixture rows inserted by SQL for the visual states, all for the fixture learner `billing-fx4@tct.local`: `TCT-FIXTURE-PAID` (with a subscription row), `-WAIT-VNPAY`, `-CONFIRMING` (their expiry set six hours ahead so they stay open), `-REVIEW`, `-CANCELLED`, `-FAILED`, `-EXPIRED`, `-REFUNDED`.
+
+
+### Gate record — B9 History (2026-11-17) — `feat(billing): rebuild the payment history with paging, resume and receipt actions`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 611 total: 610 passed, 1 skipped, 0 failed |
+| G3 | pass | 2325 total = 2290 passed, 35 skipped, 0 failed (B8's 2316 + 9 new tests) |
+| G4 | pass | node 405 / 404 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | `/Billing/History` keeps its route and still answers 200 for a learner and a redirect for a visitor; no provider URL, response code or signature file touched |
+| G6 | pass | token grep over `billing.css` empty; **no `bi bi-` or inline block left in any learner billing view or view model (grep count 0): F11 closed**; no inline `style`/`<script>` in the history block (test); `git diff --check` clean |
+| G7 | pass | scope files only; `Program.cs`, `_Layout.cshtml` untouched in this phase |
+| G8 | pass | headless Chrome, local Release app, fixture learners: 1440, 1366, 1280, 1279, 1024, 768, 390, 320 and 200 % zoom — no document overflow and nothing outside the viewport at any width; console errors none, network ≥ 400 none; screenshots `.tmp/billing/after/history-*.png`, paging `history-paging-*.png`, empty `history-empty-1440.png` |
+| G9 | pass | compared with mockup 7 (differences below) |
+| G10 | pass | eight orders show the right chip and action (waiting → "Tiếp tục thanh toán", paid → "Xem biên nhận", others → "Xem chi tiết"); header action reads "Mua thêm Premium" for Premium accounts and "Nâng cấp Premium" for free ones; status card "Premium đến 16/11/2027 · Còn 365 ngày. Kích hoạt từ đơn TCT-FIXTURE-PAID."; 25 orders → page 1 has 20 rows with "Trang 1 / 2" and "Cũ hơn", page 2 has 5 with "Mới hơn"; empty state "Bạn chưa có giao dịch nào." with "Xem các gói Premium"; keyboard: Tab reached the first action and Enter opened its order page |
+| G11 | pass | real table with caption, `scope` and per-cell labels (the same markup restyles to stacked cards, so reading order and names are unchanged), pager as a `nav` with a label, action links carry the order code for screen readers, forced-colours screenshot saved |
+| G12 | pass | scripted contrast, 66 text nodes at 1440 (fixtures) and 152 on the paging page: zero failures at every width |
+| G13 | pass | full suite green; login/logout and the order page opened from the history row |
+| G14 | pass | `var(--tct-*)` only; status is icon + words |
+| G15 | pass | only the learner's own orders are listed (test with another user's order present); a page number outside the range or not a number is clamped (tests); no secret in the diff |
+| G16 | partial, expected | unchanged (admin copy removed in B10) |
+
+**What changed.** `GetPaymentHistoryAsync(userId, page)` (20 per page, newest first, clamped page, total count, the order that activated the running subscription), `PaymentHistoryItemViewModel` rebuilt on `PaymentOrderLabels` (time shown in Vietnam time, method with bank, action by stage), `History.cshtml` (header, compact status card, table that becomes stacked cards, pager, empty state), the history block of `billing.css`, and `BillingController.History(page)` which first expires the user's lapsed subscription.
+
+**Deviation from the plan (recorded).** Plan 5.3 says "a table on laptop, stacked cards below 768 px". Seven columns need about 900 px; with the sidebar open the content area of a 1024 px or 768 px window is narrower, so the first build overflowed by 101 px and 93 px. The table is therefore shown from **1280 px** up and the card layout below it (1440 and 1366 px, the demo sizes, keep the table). Also: the shared header button is 40 px high; inside the billing pages the header actions, the pager and the order buttons are raised to the 44 px target.
+
+**Mockup differences.** Mockup 7's "Tiếp tục thanh toán" button is a primary button in the table; ours matches. The status chip wraps nowhere (it never wraps). Long order codes wrap onto two lines in the table (they cannot overflow at 390 px). Method text carries the bank ("VNPay · VCB") when known.
+
+**Owned tests changed (and why).** `BillingControllerTests` and `BillingControllerMessageTests`: the history mock is the paged overload (the controller now calls it). `BillingStatusViewModelTests`: the history-row mapping test now asserts the learner mapping (`StatusView`, "Đang xác nhận" for a review, "Hoàn tiền một phần") instead of Bootstrap badge/icon classes that no longer exist. New: nine history tests in `BillingPagesIntegrationTests`.
+
+**Orders created / fixture rows.** `TCT-FIXTURE-MANY-01..25` (fixture learner `billing-fx3@tct.local`, cancelled, spread over 25 days) for the paging check; no other new orders.

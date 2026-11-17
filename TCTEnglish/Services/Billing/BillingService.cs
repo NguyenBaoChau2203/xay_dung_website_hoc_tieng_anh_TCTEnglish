@@ -262,15 +262,29 @@ namespace TCTEnglish.Services.Billing
                 .FirstOrDefaultAsync(o => o.OrderCode == orderCode, ct);
         }
 
-        public async Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
+        public Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
             int userId,
             CancellationToken ct = default)
+            => GetPaymentHistoryAsync(userId, 1, ct);
+
+        public async Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
+            int userId,
+            int page,
+            CancellationToken ct = default)
         {
-            var orders = await _context.PaymentOrders
+            var query = _context.PaymentOrders
                 .AsNoTracking()
-                .Include(o => o.Plan)
-                .Where(o => o.UserId == userId)
+                .Where(o => o.UserId == userId);
+
+            var total = await query.CountAsync(ct);
+            var pages = Math.Max(1, (int)Math.Ceiling(total / (double)PaymentHistoryViewModel.PageSize));
+            var current = Math.Clamp(page, 1, pages);
+
+            var orders = await query
                 .OrderByDescending(o => o.CreatedAtUtc)
+                .ThenByDescending(o => o.Id)
+                .Skip((current - 1) * PaymentHistoryViewModel.PageSize)
+                .Take(PaymentHistoryViewModel.PageSize)
                 .Select(o => new PaymentHistoryItemViewModel
                 {
                     OrderCode = o.OrderCode,
@@ -279,11 +293,33 @@ namespace TCTEnglish.Services.Billing
                     AmountVnd = o.AmountVnd,
                     Status = o.Status,
                     CreatedAtUtc = o.CreatedAtUtc,
-                    PaidAtUtc = o.PaidAtUtc
+                    PaidAtUtc = o.PaidAtUtc,
+                    ExpiresAtUtc = o.ExpiresAtUtc,
+                    BankCode = o.BankCode,
+                    // Only open orders need the stored return to tell "đang xác nhận" from "chờ thanh toán".
+                    ReturnPayloadJson = o.Status == PaymentOrderStatuses.Pending || o.Status == PaymentOrderStatuses.Expired
+                        ? o.ReturnPayloadJson
+                        : null
                 })
                 .ToListAsync(ct);
 
-            return new PaymentHistoryViewModel { Orders = orders };
+            var activatedFrom = await _context.UserSubscriptions
+                .AsNoTracking()
+                .Where(s => s.UserId == userId
+                            && s.Status == SubscriptionStatuses.Active
+                            && s.EndsAtUtc > DateTime.UtcNow
+                            && s.ActivatedByPaymentOrderId != null)
+                .OrderByDescending(s => s.EndsAtUtc)
+                .Select(s => s.ActivatedByPaymentOrder!.OrderCode)
+                .FirstOrDefaultAsync(ct);
+
+            return new PaymentHistoryViewModel
+            {
+                Orders = orders,
+                Page = current,
+                TotalCount = total,
+                ActivatedFromOrderCode = activatedFrom
+            };
         }
 
         public async Task<PaymentResultViewModel?> GetVnPayReturnResultAsync(

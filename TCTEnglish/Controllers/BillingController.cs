@@ -136,11 +136,13 @@ namespace TCTEnglish.Controllers
 
         [Authorize]
         [HttpGet("/Billing/History")]
-        public async Task<IActionResult> History()
+        public async Task<IActionResult> History(int page = 1)
         {
             var userId = GetCurrentUserId();
             await _subscriptionService.ExpireForUserAsync(userId);
-            var model = await _billingService.GetPaymentHistoryAsync(userId);
+            var model = await _billingService.GetPaymentHistoryAsync(userId, page);
+            var access = await _premiumAccessService.GetAccessSnapshotAsync(userId) ?? new PremiumAccessSnapshot();
+            model.Status = PremiumStatusViewModel.From(access, compact: true, model.ActivatedFromOrderCode);
             return View(model);
         }
 

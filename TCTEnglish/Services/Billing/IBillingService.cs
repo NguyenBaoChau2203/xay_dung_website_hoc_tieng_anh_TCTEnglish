@@ -34,6 +34,9 @@ namespace TCTEnglish.Services.Billing
         /// </summary>
         Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(int userId, CancellationToken ct = default);
 
+        /// <summary>One page (20 orders, newest first) of the history, with the order that activated the running subscription.</summary>
+        Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(int userId, int page, CancellationToken ct = default);
+
         /// <summary>
         /// Verifies a VNPay return callback and resolves the current database-backed
         /// payment state for the user-facing result page.

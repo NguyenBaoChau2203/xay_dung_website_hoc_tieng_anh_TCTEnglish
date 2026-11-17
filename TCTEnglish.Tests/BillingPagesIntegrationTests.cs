@@ -774,4 +774,167 @@ public class BillingPagesIntegrationTests
         using var rejected = await owner.SendAsync(noToken);
         Assert.Equal(HttpStatusCode.BadRequest, rejected.StatusCode);
     }
+
+    // ─── /Billing/History ─────────────────────────────────────────────────────
+
+    private static async Task SeedManyOrdersAsync(TestWebApplicationFactory factory, int userId, int count)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var plan = await db.PremiumPlans.FirstAsync(p => p.Code == "premium_monthly");
+        for (var i = 0; i < count; i++)
+        {
+            db.PaymentOrders.Add(new PaymentOrder
+            {
+                OrderCode = $"TCT-MANY-{i:D3}", UserId = userId, PlanId = plan.Id, Provider = PaymentProviders.VNPay,
+                AmountVnd = plan.PriceVnd, Currency = "VND", Status = PaymentOrderStatuses.Cancelled,
+                CreatedAtUtc = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc).AddMinutes(i),
+                UpdatedAtUtc = DateTime.UtcNow, ExpiresAtUtc = new DateTime(2026, 10, 1, 0, 15, 0, DateTimeKind.Utc).AddMinutes(i)
+            });
+        }
+
+        await db.SaveChangesAsync();
+    }
+
+    [Fact]
+    public async Task History_WithNoOrders_ShowsTheEmptyState_AndAPlanLink()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, "/Billing/History");
+        var text = Decode(html);
+
+        Assert.Contains("tb-page--history", html);
+        Assert.Contains("Lịch sử thanh toán", text);
+        Assert.Contains("Bạn chưa có giao dịch nào.", text);
+        Assert.Contains("Xem các gói Premium", text);
+        Assert.Contains("href=\"/Premium\"", html);
+        Assert.Contains("Bạn đang dùng gói Miễn phí", text);
+        Assert.Contains("Nâng cấp Premium", text);
+        Assert.DoesNotContain("<table", html);
+    }
+
+    [Fact]
+    public async Task History_ShowsEachOrderWithVietnamTime_Method_Chip_AndTheRightAction()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true, momoReady: true);
+        var paid = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Paid, PaymentProviders.VNPay, withSubscription: true, bank: "NCB");
+        var waiting = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.MoMo);
+        var cancelled = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Cancelled, PaymentProviders.VNPay, expiresIn: TimeSpan.FromMinutes(-30));
+        var review = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.ManualReview, PaymentProviders.VNPay);
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, "/Billing/History");
+        var block = PageBlock(html);
+        var text = Decode(block);
+
+        Assert.Contains("<table", block);
+        Assert.Contains("<caption", block);
+        foreach (var column in new[] { "Mã đơn", "Gói", "Số tiền", "Phương thức", "Thời gian", "Trạng thái" })
+        {
+            Assert.Contains(column, text);
+        }
+
+        Assert.Contains("scope=\"col\"", block);
+        Assert.Contains("scope=\"row\"", block);
+        foreach (var code in new[] { paid, waiting, cancelled, review })
+        {
+            Assert.Contains(code, text);
+        }
+
+        Assert.Contains("VNPay · NCB", text);
+        Assert.Contains("17/11/2026 13:45", text); // the paid order's PaidAt (06:45 UTC) in Vietnam time
+        Assert.Contains($"399.000{Nbsp}₫", text);
+        Assert.Contains("Đã thanh toán", text);
+        Assert.Contains("Chờ thanh toán", text);
+        Assert.Contains("Đã hủy", text);
+        Assert.Contains("Đang xác nhận", text);
+        Assert.DoesNotContain("Manual review", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Xem biên nhận", text);
+        Assert.Contains("Tiếp tục thanh toán", text);
+        Assert.Contains("Xem chi tiết", text);
+        Assert.Contains($"href=\"/Billing/Order/{paid}\"", block);
+        Assert.Contains($"href=\"/Billing/Order/{waiting}\"", block);
+        Assert.Matches($"btn btn-primary[^>]*href=\"/Billing/Order/{waiting}\"", block);
+        Assert.DoesNotContain("bi bi-", block);
+        Assert.DoesNotContain("IPN", text);
+        Assert.DoesNotContain("<script", block);
+        Assert.DoesNotContain(" style=\"", block);
+    }
+
+    [Fact]
+    public async Task History_ShowsAPremiumDate_AndTheOrderThatActivatedIt_WithABuyMoreAction()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Paid, PaymentProviders.VNPay, withSubscription: true);
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+            // A long-running subscription: the fixture one (ends in 2027) is still in the future.
+            (await db.Users.FirstAsync(u => u.UserId == TestDataIds.UserId)).Role = Roles.Premium;
+            await db.SaveChangesAsync();
+        }
+
+        using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Premium);
+        var text = Decode(PageBlock(await GetAsync(client, "/Billing/History")));
+
+        Assert.Contains("Premium đến 17/11/2027", text);
+        Assert.Matches("Còn \\d+ ngày\\. Kích hoạt từ đơn " + code + "\\.", text);
+        Assert.Contains("Mua thêm Premium", text);
+        Assert.DoesNotContain("Nâng cấp Premium", text);
+    }
+
+    [Fact]
+    public async Task History_ListsOnlyTheLearnersOwnOrders_NewestFirst_TwentyPerPage()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        await SeedManyOrdersAsync(factory, TestDataIds.UserId, 25);
+        var someoneElses = await SeedOrderAsync(factory, TestDataIds.OutsiderUserId, PaymentOrderStatuses.Pending);
+        using var client = Learner(factory);
+
+        var first = await GetAsync(client, "/Billing/History");
+        var second = await GetAsync(client, "/Billing/History?page=2");
+
+        Assert.Equal(20, Regex.Matches(PageBlock(first), "<tr>\\s*<th scope=\"row\"").Count);
+        Assert.Equal(5, Regex.Matches(PageBlock(second), "<tr>\\s*<th scope=\"row\"").Count);
+        Assert.Contains("TCT-MANY-024", first);   // newest first
+        Assert.DoesNotContain("TCT-MANY-004", first);
+        Assert.Contains("TCT-MANY-004", second);
+        Assert.Contains("TCT-MANY-000", second);
+        Assert.DoesNotContain(someoneElses, first + second);
+        Assert.Contains("Trang 1 / 2", Decode(first));
+        Assert.Contains("Trang 2 / 2", Decode(second));
+        Assert.Contains("href=\"/Billing/History?page=2\"", first);
+        Assert.DoesNotContain("page=0", first);
+        Assert.Contains("href=\"/Billing/History?page=1\"", second);
+        Assert.Contains("aria-label=\"Phân trang lịch sử thanh toán\"", first);
+    }
+
+    [Theory]
+    [InlineData("?page=99", "Trang 2 / 2")]
+    [InlineData("?page=-5", "Trang 1 / 2")]
+    [InlineData("?page=0", "Trang 1 / 2")]
+    [InlineData("?page=abc", "Trang 1 / 2")]
+    public async Task History_ClampsAnOutOfRangePage(string query, string expected)
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        await SeedManyOrdersAsync(factory, TestDataIds.UserId, 25);
+        using var client = Learner(factory);
+
+        var text = Decode(await GetAsync(client, "/Billing/History" + query));
+
+        Assert.Contains(expected, text);
+    }
+
+    [Fact]
+    public async Task History_ForAnAnonymousVisitor_RedirectsToLogin()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        using var response = await client.GetAsync("/Billing/History");
+
+        Assert.True(response.StatusCode is HttpStatusCode.Redirect or HttpStatusCode.Unauthorized, response.StatusCode.ToString());
+    }
 }

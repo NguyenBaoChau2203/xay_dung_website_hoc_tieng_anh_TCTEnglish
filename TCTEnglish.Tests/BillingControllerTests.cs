@@ -153,7 +153,7 @@ namespace TCTEnglish.Tests
         public async Task History_ReturnsViewWithUserOrders()
         {
             _mockBillingService
-                .Setup(s => s.GetPaymentHistoryAsync(1, It.IsAny<CancellationToken>()))
+                .Setup(s => s.GetPaymentHistoryAsync(1, 1, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new PaymentHistoryViewModel
                 {
                     Orders =

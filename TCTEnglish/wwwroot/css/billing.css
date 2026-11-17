@@ -538,9 +538,109 @@
     .tb-page .tb-spinner { animation: none; border-right-color: currentColor; }
 }
 
+/* ---------------------------------------------------------------- history (plan 5.3) */
+
+.tb-page--history > * + * { margin-top: var(--tct-space-lg); }
+
+.tb-page .tb-history { padding: var(--tct-space-sm) var(--tct-space-lg); }
+
+.tb-page .tb-history__table { width: 100%; border-collapse: collapse; }
+
+.tb-page .tb-history__table thead th {
+    padding: var(--tct-space-md) var(--tct-space-sm);
+    border-bottom: 1px solid var(--tct-border);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text-muted);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.tb-page .tb-history__table tbody :is(th, td) {
+    padding: var(--tct-space-md) var(--tct-space-sm);
+    border-bottom: 1px solid var(--tct-border);
+    text-align: left;
+    vertical-align: middle;
+    color: var(--tct-text);
+    font-weight: var(--tct-weight-regular);
+}
+
+.tb-page .tb-history__table tbody tr:last-child :is(th, td) { border-bottom: 0; }
+
+.tb-page .tb-history__table tbody th { font-weight: var(--tct-weight-semibold); min-width: 0; max-width: 13rem; }
+
+.tb-page .tb-history__money { font-weight: var(--tct-weight-bold); white-space: nowrap; }
+.tb-page .tb-history__time { color: var(--tct-text-secondary); white-space: nowrap; }
+.tb-page .tb-history__action { text-align: right; }
+
+.tb-page .tb-history__btn { min-height: var(--tct-target-min); white-space: nowrap; }
+
+.tb-page .tb-pager {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tct-space-md);
+}
+
+.tb-page .tb-pager__info { color: var(--tct-text-secondary); font-weight: var(--tct-weight-semibold); }
+.tb-page .tb-pager__spacer { min-width: 1px; }
+.tb-page .tb-pager .btn { min-height: var(--tct-target-min); }
+
+/* Below 1280px every order becomes a stacked card (the same markup, restyled): seven columns need about 900px, and a laptop
+   content area is narrower than that once the sidebar is open. */
+@media (max-width: 1279.98px) {
+    .tb-page .tb-history { padding: var(--tct-space-xs) var(--tct-space-md); }
+
+    .tb-page .tb-history__table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+
+    .tb-page .tb-history__table :is(tbody, tr, th, td) { display: block; }
+
+    .tb-page .tb-history__table tbody tr {
+        display: grid;
+        gap: var(--tct-space-sm);
+        padding: var(--tct-space-md) 0;
+        border-bottom: 1px solid var(--tct-border);
+    }
+
+    .tb-page .tb-history__table tbody tr:last-child { border-bottom: 0; }
+
+    .tb-page .tb-history__table tbody :is(th, td) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--tct-space-md);
+        padding: 0;
+        border: 0;
+        max-width: none;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    .tb-page .tb-history__table tbody :is(th, td)::before {
+        content: attr(data-label);
+        flex: none;
+        font-size: var(--tct-text-sm);
+        font-weight: var(--tct-weight-regular);
+        color: var(--tct-text-muted);
+        text-align: left;
+    }
+
+    .tb-page .tb-history__table tbody td.tb-history__action { justify-content: stretch; }
+    .tb-page .tb-history__table tbody td.tb-history__action::before { content: none; }
+    .tb-page .tb-history__action .tb-history__btn { width: 100%; text-align: center; white-space: normal; }
+}
+
 /* 44px targets for the shared breadcrumb link and the development-only button */
 .tb-page .tct-breadcrumb a { display: inline-flex; align-items: center; min-height: var(--tct-target-min); }
 .tb-page .tb-mock .btn { min-height: var(--tct-target-min); }
+.tb-page .tct-page-header__actions .btn { min-height: var(--tct-target-min); }
 
 /* ---------------------------------------------------------------- accessibility */
 

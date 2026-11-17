@@ -35,7 +35,7 @@ namespace TCTEnglish.Tests
             health.Setup(h => h.GetProviderHealthStatus()).Returns(new System.Collections.Generic.List<ProviderHealthViewModel>());
             var premium = new Mock<IPremiumAccessService>();
             premium.Setup(p => p.GetAccessSnapshotAsync(It.IsAny<int>())).ReturnsAsync(new PremiumAccessSnapshot { IsAuthenticated = true });
-            billing.Setup(b => b.GetPaymentHistoryAsync(It.IsAny<int>(), default)).ReturnsAsync(new PaymentHistoryViewModel());
+            billing.Setup(b => b.GetPaymentHistoryAsync(It.IsAny<int>(), It.IsAny<int>(), default)).ReturnsAsync(new PaymentHistoryViewModel());
 
             var controller = new BillingController(
                 ctx,
