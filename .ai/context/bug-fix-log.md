@@ -4974,3 +4974,75 @@ was reported immediately; the web was stopped and remaining verification used
 synthetic-key/closed-loopback child configuration. Final handoff restores normal
 saved local configuration, port5100 only for TCT web. No remote release or claim
 of zero paid calls for this review. No private/source text or keys in this log.
+
+### Contact backend: truthful receipts, retained form and anonymous operation guard — 2026-11-16
+
+**Symptoms**: Tampered Contact subjects silently became general; failed sends
+redirected and discarded text. Bool receipts hid uncertain delivery. Anonymous
+POST lacked server-side replay/admission protection. GET query ModelState could
+override a normalized category; Contact preheaders encoded text twice.
+
+**Root cause**: Normalization conflated GET fallback with POST validation;
+success/failure shared the same redirect; Contact used the untracked mail result
+and only browser button disabling. MVC attempted values overrode the normalized
+model. The Contact renderer supplied pre-encoded text to an encoding shell.
+
+**Fix**: Preserve public/appeal/CSRF routes, normalize before validation and
+reconcile ModelState, enforce email/subject/header/form limits, use typed
+Accepted/Unavailable/Failed/Unknown/Throttled/Duplicate/InvalidOperation outcomes
+and PRG only on acceptance. Reuse the singleton mail boundary, existing transport
+deadline and renderer. Add protected 15-minute client-bound nonces, atomic bounded
+admission/replay metadata, 3 operations/10 minutes/client, and no automatic retry
+on unknown receipts. Preserve failed/unknown text and issue a new operation only
+where the response permits deliberate retry. Remove unverified page-local contact
+details/24-hour promises; encode Contact preheaders once and retain CR/LF breaks.
+
+**Files**: HomeController Contact actions; ContactFormViewModel; IAppEmailSender/
+SmtpAppEmailSender; new Services/Contact helpers; Contact.cshtml; Contact email
+renderer/edge fixture; ContactBackendHttpTests/ContactMailAndGateTests; step-01
+ledger/contract and known-issue acceptance note.
+
+**Verification**: Baseline HTTP regression 2 failed/1 passed before repair;
+focused Release 124 passed/0 failed/2 MariaDB opt-in skips. Release application
+build has 0 errors/42 existing warnings. Final full Release suite: 1670 passed,
+2 AI/SignalR cancellation failures, 53 skipped; all 42 Contact tests passed.
+Both failed cases passed isolated reruns on current and baseline sources; the
+full-suite timing cause is unresolved. Fake SMTP covers routing, delivery ambiguity/cancellation,
+concurrency, retry/retention, input limits and bounded metadata. No live SMTP or
+paid AI request was initiated by this step.
+
+**Limits**: In-process operation protection does not establish distributed
+deduplication or production topology. Shared layout contact placeholders remain
+protected/out of scope; native UI/browser/live delivery acceptance is pending.
+Existing local web was preserved; isolated Release output avoids its locked exe.
+No schema/config/secret rewrite, data reset, commit/push or deployment.
+See `docs/feature-audits/2026-11-16-contact-refresh/01-backend-ledger.md`.
+
+### Contact integrated validation, login route and truthful UI states — 2026-11-17
+
+**Symptoms/root cause**: Client validation returned without preventDefault on a
+novalidate form, permitting a default POST. ARIA state could remain stale; native
+validity must not label untouched required fields as errors. Quick login targeted
+a nonexistent Auth action. CSS introduced private colors and an undefined token;
+Duplicate copy promised admin receipt/reply without proof, alongside unverified
+availability and absolute safety copy.
+
+**Fix**: Cancel native/jQuery-invalid submissions, report native validity, update
+ARIA after submit/input and keep the loading button named. Correct Login URL;
+reuse semantic palette/leading-base; align copy with actual result semantics.
+Retain Clay layout, anonymous appeal, CSRF, nonce and input/abuse limits.
+
+**Evidence**: Meaningful Node and Razor regressions failed before repair. Final
+Node11/11 and focused .NET125 pass/2 MariaDB opt-in skips; final incremental
+Release build0 errors/0 warnings (initial rebuild42 existing warnings). Chrome
+verified actual 1440/1024/768/390/375px layouts, Tab/Enter, reduced motion, invalid
+submit zero POST, login/back and form retention/focus on real HTTP503. The valid
+form returned ConfigurationUnavailable before transport: zero real SMTP
+dispatches, no Gmail evidence and no automatic retry; missing sender/password
+is a secure-configuration blocker. No paid AI call.
+
+**Files/limits**: Contact Razor/CSS/JS, HTTP/Node tests, stage03 ledger and known
+issue. Native200% zoom, production topology and protected shared-footer cleanup
+remain unverified/out of scope. No shared layout/config/secret/schema change or
+Git publication. Full-suite stage01 cancellation failures are not declared fixed.
+See `docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md`.

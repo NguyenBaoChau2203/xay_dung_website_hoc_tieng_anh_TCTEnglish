@@ -27,6 +27,32 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### CONTACT-REFRESH-ACCEPTANCE — backend repaired & Claymorphism UI completed locally, remaining scope 2026-11-17
+
+- Contact step 01 repaired backend contracts, preserved failed/unknown forms, and added abuse guards.
+- Contact step 02 adopted the shared Claymorphism system (`.tct-theme`, `_PageHeader`, `.tct-clay-surface`,
+  `btn-send`, accessible UTF-16 code units counter, accessible Bootstrap accordion FAQs, focus announcement,
+  and bfcache restore). 43/43 .NET tests and 7/7 Node UI interaction tests passed.
+- Step 03 repaired invalid-submit prevention, stale ARIA, quick-login route,
+  undefined CSS token/private palette and misleading result copy. Chrome verified
+  anonymous appeal, 1440/1024/768/390/375px layouts, Tab/Enter, reduced motion and
+  retained 503 form. Native 200% zoom remains unverified; 720px reflow is separate.
+- Live-mail follow-up 2026-11-17: after the owner authorized configuration,
+  sender/password were saved in local User Secrets with unrelated settings
+  preserved. One actual Contact form submission returned SMTP Accepted; the
+  owner confirmed its exact marker in Gmail Inbox. No retry or second message.
+  The earlier missing-configuration blocker is resolved locally. The protected
+  shared `_Layout.cshtml` footer still publishes unverified contact rows;
+  the protected shared-UI cleanup proposal remains outstanding.
+- Release constraint: the guard is in-process, not distributed. Production worker/
+  proxy topology was not observed. Multiple workers need a separately reviewed
+  shared admission/replay design; NAT/unconfigured proxy attribution can share a
+  client partition. No hosting/configuration change was authorized or performed.
+- [Backend contract](../../docs/feature-audits/2026-11-16-contact-refresh/backend-contract.md),
+  [step-01 ledger](../../docs/feature-audits/2026-11-16-contact-refresh/01-backend-ledger.md) and
+  [step-02 ledger](../../docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md).
+  [Step-03 evidence and dispatch accounting](../../docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md).
+
 ### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
 
 - Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên

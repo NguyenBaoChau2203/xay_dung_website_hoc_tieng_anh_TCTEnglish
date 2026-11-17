@@ -158,7 +158,7 @@ trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mớ
 | Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
 | AI chat và Admin AI | `/AI/Chat`, chat nhúng/launcher + `/Admin/AiManagement` | `ai-chat.css`, `ai-chat-launcher.css`, `admin-ai-management.css` | Token chung; logo riêng theo hướng dẫn nhận diện | Đã chuyển code; xem ledger 10/11 | Chau |
-| Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
+| Liên hệ | `/Home/Contact` | `contact.css`, `contact.js` | `var(--tct-*)` dùng chung, Claymorphism | Đã chuyển Clay 2026-11-17; xem docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md | Chau |
 | Bộ thẻ cá nhân | `/Sets`, `/Sets/{id}`, `/Sets/{id}/Add`, `/Sets/{id}/Import`, `/Sets/Cards/{id}`, `/s/{slug}` | `study-kit.css` + `personal-sets.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
 | Luyện tập | `/Practice`, `/Practice/{mode}`, `/Practice/HardWords` | `study-kit.css` + `practice.css` | `--tct-*` | Đã chuyển Clay 2026-11-11 (token Clay dùng chung); xem docs/superpowers/plans/2026-11-11-study-clay.md | Huỳnh Phú Trọng |
 | Khung Admin, Dashboard và Users | Layout Admin + `/Admin/Dashboard`, `/Admin/UserManagement` | `admin-shell.css`, `admin-dashboard.css`, `admin-user-management.css`; giữ `account.css` cho tương thích | Token chung và CSS theo phạm vi | Đã chuyển code; xem ledger 10/11 | Chau |
