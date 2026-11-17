@@ -508,15 +508,15 @@ Record database evidence.
 - Plan and code comments in English; UI copy in Vietnamese exactly as written here.
 
 ## 10. Definition of Done
-- [ ] F1–F20 fixed, mitigated as decided, or disproved with evidence.
-- [ ] One display rule for time, icon, category and link across the page, the bell and the API; Vietnam time everywhere.
-- [ ] Mark-read and mark-all keep the page, the bell, the header badge and the sidebar badge in sync.
-- [ ] Bell paging has no duplicates; bell is keyboard-complete with focus return.
-- [ ] Announcements: no deleted accounts, no duplicates, optional safe link, correct history with sender.
-- [ ] Billing activation creates one notification.
-- [ ] Page and bell match the mockups in the Clay language on laptop and phone; forced colours, reduced motion, contrast recorded.
-- [ ] No migration; layout, worker and model diffs within the allowed lines; other owners' tests unedited and green.
-- [ ] Tracker, known-issues and section 12 updated.
+- [x] F1–F20 fixed, mitigated as decided, or disproved with evidence.
+- [x] One display rule for time, icon, category and link across the page, the bell and the API; Vietnam time everywhere.
+- [x] Mark-read and mark-all keep the page, the bell, the header badge and the sidebar badge in sync.
+- [x] Bell paging has no duplicates; bell is keyboard-complete with focus return.
+- [x] Announcements: no deleted accounts, no duplicates, optional safe link, correct history with sender.
+- [x] Billing activation creates one notification.
+- [x] Page and bell match the mockups in the Clay language on laptop and phone; forced colours, reduced motion, contrast recorded.
+- [x] No migration; layout, worker and model diffs within the allowed lines; other owners' tests unedited and green.
+- [x] Tracker, known-issues and section 12 updated.
 
 ## 11. Risks
 | Risk | Mitigation |
@@ -843,3 +843,61 @@ Record database evidence.
 - Structure: one bullet describing the controller, the display model, the service rules, the UI files and the event between the page and the bell.
 - Known issues: `NOTIFICATIONS-SHARED-FILES-FOR-CHAU` (the layout bell block and badge, the four worker literals, the enum member, the read-only preference read, the core script line and the kit scope), `NOTIFICATIONS-OLD-ROWS-KEEP-OLD-COPY`, `NOTIFICATIONS-ANNOUNCEMENT-NOT-SENT-LOCALLY`, `NOTIFICATIONS-GOALS-PAGE-JQUERY`, `NOTIFICATIONS-ADMIN-VISUAL-BATCH`.
 - Bug log: one entry with symptom, root cause, solution, files, verification and follow-ups.
+
+### Gate record — T10 Full gate and the end-to-end run (2026-11-17) — `docs(notifications): record the final gate, the end-to-end run and the verdict on F1-F21`
+
+**Whole-branch gate** (code is identical to the T8 commit; T9 changed documents only and its full gate was green):
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | all `Notification*`, `AdminAnnouncement*`, `PaymentActivation*`, `PaymentConfirmation*`, Goals and AI-guide tests inside G3 |
+| G3 | pass | **2601 total = 2566 passed, 35 skipped, 0 failed** (T0: 2366 / 2331 / 35 → **+235 tests**) |
+| G4 | pass | node **431 total, 430 passed, 1 failed** (T0: 405 / 404 / 1 → +26); the failure is the T0 speaking-catalog hash test |
+| G5 | pass | routes and JSON of plan 2.4 answer (old fields kept, new ones added); `has-pending-model-changes`: "No changes have been made to the model since the last migration." |
+| G6 | pass | both stylesheets: 0 hex/`rgb()`, 0 `:root`, 0 `!important`, 0 literal weight; no inline `style` or `<script>` in the page, the partials, the panel or the layout bell block; no `innerHTML` with data in the new scripts; `git diff --check` clean |
+| G7 | pass | whole-branch file list is inside plan 2.1/2.2 (listed in the report); `_Layout.cshtml` **5 / 5** lines (bell button and sidebar badge only); `NotificationWorker.cs` **4 / 4** lines (the four literals); `Models/Notification.cs` **one enum member** (`PremiumActivated = 8`); `PaymentConfirmationService.cs` the notification call, its helper, two `using`s and an optional constructor parameter; `study-kit.css` differs from the base by `, .tn-page` in the scope lists and one comment line (verified by removing `.tn-page` and diffing: 2 lines); no `Program.cs`, appsettings, `.csproj`, migration, other `Models/**`, `LearningBusinessClock`, other `Services/Notifications/**`, Goals, Streak or account file; **the only modified existing test file is `scripts/tests/test_notification_behavior.cjs`** (path update and core loader, no assertion removed); `NotificationReliabilityIntegrationTests` and the worker tests are untouched and pass |
+| G8–G12, G14 | pass | page, bell and admin pages at seven sizes (1440 … 320 and 200 % zoom), keyboard, forced colours, reduced motion, scripted contrast: see the T6, T7 and T8 records |
+| G13 | pass | Goals completion, streak record and badge award still create notifications (end-to-end below shows all three, with the new copy); worker, reliability, billing and AI-guide tests green; bell on `/Sets`, `/Premium`, `/Vocabulary/Index`, `/Home/Index`, `/Notification`; login after the role change works |
+| G15 | pass | owner-only 404, antiforgery 400, local-link rule (`//evil`, `javascript:`, `https:` in C# and node tests), no `innerHTML` with data in new JS, **no notification was sent to a non-synthetic account**, no credential, screenshot or `.tmp/` file in the diff (`git ls-files` shows none) |
+
+**End-to-end run (plan 8.5)** — local Release app with MoMo mock mode (process environment only), headless Chrome, synthetic fixture learner `billing-fx5@tct.local` (free account; password shared with the synthetic Standard account, never printed). A one-card daily vocabulary goal was inserted for it by SQL for the run (removed afterwards).
+1. **Goal.** The lesson's record API (`POST /api/LearningApi/record`, one card) answered 200; after **60 s** (one poll, no reload) the bell badge rose from 1 to 4 and the panel listed "Hoàn thành mục tiêu Từ vựng — Bạn đã hoàn thành mục tiêu từ vựng hôm nay. Giữ nhịp này nhé! — 1 phút trước", "Huy hiệu mới: Khởi động — Bạn vừa nhận huy hiệu "Khởi động"." and "Kỷ lục mới: chuỗi 1 ngày học — Đây là chuỗi ngày học dài nhất của bạn." (the three generators, plain Vietnamese, no emoji). *Deviation:* the lesson screens themselves were not clicked through; the same API the lesson calls was driven from the learner's own browser session.
+2. **Payment.** `/Premium` → yearly plan + MoMo → order page → "Giả lập thanh toán thành công": the next request landed on `/Account/Login` (known `BILLING-ROLE-CHANGE-SIGNS-OUT`), signed in again, `/Notification` showed "Premium đã được kích hoạt — Gói Premium 1 năm có hiệu lực đến 17/11/2027." with "Xem biên nhận →" to `/Billing/Order/TCT-20261117165317615-21C425EB`; bell/sidebar badge 5.
+3. **Receipt.** The "Thanh toán" chip listed only that notice; clicking its link marked it read (unread-count 5 → 4) and opened the order page.
+4. **Mark all.** Bell badge, sidebar badge, summary and cards cleared; server unread-count 0.
+5. **Announcement with a link to /Vocabulary: NOT RUN, by rule.** The local database holds a real account (user 4); the recipient check of plan section 7 failed, so nothing was sent. Covered by `AdminAnnouncementTests` / `AdminAnnouncementControllerTests`, and the History query ran on the Docker MariaDB with throwaway rows (T8).
+6. **Cleanup.** Throwaway notifications removed by key; the fixture goal removed; announcement rows 0.
+
+**Event keys created and removed:** `streak-record:10:2026-11-17:1`, `badge:10:1`, `goal:10:Vocabulary:2026-11-17:100`, `premium:TCT-20261117165317615-21C425EB` (user 10; removed); T8 rows `announce:1:t8verify0000000000000000000001` and the two "… T8" legacy rows (users 6–8; removed).
+**Fixture side effects that stay (synthetic account `billing-fx5`, like the earlier billing fixtures):** it is now a Premium learner (one paid order, one subscription), has a learning-progress row for card 1, today's daily-activity row, the "Khởi động" badge and a streak of 1.
+
+**Verdict on the findings (all fixed; evidence is a test or a recorded browser/MariaDB run):**
+| # | Result | Evidence |
+| --- | --- | --- |
+| F1 | Fixed | `NotificationDisplayTests.TimeText_FollowsTheVietnamTimeBands`, `DayGroup_UsesVietnamCalendarDays`; page, bell and API share `NotificationDisplay` (`NotificationServicePagingTests.Page_BuildsItemsThroughTheDisplayModel`, `NotificationPageRenderTests.Page_GroupsByDay_InVietnamTime…`) |
+| F2 | Fixed | page script + T6 browser run (summary, bell, sidebar, chips, button, empty state); `test_notification_core.cjs` reducers |
+| F3 | Fixed | bell: `test_notification_bell.cjs` (mark-all re-enable, count, announcement) + T7 browser run |
+| F4 | Fixed | `NotificationServicePagingTests.Slice_AfterAnInsertBetweenReads_HasNoDuplicateAndNoGap`, `Slice_WithIdenticalTimestamps_…`; API cursor walk test; browser: 8 → 12 without duplicates |
+| F5 | Fixed | `NotificationPageRenderTests` (real anchors, static cards, no `role="button"`), bell anchors/buttons in the T7 run |
+| F6 | Fixed | `AdminAnnouncementTests.Send_SkipsBlockedAndAnonymisedAccounts_AndIncludesAdmins` |
+| F7 | Fixed | `Send_TheSameBatchTwice_LandsOnce`, `Send_AConflictWithAnotherRequestsRows_RollsBackTheWholeBatch`, `ADoubleSubmit_SendsOnce_AndSaysSo` |
+| F8 | Fixed | `History_GroupsByBatch_…`, `History_PagesInTheDatabase_…`; run on the Docker MariaDB (T8) |
+| F9 | Fixed | `PaymentActivationNotificationTests` (one notice, none on repeat/reject, failure never changes the payment); end-to-end step 2 |
+| F10 | Fixed | generator tests (`StreakRecord_Uses…`, `GoalCompleted_…`, `GoalProgress_…`, `BadgeEarned_…`) and the worker literals; end-to-end shows the copy |
+| F11 | Fixed | `TryCreate_AUniqueConflict_IsAnIgnoredDuplicate…` (MySQL 1062 and SQLite 19), `TryCreate_AnotherDatabaseError_IsLoggedAsAWarning…` |
+| F12 | Fixed | `NotificationLinksTests`, `Build_DropsAnUnsafeOrMissingLink…`, node `safeLocalUrl` and `a link that is not a local path is never followed` |
+| F13 | Fixed | T7 browser run (focus in / trap / `Esc` return, `Space`, tabs by arrows) + `NotificationBellRenderTests` (`aria-haspopup="true"`, `aria-controls`, name with count) |
+| F14 | Fixed | `Page_HasOneH1_TheClayWrapper_AndNoInlineScriptStyleOrFakeButton`, `Page_UnknownFilterAndCategory_FallBackToEverything` |
+| F15 | Fixed | 0 hex/`rgb()` in both stylesheets; no inline `style` in the layout bell block, the partial or the page |
+| F16 | Fixed | `Api_List_KeepsTheOldFields_AndAddsTheNewOnes` (`createdAt` and `createdAtUtc` end with `Z`) |
+| F17 | Fixed | `EmptyStates_HaveTheirOwnTextAndNextStep` |
+| F18 | Fixed | `Page_BeyondTheLastPage_RedirectsToTheLastPageWithTheSameFilters`, `…KeepsTheCategory` |
+| F19 | Fixed | `mark read uses the unread count in the answer and sends no second request before navigating` (node) |
+| F20 | Fixed | `MarkAll_ReturnsTheUpdatedCount_…`, API `updated`/`unreadCount`, toast text |
+| F21 | Fixed | `Page_OpensAtBothPaths` (`/Notification` and `/Notification/Index`) |
+
+**Definition of Done (plan section 10):** every item checked, with the evidence above; the Definition-of-Done boxes in section 10 are ticked.
+
+**Not verified.** Browsers other than headless Chrome (Firefox, Safari), a real phone and any screen reader; a real send of an announcement on MariaDB (the chunked insert transaction ran on SQLite and the test host; the History query ran on MariaDB); real push/e-mail reminders (read-only in this plan); the lesson screens clicked through (the record API was called instead).
+**Remaining risks.** `/Goals` throws two jQuery errors (Goals owner, `NOTIFICATIONS-GOALS-PAGE-JQUERY`); old rows keep their old text; the Admin pages keep Bootstrap sizes until the Admin batch; the role change after a payment still signs the buyer out (`BILLING-ROLE-CHANGE-SIGNS-OUT`, so the activation notice is seen after signing in again); one load-sensitive AI deadline test (`AiRagPhase5FixRound2Tests…`) failed once under load and passed alone and on rerun.
