@@ -69,6 +69,36 @@ test('fast first-run guard denies delegation with the native host schema', () =>
   assert.deepEqual(setup.fastHook('claude', 'PreToolUse', { tool_name: 'Agent' }, false), {});
 });
 
+test('only the approved Antigravity model passes the native subagent gate', () => {
+  for (const modelName of ['gemini-3.8-flash-high', 'Gemini 3.8 Flash High', ' GEMINI-3.8-FLASH-HIGH ']) {
+    for (const name of ['invoke_subagent', 'define_subagent']) {
+      assert.deepEqual(setup.fastHook('antigravity', 'PreToolUse', { modelName, toolCall: { name } }), {});
+    }
+  }
+  for (const modelName of [undefined, null, '', {}, [], 38, 'gemini-3.8-flash',
+    'gemini-3.8-flash-low', 'gemini-3.8-pro-high', 'gemini-3.8-flash-high-preview']) {
+    assert.equal(setup.fastHook('antigravity', 'PreToolUse', {
+      modelName, toolCall: { name: 'invoke_subagent', args: { modelName: 'gemini-3.8-flash-high' } },
+    }).decision, 'deny');
+  }
+  // A previous allowed call must not authorize a different model's next call.
+  assert.equal(setup.fastHook('antigravity', 'PreToolUse', {
+    modelName: 'gemini-3.8-flash-low', toolCall: { name: 'define_subagent' },
+  }).decision, 'deny');
+});
+
+test('approved model metadata cannot enable delegation on other hosts or through external tools', () => {
+  for (const host of ['codex', 'claude', 'cursor']) {
+    const result = setup.fastHook(host, 'PreToolUse', {
+      modelName: 'gemini-3.8-flash-high', tool_name: 'Agent',
+    });
+    assert.equal(host === 'cursor' ? result.permission : result.hookSpecificOutput.permissionDecision, 'deny');
+  }
+  assert.equal(setup.fastHook('antigravity', 'PreToolUse', {
+    modelName: 'gemini-3.8-flash-high', toolCall: { name: 'spawn_agent' },
+  }).decision, 'deny');
+});
+
 test('repeated startup does not rewrite an already-enabled Git hook configuration', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'tct enabled hooks '));
   fs.mkdirSync(path.join(root, '.githooks'));

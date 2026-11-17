@@ -75,6 +75,44 @@ class LifecycleTests(unittest.TestCase):
         (self.root / ".codex/config.toml").write_text("[features]\nmulti_agent=true\n", encoding="utf-8")
         self.assertEqual({}, self.handle("PreToolUse", tool_name="spawn_agent"))
 
+    def test_only_approved_antigravity_model_can_delegate_natively(self):
+        for model in ("gemini-3.8-flash-high", "Gemini 3.8 Flash High", " GEMINI-3.8-FLASH-HIGH "):
+            for tool in ("invoke_subagent", "define_subagent"):
+                with self.subTest(model=model, tool=tool):
+                    event = hooks.normalize_event("antigravity", "PreToolUse", {
+                        "modelName": model, "toolCall": {"name": tool},
+                    })
+                    result = hooks.handle("PreToolUse", event, self.root)
+                    self.assertEqual({"decision": "allow"}, hooks.host_output("antigravity", "PreToolUse", result))
+
+    def test_missing_different_or_spoofed_model_metadata_keeps_denial(self):
+        for model in (None, "", {}, [], 38, "gemini-3.8-flash", "gemini-3.8-flash-low",
+                      "gemini-3.8-pro-high", "gemini-3.8-flash-high-preview"):
+            with self.subTest(model=model):
+                event = hooks.normalize_event("antigravity", "PreToolUse", {
+                    "modelName": model,
+                    "toolCall": {"name": "invoke_subagent", "args": {"modelName": "gemini-3.8-flash-high"}},
+                })
+                result = hooks.handle("PreToolUse", event, self.root)
+                self.assertEqual("deny", result["hookSpecificOutput"]["permissionDecision"])
+
+    def test_exception_does_not_enable_other_hosts_or_external_delegation(self):
+        for host in ("codex", "claude", "cursor"):
+            with self.subTest(host=host):
+                event = hooks.normalize_event(host, "PreToolUse", {
+                    "modelName": "gemini-3.8-flash-high", "tool_name": "Agent",
+                })
+                self.assertEqual("deny", hooks.handle("PreToolUse", event, self.root)["hookSpecificOutput"]["permissionDecision"])
+        self.assertEqual("deny", self.handle("PreToolUse", host="antigravity",
+                         model_name="gemini-3.8-flash-high", tool_name="spawn_agent")["hookSpecificOutput"]["permissionDecision"])
+
+    def test_model_permission_is_checked_again_on_each_call(self):
+        self.assertEqual({}, self.handle("PreToolUse", host="antigravity",
+                         model_name="gemini-3.8-flash-high", tool_name="invoke_subagent"))
+        result = self.handle("PreToolUse", host="antigravity",
+                             model_name="gemini-3.8-flash-low", tool_name="invoke_subagent")
+        self.assertEqual("deny", result["hookSpecificOutput"]["permissionDecision"])
+
     def test_unchanged_tooling_is_quiet_and_not_revalidated(self):
         with patch.object(hooks, "fingerprint", return_value="same"), patch.object(hooks, "validate") as validate:
             self.handle("SessionStart")

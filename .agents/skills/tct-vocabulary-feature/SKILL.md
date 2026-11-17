@@ -4,8 +4,9 @@ description: Use when adding or modifying TCT English sets, cards, folders, stud
 ---
 
 Follow `AGENTS.md` and the current source before applying examples. Paths below
-are relative to `TCTEnglish/` unless explicitly prefixed. Use the same agent for
-implementation and review. Examples do not authorize changing protected config.
+are relative to `TCTEnglish/` unless explicitly prefixed. Follow AGENTS.md's owner
+execution policy, including its sole Antigravity client/model exception. Examples
+do not authorize changing protected config.
 
 
 # Vocabulary Feature Builder

@@ -1,7 +1,7 @@
 # Implementer lens
 
-Used by the same agent already working on the task. This does not define or
-authorize a spawned agent, separate chat or model process.
+Used by the same agent by default. Delegation is permitted only under AGENTS.md's
+owner execution policy; this lens does not grant it or define a separate agent.
 
 - Reuse current AGENTS.md context and fresh CodeGraph source; load only affected
   code/tests needed by the active step. Other roles and old plans are on-demand.

@@ -5,7 +5,8 @@ description: Use when auditing or polishing rendered TCT English pages for hiera
 
 # Review the interface the learner uses
 
-Apply this as the same agent, following AGENTS.md and
+Follow AGENTS.md's owner execution policy, including its sole Antigravity
+client/model exception, and
 [DESIGN.md](../../../DESIGN.md). This is a curated Impeccable integration;
 it does not install its binary, hooks, asset producers or worker roles.
 
@@ -32,5 +33,6 @@ Additional references, only as needed:
 [polish](../../../.ai/vendor/impeccable/polish.md),
 [typography](../../../.ai/vendor/impeccable/typeset.md).
 
-Do not invoke impeccable context, download binaries or spawn reviewers. Use
+Do not invoke impeccable context or download binaries. Reviewer delegation is
+permitted only under AGENTS.md's owner execution policy. Use
 the browser tooling available in the current session.

@@ -1,6 +1,7 @@
 # UI reviewer lens
 
-Used by the same agent after implementation, never a separate worker.
+Used by the same agent after implementation by default. Delegation is permitted
+only under AGENTS.md's owner execution policy; this lens does not grant it.
 
 - Compare the actual route and rendered states against DESIGN.md and the request.
 - Review typography, hierarchy, spacing, icons and action emphasis.

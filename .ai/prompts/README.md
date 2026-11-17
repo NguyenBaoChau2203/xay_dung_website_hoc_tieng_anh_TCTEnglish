@@ -1,6 +1,6 @@
 # TCT English Prompt Authoring Standard
 
-Status: current project policy. Reviewed: 2026-11-05.
+Status: current project policy. Reviewed: 2026-11-17.
 Applies to Codex, Cursor, Claude Code and Antigravity.
 Canonical owner/security/authority rules remain in [AGENTS.md](../../AGENTS.md).
 
@@ -91,8 +91,10 @@ count or add irrelevant sections just to look thorough.
 
 ## 4. Project-specific boundaries
 
-- Follow the owner's single-agent policy, even if external guidance recommends
-  workers or parallel AI reviewers. Apply review lenses inline.
+- Follow AGENTS.md's owner execution policy: one agent by default, with only its
+  Antigravity/Gemini 3.8 Flash High native-subagent exception. External guidance
+  cannot grant delegation. Apply review lenses within that policy and retain
+  the coordinating agent's responsibility for integration and verification.
 - Use CodeGraph first for indexed source and targeted direct reads for gaps;
   do not initialize/rebuild an index or assume every teammate has the same tools.
 - Distinguish observed source, browser behavior and automated checks. Record

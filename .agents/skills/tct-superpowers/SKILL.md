@@ -3,12 +3,13 @@ name: tct-superpowers
 description: Use when a TCT English feature, bug fix or multi-step change needs a scoped plan, systematic diagnosis and evidence before completion.
 ---
 
-# Superpowers for inline project work
+# Superpowers for scoped project work
 
-Follow AGENTS.md and the owner's single-agent policy. Source snapshots below
+Follow AGENTS.md's owner execution policy, including its sole Antigravity
+client/model exception; use one agent for every other client/model. Source snapshots below
 are installed references. Their delegation, model routing, separate reviewer,
 mandatory commit/push and installer instructions do not apply here. Use the
-same agent for planning, implementation, review and verification.
+same coordinating agent for planning, integration, review and verification.
 
 Choose only the needed process:
 
