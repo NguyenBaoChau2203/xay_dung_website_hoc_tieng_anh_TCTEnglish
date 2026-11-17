@@ -65,6 +65,12 @@
         return formatDate(ms) + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes());
     }
 
+    /** HH:mm:ss in Vietnam time (the 'lần gần nhất' line). */
+    function formatClock(ms) {
+        var d = new Date(Number(ms) + VN_OFFSET_MS);
+        return pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
+    }
+
     /**
      * Summary of the pricing form for the selected plan and method. When the buyer already has Premium, the new plan
      * starts at the current end date (purchases stack), otherwise now.
@@ -146,6 +152,7 @@
         savingPercent: savingPercent,
         formatDate: formatDate,
         formatDateTime: formatDateTime,
+        formatClock: formatClock,
         summary: summary,
         formatCountdown: formatCountdown,
         remainingMs: remainingMs,

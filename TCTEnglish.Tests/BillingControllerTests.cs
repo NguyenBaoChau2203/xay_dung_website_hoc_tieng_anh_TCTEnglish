@@ -184,13 +184,12 @@ namespace TCTEnglish.Tests
             var result = await controller.VnPayReturn();
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsType<PaymentResultViewModel>(viewResult.Model);
-            Assert.False(model.HasValidReturnSignature);
-            Assert.False(model.CanShowOrderSummary);
+            Assert.Equal("InvalidReturn", viewResult.ViewName);
+            Assert.Null(viewResult.Model);
         }
 
         [Fact]
-        public async Task VnPayReturn_OrderFound_RendersPaymentResult()
+        public async Task VnPayReturn_OrderFound_RedirectsTheOwnerToTheOrderPage()
         {
             var controller = CreateController(Guid.NewGuid().ToString());
             controller.ControllerContext.HttpContext.Request.QueryString = new QueryString("?vnp_TxnRef=ORD-123&vnp_ResponseCode=00");
@@ -212,10 +211,8 @@ namespace TCTEnglish.Tests
 
             var result = await controller.VnPayReturn();
 
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal("PaymentResult", viewResult.ViewName);
-            var model = Assert.IsType<PaymentResultViewModel>(viewResult.Model);
-            Assert.Equal("ORD-123", model.OrderCode);
+            var redirect = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Billing/Order/ORD-123", redirect.Url);
         }
 
         [Fact]
@@ -258,6 +255,7 @@ namespace TCTEnglish.Tests
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Login", redirectResult.ActionName);
             Assert.Equal("Account", redirectResult.ControllerName);
+            Assert.Equal("/Billing/Order/ORD-123", redirectResult.RouteValues!["returnUrl"]);
         }
 
         [Fact]
@@ -302,9 +300,8 @@ namespace TCTEnglish.Tests
             var result = await controller.VnPayReturn();
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsType<PaymentResultViewModel>(viewResult.Model);
-            Assert.False(model.HasValidReturnSignature);
-            Assert.False(model.CanShowOrderSummary);
+            Assert.Equal("InvalidReturn", viewResult.ViewName);
+            Assert.Null(viewResult.Model);
         }
     }
 }

@@ -363,4 +363,415 @@ public class BillingPagesIntegrationTests
 
         Assert.True(response.StatusCode is HttpStatusCode.Redirect or HttpStatusCode.Unauthorized, response.StatusCode.ToString());
     }
+
+    // ─── /Billing/Order/{code} ────────────────────────────────────────────────
+
+    private static int _orderCounter;
+
+    private static async Task<string> SeedOrderAsync(
+        TestWebApplicationFactory factory,
+        int userId,
+        string status,
+        string provider = PaymentProviders.MoMo,
+        TimeSpan? expiresIn = null,
+        string? qr = "00020101021238570010A000000727",
+        string? payUrl = "https://pay.example/momo/abc",
+        string? deepLink = "momo://app?action=pay",
+        string? returnPayload = null,
+        bool withSubscription = false,
+        string? bank = null)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var plan = await db.PremiumPlans.FirstAsync(p => p.Code == "premium_yearly");
+        var code = $"TCT-TEST-{Interlocked.Increment(ref _orderCounter):D4}";
+        var order = new PaymentOrder
+        {
+            OrderCode = code, UserId = userId, PlanId = plan.Id, Provider = provider, AmountVnd = plan.PriceVnd,
+            Currency = "VND", Status = status,
+            CreatedAtUtc = DateTime.UtcNow.AddMinutes(-3), UpdatedAtUtc = DateTime.UtcNow.AddMinutes(-1),
+            ExpiresAtUtc = DateTime.UtcNow.Add(expiresIn ?? TimeSpan.FromMinutes(12)),
+            PaidAtUtc = status == PaymentOrderStatuses.Paid ? new DateTime(2026, 11, 17, 6, 45, 0, DateTimeKind.Utc) : null,
+            ProviderQrCodePayload = provider == PaymentProviders.MoMo ? qr : null,
+            ProviderPaymentUrl = payUrl,
+            ProviderDeepLink = provider == PaymentProviders.MoMo ? deepLink : null,
+            ProviderTransactionId = status == PaymentOrderStatuses.Paid ? "14872360" : null,
+            BankCode = bank,
+            ReturnPayloadJson = returnPayload
+        };
+        db.PaymentOrders.Add(order);
+        await db.SaveChangesAsync();
+        if (withSubscription)
+        {
+            db.UserSubscriptions.Add(new UserSubscription
+            {
+                UserId = userId, PlanId = plan.Id, Status = SubscriptionStatuses.Active,
+                StartsAtUtc = new DateTime(2026, 11, 17, 6, 45, 0, DateTimeKind.Utc),
+                EndsAtUtc = new DateTime(2027, 11, 17, 6, 45, 0, DateTimeKind.Utc),
+                ActivatedByPaymentOrderId = order.Id, CreatedAtUtc = DateTime.UtcNow
+            });
+            await db.SaveChangesAsync();
+        }
+
+        return code;
+    }
+
+    private static HttpClient Learner(TestWebApplicationFactory factory)
+        => IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.UserId, Roles.Standard);
+
+    [Fact]
+    public async Task Order_MoMoWaiting_ShowsTheQrCodeCountdownStepsAndTheSummary()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+        var block = PageBlock(html);
+
+        Assert.Contains("tb-stage--waiting", html);
+        Assert.Equal(1, Regex.Matches(block, "<h1\\b").Count);
+        Assert.Contains("Thanh toán bằng MoMo", text);
+        Assert.Contains("Nâng cấp Premium", text);
+        Assert.Contains("data-qr=\"00020101021238570010A000000727\"", html);
+        Assert.Contains($"aria-label=\"Mã QR thanh toán MoMo cho đơn {code}\"", html);
+        Assert.Contains("Mã hết hạn sau", text);
+        Assert.Contains("data-tb-countdown", html);
+        Assert.Contains("Mở ứng dụng MoMo trên điện thoại", text);
+        Assert.Contains("Chọn Quét mã và quét mã QR này", text);
+        Assert.Contains($"Xác nhận thanh toán 399.000{Nbsp}₫", text);
+        Assert.Contains("Đang chờ bạn thanh toán… trang sẽ tự cập nhật", text);
+        Assert.Contains("aria-live=\"polite\"", block);
+        Assert.Contains("Mã đơn", text);
+        Assert.Contains(code, text);
+        Assert.Contains("365 ngày", text);
+        Assert.Contains($"399.000{Nbsp}₫", text);
+        Assert.Contains("Hủy và chọn cách khác", text);
+        Assert.Contains("Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.", text);
+        Assert.Contains("/lib/pinned/qrcode-1.0.0.min.js", html);
+        Assert.DoesNotContain("cdn.jsdelivr.net/npm/qrcodejs", html);
+        Assert.Contains("/js/billing-order.js", html);
+        Assert.DoesNotContain("<script", block);
+        Assert.DoesNotContain(" style=\"", block);
+        Assert.DoesNotContain("bi bi-", block);
+        Assert.DoesNotContain("IPN", text);
+        Assert.Contains("data-tb-app-link", html);
+    }
+
+    [Fact]
+    public async Task Order_MoMoWaiting_WithoutAQrPayload_SaysSoAndKeepsTheAppButton()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, qr: null);
+        using var client = Learner(factory);
+
+        var text = Decode(await GetAsync(client, $"/Billing/Order/{code}"));
+
+        Assert.Contains("Không lấy được mã QR. Hãy bấm Mở ứng dụng MoMo hoặc tạo đơn mới.", text);
+        Assert.Contains("Mở ứng dụng MoMo", text);
+    }
+
+    [Theory]
+    [InlineData("javascript:alert(1)")]
+    [InlineData("http://insecure.example/pay")]
+    [InlineData("data:text/html,x")]
+    public async Task Order_NeverRendersAnUnsafeStoredAddressIntoALink(string stored)
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, payUrl: stored, deepLink: stored);
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+
+        Assert.DoesNotContain(stored, WebUtility.HtmlDecode(html));
+        Assert.DoesNotContain("data-tb-app-link", html);
+    }
+
+    [Fact]
+    public async Task Order_MockBox_OnlyWhenTheLocalMockModeIsOn()
+    {
+        await using var plain = await CreateFactoryAsync(momoReady: true);
+        var plainCode = await SeedOrderAsync(plain, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var plainClient = Learner(plain);
+        var plainText = Decode(await GetAsync(plainClient, $"/Billing/Order/{plainCode}"));
+
+        await using var mocked = await CreateFactoryAsync(momoReady: true, momoMock: true);
+        var mockCode = await SeedOrderAsync(mocked, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var mockClient = Learner(mocked);
+        var mockText = Decode(await GetAsync(mockClient, $"/Billing/Order/{mockCode}"));
+
+        Assert.DoesNotContain("Giả lập thanh toán thành công", plainText);
+        Assert.DoesNotContain("Chế độ thử nghiệm", plainText);
+        Assert.Contains("Chế độ thử nghiệm (chỉ có ở máy phát triển).", mockText);
+        Assert.Contains("Không có tiền thật được chuyển.", mockText);
+        Assert.Contains("Giả lập thanh toán thành công", mockText);
+    }
+
+    [Fact]
+    public async Task Order_MockBox_NeverShowsOnAPaidOrClosedOrder()
+    {
+        await using var mocked = await CreateFactoryAsync(momoReady: true, momoMock: true);
+        var paid = await SeedOrderAsync(mocked, TestDataIds.UserId, PaymentOrderStatuses.Paid, withSubscription: true);
+        var cancelled = await SeedOrderAsync(mocked, TestDataIds.UserId, PaymentOrderStatuses.Cancelled);
+        using var client = Learner(mocked);
+
+        Assert.DoesNotContain("Giả lập thanh toán thành công", Decode(await GetAsync(client, $"/Billing/Order/{paid}")));
+        Assert.DoesNotContain("Giả lập thanh toán thành công", Decode(await GetAsync(client, $"/Billing/Order/{cancelled}")));
+    }
+
+    [Fact]
+    public async Task Order_VnPayWaiting_OffersToContinueOnVnPay_WithTheStoredAddress()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.VNPay,
+            payUrl: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?x=1");
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+
+        Assert.Contains("Đơn đang chờ thanh toán", text);
+        Assert.Contains("Tiếp tục thanh toán trên VNPay", text);
+        Assert.Contains("href=\"https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?x=1\"", html);
+        Assert.DoesNotContain("data-qr", html);
+    }
+
+    [Fact]
+    public async Task Order_VnPayWaiting_AfterExpiry_IsNotCompleted_AndOffersToPayAgain()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.VNPay,
+            expiresIn: TimeSpan.FromMinutes(-2));
+        using var client = Learner(factory);
+
+        var text = Decode(await GetAsync(client, $"/Billing/Order/{code}"));
+
+        Assert.Contains("Thanh toán chưa hoàn tất", text);
+        Assert.Contains("Đơn đã hết hạn trước khi được thanh toán.", text);
+        Assert.Contains("Thanh toán lại", text);
+    }
+
+    [Fact]
+    public async Task Order_Confirming_AfterASuccessfulReturn_ExplainsAndOffersARecheck()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.VNPay,
+            returnPayload: "{\"vnp_ResponseCode\":\"00\",\"vnp_TransactionStatus\":\"00\"}");
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+
+        Assert.Contains("tb-stage--confirming", html);
+        Assert.Contains("Đang xác nhận thanh toán", text);
+        Assert.Contains("Chúng tôi đang chờ VNPay xác nhận giao dịch. Việc này thường mất dưới một phút; trang sẽ tự cập nhật.", text);
+        Assert.Matches("Đang kiểm tra… lần gần nhất \\d{2}:\\d{2}:\\d{2}", text);
+        Assert.Contains("Kiểm tra lại ngay", text);
+        Assert.Contains($"action=\"/Billing/Order/{code}/Refresh\"", html);
+        Assert.Contains("name=\"__RequestVerificationToken\"", html);
+        Assert.Contains("Đã bị trừ tiền nhưng quá 15 phút chưa được kích hoạt?", text);
+        Assert.Contains("href=\"/Home/Contact\"", html);
+        Assert.DoesNotContain("IPN", text);
+        Assert.DoesNotContain("Manual review", text);
+    }
+
+    [Fact]
+    public async Task Order_ManualReview_ShowsThePlainSentence_WithoutPollingOrAButton()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.ManualReview, PaymentProviders.VNPay);
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+
+        Assert.Contains("Đơn đang được kiểm tra thêm. Chúng tôi sẽ cập nhật trong thời gian sớm nhất.", text);
+        Assert.DoesNotContain("Kiểm tra lại ngay", text);
+        Assert.Contains("data-manual-review=\"true\"", html);
+        Assert.DoesNotContain("manual", text.Replace("manual-review", string.Empty), StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task Order_Paid_ShowsTheReceiptEndDateAndTheUnlockedFeatures()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Paid, PaymentProviders.VNPay,
+            withSubscription: true, bank: "NCB");
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+
+        Assert.Contains("tb-stage--paid", html);
+        Assert.Contains("Thanh toán thành công", text);
+        Assert.Contains("Premium của bạn có hiệu lực đến", text);
+        Assert.Contains("<strong>17/11/2027</strong>", text);
+        Assert.Contains(code, text);
+        Assert.Contains("Premium 1 năm", text);
+        Assert.Contains($"399.000{Nbsp}₫", text);
+        Assert.Contains("VNPay · NCB", text);
+        Assert.Contains("17/11/2026 13:45", text); // 06:45 UTC in Vietnam time
+        Assert.Contains("14872360", text);
+        foreach (var highlight in PremiumBenefits.UnlockedHighlights)
+        {
+            Assert.Contains(highlight, text);
+        }
+
+        Assert.Contains("Bắt đầu học", text);
+        Assert.Contains("href=\"/Home/Index\"", html);
+        Assert.Contains("Xem lịch sử thanh toán", text);
+        Assert.DoesNotContain("data-follows=\"true\"", html);
+    }
+
+    [Theory]
+    [InlineData(PaymentOrderStatuses.Cancelled, "Bạn đã hủy giao dịch trên VNPay.", true)]
+    [InlineData(PaymentOrderStatuses.Failed, "Giao dịch không thành công.", true)]
+    [InlineData(PaymentOrderStatuses.Expired, "Đơn đã hết hạn trước khi được thanh toán.", true)]
+    [InlineData(PaymentOrderStatuses.Refunded, "Khoản thanh toán này đã được hoàn lại.", false)]
+    public async Task Order_NotCompleted_SaysWhy_NeverClaimsNoMoneyWasTaken(string status, string sentence, bool canPayAgain)
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, status, PaymentProviders.VNPay, expiresIn: TimeSpan.FromMinutes(-30));
+        using var client = Learner(factory);
+
+        var html = await GetAsync(client, $"/Billing/Order/{code}");
+        var text = Decode(html);
+
+        Assert.Contains("Thanh toán chưa hoàn tất", text);
+        Assert.Contains(sentence, text);
+        Assert.Contains("Nếu tài khoản của bạn đã bị trừ tiền, hãy liên hệ hỗ trợ kèm mã đơn.", text);
+        Assert.DoesNotContain("chưa bị trừ tiền", text);
+        Assert.Equal(canPayAgain, text.Contains("Thanh toán lại"));
+        Assert.Contains("Xem lịch sử thanh toán", text);
+        Assert.DoesNotContain("data-follows=\"true\"", html);
+    }
+
+    [Fact]
+    public async Task Order_ForSomeoneElse_Is404_AndAnUnknownCodeToo()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var outsider = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+
+        using var other = await outsider.GetAsync($"/Billing/Order/{code}");
+        using var missing = await outsider.GetAsync("/Billing/Order/NOPE");
+        using var status = await outsider.GetAsync($"/Billing/OrderStatus?orderCode={code}");
+
+        Assert.Equal(HttpStatusCode.NotFound, other.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, missing.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, status.StatusCode);
+    }
+
+    [Fact]
+    public async Task Order_ForAnAnonymousVisitor_RedirectsToLogin()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        using var response = await client.GetAsync($"/Billing/Order/{code}");
+
+        Assert.True(response.StatusCode is HttpStatusCode.Redirect or HttpStatusCode.Unauthorized, response.StatusCode.ToString());
+    }
+
+    [Fact]
+    public async Task OldMoMoQrLinks_RedirectToTheOrderPage()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending);
+        using var client = Learner(factory);
+
+        using var response = await client.GetAsync($"/Billing/MoMoQr?orderCode={code}");
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.Equal($"/Billing/Order/{code}", response.Headers.Location!.OriginalString);
+    }
+
+    [Fact]
+    public async Task AnUnverifiableReturn_ShowsTheGenericPage_WithNoOrderData()
+    {
+        await using var factory = await CreateFactoryAsync(vnpayReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.VNPay);
+        using var client = IntegrationTestClientHelper.CreateAnonymousClient(factory);
+
+        using var response = await client.GetAsync($"/Billing/VnPayReturn?vnp_TxnRef={code}&vnp_ResponseCode=00&vnp_SecureHash=bad");
+        var html = await response.Content.ReadAsStringAsync();
+        var text = Decode(html);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("Không xác minh được kết quả thanh toán", text);
+        Assert.Contains("Hãy mở Lịch sử thanh toán để xem trạng thái đơn của bạn.", text);
+        var block = PageBlock(html);
+        Assert.DoesNotContain(code, Decode(block));
+        Assert.DoesNotContain("399.000", Decode(block));
+        Assert.DoesNotContain("IPN", Decode(block));
+    }
+
+    [Fact]
+    public async Task TheMockFlow_PaysTheOrder_AndTheOrderPageShowsIt()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true, momoMock: true);
+        using var client = Learner(factory);
+        var token = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Premium");
+
+        using var checkout = await client.PostAsync("/Billing/Checkout", new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            ["PlanCode"] = "premium_yearly", ["Provider"] = "momo", ["__RequestVerificationToken"] = token
+        }));
+        Assert.Equal(HttpStatusCode.Redirect, checkout.StatusCode);
+        var orderUrl = checkout.Headers.Location!.OriginalString;
+        Assert.StartsWith("/Billing/Order/", orderUrl);
+        var code = orderUrl["/Billing/Order/".Length..];
+
+        var page = await GetAsync(client, orderUrl);
+        Assert.Contains("Giả lập thanh toán thành công", Decode(page));
+        var pageToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, orderUrl);
+
+        using var confirm = await client.PostAsync("/Billing/MoMoMockConfirm", new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            ["orderCode"] = code, ["__RequestVerificationToken"] = pageToken
+        }));
+        Assert.Equal(HttpStatusCode.Redirect, confirm.StatusCode);
+        Assert.Equal(orderUrl, confirm.Headers.Location!.OriginalString);
+
+        var paid = Decode(await GetAsync(client, orderUrl));
+        Assert.Contains("Thanh toán thành công", paid);
+        Assert.Contains("Premium của bạn có hiệu lực đến", paid);
+
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DbflashcardContext>();
+        var order = await db.PaymentOrders.SingleAsync(o => o.OrderCode == code);
+        Assert.Equal(PaymentOrderStatuses.Paid, order.Status);
+        Assert.NotNull(order.ActivatedAtUtc);
+    }
+
+    [Fact]
+    public async Task Refresh_ByTheOwner_ReturnsJson_AndByAnotherUser_Is404()
+    {
+        await using var factory = await CreateFactoryAsync(momoReady: true);
+        var code = await SeedOrderAsync(factory, TestDataIds.UserId, PaymentOrderStatuses.Pending, PaymentProviders.MoMo);
+        using var owner = Learner(factory);
+        var token = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(owner, $"/Billing/Order/{code}");
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Billing/Order/{code}/Refresh");
+        request.Headers.Add("RequestVerificationToken", token);
+        request.Headers.Add("X-Requested-With", "XMLHttpRequest");
+        using var ok = await owner.SendAsync(request);
+        var json = await ok.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, ok.StatusCode);
+        Assert.Contains("\"stage\":\"waiting\"", json);
+
+        using var outsider = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, TestDataIds.OutsiderUserId, Roles.Standard);
+        var otherToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(outsider, "/Premium");
+        using var otherRequest = new HttpRequestMessage(HttpMethod.Post, $"/Billing/Order/{code}/Refresh");
+        otherRequest.Headers.Add("RequestVerificationToken", otherToken);
+        using var denied = await outsider.SendAsync(otherRequest);
+        Assert.Equal(HttpStatusCode.NotFound, denied.StatusCode);
+
+        using var noToken = new HttpRequestMessage(HttpMethod.Post, $"/Billing/Order/{code}/Refresh");
+        using var rejected = await owner.SendAsync(noToken);
+        Assert.Equal(HttpStatusCode.BadRequest, rejected.StatusCode);
+    }
 }

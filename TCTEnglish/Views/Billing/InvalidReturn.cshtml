@@ -1,0 +1,21 @@
+@*
+    Shown when a provider's return cannot be verified (bad signature, missing order). It carries no order data and never
+    says whether a payment happened: the history page is the place to look (plan 5.2).
+*@
+@{
+    ViewData["Title"] = "Không xác minh được kết quả thanh toán";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/billing.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tb-page tb-page--order tb-stage--invalid">
+    <section class="k-panel tb-card tb-result tb-result--not-completed" aria-labelledby="tb-result-title">
+        <span class="tb-result__icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+        <h1 id="tb-result-title" class="tb-result__title">Không xác minh được kết quả thanh toán</h1>
+        <p class="tb-result__text">Hãy mở Lịch sử thanh toán để xem trạng thái đơn của bạn.</p>
+        <a class="btn btn-primary btn-lg tb-btn-wide" href="/Billing/History">Mở lịch sử thanh toán</a>
+        <a class="tb-link" href="/Premium">Quay lại Nâng cấp Premium</a>
+    </section>
+</div>

@@ -61,52 +61,10 @@ namespace TCTEnglish.Tests
         }
 
         [Fact]
-        public async Task MoMoQr_OtherUserOrder_ReturnsNotFound()
+        public void MoMoQr_OldLink_RedirectsToTheOrderPage()
         {
-            var dbName = Guid.NewGuid().ToString();
-            var options = new DbContextOptionsBuilder<DbflashcardContext>()
-                .UseInMemoryDatabase(dbName)
-                .Options;
-
-            await using (var seed = new DbflashcardContext(options))
-            {
-                var owner = new User { Email = "owner@test.com", PasswordHash = "h", Role = Roles.Standard };
-                seed.Users.Add(owner);
-                var other = new User { Email = "other@test.com", PasswordHash = "h", Role = Roles.Standard };
-                seed.Users.Add(other);
-                var plan = new PremiumPlan
-                {
-                    Code = "plan",
-                    Name = "Plan",
-                    Description = "Desc",
-                    PriceVnd = 49000m,
-                    DurationDays = 30,
-                    IsActive = true,
-                    DisplayOrder = 1,
-                    CreatedAtUtc = DateTime.UtcNow
-                };
-                seed.PremiumPlans.Add(plan);
-                await seed.SaveChangesAsync();
-
-                seed.PaymentOrders.Add(new PaymentOrder
-                {
-                    OrderCode = "ORD-1",
-                    UserId = owner.UserId,
-                    PlanId = plan.Id,
-                    Provider = PaymentProviders.MoMo,
-                    AmountVnd = 49000m,
-                    Currency = "VND",
-                    Status = PaymentOrderStatuses.Pending,
-                    CreatedAtUtc = DateTime.UtcNow,
-                    UpdatedAtUtc = DateTime.UtcNow,
-                    ExpiresAtUtc = DateTime.UtcNow.AddMinutes(15)
-                });
-                await seed.SaveChangesAsync();
-            }
-
-            await using var context = new DbflashcardContext(options);
             var controller = new BillingController(
-                context,
+                new DbflashcardContext(new DbContextOptionsBuilder<DbflashcardContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options),
                 Mock.Of<IBillingService>(),
                 Mock.Of<IPremiumAccessService>(),
                 Mock.Of<IIpnService>(),
@@ -117,23 +75,11 @@ namespace TCTEnglish.Tests
                 Moq.Mock.Of<TCTEnglish.Services.Billing.ISubscriptionService>(),
                 NullLogger<BillingController>.Instance);
 
-            var identity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, "2"),
-                new Claim(ClaimTypes.Email, "other@test.com")
-            }, "Test");
+            var result = controller.MoMoQr("ORD-1");
 
-            controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal(identity) }
-            };
-
-            controller.TempData = new TempDataDictionary(
-                controller.HttpContext,
-                Mock.Of<ITempDataProvider>());
-
-            var result = await controller.MoMoQr("ORD-1");
-            Assert.IsType<NotFoundResult>(result);
+            var redirect = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Billing/Order/ORD-1", redirect.Url);
+            Assert.IsType<NotFoundResult>(controller.MoMoQr(" "));
         }
     }
 }

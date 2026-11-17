@@ -184,7 +184,11 @@ namespace TCTEnglish.Services.Billing
             order.UpdatedAtUtc = DateTime.UtcNow;
             await _context.SaveChangesAsync(ct);
 
-            return CheckoutResult.Ok(orderCode, gatewayResult.RedirectUrl);
+            // MoMo has no page of its own to send the buyer to: the order page shows the QR code and follows the order.
+            var redirectUrl = gateway.ProviderName.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase)
+                ? BuildMoMoOrderUrl(orderCode)
+                : gatewayResult.RedirectUrl;
+            return CheckoutResult.Ok(orderCode, redirectUrl);
         }
 
         /// <summary>
@@ -202,7 +206,7 @@ namespace TCTEnglish.Services.Billing
         }
 
         internal static string BuildMoMoOrderUrl(string orderCode)
-            => $"/Billing/MoMoQr?orderCode={Uri.EscapeDataString(orderCode)}";
+            => $"/Billing/Order/{Uri.EscapeDataString(orderCode)}";
 
         /// <summary>The VNPay redirect URL is kept so the order can be resumed; it fits the 1000-character column.</summary>
         private static string? StorableVnPayUrl(string provider, string? redirectUrl)
@@ -212,6 +216,40 @@ namespace TCTEnglish.Services.Billing
                    && redirectUrl.Length <= 1000
                 ? redirectUrl
                 : null;
+        }
+
+        public async Task<OrderPageViewModel?> GetOrderPageAsync(
+            int userId,
+            string orderCode,
+            bool isMockMode,
+            CancellationToken ct = default)
+        {
+            if (string.IsNullOrWhiteSpace(orderCode))
+            {
+                return null;
+            }
+
+            // Owner only: anyone else gets the same answer as for an order that does not exist.
+            var order = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .FirstOrDefaultAsync(o => o.UserId == userId && o.OrderCode == orderCode, ct);
+            if (order == null)
+            {
+                return null;
+            }
+
+            DateTime? premiumEndsAtUtc = null;
+            if (order.Status == PaymentOrderStatuses.Paid)
+            {
+                premiumEndsAtUtc = await _context.UserSubscriptions
+                    .AsNoTracking()
+                    .Where(s => s.ActivatedByPaymentOrderId == order.Id)
+                    .Select(s => (DateTime?)s.EndsAtUtc)
+                    .FirstOrDefaultAsync(ct);
+            }
+
+            return OrderPageBuilder.Build(order, premiumEndsAtUtc, isMockMode, DateTime.UtcNow);
         }
 
         public async Task<PaymentOrder?> GetOrderByCodeAsync(

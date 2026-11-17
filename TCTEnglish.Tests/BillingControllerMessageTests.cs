@@ -23,7 +23,7 @@ namespace TCTEnglish.Tests
     public class BillingControllerMessageTests
     {
         private static (BillingController controller, DbflashcardContext ctx, Mock<IBillingService> billing, Mock<ISubscriptionService> subscriptions) Create(
-            bool mock = false)
+            bool mock = false, string environment = "Development")
         {
             var options = new DbContextOptionsBuilder<DbflashcardContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
@@ -44,7 +44,7 @@ namespace TCTEnglish.Tests
                 Mock.Of<IIpnService>(),
                 health.Object,
                 Options.Create(new MoMoOptions { Enabled = mock, MockModeEnabled = mock }),
-                new StubWebHostEnvironment { EnvironmentName = "Development" },
+                new StubWebHostEnvironment { EnvironmentName = environment },
                 Mock.Of<IPaymentQueryService>(),
                 subscriptions.Object,
                 NullLogger<BillingController>.Instance);
@@ -118,6 +118,32 @@ namespace TCTEnglish.Tests
             await controller.MoMoMockConfirm("ORD-X");
 
             Assert.Equal("Đơn hàng đã hết hạn, vui lòng tạo đơn mới.", controller.TempData["CheckoutError"]);
+        }
+
+        [Theory]
+        [InlineData("Production")]
+        [InlineData("Staging")]
+        public async Task MockConfirm_OutsideDevelopment_Is404_EvenWhenTheMockFlagIsOn(string environment)
+        {
+            var (controller, ctx, _, _) = Create(mock: true, environment: environment);
+            ctx.Users.Add(new User { UserId = 7, Email = "a@test.com", PasswordHash = "h", Role = Roles.Standard });
+            await ctx.SaveChangesAsync();
+
+            var result = await controller.MoMoMockConfirm("ORD-X");
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task Order_ForAMissingOrSomeoneElsesOrder_Is404_AndExpiresTheUsersLapsedSubscriptionFirst()
+        {
+            var (controller, _, billing, subscriptions) = Create();
+            billing.Setup(b => b.GetOrderPageAsync(7, "ORD-9", false, default)).ReturnsAsync((OrderPageViewModel?)null);
+
+            var result = await controller.Order("ORD-9");
+
+            Assert.IsType<NotFoundResult>(result);
+            subscriptions.Verify(s => s.ExpireForUserAsync(7, default), Times.Once);
         }
 
         [Fact]

@@ -29,29 +29,6 @@ namespace TCTEnglish.Tests
         }
 
         [Fact]
-        public void PaymentResult_ManualReviewAndPartiallyRefunded_HaveExpectedDisplayMappings()
-        {
-            var manualReview = new PaymentResultViewModel
-            {
-                HasValidReturnSignature = true,
-                OrderStatus = PaymentOrderStatuses.ManualReview
-            };
-            var partiallyRefunded = new PaymentResultViewModel
-            {
-                HasValidReturnSignature = true,
-                OrderStatus = PaymentOrderStatuses.PartiallyRefunded
-            };
-
-            Assert.Equal("Manual review", manualReview.StatusDisplayName);
-            Assert.Equal("bi bi-search", manualReview.IconClass);
-            Assert.Equal("badge bg-warning-subtle text-warning-emphasis border border-warning-subtle", manualReview.StatusBadgeClass);
-
-            Assert.Equal("Hoàn tiền một phần", partiallyRefunded.StatusDisplayName);
-            Assert.Equal("bi bi-arrow-left-right", partiallyRefunded.IconClass);
-            Assert.Equal("badge bg-info-subtle text-info-emphasis border border-info-subtle", partiallyRefunded.StatusBadgeClass);
-        }
-
-        [Fact]
         public void AdminBillingViewModels_ManualReviewAndPartiallyRefunded_HaveExpectedBadges()
         {
             var rowManualReview = new AdminPaymentOrderRowViewModel

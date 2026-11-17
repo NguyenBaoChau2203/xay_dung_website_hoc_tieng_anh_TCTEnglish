@@ -46,6 +46,11 @@ test('dates are shown in Vietnam time, whatever the browser time zone is', () =>
   assert.equal(core.formatDate(Date.UTC(2027, 0, 1, 0, 0)), '01/01/2027');
 });
 
+test('the clock line is HH:mm:ss in Vietnam time', () => {
+  assert.equal(core.formatClock(Date.UTC(2026, 10, 17, 6, 45, 12)), '13:45:12');
+  assert.equal(core.formatClock(Date.UTC(2026, 10, 17, 17, 5, 9)), '00:05:09');
+});
+
 test('summary for a free buyer starts now', () => {
   const now = Date.UTC(2026, 10, 17, 5, 0);
   const s = core.summary({ planName: 'Premium 1 năm', price: 399000, days: 365, nowMs: now, providerName: 'VNPay' });

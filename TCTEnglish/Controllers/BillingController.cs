@@ -144,47 +144,28 @@ namespace TCTEnglish.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// One page per order (plan 5.2): waiting, confirming, paid and not completed. Owner only; anyone else gets 404.
+        /// </summary>
+        [Authorize]
+        [HttpGet("/Billing/Order/{orderCode}")]
+        public async Task<IActionResult> Order(string orderCode)
+        {
+            var userId = GetCurrentUserId();
+            await _subscriptionService.ExpireForUserAsync(userId);
+
+            var model = await _billingService.GetOrderPageAsync(userId, orderCode, IsMoMoMockModeEnabled());
+            return model == null ? NotFound() : View("Order", model);
+        }
+
+        /// <summary>Old links and bookmarks: the QR page is now the order page.</summary>
         [Authorize]
         [HttpGet("/Billing/MoMoQr")]
-        public async Task<IActionResult> MoMoQr(string orderCode)
+        public IActionResult MoMoQr(string orderCode)
         {
-            if (string.IsNullOrWhiteSpace(orderCode))
-            {
-                return NotFound();
-            }
-
-            var userId = GetCurrentUserId();
-            var order = await _context.PaymentOrders
-                .AsNoTracking()
-                .Include(o => o.Plan)
-                .Where(o => o.UserId == userId && o.OrderCode == orderCode)
-                .FirstOrDefaultAsync();
-
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            if (!order.Provider.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase))
-            {
-                return NotFound();
-            }
-
-            var model = new MoMoQrViewModel
-            {
-                OrderCode = order.OrderCode,
-                PlanName = order.Plan?.Name ?? "Premium",
-                AmountVnd = order.AmountVnd,
-                ExpiresAtUtc = order.ExpiresAtUtc,
-                ProviderPaymentUrl = order.ProviderPaymentUrl,
-                ProviderDeepLink = order.ProviderDeepLink,
-                ProviderQrCodePayload = order.ProviderQrCodePayload,
-                IsExpired = order.ExpiresAtUtc <= DateTime.UtcNow,
-                IsPaid = string.Equals(order.Status, PaymentOrderStatuses.Paid, StringComparison.OrdinalIgnoreCase),
-                IsMockMode = IsMoMoMockModeEnabled()
-            };
-
-            return View(model);
+            return string.IsNullOrWhiteSpace(orderCode)
+                ? NotFound()
+                : Redirect(OrderPageUrl(orderCode));
         }
 
         [Authorize]
@@ -216,7 +197,7 @@ namespace TCTEnglish.Controllers
             if (order.ExpiresAtUtc <= DateTime.UtcNow)
             {
                 TempData["CheckoutError"] = "Đơn hàng đã hết hạn, vui lòng tạo đơn mới.";
-                return RedirectToAction(nameof(MoMoQr), new { orderCode });
+                return Redirect(OrderPageUrl(orderCode));
             }
 
             var requestId = string.IsNullOrWhiteSpace(order.ProviderRequestId)
@@ -255,7 +236,7 @@ namespace TCTEnglish.Controllers
 
             await _ipnService.ProcessMoMoIpnAsync(ipn);
 
-            return RedirectToAction(nameof(MoMoQr), new { orderCode });
+            return Redirect(OrderPageUrl(orderCode));
         }
 
         [Authorize]
@@ -408,15 +389,11 @@ namespace TCTEnglish.Controllers
             if (!queryParams.TryGetValue("vnp_TxnRef", out var orderCode)
                 || string.IsNullOrWhiteSpace(orderCode))
             {
-                return View("PaymentResult", new PaymentResultViewModel
-                {
-                    HasValidReturnSignature = false,
-                    CanShowOrderSummary = false
-                });
+                return View("InvalidReturn");
             }
 
             var model = await _billingService.GetVnPayReturnResultAsync(queryParams);
-            return await RenderPaymentResultForOwnerAsync(model, orderCode);
+            return RedirectReturnToOrderPage(model, orderCode);
         }
 
         [AllowAnonymous]
@@ -436,12 +413,14 @@ namespace TCTEnglish.Controllers
             }
 
             var model = await _billingService.GetMoMoReturnResultAsync(queryParams);
-            return await RenderPaymentResultForOwnerAsync(model, orderCode);
+            return RedirectReturnToOrderPage(model, orderCode);
         }
 
-        private async Task<IActionResult> RenderPaymentResultForOwnerAsync(
-            PaymentResultViewModel? model,
-            string orderCode)
+        /// <summary>
+        /// After a provider's return: an unverifiable return shows the generic page with no order data; a verified one
+        /// goes to the order page of its owner (the buyer signed out by the role change is sent to login and back).
+        /// </summary>
+        private IActionResult RedirectReturnToOrderPage(PaymentResultViewModel? model, string orderCode)
         {
             if (model == null)
             {
@@ -449,26 +428,32 @@ namespace TCTEnglish.Controllers
                 return NotFound();
             }
 
-            if (model.HasValidReturnSignature)
+            if (!model.HasValidReturnSignature)
             {
-                if (!TryGetCurrentUserId(out var currentUserId))
-                {
-                    return RedirectToAction("Login", "Account", new { returnUrl = "/Billing/History" });
-                }
-
-                if (model.OwnerUserId != currentUserId)
-                {
-                    _logger.LogWarning(
-                        "Payment return rejected due to ownership mismatch. OrderCode={OrderCode}, CurrentUserId={CurrentUserId}, OwnerUserId={OwnerUserId}",
-                        orderCode,
-                        currentUserId,
-                        model.OwnerUserId);
-                    return NotFound();
-                }
+                return View("InvalidReturn");
             }
 
-            return View("PaymentResult", model);
+            var orderUrl = OrderPageUrl(model.OrderCode);
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return RedirectToAction("Login", "Account", new { returnUrl = orderUrl });
+            }
+
+            if (model.OwnerUserId != currentUserId)
+            {
+                _logger.LogWarning(
+                    "Payment return rejected due to ownership mismatch. OrderCode={OrderCode}, CurrentUserId={CurrentUserId}, OwnerUserId={OwnerUserId}",
+                    orderCode,
+                    currentUserId,
+                    model.OwnerUserId);
+                return NotFound();
+            }
+
+            return Redirect(orderUrl);
         }
+
+        private static string OrderPageUrl(string orderCode)
+            => $"/Billing/Order/{Uri.EscapeDataString(orderCode)}";
 
         private bool IsMoMoMockModeEnabled()
             => _environment.IsDevelopment() && _moMoOptions.Enabled && _moMoOptions.MockModeEnabled;

@@ -701,3 +701,46 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed.** none. New: `BillingPagesIntegrationTests` (14 tests).
 
 **Orders created.** `TCT-20261117080914540-38807DBA` (fx2, MoMo mock, yearly, pending; reused by the later phases).
+
+
+### Gate record — B8 Order page (2026-11-17) — `feat(billing): one self-updating order page for waiting, confirming, paid and not-completed`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 602 total: 601 passed, 1 skipped, 0 failed |
+| G3 | pass | 2316 total = 2281 passed, 35 skipped, 0 failed (B7's 2271 + 45 new) |
+| G4 | pass | node 405 total / 404 passed (one new `formatClock` test); only the B0 speaking-catalog hash failure |
+| G5 | pass | `GET /api/billing/vnpay/ipn`, `POST /api/billing/momo/ipn`, `GET /Billing/VnPayReturn`, `GET /Billing/MoMoReturn` unchanged in route and response; `/Billing/MoMoQr` still answers (302 to the order page); `/Billing/OrderStatus` keeps its fields; signature helpers untouched |
+| G6 | pass | token grep over `billing.css` empty; no inline `style=`, `<style>` or `<script>` in the order page block (test); `git diff --check` clean; remaining `bi bi-` hits (10) are only `History.cshtml` and its view model (B9) |
+| G7 | pass | scope files only; `Program.cs`, `_Layout.cshtml` untouched in this phase |
+| G8 | pass | headless Chrome on the local Release app: all eight states at 1440 and 390 (screenshots `.tmp/billing/after/order-*.png`), plus 1366, 1024, 768, 320 and 200 % zoom for waiting, confirming and paid; no document overflow and nothing outside the viewport at any size; console errors none; network ≥ 400 none |
+| G9 | pass | compared with mockups 3, 4, 5 and 6 (differences below) |
+| G10 | pass | see "Behaviour verified" |
+| G11 | pass | one `h1` per page, `role="img"` + text alternative on the QR, `aria-live="polite"` status line (the countdown is not announced every second), keyboard walk reaches the app link, "Hủy và chọn cách khác" and "Kiểm tra lại ngay" with a 2 px focus outline each; Enter on the refresh button works; forced-colours screenshot readable; spinner animation is `none` under reduced motion and `tb-spin` otherwise (the text stays) |
+| G12 | pass | scripted contrast: waiting 27 text nodes, confirming 13, paid 21, cancelled/failed/expired/refunded 11–12, invalid-return 4 — zero failures at every size |
+| G13 | pass | full suite green; login/logout used by the browser runs; admin billing pages untouched |
+| G14 | pass | `var(--tct-*)` only; status is icon + words, never colour alone |
+| G15 | pass | owner-only: another user's `/Billing/Order/{code}`, `/Billing/OrderStatus` and `/Refresh` answer 404 (tests); refresh needs the antiforgery token (400 without); the mock box and mock confirmation exist only when `IsDevelopment()` and the MoMo mock flag are both on (page test + `MoMoMockConfirm` is 404 for Production and Staging); stored addresses become links only if they are https (or MoMo app schemes for the deep link) — `javascript:`, `data:` and `http:` are dropped (tests); the invalid-return page carries no order data (test) |
+| G16 | partial, expected | unchanged (the admin copy is removed in B10) |
+
+**What changed.**
+- `GET /Billing/Order/{orderCode}` (`Order` action, `GetOrderPageAsync`, `OrderPageBuilder`, `OrderPageViewModel`): owner only; lazy-expires the user's lapsed subscription first. Views `Order.cshtml` (waiting MoMo with QR/countdown/steps/summary/app link/dev box; waiting VNPay with "Tiếp tục thanh toán trên VNPay"; confirming incl. the manual-review wording; paid with receipt, end date and four unlocked features; not completed with a reason per status) and `InvalidReturn.cshtml`.
+- Return handlers redirect a verified return to the order page (owner), to login with the order URL as `returnUrl` (anonymous) or 404 (other user); an unverifiable return shows `InvalidReturn`. `MoMoMockConfirm` and checkout (MoMo and resumed orders) now land on the order page; `/Billing/MoMoQr` redirects there.
+- `billing-order.js`: QR drawn from the **pinned** script, app link (deep link on touch devices, https page elsewhere), countdown on the server clock, polling per the plan (3 s / 5 s, 15 s after a minute, stops at 10 minutes, pauses in a hidden tab and resumes on return), refresh every 15 s for 3 minutes while confirming, "Kiểm tra lại ngay" with a 3 s lock, reload once on a stage change (guarded in `sessionStorage` against a loop), "Mất kết nối. Đang thử lại…" on network errors without stopping, and session-ended handling.
+- Deleted: `MoMoQr.cshtml`, `PaymentResult.cshtml`, `MoMoQrViewModel`; `PaymentResultViewModel` lost its display-only properties (F11/F14).
+
+**Behaviour verified (G10).** Local run with MoMo mock mode: a fresh MoMo order page showed the QR (canvas/img, 240 px), a ticking countdown (14:49 → 14:46), the app link `momo://…`, the dev box; 3 status polls in 10.5 s while waiting; 0 while the tab was hidden for 8 s, polling resumed when visible; paying through the mock endpoint while the page kept polling ended the session (the role change, finding F1), the polling page detected the redirect and went to `/Account/Login?returnUrl=%2FBilling%2FOrder%2F{code}`; after signing in again the order page showed "Thanh toán thành công — Premium của bạn có hiệu lực đến 17/11/2027." The confirming page's refresh button posted once (`POST …/Refresh`), updated the live line ("Đang kiểm tra… lần gần nhất 15:25:11") and locked itself for 3 s; the page polled every 5 s while confirming.
+
+**Limitation found (D1).** The login page ignores `returnUrl`: `account-auth-ui.js` always goes to the home URL after a successful login, and `AccountController.Login` has no return handling. So "login brings the buyer back to the order page" works only as far as the link we send; the buyer lands on the dashboard and must open the order or the history. This is account code (forbidden without D1 = SỬA LUÔN); it is added to the proposal for Châu (B11): honour a local `returnUrl` on login success in addition to the role-claim renewal.
+
+**Mockup differences (the rule wins).** Mockup 6 says "Tài khoản của bạn chưa bị trừ tiền cho đơn này"; the plan forbids claiming that no money was taken, so the page says "Nếu tài khoản của bạn đã bị trừ tiền, hãy liên hệ hỗ trợ kèm mã đơn." The "Trạng thái" row of mockup 6 is a plain row (the chip partial is used by the history list). Mockups 4–6 show the sidebar summary only on the waiting page; the others are centered cards, as built. The header still reads "Upgrade: Premium" until B10. The fixed AI launcher can sit over the lower right corner.
+
+**Owned tests changed (and why).**
+- `BillingControllerTests`: the return actions now redirect to the order page / login with the order URL / show `InvalidReturn` instead of rendering `PaymentResult` (behaviour changed on purpose, plan 4.5).
+- `MoMoBillingControllerTests`: `MoMoQr_OtherUserOrder_ReturnsNotFound` became `MoMoQr_OldLink_RedirectsToTheOrderPage` (the 404 for another user now belongs to the order page and is covered by `Order_ForSomeoneElse_Is404…`); constructor argument only otherwise.
+- `BillingStatusViewModelTests`: removed `PaymentResult_ManualReviewAndPartiallyRefunded_HaveExpectedDisplayMappings` (the properties it asserted — English "Manual review", Bootstrap Icons — no longer exist; `BillingDisplayHelpersTests` covers the learner mapping).
+- `MoMoGatewayTests`/`VnPayGatewayTests` untouched: the MoMo gateway still returns the legacy `/Billing/MoMoQr?…` redirect and the checkout service turns it into the order-page URL for MoMo.
+- New: 22 integration tests in `BillingPagesIntegrationTests` (36 in all with B7), `OrderPageBuilderTests` (21), and three tests in `BillingControllerMessageTests`.
+
+**Orders created / fixture rows.** Real checks: `TCT-20261117082530903-05F1C9C8` (fx2, MoMo mock, yearly; paid through the mock endpoint at the end of the run; subscription to 17/11/2027). Synthetic fixture rows inserted by SQL for the visual states, all for the fixture learner `billing-fx4@tct.local`: `TCT-FIXTURE-PAID` (with a subscription row), `-WAIT-VNPAY`, `-CONFIRMING` (their expiry set six hours ahead so they stay open), `-REVIEW`, `-CANCELLED`, `-FAILED`, `-EXPIRED`, `-REFUNDED`.
