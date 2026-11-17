@@ -122,6 +122,13 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
             services.RemoveAll<IOpenAiSpeechCredentialResolver>();
             services.AddSingleton<IOpenAiSpeechCredentialResolver>(new BlockedOpenAiSpeechCredentialResolver());
 
+            // Development User Secrets may now contain a working SMTP account.
+            // Ordinary HTTP/service tests must never deliver through that account.
+            // Tests needing success explicitly replace this seam with a fake in
+            // their configureTestServices callback below.
+            services.RemoveAll<TCTVocabulary.Services.ISmtpMailTransport>();
+            services.AddSingleton<TCTVocabulary.Services.ISmtpMailTransport, BlockedTestSmtpMailTransport>();
+
             _configureTestServices?.Invoke(services);
         });
     }
@@ -451,5 +458,15 @@ internal sealed class BlockedOpenAiSpeechCredentialResolver : IOpenAiSpeechCrede
     {
         credentials = default!;
         return false;
+    }
+}
+
+internal sealed class BlockedTestSmtpMailTransport : TCTVocabulary.Services.ISmtpMailTransport
+{
+    public Task SendAsync(string host, int port, string username, string password,
+        System.Net.Mail.MailMessage message, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        throw new InvalidOperationException("Ordinary test host blocks real SMTP delivery.");
     }
 }
