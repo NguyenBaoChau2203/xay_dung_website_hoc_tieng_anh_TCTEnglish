@@ -253,12 +253,18 @@ namespace TCTEnglish.Services.Billing
 
     public class VnPayQueryResult
     {
+        /// <summary>Three-way answer: only <see cref="PaymentQueryState.Success"/> may confirm an order.</summary>
+        public PaymentQueryState State { get; init; } = PaymentQueryState.Unknown;
         public bool IsSuccess { get; init; }
         public bool IsCancelled { get; init; }
         public string? ResponseCode { get; init; }
         public string? TransactionNo { get; init; }
         public string? TransactionStatus { get; init; }
         public string? BankCode { get; init; }
+
+        /// <summary>Amount in VND (<c>vnp_Amount</c> / 100); the response signature covers it.</summary>
+        public long? AmountVnd { get; init; }
+        public string? PayDate { get; init; }
     }
 
     /// <summary>

@@ -555,3 +555,28 @@ No severity-A finding was disproved, so no design change is needed.
 - New: `IpnTransitionTests` (failure/success matrix through both handlers, MariaDB-style and SQLite-style unique errors), `MoMoIpnBodyHandlingTests`.
 
 **Mockup differences.** none. **Orders created.** none.
+
+
+### Gate record — B3 Provider queries (2026-11-17) — `feat(billing): add three-way provider queries, a MoMo query client and a throttled query service`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 379 total: 378 passed, 1 skipped, 0 failed |
+| G3 | pass | 2079 total = 2044 passed, 35 skipped, 0 failed (B2's 2020 + 59 new tests); the B0 timing test passed this run |
+| G4 | pass | node 391 / 390 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | signature helpers untouched (`MoMoQueryClient` only calls `ComputeHmacSha256`); no provider URL, response code or public route changed; the existing VNPay query request is unchanged |
+| G6 | pass | `git diff --check` clean for changed files; no CSS/view change |
+| G7 | pass | `Program.cs` diff = two DI lines (`IPaymentQueryService`, `IMoMoQueryClient` HTTP client); `_Layout.cshtml` untouched |
+| G8–G14 | n/a | backend only |
+| G15 | pass | secret grep over the diff and over the new files is empty; the query event payload carries only state, amount, codes and transaction id (test asserts no hash/signature/secret text); the MoMo request body test asserts it does not contain the access or secret key |
+| G16 | partial, expected | grep still shows reconciliation (B4) and admin (B10) assignments; the query service never assigns `Paid` itself — it calls `ConfirmPaidAsync(Source = ProviderQuery)` and a test proves that an Unknown, Failed, no-answer, wrong-amount or missing-amount answer leaves the order untouched |
+
+**What changed.**
+- `VnPayQueryResult` gained `State` (Success / Failed / Unknown), `AmountVnd` (`vnp_Amount / 100`, covered by the response signature) and `PayDate`; `IsSuccess`/`IsCancelled` are kept. Only `00/00` is Success and `00/02` Failed; every other pair, a failed query (`99`), "not found" (`91`) and an answer about another `vnp_TxnRef` are Unknown or no answer. The repo has no table of `vnp_TransactionStatus` meanings, so the plan's fallback applies and is recorded here.
+- `MoMoQueryClient` (+ `IMoMoQueryClient`, DTOs): POST `{BaseUrl}{QueryPath}`, HMAC-SHA256 over `accessKey&orderId&partnerCode&requestId`; `resultCode 0` = Success with amount, `1001–1007` and `1017` = Failed, everything else Unknown; an answer for another order/partner, a non-200, bad JSON, a network error or a timeout = Unknown; mock mode and an unconfigured gateway never call out; caller cancellation still cancels. **Unverified against a live MoMo sandbox** (no credentials, no call made); it cannot run unless the gateway is fully configured.
+- `PaymentQueryService.QueryAndConfirmAsync(orderId, trigger)`: eligible = `pending` or `expired` ≤ 24 h past expiry, VNPay or MoMo; throttle by `PaymentEvents` of type `query` (≥ 20 s since the newest, ≤ 12 in all, per order); one `query` event per attempt (`query:{OrderCode}:{ticks}`); a verified Success goes to `ConfirmPaidAsync(ProviderQuery)` with the provider's amount and event key `retq|refq|recon:{OrderCode}`. Failed is reported, not applied (the reconciliation decides in B4).
+
+**Owned tests changed.** none (`VnPayQueryClientTests` untouched and green). New: `ProviderQueryClientTests` (VNPay three-way table, MoMo client), `PaymentQueryServiceTests` (confirm, amount, eligibility, throttle, event content).
+
+**Mockup differences.** none. **Orders created.** none.

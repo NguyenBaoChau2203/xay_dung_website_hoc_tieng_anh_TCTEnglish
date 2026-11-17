@@ -167,6 +167,8 @@ builder.Services.AddScoped<IPremiumAccessService, PremiumAccessService>();
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 builder.Services.AddScoped<IBillingService, BillingService>();
 builder.Services.AddScoped<IPaymentConfirmationService, PaymentConfirmationService>();
+builder.Services.AddScoped<IPaymentQueryService, PaymentQueryService>();
+builder.Services.AddHttpClient<TCTEnglish.Services.Billing.MoMo.IMoMoQueryClient, TCTEnglish.Services.Billing.MoMo.MoMoQueryClient>();
 builder.Services.AddOptions<TCTEnglish.Services.Billing.VnPay.VnPayOptions>()
     .BindConfiguration(TCTEnglish.Services.Billing.VnPay.VnPayOptions.SectionName)
     .ValidateOnStart();
