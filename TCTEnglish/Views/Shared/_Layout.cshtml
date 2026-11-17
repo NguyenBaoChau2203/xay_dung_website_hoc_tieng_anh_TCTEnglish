@@ -71,11 +71,11 @@
             @* ── Bell / Notification dropdown ── *@
             <div class="notif-wrapper">
                 <button type="button" class="btn-notification" id="notificationBtn" aria-label="Thông báo"
-                        aria-haspopup="dialog" aria-expanded="false"
+                        aria-haspopup="true" aria-expanded="false"
+                        aria-controls="@(User.Identity?.IsAuthenticated == true ? "notifPanel" : null)"
                         title="Thông báo">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge" id="notificationBadge"
-                          style="display:none;">0</span>
+                    <i class="fas fa-bell" aria-hidden="true"></i>
+                    <span class="notification-badge" id="notificationBadge" aria-hidden="true" hidden></span>
                 </button>
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -283,7 +283,7 @@
                 <a class="nav-item @IsActive("Notification", "Index")" aria-current="@AriaCurrent("Notification", "Index")" asp-controller="Notification" asp-action="Index">
                     <i class="fas fa-bell" style="color: #f43f5e;"></i>
                     <span>Thông báo</span>
-                    <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" style="display:none;position:static;margin-left:auto;font-size:10px;min-width:18px;"></span>
+                    <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" aria-hidden="true" hidden></span>
                 </a>
 
                 <hr />
