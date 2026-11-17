@@ -1,149 +1,331 @@
 @model TCTVocabulary.ViewModels.ContactFormViewModel
+@using TCTVocabulary.ViewModels
 
 @{
     ViewData["Title"] = "Liên hệ";
-    var subjectOptions = TCTVocabulary.ViewModels.ContactFormViewModel.SubjectOptions;
+    var subjectOptions = ContactFormViewModel.SubjectOptions;
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/contact.css" asp-append-version="true" />
 }
 
-<div class="contact-hero">
-    <h1><i class="fa-solid fa-headset me-2"></i> Liên hệ với chúng tôi</h1>
-    <p>Bạn có câu hỏi, góp ý hoặc cần hỗ trợ? Đội ngũ TCT English luôn sẵn sàng giúp đỡ bạn.</p>
-</div>
-
-@if (TempData["ContactSuccessMessage"] is string successMessage)
-{
-    <div class="alert alert-success contact-alert" role="alert">
-        @successMessage
-    </div>
-}
-
-@if (TempData["ContactErrorMessage"] is string errorMessage)
-{
-    <div class="alert alert-danger contact-alert" role="alert">
-        @errorMessage
-    </div>
-}
-
-<div class="contact-grid">
-    <div class="info-section">
-        <div class="info-card">
-            <div class="icon-box blue">
-                <i class="fa-solid fa-envelope"></i>
+<div class="tct-theme tct-page contact-page">
+    <!-- Hero Banner with Vibrant Claymorphism -->
+    <div class="contact-banner mb-3">
+        <div class="contact-banner-content">
+            <div class="contact-banner-badge">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <i class="fa-solid fa-headset me-1" aria-hidden="true"></i>
+                <span>Trung tâm hỗ trợ TCT English</span>
             </div>
-            <div class="info-text">
-                <h5>Email</h5>
-                <p>support.tctenglish@gmail.com</p>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <div class="icon-box green">
-                <i class="fa-solid fa-phone"></i>
-            </div>
-            <div class="info-text">
-                <h5>Điện thoại</h5>
-                <p>+84 123 456 789</p>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <div class="icon-box purple">
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="info-text">
-                <h5>Địa chỉ</h5>
-                <p>Hà Nội, Việt Nam</p>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <div class="icon-box orange">
-                <i class="fa-solid fa-clock"></i>
-            </div>
-            <div class="info-text">
-                <h5>Giờ làm việc</h5>
-                <p>Thứ 2 - Thứ 6, 8:00 - 17:30</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-card">
-        <h3>Gửi tin nhắn</h3>
-        <p class="form-subtitle">Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
-
-        <form asp-action="Contact" asp-controller="Home" method="post" id="contactForm" novalidate>
-            @Html.AntiForgeryToken()
-
-            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-3"></div>
-
-            <div class="mb-3">
-                <label asp-for="Name" class="form-label">Họ và tên <span class="text-danger">*</span></label>
-                <input asp-for="Name" class="form-control" placeholder="Nhập họ tên..." autocomplete="name" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label">Email <span class="text-danger">*</span></label>
-                <input asp-for="Email" class="form-control" placeholder="example@email.com" autocomplete="email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Subject" class="form-label">Chủ đề</label>
-                <select asp-for="Subject" class="form-control">
-                    @foreach (var item in subjectOptions)
-                    {
-                        <option value="@item.Key">@item.Value</option>
-                    }
-                </select>
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Message" class="form-label">Nội dung <span class="text-danger">*</span></label>
-                <textarea asp-for="Message" class="form-control" rows="5" maxlength="2000" placeholder="Mô tả chi tiết câu hỏi hoặc góp ý của bạn..."></textarea>
-                <div class="form-text text-muted small mt-1">Tối đa 2.000 ký tự. Phản hồi trong vòng 24 giờ làm việc.</div>
-                <span asp-validation-for="Message" class="text-danger"></span>
-            </div>
-
-            <button type="submit" class="btn-send" id="contactSubmitBtn" aria-live="polite">
-                <span class="btn-send-default">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    Gửi tin nhắn
+            <h1 class="contact-banner-title">
+                Liên hệ với chúng tôi
+            </h1>
+            <p class="contact-banner-desc">
+                Bạn có câu hỏi, góp ý cải tiến hoặc cần hỗ trợ tài khoản? Đội ngũ TCT English luôn sẵn sàng lắng nghe và đồng hành cùng bạn.
+            </p>
+            <div class="contact-banner-chips">
+                <span class="banner-chip">
+                    <i class="fa-solid fa-bolt text-warning me-1" aria-hidden="true"></i> Phản hồi tận tâm
                 </span>
-                <span class="btn-send-loading" aria-hidden="true">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Đang gửi...
+                <span class="banner-chip">
+                    <i class="fa-solid fa-shield-halved text-info me-1" aria-hidden="true"></i> Bảo mật tài khoản
                 </span>
-            </button>
-        </form>
+                <span class="banner-chip">
+                    <i class="fa-solid fa-user-check text-success me-1" aria-hidden="true"></i> Hỗ trợ mọi học viên
+                </span>
+            </div>
+        </div>
+        <div class="contact-banner-visual d-none d-lg-flex" aria-hidden="true">
+            <div class="clay-illustration-card">
+                <div class="clay-orb orb-1"></div>
+                <div class="clay-orb orb-2"></div>
+                <div class="clay-orb orb-3"></div>
+                <div class="clay-icon-circle">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="faq-section">
-    <h3><i class="fa-solid fa-circle-question me-2 faq-icon"></i> Câu hỏi thường gặp</h3>
-    <div class="faq-grid">
-        <div class="faq-item">
-            <h5>Tài khoản bị khóa thì phải làm gì?</h5>
-            <p>Hãy gửi tin nhắn với chủ đề "Khiếu nại khóa tài khoản" kèm theo email đăng ký. Đội ngũ admin sẽ xem xét và phản hồi sớm nhất.</p>
+    @if (TempData["ContactSuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success d-flex align-items-center gap-3 contact-status-alert mb-4" role="status" id="contactSuccessAlert">
+            <i class="fa-solid fa-circle-check fs-4 text-success flex-shrink-0" aria-hidden="true"></i>
+            <div>
+                <div class="fw-bold">Gửi yêu cầu thành công!</div>
+                <div>@successMessage</div>
+            </div>
         </div>
-        <div class="faq-item">
-            <h5>Làm sao để đổi mật khẩu?</h5>
-            <p>Vào Cài đặt tài khoản -> Đổi mật khẩu, hoặc dùng chức năng "Quên mật khẩu" ở trang đăng nhập.</p>
+    }
+
+    @if (Model.StatusMessage is string statusMessage)
+    {
+        var alertClass = Model.State switch
+        {
+            ContactFormState.Invalid => "alert-danger",
+            ContactFormState.Unavailable => "alert-warning",
+            ContactFormState.Failed => "alert-danger",
+            ContactFormState.Unknown => "alert-warning",
+            ContactFormState.Throttled => "alert-warning",
+            ContactFormState.Duplicate => "alert-info",
+            ContactFormState.Expired => "alert-warning",
+            _ => "alert-secondary"
+        };
+        var iconClass = Model.State switch
+        {
+            ContactFormState.Invalid => "fa-solid fa-triangle-exclamation text-danger",
+            ContactFormState.Unavailable => "fa-solid fa-server text-warning",
+            ContactFormState.Failed => "fa-solid fa-circle-xmark text-danger",
+            ContactFormState.Unknown => "fa-solid fa-circle-question text-warning",
+            ContactFormState.Throttled => "fa-solid fa-hourglass-half text-warning",
+            ContactFormState.Duplicate => "fa-solid fa-clone text-info",
+            ContactFormState.Expired => "fa-solid fa-clock-rotate-left text-warning",
+            _ => "fa-solid fa-circle-info text-secondary"
+        };
+        <div class="alert @alertClass d-flex align-items-start gap-3 contact-status-alert mb-4" role="alert" id="contactStatus" data-contact-state="@Model.State">
+            <i class="@iconClass fs-4 mt-1 flex-shrink-0" aria-hidden="true"></i>
+            <div class="contact-status-content flex-grow-1">
+                <div class="fw-bold">@statusMessage</div>
+                @if (Model.State == ContactFormState.Unknown)
+                {
+                    <p class="small text-secondary mb-0 mt-1">
+                        Hệ thống có thể đã tiếp nhận thư nhưng chưa kịp trả biên nhận. Để tránh gửi trùng lặp, vui lòng không gửi lại ngay. Nội dung của bạn vẫn được giữ nguyên.
+                    </p>
+                }
+                else if (Model.State == ContactFormState.Throttled)
+                {
+                    <p class="small text-secondary mb-0 mt-1">
+                        Để ngăn chặn thư rác và bảo vệ hệ thống, vui lòng chờ ít phút trước khi thử gửi lại. Nội dung đã nhập được giữ nguyên.
+                    </p>
+                }
+                else if (Model.State == ContactFormState.Unavailable)
+                {
+                    <p class="small text-secondary mb-0 mt-1">
+                        Kênh gửi thư tạm thời bận hoặc đang bảo trì. Vui lòng giữ trang và thử lại sau ít phút.
+                    </p>
+                }
+                else if (Model.State == ContactFormState.Duplicate)
+                {
+                    <p class="small text-secondary mb-0 mt-1">
+                        Hệ thống đã ghi nhận yêu cầu này từ bạn. Ban quản trị sẽ xử lý và phản hồi sớm qua email.
+                    </p>
+                }
+                else if (Model.State == ContactFormState.Expired)
+                {
+                    <p class="small text-secondary mb-0 mt-1">
+                        Mã bảo mật của biểu mẫu đã được cấp mới tự động. Bạn hãy kiểm tra lại thông tin và nhấn gửi lại.
+                    </p>
+                }
+            </div>
         </div>
-        <div class="faq-item">
-            <h5>TCT English có miễn phí không?</h5>
-            <p>Có. Tất cả tính năng cơ bản đều miễn phí cho nhân viên công ty TCT.</p>
-        </div>
-        <div class="faq-item">
-            <h5>Tôi muốn góp ý/báo lỗi?</h5>
-            <p>Bạn có thể gửi qua form trên hoặc email trực tiếp cho chúng tôi. Mọi ý kiến đều được ghi nhận.</p>
-        </div>
+    }
+
+    <div class="contact-grid">
+        <aside class="info-section" aria-label="Thông tin hỗ trợ">
+            <div class="info-card tct-clay-surface">
+                <div class="info-card-header mb-3">
+                    <span class="info-badge">
+                        <i class="fa-solid fa-headset me-1" aria-hidden="true"></i> Hỗ trợ trực tuyến
+                    </span>
+                    <h2 class="h5 mt-2 mb-1 fw-bold text-dark">Kênh tiếp nhận hỗ trợ</h2>
+                    <p class="text-secondary small mb-0">Biểu mẫu tiếp nhận mọi yêu cầu mà không cần đăng nhập.</p>
+                </div>
+
+                <div class="info-channels">
+                    <div class="channel-item">
+                        <div class="channel-icon blue">
+                            <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-text">
+                            <h3 class="channel-title">Biểu mẫu trực tuyến</h3>
+                            <p class="channel-desc">Gửi thắc mắc, câu hỏi hoặc phản hồi tính năng học tập.</p>
+                        </div>
+                    </div>
+
+                    <div class="channel-item">
+                        <div class="channel-icon orange">
+                            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-text">
+                            <h3 class="channel-title">Khiếu nại tài khoản</h3>
+                            <p class="channel-desc">Tài khoản bị khóa? Chọn chủ đề tương ứng và điền email đăng ký.</p>
+                        </div>
+                    </div>
+
+                    <div class="channel-item">
+                        <div class="channel-icon green">
+                            <i class="fa-solid fa-reply-all" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-text">
+                            <h3 class="channel-title">Phản hồi qua email</h3>
+                            <p class="channel-desc">Admin phản hồi trực tiếp vào hòm thư cá nhân bạn đã cung cấp.</p>
+                        </div>
+                    </div>
+
+                    <div class="channel-item">
+                        <div class="channel-icon purple">
+                            <i class="fa-solid fa-bug" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-text">
+                            <h3 class="channel-title">Báo lỗi &amp; Góp ý</h3>
+                            <p class="channel-desc">Đóng góp ý kiến để hoàn thiện trải nghiệm học tiếng Anh.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="form-card tct-clay-surface" aria-label="Biểu mẫu gửi tin nhắn">
+            <div class="form-header mb-3">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="form-header-icon" aria-hidden="true">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </span>
+                    <h2 class="h5 fw-bold text-dark mb-0">Gửi tin nhắn cho chúng tôi</h2>
+                </div>
+                <p class="form-subtitle text-secondary small mb-0">
+                    Vui lòng cung cấp chính xác địa chỉ email để ban quản trị có thể gửi phản hồi cho bạn.
+                </p>
+            </div>
+
+            <form asp-action="Contact" asp-controller="Home" method="post" id="contactForm" novalidate>
+                @Html.AntiForgeryToken()
+                <input asp-for="ContactNonce" type="hidden" />
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-2" role="alert" id="contactValidationSummary"></div>
+
+                <div class="row g-3 mb-2">
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="form-label" id="nameLabel">
+                            Họ và tên <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input asp-for="Name" class="form-control" maxlength="100" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="name" required aria-required="true" aria-describedby="nameValidation" />
+                        <span asp-validation-for="Name" class="text-danger small mt-1 d-block" id="nameValidation"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label" id="emailLabel">
+                            Địa chỉ email <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input asp-for="Email" class="form-control" type="email" maxlength="254" placeholder="name@example.com" autocomplete="email" required aria-required="true" aria-describedby="emailHelp emailValidation" />
+                        <div id="emailHelp" class="form-text">Email nhận thư trả lời từ ban quản trị.</div>
+                        <span asp-validation-for="Email" class="text-danger small mt-1 d-block" id="emailValidation"></span>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label asp-for="Subject" class="form-label" id="subjectLabel">
+                        Chủ đề liên hệ <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <select asp-for="Subject" class="form-select" required aria-required="true" aria-describedby="subjectHelp subjectValidation">
+                        @foreach (var item in subjectOptions)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </select>
+                    <div id="subjectHelp" class="form-text">Chọn đúng phân loại để yêu cầu được giải quyết nhanh nhất.</div>
+                    <span asp-validation-for="Subject" class="text-danger small mt-1 d-block" id="subjectValidation"></span>
+                </div>
+
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between align-items-baseline mb-1">
+                        <label asp-for="Message" class="form-label mb-0" id="messageLabel">
+                            Nội dung tin nhắn <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <span id="messageCounter" class="contact-counter small text-secondary" aria-live="polite">
+                            <span id="messageCurrentCount">@(Model.Message?.Length ?? 0)</span>/2000 ký tự
+                        </span>
+                    </div>
+                    <textarea asp-for="Message" class="form-control" rows="4" maxlength="2000" placeholder="Mô tả chi tiết câu hỏi, phản hồi hoặc vấn đề bạn gặp phải..." required aria-required="true" aria-describedby="messageHelp messageCounter messageValidation"></textarea>
+                    <div id="messageHelp" class="form-text">Tối đa 2.000 ký tự. Vui lòng không chèn liên kết độc hại hoặc spam.</div>
+                    <span asp-validation-for="Message" class="text-danger small mt-1 d-block" id="messageValidation"></span>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-1 form-footer mt-auto">
+                    <span class="text-secondary small">
+                        <i class="fa-solid fa-shield-halved text-primary me-1" aria-hidden="true"></i>
+                        Chỉ cung cấp thông tin cần thiết để hỗ trợ
+                    </span>
+                    <button type="submit" class="btn btn-primary btn-send" id="contactSubmitBtn" aria-live="polite">
+                        <span class="btn-send-default">
+                            <i class="fa-solid fa-paper-plane me-1" aria-hidden="true"></i>
+                            Gửi tin nhắn
+                        </span>
+                        <span class="btn-send-loading" aria-hidden="true">
+                            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                            Đang gửi...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </section>
     </div>
+
+    <section class="faq-section mt-4" aria-label="Câu hỏi thường gặp">
+        <div class="faq-header mb-3">
+            <h2 class="h5 fw-bold text-dark">
+                <i class="fa-solid fa-circle-question text-primary me-2 faq-icon" aria-hidden="true"></i>
+                Câu hỏi thường gặp
+            </h2>
+            <p class="text-secondary small mb-0">Một số giải đáp nhanh cho các thắc mắc phổ biến của người học.</p>
+        </div>
+
+        <div class="accordion contact-accordion" id="contactFaqAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeadingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                        Tài khoản bị khóa thì phải làm gì để khiếu nại?
+                    </button>
+                </h3>
+                <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#contactFaqAccordion">
+                    <div class="accordion-body">
+                        Hãy chọn chủ đề <strong>"Khiếu nại tài khoản"</strong> ở biểu mẫu trên và nhập đúng địa chỉ email đã đăng ký. Trong phần nội dung, hãy nêu rõ lý do bạn cho rằng việc khóa tài khoản là nhầm lẫn. Ban quản trị sẽ rà soát và phản hồi kết quả trực tiếp qua email của bạn.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeadingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                        Làm sao để đặt lại mật khẩu khi bị quên?
+                    </button>
+                </h3>
+                <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#contactFaqAccordion">
+                    <div class="accordion-body">
+                        Bạn có thể sử dụng chức năng <a href="@Url.Action("ForgotPassword", "Account")" class="text-primary fw-semibold">Quên mật khẩu</a> tại màn hình đăng nhập. Hệ thống sẽ gửi email hướng dẫn đặt lại mật khẩu về hòm thư của bạn. Nếu đã đăng nhập, bạn có thể đổi mật khẩu tại trang Cài đặt tài khoản.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeadingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                        Tôi muốn góp ý cải tiến hoặc báo lỗi tính năng học tập?
+                    </button>
+                </h3>
+                <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#contactFaqAccordion">
+                    <div class="accordion-body">
+                        Chúng tôi luôn trân trọng mọi ý kiến xây dựng. Vui lòng chọn chủ đề <strong>"Báo lỗi / Bug"</strong> hoặc <strong>"Góp ý cải tiến"</strong>, cung cấp chi tiết tính năng bạn đang thao tác hoặc lỗi gặp phải để đội ngũ kỹ thuật xử lý sớm nhất.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeadingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                        Tôi có cần tài khoản đăng nhập để gửi biểu mẫu không?
+                    </button>
+                </h3>
+                <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#contactFaqAccordion">
+                    <div class="accordion-body">
+                        Không cần. Biểu mẫu liên hệ cho phép khách truy cập và người dùng chưa đăng nhập gửi tin nhắn, rất tiện lợi khi bạn gặp sự cố đăng nhập hoặc tài khoản đang bị khóa.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 @section Scripts {

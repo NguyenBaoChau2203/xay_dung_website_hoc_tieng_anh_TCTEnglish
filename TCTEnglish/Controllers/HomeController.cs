@@ -10,6 +10,7 @@ using System.Text;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
+using TCTEnglish.Services.Contact;
 
 namespace TCTVocabulary.Controllers
 {
@@ -620,41 +621,74 @@ namespace TCTVocabulary.Controllers
 
         [AllowAnonymous]
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult Contact(string? subject)
         {
             var vm = new ContactFormViewModel
             {
-                Subject = ContactFormViewModel.NormalizeSubject(subject)
+                Subject = ContactFormViewModel.NormalizeSubject(subject),
+                ContactNonce = _emailSender.IssueContactNonce(ContactClientPartition())
             };
-
+            // The query parameter is also a ModelState entry; do not let it override the normalized selection.
+            ModelState.Remove(nameof(vm.Subject));
             return View(vm);
         }
 
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [RequestSizeLimit(32768)]
+        [RequestFormLimits(ValueCountLimit = 16, ValueLengthLimit = 24576, KeyLengthLimit = 64, MultipartBodyLengthLimit = 32768)]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Contact(ContactFormViewModel model)
         {
-            model.Subject = ContactFormViewModel.NormalizeSubject(model.Subject);
-
+            // MVC keeps the raw attempted values; render exactly the trimmed values validated by the setters.
+            ModelState.SetModelValue(nameof(model.Name), model.Name, model.Name);
+            ModelState.SetModelValue(nameof(model.Email), model.Email, model.Email);
+            ModelState.SetModelValue(nameof(model.Subject), model.Subject, model.Subject);
+            ModelState.SetModelValue(nameof(model.Message), model.Message, model.Message);
             if (!ModelState.IsValid)
             {
+                model.State = ContactFormState.Invalid;
+                RenewContactNonce(model);
                 return View(model);
             }
+            if (Request.Headers.UserAgent.ToString().Length > 2048
+                || Request.Headers.Sum(h => (long)h.Key.Length + h.Value.Sum(v => (long)(v?.Length ?? 0))) > 16384)
+            {
+                ModelState.AddModelError(string.Empty, "Thông tin yêu cầu vượt giới hạn cho phép.");
+                model.State = ContactFormState.Invalid;
+                Response.StatusCode = StatusCodes.Status400BadRequest;
+                return View(model);
+            }
+            var result = await _emailSender.SubmitContactAsync(model, ContactClientPartition(),
+                Request.Headers.UserAgent.ToString(), HttpContext.RequestAborted);
+            if (result == ContactSubmissionStatus.Accepted)
+            {
+                TempData["ContactSuccessMessage"] = "Máy chủ thư đã tiếp nhận yêu cầu của bạn. Cảm ơn bạn đã liên hệ.";
+                return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+            }
+            (model.State, Response.StatusCode) = result switch
+            {
+                ContactSubmissionStatus.ConfigurationUnavailable => (ContactFormState.Unavailable, StatusCodes.Status503ServiceUnavailable),
+                ContactSubmissionStatus.Failed => (ContactFormState.Failed, StatusCodes.Status503ServiceUnavailable),
+                ContactSubmissionStatus.Unknown => (ContactFormState.Unknown, StatusCodes.Status202Accepted),
+                ContactSubmissionStatus.Throttled => (ContactFormState.Throttled, StatusCodes.Status429TooManyRequests),
+                ContactSubmissionStatus.Duplicate => (ContactFormState.Duplicate, StatusCodes.Status409Conflict),
+                ContactSubmissionStatus.InvalidOperation => (ContactFormState.Expired, StatusCodes.Status400BadRequest),
+                _ => (ContactFormState.Invalid, StatusCodes.Status400BadRequest)
+            };
+            if (result is ContactSubmissionStatus.ConfigurationUnavailable or ContactSubmissionStatus.Failed or ContactSubmissionStatus.InvalidOperation)
+                RenewContactNonce(model);
+            return View(model);
+        }
 
-            var isSent = await _emailSender.SendContactMessageAsync(
-                model.Name,
-                model.Email,
-                model.SubjectDisplayName,
-                model.Message,
-                HttpContext.Connection.RemoteIpAddress?.ToString(),
-                Request.Headers.UserAgent.ToString());
+        private string ContactClientPartition() => HttpContext.Connection.RemoteIpAddress?.MapToIPv6().ToString() ?? "unavailable";
 
-            TempData[isSent ? "ContactSuccessMessage" : "ContactErrorMessage"] = isSent
-                ? "Yêu cầu của bạn đã được gửi. Chúng tôi sẽ phản hồi trong thời gian sớm nhất."
-                : "Không thể gửi liên hệ lúc này. Vui lòng thử lại sau hoặc email support.tctenglish@gmail.com.";
-
-            return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+        private void RenewContactNonce(ContactFormViewModel model)
+        {
+            model.ContactNonce = _emailSender.IssueContactNonce(ContactClientPartition());
+            ModelState.Remove(nameof(model.ContactNonce));
         }
 
         [HttpGet]
