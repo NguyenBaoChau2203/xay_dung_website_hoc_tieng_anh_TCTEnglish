@@ -214,6 +214,10 @@ builder.Services.AddSingleton<IAiStreamingService, AiStreamingService>();
 builder.Services.AddHostedService<AutoUnlockWorker>();
 builder.Services.AddHostedService<NotificationWorker>();
 builder.Services.AddScoped<IReadingTranslationService, ReadingTranslationService>();
+builder.Services.AddScoped<TCTEnglish.Services.Reading.IReadingAdminService, TCTEnglish.Services.Reading.ReadingAdminService>();
+builder.Services.AddScoped<TCTEnglish.Services.Reading.IReadingLearningService, TCTEnglish.Services.Reading.ReadingLearningService>();
+builder.Services.AddScoped<TCTEnglish.Services.Reading.IReadingAssistService, TCTEnglish.Services.Reading.ReadingAssistService>();
+builder.Services.AddScoped<TCTEnglish.Services.Reading.IReadingExcelService, TCTEnglish.Services.Reading.ReadingExcelService>();
 
 builder.Services.AddAuthentication(options =>
 {

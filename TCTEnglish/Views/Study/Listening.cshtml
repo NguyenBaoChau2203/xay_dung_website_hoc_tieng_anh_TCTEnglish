@@ -125,7 +125,14 @@
                 @if (!Model.MyLessons.Any())
                 {
                     <div class="my-empty-state" id="my-empty-state">
-                        <div class="my-empty-icon"><i class="fas fa-headphones"></i></div>
+                        <img class="tct-mascot"
+                             src="~/brand/mascot/poses/tico-mascot-welcome-color.png"
+                             asp-append-version="true"
+                             alt=""
+                             width="140"
+                             height="140"
+                             decoding="async"
+                             aria-hidden="true" />
                         <p class="my-empty-title">Chưa có bài nghe nào.</p>
                         <p class="my-empty-sub">Hãy dán link YouTube ở trên để thêm bài luyện nghe cá nhân.</p>
                     </div>

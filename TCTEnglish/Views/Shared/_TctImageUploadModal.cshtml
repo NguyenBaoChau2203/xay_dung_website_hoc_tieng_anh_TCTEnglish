@@ -1,0 +1,79 @@
+@{
+    var modalId = ViewData["TctImageUploadModalId"] as string ?? "tctImageUploadModal";
+    var title = ViewData["TctImageUploadTitle"] as string ?? "Tải ảnh";
+    var supports = ViewData["TctImageUploadSupports"] as string ?? "Hỗ trợ: PNG, JPG, JPEG, WEBP, GIF";
+    var labelledBy = modalId + "Label";
+}
+<div class="modal fade tct-image-upload"
+     id="@modalId"
+     tabindex="-1"
+     aria-labelledby="@labelledBy"
+     aria-hidden="true"
+     data-bs-backdrop="true"
+     data-bs-keyboard="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="@labelledBy">
+            <div class="modal-header">
+                <h2 class="modal-title" id="@labelledBy">@title</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <div class="tct-image-upload__dropzone"
+                     data-tct-upload-dropzone
+                     role="button"
+                     tabindex="0"
+                     aria-label="Vùng thả ảnh hoặc mở hộp chọn tệp">
+                    <i class="fa-regular fa-image tct-image-upload__icon" aria-hidden="true"></i>
+                    <p class="tct-image-upload__drop-text">
+                        Thả ảnh vào đây, hoặc <span class="tct-image-upload__browse">duyệt</span>
+                    </p>
+                    <p class="tct-image-upload__hint">@supports</p>
+                </div>
+
+                <input type="file"
+                       class="tct-image-upload__visually-hidden-file"
+                       data-tct-upload-picker
+                       accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+                       tabindex="-1"
+                       aria-hidden="true" />
+
+                <div class="tct-image-upload__file is-hidden" data-tct-upload-file>
+                    <div class="tct-image-upload__file-thumb" data-tct-upload-thumb aria-hidden="true"></div>
+                    <div class="tct-image-upload__file-meta">
+                        <div class="tct-image-upload__file-name" data-tct-upload-name></div>
+                        <div class="tct-image-upload__file-size" data-tct-upload-size></div>
+                        <div class="tct-image-upload__progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <span data-tct-upload-bar></span>
+                        </div>
+                    </div>
+                    <span class="tct-image-upload__pct" data-tct-upload-pct>0%</span>
+                    <span class="tct-image-upload__done d-none" data-tct-upload-done aria-hidden="true">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+                    <button type="button" class="tct-image-upload__clear" data-tct-upload-clear aria-label="Hủy chọn tệp">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <p class="visually-hidden" data-tct-upload-status aria-live="polite"></p>
+
+                <div class="tct-image-upload__or"><span>hoặc</span></div>
+
+                <div class="tct-image-upload__url-row">
+                    <label class="visually-hidden" for="@(modalId)_url">Thêm URL tệp</label>
+                    <input id="@(modalId)_url"
+                           type="url"
+                           class="form-control"
+                           placeholder="Thêm URL tệp"
+                           data-tct-upload-url
+                           autocomplete="off" />
+                    <button type="button" class="btn btn-outline-secondary" data-tct-upload-url-btn>Tải URL</button>
+                </div>
+            </div>
+            <div class="modal-footer tct-image-upload__foot justify-content-end">
+                <button type="button" class="btn btn-outline-secondary" data-tct-upload-cancel data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" data-tct-upload-import disabled>Import</button>
+            </div>
+        </div>
+    </div>
+</div>

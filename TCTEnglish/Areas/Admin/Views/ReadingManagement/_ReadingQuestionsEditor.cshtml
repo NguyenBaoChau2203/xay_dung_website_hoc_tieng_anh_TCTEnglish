@@ -1,0 +1,304 @@
+@model TCTEnglish.Areas.Admin.ViewModels.ReadingEditorViewModel
+@using TCTEnglish.Areas.Admin.ViewModels
+@using TCTEnglish.Models.Reading
+@{
+    var isEditable = !Model.Id.HasValue || ReadingAdminUi.IsEditable(Model.Status);
+    var questions = Model.Questions?.OrderBy(q => q.OrderIndex).ToList()
+                    ?? new List<ReadingQuestionEditorViewModel>();
+}
+
+@if (isEditable)
+{
+    <input type="hidden" name="QuestionsBound" value="true" />
+}
+
+<div class="admin-reading-questions" data-reading-questions-root @(isEditable ? null : "data-readonly")>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h3 class="admin-reading-section-title mb-0">Câu hỏi</h3>
+        @if (isEditable)
+        {
+            <button type="button" class="btn btn-outline-primary btn-sm" data-reading-add-question>
+                <i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Thêm câu hỏi
+            </button>
+        }
+    </div>
+    <p class="form-text mb-3">
+        Ba dạng trả lời: chọn đáp án (MultipleChoice / TrueFalse), nhập chữ (GapFill / ShortAnswer),
+        ghép cặp (Matching). Excel vẫn dùng để import hàng loạt.
+    </p>
+
+    <div class="admin-reading-questions-list" data-reading-questions-list>
+        @for (var qi = 0; qi < questions.Count; qi++)
+        {
+            var q = questions[qi];
+            var qType = ReadingQuestionTypes.IsValid(q.QuestionType) ? q.QuestionType : ReadingQuestionTypes.MultipleChoice;
+            var isChoice = qType is ReadingQuestionTypes.MultipleChoice or ReadingQuestionTypes.TrueFalse;
+            var isText = qType is ReadingQuestionTypes.GapFill or ReadingQuestionTypes.ShortAnswer;
+            var isMatching = qType == ReadingQuestionTypes.Matching;
+            var allOptions = q.Options?.OrderBy(o => o.OptionOrder).ToList() ?? new List<ReadingOptionEditorViewModel>();
+            var choiceOptions = isChoice ? allOptions : new List<ReadingOptionEditorViewModel>();
+            if (isChoice && choiceOptions.Count == 0)
+            {
+                choiceOptions = qType == ReadingQuestionTypes.TrueFalse
+                    ? new List<ReadingOptionEditorViewModel>
+                    {
+                        new() { OptionText = "True", IsCorrect = true, OptionOrder = 1 },
+                        new() { OptionText = "False", IsCorrect = false, OptionOrder = 2 }
+                    }
+                    : new List<ReadingOptionEditorViewModel>
+                    {
+                        new() { OptionText = "", IsCorrect = true, OptionOrder = 1 },
+                        new() { OptionText = "", IsCorrect = false, OptionOrder = 2 }
+                    };
+            }
+
+            var matchPairs = new List<(string Key, string Left, string Right)>();
+            if (isMatching)
+            {
+                var groups = allOptions
+                    .Where(o => !string.IsNullOrWhiteSpace(o.MatchKey))
+                    .GroupBy(o => o.MatchKey!.Trim(), StringComparer.OrdinalIgnoreCase);
+                foreach (var g in groups)
+                {
+                    var left = g.FirstOrDefault(o => string.Equals(o.MatchSide, "Left", StringComparison.OrdinalIgnoreCase))?.OptionText ?? "";
+                    var right = g.FirstOrDefault(o => string.Equals(o.MatchSide, "Right", StringComparison.OrdinalIgnoreCase))?.OptionText ?? "";
+                    matchPairs.Add((g.Key, left, right));
+                }
+                if (matchPairs.Count == 0)
+                    matchPairs.Add(("p1", "", ""));
+            }
+
+            <div class="admin-reading-question-card" data-reading-question data-q-index="@qi">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                    <div class="fw-semibold">Câu <span data-reading-q-label>@(qi + 1)</span></div>
+                    @if (isEditable)
+                    {
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-reading-remove-question aria-label="Xóa câu hỏi">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        </button>
+                    }
+                </div>
+
+                <input type="hidden" name="Questions[@qi].Id" value="@(q.Id?.ToString() ?? "")" />
+                <input type="hidden" name="Questions[@qi].ExternalQuestionKey" value="@(q.ExternalQuestionKey ?? "")" />
+                <input type="hidden" name="Questions[@qi].OrderIndex" value="@(q.OrderIndex > 0 ? q.OrderIndex : qi + 1)" data-reading-order />
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Loại câu hỏi</label>
+                        <select class="form-select" name="Questions[@qi].QuestionType" data-reading-q-type @(isEditable ? null : "disabled")>
+                            @foreach (var t in ReadingQuestionTypes.All)
+                            {
+                                if (qType == t)
+                                {
+                                    <option value="@t" selected>@t</option>
+                                }
+                                else
+                                {
+                                    <option value="@t">@t</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Điểm</label>
+                        <input class="form-control" type="number" min="1" name="Questions[@qi].Points" value="@(q.Points > 0 ? q.Points : 1)" @(isEditable ? null : "disabled") />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tham chiếu đoạn</label>
+                        <input class="form-control" name="Questions[@qi].ParagraphReference" value="@(q.ParagraphReference ?? "")" placeholder="Ví dụ: 2" @(isEditable ? null : "disabled") />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Nội dung câu hỏi</label>
+                        <textarea class="form-control" rows="2" name="Questions[@qi].QuestionText" required @(isEditable ? null : "disabled")>@q.QuestionText</textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Giải thích (bắt buộc khi gửi duyệt)</label>
+                        <textarea class="form-control" rows="2" name="Questions[@qi].Explanation" @(isEditable ? null : "disabled")>@(q.Explanation ?? "")</textarea>
+                    </div>
+                </div>
+
+                <div class="admin-reading-q-block mt-3 @(isChoice ? "" : "d-none")" data-reading-block="choice">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                        <span class="fw-semibold">Đáp án lựa chọn</span>
+                        @if (isEditable)
+                        {
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-reading-add-option>Thêm lựa chọn</button>
+                        }
+                    </div>
+                    <div class="admin-reading-options" data-reading-options>
+                        @for (var oi = 0; oi < choiceOptions.Count; oi++)
+                        {
+                            var opt = choiceOptions[oi];
+                            <div class="admin-reading-option-row row g-2 align-items-center mb-2" data-reading-option>
+                                <div class="col-auto">
+                                    <input class="form-check-input" type="radio"
+                                           name="correct_q_@qi"
+                                           value="@oi"
+                                           data-reading-correct-radio
+                                           @(opt.IsCorrect ? "checked" : null)
+                                           title="Đáp án đúng"
+                                           @(isEditable ? null : "disabled") />
+                                    <input type="hidden" name="Questions[@qi].Options[@oi].IsCorrect" value="@(opt.IsCorrect ? "true" : "false")" data-reading-is-correct />
+                                </div>
+                                <div class="col">
+                                    <input type="hidden" name="Questions[@qi].Options[@oi].Id" value="@(opt.Id?.ToString() ?? "")" />
+                                    <input type="hidden" name="Questions[@qi].Options[@oi].OptionOrder" value="@(opt.OptionOrder > 0 ? opt.OptionOrder : oi + 1)" />
+                                    <input class="form-control" name="Questions[@qi].Options[@oi].OptionText" value="@opt.OptionText" placeholder="Nội dung lựa chọn" @(isEditable ? null : "disabled") />
+                                </div>
+                                @if (isEditable)
+                                {
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-outline-danger btn-sm" data-reading-remove-option aria-label="Xóa lựa chọn">
+                                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="admin-reading-q-block mt-3 @(isText ? "" : "d-none")" data-reading-block="text">
+                    <label class="form-label">Đáp án đúng (văn bản)</label>
+                    <input class="form-control" name="Questions[@qi].CorrectAnswerText" value="@(q.CorrectAnswerText ?? "")"
+                           placeholder="GapFill / ShortAnswer" @(isEditable ? null : "disabled") />
+                </div>
+
+                <div class="admin-reading-q-block mt-3 @(isMatching ? "" : "d-none")" data-reading-block="matching">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                        <span class="fw-semibold">Cặp ghép nối</span>
+                        @if (isEditable)
+                        {
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-reading-add-pair>Thêm cặp</button>
+                        }
+                    </div>
+                    <div class="admin-reading-pairs" data-reading-pairs>
+                        @for (var pi = 0; pi < matchPairs.Count; pi++)
+                        {
+                            var pair = matchPairs[pi];
+                            var leftIdx = pi * 2;
+                            var rightIdx = pi * 2 + 1;
+                            <div class="admin-reading-pair-row row g-2 align-items-end mb-2" data-reading-pair data-match-key="@pair.Key">
+                                <div class="col-md-5">
+                                    <label class="form-label">Trái (Left)</label>
+                                    <input type="hidden" name="Questions[@qi].Options[@leftIdx].MatchKey" value="@pair.Key" data-match-key-input />
+                                    <input type="hidden" name="Questions[@qi].Options[@leftIdx].MatchSide" value="Left" />
+                                    <input type="hidden" name="Questions[@qi].Options[@leftIdx].OptionOrder" value="@(leftIdx + 1)" />
+                                    <input type="hidden" name="Questions[@qi].Options[@leftIdx].IsCorrect" value="false" />
+                                    <input class="form-control" name="Questions[@qi].Options[@leftIdx].OptionText" value="@pair.Left" placeholder="Vế trái" @(isEditable ? null : "disabled") />
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Phải (Right)</label>
+                                    <input type="hidden" name="Questions[@qi].Options[@rightIdx].MatchKey" value="@pair.Key" data-match-key-input />
+                                    <input type="hidden" name="Questions[@qi].Options[@rightIdx].MatchSide" value="Right" />
+                                    <input type="hidden" name="Questions[@qi].Options[@rightIdx].OptionOrder" value="@(rightIdx + 1)" />
+                                    <input type="hidden" name="Questions[@qi].Options[@rightIdx].IsCorrect" value="false" />
+                                    <input class="form-control" name="Questions[@qi].Options[@rightIdx].OptionText" value="@pair.Right" placeholder="Vế phải" @(isEditable ? null : "disabled") />
+                                </div>
+                                @if (isEditable)
+                                {
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-outline-danger btn-sm w-100" data-reading-remove-pair>Xóa</button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (isEditable)
+    {
+        <template id="reading-question-template">
+            <div class="admin-reading-question-card" data-reading-question data-q-index="__QI__">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                    <div class="fw-semibold">Câu <span data-reading-q-label>__LABEL__</span></div>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-reading-remove-question aria-label="Xóa câu hỏi">
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <input type="hidden" name="Questions[__QI__].OrderIndex" value="__LABEL__" data-reading-order />
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Loại câu hỏi</label>
+                        <select class="form-select" name="Questions[__QI__].QuestionType" data-reading-q-type>
+                            <option value="MultipleChoice" selected>MultipleChoice</option>
+                            <option value="TrueFalse">TrueFalse</option>
+                            <option value="GapFill">GapFill</option>
+                            <option value="Matching">Matching</option>
+                            <option value="ShortAnswer">ShortAnswer</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Điểm</label>
+                        <input class="form-control" type="number" min="1" name="Questions[__QI__].Points" value="1" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tham chiếu đoạn</label>
+                        <input class="form-control" name="Questions[__QI__].ParagraphReference" placeholder="Ví dụ: 2" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Nội dung câu hỏi</label>
+                        <textarea class="form-control" rows="2" name="Questions[__QI__].QuestionText" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Giải thích (bắt buộc khi gửi duyệt)</label>
+                        <textarea class="form-control" rows="2" name="Questions[__QI__].Explanation"></textarea>
+                    </div>
+                </div>
+                <div class="admin-reading-q-block mt-3" data-reading-block="choice">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                        <span class="fw-semibold">Đáp án lựa chọn</span>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-reading-add-option>Thêm lựa chọn</button>
+                    </div>
+                    <div class="admin-reading-options" data-reading-options>
+                        <div class="admin-reading-option-row row g-2 align-items-center mb-2" data-reading-option>
+                            <div class="col-auto">
+                                <input class="form-check-input" type="radio" name="correct_q___QI__" value="0" data-reading-correct-radio checked title="Đáp án đúng" />
+                                <input type="hidden" name="Questions[__QI__].Options[0].IsCorrect" value="true" data-reading-is-correct />
+                            </div>
+                            <div class="col">
+                                <input type="hidden" name="Questions[__QI__].Options[0].OptionOrder" value="1" />
+                                <input class="form-control" name="Questions[__QI__].Options[0].OptionText" placeholder="Nội dung lựa chọn" />
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-outline-danger btn-sm" data-reading-remove-option aria-label="Xóa lựa chọn">
+                                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="admin-reading-option-row row g-2 align-items-center mb-2" data-reading-option>
+                            <div class="col-auto">
+                                <input class="form-check-input" type="radio" name="correct_q___QI__" value="1" data-reading-correct-radio title="Đáp án đúng" />
+                                <input type="hidden" name="Questions[__QI__].Options[1].IsCorrect" value="false" data-reading-is-correct />
+                            </div>
+                            <div class="col">
+                                <input type="hidden" name="Questions[__QI__].Options[1].OptionOrder" value="2" />
+                                <input class="form-control" name="Questions[__QI__].Options[1].OptionText" placeholder="Nội dung lựa chọn" />
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-outline-danger btn-sm" data-reading-remove-option aria-label="Xóa lựa chọn">
+                                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-reading-q-block mt-3 d-none" data-reading-block="text">
+                    <label class="form-label">Đáp án đúng (văn bản)</label>
+                    <input class="form-control" name="Questions[__QI__].CorrectAnswerText" placeholder="GapFill / ShortAnswer" />
+                </div>
+                <div class="admin-reading-q-block mt-3 d-none" data-reading-block="matching">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                        <span class="fw-semibold">Cặp ghép nối</span>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-reading-add-pair>Thêm cặp</button>
+                    </div>
+                    <div class="admin-reading-pairs" data-reading-pairs></div>
+                </div>
+            </div>
+        </template>
+    }
+</div>

@@ -1,0 +1,87 @@
+@model TCTEnglish.ViewModels.ReadingListViewModel
+@{
+    var topicLabel = string.IsNullOrWhiteSpace(Model.Topic) ? "Reading" : Model.Topic.Trim();
+    var topicKey = string.IsNullOrWhiteSpace(Model.Topic) ? "all" : Model.Topic.Trim().ToLowerInvariant();
+    var minutes = Model.EstimatedTimeMinutes;
+    var progressClass = Model.IsCompleted
+        ? "is-completed"
+        : Model.IsInProgress
+            ? "is-inprogress"
+            : "is-new";
+    var progressLabel = Model.IsCompleted
+        ? "Hoàn thành"
+        : Model.IsInProgress
+            ? "Đang học"
+            : "Chưa học";
+    var ctaLabel = Model.IsCompleted
+        ? "Đọc lại"
+        : Model.IsInProgress
+            ? "Tiếp tục"
+            : "Bắt đầu đọc";
+}
+
+<div class="reading-item-container"
+     data-title="@Model.Title.ToLowerInvariant()"
+     data-level="@Model.Level"
+     data-topic="@topicKey"
+     data-completed="@Model.IsCompleted.ToString().ToLowerInvariant()"
+     data-inprogress="@Model.IsInProgress.ToString().ToLowerInvariant()">
+    <a asp-controller="Reading"
+       asp-action="Study"
+       asp-route-id="@Model.Id"
+       class="reading-card-item tct-card tct-card--interactive reading-card-item--@Model.TopicAccentKey"
+       data-reading-card>
+        <div class="reading-card-visual" data-card-visual>
+            <div class="reading-card-thumb">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl"
+                         class="reading-card-img"
+                         alt=""
+                         loading="lazy"
+                         decoding="async" />
+                }
+                else
+                {
+                    <div class="reading-card-placeholder" aria-hidden="true">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                }
+            </div>
+            <span class="reading-card-level lvl-@Model.Level">@Model.Level</span>
+            <span class="reading-card-topic">@topicLabel</span>
+        </div>
+
+        <div class="reading-card-body">
+            <h3 class="reading-card-title tct-clamp-2">@Model.Title</h3>
+
+            <p class="reading-card-desc">@Model.ShortDescription</p>
+
+            <div class="reading-card-meta" aria-label="Thông tin bài đọc">
+                @if (minutes.HasValue && minutes.Value > 0)
+                {
+                    <span class="reading-card-meta-item">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        @minutes phút
+                    </span>
+                }
+                <span class="reading-card-meta-item reading-card-meta-item--questions">
+                    <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+                    @Model.QuestionCount câu hỏi
+                </span>
+            </div>
+
+            <div class="reading-card-footer">
+                <div class="reading-card-progress @progressClass" role="status">
+                    <span class="reading-card-progress-dot" aria-hidden="true"></span>
+                    <span class="reading-card-progress-label">@progressLabel</span>
+                </div>
+
+                <span class="reading-card-cta">
+                    <span class="reading-card-cta-text">@ctaLabel</span>
+                    <i class="fa-solid fa-arrow-right reading-card-cta-arrow" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </a>
+</div>

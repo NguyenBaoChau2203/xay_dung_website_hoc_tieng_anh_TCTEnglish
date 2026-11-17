@@ -189,18 +189,16 @@ body.auth-page {
 .auth-brand-logo {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background: var(--auth-gradient-btn);
-    border-radius: 18px;
-    margin-bottom: 28px;
-    box-shadow: 0 4px 20px rgba(66, 85, 255, 0.35);
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    line-height: 0;
 }
 
-.auth-brand-logo i {
-    font-size: 28px;
-    color: #fff;
+.auth-brand-logo img {
+    display: block;
+    height: 48px;
+    width: auto;
+    max-width: min(100%, 240px);
 }
 
 .auth-brand-title {
@@ -836,10 +834,11 @@ body.auth-page {
     }
 
     .auth-brand-logo {
-        width: 44px;
-        height: 44px;
         margin-bottom: 8px;
-        font-size: 20px;
+    }
+
+    .auth-brand-logo img {
+        height: 36px;
     }
 
     .auth-brand-title {

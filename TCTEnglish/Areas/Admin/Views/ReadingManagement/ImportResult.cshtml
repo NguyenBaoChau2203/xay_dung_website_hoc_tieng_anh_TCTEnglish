@@ -1,0 +1,101 @@
+@model TCTEnglish.Services.Reading.ReadingExcelImportConfirmResult
+@{
+    ViewData["Title"] = "Kết quả Import";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-reading.css" asp-append-version="true" />
+}
+
+<div class="container-fluid py-4 tct-theme admin-reading-page">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div>
+            <div class="admin-reading-eyebrow mb-2">Import Reading</div>
+            <h1 class="h3 admin-reading-header-title mb-1">Báo cáo Import</h1>
+            <p class="admin-reading-header-desc mb-0">
+                Các bài thành công đang ở trạng thái bản nháp — cần kiểm duyệt trước khi xuất bản.
+            </p>
+        </div>
+    </div>
+
+    <partial name="_ReadingImportSteps" model="3" />
+    <partial name="_ReadingAlerts" />
+
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-4">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Thành công</div>
+                <div class="admin-reading-stat-value text-success">@Model.SuccessCount</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Lỗi</div>
+                <div class="admin-reading-stat-value text-danger">@Model.FailedCount</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Bỏ qua</div>
+                <div class="admin-reading-stat-value">@Model.SkippedCount</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin-reading-card overflow-hidden mb-4">
+        @if (Model.Items == null || Model.Items.Count == 0)
+        {
+            <div class="admin-reading-empty">
+                <i class="fa-regular fa-folder-open d-block mb-3" aria-hidden="true"></i>
+                <h2 class="h5 mb-2">Không có dòng kết quả</h2>
+                <a asp-action="Import" class="btn btn-outline-secondary">Import lại</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table admin-reading-table align-middle mb-0">
+                    <thead>
+                    <tr>
+                        <th class="ps-3">ReadingCode</th>
+                        <th>Tiêu đề</th>
+                        <th>Trạng thái</th>
+                        <th>Passage ID</th>
+                        <th>Thông báo</th>
+                        <th class="text-end pe-3">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="ps-3" data-label="ReadingCode">@item.ReadingCode</td>
+                            <td data-label="Tiêu đề">@(string.IsNullOrWhiteSpace(item.Title) ? "—" : item.Title)</td>
+                            <td data-label="Trạng thái">@item.Status</td>
+                            <td data-label="Passage ID">@(item.PassageId?.ToString() ?? "—")</td>
+                            <td data-label="Thông báo">@item.Message</td>
+                            <td class="text-end pe-3 admin-reading-actions-cell" data-label="Thao tác">
+                                @if (item.PassageId.HasValue)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.PassageId" class="btn btn-sm btn-outline-primary admin-reading-hit">
+                                        Mở bài
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+
+    <div class="d-flex flex-wrap gap-2 admin-reading-actions">
+        <a asp-action="Index" class="btn btn-primary">
+            <i class="fa-solid fa-list me-1" aria-hidden="true"></i>Danh sách Reading
+        </a>
+        <a asp-action="Import" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-file-import me-1" aria-hidden="true"></i>Import thêm
+        </a>
+    </div>
+</div>

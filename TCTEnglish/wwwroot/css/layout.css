@@ -43,11 +43,18 @@ body {
 }
 
 .logo {
-    font-size: 32px;
-    font-weight: 900;
-    color: #4255ff;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     white-space: nowrap;
+    line-height: 0;
+}
+
+.logo-img {
+    display: block;
+    height: 36px;
+    width: auto;
+    max-width: min(200px, 42vw);
 }
 
 /* Search */
@@ -633,8 +640,9 @@ body {
         padding: 8px 10px;
     }
 
-    .logo {
-        font-size: 24px;
+    .logo-img {
+        height: 28px;
+        max-width: min(148px, 46vw);
     }
 
     .menu-icon {
@@ -991,6 +999,25 @@ button.nav-sub-item {
     overflow-x: auto; /* nếu màn hình quá nhỏ sẽ scroll ngang */
 }
 
+/* Keep footer aligned with .main when the fixed desktop/tablet sidebar is open.
+   Footer sits outside .layout, so it needs the same left offset as main content. */
+.layout:not(.sidebar-collapsed) ~ .tct-footer {
+    margin-left: var(--tct-sidebar-w, 280px);
+}
+
+@media (max-width: 1024px) {
+    .layout:not(.sidebar-collapsed) ~ .tct-footer {
+        margin-left: var(--tct-sidebar-w-md, 240px);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile sidebar overlays; do not push the footer */
+    .layout:not(.sidebar-collapsed) ~ .tct-footer {
+        margin-left: 0;
+    }
+}
+
 .footer-container {
     max-width: 1200px;
     margin: auto;
@@ -999,12 +1026,13 @@ button.nav-sub-item {
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
-    flex-wrap: nowrap; /* KHÔNG BAO GIỜ xuống dòng */
+    flex-wrap: wrap; /* reflow when sidebar + narrow viewports shrink the content column */
 }
 
     /* tránh cột bị bó quá nhỏ */
     .footer-container > div {
-        min-width: 180px;
+        min-width: min(180px, 100%);
+        flex: 1 1 160px;
     }
 
 /* ================= BRAND ================= */
@@ -1128,6 +1156,9 @@ button.nav-sub-item {
     background: transparent;
     border: none;
     padding: 6px;
+    margin: 0;
+    min-width: var(--tct-target-min, 44px);
+    min-height: var(--tct-target-min, 44px);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -1191,13 +1222,12 @@ button.nav-dropdown-item {
 /* Mobile footer responsive fix */
 @media (max-width: 768px) {
     .footer-container {
-        flex-wrap: wrap !important;
         gap: 24px;
         padding: 32px 16px;
     }
 
     .footer-container > div {
-        min-width: 140px;
+        min-width: min(140px, 100%);
         flex: 1 1 calc(50% - 16px);
     }
 

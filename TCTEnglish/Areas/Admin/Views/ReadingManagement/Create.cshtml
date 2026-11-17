@@ -1,50 +1,33 @@
-﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingCreateViewModel
+﻿@model TCTEnglish.Areas.Admin.ViewModels.ReadingEditorViewModel
+@{
+    ViewData["Title"] = "Tạo bài đọc";
+}
 
-<h2>Create Reading Passage</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/tct-image-upload.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin-reading.css" asp-append-version="true" />
+}
 
-<form asp-action="Create" method="post">
-
-    <div class="form-group mb-3">
-        <label>Title</label>
-        <input asp-for="Title" class="form-control" />
+<div class="container-fluid py-4 tct-theme admin-reading-page">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div>
+            <div class="admin-reading-eyebrow mb-2">Quản trị Reading</div>
+            <h1 class="h3 admin-reading-header-title mb-1">Tạo bài đọc (bản nháp)</h1>
+            <p class="admin-reading-header-desc mb-0">
+                Soạn metadata, nội dung và câu hỏi (chọn đáp án / nhập chữ / ghép cặp). Từ vựng hàng loạt qua Excel.
+            </p>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i>Quay lại danh sách
+        </a>
     </div>
 
-    <div class="form-group mb-3">
-        <label>Level</label>
-        <select asp-for="Level" class="form-control">
-            <option value="">Select level</option>
-            <option>A1</option>
-            <option>A2</option>
-            <option>B1</option>
-            <option>B2</option>
-            <option>C1</option>
-        </select>
-    </div>
+    <partial name="_ReadingAlerts" />
+    <partial name="_ReadingEditorForm" model="Model" />
+</div>
 
-    <div class="form-group mb-3">
-        <label>Topic</label>
-        <input asp-for="Topic" class="form-control" />
-    </div>
-
-    <div class="form-group mb-3">
-        <label>Image URL</label>
-        <input asp-for="ImageUrl" class="form-control" />
-    </div>
-
-    <div class="form-group mb-3">
-        <label>Content (HTML allowed)</label>
-        <textarea asp-for="Content"
-                  class="form-control"
-                  rows="10"></textarea>
-    </div>
-
-    <div class="form-check mb-3">
-        <input asp-for="IsPublished" class="form-check-input" />
-        <label class="form-check-label">Published</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-        Create Reading
-    </button>
-
-</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/tct-image-upload.js" asp-append-version="true"></script>
+    <script src="~/js/admin-reading.js" asp-append-version="true"></script>
+}

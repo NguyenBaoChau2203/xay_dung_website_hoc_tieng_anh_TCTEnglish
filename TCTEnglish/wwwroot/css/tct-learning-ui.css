@@ -744,6 +744,21 @@
 .tct-state--success .tct-state__icon { background: var(--tct-success-soft); color: var(--tct-success-text); }
 .tct-state--loading .tct-state__icon { background: var(--tct-info-soft);    color: var(--tct-info-text); }
 
+/* Tico in shared state blocks (brand/mascot expression-map); not logo/favicon */
+.tct-state__mascot {
+    display: block;
+    width: min(8.75rem, 42vw);
+    height: auto;
+    margin: 0;
+}
+
+.tct-mascot {
+    display: block;
+    width: min(10rem, 46vw);
+    height: auto;
+    margin-inline: auto;
+}
+
 .tct-skeleton {
     display: block;
     min-height: 1em;

@@ -81,7 +81,10 @@ and file maps: [project structure](docs/project-structure.md).
 
 - One standard: [DESIGN.md](DESIGN.md) (values, mandatory vs page-level) and
   [team UI workflow](docs/design-system/team-ui-workflow.md) (process, PR checklist,
-  legacy-screen tracker). Live examples: docs/design-system/preview.html. Do not copy
+  legacy-screen tracker). Multi-platform rule:
+  [multi-platform UI design](docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md)
+  — any UI build or edit must deliver the **whole feature** on mobile and desktop in
+  the same change. Live examples: docs/design-system/preview.html. Do not copy
   the rules into another file or client folder.
 - Source of truth is `wwwroot/css/tct-learning-ui.css` (`--tct-*` tokens, `.tct-*`,
   `.tct-theme`). Wrap pages in `tct-theme`; reuse `_PageHeader`/`_StateMessage` and
@@ -92,7 +95,8 @@ and file maps: [project structure](docs/project-structure.md).
   partials are shared-impact: list consumers, compare before/after, keep selectors/IDs
   that JS uses. A missing token/component needs a documented proposal first.
 - Page prompt: .ai/prompts/implement-page-with-team-design-system.md. Verify in a
-  browser (1440/768/375-390, zoom, keyboard); state what was not observed.
+  browser (1440/768/375-390, zoom, keyboard; sidebar open/collapsed on desktop);
+  state what was not observed.
 
 ## Database, PR and Release Rules (Automatic)
 

@@ -58,6 +58,10 @@ continue independent work. Do not widen scope or add routine approval stops.
 - [ ] <Relevant regression/edge case and how it is checked>.
 - [ ] <Appropriate build/test/browser/provider/tooling checks, with exact commands
       only after verifying they exist and apply to this task>.
+- [ ] For UI work: whole-feature multi-platform checks per
+      `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md` and
+      `docs/design-system/team-ui-workflow.md` §7 (1440 / 768 / 375-390, zoom,
+      keyboard); record what was not observed.
 - [ ] <Preservation of important existing contracts/data, where relevant>.
 - [ ] Diff and artifacts contain no credentials or unrelated changes.
 

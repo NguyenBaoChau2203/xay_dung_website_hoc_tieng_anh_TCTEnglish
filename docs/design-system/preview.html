@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="../../TCTEnglish/wwwroot/css/tct-learning-ui.css">
     <link rel="stylesheet" href="../../TCTEnglish/wwwroot/css/layout.css">
+    <link rel="stylesheet" href="../../TCTEnglish/wwwroot/css/tct-image-upload.css">
     <script src="../../TCTEnglish/wwwroot/js/layout.js"></script>
 
     <style>
@@ -105,6 +106,7 @@
                 <a class="nav-item" href="#page-header"><i class="fas fa-heading" aria-hidden="true"></i><span>Page header</span></a>
                 <a class="nav-item" href="#buttons"><i class="fas fa-hand-pointer" aria-hidden="true"></i><span>Buttons</span></a>
                 <a class="nav-item" href="#forms"><i class="fas fa-pen-to-square" aria-hidden="true"></i><span>Forms</span></a>
+                <a class="nav-item" href="#image-upload"><i class="fas fa-cloud-arrow-up" aria-hidden="true"></i><span>Image upload</span></a>
                 <a class="nav-item" href="#toolbar"><i class="fas fa-filter" aria-hidden="true"></i><span>Search / filter</span></a>
                 <a class="nav-item" href="#cards"><i class="fas fa-clone" aria-hidden="true"></i><span>Cards &amp; badges</span></a>
                 <a class="nav-item" href="#tables"><i class="fas fa-table" aria-hidden="true"></i><span>Tables &amp; paging</span></a>
@@ -134,6 +136,29 @@
                 </header>
 
                 <p class="gal-banner" role="note"><i class="fas fa-flask me-1" aria-hidden="true"></i> Nội dung tổng hợp (synthetic): form không gửi dữ liệu, không gọi API AI/media, không có dữ liệu thật.</p>
+
+                <!-- ============================ MULTI-PLATFORM ============================ -->
+                <section class="gal-section" id="multi-platform" aria-labelledby="h-multi-platform">
+                    <h2 id="h-multi-platform">Multi-platform checks</h2>
+                    <p class="gal-lead">
+                        Bắt buộc khi xây/sửa UI: desktop <strong>và</strong> mobile trong cùng thay đổi
+                        (whole-feature). Viewport kiểm tra: <strong>1440</strong> (sidebar mở/thu),
+                        <strong>768</strong>, <strong>375/390</strong>, phóng <strong>200%</strong>.
+                        Spec:
+                        <code>docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md</code>.
+                        Checklist PR: <code>docs/design-system/team-ui-workflow.md</code> §7.
+                    </p>
+                    <p class="gal-lead">
+                        Gallery này là trang tĩnh: chứng minh token/shell CSS, <strong>không</strong>
+                        chứng minh Razor, phân quyền, antiforgery hay tương tác server của ứng dụng.
+                        Vẫn phải kiểm tra trên trang thật sau khi đăng nhập cục bộ.
+                    </p>
+                    <ul class="gal-lead">
+                        <li>Desktop: nội dung và footer không bị sidebar che; không hardcode 280/240.</li>
+                        <li>Mobile: drawer/overlay; main/footer margin 0; target chạm ≥44px; không tràn ngang trang.</li>
+                        <li>Bàn phím: Tab, focus rõ, Escape đóng ngăn kéo/hộp thoại.</li>
+                    </ul>
+                </section>
 
                 <!-- ============================ TOKENS ============================ -->
                 <section class="gal-section" id="tokens" aria-labelledby="h-tokens">
@@ -307,6 +332,71 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Lưu</button>
                         </form>
+                    </div>
+                </section>
+
+                <!-- ============================ IMAGE UPLOAD ============================ -->
+                <section class="gal-section" id="image-upload" aria-labelledby="h-upload">
+                    <h2 id="h-upload">Image upload modal</h2>
+                    <p class="gal-lead">Chuẩn <a href="tct-image-upload.md">tct-image-upload.md</a>. Bốn trạng thái dưới đây là markup tĩnh để chép; runtime dùng <code>tct-image-upload.js</code>.</p>
+                    <h3 class="gal-h3">Empty</h3>
+                    <div class="gal-demo" data-code>
+                        <div class="tct-image-upload tct-image-upload--static">
+                            <div class="tct-image-upload__panel">
+                                <div class="tct-image-upload__head"><h3 class="tct-image-upload__title">Tải ảnh</h3></div>
+                                <div class="tct-image-upload__dropzone">
+                                    <i class="fa-regular fa-image tct-image-upload__icon" aria-hidden="true"></i>
+                                    <p class="tct-image-upload__drop-text">Thả ảnh vào đây, hoặc <span class="tct-image-upload__browse">duyệt</span></p>
+                                    <p class="tct-image-upload__hint">Hỗ trợ: PNG, JPG, JPEG, WEBP, GIF</p>
+                                </div>
+                                <div class="tct-image-upload__or"><span>hoặc</span></div>
+                                <div class="tct-image-upload__url-row">
+                                    <input class="form-control" type="url" placeholder="Thêm URL tệp" disabled>
+                                    <button type="button" class="btn btn-outline-secondary" disabled>Tải URL</button>
+                                </div>
+                                <div class="tct-image-upload__foot">
+                                    <button type="button" class="btn btn-outline-secondary" disabled>Hủy</button>
+                                    <button type="button" class="btn btn-primary" disabled>Import</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="gal-h3">Dragging</h3>
+                    <div class="gal-demo" data-code>
+                        <div class="tct-image-upload tct-image-upload--static">
+                            <div class="tct-image-upload__panel">
+                                <div class="tct-image-upload__dropzone is-dragging">
+                                    <p class="tct-image-upload__drop-text"><span aria-hidden="true">&gt;&gt;</span> Thả tệp vào đây <span aria-hidden="true">&lt;&lt;</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="gal-h3">Uploading / Completed</h3>
+                    <div class="gal-demo" data-code>
+                        <div class="tct-image-upload tct-image-upload--static">
+                            <div class="tct-image-upload__file is-uploading">
+                                <div class="tct-image-upload__file-thumb" aria-hidden="true"></div>
+                                <div class="tct-image-upload__file-meta">
+                                    <div class="tct-image-upload__file-name">laptop.png</div>
+                                    <div class="tct-image-upload__file-size">1.2 MB</div>
+                                    <div class="tct-image-upload__progress" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                        <span style="width:20%"></span>
+                                    </div>
+                                </div>
+                                <span class="tct-image-upload__pct">20%</span>
+                            </div>
+                            <div class="tct-image-upload__file is-complete mt-3">
+                                <div class="tct-image-upload__file-thumb" aria-hidden="true"></div>
+                                <div class="tct-image-upload__file-meta">
+                                    <div class="tct-image-upload__file-name">laptop.png</div>
+                                    <div class="tct-image-upload__file-size">1.2 MB</div>
+                                    <div class="tct-image-upload__progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                </div>
+                                <span class="tct-image-upload__done" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </section>
 

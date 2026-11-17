@@ -1,0 +1,393 @@
+/* Admin Reading Management — scoped to .admin-reading-page; tokens from tct-learning-ui.css */
+
+.admin-reading-page {
+    color: var(--tct-text);
+}
+
+.admin-reading-page .admin-reading-eyebrow {
+    color: var(--tct-text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.admin-reading-page .admin-reading-header-title {
+    color: var(--tct-text);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.admin-reading-page .admin-reading-header-desc {
+    color: var(--tct-text-muted);
+    max-width: 42rem;
+}
+
+.admin-reading-page .admin-reading-card {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-card, 18px);
+    box-shadow: var(--tct-shadow-soft);
+}
+
+.admin-reading-page .admin-reading-stat {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-card, 18px);
+    box-shadow: var(--tct-shadow-soft);
+    padding: 1rem 1.15rem;
+    height: 100%;
+}
+
+.admin-reading-page .admin-reading-stat-label {
+    color: var(--tct-text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.admin-reading-page .admin-reading-stat-value {
+    margin-top: 0.35rem;
+    color: var(--tct-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.admin-reading-page .admin-reading-toolbar .form-label {
+    color: var(--tct-text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.admin-reading-page .admin-reading-table thead th {
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--tct-border);
+    white-space: nowrap;
+}
+
+.admin-reading-page .admin-reading-table tbody td {
+    vertical-align: middle;
+    border-color: var(--tct-border);
+}
+
+.admin-reading-page .admin-reading-title-cell {
+    min-width: 12rem;
+    max-width: 22rem;
+}
+
+.admin-reading-page .admin-reading-title-cell .title {
+    color: var(--tct-text);
+    font-weight: 600;
+}
+
+.admin-reading-page .admin-reading-empty {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--tct-text-muted);
+}
+
+.admin-reading-page .admin-reading-empty i {
+    font-size: 2.5rem;
+    color: var(--tct-primary);
+    opacity: 0.55;
+}
+
+.admin-reading-page .admin-reading-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--tct-radius-pill, 9999px);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 1px solid transparent;
+}
+
+.admin-reading-page .admin-reading-status-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: currentColor;
+    flex: 0 0 auto;
+}
+
+.admin-reading-page .admin-reading-status--draft {
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-secondary);
+    border-color: var(--tct-border);
+}
+
+.admin-reading-page .admin-reading-status--validationfailed {
+    background: var(--tct-danger-soft, #fef2f2);
+    color: var(--tct-danger-text);
+    border-color: color-mix(in srgb, var(--tct-danger) 25%, white);
+}
+
+.admin-reading-page .admin-reading-status--pendingreview {
+    background: var(--tct-warning-soft);
+    color: var(--tct-warning-text);
+    border-color: color-mix(in srgb, var(--tct-warning) 30%, white);
+}
+
+.admin-reading-page .admin-reading-status--revisionrequired {
+    background: var(--tct-warning-soft);
+    color: var(--tct-warning-text);
+    border-color: color-mix(in srgb, var(--tct-warning) 30%, white);
+}
+
+.admin-reading-page .admin-reading-status--rejected {
+    background: var(--tct-danger-soft, #fef2f2);
+    color: var(--tct-danger-text);
+    border-color: color-mix(in srgb, var(--tct-danger) 25%, white);
+}
+
+.admin-reading-page .admin-reading-status--approved {
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    border-color: color-mix(in srgb, var(--tct-primary) 25%, white);
+}
+
+.admin-reading-page .admin-reading-status--published {
+    background: var(--tct-success-soft);
+    color: var(--tct-success-text);
+    border-color: color-mix(in srgb, var(--tct-success) 30%, white);
+}
+
+.admin-reading-page .admin-reading-status--archived {
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-muted);
+    border-color: var(--tct-border);
+}
+
+.admin-reading-page .admin-reading-level {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.65rem;
+    border-radius: var(--tct-radius-pill, 9999px);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    border: 1px solid color-mix(in srgb, var(--tct-primary) 20%, white);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.admin-reading-page .admin-reading-hit {
+    min-width: var(--tct-target-min, 44px);
+    min-height: var(--tct-target-min, 44px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-reading-page .admin-reading-actions .btn {
+    min-height: var(--tct-target-min, 44px);
+}
+
+.admin-reading-page .admin-reading-workflow {
+    background: var(--tct-surface-muted);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-card, 18px);
+    padding: 1rem 1.15rem;
+}
+
+.admin-reading-page .admin-reading-workflow-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--tct-text);
+}
+
+.admin-reading-page .admin-reading-workflow-hint {
+    font-size: 0.85rem;
+    color: var(--tct-text-muted);
+}
+
+.admin-reading-page .admin-reading-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.admin-reading-page .admin-reading-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--tct-radius-pill, 9999px);
+    border: 1px solid var(--tct-border);
+    background: var(--tct-surface);
+    color: var(--tct-text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.admin-reading-page .admin-reading-step-num {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.admin-reading-page .admin-reading-step.is-active {
+    background: var(--tct-primary-soft);
+    border-color: color-mix(in srgb, var(--tct-primary) 30%, white);
+    color: var(--tct-primary-strong);
+}
+
+.admin-reading-page .admin-reading-step.is-active .admin-reading-step-num {
+    background: var(--tct-primary);
+    color: var(--tct-on-primary);
+}
+
+.admin-reading-page .admin-reading-step.is-done {
+    background: var(--tct-success-soft);
+    border-color: color-mix(in srgb, var(--tct-success) 30%, white);
+    color: var(--tct-success-text);
+}
+
+.admin-reading-page .admin-reading-step.is-done .admin-reading-step-num {
+    background: var(--tct-success);
+    color: var(--tct-on-primary, #fff);
+}
+
+.admin-reading-page .admin-reading-excel-callout {
+    background: var(--tct-primary-soft);
+    border: 1px solid color-mix(in srgb, var(--tct-primary) 25%, white);
+    border-radius: var(--tct-radius-md, 12px);
+    padding: 1rem 1.15rem;
+}
+
+.admin-reading-page .admin-reading-excel-callout p {
+    color: var(--tct-text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.admin-reading-page .admin-reading-section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--tct-text);
+}
+
+.admin-reading-page .admin-reading-readonly-banner {
+    background: var(--tct-warning-soft);
+    border: 1px solid color-mix(in srgb, var(--tct-warning) 30%, white);
+    color: var(--tct-warning-text);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+}
+
+.admin-reading-page .admin-reading-passage-input {
+    min-height: 220px;
+    line-height: 1.7;
+    resize: vertical;
+}
+
+.admin-reading-page .btn.is-busy .admin-reading-busy-label,
+.admin-reading-page .btn:not(.is-busy) .admin-reading-busy-spinner {
+    display: none;
+}
+
+.admin-reading-page .btn.is-busy .admin-reading-busy-spinner {
+    display: inline-block;
+}
+
+@media (max-width: 767.98px) {
+    .admin-reading-page .admin-reading-table thead {
+        display: none;
+    }
+
+    .admin-reading-page .admin-reading-table tbody tr {
+        display: block;
+        border: 1px solid var(--tct-border);
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+        padding: 0.75rem;
+        background: var(--tct-surface);
+    }
+
+    .admin-reading-page .admin-reading-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.75rem;
+        border: 0;
+        padding: 0.35rem 0;
+    }
+
+    .admin-reading-page .admin-reading-table tbody td::before {
+        content: attr(data-label);
+        color: var(--tct-text-muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        flex: 0 0 38%;
+    }
+
+    .admin-reading-page .admin-reading-table tbody td.admin-reading-actions-cell {
+        display: block;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--tct-border);
+        margin-top: 0.35rem;
+    }
+
+    .admin-reading-page .admin-reading-table tbody td.admin-reading-actions-cell::before {
+        display: none;
+    }
+
+    .admin-reading-page .admin-reading-title-cell {
+        max-width: none;
+    }
+}
+
+.admin-reading-page .admin-reading-image-block {
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg, 18px);
+    padding: 1rem;
+    background: var(--tct-surface);
+}
+
+.admin-reading-page .admin-reading-import-thumb {
+    width: 72px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: var(--tct-radius-sm, 8px);
+    border: 1px solid var(--tct-border);
+    background: var(--tct-surface-muted, var(--tct-surface));
+}
+
+.admin-reading-page .admin-reading-question-card {
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-lg, 18px);
+    padding: 1rem 1.15rem;
+    margin-bottom: 1rem;
+    background: var(--tct-surface);
+}
+
+.admin-reading-page .admin-reading-option-row .form-check-input {
+    margin-top: 0.55rem;
+}
+
+.admin-reading-page .admin-reading-pair-row .form-label {
+    font-size: 0.8125rem;
+    color: var(--tct-text-muted);
+}
+
+@media (max-width: 575.98px) {
+    .admin-reading-page .admin-reading-question-card {
+        padding: 0.85rem;
+    }
+}

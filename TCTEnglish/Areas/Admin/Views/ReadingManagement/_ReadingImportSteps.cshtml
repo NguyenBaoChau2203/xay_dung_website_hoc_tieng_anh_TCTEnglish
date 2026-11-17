@@ -1,0 +1,21 @@
+@model int
+@{
+    var current = Model;
+    string StepClass(int step) =>
+        step < current ? "is-done" :
+        step == current ? "is-active" : "";
+}
+<nav class="admin-reading-steps" aria-label="Các bước Import">
+    <div class="admin-reading-step @StepClass(1)" aria-current="@(current == 1 ? "step" : null)">
+        <span class="admin-reading-step-num">1</span>
+        <span>Excel + ảnh</span>
+    </div>
+    <div class="admin-reading-step @StepClass(2)" aria-current="@(current == 2 ? "step" : null)">
+        <span class="admin-reading-step-num">2</span>
+        <span>Xem trước</span>
+    </div>
+    <div class="admin-reading-step @StepClass(3)" aria-current="@(current == 3 ? "step" : null)">
+        <span class="admin-reading-step-num">3</span>
+        <span>Kết quả</span>
+    </div>
+</nav>

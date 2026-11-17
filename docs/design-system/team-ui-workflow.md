@@ -15,11 +15,14 @@ chép lại giá trị ở nơi khác.
 | Cần | Ở đâu |
 | --- | --- |
 | Chuẩn thiết kế (màu, font, bo góc, lớp, layout, a11y) | `DESIGN.md` |
+| Luật đa nền tảng (mobile + desktop, whole-feature) | `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md` |
 | Token (`--tct-*`) và class (`.tct-*`, `.tct-theme`) | `TCTEnglish/wwwroot/css/tct-learning-ui.css` |
 | Partial dùng chung | `TCTEnglish/Views/Shared/_PageHeader.cshtml`, `_StateMessage.cshtml` |
 | ViewModel của partial | `TCTEnglish/ViewModels/SharedUiViewModels.cs` |
 | Gallery có ví dụ chép được | `docs/design-system/preview.html` |
+| Upload ảnh (modal states, MVC staging) | [tct-image-upload.md](tct-image-upload.md) — bắt buộc khi thiết kế UI upload ảnh mới |
 | Prompt giao việc cho agent | `.ai/prompts/implement-page-with-team-design-system.md` |
+| Hàng đợi rà soát đa nền tảng | `docs/superpowers/plans/2026-11-09-multi-platform-feature-audit.md` |
 
 **Mở gallery:** mở trực tiếp `docs/design-system/preview.html` bằng trình duyệt (cần
 internet vì dùng đúng các CDN của ứng dụng). Gallery nạp CSS/JS thật của repo; thu/phóng
@@ -86,25 +89,31 @@ Mỗi trang đúng **một** `<h1>` (partial `_PageHeader` đã tạo nó). Nút
    `pwsh -NoProfile -File scripts/pull-local.ps1`. Pull code thành công chưa đủ: cần mã thoát 0
    và dữ liệu dùng chung đã đồng bộ (xem mục 8).
 2. **Nhánh chủ đề:** `feature/<ten-man-hinh>` hoặc `fix/...`, không dùng tiền tố `codex/`.
-3. **Xác định phạm vi:** route, vai trò, trạng thái (loading/empty/error/success), file
-   view/CSS/JS bạn sở hữu. Việc nằm ngoài (ví dụ đổi layout chung) ghi thành đề xuất.
+3. **Xác định phạm vi:** liệt kê **toàn bộ surface** của chức năng trong đợt này (mọi
+   route/view/CSS/JS liên quan), vai trò, trạng thái (loading/empty/error/success). Việc nằm
+   ngoài (ví dụ đổi layout chung) ghi thành đề xuất shared-impact. Không tách “chỉ desktop”
+   hoặc “chỉ mobile” thành đợt sau.
 4. **Chọn component** từ gallery/DESIGN.md trước khi tự tạo. Thiếu component: làm theo mục 5.
 5. **CSS có phạm vi:** `wwwroot/css/{feature}.css`, selector bắt đầu bằng class của trang,
    giá trị lấy từ `var(--tct-*)`. Không khai báo `:root` mới, không hex riêng, không selector phần tử toàn cục.
+   Không hardcode offset sidebar/header; dùng token shell.
 6. **Kiểm tra trên trang thật:** `pwsh -NoProfile -File scripts/start-local.ps1 -NoBrowser`
    (nếu cổng bận hãy dùng cổng khác, đừng tắt tiến trình của người khác). Dùng tài khoản test
-   cục bộ trong `.appdata/local/access.json`. Xem 1440, 768, 375/390, phóng 200%, văn bản tiếng
-   Việt/Anh dài, Tab/Escape, trạng thái lỗi.
+   cục bộ trong `.appdata/local/access.json`. Kiểm tra **cả** desktop (sidebar mở/thu) và
+   mobile (drawer/overlay), 1440 / 768 / 375/390, phóng 200%, văn bản tiếng Việt/Anh dài,
+   Tab/Escape, trạng thái lỗi — theo
+   [spec đa nền tảng](../superpowers/specs/2026-11-09-multi-platform-ui-design.md).
 7. **Review:** tự xem diff, điền checklist ở mục 7, rồi nhờ chủ dự án review. Commit, PR và merge
    cần chủ dự án cho phép ở từng bước.
 
 ## 3. Bắt buộc và linh hoạt
 
 Bảng đầy đủ nằm trong DESIGN.md (mục *Mandatory versus page-level*). Tóm tắt: **bắt buộc**
-là màu, font/độ đậm, shell và offset, hình dạng control, focus ring, validation, bốn trạng thái
-UI, nền tảng truy cập (a11y), một `<h1>`. **Chủ trang quyết định** bố cục nội dung, thứ tự mục,
-mật độ thông tin và component riêng được dựng từ token. Màn học (practice) và màn Admin không
-buộc dùng cùng một bố cục.
+là màu, font/độ đậm, shell và offset, **đa nền tảng mobile + desktop trong cùng thay đổi
+(whole-feature)**, hình dạng control, focus ring, validation, bốn trạng thái UI, nền tảng
+truy cập (a11y), một `<h1>`. **Chủ trang quyết định** bố cục nội dung, thứ tự mục, mật độ
+thông tin và component riêng được dựng từ token. Màn học (practice) và màn Admin không buộc
+dùng cùng một bố cục, nhưng đều phải đạt acceptance matrix đa nền tảng.
 
 ## 4. Ranh giới trách nhiệm
 
@@ -112,7 +121,11 @@ buộc dùng cùng một bố cục.
 | --- | --- |
 | `tct-learning-ui.css`, `layout.css`, `site.css` | `Views/<Feature>/**`, `wwwroot/css/<feature>.css`, `wwwroot/js/<feature>.js` |
 | `_Layout.cshtml`, `_AdminLayout.cshtml`, `_PageHeader`, `_StateMessage` | ViewModel và controller của tính năng (theo quy tắc kiến trúc) |
-| `DESIGN.md`, `AGENTS.md`, gallery | Dữ liệu mẫu và nội dung của tính năng |
+| `DESIGN.md`, `AGENTS.md`, gallery, spec đa nền tảng | Dữ liệu mẫu và nội dung của tính năng |
+
+**Shell note:** offset footer khi sidebar desktop/tablet mở thuộc `layout.css` (sibling
+`.layout:not(.sidebar-collapsed) ~ .tct-footer`); sửa chung ảnh hưởng mọi trang dùng
+`_Layout.cshtml`.
 
 Phân công người–màn hình do chủ dự án quyết định; bảng ở mục 6 để trống cột *Chủ sở hữu*
 cho đến khi được gán. Không tự suy ra phân công.
@@ -135,22 +148,26 @@ Màn hình cũ chưa dùng token. Khi chuyển một màn hình: thay hex/biến
 bọc `tct-theme`, dùng partial/component chung, xoá `:root` riêng của trang, cập nhật dòng ở đây
 trong cùng PR. Tránh định nghĩa cạnh tranh: **không** thêm biến mới có cùng ý nghĩa với token.
 
-| Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Chủ sở hữu |
-| --- | --- | --- | --- | --- | --- |
-| Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | _chủ dự án gán_ |
-| Nói | `/Speaking`, `/Speaking/Practice` | `speaking.css` | `--stitch-*`, `--spk-*` | Chưa chuyển | _chủ dự án gán_ |
-| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | _chủ dự án gán_ |
-| Viết | `/Home/Writing*` | `writing-index.css`, `writing-exercises.css`, `writing.css` | `--wi-*`, `--we-*`, `--w-*` | Chưa chuyển | _chủ dự án gán_ |
-| Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` | Chưa chuyển | _chủ dự án gán_ |
-| Mục tiêu | `/Goals` | `goals.css` | `--md-sys-color-*`, `--stitch-*` | Chưa chuyển | _chủ dự án gán_ |
-| Tài khoản | `/Account/Profile`, `/Account/Settings` | `account.css` | Material không tiền tố (cũng nạp vào Admin) | Chưa chuyển | _chủ dự án gán_ |
-| Đăng nhập / quên mật khẩu | `/Account/Login` … (`Layout = null`) | `auth-stitch.css` + `tct-learning-ui.css` | Tên `--tct-*` cũ | Dùng tên cũ | _chủ dự án gán_ |
-| Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| AI chat | `/Ai/Chat` | `ai-chat.css`, `ai-chat-launcher.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | _chủ dự án gán_ |
-| Admin (toàn bộ) | `/Admin/*` | Bootstrap + `account.css` + `<style>` trong layout | `--sidebar-width` (đã nối vào token). Lưu ý: `account.css` ép `.text-secondary { color: #745b00 !important }` trên mọi trang Admin | Chưa chuyển | _chủ dự án gán_ |
+Cột **Đa nền**: `Chưa audit` | `Audit xong` | `Đạt đa nền`. Cột này độc lập với chuyển
+token (`Trạng thái`); Phase A không bắt buộc convert token.
+
+| Màn hình | Route / view | CSS hiện tại | Hệ token riêng đang dùng | Trạng thái | Đa nền | Chủ sở hữu |
+| --- | --- | --- | --- | --- | --- | --- |
+| Shell học viên | `_Layout`, `layout.css`, `layout.js` | `layout.css` | `--tct-*` shell | Nền tảng chung | Đạt đa nền | _chủ dự án gán_ |
+| Dashboard | `/Home/Index` | `Dashboard.css` | `--brand`, `--surface`, `--radius` (không tiền tố) | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Từ vựng | `/Vocabulary/*` | `vocabulary-system.css` (4,7k dòng) | `--primary`, `--gray-*` (không tiền tố) | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Nói | `/Speaking`, `/Speaking/Practice` | `speaking.css` | `--stitch-*`, `--spk-*` | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Nghe | `/Home/Listening`, `/Home/Listening/Practice/{id}` | `listening-index.css`, `listening-practice.css` | `--li-*`, `--lp-*` | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Viết | `/Home/Writing*` | `writing-index.css`, `writing-exercises.css`, `writing.css` | `--wi-*`, `--we-*`, `--w-*` | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Đọc | `/Home/Reading*` | `Reading.css`, `reading-study.css` | `--rd-*` → alias `--tct-*` (2026-11-16) | Đã chuyển alias | Audit xong | _chủ dự án gán_ |
+| Mục tiêu | `/Goals` | `goals.css` | `--md-sys-color-*`, `--stitch-*` | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Tài khoản | `/Account/Profile`, `/Account/Settings` | `account.css` | Material không tiền tố (cũng nạp vào Admin) | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Đăng nhập / quên mật khẩu | `/Account/Login` … (`Layout = null`) | `auth-stitch.css` + `tct-learning-ui.css` | Tên `--tct-*` cũ | Dùng tên cũ | Audit xong | _chủ dự án gán_ |
+| Lớp học, thư mục | `/Class/*`, `/Folder/*` | `Class-Detail.css` | Giá trị cố định | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Thông báo | `/Notification` | `notification-page.css`, `notifications.css` | Giá trị cố định | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| AI chat | `/Ai/Chat` | `ai-chat.css`, `ai-chat-launcher.css` | Giá trị cố định | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Liên hệ | `/Home/Contact` | `contact.css` | Giá trị cố định | Chưa chuyển | Audit xong | _chủ dự án gán_ |
+| Admin (toàn bộ) | `/Admin/*` | Bootstrap + `account.css` + `<style>` trong layout | `--sidebar-width` (đã nối vào token). Lưu ý: `account.css` ép `.text-secondary { color: #745b00 !important }` trên mọi trang Admin | Chưa chuyển | Audit xong | _chủ dự án gán_ |
 
 Các vấn đề cũ đang chờ chủ dự án quyết định (tương phản, chiều cao header, `#folderModal`,
 font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.md.
@@ -158,14 +175,20 @@ font gốc 14px trên mobile…) nằm ở mục *Open proposals* của DESIGN.m
 ## 7. Checklist PR cho màn hình giao diện
 
 - [ ] Dùng `tct-theme`, token và component chung; không hex/font/bo góc riêng, không `:root` mới, không `!important` tràn lan.
-- [ ] Responsive: 1440, 768, 375/390 và 200% zoom, không tràn ngang (kiểm tra cả phần tử bị `overflow-x: hidden` che).
+- [ ] **Whole-feature đa nền tảng:** mọi surface UI của chức năng trong phạm vi đều đạt
+      mobile **và** desktop trong cùng thay đổi (không để viewport còn lại “làm sau”).
+- [ ] **Desktop (~1440 / ≤1024):** sidebar mở và thu; `.main`/footer không bị che; không
+      hardcode 280/240.
+- [ ] **Mobile (≤768, kiểm tra 375/390):** drawer/overlay đúng; margin main/footer = 0;
+      target chạm ≥44px; không tràn ngang trang (kể cả khi có `overflow-x: hidden` che lỗi).
+- [ ] 200% zoom: nhiệm vụ chính vẫn làm được; nội dung học thiết yếu không bị cắt.
 - [ ] Bàn phím: Tab theo đúng thứ tự, focus nhìn thấy rõ, Escape đóng hộp thoại/ngăn kéo và trả focus.
 - [ ] Tương phản: chữ 4.5:1 (chữ lớn 3:1), viền control và icon quan trọng 3:1; không dùng màu làm tín hiệu duy nhất.
 - [ ] Văn bản dài (tiếng Việt có dấu và tiếng Anh, từ dài không dấu cách) không bị cắt mất nội dung học.
 - [ ] Đủ trạng thái: loading, empty, error, success, disabled, pending (chống gửi trùng).
 - [ ] Giữ nguyên hành vi: route, HTTP/JSON/SignalR, selector/ID/`data-*` mà JS đang dùng, antiforgery, validation, kiểm tra quyền.
 - [ ] Ảnh chụp dùng dữ liệu tổng hợp, không chứa email/token/thông tin cá nhân; lưu trong `.tmp/<tên>/` (đã bị git bỏ qua), không commit.
-- [ ] Đã cập nhật dòng của màn hình ở mục 6 (nếu chuyển một màn hình cũ).
+- [ ] Đã cập nhật dòng của màn hình ở mục 6 (token và/hoặc cột **Đa nền** khi audit/fix).
 - [ ] `dotnet build` và kiểm tra liên quan đã chạy; ghi rõ phần nào **chưa** kiểm tra.
 
 ## 8. Dữ liệu, Docker và khoá

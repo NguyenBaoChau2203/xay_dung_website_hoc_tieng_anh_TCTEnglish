@@ -7,6 +7,9 @@ namespace TCTVocabulary.ViewModels
         public string ChallengeToken { get; set; } = string.Empty;
 
         public List<AnswerOption> Options { get; set; } = new();
+
+        /// <summary>True when the learner already completed today's Daily Challenge.</summary>
+        public bool IsCompletedToday { get; set; }
     }
 
     public class AnswerOption

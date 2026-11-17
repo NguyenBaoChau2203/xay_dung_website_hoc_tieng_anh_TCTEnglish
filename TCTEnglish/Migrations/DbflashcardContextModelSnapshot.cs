@@ -1747,6 +1747,106 @@ namespace TCTEnglish.Migrations
                     b.ToTable("ListeningVocabItems");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingAnnotation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnnotationType")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EndOffset")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NoteText")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SelectedText")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("StartOffset")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReadingPassageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ReadingAnnotations");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingAttempt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ElapsedSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSubmitted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("MaxScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<int>("ReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("SubmittedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("TimeLimitSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReadingPassageId");
+
+                    b.HasIndex("UserId", "ReadingPassageId", "StartedAt")
+                        .HasDatabaseName("IX_ReadingAttempts_User_Passage_Started");
+
+                    b.ToTable("ReadingAttempts");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.ReadingOption", b =>
                 {
                     b.Property<int>("Id")
@@ -1755,8 +1855,23 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ExternalOptionKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("MatchKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("MatchSide")
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
+
+                    b.Property<int>("OptionOrder")
+                        .HasColumnType("int");
 
                     b.Property<string>("OptionText")
                         .IsRequired()
@@ -1770,6 +1885,36 @@ namespace TCTEnglish.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("ReadingOptions");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingParagraph", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ExternalParagraphKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ParagraphContent")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ParagraphOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReadingPassageId", "ParagraphOrder")
+                        .HasDatabaseName("IX_ReadingParagraphs_Passage_Order");
+
+                    b.ToTable("ReadingParagraphs");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingPassage", b =>
@@ -1787,6 +1932,20 @@ namespace TCTEnglish.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int?>("EstimatedTimeMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExternalReadingKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
@@ -1795,16 +1954,45 @@ namespace TCTEnglish.Migrations
 
                     b.Property<string>("Level")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<DateTime?>("PublishedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("PublishedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)")
+                        .HasDefaultValue("Draft");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Topic")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("PublishedByUserId");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("IX_ReadingPassages_Status");
+
+                    b.HasIndex("IsPublished", "Level")
+                        .HasDatabaseName("IX_ReadingPassages_IsPublished_Level");
 
                     b.ToTable("ReadingPassages");
                 });
@@ -1817,21 +2005,194 @@ namespace TCTEnglish.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CorrectAnswerText")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<int?>("EvidenceParagraphId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EvidenceText")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Explanation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ExternalQuestionKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<int>("OrderIndex")
                         .HasColumnType("int");
 
+                    b.Property<string>("ParagraphReference")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Paraphrase")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("PassageId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Points")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("QuestionText")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("QuestionType")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)")
+                        .HasDefaultValue("MultipleChoice");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EvidenceParagraphId");
 
                     b.HasIndex("PassageId");
 
                     b.ToTable("ReadingQuestions");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingReviewLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("FromStatus")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<int>("ReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<string>("ToStatus")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActorUserId");
+
+                    b.HasIndex("ReadingPassageId")
+                        .HasDatabaseName("IX_ReadingReviewLogs_Passage");
+
+                    b.ToTable("ReadingReviewLogs");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingStudentAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerText")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("AttemptId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsCorrect")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsFlagged")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("MatchingJson")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SelectedOptionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("SelectedOptionId");
+
+                    b.HasIndex("AttemptId", "QuestionId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_ReadingStudentAnswers_Attempt_Question");
+
+                    b.ToTable("ReadingStudentAnswers");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingVocabularyItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnglishDefinition")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Example")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ExternalVocabularyKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Ipa")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<int?>("ParagraphId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PartOfSpeech")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("ReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VietnameseMeaning")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParagraphId");
+
+                    b.HasIndex("ReadingPassageId");
+
+                    b.ToTable("ReadingVocabularyItems");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.SavedFolder", b =>
@@ -2213,6 +2574,60 @@ namespace TCTEnglish.Migrations
                     b.ToTable("SpeakingVideos");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.StudentVocabulary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("EnglishDefinition")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Example")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Ipa")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("PartOfSpeech")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("SourceReadingPassageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SourceVocabularyItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VietnameseMeaning")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SourceReadingPassageId");
+
+                    b.HasIndex("SourceVocabularyItemId");
+
+                    b.HasIndex("UserId", "Word")
+                        .HasDatabaseName("IX_StudentVocabularies_User_Word");
+
+                    b.ToTable("StudentVocabularies");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -2264,6 +2679,13 @@ namespace TCTEnglish.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ReadingLevel")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)")
+                        .HasDefaultValue("A1");
 
                     b.Property<string>("ResetPasswordToken")
                         .HasColumnType("longtext");
@@ -2340,6 +2762,11 @@ namespace TCTEnglish.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
+
+                    b.Property<bool>("DailyChallengeCompleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("ListeningCompletedCount")
                         .ValueGeneratedOnAdd()
@@ -3411,6 +3838,44 @@ namespace TCTEnglish.Migrations
                     b.Navigation("Lesson");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingAnnotation", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                        .WithMany("Annotations")
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("ReadingAnnotations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReadingPassage");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingAttempt", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                        .WithMany("Attempts")
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("ReadingAttempts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReadingPassage");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.ReadingOption", b =>
                 {
                     b.HasOne("TCTVocabulary.Models.ReadingQuestion", "Question")
@@ -3422,15 +3887,113 @@ namespace TCTEnglish.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingParagraph", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                        .WithMany("Paragraphs")
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReadingPassage");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingPassage", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TCTVocabulary.Models.User", "PublishedByUser")
+                        .WithMany()
+                        .HasForeignKey("PublishedByUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("CreatedByUser");
+
+                    b.Navigation("PublishedByUser");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.ReadingQuestion", b =>
                 {
+                    b.HasOne("TCTVocabulary.Models.ReadingParagraph", "EvidenceParagraph")
+                        .WithMany()
+                        .HasForeignKey("EvidenceParagraphId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("TCTVocabulary.Models.ReadingPassage", "Passage")
                         .WithMany("Questions")
                         .HasForeignKey("PassageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("EvidenceParagraph");
+
                     b.Navigation("Passage");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingReviewLog", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.User", "ActorUser")
+                        .WithMany()
+                        .HasForeignKey("ActorUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                        .WithMany("ReviewLogs")
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ActorUser");
+
+                    b.Navigation("ReadingPassage");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingStudentAnswer", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingAttempt", "Attempt")
+                        .WithMany("Answers")
+                        .HasForeignKey("AttemptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.ReadingQuestion", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TCTVocabulary.Models.ReadingOption", "SelectedOption")
+                        .WithMany()
+                        .HasForeignKey("SelectedOptionId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Attempt");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("SelectedOption");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingVocabularyItem", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingParagraph", "Paragraph")
+                        .WithMany()
+                        .HasForeignKey("ParagraphId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "ReadingPassage")
+                        .WithMany("VocabularyItems")
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Paragraph");
+
+                    b.Navigation("ReadingPassage");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.SavedFolder", b =>
@@ -3529,6 +4092,31 @@ namespace TCTEnglish.Migrations
                     b.Navigation("OwnerUser");
 
                     b.Navigation("SpeakingPlaylist");
+                });
+
+            modelBuilder.Entity("TCTVocabulary.Models.StudentVocabulary", b =>
+                {
+                    b.HasOne("TCTVocabulary.Models.ReadingPassage", "SourceReadingPassage")
+                        .WithMany()
+                        .HasForeignKey("SourceReadingPassageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TCTVocabulary.Models.ReadingVocabularyItem", "SourceVocabularyItem")
+                        .WithMany()
+                        .HasForeignKey("SourceVocabularyItemId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TCTVocabulary.Models.User", "User")
+                        .WithMany("StudentVocabularies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SourceReadingPassage");
+
+                    b.Navigation("SourceVocabularyItem");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.UserBadge", b =>
@@ -3859,13 +4447,28 @@ namespace TCTEnglish.Migrations
                     b.Navigation("VocabItems");
                 });
 
+            modelBuilder.Entity("TCTVocabulary.Models.ReadingAttempt", b =>
+                {
+                    b.Navigation("Answers");
+                });
+
             modelBuilder.Entity("TCTVocabulary.Models.ReadingPassage", b =>
                 {
+                    b.Navigation("Annotations");
+
+                    b.Navigation("Attempts");
+
+                    b.Navigation("Paragraphs");
+
                     b.Navigation("Questions");
+
+                    b.Navigation("ReviewLogs");
 
                     b.Navigation("UserReadingHistories");
 
                     b.Navigation("UserTranslations");
+
+                    b.Navigation("VocabularyItems");
                 });
 
             modelBuilder.Entity("TCTVocabulary.Models.ReadingQuestion", b =>
@@ -3915,9 +4518,15 @@ namespace TCTEnglish.Migrations
 
                     b.Navigation("OwnedSpeakingVideos");
 
+                    b.Navigation("ReadingAnnotations");
+
+                    b.Navigation("ReadingAttempts");
+
                     b.Navigation("SavedFolders");
 
                     b.Navigation("Sets");
+
+                    b.Navigation("StudentVocabularies");
 
                     b.Navigation("UserBadges");
 

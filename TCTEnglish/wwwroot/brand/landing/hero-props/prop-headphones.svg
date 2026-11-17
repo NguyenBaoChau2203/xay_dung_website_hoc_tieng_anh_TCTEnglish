@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="hpBand" x1="16" y1="12" x2="72" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7B88FF"/>
+      <stop offset="1" stop-color="#4353FF"/>
+    </linearGradient>
+    <linearGradient id="hpCup" x1="10" y1="40" x2="34" y2="72" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5A6BFF"/>
+      <stop offset="1" stop-color="#20345F"/>
+    </linearGradient>
+    <linearGradient id="hpPad" x1="14" y1="48" x2="30" y2="68" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDF5FF"/>
+      <stop offset="1" stop-color="#DCEAFF"/>
+    </linearGradient>
+    <filter id="hpShadow" x="-25%" y="-15%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#20345F" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <ellipse cx="44" cy="78" rx="22" ry="4.5" fill="#20345F" opacity="0.12"/>
+  <g filter="url(#hpShadow)">
+    <path d="M18 46c0-16 11-28 26-28s26 12 26 28" stroke="url(#hpBand)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M18 46c0-16 11-28 26-28s26 12 26 28" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" transform="translate(0 -2)"/>
+    <rect x="8" y="42" width="22" height="28" rx="11" fill="url(#hpCup)"/>
+    <rect x="58" y="42" width="22" height="28" rx="11" fill="url(#hpCup)"/>
+    <rect x="12" y="48" width="14" height="18" rx="7" fill="url(#hpPad)"/>
+    <rect x="62" y="48" width="14" height="18" rx="7" fill="url(#hpPad)"/>
+    <circle cx="19" cy="46" r="3" fill="#FFD84D" opacity="0.9"/>
+  </g>
+</svg>

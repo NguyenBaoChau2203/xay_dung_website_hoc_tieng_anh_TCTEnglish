@@ -1,0 +1,209 @@
+@model TCTEnglish.Areas.Admin.ViewModels.ReadingEditorViewModel
+@using TCTEnglish.Areas.Admin.ViewModels
+@using TCTEnglish.Models.Reading
+@{
+    var action = Model.Id.HasValue ? "Edit" : "Create";
+    var isEditable = !Model.Id.HasValue || ReadingAdminUi.IsEditable(Model.Status);
+}
+
+@if (Model.Id.HasValue && !isEditable)
+{
+    <div class="admin-reading-readonly-banner mb-3" role="status">
+        <i class="fa-solid fa-lock me-2" aria-hidden="true"></i>
+        Nội dung đang khóa vì trạng thái <strong>@ReadingAdminUi.StatusLabel(Model.Status)</strong>.
+        Chỉ có thể xem; dùng luồng kiểm duyệt phía trên nếu cần chuyển trạng thái.
+    </div>
+}
+
+<form asp-action="@action" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="admin-reading-card p-3 p-md-4">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h2 class="admin-reading-section-title mb-0">Thông tin bài đọc</h2>
+        @if (Model.Id.HasValue)
+        {
+            <span class="small text-muted">ID #@Model.Id</span>
+        }
+    </div>
+
+    <fieldset @(isEditable ? null : "disabled")>
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label class="form-label" asp-for="Title">Tiêu đề</label>
+                <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài đọc" />
+                <span asp-validation-for="Title" class="text-danger small"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" asp-for="Level">Trình độ (CEFR)</label>
+                <select asp-for="Level" class="form-select">
+                    @foreach (var level in CefrLevels.All)
+                    {
+                        <option value="@level">@level</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" asp-for="Topic">Chủ đề</label>
+                <input asp-for="Topic" class="form-control" placeholder="Ví dụ: Travel, Environment…" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" asp-for="EstimatedTimeMinutes">Thời gian ước tính (phút)</label>
+                <input asp-for="EstimatedTimeMinutes" class="form-control" inputmode="numeric" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" asp-for="ExternalReadingKey">Mã Reading (External ID)</label>
+                <input asp-for="ExternalReadingKey" class="form-control" placeholder="Tùy chọn" />
+            </div>
+            <div class="col-12">
+                <label class="form-label" asp-for="Description">Mô tả</label>
+                <textarea asp-for="Description" class="form-control" rows="2" placeholder="Tóm tắt ngắn cho admin / học viên"></textarea>
+            </div>
+            <div class="col-12">
+                <label class="form-label" asp-for="Content">Nội dung bài đọc</label>
+                <textarea asp-for="Content" class="form-control admin-reading-passage-input" rows="10"
+                          placeholder="Mỗi đoạn cách nhau bằng một dòng trống"></textarea>
+                <div class="form-text">Các đoạn cách nhau bằng dòng trống sẽ được tách thành paragraph khi lưu.</div>
+                <span asp-validation-for="Content" class="text-danger small"></span>
+            </div>
+            <div class="col-12">
+                <div class="tct-image-upload__trigger admin-reading-image-block" data-reading-image-block>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <span class="form-label mb-0">Ảnh bài đọc</span>
+                        <span class="form-text mb-0">PNG/JPG/WEBP/GIF · tối đa 5MB</span>
+                    </div>
+                    <div class="tct-image-upload__trigger-card @(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "is-empty" : "")"
+                         data-reading-image-preview>
+                        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" alt="" data-reading-image-el />
+                        }
+                        else
+                        {
+                            <div class="tct-image-upload__trigger-empty">
+                                <i class="fa-solid fa-image" aria-hidden="true"></i>
+                                <span>Chưa có ảnh</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="tct-image-upload__trigger-actions">
+                        @if (isEditable)
+                        {
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    data-tct-image-upload-open
+                                    data-bs-target="#readingImageUploadModal">
+                                @(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "Thêm ảnh" : "Thay ảnh")
+                            </button>
+                            <button type="button"
+                                    class="btn btn-outline-danger @(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "d-none" : null)"
+                                    data-tct-image-upload-remove
+                                    data-reading-image-remove-btn>
+                                Xóa ảnh
+                            </button>
+                        }
+                    </div>
+                    <input asp-for="ImageFile" type="file" id="ImageFile"
+                           class="tct-image-upload__visually-hidden-file"
+                           accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+                           data-reading-image-input tabindex="-1" aria-hidden="true" />
+                    <input asp-for="ImageUrl" type="hidden" data-reading-image-url />
+                    <input asp-for="RemoveImage" type="checkbox" class="d-none" data-reading-image-remove tabindex="-1" aria-hidden="true" />
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    @if (Model.Paragraphs.Count > 0)
+    {
+        <hr class="my-4" />
+        <h3 class="admin-reading-section-title">Đoạn văn (@Model.Paragraphs.Count)</h3>
+        <ol class="mb-0">
+            @foreach (var p in Model.Paragraphs.OrderBy(x => x.ParagraphOrder))
+            {
+                <li class="mb-2">
+                    <span class="badge text-bg-light border">#@p.ParagraphOrder</span>
+                    <span class="ms-1">@p.ParagraphContent</span>
+                </li>
+            }
+        </ol>
+    }
+
+    @if (Model.Vocabulary.Count > 0)
+    {
+        <hr class="my-4" />
+        <h3 class="admin-reading-section-title">Từ vựng (@Model.Vocabulary.Count)</h3>
+        <p class="form-text">Chỉ xem — chỉnh qua Import Excel. Lưu form không xóa từ vựng.</p>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead>
+                <tr>
+                    <th>Từ</th>
+                    <th>IPA</th>
+                    <th>Loại từ</th>
+                    <th>Nghĩa</th>
+                    <th>Ví dụ</th>
+                    <th>Đoạn</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var v in Model.Vocabulary)
+                {
+                    <tr>
+                        <td>@v.Word</td>
+                        <td>@v.Ipa</td>
+                        <td>@v.PartOfSpeech</td>
+                        <td>@v.VietnameseMeaning</td>
+                        <td>@v.Example</td>
+                        <td>@(v.ParagraphOrder?.ToString() ?? "—")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <hr class="my-4" />
+    <partial name="_ReadingQuestionsEditor" model="Model" />
+
+    <hr class="my-4" />
+    <div class="admin-reading-excel-callout mb-0">
+        <h3 class="admin-reading-section-title mb-2">Import Excel (hàng loạt)</h3>
+        <p class="mb-2">
+            Dùng Excel khi cần nhập nhiều bài hoặc từ vựng. Matching cần cột Match_Key và Match_Side (Left/Right).
+            Form phía trên dùng để soạn từng câu hỏi (chọn đáp án / nhập chữ / ghép cặp).
+        </p>
+        <div class="d-flex flex-wrap gap-2 admin-reading-actions">
+            <a asp-action="Import" class="btn btn-outline-primary btn-sm">
+                <i class="fa-solid fa-file-import me-1" aria-hidden="true"></i>Import Excel
+            </a>
+            <a asp-action="DownloadTemplate" class="btn btn-outline-secondary btn-sm">
+                <i class="fa-solid fa-download me-1" aria-hidden="true"></i>Tải template
+            </a>
+            @if (Model.Id.HasValue)
+            {
+                <a asp-action="Export" asp-route-id="@Model.Id" class="btn btn-outline-secondary btn-sm">
+                    <i class="fa-solid fa-file-excel me-1" aria-hidden="true"></i>Xuất Excel bài này
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex flex-wrap gap-2 admin-reading-actions">
+        @if (isEditable)
+        {
+            <button type="submit" class="btn btn-primary">
+                <span class="admin-reading-busy-label"><i class="fa-solid fa-floppy-disk me-1" aria-hidden="true"></i>Lưu nháp</span>
+                <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang lưu…</span>
+            </button>
+        }
+        <a asp-action="Index" class="btn btn-outline-secondary">Hủy / Quay lại</a>
+    </div>
+</form>
+
+@{
+    ViewData["TctImageUploadModalId"] = "readingImageUploadModal";
+    ViewData["TctImageUploadTitle"] = "Tải ảnh bài đọc";
+    ViewData["TctImageUploadSupports"] = "Hỗ trợ: PNG, JPG, JPEG, WEBP, GIF";
+}
+<partial name="_TctImageUploadModal" />

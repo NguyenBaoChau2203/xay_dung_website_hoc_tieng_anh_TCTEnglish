@@ -59,6 +59,10 @@ public partial class User
     // Bổ sung các property mới khớp với SQL
     public string? FullName { get; set; }
     public string? Role { get; set; }
+
+    /// <summary>CEFR reading access level A1–C2. Defaults to A1.</summary>
+    public string ReadingLevel { get; set; } = "A1";
+
     public UserStatus Status { get; set; } = UserStatus.Offline;
     public string? AvatarUrl { get; set; } // Added for Google Profile Picture
     public string? ResetPasswordToken { get; set; }
@@ -109,6 +113,9 @@ public partial class User
     public virtual ICollection<UserWritingExerciseProgress> UserWritingExerciseProgresses { get; set; } = new List<UserWritingExerciseProgress>();
     public virtual ICollection<UserWritingSentenceProgress> UserWritingSentenceProgresses { get; set; } = new List<UserWritingSentenceProgress>();
     public virtual ICollection<UserReadingHistory> UserReadingHistories { get; set; } = new List<UserReadingHistory>();
+    public virtual ICollection<ReadingAttempt> ReadingAttempts { get; set; } = new List<ReadingAttempt>();
+    public virtual ICollection<ReadingAnnotation> ReadingAnnotations { get; set; } = new List<ReadingAnnotation>();
+    public virtual ICollection<StudentVocabulary> StudentVocabularies { get; set; } = new List<StudentVocabulary>();
 
     // ─── Notifications ────────────────────────────────────────────────────────
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();

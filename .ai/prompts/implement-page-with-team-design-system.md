@@ -12,15 +12,18 @@ Design and implement **<SCREEN_NAME>** so a learner/admin can complete
 **<USER_TASK>** (for example: "find a vocabulary set, review its cards, start
 studying"). The screen must look and behave like the rest of TCT English by using
 the shared tokens, shell and components, while the page owner chooses a content
-arrangement that suits the task. Do not redesign other screens or the shared
-foundation.
+arrangement that suits the task. Deliver **whole-feature multi-platform** UI:
+desktop and mobile must both pass in the same change set (see
+`docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md`). Do not redesign
+other screens or the shared foundation.
 
 ## Context and evidence
 
 - Repository: TCT English (ASP.NET Core MVC/Razor net9.0, Bootstrap 5.3.2, jQuery,
   vanilla JS). Inspect the actual branch, HEAD and working tree first.
 - Standards (read, do not copy): `AGENTS.md`, `DESIGN.md`,
-  `docs/design-system/team-ui-workflow.md`; live examples in
+  `docs/design-system/team-ui-workflow.md`,
+  `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md`; live examples in
   `docs/design-system/preview.html`; skills `tct-ui-component` and, for rendered
   review, `tct-ui-review` (load `tct-ui-motion` only for an actual motion change).
 - Shared source of truth: `TCTEnglish/wwwroot/css/tct-learning-ui.css`
@@ -90,8 +93,13 @@ independent work.
 ## Verification and acceptance
 
 - [ ] The user task `<USER_TASK>` can be completed in a real browser for each role in `<ROLES>`.
-- [ ] 1440, 768 and 375/390 widths and 200% zoom: no horizontal page overflow and
-      no clipped learning content with long Vietnamese/English text.
+- [ ] Whole-feature multi-platform: every in-scope UI surface of this feature passes
+      desktop **and** mobile in this change (no deferred viewport).
+- [ ] Desktop (~1440 / ≤1024): sidebar open and collapsed (learner shell); main and
+      footer clear of the sidebar; no hardcoded 280/240 offsets.
+- [ ] Mobile (≤768, check 375/390) and 200% zoom: drawer/overlay correct; no
+      horizontal page overflow; no clipped learning content with long Vietnamese/English
+      text; touch targets ≥44px where applicable.
 - [ ] Keyboard: logical Tab order, visible focus, Escape closes dialogs/drawers and
       returns focus. Text contrast 4.5:1 (large 3:1), control boundaries 3:1.
 - [ ] Every relevant state renders; submit/action buttons prevent duplicate submits

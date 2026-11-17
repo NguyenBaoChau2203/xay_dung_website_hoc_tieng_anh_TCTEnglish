@@ -1084,7 +1084,7 @@
 
     .listening-index-page .my-btn-delete {
         width: 100%;
-        min-height: 36px;
+        min-height: var(--tct-target-min, 44px);
     }
 }
 

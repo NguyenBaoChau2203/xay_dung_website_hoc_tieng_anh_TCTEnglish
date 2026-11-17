@@ -14,6 +14,9 @@ namespace TCTVocabulary.ViewModels
         public int NewCount { get; set; }
         public string? Role { get; set; }
 
+        /// <summary>Cards reviewed today from UserDailyActivity (0 if no row).</summary>
+        public int CardsReviewedToday { get; set; }
+
         public DailyChallengeViewModel? DailyChallenge { get; set; }
         public List<TodayFolderViewModel> TodayFolders { get; set; } = new();
         public List<DashboardHeatmapCellViewModel> HeatmapCells { get; set; } = new();
@@ -52,6 +55,7 @@ namespace TCTVocabulary.ViewModels
         public string FolderName { get; set; } = string.Empty;
         public int SetCount { get; set; }
         public string CreatorName { get; set; } = "Unknown";
+        public bool IsOwnedByCurrentUser { get; set; }
     }
     public class RecentReadingViewModel
     {

@@ -20,9 +20,13 @@ it does not install its binary, hooks, asset producers or worker roles.
 4. Review hierarchy, readable line lengths, spacing, action emphasis, contrast,
    focus, labels, validation, empty/loading/error states, duplicate submission
    feedback and long text.
-5. In an available browser inspect narrow and desktop widths; exercise keyboard
-   navigation and zoom. Check real rendered states, with screenshots where useful.
-   If login/server/assets block a check, name the unverified state.
+5. In an available browser inspect **whole-feature** multi-platform behavior:
+   ~1440 (sidebar open/collapsed on the learner shell), 768 and 375-390, plus
+   200% zoom; exercise keyboard navigation. Follow
+   [multi-platform UI design](../../../docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md)
+   and the workflow PR checklist. Check real rendered states, with screenshots
+   where useful. If login/server/assets block a check, name the unverified state.
+   A single-viewport pass is incomplete.
 6. Report findings by severity with route/file, trigger, consequence and smallest
    useful correction. Do not apply unrelated changes during an audit.
 

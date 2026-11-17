@@ -70,6 +70,13 @@ public partial class DbflashcardContext : DbContext
     public virtual DbSet<ReadingPassage> ReadingPassages { get; set; }
     public virtual DbSet<ReadingQuestion> ReadingQuestions { get; set; }
     public virtual DbSet<ReadingOption> ReadingOptions { get; set; }
+    public virtual DbSet<ReadingParagraph> ReadingParagraphs { get; set; }
+    public virtual DbSet<ReadingVocabularyItem> ReadingVocabularyItems { get; set; }
+    public virtual DbSet<ReadingAttempt> ReadingAttempts { get; set; }
+    public virtual DbSet<ReadingStudentAnswer> ReadingStudentAnswers { get; set; }
+    public virtual DbSet<ReadingAnnotation> ReadingAnnotations { get; set; }
+    public virtual DbSet<StudentVocabulary> StudentVocabularies { get; set; }
+    public virtual DbSet<ReadingReviewLog> ReadingReviewLogs { get; set; }
     public virtual DbSet<UserReadingHistory> UserReadingHistories { get; set; }
 
     // ─── Reading translations ────────────────────────────────────────────────
@@ -191,19 +198,168 @@ public partial class DbflashcardContext : DbContext
                 .HasForeignKey(d => d.ReadingPassageId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<ReadingPassage>(entity =>
+        {
+            entity.Property(e => e.Title).HasMaxLength(500);
+            entity.Property(e => e.Level).HasMaxLength(10);
+            entity.Property(e => e.Topic).HasMaxLength(200);
+            entity.Property(e => e.Status).HasMaxLength(32).HasDefaultValue("Draft");
+            entity.Property(e => e.ExternalReadingKey).HasMaxLength(100);
+            entity.Property(e => e.Description).HasMaxLength(2000);
+            entity.HasIndex(e => e.Status).HasDatabaseName("IX_ReadingPassages_Status");
+            entity.HasIndex(e => new { e.IsPublished, e.Level }).HasDatabaseName("IX_ReadingPassages_IsPublished_Level");
+            entity.HasOne(e => e.CreatedByUser)
+                .WithMany()
+                .HasForeignKey(e => e.CreatedByUserId)
+                .OnDelete(DeleteBehavior.SetNull);
+            entity.HasOne(e => e.PublishedByUser)
+                .WithMany()
+                .HasForeignKey(e => e.PublishedByUserId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<ReadingParagraph>(entity =>
+        {
+            entity.HasIndex(e => new { e.ReadingPassageId, e.ParagraphOrder })
+                .HasDatabaseName("IX_ReadingParagraphs_Passage_Order");
+            entity.Property(e => e.ExternalParagraphKey).HasMaxLength(100);
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.Paragraphs)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
         // ReadingQuestion
-        modelBuilder.Entity<ReadingQuestion>()
-            .HasOne(q => q.Passage)
-            .WithMany(p => p.Questions)
-            .HasForeignKey(q => q.PassageId)
-            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<ReadingQuestion>(entity =>
+        {
+            entity.Property(e => e.QuestionType).HasMaxLength(32).HasDefaultValue("MultipleChoice");
+            entity.Property(e => e.Points).HasDefaultValue(1);
+            entity.Property(e => e.ExternalQuestionKey).HasMaxLength(100);
+            entity.Property(e => e.ParagraphReference).HasMaxLength(100);
+            entity.Property(e => e.CorrectAnswerText).HasMaxLength(1000);
+            entity.HasOne(q => q.Passage)
+                .WithMany(p => p.Questions)
+                .HasForeignKey(q => q.PassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(q => q.EvidenceParagraph)
+                .WithMany()
+                .HasForeignKey(q => q.EvidenceParagraphId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
 
         // ReadingOption
-        modelBuilder.Entity<ReadingOption>()
-            .HasOne(o => o.Question)
-            .WithMany(q => q.Options)
-            .HasForeignKey(o => o.QuestionId)
-            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<ReadingOption>(entity =>
+        {
+            entity.Property(e => e.ExternalOptionKey).HasMaxLength(100);
+            entity.Property(e => e.MatchKey).HasMaxLength(100);
+            entity.Property(e => e.MatchSide).HasMaxLength(16);
+            entity.HasOne(o => o.Question)
+                .WithMany(q => q.Options)
+                .HasForeignKey(o => o.QuestionId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<ReadingVocabularyItem>(entity =>
+        {
+            entity.Property(e => e.Word).HasMaxLength(200);
+            entity.Property(e => e.Ipa).HasMaxLength(200);
+            entity.Property(e => e.PartOfSpeech).HasMaxLength(50);
+            entity.Property(e => e.ExternalVocabularyKey).HasMaxLength(100);
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.VocabularyItems)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.Paragraph)
+                .WithMany()
+                .HasForeignKey(e => e.ParagraphId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<ReadingAttempt>(entity =>
+        {
+            entity.Property(e => e.Mode).HasMaxLength(16);
+            entity.HasIndex(e => new { e.UserId, e.ReadingPassageId, e.StartedAt })
+                .HasDatabaseName("IX_ReadingAttempts_User_Passage_Started");
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.ReadingAttempts)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.Attempts)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<ReadingStudentAnswer>(entity =>
+        {
+            entity.HasIndex(e => new { e.AttemptId, e.QuestionId })
+                .IsUnique()
+                .HasDatabaseName("IX_ReadingStudentAnswers_Attempt_Question");
+            entity.HasOne(e => e.Attempt)
+                .WithMany(a => a.Answers)
+                .HasForeignKey(e => e.AttemptId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.Question)
+                .WithMany()
+                .HasForeignKey(e => e.QuestionId)
+                .OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.SelectedOption)
+                .WithMany()
+                .HasForeignKey(e => e.SelectedOptionId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<ReadingAnnotation>(entity =>
+        {
+            entity.Property(e => e.AnnotationType).HasMaxLength(32);
+            entity.Property(e => e.Color).HasMaxLength(32);
+            entity.Property(e => e.SelectedText).HasMaxLength(2000);
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.ReadingAnnotations)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.Annotations)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<StudentVocabulary>(entity =>
+        {
+            entity.Property(e => e.Word).HasMaxLength(200);
+            entity.Property(e => e.Ipa).HasMaxLength(200);
+            entity.Property(e => e.PartOfSpeech).HasMaxLength(50);
+            entity.HasIndex(e => new { e.UserId, e.Word })
+                .HasDatabaseName("IX_StudentVocabularies_User_Word");
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.StudentVocabularies)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.SourceReadingPassage)
+                .WithMany()
+                .HasForeignKey(e => e.SourceReadingPassageId)
+                .OnDelete(DeleteBehavior.SetNull);
+            entity.HasOne(e => e.SourceVocabularyItem)
+                .WithMany()
+                .HasForeignKey(e => e.SourceVocabularyItemId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<ReadingReviewLog>(entity =>
+        {
+            entity.Property(e => e.FromStatus).HasMaxLength(32);
+            entity.Property(e => e.ToStatus).HasMaxLength(32);
+            entity.Property(e => e.Reason).HasMaxLength(2000);
+            entity.HasIndex(e => e.ReadingPassageId).HasDatabaseName("IX_ReadingReviewLogs_Passage");
+            entity.HasOne(e => e.ReadingPassage)
+                .WithMany(p => p.ReviewLogs)
+                .HasForeignKey(e => e.ReadingPassageId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.ActorUser)
+                .WithMany()
+                .HasForeignKey(e => e.ActorUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
 
         // ─── ReadingUserTranslation ──────────────────────────────────────────
         modelBuilder.Entity<ReadingUserTranslation>(entity =>
@@ -374,6 +530,10 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.LockExpiry)
                 .HasColumnType("datetime(6)")
                 .IsRequired(false);
+            entity.Property(e => e.ReadingLevel)
+                .HasMaxLength(2)
+                .HasDefaultValue("A1")
+                .IsRequired();
         });
 
         modelBuilder.Entity<UserDailyActivity>(entity =>
@@ -402,6 +562,7 @@ public partial class DbflashcardContext : DbContext
             entity.Property(e => e.WritingCompletedCount).HasDefaultValue(0);
             entity.Property(e => e.ReadingCompletedCount).HasDefaultValue(0);
             entity.Property(e => e.ListeningCompletedCount).HasDefaultValue(0);
+            entity.Property(e => e.DailyChallengeCompleted).HasDefaultValue(false);
 
             entity.HasOne(d => d.User)
                 .WithMany(p => p.UserDailyActivities)

@@ -28,9 +28,11 @@ public static class SharedDataRegistry
         ["Folder"] = Spec<Folder>("FolderId", "FolderName", [new("ParentFolderId", "Folder", true)], ["UserId"]),
         ["Set"] = Spec<Set>("SetId", "SetName Description", [new("FolderId", "Folder", true)], ["OwnerId"]),
         ["Card"] = Spec<Card>("CardId", "Term Definition ImageUrl Phonetic Example ExampleTranslation Topic", [new("SetId", "Set")]),
-        ["ReadingPassage"] = Spec<ReadingPassage>("Id", "Title Content Level Topic ImageUrl IsPublished"),
-        ["ReadingQuestion"] = Spec<ReadingQuestion>("Id", "QuestionText OrderIndex", [new("PassageId", "ReadingPassage")]),
-        ["ReadingOption"] = Spec<ReadingOption>("Id", "OptionText IsCorrect", [new("QuestionId", "ReadingQuestion")]),
+        ["ReadingPassage"] = Spec<ReadingPassage>("Id", "Title Content Level Topic ImageUrl IsPublished Description EstimatedTimeMinutes Status ExternalReadingKey"),
+        ["ReadingParagraph"] = Spec<ReadingParagraph>("Id", "ExternalParagraphKey ParagraphOrder ParagraphContent", [new("ReadingPassageId", "ReadingPassage")]),
+        ["ReadingQuestion"] = Spec<ReadingQuestion>("Id", "QuestionText OrderIndex QuestionType Points ParagraphReference CorrectAnswerText Explanation EvidenceText Paraphrase ExternalQuestionKey", [new("PassageId", "ReadingPassage"), new("EvidenceParagraphId", "ReadingParagraph", true)]),
+        ["ReadingOption"] = Spec<ReadingOption>("Id", "OptionText IsCorrect ExternalOptionKey MatchKey MatchSide OptionOrder", [new("QuestionId", "ReadingQuestion")]),
+        ["ReadingVocabularyItem"] = Spec<ReadingVocabularyItem>("Id", "ExternalVocabularyKey Word Ipa PartOfSpeech EnglishDefinition VietnameseMeaning Example", [new("ReadingPassageId", "ReadingPassage"), new("ParagraphId", "ReadingParagraph", true)]),
         ["ListeningLesson"] = Spec<ListeningLesson>("Id", "Title Level Topic YoutubeId AudioUrl ThumbnailUrl Duration Speaker1Name Speaker2Name Speaker1Country Speaker2Country IsPublished TranscriptSource"),
         ["ListeningTranscriptLine"] = Spec<ListeningTranscriptLine>("Id", "OrderIndex Speaker Text VietnameseMeaning StartTime EndTime", [new("LessonId", "ListeningLesson")]),
         ["ListeningQuizQuestion"] = Spec<ListeningQuizQuestion>("Id", "OrderIndex QuestionText OptionA OptionB OptionC OptionD CorrectAnswer Explanation", [new("LessonId", "ListeningLesson")]),
@@ -52,6 +54,7 @@ public static class SharedDataRegistry
     {
         ("Folder", "Folder", "ParentFolderId") or ("Folder", "Set", "FolderId") or ("Set", "Card", "SetId") or
         ("ReadingPassage", "ReadingQuestion", "PassageId") or ("ReadingQuestion", "ReadingOption", "QuestionId") or
+        ("ReadingPassage", "ReadingParagraph", "ReadingPassageId") or ("ReadingPassage", "ReadingVocabularyItem", "ReadingPassageId") or
         ("ListeningLesson", "ListeningTranscriptLine", "LessonId") or ("ListeningLesson", "ListeningQuizQuestion", "LessonId") or ("ListeningLesson", "ListeningVocabItem", "LessonId") or
         ("SpeakingPlaylist", "SpeakingVideo", "PlaylistId") or ("SpeakingVideo", "SpeakingSentence", "VideoId") or
         ("WritingExercise", "WritingExerciseSentence", "WritingExerciseId") or ("WritingExerciseSentence", "WritingAcceptedAnswer", "WritingExerciseSentenceId") or

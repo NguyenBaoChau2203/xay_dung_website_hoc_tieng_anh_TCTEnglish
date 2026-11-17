@@ -18,6 +18,7 @@ namespace TCTVocabulary.Controllers
         private readonly IWritingService _writingService;
         private readonly IWritingRequestRateLimiter _writingRequestRateLimiter;
         private readonly IListeningService _listeningService;
+        private readonly TCTEnglish.Services.Reading.IReadingLearningService _readingLearning;
         private readonly DbflashcardContext _context;
 
         public StudyController(
@@ -25,12 +26,14 @@ namespace TCTVocabulary.Controllers
             IWritingService writingService,
             IWritingRequestRateLimiter writingRequestRateLimiter,
             IListeningService listeningService,
+            TCTEnglish.Services.Reading.IReadingLearningService readingLearning,
             DbflashcardContext context)
         {
             _studyService = studyService;
             _writingService = writingService;
             _writingRequestRateLimiter = writingRequestRateLimiter;
             _listeningService = listeningService;
+            _readingLearning = readingLearning;
             _context = context;
         }
 
@@ -221,24 +224,12 @@ namespace TCTVocabulary.Controllers
             if (!TryGetCurrentUserId(out var userId))
                 return RedirectToAction("Login", "Account");
 
-            // Lưu ý: Đảm bảo _context đã được khai báo và inject trong Constructor của StudyController
-            var readings = await _context.ReadingPassages
-                .Where(r => r.IsPublished)
-                .Select(r => new ReadingListViewModel
-                {
-                    Id = r.Id,
-                    Title = r.Title,
-                    ImageUrl = r.ImageUrl,
-                    Level = r.Level,
-                    // Thêm logic kiểm tra lịch sử học tập
-                    IsCompleted = r.UserReadingHistories
-                        .Any(u => u.UserId == userId && u.IsCompleted),
-                    IsInProgress = r.UserReadingHistories
-                        .Any(u => u.UserId == userId && !u.IsCompleted)
-                })
-                .ToListAsync();
-
-            // Sử dụng tên View cụ thể để tránh nhầm lẫn
+            var readings = await _readingLearning.GetLibraryAsync(userId);
+            var readingLevelGated = !IsAdminUser();
+            ViewBag.ReadingLevelGated = readingLevelGated;
+            ViewBag.StudentReadingLevel = readingLevelGated
+                ? await _readingLearning.GetUserReadingLevelAsync(userId)
+                : null;
             return View("Reading", readings);
         }
 

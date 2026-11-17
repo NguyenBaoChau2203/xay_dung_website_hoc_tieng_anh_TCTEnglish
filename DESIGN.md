@@ -94,6 +94,7 @@ Related files, each with one job:
 | Token values and component CSS (source of truth) | `TCTEnglish/wwwroot/css/tct-learning-ui.css` |
 | Live, copyable examples | `docs/design-system/preview.html` (open from disk) |
 | How a teammate builds a page, PR checklist | `docs/design-system/team-ui-workflow.md` |
+| Multi-platform (mobile + desktop) rules | `docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md` |
 | Execution prompt for an agent | `.ai/prompts/implement-page-with-team-design-system.md` |
 
 ### Mandatory versus page-level
@@ -102,6 +103,7 @@ Related files, each with one job:
 | --- | --- |
 | Colors, fonts and weights from the tokens | Content arrangement, grid and illustration |
 | Shell (header, sidebar, `.main`) and its offsets | Section order and information density |
+| Multi-platform: desktop **and** mobile in the same change (whole feature) | Exact content density within those breakpoints |
 | Control look: buttons, inputs, focus ring, validation | Page-specific components built from the tokens |
 | States: loading, empty, error, success | Copy (keep existing Vietnamese product copy) |
 | Accessibility floor (see Accessibility) | Motion beyond the shared durations, if it explains state |
@@ -193,6 +195,22 @@ Check around 1440, 768 and 375/390 plus 200% zoom, long Vietnamese and English t
 and focus visibility. Preserve Tag Helpers, form actions, antiforgery tokens, IDs and
 data attributes consumed by JavaScript.
 
+### Multi-platform (mandatory)
+
+Desktop and mobile are one deliverable, not two phases. Any new screen or UI change
+must pass the acceptance matrix in
+[multi-platform UI design](docs/superpowers/specs/2026-11-09-multi-platform-ui-design.md)
+for the **whole feature** in scope (all related routes/views/CSS/JS touched by the
+task). Shipping only one viewport is incomplete.
+
+- Learner shell: `.main` and `.tct-footer` share the sidebar offset when the
+  sidebar is open; at ≤768px both use margin 0 and the sidebar overlays.
+- Do not hardcode sidebar/header offsets in feature CSS; use `--tct-*` tokens.
+- Tables, toolbars and side panels must reflow or scroll inside a region—never
+  force page-level horizontal overflow.
+- Process, PR checklist and adoption/responsive tracker:
+  [team-ui-workflow.md](docs/design-system/team-ui-workflow.md).
+
 ## Elevation & Depth
 
 Restrained: `--tct-shadow-soft` for cards, `--tct-shadow-lift` for hover/interactive,
@@ -244,6 +262,7 @@ inconsistency and the primary-color decision for Chau.
 | Tables | `.tct-table-wrap` (focusable scroll region) + `.tct-table`, or Bootstrap `.table-responsive` | Implemented |
 | Pagination | Bootstrap `.pagination`; Admin reference: `_CatalogPager.cshtml` | Implemented |
 | Modal | Bootstrap modal inside the `tct-theme` wrapper | Implemented |
+| Image upload (single file) | Modal pattern: [tct-image-upload.md](docs/design-system/tct-image-upload.md); partial `_TctImageUploadModal`, `tct-image-upload.css` / `.js` | Implemented |
 | Alerts / toast | Bootstrap `.alert` (`role="alert"` for errors) and `.toast` | Implemented |
 | Confirm dialog | SweetAlert2 pinned in `wwwroot/lib/pinned` only where the page already uses it | Existing |
 | Skeleton | `.tct-skeleton`, `--line`, `--short`, `.tct-skeleton-group` | Implemented |

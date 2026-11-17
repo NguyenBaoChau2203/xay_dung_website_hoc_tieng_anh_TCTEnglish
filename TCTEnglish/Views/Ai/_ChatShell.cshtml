@@ -4,7 +4,7 @@
     var userAvatar = User.FindFirst("AvatarUrl")?.Value;
     var userName = User.Identity?.Name;
     var userInitial = !string.IsNullOrEmpty(userName) ? userName[0].ToString().ToUpper() : "U";
-    var aiAvatar = "/images/ai/tct-ai-launcher.png";
+    var aiAvatar = "/brand/mascot/stickers/tico-mascot-head-color.png";
 }
 
 <div class="ai-chat-shell @(Model.IsEmbedded ? "ai-chat-shell-embedded" : "ai-chat-shell-page")"

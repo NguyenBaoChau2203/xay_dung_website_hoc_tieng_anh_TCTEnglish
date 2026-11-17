@@ -788,7 +788,7 @@
         const shell = document.querySelector('.ai-chat-shell');
         const userAvatar = shell?.dataset.userAvatar || '';
         const userInitial = shell?.dataset.userInitial || 'U';
-        const aiAvatar = shell?.dataset.aiAvatar || '/images/ai/tct-ai-launcher.png';
+        const aiAvatar = shell?.dataset.aiAvatar || '/brand/mascot/stickers/tico-mascot-head-color.png';
 
         if (role === 'assistant' || role === 'system') {
             const avatarDiv = document.createElement('div');
@@ -1766,7 +1766,7 @@
         const payload = await response.json();
         const items = Array.isArray(payload.items) ? payload.items : [];
         const insertBefore = button.closest('.ai-chat-load-older-row') || button;
-        const aiAvatar = chatShell?.getAttribute('data-ai-avatar') || '/images/ai/tct-ai-launcher.png';
+        const aiAvatar = chatShell?.getAttribute('data-ai-avatar') || '/brand/mascot/stickers/tico-mascot-head-color.png';
         // Insert a chronological fragment once — per-row insertBefore(nextSibling) reverses the page.
         const fragment = document.createDocumentFragment();
 

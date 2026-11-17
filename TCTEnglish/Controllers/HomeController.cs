@@ -59,7 +59,12 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDailyChallenge()
         {
-            var challenge = await GetRandomChallengeAsync();
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var challenge = await GetDailyChallengeForUserAsync(userId);
             return PartialView("_DailyChallenge", challenge);
         }
 
@@ -105,7 +110,6 @@ namespace TCTVocabulary.Controllers
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
-            // --- LOGIC THÊM VÀO: Lấy bài đọc đang học dở gần nhất ---
             var recentReading = await _context.UserReadingHistories
                 .AsNoTracking()
                 .Include(h => h.ReadingPassage)
@@ -120,7 +124,13 @@ namespace TCTVocabulary.Controllers
                     LastViewed = h.ViewedAt
                 })
                 .FirstOrDefaultAsync();
-            // -------------------------------------------------------
+
+            var today = BusinessDateHelper.Today;
+            var cardsReviewedToday = await _context.UserDailyActivities
+                .AsNoTracking()
+                .Where(a => a.UserId == userId && a.ActivityDate == today)
+                .Select(a => (int?)a.CardsReviewed)
+                .FirstOrDefaultAsync() ?? 0;
 
             return new DashboardViewModel
             {
@@ -134,7 +144,8 @@ namespace TCTVocabulary.Controllers
                 MasteredCount = masteredCount,
                 LearningCount = learningCount,
                 NewCount = newCount,
-                DailyChallenge = await GetRandomChallengeAsync(),
+                CardsReviewedToday = cardsReviewedToday,
+                DailyChallenge = await GetDailyChallengeForUserAsync(userId),
                 TodayFolders = todayFolders,
                 HeatmapCells = heatmapCells,
                 FeatureTimeBreakdown = await BuildFeatureTimeBreakdownAsync(userId),
@@ -145,7 +156,13 @@ namespace TCTVocabulary.Controllers
         private async Task<List<DashboardHeatmapCellViewModel>> BuildDashboardHeatmapAsync(int userId)
         {
             var today = BusinessDateHelper.Today;
-            var startDate = today.AddDays(-27);
+            var daysSinceMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
+            if (daysSinceMonday < 0)
+            {
+                daysSinceMonday += 7;
+            }
+            // Monday of the current week, then back 3 weeks → 28 Mon–Sun cells.
+            var startDate = today.AddDays(-daysSinceMonday - 21);
 
             var activityByDate = await _context.UserDailyActivities
                 .AsNoTracking()
@@ -275,6 +292,11 @@ namespace TCTVocabulary.Controllers
 
             if (isCorrect)
             {
+                if (await IsDailyChallengeCompletedTodayAsync(userId))
+                {
+                    return Json(new { correct = true, correctCardId, completedToday = true });
+                }
+
                 var activityUpdate = new GoalsActivityUpdate
                 {
                     CardsReviewed = 1,
@@ -296,19 +318,71 @@ namespace TCTVocabulary.Controllers
                 }
 
                 await _goalsService.UpdateStreakAndRewardsAsync(userId);
+                await MarkDailyChallengeCompletedAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
+                return Json(new { correct = true, correctCardId, completedToday = true });
             }
 
-            return Json(new { correct = isCorrect, correctCardId });
+            return Json(new { correct = false, correctCardId, completedToday = false });
         }
 
-        // 1. Cập nhật hàm lấy Challenge ngẫu nhiên
-        private async Task<DailyChallengeViewModel> GetRandomChallengeAsync()
+        private async Task<DailyChallengeViewModel> GetDailyChallengeForUserAsync(int userId)
         {
-            // Lọc Cards: Card -> thuộc Set -> có Owner (User) -> có Role là "System"
+            if (await IsDailyChallengeCompletedTodayAsync(userId))
+            {
+                return new DailyChallengeViewModel { IsCompletedToday = true };
+            }
+
+            return await GetRandomChallengeAsync(userId);
+        }
+
+        private async Task<bool> IsDailyChallengeCompletedTodayAsync(int userId)
+        {
+            var today = BusinessDateHelper.Today;
+            return await _context.UserDailyActivities
+                .AsNoTracking()
+                .AnyAsync(a => a.UserId == userId
+                    && a.ActivityDate == today
+                    && a.DailyChallengeCompleted);
+        }
+
+        private async Task MarkDailyChallengeCompletedAsync(int userId)
+        {
+            var today = BusinessDateHelper.Today;
+            var updated = await _context.UserDailyActivities
+                .Where(a => a.UserId == userId && a.ActivityDate == today)
+                .ExecuteUpdateAsync(s => s.SetProperty(a => a.DailyChallengeCompleted, true));
+
+            if (updated > 0)
+            {
+                return;
+            }
+
+            try
+            {
+                _context.UserDailyActivities.Add(new UserDailyActivity
+                {
+                    UserId = userId,
+                    ActivityDate = today,
+                    DailyChallengeCompleted = true
+                });
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                // GoalsService may have inserted the same day row concurrently.
+                _context.ChangeTracker.Clear();
+                await _context.UserDailyActivities
+                    .Where(a => a.UserId == userId && a.ActivityDate == today)
+                    .ExecuteUpdateAsync(s => s.SetProperty(a => a.DailyChallengeCompleted, true));
+            }
+        }
+
+        private async Task<DailyChallengeViewModel> GetRandomChallengeAsync(int userId)
+        {
             var systemCardsQuery = _context.Cards
                 .AsNoTracking()
-                .Where(c => c.Set.Owner.Role == "System"); // Lọc theo Role System
+                .Where(c => c.Set.Owner.Role == "System");
 
             var totalCards = await systemCardsQuery.CountAsync();
 
@@ -321,7 +395,6 @@ namespace TCTVocabulary.Controllers
 
             if (randomCard == null) return new DailyChallengeViewModel();
 
-            // Lấy các phương án sai cũng chỉ từ nguồn System
             var wrongAnswers = await GetSystemWrongAnswersAsync(randomCard.CardId);
 
             wrongAnswers.Add(new AnswerOption
@@ -330,17 +403,11 @@ namespace TCTVocabulary.Controllers
                 Definition = randomCard.Definition
             });
 
-            var challengeToken = string.Empty;
-            if (TryGetCurrentUserId(out var userId))
-            {
-                challengeToken = CreateDailyChallengeToken(userId, randomCard.CardId);
-            }
-
             return new DailyChallengeViewModel
             {
                 CardId = randomCard.CardId,
                 Term = randomCard.Term,
-                ChallengeToken = challengeToken,
+                ChallengeToken = CreateDailyChallengeToken(userId, randomCard.CardId),
                 Options = wrongAnswers.OrderBy(_ => Guid.NewGuid()).ToList()
             };
         }
@@ -409,6 +476,26 @@ namespace TCTVocabulary.Controllers
 
         private async Task<List<TodayFolderViewModel>> GetTodayFoldersAsync(int userId)
         {
+            var ownFolders = await _context.Folders
+                .AsNoTracking()
+                .Where(f => f.UserId == userId)
+                .OrderByDescending(f => f.FolderId)
+                .Take(3)
+                .Select(f => new TodayFolderViewModel
+                {
+                    FolderId = f.FolderId,
+                    FolderName = f.FolderName,
+                    SetCount = f.Sets.Count,
+                    CreatorName = f.User.FullName ?? "Unknown",
+                    IsOwnedByCurrentUser = true
+                })
+                .ToListAsync();
+
+            if (ownFolders.Count > 0)
+            {
+                return ownFolders;
+            }
+
             var eligibleFolders = _context.Folders
                 .AsNoTracking()
                 .Where(f => f.UserId != userId);
@@ -423,12 +510,13 @@ namespace TCTVocabulary.Controllers
                         FolderId = f.FolderId,
                         FolderName = f.FolderName,
                         SetCount = f.Sets.Count,
-                        CreatorName = f.User.FullName ?? "Unknown"
+                        CreatorName = f.User.FullName ?? "Unknown",
+                        IsOwnedByCurrentUser = false
                     })
                     .ToListAsync();
             }
 
-            // FIX: SQLite test provider cannot translate Guid.NewGuid() inside OrderBy.
+            // SQLite test provider cannot translate Guid.NewGuid() inside OrderBy.
             var folderIds = await TakeRandomIdsAsync(
                 eligibleFolders
                     .OrderBy(f => f.FolderId)
@@ -447,7 +535,8 @@ namespace TCTVocabulary.Controllers
                     FolderId = f.FolderId,
                     FolderName = f.FolderName,
                     SetCount = f.Sets.Count,
-                    CreatorName = f.User.FullName ?? "Unknown"
+                    CreatorName = f.User.FullName ?? "Unknown",
+                    IsOwnedByCurrentUser = false
                 })
                 .ToListAsync();
 
@@ -524,7 +613,12 @@ namespace TCTVocabulary.Controllers
         [HttpGet]
         public async Task<IActionResult> RefreshDailyChallenge()
         {
-            var challenge = await GetRandomChallengeAsync();
+            if (!TryGetCurrentUserId(out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var challenge = await GetDailyChallengeForUserAsync(userId);
             return PartialView("_DailyChallenge", challenge);
         }
 

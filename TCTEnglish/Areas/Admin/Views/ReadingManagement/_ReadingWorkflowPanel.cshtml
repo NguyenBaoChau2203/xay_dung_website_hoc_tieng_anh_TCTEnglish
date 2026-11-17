@@ -1,0 +1,142 @@
+@model TCTEnglish.Areas.Admin.ViewModels.ReadingEditorViewModel
+@using TCTEnglish.Areas.Admin.ViewModels
+@using TCTEnglish.Models.Reading
+@{
+    var status = Model.Status;
+    var canSubmit = ReadingAdminUi.CanSubmitForReview(status);
+    var canReview = ReadingAdminUi.CanReview(status);
+    var canPublish = ReadingAdminUi.CanPublish(status);
+    var revisionModalId = $"revisionModal-{Model.Id}";
+    var rejectModalId = $"rejectModal-{Model.Id}";
+    var publishModalId = $"publishModal-{Model.Id}";
+}
+
+<section class="admin-reading-workflow mb-4" aria-labelledby="reading-workflow-title">
+    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+        <div>
+            <div id="reading-workflow-title" class="admin-reading-workflow-title mb-1">Luồng kiểm duyệt</div>
+            <p class="admin-reading-workflow-hint mb-0">@ReadingAdminUi.WorkflowHint(status)</p>
+        </div>
+        <partial name="_ReadingStatusBadge" model="status" />
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 admin-reading-actions">
+        @if (canSubmit)
+        {
+            <form asp-action="SubmitForReview" asp-route-id="@Model.Id" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-warning">
+                    <span class="admin-reading-busy-label"><i class="fa-solid fa-paper-plane me-1" aria-hidden="true"></i>Gửi kiểm duyệt</span>
+                    <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang gửi…</span>
+                </button>
+            </form>
+        }
+
+        @if (canReview)
+        {
+            <form asp-action="Approve" asp-route-id="@Model.Id" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-success">
+                    <span class="admin-reading-busy-label"><i class="fa-solid fa-check me-1" aria-hidden="true"></i>Duyệt bài</span>
+                    <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang duyệt…</span>
+                </button>
+            </form>
+            <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#@revisionModalId">
+                <i class="fa-solid fa-rotate-left me-1" aria-hidden="true"></i>Yêu cầu sửa
+            </button>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#@rejectModalId">
+                <i class="fa-solid fa-xmark me-1" aria-hidden="true"></i>Từ chối
+            </button>
+        }
+
+        @if (canPublish)
+        {
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@publishModalId">
+                <i class="fa-solid fa-globe me-1" aria-hidden="true"></i>Xuất bản
+            </button>
+        }
+
+        <a asp-action="Export" asp-route-id="@Model.Id" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-file-excel me-1" aria-hidden="true"></i>Xuất Excel
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i>Quay lại danh sách
+        </a>
+    </div>
+</section>
+
+@if (canReview)
+{
+    <div class="modal fade" id="@revisionModalId" tabindex="-1" aria-labelledby="@(revisionModalId)-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form asp-action="RequestRevision" method="post" class="modal-content">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="PassageId" value="@Model.Id" />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@(revisionModalId)-label">Yêu cầu chỉnh sửa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label" for="@(revisionModalId)-reason">Lý do yêu cầu sửa</label>
+                    <textarea id="@(revisionModalId)-reason" name="Reason" class="form-control" rows="3" required placeholder="Mô tả phần cần sửa…"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-warning">
+                        <span class="admin-reading-busy-label">Gửi yêu cầu</span>
+                        <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang gửi…</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="@rejectModalId" tabindex="-1" aria-labelledby="@(rejectModalId)-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form asp-action="Reject" method="post" class="modal-content">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="PassageId" value="@Model.Id" />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@(rejectModalId)-label">Từ chối bài đọc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label" for="@(rejectModalId)-reason">Lý do từ chối</label>
+                    <textarea id="@(rejectModalId)-reason" name="Reason" class="form-control" rows="3" required placeholder="Giải thích lý do từ chối…"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="admin-reading-busy-label">Xác nhận từ chối</span>
+                        <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang xử lý…</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@if (canPublish)
+{
+    <div class="modal fade" id="@publishModalId" tabindex="-1" aria-labelledby="@(publishModalId)-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form asp-action="Publish" asp-route-id="@Model.Id" method="post" class="modal-content">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@(publishModalId)-label">Xuất bản bài đọc?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Học viên sẽ thấy bài <strong>@Model.Title</strong> ngay sau khi xuất bản.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="admin-reading-busy-label">Xuất bản</span>
+                        <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang xuất bản…</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

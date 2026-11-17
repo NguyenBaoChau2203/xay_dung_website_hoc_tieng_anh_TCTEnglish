@@ -355,9 +355,14 @@
 
             @* Empty state placeholder *@
             <div class="spk-my-empty @(Model.MyVideos.Any() ? "d-none" : "")" id="my-empty-state">
-                <div class="spk-my-empty-icon">
-                    <span class="material-symbols-outlined" style="font-size:36px;font-variation-settings:'FILL' 1">video_call</span>
-                </div>
+                <img class="tct-mascot"
+                     src="~/brand/mascot/poses/tico-mascot-welcome-color.png"
+                     asp-append-version="true"
+                     alt=""
+                     width="140"
+                     height="140"
+                     decoding="async"
+                     aria-hidden="true" />
                 <p class="spk-my-empty-title">Chưa có video nào</p>
                 <p class="spk-my-empty-desc">Dán link YouTube bên trên để AI tạo bài luyện nói riêng cho bạn</p>
                 <button type="button" class="spk-btn spk-btn--primary spk-btn--sm"
@@ -416,7 +421,14 @@
     @if (!Model.VideosByLevel.Any())
     {
         <div class="spk-empty-full vi-empty text-center p-5">
-            <span class="material-symbols-outlined" style="font-size:56px;opacity:0.3;color:var(--stitch-outline)">satellite_alt</span>
+            <img class="tct-mascot"
+                 src="~/brand/mascot/poses/tico-mascot-thinking-color.png"
+                 asp-append-version="true"
+                 alt=""
+                 width="160"
+                 height="160"
+                 decoding="async"
+                 aria-hidden="true" />
             <h3 class="spk-empty-title mt-3">Chưa có video</h3>
             <p class="spk-empty-desc">Hệ thống đang cập nhật nội dung. Vui lòng quay lại sau!</p>
         </div>

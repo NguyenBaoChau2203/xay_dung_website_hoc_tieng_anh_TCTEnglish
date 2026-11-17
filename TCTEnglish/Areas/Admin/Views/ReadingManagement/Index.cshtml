@@ -1,66 +1,271 @@
-﻿@model IEnumerable<TCTVocabulary.Models.ReadingPassage>
-<style>
-    /* Tạo khoảng cách nhỏ nếu không dùng btn-group */
-    .action-buttons .btn {
-        margin-right: 5px;
-        border-radius: 4px !important; /* Bo góc riêng từng nút thay vì chỉ bo góc 2 đầu group */
-    }
+﻿@model IEnumerable<TCTEnglish.Areas.Admin.ViewModels.ReadingPassageListItemViewModel>
+@using TCTEnglish.Areas.Admin.ViewModels
+@using TCTEnglish.Models.Reading
+@{
+    ViewData["Title"] = "Quản lý bài đọc";
+    var search = ViewBag.SearchString as string;
+    var status = ViewBag.Status as string;
+    var statuses = ViewBag.Statuses as string[] ?? Array.Empty<string>();
+    var items = Model?.ToList() ?? new List<ReadingPassageListItemViewModel>();
+    var total = items.Count;
+    var draftCount = items.Count(i => i.Status == ReadingStatuses.Draft || i.Status == ReadingStatuses.RevisionRequired);
+    var pendingCount = items.Count(i => i.Status == ReadingStatuses.PendingReview);
+    var publishedCount = items.Count(i => i.Status == ReadingStatuses.Published);
+    var hasFilter = !string.IsNullOrWhiteSpace(search) || !string.IsNullOrWhiteSpace(status);
+}
 
-    /* Hoặc nếu dùng btn-group mà muốn tách nhẹ */
-    .btn-group > .btn, .btn-group > form > .btn {
-        margin-right: 4px !important;
-        border-radius: 4px !important;
-    }
-</style>
-<div class="container-fluid mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Quản lý Bài Đọc</h2>
-        <a asp-action="Create" class="btn btn-primary">+ Tạo Bài Mới</a>
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-reading.css" asp-append-version="true" />
+}
+
+<div class="container-fluid py-4 tct-theme admin-reading-page">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div>
+            <div class="admin-reading-eyebrow mb-2">Quản trị Reading</div>
+            <h1 class="h3 admin-reading-header-title mb-1">Quản lý bài đọc</h1>
+            <p class="admin-reading-header-desc mb-0">
+                Tìm, lọc, kiểm duyệt và xuất bản. Import Excel để tạo nhiều bản nháp cùng lúc.
+            </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2 admin-reading-actions">
+            <a asp-action="DownloadTemplate" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-download me-1" aria-hidden="true"></i>Tải template
+            </a>
+            <a asp-action="Import" class="btn btn-outline-primary">
+                <i class="fa-solid fa-file-import me-1" aria-hidden="true"></i>Import Excel
+            </a>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Tạo bài mới
+            </a>
+        </div>
     </div>
 
-    <table class="table table-hover align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>Tiêu đề</th>
-                <th>Cấp độ</th>
-                <th>Số câu hỏi</th>
-                <th>Trạng thái</th>
-                <th style="width: 350px;">Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><strong>@item.Title</strong></td>
-                    <td><span class="badge bg-info text-dark">@item.Level</span></td>
-                    <td>@item.Questions.Count</td>
-                    <td>
-                        <form asp-action="TogglePublish" asp-route-id="@item.Id" method="post" style="display:inline;">
-                            @if (item.IsPublished)
-                            {
-                                <button type="submit" class="btn btn-sm btn-success">Public</button>
-                            }
-                            else
-                            {
-                                <button type="submit" class="btn btn-sm btn-secondary">Draft</button>
-                            }
-                        </form>
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            <a asp-action="ManageQuestions" asp-route-passageId="@item.Id" class="btn btn-sm btn-warning">Câu hỏi</a>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Sửa</a>
-                            
-                            <form asp-action="Delete" asp-route-id="@item.Id" method="post"
-                                  onsubmit="return confirm('Xóa bài đọc này sẽ xóa sạch câu hỏi và lịch sử làm bài. Bạn có chắc không?');"
-                                  style="display:inline;">
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <partial name="_ReadingAlerts" />
+
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-xl-3">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Trong danh sách</div>
+                <div class="admin-reading-stat-value">@total</div>
+            </div>
+        </div>
+        <div class="col-6 col-xl-3">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Nháp / cần sửa</div>
+                <div class="admin-reading-stat-value">@draftCount</div>
+            </div>
+        </div>
+        <div class="col-6 col-xl-3">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Chờ duyệt</div>
+                <div class="admin-reading-stat-value">@pendingCount</div>
+            </div>
+        </div>
+        <div class="col-6 col-xl-3">
+            <div class="admin-reading-stat">
+                <div class="admin-reading-stat-label">Đã xuất bản</div>
+                <div class="admin-reading-stat-value">@publishedCount</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin-reading-card admin-reading-toolbar mb-4">
+        <div class="p-3 p-md-4">
+            <form method="get" asp-action="Index" class="row g-3 align-items-end">
+                <div class="col-md-6 col-xl-5">
+                    <label class="form-label" for="readingSearch">Tìm kiếm</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+                        <input id="readingSearch" type="search" name="searchString" value="@search"
+                               class="form-control" placeholder="Tiêu đề hoặc chủ đề…" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-4 col-xl-4">
+                    <label class="form-label" for="readingStatus">Trạng thái</label>
+                    <select id="readingStatus" name="status" class="form-select">
+                        <option value="">Tất cả trạng thái</option>
+                        @foreach (var s in statuses)
+                        {
+                            <option value="@s" selected="@(status == s)">@ReadingAdminUi.StatusLabel(s)</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2 col-xl-3 d-flex flex-wrap gap-2">
+                    <button class="btn btn-secondary flex-grow-1" type="submit">
+                        <i class="fa-solid fa-filter me-1" aria-hidden="true"></i>Lọc
+                    </button>
+                    @if (hasFilter)
+                    {
+                        <a asp-action="Index" class="btn btn-outline-secondary flex-grow-1">Xóa lọc</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="admin-reading-card overflow-hidden">
+        @if (items.Count == 0)
+        {
+            <div class="admin-reading-empty">
+                <i class="fa-regular fa-book-open d-block mb-3" aria-hidden="true"></i>
+                @if (hasFilter)
+                {
+                    <h2 class="h5 mb-2">Không tìm thấy bài đọc</h2>
+                    <p class="mb-3">Thử đổi từ khóa hoặc xóa bộ lọc hiện tại.</p>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Xóa lọc</a>
+                }
+                else
+                {
+                    <h2 class="h5 mb-2">Chưa có bài đọc nào</h2>
+                    <p class="mb-3">Tạo bài mới hoặc import từ Excel để bắt đầu.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <a asp-action="Create" class="btn btn-primary">Tạo bài mới</a>
+                        <a asp-action="Import" class="btn btn-outline-primary">Import Excel</a>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table admin-reading-table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-3 ps-md-4">Bài đọc</th>
+                            <th>Trình độ</th>
+                            <th>Câu hỏi</th>
+                            <th>Người tạo</th>
+                            <th>Cập nhật</th>
+                            <th>Trạng thái</th>
+                            <th class="text-end pe-3 pe-md-4">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in items)
+                    {
+                        var deleteModalId = $"deleteReadingModal-{item.Id}";
+                        var publishModalId = $"publishReadingModal-{item.Id}";
+                        <tr>
+                            <td class="ps-3 ps-md-4 admin-reading-title-cell" data-label="Bài đọc">
+                                <div class="title">@item.Title</div>
+                                <div class="small text-muted">#@item.Id · @(item.Topic ?? "Chưa có chủ đề")</div>
+                            </td>
+                            <td data-label="Trình độ">
+                                <span class="admin-reading-level">@item.Level</span>
+                            </td>
+                            <td data-label="Câu hỏi">@item.QuestionCount</td>
+                            <td data-label="Người tạo">@(item.CreatedByName ?? "—")</td>
+                            <td data-label="Cập nhật" class="small text-muted">
+                                @(item.UpdatedAt?.ToLocalTime().ToString("dd/MM/yyyy HH:mm") ?? "—")
+                            </td>
+                            <td data-label="Trạng thái">
+                                <partial name="_ReadingStatusBadge" model="item.Status" />
+                            </td>
+                            <td class="text-end pe-3 pe-md-4 admin-reading-actions-cell" data-label="Thao tác">
+                                <div class="d-flex flex-wrap justify-content-end gap-2 admin-reading-actions">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary admin-reading-hit">
+                                        <i class="fa-solid fa-pen-to-square me-1" aria-hidden="true"></i>
+                                        @(ReadingAdminUi.CanReview(item.Status) ? "Duyệt" : "Sửa")
+                                    </a>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-light border admin-reading-hit" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false" aria-label="Thêm thao tác cho @item.Title">
+                                            <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                                            <li>
+                                                <a class="dropdown-item" asp-action="Export" asp-route-id="@item.Id">
+                                                    <i class="fa-solid fa-file-excel me-2" aria-hidden="true"></i>Xuất Excel
+                                                </a>
+                                            </li>
+                                            @if (ReadingAdminUi.CanPublish(item.Status))
+                                            {
+                                                <li>
+                                                    <button type="button" class="dropdown-item"
+                                                            data-bs-toggle="modal" data-bs-target="#@publishModalId">
+                                                        <i class="fa-solid fa-globe me-2" aria-hidden="true"></i>Xuất bản
+                                                    </button>
+                                                </li>
+                                            }
+                                            <li><hr class="dropdown-divider" /></li>
+                                            <li>
+                                                <button type="button" class="dropdown-item text-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#@deleteModalId"
+                                                        data-reading-delete-target="@deleteModalId"
+                                                        data-reading-title="@item.Title">
+                                                    <i class="fa-solid fa-trash me-2" aria-hidden="true"></i>Xóa
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
 </div>
+
+@foreach (var item in items)
+{
+    var deleteModalId = $"deleteReadingModal-{item.Id}";
+    var publishModalId = $"publishReadingModal-{item.Id}";
+
+    <div class="modal fade" id="@deleteModalId" tabindex="-1" aria-labelledby="@(deleteModalId)-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="modal-content admin-reading-page">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="@(deleteModalId)-label">Xóa bài đọc?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">
+                        Thao tác này xóa vĩnh viễn bài
+                        <strong data-reading-delete-title>@item.Title</strong>.
+                        Không thể hoàn tác.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="admin-reading-busy-label">Xóa bài</span>
+                        <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang xóa…</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (ReadingAdminUi.CanPublish(item.Status))
+    {
+        <div class="modal fade" id="@publishModalId" tabindex="-1" aria-labelledby="@(publishModalId)-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <form asp-action="Publish" asp-route-id="@item.Id" method="post" class="modal-content admin-reading-page">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="@(publishModalId)-label">Xuất bản bài đọc?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-0">Học viên sẽ thấy bài <strong>@item.Title</strong> ngay sau khi xuất bản.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="admin-reading-busy-label">Xuất bản</span>
+                            <span class="admin-reading-busy-spinner"><span class="spinner-border spinner-border-sm me-1" aria-hidden="true"></span>Đang xuất bản…</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+}
+
+@section Scripts {
+    <script src="~/js/admin-reading.js" asp-append-version="true"></script>
+}

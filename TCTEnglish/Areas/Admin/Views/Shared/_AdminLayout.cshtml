@@ -10,6 +10,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] — TCT Admin</title>
+    <link rel="icon" href="~/brand/logo/favicon/favicon.ico" asp-append-version="true" />
+    <link rel="icon" type="image/svg+xml" href="~/brand/logo/favicon/favicon.svg" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/brand/logo/favicon/favicon-32.png" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/brand/logo/favicon/favicon-16.png" asp-append-version="true" />
+    <link rel="apple-touch-icon" href="~/brand/logo/favicon/apple-touch-icon.png" asp-append-version="true" />
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -37,14 +42,48 @@
 
         .admin-sidebar {
             width: var(--sidebar-width);
-            min-height: 100vh;
+            height: 100vh;
+            height: 100dvh;
+            max-height: 100vh;
+            max-height: 100dvh;
+            overflow: hidden;
             transition: all 0.3s;
+        }
+
+        .admin-sidebar-brand,
+        .admin-sidebar-footer {
+            flex-shrink: 0;
+        }
+
+        .admin-sidebar-nav {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+        }
+
+        .admin-sidebar-nav::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .admin-sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 999px;
+        }
+
+        .admin-sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
         }
 
         .admin-main {
             margin-left: var(--sidebar-width);
             transition: all 0.3s;
             min-height: 100vh;
+            min-height: 100dvh;
         }
 
         .nav-link.active {
@@ -57,9 +96,22 @@
         }
 
         @@media (max-width: 991.98px) {
-            .admin-sidebar { margin-left: calc(var(--sidebar-width) * -1); position: fixed; z-index: 1050; }
+            .admin-sidebar {
+                margin-left: calc(var(--sidebar-width) * -1);
+                position: fixed;
+                z-index: 1050;
+                height: 100vh;
+                height: 100dvh;
+                max-height: 100vh;
+                max-height: 100dvh;
+                overflow: hidden;
+            }
             .admin-sidebar.show { margin-left: 0; }
             .admin-main { margin-left: 0; }
+            #sidebarToggle {
+                min-width: var(--tct-target-min, 44px);
+                min-height: var(--tct-target-min, 44px);
+            }
         }
 
         .admin-skip-link {
@@ -83,16 +135,22 @@
     <!-- =============== SIDEBAR =============== -->
     <aside class="admin-sidebar bg-dark text-white position-fixed top-0 start-0 d-flex flex-column" id="adminSidebar">
         <!-- Brand -->
-        <div class="p-3 border-bottom border-secondary">
+        <div class="admin-sidebar-brand p-3 border-bottom border-secondary">
             <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"
-               class="text-white text-decoration-none d-flex align-items-center gap-2">
-                <i class="bi bi-shield-lock-fill fs-4"></i>
+               class="text-white text-decoration-none d-flex align-items-center gap-2"
+               aria-label="TCT Admin — dashboard">
+                <img src="~/brand/logo/tct-english-logo-mark.svg"
+                     asp-append-version="true"
+                     alt=""
+                     width="28"
+                     height="28"
+                     class="admin-sidebar-brand-mark" />
                 <span class="fw-bold fs-5">TCT Admin</span>
             </a>
         </div>
 
         <!-- Navigation -->
-        <nav class="flex-grow-1 p-3">
+        <nav class="admin-sidebar-nav flex-grow-1 p-3" aria-label="Menu quản trị">
             <ul class="nav flex-column gap-1">
                 <!-- Dashboard -->
                 <li class="nav-item">
@@ -181,7 +239,7 @@
         </nav>
 
         <!-- Sidebar Footer — Back to Main Site -->
-        <div class="p-3 border-top border-secondary">
+        <div class="admin-sidebar-footer p-3 border-top border-secondary">
             <a asp-controller="Home" asp-action="Index" asp-area=""
                class="btn btn-outline-light btn-sm w-100">
                 <i class="bi bi-box-arrow-left me-1"></i> Về trang chính

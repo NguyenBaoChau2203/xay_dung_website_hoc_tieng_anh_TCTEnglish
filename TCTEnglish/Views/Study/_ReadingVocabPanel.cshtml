@@ -1,0 +1,33 @@
+<aside id="readingVocabPanel"
+       class="reading-vocab-panel"
+       hidden
+       aria-hidden="true"
+       aria-labelledby="readingVocabPanelTitle">
+    <div class="reading-vocab-panel__header">
+        <h2 id="readingVocabPanelTitle" class="reading-vocab-panel__title">My Vocab</h2>
+        <button type="button"
+                class="btn btn-sm btn-outline-secondary reading-study-icon-btn"
+                id="readingVocabPanelClose"
+                aria-label="Đóng bảng từ vựng">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <div class="reading-vocab-panel__body" id="readingVocabPanelBody">
+        <div class="reading-vocab-panel__state" id="readingVocabEmpty" data-vocab-state="empty">
+            <p class="mb-0">Chọn từ trong đoạn văn, rồi bấm Translate hoặc Dictionary.</p>
+        </div>
+        <div class="reading-vocab-panel__state d-none" id="readingVocabLoading" data-vocab-state="loading" aria-live="polite" aria-busy="true">
+            <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+            Đang lấy nghĩa…
+        </div>
+        <div class="reading-vocab-panel__state d-none" id="readingVocabError" data-vocab-state="error" role="alert">
+            <p class="mb-2" id="readingVocabErrorText">Không lấy được nghĩa.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="readingVocabRetry">Thử lại</button>
+        </div>
+        <div class="reading-vocab-panel__list d-none" id="readingVocabList" data-vocab-state="list" aria-live="polite"></div>
+    </div>
+
+    <div class="reading-vocab-panel__toast d-none" id="readingHybridToast" role="status" aria-live="polite"></div>
+</aside>
+<div class="reading-vocab-panel__backdrop d-none" id="readingVocabBackdrop" hidden></div>

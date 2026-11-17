@@ -13,7 +13,11 @@
         "Level": "A1",
         "Topic": "Teamwork",
         "ImageUrl": null,
-        "IsPublished": true
+        "IsPublished": true,
+        "Description": "Sample shared reading for teammate onboarding.",
+        "EstimatedTimeMinutes": 5,
+        "Status": "Published",
+        "ExternalReadingKey": "team.onboarding.reading"
       },
       "references": {}
     },
@@ -22,10 +26,19 @@
       "kind": "ReadingQuestion",
       "values": {
         "QuestionText": "What does the team share?",
-        "OrderIndex": 1
+        "OrderIndex": 1,
+        "QuestionType": "MultipleChoice",
+        "Points": 1,
+        "ParagraphReference": null,
+        "CorrectAnswerText": null,
+        "Explanation": null,
+        "EvidenceText": null,
+        "Paraphrase": null,
+        "ExternalQuestionKey": "team.onboarding.question"
       },
       "references": {
-        "PassageId": "team.onboarding.reading"
+        "PassageId": "team.onboarding.reading",
+        "EvidenceParagraphId": null
       }
     },
     {
@@ -33,7 +46,11 @@
       "kind": "ReadingOption",
       "values": {
         "OptionText": "Learning materials",
-        "IsCorrect": true
+        "IsCorrect": true,
+        "ExternalOptionKey": "team.onboarding.option.correct",
+        "MatchKey": null,
+        "MatchSide": null,
+        "OptionOrder": 1
       },
       "references": {
         "QuestionId": "team.onboarding.question"
@@ -44,7 +61,11 @@
       "kind": "ReadingOption",
       "values": {
         "OptionText": "One personal progress record",
-        "IsCorrect": false
+        "IsCorrect": false,
+        "ExternalOptionKey": "team.onboarding.option.other",
+        "MatchKey": null,
+        "MatchSide": null,
+        "OptionOrder": 2
       },
       "references": {
         "QuestionId": "team.onboarding.question"

@@ -53,9 +53,12 @@
             <!-- Brand content -->
             <div class="auth-brand-content">
                 <div class="auth-brand-logo">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <img src="~/brand/logo/tct-english-logo-horizontal-white.svg"
+                         asp-append-version="true"
+                         alt="TCT English"
+                         width="220"
+                         height="52" />
                 </div>
-                <div class="auth-brand-title">TCT ENGLISH</div>
                 <div class="auth-brand-subtitle">
                     Học tiếng Anh thông minh — dành cho mọi người.<br />
                     Nâng tầm ngoại ngữ, mở rộng tương lai.
@@ -194,6 +197,16 @@
                     <div class="auth-form-group">
                         <label class="auth-form-label" for="register-name">Tên hiển thị</label>
                         <input type="text" name="fullName" class="auth-form-input" placeholder="Nhập tên của bạn" required id="register-name" autocomplete="name">
+
+                        <label class="auth-form-label" for="register-reading-level">Cấp độ Reading (CEFR)</label>
+                        <select name="readingLevel" class="auth-form-input" id="register-reading-level" required>
+                            <option value="A1" selected>A1 — Beginner</option>
+                            <option value="A2">A2 — Elementary</option>
+                            <option value="B1">B1 — Intermediate</option>
+                            <option value="B2">B2 — Upper-Intermediate</option>
+                            <option value="C1">C1 — Advanced</option>
+                            <option value="C2">C2 — Proficiency</option>
+                        </select>
                     </div>
 
                     <div class="auth-form-group">

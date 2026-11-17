@@ -115,25 +115,27 @@
         </h2>
     </div>
     <div class="card-body p-0">
-        <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
-            <tr>
-                <th class="ps-4">Worker</th>
-                <th>Mô tả</th>
-                <th>Trạng thái</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var worker in Model.Workers)
-            {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
                 <tr>
-                    <td class="ps-4 fw-medium">@worker.WorkerName</td>
-                    <td class="text-muted small">@worker.Description</td>
-                    <td><span class="@worker.StatusBadgeClass">@worker.StatusLabel</span></td>
+                    <th class="ps-4">Worker</th>
+                    <th>Mô tả</th>
+                    <th>Trạng thái</th>
                 </tr>
-            }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach (var worker in Model.Workers)
+                {
+                    <tr>
+                        <td class="ps-4 fw-medium">@worker.WorkerName</td>
+                        <td class="text-muted small">@worker.Description</td>
+                        <td><span class="@worker.StatusBadgeClass">@worker.StatusLabel</span></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
