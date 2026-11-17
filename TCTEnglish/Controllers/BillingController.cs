@@ -84,13 +84,13 @@ namespace TCTEnglish.Controllers
                 p => p.ProviderCode,
                 p => p.Enabled && p.Configured);
 
-            var model = new PricingViewModel
-            {
-                Plans = plans,
-                CurrentAccess = accessSnapshot,
-                ErrorMessage = TempData["CheckoutError"] as string,
-                ProviderReadiness = providerReadiness
-            };
+            var model = PricingPageBuilder.Build(
+                plans,
+                accessSnapshot,
+                providerReadiness,
+                IsMoMoMockModeEnabled(),
+                TempData["CheckoutError"] as string,
+                DateTime.UtcNow);
 
             return View(model);
         }

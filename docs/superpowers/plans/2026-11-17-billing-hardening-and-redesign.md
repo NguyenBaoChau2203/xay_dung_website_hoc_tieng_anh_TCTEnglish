@@ -669,3 +669,35 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed.** none. New: `BillingDisplayHelpersTests` (38 rows), `test_billing_core.cjs` (13 tests).
 
 **Mockup differences.** none yet (no page). **Orders created.** none.
+
+
+### Gate record — B7 Pricing page (2026-11-17) — `feat(billing): rebuild /Premium as one form with plan and method choices, a truthful comparison and a live summary`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 571 total: 570 passed, 1 skipped, 0 failed |
+| G3 | pass | 2271 total = 2236 passed, 35 skipped, 0 failed (B6's 2257 + 14 new integration tests) |
+| G4 | pass | node 404 / 403 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | `/Premium` and `/Billing/Checkout` keep their routes and the form fields `PlanCode`/`Provider`; provider URLs and signatures untouched |
+| G6 | pass | `billing.css` token grep empty; no inline `style=`, `<style>` or `<script>` in the page block (test); no `bi bi-` in `Pricing.cshtml`/`_BenefitsTable.cshtml` (the remaining 24 grep hits are the old History/MoMoQr/PaymentResult views and their view models, replaced in B8/B9); `git diff --check` clean |
+| G7 | pass | files in scope; `Program.cs`/`_Layout.cshtml` untouched in this phase |
+| G8 | pass | local app (Release, mock MoMo) driven by headless Chrome: 1440×900, 1366×768, 1024, 768, 390, 320 and 200 % zoom (720×450 at DPR 2) for a free learner; also Premium at 1440/390 and Admin at 1440. No document overflow and no element outside the viewport at any size; console errors none, network ≥ 400 none. Screenshots in `.tmp/billing/after/premium-*.png` |
+| G9 | pass | compared with mockups 1 and 2 and with `/Sets`: same Clay panels, header, chips, buttons; differences below |
+| G10 | pass | by mouse and keyboard: plan click and Arrow keys switch the selection and update summary, validity date, total, button text and note; the unavailable VNPay radio is disabled; MoMo preselected (first available); Premium buyer's date extends from the current end date (17/11/2027 → 16/11/2028); admin sees no form and no pay button; a triple click sent exactly one POST and led to the order page; a second submit resumed the same open order; a rejected checkout shows the alert and moves focus to it (`document.activeElement` is the alert block) |
+| G11 | pass | fieldsets with legends, real table with caption and `scope`, text alternatives "Có"/"Không có"; forced-colours screenshot keeps card borders and the check mark; reduced-motion screenshot identical (no animation used); **no-JS checkout works** (scripts disabled, Enter on the radio submitted the form and resumed the open order); a mouse click on the button was not used for that check because the fixed AI launcher covers the lower right of the viewport |
+| G12 | pass | scripted contrast over every text node of the page block (WCAG AA): 47 nodes checked for the free and Premium states, 24 for admin: first run found the greyed VNPAY badge at 4.24:1, fixed (`--tct-text-muted` on the disabled fill); after the fix zero failures at 1440 |
+| G13 | pass | full suite green (Premium gate tests, speaking/writing premium tests, `VocabApiController` image search); login and logout used by the browser runs |
+| G14 | pass | `var(--tct-*)` only; selection uses a border and a check mark, not colour alone; weights ≤ 700 |
+| G15 | pass | antiforgery: a checkout POST without the token answers 400 (test); admin refusal is server-side (test); anonymous visitor is redirected; no secret in the diff |
+| G16 | partial, expected | unchanged (admin copy removed in B10) |
+
+**What changed.** `PricingPageBuilder` + extended `PricingViewModel` (money text, per-month, saving, preselection, method rows, status card, server clock), `Views/Billing/Pricing.cshtml` (one form; plans as radio cards; comparison table partial `_BenefitsTable`; payment column with methods, summary, one pay button, notes), `wwwroot/js/billing-pricing.js` (summary in step with the choice, pending state, double-submit guard, focus the error), `billing.css` pricing block, `BillingController.Pricing` uses the builder.
+
+**Mockup differences (the rule wins).** The comparison table has nine rows, not seven, because every row had to be backed by a real gate (B0 table): the mockup's "Giới hạn mỗi ngày" is written as the real "15 lượt mỗi ngày" and a listening-speed row was added. Brand marks are neutral text badges (no logo files). The header still says "Upgrade: Premium" until B10. In local mock mode the MoMo row carries "Thử nghiệm" and the unconfigured VNPay row is greyed with "Tạm thời chưa dùng được".
+
+**Observation for the owner.** The fixed AI chat launcher (shared layout) sits over the lower right corner, so on a 1440×900 viewport it can cover the right end of the pay button; not changed (shared file).
+
+**Owned tests changed.** none. New: `BillingPagesIntegrationTests` (14 tests).
+
+**Orders created.** `TCT-20261117080914540-38807DBA` (fx2, MoMo mock, yearly, pending; reused by the later phases).
