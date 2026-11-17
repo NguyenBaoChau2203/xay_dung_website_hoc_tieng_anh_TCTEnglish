@@ -611,3 +611,30 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed (and why).** `BillingServiceTests` (factory builds `BillingService` with a silent query service because the constructor gained a parameter), `BillingControllerTests`, `MoMoBillingControllerTests` (controller constructor gained `IPaymentQueryService`; no assertion changed). New: `BillingReturnConfirmationTests`, `PaymentReconciliationServiceTests`, `BillingOrderEndpointsTests`, `PaymentOrderPresentationTests`, and a shared `TestHelpers/BillingTestFactories`.
 
 **Mockup differences.** none. **Orders created.** none.
+
+
+### Gate record — B5 Access and checkout rules (2026-11-17) — `feat(billing): show the Premium end date, expire lapsed subscriptions on billing pages and tighten checkout`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 519 total: 518 passed, 1 skipped, 0 failed |
+| G3 | pass | 2219 total = 2184 passed, 35 skipped, 0 failed (B4's 2164 + 55 new tests) |
+| G4 | pass | node 391 / 390 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | signature helpers untouched; provider URLs/response codes unchanged; `/Premium`, `/Billing/Checkout`, `/Billing/History`, `/Billing/OrderStatus`, `/Billing/MoMoQr` still respond; order code format and amounts unchanged |
+| G6 | pass | `git diff --check` clean for changed files; the 36 `bi bi-`/inline hits are the old learner views (replaced B7–B9), none added |
+| G7 | pass | `Program.cs` untouched in this phase; `_Layout.cshtml` untouched; no account/auth file touched (D1 = TẠM + BÁO CHÂU) |
+| G8–G14 | n/a | backend only; no view/CSS/JS yet (the pages are rebuilt in B6–B9) |
+| G15 | pass | secret grep over diff and new files empty; admin/permanent block is server-side (test), not only a hidden button; forwarded address is only trusted behind a loopback/private connection and only if it parses as an IP; MoMo provider wording is logged, not shown |
+| G16 | partial, expected | `Status = Paid` appears only in `PaymentConfirmationService` and the admin action (B10) |
+
+**What changed.**
+- **F10/F21.** `GetAccessSnapshotAsync` loads the latest active end date for every non-admin (role Premium included) and adds `IsPermanent` (admin, or Premium role with no subscription row at all — `PremiumAccessRules.IsPermanent`, shared with checkout) and `DaysLeft` (rounded up). `ISubscriptionService.ExpireForUserAsync` applies the worker's rules to one user; `Pricing` and `History` call it first (the order page will in B8).
+- **F12.** Admins and legacy permanent Premium accounts cannot buy (`ALREADY_PERMANENT`, checked on the server). A second checkout for the same plan and provider resumes the user's open, unexpired order: MoMo → its QR page URL (B8 repoints it to the order page), VNPay → the stored payment URL; neither creates an order nor counts against the 5-per-15-minutes limit. The VNPay redirect URL is now stored in `ProviderPaymentUrl` (≤ 1000 characters; older VNPay orders without it are not resumed).
+- **F19.** `BillingClientIp.Resolve`: the connection address, unless the connection is loopback/private (a reverse proxy), in which case the first `X-Forwarded-For` entry that parses as an IP; `::1` and IPv4-mapped addresses become IPv4 text; fallback `127.0.0.1`.
+- **F16.** Diacritic Vietnamese for the controller (`Thông tin đăng ký không hợp lệ.`, `Cổng thanh toán hiện không khả dụng.`, `Đơn hàng đã hết hạn, vui lòng tạo đơn mới.`), the service (`Cổng thanh toán hiện không khả dụng.` instead of "chưa được cấu hình… liên hệ quản trị viên", `Cổng thanh toán này không được hỗ trợ.` without echoing the input) and both gateways (the nine MoMo strings of the plan; VNPay "chưa sẵn sàng"); MoMo's own result message is logged, not shown.
+- **D1 (TẠM).** Nothing in this phase touches account code. The buyer-facing notice, "login returns to the order page" and the polling script's session-ended handling land with the pages (B6–B8); the proposal for Châu is written in B11.
+
+**Owned tests changed (and why).** `BillingControllerTests`, `MoMoBillingControllerTests`: controller constructor gained `ISubscriptionService`; no assertion changed. New: `PremiumStatusAndExpiryTests`, `BillingCheckoutRulesTests`, `BillingClientIpTests`, `BillingControllerMessageTests`. `PremiumAccessServiceTests` and `SubscriptionServiceTests` needed no change.
+
+**Mockup differences.** none. **Orders created.** none.

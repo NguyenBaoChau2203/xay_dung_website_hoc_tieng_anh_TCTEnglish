@@ -80,6 +80,7 @@ namespace TCTEnglish.Tests
                 Options.Create(new MoMoOptions()),
                 new StubWebHostEnvironment { EnvironmentName = "Development" },
                 query.Object,
+                Mock.Of<ISubscriptionService>(),
                 NullLogger<BillingController>.Instance);
 
             var httpContext = new DefaultHttpContext();

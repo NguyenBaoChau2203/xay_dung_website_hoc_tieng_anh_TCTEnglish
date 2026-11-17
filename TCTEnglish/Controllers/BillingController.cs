@@ -31,6 +31,7 @@ namespace TCTEnglish.Controllers
         private readonly MoMoOptions _moMoOptions;
         private readonly IWebHostEnvironment _environment;
         private readonly IPaymentQueryService _queryService;
+        private readonly ISubscriptionService _subscriptionService;
         private readonly ILogger<BillingController> _logger;
 
         public BillingController(
@@ -42,6 +43,7 @@ namespace TCTEnglish.Controllers
             IOptions<MoMoOptions> moMoOptions,
             IWebHostEnvironment environment,
             IPaymentQueryService queryService,
+            ISubscriptionService subscriptionService,
             ILogger<BillingController> logger)
         {
             _context = context;
@@ -52,6 +54,7 @@ namespace TCTEnglish.Controllers
             _moMoOptions = moMoOptions.Value.Normalize();
             _environment = environment;
             _queryService = queryService;
+            _subscriptionService = subscriptionService;
             _logger = logger;
         }
 
@@ -60,6 +63,7 @@ namespace TCTEnglish.Controllers
         public async Task<IActionResult> Pricing()
         {
             var userId = GetCurrentUserId();
+            await _subscriptionService.ExpireForUserAsync(userId);
             var plans = await _context.PremiumPlans
                 .AsNoTracking()
                 .Where(p => p.IsActive)
@@ -98,7 +102,7 @@ namespace TCTEnglish.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["CheckoutError"] = "Thong tin dang ky khong hop le.";
+                TempData["CheckoutError"] = "Thông tin đăng ký không hợp lệ.";
                 return RedirectToAction(nameof(Pricing));
             }
 
@@ -123,7 +127,7 @@ namespace TCTEnglish.Controllers
                     "Checkout succeeded but RedirectUrl is null for order {OrderCode}",
                     result.OrderCode);
 
-                TempData["CheckoutError"] = "Cong thanh toan hien khong kha dung.";
+                TempData["CheckoutError"] = "Cổng thanh toán hiện không khả dụng.";
                 return RedirectToAction(nameof(Pricing));
             }
 
@@ -135,6 +139,7 @@ namespace TCTEnglish.Controllers
         public async Task<IActionResult> History()
         {
             var userId = GetCurrentUserId();
+            await _subscriptionService.ExpireForUserAsync(userId);
             var model = await _billingService.GetPaymentHistoryAsync(userId);
             return View(model);
         }
@@ -210,7 +215,7 @@ namespace TCTEnglish.Controllers
 
             if (order.ExpiresAtUtc <= DateTime.UtcNow)
             {
-                TempData["CheckoutError"] = "Don hang da het han, vui long tao don moi.";
+                TempData["CheckoutError"] = "Đơn hàng đã hết hạn, vui lòng tạo đơn mới.";
                 return RedirectToAction(nameof(MoMoQr), new { orderCode });
             }
 
@@ -483,17 +488,9 @@ namespace TCTEnglish.Controllers
 
         private static string GetClientIp(HttpContext httpContext)
         {
-            var forwardedFor = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
-            if (!string.IsNullOrWhiteSpace(forwardedFor))
-            {
-                var firstIp = forwardedFor.Split(',')[0].Trim();
-                if (!string.IsNullOrWhiteSpace(firstIp))
-                {
-                    return firstIp;
-                }
-            }
-
-            return httpContext.Connection.RemoteIpAddress?.ToString() ?? "127.0.0.1";
+            return BillingClientIp.Resolve(
+                httpContext.Connection.RemoteIpAddress,
+                httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault());
         }
 
         private const int MaxMoMoIpnBodyBytes = 64 * 1024;

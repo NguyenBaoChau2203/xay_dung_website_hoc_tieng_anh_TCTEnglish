@@ -47,6 +47,7 @@ namespace TCTEnglish.Tests
                 Options.Create(new MoMoOptions()),
                 new StubWebHostEnvironment { EnvironmentName = "Development" },
                 Moq.Mock.Of<TCTEnglish.Services.Billing.IPaymentQueryService>(),
+                Moq.Mock.Of<TCTEnglish.Services.Billing.ISubscriptionService>(),
                 NullLogger<BillingController>.Instance);
 
             var httpContext = new DefaultHttpContext();
@@ -113,6 +114,7 @@ namespace TCTEnglish.Tests
                 Options.Create(new MoMoOptions()),
                 new StubWebHostEnvironment { EnvironmentName = "Development" },
                 Moq.Mock.Of<TCTEnglish.Services.Billing.IPaymentQueryService>(),
+                Moq.Mock.Of<TCTEnglish.Services.Billing.ISubscriptionService>(),
                 NullLogger<BillingController>.Instance);
 
             var identity = new ClaimsIdentity(new[]

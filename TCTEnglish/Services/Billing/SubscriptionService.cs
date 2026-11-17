@@ -97,12 +97,24 @@ namespace TCTEnglish.Services.Billing
         // Expire
         // ───────────────────────────────────────────────────────────────────────
 
-        public async Task<int> ExpireSubscriptionsAsync(CancellationToken ct = default)
+        public Task<int> ExpireSubscriptionsAsync(CancellationToken ct = default)
+            => ExpireOverdueAsync(onlyUserId: null, ct);
+
+        /// <summary>
+        /// Same rules as <see cref="ExpireSubscriptionsAsync"/> for one user, so the billing pages never show
+        /// Premium for up to an hour after the end date (the worker runs hourly).
+        /// </summary>
+        public Task<int> ExpireForUserAsync(int userId, CancellationToken ct = default)
+            => ExpireOverdueAsync(userId, ct);
+
+        private async Task<int> ExpireOverdueAsync(int? onlyUserId, CancellationToken ct)
         {
             var nowUtc = DateTime.UtcNow;
 
             var overdue = await _context.UserSubscriptions
-                .Where(s => s.Status == SubscriptionStatuses.Active && s.EndsAtUtc <= nowUtc)
+                .Where(s => s.Status == SubscriptionStatuses.Active
+                         && s.EndsAtUtc <= nowUtc
+                         && (onlyUserId == null || s.UserId == onlyUserId))
                 .ToListAsync(ct);
 
             if (overdue.Count == 0)

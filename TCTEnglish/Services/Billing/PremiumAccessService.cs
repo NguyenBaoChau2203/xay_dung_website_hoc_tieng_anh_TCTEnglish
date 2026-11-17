@@ -10,6 +10,21 @@ using TCTVocabulary.Models;
 
 namespace TCTEnglish.Services.Billing
 {
+    /// <summary>Rules about Premium that more than one service needs to agree on.</summary>
+    public static class PremiumAccessRules
+    {
+        /// <summary>
+        /// Permanent access: an administrator, or a legacy Premium role (set by hand) that has no subscription row
+        /// at all. Such an account has nothing to buy and no end date.
+        /// </summary>
+        public static bool IsPermanent(string? role, bool hasAnySubscriptionRow)
+        {
+            var normalized = Roles.Normalize(role);
+            return normalized.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase)
+                || (normalized.Equals(Roles.Premium, StringComparison.OrdinalIgnoreCase) && !hasAnySubscriptionRow);
+        }
+    }
+
     public class PremiumAccessService : IPremiumAccessService
     {
         private readonly DbflashcardContext _context;
@@ -43,8 +58,10 @@ namespace TCTEnglish.Services.Billing
             var isAdmin = role.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase);
             var isLegacyPremium = role.Equals(Roles.Premium, StringComparison.OrdinalIgnoreCase);
 
+            // The end date is loaded for every non-admin, including accounts whose role is already Premium,
+            // so a paying user sees "Thời hạn đến" (F10).
             DateTime? premiumEndsAtUtc = null;
-            if (!isAdmin && !isLegacyPremium)
+            if (!isAdmin)
             {
                 premiumEndsAtUtc = await _context.UserSubscriptions
                     .AsNoTracking()
@@ -59,6 +76,13 @@ namespace TCTEnglish.Services.Billing
             var hasActiveSubscription = premiumEndsAtUtc.HasValue;
             var isPremium = isAdmin || isLegacyPremium || hasActiveSubscription;
 
+            var hasAnySubscriptionRow = isLegacyPremium
+                && await _context.UserSubscriptions.AsNoTracking().AnyAsync(s => s.UserId == userId);
+            var isPermanent = PremiumAccessRules.IsPermanent(role, hasAnySubscriptionRow);
+            int? daysLeft = premiumEndsAtUtc.HasValue
+                ? Math.Max(0, (int)Math.Ceiling((premiumEndsAtUtc.Value - nowUtc).TotalDays))
+                : null;
+
             return new PremiumAccessSnapshot
             {
                 IsAuthenticated = true,
@@ -66,6 +90,8 @@ namespace TCTEnglish.Services.Billing
                 IsAdmin = isAdmin,
                 Role = role,
                 PremiumEndsAtUtc = premiumEndsAtUtc,
+                IsPermanent = isPermanent,
+                DaysLeft = daysLeft,
                 Features = isPremium ? PremiumFeatures.AllFeatures : new HashSet<string>()
             };
         }
