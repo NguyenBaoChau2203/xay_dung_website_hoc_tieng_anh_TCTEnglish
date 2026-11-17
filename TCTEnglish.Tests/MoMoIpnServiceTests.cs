@@ -28,7 +28,7 @@ namespace TCTEnglish.Tests
             return new IpnService(
                 context,
                 new[] { new FakeVnPayGateway(), momoGateway },
-                new SubscriptionService(context),
+                new PaymentConfirmationService(context, new SubscriptionService(context), NullLogger<PaymentConfirmationService>.Instance),
                 NullLogger<IpnService>.Instance);
         }
 

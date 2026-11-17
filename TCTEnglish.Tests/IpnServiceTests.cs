@@ -31,7 +31,7 @@ namespace TCTEnglish.Tests
             IPaymentGateway? gateway = null)
         {
             gateway ??= new FakeVnPayGateway(signatureValid: true, isPaid: true);
-            var subService = new SubscriptionService(ctx);
+            var subService = new PaymentConfirmationService(ctx, new SubscriptionService(ctx), NullLogger<PaymentConfirmationService>.Instance);
             return new IpnService(
                 ctx,
                 new[] { gateway },

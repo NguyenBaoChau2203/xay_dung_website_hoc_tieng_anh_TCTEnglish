@@ -305,8 +305,13 @@ namespace TCTEnglish.Controllers
         [HttpPost("/api/billing/momo/ipn")]
         public async Task<IActionResult> MoMoIpn()
         {
-            var parameters = await ReadBodyAsDictionaryAsync(Request.Body);
-            await _ipnService.ProcessMoMoIpnAsync(parameters);
+            var parameters = await TryReadMoMoIpnBodyAsync(Request.Body, HttpContext.RequestAborted);
+            if (parameters != null)
+            {
+                await _ipnService.ProcessMoMoIpnAsync(parameters);
+            }
+
+            // Always 204: a body we cannot use will not become usable by MoMo retrying it.
             return NoContent();
         }
 
@@ -412,30 +417,63 @@ namespace TCTEnglish.Controllers
             return httpContext.Connection.RemoteIpAddress?.ToString() ?? "127.0.0.1";
         }
 
-        private static async Task<Dictionary<string, string>> ReadBodyAsDictionaryAsync(Stream body)
-        {
-            using var document = await JsonDocument.ParseAsync(body);
-            var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private const int MaxMoMoIpnBodyBytes = 64 * 1024;
 
-            if (document.RootElement.ValueKind != JsonValueKind.Object)
+        /// <summary>
+        /// Reads at most 64 KB and returns the JSON object as strings, or null (after one warning
+        /// line without the payload) when the body is too large, not JSON, or not an object.
+        /// </summary>
+        private async Task<Dictionary<string, string>?> TryReadMoMoIpnBodyAsync(Stream body, CancellationToken ct)
+        {
+            using var buffer = new MemoryStream();
+            var chunk = new byte[8192];
+            int read;
+            while ((read = await body.ReadAsync(chunk.AsMemory(), ct)) > 0)
             {
+                if (buffer.Length + read > MaxMoMoIpnBodyBytes)
+                {
+                    _logger.LogWarning("MoMo IPN ignored: body is larger than {LimitBytes} bytes.", MaxMoMoIpnBodyBytes);
+                    return null;
+                }
+
+                buffer.Write(chunk, 0, read);
+            }
+
+            JsonDocument document;
+            try
+            {
+                document = JsonDocument.Parse(buffer.ToArray());
+            }
+            catch (JsonException)
+            {
+                _logger.LogWarning("MoMo IPN ignored: body is not valid JSON ({Length} bytes).", buffer.Length);
+                return null;
+            }
+
+            using (document)
+            {
+                if (document.RootElement.ValueKind != JsonValueKind.Object)
+                {
+                    _logger.LogWarning("MoMo IPN ignored: body is not a JSON object.");
+                    return null;
+                }
+
+                var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var property in document.RootElement.EnumerateObject())
+                {
+                    result[property.Name] = property.Value.ValueKind switch
+                    {
+                        JsonValueKind.String => property.Value.GetString() ?? string.Empty,
+                        JsonValueKind.Number => property.Value.GetRawText(),
+                        JsonValueKind.True => "true",
+                        JsonValueKind.False => "false",
+                        JsonValueKind.Null => string.Empty,
+                        _ => property.Value.GetRawText()
+                    };
+                }
+
                 return result;
             }
-
-            foreach (var property in document.RootElement.EnumerateObject())
-            {
-                result[property.Name] = property.Value.ValueKind switch
-                {
-                    JsonValueKind.String => property.Value.GetString() ?? string.Empty,
-                    JsonValueKind.Number => property.Value.GetRawText(),
-                    JsonValueKind.True => "true",
-                    JsonValueKind.False => "false",
-                    JsonValueKind.Null => string.Empty,
-                    _ => property.Value.GetRawText()
-                };
-            }
-
-            return result;
         }
 
         private sealed record VnPayIpnResponse(

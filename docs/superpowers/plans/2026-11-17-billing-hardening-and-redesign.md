@@ -526,3 +526,32 @@ No severity-A finding was disproved, so no design change is needed.
 - Buyer notification not sent (no per-user API; see B0).
 
 **Mockup differences.** none (no UI). **Owned tests changed.** none. **Orders created.** none.
+
+
+### Gate record — B2 IPN through the core (2026-11-17) — `fix(billing): route both IPN handlers through the state machine and the confirmation service`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 320 total: 319 passed, 1 skipped, 0 failed |
+| G3 | pass (B0 failure only) | 2020 total = 1984 passed, 35 skipped, 1 failed: the B0 wall-clock `WritingOptionalEngineContractTests.Evaluate_SharedBudget…` (it passed in B1's run, so it is load-sensitive). 1975 + 45 new tests = 2020 |
+| G4 | pass | node 391 / 390 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | signature helpers untouched; VNPay IPN codes `00/01/02/04/97/99` unchanged; MoMo IPN still 204; routes unchanged |
+| G6 | pass | `git diff --check` clean; no CSS/view change |
+| G7 | pass | `Program.cs` untouched in this phase (the DI line came in B1; `IpnService` is resolved by constructor injection and `IPaymentConfirmationService` is already registered) |
+| G8–G14 | n/a | backend only |
+| G15 | pass | no secret/signature in the diff; the MoMo warning lines carry no payload (test asserts it); webhooks remain the only anonymous billing actions |
+| G16 | partial, expected | the IPN copy of `Status = Paid` is gone (grep shows reconciliation B4 and admin B10 still pending); `IpnServiceStructureTests` now also asserts `IpnService` never assigns `Paid` or calls `ActivateFromPaidOrderAsync` |
+
+**What changed.**
+- `IpnService` takes `IPaymentConfirmationService` (instead of `ISubscriptionService`); both success paths call `ConfirmPaidAsync(Source = ProviderCallback)` with the amount the provider reported (VNPay `vnp_Amount / 100`); `ProcessSuccessfulPaymentAsync` and the VNPay-only late rule are removed.
+- Failure callbacks apply only when `CanMarkFailedOrCancelled`; otherwise an `ignored` event is saved and the answer is as before (`00` for VNPay, nothing for MoMo, 204 at HTTP level).
+- A VNPay success on an order the machine refuses (refunded, manual review) answers `02 Order already confirmed`; a late success goes to manual review and answers `00` (it was recorded). A MoMo success now gets the same 24 h late rule.
+- `BillingController.MoMoIpn` reads at most 64 KB, answers 204 and does not call the service for a body that is too large, not JSON, or not a JSON object; one warning line without the payload.
+
+**Owned tests changed (and why).**
+- `IpnServiceTests`, `MoMoIpnServiceTests`: the factory builds `IpnService` with a `PaymentConfirmationService` because the constructor parameter changed; no assertion changed.
+- `IpnServiceStructureTests`: the execution-strategy/transaction assertions now read `PaymentConfirmationService` (where that code moved) and a new test pins that `IpnService` delegates.
+- New: `IpnTransitionTests` (failure/success matrix through both handlers, MariaDB-style and SQLite-style unique errors), `MoMoIpnBodyHandlingTests`.
+
+**Mockup differences.** none. **Orders created.** none.
