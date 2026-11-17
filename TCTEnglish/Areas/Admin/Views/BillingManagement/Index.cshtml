@@ -70,12 +70,12 @@
                            name="q"
                            value="@Model.SearchQuery"
                            class="form-control"
-                           placeholder="Order code, email, transaction id..." />
+                           aria-label="Tìm kiếm đơn hàng" placeholder="Order code, email, transaction id..." />
                 </div>
             </div>
             <div class="col-md-3">
                 <label class="form-label small fw-semibold">Provider</label>
-                <select name="provider" class="form-select">
+                <select name="provider" class="form-select" aria-label="Lọc theo nhà cung cấp">
                     <option value="">Tất cả</option>
                     @foreach (var provider in Model.Providers)
                     {
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-3">
                 <label class="form-label small fw-semibold">Trạng thái</label>
-                <select name="status" class="form-select">
+                <select name="status" class="form-select" aria-label="Lọc theo trạng thái">
                     <option value="">Tất cả</option>
                     @foreach (var status in Model.Statuses)
                     {
@@ -168,10 +168,10 @@
                             </td>
                             <td class="text-end">@order.AmountVnd.ToString("N0") @order.Currency</td>
                             <td>
-                                <span class="@order.StatusBadgeClass">@order.Status</span>
+                                <span class="@order.StatusBadgeClass">@TCTEnglish.Services.Billing.PaymentOrderLabels.StatusLabel(order.Status)</span>
                             </td>
                             <td>
-                                <span class="text-muted small">@order.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</span>
+                                <span class="text-muted small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(order.CreatedAtUtc)</span>
                             </td>
                             <td class="text-end pe-4">
                                 <a asp-area="Admin"

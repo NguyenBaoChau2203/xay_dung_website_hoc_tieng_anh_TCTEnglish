@@ -1,0 +1,44 @@
+@model TCTVocabulary.ViewModels.VocabularyCourseCardViewModel
+@*
+    One system course on the Vocabulary home: illustrated cover with level and status, name, real counts, due chip, progress.
+    The whole card is one stretched link; data-* attributes feed the client-side filters (vocabulary-home.js).
+*@
+@{
+    var (statusClass, statusIcon, statusText) = Model.Status switch
+    {
+        "done" => ("tct-badge--success", "fa-check", "Đã xong"),
+        "progress" => ("tct-badge--warning", "fa-clock", "Đang học"),
+        _ => ("tct-badge--primary", (string?)null, "Chưa học")
+    };
+}
+<article class="tct-card tct-card--interactive k-card tv-course tv-hue-@Model.Hue"
+         data-tv-course data-level="@Model.Level" data-status="@Model.Status" data-name="@Model.SetName">
+    <a class="tv-course__link" href="@Url.Action("Detail", "Vocabulary", new { setId = Model.SetId })" aria-label="Mở khóa @Model.SetName"></a>
+    <div class="k-art-box tv-course__cover tv-cover tv-cover--@Model.ArtKey" aria-hidden="true">
+        @if (!string.IsNullOrEmpty(Model.Level))
+        {
+            <span class="tct-badge tv-course__level">@Model.Level</span>
+        }
+        <span class="tct-badge @statusClass tv-course__status">
+            @if (statusIcon != null)
+            {
+                <i class="fa-solid @statusIcon" aria-hidden="true"></i>
+            }
+            @statusText
+        </span>
+        <partial name="_CourseArt" model="Model.ArtKey" />
+    </div>
+    <h3 class="tv-course__name tct-clamp-2 tct-break">@Model.SetName</h3>
+    <p class="tv-meta tv-course__meta">
+        <span><i class="fa-solid fa-book" aria-hidden="true"></i>@Model.WordCount từ</span>
+        <span><i class="fa-solid fa-layer-group" aria-hidden="true"></i>@Model.LessonCount bài</span>
+        @if (Model.DueCount > 0)
+        {
+            <span class="tv-chipdue"><i class="fa-solid fa-rotate" aria-hidden="true"></i>@Model.DueCount từ cần ôn</span>
+        }
+    </p>
+    <div class="tv-course__progress">
+        <div class="k-progress k-progress--thin" aria-hidden="true"><span class="k-progress__fill" style="--p:@(Model.ProgressPercent)%"></span></div>
+        <span class="tv-course__count">@Model.LearnedCount/@Model.WordCount từ<span class="visually-hidden"> đã học</span></span>
+    </div>
+</article>

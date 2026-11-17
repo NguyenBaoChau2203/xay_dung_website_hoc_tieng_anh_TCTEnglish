@@ -1,68 +1,100 @@
 @model TCTEnglish.ViewModels.Billing.PaymentHistoryViewModel
+@using TCTEnglish.ViewModels
+@using TCTEnglish.ViewModels.Billing
 @{
     ViewData["Title"] = "Lịch sử thanh toán";
+    var header = new PageHeaderViewModel
+    {
+        Title = "Lịch sử thanh toán",
+        Actions = new[]
+        {
+            new PageHeaderAction(Model.IsPremium ? "Mua thêm Premium" : "Nâng cấp Premium", "/Premium", PageActionVariant.Primary, "fa-solid fa-crown")
+        }
+    };
+    var empty = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Bạn chưa có giao dịch nào.",
+        Message = "Khi bạn mua Premium, các đơn thanh toán sẽ hiện ở đây.",
+        ActionLabel = "Xem các gói Premium",
+        ActionUrl = "/Premium"
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/billing.css" asp-append-version="true" />
 }
 
-<div class="container py-5">
-    <div class="row mb-4">
-        <div class="col">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-action="Pricing">Gói Premium</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Lịch sử thanh toán</li>
-                </ol>
-            </nav>
-            <h1 class="fw-bold">Lịch sử thanh toán</h1>
-        </div>
-    </div>
+<div class="tct-theme tct-page tb-page tb-page--history">
+    <partial name="_PageHeader" model="header" />
 
-    <div class="card border-0 shadow-sm overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="bg-light">
+    @if (Model.Status != null)
+    {
+        <partial name="_PremiumStatus" model="Model.Status" />
+    }
+
+    @if (Model.Orders.Count == 0)
+    {
+        <partial name="_StateMessage" model="empty" />
+    }
+    else
+    {
+        <section class="k-panel k-panel--quiet tb-card tb-history" aria-label="Các đơn thanh toán">
+            <table class="tb-history__table">
+                <caption class="visually-hidden">Các đơn thanh toán của bạn, mới nhất trước</caption>
+                <thead>
                     <tr>
-                        <th class="ps-4">Mã đơn hàng</th>
-                        <th>Gói dịch vụ</th>
-                        <th>Số tiền</th>
-                        <th>Cổng thanh toán</th>
-                        <th>Thời gian</th>
-                        <th>Trạng thái</th>
+                        <th scope="col">Mã đơn</th>
+                        <th scope="col">Gói</th>
+                        <th scope="col">Số tiền</th>
+                        <th scope="col">Phương thức</th>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col"><span class="visually-hidden">Thao tác</span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Orders.Any())
-                    {
-                        foreach (var order in Model.Orders)
-                        {
-                            <tr>
-                                <td class="ps-4 fw-medium">@order.OrderCode</td>
-                                <td>@order.PlanName</td>
-                                <td>@order.AmountVnd.ToString("N0") ₫</td>
-                                <td>
-                                    <span class="@order.ProviderBadgeClass">@order.ProviderDisplayName</span>
-                                </td>
-                                <td class="text-muted small">@order.CreatedAtUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>
-                                    <span class="@order.StatusBadgeClass">
-                                        <i class="@order.StatusIconClass"></i>@order.StatusDisplayName
-                                    </span>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
+                    @foreach (var order in Model.Orders)
                     {
                         <tr>
-                            <td colspan="6" class="text-center py-5">
-                                <div class="text-muted">
-                                    <i class="bi bi-receipt fs-1 d-block mb-3"></i>
-                                    Bạn chưa có giao dịch nào.
-                                </div>
+                            <th scope="row" data-label="Mã đơn" class="tb-mono">@order.OrderCode</th>
+                            <td data-label="Gói">@order.PlanName</td>
+                            <td data-label="Số tiền" class="tb-history__money tb-num">@order.AmountText</td>
+                            <td data-label="Phương thức">@order.Method</td>
+                            <td data-label="Thời gian" class="tb-history__time tb-num">@order.TimeText</td>
+                            <td data-label="Trạng thái"><partial name="_OrderStatusChip" model="order.StatusView" /></td>
+                            <td data-label="Thao tác" class="tb-history__action">
+                                <a class="btn @(order.ActionIsPrimary ? "btn-primary" : "btn-outline-primary") tb-history__btn" href="@order.OrderUrl">
+                                    @order.ActionLabel<span class="visually-hidden"> đơn @order.OrderCode</span>
+                                </a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
-    </div>
+        </section>
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="tb-pager" aria-label="Phân trang lịch sử thanh toán">
+                @if (Model.HasPrevious)
+                {
+                    <a class="btn btn-outline-primary" rel="prev" href="/Billing/History?page=@(Model.Page - 1)"><i class="fa-solid fa-chevron-left me-2" aria-hidden="true"></i>Mới hơn</a>
+                }
+                else
+                {
+                    <span class="tb-pager__spacer" aria-hidden="true"></span>
+                }
+                <span class="tb-pager__info" aria-current="page">Trang @Model.Page / @Model.TotalPages</span>
+                @if (Model.HasNext)
+                {
+                    <a class="btn btn-outline-primary" rel="next" href="/Billing/History?page=@(Model.Page + 1)">Cũ hơn<i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i></a>
+                }
+                else
+                {
+                    <span class="tb-pager__spacer" aria-hidden="true"></span>
+                }
+            </nav>
+        }
+    }
 </div>

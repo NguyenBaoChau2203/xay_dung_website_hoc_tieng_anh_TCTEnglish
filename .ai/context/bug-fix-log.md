@@ -5215,3 +5215,171 @@ launcher start hit Docker Desktop `context deadline exceeded`; docker info found
 no Linux-engine named pipe and desktop status was unavailable. Port5102 is not
 left serving. Earlier observed browser evidence is retained; a new live run is
 blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
+
+### Listening module: completion, access control, progress and XSS hardening — 2026-11-13
+
+**Symptoms**: A lesson could never be completed from the UI, so Goals and the streak never received a Listening signal. A signed-in user could POST any lesson id to the quiz endpoint and receive every correct answer and explanation, including for another user's private lesson or an unpublished lesson, and could create progress rows on them. The index showed "Mới" on every card, listed the private topic "My Lessons" for everyone, and anonymous visitors got 404 on every public lesson. Dictation trapped keyboard users (Tab replayed the audio), and several scripts wrote server text through `innerHTML`.
+
+**Causes**: `SaveProgressAsync` required transcript, quiz and vocabulary to be done, but no screen ever sent `vocabReviewed` and the quiz result was stored only if the browser said so. `EvaluateQuizAsync` and `SaveProgressAsync` had no access check (the latter only tested `IsPublished`). `GetIndexViewModelAsync` never read `UserListeningProgresses` and filtered topics by `IsPublished` only. `GetPracticeViewModelAsync` compared `lesson.OwnerUserId == userId`, which is `null == null` for a public lesson and a guest, then treated the guest as a locked Standard owner. `listening-practice.js` called `preventDefault` on Tab, and the explanation, toast and feedback strings were assigned with `innerHTML`; the YouTube id was spliced into an inline script with `Html.Raw`.
+
+**Fix**: One private access rule in `ListeningService` (`GetUsableLessonAsync`: published and public-or-own, and a private lesson is not usable by a Standard owner) used by the practice page, `EvaluateQuizAsync` and `SaveProgressAsync`; a failure is a 404. Completion means every section that has content is done (`IsLessonComplete`), applied in one place (`ApplyProgressAsync`) that also records exactly one Goals credit. `EvaluateQuizAsync` stores the result server-side and keeps the best score; client-sent scores are clamped and never lower the best. The index loads progress in one query and exposes status, steps, overview numbers and a continue lesson. Quiz generation on a shared lesson is Admin-only. Both pages were rebuilt on the shared Clay kit with a JSON config, `textContent` only, a vocabulary tab, accessible quiz markup, a Bootstrap delete modal and no `alert`/`confirm`/`console.log`; Tab is no longer handled in dictation.
+
+**Verification**: 32 new integration tests (`ListeningIntegrationTests`) written first and run red, then green, covering access, B2/B3/B8, completion with a single credit, best-score retention, index progress and page contracts including a hostile-text case; 29 node tests for `listening-core.js`; full suite 1427 passed / 29 skipped; scripted real-browser checks of both pages (filters, import and delete, player, tabs, dictation, fill-in, quiz, completion with the Goals counter read back from the database). Live AI (quiz generation, translation) was exercised with mocked server answers only: not verified against a real key.
+
+**Files**: ListeningService; IListeningService; ListeningViewModels; StudyController (Listening actions); Views/Study/Listening, ListeningPractice, _ListeningLessonCard, _ListeningMyLessonCard; wwwroot/css/listening.css, study-kit.css (scope lists); wwwroot/js/listening-core.js, listening-index.js, listening-practice.js; removed listening-index.css and listening-practice.css; ListeningIntegrationTests; scripts/tests/test_listening_core.cjs.
+
+**Notes**: Finding B17 (guests got 404 on public lessons) was not in the review and was found while baselining. No migration: no persisted model changed.
+
+
+### System Vocabulary rebuild: dead call, unchecked "Mastered", made-up minutes, `/Vocabulary` 404 — 2026-11-14
+
+**Symptom**: The old study page posted to `/api/LearningApi/important`, which does not exist. A learner could mark a word "Mastered" on first sight with the "Dễ" button, with no check. Course cards showed `EstimatedMinutes = CardCount * 2` and raw `#tags`. `/Vocabulary` (without `/Index`) answered 404 because the default route action is `Landing`.
+
+**Root Cause**: Six legacy views (about 6,500 lines of Razor with inline script) wrote their own flow: four self-rating buttons, a call to a missing endpoint, invented numbers, and no attribute route for the bare controller URL.
+
+**Solution**: Rebuilt the module as three screens (home, course, three-step lesson). Grading is automatic: 0 or 1 misses send `good`, 2 or more send `hard`, "Tôi đã biết từ này" sends `easy`, one `POST /api/LearningApi/record` per finished word, with one immediate retry and a "Chưa lưu" marker. Counts shown are real. `Index` got `[HttpGet("/Vocabulary/Index", Order = 0)]` and `[HttpGet("/Vocabulary", Order = 1)]`; `Order 0` keeps generated links on `/Vocabulary/Index`.
+
+**Files Changed**:
+- `Controllers/VocabularyController.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Services/Vocabulary/VocabularyLessonBuilder.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow}.cshtml` (old `FolderDetail`, `Topics`, `TopicDetail`, `_MasteryButtons` deleted)
+- `wwwroot/css/vocabulary.css` (replaces `vocabulary-system.css`), `wwwroot/css/study-kit.css` (scope list only), `wwwroot/js/vocabulary-{core,home,course,lesson}.js`
+- Tests: `VocabularyLessonBuilderTests.cs`, `VocabularyIntegrationTests.cs`, `scripts/tests/test_vocabulary_core.cjs`
+
+**Verification**: Full .NET suite 1529 passed / 0 failed; node 291 of 292 (the one failure, `test_speaking_catalog_packages.cjs`, predates this work: a Windows CRLF checkout changes a catalog hash). Browser checklists for home, course and lesson (scripted, 70+ checks) and accessibility/contrast passes are recorded in `docs/superpowers/plans/2026-11-13-vocabulary-rebuild.md` section 12.
+
+**Notes**: Reused the Practice shell (`practice-ui.js`) and the Clay kit (same owner). `LearningApi/record` was not changed; see TD-013 for its missing card access check.
+
+
+### System Vocabulary: no real spaced repetition, a word "Mastered" after one lesson, flat pages — 2026-11-14
+
+**Symptom**: A word answered perfectly became "Mastered" after one lesson and came back after one day; there was no ladder, no view of when a word returns, and the home and course pages were flat (one icon per course, a letter tile per word, no due information).
+
+**Root Cause**: The lesson saved through the shared `/api/LearningApi/record` (hard / good / easy with 1 min to 7 d), which has no long ladder and no access check, and nothing in the pages read the schedule.
+
+**Solution**: Added a pure scheduler (levels 0-6, intervals 10 min, 1, 3, 7, 14, 30, 60 days; early review never promotes), a system-only endpoint `POST /Vocabulary/Review/Record` (client sends again | hard | good | known, the server computes level and date, Goals credited once), read models for the home, course and review pages, and rebuilt screens (goal ring, review card, memory panel, 7-day forecast, illustrated covers, level dots, schedule row after each word, per-word result). The level is stored in the existing `RepetitionCount`; no migration.
+
+**Files Changed**:
+- `Services/Vocabulary/{SpacedRepetitionScheduler,VocabularyEmojiMap,VocabularyLessonBuilder}.cs`, `Services/StudyService.Vocabulary.cs`, `Services/IStudyService.cs`, `Controllers/VocabularyController.cs`, `ViewModels/VocabularyPageViewModels.cs`
+- `Views/Vocabulary/{Index,Detail,Study,_CourseCard,_LessonRow,_WordRow,_CourseArt,_LevelDots,_MemoryPanel,_ReviewForecast}.cshtml`, `wwwroot/css/vocabulary.css`, `wwwroot/js/vocabulary-{core,course,lesson}.js`
+- Tests: `SpacedRepetitionSchedulerTests.cs`, `VocabularyReviewRecordTests.cs`, `VocabularyIntegrationTests.cs` (copy changes), `scripts/tests/test_vocabulary_srs.cjs`
+
+**Verification**: Full .NET suite and node suite green except the one known CRLF node failure; real-browser runs of a lesson, a review, an early-review replay and a simulated save failure matched the database rows. `LearningApiController` is unchanged. See the SRS polish plan section 12.
+
+**Notes**: See TD-016. The legacy endpoint still lacks a card access check (TD-013, Châu).
+
+
+### Sets card details panel did not open for Standard accounts — 2026-11-16
+
+**Symptom**: With a Standard (non-Premium) account the "Chi tiết" button on `/Sets/{id}/Add` did nothing, and `/Sets/Cards/{id}/Edit` logged `TypeError: Cannot set properties of null (setting 'textContent')`.
+
+**Root Cause**: `setData` in `wwwroot/js/set-card-form.js` cleared `refs.imageResults` without a check. The image search block (`[data-ts-image-results]`) is rendered only for Premium accounts, so for Standard the reference was null and `setData` threw before the panel could be filled.
+
+**Solution**: Guard the line with `if (refs.imageResults)`, like the neighbouring `refs.imageQuery` line. No other use of the image search refs is reachable without the block (the handlers sit inside `if (refs.imageSearch)`).
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/js/set-card-form.js` — `setData`: guard `refs.imageResults`.
+- `scripts/tests/test_set_card_form_nonpremium.cjs` — new: Standard `setData` with and without data does not throw; Premium still clears results and query. Two of the three tests failed before the fix.
+
+**Verification**: Node tests for the new file 3/3 pass; the full suites are recorded in the landing-night plan section 12 (N1).
+
+**Notes**: Known issue SETS-CARD-DETAILS-NONPREMIUM-NULL moved to resolved.
+
+
+
+### Bug sweep of the owner modules: jQuery errors and unnamed controls — 2026-11-16
+
+**Symptom**: Opening an admin form (Set create/edit, Listening create/edit, Notification create) logged `ReferenceError: jQuery is not defined` twice. Several controls had no accessible name: Folder detail three-dot buttons, admin list search boxes, filters and row menus, the four speaker inputs, billing filters, the read-only owner field; the notification labels pointed at ids that did not exist.
+
+**Root Cause**: `_AdminLayout.cshtml` does not load jQuery, yet six views include `_ValidationScriptsPartial` (jquery.validate), which throws on load and registers nothing. The other findings were missing `aria-label` attributes, and `<label asp-for="Title">` generated `for="Title"` while the input id was overridden to `titleInput`.
+
+**Solution**: Removed the dead partial include from the six views (behaviour unchanged: it never ran), added `aria-label` to the unnamed controls, and set `for="titleInput"` / `for="messageInput"` on the two labels. The shared admin layout was not touched.
+
+**Files Changed**:
+- `Areas/Admin/Views/{SetManagement/{Index,Create,Edit,AddCard,EditCard},ListeningManagement/{Index,CreateEdit},BillingManagement/{Index,PremiumUsers},NotificationManagement/Create}.cshtml`
+- `Views/Folder/FolderDetail.cshtml`
+- `scripts/tests/test_owner_admin_views_sweep.cjs` — new, 7 source-level regression tests; all failed before the fixes.
+
+**Verification**: Scripted sweep of 204 page views (guest, Standard, Premium, Admin at 1440 and 390) before and after: the jQuery errors and the listed unnamed controls are gone. Full results and the triage table are in the landing-night plan section 12.
+
+**Notes**: Other owners' admin views (Speaking, Writing) include the same partial; reported as SWEEP-ADMIN-LAYOUT-NO-JQUERY. Footer `#` icons, a broken YouTube thumbnail, missing sample images, the missing `h1` on Folder and the AI launcher overlap were reported, not fixed.
+
+
+
+### Sets and folders: a folder had no page of its own, the create dialog was a bare English modal — 2026-11-16
+
+**Symptom**: "Thư mục của tôi" in the sidebar led to a separate list that mixed in classes, the create-folder modal was English and gave no feedback on errors, and a folder could only be managed through the legacy `/Home/FolderDetail` screen; sets could not be moved in or out of a folder from the Sets area.
+
+**Root Cause**: Folder rules lived in `FolderController` and the legacy views, outside `PersonalSetService`, so the Sets workspace had no folder concept beyond a dropdown on the set form.
+
+**Solution**: Folder rules moved into `PersonalSetService` (list, page, create, rename, delete, move in/out, unsave) behind new `/Sets/Folders/*` routes on `SetController.Personal`; the sidebar and `/Sets` show folders (own and saved) with a Vietnamese native-dialog create flow; the folder page has rename/delete dialogs, create-in and move in/out; the legacy routes stay and the legacy create goes through the service. No schema change.
+
+**Files Changed**:
+- `Services/Sets/*`, `ViewModels/Sets/*`, `Controllers/SetController.Personal.cs`, `Controllers/FolderController.cs`
+- `Views/Set/{Index,Folder,_FolderTile,_FolderMoveRows,_SetTile,CreateSet,Detail}.cshtml`, `Views/Shared/_CreateFolderDialog.cshtml`, `wwwroot/css/personal-sets.css`, `wwwroot/js/{personal-sets-common,layout}.js`, `Views/Shared/_Layout.cshtml` (shared, see TD-018)
+- Tests: `SetFolderServiceTests` (27), `SetFoldersIntegrationTests`, `scripts/tests/test_folder_dialog.cjs` (20)
+
+**Verification**: Full .NET suite and node suite per phase (see the plan section 12); scripted browser runs at seven sizes, keyboard, forced colours and contrast.
+
+**Notes**: Plan `docs/superpowers/plans/2026-11-16-sets-folders.md`. See TD-017 and TD-018.
+
+---
+
+### Landing page: login-tab buttons, dead footer icons, blank page when the script fails, stale copy — 2026-11-16
+
+**Symptom**: Every "Bắt đầu miễn phí" and "Tạo tài khoản miễn phí" button opened the login tab; the three footer social icons were `href="#"`; every section stayed hidden until a script added a class, so a script error or no JavaScript left the page blank; the copy still said "4 chế độ", "kéo thả ghép thẻ", "Trợ lý AI OpenAI" and "dành cho nhân viên công ty TCT"; no description or share tags; two icon and font CDNs plus nine font weights.
+
+**Root Cause**: A 794-line view with a 420-line inline `<style>` and its own palette, a scroll-reveal script that hid content by default, and copy that had not followed the product.
+
+**Solution**: Rebuilt as a standalone dark page with scoped `--lp-*` tokens in `landing.css`, `landing.js` and a pure `landing-core.js`. Content is real markup (no hiding), the register buttons lead to `/Account/Register`, no social icons, head with description, Open Graph and Twitter tags and a share image, one font family, Font Awesome 6.0.0 as in the layout, local Bootstrap CSS (the AI launcher needs a few utilities) and no CDN Bootstrap. A client-only three-question demo, product screenshots, a review ladder and an FAQ were added; every claim was checked against the product and unverified ones were reworded (see the plan, sections N6 and N7).
+
+**Files Changed**:
+- `Views/Home/landing.cshtml`, `wwwroot/css/landing.css`, `wwwroot/js/landing.js`, `wwwroot/js/landing-core.js`, `wwwroot/images/landing/*`
+- Tests: `TCTEnglish.Tests/LandingPageTests.cs` (15 tests), `scripts/tests/test_landing_core.cjs` (15 tests)
+
+**Verification**: Full .NET suite 1760 passed / 0 failed; node 369 of 370 (the one failure is the known Speaking package hash). Scripted browser runs at seven sizes, with the keyboard only, with reduced motion, in forced colours and without JavaScript; contrast, colour discipline and performance budgets recorded in `docs/superpowers/plans/2026-11-16-landing-night-and-bug-sweep.md` section 12.
+
+**Notes**: See LANDING-SCREENSHOTS-STALE, LANDING-DARK-THEME-D1 and LANDING-READING-LOGIN-RETURN in known-issues. `HomeController` was not changed.
+
+
+---
+
+### Payment (Premium): wrong confirmations, lost IPNs, sign-out after paying, broken icons, unusable order pages — 2026-11-17
+
+**Symptom**: (F1) the buyer is signed out on the request after an order is confirmed; (F2/F3) a paid VNPay order stays `pending` then `expired` when the IPN never arrives (always on localhost), and reconciliation marked in-progress or "not found yet" transactions `failed` without checking the amount; (F4/F8) a failure callback could overwrite `manual_review`/`refunded`/`expired` and a late success activated silently for MoMo; (F5) admin "confirm paid" left a paid order without Premium if activation failed; (F6/F7) a duplicate callback or event on MariaDB threw (VNPay `99`, MoMo 500); (F9) a non-JSON MoMo IPN body gave HTTP 500; (F10) a Premium buyer never saw the end date; (F11) every icon on the billing pages was missing (Bootstrap Icons are not loaded in the learner layout); (F12/F13/F20) four buttons per plan, no resume of an open order, an admin could buy, history had no paging or actions; (F14–F18) English/technical copy ("IPN", "Manual review"), undiacriticised messages, server-zone times, false feature claims, a CDN script without integrity.
+
+**Root Cause**: The "mark paid and activate" logic existed three times (IPN, reconciliation, admin) with different checks and no state machine; the provider return was display-only and nothing else confirmed an order; the VNPay query result had no amount and no "unknown"; the role change that grants Premium makes `AccountSessionValidator` reject the old cookie; unique-conflict detection looked for SQL Server codes; pages were written against the wrong icon family and time zone.
+
+**Solution**: One `PaymentConfirmationService` (the only place that assigns `paid`; transaction, state machine, amount check, 24 h late rule for every provider, a unique `grant:{OrderCode}` event as a concurrency guard, admin source) and a pure `PaymentOrderStateMachine`. IPN, a new throttled `PaymentQueryService` (VNPay three-way result with amount; new MoMo query client), the return handlers, an owner-only `POST /Billing/Order/{code}/Refresh`, the reconciliation (now both providers, pending and recently expired, no more "failed" on unknown) and the admin action all go through it. New `/Billing/Order/{code}` page (waiting / confirming / paid / not completed, self-updating), rebuilt `/Premium` (one form) and `/Billing/History` (paging, resume, receipt), Clay `billing.css`, Font Awesome, Vietnam time, a verified benefit list, pinned QR script. Sign-out (F1) is mitigated in the billing scope and written up as `BILLING-ROLE-CHANGE-SIGNS-OUT` for the account owner.
+
+**Files Changed**:
+- `Services/Billing/{PaymentOrderStateMachine,PaymentConfirmationService,IPaymentConfirmationService,PaymentQueryService,PaymentQueryModels,PaymentOrderPresentation,PaymentOrderLabels,PremiumBenefits,BillingTime,BillingClientIp,PricingPageBuilder,OrderPageBuilder}.cs`, `Services/Billing/MoMo/MoMoQueryClient.cs`; edited `IpnService`, `BillingService`, `PaymentReconciliationService`, `SubscriptionService`, `PremiumAccessService`, `VnPayQueryClient`, both gateways (messages)
+- `Controllers/BillingController.cs`, `Areas/Admin/Controllers/BillingManagementController.cs` (+ its views: copy and time only), `Views/Billing/*` (new `Order`, `InvalidReturn`, `_BenefitsTable`, four partials; rewritten `Pricing`, `History`; removed `MoMoQr`, `PaymentResult`), `Views/Shared/_Layout.cshtml` (one string), `Program.cs` (three DI lines)
+- `wwwroot/css/{billing,study-kit}.css` (kit scope lists only), `wwwroot/js/billing-{core,pricing,order}.js`, `wwwroot/lib/pinned/qrcode-1.0.0.min.js` (+ licence, provenance)
+- Tests: ~30 new test files/classes (state machine, confirmation, IPN matrix, queries, return/refresh/reconciliation, checkout, pages, admin, guards) and `scripts/tests/test_billing_core.cjs`
+
+**Verification**: Per-phase gate G1–G16 recorded in `docs/superpowers/plans/2026-11-17-billing-hardening-and-redesign.md` section 12 (full .NET suite, node suite, contract greps, scripted browser runs at seven sizes with keyboard, forced colours, reduced motion, no-JS checkout and scripted contrast; end-to-end mock-MoMo purchase against the local MariaDB). No real payment and no live provider call was made.
+
+**Commit**: `feat(billing)` / `fix(billing)` series on `feature/billing-complete` (11 commits); nothing pushed.
+
+**Notes**: Follow-ups in known-issues: `BILLING-ROLE-CHANGE-SIGNS-OUT`, `BILLING-MOMO-QUERY-UNVERIFIED`, `BILLING-RECONCILIATION-WORKER-OFF`, `BILLING-ROLE-CLAIM-PREMIUM-CHECKS`. Related: `LANDING-READING-LOGIN-RETURN` (the login page ignores `returnUrl`).
+
+### Notifications: time and mark-all out of step, duplicate bell items, silent announcement problems, no buyer notice, `/Notification` 404 — 2026-11-17
+
+**Symptom**: (F21) `GET /Notification` answered 404 (only `/Notification/Index` worked); (F1) the page and the bell showed different time text for the same item, the page adding a fixed 7 hours in the view; (F2/F3) "Đọc tất cả" left the sidebar badge, the unread tab and the bell stale and kept its button disabled; (F4) the bell's "Tải thêm" could repeat or skip an item when a notification arrived between clicks; (F5/F12) a notification without a link was a fake `role="button"` that did nothing, and links were followed without a local-path check; (F6/F7/F8) admin announcements went to deleted accounts, were sent twice on a double submit, and the history loaded every row into memory, merged different sends of the same text and always said "Admin"; (F9) paying for Premium told the buyer nothing; (F10) generator copy mixed English and emoji; (F11) any write exception was treated as a duplicate; (F13–F20) bell focus and ARIA gaps, inline scripts and styles and over 70 hard-coded colours, `createdAt` without a time zone, a page beyond the last page kept its URL.
+
+**Root Cause**: Two independent display rules (a view helper and `NotificationService.BuildTimeAgo`) and offset paging over a table that changes underneath it; no per-user create method, so billing could not notify; the announcement send had no key, no batch and no recipient filter; `TryCreateWithEventKeyAsync` caught every `DbUpdateException`; the conventional route had no `Notification/{action=Landing}` fallback for the controller, so the bare path 404ed.
+
+**Solution**: One server-side display model (`NotificationDisplay`: category, tone, icon, clean title, safe local link via `NotificationLinks`, Vietnam-time text, day group) used by the page, the bell and the API; keyset slices `(CreatedAt, Id)` for the bell; per-category counts; `MarkAllAsReadAsync` returns the count; idempotent `CreateForUserAsync`; only a unique-index conflict is a duplicate. Announcements: batch id from the form → key `announce:{admin}:{batch}`, anonymised/blocked accounts skipped, chunks of 500 in one transaction, optional local link, history grouped by key in the database with sender and read count. Billing: best-effort `premium:{OrderCode}` notification after the activation commits. `[HttpGet("Notification")]` + `[HttpGet("Notification/Index")]` on the page. New Clay page (`.tn-page`) and bell panel (focus, tabs, keyset loading, retry), pure `notification-core.js`, plain-Vietnamese generator and worker copy.
+
+**Files Changed**:
+- `Services/{NotificationService,INotificationService}.cs`, `Services/Notifications/{NotificationDisplay,NotificationLinks,AnnouncementModels}.cs`, `ViewModels/NotificationViewModel.cs`, `Models/Notification.cs` (one enum member), `Controllers/NotificationController.cs`, `Services/Billing/PaymentConfirmationService.cs` (optional notification dependency + call), `Workers/NotificationWorker.cs` (four string literals)
+- `Areas/Admin/{Controllers/NotificationManagementController.cs, ViewModels/NotificationManagementViewModel.cs, Views/NotificationManagement/{Create,History}.cshtml}`
+- `Views/Notification/{Index,_NotificationItem,_NotificationSidePanel}.cshtml`, `Views/Shared/{_NotificationDropdown,_Layout}.cshtml` (layout: bell button and sidebar badge only)
+- `wwwroot/css/{notification-page,notifications}.css`, `study-kit.css` (kit scope lists only), `wwwroot/js/{notification-core,notification-page,notifications}.js`
+- Tests: `NotificationDisplayTests`, `NotificationServicePagingTests`, `NotificationPageIntegrationTests`, `NotificationPageRenderTests`, `NotificationBellRenderTests`, `AdminAnnouncementTests`, `PaymentActivationNotificationTests`, `scripts/tests/test_notification_{core,bell}.cjs`; `test_notification_behavior.cjs` updated for the moved page script and the core loader (no assertion removed)
+
+**Verification**: Per-phase gate G1–G15 in `docs/superpowers/plans/2026-11-17-notifications-complete.md` section 12: full .NET suite (2601 total, 2566 passed, 35 skipped), node suite (431 total, 430 passed, the one T0 speaking-hash failure), `has-pending-model-changes` empty (no migration), scripted headless-Chrome runs of the page, the bell and the admin pages at seven sizes with real mouse and keyboard events, failure injection (500 answers), forced colours, reduced motion and scripted contrast; the admin history query was executed on the Docker MariaDB with throwaway rows for synthetic accounts (removed by key). No notification was sent to a real account; no announcement was sent locally.
+
+**Commit**: `feat/fix(notifications)` series on `feature/notifications-complete`; nothing pushed.
+
+**Notes**: Follow-ups in known-issues: `NOTIFICATIONS-SHARED-FILES-FOR-CHAU`, `NOTIFICATIONS-OLD-ROWS-KEEP-OLD-COPY`, `NOTIFICATIONS-ANNOUNCEMENT-NOT-SENT-LOCALLY`, `NOTIFICATIONS-GOALS-PAGE-JQUERY`, `NOTIFICATIONS-ADMIN-VISUAL-BATCH`. An open bell panel sitting over a page control makes the click close the panel first (normal outside-click behaviour); the retry button case (a clicked node replaced during its own click) was a real bug found by the browser run and fixed with `event.composedPath()`.

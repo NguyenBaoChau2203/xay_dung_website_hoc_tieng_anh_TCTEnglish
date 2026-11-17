@@ -46,11 +46,18 @@ public sealed class SetCardTileViewModel
 
     /// <summary>own | subscribed | shared</summary>
     public string Relation { get; set; } = "own";
+
+    /// <summary>Only set when the viewer owns or saved the folder, so a folder name is never shown to someone who cannot open it.</summary>
+    public int? FolderId { get; set; }
+    public string? FolderName { get; set; }
 }
 
 public sealed class SetIndexViewModel
 {
     public string? Filter { get; set; }
+
+    /// <summary>The "Thư mục" row: own and saved folders, depending on the filter.</summary>
+    public List<SetFolderTileViewModel> Folders { get; set; } = new();
     public List<SetCardTileViewModel> Own { get; set; } = new();
     public List<SetCardTileViewModel> Subscribed { get; set; } = new();
     public List<SetCardTileViewModel> Shared { get; set; } = new();

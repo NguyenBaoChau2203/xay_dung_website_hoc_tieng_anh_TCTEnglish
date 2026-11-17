@@ -92,15 +92,15 @@
                             <div class="col-md-6">
                                 <div class="p-3 bg-light rounded-3">
                                     <label class="form-label small fw-bold mb-2">Speaker 1</label>
-                                    <input asp-for="Speaker1Name" class="form-control mb-2" placeholder="Tên (ví dụ: Todd)" />
-                                    <input asp-for="Speaker1Country" class="form-control" placeholder="Quốc gia (ví dụ: US)" />
+                                    <input asp-for="Speaker1Name" class="form-control mb-2" aria-label="Tên người nói 1" placeholder="Tên (ví dụ: Todd)" />
+                                    <input asp-for="Speaker1Country" class="form-control" aria-label="Quốc gia người nói 1" placeholder="Quốc gia (ví dụ: US)" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="p-3 bg-light rounded-3">
                                     <label class="form-label small fw-bold mb-2">Speaker 2</label>
-                                    <input asp-for="Speaker2Name" class="form-control mb-2" placeholder="Tên (ví dụ: Katia)" />
-                                    <input asp-for="Speaker2Country" class="form-control" placeholder="Quốc gia (ví dụ: MX)" />
+                                    <input asp-for="Speaker2Name" class="form-control mb-2" aria-label="Tên người nói 2" placeholder="Tên (ví dụ: Katia)" />
+                                    <input asp-for="Speaker2Country" class="form-control" aria-label="Quốc gia người nói 2" placeholder="Quốc gia (ví dụ: MX)" />
                                 </div>
                             </div>
                         </div>
@@ -160,5 +160,4 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

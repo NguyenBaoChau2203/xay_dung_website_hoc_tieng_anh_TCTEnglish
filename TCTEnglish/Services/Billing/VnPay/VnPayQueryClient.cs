@@ -109,13 +109,24 @@ namespace TCTEnglish.Services.Billing.VnPay
                 return null;
             }
 
+            // The signature proves VNPay wrote the answer; this proves it is about the order we asked for.
+            if (payload.TryGetValue("vnp_TxnRef", out var answeredFor)
+                && !string.Equals(answeredFor, orderCode, StringComparison.Ordinal))
+            {
+                _logger.LogWarning("VNPay QueryDR answered for a different order. OrderCode={OrderCode}", orderCode);
+                return null;
+            }
+
             payload.TryGetValue("vnp_ResponseCode", out var responseCode);
             payload.TryGetValue("vnp_TransactionStatus", out var transactionStatus);
             payload.TryGetValue("vnp_TransactionNo", out var transactionNo);
             payload.TryGetValue("vnp_BankCode", out var bankCode);
+            payload.TryGetValue("vnp_Amount", out var amountText);
+            payload.TryGetValue("vnp_PayDate", out var payDate);
 
             return new VnPayQueryResult
             {
+                State = ClassifyState(responseCode, transactionStatus),
                 IsSuccess = string.Equals(responseCode, "00", StringComparison.Ordinal)
                     && string.Equals(transactionStatus, "00", StringComparison.Ordinal),
                 IsCancelled = string.Equals(transactionStatus, "02", StringComparison.Ordinal)
@@ -123,8 +134,40 @@ namespace TCTEnglish.Services.Billing.VnPay
                 ResponseCode = responseCode,
                 TransactionNo = transactionNo,
                 TransactionStatus = transactionStatus,
-                BankCode = bankCode
+                BankCode = bankCode,
+                AmountVnd = ParseAmountVnd(amountText),
+                PayDate = string.IsNullOrWhiteSpace(payDate) ? null : payDate
             };
+        }
+
+        /// <summary>
+        /// The repo documents no table of <c>vnp_TransactionStatus</c> meanings, so only the two values
+        /// the existing IPN handler already relies on are trusted: <c>00</c> = paid, <c>02</c> = error/failed.
+        /// A query that itself failed (response code other than <c>00</c>), a transaction that is not
+        /// found yet (<c>91</c>) and any other status (not completed, reversed, refunds, suspected fraud…)
+        /// stay <see cref="PaymentQueryState.Unknown"/> and never change an order.
+        /// </summary>
+        internal static PaymentQueryState ClassifyState(string? responseCode, string? transactionStatus)
+        {
+            if (!string.Equals(responseCode, "00", StringComparison.Ordinal))
+            {
+                return PaymentQueryState.Unknown;
+            }
+
+            return transactionStatus switch
+            {
+                "00" => PaymentQueryState.Success,
+                "02" => PaymentQueryState.Failed,
+                _ => PaymentQueryState.Unknown
+            };
+        }
+
+        private static long? ParseAmountVnd(string? amountText)
+        {
+            return long.TryParse(amountText, System.Globalization.NumberStyles.None,
+                System.Globalization.CultureInfo.InvariantCulture, out var minor)
+                ? minor / 100
+                : null;
         }
 
         private bool CanQuery()

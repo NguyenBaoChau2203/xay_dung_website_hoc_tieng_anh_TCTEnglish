@@ -25,9 +25,17 @@ namespace TCTEnglish.Services.Billing
         Task<PaymentOrder?> GetOrderByCodeAsync(string orderCode, CancellationToken ct = default);
 
         /// <summary>
+        /// The learner's order page model (owner only; null for a missing order or someone else's order).
+        /// </summary>
+        Task<OrderPageViewModel?> GetOrderPageAsync(int userId, string orderCode, bool isMockMode, CancellationToken ct = default);
+
+        /// <summary>
         /// Returns the payment history for a specific user (anti-IDOR: caller must supply userId).
         /// </summary>
         Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(int userId, CancellationToken ct = default);
+
+        /// <summary>One page (20 orders, newest first) of the history, with the order that activated the running subscription.</summary>
+        Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(int userId, int page, CancellationToken ct = default);
 
         /// <summary>
         /// Verifies a VNPay return callback and resolves the current database-backed

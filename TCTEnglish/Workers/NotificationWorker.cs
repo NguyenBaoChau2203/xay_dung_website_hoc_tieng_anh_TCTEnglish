@@ -261,8 +261,8 @@ public class NotificationWorker : BackgroundService
             {
                 UserId = user.UserId,
                 Type = NotificationType.StreakWarning,
-                Title = "⚠️ Streak sắp mất!",
-                Message = $"Bạn chưa học hôm nay — streak {user.Streak} ngày sắp mất!",
+                Title = "Chuỗi ngày học sắp mất",
+                Message = $"Bạn chưa học hôm nay, chuỗi {user.Streak} ngày sẽ mất nếu không học trước nửa đêm.",
                 IconClass = "fas fa-fire-flame-curved",
                 RelatedUrl = "/Goals",
                 EventKey = eventKey,
@@ -359,8 +359,8 @@ public class NotificationWorker : BackgroundService
                 {
                     UserId = user.UserId,
                     Type = NotificationType.BadgeNear,
-                    Title = "🔜 Gần mở khóa huy hiệu!",
-                    Message = $"Còn {remaining} bước nữa để mở khóa huy hiệu '{badge.Name}'!",
+                    Title = $"Sắp nhận huy hiệu {badge.Name}",
+                    Message = $"Còn {remaining} bước nữa để mở khóa huy hiệu \"{badge.Name}\".",
                     IconClass = badge.IconClass,
                     RelatedUrl = "/Goals#badges",
                     EventKey = $"badge-near:{user.UserId}:{badge.Id}:{today:yyyy-MM-dd}",

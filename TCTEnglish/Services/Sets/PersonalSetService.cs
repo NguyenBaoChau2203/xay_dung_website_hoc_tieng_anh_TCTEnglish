@@ -111,21 +111,32 @@ public sealed partial class PersonalSetService : IPersonalSetService
         var subscribedIds = _db.SetSubscriptions.Where(x => x.UserId == userId).Select(x => x.SetId);
 
         var own = normalized is null or "own"
-            ? await LoadTilesAsync(_db.Sets.Where(s => s.OwnerId == userId), MaxOwnedSets, "own", ct)
+            ? await LoadTilesAsync(_db.Sets.Where(s => s.OwnerId == userId), MaxOwnedSets, "own", userId, ct)
             : new List<SetCardTileViewModel>();
 
         var subscribed = normalized is null or "subscribed"
-            ? await LoadTilesAsync(_db.Sets.Where(s => s.OwnerId != userId && subscribedIds.Contains(s.SetId)), 200, "subscribed", ct)
+            ? await LoadTilesAsync(_db.Sets.Where(s => s.OwnerId != userId && subscribedIds.Contains(s.SetId)), 200, "subscribed", userId, ct)
             : new List<SetCardTileViewModel>();
 
         var shared = normalized is null or "shared"
             ? await LoadTilesAsync(
-                FolderSharedSets(userId).Where(s => s.OwnerId != userId && !subscribedIds.Contains(s.SetId)), 60, "shared", ct)
+                FolderSharedSets(userId).Where(s => s.OwnerId != userId && !subscribedIds.Contains(s.SetId)), 60, "shared", userId, ct)
             : new List<SetCardTileViewModel>();
 
         var ids = own.Concat(subscribed).Concat(shared).Select(t => t.SetId).Distinct().ToList();
         var stats = await LoadProgressStatsAsync(userId, ids, ct);
-        foreach (var tile in own.Concat(subscribed).Concat(shared))
+        ApplyProgressStats(own.Concat(subscribed).Concat(shared), stats);
+
+        model.Own = own;
+        model.Subscribed = subscribed;
+        model.Shared = shared;
+        model.Folders = await ListFoldersForFilterAsync(userId, normalized, ct);
+        return model;
+    }
+
+    private static void ApplyProgressStats(IEnumerable<SetCardTileViewModel> tiles, IReadOnlyDictionary<int, ProgressStat> stats)
+    {
+        foreach (var tile in tiles)
         {
             if (stats.TryGetValue(tile.SetId, out var stat))
             {
@@ -139,14 +150,9 @@ public sealed partial class PersonalSetService : IPersonalSetService
 
             tile.ProgressPercent = tile.WordCount == 0 ? 0 : (int)Math.Round(100.0 * (tile.WordCount - tile.NewCount) / tile.WordCount);
         }
-
-        model.Own = own;
-        model.Subscribed = subscribed;
-        model.Shared = shared;
-        return model;
     }
 
-    private async Task<List<SetCardTileViewModel>> LoadTilesAsync(IQueryable<Set> query, int take, string relation, CancellationToken ct)
+    private async Task<List<SetCardTileViewModel>> LoadTilesAsync(IQueryable<Set> query, int take, string relation, int viewerId, CancellationToken ct)
     {
         var rows = await query
             .AsNoTracking()
@@ -161,6 +167,11 @@ public sealed partial class PersonalSetService : IPersonalSetService
                 OwnerName = s.Owner.FullName,
                 WordCount = s.Cards.Count,
                 SampleTerm = s.Cards.OrderBy(c => c.CardId).Select(c => c.Term).FirstOrDefault(),
+                // A folder name is shown only to someone who owns or saved that folder.
+                FolderVisible = s.FolderId != null
+                    && (s.Folder!.UserId == viewerId || _db.SavedFolders.Any(sv => sv.UserId == viewerId && sv.FolderId == s.FolderId)),
+                s.FolderId,
+                FolderName = s.Folder != null ? s.Folder.FolderName : null,
             })
             .ToListAsync(ct);
 
@@ -175,6 +186,8 @@ public sealed partial class PersonalSetService : IPersonalSetService
             SampleTerm = SampleOf(r.SampleTerm, r.SetName),
             WordCount = r.WordCount,
             Relation = relation,
+            FolderId = r.FolderVisible ? r.FolderId : null,
+            FolderName = r.FolderVisible ? r.FolderName : null,
         }).ToList();
     }
 
@@ -214,6 +227,171 @@ public sealed partial class PersonalSetService : IPersonalSetService
                           }).ToListAsync(ct);
 
         return rows.ToDictionary(r => r.SetId, r => new ProgressStat(r.Due, r.Started));
+    }
+
+    // =====================================================================================
+    // Folders (read side)
+    // =====================================================================================
+
+    private static readonly string[] FolderHues = { "warning", "primary", "success", "info" };
+
+    /// <summary>One of the four kit hues, picked from the folder id so a folder keeps its colour.</summary>
+    private static string FolderHue(int folderId) => FolderHues[Math.Abs(folderId) % FolderHues.Length];
+
+    /// <summary>Case, accent and "đ" insensitive key, so Vietnamese names sort the way a reader expects without depending on ICU.</summary>
+    private static string FolderSortKey(string name)
+    {
+        var decomposed = name.Trim().Normalize(System.Text.NormalizationForm.FormD);
+        var sb = new System.Text.StringBuilder(decomposed.Length);
+        foreach (var ch in decomposed)
+        {
+            if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch) == System.Globalization.UnicodeCategory.NonSpacingMark)
+            {
+                continue;
+            }
+
+            sb.Append(ch is 'đ' or 'Đ' ? 'd' : char.ToLowerInvariant(ch));
+        }
+
+        return sb.ToString();
+    }
+
+    private async Task<List<SetFolderTileViewModel>> ListFoldersForFilterAsync(int userId, string? filter, CancellationToken ct)
+    {
+        if (filter == "subscribed")
+        {
+            return new List<SetFolderTileViewModel>();
+        }
+
+        var all = await ListFoldersAsync(userId, ct);
+        return filter switch
+        {
+            "own" => all.Where(f => f.IsOwn).ToList(),
+            "shared" => all.Where(f => !f.IsOwn).ToList(),
+            _ => all.ToList(),
+        };
+    }
+
+    public async Task<IReadOnlyList<SetFolderTileViewModel>> ListFoldersAsync(int userId, CancellationToken ct = default)
+    {
+        var savedIds = _db.SavedFolders.Where(s => s.UserId == userId).Select(s => s.FolderId);
+        var folders = await _db.Folders.AsNoTracking()
+            .Where(f => f.UserId == userId || savedIds.Contains(f.FolderId))
+            .Select(f => new { f.FolderId, f.FolderName, f.UserId, OwnerName = f.User.FullName })
+            .ToListAsync(ct);
+        if (folders.Count == 0)
+        {
+            return Array.Empty<SetFolderTileViewModel>();
+        }
+
+        // Two queries for every folder together: the visible sets with their word counts, then the due counts of those sets.
+        var folderIds = folders.Select(f => f.FolderId).ToList();
+        var sets = await ViewableSets(userId, false).AsNoTracking()
+            .Where(s => s.FolderId != null && folderIds.Contains(s.FolderId.Value))
+            .Select(s => new { s.SetId, FolderId = s.FolderId ?? 0, Words = s.Cards.Count })
+            .ToListAsync(ct);
+        var stats = await LoadProgressStatsAsync(userId, sets.Select(s => s.SetId).ToList(), ct);
+
+        return folders
+            .Select(f =>
+            {
+                var own = sets.Where(s => s.FolderId == f.FolderId).ToList();
+                var isOwn = f.UserId == userId;
+                return new SetFolderTileViewModel
+                {
+                    FolderId = f.FolderId,
+                    Name = f.FolderName.Trim(),
+                    IsOwn = isOwn,
+                    OwnerName = isOwn ? null : (string.IsNullOrWhiteSpace(f.OwnerName) ? "Người dùng TCT" : f.OwnerName),
+                    SetCount = own.Count,
+                    WordCount = own.Sum(s => s.Words),
+                    DueCount = own.Sum(s => stats.TryGetValue(s.SetId, out var stat) ? stat.Due : 0),
+                    Hue = FolderHue(f.FolderId),
+                };
+            })
+            .OrderBy(f => FolderSortKey(f.Name), StringComparer.Ordinal)
+            .ThenBy(f => f.FolderId)
+            .ToList();
+    }
+
+    public async Task<SetFolderPageViewModel?> GetFolderPageAsync(int folderId, int userId, bool isAdmin, CancellationToken ct = default)
+    {
+        var folder = await _db.Folders.AsNoTracking()
+            .Where(f => f.FolderId == folderId)
+            .Select(f => new
+            {
+                f.FolderId,
+                f.FolderName,
+                f.UserId,
+                OwnerName = f.User.FullName,
+                Saved = _db.SavedFolders.Any(s => s.FolderId == f.FolderId && s.UserId == userId),
+                ViaClass = _db.ClassFolders.Any(l => l.FolderId == f.FolderId
+                    && (_db.Classes.Any(c => c.ClassId == l.ClassId && c.OwnerId == userId)
+                        || _db.ClassMembers.Any(m => m.ClassId == l.ClassId && m.UserId == userId))),
+                HasChildren = _db.Folders.Any(c => c.ParentFolderId == f.FolderId),
+            })
+            .FirstOrDefaultAsync(ct);
+        if (folder == null)
+        {
+            return null;
+        }
+
+        var isOwner = folder.UserId == userId;
+        var canManage = isOwner || isAdmin;
+        if (!canManage && !folder.Saved && !folder.ViaClass)
+        {
+            return null;
+        }
+
+        var inFolder = ViewableSets(userId, isAdmin).Where(s => s.FolderId == folderId);
+        var mine = await LoadTilesAsync(inFolder.Where(s => s.OwnerId == userId), 200, "own", userId, ct);
+        var others = await LoadTilesAsync(inFolder.Where(s => s.OwnerId != userId), 200, "shared", userId, ct);
+        var tiles = mine.Concat(others).OrderByDescending(t => t.SetId).ToList();
+        ApplyProgressStats(tiles, await LoadProgressStatsAsync(userId, tiles.Select(t => t.SetId).ToList(), ct));
+
+        var page = new SetFolderPageViewModel
+        {
+            FolderId = folder.FolderId,
+            Name = folder.FolderName.Trim(),
+            CanManage = canManage,
+            IsSaved = folder.Saved && !isOwner,
+            OwnerName = isOwner ? null : (string.IsNullOrWhiteSpace(folder.OwnerName) ? "Người dùng TCT" : folder.OwnerName),
+            SetCount = tiles.Count,
+            WordCount = tiles.Sum(t => t.WordCount),
+            DueCount = tiles.Sum(t => t.DueCount),
+            Hue = FolderHue(folder.FolderId),
+            HasChildFolders = folder.HasChildren,
+            Sets = tiles,
+        };
+
+        if (canManage)
+        {
+            // Only sets of the folder's owner can be moved in, so a folder never mixes owners.
+            var movable = await ManageableSets(userId, isAdmin).AsNoTracking()
+                .Where(s => s.OwnerId == folder.UserId && s.FolderId != folderId)
+                .OrderBy(s => s.SetName)
+                .Take(MaxOwnedSets)
+                .Select(s => new
+                {
+                    s.SetId,
+                    s.SetName,
+                    WordCount = s.Cards.Count,
+                    SampleTerm = s.Cards.OrderBy(c => c.CardId).Select(c => c.Term).FirstOrDefault(),
+                    CurrentFolderName = s.Folder != null ? s.Folder.FolderName : null,
+                })
+                .ToListAsync(ct);
+            page.MovableSets = movable.Select(m => new SetFolderMovableSetViewModel
+            {
+                SetId = m.SetId,
+                SetName = m.SetName,
+                WordCount = m.WordCount,
+                SampleTerm = SampleOf(m.SampleTerm, m.SetName),
+                CoverHue = SetCoverColor.For(m.SetId),
+                CurrentFolderName = m.CurrentFolderName?.Trim(),
+            }).ToList();
+        }
+
+        return page;
     }
 
     // =====================================================================================

@@ -43,7 +43,8 @@ Use this checklist before enabling real-money traffic.
 
 - [ ] `PendingPaymentCleanupWorker` enabled and running.
 - [ ] `PremiumExpiryWorker` enabled and running.
-- [ ] `PaymentReconciliationWorker` configured as intended.
+- [ ] `PaymentReconciliationWorker` configured as intended. **Recommended for staging and production:** `ReconciliationWorker__Enabled=true`, `ReconciliationWorker__IntervalMinutes=5`, `ReconciliationWorker__MinPendingMinutes=5` (it asks VNPay and MoMo about `pending` orders and orders expired within 24 h; it never marks an order failed on an unclear answer).
+- [ ] Local-only switches are off: `MoMo__MockModeEnabled=false` (the mock box and `/Billing/MoMoMockConfirm` answer 404 outside Development regardless).
 
 ## Sandbox E2E
 
@@ -52,7 +53,13 @@ Use this checklist before enabling real-money traffic.
 - [ ] Cancelled/failed payment does not activate premium.
 - [ ] Duplicate IPN is idempotent.
 - [ ] Amount mismatch is blocked/manual-review.
-- [ ] Return URL does not activate premium by itself.
+- [ ] Return URL does not activate premium by itself (the order page shows "Đang xác nhận" until the IPN or a verified provider query confirms).
+- [ ] With the IPN URL deliberately unreachable, a paid VNPay order is confirmed after the buyer returns (verified QueryDR with the right amount) and the order page turns to "Thanh toán thành công" without a manual step.
+- [ ] MoMo query (`MoMo__QueryPath`, default `/v2/gateway/api/query`) returns `resultCode=0` with the right amount for a paid sandbox order (**not yet verified against a live sandbox**, see known issue `BILLING-MOMO-QUERY-UNVERIFIED`).
+- [ ] VNPay QueryDR statuses are confirmed against the VNPay document: `00` success, `02` failed; anything else must stay "unknown" (no state change).
+- [ ] A success callback or query more than 24 h after expiry lands in `manual_review` for both providers.
+- [ ] After a successful payment the buyer is asked to sign in again at worst; the order page and history then show the paid state (see `BILLING-ROLE-CHANGE-SIGNS-OUT`).
+- [ ] Admin "xác nhận đã thanh toán" on a `manual_review` order activates once and records the confirming admin.
 
 ## Production Deployment
 

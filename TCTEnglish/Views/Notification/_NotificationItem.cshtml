@@ -1,0 +1,39 @@
+@model TCTVocabulary.ViewModels.NotificationViewModel
+@*
+    One notification card (plan 5.1, decision P8). Rendered inside <ul class="tn-list">.
+    - The server has already cleaned the title, chosen the tone/icon and checked the link (NotificationDisplay),
+      so only allowed values reach the class and href attributes; all text is Razor-encoded.
+    - With a link, the label is a real anchor (without JavaScript it just navigates; the page script marks the
+      item read first). Without a link the card is static: never a fake button.
+    - Unread: a dot with visually hidden text and a real "mark read" button; the colour is never the only signal.
+*@
+@{
+    var unread = !Model.IsRead;
+}
+<li class="tn-item tn-tone--@Model.Tone@(unread ? " is-unread" : "")"
+    data-notification-id="@Model.Id"
+    data-category="@Model.Category">
+    <span class="tn-item__icon" aria-hidden="true"><i class="@Model.IconClass"></i></span>
+    <div class="tn-item__body">
+        <h3 class="tn-item__title">@Model.Title</h3>
+        <p class="tn-item__message">@Model.Message</p>
+        <p class="tn-item__meta">
+            <time datetime="@Model.CreatedAtUtc.ToString("O")">@Model.TimeText</time>
+            @if (!string.IsNullOrEmpty(Model.Url))
+            {
+                <a class="tn-item__link" href="@Model.Url" data-notification-link>@Model.LinkLabel <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            }
+        </p>
+    </div>
+    <div class="tn-item__side">
+        @if (unread)
+        {
+            <span class="tn-item__dot" aria-hidden="true"></span>
+            <span class="visually-hidden">Chưa đọc</span>
+            <button type="button" class="tn-item__read" data-notification-read
+                    aria-label="Đánh dấu đã đọc: @Model.Title" title="Đánh dấu đã đọc">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+            </button>
+        }
+    </div>
+</li>

@@ -1,0 +1,189 @@
+@model TCTEnglish.ViewModels.Sets.SetFolderPageViewModel
+@using TCTEnglish.ViewModels.Sets
+@{
+    ViewData["Title"] = Model.Name;
+    var createUrl = Url.Action("CreateSet", "Set", new { folderId = Model.FolderId })!;
+    var folderUrl = Url.Action("FolderPage", "Set", new { id = Model.FolderId })!;
+    var legacyUrl = Url.Action("FolderDetail", "Folder", new { id = Model.FolderId })!;
+
+    // A failed rename sends the user back here with the message and the typed name: reopen the dialog with them.
+    var typedName = TempData["FolderRenameName"] as string;
+    var reopenRename = Model.CanManage && typedName != null;
+    var renameError = reopenRename ? TempData["SetError"] as string : null;
+
+    var facts = new List<string>();
+    if (Model.SetCount > 0) { facts.Add($"{Model.SetCount} bộ thẻ"); }
+    if (Model.WordCount > 0) { facts.Add($"{Model.WordCount} từ"); }
+    if (Model.DueCount > 0) { facts.Add($"{Model.DueCount} từ cần ôn"); }
+    var factText = facts.Count == 0 ? "Chưa có bộ thẻ nào" : string.Join(" · ", facts);
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personal-sets.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page ts-page ts-page--list ts-page--folder">
+    <nav class="tct-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="@Url.Action("Index", "Set")">Bộ thẻ của tôi</a></li>
+            <li><span aria-current="page">Thư mục</span></li>
+        </ol>
+    </nav>
+
+    <section class="ts-folder-head k-panel ts-hue-@Model.Hue" aria-labelledby="ts-folder-title">
+        <span class="ts-folder-head__icon" aria-hidden="true"><i class="fa-solid fa-folder-open"></i></span>
+        <div class="ts-folder-head__text">
+            <h1 class="ts-folder-head__title tct-break" id="ts-folder-title">@Model.Name</h1>
+            <p class="ts-folder-head__facts">
+                @if (Model.IsSaved)
+                {
+                    <span class="ts-folder-saved">Đã lưu</span>
+                }
+                @if (!Model.CanManage && !string.IsNullOrEmpty(Model.OwnerName))
+                {
+                    <span>Thư mục của @Model.OwnerName</span>
+                    <span class="ts-dot" aria-hidden="true"></span>
+                }
+                <span>@factText</span>
+            </p>
+        </div>
+        @if (Model.CanManage)
+        {
+            <div class="ts-folder-head__actions">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tsRenameFolderModal"><i class="fa-solid fa-pen me-1" aria-hidden="true"></i>Đổi tên</button>
+                @if (!Model.HasChildFolders)
+                {
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#tsDeleteFolderModal"><i class="fa-solid fa-trash me-1" aria-hidden="true"></i>Xóa thư mục</button>
+                }
+                <a class="btn btn-primary" href="@createUrl"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Tạo bộ thẻ trong thư mục</a>
+            </div>
+        }
+        else if (Model.IsSaved)
+        {
+            <div class="ts-folder-head__actions">
+                <form method="post" asp-controller="Set" asp-action="UnsaveFolder" asp-route-id="@Model.FolderId">
+                    <button type="submit" class="btn btn-outline-primary" data-ts-pending="Đang bỏ lưu…"><i class="fa-regular fa-bookmark me-1" aria-hidden="true"></i>Bỏ lưu</button>
+                </form>
+            </div>
+        }
+    </section>
+
+    @if (Model.CanManage && Model.HasChildFolders)
+    {
+        <p class="ts-note ts-note--warn ts-folder-child-note">Thư mục này còn thư mục con nên chưa thể xóa ở đây. <a href="@legacyUrl">Mở trang thư mục cũ</a> để xử lý trước.</p>
+    }
+
+    @if (!reopenRename)
+    {
+        <partial name="_SetAlerts" />
+    }
+
+    @if (Model.Sets.Count > 0)
+    {
+        <section class="ts-group" aria-labelledby="ts-folder-sets">
+            <h2 class="ts-group-title" id="ts-folder-sets">Bộ thẻ trong thư mục <span class="ts-group-count">@Model.Sets.Count</span></h2>
+            <ul class="ts-grid">
+                @foreach (var tile in Model.Sets)
+                {
+                    <li class="ts-folder-set">
+                        <partial name="_SetTile" model="tile" />
+                        @if (Model.CanManage && tile.Relation == "own")
+                        {
+                            <form class="ts-folder-set-remove" method="post" asp-controller="Set" asp-action="MoveToFolder" asp-route-setId="@tile.SetId">
+                                <input type="hidden" name="folderId" value="" />
+                                <input type="hidden" name="returnUrl" value="@folderUrl" />
+                                <button type="submit" class="btn btn-sm btn-outline-secondary" data-ts-pending="Đang bỏ…" aria-label="Bỏ bộ thẻ @tile.SetName khỏi thư mục"><i class="fa-solid fa-arrow-right-from-bracket me-1" aria-hidden="true"></i>Bỏ khỏi thư mục</button>
+                            </form>
+                        }
+                    </li>
+                }
+                @if (Model.CanManage)
+                {
+                    <li>
+                        <a class="ts-tile-add" href="@createUrl">
+                            <span class="ts-tile-add-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+                            <span class="ts-tile-add-title">Tạo bộ thẻ trong thư mục</span>
+                            @if (Model.MovableSets.Count > 0)
+                            {
+                                <span class="ts-tile-add-note">hoặc thêm bộ thẻ có sẵn</span>
+                            }
+                        </a>
+                    </li>
+                }
+            </ul>
+        </section>
+
+        @if (Model.CanManage && Model.MovableSets.Count > 0)
+        {
+            <details class="ts-move-panel k-panel">
+                <summary class="ts-move-panel__summary"><i class="fa-solid fa-right-to-bracket me-1" aria-hidden="true"></i>Thêm bộ thẻ có sẵn</summary>
+                <partial name="_FolderMoveRows" model="Model" />
+            </details>
+        }
+    }
+    else
+    {
+        <section class="ts-folder-empty k-panel" aria-labelledby="ts-folder-empty-title">
+            <span class="ts-folder-empty__icon ts-hue-@Model.Hue" aria-hidden="true"><i class="fa-solid fa-folder-open"></i></span>
+            <h2 class="ts-folder-empty__title" id="ts-folder-empty-title">Thư mục này chưa có bộ thẻ nào</h2>
+            @if (Model.CanManage)
+            {
+                <p class="ts-folder-empty__text">Tạo bộ thẻ mới ngay trong thư mục, hoặc chuyển bộ thẻ có sẵn vào đây.</p>
+                <a class="btn btn-primary" href="@createUrl"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Tạo bộ thẻ trong thư mục</a>
+                @if (Model.MovableSets.Count > 0)
+                {
+                    <h3 class="ts-move-title">Chuyển bộ thẻ có sẵn vào thư mục</h3>
+                    <partial name="_FolderMoveRows" model="Model" />
+                }
+            }
+        </section>
+    }
+
+    @if (Model.CanManage)
+    {
+        <div class="modal fade" id="tsRenameFolderModal" tabindex="-1" aria-labelledby="tsRenameFolderTitle" aria-hidden="true" data-ts-autofocus @(reopenRename ? "data-ts-open-on-load" : null)>
+            <div class="modal-dialog modal-dialog-centered">
+                <form class="modal-content" method="post" asp-controller="Set" asp-action="RenameFolder" asp-route-id="@Model.FolderId" novalidate>
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tsRenameFolderTitle">Đổi tên thư mục</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label" for="tsRenameFolderInput">Tên thư mục</label>
+                        <input class="form-control" id="tsRenameFolderInput" type="text" name="name" value="@(typedName ?? Model.Name)" maxlength="100" required autocomplete="off" data-ts-autofocus-target aria-describedby="tsRenameFolderError" />
+                        <p class="ts-note ts-note--danger" id="tsRenameFolderError" role="alert" @(string.IsNullOrEmpty(renameError) ? "hidden" : null)>@renameError</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary" data-ts-pending="Đang lưu…">Lưu tên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @if (!Model.HasChildFolders)
+        {
+            <div class="modal fade" id="tsDeleteFolderModal" tabindex="-1" aria-labelledby="tsDeleteFolderTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form class="modal-content" method="post" asp-controller="Set" asp-action="DeleteFolder" asp-route-id="@Model.FolderId">
+                        <div class="modal-header">
+                            <h2 class="modal-title fs-5" id="tsDeleteFolderTitle">Xóa thư mục “@Model.Name”?</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="mb-0">Các bộ thẻ bên trong không bị xóa, chúng chỉ ra khỏi thư mục.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-ts-pending="Đang xóa…">Xóa thư mục</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/personal-sets-common.js" asp-append-version="true"></script>
+}

@@ -150,8 +150,8 @@
                                 }
                             </td>
                             <td>
-                                <div class="small">@sub.StartsAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</div>
-                                <div class="small text-muted">đến @sub.EndsAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</div>
+                                <div class="small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(sub.StartsAtUtc)</div>
+                                <div class="small text-muted">đến @TCTEnglish.Services.Billing.BillingTime.ToDisplay(sub.EndsAtUtc)</div>
                             </td>
                             <td>
                                 <span class="@sub.StatusBadgeClass">@sub.Status</span>

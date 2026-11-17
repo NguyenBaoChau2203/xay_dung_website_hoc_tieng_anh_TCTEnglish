@@ -1,160 +1,178 @@
 ﻿@model TCTEnglish.ViewModels.Billing.PricingViewModel
+@using TCTEnglish.Services.Billing
+@using TCTEnglish.ViewModels
+@using TCTEnglish.ViewModels.Billing
 @{
     ViewData["Title"] = "Nâng cấp Premium";
-    var vnpayReady = Model.ProviderReadiness.TryGetValue("vnpay", out var vnpayConfigured) && vnpayConfigured;
-    var momoReady = Model.ProviderReadiness.TryGetValue("momo", out var momoConfigured) && momoConfigured;
-}
-
-@section Styles {
-    <style>
-        .pricing-plan-col {
-            max-width: 400px;
-        }
-
-        .pricing-plan-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pricing-plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1) !important;
-        }
-    </style>
-}
-
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold">Tận hưởng sức mạnh của <span class="text-primary">TCT Premium</span></h1>
-        <p class="lead text-muted">Mở khóa đầy đủ tính năng luyện nói, viết và nghe với trí tuệ nhân tạo.</p>
-    </div>
-
-    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    var header = new PageHeaderViewModel
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i> @Model.ErrorMessage
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        Title = "Nâng cấp Premium",
+        Description = "Thanh toán một lần cho mỗi gói. Không tự động gia hạn."
+    };
+    var selectedPlan = Model.SelectedPlan;
+    var selectedProvider = Model.SelectedProvider;
+    var noPlans = Model.Plans.Count == 0;
+    var noGateway = !Model.HasAnyReadyProvider;
+    var canCheckout = Model.CanBuy && !noPlans && !noGateway && selectedPlan != null;
+    var summary = new OrderSummaryViewModel
+    {
+        Heading = "Tóm tắt",
+        Live = true,
+        Rows = selectedPlan == null
+            ? Array.Empty<BillingRow>()
+            : new[]
+            {
+                new BillingRow("Gói", selectedPlan.Name, Emphasis: true, Key: "plan"),
+                new BillingRow("Hiệu lực", PricingPageBuilder.ValidityText(Model, selectedPlan), Emphasis: true, Key: "validity")
+            },
+        TotalText = selectedPlan?.PriceText ?? string.Empty
+    };
+    var noteProvider = selectedProvider == null ? string.Empty : (selectedProvider.Code == "momo" ? "MoMo" : "VNPay");
+    var emptyPlans = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Empty,
+        Title = "Hiện chưa có gói nào.",
+        Message = "Vui lòng quay lại sau."
+    };
+    var errorState = new StateMessageViewModel
+    {
+        Kind = StateMessageKind.Error,
+        Title = "Chưa thể bắt đầu thanh toán",
+        Message = Model.ErrorMessage ?? string.Empty
+    };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/billing.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tb-page tb-page--pricing">
+    <partial name="_PageHeader" model="header" />
+
+    <partial name="_PremiumStatus" model="Model.Status" />
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="tb-error" tabindex="-1" data-tb-error>
+            <partial name="_StateMessage" model="errorState" />
         </div>
     }
 
-    <div class="row mb-4">
-        <div class="col-md-8 mx-auto">
-            <div class="card border-0 shadow-sm bg-light">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0">
-                            @if (Model.CurrentAccess.IsPremium)
-                            {
-                                <div class="bg-success text-white rounded-circle p-3">
-                                    <i class="bi bi-star-fill fs-4"></i>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="bg-secondary text-white rounded-circle p-3">
-                                    <i class="bi bi-person-fill fs-4"></i>
-                                </div>
-                            }
-                        </div>
-                        <div class="ms-4">
-                            <h5 class="mb-1">
-                                Trạng thái tài khoản:
-                                <span class="@(Model.CurrentAccess.IsPremium ? "text-success" : "text-muted")">
-                                    @(Model.CurrentAccess.IsPremium ? "Premium" : "Standard")
-                                </span>
-                            </h5>
-                            @if (Model.CurrentAccess.IsPremium && Model.CurrentAccess.PremiumEndsAtUtc.HasValue)
-                            {
-                                <p class="mb-0 text-muted">
-                                    Thời hạn đến: @Model.CurrentAccess.PremiumEndsAtUtc.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
-                                </p>
-                            }
-                            else if (Model.CurrentAccess.IsAdmin)
-                            {
-                                <p class="mb-0 text-muted">Bạn có quyền truy cập Premium vĩnh viễn (Admin).</p>
-                            }
-                            else
-                            {
-                                <p class="mb-0 text-muted">Nâng cấp để truy cập các tính năng AI nâng cao.</p>
-                            }
-                        </div>
-                    </div>
-                </div>
+    @if (noPlans)
+    {
+        <partial name="_StateMessage" model="emptyPlans" />
+    }
+    else if (!Model.CanBuy)
+    {
+        <div class="tb-grid tb-grid--benefits">
+            <div class="tb-main">
+                <partial name="_BenefitsTable" />
             </div>
+            <aside class="tb-grid__side">
+                <section class="k-panel tb-card tb-note-card" aria-label="Quyền Premium không thời hạn">
+                    <p class="tb-section-title">Bạn không cần mua gói</p>
+                    <p class="tb-note">Tài khoản của bạn có quyền Premium không thời hạn.</p>
+                </section>
+            </aside>
         </div>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-        @foreach (var plan in Model.Plans)
-        {
-            <div class="col pricing-plan-col">
-                <div class="card pricing-plan-card h-100 border-0 shadow-sm @(plan.DurationDays >= 365 ? "border border-primary border-2" : string.Empty)">
-                    @if (plan.DurationDays >= 365)
-                    {
-                        <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-3">
-                            Tiết kiệm nhất
+    }
+    else
+    {
+        <form method="post" asp-controller="Billing" asp-action="Checkout" class="tb-checkout"
+              data-tb-pricing data-now-ms="@Model.NowMs" data-current-end-ms="@Model.CurrentEndMs">
+            <div class="tb-grid">
+                <div class="tb-main">
+                    <fieldset class="tb-fieldset">
+                        <legend class="tb-section-title">1. Chọn gói</legend>
+                        <div class="tb-plans">
+                            @foreach (var plan in Model.Plans)
+                            {
+                                <label class="tb-plan k-card" data-tb-plan data-name="@plan.Name" data-price="@((long)plan.PriceVnd)" data-days="@plan.DurationDays">
+                                    <input class="tb-radio" type="radio" name="PlanCode" value="@plan.Code" checked="@plan.IsPreselected" required />
+                                    <span class="tb-plan__head">
+                                        <span class="tb-plan__name">@plan.Name</span>
+                                        @if (plan.SavingPercent > 0)
+                                        {
+                                            <span class="tb-chip tb-chip--success">Tiết kiệm @plan.SavingPercent%</span>
+                                        }
+                                    </span>
+                                    <span class="tb-plan__price tb-num">@plan.PriceText</span>
+                                    <span class="tb-plan__meta">
+                                        Dùng trong @plan.DurationDays ngày@(string.IsNullOrEmpty(plan.PerMonthText) ? string.Empty : " · " + plan.PerMonthText)
+                                    </span>
+                                    <span class="tb-mark" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                </label>
+                            }
                         </div>
-                    }
-                    <div class="card-body p-5 text-center">
-                        <h3 class="fw-bold mb-4">@plan.Name</h3>
-                        <div class="mb-4">
-                            <span class="display-5 fw-bold">@plan.PriceVnd.ToString("N0")</span>
-                            <span class="text-muted">₫</span>
-                        </div>
-                        <p class="text-muted mb-5">@plan.Description</p>
+                    </fieldset>
 
-                        <ul class="list-unstyled text-start mb-5">
-                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Luyện viết với AI không giới hạn</li>
-                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Shadowing và video riêng tư</li>
-                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Dịch transcript và AI Quiz cho Listening</li>
-                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Không có quảng cáo</li>
-                        </ul>
+                    <partial name="_BenefitsTable" />
+                </div>
 
-                        @if (vnpayReady)
+                <aside class="tb-grid__side">
+                    <section class="k-panel tb-card tb-pay" aria-label="Thanh toán">
+                        @if (noGateway)
                         {
-                            <form asp-action="Checkout" method="post">
-                                <input type="hidden" name="PlanCode" value="@plan.Code" />
-                                <input type="hidden" name="Provider" value="vnpay" />
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm">
-                                    <i class="bi bi-credit-card-2-front me-2"></i> Thanh toán VNPay
-                                </button>
-                            </form>
+                            <p class="tb-section-title">2. Thanh toán</p>
+                            <div class="tb-notice tb-notice--warning" role="status">
+                                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                                <span>Cổng thanh toán đang tạm ngưng. Vui lòng quay lại sau.</span>
+                            </div>
                         }
                         else
                         {
-                            <button class="btn btn-outline-secondary w-100 py-3 rounded-pill opacity-50" disabled
-                                    title="Cổng thanh toán VNPay chưa được cấu hình. Vui lòng liên hệ quản trị viên.">
-                                <i class="bi bi-credit-card-2-front me-2"></i> VNPay chưa khả dụng/chưa cấu hình
-                            </button>
-                        }
+                            <fieldset class="tb-fieldset">
+                                <legend class="tb-section-title">2. Thanh toán</legend>
+                                <div class="tb-methods">
+                                    @foreach (var provider in Model.Providers)
+                                    {
+                                        <label class="tb-method@(provider.Available ? string.Empty : " is-disabled")" data-tb-method
+                                               data-name="@(provider.Code == "momo" ? "MoMo" : "VNPay")">
+                                            <input class="tb-radio" type="radio" name="Provider" value="@provider.Code"
+                                                   checked="@(provider.IsPreselected)" disabled="@(!provider.Available)" required />
+                                            <span class="tb-method__badge tb-method__badge--@provider.Code" aria-hidden="true">@provider.Badge</span>
+                                            <span class="tb-method__body">
+                                                <span class="tb-method__name">
+                                                    @provider.Name
+                                                    @if (provider.IsTest)
+                                                    {
+                                                        <span class="tb-chip tb-chip--info">Thử nghiệm</span>
+                                                    }
+                                                </span>
+                                                <span class="tb-method__desc">@(provider.Available ? provider.Description : "Tạm thời chưa dùng được")</span>
+                                            </span>
+                                            <span class="tb-mark" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                        </label>
+                                    }
+                                </div>
+                            </fieldset>
 
-                        <div class="mt-3">
-                            @if (momoReady)
+                            <partial name="_OrderSummary" model="summary" />
+
+                            @if (canCheckout)
                             {
-                                <form asp-action="Checkout" method="post">
-                                    <input type="hidden" name="PlanCode" value="@plan.Code" />
-                                    <input type="hidden" name="Provider" value="momo" />
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-outline-danger w-100 py-2 rounded-pill fw-semibold">
-                                        <i class="bi bi-wallet2 me-2"></i> Thanh toán MoMo QR
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <button class="btn btn-outline-secondary w-100 py-2 rounded-pill opacity-50" disabled
-                                        title="Cổng thanh toán MoMo chưa được cấu hình.">
-                                    <i class="bi bi-wallet2 me-2"></i> MoMo chưa khả dụng/chưa cấu hình
+                                <button type="submit" class="btn btn-primary btn-lg w-100 tb-submit" data-tb-submit>
+                                    <i class="fa-solid fa-lock me-2" aria-hidden="true" data-tb-icon></i>
+                                    <span data-tb-field="button">Thanh toán</span>
                                 </button>
                             }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
 
-    <div class="mt-5 text-center">
-        <p class="text-muted">Bạn đã mua gói trước đó? <a asp-action="History" class="text-decoration-none">Xem lịch sử đơn hàng</a></p>
-    </div>
+                            <p class="tb-note" data-tb-field="note">
+                                Bạn sẽ được chuyển sang trang của @noteProvider để hoàn tất. TCT English không lưu thông tin thẻ của bạn.
+                            </p>
+                            <p class="tb-note tb-note--info">
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.
+                            </p>
+                        }
+                    </section>
+                </aside>
+            </div>
+        </form>
+    }
 </div>
+
+@section Scripts {
+    <script src="~/js/billing-core.js" asp-append-version="true"></script>
+    <script src="~/js/billing-pricing.js" asp-append-version="true"></script>
+}

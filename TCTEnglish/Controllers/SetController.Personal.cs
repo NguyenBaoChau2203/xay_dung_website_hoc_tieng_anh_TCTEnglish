@@ -26,6 +26,158 @@ namespace TCTVocabulary.Controllers
             return View(model);
         }
 
+        // ----------------------------------------------------------------- folders
+
+        /// <summary>TempData keys the create-folder dialog in the layout reads to reopen with the message and the typed name.</summary>
+        private const string FolderDialogErrorKey = "FolderDialogError";
+        private const string FolderDialogNameKey = "FolderDialogName";
+        private const string FolderRenameNameKey = "FolderRenameName";
+
+        private bool WantsJson
+            => Request.GetTypedHeaders().Accept.Any(h => string.Equals(h.MediaType.Value, "application/json", StringComparison.OrdinalIgnoreCase));
+
+        /// <summary>Back to a local return URL; anything else (absolute, protocol-relative) falls back.</summary>
+        private IActionResult BackTo(string? returnUrl, string fallback)
+            => Redirect(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl) ? returnUrl : fallback);
+
+        private string FolderUrl(int folderId) => Url.Action(nameof(FolderPage), "Set", new { id = folderId })!;
+
+        [HttpGet("/Sets/Folders/{id:int}")]
+        public async Task<IActionResult> FolderPage(int id, CancellationToken ct)
+        {
+            var model = await _personalSets.GetFolderPageAsync(id, GetCurrentUserId(), IsAdminUser(), ct);
+            return model == null ? NotFound() : View("Folder", model);
+        }
+
+        [HttpPost("/Sets/Folders/Create")]
+        public async Task<IActionResult> CreateFolder(string? name, string? returnUrl, CancellationToken ct)
+        {
+            var result = await _personalSets.CreateFolderAsync(GetCurrentUserId(), name, ct);
+            if (result.Status == OperationStatus.Success)
+            {
+                var url = FolderUrl(result.Value);
+                if (WantsJson)
+                {
+                    return Ok(new { ok = true, id = result.Value, url });
+                }
+
+                TempData[MessageKey] = $"Đã tạo thư mục \"{name!.Trim()}\".";
+                return Redirect(url);
+            }
+
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            var error = result.ErrorMessage ?? "Không tạo được thư mục.";
+            if (WantsJson)
+            {
+                return BadRequest(new { ok = false, error });
+            }
+
+            TempData[FolderDialogErrorKey] = error;
+            TempData[FolderDialogNameKey] = name;
+            return BackTo(returnUrl, Url.Action(nameof(Index))!);
+        }
+
+        [HttpPost("/Sets/Folders/{id:int}/Rename")]
+        public async Task<IActionResult> RenameFolder(int id, string? name, CancellationToken ct)
+        {
+            var result = await _personalSets.RenameFolderAsync(id, GetCurrentUserId(), IsAdminUser(), name, ct);
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status != OperationStatus.Success)
+            {
+                var error = result.ErrorMessage ?? "Không đổi được tên thư mục.";
+                if (WantsJson)
+                {
+                    return BadRequest(new { ok = false, error });
+                }
+
+                TempData[ErrorKey] = error;
+                TempData[FolderRenameNameKey] = name;
+                return Redirect(FolderUrl(id));
+            }
+
+            if (WantsJson)
+            {
+                return Ok(new { ok = true });
+            }
+
+            TempData[MessageKey] = "Đã đổi tên thư mục.";
+            return Redirect(FolderUrl(id));
+        }
+
+        [HttpPost("/Sets/Folders/{id:int}/Delete")]
+        public async Task<IActionResult> DeleteFolder(int id, CancellationToken ct)
+        {
+            var result = await _personalSets.DeleteFolderAsync(id, GetCurrentUserId(), IsAdminUser(), ct);
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status != OperationStatus.Success)
+            {
+                var error = result.ErrorMessage ?? "Không xóa được thư mục.";
+                if (WantsJson)
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, new { ok = false, error });
+                }
+
+                TempData[ErrorKey] = error;
+                return Redirect(FolderUrl(id));
+            }
+
+            if (WantsJson)
+            {
+                return Ok(new { ok = true });
+            }
+
+            TempData[MessageKey] = "Đã xóa thư mục. Các bộ thẻ vẫn còn trong Bộ thẻ của tôi.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost("/Sets/{setId:int}/MoveToFolder")]
+        public async Task<IActionResult> MoveToFolder(int setId, int? folderId, string? returnUrl, CancellationToken ct)
+        {
+            var result = await _personalSets.MoveSetToFolderAsync(setId, folderId, GetCurrentUserId(), IsAdminUser(), ct);
+            if (result.Status == OperationStatus.NotFound)
+            {
+                return NotFound();
+            }
+
+            if (result.Status != OperationStatus.Success)
+            {
+                TempData[ErrorKey] = result.ErrorMessage ?? "Không chuyển được bộ thẻ.";
+            }
+            else
+            {
+                TempData[MessageKey] = result.Value == null
+                    ? "Đã bỏ bộ thẻ khỏi thư mục."
+                    : $"Đã chuyển bộ thẻ vào \"{result.Value}\".";
+            }
+
+            return BackTo(returnUrl, Url.Action(nameof(Index))!);
+        }
+
+        [HttpPost("/Sets/Folders/{id:int}/Unsave")]
+        public async Task<IActionResult> UnsaveFolder(int id, CancellationToken ct)
+        {
+            var result = await _personalSets.UnsaveFolderAsync(id, GetCurrentUserId(), ct);
+            if (result.Status != OperationStatus.Success)
+            {
+                return NotFound();
+            }
+
+            TempData[MessageKey] = "Đã bỏ lưu thư mục.";
+            return RedirectToAction(nameof(Index));
+        }
+
         // ----------------------------------------------------------------- create / settings / delete
 
         [HttpPost("/Sets/Create")]

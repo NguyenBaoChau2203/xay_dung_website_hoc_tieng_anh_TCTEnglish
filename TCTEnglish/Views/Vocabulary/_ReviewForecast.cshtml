@@ -1,0 +1,46 @@
+@model IReadOnlyList<TCTVocabulary.ViewModels.VocabularyForecastDayViewModel>
+@*
+    "Lịch ôn 7 ngày tới" (plan 5.1): seven bars, today in the warning hue. The bars are decorative (aria-hidden);
+    a visually hidden table carries the same numbers for screen readers. Heights come from the --tv-h custom property.
+*@
+@{
+    var total = Model.Sum(day => day.Count);
+}
+<section class="tv-panel tv-forecast k-panel" aria-labelledby="tvForecastTitle">
+    <div class="tv-panel__head">
+        <h2 class="tv-panel__title" id="tvForecastTitle"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Lịch ôn 7 ngày tới</h2>
+        @if (total > 0)
+        {
+            <span class="tv-panel__aside">@total lượt ôn</span>
+        }
+    </div>
+    @if (total == 0)
+    {
+        <p class="tv-panel__empty">Chưa có lịch ôn. Học một bài để hệ thống xếp lịch cho bạn.</p>
+    }
+    else
+    {
+        <div class="tv-forecast__chart" aria-hidden="true">
+            @foreach (var day in Model)
+            {
+                <div class="tv-bar@(day.IsToday ? " is-today" : string.Empty)">
+                    <span class="tv-bar__track">
+                        <span class="tv-bar__n">@day.Count</span>
+                        <span class="tv-bar__col" style="--tv-h:@(day.HeightPercent)%"></span>
+                    </span>
+                    <span class="tv-bar__l">@day.Label</span>
+                </div>
+            }
+        </div>
+        <table class="visually-hidden">
+            <caption>Số từ cần ôn trong 7 ngày tới</caption>
+            <thead><tr><th scope="col">Ngày</th><th scope="col">Số từ</th></tr></thead>
+            <tbody>
+                @foreach (var day in Model)
+                {
+                    <tr><th scope="row">@day.Label</th><td>@day.Count</td></tr>
+                }
+            </tbody>
+        </table>
+    }
+</section>

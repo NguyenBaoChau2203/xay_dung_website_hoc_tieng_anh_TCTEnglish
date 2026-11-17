@@ -10,7 +10,7 @@ using TCTEnglish.Services.Billing;
 namespace TCTEnglish.Workers
 {
     /// <summary>
-    /// Background worker that reconciles stale pending VNPay orders every
+    /// Background worker that reconciles open VNPay and MoMo orders every
     /// <see cref="ReconciliationWorkerOptions.IntervalMinutes"/> minutes.
     /// Disabled when <see cref="ReconciliationWorkerOptions.Enabled"/> = false.
     /// </summary>
@@ -53,7 +53,7 @@ namespace TCTEnglish.Workers
                     var svc = scope.ServiceProvider
                         .GetRequiredService<IPaymentReconciliationService>();
 
-                    var summary = await svc.ReconcileVnPayPendingOrdersAsync(
+                    var summary = await svc.ReconcileOpenOrdersAsync(
                         minPendingMinutes: _options.MinPendingMinutes,
                         ct: stoppingToken);
 

@@ -1,5 +1,8 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using TCTEnglish.Services.Notifications;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
 
@@ -11,32 +14,82 @@ public class NotificationController : BaseController
     private const int PageSize = 20;
 
     private readonly INotificationService _notificationService;
+    private readonly INotificationPreferenceService _preferences;
+    private readonly IOptions<OutboundDeliveryOptions> _outbound;
     private readonly ILogger<NotificationController> _logger;
 
     public NotificationController(
         INotificationService notificationService,
+        INotificationPreferenceService preferences,
+        IOptions<OutboundDeliveryOptions> outbound,
         ILogger<NotificationController> logger)
     {
         _notificationService = notificationService;
+        _preferences = preferences;
+        _outbound = outbound;
         _logger = logger;
     }
 
-    // GET /Notification?page=1&filter=unread
-    public async Task<IActionResult> Index(int page = 1, string? filter = null)
+    // GET /Notification?filter=all|unread&category=learning|badge|payment|system&page=1
+    // Also served at /Notification/Index (sidebar link and the website guide use that path).
+    [HttpGet("Notification")]
+    [HttpGet("Notification/Index")]
+    public async Task<IActionResult> Index(int page = 1, string? filter = null, string? category = null)
     {
         var userId = GetCurrentUserId();
         var unreadOnly = string.Equals(filter, "unread", StringComparison.OrdinalIgnoreCase);
+        // An unknown category is ignored (everything is shown), never echoed back.
+        var selectedCategory = NotificationDisplay.ParseCategory(category);
 
         var viewModel = await _notificationService.GetNotificationsPageAsync(
             userId,
             page,
             PageSize,
-            unreadOnly);
+            unreadOnly,
+            selectedCategory);
 
-        ViewData["Filter"] = filter ?? "all";
-        ViewData["UnreadCount"] = viewModel.UnreadCount;
+        // The service clamps the page; a link beyond the last page goes to the last page with the same filters.
+        if (page > viewModel.CurrentPage)
+        {
+            return RedirectToAction(nameof(Index), new
+            {
+                page = viewModel.CurrentPage,
+                filter = unreadOnly ? "unread" : null,
+                category = selectedCategory?.ToString().ToLowerInvariant()
+            });
+        }
 
-        return View(viewModel);
+        return View(new NotificationPageViewModel
+        {
+            List = viewModel,
+            Filter = unreadOnly ? "unread" : "all",
+            Category = selectedCategory?.ToString().ToLowerInvariant(),
+            Counts = await _notificationService.GetCategoryCountsAsync(userId),
+            Side = await BuildSidePanelAsync(userId)
+        });
+    }
+
+    // Reminder settings are shown read-only beside the list; a failed read leaves only the "change settings" button.
+    private async Task<NotificationSidePanelViewModel> BuildSidePanelAsync(int userId)
+    {
+        try
+        {
+            var form = await _preferences.ReadAsync(userId, _outbound.Value.PushConfigured, HttpContext.RequestAborted);
+            return new NotificationSidePanelViewModel
+            {
+                HasSettings = true,
+                DailyReminder = form.DailyReminderEnabled
+                    ? $"Bật · {form.ReminderHour:00}:{form.ReminderMinute:00}"
+                    : "Tắt",
+                BrowserPush = form.PushOptIn ? "Bật" : "Tắt",
+                WeeklyEmail = form.WeeklyEmailOptIn ? "Bật" : "Tắt"
+            };
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _logger.LogWarning(ex, "Could not read reminder settings for the notification page, user {UserId}", userId);
+            return new NotificationSidePanelViewModel();
+        }
     }
 
     [HttpGet("api/notifications/unread-count")]
@@ -47,15 +100,70 @@ public class NotificationController : BaseController
         return Ok(new { count });
     }
 
+    // GET api/notifications?page=1&pageSize=10&unreadOnly=false&category=badge
+    // GET api/notifications?pageSize=10&before=<ISO-8601 UTC>&beforeId=<id>   (keyset: no duplicates or gaps)
     [HttpGet("api/notifications")]
-    public async Task<IActionResult> GetNotifications(int page = 1, int pageSize = 10, bool unreadOnly = false)
+    public async Task<IActionResult> GetNotifications(
+        int page = 1,
+        int pageSize = 10,
+        bool unreadOnly = false,
+        string? category = null,
+        string? before = null,
+        int? beforeId = null)
     {
         pageSize = Math.Clamp(pageSize, 1, 50);
         page = Math.Max(1, page);
 
+        NotificationCategory? selectedCategory = null;
+        if (!string.IsNullOrWhiteSpace(category))
+        {
+            selectedCategory = NotificationDisplay.ParseCategory(category);
+            if (selectedCategory == null)
+                return BadRequest(new { error = "Loại thông báo không hợp lệ." });
+        }
+
+        DateTime? beforeUtc = null;
+        if (!string.IsNullOrWhiteSpace(before))
+        {
+            if (!DateTime.TryParse(
+                    before,
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal,
+                    out var parsed))
+                return BadRequest(new { error = "Mốc thời gian không hợp lệ." });
+
+            beforeUtc = parsed;
+        }
+
+        if (ModelState.TryGetValue(nameof(beforeId), out var beforeIdState) && beforeIdState.Errors.Count > 0)
+            return BadRequest(new { error = "Mốc thông báo không hợp lệ." });
+
         var userId = GetCurrentUserId();
+
+        if (beforeUtc != null)
+        {
+            var slice = await _notificationService.GetNotificationsSliceAsync(
+                userId, pageSize, unreadOnly, beforeUtc, beforeId, selectedCategory);
+
+            return Ok(new
+            {
+                success = true,
+                data = new
+                {
+                    items = slice.Items,
+                    unreadCount = slice.UnreadCount,
+                    totalCount = slice.TotalCount,
+                    currentPage = 0,
+                    hasMore = slice.HasMore,
+                    nextCursor = slice.NextCursor
+                }
+            });
+        }
+
         var pageModel = await _notificationService.GetNotificationsPageAsync(
-            userId, page, pageSize, unreadOnly);
+            userId, page, pageSize, unreadOnly, selectedCategory);
+
+        var last = pageModel.Items.Count > 0 ? pageModel.Items[^1] : null;
 
         return Ok(new
         {
@@ -66,7 +174,10 @@ public class NotificationController : BaseController
                 unreadCount = pageModel.UnreadCount,
                 totalCount = pageModel.TotalCount,
                 currentPage = pageModel.CurrentPage,
-                hasMore = pageModel.HasMore
+                hasMore = pageModel.HasMore,
+                nextCursor = pageModel.HasMore && last != null
+                    ? new NotificationCursor(last.CreatedAtUtc, last.Id)
+                    : null
             }
         });
     }
@@ -81,15 +192,28 @@ public class NotificationController : BaseController
         if (result.Status == OperationStatus.NotFound)
             return NotFound(new { error = "Không tìm thấy thông báo." });
 
-        return Ok(new { success = true });
+        var unreadCount = await _notificationService.GetUnreadCountAsync(userId);
+        return Ok(new { success = true, unreadCount });
     }
 
+    // POST api/notifications/mark-all-read[?category=badge]
     [HttpPost("api/notifications/mark-all-read")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> MarkAllAsRead()
+    public async Task<IActionResult> MarkAllAsRead([FromQuery] string? category = null)
     {
+        NotificationCategory? selectedCategory = null;
+        if (!string.IsNullOrWhiteSpace(category))
+        {
+            selectedCategory = NotificationDisplay.ParseCategory(category);
+            // Never widen an unknown category into "mark everything".
+            if (selectedCategory == null)
+                return BadRequest(new { error = "Loại thông báo không hợp lệ." });
+        }
+
         var userId = GetCurrentUserId();
-        await _notificationService.MarkAllAsReadAsync(userId);
-        return Ok(new { success = true });
+        var result = await _notificationService.MarkAllAsReadAsync(userId, selectedCategory);
+        var unreadCount = await _notificationService.GetUnreadCountAsync(userId);
+
+        return Ok(new { success = true, updated = result.Value, unreadCount });
     }
 }

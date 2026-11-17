@@ -462,7 +462,8 @@
             if (refs.aiField) { refs.aiField.value = d.aiGenerated ? 'true' : 'false'; }
             renderExamples(); renderCollocations(); renderWordFamily(); synonymTags.render(); antonymTags.render(); renderPos(); renderImage();
             imageError('');
-            refs.imageResults.textContent = '';
+            // The image search block is only rendered for Premium accounts.
+            if (refs.imageResults) { refs.imageResults.textContent = ''; }
             if (refs.imageQuery) { refs.imageQuery.value = ''; }
             updateTabLabels();
             baseline = JSON.stringify(data);

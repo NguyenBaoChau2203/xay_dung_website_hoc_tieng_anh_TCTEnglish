@@ -1,0 +1,835 @@
+using System.Net;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using TCTEnglish.Tests.Infrastructure;
+using TCTVocabulary.Models;
+using Xunit;
+
+namespace TCTEnglish.Tests;
+
+/// <summary>Folder endpoints of the personal-set workspace: create, page, rename, delete, move, unsave and the legacy create.</summary>
+public sealed class SetFoldersIntegrationTests
+{
+    private static HttpClient ClientFor(TestWebApplicationFactory factory, int userId, string role = Roles.Standard)
+        => IntegrationTestClientHelper.CreateAuthenticatedClient(factory, userId, role);
+
+    // A page that always renders an antiforgery token for a signed-in user (the helper follows one redirect).
+    private static Task<string> TokenAsync(HttpClient client) => IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/Home/Folder");
+
+    private static async Task<HttpResponseMessage> PostAsync(HttpClient client, string route, string form, string? token, bool json = false)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Post, route)
+        {
+            Content = new StringContent(form, Encoding.UTF8, "application/x-www-form-urlencoded"),
+        };
+        if (token != null)
+        {
+            request.Headers.Add("RequestVerificationToken", token);
+        }
+
+        if (json)
+        {
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        return await client.SendAsync(request);
+    }
+
+    private static async Task<T> DbAsync<T>(TestWebApplicationFactory factory, Func<DbflashcardContext, Task<T>> action)
+    {
+        using var scope = factory.Services.CreateScope();
+        return await action(scope.ServiceProvider.GetRequiredService<DbflashcardContext>());
+    }
+
+    private static string Location(HttpResponseMessage response) => response.Headers.Location?.OriginalString ?? string.Empty;
+
+    private static async Task<TestWebApplicationFactory> NewFactoryAsync()
+    {
+        var factory = new TestWebApplicationFactory();
+        await factory.InitializeAsync();
+        return factory;
+    }
+
+    // ------------------------------------------------------------------ create
+
+    [Fact]
+    public async Task Create_StoresTheFolderForTheCallerAndRedirectsToItsPage()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        using var response = await PostAsync(client, "/Sets/Folders/Create", "name=" + Uri.EscapeDataString("  Công việc  "), await TokenAsync(client));
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        var match = Regex.Match(Location(response), "^/Sets/Folders/(\\d+)$");
+        Assert.True(match.Success, "unexpected redirect: " + Location(response));
+        var folder = await DbAsync(factory, db => db.Folders.AsNoTracking().SingleAsync(f => f.FolderId == int.Parse(match.Groups[1].Value)));
+        Assert.Equal("Công việc", folder.FolderName);
+        Assert.Equal(TestDataIds.UserId, folder.UserId);
+    }
+
+    [Theory]
+    [InlineData("", null, "/Sets")]
+    [InlineData("   ", "/Sets/Folders/201", "/Sets/Folders/201")]
+    [InlineData("", "https://evil.example/steal", "/Sets")]
+    [InlineData("", "//evil.example/steal", "/Sets")]
+    public async Task Create_WithAnInvalidNameGoesBackToALocalReturnUrlOnlyAndCreatesNothing(string name, string? returnUrl, string expected)
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var before = await DbAsync(factory, db => db.Folders.CountAsync());
+        var form = "name=" + Uri.EscapeDataString(name) + (returnUrl == null ? string.Empty : "&returnUrl=" + Uri.EscapeDataString(returnUrl));
+
+        using var response = await PostAsync(client, "/Sets/Folders/Create", form, await TokenAsync(client));
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.Equal(expected, Location(response));
+        Assert.Equal(before, await DbAsync(factory, db => db.Folders.CountAsync()));
+    }
+
+    [Fact]
+    public async Task Create_JsonVariantAnswersWithTheNewUrlOrTheError()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var created = await PostAsync(client, "/Sets/Folders/Create", "name=Du+l%E1%BB%8Bch", token, json: true);
+        using var duplicate = await PostAsync(client, "/Sets/Folders/Create", "name=" + Uri.EscapeDataString("DU LỊCH"), token, json: true);
+
+        Assert.Equal(HttpStatusCode.OK, created.StatusCode);
+        using var ok = JsonDocument.Parse(await created.Content.ReadAsStringAsync());
+        Assert.True(ok.RootElement.GetProperty("ok").GetBoolean());
+        var id = ok.RootElement.GetProperty("id").GetInt32();
+        Assert.Equal($"/Sets/Folders/{id}", ok.RootElement.GetProperty("url").GetString());
+
+        Assert.Equal(HttpStatusCode.BadRequest, duplicate.StatusCode);
+        using var bad = JsonDocument.Parse(await duplicate.Content.ReadAsStringAsync());
+        Assert.False(bad.RootElement.GetProperty("ok").GetBoolean());
+        Assert.Equal("Bạn đã có thư mục tên này.", bad.RootElement.GetProperty("error").GetString());
+    }
+
+    [Fact]
+    public async Task EveryFolderPostRejectsAMissingAntiforgeryToken()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var before = await DbAsync(factory, db => db.Folders.CountAsync());
+
+        foreach (var (route, form) in new[]
+                 {
+                     ("/Sets/Folders/Create", "name=X"),
+                     ($"/Sets/Folders/{TestDataIds.UserFolderId}/Rename", "name=X"),
+                     ($"/Sets/Folders/{TestDataIds.DeletableUserFolderId}/Delete", string.Empty),
+                     ($"/Sets/{TestDataIds.UserSetId}/MoveToFolder", "folderId="),
+                     ($"/Sets/Folders/{TestDataIds.UserFolderId}/Unsave", string.Empty),
+                     ("/Home/CreateFolder", "folderName=X"),
+                 })
+        {
+            using var response = await PostAsync(client, route, form, token: null);
+            Assert.True(response.StatusCode == HttpStatusCode.BadRequest, $"{route} answered {(int)response.StatusCode} without a token");
+        }
+
+        Assert.Equal(before, await DbAsync(factory, db => db.Folders.CountAsync()));
+    }
+
+    // ------------------------------------------------------------------ page
+
+    [Fact]
+    public async Task Page_OpensForTheOwnerAndAClassMemberButNotForAStranger()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var member = ClientFor(factory, TestDataIds.MemberUserId);
+        using var stranger = ClientFor(factory, TestDataIds.OutsiderUserId);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}";
+
+        using var ownerResponse = await owner.GetAsync(route);
+        using var memberResponse = await member.GetAsync(route);
+        using var strangerResponse = await stranger.GetAsync(route);
+        using var missing = await owner.GetAsync("/Sets/Folders/987654");
+
+        Assert.Equal(HttpStatusCode.OK, ownerResponse.StatusCode);
+        Assert.Contains("Sprint One Folder", System.Net.WebUtility.HtmlDecode(await ownerResponse.Content.ReadAsStringAsync()), StringComparison.Ordinal);
+        Assert.Equal(HttpStatusCode.OK, memberResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, strangerResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, missing.StatusCode);
+    }
+
+    [Fact]
+    public async Task Page_OpensForASavedFollower()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var follower = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        using var response = await follower.GetAsync($"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    // ------------------------------------------------------------------ rename
+
+    [Fact]
+    public async Task Rename_ChangesTheNameForTheOwnerAndIsNotFoundForAStranger()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var stranger = ClientFor(factory, TestDataIds.OutsiderUserId);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}/Rename";
+
+        using var denied = await PostAsync(stranger, route, "name=Hacked", await TokenAsync(stranger));
+        using var done = await PostAsync(owner, route, "name=" + Uri.EscapeDataString("Tên mới"), await TokenAsync(owner));
+
+        Assert.Equal(HttpStatusCode.NotFound, denied.StatusCode);
+        Assert.Equal(HttpStatusCode.Redirect, done.StatusCode);
+        Assert.Equal($"/Sets/Folders/{TestDataIds.UserFolderId}", Location(done));
+        Assert.Equal("Tên mới", (await DbAsync(factory, db => db.Folders.AsNoTracking().SingleAsync(f => f.FolderId == TestDataIds.UserFolderId))).FolderName);
+    }
+
+    [Fact]
+    public async Task Rename_ToADuplicateKeepsTheNameAndExplainsInHtmlOrJson()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(owner);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}/Rename";
+        var duplicate = "name=" + Uri.EscapeDataString("  sprint one delete folder ");
+
+        using var html = await PostAsync(owner, route, duplicate, token);
+        using var json = await PostAsync(owner, route, duplicate, token, json: true);
+
+        Assert.Equal(HttpStatusCode.Redirect, html.StatusCode);
+        Assert.Equal($"/Sets/Folders/{TestDataIds.UserFolderId}", Location(html));
+        Assert.Equal(HttpStatusCode.BadRequest, json.StatusCode);
+        Assert.Equal("Sprint One Folder", (await DbAsync(factory, db => db.Folders.AsNoTracking().SingleAsync(f => f.FolderId == TestDataIds.UserFolderId))).FolderName);
+    }
+
+    // ------------------------------------------------------------------ delete
+
+    [Fact]
+    public async Task Delete_RemovesTheFolderButKeepsItsSetsForTheOwnerAndIsNotFoundForAStranger()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var stranger = ClientFor(factory, TestDataIds.OutsiderUserId);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}/Delete";
+
+        using var denied = await PostAsync(stranger, route, string.Empty, await TokenAsync(stranger));
+        Assert.Equal(HttpStatusCode.NotFound, denied.StatusCode);
+        Assert.True(await DbAsync(factory, db => db.Folders.AnyAsync(f => f.FolderId == TestDataIds.UserFolderId)));
+
+        using var done = await PostAsync(owner, route, string.Empty, await TokenAsync(owner));
+
+        Assert.Equal(HttpStatusCode.Redirect, done.StatusCode);
+        Assert.Equal("/Sets", Location(done));
+        Assert.False(await DbAsync(factory, db => db.Folders.AnyAsync(f => f.FolderId == TestDataIds.UserFolderId)));
+        var set = await DbAsync(factory, db => db.Sets.AsNoTracking().SingleAsync(s => s.SetId == TestDataIds.UserSetId));
+        Assert.Null(set.FolderId);
+        Assert.False(await DbAsync(factory, db => db.ClassFolders.AnyAsync(l => l.FolderId == TestDataIds.UserFolderId)));
+    }
+
+    [Fact]
+    public async Task Delete_OfAFolderWithChildFoldersAnswers409ForJsonAndKeepsEverything()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.Folders.Add(new Folder { FolderName = "Con", UserId = TestDataIds.UserId, ParentFolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(owner);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}/Delete";
+
+        using var json = await PostAsync(owner, route, string.Empty, token, json: true);
+        using var html = await PostAsync(owner, route, string.Empty, token);
+
+        Assert.Equal(HttpStatusCode.Conflict, json.StatusCode);
+        Assert.Equal(HttpStatusCode.Redirect, html.StatusCode);
+        Assert.Equal($"/Sets/Folders/{TestDataIds.UserFolderId}", Location(html));
+        Assert.True(await DbAsync(factory, db => db.Folders.AnyAsync(f => f.FolderId == TestDataIds.UserFolderId)));
+    }
+
+    // ------------------------------------------------------------------ move
+
+    [Fact]
+    public async Task Move_PutsTheSetIntoAnotherFolderAndTakesItOut()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(owner);
+        var route = $"/Sets/{TestDataIds.UserSetId}/MoveToFolder";
+
+        using var into = await PostAsync(owner, route, $"folderId={TestDataIds.DeletableUserFolderId}", token);
+        Assert.Equal(HttpStatusCode.Redirect, into.StatusCode);
+        Assert.Equal("/Sets", Location(into));
+        Assert.Equal(TestDataIds.DeletableUserFolderId, (await DbAsync(factory, db => db.Sets.AsNoTracking().SingleAsync(s => s.SetId == TestDataIds.UserSetId))).FolderId);
+
+        using var outOf = await PostAsync(owner, route, "folderId=&returnUrl=" + Uri.EscapeDataString("/Sets/Folders/" + TestDataIds.DeletableUserFolderId), token);
+        Assert.Equal(HttpStatusCode.Redirect, outOf.StatusCode);
+        Assert.Equal($"/Sets/Folders/{TestDataIds.DeletableUserFolderId}", Location(outOf));
+        Assert.Null((await DbAsync(factory, db => db.Sets.AsNoTracking().SingleAsync(s => s.SetId == TestDataIds.UserSetId))).FolderId);
+    }
+
+    [Fact]
+    public async Task Move_IgnoresANonLocalReturnUrlAndRefusesForeignSetsAndFolders()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var stranger = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        using var evil = await PostAsync(owner, $"/Sets/{TestDataIds.UserSetId}/MoveToFolder", $"folderId={TestDataIds.DeletableUserFolderId}&returnUrl=" + Uri.EscapeDataString("https://evil.example"), await TokenAsync(owner));
+        Assert.Equal("/Sets", Location(evil));
+
+        using var foreignSet = await PostAsync(stranger, $"/Sets/{TestDataIds.UserSetId}/MoveToFolder", "folderId=", await TokenAsync(stranger));
+        using var foreignFolder = await PostAsync(owner, $"/Sets/{TestDataIds.UserSetId}/MoveToFolder", $"folderId={TestDataIds.SystemFolderId}", await TokenAsync(owner));
+
+        Assert.Equal(HttpStatusCode.NotFound, foreignSet.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, foreignFolder.StatusCode);
+    }
+
+    // ------------------------------------------------------------------ unsave
+
+    [Fact]
+    public async Task Unsave_RemovesTheCallersSaveOnce()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var follower = ClientFor(factory, TestDataIds.OutsiderUserId);
+        var token = await TokenAsync(follower);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}/Unsave";
+
+        using var first = await PostAsync(follower, route, string.Empty, token);
+        using var second = await PostAsync(follower, route, string.Empty, token);
+
+        Assert.Equal(HttpStatusCode.Redirect, first.StatusCode);
+        Assert.Equal("/Sets", Location(first));
+        Assert.Equal(HttpStatusCode.NotFound, second.StatusCode);
+        Assert.False(await DbAsync(factory, db => db.SavedFolders.AnyAsync(s => s.FolderId == TestDataIds.UserFolderId)));
+    }
+
+    // ------------------------------------------------------------------ sidebar and dialog (shared layout)
+
+    private static async Task<string> PageAsync(HttpClient client, string route)
+    {
+        using var response = await client.GetAsync(route);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        return System.Net.WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
+    }
+
+    [Fact]
+    public async Task Sidebar_KeepsOnlyCreateFolderAndMySetsUnderFolders()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var menu = Regex.Match(html, "<div class=\"nav-dropdown-menu\" id=\"folderDropdownMenu\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(menu);
+        Assert.Contains("Tạo thư mục mới", menu, StringComparison.Ordinal);
+        Assert.Contains("Bộ thẻ của tôi", menu, StringComparison.Ordinal);
+        Assert.DoesNotContain("Thư mục của tôi", html, StringComparison.Ordinal);
+        Assert.Equal(2, Regex.Matches(menu, "class=\"nav-sub-item").Count);
+        Assert.Contains("id=\"newFolderBtn\"", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("href=\"/Home/Folder\"", html, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("/Sets", true)]
+    [InlineData("/Sets/Folders/201", true)]
+    [InlineData("/Home/Index", false)]
+    public async Task Sidebar_FolderGroupIsActiveOnlyOnTheSetAndFolderPages(string route, bool active)
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, route);
+
+        Assert.Equal(active, Regex.IsMatch(html, "class=\"nav-dropdown-item active\"[^>]*id=\"folderDropdownBtn\""));
+    }
+
+    [Fact]
+    public async Task Dialog_IsVietnameseAndPostsToTheServiceWithATokenAndTheCurrentPath()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets?filter=own");
+        var dialog = Regex.Match(html, "<dialog id=\"folderModal\".*?</dialog>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(dialog);
+        foreach (var text in new[] { "Tạo thư mục mới", "Dùng thư mục để gom các bộ thẻ cùng chủ đề. Thư mục hiện ngay trong Bộ thẻ của tôi.", "Tên thư mục", "Hủy", "Tạo thư mục", "0/100" })
+        {
+            Assert.Contains(text, dialog, StringComparison.Ordinal);
+        }
+
+        Assert.DoesNotContain("Create new folder", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Decline", html, StringComparison.Ordinal);
+        var formTag = Regex.Match(dialog, "<form[^>]*>").Value;
+        Assert.Contains("action=\"/Sets/Folders/Create\"", formTag, StringComparison.Ordinal);
+        Assert.Contains("method=\"post\"", formTag, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", dialog, StringComparison.Ordinal);
+        Assert.Matches("name=\"name\"[^>]*maxlength=\"100\"|maxlength=\"100\"[^>]*name=\"name\"", dialog);
+        Assert.Contains("name=\"returnUrl\" value=\"/Sets?filter=own\"", dialog, StringComparison.Ordinal);
+        Assert.Contains("id=\"cancelFolderBtn\"", dialog, StringComparison.Ordinal);
+        Assert.Contains("aria-labelledby=\"folderDialogTitle\"", dialog, StringComparison.Ordinal);
+        Assert.DoesNotContain("data-open-on-load", dialog, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Dialog_ReopensOnceWithTheMessageAndTheTypedNameAfterAFailedCreate()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var empty = await PostAsync(client, "/Sets/Folders/Create", "name=+&returnUrl=%2FSets", token);
+        var afterEmpty = await PageAsync(client, "/Sets");
+        Assert.Equal(HttpStatusCode.Redirect, empty.StatusCode);
+        Assert.Contains("data-open-on-load", afterEmpty, StringComparison.Ordinal);
+        Assert.Contains("Hãy nhập tên thư mục.", afterEmpty, StringComparison.Ordinal);
+
+        using var duplicate = await PostAsync(client, "/Sets/Folders/Create", "name=sprint+one+folder&returnUrl=%2FSets", token);
+        var afterDuplicate = await PageAsync(client, "/Sets");
+        Assert.Contains("data-open-on-load", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("Bạn đã có thư mục tên này.", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("value=\"sprint one folder\"", afterDuplicate, StringComparison.Ordinal);
+        Assert.Contains("17/100", afterDuplicate, StringComparison.Ordinal);
+
+        var later = await PageAsync(client, "/Sets");
+        Assert.False(later.Contains("data-open-on-load", StringComparison.Ordinal), Regex.Match(later, ".{0,120}data-open-on-load.{0,120}", RegexOptions.Singleline).Value);
+        Assert.DoesNotContain("Bạn đã có thư mục tên này.", later, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Pages_AlwaysCarryAnAntiforgeryTokenSoTheLegacyFolderTestsKeepWorking()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        foreach (var route in new[] { "/Sets", "/Home/Index", $"/Sets/Folders/{TestDataIds.UserFolderId}" })
+        {
+            var html = await PageAsync(client, route);
+            Assert.Contains("name=\"__RequestVerificationToken\"", html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task LegacyFolderList_RedirectsToSetsWithARelativeLocation()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        using var response = await client.GetAsync("/Home/Folder");
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.False(response.Headers.Location!.IsAbsoluteUri);
+        Assert.Equal("/Sets", Location(response));
+    }
+
+    // ------------------------------------------------------------------ /Sets: folder row and set chips
+
+    private static string FolderRow(string html)
+        => Regex.Match(html, "<section class=\"ts-group ts-folders\".*?</section>", RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task SetsList_ShowsTheFolderRowWithNamedLinksCountsAndTheDashedCreateTile()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var row = FolderRow(html);
+
+        Assert.NotEmpty(row);
+        Assert.Matches("<h2[^>]*id=\"ts-group-folders\"[^>]*>\\s*Thư mục\\s*<span class=\"ts-group-count\">2</span>", row);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", row, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.DeletableUserFolderId}\"", row, StringComparison.Ordinal);
+        Assert.Matches("Thư mục Sprint One Folder, 1 bộ thẻ, \\d+ từ", row);
+        Assert.Matches("Thư mục Sprint One Delete Folder, 0 bộ thẻ, 0 từ", row);
+        var add = Regex.Match(row, "<button[^>]*data-open-folder-dialog[^>]*>.*?</button>", RegexOptions.Singleline).Value;
+        Assert.Contains("Tạo thư mục mới", add, StringComparison.Ordinal);
+        Assert.Contains("type=\"button\"", add, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_HeaderOffersCreateFolderBesideCreateSet()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var actions = Regex.Match(html, "<div class=\"tct-page-header__actions\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.Contains("href=\"/Sets#tao-thu-muc\"", actions, StringComparison.Ordinal);
+        Assert.Contains("Tạo thư mục", actions, StringComparison.Ordinal);
+        Assert.True(actions.IndexOf("Tạo thư mục", StringComparison.Ordinal) < actions.IndexOf("Tạo bộ thẻ", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task SetsList_ShowsTheFolderChipOnASetInAFolder()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var tile = Regex.Match(html, "<article class=\"[^\"]*ts-tile\".*?</article>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(tile);
+        Assert.Matches("<p class=\"ts-tile-folder\"><span class=\"ts-folder-chip\"><i class=\"fa-solid fa-folder\" aria-hidden=\"true\"></i>\\s*Sprint One Folder\\s*</span></p>", tile);
+    }
+
+    [Fact]
+    public async Task SetsList_WithoutFoldersOffersOnlyTheFirstFolderTile()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var row = FolderRow(html);
+
+        Assert.NotEmpty(row);
+        Assert.DoesNotContain("id=\"ts-group-folders\"", html, StringComparison.Ordinal);
+        Assert.Contains("Tạo thư mục đầu tiên để gom các bộ thẻ cùng chủ đề.", row, StringComparison.Ordinal);
+        Assert.Contains("data-open-folder-dialog", row, StringComparison.Ordinal);
+        Assert.DoesNotContain("/Sets/Folders/", row, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_ShowsSavedFoldersWithTheSavedChipAndTheOwnerOnTheRightFilters()
+    {
+        await using var factory = await NewFactoryAsync();
+        var ownerName = await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return (await db.Users.AsNoTracking().SingleAsync(u => u.UserId == TestDataIds.UserId)).FullName;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var all = FolderRow(await PageAsync(client, "/Sets"));
+        var shared = FolderRow(await PageAsync(client, "/Sets?filter=shared"));
+        var own = FolderRow(await PageAsync(client, "/Sets?filter=own"));
+        var subscribed = await PageAsync(client, "/Sets?filter=subscribed");
+
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", all, StringComparison.Ordinal);
+        Assert.Contains("Đã lưu", all, StringComparison.Ordinal);
+        Assert.Contains(System.Net.WebUtility.HtmlDecode(ownerName ?? string.Empty), all, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", shared, StringComparison.Ordinal);
+        Assert.DoesNotContain($"/Sets/Folders/{TestDataIds.UserFolderId}", own, StringComparison.Ordinal);
+        Assert.DoesNotContain("ts-folders", subscribed, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetsList_EmptyStateKeepsItsActionsAndAddsCreateFolder()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, "/Sets");
+        var actions = Regex.Match(html, "<div class=\"ts-empty-actions\">.*?</div>", RegexOptions.Singleline).Value;
+
+        Assert.NotEmpty(actions);
+        Assert.Contains("Thêm bộ thẻ mẫu", actions, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ", actions, StringComparison.Ordinal);
+        Assert.Matches("<button[^>]*data-open-folder-dialog[^>]*>\\s*(<i[^>]*></i>\\s*)?Tạo thư mục\\s*</button>", actions);
+    }
+
+    // ------------------------------------------------------------------ folder page
+
+    private static string Between(string html, string startPattern, string endPattern)
+        => Regex.Match(html, startPattern + ".*?" + endPattern, RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task FolderPage_OwnerSeesNameFactsActionsModalsAndRemoveButtons()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var id = TestDataIds.UserFolderId;
+
+        var html = await PageAsync(client, $"/Sets/Folders/{id}");
+
+        Assert.Matches("<h1[^>]*>\\s*Sprint One Folder\\s*</h1>", html);
+        Assert.Matches("1 bộ thẻ", html);
+        var breadcrumb = Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>");
+        Assert.Contains("href=\"/Sets\"", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Bộ thẻ của tôi", breadcrumb, StringComparison.Ordinal);
+
+        Assert.Matches($"<a[^>]*href=\"/Home/CreateSet\\?folderId={id}\"[^>]*>[^<]*(<i[^>]*></i>)?\\s*Tạo bộ thẻ trong thư mục", html);
+        Assert.Matches("<button[^>]*data-bs-target=\"#tsRenameFolderModal\"[^>]*>\\s*(<i[^>]*></i>\\s*)?Đổi tên", html);
+        Assert.Matches("<button[^>]*data-bs-target=\"#tsDeleteFolderModal\"[^>]*>\\s*(<i[^>]*></i>\\s*)?Xóa thư mục", html);
+
+        var rename = Between(html, "<div class=\"modal fade\" id=\"tsRenameFolderModal\"", "</form>");
+        Assert.Contains($"action=\"/Sets/Folders/{id}/Rename\"", rename, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", rename, StringComparison.Ordinal);
+        Assert.Matches("name=\"name\"[^>]*maxlength=\"100\"|maxlength=\"100\"[^>]*name=\"name\"", rename);
+        Assert.Contains("value=\"Sprint One Folder\"", rename, StringComparison.Ordinal);
+        Assert.Contains("Lưu tên", rename, StringComparison.Ordinal);
+
+        var delete = Between(html, "<div class=\"modal fade\" id=\"tsDeleteFolderModal\"", "</form>");
+        Assert.Contains($"action=\"/Sets/Folders/{id}/Delete\"", delete, StringComparison.Ordinal);
+        Assert.Contains("Xóa thư mục “Sprint One Folder”?", delete, StringComparison.Ordinal);
+        Assert.Contains("Các bộ thẻ bên trong không bị xóa, chúng chỉ ra khỏi thư mục.", delete, StringComparison.Ordinal);
+
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", html, StringComparison.Ordinal);
+        var remove = Between(html, "<form[^>]*action=\"/Sets/" + TestDataIds.UserSetId + "/MoveToFolder\"", "</form>");
+        Assert.Contains("name=\"folderId\" value=\"\"", remove, StringComparison.Ordinal);
+        Assert.Contains($"name=\"returnUrl\" value=\"/Sets/Folders/{id}\"", remove, StringComparison.Ordinal);
+        Assert.Contains("Bỏ khỏi thư mục", remove, StringComparison.Ordinal);
+        Assert.DoesNotContain("Thêm bộ thẻ có sẵn", html, StringComparison.Ordinal); // no other set to move in
+    }
+
+    [Fact]
+    public async Task FolderPage_EmptyFolderShowsTheEmptyStateAndTheListOfSetsToMoveIn()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var id = TestDataIds.DeletableUserFolderId;
+
+        var html = await PageAsync(client, $"/Sets/Folders/{id}");
+
+        Assert.Contains("Thư mục này chưa có bộ thẻ nào", html, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ mới ngay trong thư mục, hoặc chuyển bộ thẻ có sẵn vào đây.", html, StringComparison.Ordinal);
+        Assert.Contains("Chuyển bộ thẻ có sẵn vào thư mục", html, StringComparison.Ordinal);
+        var row = Between(html, "<li class=\"ts-move-row\"", "</li>");
+        Assert.Contains("đang ở Sprint One Folder", row, StringComparison.Ordinal);
+        Assert.Contains($"action=\"/Sets/{TestDataIds.UserSetId}/MoveToFolder\"", row, StringComparison.Ordinal);
+        Assert.Contains($"name=\"folderId\" value=\"{id}\"", row, StringComparison.Ordinal);
+        Assert.Contains($"name=\"returnUrl\" value=\"/Sets/Folders/{id}\"", row, StringComparison.Ordinal);
+        Assert.Matches("<button[^>]*>\\s*Chuyển vào\\s*</button>", row);
+    }
+
+    [Fact]
+    public async Task FolderPage_WithoutAnyOwnSetOffersOnlyTheCreateButton()
+    {
+        await using var factory = await NewFactoryAsync();
+        var folderId = await DbAsync(factory, async db =>
+        {
+            var folder = new Folder { FolderName = "Trống", UserId = TestDataIds.OutsiderUserId };
+            db.Folders.Add(folder);
+            await db.SaveChangesAsync();
+            return folder.FolderId;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{folderId}");
+
+        Assert.Contains("Thư mục này chưa có bộ thẻ nào", html, StringComparison.Ordinal);
+        Assert.Contains($"/Home/CreateSet?folderId={folderId}", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("Chuyển bộ thẻ có sẵn vào thư mục", html, StringComparison.Ordinal);
+        Assert.DoesNotContain("ts-move-row", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_SavedFollowerGetsAReadOnlyViewWithUnsave()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.SavedFolders.Add(new SavedFolder { UserId = TestDataIds.OutsiderUserId, FolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var client = ClientFor(factory, TestDataIds.OutsiderUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.Contains("Đã lưu", html, StringComparison.Ordinal);
+        var unsave = Between(html, "<form[^>]*action=\"/Sets/Folders/" + TestDataIds.UserFolderId + "/Unsave\"", "</form>");
+        Assert.Contains("Bỏ lưu", unsave, StringComparison.Ordinal);
+        Assert.Contains("name=\"__RequestVerificationToken\"", unsave, StringComparison.Ordinal);
+        foreach (var gone in new[] { "tsRenameFolderModal", "tsDeleteFolderModal", "Tạo bộ thẻ trong thư mục", "Bỏ khỏi thư mục", "/MoveToFolder" })
+        {
+            Assert.DoesNotContain(gone, html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task FolderPage_ClassMemberSeesTheSetsWithoutAnyEditAction()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.MemberUserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", html, StringComparison.Ordinal);
+        foreach (var gone in new[] { "tsRenameFolderModal", "tsDeleteFolderModal", "Tạo bộ thẻ trong thư mục", "Bỏ khỏi thư mục", "/Unsave", "Bỏ lưu" })
+        {
+            Assert.DoesNotContain(gone, html, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
+    public async Task FolderPage_WithChildFoldersExplainsWhyItCannotBeDeletedHere()
+    {
+        await using var factory = await NewFactoryAsync();
+        await DbAsync(factory, async db =>
+        {
+            db.Folders.Add(new Folder { FolderName = "Con", UserId = TestDataIds.UserId, ParentFolderId = TestDataIds.UserFolderId });
+            await db.SaveChangesAsync();
+            return 0;
+        });
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}");
+
+        Assert.DoesNotContain("tsDeleteFolderModal", html, StringComparison.Ordinal);
+        Assert.Contains("còn thư mục con", html, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Home/FolderDetail/{TestDataIds.UserFolderId}\"", html, StringComparison.Ordinal);
+        Assert.Contains("tsRenameFolderModal", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_AFailedRenameReopensTheModalOnceWithTheMessageAndTheTypedName()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+        var route = $"/Sets/Folders/{TestDataIds.UserFolderId}";
+
+        using var failed = await PostAsync(client, route + "/Rename", "name=" + Uri.EscapeDataString("sprint one delete folder"), token);
+        var html = await PageAsync(client, route);
+        var modal = Between(html, "<div class=\"modal fade\" id=\"tsRenameFolderModal\"", "</form>");
+
+        Assert.Equal(HttpStatusCode.Redirect, failed.StatusCode);
+        Assert.Contains("data-ts-open-on-load", modal, StringComparison.Ordinal);
+        Assert.Contains("value=\"sprint one delete folder\"", modal, StringComparison.Ordinal);
+        Assert.Contains("Bạn đã có thư mục tên này.", modal, StringComparison.Ordinal);
+
+        var later = await PageAsync(client, route);
+        Assert.DoesNotContain("data-ts-open-on-load", later, StringComparison.Ordinal);
+        Assert.DoesNotContain("Bạn đã có thư mục tên này.", later, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task FolderPage_ShowsTheSuccessMessageAfterRenameAndAfterMove()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var renamed = await PostAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}/Rename", "name=" + Uri.EscapeDataString("Tên mới"), token);
+        Assert.Equal(HttpStatusCode.Redirect, renamed.StatusCode);
+        Assert.Contains("Đã đổi tên thư mục.", await PageAsync(client, $"/Sets/Folders/{TestDataIds.UserFolderId}"), StringComparison.Ordinal);
+
+        using var moved = await PostAsync(client, $"/Sets/{TestDataIds.UserSetId}/MoveToFolder", $"folderId={TestDataIds.DeletableUserFolderId}&returnUrl=" + Uri.EscapeDataString($"/Sets/Folders/{TestDataIds.DeletableUserFolderId}"), token);
+        Assert.Equal(HttpStatusCode.Redirect, moved.StatusCode);
+        var page = await PageAsync(client, $"/Sets/Folders/{TestDataIds.DeletableUserFolderId}");
+        Assert.Contains("Đã chuyển bộ thẻ vào \"Sprint One Delete Folder\".", page, StringComparison.Ordinal);
+        Assert.Contains($"href=\"/Sets/{TestDataIds.UserSetId}\"", page, StringComparison.Ordinal);
+    }
+
+    // ------------------------------------------------------------------ create a set inside a folder, breadcrumbs
+
+    private static string SelectedFolderOption(string html)
+        => Regex.Match(html, "<select[^>]*name=\"FolderId\"[^>]*>.*?</select>", RegexOptions.Singleline).Value;
+
+    [Fact]
+    public async Task CreateSet_WithAManageableFolderPreselectsItAndShowsItInTheBreadcrumb()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, $"/Home/CreateSet?folderId={TestDataIds.DeletableUserFolderId}");
+        var select = SelectedFolderOption(html);
+        var breadcrumb = Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>");
+
+        Assert.Matches($"<option[^>]*value=\"{TestDataIds.DeletableUserFolderId}\"[^>]*selected", select);
+        Assert.DoesNotMatch($"<option[^>]*value=\"{TestDataIds.UserFolderId}\"[^>]*selected", select);
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.DeletableUserFolderId}\"", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Sprint One Delete Folder", breadcrumb, StringComparison.Ordinal);
+        Assert.Contains("Tạo bộ thẻ", breadcrumb, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("?folderId=202")]
+    [InlineData("?folderId=987654")]
+    public async Task CreateSet_IgnoresAMissingOrForeignFolderWithoutAnError(string query)
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+
+        var html = await PageAsync(client, "/Home/CreateSet" + query);
+
+        Assert.DoesNotMatch("<option[^>]*selected", SelectedFolderOption(html));
+        Assert.DoesNotContain("/Sets/Folders/", Between(html, "<nav class=\"tct-breadcrumb\"", "</nav>"), StringComparison.Ordinal);
+        Assert.DoesNotContain("System Sprint Folder", html, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task CreateSet_PostInsideAFolderStoresItThereAndGoesToAddWords()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var response = await PostAsync(client, "/Sets/Create", $"SetName=Trong+th%C6%B0+m%E1%BB%A5c&Visibility=Private&FolderId={TestDataIds.DeletableUserFolderId}", token);
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        var match = Regex.Match(Location(response), "^/Sets/(\\d+)/Add$");
+        Assert.True(match.Success, "unexpected redirect: " + Location(response));
+        var set = await DbAsync(factory, db => db.Sets.AsNoTracking().SingleAsync(s => s.SetId == int.Parse(match.Groups[1].Value)));
+        Assert.Equal(TestDataIds.DeletableUserFolderId, set.FolderId);
+        Assert.Equal(TestDataIds.UserId, set.OwnerId);
+
+        var page = await PageAsync(client, $"/Sets/Folders/{TestDataIds.DeletableUserFolderId}");
+        Assert.Contains($"href=\"/Sets/{set.SetId}\"", page, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task SetDetail_BreadcrumbLinksTheOwnerToTheNewFolderPage()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var owner = ClientFor(factory, TestDataIds.UserId);
+        using var member = ClientFor(factory, TestDataIds.MemberUserId);
+        var route = $"/Sets/{TestDataIds.UserSetId}";
+
+        var ownerCrumb = Between(await PageAsync(owner, route), "<nav class=\"tct-breadcrumb\"", "</nav>");
+        var memberCrumb = Between(await PageAsync(member, route), "<nav class=\"tct-breadcrumb\"", "</nav>");
+
+        Assert.Contains($"href=\"/Sets/Folders/{TestDataIds.UserFolderId}\"", ownerCrumb, StringComparison.Ordinal);
+        Assert.Contains("Sprint One Folder", ownerCrumb, StringComparison.Ordinal);
+        Assert.DoesNotContain("/Home/FolderDetail", ownerCrumb, StringComparison.Ordinal);
+        Assert.DoesNotContain("Sprint One Folder", memberCrumb, StringComparison.Ordinal);
+    }
+
+    // ------------------------------------------------------------------ legacy create
+
+    [Fact]
+    public async Task LegacyCreateFolder_UsesTheServiceAndLandsOnTheNewFolderPage()
+    {
+        await using var factory = await NewFactoryAsync();
+        using var client = ClientFor(factory, TestDataIds.UserId);
+        var token = await TokenAsync(client);
+
+        using var created = await PostAsync(client, "/Home/CreateFolder", "folderName=" + Uri.EscapeDataString("  Từ hộp thoại cũ "), token);
+        using var empty = await PostAsync(client, "/Home/CreateFolder", "folderName=+", token);
+        using var duplicate = await PostAsync(client, "/Home/CreateFolder", "folderName=" + Uri.EscapeDataString("TỪ HỘP THOẠI CŨ"), token);
+
+        Assert.Equal(HttpStatusCode.Redirect, created.StatusCode);
+        var match = Regex.Match(Location(created), "^/Sets/Folders/(\\d+)$");
+        Assert.True(match.Success, "unexpected redirect: " + Location(created));
+        Assert.Equal("Từ hộp thoại cũ", (await DbAsync(factory, db => db.Folders.AsNoTracking().SingleAsync(f => f.FolderId == int.Parse(match.Groups[1].Value)))).FolderName);
+        Assert.Equal("/Sets", Location(empty));
+        Assert.Equal("/Sets", Location(duplicate));
+        Assert.Equal(1, await DbAsync(factory, db => db.Folders.CountAsync(f => f.UserId == TestDataIds.UserId && f.FolderName == "Từ hộp thoại cũ")));
+    }
+}

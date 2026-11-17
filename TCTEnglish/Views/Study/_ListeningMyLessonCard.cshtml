@@ -1,0 +1,73 @@
+@model TCTEnglish.ViewModels.ListeningLessonCardViewModel
+@*
+    One private (imported) lesson on /Home/Listening (plan 6.5). Locked cards (owner is no longer Premium) are not links.
+    The delete button only exists on unlocked cards; listening-index.js opens the #tlDeleteLesson modal from it.
+*@
+@{
+    var thumb = Model.ThumbnailSrc;
+    var statusClass = Model.Status switch
+    {
+        "done" => "tct-badge--success",
+        "progress" => "tct-badge--warning",
+        _ => "tct-badge--primary"
+    };
+    var statusText = Model.Status switch
+    {
+        "done" => "Đã xong",
+        "progress" => "Đang học",
+        _ => "Mới"
+    };
+}
+<li class="tl-grid__item" data-mine-id="@Model.Id" data-status="@Model.Status">
+    <article class="tl-card tl-card--mine k-card @(Model.IsLocked ? "tl-card--locked" : "tct-card--interactive")">
+        @if (!Model.IsLocked)
+        {
+            <a class="tl-card__link stretched-link" href="/Home/Listening/Practice/@Model.Id" aria-label="Mở bài nghe @Model.Title"></a>
+        }
+        <div class="tl-card__thumb k-art-box">
+            @if (thumb != null)
+            {
+                <img class="tl-thumb" src="@thumb" alt="" width="320" height="180" loading="lazy" decoding="async" />
+            }
+            else
+            {
+                <span class="tl-thumb--empty" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+            }
+            <span class="tl-card__status tct-badge @statusClass">
+                @if (Model.Status == "done")
+                {
+                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                }
+                @statusText
+            </span>
+            @if (!string.IsNullOrWhiteSpace(Model.Duration))
+            {
+                <span class="tl-card__duration"><i class="fa-regular fa-clock" aria-hidden="true"></i> @Model.Duration</span>
+            }
+        </div>
+        <div class="tl-card__body">
+            <h3 class="tl-card__title tct-clamp-2 tct-break">@Model.Title</h3>
+            <p class="tl-card__meta">
+                <span class="tct-badge tct-badge--info"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Riêng tư</span>
+                <span>@Model.CreatedAt.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)</span>
+                @if (Model.QuizQuestionCount > 0)
+                {
+                    <span>@Model.QuizQuestionCount câu hỏi</span>
+                }
+            </p>
+            <div class="tl-card__actions">
+                @if (Model.IsLocked)
+                {
+                    <a class="btn btn-outline-primary btn-sm tl-card__action-link" href="/Account/Premium"><i class="fa-solid fa-crown" aria-hidden="true"></i> Nâng cấp để mở khóa</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-sm tl-card__action-link" href="/Home/Listening/Practice/@Model.Id"><i class="fa-solid fa-play" aria-hidden="true"></i> Luyện ngay</a>
+                    <button type="button" class="btn tct-btn-icon tl-card__delete" data-tl-delete="@Model.Id" data-title="@Model.Title" aria-label="Xóa bài nghe @Model.Title">
+                        <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                    </button>
+                }
+            </div>
+        </div>
+    </article>
+</li>

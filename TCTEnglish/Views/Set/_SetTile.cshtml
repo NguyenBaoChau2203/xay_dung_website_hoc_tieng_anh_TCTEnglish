@@ -17,6 +17,10 @@
     </div>
     <div class="ts-tile-body ts-hue-@Model.CoverHue">
         <h3 class="ts-tile-name tct-clamp-2 tct-break">@Model.SetName</h3>
+        @if (!string.IsNullOrEmpty(Model.FolderName))
+        {
+            <p class="ts-tile-folder"><span class="ts-folder-chip"><i class="fa-solid fa-folder" aria-hidden="true"></i>@Model.FolderName</span></p>
+        }
         <p class="ts-tile-meta">
             <span>@Model.WordCount từ</span>
             @if (!string.IsNullOrEmpty(Model.OwnerName))

@@ -53,17 +53,129 @@ proposing follow-up work so they do not optimize already-completed items.
   [step-02 ledger](../../docs/feature-audits/2026-11-16-contact-refresh/02-interface-ledger.md).
   [Step-03 evidence and dispatch accounting](../../docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md).
 
-### SETS-CARD-DETAILS-NONPREMIUM-NULL — confirmed 11/11/2026
+### BILLING-ROLE-CHANGE-SIGNS-OUT — đề xuất cho Châu, confirmed 17/11/2026
 
-- Triệu chứng: với tài khoản Standard (không Premium), nút "Chi tiết" trên
-  `/Sets/{id}/Add` không mở được bảng chi tiết, và `/Sets/Cards/{id}/Edit` ghi lỗi
-  console `TypeError: Cannot set properties of null (setting 'textContent')`.
-- Nguyên nhân: `Object.setData` trong `wwwroot/js/set-card-form.js` (khoảng dòng 465)
-  gán `refs.imageResults.textContent` không kiểm tra, nhưng phần tìm ảnh chỉ được
-  render cho Premium (dòng kế bên đã kiểm `refs.imageQuery`). Có sẵn từ trước đợt
-  Study Clay (thấy ở baseline C0); tài khoản Premium mở bảng bình thường.
-- Chưa sửa vì đợt Study Clay chỉ đổi giao diện (không đổi logic JS). Hướng sửa gọn:
-  bọc dòng đó bằng `if (refs.imageResults)`; cần test hồi quy cho tài khoản Standard.
+- **Triệu chứng (đã tái hiện bằng luồng giả lập MoMo):** ngay sau khi đơn được xác nhận, yêu cầu tiếp theo của người mua bị chuyển tới `/Account/Login`. Cùng lỗi khi Premium hết hạn (worker hoặc trang thanh toán hạ vai trò) và khi admin cấp hoặc thu hồi Premium.
+- **Nguyên nhân gốc:** `SubscriptionService` đổi `User.Role` (Standard ↔ Premium). `AccountSessionValidator.IsValidAsync` (gọi từ `OnValidatePrincipal` trong `Program.cs`) so vai trò trong cookie với vai trò trong DB; thấy khác thì từ chối cookie và đăng xuất. Thêm nữa, các nơi đọc **claim** vai trò (`SetController`, `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`) chỉ thấy Premium sau khi đăng nhập lại.
+- **Đã làm trong phạm vi thanh toán (D1 = TẠM):** trang Nâng cấp và trang đơn báo trước một lần "Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại…"; script theo dõi đơn nhận ra phiên đã kết thúc (401 hoặc chuyển hướng tới trang đăng nhập) và đưa người dùng tới `/Account/Login?returnUrl=/Billing/Order/{mã}`; trang đơn và lịch sử luôn hiện đúng trạng thái sau khi đăng nhập lại; lịch sử và trang Premium hạ hạn ngay trên trang (`ExpireForUserAsync`) thay vì chờ worker mỗi giờ.
+- **Chưa giải quyết được ở đó:** trang đăng nhập **bỏ qua `returnUrl`** (`account-auth-ui.js` luôn chuyển tới `data-home-url`; `AccountController.Login` không xử lý `returnUrl`), nên người mua đăng nhập lại sẽ về trang chủ, không về trang đơn.
+- **Đề xuất sửa (mã của Châu, chưa áp dụng):**
+  1. Trong `OnValidatePrincipal`, khi mọi kiểm tra khác đều hợp lệ và **chỉ vai trò khác**, thay principal bằng cùng các claim nhưng vai trò lấy từ DB và đặt `context.ShouldRenew = true`, thay vì từ chối. Giữ nguyên: `SecurityVersion` đổi → vẫn từ chối; tài khoản bị ẩn danh hoặc bị khóa → vẫn từ chối. Test cần có: nâng vai trò → vẫn đăng nhập với claim mới; đổi `SecurityVersion` → bị từ chối; ẩn danh/khóa → bị từ chối.
+  2. Cho phép `returnUrl` cục bộ (`Url.IsLocalUrl`) sau khi đăng nhập thành công (truyền xuống `data-home-url` hoặc trả về trong JSON), để `LANDING-READING-LOGIN-RETURN` và luồng thanh toán cùng được sửa.
+  3. Sau khi áp dụng, xóa câu cảnh báo trong `Pricing.cshtml`/`Order.cshtml` và dòng xử lý "phiên kết thúc" trong `billing-order.js`.
+- Chọn D1 = SỬA LUÔN trong một lần chạy sau nếu muốn agent áp dụng đúng thay đổi tối thiểu ở mục 1.
+
+### BILLING-MOMO-QUERY-UNVERIFIED — confirmed 17/11/2026
+
+- `MoMoQueryClient` (xác nhận đơn MoMo mất IPN) dùng định dạng truy vấn công khai của MoMo v2 (`accessKey&orderId&partnerCode&requestId`, kết quả `resultCode`) và **chưa được thử với sandbox thật** (không có khóa trong repo, không gọi mạng). Nó chỉ chạy khi cổng được cấu hình đầy đủ; ở chế độ giả lập cục bộ luôn trả `Unknown`.
+- Cần làm trước khi bật MoMo production: chạy một giao dịch sandbox, kiểm tra truy vấn trả `resultCode=0` kèm đúng số tiền, ghi kết quả vào `docs/payment-go-live-checklist.md`.
+- Bảng trạng thái `vnp_TransactionStatus` của VNPay QueryDR không có trong repo: chỉ `00` (thành công) và `02` (lỗi/hủy) được tin; mọi giá trị khác là `Unknown` và không đổi đơn. Cần đối chiếu tài liệu VNPay khi có sandbox.
+
+### BILLING-RECONCILIATION-WORKER-OFF — cấu hình khuyến nghị 17/11/2026
+
+- `ReconciliationWorker__Enabled` mặc định `false` (và `start-local.ps1` ép `false` ở máy cá nhân). Khi IPN không tới được máy chủ (luôn xảy ra ở localhost, đôi khi ở staging/production), đơn chỉ được xác nhận khi người mua mở lại trang trả về hoặc bấm "Kiểm tra lại ngay".
+- **Khuyến nghị cho staging và production:** `ReconciliationWorker__Enabled=true`, `IntervalMinutes=5`, `MinPendingMinutes=5`. Worker hỏi nhà cung cấp về đơn `pending` và đơn `expired` trong 24 giờ gần nhất (cả VNPay và MoMo), tối đa 12 lần mỗi đơn và cách nhau ≥ 20 giây; không bao giờ đánh dấu thất bại khi nhà cung cấp chưa trả lời dứt khoát. Cần chủ dự án bật trong cấu hình môi trường (không sửa appsettings trong repo).
+
+### BILLING-ROLE-CLAIM-PREMIUM-CHECKS — confirmed 17/11/2026
+
+- Một số module quyết định Premium bằng **claim vai trò** thay vì `IPremiumAccessService`: `SetController` (`SuggestVocab`), `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`, `ListeningService`/`SpeakingService`/`WritingService` đọc vai trò từ DB. Người mới mua chỉ thấy tính năng ở nhóm đầu sau khi đăng nhập lại (liên quan BILLING-ROLE-CHANGE-SIGNS-OUT).
+- Đề xuất cho chủ từng module: dùng `IPremiumAccessService.HasFeatureAsync` (đọc DB, hết lỗi trễ claim). Các kiểm tra này không thuộc đợt sửa thanh toán và được giữ nguyên.
+
+### NOTIFICATIONS-SHARED-FILES-FOR-CHAU — ghi chú bàn giao 17/11/2026
+
+- Đợt làm lại thông báo (plan `docs/superpowers/plans/2026-11-17-notifications-complete.md`) chạm **ít dòng** vào code dùng chung/của Châu, theo quyết định D1 và D4 của Trọng. Châu xem lại khi hợp vào `master`:
+  1. `Views/Shared/_Layout.cshtml` — **chỉ** nút chuông (`aria-haspopup="true"`, `aria-controls` chỉ khi đã đăng nhập, biểu tượng `aria-hidden`, huy hiệu dùng thuộc tính `hidden` thay cho `style="display:none"`) và huy hiệu ở menu bên (bỏ toàn bộ style nội dòng; kiểu nằm trong `notifications.css`). 5 dòng thêm / 5 dòng bỏ, không đổi gì khác.
+  2. `Workers/NotificationWorker.cs` — **chỉ bốn chuỗi** (Title/Message của cảnh báo mất chuỗi ngày học và của "sắp nhận huy hiệu"): bỏ chữ "Streak" và emoji. Không đổi logic, batch hay outbox.
+  3. `Models/NotificationType` — thêm thành viên `PremiumActivated = 8` (lưu dạng số nguyên, **không migration**; `has-pending-model-changes` rỗng).
+  4. `NotificationController.Index` đọc cài đặt nhắc học qua `INotificationPreferenceService.ReadAsync(userId, OutboundDeliveryOptions.PushConfigured)` — **chỉ đọc**, hiển thị ở cột phải; lỗi đọc chỉ làm mất khung giá trị (còn nút "Đổi cài đặt" tới `/Account/Profile#section-notifications`).
+  5. `Views/Shared/_NotificationDropdown.cshtml` nạp `notification-core.js` (một dòng) để có trước `notifications.js` ở cuối layout; `study-kit.css` chỉ thêm `.tn-page` vào các danh sách phạm vi.
+- Không đổi: `Program.cs`, `appsettings*`, `.csproj`, migration, `LearningBusinessClock`, `Services/Notifications/**` (chỉ `NotificationDisplay`/`NotificationLinks`/`AnnouncementModels` được thêm), Goals/Streak/Account.
+
+### NOTIFICATIONS-OLD-ROWS-KEEP-OLD-COPY — confirmed 17/11/2026
+
+- Thông báo đã lưu trước đợt này giữ nguyên chữ cũ ("Streak 1 ngày — kỷ lục mới của bạn!", "Còn 1 bước nữa để mở khóa huy hiệu 'Khởi động'!" …). `NotificationDisplay.CleanTitle` chỉ bỏ emoji/ký hiệu **đầu tiêu đề**; thân tin nhắn cũ không bị sửa. Hết hạn tự nhiên sau 30 ngày (đã đọc) — không viết lại dữ liệu cũ (quyết định D3 = GIỮ).
+
+### NOTIFICATIONS-ANNOUNCEMENT-NOT-SENT-LOCALLY — chưa kiểm chứng 17/11/2026
+
+- CSDL local có tài khoản thật (user 4, email của Trọng) nên **không gửi thông báo admin** khi thử (quy tắc mục 7 của plan). Gửi theo lô, chống gửi đôi, loại tài khoản đã ẩn danh/khóa, liên kết cục bộ và giao dịch theo lô 500 được kiểm bằng test (SQLite một lần dùng + host kiểm thử); trang Lịch sử đã chạy trên MariaDB Docker với dòng thử của tài khoản mẫu (đã xóa theo khóa). **Chưa** chạy một lần gửi thật trên MariaDB: nếu muốn, làm trên bản sao có chỉ tài khoản mẫu.
+- Số người nhận trong Lịch sử đếm các dòng còn lưu: sau 30 ngày bản đã đọc bị dọn nên con số giảm; nhóm cũ hơn 30 ngày được ghi "còn n bản lưu".
+
+### NOTIFICATIONS-GOALS-PAGE-JQUERY — quan sát 17/11/2026
+
+- Mở `/Goals` (từ liên kết "Xem huy hiệu" của thông báo) trong Chrome headless ghi hai lỗi console `ReferenceError: jQuery is not defined` (`jquery.validate.min.js`, `jquery.validate.unobtrusive.min.js`): `Views/Goals/Index.cshtml` include `_ValidationScriptsPartial` mà layout không nạp jQuery (cùng họ lỗi `SWEEP-ADMIN-LAYOUT-NO-JQUERY`). Trang Goals thuộc chủ khác nên **không sửa** ở đợt này; trang `/Notification` không có lỗi.
+
+### NOTIFICATIONS-ADMIN-VISUAL-BATCH — chờ đợt Admin 17/11/2026
+
+- Hai trang Admin thông báo (Gửi, Lịch sử) mới sửa logic và câu chữ (quyết định D2): nút và liên kết vẫn theo cỡ Bootstrap (nút "Gửi thông báo" cao 38 px, `btn-sm` nhỏ hơn 44 px), thẻ xem trước còn style nội dòng, layout Admin chưa nạp jQuery. Làm lại giao diện Clay cùng đợt Admin.
+
+### LANDING-SCREENSHOTS-STALE — maintenance note 16/11/2026
+
+- Trang Landing dùng ảnh chụp thật của trang Từ vựng (`hero-home-*.webp`), của một câu hỏi trong bài học (`lesson-card-*.webp`) và ảnh chia sẻ `og-landing.png` (1200 × 630). Khi giao diện Từ vựng hoặc bài học đổi, các ảnh này sẽ cũ đi và cần chụp lại.
+- Cách chụp lại: đăng nhập tài khoản mẫu Premium (có tiến độ), cửa sổ 1440 × 900, hệ số điểm ảnh 2, ẩn launcher AI trong trang rồi chụp vùng nội dung (không có thanh bên, thanh trên, tên hay avatar); xuất WebP bằng canvas (`toBlob("image/webp", .8)`), rộng 2220 và 1110 px (≤ 97 KB và ≤ 44 KB), thẻ bài học rộng 1632 và 816 px. Ảnh chia sẻ: chụp 1200 × 630 phần đầu trang đã hoàn chỉnh, nén lại không mất dữ liệu cho ≤ 300 KB. Chi tiết trong plan `2026-11-16-landing-night-and-bug-sweep` mục 12 (N4, N8).
+
+### LANDING-DARK-THEME-D1 — quyết định chờ chủ dự án 16/11/2026
+
+- Landing mới có nền tối ("Đêm học"), khác ngôn ngữ Clay sáng mà nhóm dùng cho các trang đã làm lại. Đây là quyết định D1 của Trọng (trang độc lập, `Layout = null`, stylesheet riêng, token `--lp-*` có phạm vi `.lp`, không đổi file dùng chung).
+- Cần báo Châu (chủ hướng thiết kế) trước khi hợp vào `master`. Nếu Châu muốn tông sáng, chỉ phải đổi khối token `.lp` trong `landing.css` và hai ảnh chụp.
+
+### LANDING-READING-LOGIN-RETURN — confirmed 16/11/2026
+
+- Triệu chứng: khách bấm `/Home/Reading` bị chuyển tới `/Account/Login` mà không có `ReturnUrl` (các trang Từ vựng, Nói, Premium đều có), nên sau khi đăng nhập không quay lại bài đọc.
+- Landing đã đi vòng bằng liên kết `/Account/Login?returnUrl=%2FHome%2FReading` cho khách; nguyên nhân thật nằm ở bộ điều khiển trang Đọc (không thuộc đợt này).
+
+### SWEEP-FOOTER-SOCIAL-HASH-LINKS — confirmed 16/11/2026
+
+- Triệu chứng: footer dùng chung (layout chính) có 3 icon Facebook/GitHub/YouTube với `href="#"`; mọi trang dùng layout đó (ví dụ `/Home/Listening`) có 3 liên kết chết, không có tên truy cập.
+- Nguyên nhân: footer nằm trong layout/partial dùng chung, không phải file của một module. Landing mới không sao chép phần này.
+- Chưa sửa vì file dùng chung nằm ngoài phạm vi đợt này; chủ layout (Châu) quyết định bỏ icon hoặc thêm URL thật.
+
+### SWEEP-ADMIN-LAYOUT-NO-JQUERY — confirmed 16/11/2026
+
+- Triệu chứng: `_AdminLayout.cshtml` không nạp jQuery, nhưng `SpeakingVideoManagement/{Create,Edit}` và `WritingExerciseManagement/{Create,Edit}` vẫn include `_ValidationScriptsPartial` (jquery.validate) → `ReferenceError: jQuery is not defined` ở console (suy ra từ mã nguồn, chưa mở các trang này trong trình duyệt vì thuộc người khác).
+- Các view của Trọng (SetManagement, ListeningManagement, NotificationManagement) đã gỡ include này; test `scripts/tests/test_owner_admin_views_sweep.cjs` canh lại khi layout có jQuery.
+- Hướng sửa: chủ các module Speaking/Writing gỡ include tương tự, hoặc chủ layout admin nạp jQuery (đổi hành vi: bật validation phía client).
+
+### SWEEP-LISTENING-YOUTUBE-THUMB-404 — confirmed 16/11/2026
+
+- Triệu chứng: `/Home/Listening` có một ảnh bìa trả 404 (`img.youtube.com/vi/9F8o8eH_Hms/hqdefault.jpg`), khung ảnh vỡ.
+- Nguyên nhân: dữ liệu bài nghe trỏ tới video YouTube không còn; lỗi dữ liệu, không phải mã.
+- Hướng sửa: admin gỡ hoặc thay bài nghe đó; có thể thêm ảnh dự phòng khi ảnh lỗi (đổi giao diện, chưa làm).
+
+### SWEEP-ADMIN-SET-SAMPLE-IMAGES-404 — confirmed 16/11/2026
+
+- Triệu chứng: `/Admin/SetManagement/Cards/11` có 10 ảnh thẻ `/images/animals/*.jpg`, `/images/greetings/hello.jpg` trả 404.
+- Nguyên nhân: dữ liệu mẫu tham chiếu ảnh không có trong `wwwroot/images`; lỗi dữ liệu mẫu cục bộ.
+
+### SWEEP-FOLDER-NO-H1 — confirmed 16/11/2026
+
+- Triệu chứng: `/Home/Folder` không có `h1` (chỉ có `h2` "Your folders" / "Saved folders"), tiêu đề tab "Folders" bằng tiếng Anh; các trang khác của Trọng đều có đúng một `h1`.
+- Chưa sửa vì đổi cấp tiêu đề/ngôn ngữ ảnh hưởng CSS và là việc thiết kế lại trang Thư mục (D3: chỉ sửa lỗi nhỏ).
+
+### LISTENING-IMPORT-WAITS-FOR-AI — confirmed 13/11/2026
+
+- Việc thêm bài nghe từ YouTube (`CreateOwnedLessonAsync`) vẫn chờ AI sinh quiz xong
+  rồi mới trả lời (tối đa khoảng 20 giây của nhà cung cấp AI, cộng thời gian lấy phụ
+  đề). Giao diện nay hiển thị trạng thái chờ trung thực ("có thể mất đến một phút"),
+  và chú thích sai "without blocking" trong code đã sửa, nhưng hành vi chưa đổi.
+- Hướng sửa gọn (cần quyết định riêng): tạo bài trước, sinh quiz nền hoặc để người
+  dùng bấm "Tạo quiz bằng AI". Không làm trong đợt Listening để giữ nguyên hợp đồng
+  `My/Create`.
+
+### LISTENING-LEGACY-TOKEN-COMMENTS — confirmed 13/11/2026
+
+- `listening-index.css` và `listening-practice.css` đã bị xóa, nhưng
+  `DESIGN.md` (dòng ~363), `wwwroot/css/tct-learning-ui.css` (đầu file) và
+  `docs/design-system/team-ui-workflow.md` (dòng ~139) vẫn nhắc
+  `listening-index.css` là nơi dùng các token legacy. Các file chung này ngoài
+  phạm vi đợt Listening; chủ design system (Chau) cập nhật khi dọn token legacy.
+  Chỉ còn `auth-stitch.css` dùng các tên đó.
+
+### LISTENING-AI-LIVE-NOT-VERIFIED — confirmed 13/11/2026
+
+- "Tạo quiz bằng AI" và "Dịch bằng AI" ở trang Luyện nghe chỉ được kiểm tra với
+  câu trả lời server giả lập; chưa chạy với khóa AI thật. Cần một lần thử thủ công
+  bằng khóa cục bộ của chủ dự án trước khi coi là đã xác nhận.
+
 ### STAGING-SOURCE-MEDIA-MISSING — confirmed05/11/2026
 
 - Owner đã yêu cầu copy toàn bộ production DB sang staging. Đã hoàn tất9.209
@@ -364,6 +476,51 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 - **Recommended fix**: Only with an owner decision about the launcher (shared shell file): give it a reserved gutter or let pages ask it to move. The study kit cannot do this safely alone.
 - **Effort**: Low.
 
+
+Sweep 16/11/2026 xác nhận thêm: "Bắt đầu luyện" (`/Practice`, 1440), "Bắt đầu chặng 1" (`/Practice/learn`, 390) và "Học bài mới" (`/Vocabulary`, 390, Premium) bị nút AI che một phần. Cùng cách xử lý: chừa khoảng trống dưới cùng cho launcher.
+### TD-013: `POST /api/LearningApi/record` does not check that the user may view the card [MEDIUM]
+- **Update 14/11/2026**: the system Vocabulary pages no longer use this endpoint; they save through `POST /Vocabulary/Review/Record`, which accepts system cards only (404 otherwise). The endpoint is still open to any card id for personal sets and other callers, so the fix below is still needed (Châu).
+- **Files**: `Controllers/LearningApiController.cs` (`Record`, the `LearningProgresses` lookup by `cardId` and the current user)
+- **Issue**: Any card id is accepted. A signed-in user can create a progress row, and earn Goals/XP credit, for a card they cannot open (for example a private set of another user). The Vocabulary lesson only ever sends ids of system cards it was given, so the new screens do not depend on this.
+- **Impact**: Authenticated users could probe or farm credit through card ids. File belongs to another owner (Châu); it was not changed in the Vocabulary rebuild.
+- **Recommended fix**: Before saving, require that the card's set is system-owned, public, owned by the user or shared with them (same rule as `PersonalSetService`); answer `NotFound()` otherwise. Pin it with a regression test.
+- **Effort**: Low.
+
+### TD-014: System Vocabulary content is small, its names promise more, and some pictures are not ours [MEDIUM]
+- **Files**: `wwwroot/data/system-vocabulary.json`, `Models/JsonVocabularySeeder.cs`
+- **Issue**: The file holds 3 folders, 8 sets and 92 cards. "1000 từ tiếng Anh thông dụng" has 20 cards and "3000 từ vựng Oxford A1" has 10. 62 cards hotlink pictures from a third-party shopping CDN (`down-vn.img.susercontent.com`), and some local seed paths (`/images/greetings/*.jpg`) do not exist on disk (the lesson shows a letter tile instead). The seeder matches sets by name and deletes cards missing from the JSON, so renaming a set would strand learner progress.
+- **Impact**: Learners see real counts (the UI never repeats the set name's number), but the names overpromise; pictures can disappear or change without notice.
+- **Recommended fix**: Owner decision: rename carefully (add new sets, keep old ones) or expand the content with reviewed, additive data and a validator; host or drop the pictures. Do not reuse a publisher's word-list name for new content.
+- **Effort**: Medium (content work).
+
+### TD-018: Folders: shared-file edits for the owner of the layout, and two leftovers [LOW]
+- **Files**: `Views/Shared/_Layout.cshtml`, `wwwroot/js/layout.js`, `Views/Shared/_CreateFolderDialog.cshtml`, `Controllers/FolderController.cs`, `Views/Folder/*`
+- **Issue**: The folders work (2026-11-16) edited two shared files that belong to Châu: in `_Layout.cshtml` the "Thư viện của bạn" group is active for the Set controller, the "Thư mục của tôi" entry is removed, the footer link points to `/Sets` and the create-folder modal is replaced by the `_CreateFolderDialog` partial (ids `newFolderBtn`, `folderModal`, `cancelFolderBtn` kept); in `layout.js` the create-folder block was rewritten (counter, blank guard, pending state, bfcache reset, reopen on error, focus return, `#tao-thu-muc` link). Leftovers: `FolderController.BuildFolderPageViewModelAsync` is now unused, and the legacy `Views/Folder/*` pages (reachable at `/Home/FolderDetail/{id}` for class links and old bookmarks) still use the old look.
+- **Impact**: None for users. A reviewer of the layout should look at those two blocks; a later cleanup can delete the dead method and move the legacy folder detail onto `/Sets/Folders/{id}`.
+- **Recommended fix**: Châu reviews the two shared-file blocks in the PR; remove the unused method and retire `Views/Folder/*` once class links point to the new folder page (`Views/Class/**` is another owner's).
+- **Effort**: Small.
+
+### TD-017: Practice has no folder scope, so the folder page has no "Luyện từ đến hạn" [LOW]
+- **Files**: `Controllers/PracticeController*.cs`, `Views/Set/Folder.cshtml`
+- **Issue**: `/Practice` takes one `set` or a list of words and cannot practise a whole folder, so the plan's optional "Luyện x từ đến hạn" button was left out of the folder page.
+- **Impact**: A learner practises a folder set by set.
+- **Recommended fix**: If wanted, add a folder scope to Practice (a source rule, not a view change) and then the button; needs the Practice contract to be extended with its tests.
+- **Effort**: Small to medium.
+
+### TD-016: Spaced repetition: level kept in `RepetitionCount`, fixed daily target, system cards only [LOW]
+- **Files**: `Services/Vocabulary/SpacedRepetitionScheduler.cs`, `Services/StudyService.Vocabulary.cs`, `LearningProgress`
+- **Issue**: The memory level (0-6) lives in the existing `RepetitionCount` column, legacy rows are read through a mapping (Mastered below level 4 reads as 4, Learning reads as 0) and are normalised only when recorded again. The daily target is the constant 10 words. Personal sets keep the old schedule (1 h to 7 d).
+- **Impact**: A legacy row can show a different level than the learner expects until it is next reviewed; two ladders exist side by side. Suspended rows are no longer counted as due on the Vocabulary pages.
+- **Recommended fix**: Only if wanted: a migration with an explicit level column, a settings page for the target, and the same ladder for personal sets (needs the owner of `LearningApiController`).
+- **Effort**: Medium.
+
+### TD-015: Vocabulary lessons are computed, so their membership shifts when cards change [LOW]
+- **Files**: `Services/Vocabulary/VocabularyLessonBuilder.cs`
+- **Issue**: Lessons are groups of about 10 cards by `Card.Topic` and `CardId`; nothing is stored. When an admin adds or deletes cards of a course, lesson numbers and the words inside a lesson can change.
+- **Impact**: Progress is per card, so nothing is lost; a learner may see "Bài 4" hold different words than yesterday. The recommended next lesson always follows current data.
+- **Recommended fix**: Only if it matters: store lesson numbers per card in a migration. Otherwise accept and avoid bulk re-topicking of live courses.
+- **Effort**: Medium.
+
 ---
 
 ## Architecture Warnings
@@ -389,6 +546,8 @@ probes. No old P1 reproduced. **Remaining tests RR1/RR2 [P2]**:
 ---
 
 ## Recently Resolved / Verified
+
+SETS-CARD-DETAILS-NONPREMIUM-NULL, resolved 16/11/2026: `refs.imageResults` in `set-card-form.js` `setData` is now guarded, so the "Chi tiết" panel opens for Standard accounts and the edit page logs no error. Regression test: `scripts/tests/test_set_card_form_nonpremium.cjs`.
 
 Pre-merge security04/11: pending browser bundle upgraded DOMPurify3.2.6 to
 3.4.17 with immutable upstream source/hash/license and portable vendor bytes.
@@ -621,3 +780,18 @@ Native200% zoom remains unverified. One accidental live generation after browser
 reload used741 known tokens (cost unknown); remaining checks used a process-level
 loopback boundary. The review must not be reported as having zero paid calls.
 Final local web uses port5100 and saved configuration; no remote release.
+
+System Vocabulary rebuild (14/11/2026): `/Vocabulary/*` is now three screens (home with
+"Học tiếp", course page with lessons and a word list, three-step lesson) on the shared
+Clay kit. Automatic grading replaces the four self-rating buttons; each finished word is
+saved once through the unchanged `LearningApi/record`. Old views, `vocabulary-system.css`
+and the old service methods were removed. Open items for owners: TD-013 (record access
+check, Châu), TD-014 (content size, names, pictures), TD-015 (computed lessons). Safari
+and Firefox, and a real speech voice, were not checked. See the Vocabulary rebuild plan
+section 12 for evidence.
+
+System Vocabulary spaced repetition and polish (14/11/2026): every system word has a memory
+level 0-6 (10 min, 1, 3, 7, 14, 30, 60 days) computed on the server from the lesson answers
+(`POST /Vocabulary/Review/Record`); the home shows the daily ring, the due words ("Ôn
+ngay"), "Trí nhớ của bạn" and "Lịch ôn 7 ngày tới"; course covers have illustrations and
+words have emoji pictures. See TD-016 and the SRS polish plan section 12.

@@ -13,7 +13,16 @@ namespace TCTEnglish.Services.Billing
         /// <paramref name="minPendingMinutes"/> minutes and update their status accordingly.
         /// </summary>
         /// <returns>Number of orders reconciled (status changed).</returns>
+        /// <remarks>Kept for compatibility; it now reconciles both providers like <see cref="ReconcileOpenOrdersAsync"/>.</remarks>
         Task<ReconciliationSummary> ReconcileVnPayPendingOrdersAsync(
+            int minPendingMinutes = 5,
+            CancellationToken ct = default);
+
+        /// <summary>
+        /// Asks the provider about every VNPay and MoMo order that is still <c>pending</c>, or <c>expired</c> within the
+        /// last 24 hours, created at least <paramref name="minPendingMinutes"/> minutes ago.
+        /// </summary>
+        Task<ReconciliationSummary> ReconcileOpenOrdersAsync(
             int minPendingMinutes = 5,
             CancellationToken ct = default);
     }

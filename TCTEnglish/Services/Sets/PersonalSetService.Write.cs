@@ -119,6 +119,154 @@ public sealed partial class PersonalSetService
         return OperationResult.Success();
     }
 
+    // =====================================================================================
+    // Folders (write side)
+    // =====================================================================================
+
+    public const int MaxFolderNameLength = 100;
+
+    /// <summary>Trims the name and applies the length rule. Returns an error message, or null when the name is fine.</summary>
+    private static string? ValidateFolderName(string? name, out string normalized)
+    {
+        normalized = (name ?? string.Empty).Trim();
+        if (normalized.Length == 0)
+        {
+            return "Hãy nhập tên thư mục.";
+        }
+
+        return normalized.Length > MaxFolderNameLength ? "Tên thư mục tối đa 100 ký tự." : null;
+    }
+
+    private static Dictionary<string, string> NameError(string message) => new() { ["Name"] = message };
+
+    /// <summary>True when the owner already has another folder with this name (trimmed, ignoring case). Compared in memory so it does not depend on the database collation.</summary>
+    private async Task<bool> OwnerHasFolderNamedAsync(int ownerId, string normalized, int exceptFolderId, CancellationToken ct)
+    {
+        var names = await _db.Folders.AsNoTracking()
+            .Where(f => f.UserId == ownerId && f.FolderId != exceptFolderId)
+            .Select(f => f.FolderName)
+            .ToListAsync(ct);
+        return names.Any(n => string.Equals(n.Trim(), normalized, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public async Task<OperationResult<int>> CreateFolderAsync(int userId, string? name, CancellationToken ct = default)
+    {
+        if (!await _db.Users.AnyAsync(u => u.UserId == userId, ct))
+        {
+            return OperationResult<int>.NotFound();
+        }
+
+        var error = ValidateFolderName(name, out var normalized);
+        if (error == null && await OwnerHasFolderNamedAsync(userId, normalized, 0, ct))
+        {
+            error = "Bạn đã có thư mục tên này.";
+        }
+
+        if (error != null)
+        {
+            return OperationResult<int>.Invalid(error, NameError(error));
+        }
+
+        var folder = new Folder { FolderName = normalized, UserId = userId, ParentFolderId = null };
+        _db.Folders.Add(folder);
+        await _db.SaveChangesAsync(ct);
+        return OperationResult<int>.Success(folder.FolderId);
+    }
+
+    public async Task<OperationResult> RenameFolderAsync(int folderId, int userId, bool isAdmin, string? name, CancellationToken ct = default)
+    {
+        var folder = await ManageableFolders(userId, isAdmin).FirstOrDefaultAsync(f => f.FolderId == folderId, ct);
+        if (folder == null)
+        {
+            return OperationResult.NotFound();
+        }
+
+        var error = ValidateFolderName(name, out var normalized);
+        if (error == null && await OwnerHasFolderNamedAsync(folder.UserId, normalized, folder.FolderId, ct))
+        {
+            error = "Bạn đã có thư mục tên này.";
+        }
+
+        if (error != null)
+        {
+            return OperationResult.Invalid(error, NameError(error));
+        }
+
+        if (!string.Equals(folder.FolderName, normalized, StringComparison.Ordinal))
+        {
+            folder.FolderName = normalized;
+            await _db.SaveChangesAsync(ct);
+        }
+
+        return OperationResult.Success();
+    }
+
+    public async Task<OperationResult> DeleteFolderAsync(int folderId, int userId, bool isAdmin, CancellationToken ct = default)
+    {
+        var exists = await ManageableFolders(userId, isAdmin).AsNoTracking().AnyAsync(f => f.FolderId == folderId, ct);
+        if (!exists)
+        {
+            return OperationResult.NotFound();
+        }
+
+        if (await _db.Folders.AnyAsync(f => f.ParentFolderId == folderId, ct))
+        {
+            const string message = "Thư mục này còn thư mục con. Hãy mở trang thư mục cũ để xử lý trước.";
+            return OperationResult.Invalid(message, new Dictionary<string, string> { ["ChildFolders"] = message });
+        }
+
+        await using var transaction = await _db.Database.BeginTransactionAsync(ct);
+        await _db.Sets.Where(s => s.FolderId == folderId).ExecuteUpdateAsync(u => u.SetProperty(s => s.FolderId, (int?)null), ct);
+        await _db.SavedFolders.Where(s => s.FolderId == folderId).ExecuteDeleteAsync(ct);
+        await _db.ClassFolders.Where(l => l.FolderId == folderId).ExecuteDeleteAsync(ct);
+        await _db.Folders.Where(f => f.FolderId == folderId).ExecuteDeleteAsync(ct);
+        await transaction.CommitAsync(ct);
+        _db.ChangeTracker.Clear();
+        return OperationResult.Success();
+    }
+
+    public async Task<OperationResult<string?>> MoveSetToFolderAsync(int setId, int? folderId, int userId, bool isAdmin, CancellationToken ct = default)
+    {
+        var set = await ManageableSets(userId, isAdmin).AsNoTracking()
+            .Where(s => s.SetId == setId)
+            .Select(s => new { s.SetId, s.OwnerId })
+            .FirstOrDefaultAsync(ct);
+        if (set == null)
+        {
+            return OperationResult<string?>.NotFound();
+        }
+
+        string? targetName = null;
+        if (folderId.HasValue)
+        {
+            var target = await ManageableFolders(userId, isAdmin).AsNoTracking()
+                .Where(f => f.FolderId == folderId.Value)
+                .Select(f => new { f.UserId, f.FolderName })
+                .FirstOrDefaultAsync(ct);
+            if (target == null)
+            {
+                return OperationResult<string?>.NotFound();
+            }
+
+            if (target.UserId != set.OwnerId)
+            {
+                return OperationResult<string?>.Invalid("Bộ thẻ và thư mục phải cùng chủ sở hữu.");
+            }
+
+            targetName = target.FolderName.Trim();
+        }
+
+        await _db.Sets.Where(s => s.SetId == setId).ExecuteUpdateAsync(u => u.SetProperty(s => s.FolderId, folderId), ct);
+        _db.ChangeTracker.Clear();
+        return OperationResult<string?>.Success(targetName);
+    }
+
+    public async Task<OperationResult> UnsaveFolderAsync(int folderId, int userId, CancellationToken ct = default)
+    {
+        var removed = await _db.SavedFolders.Where(s => s.FolderId == folderId && s.UserId == userId).ExecuteDeleteAsync(ct);
+        return removed == 0 ? OperationResult.NotFound() : OperationResult.Success();
+    }
+
     private Task<int> DeleteProgressForSetAsync(int setId, CancellationToken ct)
         => _db.LearningProgresses
             .Where(p => _db.Cards.Any(c => c.CardId == p.CardId && c.SetId == setId))

@@ -65,17 +65,17 @@
 
         <div class="header-right">
             <a asp-controller="Billing" asp-action="Pricing" class="btn-upgrade" style="text-decoration: none;">
-                Upgrade: Premium
+                Nâng cấp Premium
             </a>
 
             @* ── Bell / Notification dropdown ── *@
             <div class="notif-wrapper">
                 <button type="button" class="btn-notification" id="notificationBtn" aria-label="Thông báo"
-                        aria-haspopup="dialog" aria-expanded="false"
+                        aria-haspopup="true" aria-expanded="false"
+                        aria-controls="@(User.Identity?.IsAuthenticated == true ? "notifPanel" : null)"
                         title="Thông báo">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge" id="notificationBadge"
-                          style="display:none;">0</span>
+                    <i class="fas fa-bell" aria-hidden="true"></i>
+                    <span class="notification-badge" id="notificationBadge" aria-hidden="true" hidden></span>
                 </button>
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -283,7 +283,7 @@
                 <a class="nav-item @IsActive("Notification", "Index")" aria-current="@AriaCurrent("Notification", "Index")" asp-controller="Notification" asp-action="Index">
                     <i class="fas fa-bell" style="color: #f43f5e;"></i>
                     <span>Thông báo</span>
-                    <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" style="display:none;position:static;margin-left:auto;font-size:10px;min-width:18px;"></span>
+                    <span class="notification-badge notification-sidebar-badge" id="sidebarNotifBadge" aria-hidden="true" hidden></span>
                 </a>
 
                 <hr />
@@ -291,7 +291,7 @@
                 <div class="workspace-title">Thư viện của bạn</div>
 
                 <div class="nav-dropdown" id="folderDropdown">
-                    <button type="button" class="nav-dropdown-item @IsActive("Folder")" id="folderDropdownBtn" aria-expanded="false" aria-controls="folderDropdownMenu">
+                    <button type="button" class="nav-dropdown-item @(IsActive("Folder") == "active" || IsActive("Set") == "active" ? "active" : "")" id="folderDropdownBtn" aria-expanded="false" aria-controls="folderDropdownMenu">
                         <div class="nav-dropdown-title">
                             <i class="fas fa-folder" style="color: #f59e0b;"></i>
                             <span>Thư mục</span>
@@ -306,10 +306,6 @@
                             </span>
                             Tạo thư mục mới
                         </button>
-                        <a class="nav-sub-item @IsActive("Folder", "Folder")" asp-controller="Folder" asp-action="Folder">
-                            <i class="fas fa-folder-open" style="color: #f59e0b;"></i>
-                            Thư mục của tôi
-                        </a>
                         <a class="nav-sub-item @IsActive("Set")" aria-current="@AriaCurrent("Set")" asp-controller="Set" asp-action="Index">
                             <i class="fas fa-layer-group" style="color: var(--tct-primary);"></i>
                             Bộ thẻ của tôi
@@ -428,7 +424,7 @@
                 <a asp-controller="Vocabulary" asp-action="Index">Vocabulary</a>
                 <a asp-controller="Study" asp-action="Reading">Reading</a>
                 <a asp-controller="Class" asp-action="Class">Lớp học</a>
-                <a asp-controller="Folder" asp-action="Folder">Thư mục</a>
+                <a asp-controller="Set" asp-action="Index">Thư mục</a>
             </div>
             <!-- SOCIAL -->
             <div class="footer-social">
@@ -454,36 +450,8 @@
         </div>
 
     </footer>
-    <!-- ================= CREATE FOLDER MODAL ================= -->
-    <div id="folderModal" class="modal-overlay">
-        <div class="tct-modal">
-            <h3 class="modal-title">Create new folder</h3>
-
-            <form asp-controller="Folder"
-                  asp-action="CreateFolder"
-                  method="post">
-
-                <input type="text"
-                       name="folderName"
-                       class="modal-input"
-                       placeholder="Folder name"
-                       required />
-
-                <div class="modal-actions">
-                    <button type="button"
-                            class="btn-decline"
-                            id="cancelFolderBtn">
-                        Decline
-                    </button>
-
-                    <button type="submit"
-                            class="btn-confirm">
-                        Confirm
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- ================= CREATE FOLDER DIALOG ================= -->
+    <partial name="_CreateFolderDialog" />
     @{
         var showAiLauncher = !string.Equals(currentController, "Ai", System.StringComparison.OrdinalIgnoreCase)
             || !string.Equals(currentAction, "Chat", System.StringComparison.OrdinalIgnoreCase);

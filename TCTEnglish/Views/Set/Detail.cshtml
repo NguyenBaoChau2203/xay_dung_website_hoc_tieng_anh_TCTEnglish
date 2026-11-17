@@ -7,7 +7,7 @@
     var breadcrumbs = new List<PageBreadcrumbItem> { new("Bộ thẻ", Url.Action("Index", "Set")) };
     if (Model.FolderId.HasValue && !string.IsNullOrWhiteSpace(Model.FolderName) && Model.IsOwner)
     {
-        breadcrumbs.Add(new PageBreadcrumbItem(Model.FolderName!, Url.Action("FolderDetail", "Folder", new { id = Model.FolderId.Value })));
+        breadcrumbs.Add(new PageBreadcrumbItem(Model.FolderName!, Url.Action("FolderPage", "Set", new { id = Model.FolderId.Value })));
     }
     breadcrumbs.Add(new PageBreadcrumbItem(Model.SetName));
     var header = new PageHeaderViewModel { Title = Model.SetName, Description = Model.Description, Breadcrumbs = breadcrumbs };

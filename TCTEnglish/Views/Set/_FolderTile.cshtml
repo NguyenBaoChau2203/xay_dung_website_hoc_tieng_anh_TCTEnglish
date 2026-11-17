@@ -1,0 +1,28 @@
+@model TCTEnglish.ViewModels.Sets.SetFolderTileViewModel
+@{
+    // One link names the whole tile for assistive technology; the visible text is hidden from it so nothing is read twice.
+    var label = $"Thư mục {Model.Name}, {Model.SetCount} bộ thẻ, {Model.WordCount} từ"
+        + (Model.DueCount > 0 ? $", {Model.DueCount} từ cần ôn" : string.Empty)
+        + (Model.IsOwn ? string.Empty : $", đã lưu từ {Model.OwnerName}");
+}
+<article class="tct-card tct-card--interactive k-card ts-folder ts-hue-@Model.Hue">
+    <a class="ts-folder-link" href="@Url.Action("FolderPage", "Set", new { id = Model.FolderId })"><span class="visually-hidden">@label</span></a>
+    <span class="ts-folder-icon" aria-hidden="true"><i class="fa-solid @(Model.IsOwn ? "fa-folder" : "fa-folder-open")"></i></span>
+    <div class="ts-folder-body" aria-hidden="true">
+        <h3 class="ts-folder-name tct-clamp-2 tct-break" title="@Model.Name">@Model.Name</h3>
+        <p class="ts-folder-meta">
+            @if (!Model.IsOwn)
+            {
+                <span class="ts-folder-saved">Đã lưu</span>
+            }
+            <span>@Model.SetCount bộ thẻ</span>
+            <span class="ts-dot"></span>
+            <span>@Model.WordCount từ</span>
+            @if (Model.DueCount > 0)
+            {
+                <span class="tct-badge tct-badge--danger"><i class="fa-solid fa-clock" aria-hidden="true"></i>@Model.DueCount cần ôn</span>
+            }
+        </p>
+    </div>
+    <i class="fa-solid fa-chevron-right ts-folder-go" aria-hidden="true"></i>
+</article>

@@ -13,18 +13,16 @@ namespace TCTEnglish.Services.Billing
 {
     public class IpnService : IIpnService
     {
-        private static readonly TimeSpan LateIpnGracePeriod = TimeSpan.FromHours(24);
-
         private readonly DbflashcardContext _context;
         private readonly IPaymentGateway _vnpayGateway;
         private readonly IPaymentGateway? _momoGateway;
-        private readonly ISubscriptionService _subscriptionService;
+        private readonly IPaymentConfirmationService _confirmationService;
         private readonly ILogger<IpnService> _logger;
 
         public IpnService(
             DbflashcardContext context,
             IEnumerable<IPaymentGateway> gateways,
-            ISubscriptionService subscriptionService,
+            IPaymentConfirmationService confirmationService,
             ILogger<IpnService> logger)
         {
             _context = context;
@@ -32,7 +30,7 @@ namespace TCTEnglish.Services.Billing
                 g.ProviderName.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase));
             _momoGateway = gateways.FirstOrDefault(g =>
                 g.ProviderName.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase));
-            _subscriptionService = subscriptionService;
+            _confirmationService = confirmationService;
             _logger = logger;
         }
 
@@ -201,6 +199,22 @@ namespace TCTEnglish.Services.Billing
             var isSuccess = responseCode == "00" && txnStatus == "00";
             if (!isSuccess)
             {
+                if (!PaymentOrderStateMachine.CanMarkFailedOrCancelled(order.Status, PaymentTransitionSource.ProviderCallback))
+                {
+                    await TrySaveEventAsync(
+                        provider: PaymentProviders.VNPay,
+                        eventType: PaymentEventTypes.Ipn,
+                        eventKey: eventKey,
+                        orderId: order.Id,
+                        signatureValid: true,
+                        resultCode: responseCode,
+                        payloadJson: payloadJson,
+                        processingStatus: PaymentEventProcessingStatuses.Ignored,
+                        message: $"Failure callback ignored: order is '{order.Status}'",
+                        ct: ct);
+                    return IpnProcessingResult.Ok();
+                }
+
                 var newStatus = responseCode == "24"
                     ? PaymentOrderStatuses.Cancelled
                     : PaymentOrderStatuses.Failed;
@@ -235,22 +249,32 @@ namespace TCTEnglish.Services.Billing
 
             try
             {
-                await ProcessSuccessfulPaymentAsync(
-                    provider: PaymentProviders.VNPay,
-                    orderId: order.Id,
-                    eventKey: eventKey,
-                    payloadJson: payloadJson,
-                    providerTransactionId: txnNo,
-                    providerRequestId: null,
-                    providerResponseCode: responseCode,
-                    providerTransactionStatus: txnStatus,
-                    payType: null,
-                    bankCode: bankCode,
-                    bankTranNo: bankTranNo,
-                    cardType: cardType,
-                    ct: ct);
+                var confirmation = await _confirmationService.ConfirmPaidAsync(
+                    new PaymentConfirmation(
+                        OrderId: order.Id,
+                        Provider: PaymentProviders.VNPay,
+                        Source: PaymentTransitionSource.ProviderCallback,
+                        VerifiedAmountVnd: vnpAmount / 100,
+                        EventType: PaymentEventTypes.Ipn,
+                        EventKey: eventKey,
+                        PayloadJson: payloadJson,
+                        ProviderTransactionId: txnNo,
+                        ResponseCode: responseCode,
+                        TransactionStatus: txnStatus,
+                        BankCode: bankCode,
+                        BankTranNo: bankTranNo,
+                        CardType: cardType),
+                    ct);
 
-                return IpnProcessingResult.Ok();
+                return confirmation.Outcome switch
+                {
+                    PaymentConfirmationOutcome.Activated => IpnProcessingResult.Ok(),
+                    PaymentConfirmationOutcome.SentToManualReview => IpnProcessingResult.Ok(),
+                    PaymentConfirmationOutcome.AlreadyPaid => IpnProcessingResult.AlreadyConfirmed(),
+                    PaymentConfirmationOutcome.RejectedState => IpnProcessingResult.AlreadyConfirmed(),
+                    PaymentConfirmationOutcome.RejectedAmount => IpnProcessingResult.AmountMismatch(),
+                    _ => IpnProcessingResult.OrderNotFound()
+                };
             }
             catch (Exception ex)
             {
@@ -411,6 +435,22 @@ namespace TCTEnglish.Services.Billing
             var isSuccess = string.Equals(resultCode, "0", StringComparison.Ordinal);
             if (!isSuccess)
             {
+                if (!PaymentOrderStateMachine.CanMarkFailedOrCancelled(order.Status, PaymentTransitionSource.ProviderCallback))
+                {
+                    await TrySaveEventAsync(
+                        provider: PaymentProviders.MoMo,
+                        eventType: PaymentEventTypes.Ipn,
+                        eventKey: eventKey,
+                        orderId: order.Id,
+                        signatureValid: true,
+                        resultCode: resultCode,
+                        payloadJson: payloadJson,
+                        processingStatus: PaymentEventProcessingStatuses.Ignored,
+                        message: $"Failure callback ignored: order is '{order.Status}'",
+                        ct: ct);
+                    return;
+                }
+
                 order.Status = string.Equals(resultCode, "1006", StringComparison.Ordinal)
                     ? PaymentOrderStatuses.Cancelled
                     : PaymentOrderStatuses.Failed;
@@ -440,20 +480,21 @@ namespace TCTEnglish.Services.Billing
                 return;
             }
 
-            await ProcessSuccessfulPaymentAsync(
-                provider: PaymentProviders.MoMo,
-                orderId: order.Id,
-                eventKey: eventKey,
-                payloadJson: payloadJson,
-                providerTransactionId: transId,
-                providerRequestId: requestId,
-                providerResponseCode: resultCode,
-                providerTransactionStatus: resultCode,
-                payType: payType,
-                bankCode: null,
-                bankTranNo: null,
-                cardType: null,
-                ct: ct);
+            await _confirmationService.ConfirmPaidAsync(
+                new PaymentConfirmation(
+                    OrderId: order.Id,
+                    Provider: PaymentProviders.MoMo,
+                    Source: PaymentTransitionSource.ProviderCallback,
+                    VerifiedAmountVnd: momoAmount,
+                    EventType: PaymentEventTypes.Ipn,
+                    EventKey: eventKey,
+                    PayloadJson: payloadJson,
+                    ProviderTransactionId: transId,
+                    ProviderRequestId: requestId,
+                    ResponseCode: resultCode,
+                    TransactionStatus: resultCode,
+                    PayType: payType),
+                ct);
         }
 
         internal static string BuildIpnEventKey(
@@ -501,131 +542,6 @@ namespace TCTEnglish.Services.Billing
         {
             var safe = prefix.Length <= 20 ? prefix : prefix[..20];
             return $"badsig:{safe}:{Guid.NewGuid():N}";
-        }
-
-        private async Task ProcessSuccessfulPaymentAsync(
-            string provider,
-            long orderId,
-            string eventKey,
-            string payloadJson,
-            string? providerTransactionId,
-            string? providerRequestId,
-            string? providerResponseCode,
-            string? providerTransactionStatus,
-            string? payType,
-            string? bankCode,
-            string? bankTranNo,
-            string? cardType,
-            CancellationToken ct)
-        {
-            var strategy = _context.Database.CreateExecutionStrategy();
-            await strategy.ExecuteAsync(async () =>
-            {
-                _context.ChangeTracker.Clear();
-
-                await using var transaction = await _context.Database.BeginTransactionAsync(ct);
-
-                var order = await _context.PaymentOrders
-                    .Include(o => o.Plan)
-                    .FirstOrDefaultAsync(o => o.Id == orderId, ct);
-
-                if (order == null)
-                {
-                    throw new InvalidOperationException($"Payment order {orderId} no longer exists.");
-                }
-
-                if (order.Status == PaymentOrderStatuses.Paid)
-                {
-                    await transaction.CommitAsync(ct);
-                    return;
-                }
-
-                var nowUtc = DateTime.UtcNow;
-                var isExpired = order.Status == PaymentOrderStatuses.Expired
-                             || (order.ExpiresAtUtc < nowUtc && order.Status == PaymentOrderStatuses.Pending);
-
-                if (provider.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase) && isExpired)
-                {
-                    var overdue = nowUtc - order.ExpiresAtUtc;
-                    if (overdue > LateIpnGracePeriod)
-                    {
-                        order.Status = PaymentOrderStatuses.ManualReview;
-                        order.RawStatus = $"late_ipn={overdue.TotalHours:F1}h";
-                        order.ProviderTransactionId = providerTransactionId;
-                        order.ProviderRequestId = providerRequestId;
-                        order.ProviderResponseCode = providerResponseCode;
-                        order.ProviderTransactionStatus = providerTransactionStatus;
-                        order.PayType = payType;
-                        order.IpnPayloadJson = payloadJson;
-                        order.UpdatedAtUtc = nowUtc;
-
-                        await TrySaveEventAsync(
-                            provider: provider,
-                            eventType: PaymentEventTypes.ManualReview,
-                            eventKey: eventKey,
-                            orderId: order.Id,
-                            signatureValid: true,
-                            resultCode: providerResponseCode,
-                            payloadJson: payloadJson,
-                            processingStatus: PaymentEventProcessingStatuses.Processed,
-                            message: $"Late IPN: overdue {overdue.TotalHours:F1}h > {LateIpnGracePeriod.TotalHours}h",
-                            ct: ct);
-
-                        await _context.SaveChangesAsync(ct);
-                        await transaction.CommitAsync(ct);
-                        return;
-                    }
-                }
-
-                order.Status = PaymentOrderStatuses.Paid;
-                order.RawStatus = provider.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase)
-                    ? $"vnp_ResponseCode={providerResponseCode};vnp_TransactionStatus={providerTransactionStatus}"
-                    : $"momo_resultCode={providerResponseCode}";
-                order.PaidAtUtc = nowUtc;
-                order.UpdatedAtUtc = nowUtc;
-                order.ProviderTransactionId = providerTransactionId;
-                order.ProviderRequestId = providerRequestId;
-                order.ProviderResponseCode = providerResponseCode;
-                order.ProviderTransactionStatus = providerTransactionStatus;
-                order.PayType = payType;
-                order.BankCode = bankCode;
-                order.BankTransactionNo = bankTranNo;
-                order.CardType = cardType;
-                order.IpnPayloadJson = payloadJson;
-
-                await TrySaveEventAsync(
-                    provider: provider,
-                    eventType: PaymentEventTypes.Ipn,
-                    eventKey: eventKey,
-                    orderId: order.Id,
-                    signatureValid: true,
-                    resultCode: providerResponseCode,
-                    payloadJson: payloadJson,
-                    processingStatus: PaymentEventProcessingStatuses.Processed,
-                    message: "Payment confirmed via IPN - activating subscription",
-                    ct: ct);
-
-                await _context.SaveChangesAsync(ct);
-
-                var sub = await _subscriptionService.ActivateFromPaidOrderAsync(order.Id, ct);
-                order.ActivatedAtUtc = sub.StartsAtUtc;
-                await _context.SaveChangesAsync(ct);
-
-                await TrySaveEventAsync(
-                    provider: provider,
-                    eventType: PaymentEventTypes.GrantPremium,
-                    eventKey: $"grant:{order.OrderCode}",
-                    orderId: order.Id,
-                    signatureValid: true,
-                    resultCode: providerResponseCode,
-                    payloadJson: payloadJson,
-                    processingStatus: PaymentEventProcessingStatuses.Processed,
-                    message: $"Subscription activated. SubId={sub.Id}, Ends={sub.EndsAtUtc:O}",
-                    ct: ct);
-
-                await _context.SaveChangesAsync(ct);
-                await transaction.CommitAsync(ct);
-            });
         }
 
         private static string SerializeSafePayload(IDictionary<string, string> queryParams)
@@ -685,19 +601,11 @@ namespace TCTEnglish.Services.Billing
                 await _context.SaveChangesAsync(ct);
             }
             catch (DbUpdateException ex)
-                when (IsUniqueConstraintViolation(ex))
+                when (RelationalUniqueConflict.IsUnique(ex))
             {
+                // MariaDB "Duplicate entry" (1062), SQLite and the MySQL 1022 variant all land here.
                 _context.Entry(evt).State = EntityState.Detached;
             }
-        }
-
-        private static bool IsUniqueConstraintViolation(DbUpdateException ex)
-        {
-            var inner = ex.InnerException?.Message ?? string.Empty;
-            return inner.Contains("2601", StringComparison.Ordinal)
-                || inner.Contains("2627", StringComparison.Ordinal)
-                || inner.Contains("UNIQUE constraint failed", StringComparison.OrdinalIgnoreCase)
-                || inner.Contains("unique index", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

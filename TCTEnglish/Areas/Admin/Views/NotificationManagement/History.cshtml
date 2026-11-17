@@ -4,25 +4,25 @@
     Layout = "_AdminLayout";
 }
 
-<div class="d-flex align-items-center justify-content-between mb-4">
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
     <div>
         <h1 class="h4 mb-0 fw-bold">
-            <i class="bi bi-clock-history text-primary me-2"></i>Lịch sử thông báo
+            <i class="bi bi-clock-history text-primary me-2" aria-hidden="true"></i>Lịch sử thông báo
         </h1>
         <p class="text-muted small mt-1 mb-0">
-            Tất cả thông báo toàn hệ thống đã được gửi.
+            Các thông báo chung đã gửi tới người dùng, mới nhất ở trên. Giờ theo múi giờ Việt Nam.
         </p>
     </div>
     <a asp-action="Create" class="btn btn-primary btn-sm">
-        <i class="fas fa-paper-plane me-1"></i> Gửi thông báo mới
+        <i class="fas fa-paper-plane me-1" aria-hidden="true"></i> Gửi thông báo mới
     </a>
 </div>
 
 @if (TempData["Success"] is string successMsg)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="bi bi-check-circle-fill me-2"></i>@successMsg
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>@successMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
     </div>
 }
 
@@ -32,11 +32,11 @@
         {
             @* ── Empty state ── *@
             <div class="text-center py-5 text-muted">
-                <i class="bi bi-megaphone fs-1 d-block mb-3 opacity-25"></i>
-                <h5 class="mb-1">Chưa có thông báo nào</h5>
-                <p class="mb-3 small">Gửi thông báo đầu tiên của bạn để bắt đầu.</p>
+                <i class="bi bi-megaphone fs-1 d-block mb-3 opacity-25" aria-hidden="true"></i>
+                <h2 class="h5 mb-1">Chưa có thông báo nào</h2>
+                <p class="mb-3 small">Gửi thông báo đầu tiên để bắt đầu.</p>
                 <a asp-action="Create" class="btn btn-primary btn-sm">
-                    <i class="fas fa-paper-plane me-1"></i> Gửi thông báo mới
+                    <i class="fas fa-paper-plane me-1" aria-hidden="true"></i> Gửi thông báo mới
                 </a>
             </div>
         }
@@ -44,13 +44,15 @@
         {
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle mb-0">
+                    <caption class="visually-hidden">Các thông báo chung đã gửi, mới nhất ở trên</caption>
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col" style="width:25%;">Tiêu đề</th>
+                            <th scope="col">Tiêu đề</th>
                             <th scope="col">Nội dung</th>
-                            <th scope="col" style="width:160px;">Thời gian</th>
-                            <th scope="col" style="width:120px;">Người gửi</th>
-                            <th scope="col" class="text-center" style="width:110px;">Số người nhận</th>
+                            <th scope="col">Thời gian</th>
+                            <th scope="col">Người gửi</th>
+                            <th scope="col" class="text-center">Đã đọc</th>
+                            <th scope="col" class="text-center">Số người nhận</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,33 +60,39 @@
                         {
                             <tr>
                                 <td>
-                                    <span class="fw-semibold" style="font-size:13px;">
-                                        @item.Title
-                                    </span>
+                                    <span class="fw-semibold">@item.Title</span>
+                                    @if (item.IsLegacy)
+                                    {
+                                        <span class="d-block small text-muted">(dữ liệu cũ)</span>
+                                    }
                                 </td>
                                 <td>
-                                    <span class="text-muted" style="font-size:13px;
-                                                 display:-webkit-box;
-                                                 -webkit-line-clamp:2;
-                                                 -webkit-box-orient:vertical;
-                                                 overflow:hidden;">
-                                        @item.Message
-                                    </span>
+                                    <span class="d-block text-muted small">@item.Message</span>
+                                    @if (!string.IsNullOrEmpty(item.Url))
+                                    {
+                                        <span class="d-block small mt-1">
+                                            <i class="bi bi-link-45deg" aria-hidden="true"></i>
+                                            <span class="visually-hidden">Liên kết:</span> <code>@item.Url</code>
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-nowrap">
+                                    <span class="text-muted small">@item.CreatedAtText</span>
                                 </td>
                                 <td>
-                                    <span class="text-muted small">
-                                        @item.CreatedAt.AddHours(7).ToString("dd/MM/yyyy HH:mm")
+                                    <span class="badge bg-primary-subtle text-primary-emphasis">
+                                        <i class="bi bi-shield-lock-fill me-1" aria-hidden="true"></i>@item.CreatedByName
                                     </span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-primary-subtle text-primary">
-                                        <i class="bi bi-shield-lock-fill me-1"></i>@item.CreatedByName
-                                    </span>
+                                <td class="text-center text-nowrap">
+                                    <span class="small">@item.ReadCount/@item.RecipientCount</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="badge bg-secondary-subtle text-secondary px-3">
-                                        @item.RecipientCount
-                                    </span>
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis px-3">@item.RecipientCount</span>
+                                    @if (item.CopiesMayBeCleaned)
+                                    {
+                                        <span class="d-block small text-muted mt-1">còn @item.RecipientCount bản lưu</span>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -101,9 +109,10 @@
                             @* Previous *@
                             <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
                                 <a class="page-link"
+                                   aria-label="Trang trước"
                                    asp-action="History"
                                    asp-route-page="@(Model.CurrentPage - 1)">
-                                    <i class="bi bi-chevron-left"></i>
+                                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
                                 </a>
                             </li>
 
@@ -111,6 +120,8 @@
                             {
                                 <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
                                     <a class="page-link"
+                                       aria-label="Trang @p"
+                                       aria-current="@(p == Model.CurrentPage ? "page" : null)"
                                        asp-action="History"
                                        asp-route-page="@p">@p</a>
                                 </li>
@@ -119,9 +130,10 @@
                             @* Next *@
                             <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
                                 <a class="page-link"
+                                   aria-label="Trang sau"
                                    asp-action="History"
                                    asp-route-page="@(Model.CurrentPage + 1)">
-                                    <i class="bi bi-chevron-right"></i>
+                                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
                                 </a>
                             </li>
                         </ul>

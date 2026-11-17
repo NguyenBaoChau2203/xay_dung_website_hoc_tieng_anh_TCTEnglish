@@ -46,6 +46,31 @@ public interface IPersonalSetService
     Task<OperationResult<int>> CloneSetAsync(int? setId, string? slug, int userId, bool isAdmin, CancellationToken ct = default);
     Task<OperationResult<SampleSetsResult>> AddSampleSetsAsync(int userId, CancellationToken ct = default);
 
+    // ----- Folders (flat folders of the personal-set workspace) -----
+
+    /// <summary>The user's own folders and the folders they saved, ordered by name, with counts (one grouped query per kind, no per-folder queries).</summary>
+    Task<IReadOnlyList<SetFolderTileViewModel>> ListFoldersAsync(int userId, CancellationToken ct = default);
+
+    /// <summary>Null (a 404) unless the viewer owns the folder, saved it, belongs to a class it is shared with, or is an admin.</summary>
+    Task<SetFolderPageViewModel?> GetFolderPageAsync(int folderId, int userId, bool isAdmin, CancellationToken ct = default);
+
+    /// <summary>Trimmed name, 1 to 100 characters, unique per owner ignoring case. Returns the new folder id.</summary>
+    Task<OperationResult<int>> CreateFolderAsync(int userId, string? name, CancellationToken ct = default);
+
+    Task<OperationResult> RenameFolderAsync(int folderId, int userId, bool isAdmin, string? name, CancellationToken ct = default);
+
+    /// <summary>
+    /// Keeps the sets (their folder becomes none) and removes the folder with its saves and class links in one transaction.
+    /// A folder that still has child folders is refused with the field-error key <c>ChildFolders</c>.
+    /// </summary>
+    Task<OperationResult> DeleteFolderAsync(int folderId, int userId, bool isAdmin, CancellationToken ct = default);
+
+    /// <summary>Moves a set into a folder (null takes it out). The value is the target folder name, or null when the set left its folder.</summary>
+    Task<OperationResult<string?>> MoveSetToFolderAsync(int setId, int? folderId, int userId, bool isAdmin, CancellationToken ct = default);
+
+    /// <summary>Removes the caller's save of someone else's folder; NotFound when nothing was saved.</summary>
+    Task<OperationResult> UnsaveFolderAsync(int folderId, int userId, CancellationToken ct = default);
+
     // ----- Practice (read-only word selection for /Practice) -----
 
     Task<PracticeHubViewModel> GetPracticeHubAsync(int? setId, int userId, bool isAdmin, CancellationToken ct = default);

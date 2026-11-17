@@ -22,15 +22,18 @@ namespace TCTEnglish.Services.Billing
 
         private readonly DbflashcardContext _context;
         private readonly IEnumerable<IPaymentGateway> _gateways;
+        private readonly IPaymentQueryService _queryService;
         private readonly ILogger<BillingService> _logger;
 
         public BillingService(
             DbflashcardContext context,
             IEnumerable<IPaymentGateway> gateways,
+            IPaymentQueryService queryService,
             ILogger<BillingService> logger)
         {
             _context = context;
             _gateways = gateways;
+            _queryService = queryService;
             _logger = logger;
         }
 
@@ -62,14 +65,53 @@ namespace TCTEnglish.Services.Billing
             {
                 return CheckoutResult.Fail(
                     "PROVIDER_UNSUPPORTED",
-                    $"Cổng thanh toán '{provider}' không được hỗ trợ.");
+                    "Cổng thanh toán này không được hỗ trợ.");
             }
 
             if (!gateway.IsEnabled)
             {
+                // Learners are not told which setting is missing; operators see it on the admin health page.
                 return CheckoutResult.Fail(
                     "PROVIDER_NOT_CONFIGURED",
-                    $"Cổng thanh toán '{provider}' chưa được cấu hình. Vui lòng liên hệ quản trị viên.");
+                    "Cổng thanh toán hiện không khả dụng.");
+            }
+
+            var account = await _context.Users
+                .AsNoTracking()
+                .Where(u => u.UserId == userId)
+                .Select(u => new { u.Role })
+                .FirstOrDefaultAsync(ct);
+            var accountRole = Roles.Normalize(account?.Role);
+            var hasAnySubscription = accountRole == Roles.Premium
+                && await _context.UserSubscriptions.AsNoTracking().AnyAsync(s => s.UserId == userId, ct);
+            if (PremiumAccessRules.IsPermanent(accountRole, hasAnySubscription))
+            {
+                return CheckoutResult.Fail(
+                    "ALREADY_PERMANENT",
+                    accountRole == Roles.Admin
+                        ? "Tài khoản quản trị đã có sẵn quyền Premium."
+                        : "Tài khoản của bạn đã có quyền Premium không thời hạn.");
+            }
+
+            // A second click, or a second tab, resumes the order that is still open instead of piling up new
+            // ones (and does not count against the rate limit).
+            var nowForReuse = DateTime.UtcNow;
+            var openOrder = await _context.PaymentOrders
+                .AsNoTracking()
+                .Where(o => o.UserId == userId
+                            && o.PlanId == plan.Id
+                            && o.Provider == gateway.ProviderName
+                            && o.Status == PaymentOrderStatuses.Pending
+                            && o.ExpiresAtUtc > nowForReuse)
+                .OrderByDescending(o => o.CreatedAtUtc)
+                .FirstOrDefaultAsync(ct);
+            if (openOrder != null)
+            {
+                var resumeUrl = BuildResumeUrl(openOrder);
+                if (resumeUrl != null)
+                {
+                    return CheckoutResult.Ok(openOrder.OrderCode, resumeUrl);
+                }
             }
 
             var windowStart = DateTime.UtcNow.Subtract(PendingWindow);
@@ -135,13 +177,79 @@ namespace TCTEnglish.Services.Billing
             }
 
             order.ProviderRequestId = gatewayResult.ProviderRequestId;
-            order.ProviderPaymentUrl = gatewayResult.ProviderPaymentUrl;
+            order.ProviderPaymentUrl = gatewayResult.ProviderPaymentUrl
+                ?? StorableVnPayUrl(gateway.ProviderName, gatewayResult.RedirectUrl);
             order.ProviderDeepLink = gatewayResult.ProviderDeepLink;
             order.ProviderQrCodePayload = gatewayResult.ProviderQrCodePayload;
             order.UpdatedAtUtc = DateTime.UtcNow;
             await _context.SaveChangesAsync(ct);
 
-            return CheckoutResult.Ok(orderCode, gatewayResult.RedirectUrl);
+            // MoMo has no page of its own to send the buyer to: the order page shows the QR code and follows the order.
+            var redirectUrl = gateway.ProviderName.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase)
+                ? BuildMoMoOrderUrl(orderCode)
+                : gatewayResult.RedirectUrl;
+            return CheckoutResult.Ok(orderCode, redirectUrl);
+        }
+
+        /// <summary>
+        /// Where a buyer who already has this order open goes. MoMo: the QR page of the order. VNPay: the stored
+        /// payment URL (older orders have none and are not resumed).
+        /// </summary>
+        private static string? BuildResumeUrl(PaymentOrder order)
+        {
+            if (order.Provider.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase))
+            {
+                return BuildMoMoOrderUrl(order.OrderCode);
+            }
+
+            return string.IsNullOrWhiteSpace(order.ProviderPaymentUrl) ? null : order.ProviderPaymentUrl;
+        }
+
+        internal static string BuildMoMoOrderUrl(string orderCode)
+            => $"/Billing/Order/{Uri.EscapeDataString(orderCode)}";
+
+        /// <summary>The VNPay redirect URL is kept so the order can be resumed; it fits the 1000-character column.</summary>
+        private static string? StorableVnPayUrl(string provider, string? redirectUrl)
+        {
+            return provider.Equals(PaymentProviders.VNPay, StringComparison.OrdinalIgnoreCase)
+                   && !string.IsNullOrWhiteSpace(redirectUrl)
+                   && redirectUrl.Length <= 1000
+                ? redirectUrl
+                : null;
+        }
+
+        public async Task<OrderPageViewModel?> GetOrderPageAsync(
+            int userId,
+            string orderCode,
+            bool isMockMode,
+            CancellationToken ct = default)
+        {
+            if (string.IsNullOrWhiteSpace(orderCode))
+            {
+                return null;
+            }
+
+            // Owner only: anyone else gets the same answer as for an order that does not exist.
+            var order = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .FirstOrDefaultAsync(o => o.UserId == userId && o.OrderCode == orderCode, ct);
+            if (order == null)
+            {
+                return null;
+            }
+
+            DateTime? premiumEndsAtUtc = null;
+            if (order.Status == PaymentOrderStatuses.Paid)
+            {
+                premiumEndsAtUtc = await _context.UserSubscriptions
+                    .AsNoTracking()
+                    .Where(s => s.ActivatedByPaymentOrderId == order.Id)
+                    .Select(s => (DateTime?)s.EndsAtUtc)
+                    .FirstOrDefaultAsync(ct);
+            }
+
+            return OrderPageBuilder.Build(order, premiumEndsAtUtc, isMockMode, DateTime.UtcNow);
         }
 
         public async Task<PaymentOrder?> GetOrderByCodeAsync(
@@ -154,15 +262,29 @@ namespace TCTEnglish.Services.Billing
                 .FirstOrDefaultAsync(o => o.OrderCode == orderCode, ct);
         }
 
-        public async Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
+        public Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
             int userId,
             CancellationToken ct = default)
+            => GetPaymentHistoryAsync(userId, 1, ct);
+
+        public async Task<PaymentHistoryViewModel> GetPaymentHistoryAsync(
+            int userId,
+            int page,
+            CancellationToken ct = default)
         {
-            var orders = await _context.PaymentOrders
+            var query = _context.PaymentOrders
                 .AsNoTracking()
-                .Include(o => o.Plan)
-                .Where(o => o.UserId == userId)
+                .Where(o => o.UserId == userId);
+
+            var total = await query.CountAsync(ct);
+            var pages = Math.Max(1, (int)Math.Ceiling(total / (double)PaymentHistoryViewModel.PageSize));
+            var current = Math.Clamp(page, 1, pages);
+
+            var orders = await query
                 .OrderByDescending(o => o.CreatedAtUtc)
+                .ThenByDescending(o => o.Id)
+                .Skip((current - 1) * PaymentHistoryViewModel.PageSize)
+                .Take(PaymentHistoryViewModel.PageSize)
                 .Select(o => new PaymentHistoryItemViewModel
                 {
                     OrderCode = o.OrderCode,
@@ -171,11 +293,33 @@ namespace TCTEnglish.Services.Billing
                     AmountVnd = o.AmountVnd,
                     Status = o.Status,
                     CreatedAtUtc = o.CreatedAtUtc,
-                    PaidAtUtc = o.PaidAtUtc
+                    PaidAtUtc = o.PaidAtUtc,
+                    ExpiresAtUtc = o.ExpiresAtUtc,
+                    BankCode = o.BankCode,
+                    // Only open orders need the stored return to tell "đang xác nhận" from "chờ thanh toán".
+                    ReturnPayloadJson = o.Status == PaymentOrderStatuses.Pending || o.Status == PaymentOrderStatuses.Expired
+                        ? o.ReturnPayloadJson
+                        : null
                 })
                 .ToListAsync(ct);
 
-            return new PaymentHistoryViewModel { Orders = orders };
+            var activatedFrom = await _context.UserSubscriptions
+                .AsNoTracking()
+                .Where(s => s.UserId == userId
+                            && s.Status == SubscriptionStatuses.Active
+                            && s.EndsAtUtc > DateTime.UtcNow
+                            && s.ActivatedByPaymentOrderId != null)
+                .OrderByDescending(s => s.EndsAtUtc)
+                .Select(s => s.ActivatedByPaymentOrder!.OrderCode)
+                .FirstOrDefaultAsync(ct);
+
+            return new PaymentHistoryViewModel
+            {
+                Orders = orders,
+                Page = current,
+                TotalCount = total,
+                ActivatedFromOrderCode = activatedFrom
+            };
         }
 
         public async Task<PaymentResultViewModel?> GetVnPayReturnResultAsync(
@@ -216,14 +360,21 @@ namespace TCTEnglish.Services.Billing
                 return 0;
             }
 
+            var expired = 0;
             foreach (var order in expiredOrders)
             {
+                if (!PaymentOrderStateMachine.CanExpire(order.Status))
+                {
+                    continue;
+                }
+
                 order.Status = PaymentOrderStatuses.Expired;
                 order.FailureMessage = "Đã quá hạn thanh toán.";
+                expired++;
             }
 
             await _context.SaveChangesAsync(ct);
-            return expiredOrders.Count;
+            return expired;
         }
 
         private async Task<PaymentResultViewModel?> GetProviderReturnResultAsync(
@@ -302,16 +453,35 @@ namespace TCTEnglish.Services.Billing
 
             await _context.SaveChangesAsync(ct);
 
+            // The browser's return never confirms anything by itself. When the provider says the buyer paid,
+            // ask the provider's own server once (throttled); only a verified answer with the right amount
+            // confirms the order, through the single confirmation service. This also works on localhost,
+            // where the provider cannot reach our IPN URL.
+            var returnReportedSuccess = callbackResult.IsPaid;
+            if (returnReportedSuccess)
+            {
+                var attempt = await _queryService.QueryAndConfirmAsync(order.Id, PaymentQueryTrigger.Return, ct);
+                _logger.LogInformation(
+                    "{Provider} return query for {OrderCode}: {Status}", provider, order.OrderCode, attempt.Status);
+            }
+
+            // Read the order again: the confirmation (if any) changed it in its own transaction.
+            var current = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .FirstAsync(o => o.Id == order.Id, ct);
+
             return new PaymentResultViewModel
             {
-                OwnerUserId = order.UserId,
-                OrderCode = order.OrderCode,
-                PlanName = order.Plan?.Name ?? "Premium",
-                AmountVnd = order.AmountVnd,
-                OrderStatus = NormalizeStatus(order.Status),
+                OwnerUserId = current.UserId,
+                OrderCode = current.OrderCode,
+                PlanName = current.Plan?.Name ?? "Premium",
+                AmountVnd = current.AmountVnd,
+                OrderStatus = NormalizeStatus(current.Status),
                 HasValidReturnSignature = true,
                 CanShowOrderSummary = true,
-                PaidAtUtc = order.PaidAtUtc
+                PaidAtUtc = current.PaidAtUtc,
+                ReturnReportedSuccess = returnReportedSuccess
             };
         }
 
@@ -376,7 +546,7 @@ namespace TCTEnglish.Services.Billing
                 return;
             }
 
-            _context.PaymentEvents.Add(new PaymentEvent
+            var checkoutEvent = new PaymentEvent
             {
                 Provider = provider,
                 EventType = PaymentEventTypes.CheckoutCreated,
@@ -388,15 +558,22 @@ namespace TCTEnglish.Services.Billing
                 ProcessingMessage = "Checkout session created",
                 ReceivedAtUtc = DateTime.UtcNow,
                 ProcessedAtUtc = DateTime.UtcNow
-            });
+            };
+            _context.PaymentEvents.Add(checkoutEvent);
 
             try
             {
                 await _context.SaveChangesAsync(ct);
             }
+            catch (DbUpdateException ex) when (RelationalUniqueConflict.IsUnique(ex))
+            {
+                // Race-condition duplicate: forget the failed row so later saves do not retry it.
+                _context.Entry(checkoutEvent).State = EntityState.Detached;
+            }
             catch (DbUpdateException)
             {
-                // race-condition duplicate, safe to ignore
+                _context.Entry(checkoutEvent).State = EntityState.Detached;
+                throw;
             }
         }
 
@@ -417,7 +594,7 @@ namespace TCTEnglish.Services.Billing
                 return;
             }
 
-            _context.PaymentEvents.Add(new PaymentEvent
+            var returnEvent = new PaymentEvent
             {
                 Provider = provider,
                 EventType = PaymentEventTypes.Return,
@@ -430,15 +607,22 @@ namespace TCTEnglish.Services.Billing
                 ProcessingMessage = "Return URL visited - display only, no activation",
                 ReceivedAtUtc = DateTime.UtcNow,
                 ProcessedAtUtc = DateTime.UtcNow
-            });
+            };
+            _context.PaymentEvents.Add(returnEvent);
 
             try
             {
                 await _context.SaveChangesAsync(ct);
             }
+            catch (DbUpdateException ex) when (RelationalUniqueConflict.IsUnique(ex))
+            {
+                // Race-condition duplicate: forget the failed row so later saves do not retry it.
+                _context.Entry(returnEvent).State = EntityState.Detached;
+            }
             catch (DbUpdateException)
             {
-                // race-condition duplicate, safe to ignore
+                _context.Entry(returnEvent).State = EntityState.Detached;
+                throw;
             }
         }
     }

@@ -10,22 +10,24 @@ namespace TCTEnglish.Services
         /// Returns the index page view model with lessons grouped by CEFR level.
         /// Optional filters: level (e.g. "B1") and topic name.
         /// </summary>
-        Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic, int? userId = null);
+        Task<ListeningIndexViewModel> GetIndexViewModelAsync(string? level, string? topic, int? userId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Returns the full practice page view model for a single lesson,
         /// including transcript, quiz questions and vocab items.
         /// User progress is included when userId is supplied.
         /// </summary>
-        Task<ListeningPracticeViewModel?> GetPracticeViewModelAsync(int lessonId, int? userId);
+        Task<ListeningPracticeViewModel?> GetPracticeViewModelAsync(int lessonId, int? userId, CancellationToken ct = default);
 
         Task<OperationResult> GenerateQuizFromTranscriptAsync(int lessonId, int userId, CancellationToken ct = default);
 
         /// <summary>
         /// Grades a submitted quiz and returns per-question feedback.
-        /// Does NOT persist progress — call SaveProgressAsync separately.
+        /// Returns null when the user may not use the lesson (or it has no quiz).
+        /// When <paramref name="userId"/> is set, the result is persisted: the quiz is marked
+        /// completed and the best score is kept.
         /// </summary>
-        Task<ListeningQuizResultViewModel?> EvaluateQuizAsync(ListeningQuizSubmitDto dto);
+        Task<ListeningQuizResultViewModel?> EvaluateQuizAsync(ListeningQuizSubmitDto dto, int? userId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Upserts the user's listening progress for a lesson.
