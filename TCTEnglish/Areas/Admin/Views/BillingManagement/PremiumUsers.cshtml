@@ -138,8 +138,8 @@
                                 <span class="@row.SubscriptionBadgeClass">@row.SubscriptionStatus</span>
                             </td>
                             <td>
-                                <div class="small">Bắt đầu: @(row.StartsAtUtc?.ToString("dd/MM/yyyy HH:mm") ?? "-")</div>
-                                <div class="small">Kết thúc: @(row.EndsAtUtc?.ToString("dd/MM/yyyy HH:mm") ?? "-")</div>
+                                <div class="small">Bắt đầu: @TCTEnglish.Services.Billing.BillingTime.ToDisplay(row.StartsAtUtc)</div>
+                                <div class="small">Kết thúc: @TCTEnglish.Services.Billing.BillingTime.ToDisplay(row.EndsAtUtc)</div>
                                 <div class="small text-muted">Còn lại: @(row.DaysRemaining?.ToString() ?? "-") ngày</div>
                             </td>
                             <td>

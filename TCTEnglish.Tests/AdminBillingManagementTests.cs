@@ -23,6 +23,8 @@ namespace TCTEnglish.Tests
         {
             var options = new DbContextOptionsBuilder<DbflashcardContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
+                // The confirmation service wraps its work in a transaction, which the in-memory store ignores.
+                .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             return new DbflashcardContext(options);
         }
@@ -70,7 +72,7 @@ namespace TCTEnglish.Tests
             mockSubSvc.Setup(s => s.GrantManualAsync(user.UserId, 1, 30, "Bonus", default))
                       .ReturnsAsync(OperationResult.Success());
 
-            var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
+            var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
             
             // Mock Claims for GetCurrentUserId()
             var claims = new List<System.Security.Claims.Claim> { new(System.Security.Claims.ClaimTypes.NameIdentifier, "999") };
@@ -109,7 +111,7 @@ namespace TCTEnglish.Tests
             mockSubSvc.Setup(s => s.RevokeAsync(userId, "Violated terms", default))
                       .ReturnsAsync(OperationResult.Success());
 
-            var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
+            var controller = new BillingManagementController(ctx, mockSubSvc.Object, new Mock<IPaymentProviderHealthService>().Object, new Mock<IPaymentAuditService>().Object, new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
             
             // Mock Claims for GetCurrentUserId()
             var claims = new List<System.Security.Claims.Claim> { new(System.Security.Claims.ClaimTypes.NameIdentifier, "999") };
@@ -175,7 +177,7 @@ namespace TCTEnglish.Tests
                 new Mock<ISubscriptionService>().Object,
                 new Mock<IPaymentProviderHealthService>().Object,
                 new Mock<IPaymentAuditService>().Object,
-                new Mock<ILogger<BillingManagementController>>().Object);
+                new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
 
             var result = await controller.PremiumUsers(PremiumUserFilters.Active, null, 1);
             var view = Assert.IsType<ViewResult>(result);
@@ -195,7 +197,7 @@ namespace TCTEnglish.Tests
                 new Mock<ISubscriptionService>().Object,
                 new Mock<IPaymentProviderHealthService>().Object,
                 new Mock<IPaymentAuditService>().Object,
-                new Mock<ILogger<BillingManagementController>>().Object);
+                new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
 
             var result = await controller.PremiumUserDetails(999999);
             Assert.IsType<NotFoundResult>(result);
@@ -270,7 +272,7 @@ namespace TCTEnglish.Tests
                 new Mock<ISubscriptionService>().Object,
                 new Mock<IPaymentProviderHealthService>().Object,
                 new Mock<IPaymentAuditService>().Object,
-                new Mock<ILogger<BillingManagementController>>().Object);
+                new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
 
             var claims = new List<System.Security.Claims.Claim> { new(System.Security.Claims.ClaimTypes.NameIdentifier, "999") };
             var identity = new System.Security.Claims.ClaimsIdentity(claims, "Test");
@@ -347,7 +349,7 @@ namespace TCTEnglish.Tests
                 mockSubSvc.Object,
                 new Mock<IPaymentProviderHealthService>().Object,
                 mockAudit.Object,
-                new Mock<ILogger<BillingManagementController>>().Object);
+                new TCTEnglish.Services.Billing.PaymentConfirmationService(ctx, mockSubSvc.Object, Microsoft.Extensions.Logging.Abstractions.NullLogger<TCTEnglish.Services.Billing.PaymentConfirmationService>.Instance), new Mock<ILogger<BillingManagementController>>().Object);
 
             var claims = new List<System.Security.Claims.Claim> { new(System.Security.Claims.ClaimTypes.NameIdentifier, "999") };
             var identity = new System.Security.Claims.ClaimsIdentity(claims, "Test");
@@ -422,7 +424,7 @@ namespace TCTEnglish.Tests
                 new Mock<ISubscriptionService>().Object,
                 new Mock<IPaymentProviderHealthService>().Object,
                 mockAudit.Object,
-                new Mock<ILogger<BillingManagementController>>().Object);
+                new Mock<TCTEnglish.Services.Billing.IPaymentConfirmationService>().Object, new Mock<ILogger<BillingManagementController>>().Object);
 
             var claims = new List<System.Security.Claims.Claim> { new(System.Security.Claims.ClaimTypes.NameIdentifier, "888") };
             var identity = new System.Security.Claims.ClaimsIdentity(claims, "Test");

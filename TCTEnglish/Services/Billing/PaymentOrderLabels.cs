@@ -40,6 +40,25 @@ namespace TCTEnglish.Services.Billing
             };
         }
 
+        /// <summary>
+        /// The plain status word for admin lists (no stage logic: an admin wants the stored status, in Vietnamese).
+        /// </summary>
+        public static string StatusLabel(string? status)
+        {
+            return (status ?? string.Empty).Trim().ToLowerInvariant() switch
+            {
+                PaymentOrderStatuses.Pending => "Chờ thanh toán",
+                PaymentOrderStatuses.Paid => "Đã thanh toán",
+                PaymentOrderStatuses.Failed => "Thất bại",
+                PaymentOrderStatuses.Cancelled => "Đã hủy",
+                PaymentOrderStatuses.Expired => "Hết hạn",
+                PaymentOrderStatuses.Refunded => "Đã hoàn tiền",
+                PaymentOrderStatuses.PartiallyRefunded => "Hoàn tiền một phần",
+                PaymentOrderStatuses.ManualReview => "Kiểm tra thủ công",
+                var other => other
+            };
+        }
+
         public static string ProviderName(string? provider)
         {
             return (provider ?? string.Empty).Trim().ToLowerInvariant() switch

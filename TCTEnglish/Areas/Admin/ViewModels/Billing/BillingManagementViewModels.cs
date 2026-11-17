@@ -187,7 +187,7 @@ public class AdminMarkManualReviewRequest
     [Range(1, long.MaxValue, ErrorMessage = "PaymentOrder không hợp lệ.")]
     public long PaymentOrderId { get; set; }
 
-    [Required(ErrorMessage = "Vui lòng nhập lý do đánh dấu Manual Review.")]
+    [Required(ErrorMessage = "Vui lòng nhập lý do chuyển sang kiểm tra thủ công.")]
     [StringLength(1000)]
     public string Reason { get; set; } = string.Empty;
 }

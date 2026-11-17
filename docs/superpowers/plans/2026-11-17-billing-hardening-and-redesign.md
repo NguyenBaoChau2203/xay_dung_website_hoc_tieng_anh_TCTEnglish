@@ -776,3 +776,33 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed (and why).** `BillingControllerTests` and `BillingControllerMessageTests`: the history mock is the paged overload (the controller now calls it). `BillingStatusViewModelTests`: the history-row mapping test now asserts the learner mapping (`StatusView`, "Đang xác nhận" for a review, "Hoàn tiền một phần") instead of Bootstrap badge/icon classes that no longer exist. New: nine history tests in `BillingPagesIntegrationTests`.
 
 **Orders created / fixture rows.** `TCT-FIXTURE-MANY-01..25` (fixture learner `billing-fx3@tct.local`, cancelled, spread over 25 days) for the paging check; no other new orders.
+
+
+### Gate record — B10 Admin fixes and the header label (2026-11-17) — `fix(billing): confirm manual reviews through the single service, apply state rules and fix admin copy`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 644 total: 643 passed, 1 skipped, 0 failed |
+| G3 | pass | 2358 total = 2323 passed, 35 skipped, 0 failed at the gate run (B9's 2325 + 33 new tests). Four more guard tests (`PaymentSingleConfirmationPathTests`) were added afterwards and pass in their focused run; the next gate re-runs the whole suite |
+| G4 | pass | node 405 / 404 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | admin routes and actions keep their names and forms; provider URLs, response codes and signature helpers untouched |
+| G6 | pass | `git diff --check` clean; token grep over `billing.css` empty; no `bi bi-`/inline block in a learner billing view; admin views keep their own Bootstrap Icons (D3: no redesign) |
+| G7 | pass | scope files only; **`_Layout.cshtml` diff is exactly one line** (`Upgrade: Premium` → `Nâng cấp Premium`); `Program.cs` untouched in this phase |
+| G8 | pass (admin: opens and reads) | local app: the header button reads "Nâng cấp Premium"; `/Admin/BillingManagement`, `/Subscriptions`, `/PremiumUsers`, `/Health` and an order's details open with no console error and no failed request; admin status badges read "Đã thanh toán", "Chờ thanh toán", "Đã hủy", "Kiểm tra thủ công"; times show in Vietnam time; screenshots `.tmp/billing/after/admin-*.png`, `header-label-1440.png` |
+| G9–G12 | n/a for the admin pages (no layout or style change by decision D3); the header string changes no geometry | |
+| G13 | pass | full suite green; admin billing pages open; the learner pages and login still work in the same run |
+| G14 | n/a | no CSS in this phase |
+| G15 | pass | admin actions keep `[Authorize(Roles = Admin)]` (area controller) and `[ValidateAntiForgeryToken]`; confirm/reject/mark are refused for the wrong states (tests) and write no audit record when refused; no secret in the diff |
+| G16 | **pass** | the grep now shows `Status = PaymentOrderStatuses.Paid` **only** in `PaymentConfirmationService.cs`; `PaymentSingleConfirmationPathTests` keeps it that way (and checks that IPN, the query service and the admin action all call `ConfirmPaidAsync`, that the return handlers never confirm, and that only the confirmation service activates subscriptions from an order) |
+
+**What changed.**
+- **F5 (atomic admin confirmation).** `ResolveManualReviewConfirmPaid` calls `ConfirmPaidAsync(Source = Admin, EventType = manual_confirm, AdminReason, AdminUserId)`: paid, the event, the subscription, `ActivatedAtUtc`, `ConfirmedAtUtc` and `ConfirmedByUserId` are written in one transaction. The audit record is unchanged (same arguments) and is written only after a successful confirmation. Verified in the real local DB on `TCT-FIXTURE-REVIEW`: status paid, paid/confirmed/activated timestamps set, `ConfirmedByUserId` = the admin, events `manual_confirm` and `grant_premium`, exactly one subscription for the order, one `resolve_manual_review` audit row.
+- `MarkManualReview` and `ResolveManualReviewReject` and the "dọn đơn quá hạn" action go through the state machine; the details page shows the "chuyển kiểm tra thủ công" form only when the state allows it (it used to be offered for paid and refunded orders too).
+- Every admin message and the static note on the details page are correct Vietnamese; the status words and times reuse `PaymentOrderLabels.StatusLabel` and `BillingTime` (the views used a hard-coded `AddHours(7)` or no conversion at all); source tests fail if undiacriticised copy or a fixed offset returns.
+- **D2.** `_Layout.cshtml`: "Upgrade: Premium" → "Nâng cấp Premium" (one line).
+- `BillingManagementController` takes `IPaymentConfirmationService` (already registered; no `Program.cs` change).
+
+**Owned tests changed (and why).** `AdminBillingManagementTests`: the controller constructor gained the confirmation service (the confirm-paid test builds the real `PaymentConfirmationService` over its mocked subscription service, so `ActivateFromPaidOrderAsync` is still verified once) and its in-memory context ignores the in-memory store's "transactions are not supported" warning because the confirmation now runs in a transaction. No assertion was weakened. New: `AdminBillingStateRulesTests` (32 rows incl. source guards), `PaymentSingleConfirmationPathTests` (4).
+
+**Mockup differences.** none (admin pages are not in the mockups). **Orders created.** none new; the fixture order `TCT-FIXTURE-REVIEW` was confirmed through the admin UI (it now has a subscription row for the fixture learner `billing-fx4`).

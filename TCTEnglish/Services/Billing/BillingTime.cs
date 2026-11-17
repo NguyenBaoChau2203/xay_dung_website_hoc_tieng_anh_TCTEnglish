@@ -23,6 +23,10 @@ namespace TCTEnglish.Services.Billing
         public static string ToDisplay(DateTime utc)
             => ToBusiness(utc).ToString("dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
 
+        /// <summary><c>dd/MM/yyyy HH:mm</c> in Vietnam time, or <paramref name="fallback"/> when there is no time.</summary>
+        public static string ToDisplay(DateTime? utc, string fallback = "-")
+            => utc.HasValue ? ToDisplay(utc.Value) : fallback;
+
         /// <summary><c>dd/MM/yyyy</c> in Vietnam time.</summary>
         public static string ToDisplayDate(DateTime utc)
             => ToBusiness(utc).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
