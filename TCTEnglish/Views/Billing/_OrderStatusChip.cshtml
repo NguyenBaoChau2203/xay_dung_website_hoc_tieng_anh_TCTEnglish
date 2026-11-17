@@ -1,0 +1,6 @@
+@model TCTEnglish.Services.Billing.OrderStatusView
+@*
+    Status chip of an order (plan 4.9). The words always come with the icon, never colour alone.
+    Model: PaymentOrderLabels.Describe(...). Needs billing.css.
+*@
+<span class="tb-chip tb-chip--@Model.Tone" data-stage="@Model.Stage"><i class="@Model.IconClass" aria-hidden="true"></i><span>@Model.Label</span></span>

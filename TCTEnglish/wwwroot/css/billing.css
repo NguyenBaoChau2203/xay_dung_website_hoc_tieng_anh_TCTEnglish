@@ -1,0 +1,185 @@
+/*
+    Billing (Premium) pages: /Premium, /Billing/Order/{code}, /Billing/History.
+    Owner: Payment. Loaded AFTER study-kit.css, which provides the Clay kit (.k-panel, .k-card, .k-seg, ...)
+    for the .tb-page wrapper. The page wrapper also carries .tct-theme and .tct-page.
+
+    Rules (DESIGN.md, docs/design-system/team-ui-workflow.md, plan 2026-11-17-billing-hardening-and-redesign)
+    - Values come from var(--tct-*) tokens only: no literal colour, no root selector, no forced priority, weight <= 700.
+    - Depth only from the shared Clay tokens (--tct-clay-shadow, -quiet, -lift, -button, -field).
+    - Icons are Font Awesome (already loaded); status is never colour alone.
+    - Two exceptions, each with a plain-token fallback declared first: color-mix() between two tokens and the
+      transparent keyword.
+*/
+
+/* ---------------------------------------------------------------- shared pieces */
+
+.tb-page {
+    --tb-gap: var(--tct-space-lg);
+    --tb-side: 380px;
+    max-width: var(--tct-container-max);
+    margin-inline: auto;
+}
+
+.tb-page .tb-mono {
+    font-family: var(--tct-font-mono);
+    font-size: var(--tct-text-sm);
+    overflow-wrap: anywhere;
+}
+
+/* Two columns from 1100px (main + sticky summary), one column below with the summary after the main block. */
+.tb-page .tb-grid {
+    display: grid;
+    gap: var(--tb-gap);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+@media (min-width: 1100px) {
+    .tb-page .tb-grid { grid-template-columns: minmax(0, 1fr) var(--tb-side); }
+    .tb-page .tb-grid__side { position: sticky; top: calc(var(--tct-header-h) + var(--tct-space-md)); }
+}
+
+.tb-page .tb-section-title {
+    margin: 0 0 var(--tct-space-md);
+    font-size: var(--tct-text-xl);
+    font-weight: var(--tct-weight-bold);
+    color: var(--tct-text);
+}
+
+.tb-page .tb-card { padding: var(--tct-space-lg); }
+
+/* ---------------------------------------------------------------- status chip (plan 4.9) */
+
+.tb-page .tb-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tct-space-sm);
+    padding: var(--tct-space-xs) var(--tct-space-md);
+    border-radius: var(--tct-radius-pill);
+    border: 1px solid transparent;
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    line-height: var(--tct-leading-tight);
+    white-space: nowrap;
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-secondary);
+}
+
+.tb-page .tb-chip--warning { background: var(--tct-warning-soft); color: var(--tct-warning-text); }
+.tb-page .tb-chip--success { background: var(--tct-success-soft); color: var(--tct-success-text); }
+.tb-page .tb-chip--danger { background: var(--tct-danger-soft); color: var(--tct-danger-text); }
+.tb-page .tb-chip--info { background: var(--tct-info-soft); color: var(--tct-info-text); }
+.tb-page .tb-chip--neutral { background: var(--tct-surface-muted); color: var(--tct-text-secondary); }
+
+/* ---------------------------------------------------------------- Premium status card (plan 5.1 / 5.3) */
+
+.tb-page .tb-status {
+    display: flex;
+    align-items: center;
+    gap: var(--tct-space-md);
+    padding: var(--tct-space-md) var(--tct-space-lg);
+}
+
+.tb-page .tb-status--compact { padding-block: var(--tct-space-md); }
+
+.tb-page .tb-status__icon {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: var(--tct-target-min);
+    height: var(--tct-target-min);
+    border-radius: var(--tct-radius-md);
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    font-size: var(--tct-text-lg);
+}
+
+.tb-page .tb-status--premium .tb-status__icon,
+.tb-page .tb-status--permanent .tb-status__icon {
+    background: var(--tct-success-soft);
+    color: var(--tct-success-text);
+}
+
+.tb-page .tb-status__text { flex: 1 1 auto; min-width: 0; }
+
+.tb-page .tb-status__title {
+    margin: 0;
+    font-size: var(--tct-text-lg);
+    font-weight: var(--tct-weight-bold);
+    color: var(--tct-text);
+}
+
+.tb-page .tb-status__desc { margin: 0; color: var(--tct-text-secondary); }
+
+.tb-page .tb-status__link {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tct-target-min);
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-primary-strong);
+}
+
+@media (max-width: 575.98px) {
+    .tb-page .tb-status { flex-wrap: wrap; }
+    .tb-page .tb-status__link { margin-left: calc(var(--tct-target-min) + var(--tct-space-md)); }
+}
+
+/* ---------------------------------------------------------------- summary and receipt */
+
+.tb-page .tb-summary,
+.tb-page .tb-receipt { margin: 0; }
+
+.tb-page .tb-summary__row,
+.tb-page .tb-receipt__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--tct-space-md);
+    padding-block: var(--tct-space-sm);
+}
+
+.tb-page :is(.tb-summary__row, .tb-receipt__row) dt {
+    font-weight: var(--tct-weight-regular);
+    color: var(--tct-text-muted);
+}
+
+.tb-page :is(.tb-summary__row, .tb-receipt__row) dd {
+    margin: 0;
+    text-align: right;
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.tb-page .tb-summary__row--total {
+    margin-top: var(--tct-space-sm);
+    padding-top: var(--tct-space-md);
+    border-top: 1px dashed var(--tct-border);
+    align-items: center;
+}
+
+.tb-page .tb-summary__total {
+    font-size: var(--tct-text-2xl);
+    font-weight: var(--tct-weight-bold);
+    font-variant-numeric: tabular-nums;
+}
+
+.tb-page .tb-receipt {
+    padding: var(--tct-space-sm) var(--tct-space-lg);
+    border-radius: var(--tct-radius-lg);
+    background: var(--tct-primary-tint);
+}
+
+/* ---------------------------------------------------------------- accessibility */
+
+.tb-page :is(a, button, input, summary):focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: var(--tct-focus-ring-offset);
+}
+
+@media (forced-colors: active) {
+    .tb-page :is(.tb-chip, .tb-status__icon, .tb-receipt) { border: 1px solid CanvasText; }
+}

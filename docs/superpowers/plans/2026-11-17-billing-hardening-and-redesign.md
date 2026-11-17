@@ -638,3 +638,34 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed (and why).** `BillingControllerTests`, `MoMoBillingControllerTests`: controller constructor gained `ISubscriptionService`; no assertion changed. New: `PremiumStatusAndExpiryTests`, `BillingCheckoutRulesTests`, `BillingClientIpTests`, `BillingControllerMessageTests`. `PremiumAccessServiceTests` and `SubscriptionServiceTests` needed no change.
 
 **Mockup differences.** none. **Orders created.** none.
+
+
+### Gate record — B6 UI foundation (2026-11-17) — `feat(billing): add the billing UI foundation (styles, partials, helpers, pure JS, pinned QR script)`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; Razor partials compile; no new warning |
+| G2 | pass | area filter 557 total: 556 passed, 1 skipped, 0 failed |
+| G3 | pass | 2257 total = 2222 passed, 35 skipped, 0 failed (B5's 2219 + 38 new tests; B0 count 1867) |
+| G4 | pass | node 404 total, 403 passed (391 + 13 new in `test_billing_core.cjs`); only the B0 speaking-catalog hash failure |
+| G5 | pass | no controller, route, provider URL or signature file touched |
+| G6 | pass | `git diff --check` clean for changed files; `billing.css` grep for hex, `rgb()`, `hsl()`, `:root`, `!important`, weight above 700, `@import`, `url(` is empty; no inline `<style>`/`<script>` in the new partials |
+| G7 | pass | files in scope only: `study-kit.css` (scope lists only), new billing files, pinned asset + provenance; `Program.cs` and `_Layout.cshtml` untouched in this phase |
+| G8–G12 | n/a for this phase | nothing renders yet: the partials are first used by `/Premium` (B7), the order page (B8) and history (B9), where the full render/keyboard/contrast gates run |
+| G13 | pass | full suite green, including the Premium-gate tests |
+| G14 | pass | `billing.css` uses `var(--tct-*)` only; `CanvasText` appears only inside the forced-colours block, as other feature CSS does |
+| G15 | pass | `provenance.json` carries the SHA-256 of two public vendor files (not secrets); the secret grep over the diff is otherwise empty; `scripts/tests/test_pinned_browser_assets.py` passes with the two new entries |
+| G16 | partial, expected | unchanged from B5 (admin copy removed in B10) |
+
+**Shared-impact check (`study-kit.css`).** The file is consumed by the Sets, Practice, Listening and Vocabulary pages. The only change is `.tb-page` added to the scope lists (143 places) and `.tb-hue-*` to the hue helper lists (6 places). Proof of no side effect: removing the `, .tb-page` and `, .tb-hue-*` additions from the new file and comparing with `HEAD` gives an identical file (`diff` empty, line endings normalised). No selector, rule, token or value changed.
+
+**What changed.**
+- `wwwroot/css/billing.css`: foundation only (page container, two-column grid with a sticky side from 1100 px, status chip tones, Premium status card, summary and receipt, focus ring, forced-colours). The pricing, order and history blocks are added with those pages.
+- Partials `_OrderStatusChip`, `_PremiumStatus`, `_OrderSummary`, `_Receipt` and `ViewModels/Billing/BillingPageViewModels.cs` (`BillingRow`, `OrderSummaryViewModel`, `ReceiptViewModel`, `PremiumStatusViewModel.From`).
+- `BillingTime` (Vietnam time, `dd/MM/yyyy HH:mm`, `dd/MM/yyyy`, money as `399.000 ₫` with a non-breaking space), `PaymentOrderLabels` (the one learner mapping of label, tone, Font Awesome icon and stage), `PremiumBenefits` (the verified list; the AI row states the real limit of 15 per day for free accounts).
+- `wwwroot/js/billing-core.js` + `scripts/tests/test_billing_core.cjs`: money, months, price per month, saving percent against the cheapest monthly plan, Vietnam-time dates, summary (extends from the current end date), countdown with server-clock offset, polling schedule (3 s / 5 s, 15 s after a minute, stop at 10 minutes, refresh every 15 s for 3 minutes), stage reaction, session-ended detection (401 or a redirect to the login page) and the login URL that returns to the order page.
+- **QR script decision (plan 5.4): vendored, not the CDN.** `qrcodejs@1.0.0` (`qrcode.min.js`, MIT) is now `wwwroot/lib/pinned/qrcode-1.0.0.min.js` with `qrcodejs-LICENSE`, both in `provenance.json` with their SHA-256 and the jsDelivr source URL; the repo's pinned-asset test passes. Browsers will make no external request for the QR code (B8).
+
+**Owned tests changed.** none. New: `BillingDisplayHelpersTests` (38 rows), `test_billing_core.cjs` (13 tests).
+
+**Mockup differences.** none yet (no page). **Orders created.** none.

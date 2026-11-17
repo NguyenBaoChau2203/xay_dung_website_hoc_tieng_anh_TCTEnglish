@@ -1,0 +1,21 @@
+@model TCTEnglish.ViewModels.Billing.PremiumStatusViewModel
+@*
+    The account's current Premium state in plain words (plan 5.1, 5.3).
+    Model: PremiumStatusViewModel.From(access, compact, activatedFromOrderCode). Needs billing.css and the k-* kit.
+*@
+@using TCTEnglish.ViewModels.Billing
+@{
+    var mode = Model.Mode.ToString().ToLowerInvariant();
+    var icon = Model.Mode == PremiumStatusMode.Free ? "fa-solid fa-user" : "fa-solid fa-crown";
+}
+<section class="tb-status k-panel tb-status--@mode@(Model.Compact ? " tb-status--compact" : string.Empty)" aria-label="Trạng thái Premium">
+    <span class="tb-status__icon" aria-hidden="true"><i class="@icon"></i></span>
+    <div class="tb-status__text">
+        <p class="tb-status__title">@Model.Title</p>
+        <p class="tb-status__desc">@Model.Text</p>
+    </div>
+    @if (Model.ShowHistoryLink)
+    {
+        <a class="tb-status__link" href="/Billing/History">Lịch sử thanh toán</a>
+    }
+</section>
