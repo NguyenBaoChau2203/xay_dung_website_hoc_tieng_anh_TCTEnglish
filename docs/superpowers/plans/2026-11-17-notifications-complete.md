@@ -581,3 +581,31 @@ Record database evidence.
 **Decisions D1–D4** read and applied as defaults (D1 = LÀM, D2 = LÀM, D3 = GIỮ, D4 = LÀM).
 
 **Event keys of rows created:** none.
+
+### Gate record — T1 Display and links (2026-11-17) — `feat(notifications): add the shared display model and the local-link rule`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `NotificationDisplayTests` + `NotificationLinksTests`: 108 passed; the notification, billing, Goals and AI-guide tests run inside G3 |
+| G3 | pass | **2474 total = 2439 passed, 35 skipped, 0 failed** (T0: 2366 → +108 new) |
+| G4 | pass | node 405 total, 404 passed, 1 failed = the T0 speaking-catalog hash failure |
+| G5 | pass | no route or JSON change; `has-pending-model-changes`: "No changes have been made to the model since the last migration." (after `PremiumActivated = 8`) |
+| G6 | pass | no CSS, view or JS touched; `git diff --check` clean for the committed files (the unstaged `appsettings.Development.json` blank line is the owner's, never staged) |
+| G7 | pass | three new files (`NotificationDisplay.cs`, `NotificationLinks.cs`, `NotificationDisplayTests.cs`) and **one enum member** in `Models/Notification.cs` (diff: `AdminAnnouncement = 7,` + `PremiumActivated = 8`) |
+| G8–G12, G14 | n/a | no rendered surface in this phase (pure mapping and rules) |
+| G13 | pass | the full suite incl. Goals, worker and reliability tests is green and unedited |
+| G15 | pass | link tests reject `//evil`, `/\evil`, `https://…`, `javascript:`, `data:`, control characters; nothing is rendered yet; no real user was notified |
+
+**Decisions.**
+- The enum member moved from T2 into T1 because the T1 tests name `PremiumActivated`; it is still the single allowed line.
+- A stored `IconClass` that matches the allowed shape is honoured for every type (plan 4.1 sentence), the per-type defaults apply only when it is missing or invalid. Because the existing generators store `fas fa-check-circle` and `fas fa-chart-line` for goals, those keep their stored icons until a row has none.
+- `NotificationLinks.ToSafeLocal` rejects a backslash anywhere (stricter than "`/\`"), and `IsValidLocalPath` also rejects a path longer than 500 characters (for the admin form) while `ToSafeLocal` cuts a stored value to 500 for display.
+- `NotificationDisplay.BusinessZone` resolves the Vietnam zone itself because `LearningBusinessClock` keeps it private (forbidden file). The unspecified-kind `CreatedAt` is read as UTC.
+- `CleanTitle` strips only leading whitespace, `OtherSymbol`, `ModifierSymbol`, format characters and non-spacing marks, so "[Thử nghiệm] …", quotes, digits and `%` survive; an all-symbol title is kept as is.
+- Weekday names are "Chủ nhật", "Thứ Hai" … "Thứ Bảy" (capital after "Thứ").
+- `NotificationDisplay.ParseCategory` (query value → category, null when unknown) was added for T3.
+
+**Differences from the mockup.** None (no UI).
+**Tests changed.** None edited; one new file.
+**Event keys of rows created.** None.

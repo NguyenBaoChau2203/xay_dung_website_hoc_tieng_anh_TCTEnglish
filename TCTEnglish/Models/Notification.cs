@@ -11,7 +11,8 @@ public enum NotificationType
     GoalCompleted    = 4,   // "Chúc mừng! Bạn đã hoàn thành mục tiêu hôm nay!"
     BadgeEarned      = 5,   // "Bạn vừa nhận huy hiệu 'Bền bỉ'!"
     BadgeNear        = 6,   // "Còn 2 bài nữa để mở khóa huy hiệu..."
-    AdminAnnouncement = 7   // Admin gửi thông báo toàn hệ thống
+    AdminAnnouncement = 7,  // Admin gửi thông báo toàn hệ thống
+    PremiumActivated = 8    // Thanh toán Premium thành công (stored as int, no migration)
 }
 
 public class Notification
