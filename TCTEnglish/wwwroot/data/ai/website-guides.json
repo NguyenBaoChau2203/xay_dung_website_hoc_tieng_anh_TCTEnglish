@@ -1,173 +1,446 @@
 {
   "_comment": "TCT English — Website Guide Knowledge Base",
-  "_version": "1.0.0",
-  "_generated": "2026-04-13",
-  "_usage": "Loaded by WebsiteGuideRetriever at startup. All entries must map to real website features only.",
+  "_version": "2.2.0",
+  "_generated": "2026-11-17",
+  "_updated": "2026-11-18",
+  "_usage": "Reviewed application guidance and question variants. No learner facts, credentials, fixed prices or invented lesson IDs. Questions are retrieval examples, not user logs.",
+  "_includes": [
+    "guide-packs/learning-roadmaps.json",
+    "guide-packs/study-routines.json",
+    "guide-packs/practice-methods.json",
+    "guide-packs/media-troubleshooting.json",
+    "guide-packs/account-and-access.json",
+    "guide-packs/demo-onboarding.json"
+  ],
   "guides": [
     {
       "id": "create-set",
       "title": "Tạo bộ từ vựng (Set)",
-      "keywords": ["tạo set", "tạo bộ từ", "tạo vocabulary", "bộ từ mới", "set mới", "tạo flashcard", "thêm set"],
-      "body": "Để tạo bộ từ vựng mới trên TCT English:\n1. Đăng nhập và vào trang **Bộ từ vựng**.\n2. Nhấn nút **Tạo bộ từ mới**.\n3. Nhập tên bộ từ và mô tả (tuỳ chọn).\n4. Thêm thẻ từ: mỗi thẻ gồm Từ (Term), Định nghĩa (Definition), Phiên âm và Ví dụ.\n5. Nhấn **Lưu** để hoàn thành.",
+      "keywords": [
+        "tạo set",
+        "tạo bộ từ",
+        "tạo vocabulary",
+        "bộ từ mới",
+        "set mới",
+        "tạo flashcard",
+        "thêm set"
+      ],
+      "body": "Để tạo bộ từ, mở Bộ từ vựng và chọn Tạo bộ từ mới. Nhập tên, lưu bộ rồi thêm các thẻ cần học. Chỉ chỉnh sửa những bộ mà tài khoản của bạn có quyền quản lý.",
       "route": "/Home/CreateSet",
-      "topic": "vocabulary"
+      "topic": "vocabulary",
+      "questions": [
+        "Tạo bộ từ vựng mới như thế nào?",
+        "Mình thêm set mới ở đâu?",
+        "How do I create a vocabulary set?",
+        "Tạo flashcard riêng bằng cách nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "add-card",
       "title": "Thêm thẻ từ (Card) vào bộ từ",
-      "keywords": ["thêm thẻ", "thêm từ", "add card", "thêm card", "tạo thẻ mới"],
-      "body": "Để thêm thẻ từ vào một bộ từ đã có:\n1. Vào trang **Thư mục** và mở bộ từ cần chỉnh sửa.\n2. Nhấn **Chỉnh sửa bộ từ** hoặc **Thêm thẻ**.\n3. Điền nội dung thẻ: Từ, Định nghĩa, Phiên âm (không bắt buộc), Ví dụ (không bắt buộc).\n4. Nhấn **Lưu thẻ**.",
-      "route": "/Home/Folder",
-      "topic": "vocabulary"
+      "keywords": [
+        "thêm thẻ",
+        "thêm từ",
+        "add card",
+        "thêm card",
+        "tạo thẻ mới"
+      ],
+      "body": "Mở Bộ từ vựng, chọn bộ bạn được sửa rồi dùng chức năng thêm thẻ. Nhập từ, nghĩa và các thông tin bổ sung có trên biểu mẫu; lưu xong kiểm tra lại danh sách thẻ.",
+      "route": "/Sets",
+      "topic": "vocabulary",
+      "questions": [
+        "Làm sao thêm từ vào bộ đã có?",
+        "Thêm thẻ vào set ở đâu?",
+        "How do I add a card to my set?",
+        "Tôi muốn bổ sung ví dụ và phiên âm cho thẻ"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "edit-delete-set",
       "title": "Chỉnh sửa và xoá bộ từ vựng",
-      "keywords": ["chỉnh sửa set", "sửa bộ từ", "xóa set", "xóa bộ từ", "edit set", "delete set"],
-      "body": "Để chỉnh sửa bộ từ: vào trang **Thư mục**, mở bộ từ → nhấn **Chỉnh sửa**. Bạn có thể đổi tên, mô tả và quản lý các thẻ bên trong.\nĐể xóa bộ từ: vào trang chi tiết → nhấn **Xóa bộ từ** và xác nhận. Lưu ý: thao tác này không thể hoàn tác.",
-      "route": "/Home/Folder",
-      "topic": "vocabulary"
+      "keywords": [
+        "chỉnh sửa set",
+        "sửa bộ từ",
+        "xóa set",
+        "xóa bộ từ",
+        "edit set",
+        "delete set"
+      ],
+      "body": "Mở Bộ từ vựng và chọn bộ thuộc quyền quản lý của bạn để đổi tên, sửa thẻ hoặc xóa bộ. Kiểm tra kỹ hộp xác nhận trước khi xóa; trợ lý chỉ hướng dẫn, không thực hiện xóa thay bạn.",
+      "route": "/Sets",
+      "topic": "vocabulary",
+      "questions": [
+        "Chỉnh sửa bộ từ của tôi ở đâu?",
+        "Làm sao xóa một set?",
+        "How can I edit my vocabulary set?",
+        "Đổi tên bộ từ bằng cách nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "create-folder",
       "title": "Tạo thư mục (Folder)",
-      "keywords": ["tạo thư mục", "tạo folder", "folder mới", "tổ chức set"],
+      "keywords": [
+        "tạo thư mục",
+        "tạo folder",
+        "folder mới",
+        "tổ chức set"
+      ],
       "body": "Thư mục giúp sắp xếp các bộ từ vựng theo nhóm (tối đa 3 cấp lồng nhau).\n1. Vào trang **Thư mục**.\n2. Nhấn **Tạo thư mục mới**.\n3. Nhập tên thư mục.\n4. Chọn thư mục cha nếu muốn tạo thư mục con.\n5. Nhấn **Lưu**.\nSau đó bạn có thể di chuyển set vào thư mục từ trang chi tiết set.",
       "route": "/Home/Folder",
-      "topic": "vocabulary"
+      "topic": "vocabulary",
+      "questions": [
+        "Tạo thư mục mới ở đâu?",
+        "Làm sao tạo folder?",
+        "How do I create a folder?",
+        "Tôi muốn gom tài liệu vào thư mục mới"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "study-flashcard",
       "title": "Học bằng chế độ Flashcard",
-      "keywords": ["flashcard", "học flashcard", "lật thẻ", "chế độ flashcard", "ôn flashcard"],
-      "body": "Chế độ Flashcard hiển thị thẻ từ lần lượt. Nhấn vào thẻ để lật và xem định nghĩa.\nSau khi xem, bạn đánh dấu **Đã biết** hoặc **Chưa biết** để hệ thống ghi nhận tiến độ.\nThẻ chưa biết sẽ xuất hiện lại trong lần ôn tiếp theo.\nTruy cập: Vào **Thư mục** → mở bộ từ → chọn **Flashcard**.",
-      "route": "/Home/Folder",
-      "topic": "study"
+      "keywords": [
+        "flashcard",
+        "học flashcard",
+        "lật thẻ",
+        "chế độ flashcard",
+        "ôn flashcard"
+      ],
+      "body": "Mở khu vực Luyện tập, chọn bộ từ được phép xem và chế độ Flashcard để lật thẻ, xem nghĩa rồi tự ôn. Chỉ số luyện tập trên trình duyệt và tiến độ ôn tập trên tài khoản có thể khác nhau; làm theo tùy chọn ghi nhận ôn tập của trang.",
+      "route": "/Practice",
+      "topic": "study",
+      "questions": [
+        "Học flashcard ở đâu?",
+        "Cách lật thẻ từ vựng?",
+        "How do I practise flashcards?",
+        "Tôi muốn ôn từ bằng lật thẻ"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "study-quiz",
       "title": "Học bằng chế độ Quiz",
-      "keywords": ["quiz", "câu hỏi trắc nghiệm", "chế độ quiz", "ôn quiz", "test từ vựng"],
-      "body": "Chế độ Quiz đưa ra câu hỏi trắc nghiệm 4 đáp án. Hệ thống tự tạo câu hỏi từ thẻ trong bộ từ.\nKết quả hiển thị ngay sau mỗi câu. Thẻ trả lời đúng ghi nhận tiến độ Mastered.\nTruy cập: Vào **Thư mục** → mở bộ từ → chọn **Quiz**.",
-      "route": "/Home/Folder",
-      "topic": "study"
+      "keywords": [
+        "quiz",
+        "câu hỏi trắc nghiệm",
+        "chế độ quiz",
+        "ôn quiz",
+        "test từ vựng"
+      ],
+      "body": "Mở khu vực Luyện tập, chọn bộ từ và chế độ Quiz để làm câu hỏi trắc nghiệm. Số câu phụ thuộc dữ liệu đủ điều kiện của bộ. Kết quả một lượt chơi không tự bảo đảm mọi từ đã đạt thành thạo.",
+      "route": "/Practice",
+      "topic": "study",
+      "questions": [
+        "Học quiz từ vựng ở đâu?",
+        "Cách mở trắc nghiệm từ vựng?",
+        "How do I start a vocabulary quiz?",
+        "Tôi muốn làm quiz cho bộ từ"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "study-write",
       "title": "Học bằng chế độ Write (Viết)",
-      "keywords": ["write mode", "chế độ viết", "nhập từ", "gõ từ", "luyện viết từ"],
-      "body": "Chế độ Write yêu cầu bạn gõ chính xác từ vựng từ gợi ý định nghĩa.\nHệ thống chấm điểm theo kết quả khớp (có thể bỏ qua hoa/thường).\nThích hợp cho giai đoạn ôn tập sâu và kiểm tra trí nhớ.\nTruy cập: Vào **Thư mục** → mở bộ từ → chọn **Write**.",
-      "route": "/Home/Folder",
-      "topic": "study"
+      "keywords": [
+        "write mode",
+        "chế độ viết",
+        "nhập từ",
+        "gõ từ",
+        "luyện viết từ"
+      ],
+      "body": "Write/Typing là luyện gõ từ vựng theo gợi ý, khác với bài luyện viết câu trong Writing. Mở Luyện tập, chọn bộ từ và chế độ gõ từ phù hợp; muốn luyện viết câu thì mở Writing.",
+      "route": "/Practice",
+      "topic": "study",
+      "questions": [
+        "Write mode từ vựng dùng thế nào?",
+        "Chế độ gõ từ theo định nghĩa ở đâu?",
+        "How do I practise vocabulary typing?",
+        "Tôi muốn ôn chính tả từ trong bộ thẻ"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "study-matching",
       "title": "Học bằng chế độ Matching (Nối từ)",
-      "keywords": ["matching", "nối từ", "chế độ matching", "kéo thả", "ghép từ"],
-      "body": "Chế độ Matching hiển thị tối đa 8 cặp thẻ. Bạn kéo thả hoặc nhấn chọn để ghép từ với định nghĩa tương ứng.\nMỗi cặp ghép đúng sẽ được đánh dấu và tính điểm.\nTruy cập: Vào **Thư mục** → mở bộ từ → chọn **Matching**.",
-      "route": "/Home/Folder",
-      "topic": "study"
+      "keywords": [
+        "matching",
+        "nối từ",
+        "chế độ matching",
+        "kéo thả",
+        "ghép từ"
+      ],
+      "body": "Mở Luyện tập, chọn bộ từ và chế độ Match để ghép từ với nghĩa. Làm theo cách chọn cặp đang hiển thị; số cặp tùy lượt chơi. Kết quả ghép cặp không đồng nghĩa tự động hoàn thành mục tiêu hay nhận danh hiệu.",
+      "route": "/Practice",
+      "topic": "study",
+      "questions": [
+        "Chơi ghép cặp từ vựng ở đâu?",
+        "Hướng dẫn học matching?",
+        "How do I play vocabulary matching?",
+        "Tôi muốn nối từ với nghĩa"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "study-read",
       "title": "Học bằng chế độ Read (Đọc)",
-      "keywords": ["read mode", "chế độ đọc", "xem thẻ", "duyệt thẻ"],
-      "body": "Chế độ Read hiển thị toàn bộ thẻ từ ở dạng danh sách để đọc lướt thụ động.\nPhù hợp để làm quen lần đầu với nội dung của bộ từ.\nTruy cập: Vào **Thư mục** → mở bộ từ → chọn **Read**.",
-      "route": "/Home/Folder",
+      "keywords": [
+        "read mode",
+        "chế độ đọc",
+        "xem thẻ",
+        "duyệt thẻ"
+      ],
+      "body": "Muốn luyện đọc hiểu, hãy mở Reading và chọn một bài đang được phép xem. Không có một chế độ Read riêng được xác nhận trong danh sách tám chế độ của trang Luyện tập từ vựng.",
+      "route": "/Home/Reading",
       "topic": "study"
     },
     {
       "id": "create-class",
       "title": "Tạo lớp học (Class)",
-      "keywords": ["tạo lớp", "lập lớp học", "tạo class", "lớp học mới", "mở lớp"],
+      "keywords": [
+        "tạo lớp",
+        "lập lớp học",
+        "tạo class",
+        "lớp học mới",
+        "mở lớp"
+      ],
       "body": "Để tạo lớp học:\n1. Vào trang **Lớp học**.\n2. Nhấn **Tạo lớp mới**.\n3. Nhập tên lớp, mô tả (tuỳ chọn).\n4. Đặt mật khẩu nếu muốn giới hạn người tham gia.\n5. Nhấn **Tạo lớp**.\nLớp vừa tạo sẽ hiển thị trong danh sách và bạn là **Chủ lớp (Owner)**.",
       "route": "/Home/CreateClass",
-      "topic": "class"
+      "topic": "class",
+      "questions": [
+        "Tạo lớp học như thế nào?",
+        "Tôi muốn mở lớp mới",
+        "How do I create a class?",
+        "Tạo class mới ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "join-class",
       "title": "Tham gia lớp học",
-      "keywords": ["tham gia lớp", "join lớp", "mã mời", "vào lớp", "tìm lớp", "nhập lớp"],
+      "keywords": [
+        "tham gia lớp",
+        "join lớp",
+        "mã mời",
+        "vào lớp",
+        "tìm lớp",
+        "nhập lớp"
+      ],
       "body": "Để tham gia lớp học:\n1. Vào trang **Lớp học**.\n2. Nhấn **Tham gia lớp** hoặc tìm lớp theo tên/mã.\n3. Nhập mật khẩu lớp nếu được yêu cầu.\n4. Nhấn **Tham gia**.\nSau khi tham gia, bạn là **Thành viên (Member)** và có thể xem tài liệu trong lớp.",
       "route": "/Home/Class",
-      "topic": "class"
+      "topic": "class",
+      "questions": [
+        "Tham gia lớp học như thế nào?",
+        "Tôi muốn vào lớp của giáo viên",
+        "How do I join a class?",
+        "Nhập mật khẩu lớp ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "share-folder-to-class",
       "title": "Chia sẻ thư mục vào lớp học",
-      "keywords": ["chia sẻ folder", "chia sẻ thư mục", "gửi set vào lớp", "share vào lớp"],
+      "keywords": [
+        "chia sẻ folder",
+        "chia sẻ thư mục",
+        "gửi set vào lớp",
+        "share vào lớp"
+      ],
       "body": "Chủ lớp có thể chia sẻ thư mục từ vựng vào lớp để thành viên cùng học:\n1. Vào trang **Lớp học** và mở lớp cần chia sẻ.\n2. Nhấn **Chia sẻ thư mục**.\n3. Chọn thư mục cần chia sẻ.\n4. Nhấn **Xác nhận**.\nThành viên lớp sẽ thấy và học được tài liệu đã chia sẻ.",
       "route": "/Home/Class",
-      "topic": "class"
+      "topic": "class",
+      "questions": [
+        "Chia sẻ thư mục cho lớp như thế nào?",
+        "Tôi muốn đưa tài liệu vào lớp",
+        "How do I share a folder with my class?",
+        "Chủ lớp chia sẻ học liệu ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "leave-class",
       "title": "Rời khỏi lớp học",
-      "keywords": ["rời lớp", "thoát lớp", "rời khỏi lớp", "leave lớp"],
+      "keywords": [
+        "rời lớp",
+        "thoát lớp",
+        "rời khỏi lớp",
+        "leave lớp"
+      ],
       "body": "Để rời lớp học:\n1. Vào trang **Lớp học** và mở lớp bạn đang tham gia.\n2. Nhấn **Rời khỏi lớp**.\n3. Xác nhận hành động.\nLưu ý: Chủ lớp (Owner) không thể tự rời lớp. Cần chuyển quyền sở hữu trước.",
       "route": "/Home/Class",
-      "topic": "class"
+      "topic": "class",
+      "questions": [
+        "Rời lớp học như thế nào?",
+        "Tôi muốn ra khỏi lớp đã tham gia",
+        "How do I leave a class?",
+        "Nút rời lớp nằm ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "speaking-playlist",
       "title": "Luyện Speaking — Tìm và chọn playlist",
-      "keywords": ["speaking playlist", "tìm playlist", "xem playlist", "danh sách speaking", "bài nói"],
-      "body": "Trang **Speaking** tập hợp các playlist video luyện nói tiếng Anh.\n1. Vào trang **Speaking**.\n2. Lọc theo **Level** (A1 → C2) hoặc **Chủ đề** (Career, Meeting, Email, Office, Customer, Technical, Grammar).\n3. Chọn playlist để xem danh sách video bên trong.\n4. Nhấn vào video để bắt đầu luyện tập.",
+      "keywords": [
+        "speaking playlist",
+        "tìm playlist",
+        "xem playlist",
+        "danh sách speaking",
+        "bài nói"
+      ],
+      "body": "Trang Speaking có video luyện nói theo cấp độ và chủ đề. Dùng bộ lọc để tìm bài, mở video có transcript rồi luyện từng câu. Có thể chọn bài công khai hoặc bài cá nhân mà tài khoản được phép dùng.",
       "route": "/Speaking",
-      "topic": "speaking"
+      "topic": "speaking",
+      "questions": [
+        "Luyện nói ở đâu?",
+        "Mình muốn học speaking",
+        "Where can I practise speaking?",
+        "Tôi muốn mở danh sách video luyện nói",
+        "luyen noi o dau"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "speaking-practice",
       "title": "Luyện Speaking — Shadowing, Dictation, Listening",
-      "keywords": ["shadowing", "dictation", "listening", "luyện nói", "luyện nghe", "bài nói", "practice speaking"],
-      "body": "Mỗi video speaking hỗ trợ 3 chế độ luyện tập:\n- **Shadowing**: Nghe và lặp lại theo từng câu. Dừng video ở điểm cần thiết để luyện phát âm.\n- **Dictation**: Gõ lại những gì bạn nghe được. Hệ thống chấm điểm tự động.\n- **Listening**: Trả lời câu hỏi về nội dung bài nghe.\nTruy cập: Vào **Speaking**, chọn playlist và video rồi chọn chế độ luyện tập mong muốn.",
+      "keywords": [
+        "shadowing",
+        "dictation",
+        "listening",
+        "luyện nói",
+        "luyện nghe",
+        "bài nói",
+        "practice speaking"
+      ],
+      "body": "Để luyện Shadowing, mở Speaking, chọn video có transcript, nghe một câu rồi nói theo. Dùng phần ghi âm và chấm điểm khi trang báo khả dụng; kết quả chỉ xuất hiện sau lượt xử lý thực tế, không phải chỉ vì đã phát video.",
       "route": "/Speaking",
-      "topic": "speaking"
+      "topic": "speaking",
+      "questions": [
+        "Luyện shadowing như thế nào?",
+        "Tập nói theo từng câu trong video ở đâu?",
+        "How do I use speaking shadowing?",
+        "Cách luyện nói theo transcript?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "set-daily-goal",
       "title": "Đặt mục tiêu học hàng ngày (Goal)",
-      "keywords": ["mục tiêu", "goal", "target", "học mỗi ngày", "đặt goal", "mục tiêu hàng ngày"],
+      "keywords": [
+        "mục tiêu",
+        "goal",
+        "target",
+        "học mỗi ngày",
+        "đặt goal",
+        "mục tiêu hàng ngày"
+      ],
       "body": "Bạn có thể đặt mục tiêu học hằng ngày tại trang **Goals**:\n1. Mở mục **Goals** trên thanh điều hướng bên trái.\n2. Nhấn **Chỉnh sửa mục tiêu**.\n3. Chọn khu vực học và số lượng cần hoàn thành mỗi ngày.\n4. Nhấn **Lưu** để theo dõi tiến độ, streak và huy hiệu.",
       "route": "/Goals",
-      "topic": "goals"
+      "topic": "goals",
+      "questions": [
+        "Đặt mục tiêu hằng ngày ở đâu?",
+        "Tôi muốn chỉnh chỉ tiêu học mỗi ngày",
+        "How do I set my daily goal?",
+        "Đổi số lượng cần học trong ngày ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "view-streak",
       "title": "Xem Streak học tập",
-      "keywords": ["streak", "học liên tục", "chuỗi ngày học", "ngày học liên tiếp", "xem streak"],
-      "body": "Streak là số ngày học liên tiếp của bạn. Streak được tính khi bạn hoàn thành ít nhất số thẻ theo mục tiêu hằng ngày.\nBạn có thể xem streak hiện tại ở:\n- Dashboard trang chủ (sau khi đăng nhập)\n- Trang Hồ sơ cá nhân\nNếu bỏ một ngày, streak sẽ bị reset về 0.",
-      "route": "/Home/Index",
-      "topic": "account"
+      "keywords": [
+        "streak",
+        "học liên tục",
+        "chuỗi ngày học",
+        "ngày học liên tiếp",
+        "xem streak"
+      ],
+      "body": "Chuỗi ngày học được theo dõi từ hoạt động học hợp lệ, không chỉ từ việc đăng nhập hay mở trang. Xem trạng thái chuỗi tại Goals hoặc hồ sơ. Nếu chuỗi chưa cập nhật, kiểm tra hoạt động đã được ghi nhận và điều kiện hiển thị trước khi báo lỗi.",
+      "route": "/Goals",
+      "topic": "account",
+      "questions": [
+        "Xem chuỗi ngày học ở đâu?",
+        "Streak được tính thế nào?",
+        "How do I check my study streak?",
+        "Đăng nhập có được tính chuỗi học không?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "account-profile",
       "title": "Hồ sơ cá nhân và cài đặt tài khoản",
-      "keywords": ["hồ sơ", "profile", "cài đặt tài khoản", "đổi tên", "ảnh đại diện", "thông tin cá nhân"],
+      "keywords": [
+        "hồ sơ",
+        "profile",
+        "cài đặt tài khoản",
+        "đổi tên",
+        "ảnh đại diện",
+        "thông tin cá nhân"
+      ],
       "body": "Vào **Hồ sơ cá nhân** để:\n- Cập nhật tên hiển thị, ảnh đại diện.\n- Xem thống kê học tập cá nhân.\n- Đặt hoặc đổi mục tiêu học hàng ngày.\n- Quản lý bảo mật tài khoản (đổi mật khẩu).\nTruy cập: Nhấn vào ảnh đại diện ở góc trên bên phải → chọn **Hồ sơ**.",
       "route": "/Account/Profile",
-      "topic": "account"
+      "topic": "account",
+      "questions": [
+        "Xem hồ sơ cá nhân ở đâu?",
+        "Mở trang profile như thế nào?",
+        "Where is my profile page?",
+        "Tôi muốn xem thống kê trong trang cá nhân"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "change-password",
       "title": "Đổi mật khẩu tài khoản",
-      "keywords": ["đổi mật khẩu", "thay mật khẩu", "password", "bảo mật tài khoản"],
-      "body": "Để đổi mật khẩu:\n1. Vào **Hồ sơ cá nhân** → chọn tab **Bảo mật**.\n2. Nhập mật khẩu hiện tại.\n3. Nhập mật khẩu mới và xác nhận.\n4. Nhấn **Lưu thay đổi**.\nNếu quên mật khẩu, dùng chức năng **Quên mật khẩu** ở trang đăng nhập để nhận email đặt lại.",
+      "keywords": [
+        "đổi mật khẩu",
+        "thay mật khẩu",
+        "password",
+        "bảo mật tài khoản"
+      ],
+      "body": "Để đổi mật khẩu, mở Cài đặt tài khoản, tìm phần Bảo mật và làm theo bước xác minh. Nếu quên mật khẩu, dùng chức năng Quên mật khẩu trên trang đăng nhập. Không gửi mật khẩu hoặc mã xác minh vào chatbot.",
       "route": "/Account/Settings",
-      "topic": "account"
+      "topic": "account",
+      "questions": [
+        "Đổi mật khẩu ở đâu?",
+        "Tôi muốn thay mật khẩu tài khoản",
+        "How do I change my password?",
+        "Vào phần bảo mật tài khoản bằng cách nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "login-google-facebook",
       "title": "Đăng nhập bằng Google hoặc Facebook",
-      "keywords": ["google login", "facebook login", "đăng nhập google", "đăng nhập facebook", "oauth"],
+      "keywords": [
+        "google login",
+        "facebook login",
+        "đăng nhập google",
+        "đăng nhập facebook",
+        "oauth"
+      ],
       "body": "Bạn có thể đăng nhập TCT English bằng tài khoản Google hoặc Facebook:\n1. Vào trang **Đăng nhập**.\n2. Nhấn nút **Tiếp tục với Google** hoặc **Tiếp tục với Facebook**.\n3. Xác nhận quyền truy cập trên trang của Google/Facebook.\n4. Hệ thống tự tạo hoặc kết nối tài khoản TCT English của bạn.",
       "route": "/Account/Login",
-      "topic": "account"
+      "topic": "account",
+      "questions": [
+        "Đăng nhập Google như thế nào?",
+        "Tôi muốn đăng nhập Facebook",
+        "How do I sign in with Google?",
+        "Mở trang đăng nhập ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "ai-chatbox-usage",
       "title": "Cách sử dụng Chatbox AI Trợ lý",
-      "keywords": ["dùng chatbox", "hỏi chatbot", "chatbox ai", "trợ lý ai", "chat với ai", "hỏi trợ lý"],
+      "keywords": [
+        "dùng chatbox",
+        "hỏi chatbot",
+        "chatbox ai",
+        "trợ lý ai",
+        "chat với ai",
+        "hỏi trợ lý"
+      ],
       "body": "Chatbox AI Trợ lý của TCT English hỗ trợ các câu hỏi liên quan đến:\n- Bộ từ vựng của bạn (xem, tìm kiếm)\n- Tiến độ học (streak, thẻ đã thuộc)\n- Thông tin lớp học\n- Gợi ý bài speaking\n- Cách sử dụng website\n- Gợi ý kế hoạch học tập\n\nGhí chú: Trợ lý **chỉ trả lời** các câu hỏi liên quan đến dữ liệu và tính năng của TCT English. Các câu hỏi về ngữ pháp tiếng Anh tổng quát hoặc kiến thức ngoài website sẽ được từ chối lịch sự.",
       "route": "/AI/Chat",
       "topic": "ai"
@@ -175,162 +448,967 @@
     {
       "id": "search-set",
       "title": "Tìm kiếm bộ từ vựng",
-      "keywords": ["tìm set", "tìm bộ từ", "search set", "tìm kiếm"],
+      "keywords": [
+        "tìm set",
+        "tìm bộ từ",
+        "search set",
+        "tìm kiếm"
+      ],
       "body": "Bạn có thể tìm kiếm bộ từ vựng trên TCT English:\n1. Sử dụng thanh tìm kiếm ở đầu trang.\n2. Nhập từ khoá tên bộ từ hoặc từ vựng bạn muốn tìm.\n3. Kết quả hiển thị danh sách bộ từ khớp với từ khoá.\nNgoài ra trong trang **Bộ từ vựng** có thể lọc và sắp xếp các bộ từ của bạn.",
       "route": "/Home/Search",
-      "topic": "vocabulary"
+      "topic": "vocabulary",
+      "questions": [
+        "Tìm bộ từ theo tên ở đâu?",
+        "Tôi muốn tìm kiếm bộ từ vựng",
+        "How do I search vocabulary sets?",
+        "Tìm thẻ từ trên website bằng cách nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "reading-quick-action",
       "title": "Reading",
-      "keywords": ["làm bài reading", "reading như thế nào", "reading ở đâu", "tính năng reading"],
+      "keywords": [
+        "làm bài reading",
+        "reading như thế nào",
+        "reading ở đâu",
+        "tính năng reading"
+      ],
       "body": "Reading nằm trong nhóm Courses. Bạn mở trang Reading để chọn bài đọc, đọc nội dung và làm câu hỏi kiểm tra đọc hiểu.",
       "route": "/Home/Reading",
-      "topic": "reading"
+      "topic": "reading",
+      "questions": [
+        "Làm bài Reading như thế nào?",
+        "Mở trang Reading ở đâu?",
+        "Where is the Reading course?",
+        "Tôi muốn bắt đầu khóa Reading"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "writing-quick-action",
       "title": "Writing",
-      "keywords": ["tính năng writing", "writing hoạt động", "writing ra sao", "cách chấm điểm writing", "ai chấm điểm writing"],
-      "body": "Writing nằm trong nhóm Courses. Bạn chọn cấp độ, mở danh sách bài tập và luyện viết; các bài premium có thể dùng AI để chấm điểm và gợi ý rewrite.",
+      "keywords": [
+        "tính năng writing",
+        "writing hoạt động",
+        "writing ra sao",
+        "cách chấm điểm writing",
+        "ai chấm điểm writing"
+      ],
+      "body": "Writing cho phép chọn cấp độ và bài tập để luyện viết câu. Trang danh sách có bài công khai, bài cá nhân được phép xem và bài luyện gần đây. Chức năng tạo bài và phản hồi AI tùy quyền truy cập, hạn mức và trạng thái dịch vụ đang hiển thị.",
       "route": "/Home/Writing",
-      "topic": "writing"
+      "topic": "writing",
+      "questions": [
+        "Tính năng Writing hoạt động ra sao?",
+        "Writing có những chức năng gì?",
+        "What does the Writing course do?",
+        "Giới thiệu tính năng Writing"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "listening-quick-action",
       "title": "Listening",
-      "keywords": ["tính năng listening", "listening gồm", "listening có gì", "xem transcript listening"],
-      "body": "Listening nằm trong nhóm Courses. Mỗi bài nghe có transcript, từ vựng nổi bật và các phần luyện nghe để bạn nghe lại đúng đoạn cần ôn.",
+      "keywords": [
+        "tính năng listening",
+        "listening gồm",
+        "listening có gì",
+        "xem transcript listening"
+      ],
+      "body": "Mở Listening để tìm bài nghe theo các bộ lọc hiện có, rồi chọn bài muốn học. Transcript, câu hỏi và từ vựng phụ thuộc dữ liệu của từng bài; không phải mọi video đều mặc định có đủ các phần này.",
       "route": "/Home/Listening",
-      "topic": "listening"
+      "topic": "listening",
+      "questions": [
+        "Tính năng Listening gồm những phần nào?",
+        "Listening có gì?",
+        "What does the Listening course offer?",
+        "Giới thiệu tính năng Listening"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "reading-practice",
       "title": "Luyện tập Kỹ năng Đọc (Reading)",
-      "keywords": ["luyện đọc", "reading", "bài đọc", "reading comprehension", "trắc nghiệm đọc"],
-      "body": "Tính năng Reading giúp bạn luyện kỹ năng đọc hiểu qua các đoạn văn bản:\n- Chế độ **Study**: Đọc đoạn văn kết hợp hình ảnh minh họa.\n- Chế độ **Quiz**: Trả lời các câu hỏi Multiple Choice dựa trên nội dung đã đọc.\nHệ thống sẽ lưu lại lịch sử làm bài để tính điểm kinh nghiệm (XP) cho bạn.",
+      "keywords": [
+        "luyện đọc",
+        "reading",
+        "bài đọc",
+        "reading comprehension",
+        "trắc nghiệm đọc"
+      ],
+      "body": "Mở Reading, chọn bài đọc đang được phép xem rồi đọc nội dung và làm các câu hỏi có trong bài. Nếu cần tìm một bài cụ thể, dùng tên bài hoặc chủ đề. Không cần có bộ từ vựng cá nhân mới được bắt đầu đọc bài công khai.",
       "route": "/Home/Reading",
-      "topic": "reading"
+      "topic": "reading",
+      "questions": [
+        "Tôi muốn luyện đọc ở đâu?",
+        "Làm sao chọn bài đọc hiểu?",
+        "How do I practise reading comprehension?",
+        "luyen doc tieng anh o dau"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "writing-practice",
       "title": "Luyện tập Kỹ năng Viết (Writing)",
-      "keywords": ["luyện viết", "writing", "dịch câu", "ai chấm điểm", "sửa lỗi ngữ pháp"],
-      "body": "Tính năng Writing cung cấp các bài tập viết tập trung vào dịch câu và viết tự do.\nĐặc biệt, hệ thống sử dụng **AI tích hợp (Premium)** để chấm điểm chi tiết bài viết của bạn theo 4 tiêu chí: Ngữ nghĩa, Ngữ pháp, Độ tự nhiên và Từ vựng. Bạn cũng sẽ nhận được gợi ý viết lại (Rewrite) sao cho tự nhiên như người bản xứ.",
-      "route": "/Home/Writing",
-      "topic": "writing"
+      "keywords": [
+        "luyện viết",
+        "writing",
+        "dịch câu",
+        "ai chấm điểm",
+        "sửa lỗi ngữ pháp"
+      ],
+      "body": "Mở danh sách bài tập Writing, chọn cấp độ, dạng bài và chủ đề rồi mở bài muốn luyện. Đọc câu gợi ý, viết câu trả lời và gửi theo hướng dẫn của trang. Không cần tạo một bộ từ vựng riêng để chọn bài Writing công khai.",
+      "route": "/Home/Writing/Exercises",
+      "topic": "writing",
+      "questions": [
+        "Luyện viết tiếng Anh ở đâu?",
+        "Mình muốn luyện viết tiếng Anh",
+        "Where can I practise writing?",
+        "luyen viet o dau"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "listening-practice",
       "title": "Luyện tập Kỹ năng Nghe (Listening)",
-      "keywords": ["luyện nghe", "listening", "nghe audio", "transcript", "bài nghe"],
-      "body": "Với tính năng Listening, bạn có thể luyện nghe qua các bài học âm thanh (Audio) đi kèm:\n- **Transcript**: Theo dõi kịch bản bài nghe.\n- **Từ vựng nổi bật**: Hệ thống bôi đậm từ khóa khó trong bài.\n- **Focus Listening**: Nhấn vào từng phần văn bản để nghe đi nghe lại nghe chính xác đoạn đó.",
+      "keywords": [
+        "luyện nghe",
+        "listening",
+        "nghe audio",
+        "transcript",
+        "bài nghe"
+      ],
+      "body": "Mở Listening, chọn bài nghe rồi dùng các điều khiển và nội dung hỗ trợ thực tế của bài. Nếu có transcript hoặc câu hỏi, dùng chúng để kiểm tra phần đã nghe; nếu chưa có, không nên coi đó là dữ liệu đã hoàn thiện.",
       "route": "/Home/Listening",
-      "topic": "listening"
+      "topic": "listening",
+      "questions": [
+        "Luyện nghe ở đâu?",
+        "Luyen nghe o dau vay ban?",
+        "Where can I practise listening?",
+        "Tôi muốn nghe bài tiếng Anh trên web"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "notifications",
       "title": "Thông báo trong TCT English",
-      "keywords": ["thông báo", "xem thông báo", "notification", "notifications", "bell", "quả chuông", "chuông thông báo"],
+      "keywords": [
+        "thông báo",
+        "xem thông báo",
+        "notification",
+        "notifications",
+        "bell",
+        "quả chuông",
+        "chuông thông báo"
+      ],
       "body": "Bạn có thể xem thông báo bằng biểu tượng quả chuông ở góc phải màn hình. Nếu muốn xem danh sách đầy đủ, mở trang Thông báo trong thanh điều hướng bên trái.",
       "route": "/Notification/Index",
-      "topic": "notification"
+      "topic": "notification",
+      "questions": [
+        "Tôi có thể xem thông báo ở đâu?",
+        "Mở danh sách thông báo bằng cách nào?",
+        "Where are my notifications?",
+        "Xem các thông báo chưa đọc ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "site-overview-navigation",
       "title": "Tổng quan và điều hướng TCT English",
-      "keywords": ["tổng quan", "navigation", "điều hướng", "menu", "dashboard", "giới thiệu", "about", "website có những tính năng gì"],
+      "keywords": [
+        "tổng quan",
+        "navigation",
+        "điều hướng",
+        "menu",
+        "dashboard",
+        "giới thiệu",
+        "about",
+        "website có những tính năng gì"
+      ],
       "body": "Trang Dashboard là điểm bắt đầu sau khi đăng nhập. Thanh điều hướng bên trái cho phép mở Courses, Goals, Thông báo, Vocabulary, Classes và Contact.",
       "route": "/Home/Index",
-      "topic": "support"
+      "topic": "support",
+      "questions": [
+        "Website có những tính năng gì?",
+        "Tôi muốn xem tổng quan các trang học",
+        "How do I navigate TCT English?",
+        "Mở Dashboard ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "goals-overview",
       "title": "Goals và mục tiêu học tập",
-      "keywords": ["goals", "mục tiêu học tập", "đặt mục tiêu", "mục tiêu hằng ngày", "mục tiêu ngày", "xem goals", "tiến độ mục tiêu", "badge", "huy hiệu"],
+      "keywords": [
+        "goals",
+        "mục tiêu học tập",
+        "đặt mục tiêu",
+        "mục tiêu hằng ngày",
+        "mục tiêu ngày",
+        "xem goals",
+        "tiến độ mục tiêu",
+        "badge",
+        "huy hiệu"
+      ],
       "body": "Trang Goals giúp bạn đặt mục tiêu học theo ngày và xem tiến độ theo từng khu vực học.\n1. Mở mục **Goals** từ thanh điều hướng bên trái.\n2. Chọn **Chỉnh sửa mục tiêu** để đặt số lượng cần hoàn thành mỗi ngày.\n3. Theo dõi tiến độ, streak, XP và huy hiệu đã mở khóa ngay trên trang này.",
       "route": "/Goals",
-      "topic": "goals"
+      "topic": "goals",
+      "questions": [
+        "Trang Goals dùng để làm gì?",
+        "Xem tiến độ mục tiêu ở đâu?",
+        "How do I use the Goals page?",
+        "Goals có những chỉ số nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "daily-challenge",
       "title": "Daily Challenge trên Dashboard",
-      "keywords": ["daily challenge", "thử thách hằng ngày", "thử thách ngày", "daily quiz", "câu hỏi mỗi ngày", "ôn nhanh trên dashboard"],
-      "body": "Daily Challenge nằm trên Dashboard sau khi đăng nhập. Bạn chọn đáp án cho thẻ được gợi ý; nếu đúng, hệ thống ghi nhận hoạt động học và XP trong ngày. Nếu chưa thấy thử thách, hãy kiểm tra lại khi tài khoản đã có bộ từ và thẻ học.",
+      "keywords": [
+        "daily challenge",
+        "thử thách hằng ngày",
+        "thử thách ngày",
+        "daily quiz",
+        "câu hỏi mỗi ngày",
+        "ôn nhanh trên dashboard"
+      ],
+      "body": "Daily Challenge nằm trên Dashboard sau khi đăng nhập. Mở thử thách và chọn đáp án theo hướng dẫn. Hoạt động và phần thưởng được backend kiểm tra; việc chỉ mở Dashboard không được coi là đã hoàn thành thử thách.",
       "route": "/Home/Index",
-      "topic": "goals"
+      "topic": "goals",
+      "questions": [
+        "Daily challenge ở đâu?",
+        "Làm thử thách hằng ngày ở đâu?",
+        "Where is the daily challenge?",
+        "Mở câu hỏi thử thách mỗi ngày như thế nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "class-chat",
       "title": "Chat trong lớp học",
-      "keywords": ["chat lớp", "class chat", "nhắn tin trong lớp", "gửi ảnh trong lớp", "trao đổi với lớp", "tin nhắn lớp học"],
+      "keywords": [
+        "chat lớp",
+        "class chat",
+        "nhắn tin trong lớp",
+        "gửi ảnh trong lớp",
+        "trao đổi với lớp",
+        "tin nhắn lớp học"
+      ],
       "body": "Trong trang chi tiết lớp, tab Chat cho phép thành viên trao đổi tin nhắn và gửi ảnh học tập.\n1. Vào trang **Lớp học** và mở lớp bạn đang tham gia.\n2. Chọn tab **Chat**.\n3. Nhập tin nhắn hoặc chọn biểu tượng ảnh để gửi hình.\nChỉ thành viên có quyền truy cập lớp mới xem được nội dung chat.",
       "route": "/Home/Class",
-      "topic": "class"
+      "topic": "class",
+      "questions": [
+        "Cách gửi ảnh trong chat lớp học?",
+        "Chat với thành viên lớp ở đâu?",
+        "How do I open class chat?",
+        "Mở tab Chat trong lớp bằng cách nào?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "organize-sets-in-folders",
       "title": "Sắp xếp set vào thư mục",
-      "keywords": ["đưa set vào folder", "sắp xếp set", "quản lý folder", "di chuyển set vào thư mục", "tổ chức bộ từ", "folder chứa set"],
+      "keywords": [
+        "đưa set vào folder",
+        "sắp xếp set",
+        "quản lý folder",
+        "di chuyển set vào thư mục",
+        "tổ chức bộ từ",
+        "folder chứa set"
+      ],
       "body": "Thư mục giúp gom các bộ từ theo chủ đề. Khi tạo hoặc chỉnh sửa bộ từ, bạn chọn thư mục cần lưu; sau đó mở **Thư mục** để xem lại các set đã được sắp xếp. Nếu cần chia sẻ cho lớp, hãy mở chi tiết lớp và dùng chức năng chia sẻ thư mục.",
       "route": "/Home/Folder",
-      "topic": "vocabulary"
+      "topic": "vocabulary",
+      "questions": [
+        "Làm sao đưa set vào folder?",
+        "Sắp xếp bộ từ vào thư mục như thế nào?",
+        "How do I organize sets into folders?",
+        "Di chuyển bộ từ vào thư mục ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "premium-pricing",
       "title": "Premium và thanh toán",
-      "keywords": ["premium", "gói premium", "mua premium", "nâng cấp", "thanh toán", "payment", "billing", "vnpay", "momo", "pricing"],
+      "keywords": [
+        "premium",
+        "gói premium",
+        "mua premium",
+        "nâng cấp",
+        "thanh toán",
+        "payment",
+        "billing",
+        "vnpay",
+        "momo",
+        "pricing"
+      ],
       "body": "Trang Premium hiển thị các gói đang mở bán, thời hạn sử dụng và phương thức thanh toán được hỗ trợ. Để nâng cấp: mở trang **Premium**, chọn gói phù hợp, chọn cổng thanh toán như VNPay hoặc MoMo nếu đang khả dụng, rồi hoàn tất trên cổng thanh toán. Không chia sẻ API key, mã giao dịch gateway, link thanh toán riêng hoặc thông tin cấu hình trong chat.",
       "route": "/Premium",
-      "topic": "billing"
+      "topic": "billing",
+      "questions": [
+        "Premium có gì?",
+        "Xem giá gói Premium ở đâu?",
+        "Where can I view Premium plans?",
+        "Tôi muốn xem các gói nâng cấp"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "payment-history",
       "title": "Lịch sử thanh toán",
-      "keywords": ["lịch sử thanh toán", "payment history", "billing history", "đơn hàng", "trạng thái thanh toán", "hóa đơn", "order status"],
+      "keywords": [
+        "lịch sử thanh toán",
+        "payment history",
+        "billing history",
+        "đơn hàng",
+        "trạng thái thanh toán",
+        "hóa đơn",
+        "order status"
+      ],
       "body": "Bạn có thể xem các đơn thanh toán của chính mình tại trang **Lịch sử thanh toán**. Trang này hiển thị gói đã chọn, số tiền, nhà cung cấp thanh toán và trạng thái xử lý. Nếu đơn đang chờ hoặc cần kiểm tra thủ công, hãy liên hệ hỗ trợ thay vì gửi thông tin bí mật qua chat.",
       "route": "/Billing/History",
-      "topic": "billing"
+      "topic": "billing",
+      "questions": [
+        "Cách xem lịch sử thanh toán?",
+        "Kiểm tra đơn mua gói ở đâu?",
+        "Where is my payment history?",
+        "Tôi muốn mở lịch sử thanh toán của mình"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "premium-feature-access",
       "title": "Tính năng Premium",
-      "keywords": ["premium có gì", "tính năng premium", "premium bao gồm", "khóa premium", "premium feature", "ai premium"],
-      "body": "Premium mở các tính năng nâng cao như tạo bài Writing bằng AI, chấm Writing chi tiết, nhập video YouTube cho Speaking/Listening và các thao tác AI tốn tài nguyên hơn. Nếu bạn chưa có Premium, hệ thống sẽ hiển thị modal khóa tính năng và đường dẫn đến trang nâng cấp.",
+      "keywords": [
+        "premium có gì",
+        "tính năng premium",
+        "premium bao gồm",
+        "khóa premium",
+        "premium feature",
+        "ai premium"
+      ],
+      "body": "Quyền sử dụng chức năng nâng cao phụ thuộc gói và hạn mức tài khoản. Mở Premium để xem quyền lợi đang hiển thị; khi tạo bài Writing hoặc nhập video luyện nói, làm theo trạng thái truy cập của trang. Không suy đoán giá, hạn mức hay quyền mua từ câu trả lời tĩnh.",
       "route": "/Premium",
-      "topic": "billing"
+      "topic": "billing",
+      "questions": [
+        "Tính năng nào yêu cầu Premium?",
+        "Vì sao chức năng AI đang bị khóa?",
+        "Which features require Premium?",
+        "Xem quyền lợi gói nâng cao ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "grammar-page",
       "title": "Grammar",
-      "keywords": ["grammar", "ngữ pháp", "trang grammar", "học grammar", "courses grammar"],
+      "keywords": [
+        "grammar",
+        "ngữ pháp",
+        "trang grammar",
+        "học grammar",
+        "courses grammar"
+      ],
       "body": "Trang Grammar nằm trong nhóm Courses và dành cho nội dung ngữ pháp trên nền tảng. Chatbox chỉ hướng dẫn cách mở và sử dụng trang Grammar; nếu bạn yêu cầu giải bài ngữ pháp ngoài hệ thống, chatbox sẽ từ chối lịch sự.",
       "route": "/Home/Grammar",
-      "topic": "study"
+      "topic": "study",
+      "questions": [
+        "Trang Grammar ở đâu?",
+        "Mở khu vực ngữ pháp của website ở đâu?",
+        "Where is the Grammar page?",
+        "Tôi muốn vào trang Grammar"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "privacy-terms",
       "title": "Chính sách và điều khoản",
-      "keywords": ["privacy", "chính sách", "bảo mật", "terms", "điều khoản", "quy định sử dụng"],
+      "keywords": [
+        "privacy",
+        "chính sách",
+        "bảo mật",
+        "terms",
+        "điều khoản",
+        "quy định sử dụng"
+      ],
       "body": "Bạn có thể xem thông tin chính sách quyền riêng tư và điều khoản sử dụng trên các trang công khai của TCT English. Chatbox không cung cấp hoặc suy đoán thông tin bí mật như connection string, OAuth secret, SMTP credential, token, cookie hoặc dữ liệu của người dùng khác.",
       "route": "/Home/Privacypolicy",
-      "topic": "support"
+      "topic": "support",
+      "questions": [
+        "Xem chính sách bảo mật ở đâu?",
+        "Mở điều khoản sử dụng ở đâu?",
+        "Where is the privacy policy?",
+        "Tôi muốn xem chính sách quyền riêng tư"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "admin-management-overview",
       "title": "Khu vực quản trị",
-      "keywords": ["admin", "quản trị", "quản lý user", "quản lý billing", "quản lý thanh toán", "quản lý reading", "quản lý listening", "quản lý writing", "quản lý speaking", "quản lý set"],
+      "keywords": [
+        "admin",
+        "quản trị",
+        "quản lý user",
+        "quản lý billing",
+        "quản lý thanh toán",
+        "quản lý reading",
+        "quản lý listening",
+        "quản lý writing",
+        "quản lý speaking",
+        "quản lý set"
+      ],
       "body": "Khu vực Admin chỉ dành cho tài khoản có vai trò Admin. Các nhóm quản lý chính gồm dashboard, người dùng, thông báo, AI, billing/premium, vocabulary set, Reading, Listening, Writing và Speaking. Vì lý do bảo mật, chatbox không cung cấp route nội bộ, cách vượt quyền, token, credential hay logic backend; hãy đăng nhập đúng vai trò và dùng menu Admin trong giao diện.",
       "route": null,
-      "topic": "admin"
+      "topic": "admin",
+      "questions": [
+        "Admin có những chức năng gì?",
+        "Tài khoản nào được dùng trang quản trị?",
+        "Who can use the admin area?",
+        "Xem hướng dẫn khu vực quản trị"
+      ],
+      "reviewedAt": "2026-11-17"
     },
     {
       "id": "contact-support",
       "title": "Liên hệ hỗ trợ và Các thông tin khác",
-      "keywords": ["liên hệ", "hỗ trợ", "contact", "support", "thông báo", "landing page", "về chúng tôi"],
-      "body": "TCT English cung cấp hệ thống học tiếng Anh toàn diện cho nội bộ.\n- **Thông báo**: Xem ở biểu tượng quả chuông trên góc phải màn hình.\n- **Khám phá tổng quan**: Xem tại trang Dashboard và Navigation bên trái.\n- **Liên hệ hỗ trợ**: Nếu gặp lỗi hoặc có thắc mắc trong quá trình học, vui lòng nhấn mục **Contact** ở cuối trang để được hỗ trợ trực tiếp từ quản trị viên bằng Email hoặc SĐT.",
+      "keywords": [
+        "liên hệ",
+        "hỗ trợ",
+        "contact",
+        "support",
+        "thông báo",
+        "landing page",
+        "về chúng tôi"
+      ],
+      "body": "Mở trang Liên hệ, điền họ tên, email nhận phản hồi, chủ đề và nội dung rồi gửi biểu mẫu. Nếu tài khoản bị khóa, chọn chủ đề khiếu nại tài khoản; trang này dùng được khi chưa đăng nhập. Không gửi mật khẩu hoặc mã xác minh. Thời gian phản hồi không được bảo đảm bởi chatbot.",
       "route": "/Home/Contact",
-      "topic": "support"
+      "topic": "support",
+      "questions": [
+        "Cách liên hệ hỗ trợ?",
+        "Báo lỗi cho quản trị viên ở đâu?",
+        "How can I contact support?",
+        "Tôi muốn gửi góp ý cho website"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "starter-vocabulary",
+      "title": "Khởi đầu với từ vựng",
+      "topic": "study",
+      "route": "/Practice",
+      "body": "Cùng mở Luyện tập, chọn một bộ từ bạn thích rồi ôn một lượt ngắn nhẹ nhàng với Flashcard hoặc Quiz nhé 🌱.",
+      "keywords": [
+        "bắt đầu học từ vựng",
+        "người mới từ vựng",
+        "starter vocabulary"
+      ],
+      "questions": [
+        "Người mới bắt đầu học từ vựng ở đâu?",
+        "Chưa biết học từ vựng từ đâu",
+        "Where should a beginner start vocabulary?",
+        "Tôi mới dùng web muốn ôn vài từ"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "starter-speaking",
+      "title": "Khởi đầu với luyện nói",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Mình cùng thử một câu ngắn nhé 🎙️ Bạn chọn video có transcript ở Speaking rồi nghe và nói theo nha.",
+      "keywords": [
+        "bắt đầu luyện nói",
+        "speaking cho người mới",
+        "starter speaking"
+      ],
+      "questions": [
+        "Người mới bắt đầu luyện nói thế nào?",
+        "Tôi muốn thử nói một vài câu",
+        "How can a beginner start speaking practice?",
+        "Chưa học gì có luyện nói được không?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "starter-writing",
+      "title": "Khởi đầu với luyện viết",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Có nè ✍️ Bạn mở Writing, chọn cấp Cơ bản và một dạng bài muốn luyện rồi thử viết từng câu nhé.",
+      "keywords": [
+        "bắt đầu luyện viết",
+        "writing cho người mới",
+        "starter writing"
+      ],
+      "questions": [
+        "Người mới bắt đầu luyện viết thế nào?",
+        "Tôi muốn thử viết một vài câu",
+        "How can a beginner start writing practice?",
+        "Chưa có bộ từ có học Writing được không?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "speaking-youtube",
+      "title": "Tạo video luyện nói từ YouTube",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Mở Speaking, tìm khu vực bài cá nhân hoặc nhập video YouTube và dán liên kết hợp lệ. Việc nhập phụ thuộc quyền tài khoản, hạn mức, khả năng lấy nội dung và transcript. Theo dõi trạng thái xử lý; không coi dán link là đã có bài luyện hoàn chỉnh.",
+      "keywords": [
+        "dán link youtube",
+        "tạo video riêng",
+        "nhập video luyện nói",
+        "youtube speaking"
+      ],
+      "questions": [
+        "Dán link YouTube để luyện nói ở đâu?",
+        "Tạo bài Speaking riêng từ YouTube thế nào?",
+        "Where can I import a YouTube speaking video?",
+        "Mình muốn thêm video luyện nói cá nhân",
+        "Nhập video YouTube vào Speaking ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "speaking-recent",
+      "title": "Tìm lại video luyện nói gần đây",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Mở Speaking và xem khu vực video luyện nói gần đây khi đã đăng nhập. Danh sách phản ánh các bài bạn đã mở học và còn được phép xem; một video bị xóa hoặc khóa có thể không còn mở được.",
+      "keywords": [
+        "video gần đây",
+        "speaking gần đây",
+        "học nói tiếp",
+        "recent speaking"
+      ],
+      "questions": [
+        "Tìm video Speaking vừa học ở đâu?",
+        "Mở lại bài luyện nói gần đây thế nào?",
+        "Where are my recent speaking videos?",
+        "Mình lỡ thoát bài nói tìm lại ở đâu?",
+        "Video luyện nói gần đây nằm ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "speaking-transcript",
+      "title": "Transcript trong bài luyện nói",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Trong bài Speaking, dùng transcript đã có để chọn câu và theo dõi lời nói. Nếu bài chưa có transcript hoặc chưa xử lý xong, kiểm tra trạng thái nhập bài và các lựa chọn bổ sung phụ đề đang hiển thị. Chatbot không tự tạo lời thoại hoặc mốc thời gian để lấp chỗ thiếu.",
+      "keywords": [
+        "transcript speaking",
+        "phụ đề luyện nói",
+        "thiếu transcript",
+        "lời thoại video"
+      ],
+      "questions": [
+        "Video Speaking không có transcript phải làm sao?",
+        "Xem phụ đề của bài luyện nói ở đâu?",
+        "Where is the speaking transcript?",
+        "Cách hiện lời thoại trong video Speaking?",
+        "Transcript chưa sẵn sàng có học được không?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "speaking-microphone",
+      "title": "Micro và ghi âm luyện nói",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Mở bài Speaking, chọn câu và dùng nút ghi âm. Cho phép quyền micro trên trình duyệt, kiểm tra thiết bị đầu vào rồi thử lại nếu chưa thu được tiếng. Chỉ bấm gửi khi sẵn sàng; chatbot không tự bật micro hoặc gửi bản ghi thay bạn.",
+      "keywords": [
+        "micro luyện nói",
+        "ghi âm speaking",
+        "quyền microphone",
+        "không thu được tiếng"
+      ],
+      "questions": [
+        "Micro không hoạt động khi luyện nói thì làm sao?",
+        "Cho phép ghi âm Speaking ở đâu?",
+        "How do I enable the microphone for speaking?",
+        "Tôi muốn thu âm câu vừa nghe",
+        "Trình duyệt chặn micro luyện nói phải làm sao?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "speaking-scoring",
+      "title": "Xem kết quả chấm luyện nói",
+      "topic": "speaking",
+      "route": "/Speaking",
+      "body": "Trong bài Speaking, chọn câu, ghi âm và gửi chấm khi chức năng khả dụng. Xem điểm và phản hồi trả về từ lượt chấm thực tế. Nếu dịch vụ báo lỗi hoặc chưa có kết quả, không suy đoán điểm; giữ thông tin lỗi cần thiết để thử lại có chủ đích hoặc báo hỗ trợ.",
+      "keywords": [
+        "chấm điểm speaking",
+        "điểm phát âm",
+        "phản hồi luyện nói",
+        "speaking score"
+      ],
+      "questions": [
+        "Chấm điểm phát âm ở đâu?",
+        "Xem phản hồi bài luyện nói như thế nào?",
+        "How do I get a speaking score?",
+        "Vì sao ghi âm xong chưa có điểm?",
+        "Tôi muốn kiểm tra điểm luyện nói của mình"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-recent",
+      "title": "Tìm lại bài luyện viết gần đây",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Mở danh sách bài tập Writing và xem khu vực bài luyện viết gần đây sau khi đăng nhập. Chọn bài để quay lại luyện. Bài đã xóa hoặc không còn quyền truy cập sẽ không được mở chỉ nhờ có lịch sử.",
+      "keywords": [
+        "bài viết gần đây",
+        "writing gần đây",
+        "tìm lại bài viết",
+        "recent writing",
+        "lỡ thoát bài viết"
+      ],
+      "questions": [
+        "Tìm lại bài viết gần đây ở đâu?",
+        "Mình lỡ thoát Writing tìm lại bài thế nào?",
+        "Where are my recent writing exercises?",
+        "Học tiếp bài Writing vừa mở ở đâu?",
+        "Bài luyện viết gần đây nằm ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-level-format",
+      "title": "Chọn cấp độ và dạng bài Writing",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Danh sách Writing có các cấp Cơ bản, Trung cấp và Nâng cao. Dùng bộ lọc để chọn Email, Nhật ký, Bài luận, Bài viết, Câu chuyện hoặc Báo cáo theo lựa chọn hiện có. Không đồng nhất ba cấp Writing với nhãn A1–C2 của video Speaking.",
+      "keywords": [
+        "cấp độ writing",
+        "dạng bài writing",
+        "email nhật ký bài luận",
+        "lọc bài viết"
+      ],
+      "questions": [
+        "Writing có những cấp độ nào?",
+        "Chọn bài viết dạng Email ở đâu?",
+        "How do I filter writing exercises by level?",
+        "Tôi muốn tìm bài viết Nhật ký",
+        "Lọc chủ đề và dạng bài Writing thế nào?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-ai-brief",
+      "title": "Tạo bài Writing từ mô tả",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Trong Bài viết của tôi, chọn chế độ mô tả bài muốn luyện. Nhập yêu cầu, chọn cấp độ, dạng bài và các lựa chọn đang có rồi gửi tạo bài nếu tài khoản được phép. Chế độ này sáng tác bài từ yêu cầu, khác với dán một bài hoàn chỉnh để chuyển thành bài tập.",
+      "keywords": [
+        "mô tả bài muốn luyện",
+        "tạo bài từ yêu cầu",
+        "sáng tác bài writing",
+        "ai viết theo mô tả"
+      ],
+      "questions": [
+        "Tạo bài Writing từ mô tả ở đâu?",
+        "Tôi muốn AI tạo bài theo chủ đề mình chọn",
+        "How do I generate a writing exercise from a brief?",
+        "Mô tả yêu cầu để tạo bài viết thế nào?",
+        "Tạo bài viết riêng theo ý mình ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-ai-paste",
+      "title": "Tạo bài Writing từ nội dung có sẵn",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Trong khu vực tạo bài cá nhân, chọn Dán bài có sẵn, nhập văn bản tiếng Việt hoặc tiếng Anh và làm theo giới hạn đang hiển thị. Hệ thống chuyển nội dung thành bài tập song ngữ khi tạo thành công. Không dán thông tin bí mật hoặc dữ liệu cá nhân không cần thiết.",
+      "keywords": [
+        "dán bài có sẵn",
+        "chuyển văn bản thành bài viết",
+        "paste writing",
+        "tạo bài song ngữ"
+      ],
+      "questions": [
+        "Dán đoạn văn để tạo bài Writing ở đâu?",
+        "Chuyển bài có sẵn thành bài tập thế nào?",
+        "How do I turn existing text into a writing exercise?",
+        "Tôi có bài tiếng Việt muốn luyện viết song ngữ",
+        "Dán bài tiếng Anh vào Writing như thế nào?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-ai-fallback",
+      "title": "Khung song ngữ khi tạo bài AI gián đoạn",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Nếu OpenAI không tạo được bài và có khung phù hợp, giao diện có thể đề nghị khung song ngữ nội bộ. Xem giới hạn, điền các thông tin được hỗ trợ và xác nhận trước khi tạo. Khung có phạm vi chủ đề giới hạn, không dịch tùy ý mọi bài dán và không bảo đảm giữ các chi tiết ngoài khung.",
+      "keywords": [
+        "khung nội bộ",
+        "openai gián đoạn",
+        "tạo bài ai bị lỗi",
+        "khung song ngữ"
+      ],
+      "questions": [
+        "Tạo bài Writing bị lỗi AI thì làm sao?",
+        "Khung song ngữ nội bộ là gì?",
+        "What is the internal writing template fallback?",
+        "OpenAI lỗi còn tạo bài viết được không?",
+        "Vì sao cần xác nhận khung trước khi tạo bài?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-feedback",
+      "title": "Gửi câu viết và xem phản hồi",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Mở bài Writing, đọc gợi ý rồi nhập và gửi câu trả lời. Xem đánh giá và nội dung sửa từ kết quả thực tế. Phản hồi AI phụ thuộc quyền, hạn mức và dịch vụ; không phải chỉ mở bài hoặc tạo bài đã được chấm điểm hay tính hoàn thành.",
+      "keywords": [
+        "chấm câu writing",
+        "phản hồi bài viết",
+        "điểm writing",
+        "sửa câu writing"
+      ],
+      "questions": [
+        "Gửi bài Writing để chấm ở đâu?",
+        "Xem phản hồi câu viết thế nào?",
+        "How do I submit a writing answer?",
+        "Viết xong câu trong Writing thì làm gì?",
+        "Vì sao mở bài viết chưa tính hoàn thành?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "writing-personal",
+      "title": "Quản lý bài Writing cá nhân",
+      "topic": "writing",
+      "route": "/Home/Writing/Exercises",
+      "body": "Các bài do bạn tạo xuất hiện trong Bài viết của tôi và được giữ riêng theo quyền truy cập. Mở bài để luyện hoặc dùng thao tác quản lý đang hiển thị. Xóa bài cần xác nhận; trợ lý không xóa hoặc công khai bài cá nhân thay bạn.",
+      "keywords": [
+        "bài viết của tôi",
+        "writing cá nhân",
+        "xóa bài viết riêng",
+        "private writing"
+      ],
+      "questions": [
+        "Bài viết AI tôi tạo nằm ở đâu?",
+        "Quản lý bài Writing cá nhân ở đâu?",
+        "Where are my private writing exercises?",
+        "Tôi muốn xóa một bài viết riêng",
+        "Bài Writing tự tạo người khác có xem được không?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "practice-hub",
+      "title": "Chọn chế độ luyện từ vựng",
+      "topic": "study",
+      "route": "/Practice",
+      "body": "Trang Luyện tập cho phép chọn bộ từ và chế độ như Learn, Test, Match, Flashcard, Quiz, Typing, Listening hoặc Cloze. Các chế độ này dùng dữ liệu bộ từ, khác với các trang Reading, Writing, Listening và Speaking theo bài học.",
+      "keywords": [
+        "trang luyện tập",
+        "practice hub",
+        "learn test match cloze",
+        "các chế độ từ vựng"
+      ],
+      "questions": [
+        "Các chế độ luyện từ vựng ở đâu?",
+        "Mở trang Practice như thế nào?",
+        "Where is the vocabulary practice hub?",
+        "Tôi muốn chọn Learn hoặc Test",
+        "Luyện tập từ vựng có những chế độ gì?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "practice-hard-words",
+      "title": "Ôn các từ khó",
+      "topic": "vocabulary",
+      "route": "/Practice/HardWords",
+      "body": "Mở Từ khó trong khu vực Luyện tập để xem các từ được hệ thống lựa chọn từ dữ liệu của bạn. Nếu danh sách trống, bắt đầu một lượt học và kiểm tra lại; không thể suy ra điểm yếu cụ thể khi chưa có dữ liệu phù hợp.",
+      "keywords": [
+        "từ khó",
+        "hard words",
+        "ôn từ hay sai",
+        "từ cần ôn lại"
+      ],
+      "questions": [
+        "Xem từ khó của tôi ở đâu?",
+        "Ôn các từ hay sai bằng cách nào?",
+        "Where can I review hard words?",
+        "Danh sách từ khó trống thì làm sao?",
+        "Tìm lại từ cần ôn ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "goals-badges",
+      "title": "Danh hiệu và điều kiện nhận thưởng",
+      "topic": "goals",
+      "route": "/Goals",
+      "body": "Mở Goals để xem danh hiệu, điều kiện và trạng thái đã nhận. Danh hiệu phụ thuộc hoạt động hợp lệ và điều kiện riêng, không chỉ số lần đăng nhập. Nếu chưa được nhận, kiểm tra tiến độ và điều kiện trong thẻ danh hiệu; chatbot không tự cấp danh hiệu hoặc đoán bạn đã mở khóa.",
+      "keywords": [
+        "danh hiệu",
+        "nhận huy hiệu",
+        "điều kiện badge",
+        "thành tựu",
+        "achievement"
+      ],
+      "questions": [
+        "Xem các danh hiệu nhận được ở đâu?",
+        "Làm sao biết điều kiện nhận huy hiệu?",
+        "Where can I see achievement badges?",
+        "Học rồi chưa có danh hiệu phải xem ở đâu?",
+        "Các cấp danh hiệu trong Goals nằm ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "profile-badges",
+      "title": "Danh hiệu trên hồ sơ cá nhân",
+      "topic": "account",
+      "route": "/Account/Profile",
+      "body": "Mở hồ sơ cá nhân để xem các danh hiệu đã được ghi nhận cho tài khoản. Muốn tìm điều kiện hoặc danh hiệu chưa mở khóa, chuyển sang Goals. Chatbot không dùng dữ liệu của tài khoản khác để quyết định bạn đã nhận danh hiệu nào.",
+      "keywords": [
+        "danh hiệu trên hồ sơ",
+        "huy hiệu profile",
+        "badge trang cá nhân"
+      ],
+      "questions": [
+        "Xem danh hiệu trong trang cá nhân ở đâu?",
+        "Huy hiệu đã nhận có hiện trên hồ sơ không?",
+        "Where are badges on my profile?",
+        "Mở danh hiệu trên profile như thế nào?",
+        "Tôi muốn xem thành tựu trên hồ sơ cá nhân"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "account-avatar-name",
+      "title": "Đổi tên và ảnh đại diện",
+      "topic": "account",
+      "route": "/Account/Profile",
+      "body": "Mở hồ sơ cá nhân và dùng các biểu mẫu đổi tên hoặc ảnh đại diện. Với ảnh, làm theo định dạng và giới hạn tải lên đang hiển thị. Lưu xong kiểm tra kết quả; trợ lý không thay đổi tài khoản chỉ từ một tin nhắn.",
+      "keywords": [
+        "đổi tên",
+        "ảnh đại diện",
+        "avatar",
+        "tên hiển thị"
+      ],
+      "questions": [
+        "Đổi tên hiển thị ở đâu?",
+        "Thay ảnh đại diện như thế nào?",
+        "How do I change my avatar?",
+        "Tôi muốn sửa tên trên hồ sơ",
+        "Cập nhật ảnh profile ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "account-email",
+      "title": "Đổi và xác minh email",
+      "topic": "account",
+      "route": "/Account/Settings",
+      "body": "Mở Cài đặt tài khoản và phần email để thực hiện đổi hoặc xác minh địa chỉ theo các bước bảo mật được yêu cầu. Kiểm tra hộp thư và thư rác khi chờ email xác minh. Không gửi mã xác minh, đường dẫn bảo mật hoặc mật khẩu vào chatbot.",
+      "keywords": [
+        "đổi email",
+        "xác minh email",
+        "email tài khoản",
+        "verify email"
+      ],
+      "questions": [
+        "Đổi địa chỉ email ở đâu?",
+        "Xác minh email tài khoản thế nào?",
+        "How do I verify my email?",
+        "Tôi muốn cập nhật email đăng ký",
+        "Chưa nhận thư xác minh email thì làm sao?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "account-delete",
+      "title": "Yêu cầu xóa tài khoản",
+      "topic": "account",
+      "route": "/Account/Settings",
+      "body": "Mở Cài đặt tài khoản và tìm khu vực xóa tài khoản. Đọc kỹ cảnh báo và hoàn thành bước xác minh/xác nhận của hệ thống. Một số tài khoản hoặc quan hệ dữ liệu có thể cần xử lý trước; chatbot không xóa tài khoản hay bỏ qua kiểm tra an toàn thay bạn.",
+      "keywords": [
+        "xóa tài khoản",
+        "delete account",
+        "đóng tài khoản"
+      ],
+      "questions": [
+        "Xóa tài khoản của tôi ở đâu?",
+        "Muốn đóng tài khoản phải làm gì?",
+        "How do I delete my account?",
+        "Tìm nút xóa tài khoản như thế nào?",
+        "Chatbot có xóa tài khoản giúp tôi không?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "notification-preferences",
+      "title": "Cài đặt nhắc học và email định kỳ",
+      "topic": "notifications",
+      "route": "/Account/Settings",
+      "body": "Mở Cài đặt tài khoản, phần thông báo để xem tùy chọn nhắc học và email định kỳ. Push còn cần quyền trình duyệt và thiết bị đăng ký hợp lệ; email cần địa chỉ đủ điều kiện và cấu hình gửi hoạt động. Bật một ô chọn chưa chứng minh thư hoặc thông báo đã đến thiết bị.",
+      "keywords": [
+        "nhắc học",
+        "push notification",
+        "email tổng kết",
+        "thông báo đẩy",
+        "giờ nhắc bài"
+      ],
+      "questions": [
+        "Bật nhắc học hằng ngày ở đâu?",
+        "Cài email tổng kết tuần như thế nào?",
+        "How do I configure study reminders?",
+        "Đổi giờ nhắc bài ở đâu?",
+        "Bật push nhưng chưa có thông báo phải xem ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "streak-troubleshooting",
+      "title": "Kiểm tra khi chuỗi học chưa cập nhật",
+      "topic": "goals",
+      "route": "/Goals",
+      "body": "Nếu đăng nhập hoặc học xong chưa thấy chuỗi, mở Goals để kiểm tra ngày học và tiến độ hoạt động đã ghi nhận. Đăng nhập, mở bài, tạo bài hoặc phát video không tự bảo đảm đã có một lượt học hợp lệ. Nếu đã hoàn thành đúng luồng mà số liệu vẫn sai, gửi thông tin bài/thời điểm cho hỗ trợ, tránh gửi thông tin đăng nhập.",
+      "keywords": [
+        "chuỗi không tăng",
+        "mất streak",
+        "học chưa được chuỗi",
+        "đăng nhập không có streak"
+      ],
+      "questions": [
+        "Đăng nhập đủ ngày sao chưa được chuỗi?",
+        "Học xong streak không tăng thì làm sao?",
+        "Why has my study streak not updated?",
+        "Chuỗi học bị mất thì kiểm tra ở đâu?",
+        "Mở bài rồi sao không tính ngày học?"
+      ],
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "id": "assistant-scope",
+      "title": "Trợ lý hỗ trợ những gì?",
+      "topic": "assistant",
+      "route": "/AI/Chat",
+      "body": "Bạn có thể hỏi cách dùng TCT English, mở một khu vực học, gợi ý khởi đầu và dữ liệu học mà tài khoản được phép xem. Trợ lý dẫn tới các nguồn có căn cứ; nó không biết mọi câu hỏi bên ngoài hệ thống, không tự cấp điểm/quyền và không cung cấp bí mật hay dữ liệu người khác.",
+      "keywords": [
+        "trợ lý hỗ trợ gì",
+        "chatbot làm được gì",
+        "câu hỏi có thể hỏi",
+        "assistant help"
+      ],
+      "questions": [
+        "Chatbot hỗ trợ được những gì?",
+        "Tôi có thể hỏi trợ lý những câu nào?",
+        "What can this assistant help me with?",
+        "Trợ lý có mở trang học cho tôi không?",
+        "Xem hướng dẫn dùng chatbot ở đâu?"
+      ],
+      "reviewedAt": "2026-11-17"
     }
   ]
 }

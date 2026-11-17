@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.water-station",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.water-station",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Quan s\u00E1t \u0111i\u1EC3m l\u1EA5y n\u01B0\u1EDBc",
+        "Level": "beginner",
+        "ContentType": "reports",
+        "Topic": "Tr\u01B0\u1EDDng h\u1ECDc",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o quan s\u00E1t gi\u1EA3 \u0111\u1ECBnh v\u00E0 \u0111\u1EC1 xu\u1EA5t c\u1EA3i thi\u1EC7n l\u1ED1i \u0111i.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.0ebe75eac66e4914a96fe23904520be4",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The path was narrower because of three school bags on the floor.",
+        "NormalizedHash": "95317cfdb3346406b300ec3528f0cb29d50760e3190f715df1eab60d03071f34"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.water-station.1b6d7815108d433da036adebcc379613",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.1b6d7815108d433da036adebcc379613",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ba chi\u1EBFc c\u1EB7p \u0111\u1EC3 d\u01B0\u1EDBi s\u00E0n \u0111\u00E3 l\u00E0m l\u1ED1i \u0111i h\u1EB9p l\u1EA1i.",
+        "EnglishMeaning": "Three school bags on the floor made the path narrower.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.668674f5b42f4d969fa1d3d8bbbbad6c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Hai h\u1ECDc sinh quan s\u00E1t khu v\u1EF1c trong gi\u1EDD ngh\u1EC9 bu\u1ED5i s\u00E1ng.",
+        "EnglishMeaning": "Two students watched the area during the morning break.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.6edd64bf0c6f480aaafca35126e2c15a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u01B0\u1EDDi b\u1EA1n \u0111\u1EBFn l\u1EA5y n\u01B0\u1EDBc trong kho\u1EA3ng m\u01B0\u1EDDi ph\u00FAt.",
+        "EnglishMeaning": "Ten students came to get water in about ten minutes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.c415177f71c5426eae0e725a0c51d15c",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o n\u00E0y ghi l\u1EA1i m\u1ED9t l\u1EA7n quan s\u00E1t gi\u1EA3 \u0111\u1ECBnh t\u1EA1i \u0111i\u1EC3m l\u1EA5y n\u01B0\u1EDBc c\u1EE7a tr\u01B0\u1EDDng.",
+        "EnglishMeaning": "This report records a fictional observation at a school water station.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.ccc487312df44626b20bea2ddc074728",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Khu v\u1EF1c s\u1EBD \u0111\u01B0\u1EE3c quan s\u00E1t l\u1EA1i sau khi c\u00F3 bi\u1EC3n nh\u1EAFc.",
+        "EnglishMeaning": "The area will be observed again after the sign is added.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.d0378375c6c14490b9afac71621f785b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Kh\u00F4ng c\u00F3 n\u01B0\u1EDBc \u0111\u1ED5 ra s\u00E0n trong th\u1EDDi gian quan s\u00E1t.",
+        "EnglishMeaning": "No water spilled on the floor during the observation.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.d52fbc3782044cf1b5fb204afe5e369e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Nh\u00F3m \u0111\u1EC1 ngh\u1ECB \u0111\u1EB7t m\u1ED9t t\u1EA5m bi\u1EC3n nh\u1EAFc c\u1EA5t c\u1EB7p g\u1ECDn g\u00E0ng.",
+        "EnglishMeaning": "The group suggested a sign reminding students to put their bags away neatly.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station.f43638734bef4f5eadc108850dc7aed2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "H\u1EA7u h\u1EBFt c\u00E1c b\u1EA1n x\u1EBFp h\u00E0ng d\u1ECDc theo b\u1EE9c t\u01B0\u1EDDng.",
+        "EnglishMeaning": "Most students queued along the wall.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.water-station"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.water-station"
+}

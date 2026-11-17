@@ -1,3 +1,6 @@
+using TCTEnglish.Services.Contact;
+using TCTVocabulary.ViewModels;
+
 namespace TCTVocabulary.Services
 {
     public enum EmailDispatchResult
@@ -26,6 +29,12 @@ namespace TCTVocabulary.Services
             string message,
             string? ipAddress,
             string? userAgent);
+
+        // Defaults keep legacy test doubles source-compatible and fail closed on the public path.
+        string IssueContactNonce(string clientPartition) => string.Empty;
+        Task<ContactSubmissionStatus> SubmitContactAsync(ContactFormViewModel model, string clientPartition,
+            string? userAgent, CancellationToken cancellationToken = default)
+            => Task.FromResult(ContactSubmissionStatus.ConfigurationUnavailable);
 
         Task<EmailDispatchResult> TrySendTrackedHtmlAsync(
             string toEmail,

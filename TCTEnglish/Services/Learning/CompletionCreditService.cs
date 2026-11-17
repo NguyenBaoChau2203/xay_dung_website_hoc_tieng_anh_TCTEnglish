@@ -18,6 +18,7 @@ public sealed class CompletionCreditApplyResult
 
 public interface ICompletionCreditService
 {
+    Task RecordWritingPracticeAsync(int userId, int attemptId, CancellationToken cancellationToken);
     Task<CompletionCreditApplyResult> TryApplySpeakingVideoCompletionAsync(
         int userId,
         int videoId,
@@ -62,6 +63,33 @@ public sealed class CompletionCreditService : ICompletionCreditService
         GoalsActivityUpdate activityUpdate,
         CancellationToken cancellationToken)
         => ApplyAsync(userId, "Speaking", $"video:{videoId}", activityUpdate, cancellationToken);
+
+    public async Task RecordWritingPracticeAsync(int userId, int attemptId, CancellationToken cancellationToken)
+    {
+        if (_context.Database.CurrentTransaction == null)
+            throw new InvalidOperationException("Writing practice must share the attempt transaction.");
+        using var operation = _clock.BeginOperation();
+        var attempt = await _context.UserWritingAttempts.AsNoTracking()
+            .SingleOrDefaultAsync(a => a.Id == attemptId && a.UserId == userId && a.Passed, cancellationToken)
+            ?? throw new InvalidOperationException("Writing practice requires a persisted owned Accepted attempt.");
+        if (attempt.CreatedAtUtc > _clock.UtcNow
+            || _clock.ToBusinessDateFromUtcStorage(attempt.CreatedAtUtc) != _clock.BusinessDate)
+            throw new InvalidOperationException("An old/future attempt cannot qualify a new practice day.");
+        var previousGate = _gate.SuppressDirect;
+        _gate.SuppressDirect = true;
+        GoalsActivityRecordResult reward;
+        try
+        {
+            reward = await _goalsService.RecordLearningActivityAsync(userId,
+                new GoalsActivityUpdate { ConfirmedWritingPractice = true });
+        }
+        finally { _gate.SuppressDirect = previousGate; }
+        if (reward.Status != OperationStatus.Success)
+            throw new InvalidOperationException(reward.ErrorMessage ?? "Writing practice could not be recorded.");
+        await _intentWriter.EnqueueAsync(userId, "Writing", $"attempt:{attempt.Id}", attempt.CreatedAtUtc,
+            reward.Transition, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 
     public Task<CompletionCreditApplyResult> TryApplyWritingExerciseCompletionAsync(
         int userId,
@@ -148,6 +176,12 @@ public sealed class CompletionCreditService : ICompletionCreditService
 
         try
         {
+            // Lock before credit INSERT / daily activity. All feature reward units use
+            // the same order as Writing, avoiding FK shared-to-exclusive upgrades.
+            await TCTEnglish.Services.Accounts.UserMutationScope.LockAsync(_context, userId, cancellationToken);
+            using var operation = _clock.BeginOperation();
+            if (!await _context.Users.AsNoTracking().AnyAsync(u => u.UserId == userId && u.AnonymizedAt == null, cancellationToken))
+                return new CompletionCreditApplyResult { Applied = false, Status = OperationStatus.NotFound };
             var exists = await _context.LearningCompletionCredits
                 .AsNoTracking()
                 .AnyAsync(c => c.CreditKey == creditKey, cancellationToken);
@@ -173,6 +207,7 @@ public sealed class CompletionCreditService : ICompletionCreditService
                 CreatedAtUtc = occurredAt
             });
 
+            var previousGate = _gate.SuppressDirect;
             _gate.SuppressDirect = true;
             GoalsActivityRecordResult rewardResult;
             try
@@ -181,7 +216,7 @@ public sealed class CompletionCreditService : ICompletionCreditService
             }
             finally
             {
-                _gate.SuppressDirect = false;
+                _gate.SuppressDirect = previousGate;
             }
 
             if (rewardResult.Status != OperationStatus.Success)

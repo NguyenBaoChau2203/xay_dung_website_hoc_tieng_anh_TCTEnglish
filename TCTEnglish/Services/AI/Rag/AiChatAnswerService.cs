@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using TCTEnglish.Services.AI.Internal;
+using TCTEnglish.Services.AI.Internal.Retrievers;
 using TCTEnglish.Services.AI.Rag.Corpus;
 
 namespace TCTEnglish.Services.AI.Rag;
@@ -43,6 +44,29 @@ public sealed class AiChatAnswerService : IAiChatAnswerService
         if (ChatDisclosurePolicy.IsPromptOrCredentialExtraction(message))
         {
             return CreateAnswer(HybridRagOutcome.OutOfScope, null, ChatDisclosurePolicy.RefusalText, [], message);
+        }
+        if (ChatExternalFactPolicy.IsExplicitHomeworkCompletionRequest(message))
+        {
+            var refusal = await _composer.ComposeAsync(UserIntent.OutOfScope, message, [], ct);
+            return CreateAnswer(HybridRagOutcome.OutOfScope, null, refusal, [], message);
+        }
+
+        // Reviewed FAQ wording, explicit topic phrases and bounded learning
+        // roadmap requests are application guidance, even with an older model.
+        // It must not become a greeting/card lookup when a deployed ML model
+        // predates a feature. Arbitrary lesson questions still use the normal
+        // retrieval/admission path below, including all source-access checks.
+        KnowledgeSnippet? reviewedGuide = null;
+        foreach (var retriever in _retrievers.OfType<WebsiteGuideRetriever>())
+        {
+            reviewedGuide = await retriever.MatchReviewedQuestionAsync(message, ct);
+            if (reviewedGuide is not null) break;
+        }
+        if (reviewedGuide is not null && !ChatExternalFactPolicy.IsExplicitExternalFactRequest(message))
+        {
+            var guideText = await _composer.ComposeAsync(UserIntent.WebsiteGuide, message, [reviewedGuide], ct);
+            return CreateAnswer(HybridRagOutcome.Answered, "full", guideText,
+                BuildEvidence(userId, [reviewedGuide]), message);
         }
 
         var classification = _classifier.Classify(message);
@@ -282,6 +306,11 @@ public sealed class AiChatAnswerService : IAiChatAnswerService
 
     private static UserIntent SelectAnswerIntent(UserIntent classifiedIntent, IReadOnlyList<KnowledgeSnippet> snippets)
     {
+        if (classifiedIntent == UserIntent.StudyRecommendation)
+        {
+            return UserIntent.StudyRecommendation;
+        }
+
         if (snippets.Any(snippet => snippet.Source == KnowledgeSnippetSources.CardLookupResult))
         {
             return UserIntent.CardLookup;

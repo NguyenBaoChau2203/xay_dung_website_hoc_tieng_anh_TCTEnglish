@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.library-hours",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.library-hours",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "H\u1ECFi gi\u1EDD m\u1EDF c\u1EEDa th\u01B0 vi\u1EC7n",
+        "Level": "beginner",
+        "ContentType": "emails",
+        "Topic": "Th\u01B0 vi\u1EC7n",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email h\u1ECFi l\u1ECBch m\u1EDF c\u1EEDa v\u00E0 c\u00E1ch l\u00E0m th\u1EBB th\u01B0 vi\u1EC7n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.1f04b269eef649bfba0072cbb8386db8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Em ch\u00FAc c\u00F4 m\u1ED9t ng\u00E0y t\u1ED1t l\u00E0nh.",
+        "EnglishMeaning": "I hope you have a lovely day.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.1f78f8b4eb2541dd8347737af2855d78",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Em h\u1ECDc g\u1EA7n \u0111\u00E2y nh\u01B0ng ch\u01B0a c\u00F3 th\u1EBB th\u01B0 vi\u1EC7n.",
+        "EnglishMeaning": "I study nearby, but I do not have a library card yet.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.8517e20e25524bd7a4a0ed6d35bd0335",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "When does the library open in the morning?",
+        "NormalizedHash": "964c6d7fc65f83aeb6f9d1d88fcf00802484467e1b918884ab84259ad3a47c9d"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.library-hours.d62cfca153424cb28398b8192c9a7cd2",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.8e0dad5065574783973a2eaa23fb1f06",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Em c\u0169ng mu\u1ED1n m\u01B0\u1EE3n m\u1ED9t cu\u1ED1n s\u00E1ch ti\u1EBFng Anh \u0111\u01A1n gi\u1EA3n.",
+        "EnglishMeaning": "I would also like to borrow a simple English book.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.9fae58f7d64c44cc8acfdbbe6a28d670",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Em c\u00F3 th\u1EC3 mang th\u1EBB h\u1ECDc sinh \u0111\u1EC3 \u0111\u0103ng k\u00FD kh\u00F4ng \u1EA1?",
+        "EnglishMeaning": "Can I bring my student card to register?",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.a0c07567aab4451ca80ce333fe87f08d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "C\u00F4 c\u00F3 th\u1EC3 ch\u1EC9 cho em khu s\u00E1ch d\u00E0nh cho ng\u01B0\u1EDDi m\u1EDBi h\u1ECDc kh\u00F4ng \u1EA1?",
+        "EnglishMeaning": "Could you show me the section for beginners?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.a91362fbcd054d15be3c73b56c0b359b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Em c\u1EA3m \u01A1n c\u00F4 \u0111\u00E3 gi\u00FAp \u0111\u1EE1 v\u00E0 mong nh\u1EADn \u0111\u01B0\u1EE3c h\u1ED3i \u00E2m.",
+        "EnglishMeaning": "Thank you for your help, and I look forward to your reply.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.afb1ed1da095437e82fe2109c90c8063",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi c\u00F4 th\u1EE7 th\u01B0, em mu\u1ED1n \u0111\u1EBFn th\u01B0 vi\u1EC7n v\u00E0o th\u1EE9 B\u1EA3y n\u00E0y.",
+        "EnglishMeaning": "Dear librarian, I would like to visit the library this Saturday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.library-hours.d62cfca153424cb28398b8192c9a7cd2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Th\u01B0 vi\u1EC7n m\u1EDF c\u1EEDa l\u00FAc m\u1EA5y gi\u1EDD v\u00E0o bu\u1ED5i s\u00E1ng \u1EA1?",
+        "EnglishMeaning": "What time does the library open in the morning?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.library-hours"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.library-hours"
+}

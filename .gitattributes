@@ -94,6 +94,8 @@ TCTEnglish/wwwroot/lib/pinned/provenance.json text eol=lf
 
 # Shared package hashes must survive Windows/Linux checkouts.
 data/shared/**/*.json text eol=lf
+# Speaking pins the SHA256 of this superseded source catalog.
+data/listening/reach-a1-c2-catalog.json text eol=lf
 data/shared/packages/**/assets/** -text
 # This locally authored batch was emitted by the canonical Windows exporter.
 # Preserve its immutable raw bytes (and catalog SHA256) across Git checkouts.

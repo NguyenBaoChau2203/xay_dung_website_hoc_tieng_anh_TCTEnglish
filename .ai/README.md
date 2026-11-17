@@ -1,6 +1,7 @@
 # TCT English agent toolkit
 
-Project-scoped, curated on 2026-10-28. One agent implements and reviews each task.
+Project-scoped, curated on 2026-10-28. Follow AGENTS.md's owner execution policy:
+one agent by default, with its sole Antigravity/Gemini 3.8 Flash High exception.
 Use AGENTS.md already in context; read it once if missing or changed. Look up
 docs/project-structure.md only for a boundary question and load relevant sections.
 The application/tests target .NET 9 / EF Core 9.0.4; the installed SDK is newer.
@@ -76,7 +77,7 @@ the canonical rules through CLAUDE.md. CI success is not proof of production dep
 - .agent/skills/: Antigravity entrypoints pointing to the canonical documents.
 - .claude/skills/: sixteen Claude Code discovery adapters to those same skills.
 - .agent/workflows/: short project workflow guides using those skills.
-- .ai/roles/: implementer/UI/security review lenses for the same agent.
+- .ai/roles/: implementer/UI/security review lenses under the owner execution policy.
 - .ai/context/, templates/, prompts/: project context and reusable scaffolding.
 - .ai/vendor/: attributed selected references, not automatically enabled plugins.
 - .ai/tooling/sources.lock.json: twelve reviewed upstream commits, installed hashes
@@ -116,4 +117,4 @@ uv run --project tooling/mcp --locked python scripts/check_git_mcp.py
 
 See [the installation and audit report](../docs/agent-tooling.md) for selections,
 setup, limitations, update procedure and rollback. Imported reference instructions
-never override AGENTS.md, the owner's scope or the single-agent policy.
+never override AGENTS.md, the owner's scope or the owner execution policy.

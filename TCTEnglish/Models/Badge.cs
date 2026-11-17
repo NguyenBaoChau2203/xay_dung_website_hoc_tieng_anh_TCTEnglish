@@ -10,7 +10,9 @@ public enum BadgeMetricType
     TotalXp = 4,
     SpeakingVideosCompleted = 5,
     VocabularyCompletions = 6,
-    WritingExercisesCompleted = 7
+    WritingExercisesCompleted = 7,
+    DistinctWritingExercisesCompleted = 8,
+    ConfirmedLongestStreak = 9
 }
 
 public class Badge
@@ -32,6 +34,9 @@ public class Badge
     public BadgeMetricType MetricType { get; set; }
     public int ThresholdValue { get; set; }
     public int SortOrder { get; set; }
+    [MaxLength(30)]
+    public string? DifficultyKey { get; set; }
+    public bool IsSecret { get; set; }
 
     public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
 }
@@ -40,7 +45,7 @@ public static class BadgeSeedData
 {
     public static Badge[] CreateBadges()
     {
-        return
+        Badge[] legacy =
         [
             new()
             {
@@ -175,5 +180,28 @@ public static class BadgeSeedData
                 SortOrder = 12
             }
         ];
+        foreach (var badge in legacy)
+            badge.DifficultyKey = badge.Id is 1 or 5 or 7 or 9 or 11 ? "chill" : "cuon";
+        return legacy.Concat(new[]
+        {
+            Create(13, "writing-mood", "Bút mới lên mood", "chill", BadgeMetricType.DistinctWritingExercisesCompleted, 3, "Hoàn thành lần đầu 3 bài Writing khác nhau."),
+            Create(14, "study-checkin", "Check-in bằng bài học", "chill", BadgeMetricType.TotalDaysActive, 3, "Có 3 ngày học đã xác nhận."),
+            Create(15, "writing-deadline", "Deadline cũng phải nể", "cuon", BadgeMetricType.DistinctWritingExercisesCompleted, 10, "Hoàn thành lần đầu 10 bài Writing khác nhau."),
+            Create(16, "xp-mood", "XP lên mood", "cuon", BadgeMetricType.TotalXp, 500, "Tích lũy 500 XP từ hoạt động học tập."),
+            Create(17, "keyboard-form", "Bàn phím vào form", "chien-than", BadgeMetricType.DistinctWritingExercisesCompleted, 25, "Hoàn thành lần đầu 25 bài Writing khác nhau."),
+            Create(18, "steady-flame", "Giữ lửa không seen", "chien-than", BadgeMetricType.ConfirmedLongestStreak, 14, "Có chuỗi 14 ngày học liên tiếp đã xác nhận."),
+            Create(19, "keyboard-boss", "Trùm cuối bàn phím", "trum-cuoi", BadgeMetricType.DistinctWritingExercisesCompleted, 50, "Hoàn thành lần đầu 50 bài Writing khác nhau."),
+            Create(20, "monthly-flame", "Giữ lửa xuyên tháng", "trum-cuoi", BadgeMetricType.ConfirmedLongestStreak, 30, "Có chuỗi 30 ngày học liên tiếp đã xác nhận."),
+            Create(21, "secret-plot-twist", "Plot twist thứ 13", "chien-than", BadgeMetricType.DistinctWritingExercisesCompleted, 13, "Hoàn thành lần đầu 13 bài Writing khác nhau.", true),
+            Create(22, "secret-quiet-effort", "Hệ chăm ngầm", "chien-than", BadgeMetricType.TotalDaysActive, 21, "Có 21 ngày học đã xác nhận.", true)
+        }).ToArray();
     }
+
+    private static Badge Create(int id, string code, string name, string tier, BadgeMetricType metric,
+        int threshold, string description, bool secret = false) => new()
+    {
+        Id = id, Code = code, Name = name, DifficultyKey = tier, MetricType = metric,
+        ThresholdValue = threshold, Description = description, IsSecret = secret,
+        SortOrder = id, IconClass = "fas fa-award"
+    };
 }

@@ -115,6 +115,8 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
 
     private static readonly string[] AcceptanceTables =
     [
+        "WritingGenerationOperations",
+        "WritingGenerationLogs",
         "SetSubscriptions",
         "AccountFileCleanupJobs",
         "AccountSecurityChallenges",
@@ -139,10 +141,12 @@ public sealed class MariaDbAcceptanceFactory : TestWebApplicationFactory
         "NotificationJobRuns",
         "UserSpeakingProgresses",
         "UserSpeakingVideoVisits",
+        "UserWritingExerciseVisits",
         "UserWritingAttempts",
         "UserWritingExerciseProgresses",
         "UserWritingSentenceProgresses",
         "UserSpeakingVideoCompletions",
+        "UserBadges",
         "UserDailyActivities",
         "UserGoals",
         "SpeakingSentences",

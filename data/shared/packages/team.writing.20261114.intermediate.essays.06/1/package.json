@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.essays.06",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.essays.06",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Kh\u00F4ng gian xanh nh\u1ECF trong khu \u0111\u00F4ng d\u00E2n",
+        "Level": "intermediate",
+        "ContentType": "essays",
+        "Topic": "\u0110\u1EDDi s\u1ED1ng \u0111\u00F4 th\u1ECB",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i lu\u1EADn \u1EE7ng h\u1ED9 kh\u00F4ng gian xanh g\u1EA7n nh\u00E0 v\u00E0 c\u00E2n nh\u1EAFc nhu c\u1EA7u s\u1EED d\u1EE5ng \u0111\u1EA5t.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.52897d95e00c47dea9115b743f7ecec1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Tuy nhi\u00EAn, \u0111\u1EA5t trong th\u00E0nh ph\u1ED1 c\u00F3 nhi\u1EC1u nhu c\u1EA7u s\u1EED d\u1EE5ng kh\u00E1c nhau.",
+        "EnglishMeaning": "However, land in a city has many competing uses and demands.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.8e13814b6519426ba82b173076279d50",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Khi \u0111\u01B0\u1EE3c l\u00EAn k\u1EBF ho\u1EA1ch c\u00F9ng c\u1ED9ng \u0111\u1ED3ng, m\u1ED9t khu \u0111\u1EA5t nh\u1ECF v\u1EABn c\u00F3 th\u1EC3 t\u1EA1o gi\u00E1 tr\u1ECB l\u1EDBn.",
+        "EnglishMeaning": "When planned with the community, even a small site can offer substantial value.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.91d453eab9314d8884bd80c16f8aa558",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "N\u00F3 c\u0169ng t\u1EA1o c\u01A1 h\u1ED9i \u0111\u1EC3 nh\u1EEFng ng\u01B0\u1EDDi h\u00E0ng x\u00F3m g\u1EB7p nhau m\u1ED9t c\u00E1ch t\u1EF1 nhi\u00EAn.",
+        "EnglishMeaning": "It also gives neighbours an opportunity to meet each other naturally.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.93430c7f38264f7baf0ce04c36d35fd9",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "People should agree on who will maintain the space before building starts.",
+        "NormalizedHash": "10bc8ae0fa1fdaecd5d2a4b7a02c87150cbe2428aa18326541f3d2175656602e"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.essays.06.e135d86772a84b9fb463cde158f89d59",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.9d6e21d4faf34643b6e23bee7dd0f027",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "M\u1ED9t thi\u1EBFt k\u1EBF k\u1EBFt h\u1EE3p b\u00F3ng m\u00E1t, l\u1ED1i \u0111i v\u00E0 ch\u1ED7 ch\u01A1i c\u00F3 th\u1EC3 ph\u1EE5c v\u1EE5 nhi\u1EC1u ng\u01B0\u1EDDi.",
+        "EnglishMeaning": "A design combining shade, paths and play space could serve a wider range of people.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.a03ea7e3e93c4506bcba9ee42be47886",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Kh\u00F4ng gian xanh thi\u1EBFu ch\u0103m s\u00F3c c\u0169ng c\u00F3 th\u1EC3 tr\u1EDF n\u00EAn kh\u00F3 s\u1EED d\u1EE5ng.",
+        "EnglishMeaning": "A green space that receives little care may also become difficult to use.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.a78081c0bedf42279baf3b016c0878d7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Theo t\u00F4i, c\u01B0 d\u00E2n n\u00EAn tham gia l\u1EF1a ch\u1ECDn ch\u1EE9c n\u0103ng v\u00E0 c\u00E1ch duy tr\u00EC khu v\u1EF1c.",
+        "EnglishMeaning": "In my view, residents should help choose the area\u0027s functions and maintenance arrangements.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.af028676f8f34ce5978b7616badea416",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED9t khu v\u01B0\u1EDDn nh\u1ECF c\u00F3 gh\u1EBF ng\u1ED3i c\u00F3 th\u1EC3 mang l\u1EA1i ch\u1ED7 ngh\u1EC9 sau gi\u1EDD l\u00E0m.",
+        "EnglishMeaning": "A small garden with benches can provide somewhere to relax after work.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.de2761d13c7f418391bd70ed905d875d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Kh\u00F4ng ph\u1EA3i ai c\u0169ng c\u00F3 th\u1EDDi gian ho\u1EB7c ph\u01B0\u01A1ng ti\u1EC7n \u0111\u1EC3 \u0111\u1EBFn c\u00F4ng vi\u00EAn l\u1EDBn.",
+        "EnglishMeaning": "Not everyone has the time or transport needed to reach a large park.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.e0908176251d4a56bfbb36cc7531700d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "C\u00E1c khu d\u00E2n c\u01B0 \u0111\u00F4ng \u0111\u00FAc n\u00EAn d\u00E0nh ch\u1ED7 cho nh\u1EEFng kh\u00F4ng gian xanh nh\u1ECF g\u1EA7n nh\u00E0.",
+        "EnglishMeaning": "Densely populated neighbourhoods should make room for small green spaces close to people\u0027s homes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.e135d86772a84b9fb463cde158f89d59",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Tr\u00E1ch nhi\u1EC7m b\u1EA3o d\u01B0\u1EE1ng c\u1EA7n \u0111\u01B0\u1EE3c th\u1ED1ng nh\u1EA5t tr\u01B0\u1EDBc khi c\u00F4ng tr\u00ECnh \u0111\u01B0\u1EE3c x\u00E2y d\u1EF1ng.",
+        "EnglishMeaning": "Maintenance responsibilities should be agreed upon before construction begins.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.e5b47db5dcf94fcdb2e7b826aa1fdb74",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "C\u01B0 d\u00E2n c\u00F3 th\u1EC3 c\u1EA7n ch\u1ED7 g\u1EEDi xe ho\u1EB7c khu vui ch\u01A1i h\u01A1n m\u1ED9t v\u01B0\u1EDDn trang tr\u00ED.",
+        "EnglishMeaning": "Residents may need parking or a play area more than a decorative garden.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.essays.06.f646806e8c4b44ffa2abc3f901fa6973",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "V\u00EC v\u1EADy, ch\u1EC9 tr\u1ED3ng c\u00E2y r\u1ED3i b\u1ECF m\u1EB7c khu \u0111\u1EA5t s\u1EBD kh\u00F4ng \u0111\u1EE7.",
+        "EnglishMeaning": "Therefore, simply planting trees and leaving the site unattended would not be enough.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.essays.06"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.essays.06"
+}

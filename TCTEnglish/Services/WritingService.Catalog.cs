@@ -72,6 +72,7 @@ public partial class WritingService
         return query.Select(e => new WritingCatalogRow
         {
             Id = e.Id, Title = e.Title, Preview = e.PreviewText, Topic = e.Topic, CreatedAt = e.CreatedAt,
+            Origin = new WritingGenerationOriginViewModel(e.InputMode, e.GenerationMethod, e.TemplateKey, e.TemplateVersion, e.FallbackReason),
             Sentences = e.WritingExerciseSentences.Count(), CanDelete = !e.UserWritingAttempts.Any(),
             Attempts = e.UserWritingAttempts.Count(a => userId.HasValue && a.UserId == userId),
             // Count sentences with any successful attempt. A correlated DISTINCT
@@ -88,6 +89,7 @@ public partial class WritingService
         return new WritingExerciseCardViewModel
         {
             Id = row.Id, Title = row.Title, PreviewText = row.Preview, Topic = row.Topic, SentenceCount = row.Sentences,
+            Origin = row.Origin,
             AttemptCount = row.Attempts, CompletedSentenceCount = row.Completed,
             StatusKey = progress ? status : WritingStatusNotStarted, StatusLabel = ResolveWritingProgressStatusLabel(status),
             StartActionLabel = locked ? "Nâng cấp để mở khóa" : ResolveWritingStartActionLabel(status),
@@ -98,6 +100,7 @@ public partial class WritingService
 
     private sealed class WritingCatalogRow
     {
+        public WritingGenerationOriginViewModel? Origin { get; set; }
         public int Id { get; set; }
         public string Title { get; set; } = "";
         public string Preview { get; set; } = "";

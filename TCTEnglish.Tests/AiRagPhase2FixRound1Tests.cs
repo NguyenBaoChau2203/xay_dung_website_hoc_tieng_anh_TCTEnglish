@@ -274,7 +274,8 @@ public sealed class AiRagPhase2FixRound1Tests
 
             var password = await answers.AnswerAsync(1, "How do I change my password?", [], CancellationToken.None);
             Assert.Equal(HybridRagOutcome.Answered, password.Outcome);
-            Assert.Contains("/Account/Settings", password.Text, StringComparison.Ordinal);
+            Assert.Contains(password.Evidence, e => e.AuthorizedRoute == "/Account/Settings");
+            Assert.Contains("Để đổi mật khẩu", password.Text, StringComparison.Ordinal);
 
             var price = await answers.AnswerAsync(1, "Giá vàng hôm nay là bao nhiêu?", [], CancellationToken.None);
             Assert.Equal(HybridRagOutcome.OutOfScope, price.Outcome);

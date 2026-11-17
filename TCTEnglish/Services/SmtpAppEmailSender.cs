@@ -1,6 +1,11 @@
 using System.Net;
 using System.Net.Mail;
 using TCTEnglish.Services.Emails;
+using Microsoft.AspNetCore.DataProtection;
+using TCTEnglish.Services.Contact;
+using TCTVocabulary.ViewModels;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace TCTVocabulary.Services
 {
@@ -10,17 +15,20 @@ namespace TCTVocabulary.Services
         private readonly ISmtpMailTransport _transport;
         private readonly ILogger<SmtpAppEmailSender> _logger;
         private readonly IHttpContextAccessor? _requestContext;
+        private readonly ContactOperationGate? _contactGate;
 
         public SmtpAppEmailSender(
             IConfiguration configuration,
             ISmtpMailTransport transport,
             ILogger<SmtpAppEmailSender> logger,
-            IHttpContextAccessor? requestContext = null)
+            IHttpContextAccessor? requestContext = null,
+            IDataProtectionProvider? dataProtectionProvider = null)
         {
             _configuration = configuration;
             _transport = transport;
             _logger = logger;
             _requestContext = requestContext;
+            _contactGate = dataProtectionProvider is null ? null : new ContactOperationGate(dataProtectionProvider);
         }
 
         public async Task SendBlockedNotificationAsync(string toEmail, string reason, DateTime? lockExpiry)
@@ -61,20 +69,74 @@ namespace TCTVocabulary.Services
             string? ipAddress,
             string? userAgent)
         {
+            if (ContactInput.HasLineBreak(senderName) || ContactInput.HasLineBreak(senderEmail) || ContactInput.HasLineBreak(subject))
+                return false;
+            return await SendContactCoreAsync(senderName.Trim(), senderEmail.Trim(), subject.Trim(), message.Trim(),
+                ipAddress, userAgent, CancellationToken.None) == ContactSubmissionStatus.Accepted;
+        }
+
+        public string IssueContactNonce(string clientPartition) => _contactGate?.Issue(clientPartition) ?? string.Empty;
+
+        public async Task<ContactSubmissionStatus> SubmitContactAsync(ContactFormViewModel model, string clientPartition,
+            string? userAgent, CancellationToken cancellationToken = default)
+        {
+            if (!Validator.TryValidateObject(model, new ValidationContext(model), new List<ValidationResult>(), true))
+                return ContactSubmissionStatus.InvalidInput;
+            if (_contactGate is null) return ContactSubmissionStatus.ConfigurationUnavailable;
+            var blocked = _contactGate.TryBegin(model.ContactNonce, clientPartition, out var operationId);
+            if (blocked.HasValue) return blocked.Value;
+            var started = Stopwatch.GetTimestamp();
+            ContactSubmissionStatus result;
+            try
+            {
+                result = await SendContactCoreAsync(model.Name, model.Email, model.SubjectDisplayName, model.Message,
+                    clientPartition, userAgent, cancellationToken);
+            }
+            finally { _contactGate.Complete(operationId); }
+            _logger.LogInformation("Contact {OperationId}: {Category} ({ElapsedMs}ms)", operationId, result,
+                Stopwatch.GetElapsedTime(started).TotalMilliseconds);
+            return result;
+        }
+
+        private async Task<ContactSubmissionStatus> SendContactCoreAsync(string senderName, string senderEmail,
+            string subject, string message, string? ipAddress, string? userAgent, CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrWhiteSpace(senderName) || senderName.Length > 100 || ContactInput.HasLineBreak(senderName)
+                || !ContactInput.IsMailbox(senderEmail) || string.IsNullOrWhiteSpace(subject) || subject.Length > 50
+                || ContactInput.HasLineBreak(subject) || string.IsNullOrWhiteSpace(message) || message.Length > 2000)
+                return ContactSubmissionStatus.InvalidInput;
             var fallbackRecipient = _configuration["SmtpSettings:SenderEmail"];
             var supportRecipient = _configuration["SmtpSettings:SupportEmail"];
             var toEmail = string.IsNullOrWhiteSpace(supportRecipient) ? fallbackRecipient : supportRecipient;
-
-            if (string.IsNullOrWhiteSpace(toEmail))
+            var host = _configuration["SmtpSettings:Host"];
+            var port = _configuration["SmtpSettings:Port"];
+            var senderDisplayName = _configuration["SmtpSettings:SenderName"] ?? "TCT English";
+            if (!ContactInput.IsMailbox(toEmail) || !ContactInput.IsMailbox(fallbackRecipient)
+                || string.IsNullOrWhiteSpace(host) || host.Length > 253 || host.Any(char.IsWhiteSpace)
+                || Uri.CheckHostName(host) == UriHostNameType.Unknown
+                || string.IsNullOrWhiteSpace(_configuration["SmtpSettings:Password"])
+                || senderDisplayName.Length > 200 || ContactInput.HasLineBreak(senderDisplayName)
+                || (!string.IsNullOrWhiteSpace(port) && (!int.TryParse(port, out var number) || number is < 1 or > 65535)))
             {
-                _logger.LogError("[Email Error] Missing support recipient email for contact form.");
-                return false;
+                _logger.LogWarning("Contact configuration unavailable (recipientPresent={RecipientPresent}, senderPresent={SenderPresent}, hostPresent={HostPresent})",
+                    !string.IsNullOrWhiteSpace(toEmail), !string.IsNullOrWhiteSpace(fallbackRecipient), !string.IsNullOrWhiteSpace(host));
+                return ContactSubmissionStatus.ConfigurationUnavailable;
             }
-
+            if (cancellationToken.IsCancellationRequested || (_requestContext?.HttpContext?.RequestAborted.IsCancellationRequested ?? false))
+                return ContactSubmissionStatus.Failed; // No transport invocation has occurred.
             var mailSubject = $"[Liên hệ] {subject}";
-            var body = TctEmailRenderer.RenderSupportContact(senderName, senderEmail, subject, message, ipAddress, userAgent);
-
-            return await SendEmailAsync(toEmail, mailSubject, body, senderEmail);
+            var body = TctEmailRenderer.RenderSupportContact(senderName, senderEmail, subject, message,
+                ContactInput.BoundDiagnostic(ipAddress, 64), ContactInput.BoundDiagnostic(userAgent, 512));
+            try
+            {
+                var sent = await SendEmailAsync(toEmail!, mailSubject, body, senderEmail, cancellationToken,
+                    surfaceTimeout: true, conservativeContact: true);
+                return sent ? ContactSubmissionStatus.Accepted : ContactSubmissionStatus.Failed;
+            }
+            catch (Exception ex) when (ex is OperationCanceledException or TimeoutException)
+            {
+                return ContactSubmissionStatus.Unknown;
+            }
         }
 
         public async Task<EmailDispatchResult> TrySendTrackedHtmlAsync(
@@ -109,8 +171,9 @@ namespace TCTVocabulary.Services
             }
         }
 
-        private async Task<bool> SendEmailAsync(string toEmail, string subject, string htmlBody, string? replyToEmail = null, CancellationToken cancellationToken = default, bool surfaceTimeout = false)
+        private async Task<bool> SendEmailAsync(string toEmail, string subject, string htmlBody, string? replyToEmail = null, CancellationToken cancellationToken = default, bool surfaceTimeout = false, bool conservativeContact = false)
         {
+            var transportStarted = false;
             try
             {
                 var smtpHost = _configuration["SmtpSettings:Host"];
@@ -158,6 +221,7 @@ namespace TCTVocabulary.Services
                 using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken,
                     _requestContext?.HttpContext?.RequestAborted ?? CancellationToken.None);
                 timeoutCts.CancelAfter(TimeSpan.FromSeconds(Math.Clamp(timeoutSeconds, 1, 60)));
+                transportStarted = true;
                 await _transport.SendAsync(
                     smtpHost,
                     smtpPort,
@@ -188,6 +252,12 @@ namespace TCTVocabulary.Services
             {
                 _logger.LogWarning("[Email Error] Transport lost its receipt; delivery outcome is unknown.");
                 throw new TimeoutException("SMTP delivery outcome is unknown.", ex);
+            }
+            catch (Exception ex) when (conservativeContact && transportStarted
+                && ex is not SmtpException { StatusCode: >= (SmtpStatusCode)400 and <= (SmtpStatusCode)599 })
+            {
+                _logger.LogWarning("Contact transport ended without a definite receipt; outcome unknown.");
+                throw new TimeoutException("SMTP delivery outcome is unknown.");
             }
             catch (Exception ex)
             {

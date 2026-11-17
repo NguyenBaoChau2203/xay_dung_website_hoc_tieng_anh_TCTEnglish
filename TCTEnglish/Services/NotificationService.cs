@@ -439,6 +439,9 @@ public class NotificationService : INotificationService
         }
 
         var eventKey = $"badge:{userId}:{badgeId}";
+        if (badge.IsSecret && !await _context.UserBadges.AsNoTracking()
+            .AnyAsync(award => award.UserId == userId && award.BadgeId == badgeId))
+            return;
         await TryCreateWithEventKeyAsync(new Notification
         {
             UserId = userId,

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.diaries.05",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "H\u1ECDc c\u00E1ch n\u00F3i r\u00F5 gi\u1EDBi h\u1EA1n",
+        "Level": "intermediate",
+        "ContentType": "diaries",
+        "Topic": "Quan h\u1EC7",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD trao \u0111\u1ED5i v\u1EC1 kh\u1ED1i l\u01B0\u1EE3ng vi\u1EC7c v\u00E0 v\u01B0\u1EE3t qua c\u1EA3m gi\u00E1c ng\u1EA1i t\u1EEB ch\u1ED1i.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.1e060f1b9ec141b388b41256a299a3e2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "T\u00F4i nh\u1EADn ra s\u1EF1 \u0111\u00E1ng tin c\u1EADy c\u0169ng bao g\u1ED3m vi\u1EC7c bi\u1EBFt m\u00ECnh c\u00F3 th\u1EC3 l\u00E0m \u0111\u01B0\u1EE3c g\u00EC.",
+        "EnglishMeaning": "I realised that being reliable also means knowing what I can realistically manage.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.2c5db6e56f8b4bc9b2307456a110c95f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Nh\u01B0ng t\u00F4i d\u1EEBng l\u1EA1i v\u00E0 xem l\u1ECBch tr\u01B0\u1EDBc khi h\u1EE9a \u0111i\u1EC1u g\u00EC.",
+        "EnglishMeaning": "But I paused and checked my schedule before making any promises.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.2fe78a56a36549d09a11200a0cd80353",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "H\u00F4m nay t\u00F4i n\u00F3i v\u1EDBi nh\u00F3m t\u00ECnh nguy\u1EC7n r\u1EB1ng m\u00ECnh kh\u00F4ng th\u1EC3 nh\u1EADn th\u00EAm ca.",
+        "EnglishMeaning": "Today I told the volunteer group that I could not take another shift.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.3a76ebab16d345a582fb824e5a458cad",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "L\u1EA7n sau t\u00F4i s\u1EBD d\u00E0nh th\u1EDDi gian c\u00E2n nh\u1EAFc tr\u01B0\u1EDBc khi \u0111\u1ED3ng \u00FD gi\u00FAp th\u00EAm.",
+        "EnglishMeaning": "Next time I will take time to think before agreeing to provide extra help.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.45440a5a0f8247f2a78e352cb551ae44",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Next time I will consider my situation before committing to additional help.",
+        "NormalizedHash": "90793ec480001554a3dcafe89d4ae44f5c99cf7c1af32c47784b01b945c101a4"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.diaries.05.3a76ebab16d345a582fb824e5a458cad",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.591a7248dbbe4f05912acc077cc50b32",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Tr\u01B0\u1EDBc \u0111\u00E2y t\u00F4i th\u01B0\u1EDDng \u0111\u1ED3ng \u00FD ngay v\u00EC s\u1EE3 m\u1ECDi ng\u01B0\u1EDDi ngh\u0129 m\u00ECnh kh\u00F4ng nhi\u1EC7t t\u00ECnh.",
+        "EnglishMeaning": "Previously, I usually agreed immediately because I feared people would think I lacked enthusiasm.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.6cbc42b46179442fbb0f4fbfa38a21d0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Ng\u01B0\u1EDDi \u0111i\u1EC1u ph\u1ED1i c\u1EA3m \u01A1n t\u00F4i \u0111\u00E3 b\u00E1o r\u00F5 thay v\u00EC h\u1EE7y v\u00E0o ph\u00FAt cu\u1ED1i.",
+        "EnglishMeaning": "The coordinator thanked me for being clear instead of cancelling at the last minute.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.83cfbcda0b074191a88f36b4f663a144",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Khi nh\u1EADn \u0111\u01B0\u1EE3c tin nh\u1EAFn nh\u1EDD gi\u00FAp, t\u00F4i \u0111\u1ECBnh tr\u1EA3 l\u1EDDi nh\u01B0 m\u1ECDi l\u1EA7n.",
+        "EnglishMeaning": "When the request for help arrived, I was about to give my usual reply.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.b512f308be9d4196a384786f5736b907",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Tu\u1EA7n n\u00E0y c\u00F4ng vi\u1EC7c \u1EDF tr\u01B0\u1EDDng nhi\u1EC1u h\u01A1n v\u00E0 t\u00F4i \u0111\u00E3 ng\u1EE7 kh\u00E1 \u00EDt.",
+        "EnglishMeaning": "This week my schoolwork has increased, and I have not been sleeping much.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.e45dfe0fb84944b3a35b618f6debec45",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "T\u1ED1i nay t\u00F4i ho\u00E0n th\u00E0nh b\u00E0i t\u1EADp m\u00E0 kh\u00F4ng ph\u1EA3i v\u1ED9i v\u00E0ng gi\u1EEFa hai vi\u1EC7c.",
+        "EnglishMeaning": "Tonight I finished my homework without having to rush between two responsibilities.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.ef92453b16004e55bc2afe305058e4bf",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "T\u00F4i c\u0169ng g\u1EEDi l\u1EA1i h\u01B0\u1EDBng d\u1EABn \u0111\u1EC3 ng\u01B0\u1EDDi kh\u00E1c c\u00F3 th\u1EC3 ti\u1EBFp nh\u1EADn ph\u1EA7n vi\u1EC7c m\u1EDBi.",
+        "EnglishMeaning": "I also forwarded the instructions so someone else could take on the new task.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.fbffde0c6ba44504a6548d438e2a00fa",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "T\u00F4i gi\u1EA3i th\u00EDch r\u1EB1ng m\u00ECnh v\u1EABn s\u1EBD l\u00E0m ca \u0111\u00E3 nh\u1EADn v\u00E0o Ch\u1EE7 nh\u1EADt.",
+        "EnglishMeaning": "I explained that I would still cover the Sunday shift I had already accepted.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.diaries.05.fd50853ad3e449619f1f08df39c9ffba",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Ph\u1EA3n h\u1ED3i \u0111\u00F3 khi\u1EBFn t\u00F4i nh\u1EB9 nh\u00F5m h\u01A1n nhi\u1EC1u so v\u1EDBi \u0111i\u1EC1u m\u00ECnh \u0111\u00E3 t\u01B0\u1EDFng t\u01B0\u1EE3ng.",
+        "EnglishMeaning": "That response made me feel much more relieved than I had expected.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.diaries.05"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.diaries.05"
+}

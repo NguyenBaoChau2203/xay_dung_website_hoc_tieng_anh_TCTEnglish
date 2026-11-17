@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.cake-surprise",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chi\u1EBFc b\u00E1nh kh\u00F4ng c\u00F3 n\u1EBFn",
+        "Level": "beginner",
+        "ContentType": "stories",
+        "Topic": "Gia \u0111\u00ECnh",
+        "SourceType": "original-20261114",
+        "PreviewText": "C\u00E2u chuy\u1EC7n sinh nh\u1EADt v\u1EDBi m\u1ED9t s\u1EF1 c\u1ED1 v\u00E0 c\u00E1ch gi\u1EA3i quy\u1EBFt vui v\u1EBB.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.108ab6633f0345ffa4ef62d10b439495",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ch\u1ECB g\u00E1i l\u1EA5y gi\u1EA5y m\u00E0u v\u00E0 c\u1EAFt ra nh\u1EEFng ng\u00F4i sao nh\u1ECF.",
+        "EnglishMeaning": "His sister took coloured paper and cut out little stars.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.2e6354f419904452b5c7b262e594a9a8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Minh v\u00E0 ch\u1ECB g\u00E1i l\u00E0m m\u1ED9t chi\u1EBFc b\u00E1nh cho sinh nh\u1EADt m\u1EB9.",
+        "EnglishMeaning": "Minh and his sister made a cake for their mother\u0027s birthday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.5ecf25a8af5340398259582a8507d4bc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "B\u00E0 n\u00F3i \u0111\u00E2y l\u00E0 m\u1ED9t b\u1EEFa t\u1ED1i sinh nh\u1EADt r\u1EA5t \u0111\u1EB7c bi\u1EC7t.",
+        "EnglishMeaning": "She said it was a very special birthday dinner.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.794a165523a449c3a13a12e62d9f614e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "H\u1ECD gi\u1EA5u chi\u1EBFc b\u00E1nh trong b\u1EBFp tr\u01B0\u1EDBc khi m\u1EB9 \u0111i l\u00E0m v\u1EC1.",
+        "EnglishMeaning": "They hid the cake in the kitchen before their mother came home.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.8a30d11bbc4443938e4afa68542920f1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Khi chu\u1EA9n b\u1ECB b\u00E0n \u0103n, Minh nh\u1EADn ra m\u00ECnh qu\u00EAn mua n\u1EBFn.",
+        "EnglishMeaning": "While setting the table, Minh realised he had forgotten to buy candles.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.8da42e9d906044d893dc3efd3620c47a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "C\u1EEDa h\u00E0ng g\u1EA7n nh\u00E0 \u0111\u00E3 \u0111\u00F3ng c\u1EEDa t\u1EEB s\u1EDBm.",
+        "EnglishMeaning": "The shop near their house had already closed early.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.92d15ef706b948fe90cfc65556306baf",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The nearby shop had already closed early.",
+        "NormalizedHash": "bfd018d7a055ea6ef83c65cea19c4ba8540322a21177e74a9bccf73e62e13ece"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.cake-surprise.8da42e9d906044d893dc3efd3620c47a",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.b94ea58bd8cf4c72bd9e681f37f138b1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "H\u1ECD \u0111\u1EB7t c\u00E1c ng\u00F4i sao quanh \u0111\u0129a b\u00E1nh th\u1EADt c\u1EA9n th\u1EADn.",
+        "EnglishMeaning": "They carefully placed the stars around the cake plate.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise.c3589f060ec0416ba6a2c29ec44f23b0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "M\u1EB9 b\u1EADt c\u01B0\u1EDDi khi th\u1EA5y chi\u1EBFc b\u00E1nh v\u00E0 nh\u1EEFng l\u1EDDi ch\u00FAc vi\u1EBFt tay.",
+        "EnglishMeaning": "Their mother laughed when she saw the cake and handwritten wishes.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cake-surprise"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.cake-surprise"
+}

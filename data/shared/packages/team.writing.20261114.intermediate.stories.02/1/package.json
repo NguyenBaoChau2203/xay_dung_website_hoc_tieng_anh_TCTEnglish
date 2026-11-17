@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.stories.02",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.stories.02",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "M\u00F3n qu\u00E0 \u0111\u1EBFn nh\u1EA7m \u0111\u1ECBa ch\u1EC9",
+        "Level": "intermediate",
+        "ContentType": "stories",
+        "Topic": "H\u00E0ng x\u00F3m",
+        "SourceType": "original-20261114",
+        "PreviewText": "Truy\u1EC7n v\u1EC1 m\u00F3n qu\u00E0 giao nh\u1EA7m v\u00E0 nh\u1EEFng d\u1EA5u hi\u1EC7u gi\u00FAp t\u00ECm \u0111\u00FAng ng\u01B0\u1EDDi nh\u1EADn.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.12502d4ee7974bb49338b62c5ef8938e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Anh kh\u00F4ng \u0111\u1EB7t h\u00E0ng, n\u00EAn ki\u1EC3m tra nh\u00E3n tr\u01B0\u1EDBc khi m\u1EDF h\u1ED9p.",
+        "EnglishMeaning": "He had ordered nothing, so he checked the label before opening the box.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.1a2d55c18d174f878b914a782a20a493",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Chi\u1EC1u th\u1EE9 S\u00E1u, m\u1ED9t ng\u01B0\u1EDDi giao h\u00E0ng \u0111\u1EC3 chi\u1EBFc h\u1ED9p d\u00E0i tr\u01B0\u1EDBc c\u1EEDa nh\u00E0 B\u00ECnh.",
+        "EnglishMeaning": "On Friday afternoon, a delivery worker left a long box outside Binh\u0027s door.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.34a06a488e9947f387682f0c81e773f2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "C\u00F4 c\u1EA3m \u01A1n B\u00ECnh r\u1ED3i m\u1EDDi anh \u0111\u1EBFn bu\u1ED5i bi\u1EC3u di\u1EC5n c\u1EE7a h\u1ECDc sinh v\u00E0o Ch\u1EE7 nh\u1EADt.",
+        "EnglishMeaning": "She thanked Binh and invited him to her students\u0027 concert on Sunday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.38603f795662466fac41871892d34a32",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "For the first time, an invitation rather than a package brought him into the house at the end of the street.",
+        "NormalizedHash": "6b37a3998afd14702dd6b392970da5fdb45bb7c7ae3b8d24ba16cf3e8c63dc70"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.stories.02.3fdb16a678a04e00b37d92f5cf02b31a",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.39c1ddc9b11443fd8276d7ee4ddb3dc8",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "H\u00F3a ra ch\u1ECB g\u00E1i c\u00F4 \u0111\u00E3 g\u1EEDi m\u1ED9t gi\u00E1 nh\u1EA1c \u0111\u1EC3 ch\u00FAc c\u00F4 m\u1EDF l\u1EDBp th\u00E0nh c\u00F4ng.",
+        "EnglishMeaning": "Her sister had sent a music stand to celebrate the opening of her class.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.3fdb16a678a04e00b37d92f5cf02b31a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "L\u1EA7n \u0111\u1EA7u ti\u00EAn, anh b\u01B0\u1EDBc v\u00E0o ng\u00F4i nh\u00E0 cu\u1ED1i ph\u1ED1 v\u1EDBi m\u1ED9t l\u1EDDi m\u1EDDi thay v\u00EC m\u1ED9t b\u01B0u ki\u1EC7n.",
+        "EnglishMeaning": "For the first time, he entered the house at the street\u0027s end with an invitation rather than a parcel.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.5c28c0248c844e2582ed880a40cab703",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u1ED9t t\u1EA5m thi\u1EC7p g\u1EAFn b\u00EAn ngo\u00E0i ghi l\u1EDDi ch\u00FAc m\u1EEBng bu\u1ED5i bi\u1EC3u di\u1EC5n \u0111\u1EA7u ti\u00EAn.",
+        "EnglishMeaning": "A card attached outside offered congratulations on a first performance.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.5f0e49add8e94d8fbeb0e61202231a9f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "C\u00F4 gi\u00E1o b\u1EADt c\u01B0\u1EDDi khi th\u1EA5y t\u00EAn m\u00ECnh \u0111\u01B0\u1EE3c vi\u1EBFt t\u1EAFt gi\u1ED1ng t\u00EAn anh.",
+        "EnglishMeaning": "The teacher laughed when she saw her shortened name looked just like his.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.735ee4630f5d4830942ba09757445b77",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "B\u00ECnh nh\u1EDB nh\u00E0 cu\u1ED1i ng\u00F5 c\u00F3 c\u1EADu h\u1ECDc sinh th\u01B0\u1EDDng t\u1EADp \u0111\u00E0n v\u00E0o m\u1ED7i t\u1ED1i.",
+        "EnglishMeaning": "Binh remembered a schoolboy at the end of the lane who practised music every evening.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.8ea153e12d494da9b14706a39ee241c3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Anh mang h\u1ED9p \u0111\u1EBFn h\u1ECFi, nh\u01B0ng gia \u0111\u00ECnh n\u00F3i c\u1EADu b\u00E9 \u0111\u00E3 bi\u1EC3u di\u1EC5n t\u1EEB n\u0103m tr\u01B0\u1EDBc.",
+        "EnglishMeaning": "He took the box there, but the family said the boy had performed the previous year.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.d8c525b26e3e429bb1f4818f0ef05d3a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "H\u1ECD g\u1EE3i \u00FD anh th\u1EED h\u1ECFi c\u00F4 gi\u00E1o d\u1EA1y nh\u1EA1c m\u1EDBi chuy\u1EC3n \u0111\u1EBFn.",
+        "EnglishMeaning": "They suggested asking the music teacher who had recently moved nearby.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.dc96a7b90450476a890c1fbf5e212767",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Anh g\u1ECDi s\u1ED1 tr\u00EAn phi\u1EBFu, song ch\u1EC9 nghe th\u00F4ng b\u00E1o thu\u00EA bao kh\u00F4ng li\u00EAn l\u1EA1c \u0111\u01B0\u1EE3c.",
+        "EnglishMeaning": "He called the number on the slip but heard only an unavailable message.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.02.e718d0f059e04d8f87bc518e516b46b9",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "T\u00EAn ng\u01B0\u1EDDi nh\u1EADn \u0111\u00FAng l\u00E0 B\u00ECnh, nh\u01B0ng s\u1ED1 nh\u00E0 b\u1ECB m\u01B0a l\u00E0m nh\u00F2e m\u1EA5t.",
+        "EnglishMeaning": "The recipient was indeed called Binh, but rain had blurred the house number.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.02"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.stories.02"
+}

@@ -10,6 +10,7 @@ using System.Text;
 using TCTVocabulary.Models;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
+using TCTEnglish.Services.Contact;
 
 namespace TCTVocabulary.Controllers
 {
@@ -22,6 +23,7 @@ namespace TCTVocabulary.Controllers
         private readonly IAppEmailSender _emailSender;
         private readonly IGoalsService _goalsService;
         private readonly ILogger<HomeController> _logger;
+        private readonly TCTEnglish.Services.Notifications.LearningBusinessClock _clock;
         private readonly IDataProtector _dailyChallengeProtector;
 
         public HomeController(
@@ -29,12 +31,14 @@ namespace TCTVocabulary.Controllers
             IAppEmailSender emailSender,
             IGoalsService goalsService,
             IDataProtectionProvider dataProtectionProvider,
-            ILogger<HomeController> logger)
+            ILogger<HomeController> logger,
+            TCTEnglish.Services.Notifications.LearningBusinessClock clock)
         {
             _context = context;
             _emailSender = emailSender;
             _goalsService = goalsService;
             _logger = logger;
+            _clock = clock;
             _dailyChallengeProtector = dataProtectionProvider.CreateProtector("HomeController.DailyChallenge.v1");
         }
 
@@ -65,13 +69,14 @@ namespace TCTVocabulary.Controllers
 
         private async Task<DashboardViewModel?> BuildDashboardViewModelAsync(int userId)
         {
+            using var operation = _clock.BeginOperation();
             var user = await _context.Users
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(u => u.Folders)
                     .ThenInclude(f => f.Sets)
                 .Include(u => u.Sets)
-                .FirstOrDefaultAsync(u => u.UserId == userId);
+                .FirstOrDefaultAsync(u => u.UserId == userId && u.AnonymizedAt == null);
 
             if (user == null)
             {
@@ -102,6 +107,15 @@ namespace TCTVocabulary.Controllers
             var newCount = Math.Max(0, cardCount - masteredCount - learningCount);
 
             var heatmapCells = await BuildDashboardHeatmapAsync(userId);
+            var today = _clock.BusinessDate;
+            var goalsSnapshot = await _goalsService.GetGoalsAsync(userId);
+            var xpTotals = await _context.UserDailyActivities.AsNoTracking()
+                .Where(a => a.UserId == userId && a.ActivityDate <= today)
+                .GroupBy(_ => 1).Select(g => new
+                {
+                    Total = g.Sum(a => a.XpEarned),
+                    Today = g.Sum(a => a.ActivityDate == today ? a.XpEarned : 0)
+                }).FirstOrDefaultAsync();
 
             var todayFolders = await GetTodayFoldersAsync(userId);
 
@@ -126,7 +140,16 @@ namespace TCTVocabulary.Controllers
             {
                 FullName = user.FullName,
                 Role = user.Role,
-                Streak = user.Streak ?? 0,
+                Streak = TCTEnglish.Services.Learning.StudyDayProjection.CurrentStreak(user.LastStudyDate, user.Streak, _clock.BusinessDate),
+                TotalXp = xpTotals?.Total ?? 0,
+                TodayXp = xpTotals?.Today ?? 0,
+                DailyGoalPercent = goalsSnapshot?.ProgressPercent ?? 0,
+                ActiveGoalCount = goalsSnapshot?.GoalCards.Count(c => c.TargetValue > 0) ?? 0,
+                MetGoalCount = goalsSnapshot?.GoalCards.Count(c => c.TargetValue > 0 && c.TodayProgressValue >= c.TargetValue) ?? 0,
+                DailyGoalSummary = string.Join("; ", goalsSnapshot?.GoalCards.Where(c => c.TargetValue > 0)
+                    .Select(c => $"{c.AreaLabel}: {c.TodayProgressValue}/{c.TargetValue} {c.UnitLabel}") ?? []),
+                BusinessHour = _clock.UtcNow.AddHours(7).Hour,
+                StudyDays = goalsSnapshot?.StudyDays ?? [],
                 Goal = user.Goal ?? 0,
                 FolderCount = user.Folders.Count,
                 SetCount = user.Sets.Count,
@@ -144,7 +167,7 @@ namespace TCTVocabulary.Controllers
 
         private async Task<List<DashboardHeatmapCellViewModel>> BuildDashboardHeatmapAsync(int userId)
         {
-            var today = BusinessDateHelper.Today;
+            var today = _clock.BusinessDate;
             var startDate = today.AddDays(-27);
 
             var activityByDate = await _context.UserDailyActivities
@@ -189,7 +212,7 @@ namespace TCTVocabulary.Controllers
         /// </summary>
         private async Task<List<DailyFeatureTimeViewModel>> BuildFeatureTimeBreakdownAsync(int userId)
         {
-            var today = BusinessDateHelper.Today;
+            var today = _clock.BusinessDate;
             int daysSinceMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
             if (daysSinceMonday < 0)
             {
@@ -282,7 +305,7 @@ namespace TCTVocabulary.Controllers
                     XpEarned = DailyChallengeXp
                 };
 
-                var activityResult = await _goalsService.RecordActivityAsync(userId, activityUpdate);
+                var activityResult = await _goalsService.RecordLearningActivityAsync(userId, activityUpdate);
                 if (activityResult.Status == OperationStatus.NotFound)
                 {
                     _logger.LogWarning("Daily challenge activity record skipped because user {userId} was not found", userId);
@@ -295,7 +318,6 @@ namespace TCTVocabulary.Controllers
                     return BadRequest();
                 }
 
-                await _goalsService.UpdateStreakAndRewardsAsync(userId);
                 _logger.LogInformation("Correct answer recorded for user {userId}, card {cardId}", userId, correctCardId);
             }
 
@@ -599,41 +621,74 @@ namespace TCTVocabulary.Controllers
 
         [AllowAnonymous]
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult Contact(string? subject)
         {
             var vm = new ContactFormViewModel
             {
-                Subject = ContactFormViewModel.NormalizeSubject(subject)
+                Subject = ContactFormViewModel.NormalizeSubject(subject),
+                ContactNonce = _emailSender.IssueContactNonce(ContactClientPartition())
             };
-
+            // The query parameter is also a ModelState entry; do not let it override the normalized selection.
+            ModelState.Remove(nameof(vm.Subject));
             return View(vm);
         }
 
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [RequestSizeLimit(32768)]
+        [RequestFormLimits(ValueCountLimit = 16, ValueLengthLimit = 24576, KeyLengthLimit = 64, MultipartBodyLengthLimit = 32768)]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public async Task<IActionResult> Contact(ContactFormViewModel model)
         {
-            model.Subject = ContactFormViewModel.NormalizeSubject(model.Subject);
-
+            // MVC keeps the raw attempted values; render exactly the trimmed values validated by the setters.
+            ModelState.SetModelValue(nameof(model.Name), model.Name, model.Name);
+            ModelState.SetModelValue(nameof(model.Email), model.Email, model.Email);
+            ModelState.SetModelValue(nameof(model.Subject), model.Subject, model.Subject);
+            ModelState.SetModelValue(nameof(model.Message), model.Message, model.Message);
             if (!ModelState.IsValid)
             {
+                model.State = ContactFormState.Invalid;
+                RenewContactNonce(model);
                 return View(model);
             }
+            if (Request.Headers.UserAgent.ToString().Length > 2048
+                || Request.Headers.Sum(h => (long)h.Key.Length + h.Value.Sum(v => (long)(v?.Length ?? 0))) > 16384)
+            {
+                ModelState.AddModelError(string.Empty, "Thông tin yêu cầu vượt giới hạn cho phép.");
+                model.State = ContactFormState.Invalid;
+                Response.StatusCode = StatusCodes.Status400BadRequest;
+                return View(model);
+            }
+            var result = await _emailSender.SubmitContactAsync(model, ContactClientPartition(),
+                Request.Headers.UserAgent.ToString(), HttpContext.RequestAborted);
+            if (result == ContactSubmissionStatus.Accepted)
+            {
+                TempData["ContactSuccessMessage"] = "Máy chủ thư đã tiếp nhận yêu cầu của bạn. Cảm ơn bạn đã liên hệ.";
+                return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+            }
+            (model.State, Response.StatusCode) = result switch
+            {
+                ContactSubmissionStatus.ConfigurationUnavailable => (ContactFormState.Unavailable, StatusCodes.Status503ServiceUnavailable),
+                ContactSubmissionStatus.Failed => (ContactFormState.Failed, StatusCodes.Status503ServiceUnavailable),
+                ContactSubmissionStatus.Unknown => (ContactFormState.Unknown, StatusCodes.Status202Accepted),
+                ContactSubmissionStatus.Throttled => (ContactFormState.Throttled, StatusCodes.Status429TooManyRequests),
+                ContactSubmissionStatus.Duplicate => (ContactFormState.Duplicate, StatusCodes.Status409Conflict),
+                ContactSubmissionStatus.InvalidOperation => (ContactFormState.Expired, StatusCodes.Status400BadRequest),
+                _ => (ContactFormState.Invalid, StatusCodes.Status400BadRequest)
+            };
+            if (result is ContactSubmissionStatus.ConfigurationUnavailable or ContactSubmissionStatus.Failed or ContactSubmissionStatus.InvalidOperation)
+                RenewContactNonce(model);
+            return View(model);
+        }
 
-            var isSent = await _emailSender.SendContactMessageAsync(
-                model.Name,
-                model.Email,
-                model.SubjectDisplayName,
-                model.Message,
-                HttpContext.Connection.RemoteIpAddress?.ToString(),
-                Request.Headers.UserAgent.ToString());
+        private string ContactClientPartition() => HttpContext.Connection.RemoteIpAddress?.MapToIPv6().ToString() ?? "unavailable";
 
-            TempData[isSent ? "ContactSuccessMessage" : "ContactErrorMessage"] = isSent
-                ? "Yêu cầu của bạn đã được gửi. Chúng tôi sẽ phản hồi trong thời gian sớm nhất."
-                : "Không thể gửi liên hệ lúc này. Vui lòng thử lại sau hoặc email support.tctenglish@gmail.com.";
-
-            return RedirectToAction(nameof(Contact), new { subject = model.Subject });
+        private void RenewContactNonce(ContactFormViewModel model)
+        {
+            model.ContactNonce = _emailSender.IssueContactNonce(ContactClientPartition());
+            ModelState.Remove(nameof(model.ContactNonce));
         }
 
         [HttpGet]

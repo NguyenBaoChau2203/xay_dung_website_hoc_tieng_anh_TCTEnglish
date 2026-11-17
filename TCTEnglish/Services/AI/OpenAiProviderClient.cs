@@ -46,7 +46,8 @@ public sealed class OpenAiProviderClient(
             ? Math.Clamp(admitted, 1, configuredAttempts)
             : configuredAttempts;
         var client = httpClientFactory.CreateClient(HttpClientName);
-        var chatSelection = requestOptions?.ConstrainedOutput is not null;
+        // Writing uses the same accounting path while keeping its text-only payload.
+        var chatSelection = requestOptions?.ConstrainedOutput is not null || requestOptions?.RecordUsage is not null;
         var uncertainTokens = 0;
         var attemptBound = checked(Encoding.UTF8.GetByteCount(payload) + maxOutput);
         var knownPrompt = 0;
@@ -137,6 +138,8 @@ public sealed class OpenAiProviderClient(
                         };
                     }
                     failure = HttpFailure(response.StatusCode, body);
+                    // A definitive rejection is not a lost dispatched completion.
+                    if (requestOptions?.StopOnUncertainOutcome == true && (int)response.StatusCode < 500) pendingAttempt = false;
                     retryAfter = response.Headers.RetryAfter?.Delta
                         ?? (response.Headers.RetryAfter?.Date is { } date ? date - DateTimeOffset.UtcNow : null);
                     logger.LogWarning("OpenAI request failed: status {Status}, code {Code}, attempt {Attempt}/{MaxAttempts}.",
@@ -159,7 +162,8 @@ public sealed class OpenAiProviderClient(
                 if (sent) MarkUnknown();
                 await ReportAsync();
 
-                if (!failure.IsTransient || attempt == maxAttempts)
+                if (!failure.IsTransient || attempt == maxAttempts
+                    || (requestOptions?.StopOnUncertainOutcome == true && uncertainTokens > 0))
                 {
                     AiOutagePolicy.Settle(outageLease, failure, sent, retryAfter);
                     throw WithUsage(failure);

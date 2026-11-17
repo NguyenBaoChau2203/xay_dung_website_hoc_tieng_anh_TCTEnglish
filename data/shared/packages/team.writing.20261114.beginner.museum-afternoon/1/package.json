@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.museum-afternoon",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Bu\u1ED5i chi\u1EC1u \u1EDF b\u1EA3o t\u00E0ng",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "Kh\u00E1m ph\u00E1",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD v\u1EC1 m\u1ED9t v\u1EADt tr\u01B0ng b\u00E0y g\u1EE3i chuy\u1EC7n trong gia \u0111\u00ECnh.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.22d603df66244b05a7e1b716fb9dd990",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Khi v\u1EC1 nh\u00E0, t\u00F4i k\u1EC3 cho \u00F4ng nghe v\u1EC1 chi\u1EBFc \u0111\u00E0i.",
+        "EnglishMeaning": "When I got home, I told my grandfather about the radio.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.2ba1502f42a84ae58779ec7942c7b68e",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "C\u00F4 h\u01B0\u1EDBng d\u1EABn gi\u1EA3i th\u00EDch c\u00E1ch m\u1ECDi ng\u01B0\u1EDDi nghe tin t\u1EE9c tr\u01B0\u1EDBc \u0111\u00E2y.",
+        "EnglishMeaning": "Our guide explained how people listened to the news in the past.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.326f6449bb5e45588405c7380113292a",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "I noted down a few new words in my notebook.",
+        "NormalizedHash": "603932cd5627bef7cdc2cbb7c8b4269b6d25834c982aae38115766c590df6b19"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.museum-afternoon.4e1537baf02a439fa2b2a4ec00535aef",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.3633d7ece0f84656ab4f670cdbc41e4a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i th\u00EDch nh\u1EA5t khu tr\u01B0ng b\u00E0y nh\u1EEFng \u0111\u1ED3 d\u00F9ng trong nh\u00E0 ng\u00E0y x\u01B0a.",
+        "EnglishMeaning": "I liked the display of old household objects best.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.3686ea66a8c34a4990545d56481affb7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1ED9t chi\u1EBFc \u0111\u00E0i n\u00E2u tr\u00F4ng gi\u1ED1ng chi\u1EBFc \u0111\u00E0i c\u1EE7a \u00F4ng t\u00F4i.",
+        "EnglishMeaning": "A brown radio looked like my grandfather\u0027s radio.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.4e1537baf02a439fa2b2a4ec00535aef",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "T\u00F4i ghi v\u00E0i t\u1EEB m\u1EDBi v\u00E0o s\u1ED5 tay c\u1EE7a m\u00ECnh.",
+        "EnglishMeaning": "I wrote a few new words in my notebook.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.5e4dbb00968f4c1694821006da6ad98d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "\u00D4ng m\u1EC9m c\u01B0\u1EDDi v\u00E0 k\u1EC3 cho t\u00F4i m\u1ED9t c\u00E2u chuy\u1EC7n tu\u1ED5i th\u01A1.",
+        "EnglishMeaning": "He smiled and told me a story from his childhood.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.865328b846c344ef8ec7b07d47c9d790",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Chi\u1EC1u nay l\u1EDBp t\u00F4i \u0111\u1EBFn th\u0103m m\u1ED9t b\u1EA3o t\u00E0ng nh\u1ECF trong th\u00E0nh ph\u1ED1.",
+        "EnglishMeaning": "This afternoon, my class visited a small museum in the city.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon.c431139aa98c4b27bcf4b8f27f13a1fc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "T\u00F4i mu\u1ED1n h\u1ECFi \u00F4ng th\u00EAm nhi\u1EC1u \u0111i\u1EC1u v\u00E0o cu\u1ED1i tu\u1EA7n n\u00E0y.",
+        "EnglishMeaning": "I want to ask him more questions this weekend.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.museum-afternoon"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.museum-afternoon"
+}

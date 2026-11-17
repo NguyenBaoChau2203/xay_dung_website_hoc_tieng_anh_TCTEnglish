@@ -56,6 +56,7 @@ public sealed class AccountProfileService : IAccountProfileService
         string? postedName,
         CancellationToken cancellationToken = default, int windowDays = 7)
     {
+        using var operation = _clock.BeginOperation();
         var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(row => row.UserId == userId, cancellationToken);
         if (user == null || user.AnonymizedAt != null)
         {
@@ -67,13 +68,13 @@ public sealed class AccountProfileService : IAccountProfileService
         var habits = await _habits.BuildAsync(userId, windowDays, cancellationToken);
         var preferences = await _preferences.ReadAsync(userId, _outbound.Value.PushConfigured, cancellationToken);
         var today = _clock.BusinessDate;
-        var goal = await _context.UserGoals.AsNoTracking()
-            .Where(row => row.UserId == userId && row.GoalArea == GoalArea.Vocabulary && row.IsActive)
-            .Select(row => new { row.TargetValue })
-            .FirstOrDefaultAsync(cancellationToken);
-        var reviewed = await _context.UserDailyActivities.AsNoTracking()
+        var goals = await _context.UserGoals.AsNoTracking()
+            .Where(row => row.UserId == userId && row.IsActive)
+            .ToListAsync(cancellationToken);
+        if (goals.Count == 0 && user.Goal is > 0)
+            goals.Add(new UserGoal { GoalArea = GoalArea.Vocabulary, TargetValue = user.Goal.Value, IsActive = true });
+        var activity = await _context.UserDailyActivities.AsNoTracking()
             .Where(row => row.UserId == userId && row.ActivityDate == today)
-            .Select(row => row.CardsReviewed)
             .FirstOrDefaultAsync(cancellationToken);
         var pending = await _context.AccountSecurityChallenges.AsNoTracking()
             .Where(row => row.UserId == userId && row.Purpose == AccountProofPurpose.EmailChange && row.ConsumedAtUtc == null && row.ExpiresAtUtc > DateTime.UtcNow)
@@ -83,18 +84,21 @@ public sealed class AccountProfileService : IAccountProfileService
 
         string goalText;
         int? percent = null;
-        if (goal == null)
+        var measuredGoals = goals.Where(g => g.TargetValue > 0).ToList();
+        if (goals.Count == 0)
         {
-            goalText = "Chưa đặt mục tiêu từ vựng";
+            goalText = "Chưa đặt mục tiêu";
         }
-        else if (goal.TargetValue <= 0)
+        else if (measuredGoals.Count == 0)
         {
-            goalText = "Mục tiêu từ vựng đang tạm dừng";
+            goalText = "Các mục tiêu đang tạm dừng";
         }
         else
         {
-            percent = (int)Math.Clamp(Math.Round(100d * reviewed / goal.TargetValue), 0, 100);
-            goalText = $"{reviewed}/{goal.TargetValue} từ đã ôn hôm nay";
+            percent = (int)Math.Round(measuredGoals.Average(g =>
+                (int)Math.Clamp(Math.Round(100d * GoalDayProjection.Progress(activity, g.GoalArea) / g.TargetValue), 0, 100)));
+            var met = measuredGoals.Count(g => GoalDayProjection.Progress(activity, g.GoalArea) >= g.TargetValue);
+            goalText = $"{met}/{measuredGoals.Count} mục tiêu kỹ năng đạt hôm nay (UTC+7)";
         }
 
         return new ProfilePageViewModel
@@ -103,7 +107,7 @@ public sealed class AccountProfileService : IAccountProfileService
             Email = user.Email,
             CurrentAvatarUrl = user.AvatarUrl,
             Role = user.Role ?? Roles.Standard,
-            StreakDays = user.Streak ?? 0,
+            StreakDays = StudyDayProjection.CurrentStreak(user.LastStudyDate, user.Streak, today),
             EarnedBadges = badges.ToList(),
             AccountCode = AccountDisplayCode.Format(user.UserId),
             ActiveTab = activeTab is "security" or "subscription" ? activeTab : "profile",

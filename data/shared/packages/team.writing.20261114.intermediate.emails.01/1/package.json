@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.emails.01",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.emails.01",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "\u0110\u1EC1 ngh\u1ECB \u0111\u1ED5i l\u1ECBch thuy\u1EBFt tr\u00ECnh nh\u00F3m",
+        "Level": "intermediate",
+        "ContentType": "emails",
+        "Topic": "H\u1ECDc t\u1EADp",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email gi\u1EA3i th\u00EDch l\u1ECBch tr\u00F9ng v\u00E0 \u0111\u1EC1 xu\u1EA5t ph\u01B0\u01A1ng \u00E1n thuy\u1EBFt tr\u00ECnh thay th\u1EBF.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.02a82b5c73d04e10b79aa3d6aa9979ed",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "N\u1EBFu vi\u1EC7c \u0111\u1ED5i l\u1ECBch kh\u00F4ng thu\u1EADn ti\u1EC7n, ch\u00FAng em c\u00F3 th\u1EC3 g\u1EEDi video tr\u01B0\u1EDBc.",
+        "EnglishMeaning": "If changing the schedule is inconvenient, we could send a video beforehand.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.13fb3ca2491a47e2a50565022132c0a3",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Please tell us which option would suit the class better.",
+        "NormalizedHash": "243fe0405a572563b12ba915504bf10d7376ab317d17273a5dd281cd3a6bf949"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.emails.01.cffebd340cf1491da3f509e9d88b5454",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.332c45eecef74181b3b9a7e3064d1f77",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Em mong nh\u1EADn \u0111\u01B0\u1EE3c ph\u1EA3n h\u1ED3i \u0111\u1EC3 nh\u00F3m c\u00F3 th\u1EC3 th\u1ED1ng nh\u1EA5t k\u1EBF ho\u1EA1ch cu\u1ED1i c\u00F9ng.",
+        "EnglishMeaning": "I look forward to your reply so that we can finalise our plan.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.a124a996eedc4fd999ed76ba1cd2bd64",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Ch\u00FAng em ch\u1EC9 nh\u1EADn \u0111\u01B0\u1EE3c th\u00F4ng b\u00E1o sau khi l\u1ECBch thuy\u1EBFt tr\u00ECnh \u0111\u00E3 \u0111\u01B0\u1EE3c x\u00E1c nh\u1EADn.",
+        "EnglishMeaning": "We only received the announcement after the presentation schedule had been confirmed.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.a973e7dba218414b91e4f370345c5e49",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "Em \u0111\u00E3 h\u1ECFi c\u00E1c th\u00E0nh vi\u00EAn c\u00F2n l\u1EA1i v\u00E0 t\u1EA5t c\u1EA3 \u0111\u1EC1u \u0111\u1ED3ng \u00FD v\u1EDBi hai ph\u01B0\u01A1ng \u00E1n n\u00E0y.",
+        "EnglishMeaning": "I have asked the other members, and everyone agrees with these two options.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.aefb5cabf231424f9658db8761fed396",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ch\u00FAng em \u0111\u00E3 ho\u00E0n th\u00E0nh ph\u1EA7n nghi\u00EAn c\u1EE9u v\u00E0 s\u1EBD kh\u00F4ng c\u1EA7n th\u00EAm th\u1EDDi gian chu\u1EA9n b\u1ECB.",
+        "EnglishMeaning": "We have completed our research and will not need any extra preparation time.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.bc3716452f0d4040bab537015c243fab",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Hai th\u00E0nh vi\u00EAn s\u1EBD tham d\u1EF1 m\u1ED9t bu\u1ED5i t\u1EADp hu\u1EA5n b\u1EAFt bu\u1ED9c v\u00E0o s\u00E1ng h\u00F4m \u0111\u00F3.",
+        "EnglishMeaning": "Two members will be attending a compulsory training session that morning.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.cffebd340cf1491da3f509e9d88b5454",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "Xin c\u00F4 cho ch\u00FAng em bi\u1EBFt ph\u01B0\u01A1ng \u00E1n n\u00E0o ph\u00F9 h\u1EE3p h\u01A1n v\u1EDBi l\u1EDBp.",
+        "EnglishMeaning": "Please let us know which option would work better for the class.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.e0a0a032dc66410ebad821cad67f08b1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Em xin l\u1ED7i v\u00EC s\u1EF1 b\u1EA5t ti\u1EC7n n\u00E0y v\u00E0 c\u1EA3m \u01A1n c\u00F4 \u0111\u00E3 c\u00E2n nh\u1EAFc.",
+        "EnglishMeaning": "I apologise for the inconvenience and thank you for considering our request.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.e45b00ed7d4e4045aa03049910a613da",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi c\u00F4 Mai, em vi\u1EBFt th\u01B0 \u0111\u1EC3 h\u1ECFi v\u1EC1 bu\u1ED5i thuy\u1EBFt tr\u00ECnh nh\u00F3m v\u00E0o th\u1EE9 N\u0103m.",
+        "EnglishMeaning": "Dear Ms Mai, I am writing to ask about Thursday\u0027s group presentation.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.f374eb3ec5414968bac959ee9790bc82",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Video s\u1EBD bao g\u1ED3m ph\u1EA7n tr\u00ECnh b\u00E0y c\u1EE7a m\u1ECDi th\u00E0nh vi\u00EAn v\u00E0 \u0111\u00E1p \u1EE9ng c\u00F9ng y\u00EAu c\u1EA7u.",
+        "EnglishMeaning": "The video would include everyone\u0027s contribution and meet the same requirements.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.f645f7dc932b4f2f897e4dc0c3e82fe2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Nh\u00F3m c\u0169ng c\u00F3 th\u1EC3 tham gia tr\u1EF1c tuy\u1EBFn \u0111\u1EC3 tr\u1EA3 l\u1EDDi c\u00E2u h\u1ECFi sau \u0111\u00F3.",
+        "EnglishMeaning": "Our group could also join online to answer questions afterwards.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.emails.01.feeb05058d454a19a10c2595c0feb5ce",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "V\u00EC v\u1EADy, em mu\u1ED1n h\u1ECFi li\u1EC7u nh\u00F3m c\u00F3 th\u1EC3 tr\u00ECnh b\u00E0y v\u00E0o bu\u1ED5i chi\u1EC1u kh\u00F4ng.",
+        "EnglishMeaning": "Therefore, I would like to ask whether our group could present in the afternoon.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.emails.01"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.emails.01"
+}

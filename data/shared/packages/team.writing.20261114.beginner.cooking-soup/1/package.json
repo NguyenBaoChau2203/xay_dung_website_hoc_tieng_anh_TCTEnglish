@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.cooking-soup",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "N\u1ED3i s\u00FAp \u0111\u1EA7u ti\u00EAn",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "N\u1EA5u \u0103n",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD ghi l\u1EA1i m\u1ED9t l\u1EA7n n\u1EA5u \u0103n ch\u01B0a ho\u00E0n h\u1EA3o nh\u01B0ng \u0111\u00E1ng nh\u1EDB.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.1990e370bdec41d88afabc580fd19055",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Em trai t\u00F4i \u0103n h\u1EBFt m\u1ED9t b\u00E1t v\u00E0 xin th\u00EAm.",
+        "EnglishMeaning": "My younger brother finished a bowl and asked for more.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.3dbaaa6345504386bb345acc313e34b3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ch\u00FAng t\u00F4i n\u1EA5u th\u00EAm m\u1ED9t l\u00FAc v\u00E0 cho v\u00E0o m\u1ED9t \u00EDt mu\u1ED1i.",
+        "EnglishMeaning": "We cooked it a little longer and added some salt.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.5a52c34569bd433abee9159c6040907a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "T\u00F4i r\u1EA5t vui d\u00F9 m\u00F3n s\u00FAp ch\u01B0a th\u1EADt ho\u00E0n h\u1EA3o.",
+        "EnglishMeaning": "I was very happy even though the soup was not perfect.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.71e92c8d31c34177b97b695dd2d30684",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "My little brother finished a bowl and asked for more.",
+        "NormalizedHash": "ec1b2f5381caae17ad302eef0664751ab36061d09e15a1b56d24e3880cddbc31"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.cooking-soup.1990e370bdec41d88afabc580fd19055",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.7a41dac6ce06444bbf41a239a09ea9ae",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "L\u1EA7n sau t\u00F4i s\u1EBD \u0111\u1ECDc c\u00F4ng th\u1EE9c c\u1EA9n th\u1EADn h\u01A1n tr\u01B0\u1EDBc khi n\u1EA5u.",
+        "EnglishMeaning": "Next time, I will read the recipe more carefully before cooking.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.7cb33a7b505c4dd1870f46f9da5cfea0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i r\u1EEDa c\u00E0 r\u1ED1t v\u00E0 khoai t\u00E2y th\u1EADt k\u1EF9 tr\u01B0\u1EDBc khi c\u1EAFt.",
+        "EnglishMeaning": "I washed the carrots and potatoes carefully before cutting them.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.8f75ea016b4542f999de9602a236ec4f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "M\u1EB9 \u0111\u1EE9ng b\u00EAn c\u1EA1nh v\u00E0 ch\u1EC9 cho t\u00F4i c\u00E1ch c\u1EA7m dao.",
+        "EnglishMeaning": "My mother stood beside me and showed me how to hold the knife.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.9f675e1e5ef5451c9a4b51e903d448ce",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "T\u00F4i cho qu\u00E1 nhi\u1EC1u n\u01B0\u1EDBc n\u00EAn s\u00FAp h\u01A1i lo\u00E3ng.",
+        "EnglishMeaning": "I added too much water, so the soup was a little thin.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup.e688da9ad36a418c84ee65629c7ef51b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Chi\u1EC1u nay t\u00F4i \u0111\u00E3 n\u1EA5u s\u00FAp rau cho c\u1EA3 nh\u00E0.",
+        "EnglishMeaning": "This afternoon, I made vegetable soup for my family.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.cooking-soup"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.cooking-soup"
+}

@@ -42,6 +42,263 @@ This is a historical record of actual fixes — not a list of pending issues (se
 
 <!-- Agent: append new entries BELOW this line, newest first -->
 
+### Publication integration: stale Writing/Profile fixtures and catalog checkout bytes — 2026-11-18
+
+**Symptom/cause**: After merging current master with the completed learning/chat
+branch, the full Node gate had494 passes/4 failures. Two old Writing outage
+fixtures lacked AbortController/timers or valid minimum-length input, so they did
+not reach the server seam; they also expected the superseded pre-receipt error
+handling. The Profile layout test demanded decorative badge previews replaced by
+actual server-earned grants. Windows autocrlf changed the superseded Listening
+catalog's checkout bytes, violating the SHA256 pinned by the Speaking catalog.
+
+**Fix**: Supply the real browser primitives and valid text in the isolated test
+fixtures. Assert unknown-result recovery/catalog guidance and403 personal-panel
+invalidation/reload, without claiming an outage or silently retrying creation.
+Assert truthful empty/unlocked badges and the Goals action. Pin only the hashed
+catalog to LF in .gitattributes; verify its committed blob against the existing
+supersedes SHA256 and preserve those exact bytes. No published package/hash,
+application behavior, credential, release gate or schema was changed by this fix.
+
+**Verification**: The three affected Node files pass29/29 after the four red
+cases. Full post-integration Node/.NET verification is recorded by the publication
+plan and CI, rather than treating this focused result as the full gate.
+
+**Files**: .gitattributes, scripts/tests/test_ai_outage_ui.cjs,
+scripts/tests/test_user_dropdown_and_loader.cjs. No matching known-issues entry.
+Commit group: test(ci). Owner authorizes grouped commits, PR/master merge and
+staging only; production remains disabled.
+
+### General learning-roadmap questions fell back to missing personal data — 2026-11-18
+
+**Symptom**: The owner's mixed A1→C1 / TOEIC450 / IELTS4.5 question received
+the missing-personal-data/create-first-set answer. Similar demo questions were
+not covered by the single-file guide catalog or an older classifier.
+
+**Root Cause**: General guidance depended on a narrow starter recommendation
+path. Composition rejected other available guides without live recommendation
+data, and runtime/corpus readers did not share support for explicitly included
+topic files. A bare beginner cue also overrode more specific feature questions.
+
+**Solution**: Add six reviewed static topic packs (60 guides/480 question
+variants), explicit bounded includes and a shared asynchronous catalog reader.
+Preserve per-pack versions, corpus admission, retirement/access restrictions and
+live personal recommendations. Route reviewed phrases/concept combinations and
+bounded roadmaps before stale classification; compose available general guidance
+without requiring an owned set. Negative regressions also enforce the existing
+OTP/credential and unrelated-homework refusal boundaries before static guidance.
+
+**Files Changed**: WebsiteGuideCatalog.cs, WebsiteGuideRetriever.cs,
+AiChatAnswerService.cs, TemplateAnswerComposer.cs, CorpusAdapters.cs,
+ChatDisclosurePolicy.cs, ChatExternalFactPolicy.cs, website-guides.json and six
+guide-packs JSON files/README; ChatDemoKnowledgeTests.cs, AiRagCorpusBm25Tests.cs,
+two AiDemo fixtures, the scoped plan and the observed-results audit.
+
+**Verification**: Initial 15 regressions:13 failed/2 passed before repair. Final
+related .NET690/690, new class rerun277/277 (overlapping), chat Node26/26 and
+Release build succeed. The759 variants and120 novel paraphrases pass with both
+current and stale classifiers;12 negatives have exact expected non-answer
+outcomes/empty evidence. No held-out normalized question is in runtime examples.
+Actual5100 browser: screenshot HTTP200, full-chat SignalR7 chunks, floating
+IELTS SignalR10 chunks, full/embedded history source parity,418px iframe icons,
+native Writing CTA navigation and1440/768/emulated390 without horizontal overflow.
+
+**Commit**: Not created; local-only owner authority.
+
+**Notes**: Extends the2026-11-17 learning-guidance fix; T1/R1–R4 and the exact
+host/model delegation policy remain in place. No matching known-issues entry
+needed a status change. The owned web was restarted on5100; MariaDB/data and
+saved secrets were preserved, readiness is ready, speech is configured but not
+live-verified. No schema/export, paid request, branch, subagent or publication.
+Curated wording coverage is not universal NLP or multi-turn context reasoning.
+Full evidence/fixture expectation corrections:
+docs/feature-audits/2026-11-18-chatbot-demo-knowledge.md.
+
+### Friendly Chatbot Presentation & Clean CTA Layout — 2026-11-17
+
+**Symptom**: Chatbot responses displayed routine technical state badges (e.g. "Trả lời từ dữ liệu trong hệ thống", "Đã trả lời từ nguồn được phép xem") and a raw "Nguồn" heading and list, and assistant copy was overly formal and repeated raw system routes in prose.
+
+**Root Cause**: `_ChatSources.cshtml` and `ai-chat.js` bundled technical grounding provenance and metadata labels unconditionally with action buttons; `TemplateAnswerComposer.cs` used formal assistant wording and dumped raw navigation paths into response prose.
+
+**Solution**: Completely decoupled safe learning action buttons from routine metadata in `_ChatSources.cshtml` and `ai-chat.js`, removing routine state labels and the "Nguồn" list while retaining material content-change notices; added route-mapped SVG icons in `LearnerSourceLink.cs` and warm "mình–bạn" assistant tone with restrained friendly emojis (`👋 🌱 📚 🎙️ ✍️ 🎧 📖 🎯 🏆 🔎`) across all reply families in `TemplateAnswerComposer.cs`.
+
+**Files Changed**:
+- `TCTEnglish/Services/AI/Rag/LearnerSourceLink.cs` — Added `ActionIcon` mapping routes to SVG icons.
+- `TCTEnglish/Views/Ai/_ChatSources.cshtml` — Removed routine state labels and source list; added action icon/label spans and `data-source-key`.
+- `TCTEnglish/wwwroot/js/ai-chat.js` — Removed routine technical labels and source list; added action SVG rendering.
+- `TCTEnglish/wwwroot/css/ai-chat.css` — Added `:empty { display: none; }` and styled `.ai-chat-action` flex layout with gap and hover transition.
+- `TCTEnglish/Services/AI/Internal/TemplateAnswerComposer.cs` — Polished copy across all reply families to warm "mình–bạn" companion tone with restrained emojis.
+- `TCTEnglish/wwwroot/data/ai/website-guides.json` — Bumped version to `2.1.0` and polished starter guide bodies.
+
+**Verification**: `node scripts/tests/test_ai_chat_phase6_sources.cjs` (11/11 passed), `test_ai_chat_clay_ui_and_logo.cjs` (6/6 passed), `test_ai_chat_load_older_order.cjs` (2/2 passed), `test_ai_chat_submit_guard.cjs` (5/5 passed), targeted .NET RAG/Integration suites (126/126 passed), core baseline tests (99/99 passed). Total >225 .NET tests and 24 JS tests passed.
+
+**Commit**: `None (local task authority only)`
+
+**Notes**: Stale/revoked sources strictly do not render action buttons; grounding DTOs and backend citation integrity remain completely intact.
+
+### Writing exercises tags: Vibrant topic/level/type palettes with contextual icons — 2026-11-15
+
+**Symptom**: Exercise topic tags (e.g., "Đi lại", "Nghỉ ngơi", "Nấu ăn") rendered as monotone gray text badges with no icons, and recent card tags (Level, Type, Privacy) shared an undifferentiated light blue palette without visual distinction.
+
+**Root Cause**: In `WritingExercises.cshtml`, topic tags used a switch expecting level names instead of topic strings, falling back to a default gray `.writing-card-chip--default` with no icons. In `_RecentWritingExercises.cshtml` and `writing-recent.js`, level, type, and private badges used overlapping blue/gray tints.
+
+**Solution**:
+1. Added `GetTopicBadgeInfo` helper mapping topics to meaningful FontAwesome icons and distinct Clay semantic color palettes (Cyan for Transport, Rose for Relax, Orange for Food, Emerald for Education, Slate/Indigo for Work, Violet for Lifestyle, etc.).
+2. Differentiated Level chips (Green for Beginner, Amber for Intermediate, Purple for Advanced).
+3. Created dedicated Content Type classes (`.writing-card-chip--type-*` for emails, diaries, essays, articles, stories, reports).
+4. Restyled Privacy badge (`.writing-card-chip--private`) as vibrant lavender/purple with lock icon.
+
+**Files Changed**:
+- `TCTEnglish/Views/Study/WritingExercises.cshtml` — Added `GetTopicBadgeInfo` helper and applied to system and personal exercise cards.
+- `TCTEnglish/Views/Study/_RecentWritingExercises.cshtml` — Added content type specific class mapping.
+- `TCTEnglish/wwwroot/js/writing-recent.js` — Synchronized client-side chip classes for content type.
+- `TCTEnglish/wwwroot/css/writing-exercises.css` — Added vibrant, accessible WCAG-compliant color and border rules for topics, levels, types, and privacy chips.
+- `TCTEnglish.Tests/WritingUiRenderTests.cs` — Added regression assertion for topic chip icon and class rendering.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --filter "WritingUiRenderTests"` -> 9/9 passed.
+- `node scripts/tests/test_writing_brief_ui.cjs` -> 28/28 passed.
+- `node scripts/tests/test_writing_recent.cjs` -> 11/11 passed.
+- `node scripts/tests/test_writing_ui.cjs` -> 8/8 passed.
+
+**Commit**: Uncommitted local change.
+
+### Writing exercises filter toolbar repositioned below AI creation and above System Catalog — 2026-11-15
+
+**Symptom**: On the Writing Exercises page (`/Home/Writing/Exercises`), the topic and status filter toolbar was placed above the personal exercise and AI creation section ("Bài viết của tôi"), causing awkward layout ordering since the filter controls the system catalog exercises below it.
+
+**Root Cause**: In `TCTEnglish/Views/Study/WritingExercises.cshtml`, `<section class="writing-filter-toolbar">` was located right above `@* ── My Exercises (Authenticated) ── *@`.
+
+**Solution**: Moved `<section class="writing-filter-toolbar">` down, placing it directly below the personal exercise creation section (`writing-user-section`) and immediately above the system catalog (`writing-system-section`).
+
+**Files Changed**:
+- `TCTEnglish/Views/Study/WritingExercises.cshtml` — Moved `writing-filter-toolbar` block below `writing-user-section` and above `writing-system-section`.
+- `TCTEnglish.Tests/WritingUiRenderTests.cs` — Added DOM order regression assertions verifying `writing-user-section` precedes `writing-filter-toolbar` and `writing-filter-toolbar` precedes `system-catalog-heading`.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --filter "WritingUiRenderTests"` -> 9/9 passed.
+- `node scripts/tests/test_writing_brief_ui.cjs` -> 28/28 passed.
+- `node scripts/tests/test_writing_recent.cjs` -> 11/11 passed.
+- `node scripts/tests/test_writing_ui.cjs` -> 8/8 passed.
+
+**Commit**: Uncommitted local change.
+
+### Writing exercises breadcrumb navigation redirected to /Home/Writing — 2026-11-15
+
+**Symptom**: On the Writing Exercises page (`/Home/Writing/Exercises`), clicking the "Trang chủ" breadcrumb item navigated out of the Writing section to the public landing page (`/Home`) instead of staying within the Writing module at `/Home/Writing`.
+
+**Root Cause**: In `TCTEnglish/Views/Study/WritingExercises.cshtml`, the first breadcrumb link was hardcoded as `<a href="/Home">Trang chủ</a>`.
+
+**Solution**: Updated the breadcrumb link to `<a asp-controller="Study" asp-action="Writing">Trang chủ</a>` (which resolves to `/Home/Writing`), ensuring users stay inside the Writing feature hub when navigating backwards.
+
+**Files Changed**:
+- `TCTEnglish/Views/Study/WritingExercises.cshtml` — Changed breadcrumb link to `asp-controller="Study" asp-action="Writing"`.
+- `TCTEnglish.Tests/WritingUiRenderTests.cs` — Added regression assertion ensuring breadcrumb renders `<a href="/Home/Writing">Trang chủ</a>`.
+
+**Verification**:
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --filter "WritingUiRenderTests"` -> 9/9 passed.
+- `node scripts/tests/test_writing_brief_ui.cjs` -> 28/28 passed.
+- `node scripts/tests/test_writing_recent.cjs` -> 11/11 passed.
+
+**Commit**: Uncommitted local change.
+
+### Writing exercises mode tab underline removal — 2026-11-15
+
+**Symptom**: On the Writing Exercises page (`/Home/Writing/Exercises`), the active creation mode tab ("Mô tả bài muốn luyện") displayed an underline under both the text and the pen icon (`<i class="fa-solid fa-pen-fancy"></i>`), creating an unpolished visual glitch where a short line appeared right underneath the icon.
+
+**Root Cause**: In `TCTEnglish/wwwroot/css/writing-exercises.css`, `.writing-exercises-page .writing-mode-tab.is-active` had `text-decoration: underline; text-underline-offset: .25em;`. Since the tab button is a raised Clay pill component with active background, shadow, and text color, the underline was unnecessary and caused the browser text decoration to underline the inline icon.
+
+**Solution**: Removed `text-decoration: underline;` and explicitly enforced `text-decoration: none;` on `.writing-mode-tab` and `.writing-mode-tab.is-active`, and added `display: inline-block; text-decoration: none !important;` to `.writing-mode-tab i`.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/writing-exercises.css` — Removed underline from active mode tab and ensured icon has text-decoration none.
+
+**Verification**:
+- `node scripts/tests/test_writing_brief_ui.cjs` -> 28/28 tests passed.
+- `node scripts/tests/test_writing_recent.cjs` -> 11/11 tests passed.
+- `dotnet test TCTEnglish.Tests/TCTEnglish.Tests.csproj --filter "WritingUiRenderTests"` -> 9/9 tests passed.
+
+**Commit**: Uncommitted local change.
+
+### Goals UI: Natural friendly streak microcopy on Goals card — 2026-11-15
+
+**Symptom**: On the `/Goals` streak card, the explanation text read "Ngày học tính theo UTC+7. Đăng nhập chưa tính; câu viết được chấp nhận và lưu có thể giữ streak.", which sounded dry, technical, and unnatural for learners.
+
+**Root Cause**: Hardcoded backend-centric engineering wording in `TCTEnglish/Views/Goals/Index.cshtml`.
+
+**Solution**: Updated microcopy to friendly, natural Vietnamese: "Hoàn thành ít nhất một bài học mỗi ngày trước 24:00 để giữ chuỗi (chỉ đăng nhập sẽ chưa tính bạn nhé)." with `class="small text-muted mb-0 mt-1"`.
+
+**Files Changed**:
+- `TCTEnglish/Views/Goals/Index.cshtml` — line 72: refined streak explanation microcopy.
+
+**Verification**:
+- `node scripts/tests/test_goals_ui.cjs` (12 passed)
+- `dotnet test TCTEnglish.Tests --filter "FullyQualifiedName~GoalsUiRenderTests"` (13 passed)
+
+**Commit**: `fix(goals): refine streak helper microcopy to friendly Vietnamese`
+
+**Notes**: Preserves clarity about daily deadline (24:00) and study activity requirement while eliminating technical jargon.
+
+### Goals UI: 1-column layout for weekly chart and badge showcase — 2026-11-15
+
+**Symptom**: On the `/Goals` page, when displaying all badges, the right card (`.goals-badge-card`) became very tall, causing the 2-column grid to stretch `.goals-chart-card` on the left and leave a large empty white space under the chart / "Bắt đầu ôn thẻ" empty-state button.
+
+**Root Cause**: `.goals-lower-grid` used `grid-template-columns: 7fr 5fr` on desktop (`>= 992px`). CSS grid equal-height stretching forced `.goals-chart-card` to match the tall height of the 20+ badges in `.goals-badge-card`.
+
+**Solution**: Switched `.goals-lower-grid` to a 1-column layout (`grid-template-columns: 1fr`) across all breakpoints. Adjusted `.goals-badge-grid` to use `repeat(auto-fill, minmax(96px, 1fr))` with 12px gap so badges spread cleanly across the full container width, and set `.goals-chart-bar` max-width to 44px on desktop.
+
+**Files Changed**:
+- `TCTEnglish/wwwroot/css/goals.css` — lines 612-623, 821-832, 1415-1428: removed 2-column split, enabled full-width 1-column layout with responsive badge grid and natural card heights.
+
+**Verification**:
+- `node scripts/tests/test_goals_ui.cjs` (12 tests passed)
+- `dotnet test TCTEnglish.Tests --filter "FullyQualifiedName~GoalsUiRenderTests"` (13 tests passed)
+
+**Commit**: `fix(goals): switch weekly chart and badge showcase to 1-column layout`
+
+**Notes**: Eliminates whitespace imbalance while keeping honest Claymorphism design and responsive accessibility down to 320px screens.
+
+### Writing stage 02: concurrent completion, Unicode/input, access and pending drafts — 2026-11-14
+
+**Symptom**: MariaDB concurrent final submissions deadlocked in progress upsert;
+oversized punctuation-normalized answers returned200; Unicode combining accents
+could reject equivalent text or accept a different word. Admin Practice denied
+unpublished content already allowed by its data resolver. Ctrl+Enter sent duplicate
+requests; an older Accepted response erased newer local/multi-tab drafts.
+
+**Root Cause**: Writing inserted attempts before serializing the user's progress
+unit; controller lacked the1000-character accepted-answer bound. Normalization
+handled only ASCII whitespace and discarded combining marks. Practice duplicated
+the access predicate. Browser submit had no function-level in-flight guard, cleared
+drafts unconditionally and auto-advanced using the current selection.
+
+**Solution**: MariaDB user row lock before the first attempt write/progress read;
+cancellation passed through persistence; input/model-state guard; Unicode whitespace
++NFC/retained marks; reuse access resolver; conditional draft deletion and protect
+newer edits/selection. Review also reproduced legacy Unicode hash/token mismatch
+introduced by the normalization change: Admin token now binds the stored hash,
+matching POST, without rewriting historical data or changing UI.
+
+**Files Changed**: StudyController, WritingService, WritingAssessmentPolicy,
+WritingExerciseManagementController, writing.js; WritingStage02RegressionTests,
+WritingCompletionTransactionTests and draft Node harness. Gemini's five pre-existing
+UI edits preserved byte-for-byte. Full audit/boundary:
+`docs/feature-audits/2026-11-14-writing-goals/02-writing-backend.md`.
+
+**Verification**: Initial backend5 red, Admin access1 red, draft/duplicate3 red,
+MariaDB1 deadlock red, legacy token1 red. Final Writing/transaction/recovery216 pass,
+0 fail,12 conditional skips; separate MariaDB10.5.23 provider10 pass/0 fail, including
+five barrier repetitions, distinct final sentences, actual SQL credit rejection,
+outbox/cancel rollback and migration repeat/model check. Node38/38; local build;
+Chrome synthetic Razor capture with fake grading confirmed one Ctrl+Enter request,
+newer edits/selection/multi-tab drafts retained. See audit for browser limits.
+
+**Commit**: Not created. Local only; no paid API, push, deployment or real-user DB changes.
+
+**Notes**: Builds on04/11draft/status fixes and30/10transaction boundary; those old
+fixes remained valid. Accepted-sentence practice-day integration is documented for
+stage03, not implemented here. No schema change/migration or content export.
+
 ### Speaking YouTube Import Loading State Redesign & Empty State Polish — 2026-11-13
 
 **Symptom**: Khi người dùng dán link YouTube để nhập video cá nhân vào mục "Video của tôi", giao diện trạng thái tải là một thẻ skeleton Bootstrap xám đơn điệu (`placeholder-glow`, `opacity: .75`), không hiển thị thumbnail video, không có thông tin các bước xử lý của AI (trích xuất phụ đề, bóc tách câu, phiên âm IPA), và gây lệch bố cục khi tài khoản chưa có video nào (0 bài).
@@ -4560,6 +4817,431 @@ Verification: scan baseline1 fail; shared suite39 pass/3 gated skips; disposable
 MariaDB10.5.23 full271-package import23.212s/16262 cues, repeat0.129s/zero operations,
 private and old learner data preserved. Windows PowerShell5.1 release/recovery25
 pass. Final CI and staging evidence must be recorded in the release ledger/PR.
+
+### Writing confirmed practice and Goals/Profile/dashboard consistency — 2026-11-14
+
+**Symptom/cause**: Accepted Writing only reached learning rewards on first full
+exercise completion, omitting partial practice and later-day replay. Profile read
+raw streak; Goals accepted future last-study dates and used a static clock.
+Dashboard synthesized XP from card/streak counts and painted weekday presence
+from streak length. Profile target summary and badge recency used different units/
+windows. Empty/XP-only activity rows or browser duration could inflate active days.
+
+**Fix**: Record each newly persisted owned Accepted attempt in its Writing
+transaction, separate from lifetime20 XP/completion count. Reuse one injectable
+UTC+7 operation instant, user row serialization, daily10 XP guard and atomic
+outbox. Reject reprocessing old/future attempt dates as a new practice day. Share
+read-only streak expiry and typed confirmed/nullable-goal-day projections; use
+persisted XP and equal skill percentages across summary consumers. Preserve old
+awards/history; target revisions retain past-day meaning, including goals created
+later. Daily challenge now records counter/streak in one learning unit.
+
+**Verification**: Initial03 regression3 fail/3 pass. Broad application suite341
+pass/0 fail/16 conditional skip; final focused review53/53. Disposable MariaDB
+10.5.23 final24/24 (three-feature concurrency5 rounds, completion replay, midnight,
+real credit/outbox failures, migration repeat/preservation, account/worker/Admin
+regressions); Node38/38; app build and diff check pass. Expanded provider run first
+exposed missing UserBadges reset in the guarded acceptance fixture; fixed its
+allowlist and required a clean badge baseline before rerunning. No dev DB reset.
+
+**Limits**: Browser checked actual Razor captures with isolated synthetic data,
+not live dev-DB login; native200% zoom/full role states remain for stage06. Existing
+mobile dashboard Memory Strength labels need presentation review. No schema,
+protected config, shared content, historical reward rewrite, paid call or remote
+release. Contract, dry-run and evidence:
+`docs/feature-audits/2026-11-14-writing-goals/03-goals-streak-profile.md`.
+
+
+### Stage04 badge rules, hidden discovery and concurrent grant safety — 2026-11-14
+
+**Symptom/cause**: Unknown metric values with threshold0 and negative thresholds
+could grant awards. Existing aggregate Writing counters could not establish
+distinct exercise milestones. A near-award worker used raw catalog names, which
+would disclose new secrets. New badge outbox routing initially read unsupported
+area columns on legacy daily schemas. Provider stress reproduced cross-user
+unique-index gap deadlocks despite per-user row locks.
+
+**Fix**: Require supported positive rules; preserve legacy IDs/codes/enum values
+and grants. Add10 catalog awards, nullable difficulty/secret metadata, distinct
+completion and confirmed-date streak metrics. Goals/Profile share a redacting
+projection with nullable hidden progress and safe recommendation state. Worker
+excludes secrets; direct secret messages require the owned grant. Grant+outbox
+share the learning transaction; badge-only intents skip unrelated goal counters.
+Owned mutation units retry deadlock1213 after complete transaction disposal;
+ambient failures propagate. Explicit bounded catch-up only grants missing new
+awards, marks retroactive and suppresses notification fan-out.
+
+**Verification**: Meaningful baseline2 fail. Broad361 pass/0 fail/24 gated skip;
+final disposable MariaDB10.5.23 provider29/29, including all-ten real Writing
+journey, concurrent grant/catch-up, outbox replay/rollback, upgrade/repeat and
+ID/code/legacy conflicts before DDL. Node25/25; build and pending-model check pass.
+Local migration preserves42 old grants;63-user preview7 candidates, apply7 silent
+retroactive grants, replay0; exact old grants and XP/streak/activity/credits stay
+unchanged. Locked JSON/Razor/DOM and generic tooltips checked; widths1440/768/390/
+375, keyboard modal and CSS text zoom200% checked on isolated Razor capture.
+
+**Limits**: Local only, no paid/remote release actions. Current public Writing
+catalog has10 lessons; stage05/Admin additions provide content for higher distinct
+milestones. Final tier UI, earned-secret visuals, live login and native200% zoom
+remain06. Evidence:docs/feature-audits/2026-11-14-writing-goals/04-badges.md and
+04-badges-contract.md. Additive migration20261114081306 ships Designer/snapshot;
+downgrade refuses when new earned history exists.
+
+### Stage05 beginner content/import validation — 2026-11-14
+
+**Symptom/cause**: A new content validator initially accepted a Vietnamese task
+copied into its English reference because exact assessment naturally matches
+identical input. The new offline utility also exposed two integration details:
+shared-data locking is internal to the app assembly, and raw MySqlCommand must
+explicitly enlist in the EF transaction. These were utility-development defects,
+not changes to learner assessment policy.
+
+**Fix**: Reject copied/empty English references, retain the existing policy and
+use the canonical advisory-lock name in the explicit offline utility. Enlist
+snapshot reads in the EF transaction. Keep create-once baseline, content-bound
+restart receipts, exact-content recovery and zero-overwrite import guards.
+No Program.cs/config/project/entity/schema/global evaluator changes in stage05.
+
+**Verification**: Copy-Vietnamese regression failed before the guard and passed
+afterward. Final focused application105 pass/0 fail/0 skip; six full-format pilots
+cover anonymous HTTP catalog, pagination, persisted accepted progress, completion
+and replay with cloud disabled. Author/review36 original beginner lessons,
+288 aligned pairs and36 variants. Pilot6 + remainder30; rerun0/0/0; receipt-loss
+recovery retains all36 keys/IDs/hashes. Export36 immutable packages; re-export0.
+Canonical Validate307 releases; Sync360 unchanged then0 operations. Fresh separate
+MariaDB10.5.23 roundtrip36/288/36 and repeat0 changed rows. All42,409 old rows across
+72 tables,22 old Writing IDs,271 old package versions and production.json retain
+original hashes. Matrix/ledger: docs/feature-audits/2026-11-14-writing-goals/05-*.
+
+**Limits**: Local content stage only; no live browser visual acceptance, remote
+CI/release or paid API. Editorial review is by the same authoring agent. Actual
+progress36/108;72 intermediate/advanced lessons remain for separate chats.
+
+
+### Stage05 intermediate export interruption and safe continuation — 2026-11-14
+
+**Symptom/evidence**: During intermediate export, Windows denied the atomic
+catalog replacement after17 completed roots and the next package/DB binding
+had been written. The canonical pending catalog and immutable package remained.
+The exact external file holder was not established; no permanent ACL diagnosis
+or exporter-code fix is claimed.
+
+**Recovery**: Back up the existing nonsecret catalog to ignored local state,
+verify that the intact exporter candidate preserves every old release and adds
+only intermediate.essays.06 v1, verify all candidate package hashes, then finish
+the exporter's rename. Resume validates existing source bindings and skips18
+roots, exporting the remaining18. No package deletion/rewrite, database reset,
+credential/ACL/trust change or global evaluator modification.
+
+**Verification**:36 intermediate lessons/432 bilingual pairs/36 alternatives;
+initial dev import36, rerun0/0/0; re-export0 new versions. Canonical343 releases/
+17,400 record revisions validate; Sync504 operations then0 with matching catalog
+receipts. Fresh MariaDB10.5.23 roundtrip36/432/36, exact persisted comparison,
+reference/variant assessment and repeat0 changed rows. Focused109 pass/0 fail/
+0 skip. Original42,409 rows and pre-intermediate43,165 rows/72 tables preserved,
+including beginner content/learner history;307 previous package versions and
+production.json retain bytes. Additive per-level snapshots now accompany the
+original baseline; duplicate comparison includes previous levels. Cumulative
+72/108; advanced remains reserved. Evidence:05-intermediate-ledger.md and matrix.
+Local only; no paid calls, commit, push or deployment.
+
+### Stage07 Writing/Goals integrated UI state, accessibility and narrow history — 2026-11-14
+
+**Symptom/cause**: Combined acceptance reproduced missing Home/End support and
+stale badge-group restoration hiding every tile; Writing discarded persisted
+response totals so its header stayed “Chưa bắt đầu /0 lượt gửi”; Goals labels
+referenced generated ViewModel IDs instead of the retained JS IDs. Paused targets
+were presented as0%/0/0/unconfigured, unlike Profile. The dashboard legend crowded
+at390px; a completed Writing history row imposed a422px min-content width.
+
+**Fix**: Normalize group state, support keyboard activation and one tab stop;
+bind saved server status/attempt/completion metadata; link labels explicitly;
+render paused state without numeric completion claims. Stack dashboard legend
+columns only at small widths and scope history flex wrapping/min-width0 to
+Writing practice. Preserve rewards, access, schema, shared tokens and old DOM IDs.
+
+**Verification**: Meaningful red regressions for filter2, header2, labels1 and
+paused goals6, then green; Node46 pass. Final full Release1,575 pass/50 gated skip,
+focused98 pass; disposable MariaDB10.5.23 provider29 and all108-package combined
+roundtrip/preservation/repeat1 pass. Build0 errors/42 existing project warnings.
+Real-cookie browser A→logout→B/Back/draft/history isolation,13th-credit secret
+unlock/Profile, mixed units, target history, UTC+7/replay and error recovery pass.
+Reviewed24 viewport cases1440/768/390/375 have no settled horizontal overflow;
+history422→375 and legend overlap true→false are measured browser regressions.
+Canonical379-release Validate, two0-op Sync, immutable history and EF model pass.
+
+**Limits**: Native200% zoom unverified (tool shortcuts leave viewport/DPR unchanged);
+paid/live providers intentionally skipped. Three initial full-suite failures did
+not reproduce in isolated/full reruns; no speculative root-cause fix or weakened
+assertion. Local only; no remote Git/CI/staging/production. Exact receipts/manual
+routes:docs/feature-audits/2026-11-14-writing-goals/07-integrated-acceptance.md.
+
+### Writing recent exercises missed visits without submission — 2026-11-15
+
+**Symptom/cause**: Writing catalog history used attempt timestamps. Opening a
+practice page and leaving before submission produced no recoverable navigation
+history. Links reconstructed from the current catalog filters could not safely
+reopen a different-level/type exercise. Visibility-only refresh also missed the
+blur/focus activation path; that missing handler has a red-then-green Node regression.
+
+**Fix**: Add a separate per-user/exercise UTC visit table and additive migration,
+typed access-filtered recent projection and authenticated no-store GET/CSRF POST.
+Record only after successful editor initialization, without touching learning
+progress/rewards. Share current practice access predicate, check account state,
+keep existing Admin exception, and filter unavailable/empty lessons before six.
+Use the user-row mutation lock shared with real delete/anonymize cleanup and
+monotonic conditional persistence, including INSERT-before-existence race.
+Render scoped Clay cards with each lesson's metadata; isolate lifecycle code
+from Premium AI form, conceal on leave/blur, revalidate owner/access on activation,
+dedupe events, reject login HTML, and discard stale responses. Browser drafts
+remain owner-scoped and local, independent of saved server history/progress.
+
+**Verification**: Final full Release suite1,584 pass/51 gated skip/0 fail;
+Node42 pass; EF model clean. Matching disposable MariaDB10.5.23 upgrade/repeat,
+index/FK/cascade/data preservation, twelve concurrent first visits/max-clock
+and real cleanup/visit races pass. Local backup/after dump has all68 old INSERT
+groups identical before UAT data. Browser no-submit/A→B→A/cross-level links,
+server resume plus local draft, second browser context, distinct account data,
+offline retry and1440/1366/768/390/reduced-motion/keyboard checked.
+
+**Limits**: Native Back used a fresh document: Chrome reports no-store/websocket
+bfcache exclusion. Persisted pageshow/account-switch activation is covered with
+controlled DOM events and Node; MCP target selection itself emitted no native
+focus/visibility events. Native200% zoom remains unverified. Instant-close visit
+delivery is best-effort; unsent drafts are not cross-device backups. An initial
+full-suite AI classifier failure did not reproduce in isolated/full reruns; no
+unrelated classifier fix. All prior dirty Goals/badge/content work preserved;
+no commit/push/remote CI/staging/production or paid API. Full evidence and manual
+order:docs/feature-audits/2026-11-15-writing-recent-exercises-ledger.md.
+### Writing brief generation and durable private creation — 2026-11-15
+
+**Symptom/cause**: Creation only converted pasted source; a free description was
+not a composition request. Replay and quota serialization depended on a five-minute
+process cache/semaphore, so restart/multiple processes could not enforce the
+logical user/key/payload identity or concurrent successful-creation allowance.
+
+**Fix**: Add strict from_brief alongside legacy from_text, the existing OpenAI
+transport with durable known/uncertain usage and no resend of an uncertain attempt,
+and21 original short bilingual template profiles. Free-form matches require an
+owned, version/slot-bound confirmation of their omissions. Refusal/cancellation,
+invalid input and account/application quota failures cannot bypass into templates.
+Durable receipts use DB user locks only in short transactions, lease/fence recovery,
+shared UTC quota reservation and atomic private result/provenance/settlement.
+Actual account removal/anonymization also deletes receipts.
+
+**Verification**: Two meaningful HTTP regressions were red before implementation.
+Focused Writing/private/recent/assessment/transport128 pass, Node44 pass; final
+fresh MariaDB10.5.23 upgrade/repeat/preservation/index/FK/quota/fault/cancel/cleanup
+and independent .NET process/restart scenario passed. EF model matches migration.
+Exact full-suite/build evidence and21-profile language review are recorded in
+`docs/feature-audits/2026-11-15-writing-ai-brief-hybrid/01-backend.md`.
+
+**Limits**: Local backend only; step02 UI remains separate. No live paid AI-quality
+claim, second provider/Ollama, public-package modification or remote release.
+Internal templates support the published short/register/slot combinations only.
+
+### Writing step02 receipt loss, stale account UI and false cancel success — 2026-11-15
+
+**Symptom/cause**: The new UI removed session keys without persisting operations;
+mode edits/pageshow could lose a dispatched identity. Confirm/cancel callbacks did
+not share request fencing, and cancellation always claimed success even after a
+network failure. Private form/cards were not concealed and owner-checked after
+activation. Preview duplicated Vietnamese and omitted English; quota copy was
+static, and nowrap/grid min-content overflowed at390px.
+
+**Fix**: Owner-scoped minimal receipt persistence, by-key recovery, shared quota
+read endpoint, bounded reads before resubmission, disabled unresolved controls,
+sequence fencing and truthful cancel/result handling. Conceal/revalidate personal
+regions, render both languages once with labeled slots and selectable candidates,
+reuse Clay tokens/scoped selectors and constrain the creation grid/chips/tabs.
+
+**Evidence**: Four meaningful Node red regressions before fixes; final Node72/72,
+full Release1,630 pass/0 fail/53 skip, focused26 and final render/API11 pass.
+Real-cookie browser/MariaDB covered lost confirmation acknowledgement with one
+result, lost-first-response key recovery with zero automatic POST, practice/Back,
+cross-account conceal/reload and four no-overflow viewports. Native200% zoom is
+unverified. Exact evidence: Writing hybrid `03-review-and-local-handoff.md`.
+
+**Incident/limits**: One unauthorized live test call occurred after account-switch
+reload removed the browser fetch guard:741 recorded tokens, cost unknown. This
+was reported immediately; the web was stopped and remaining verification used
+synthetic-key/closed-loopback child configuration. Final handoff restores normal
+saved local configuration, port5100 only for TCT web. No remote release or claim
+of zero paid calls for this review. No private/source text or keys in this log.
+
+### Contact backend: truthful receipts, retained form and anonymous operation guard — 2026-11-16
+
+**Symptoms**: Tampered Contact subjects silently became general; failed sends
+redirected and discarded text. Bool receipts hid uncertain delivery. Anonymous
+POST lacked server-side replay/admission protection. GET query ModelState could
+override a normalized category; Contact preheaders encoded text twice.
+
+**Root cause**: Normalization conflated GET fallback with POST validation;
+success/failure shared the same redirect; Contact used the untracked mail result
+and only browser button disabling. MVC attempted values overrode the normalized
+model. The Contact renderer supplied pre-encoded text to an encoding shell.
+
+**Fix**: Preserve public/appeal/CSRF routes, normalize before validation and
+reconcile ModelState, enforce email/subject/header/form limits, use typed
+Accepted/Unavailable/Failed/Unknown/Throttled/Duplicate/InvalidOperation outcomes
+and PRG only on acceptance. Reuse the singleton mail boundary, existing transport
+deadline and renderer. Add protected 15-minute client-bound nonces, atomic bounded
+admission/replay metadata, 3 operations/10 minutes/client, and no automatic retry
+on unknown receipts. Preserve failed/unknown text and issue a new operation only
+where the response permits deliberate retry. Remove unverified page-local contact
+details/24-hour promises; encode Contact preheaders once and retain CR/LF breaks.
+
+**Files**: HomeController Contact actions; ContactFormViewModel; IAppEmailSender/
+SmtpAppEmailSender; new Services/Contact helpers; Contact.cshtml; Contact email
+renderer/edge fixture; ContactBackendHttpTests/ContactMailAndGateTests; step-01
+ledger/contract and known-issue acceptance note.
+
+**Verification**: Baseline HTTP regression 2 failed/1 passed before repair;
+focused Release 124 passed/0 failed/2 MariaDB opt-in skips. Release application
+build has 0 errors/42 existing warnings. Final full Release suite: 1670 passed,
+2 AI/SignalR cancellation failures, 53 skipped; all 42 Contact tests passed.
+Both failed cases passed isolated reruns on current and baseline sources; the
+full-suite timing cause is unresolved. Fake SMTP covers routing, delivery ambiguity/cancellation,
+concurrency, retry/retention, input limits and bounded metadata. No live SMTP or
+paid AI request was initiated by this step.
+
+**Limits**: In-process operation protection does not establish distributed
+deduplication or production topology. Shared layout contact placeholders remain
+protected/out of scope; native UI/browser/live delivery acceptance is pending.
+Existing local web was preserved; isolated Release output avoids its locked exe.
+No schema/config/secret rewrite, data reset, commit/push or deployment.
+See `docs/feature-audits/2026-11-16-contact-refresh/01-backend-ledger.md`.
+
+### Contact integrated validation, login route and truthful UI states — 2026-11-17
+
+**Symptoms/root cause**: Client validation returned without preventDefault on a
+novalidate form, permitting a default POST. ARIA state could remain stale; native
+validity must not label untouched required fields as errors. Quick login targeted
+a nonexistent Auth action. CSS introduced private colors and an undefined token;
+Duplicate copy promised admin receipt/reply without proof, alongside unverified
+availability and absolute safety copy.
+
+**Fix**: Cancel native/jQuery-invalid submissions, report native validity, update
+ARIA after submit/input and keep the loading button named. Correct Login URL;
+reuse semantic palette/leading-base; align copy with actual result semantics.
+Retain Clay layout, anonymous appeal, CSRF, nonce and input/abuse limits.
+
+**Evidence**: Meaningful Node and Razor regressions failed before repair. Final
+Node11/11 and focused .NET125 pass/2 MariaDB opt-in skips; final incremental
+Release build0 errors/0 warnings (initial rebuild42 existing warnings). Chrome
+verified actual 1440/1024/768/390/375px layouts, Tab/Enter, reduced motion, invalid
+submit zero POST, login/back and form retention/focus on real HTTP503. The valid
+form returned ConfigurationUnavailable before transport: zero real SMTP
+dispatches, no Gmail evidence and no automatic retry; missing sender/password
+is a secure-configuration blocker. No paid AI call.
+
+**Files/limits**: Contact Razor/CSS/JS, HTTP/Node tests, stage03 ledger and known
+issue. Native200% zoom, production topology and protected shared-footer cleanup
+remain unverified/out of scope. No shared layout/config/secret/schema change or
+Git publication. Full-suite stage01 cancellation failures are not declared fixed.
+See `docs/feature-audits/2026-11-16-contact-refresh/03-integration-smtp-ledger.md`.
+
+### Chatbot no-history dead end, stale guide coverage and missing learning CTAs — 2026-11-17
+
+**Symptom**: Asking what to study returned a lack-of-data message and required
+creating a vocabulary set even though public learning areas existed. Vietnamese
+skill/navigation questions could be misclassified, and source links did not
+provide obvious learning actions or escape the embedded chat frame.
+
+**Cause**: Study recommendations required eligible owned vocabulary data; there
+was no general starter path. Guide aliases/content lagged implemented features,
+and deployed intent models could predate them. Chat rendered citations without
+a separate read-only navigation policy/action presentation.
+
+**Fix**: Add reviewed general starter guide snippets while preserving actual
+personal recommendations. Expand to64 admitted guide entries and279 authored
+question examples, retain deterministic/accentless matching and exact reviewed
+FAQ routing, and include questions in corpus metadata. Correct stale routes/
+claims. Render up to3 CTAs from current revalidated sources in new/streamed/
+older messages and server-rendered history, with local read-only route checks
+and `_top` iframe navigation. Retain security refusals, ownership, source
+revocation, citations, chat quota and cancellation protections.
+
+**Evidence**: Initial behavioral tests9 failed/9 passed; CTA regression failed
+before implementation. Focused .NET336/336, subsequent chatbot/held-out36/36,
+chat Node24/24. Native Chrome verified the exact user prompt, three starter
+actions, history reload, focus/Tab/Shift+Tab, widths1440/768/390 and25 route
+destinations returning200. Full-suite status and remaining limits are tracked
+in docs/feature-audits/2026-11-17-chatbot-learning-guidance.md.
+
+**Scope**: FAQ/source/retrieval/composition and scoped chat UI/tests. No schema,
+shared lesson package, protected config, paid AI test or remote release change.
+No matching existing known-issues entry required a status change.
+
+### Default development test host inherited SMTP transport — 2026-11-17
+
+**Symptom/cause**: A broader verification run unexpectedly passed an email-change
+dispatch path in a test named WithoutSmtp. Development configuration can contain
+working local SMTP settings; the default web factory blocked AI/audio but left
+the production SMTP transport registered. The initial run was stopped; no claim
+of zero initial SMTP activity or mailbox arrival is made.
+
+**Fix**: Replace only the default test host's SMTP transport with a blocker;
+explicit test-specific fake overrides remain available. Preserve production
+registrations and saved secrets. Regressions assert the network boundary before
+calling it and prove an explicit fake still works.
+
+**Evidence**: Both isolation cases and the original email-change-without-SMTP
+case pass in the focused336-test run. No app SMTP/configuration change. See the
+chatbot ledger for full-run history and verification limits.
+
+
+### Antigravity Windows hook quoting and chatbot uncertainty/action presentation — 2026-11-17
+
+**Symptoms**: Antigravity PreToolUse reported Node `[eval]:1`, `"const`,
+`Unterminated string constant`. Unverified retained answers lost their caution;
+client CTAs lost source identity until reload. New SVG maps departed from the
+existing icon family, and the initial presentation report overstated copy coverage.
+
+**Causes**: Quoted inline `node -e` source crossed a Windows cmd.exe argument
+boundary before policy evaluation. The presentation only retained changed/snapshot
+notices and omitted DOM source-key assignment. After replacing SVG maps, a real
+floating-iframe check exposed its separate missing Font Awesome stylesheet.
+
+**Fix**: Only Antigravity's four configured hooks now invoke the existing local
+file from the open workspace root, with canonical generation and validation aligned.
+The exact model/host delegation policy, other host definitions and native trust
+remain intact. Razor/client render one friendly unverified caution, distinguish
+metadata-absent legacy rows, preserve revoked-body suppression and omit unsafe CTAs.
+Restore client source keys through setAttribute; use fixed existing Font Awesome
+6 classes and the same 6.0.0 stylesheet already used by the main layout in the
+standalone embed. Finish the authored-copy inventory, remove false button promises,
+and correct the audit while retaining its superseded submission as history.
+
+**Red/green evidence**: Windows regression initially failed five cmd.exe model
+subcases, then passed in relocated paths with spaces through cmd.exe/pwsh. Node
+initially had five failures; corrupt/future Razor history had two failures and
+legacy passed; nine icon cases and six copy/button cases failed before fixes.
+An added embedded-document check failed before its stylesheet fix. Final focused
+.NET 240/240, chat Node26/26, setup Node11/11, Python153 total (150 pass/3 skip),
+tooling validator and configured-command smoke checks pass. Release rebuild has
+0 errors/42 existing warnings. No unrelated assertion or security check removed.
+
+**Browser**: Real HTTP starter response, actual SignalR completion, source-key
+parity after reload, keyboard Tab/Shift+Tab and actual 1440/768/emulated390 widths
+were checked. Production older-message rendering received transient safe fixtures
+for unverified/legacy/changed/snapshot/unavailable/hostile-title states. HTTP503
+fixture retained draft/unknown-outcome guidance. Actual 418px Dashboard iframe
+rendered Font Awesome glyphs and its Writing CTA navigated the top page.
+
+**Limits/scope**: Native Antigravity loading/transport/subagent execution and native
+200% browser zoom remain unverified. Three Python skips are platform/runtime
+requirements, not passes. Process-only loopback AI and blank SMTP-password
+configuration prevented paid AI/SMTP transport; saved secrets were preserved.
+No stored history rewrite, schema/shared-data/protected app-config/release change, subagent or
+Git publication. No matching existing known-issues entry required a status change.
+Details: docs/feature-audits/2026-11-17-chatbot-friendly-presentation.md.
+
+Final environment state after those successful browser checks: another local
+launcher start hit Docker Desktop `context deadline exceeded`; docker info found
+no Linux-engine named pipe and desktop status was unavailable. Port5102 is not
+left serving. Earlier observed browser evidence is retained; a new live run is
+blocked by Docker startup. No DB reset or Docker/WSL shutdown was attempted.
 
 ### Listening module: completion, access control, progress and XSS hardening — 2026-11-13
 

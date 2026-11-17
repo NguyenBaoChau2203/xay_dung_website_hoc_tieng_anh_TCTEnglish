@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.club-materials",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.club-materials",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Chu\u1EA9n b\u1ECB cho c\u00E2u l\u1EA1c b\u1ED9 v\u1EBD",
+        "Level": "beginner",
+        "ContentType": "emails",
+        "Topic": "C\u00E2u l\u1EA1c b\u1ED9",
+        "SourceType": "original-20261114",
+        "PreviewText": "Email h\u1ECFi d\u1EE5ng c\u1EE5 c\u1EA7n mang t\u1EDBi bu\u1ED5i sinh ho\u1EA1t \u0111\u1EA7u ti\u00EAn.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.22069f325a5443febaacb1e649df8213",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Em c\u00F3 c\u1EA7n mang th\u00EAm gi\u1EA5y ho\u1EB7c b\u00FAt m\u00E0u kh\u00F4ng \u1EA1?",
+        "EnglishMeaning": "Do I need to bring more paper or coloured pencils?",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.2eb5e3b78d19408d854a83d22344786b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi c\u00F4 Hoa, em s\u1EBD tham gia c\u00E2u l\u1EA1c b\u1ED9 v\u1EBD v\u00E0o th\u1EE9 S\u00E1u.",
+        "EnglishMeaning": "Dear Ms Hoa, I will join the art club on Friday.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.3421675f03f9446cad01790f51104177",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Em c\u1EA3m \u01A1n c\u00F4 v\u00E0 mong \u0111\u01B0\u1EE3c g\u1EB7p c\u00F4 v\u00E0o th\u1EE9 S\u00E1u.",
+        "EnglishMeaning": "Thank you, and I look forward to seeing you on Friday.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.6395ee76090b4925b6c77f8baf4bf374",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Em mu\u1ED1n v\u1EBD nh\u1EEFng con v\u1EADt \u0111\u01A1n gi\u1EA3n trong bu\u1ED5i h\u1ECDc.",
+        "EnglishMeaning": "I would like to draw simple animals during the lesson.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.88e396ed956d4313bc81cefd49182022",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Em \u0111\u00E3 c\u00F3 b\u00FAt ch\u00EC v\u00E0 m\u1ED9t quy\u1EC3n v\u1EDF v\u1EBD nh\u1ECF.",
+        "EnglishMeaning": "I already have pencils and a small drawing book.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.97aef4ff7e2948a18480d616abb9174b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Em c\u00F3 th\u1EC3 \u0111\u1EBFn s\u1EDBm \u0111\u1EC3 gi\u00FAp c\u00F4 k\u00EA b\u00E0n.",
+        "EnglishMeaning": "I can come early to help you arrange the tables.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.a2eafb64ed524f05ae5b99ba528b865b",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "I can arrive early to help you arrange the tables.",
+        "NormalizedHash": "305084bab6687f6df089671f4f9e7fbc2c8a7bd4d2b47b26b9a2126c8e347ef4"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.club-materials.97aef4ff7e2948a18480d616abb9174b",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.b28342f4263b4b9787b23cb8daed0ca6",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "\u0110\u00E2y l\u00E0 bu\u1ED5i sinh ho\u1EA1t \u0111\u1EA7u ti\u00EAn c\u1EE7a em \u1EDF c\u00E2u l\u1EA1c b\u1ED9.",
+        "EnglishMeaning": "This is my first meeting with the club.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials.fa542a8d101749a997383a45bbb766c0",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Bu\u1ED5i sinh ho\u1EA1t s\u1EBD di\u1EC5n ra \u1EDF ph\u00F2ng m\u1EF9 thu\u1EADt ph\u1EA3i kh\u00F4ng \u1EA1?",
+        "EnglishMeaning": "Is the meeting in the art room?",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.club-materials"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.club-materials"
+}

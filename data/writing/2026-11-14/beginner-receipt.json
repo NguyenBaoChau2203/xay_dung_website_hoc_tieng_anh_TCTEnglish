@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "batch": "beginner",
+  "completedAtUtc": "2026-11-14T11:52:38.995986Z",
+  "status": "complete-local",
+  "newLessons": 36,
+  "newSentencePairs": 288,
+  "newApprovedAlternatives": 36,
+  "fullProjectTargetNewLessons": 108,
+  "remainingReservedLessons": 72,
+  "publicBefore": 10,
+  "publicAfter": 46,
+  "preservedTables": 72,
+  "preservedOriginalRows": 42409,
+  "preservedPrivateWritingLessons": 11,
+  "preservedUnpublishedSystemLessons": 1,
+  "pilotCreated": 6,
+  "remainderCreated": 30,
+  "importRerunCreated": {
+    "lessons": 0,
+    "sentences": 0,
+    "variants": 0
+  },
+  "restartRecovery": {
+    "keys": 36,
+    "idsPreserved": true,
+    "contentHashesPreserved": true,
+    "created": 0
+  },
+  "exportRerunNewVersions": 0,
+  "tests": {
+    "passed": 105,
+    "failed": 0,
+    "skipped": 0
+  },
+  "roundtrip": {
+    "provider": "MariaDB 10.5.23",
+    "lessons": 36,
+    "sentencePairs": 288,
+    "variants": 36,
+    "repeatChangedRows": 0,
+    "completedAtUtc": "2026-11-14T11:48:07.9761621Z",
+    "syntheticLockedSystemOwnersCreated": 1
+  },
+  "sync1": {
+    "completedAtUtc": "2026-11-14T11:48:47.0374981Z",
+    "catalogSha256": "857BC1286781F2A495C656A11BBE9A53AECC484F345BDE15E7B56604ACC7F569",
+    "recordOperations": 360,
+    "allOperationsUnchanged": true
+  },
+  "sync2": {
+    "completedAtUtc": "2026-11-14T11:49:05.1668566Z",
+    "catalogSha256": "857BC1286781F2A495C656A11BBE9A53AECC484F345BDE15E7B56604ACC7F569",
+    "recordOperations": 0
+  },
+  "packages": [
+    {
+      "id": "team.writing.20261114.beginner.library-hours",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.library-hours/1/package.json",
+      "sha256": "29f2477456dfa498cc366675463316390b1c726c463b077c7a48c108060f4ab5"
+    },
+    {
+      "id": "team.writing.20261114.beginner.return-umbrella",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.return-umbrella/1/package.json",
+      "sha256": "1b14ffdce7b07b81c38c24122fd3e467c975c70331785daeeb913a76cc150915"
+    },
+    {
+      "id": "team.writing.20261114.beginner.change-lunch",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.change-lunch/1/package.json",
+      "sha256": "f24de7901fb6e91c6ef18409d2110460756d7d39a8d88cc5b1ce6c1f7a747aa3"
+    },
+    {
+      "id": "team.writing.20261114.beginner.plant-care",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.plant-care/1/package.json",
+      "sha256": "388abe51d0f94fb3eab8336505d174d024cb94e4d30406c35c34a2bd9ff27240"
+    },
+    {
+      "id": "team.writing.20261114.beginner.club-materials",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.club-materials/1/package.json",
+      "sha256": "608ce299fc55fe1dd632a5f8c5a56975d6d762ac3bbaf39272155bf27391df3b"
+    },
+    {
+      "id": "team.writing.20261114.beginner.missing-scarf",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.missing-scarf/1/package.json",
+      "sha256": "915fc5bccc096d574e9213bf4a44991b5355bbc67488fa210052076a89288878"
+    },
+    {
+      "id": "team.writing.20261114.beginner.first-bus",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.first-bus/1/package.json",
+      "sha256": "f15b9db71d10366140efcf2511ab920ae101ecb20064392e0c1e176f1ad32dac"
+    },
+    {
+      "id": "team.writing.20261114.beginner.quiet-morning",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.quiet-morning/1/package.json",
+      "sha256": "fdaca9c6119db6dc4304b3b6a7a477aef74dc9ef9efa7266059c845ae5f42f76"
+    },
+    {
+      "id": "team.writing.20261114.beginner.cooking-soup",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.cooking-soup/1/package.json",
+      "sha256": "690c90881b9faee5d6a5afa3cd21d510047691d5ea87b3332068ba8c173e1706"
+    },
+    {
+      "id": "team.writing.20261114.beginner.rainy-match",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.rainy-match/1/package.json",
+      "sha256": "2ae59e4002da47a2d4eef2fd06dff96b075d8210886448fbc21b563f2d2125a9"
+    },
+    {
+      "id": "team.writing.20261114.beginner.balcony-seeds",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.balcony-seeds/1/package.json",
+      "sha256": "693a67c37dd2a1a47e6c2d3b1390220897e22a5320b74dbd6b5ea7dcc3f1cc92"
+    },
+    {
+      "id": "team.writing.20261114.beginner.museum-afternoon",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.museum-afternoon/1/package.json",
+      "sha256": "3be6d0ccd3c286dcf09a1781fce36e14f2476ff220317cf18955580fc1c0c852"
+    },
+    {
+      "id": "team.writing.20261114.beginner.walk-short-trips",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.walk-short-trips/1/package.json",
+      "sha256": "72d01cc2d568dfe1734df2b59815cc22247cb194ecce59ff1a9fb9f8311d3a30"
+    },
+    {
+      "id": "team.writing.20261114.beginner.share-chores",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.share-chores/1/package.json",
+      "sha256": "4818f528021ffc4fbcaffc3219d6135fb76d0f8c61b9f0a23d2eabf706f49eb9"
+    },
+    {
+      "id": "team.writing.20261114.beginner.paper-notebook",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.paper-notebook/1/package.json",
+      "sha256": "a50978c99520762c9be61e8df1989e9af72f7dd37fe2af286520c47a103ceef9"
+    },
+    {
+      "id": "team.writing.20261114.beginner.free-play",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.free-play/1/package.json",
+      "sha256": "becbc9a104693a9fc62ff5635f315a3e3c17753133c1fa6733807fb5eec3239e"
+    },
+    {
+      "id": "team.writing.20261114.beginner.repair-old-things",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.repair-old-things/1/package.json",
+      "sha256": "7a885909a325ec26d4b8544bad49511d1aa107b2ddb9e84cbe309d5b30d8d23a"
+    },
+    {
+      "id": "team.writing.20261114.beginner.learn-with-friend",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.learn-with-friend/1/package.json",
+      "sha256": "07bb8101e34653224a044dd225d2a95c1a8d7c9d0253657a08f875bd01fceb12"
+    },
+    {
+      "id": "team.writing.20261114.beginner.book-corner",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.book-corner/1/package.json",
+      "sha256": "0984cf1b7fc62f955acf4305b5a195765bdba89be56e63098e5b058f2cb10241"
+    },
+    {
+      "id": "team.writing.20261114.beginner.picnic-pack",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.picnic-pack/1/package.json",
+      "sha256": "fe47362bb5b0c2842da867162747a6fb8f569649d29fadf1534f0400f177c622"
+    },
+    {
+      "id": "team.writing.20261114.beginner.desk-light",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.desk-light/1/package.json",
+      "sha256": "b63f4ce5c18b548289f364376f7e29ede938a0ed5221c4dfbc924bdd36446eaf"
+    },
+    {
+      "id": "team.writing.20261114.beginner.market-bag",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.market-bag/1/package.json",
+      "sha256": "74d97f35828ad4cbc59480ecfd541a9bfe6e2d79ba9a103fbf226572c1223d4e"
+    },
+    {
+      "id": "team.writing.20261114.beginner.welcome-neighbour",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.welcome-neighbour/1/package.json",
+      "sha256": "28c77d0e866f864df09aaa222672f35fae8c396d7d8f7da51c5b3cf77c4b90c4"
+    },
+    {
+      "id": "team.writing.20261114.beginner.clothes-swap",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.clothes-swap/1/package.json",
+      "sha256": "a704452f4e951d69ce14f423da9723b78be352c6475bb7f238417a8189acb90b"
+    },
+    {
+      "id": "team.writing.20261114.beginner.red-glove",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.red-glove/1/package.json",
+      "sha256": "9aecb344b1216d3308134b60110d69eff97f91d6e40023e9b6963df4d3ce6dba"
+    },
+    {
+      "id": "team.writing.20261114.beginner.cake-surprise",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.cake-surprise/1/package.json",
+      "sha256": "68056be1ccaf3649cc77c220bdf1efd241052b0a95f3b3084b403545c37145e8"
+    },
+    {
+      "id": "team.writing.20261114.beginner.wrong-basket",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.wrong-basket/1/package.json",
+      "sha256": "01c00695d38bc4a03d2f330f2bd2354ee0f7abc85a114e3b9889022b852a1125"
+    },
+    {
+      "id": "team.writing.20261114.beginner.small-stage",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.small-stage/1/package.json",
+      "sha256": "b0b6661b42df9b948abab0d3f03079dfc0ac73c2c7cb2707e9323cf908d3d442"
+    },
+    {
+      "id": "team.writing.20261114.beginner.dog-at-gate",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.dog-at-gate/1/package.json",
+      "sha256": "e34bb93158cc28b6beab56d5d10d51b7786bb109d1c6878019b398dc68a2b793"
+    },
+    {
+      "id": "team.writing.20261114.beginner.paper-boat",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.paper-boat/1/package.json",
+      "sha256": "4201649eb8623a5aef075f3550842699edd7b19aa9eb2aaead46649f22c77d16"
+    },
+    {
+      "id": "team.writing.20261114.beginner.classroom-recycling",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.classroom-recycling/1/package.json",
+      "sha256": "ab09395dcdbf0ba8ca534b84a9c6510c68268756e8c37b57388aad54ce032644"
+    },
+    {
+      "id": "team.writing.20261114.beginner.club-attendance",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.club-attendance/1/package.json",
+      "sha256": "5c529d4bcca9b5f40f3898fb5d26c69fe1bcba9f19d914371a94e2a4f68a606e"
+    },
+    {
+      "id": "team.writing.20261114.beginner.water-station",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.water-station/1/package.json",
+      "sha256": "b7c5123cdfc3c369577daeb591672465c4a3a4a38a540f09052bd0bf508c0619"
+    },
+    {
+      "id": "team.writing.20261114.beginner.garden-visit",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.garden-visit/1/package.json",
+      "sha256": "68c46d1bf3ebbdd3b0cc06817c92ff235d60f08586aa76e09f3e05b8e946bd0d"
+    },
+    {
+      "id": "team.writing.20261114.beginner.lost-property",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.lost-property/1/package.json",
+      "sha256": "a27a50ded34c3342f16ff31c9ff4b49abefbb0efe9df14a2ff168f8c0325380e"
+    },
+    {
+      "id": "team.writing.20261114.beginner.clean-up-results",
+      "version": 1,
+      "path": "packages/team.writing.20261114.beginner.clean-up-results/1/package.json",
+      "sha256": "56f5e9d9cae362c65af43becf5ccedab6cd13d8d7d941ce287740b08950cdfb2"
+    }
+  ],
+  "contentDigests": [
+    {
+      "key": "team.writing.20261114.beginner.library-hours",
+      "sha256": "ad49e7c4fa2a0a6f6e5cccd167402f789f8cf565b7a2f6bf2bd28db1a6a94bd4"
+    },
+    {
+      "key": "team.writing.20261114.beginner.return-umbrella",
+      "sha256": "08e732adf4e0a9369cf3aad6862bd83eba0334a15fee9254b805ccba26777fd5"
+    },
+    {
+      "key": "team.writing.20261114.beginner.change-lunch",
+      "sha256": "6692b28bea5e70426ea21ca3eb889a0be117d710e0346cbcdc7fe55fb7c8959c"
+    },
+    {
+      "key": "team.writing.20261114.beginner.plant-care",
+      "sha256": "cd56f002b96051a82c1da2b50e38cc89a21dbf60eec7edeeb50054f7a2ce97d2"
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-materials",
+      "sha256": "0e38ff61b8b8c89f1a2919abdfeabea6e784c970a0f0a2ae8bfc993c07b061e2"
+    },
+    {
+      "key": "team.writing.20261114.beginner.missing-scarf",
+      "sha256": "8a731df76223689a0dc8f77692db29f83fc81f84842b93ed6f170713958163b7"
+    },
+    {
+      "key": "team.writing.20261114.beginner.first-bus",
+      "sha256": "0c5ce5b28c073d50fcc76e2302deaeb8602b12dcb6856aa0d33bb88cd68ef808"
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning",
+      "sha256": "7c2325b96cfbdcc116f4140c1b2c7555a918ac61871cc4cab4378775b23619ee"
+    },
+    {
+      "key": "team.writing.20261114.beginner.cooking-soup",
+      "sha256": "6d3c9107d7918ff17dc232def8899e6cdc627e519235becdd088c4fd8554c684"
+    },
+    {
+      "key": "team.writing.20261114.beginner.rainy-match",
+      "sha256": "4365007fe4df4b721c7b8ec3220ae4aa5d217600019e274cd24b033cd86cfbf1"
+    },
+    {
+      "key": "team.writing.20261114.beginner.balcony-seeds",
+      "sha256": "27eb04c4d58615a6d7f9f164d0a46566f01ab30cd7293ac449bcec4d37502ea4"
+    },
+    {
+      "key": "team.writing.20261114.beginner.museum-afternoon",
+      "sha256": "a9d733e19acaed7a6a60402acb06852db96d7b2a381cd530fd98d12ea80fcf68"
+    },
+    {
+      "key": "team.writing.20261114.beginner.walk-short-trips",
+      "sha256": "97746ac42424a6e2a954a5695e47aa473327aa73f94cd07e4e1c6e60040477ad"
+    },
+    {
+      "key": "team.writing.20261114.beginner.share-chores",
+      "sha256": "b05a9a2dafe184f0c59d87a90f051e4b9322e34ece8c4990f62d437bd253563b"
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-notebook",
+      "sha256": "269dd72924575486d7398724b70443adfc09701f9289f14feb79e5e68c211e95"
+    },
+    {
+      "key": "team.writing.20261114.beginner.free-play",
+      "sha256": "e3874d66bd209b18e55e8f5b388a533064af86c47199c0ebec083eee8619fb1e"
+    },
+    {
+      "key": "team.writing.20261114.beginner.repair-old-things",
+      "sha256": "4786696a9897ad56044f82839fe9c30ffcf8aaddd226d3efa5947e88a7a3279b"
+    },
+    {
+      "key": "team.writing.20261114.beginner.learn-with-friend",
+      "sha256": "0f16621a689ca13d48a4dd2656681386bf4ce11a270991703c6bcc656e31516e"
+    },
+    {
+      "key": "team.writing.20261114.beginner.book-corner",
+      "sha256": "c7664997a8e0cea255a0b6d3f80c3e57d9bb18101ee75dc5d696da70e232931c"
+    },
+    {
+      "key": "team.writing.20261114.beginner.picnic-pack",
+      "sha256": "9048d58e82b76f4a3ef6053fb8eb57534b7d0a9f8c3baded1a0e6b19e8450134"
+    },
+    {
+      "key": "team.writing.20261114.beginner.desk-light",
+      "sha256": "5e297eadc6b2d280200a40a022db18e264a7569ae67e91b32c082436d8034176"
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag",
+      "sha256": "889efbd5f441c4df08af28a155fe412b49211ed0402d7197e53d07bfe5116655"
+    },
+    {
+      "key": "team.writing.20261114.beginner.welcome-neighbour",
+      "sha256": "59dff074c9faf798c229f2eab782fa8e5ec41ce579123ae57ea8713aac824650"
+    },
+    {
+      "key": "team.writing.20261114.beginner.clothes-swap",
+      "sha256": "6670f5f5861d0d8a5abca5432d532a8cb7052c0b6ea3898e908074f348f1ca24"
+    },
+    {
+      "key": "team.writing.20261114.beginner.red-glove",
+      "sha256": "33229ee089ff112c5d4c3000edb5044a3ac9991e1431b962420b2729dc34a4b8"
+    },
+    {
+      "key": "team.writing.20261114.beginner.cake-surprise",
+      "sha256": "a439f85f548b31b2bbe0fa34f624bc5fee834094c5796c7a5ea0e1f5a89244b1"
+    },
+    {
+      "key": "team.writing.20261114.beginner.wrong-basket",
+      "sha256": "21af2b30a778a459b13938fba5a6e954fb5301de788cd7574b306917edcd150f"
+    },
+    {
+      "key": "team.writing.20261114.beginner.small-stage",
+      "sha256": "04a0fa2c5f079f8aa554803e72c3001a6dad9f2a289ef6235ae8548bb24b455a"
+    },
+    {
+      "key": "team.writing.20261114.beginner.dog-at-gate",
+      "sha256": "e5aa1917fa0687083f9501258edb20b06bfdcb45a90124fb6ada79110acba0db"
+    },
+    {
+      "key": "team.writing.20261114.beginner.paper-boat",
+      "sha256": "c596095efe0a4c1ad77891c65feaa67ce61919ba1b56da0f9fc5a360fd9daaee"
+    },
+    {
+      "key": "team.writing.20261114.beginner.classroom-recycling",
+      "sha256": "e23d4583e2ac71772e7f214be1f5bfebf2d39ef5015bf7d01227cbb169c96ed6"
+    },
+    {
+      "key": "team.writing.20261114.beginner.club-attendance",
+      "sha256": "8021a323e965a7af92e45c28bb82de2edae3adf13b8a6560b391bc37b89c36d5"
+    },
+    {
+      "key": "team.writing.20261114.beginner.water-station",
+      "sha256": "88d36e5d23dc02b3d789ef0e6da459fc731868b87c87061bc66d539f210f1cea"
+    },
+    {
+      "key": "team.writing.20261114.beginner.garden-visit",
+      "sha256": "82a9892a0a5757b226c7e5c9b4ac1da71193ce78b1eca34d5d7f32e17482f04f"
+    },
+    {
+      "key": "team.writing.20261114.beginner.lost-property",
+      "sha256": "f762cff72177fb4190053e40aae091cb40fb86350fd5e0aaf3b540bd4515aff1"
+    },
+    {
+      "key": "team.writing.20261114.beginner.clean-up-results",
+      "sha256": "bec7092b1fecb60c7a8ab0fea77d433ab58626369f971a976c240701a9e37d1b"
+    }
+  ],
+  "limits": [
+    "No live development browser/visual acceptance in this content batch.",
+    "Editorial review is by the same agent, not an independent human review.",
+    "Intermediate and advanced are reserved and not authored.",
+    "Local results only; no CI, staging or production release."
+  ]
+}

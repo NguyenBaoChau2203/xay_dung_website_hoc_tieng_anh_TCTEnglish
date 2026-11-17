@@ -25,43 +25,78 @@ body:has(.writing-exercises-page) {
     padding: 0;
 }
 
-/* ─── Breadcrumbs ────────────────────────────────────── */
+/* ─── Breadcrumbs (Claymorphism Pill Nav) ─────────────── */
 .writing-breadcrumb {
-    margin-bottom: var(--tct-space-sm);
+    margin-bottom: var(--tct-space-md);
+    display: inline-flex;
 }
 
 .writing-breadcrumb-list {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--tct-space-xs) var(--tct-space-sm);
+    gap: 0.35rem 0.65rem;
     margin: 0;
-    padding: 0;
+    padding: 0.4rem 1.1rem;
     list-style: none;
     font-size: var(--tct-text-xs);
     font-weight: var(--tct-weight-semibold);
-    color: var(--tct-text-muted);
+    color: var(--tct-text-secondary);
+    background: var(--tct-surface);
+    border: 1px solid rgba(66, 85, 255, 0.14);
+    border-radius: var(--tct-radius-pill);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    transition: box-shadow var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-breadcrumb-list li:not(.writing-breadcrumb-sep):not(.active) {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.55rem;
+    border-radius: var(--tct-radius-pill);
+    transition: all var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-breadcrumb-list li:not(.writing-breadcrumb-sep):not(.active):hover {
+    background: var(--tct-primary-soft, #eef2ff);
+    box-shadow: 0 2px 6px rgba(66, 85, 255, 0.10);
+    transform: translateY(-1px);
+}
+
+.writing-breadcrumb-list li:not(.writing-breadcrumb-sep):not(.active):hover a {
+    color: var(--tct-primary-hover);
+    text-decoration: none !important;
 }
 
 .writing-breadcrumb-list a {
     color: var(--tct-primary-strong);
-    text-decoration: none;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
     transition: color var(--tct-dur-fast) var(--tct-ease);
 }
 
 .writing-breadcrumb-list a:hover {
     color: var(--tct-primary-hover);
-    text-decoration: underline;
+    text-decoration: none !important;
 }
 
 .writing-breadcrumb-sep {
-    font-size: 0.6rem;
-    color: var(--tct-border-control);
+    font-size: 0.65rem;
+    color: rgba(66, 85, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
 }
 
 .writing-breadcrumb-list .active {
     color: var(--tct-text);
     font-weight: var(--tct-weight-bold);
+    background: var(--tct-primary-tint, #f0f3ff);
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--tct-radius-pill);
+    border: 1px solid rgba(66, 85, 255, 0.16);
+    display: inline-flex;
+    align-items: center;
 }
 
 /* ─── Page Header ────────────────────────────────────── */
@@ -83,13 +118,57 @@ body:has(.writing-exercises-page) {
 .writing-exercises-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.65rem;
-    background: var(--tct-primary-soft);
+    gap: 0.4rem;
+    padding: 0.35rem 0.95rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
     color: var(--tct-primary-strong);
+    border: 1px solid rgba(66, 85, 255, 0.18);
     border-radius: var(--tct-radius-pill);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-bold);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--tct-space-xs);
+    transition: transform var(--tct-dur-fast) var(--tct-ease), box-shadow var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-exercises-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+.writing-exercises-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    background: var(--tct-surface);
+    color: var(--tct-text-secondary);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-pill);
+    box-shadow: var(--tct-clay-shadow-quiet);
     font-size: var(--tct-text-xs);
     font-weight: var(--tct-weight-semibold);
     margin-bottom: var(--tct-space-xs);
+}
+
+.writing-head-icon-clay {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--tct-radius-md, 16px);
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
+    border: 1px solid rgba(66, 85, 255, 0.16);
+    box-shadow: var(--tct-clay-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--tct-primary);
+    flex-shrink: 0;
+    transition: transform var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-head-icon-clay:hover {
+    transform: translateY(-2px) scale(1.03);
 }
 
 .writing-exercises-title {
@@ -111,10 +190,10 @@ body:has(.writing-exercises-page) {
 .writing-count-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.4rem 0.85rem;
+    padding: 0.45rem 1rem;
     border-radius: var(--tct-radius-pill);
     background: var(--tct-surface);
-    border: 1px solid var(--tct-border);
+    border: 1px solid rgba(66, 85, 255, 0.14);
     box-shadow: var(--tct-clay-shadow-quiet);
     font-size: var(--tct-text-xs);
     color: var(--tct-text-secondary);
@@ -209,7 +288,54 @@ body:has(.writing-exercises-page) {
     outline-offset: 1px;
 }
 
-/* ─── Section Titles ─────────────────────────────────── */
+/* ─── Section Titles & Clay Header Bar ──────────────── */
+.writing-section-head-bar {
+    width: 100%;
+}
+
+.writing-section-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--tct-radius-md, 14px);
+    background: linear-gradient(135deg, #ffffff 0%, var(--tct-primary-tint, #f0f3ff) 100%);
+    border: 1px solid rgba(66, 85, 255, 0.15);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--tct-primary);
+    flex-shrink: 0;
+    transition: transform var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-section-icon-badge:hover {
+    transform: translateY(-1px);
+}
+
+.writing-catalog-counter-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.95rem;
+    border-radius: var(--tct-radius-pill);
+    background: var(--tct-surface);
+    border: 1px solid rgba(66, 85, 255, 0.12);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    font-size: var(--tct-text-xs);
+    color: var(--tct-text-secondary);
+    white-space: nowrap;
+}
+
+.writing-catalog-counter-badge strong {
+    color: var(--tct-primary-strong);
+    margin: 0 0.2rem;
+}
+
+.writing-section-subtext {
+    font-size: var(--tct-text-xs);
+    line-height: 1.4;
+}
+
 .writing-section-title {
     font-size: var(--tct-text-lg);
     font-weight: var(--tct-weight-bold);
@@ -275,28 +401,37 @@ body:has(.writing-exercises-page) {
     box-shadow: var(--tct-clay-shadow);
     min-width: 0;
     animation: wp-card-in 0.35s var(--tct-ease) both;
+    position: relative;
 }
 
 .writing-exercise-card:hover {
-    box-shadow: var(--tct-clay-shadow-lift);
-    transform: translateY(-3px);
+    transform: translateY(-6px);
+    border-color: rgba(66, 85, 255, 0.45);
+    box-shadow: 0 14px 28px -4px rgba(66, 85, 255, 0.14),
+                0 6px 14px -2px rgba(17, 28, 45, 0.08),
+                var(--tct-clay-shadow-lift);
 }
 
 .writing-exercise-card:active {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: var(--tct-clay-shadow-pressed);
 }
 
 .writing-exercise-card .btn {
     transition: transform var(--tct-dur-fast) var(--tct-ease),
                 box-shadow var(--tct-dur-fast) var(--tct-ease),
-                background-color var(--tct-dur-fast) var(--tct-ease);
+                background-color var(--tct-dur-fast) var(--tct-ease),
+                border-color var(--tct-dur-fast) var(--tct-ease),
+                color var(--tct-dur-fast) var(--tct-ease);
 }
 
 .writing-exercise-card:hover .btn-primary,
 .writing-exercise-card:hover .btn-outline-primary {
-    transform: translateX(2px);
-    box-shadow: var(--tct-clay-shadow-lift);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(66, 85, 255, 0.35);
+    background-color: var(--tct-primary-hover);
+    border-color: var(--tct-primary-hover);
+    color: #ffffff;
 }
 
 .writing-exercise-card .btn:active {
@@ -304,17 +439,18 @@ body:has(.writing-exercises-page) {
     box-shadow: var(--tct-clay-shadow-pressed);
 }
 
+/* Status variants with clean, uniform borders (yellow left stripe removed) */
 .writing-exercise-card--active {
-    border-left: 4px solid var(--tct-accent);
+    border-color: var(--tct-border);
 }
 
 .writing-exercise-card--private {
-    border-left: 4px solid var(--tct-primary);
+    border-color: var(--tct-border);
 }
 
 .writing-exercise-card.is-locked {
-    border-left: 4px solid var(--tct-warning);
     background: var(--tct-warning-soft);
+    border-color: rgba(245, 158, 11, 0.3);
 }
 
 .writing-exercise-top {
@@ -335,34 +471,138 @@ body:has(.writing-exercises-page) {
     white-space: nowrap;
 }
 
+/* Level chips */
 .writing-card-chip--basic {
-    background: var(--tct-primary-soft);
-    color: var(--tct-primary-strong);
-    border: 1px solid rgba(66, 85, 255, 0.15);
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .writing-card-chip--intermediate {
-    background: var(--tct-warning-soft);
-    color: var(--tct-warning-text);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .writing-card-chip--advanced {
-    background: var(--tct-info-soft);
-    color: var(--tct-info-text);
-    border: 1px solid rgba(6, 182, 212, 0.2);
+    background: #faf5ff;
+    color: #7e22ce;
+    border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .writing-card-chip--private {
-    background: rgba(66, 85, 255, 0.1);
-    color: var(--tct-primary-strong);
-    border: 1px solid rgba(66, 85, 255, 0.15);
+    background: #f3e8ff;
+    color: #6d28d9;
+    border: 1px solid rgba(147, 51, 234, 0.3);
 }
 
 .writing-card-chip--default {
     background: var(--tct-surface-muted);
     color: var(--tct-text-secondary);
     border: 1px solid var(--tct-border);
+}
+
+/* Topic chips (distinct colors and themes) */
+.writing-card-chip--transport {
+    background: #ecfeff;
+    color: #0891b2;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.writing-card-chip--relax {
+    background: #fff1f2;
+    color: #be123c;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.writing-card-chip--food {
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid rgba(234, 88, 12, 0.3);
+}
+
+.writing-card-chip--lifestyle {
+    background: #fdf4ff;
+    color: #a21caf;
+    border: 1px solid rgba(217, 70, 239, 0.3);
+}
+
+.writing-card-chip--work {
+    background: #eef2ff;
+    color: #4338ca;
+    border: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+.writing-card-chip--education {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.writing-card-chip--reading {
+    background: #f0fdfa;
+    color: #0f766e;
+    border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.writing-card-chip--family {
+    background: #fefce8;
+    color: #a16207;
+    border: 1px solid rgba(234, 179, 8, 0.35);
+}
+
+.writing-card-chip--community {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.writing-card-chip--travel {
+    background: #f0f9ff;
+    color: #0284c7;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.writing-card-chip--shopping {
+    background: #fdf2f8;
+    color: #be185d;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.writing-card-chip--nature {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.writing-card-chip--animal {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.writing-card-chip--creative {
+    background: #faf5ff;
+    color: #7e22ce;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.writing-card-chip--tech {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.writing-card-chip--report {
+    background: #f8fafc;
+    color: #1e293b;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.writing-card-chip--topic-default {
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .writing-card-chip--quota {
@@ -454,10 +694,11 @@ body:has(.writing-exercises-page) {
 /* ─── Create Panel (AI) ──────────────────────────────── */
 .writing-create-panel {
     background: var(--tct-surface);
-    border: 1px solid var(--tct-border);
-    border-radius: var(--tct-radius-lg);
-    padding: var(--tct-space-xl);
-    box-shadow: var(--tct-clay-shadow);
+    border: 1px solid rgba(66, 85, 255, 0.14);
+    border-radius: var(--tct-radius-xl, 20px);
+    padding: var(--tct-space-lg) var(--tct-space-xl);
+    box-shadow: 0 4px 20px rgba(66, 85, 255, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all var(--tct-dur) var(--tct-ease);
 }
 
 .writing-create-panel--locked {
@@ -478,16 +719,50 @@ body:has(.writing-exercises-page) {
     flex-shrink: 0;
 }
 
-.writing-create-grid {
-    display: grid;
-    gap: var(--tct-space-xl);
+.writing-create-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px dashed rgba(66, 85, 255, 0.16);
 }
 
-@media (min-width: 992px) {
-    .writing-create-grid {
-        grid-template-columns: 5fr 7fr;
-        align-items: start;
-    }
+.writing-create-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex: 1;
+    min-width: 280px;
+}
+
+.writing-create-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.writing-create-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--tct-radius-md, 12px);
+    background: linear-gradient(135deg, rgba(66, 85, 255, 0.14), rgba(124, 58, 237, 0.22));
+    color: var(--tct-primary-strong, #2136e7);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.writing-create-title {
+    font-size: 1.15rem;
+    font-weight: var(--tct-weight-bold);
+    color: var(--tct-text);
+    margin: 0;
+    line-height: 1.25;
 }
 
 .writing-create-badge {
@@ -495,25 +770,28 @@ body:has(.writing-exercises-page) {
     align-items: center;
     padding: 0.2rem 0.65rem;
     border-radius: var(--tct-radius-pill);
-    background: var(--tct-primary-soft);
-    color: var(--tct-primary-strong);
+    background: var(--tct-primary-soft, #eef2ff);
+    color: var(--tct-primary-strong, #2136e7);
     font-size: var(--tct-text-xs);
     font-weight: var(--tct-weight-semibold);
-    margin-bottom: var(--tct-space-xs);
-}
-
-.writing-create-title {
-    font-size: var(--tct-text-lg);
-    font-weight: var(--tct-weight-bold);
-    color: var(--tct-text);
-    margin: 0 0 var(--tct-space-xs);
+    border: 1px solid rgba(66, 85, 255, 0.16);
 }
 
 .writing-create-desc {
-    font-size: var(--tct-text-sm);
+    font-size: var(--tct-text-xs);
     color: var(--tct-text-secondary);
-    line-height: var(--tct-leading-base);
-    margin: 0 0 var(--tct-space-md);
+    line-height: 1.45;
+    margin: 0.15rem 0 0;
+}
+
+.writing-create-quota {
+    flex-shrink: 0;
+}
+
+.writing-create-quota .writing-card-chip--quota {
+    padding: 0.35rem 0.85rem;
+    font-size: var(--tct-text-xs);
+    box-shadow: var(--tct-clay-shadow-quiet);
 }
 
 .writing-create-textarea {
@@ -648,3 +926,372 @@ body:has(.writing-exercises-page) {
         transition-duration: 0.01ms !important;
     }
 }
+/* Personal recent exercises share the established Clay surface and tokens. */
+.writing-exercises-page [data-writing-recent-list][hidden] { display: none; }
+.writing-exercises-page [data-recent-cards][hidden] { display: none; }
+
+.writing-exercises-page .writing-recent {
+    padding: var(--tct-space-md) var(--tct-space-lg);
+    border-radius: var(--tct-radius-xl, 20px);
+    background: var(--tct-surface, #ffffff);
+    box-shadow: 0 4px 20px rgba(66, 85, 255, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 85, 255, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--tct-dur) var(--tct-ease);
+}
+
+.writing-recent-header {
+    margin-bottom: 0.75rem;
+}
+
+.writing-recent-header-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--tct-radius-md, 12px);
+    background: linear-gradient(135deg, rgba(66, 85, 255, 0.12), rgba(99, 102, 241, 0.22));
+    color: var(--tct-primary-strong, #2136e7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: var(--tct-clay-shadow-quiet);
+    flex-shrink: 0;
+}
+
+.writing-recent-title {
+    font-size: 1.1rem;
+    font-weight: var(--tct-weight-bold);
+    color: var(--tct-text);
+    margin: 0;
+    line-height: 1.25;
+}
+
+.writing-recent-subtitle {
+    font-size: var(--tct-text-xs);
+    color: var(--tct-text-muted);
+    margin: 0.15rem 0 0;
+}
+
+.writing-recent-refresh-btn {
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-semibold);
+    padding: 0.35rem 0.85rem;
+    border-color: rgba(66, 85, 255, 0.25);
+    background: var(--tct-surface);
+    color: var(--tct-primary-strong);
+    box-shadow: var(--tct-clay-shadow-quiet);
+    transition: all var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-recent-refresh-btn:hover {
+    background: var(--tct-primary);
+    border-color: var(--tct-primary);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.25);
+}
+
+.writing-recent-status {
+    font-size: var(--tct-text-xs);
+    color: var(--tct-text-muted);
+    background: var(--tct-surface-muted, #f8faff);
+    border: 1px dashed rgba(66, 85, 255, 0.18);
+    border-radius: var(--tct-radius-pill);
+    padding: 0.3rem 0.85rem;
+    display: inline-block;
+}
+
+/* Grid */
+.writing-exercises-page .writing-recent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--tct-space-md, 1rem);
+}
+
+/* Card */
+.writing-exercises-page .writing-recent-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 1rem 1.15rem;
+    background: #ffffff;
+    border: 1px solid rgba(66, 85, 255, 0.14);
+    border-radius: var(--tct-radius-lg, 16px);
+    box-shadow: 0 2px 10px rgba(17, 28, 45, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: transform var(--tct-dur) var(--tct-ease),
+                box-shadow var(--tct-dur) var(--tct-ease),
+                border-color var(--tct-dur) var(--tct-ease);
+    gap: 0.5rem;
+    position: relative;
+}
+
+.writing-exercises-page .writing-recent-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(66, 85, 255, 0.4);
+    box-shadow: 0 12px 24px -4px rgba(66, 85, 255, 0.14),
+                0 4px 10px -2px rgba(17, 28, 45, 0.06),
+                var(--tct-clay-shadow-lift);
+}
+
+.writing-recent-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.writing-card-chip--type {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.writing-card-chip--type-emails {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.writing-card-chip--type-diaries {
+    background: #fff1f2;
+    color: #be123c;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.writing-card-chip--type-essays {
+    background: #f0fdfa;
+    color: #0f766e;
+    border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.writing-card-chip--type-articles {
+    background: #ecfeff;
+    color: #0e7490;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.writing-card-chip--type-stories {
+    background: #fdf4ff;
+    color: #a21caf;
+    border: 1px solid rgba(217, 70, 239, 0.3);
+}
+
+.writing-card-chip--type-reports {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.writing-recent-card-title {
+    font-size: 0.95rem;
+    font-weight: var(--tct-weight-bold);
+    color: var(--tct-text, #111c2d);
+    margin: 0.15rem 0 0;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-recent-card:hover .writing-recent-card-title {
+    color: var(--tct-primary-strong);
+}
+
+.writing-recent-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--tct-text-xs);
+    color: var(--tct-text-secondary);
+}
+
+.writing-recent-meta-topic {
+    display: inline-flex;
+    align-items: center;
+    font-weight: var(--tct-weight-medium);
+    color: var(--tct-text-secondary);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.writing-recent-card-status {
+    padding-top: 0.35rem;
+    border-top: 1px dashed rgba(66, 85, 255, 0.1);
+}
+
+.writing-recent-progress-text {
+    font-size: 0.725rem;
+    font-weight: var(--tct-weight-medium);
+}
+
+.writing-recent-card-time {
+    font-size: 0.725rem;
+    color: var(--tct-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.writing-recent-btn {
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-semibold);
+    padding: 0.45rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    box-shadow: var(--tct-clay-shadow-quiet);
+    transition: all var(--tct-dur-fast) var(--tct-ease);
+}
+
+.writing-recent-card:hover .writing-recent-btn {
+    background-color: var(--tct-primary);
+    border-color: var(--tct-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(66, 85, 255, 0.3);
+}
+
+@media (max-width: 991.98px) {
+    .writing-exercises-page .writing-recent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 575.98px) {
+    .writing-exercises-page .writing-recent { padding: var(--tct-space-md); }
+    .writing-exercises-page .writing-recent-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ─── Mode Selector Tabs & Controls ──────────────────── */
+.writing-exercises-page .writing-mode-nav {
+    display: inline-flex;
+    gap: var(--tct-space-xs);
+    padding: 0.25rem;
+    background: var(--tct-surface-muted);
+    border: 1px solid var(--tct-border);
+    border-radius: var(--tct-radius-pill);
+    box-shadow: var(--tct-clay-shadow-field);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.writing-exercises-page .writing-mode-tab {
+    border: none;
+    background: transparent;
+    padding: 0.4rem 1.15rem;
+    border-radius: var(--tct-radius-pill);
+    font-size: var(--tct-text-sm);
+    font-weight: var(--tct-weight-semibold);
+    color: var(--tct-text-secondary);
+    cursor: pointer;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease);
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.writing-exercises-page .writing-mode-tab:hover:not(.is-active) {
+    color: var(--tct-text);
+    background: var(--tct-primary-soft);
+    text-decoration: none;
+}
+
+.writing-exercises-page .writing-mode-tab.is-active {
+    background: var(--tct-surface);
+    color: var(--tct-primary-strong);
+    box-shadow: var(--tct-clay-shadow-button);
+    text-decoration: none;
+}
+
+.writing-exercises-page .writing-mode-tab:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: 1px;
+}
+
+.writing-exercises-page .writing-mode-panel[hidden] {
+    display: none;
+}
+
+/* ─── Example Chips ──────────────────────────────────── */
+.writing-exercises-page .writing-examples-wrap {
+    background: var(--tct-surface-muted);
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border-radius: var(--tct-radius-md);
+    border: 1px dashed var(--tct-border-control);
+}
+
+.writing-exercises-page .writing-example-chip {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-border-control);
+    border-radius: var(--tct-radius-pill);
+    color: var(--tct-text-secondary);
+    font-size: var(--tct-text-xs);
+    font-weight: var(--tct-weight-medium);
+    padding: 0.25rem 0.75rem;
+    transition: background-color var(--tct-dur-fast) var(--tct-ease);
+    box-shadow: var(--tct-clay-shadow-quiet);
+}
+
+.writing-exercises-page .writing-example-chip:hover {
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    border-color: var(--tct-border-control);
+    transform: translateY(-1px);
+    box-shadow: var(--tct-clay-shadow-button);
+}
+
+.writing-exercises-page .writing-example-chip:focus-visible {
+    outline: var(--tct-focus-ring-width) solid var(--tct-focus-ring);
+    outline-offset: 1px;
+}
+
+/* ─── Origin Chips ───────────────────────────────────── */
+.writing-exercises-page .writing-card-chip--origin {
+    background: var(--tct-primary-soft);
+    color: var(--tct-primary-strong);
+    border: 1px solid var(--tct-border-control);
+}
+
+.writing-exercises-page .writing-card-chip--origin-unknown {
+    background: var(--tct-surface-muted);
+    color: var(--tct-text-muted);
+    border: 1px solid var(--tct-border);
+}
+
+/* ─── Outage Template Offer Card ─────────────────────── */
+.writing-exercises-page .writing-template-offer-card {
+    background: var(--tct-surface);
+    border: 1px solid var(--tct-warning);
+    box-shadow: var(--tct-clay-shadow);
+}
+
+.writing-exercises-page .writing-template-offer-card[hidden] {
+    display: none;
+}
+
+.writing-exercises-page .writing-offer-slots-wrap {
+    background: var(--tct-surface-muted);
+    padding: var(--tct-space-sm) var(--tct-space-md);
+    border-radius: var(--tct-radius-md);
+    border: 1px solid var(--tct-border);
+}
+
+.writing-exercises-page [data-offer-preview-lines] { white-space: pre-line; overflow-wrap: anywhere; }
+.writing-exercises-page .writing-create-grid { grid-template-columns: minmax(0, 1fr); }
+.writing-exercises-page .writing-create-grid > * { min-width: 0; }
+.writing-exercises-page .writing-card-chip--quota { white-space: normal; }
+.writing-exercises-page .writing-mode-nav { display: flex; }
+.writing-exercises-page .writing-mode-tab { flex: 1; min-width: 0; white-space: normal; justify-content: center; min-height: 44px; text-decoration: none; }
+.writing-exercises-page .writing-mode-tab.is-active { text-decoration: none; }
+.writing-exercises-page .writing-mode-tab i { display: inline-block; text-decoration: none !important; }
+/* Create panel is now a unified single-card flow without empty side spaces */
+.writing-exercises-page [data-writing-personal][hidden] { display: none; }
+.writing-exercises-page .writing-mode-tab:disabled,
+.writing-exercises-page .writing-example-chip:disabled { cursor: wait; opacity: .65; }

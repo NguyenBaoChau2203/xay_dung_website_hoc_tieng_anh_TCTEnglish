@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.advanced.reports.01",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.advanced.reports.01",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "\u0110\u00E1nh gi\u00E1 th\u1EED nghi\u1EC7m ph\u00F2ng h\u1ECDc y\u00EAn t\u0129nh",
+        "Level": "advanced",
+        "ContentType": "reports",
+        "Topic": "B\u00E1o c\u00E1o d\u1ECBch v\u1EE5",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E1o c\u00E1o gi\u1EA3 \u0111\u1ECBnh t\u1ED5ng h\u1EE3p m\u1ED9t th\u1EED nghi\u1EC7m kh\u00F4ng gian h\u1ECDc, n\u00EAu gi\u1EDBi h\u1EA1n kh\u1EA3o s\u00E1t v\u00E0 \u0111\u1EC1 xu\u1EA5t thay \u0111\u1ED5i c\u00F3 th\u1EC3 \u0111\u00E1nh gi\u00E1 l\u1EA1i.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.01aa89f871ce4d4ebdb0ed9c18c60e91",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "M\u1EE5c ti\u00EAu l\u00E0 xem c\u00E1ch b\u1ED1 tr\u00ED c\u00F3 h\u1ED7 tr\u1EE3 ng\u01B0\u1EDDi c\u1EA7n t\u1EADp trung m\u00E0 kh\u00F4ng l\u00E0m m\u1EA5t ch\u1ED7 cho c\u00E1c nh\u00F3m th\u1EA3o lu\u1EADn hay kh\u00F4ng.",
+        "EnglishMeaning": "Its purpose was to examine whether the arrangement supported concentrated study without removing the space needed by groups working through discussions together.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.0a7035c6f5e241a6962ff335d580b491",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Nh\u1EEFng ph\u1EA3n h\u1ED3i t\u00EDch c\u1EF1c h\u1ED7 tr\u1EE3 vi\u1EC7c ti\u1EBFp t\u1EE5c th\u1EED nghi\u1EC7m, nh\u01B0ng ch\u01B0a \u0111\u1EE7 \u0111\u1EC3 k\u1EBFt lu\u1EADn r\u1EB1ng trung t\u00E2m c\u1EA7n th\u00EAm m\u1ED9t ph\u00F2ng y\u00EAn t\u0129nh.",
+        "EnglishMeaning": "The positive responses support continuing the trial, but are not sufficient to conclude that the centre needs to allocate a second quiet room.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.144b98da707b40d9a0dd3c0ad846ac65",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Hai ng\u01B0\u1EDDi c\u00F2n l\u1EA1i kh\u00F4ng n\u00EAu l\u1EF1a ch\u1ECDn, v\u00E0 b\u00E1o c\u00E1o kh\u00F4ng di\u1EC5n gi\u1EA3i s\u1EF1 im l\u1EB7ng \u1EA5y th\u00E0nh s\u1EF1 h\u00E0i l\u00F2ng ho\u1EB7c b\u1EA5t m\u00E3n.",
+        "EnglishMeaning": "The remaining two expressed no preference, and this report does not interpret their silence as evidence either of satisfaction or of dissatisfaction.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.33075c6bf6de49709106b64f54bfd31a",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "The favourable responses support continuing the trial, but are not sufficient to conclude that the centre needs to allocate a second quiet room.",
+        "NormalizedHash": "d6a2bd8fb532caa60fd1440327f1c8f4eb15c49e6fe2843b96d31b0516ade2a2"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.advanced.reports.01.0a7035c6f5e241a6962ff335d580b491",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.394caa3717594ae4a36c0e4269944a23",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "B\u00E1o c\u00E1o gi\u1EA3 \u0111\u1ECBnh n\u00E0y \u0111\u00E1nh gi\u00E1 th\u1EED nghi\u1EC7m b\u1ED1n tu\u1EA7n d\u00E0nh m\u1ED9t ph\u00F2ng trong trung t\u00E2m h\u1ECDc t\u1EADp cho ho\u1EA1t \u0111\u1ED9ng y\u00EAn t\u0129nh.",
+        "EnglishMeaning": "This fictional report evaluates a four-week trial that reserved one room within a learning centre for activities requiring a quiet environment.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.71ed02e015364db5bff836b4c3de7ba7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "\u0110\u1EC1 xu\u1EA5t tr\u01B0\u1EDBc m\u1EAFt l\u00E0 s\u1EEDa bi\u1EC3n h\u01B0\u1EDBng d\u1EABn v\u00E0 n\u00EAu r\u00F5 v\u1ECB tr\u00ED ph\u00F2ng th\u1EA3o lu\u1EADn thay th\u1EBF tr\u01B0\u1EDBc khi m\u1EDF r\u1ED9ng m\u00F4 h\u00ECnh.",
+        "EnglishMeaning": "The immediate recommendation is to revise the signs and clearly identify an alternative discussion room before extending the arrangement to other spaces.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.7c5ed6e2ff9b4f5da71b09a7242cadf2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Do kh\u00F4ng thu \u00FD ki\u1EBFn ng\u01B0\u1EDDi b\u1ECF v\u1EC1 khi kh\u00F4ng t\u00ECm \u0111\u01B0\u1EE3c ch\u1ED7, d\u1EEF li\u1EC7u kh\u00F4ng \u0111\u1EA1i di\u1EC7n cho m\u1ECDi ng\u01B0\u1EDDi c\u00F3 th\u1EC3 c\u1EA7n d\u1ECBch v\u1EE5.",
+        "EnglishMeaning": "Because people who left without finding space were not surveyed, the information does not represent everyone who might have needed the service.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.81a9b72741d842568652aa50f81aeadc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "\u0110\u1EE3t \u0111\u00E1nh gi\u00E1 ti\u1EBFp theo n\u00EAn ghi nh\u1EADn c\u1EA3 tr\u01B0\u1EDDng h\u1EE3p kh\u00F4ng t\u00ECm \u0111\u01B0\u1EE3c ch\u1ED7, v\u1EDBi c\u00E1ch thu th\u1EADp kh\u00F4ng l\u00E0m l\u1ED9 danh t\u00EDnh ng\u01B0\u1EDDi h\u1ECDc.",
+        "EnglishMeaning": "The next review should include cases where no seat was available, using a collection method that does not expose individual learners\u0027 identities.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.9c2ea834ffab4cd6b93d8565631e9d50",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Trong t\u00ECnh hu\u1ED1ng gi\u1EA3 \u0111\u1ECBnh, nh\u00E2n vi\u00EAn ghi nh\u1EADn l\u01B0\u1EE3t s\u1EED d\u1EE5ng v\u00E0 nh\u1EADn hai m\u01B0\u01A1i phi\u1EBFu ph\u1EA3n h\u1ED3i t\u1EF1 nguy\u1EC7n v\u00E0o cu\u1ED1i \u0111\u1EE3t.",
+        "EnglishMeaning": "In the invented scenario, staff recorded room use and received twenty voluntary feedback forms from participants at the end of the trial.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.ae6a1f5c5c354612baa145e582210dfe",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u01B0\u1EDDi b\u1ED1n ng\u01B0\u1EDDi ph\u1EA3n h\u1ED3i cho bi\u1EBFt quy t\u1EAFc y\u00EAn t\u0129nh gi\u00FAp h\u1ECD t\u1EADp trung, trong khi b\u1ED1n ng\u01B0\u1EDDi th\u1EA5y ch\u1EC9 d\u1EABn t\u1EA1i c\u1EEDa ch\u01B0a r\u00F5.",
+        "EnglishMeaning": "Fourteen respondents said the quiet rule helped them concentrate, while four considered the instructions displayed at the entrance insufficiently clear for newcomers.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.cbd61afab2ef46ff830ab0589da4b939",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Nh\u00E2n vi\u00EAn c\u0169ng ghi nh\u1EADn ba l\u1EA7n ph\u1EA3i gi\u1EA3i th\u00EDch l\u1EA1i quy \u0111\u1ECBnh cho nh\u00F3m \u0111\u00E3 quen d\u00F9ng ph\u00F2ng n\u00E0y \u0111\u1EC3 l\u00E0m b\u00E0i chung.",
+        "EnglishMeaning": "Staff also recorded three occasions when they had to explain the rule again to groups accustomed to using this room for collaborative assignments.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.d93083293cd94717a3929b4bdf37c294",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Quy\u1EBFt \u0111\u1ECBnh d\u00E0i h\u1EA1n n\u00EAn ch\u1EDD b\u1EB1ng ch\u1EE9ng \u0111\u1EA7y \u0111\u1EE7 h\u01A1n v\u1EC1 nhu c\u1EA7u, t\u00E1c \u0111\u1ED9ng t\u1EDBi nh\u00F3m h\u1ECDc chung v\u00E0 kh\u1EA3 n\u0103ng b\u1ED1 tr\u00ED nh\u00E2n vi\u00EAn.",
+        "EnglishMeaning": "A longer-term decision should await fuller evidence about demand, the effects on collaborative groups and the staffing capacity needed to sustain the arrangement.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.reports.01.ee50ff494cc443669e52e27e7e0febb7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Nh\u1EADt k\u00FD s\u1EED d\u1EE5ng cho th\u1EA5y ph\u00F2ng th\u01B0\u1EDDng k\u00EDn v\u00E0o cu\u1ED1i chi\u1EC1u, nh\u01B0ng kh\u00F4ng cho bi\u1EBFt nhu c\u1EA7u ch\u01B0a \u0111\u01B0\u1EE3c \u0111\u00E1p \u1EE9ng l\u1EDBn \u0111\u1EBFn \u0111\u00E2u.",
+        "EnglishMeaning": "The usage log indicates that the room was often full in late afternoon, but does not establish the scale of unmet demand.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.reports.01"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.advanced.reports.01"
+}

@@ -76,6 +76,7 @@ public sealed class AccountDeletionService : IAccountDeletionService
             $"UPDATE Users SET SecurityVersion = SecurityVersion WHERE Role = {Roles.Admin}",
             cancellationToken);
 
+        await UserMutationScope.LockAsync(_context, userId, cancellationToken);
         var user = await _context.Users.FirstOrDefaultAsync(row => row.UserId == userId, cancellationToken);
         if (user == null || user.AnonymizedAt != null)
         {
@@ -250,6 +251,8 @@ public sealed class AccountDeletionService : IAccountDeletionService
 
     private async Task DeletePersonalRowsAsync(int userId, CancellationToken cancellationToken)
     {
+        await _context.WritingGenerationOperations.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
+        await _context.UserWritingExerciseVisits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.UserSpeakingVideoVisits.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningActivitySegments.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);
         await _context.LearningActivitySessions.Where(row => row.UserId == userId).ExecuteDeleteAsync(cancellationToken);

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TCTEnglish.Services.AI;
 using TCTEnglish.Services.Learning;
+using TCTEnglish.Services.Notifications;
 using TCTEnglish.Services.Writing;
 using TCTEnglish.ViewModels;
 using TCTVocabulary.Models;
@@ -37,6 +38,7 @@ namespace TCTVocabulary.Services
         private readonly IWritingAiEvaluationService _writingAiEvaluationService;
         private readonly IGoalsService _goalsService;
         private readonly ICompletionCreditService _completionCreditService;
+        private readonly LearningBusinessClock _clock;
         private readonly WritingEvaluationOptions _writingEvaluationOptions;
         private readonly ILocalGrammarChecker _localGrammarChecker;
         private readonly ILocalWritingModel _localWritingModel;
@@ -52,7 +54,8 @@ namespace TCTVocabulary.Services
             IOptions<WritingEvaluationOptions> writingEvaluationOptions,
             ILocalGrammarChecker localGrammarChecker,
             ILocalWritingModel localWritingModel,
-            ILogger<WritingService> logger)
+            ILogger<WritingService> logger,
+            LearningBusinessClock clock)
         {
             _context = context;
             _completionCreditService = completionCreditService;
@@ -65,6 +68,7 @@ namespace TCTVocabulary.Services
             _aiOptions = aiOptions.Value;
             _writingEvaluationOptions = writingEvaluationOptions.Value;
             _logger = logger;
+            _clock = clock;
         }
 
         public Task<WritingIndexViewModel> GetWritingIndexViewModelAsync(string? selectedLevel)
@@ -236,39 +240,49 @@ namespace TCTVocabulary.Services
             await using var writingUnit = await _context.Database.BeginTransactionAsync(cancellationToken);
             try
             {
-            await PersistWritingAttemptAsync(userId, exerciseId, sentence, normalizedAnswer, evaluationViewModel);
+                // Serialize this user's Writing unit before the attempt INSERT takes FK
+                // locks or any progress snapshot is read. Independent requests/processes
+                // must observe the previous committed unit, including final completions.
+                await TCTEnglish.Services.Accounts.UserMutationScope.LockAsync(_context, userId, cancellationToken);
+                using var operation = _clock.BeginOperation();
 
-            var progressSummary = await LoadWritingExerciseProgressSummaryAsync(exerciseId, userId, sentences.Count);
-            var firstTimeExerciseCompletion = await UpsertWritingProgressAsync(
-                userId,
-                exerciseId,
-                sentence.Id,
-                normalizedAnswer,
-                evaluationViewModel.Passed,
-                progressSummary,
-                sentences.Count);
+                var attempt = await PersistWritingAttemptAsync(userId, exerciseId, sentence, normalizedAnswer, evaluationViewModel, cancellationToken);
 
-            if (firstTimeExerciseCompletion)
-            {
-                var activityUpdate = _goalsService.BuildWritingCompletionActivityUpdate();
-                var creditResult = await _completionCreditService.TryApplyWritingExerciseCompletionAsync(
+                var progressSummary = await LoadWritingExerciseProgressSummaryAsync(exerciseId, userId, sentences.Count);
+                var firstTimeExerciseCompletion = await UpsertWritingProgressAsync(
                     userId,
                     exerciseId,
-                    activityUpdate,
+                    sentence.Id,
+                    normalizedAnswer,
+                    evaluationViewModel.Passed,
+                    progressSummary,
+                    sentences.Count,
                     cancellationToken);
-                if (!creditResult.Applied && !creditResult.Replay && creditResult.Status != OperationStatus.Success)
-                {
-                    await writingUnit.RollbackAsync(cancellationToken);
-                    throw new InvalidOperationException(creditResult.ErrorMessage ?? "Writing completion credit failed.");
-                }
-            }
 
-            await writingUnit.CommitAsync(cancellationToken);
-            evaluationViewModel.SentenceAttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id);
-            evaluationViewModel.ExerciseAttemptCount = progressSummary.AttemptCount;
-            evaluationViewModel.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
-            evaluationViewModel.ExerciseStatusKey = progressSummary.StatusKey;
-            evaluationViewModel.ExerciseStatusLabel = progressSummary.StatusLabel;
+                if (attempt.Passed)
+                    await _completionCreditService.RecordWritingPracticeAsync(userId, attempt.Id, cancellationToken);
+
+                if (firstTimeExerciseCompletion)
+                {
+                    var activityUpdate = _goalsService.BuildWritingCompletionActivityUpdate();
+                    var creditResult = await _completionCreditService.TryApplyWritingExerciseCompletionAsync(
+                        userId,
+                        exerciseId,
+                        activityUpdate,
+                        cancellationToken);
+                    if (!creditResult.Applied && !creditResult.Replay && creditResult.Status != OperationStatus.Success)
+                    {
+                        await writingUnit.RollbackAsync(cancellationToken);
+                        throw new InvalidOperationException(creditResult.ErrorMessage ?? "Writing completion credit failed.");
+                    }
+                }
+
+                await writingUnit.CommitAsync(cancellationToken);
+                evaluationViewModel.SentenceAttemptCount = progressSummary.SentenceAttemptCounts.GetValueOrDefault(sentence.Id);
+                evaluationViewModel.ExerciseAttemptCount = progressSummary.AttemptCount;
+                evaluationViewModel.CompletedSentenceCount = progressSummary.CompletedSentenceCount;
+                evaluationViewModel.ExerciseStatusKey = progressSummary.StatusKey;
+                evaluationViewModel.ExerciseStatusLabel = progressSummary.StatusLabel;
             }
             catch
             {
@@ -382,11 +396,11 @@ namespace TCTVocabulary.Services
             int? selectedExerciseId;
             if (exerciseId.HasValue)
             {
-                selectedExerciseId = await _context.WritingExercises.AsNoTracking()
-                    .Where(e => e.Id == exerciseId.Value && e.Level == exerciseListViewModel.SelectedLevelKey
-                        && e.ContentType == exerciseListViewModel.SelectedContentTypeKey
-                        && ((e.UserId == null && e.IsPublished) || (e.UserId == userId && !exerciseListViewModel.IsMyExercisesLocked)))
-                    .Select(e => (int?)e.Id).FirstOrDefaultAsync();
+                var accessibleExercise = await ResolveWritingExerciseAccessAsync(exerciseId.Value, userId);
+                selectedExerciseId = accessibleExercise != null
+                    && accessibleExercise.Level == exerciseListViewModel.SelectedLevelKey
+                    && accessibleExercise.ContentType == exerciseListViewModel.SelectedContentTypeKey
+                        ? accessibleExercise.Id : null;
             }
             else
             {
@@ -647,6 +661,8 @@ namespace TCTVocabulary.Services
 
             return new WritingPracticeDataViewModel
             {
+                Origin = exercise.Origin,
+                IsPrivate = exercise.IsPrivate,
                 SelectedLevelKey = exercise.Level,
                 SelectedLevelTitle = ResolveWritingLevelTitle(exercise.Level),
                 SelectedContentTypeKey = exercise.ContentType,
@@ -675,6 +691,8 @@ namespace TCTVocabulary.Services
         {
             return new WritingPracticeViewModel
             {
+                Origin = practiceData.Origin,
+                IsPrivate = practiceData.IsPrivate,
                 SelectedLevelKey = exerciseListViewModel.SelectedLevelKey,
                 SelectedLevelTitle = exerciseListViewModel.SelectedLevelTitle,
                 SelectedContentTypeKey = exerciseListViewModel.SelectedContentTypeKey,
@@ -1069,14 +1087,15 @@ namespace TCTVocabulary.Services
             return LoadWritingAttemptRowsAsync(userId, new[] { exerciseId });
         }
 
-        private async Task PersistWritingAttemptAsync(
+        private async Task<UserWritingAttempt> PersistWritingAttemptAsync(
             int userId,
             int exerciseId,
             WritingSentenceLookupRow sentence,
             string normalizedAnswer,
-            WritingSentenceEvaluationViewModel evaluationViewModel)
+            WritingSentenceEvaluationViewModel evaluationViewModel,
+            CancellationToken cancellationToken)
         {
-            _context.UserWritingAttempts.Add(new UserWritingAttempt
+            var attempt = new UserWritingAttempt
             {
                 UserId = userId,
                 WritingExerciseId = exerciseId,
@@ -1093,10 +1112,12 @@ namespace TCTVocabulary.Services
                 NaturalnessFeedback = NormalizeSnapshotText(evaluationViewModel.NaturalnessFeedback, FeedbackFieldMaxLength),
                 WordChoiceFeedback = NormalizeSnapshotText(evaluationViewModel.WordChoiceFeedback, FeedbackFieldMaxLength),
                 SuggestedRewrite = NormalizeSnapshotText(evaluationViewModel.SuggestedRewrite, SuggestedRewriteMaxLength),
-                CreatedAtUtc = DateTime.UtcNow
-            });
+                CreatedAtUtc = _clock.UtcNow
+            };
+            _context.UserWritingAttempts.Add(attempt);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
+            return attempt;
         }
 
         private async Task<bool> UpsertWritingProgressAsync(
@@ -1106,13 +1127,14 @@ namespace TCTVocabulary.Services
             string normalizedAnswer,
             bool passed,
             WritingExerciseProgressSummary progressSummary,
-            int totalSentenceCount)
+            int totalSentenceCount,
+            CancellationToken cancellationToken)
         {
-            var utcNow = DateTime.UtcNow;
+            var utcNow = _clock.UtcNow;
             var sentenceProgress = await _context.UserWritingSentenceProgresses
                 .FirstOrDefaultAsync(progress =>
                     progress.UserId == userId
-                    && progress.SentenceId == sentenceId);
+                    && progress.SentenceId == sentenceId, cancellationToken);
 
             if (sentenceProgress == null)
             {
@@ -1145,7 +1167,7 @@ namespace TCTVocabulary.Services
             var exerciseProgress = await _context.UserWritingExerciseProgresses
                 .FirstOrDefaultAsync(progress =>
                     progress.UserId == userId
-                    && progress.WritingExerciseId == exerciseId);
+                    && progress.WritingExerciseId == exerciseId, cancellationToken);
 
             var wasCompleted = exerciseProgress?.IsCompleted ?? false;
             var isCompleted = totalSentenceCount > 0
@@ -1178,7 +1200,7 @@ namespace TCTVocabulary.Services
                     : null;
             }
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
             return !wasCompleted && isCompleted;
         }
@@ -2097,6 +2119,8 @@ namespace TCTVocabulary.Services
 
         private sealed class WritingPracticeExerciseRow
         {
+            public WritingGenerationOriginViewModel? Origin { get; set; }
+            public bool IsPrivate { get; set; }
             public int Id { get; set; }
             public string Title { get; set; } = string.Empty;
             public string Level { get; set; } = string.Empty;

@@ -238,18 +238,20 @@ public static class WritingAssessmentPolicy
         return string.Join(
             ' ',
             (value ?? string.Empty)
-                .Split(new[] { ' ', '\r', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
+                .Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
     }
 
     public static string NormalizeForComparison(string? value)
     {
-        var collapsed = CollapseWhitespace(value).ToLowerInvariant();
+        var collapsed = CollapseWhitespace(value).Normalize(NormalizationForm.FormC).ToLowerInvariant();
         var buffer = new StringBuilder(collapsed.Length);
 
         for (var index = 0; index < collapsed.Length; index++)
         {
             var character = collapsed[index];
-            if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character))
+            if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character)
+                || char.GetUnicodeCategory(character) is System.Globalization.UnicodeCategory.NonSpacingMark
+                    or System.Globalization.UnicodeCategory.SpacingCombiningMark)
             {
                 buffer.Append(character);
                 continue;

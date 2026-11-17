@@ -182,7 +182,11 @@ test('Account tabs feature compact, balanced Bento layouts without artificial em
     assert.ok(accountCss.includes('.account-ui .habit-metrics-grid'), 'CSS for habit-metrics-grid must exist');
     assert.ok(accountCss.includes('.account-ui .profile-main-stack > .panel:last-child'), 'Profile left stack last panel must stretch to match right stack');
     assert.ok(accountCss.includes('.account-ui .info-stack > .panel:last-child'), 'Profile right stack last panel must stretch to match left stack');
-    assert.ok(profileContent.includes('badge-showcase-grid'), 'Empty badges must display inspirational milestone preview cards');
+    // The server-earned badge contract replaced decorative milestone previews.
+    assert.match(profileContent, /!Model\.EarnedBadges\.Any\(b => b\.IsUnlocked\)/, 'Empty state must use actual unlocked grants');
+    assert.ok(profileContent.includes('Title = "Chưa có danh hiệu"'), 'Empty grants must show truthful guidance');
+    assert.ok(profileContent.includes('ActionUrl = Url.Action("Index", "Goals")'), 'Empty grants must link to actual Goals');
+    assert.ok(profileContent.includes('Model.EarnedBadges.Where(b => b.IsUnlocked)'), 'The badge list must only display unlocked grants');
 
     // Tab 2 Security Bento layout
     assert.ok(profileContent.includes('security-grid'), 'Security tab must use 2-column Bento grid');

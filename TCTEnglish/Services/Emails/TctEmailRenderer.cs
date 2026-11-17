@@ -369,11 +369,13 @@ public static class TctEmailRenderer
         var safeSubject = Encode(subject?.Trim() ?? string.Empty);
         var safeMessage = Encode(message?.Trim() ?? string.Empty)
             .Replace("\r\n", "<br />")
+            .Replace("\r", "<br />")
             .Replace("\n", "<br />");
         var safeIp = Encode(ipAddress ?? "N/A");
         var safeAgent = Encode(userAgent ?? "N/A");
 
-        var preheader = $"Tin nhắn liên hệ mới từ {safeName}: {safeSubject}";
+        // RenderShell encodes its text arguments; pass raw text to avoid encoding twice.
+        var preheader = $"Tin nhắn liên hệ mới từ {senderName?.Trim()}: {subject?.Trim()}";
         var heading = "Yêu cầu liên hệ mới";
 
         var body = $@"

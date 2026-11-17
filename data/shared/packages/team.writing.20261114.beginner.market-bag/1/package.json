@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.market-bag",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.market-bag",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Mang t\u00FAi khi \u0111i ch\u1EE3",
+        "Level": "beginner",
+        "ContentType": "articles",
+        "Topic": "Mua s\u1EAFm",
+        "SourceType": "original-20261114",
+        "PreviewText": "B\u00E0i vi\u1EBFt h\u01B0\u1EDBng d\u1EABn m\u1ED9t th\u00F3i quen mua s\u1EAFm d\u1EC5 th\u1EF1c hi\u1EC7n.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.0362326dfec342cf8af062cd95d38d82",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "At home, follow the instructions to clean the bag if needed.",
+        "NormalizedHash": "49ef429cb46202251dc528dd8876daa36d20b18bb30b0ec8f4e22f423936317c"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.market-bag.f5a9f9d172884aeebb4873bc2c9ef364",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.3d8fa3bda56d4351acfe3710b7ee4eec",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Tr\u01B0\u1EDBc khi \u0111i, vi\u1EBFt m\u1ED9t danh s\u00E1ch ng\u1EAFn nh\u1EEFng th\u1EE9 c\u1EA7n mua.",
+        "EnglishMeaning": "Before leaving, write a short list of things to buy.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.683cb673c0104c9187097828f23e981d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "Kh\u00F4ng \u0111\u1EC3 th\u1EF1c ph\u1EA9m b\u1ECB r\u00F2 n\u01B0\u1EDBc l\u00E0m b\u1EA9n nh\u1EEFng m\u00F3n kh\u00E1c.",
+        "EnglishMeaning": "Do not let leaking food make other items dirty.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.a82bd5dfb14b4adc848e362060ca227b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Ch\u1ECDn t\u00FAi \u0111\u1EE7 ch\u1EAFc \u0111\u1EC3 \u0111\u1EF1ng c\u00E1c m\u00F3n trong danh s\u00E1ch.",
+        "EnglishMeaning": "Choose a bag strong enough to hold the things on your list.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.a834aaf87c5a423ab82e68c5dca864a2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Sau \u0111\u00F3 c\u1EA5t t\u00FAi v\u1EC1 ch\u1ED7 c\u0169 cho chuy\u1EBFn \u0111i ti\u1EBFp theo.",
+        "EnglishMeaning": "Then put it back in the same place for your next trip.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.c5a3eb7da86e4c47b2ce166492dc127d",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "X\u1EBFp nh\u1EEFng m\u00F3n n\u1EB7ng xu\u1ED1ng d\u01B0\u1EDBi v\u00E0 \u0111\u1ED3 d\u1EC5 v\u1EE1 l\u00EAn tr\u00EAn.",
+        "EnglishMeaning": "Put heavy items at the bottom and fragile items on top.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.f5a9f9d172884aeebb4873bc2c9ef364",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Khi v\u1EC1 nh\u00E0, l\u00E0m s\u1EA1ch t\u00FAi theo h\u01B0\u1EDBng d\u1EABn n\u1EBFu c\u1EA7n.",
+        "EnglishMeaning": "At home, clean the bag according to its instructions if needed.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.f7928331ee4e48a29c7e1842c74b1982",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "M\u1ED9t chi\u1EBFc t\u00FAi d\u00F9ng l\u1EA1i nhi\u1EC1u l\u1EA7n c\u00F3 th\u1EC3 r\u1EA5t ti\u1EC7n khi \u0111i ch\u1EE3.",
+        "EnglishMeaning": "A reusable bag can be very useful at the market.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.market-bag.fad8b45ad5b04b53955f88785e4643aa",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "H\u00E3y \u0111\u1EC3 t\u00FAi c\u1EA1nh c\u1EEDa \u0111\u1EC3 nh\u1EDB mang theo khi ra ngo\u00E0i.",
+        "EnglishMeaning": "Keep it beside the door to remember it when you go out.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.market-bag"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.market-bag"
+}

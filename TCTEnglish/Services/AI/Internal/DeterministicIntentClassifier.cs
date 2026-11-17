@@ -11,7 +11,10 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             return Create(UserIntent.OutOfScope, 0.2f);
         }
 
-        if (IsGreeting(normalizedMessage))
+        if (IsGreeting(normalizedMessage)
+            && !IsWebsiteGuide(normalizedMessage)
+            && !IsStudyRecommendation(normalizedMessage)
+            && !HasExplicitCardLookupKeyword(normalizedMessage))
         {
             return Create(UserIntent.Greeting, 1.0f);
         }
@@ -136,6 +139,12 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
 
     private static bool IsWebsiteGuide(string normalizedMessage)
     {
+        if (normalizedMessage is "speaking" or "writing" or "reading" or "listening"
+            or "luyen noi" or "luyen viet" or "luyen doc" or "luyen nghe")
+        {
+            return true;
+        }
+
         if (IsBillingQuestion(normalizedMessage)
             || IsNotificationQuestion(normalizedMessage)
             || IsAdminFeatureQuestion(normalizedMessage))
@@ -150,6 +159,15 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "lam sao",
             "lam bai",
             "how to",
+            "where",
+            "how do i",
+            "how can i",
+            "i want to",
+            "muon hoc",
+            "muon luyen",
+            "tim lai",
+            "xem lai",
+            "xem cac",
             "su dung",
             "tinh nang",
             "hoat dong",
@@ -181,6 +199,17 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
             "lop hoc",
             "class",
             "speaking",
+            "luyen noi",
+            "luyen nghe",
+            "luyen viet",
+            "luyen doc",
+            "phat am",
+            "transcript",
+            "phu de",
+            "youtube",
+            "bai viet",
+            "danh hieu",
+            "thanh tuu",
             "playlist",
             "shadowing",
             "dictation",
@@ -352,11 +381,14 @@ public sealed class DeterministicIntentClassifier : IAiQueryClassifier
         return hasClassKeyword && hasInfoKeyword;
     }
 
-    private static bool IsStudyRecommendation(string normalizedMessage)
+    internal static bool IsStudyRecommendation(string normalizedMessage)
     {
         return AiTextNormalizer.ContainsAny(
             normalizedMessage,
             "nen hoc gi",
+            "hoc gi",
+            "what should i study",
+            "what to study",
             "hoc gi tiep",
             "goi y hoc",
             "goi y on tap",

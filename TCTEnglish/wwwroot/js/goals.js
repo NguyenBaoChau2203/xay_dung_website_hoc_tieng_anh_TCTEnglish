@@ -30,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!areaSelect || !unitBadge) return;
         var val = (areaSelect.value || "").toLowerCase();
         if (val.indexOf("vocabulary") !== -1 || val.indexOf("từ") !== -1) {
-            unitBadge.textContent = "từ / ngày";
+            unitBadge.textContent = "thẻ / ngày";
+        } else if (val.indexOf("speaking") !== -1 || val.indexOf("nói") !== -1) {
+            unitBadge.textContent = "video / ngày";
         } else {
             unitBadge.textContent = "bài / ngày";
         }
@@ -182,31 +184,245 @@ document.addEventListener("DOMContentLoaded", function () {
     // Recover state on BFCache restore (back/forward navigation)
     window.addEventListener("pageshow", function () {
         resetSubmittingState();
+        if (typeof applyBadgeFilter === "function") {
+            try {
+                var urlGrp = new URLSearchParams(window.location.search).get("badgeGroup")
+                    || (window.sessionStorage ? window.sessionStorage.getItem("goals_badge_group") : null);
+                if (urlGrp) applyBadgeFilter(urlGrp, false);
+            } catch (e) {
+                // Ignore
+            }
+        }
     });
+
+    // ═══════════════ BADGE SHOWCASE: TIER FILTERS & ACCESSIBLE DETAILS ═══════════════
+    var badgeFilterButtons = Array.prototype.slice.call(document.querySelectorAll(".goals-badge-filter-btn"));
+    var badgeTiles = Array.prototype.slice.call(document.querySelectorAll(".goals-badge-tile"));
+    var badgeEmptyState = document.getElementById("badgeFilterEmptyState");
+    var badgeDetailModalEl = document.getElementById("badgeDetailModal");
+    var lastFocusedBadgeTile = null;
+
+    function applyBadgeFilter(filterKey, updateState) {
+        if (!badgeFilterButtons.length) return;
+        var activeKey = badgeFilterButtons.some(function (btn) {
+            return btn.getAttribute("data-badge-filter") === filterKey;
+        }) ? filterKey : "all";
+
+        badgeFilterButtons.forEach(function (btn) {
+            var isCurrent = btn.getAttribute("data-badge-filter") === activeKey;
+            btn.classList.toggle("is-active", isCurrent);
+            btn.classList.toggle("btn-primary", isCurrent);
+            btn.classList.toggle("btn-outline-secondary", !isCurrent);
+            btn.setAttribute("aria-selected", isCurrent ? "true" : "false");
+            btn.setAttribute("tabindex", isCurrent ? "0" : "-1");
+        });
+
+        var visibleCount = 0;
+        badgeTiles.forEach(function (tile) {
+            var group = tile.getAttribute("data-badge-group");
+            var matches = (activeKey === "all" || group === activeKey);
+            tile.classList.toggle("d-none", !matches);
+            if (matches) {
+                visibleCount++;
+            }
+        });
+
+        if (badgeEmptyState) {
+            badgeEmptyState.classList.toggle("d-none", visibleCount > 0);
+        }
+
+        if (updateState) {
+            try {
+                if (window.sessionStorage) {
+                    window.sessionStorage.setItem("goals_badge_group", activeKey);
+                }
+                var currentUrl = new URL(window.location.href);
+                if (activeKey === "all") {
+                    currentUrl.searchParams.delete("badgeGroup");
+                } else {
+                    currentUrl.searchParams.set("badgeGroup", activeKey);
+                }
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState({ badgeGroup: activeKey }, "", currentUrl.toString());
+                }
+            } catch (e) {
+                // Ignore storage/history exceptions in restricted environments
+            }
+        }
+    }
+
+    if (badgeFilterButtons.length > 0) {
+        badgeFilterButtons.forEach(function (btn, index) {
+            btn.addEventListener("click", function () {
+                var filterKey = btn.getAttribute("data-badge-filter");
+                applyBadgeFilter(filterKey, true);
+            });
+
+            // Automatic activation and one tab stop for the badge-group tablist.
+            btn.addEventListener("keydown", function (e) {
+                var nextIndex = -1;
+                if (e.key === "ArrowRight") {
+                    nextIndex = (index + 1) % badgeFilterButtons.length;
+                } else if (e.key === "ArrowLeft") {
+                    nextIndex = (index - 1 + badgeFilterButtons.length) % badgeFilterButtons.length;
+                } else if (e.key === "Home") {
+                    nextIndex = 0;
+                } else if (e.key === "End") {
+                    nextIndex = badgeFilterButtons.length - 1;
+                }
+                if (nextIndex >= 0) {
+                    e.preventDefault();
+                    badgeFilterButtons[nextIndex].focus();
+                    var nextKey = badgeFilterButtons[nextIndex].getAttribute("data-badge-filter");
+                    applyBadgeFilter(nextKey, true);
+                }
+            });
+        });
+
+        // Restore initial selection from URL or sessionStorage
+        var initialGroup = null;
+        try {
+            var urlParams = new URLSearchParams(window.location.search);
+            initialGroup = urlParams.get("badgeGroup");
+            if (!initialGroup && window.sessionStorage) {
+                initialGroup = window.sessionStorage.getItem("goals_badge_group");
+            }
+        } catch (e) {
+            // Ignore
+        }
+        applyBadgeFilter(initialGroup, false);
+
+        window.addEventListener("popstate", function (e) {
+            var popGroup = (e.state && e.state.badgeGroup) || (new URLSearchParams(window.location.search).get("badgeGroup")) || "all";
+            applyBadgeFilter(popGroup, false);
+        });
+    }
+
+    // Accessible Badge Detail Modal Display
+    function openBadgeDetail(tile) {
+        if (!badgeDetailModalEl || !tile) return;
+        lastFocusedBadgeTile = tile;
+
+        var name = tile.getAttribute("data-badge-name") || "";
+        var desc = tile.getAttribute("data-badge-desc") || "";
+        var icon = tile.getAttribute("data-badge-icon") || "fa-solid fa-award";
+        var groupLabel = tile.getAttribute("data-badge-group-label") || "";
+        var statusText = tile.getAttribute("data-badge-status-text") || "";
+        var isUnlocked = tile.getAttribute("data-badge-unlocked") === "true";
+        var isRedacted = tile.getAttribute("data-badge-redacted") === "true";
+        var hasProgress = tile.getAttribute("data-badge-has-progress") === "true";
+        var progressLabel = tile.getAttribute("data-badge-progress-label") || "";
+        var progressPercent = tile.getAttribute("data-badge-progress-percent") || "";
+        var awardedDate = tile.getAttribute("data-badge-awarded") || "";
+        var isRetroactive = tile.getAttribute("data-badge-retroactive") === "true";
+
+        var titleEl = document.getElementById("badgeDetailModalTitle");
+        var descEl = document.getElementById("badgeDetailDesc");
+        var groupBadgeEl = document.getElementById("badgeDetailGroupBadge");
+        var statusBadgeEl = document.getElementById("badgeDetailStatusBadge");
+        var iconBoxEl = document.getElementById("badgeDetailIconBox");
+        var iconEl = document.getElementById("badgeDetailIcon");
+        var progressWrapEl = document.getElementById("badgeDetailProgressWrap");
+        var metricLabelEl = document.getElementById("badgeDetailMetricLabel");
+        var progressTextEl = document.getElementById("badgeDetailProgressText");
+        var progressBarEl = document.getElementById("badgeDetailProgressBar");
+        var progressFillEl = document.getElementById("badgeDetailProgressFill");
+        var awardedWrapEl = document.getElementById("badgeDetailAwardedWrap");
+        var awardedTextEl = document.getElementById("badgeDetailAwardedText");
+
+        if (titleEl) titleEl.textContent = name;
+        if (descEl) descEl.textContent = desc;
+        if (groupBadgeEl) groupBadgeEl.textContent = groupLabel;
+        if (statusBadgeEl) {
+            statusBadgeEl.textContent = statusText;
+            statusBadgeEl.className = isUnlocked
+                ? "badge rounded-pill bg-success-subtle text-success border border-success-subtle small"
+                : (isRedacted
+                    ? "badge rounded-pill bg-secondary-subtle text-secondary border small"
+                    : "badge rounded-pill bg-light text-secondary border small");
+        }
+
+        if (iconBoxEl && iconEl) {
+            iconBoxEl.className = "badge-detail-icon-box mx-auto mb-3 " +
+                (isUnlocked ? "badge-detail-icon-box--unlocked" : (isRedacted ? "badge-detail-icon-box--mystery" : "badge-detail-icon-box--locked"));
+            iconEl.className = isRedacted ? "fa-solid fa-question" : (isUnlocked ? icon : "fa-solid fa-lock");
+        }
+
+        // Progress section (strictly hidden if unlocked or mystery redacted or unknown progress)
+        if (progressWrapEl) {
+            if (!isUnlocked && !isRedacted && hasProgress && progressPercent !== "") {
+                progressWrapEl.classList.remove("d-none");
+                if (metricLabelEl) metricLabelEl.textContent = progressLabel;
+                if (progressTextEl) progressTextEl.textContent = progressPercent + "%";
+                if (progressBarEl) progressBarEl.setAttribute("aria-valuenow", progressPercent);
+                if (progressFillEl) progressFillEl.style.width = Math.min(parseInt(progressPercent, 10) || 0, 100) + "%";
+            } else {
+                progressWrapEl.classList.add("d-none");
+            }
+        }
+
+        // Awarded Date section
+        if (awardedWrapEl && awardedTextEl) {
+            if (isUnlocked) {
+                awardedWrapEl.classList.remove("d-none");
+                if (isRetroactive) {
+                    awardedTextEl.textContent = "Đã ghi nhận thành tích trước đây";
+                } else if (awardedDate) {
+                    awardedTextEl.textContent = "Đạt ngày: " + awardedDate + " (giờ Việt Nam)";
+                } else {
+                    awardedTextEl.textContent = "Đã mở khóa thành công";
+                }
+            } else {
+                awardedWrapEl.classList.add("d-none");
+            }
+        }
+
+        if (modalApi && badgeDetailModalEl) {
+            modalApi.getOrCreateInstance(badgeDetailModalEl).show();
+        }
+    }
+
+    badgeTiles.forEach(function (tile) {
+        tile.addEventListener("click", function () {
+            openBadgeDetail(tile);
+        });
+        tile.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openBadgeDetail(tile);
+            }
+        });
+    });
+
+    if (badgeDetailModalEl) {
+        badgeDetailModalEl.addEventListener("hidden.bs.modal", function () {
+            if (lastFocusedBadgeTile && typeof lastFocusedBadgeTile.focus === "function") {
+                lastFocusedBadgeTile.focus();
+            }
+        });
+    }
 
     // Feedback Toast notification handling
     var goalUpdateToast = document.getElementById("goalUpdateToast");
-    if (!goalUpdateToast) {
-        return;
-    }
+    if (goalUpdateToast) {
+        var hideToast = function () {
+            goalUpdateToast.classList.remove("is-visible");
+        };
 
-    var hideToast = function () {
-        goalUpdateToast.classList.remove("is-visible");
-    };
+        // Auto-reveal with gentle transition
+        window.setTimeout(function () {
+            goalUpdateToast.classList.add("is-visible");
+        }, 10);
 
-    // Auto-reveal with gentle transition
-    window.setTimeout(function () {
-        goalUpdateToast.classList.add("is-visible");
-    }, 10);
+        // Auto-hide after 3800ms
+        var toastTimeout = window.setTimeout(hideToast, 3800);
 
-    // Auto-hide after 3800ms
-    var toastTimeout = window.setTimeout(hideToast, 3800);
-
-    // Manual dismissal
-    document.querySelectorAll('[data-goals-dismiss="goalUpdateToast"]').forEach(function (dismissButton) {
-        dismissButton.addEventListener("click", function () {
-            window.clearTimeout(toastTimeout);
-            hideToast();
+        // Manual dismissal
+        document.querySelectorAll('[data-goals-dismiss="goalUpdateToast"]').forEach(function (dismissButton) {
+            dismissButton.addEventListener("click", function () {
+                window.clearTimeout(toastTimeout);
+                hideToast();
+            });
         });
-    });
+    }
 });

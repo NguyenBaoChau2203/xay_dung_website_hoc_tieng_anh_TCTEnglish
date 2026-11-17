@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.beginner.quiet-morning",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "M\u1ED9t bu\u1ED5i s\u00E1ng y\u00EAn t\u0129nh",
+        "Level": "beginner",
+        "ContentType": "diaries",
+        "Topic": "Ngh\u1EC9 ng\u01A1i",
+        "SourceType": "original-20261114",
+        "PreviewText": "Nh\u1EADt k\u00FD v\u1EC1 vi\u1EC7c d\u00E0nh m\u1ED9t bu\u1ED5i s\u00E1ng kh\u00F4ng d\u00F9ng \u0111i\u1EC7n tho\u1EA1i.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.1a53d468b4ab444b970c8e0e51091896",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "T\u1ED1i nay t\u00F4i s\u1EBD \u0111\u1EC3 \u0111i\u1EC7n tho\u1EA1i xa gi\u01B0\u1EDDng tr\u01B0\u1EDBc khi ng\u1EE7.",
+        "EnglishMeaning": "Tonight I will put my phone away from my bed before sleeping.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.52be3974bc134707af8d79bc56c57bf3",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "T\u00F4i kh\u00F4ng v\u1ED9i v\u00E0ng v\u00E0 c\u1EA3m th\u1EA5y \u0111\u1EA7u \u00F3c nh\u1EB9 nh\u00E0ng h\u01A1n.",
+        "EnglishMeaning": "I was not in a hurry and felt more relaxed.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.61d0625b7106461d9bd94ec93cca4c87",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "After breakfast, I read twenty pages from my book.",
+        "NormalizedHash": "0567a823861da61d7f14fe253777d1f0c99487ac9c31fab858a404836548c8e5"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.beginner.quiet-morning.ced1b09a79c3419ab678a7f189097f8a",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.7e5535c6734e4917969aa292b6a72d46",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Ngo\u00E0i \u0111\u01B0\u1EDDng, m\u1ED9t v\u00E0i ng\u01B0\u1EDDi \u0111ang \u0111i b\u1ED9 c\u00F9ng ch\u00F3.",
+        "EnglishMeaning": "Outside, a few people were walking their dogs.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.8c186135cd9f4f74a23db9e0d8be3843",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "T\u00F4i mu\u1ED1n c\u00F3 th\u00EAm nh\u1EEFng bu\u1ED5i s\u00E1ng y\u00EAn t\u0129nh nh\u01B0 th\u1EBF.",
+        "EnglishMeaning": "I would like to have more quiet mornings like this.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.b510e4cb71004b7db4303a9a80dc7bb2",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "T\u00F4i nghe ti\u1EBFng chim thay v\u00EC nh\u1EEFng th\u00F4ng b\u00E1o quen thu\u1ED9c.",
+        "EnglishMeaning": "I listened to birds instead of the usual notifications.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.bd5ae7ce9c724e4d9abf549fb532d785",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "T\u00F4i pha m\u1ED9t c\u1ED1c tr\u00E0 v\u00E0 ng\u1ED3i c\u1EA1nh c\u1EEDa s\u1ED5.",
+        "EnglishMeaning": "I made a cup of tea and sat by the window.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.ced1b09a79c3419ab678a7f189097f8a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Sau b\u1EEFa s\u00E1ng, t\u00F4i \u0111\u1ECDc \u0111\u01B0\u1EE3c hai m\u01B0\u01A1i trang s\u00E1ch.",
+        "EnglishMeaning": "After breakfast, I read twenty pages of my book.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    },
+    {
+      "key": "team.writing.20261114.beginner.quiet-morning.e8bc5d2779cf4783807e11d278c02344",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "H\u00F4m nay t\u00F4i th\u1EE9c d\u1EADy s\u1EDBm nh\u01B0ng kh\u00F4ng b\u1EADt \u0111i\u1EC7n tho\u1EA1i.",
+        "EnglishMeaning": "Today I woke up early, but I did not turn on my phone.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.beginner.quiet-morning"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.beginner.quiet-morning"
+}

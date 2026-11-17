@@ -40,6 +40,7 @@ public sealed class LearningHabitService : ILearningHabitService
 
     public async Task<LearningHabitSnapshot> BuildAsync(int userId, int windowDays, CancellationToken cancellationToken = default)
     {
+        using var operation = _clock.BeginOperation();
         windowDays = windowDays == 28 ? 28 : 7;
         var today = _clock.BusinessDate;
         var windowEnd = today;
@@ -63,7 +64,8 @@ public sealed class LearningHabitService : ILearningHabitService
             .ToListAsync(cancellationToken);
 
         var mergedSeconds = MergeSeconds(segments);
-        var practiceDays = CountPracticeDays(windowStart, today, segments, activities);
+        var confirmedDates = await StudyDayProjection.ReadAsync(_context, userId, windowStart, today, _clock, cancellationToken);
+        var practiceDays = CountPracticeDays(windowStart, today, segments, activities, confirmedDates);
         var hour = DescribeHour(segments);
         var skill = DescribeSkill(segments);
         var goal = DescribeGoalRate(today, windowStart, revisions, activities);
@@ -154,10 +156,12 @@ public sealed class LearningHabitService : ILearningHabitService
         DateTime windowStart,
         DateTime today,
         IReadOnlyList<SegmentRow> segments,
-        IReadOnlyList<UserDailyActivity> activities)
+        IReadOnlyList<UserDailyActivity> activities,
+        IReadOnlyCollection<DateTime> confirmedDates)
     {
         var observed = new HashSet<DateTime>();
-        var active = new HashSet<DateTime>();
+        var active = confirmedDates.ToHashSet();
+        observed.UnionWith(confirmedDates);
         foreach (var segment in segments)
         {
             var day = _clock.ToBusinessDateFromUtcStorage(segment.StartedAtUtc);
@@ -170,21 +174,10 @@ public sealed class LearningHabitService : ILearningHabitService
         foreach (var activity in activities)
         {
             var day = activity.ActivityDate.Date;
-            if (HasConfirmedActivity(activity))
+            if (StudyDayProjection.HasConfirmedActivity(activity))
             {
                 observed.Add(day);
                 active.Add(day);
-            }
-        }
-
-        var secondsByDay = segments
-            .GroupBy(row => _clock.ToBusinessDateFromUtcStorage(row.StartedAtUtc))
-            .ToDictionary(group => group.Key, group => group.Sum(row => row.AcceptedSeconds));
-        foreach (var pair in secondsByDay)
-        {
-            if (pair.Key >= windowStart && pair.Key <= today && pair.Value >= 60)
-            {
-                active.Add(pair.Key);
             }
         }
 
@@ -316,7 +309,7 @@ public sealed class LearningHabitService : ILearningHabitService
         }
 
         var percent = (int)Math.Round(100d * met / eligible);
-        return new GoalRate(true, met, eligible, percent, $"{met}/{eligible} ({percent}%). Hôm nay chưa tính.");
+        return new GoalRate(true, met, eligible, percent, $"{met}/{eligible} mục tiêu kỹ năng/ngày ({percent}%). Hôm nay chưa tính.");
     }
 
     private static string BuildSuggestion(int observedDays, int activeDays, GoalRate goal)
@@ -356,16 +349,6 @@ public sealed class LearningHabitService : ILearningHabitService
             _ => 0
         };
     }
-
-    private static bool HasConfirmedActivity(UserDailyActivity activity)
-        => activity.CardsReviewed > 0
-           || activity.VocabularyCompletedCount > 0
-           || activity.QuizzesCompleted > 0
-           || activity.SpeakingCompletedCount > 0
-           || activity.WritingCompletedCount > 0
-           || activity.ReadingCompletedCount > 0
-           || activity.ListeningCompletedCount > 0
-           || activity.XpEarned > 0;
 
     private static string SkillLabel(string skill) => skill switch
     {

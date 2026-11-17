@@ -170,7 +170,8 @@ public sealed class AiRagPhase2FixRound2Tests
 
         var password = await account.Answers.AnswerAsync(1, "How do I change my password?", [], CancellationToken.None);
         Assert.Equal(HybridRagOutcome.Answered, password.Outcome);
-        Assert.Contains("/Account/Settings", password.Text, StringComparison.Ordinal);
+        Assert.Contains(password.Evidence, e => e.AuthorizedRoute == "/Account/Settings");
+        Assert.Contains("Để đổi mật khẩu", password.Text, StringComparison.Ordinal);
 
         var card = await account.Answers.AnswerAsync(1, "vang nghia la gi", [], CancellationToken.None);
         Assert.Equal(HybridRagOutcome.Answered, card.Outcome);
@@ -179,7 +180,8 @@ public sealed class AiRagPhase2FixRound2Tests
         var goal = await account.Answers.AnswerAsync(1, "xem goal cua toi", [], CancellationToken.None);
         Assert.Equal(HybridRagOutcome.Answered, goal.Outcome);
         Assert.Contains("12", goal.Text, StringComparison.Ordinal);
-        Assert.Contains("/Goals", goal.Text, StringComparison.Ordinal);
+        Assert.Contains(goal.Evidence, e => e.AuthorizedRoute == "/Goals");
+        Assert.Contains("mở trang **Goals**", goal.Text, StringComparison.Ordinal);
 
         var price = await account.Answers.AnswerAsync(1, "Giá vàng hôm nay là bao nhiêu?", [], CancellationToken.None);
         Assert.Equal(HybridRagOutcome.OutOfScope, price.Outcome);

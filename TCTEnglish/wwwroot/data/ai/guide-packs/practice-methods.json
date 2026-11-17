@@ -1,0 +1,458 @@
+{
+  "_version": "1.0.0",
+  "_reviewed": "2026-11-18",
+  "_scope": "Reviewed site practice guidance; no progress mutation or new learning material.",
+  "guides": [
+    {
+      "id": "practice-method-choice",
+      "title": "Chọn chế độ ôn phù hợp với việc muốn luyện",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Bạn có thể chọn chế độ theo **việc mình muốn thử**: Flashcard để xem và tự nhớ lại thẻ, Learn để học theo phiên, Test/Quiz để tự kiểm tra, Match để ghép cặp, Typing để gõ từ, Listening để luyện dạng nghe của bộ thẻ, hoặc Cloze để điền phần còn thiếu khi dữ liệu đủ.\n\nMở Luyện tập, chọn một bộ bạn được phép học rồi xem các chế độ đang khả dụng. Không phải mọi bộ đều có đủ dữ liệu cho mọi dạng. Nếu còn mới, thử một chế độ trước rồi xem lại lỗi; đây không phải bài thi chuẩn hay cách tự xác nhận một mức CEFR.",
+      "questions": [
+        "Nên chọn chế độ ôn nào cho phù hợp?",
+        "Flashcard Learn Test Match khác nhau để làm gì?",
+        "Mình phân vân chọn mode luyện từ nào",
+        "Muốn tự kiểm tra thay vì chỉ xem thẻ nên chọn gì?",
+        "Tôi muốn biết cách chọn giữa các chế độ Practice",
+        "Một bộ từ có dùng được mọi chế độ không?",
+        "Which vocabulary practice mode should I choose?",
+        "Luyện tập có những cách ôn nào để mình thử?"
+      ],
+      "keywords": [
+        "chọn chế độ ôn",
+        "chọn mode luyện",
+        "which vocabulary practice mode",
+        "flashcard learn test"
+      ],
+      "matchPhrases": [
+        "chọn chế độ ôn",
+        "chọn mode luyện",
+        "which vocabulary practice mode",
+        "flashcard learn test"
+      ],
+      "matchRules": [
+        [
+          "practice",
+          "cac kieu"
+        ],
+        [
+          "luyen tap",
+          "dang nao"
+        ],
+        [
+          "practice",
+          "chon",
+          "che do"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-learn",
+      "title": "Dùng Learn trong một phiên học từ",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Để thử Learn, mở Luyện tập, chọn bộ được phép xem và chọn chế độ **Learn** khi khả dụng. Làm theo từng hoạt động và phản hồi đang hiển thị trong phiên.\n\nNếu một từ chưa chắc, hãy xem lại dữ liệu đã lưu thay vì đoán một định nghĩa mới. Trạng thái luyện trong trình duyệt và tiến độ đã lưu của tài khoản là hai việc khác nhau; kiểm tra tùy chọn tính vào ôn tập nếu bạn muốn hoạt động đủ điều kiện được ghi vào lịch ôn.\n\nSố hoạt động và dạng câu có thể phụ thuộc bộ từ. Chat không tự hoàn thành phiên hoặc cộng tiến độ cho bạn.",
+      "questions": [
+        "Chế độ Learn dùng như thế nào?",
+        "Mình muốn học theo phiên ở Learn thì mở đâu?",
+        "Learn có tự làm bài hộ tôi không?",
+        "Bắt đầu một lượt Learn với bộ từ hiện có ra sao?",
+        "Nếu chưa chắc từ trong Learn thì làm gì?",
+        "Learn có phải giống lật Flashcard hoàn toàn không?",
+        "How do I begin a Learn practice session?",
+        "Dùng Learn có cần kiểm tra tính vào ôn tập không?"
+      ],
+      "keywords": [
+        "chế độ learn",
+        "lượt learn",
+        "phiên learn",
+        "learn practice session"
+      ],
+      "matchPhrases": [
+        "chế độ learn",
+        "lượt learn",
+        "phiên learn",
+        "learn practice session"
+      ],
+      "matchRules": [
+        [
+          "phien",
+          "learn"
+        ],
+        [
+          "luyen",
+          "learn"
+        ],
+        [
+          "che do",
+          "learn"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-test",
+      "title": "Dùng Test để tự kiểm tra từ vựng",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Bạn có thể mở Luyện tập, chọn bộ được phép học rồi chọn **Test** khi khả dụng để tự kiểm tra theo các dạng câu hệ thống tạo từ dữ liệu đủ điều kiện.\n\nĐọc hướng dẫn của phiên, làm câu trả lời trước khi xem kết quả và xem lại các phần sai. Số câu/dạng câu không được bảo đảm giống nhau cho mọi bộ. Không dùng điểm Test từ vựng để suy ra điểm TOEIC/IELTS.\n\nNếu muốn hoạt động được ghi vào lịch ôn, kiểm tra tùy chọn tính vào ôn tập và phản hồi lưu thật trên trang; chỉ có bản nháp hoặc trạng thái trình duyệt chưa chứng minh đã lưu server.",
+      "questions": [
+        "Mình muốn thử chế độ Test từ vựng",
+        "Test trong Practice có phải đề TOEIC không?",
+        "Tự kiểm tra bộ từ bằng Test ra sao?",
+        "Vì sao số câu Test khác giữa các bộ?",
+        "Tôi nên xem lại lỗi sau Test như thế nào?",
+        "Bản nháp Test có đồng nghĩa đã lưu tiến độ không?",
+        "How can I use the vocabulary Test mode?",
+        "Test có bảo đảm mọi bộ đủ tất cả dạng câu không?"
+      ],
+      "keywords": [
+        "chế độ test",
+        "test từ vựng",
+        "bản nháp test",
+        "vocabulary test mode"
+      ],
+      "matchPhrases": [
+        "chế độ test",
+        "test từ vựng",
+        "bản nháp test",
+        "vocabulary test mode"
+      ],
+      "matchRules": [
+        [
+          "test",
+          "tu kiem tra"
+        ],
+        [
+          "test",
+          "practice"
+        ],
+        [
+          "test",
+          "bo tu"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-match",
+      "title": "Luyện ghép từ bằng Match",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Trong Luyện tập, bạn chọn bộ được phép học rồi mở **Match** khi khả dụng. Ghép các cặp theo hướng dẫn đang hiển thị, dùng dữ liệu từ bộ đó và xem lại phần mình ghép nhầm.\n\nSố cặp và trạng thái phiên phụ thuộc dữ liệu đủ điều kiện. Nếu bộ quá ít thẻ hoặc thiếu thông tin, hãy chọn bộ khác được phép xem hoặc bổ sung dữ liệu qua tính năng sửa bộ mà bạn có quyền dùng.\n\nChat không tự chọn đáp án hay thay bạn cập nhật kết quả; kiểm tra phản hồi thực tế nếu bạn bật tính vào ôn tập.",
+      "questions": [
+        "Tôi muốn luyện ghép cặp bằng Match",
+        "Match cần chọn bộ thẻ trước không?",
+        "Tại sao Match không có nhiều cặp như mong đợi?",
+        "Luyện Match nên xem lại cặp sai ra sao?",
+        "Chế độ Match có thể ghép bằng dữ liệu của bộ nào?",
+        "Bộ ít thẻ có ảnh hưởng số cặp Match không?",
+        "How do I practise matching vocabulary pairs?",
+        "Tôi muốn thử ghép từ với nghĩa trong Luyện tập"
+      ],
+      "keywords": [
+        "chế độ match",
+        "luyện match",
+        "ghép cặp",
+        "matching vocabulary pairs"
+      ],
+      "matchPhrases": [
+        "chế độ match",
+        "luyện match",
+        "ghép cặp",
+        "matching vocabulary pairs"
+      ],
+      "matchRules": [
+        [
+          "ghep",
+          "tu",
+          "nghia"
+        ],
+        [
+          "ghep",
+          "cap"
+        ],
+        [
+          "matching",
+          "pairs"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-typing",
+      "title": "Luyện gõ từ khác với Writing luyện câu",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "**Typing trong Practice** giúp bạn luyện gõ từ theo gợi ý từ bộ thẻ. Bạn mở Luyện tập, chọn bộ được phép học rồi chọn Typing khi khả dụng.\n\nĐọc gợi ý, thử gõ trước khi xem đáp án và xem lại lỗi chính tả của mình. Nội dung câu/gợi ý phụ thuộc dữ liệu đã có; không phải mọi bộ đều đủ mọi thông tin.\n\nTyping từ vựng khác với **Writing** ở Courses, nơi bạn chọn bài để luyện viết câu. Nếu mục tiêu là diễn đạt một câu từ gợi ý, hãy mở Writing thay vì tìm nó trong Typing.",
+      "questions": [
+        "Typing với Writing có khác nhau không?",
+        "Tôi muốn luyện gõ từ bằng Practice",
+        "Chế độ Typing dùng dữ liệu gì?",
+        "Luyện chính tả từ vựng ở đâu?",
+        "Mình muốn viết câu có nên chọn Typing không?",
+        "Typing có phải công cụ viết bài luận không?",
+        "How is vocabulary Typing different from Writing?",
+        "Tôi đang tìm chế độ luyện gõ theo gợi ý"
+      ],
+      "keywords": [
+        "chế độ typing",
+        "luyện gõ từ",
+        "typing với writing",
+        "vocabulary typing"
+      ],
+      "matchPhrases": [
+        "chế độ typing",
+        "luyện gõ từ",
+        "typing với writing",
+        "vocabulary typing"
+      ],
+      "matchRules": [
+        [
+          "go",
+          "tung tu"
+        ],
+        [
+          "typing",
+          "cau"
+        ],
+        [
+          "go",
+          "tu vung"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-listening",
+      "title": "Phân biệt Listening trong Practice và bài nghe Courses",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Bạn có thể gặp **hai khu vực luyện nghe khác nhau**:\n\n- Listening trong **Practice** dùng bộ từ được phép học và các hoạt động của chế độ đó khi dữ liệu đủ.\n- Trang **Listening** trong Courses giúp bạn chọn bài nghe; transcript, câu hỏi và từ vựng phụ thuộc từng bài.\n\nNếu bạn muốn ôn các từ của một bộ, bắt đầu ở Luyện tập. Nếu muốn chọn bài nghe theo chủ đề/nội dung đang có, mở Listening từ Courses. Quyền truy cập và điều kiện nội dung vẫn áp dụng ở cả hai nơi.",
+      "questions": [
+        "Listening ở Practice khác trang bài nghe như nào?",
+        "Mình muốn nghe từ trong bộ hay nghe một bài thì chọn đâu?",
+        "Có hai mục Listening nên tôi hơi nhầm",
+        "Chế độ nghe từ vựng dùng dữ liệu của bộ nào?",
+        "Tôi nên mở Courses hay Practice để chọn bài nghe?",
+        "Listening của bộ thẻ có giống bài nghe dài không?",
+        "What is the difference between the two Listening areas?",
+        "Phân biệt luyện nghe bộ từ và bài nghe công khai"
+      ],
+      "keywords": [
+        "listening ở practice",
+        "hai mục listening",
+        "nghe từ trong bộ",
+        "luyện nghe bộ từ"
+      ],
+      "matchPhrases": [
+        "listening ở practice",
+        "hai mục listening",
+        "nghe từ trong bộ",
+        "luyện nghe bộ từ"
+      ],
+      "matchRules": [
+        [
+          "nghe",
+          "cac tu",
+          "bo"
+        ],
+        [
+          "bai nghe",
+          "che do",
+          "tu vung"
+        ],
+        [
+          "nghe",
+          "bo tu"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-cloze",
+      "title": "Dùng Cloze khi bộ có dữ liệu phù hợp",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Trong Luyện tập, chọn bộ bạn được phép học rồi thử **Cloze** khi khả dụng. Đây là dạng điền phần còn thiếu theo hoạt động và dữ liệu mà giao diện cung cấp.\n\nNếu không có câu hỏi đủ điều kiện, kiểm tra dữ liệu của bộ hoặc chọn bộ khác; đừng suy ra rằng chat đã tạo thêm ví dụ mới cho bộ. Khi sai, xem lại ngữ cảnh/gợi ý đã lưu và thử hiểu vì sao đáp án phù hợp.\n\nKết quả luyện trình duyệt không tự chứng minh tiến độ tài khoản đã được lưu; hãy xem tùy chọn và phản hồi tính vào ôn tập nếu dùng.",
+      "questions": [
+        "Cloze trong Practice để làm gì?",
+        "Tôi muốn thử điền phần còn thiếu ở bộ từ",
+        "Vì sao Cloze chưa có câu hỏi cho bộ này?",
+        "Chế độ Cloze có cần dữ liệu đủ điều kiện không?",
+        "Mình muốn ôn từ theo ngữ cảnh bằng Cloze",
+        "Chat có tự thêm ví dụ cho Cloze của tôi không?",
+        "How can I try the Cloze practice mode?",
+        "Nếu Cloze trống thì nên kiểm tra gì?"
+      ],
+      "keywords": [
+        "chế độ cloze",
+        "cloze trống",
+        "câu hỏi cloze",
+        "cloze practice mode",
+        "điền phần còn thiếu"
+      ],
+      "matchPhrases": [
+        "chế độ cloze",
+        "cloze trống",
+        "câu hỏi cloze",
+        "cloze practice mode",
+        "điền phần còn thiếu",
+        "cloze"
+      ],
+      "matchRules": [
+        [
+          "cloze",
+          "bo"
+        ],
+        [
+          "dien khuyet",
+          "luyen tap"
+        ],
+        [
+          "cloze",
+          "practice"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-progress",
+      "title": "Khi nào lượt luyện được tính vào ôn tập",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Khi luyện trong các chế độ Practice, hãy kiểm tra tùy chọn **Tính vào ôn tập** nếu giao diện có và bạn muốn hoạt động đủ điều kiện được ghi nhận vào lịch ôn.\n\nTắt tùy chọn này có thể phù hợp khi chỉ muốn thử giao diện. Hoàn thành trò chơi, bản nháp hay trạng thái trong trình duyệt không tự chứng minh đã lưu tiến độ lên server. Xem phản hồi lưu và kiểm tra Goals/tiến độ sau thao tác thực tế nếu cần.\n\nChat chỉ giải thích cách kiểm tra; mình không tự cộng thẻ đã học, sửa lịch ôn, cộng XP hoặc phục hồi streak.",
+      "questions": [
+        "Bật tính vào ôn tập để làm gì?",
+        "Tôi chỉ muốn thử Practice mà không thay lịch ôn",
+        "Mọi lượt chơi Practice có tự lưu tiến độ không?",
+        "Tại sao làm bài trên trình duyệt chưa chắc đã ghi nhận?",
+        "Muốn tính hoạt động vào lịch ôn thì xem tùy chọn nào?",
+        "Chat có cộng XP hoặc sửa streak giúp tôi không?",
+        "When does practice count toward saved review progress?",
+        "Tính vào ôn tập khác việc hoàn thành game như nào?"
+      ],
+      "keywords": [
+        "tính vào ôn tập",
+        "không thay lịch ôn",
+        "mọi lượt chơi practice",
+        "saved review progress"
+      ],
+      "matchPhrases": [
+        "tính vào ôn tập",
+        "không thay lịch ôn",
+        "mọi lượt chơi practice",
+        "saved review progress"
+      ],
+      "matchRules": [
+        [
+          "lich on",
+          "luot thu"
+        ],
+        [
+          "game",
+          "tien do"
+        ],
+        [
+          "tinh",
+          "on tap"
+        ],
+        [
+          "saved",
+          "progress"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-review-mistakes",
+      "title": "Xem lại lỗi sau khi tự luyện",
+      "route": "/Practice/HardWords",
+      "topic": "practice-help",
+      "body": "Sau một lượt luyện, bạn có thể xem lại phần trả lời sai hoặc chưa chắc ở nơi giao diện đang cung cấp. Thử tự giải thích từ/gợi ý, kiểm tra dữ liệu đã lưu rồi ôn lại một ít thay vì làm liên tục nhiều lượt cho nhanh.\n\nNếu muốn xem các từ hệ thống chọn từ dữ liệu của bạn, mở **Từ khó** trong Luyện tập. Danh sách có thể trống và không có nghĩa mọi lỗi của mọi chế độ đều tự xuất hiện ở đó.\n\nChat không tự sửa định nghĩa, điểm hoặc tiến độ. Chỉ chỉnh dữ liệu qua biểu mẫu mà bạn có quyền dùng.",
+      "questions": [
+        "Sau khi làm sai từ vựng nên ôn lại như nào?",
+        "Từ khó có phải chứa mọi lỗi của mọi bài không?",
+        "Tôi muốn xem lại phần chưa chắc sau Practice",
+        "Vì sao danh sách Từ khó có thể trống?",
+        "Có nên làm liên tục nhiều lượt mà bỏ qua lỗi không?",
+        "Mình nên kiểm tra dữ liệu thẻ khi đáp án lạ thế nào?",
+        "How can I review vocabulary mistakes after practice?",
+        "Ôn lại ít từ sai có thể bắt đầu ở đâu?"
+      ],
+      "keywords": [
+        "xem lại lỗi từ vựng",
+        "từ khó trống",
+        "mọi lỗi của mọi",
+        "review vocabulary mistakes"
+      ],
+      "matchPhrases": [
+        "xem lại lỗi từ vựng",
+        "từ khó trống",
+        "mọi lỗi của mọi",
+        "review vocabulary mistakes"
+      ],
+      "matchRules": [
+        [
+          "tu sai",
+          "on lai"
+        ],
+        [
+          "hard words",
+          "rong"
+        ],
+        [
+          "tu kho",
+          "trong"
+        ],
+        [
+          "review",
+          "mistakes"
+        ]
+      ]
+    },
+    {
+      "id": "practice-method-eligible-set",
+      "title": "Chọn bộ đủ điều kiện cho một chế độ học",
+      "route": "/Practice",
+      "topic": "practice-help",
+      "body": "Nếu không chọn được bộ hoặc không có câu hỏi, trước hết hãy kiểm tra **bộ còn tồn tại, bạn còn quyền xem và dữ liệu đủ cho chế độ đó**.\n\nMột chế độ có thể cần thông tin mà bộ đang thiếu; không suy rằng mọi bộ dùng được tất cả dạng. Bạn có thể chọn bộ khác được phép xem hoặc bổ sung thẻ qua biểu mẫu của bộ bạn có quyền sửa.\n\nNếu bộ thuộc lớp hoặc được chia sẻ, quyền truy cập có thể thay đổi khi chủ sở hữu thay đổi chia sẻ hoặc khi tư cách thành viên thay đổi. Chat không mở khóa hay vượt quyền cho một bộ không còn được phép xem.",
+      "questions": [
+        "Tại sao tôi không chọn được bộ để luyện?",
+        "Practice không có câu hỏi cho bộ đã chọn thì làm sao?",
+        "Mọi bộ có đủ điều kiện cho mọi mode không?",
+        "Bộ được chia sẻ bị mất quyền thì chat có mở được không?",
+        "Tôi muốn biết vì sao chế độ học không khả dụng",
+        "Thiếu dữ liệu trong thẻ có ảnh hưởng việc tạo câu hỏi không?",
+        "Why is my selected set unavailable for a practice mode?",
+        "Tôi nên kiểm tra gì khi danh sách bộ luyện trống?"
+      ],
+      "keywords": [
+        "không chọn được bộ",
+        "không có câu hỏi cho bộ",
+        "chế độ học không khả dụng",
+        "selected set unavailable"
+      ],
+      "matchPhrases": [
+        "không chọn được bộ",
+        "không có câu hỏi cho bộ",
+        "chế độ học không khả dụng",
+        "selected set unavailable"
+      ],
+      "matchRules": [
+        [
+          "bo",
+          "lop",
+          "quyen"
+        ],
+        [
+          "dang bai",
+          "sinh",
+          "bo"
+        ],
+        [
+          "bo",
+          "khong chon"
+        ],
+        [
+          "set",
+          "unavailable"
+        ]
+      ]
+    }
+  ]
+}

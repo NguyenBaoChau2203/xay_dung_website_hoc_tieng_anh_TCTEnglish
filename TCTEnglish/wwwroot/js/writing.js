@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const elPayload                 = document.getElementById('writingPracticeData');
     const elProgressFill            = document.getElementById('progressFill');
     const elProgressText            = document.getElementById('progressText');
+    const elExerciseStatusLabel     = document.getElementById('exerciseStatusLabel');
+    const elExerciseAttemptCount    = document.getElementById('exerciseAttemptCount');
     const elSelectionNote           = document.getElementById('selectionNote');
     const elSelectedSentenceCounter = document.getElementById('selectedSentenceCounter');
     const elSelectedSentenceText    = document.getElementById('selectedSentenceText');
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const elBtnSubmitText           = document.getElementById('btnSubmitText');
     const elDraftIndicator          = document.getElementById('draftIndicator');
     const sentenceItems             = Array.from(document.querySelectorAll('[data-sentence-item]'));
+    let serverCompletedSentenceCount = null;
 
     /* ── Guard: bail if any required element is missing ───────────────────── */
     const requiredEls = [
@@ -111,13 +114,16 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch { /* storage full or blocked – silent */ }
     }
 
-    function clearDraft(sentenceId) {
+    function clearDraft(sentenceId, submittedText) {
         if (!hasOwnerScope) {
             return;
         }
 
         try {
-            localStorage.removeItem(draftKey(sentenceId));
+            // Another tab may have saved newer work while this request was pending.
+            if (collapseWhitespace(localStorage.getItem(draftKey(sentenceId))) === submittedText) {
+                localStorage.removeItem(draftKey(sentenceId));
+            }
         } catch { /* silent */ }
     }
 
@@ -320,14 +326,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateProgress() {
-        const completed = Array.from(sentenceStateById.values()).filter(function (s) {
+        const localCompleted = Array.from(sentenceStateById.values()).filter(function (s) {
             return s.hasAccepted;
         }).length;
+        const completed = serverCompletedSentenceCount === null ? localCompleted : serverCompletedSentenceCount;
         const total   = orderedSentenceIds.length;
         const percent = total === 0 ? 0 : (completed / total) * 100;
 
         elProgressFill.style.width = percent + '%';
         elProgressText.textContent = completed + '/' + total + ' câu đã xong';
+    }
+
+    function syncExerciseSummary(result) {
+        if (elExerciseStatusLabel && typeof result.exerciseStatusLabel === 'string') {
+            elExerciseStatusLabel.textContent = result.exerciseStatusLabel;
+        }
+        if (elExerciseAttemptCount && Number.isInteger(result.exerciseAttemptCount) && result.exerciseAttemptCount >= 0) {
+            elExerciseAttemptCount.textContent = result.exerciseAttemptCount + ' lượt gửi';
+        }
+        if (Number.isInteger(result.completedSentenceCount) && result.completedSentenceCount >= 0
+            && result.completedSentenceCount <= orderedSentenceIds.length) {
+            serverCompletedSentenceCount = result.completedSentenceCount;
+        }
     }
 
     function renderSentenceList() {
@@ -692,6 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ── submitCurrentSentence ────────────────────────────────────────────── */
     async function submitCurrentSentence() {
+        if (isSubmitting) { return; }
         const active = getActiveSentence();
         if (!active) { return; }
 
@@ -718,15 +739,18 @@ document.addEventListener('DOMContentLoaded', function () {
         syncButtons();
 
         try {
-            const evaluation = normalizeEvaluationSnapshot(await evaluateSentence(active, trimmedDraft));
+            const savedResult = await evaluateSentence(active, trimmedDraft);
+            const evaluation = normalizeEvaluationSnapshot(savedResult);
             if (!evaluation) {
                 throw new Error('Hệ thống trả về kết quả chấm không hợp lệ.');
             }
 
             const copy       = getEvaluationBannerCopy(evaluation);
+            syncExerciseSummary(savedResult);
 
             active.lastAttemptText = trimmedDraft;
-            active.attemptCount    = Number(active.attemptCount || 0) + 1;
+            active.attemptCount    = Number.isInteger(savedResult.sentenceAttemptCount) && savedResult.sentenceAttemptCount >= 0
+                ? savedResult.sentenceAttemptCount : Number(active.attemptCount || 0) + 1;
             active.lastEvaluation  = evaluation;
             active.lastEvaluationPassed = Boolean(evaluation.passed);
             hideSessionExpiredPrompt();
@@ -734,7 +758,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (evaluation.passed) {
                 active.acceptedText = trimmedDraft;
                 active.hasAccepted  = true;
-                clearDraft(active.id);       // remove persisted draft once accepted
+                clearDraft(active.id, trimmedDraft);
+            }
+
+            // Keep newer edits and the learner's current selection. The response belongs
+            // to the submitted sentence even when another sentence was selected meanwhile.
+            if (activeSentenceId !== String(active.id) || collapseWhitespace(active.draft) !== trimmedDraft) {
+                updateUi('submitted');
+                return;
             }
 
             const currentIndex  = getSentenceIndex(activeSentenceId);
@@ -768,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (evaluation.passed) {
                 setSelectionNote('Câu này đã đạt yêu cầu. Bạn có thể tiếp tục khi sẵn sàng.', false);
             } else {
-                setSelectionNote('Câu này vẫn cần chỉnh thêm trước khi thay thế câu tiếng Việt trong bài.', true);
+                setSelectionNote(copy.text, true);
             }
 
             renderActiveSentence();
@@ -859,6 +890,9 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── Initial render ───────────────────────────────────────────────────── */
     renderActiveSentence();
     updateUi('selection');
+    if (typeof CustomEvent === 'function') {
+        elPracticeRoot.dispatchEvent(new CustomEvent('writing:initialized'));
+    }
 
     // If the first sentence has a restored draft, let the user know
     const firstState = getSentenceById(orderedSentenceIds[0]);

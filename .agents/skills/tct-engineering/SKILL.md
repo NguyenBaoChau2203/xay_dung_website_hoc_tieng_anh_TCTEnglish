@@ -5,8 +5,9 @@ description: Use when investigating TCT English code boundaries, planning from s
 
 # Focused engineering context
 
-Project adapter for selected Addy Osmani skills. Use the same agent throughout;
-follow AGENTS.md. The project target is net9.0 / EF 9, with Razor/Bootstrap and
+Project adapter for selected Addy Osmani skills. Follow AGENTS.md's owner execution
+policy, including its sole Antigravity client/model exception. The project target
+is net9.0 / EF 9, with Razor/Bootstrap and
 Pomelo MySQL; verify source for the current versions. An installed .NET 10 SDK
 does not upgrade the project target.
 

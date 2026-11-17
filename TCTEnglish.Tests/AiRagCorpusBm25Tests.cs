@@ -115,7 +115,9 @@ public sealed class AiRagCorpusBm25Tests
 
             var realGuides = await new GuideCorpusAdapter(GuidePath()).CollectAsync(CancellationToken.None);
             Assert.DoesNotContain(realGuides.Documents, document => document.SourceKey is "guide:study-read" or "guide:ai-chatbox-usage");
-            Assert.Equal(39, realGuides.Documents.Count);
+            Assert.Equal(124, realGuides.Documents.Count);
+            Assert.Contains(realGuides.Documents, document => document.SourceKey == "guide:starter-speaking");
+            Assert.Contains(realGuides.Documents, document => document.SourceKey == "guide:writing-ai-brief");
         }
         finally
         {

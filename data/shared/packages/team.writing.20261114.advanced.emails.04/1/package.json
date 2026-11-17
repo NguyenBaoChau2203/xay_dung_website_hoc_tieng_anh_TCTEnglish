@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.advanced.emails.04",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.advanced.emails.04",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "T\u1EEB ch\u1ED1i t\u00E0i tr\u1EE3 k\u00E8m \u0111i\u1EC1u ki\u1EC7n",
+        "Level": "advanced",
+        "ContentType": "emails",
+        "Topic": "\u0110\u1EA1o \u0111\u1EE9c t\u1ED5 ch\u1EE9c",
+        "SourceType": "original-20261114",
+        "PreviewText": "T\u1EEB ch\u1ED1i m\u1ED9t \u0111i\u1EC1u kho\u1EA3n t\u00E0i tr\u1EE3 \u1EA3nh h\u01B0\u1EDFng quy\u1EC1n bi\u00EAn t\u1EADp, \u0111\u1ED3ng th\u1EDDi gi\u1EEF th\u00E1i \u0111\u1ED9 h\u1EE3p t\u00E1c v\u00E0 \u0111\u1EC1 xu\u1EA5t gi\u1EDBi h\u1EA1n r\u00F5 r\u00E0ng.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.014fc5f5c9ee4da48a2d182728e15ccf",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "\u0110\u1EC3 ghi nh\u1EADn s\u1EF1 \u0111\u00F3ng g\u00F3p, ch\u00FAng t\u00F4i c\u00F3 th\u1EC3 \u0111\u1EB7t t\u00EAn t\u1ED5 ch\u1EE9c c\u1EE7a b\u00E0 tr\u00EAn t\u00E0i li\u1EC7u v\u00E0 c\u00F4ng khai m\u1EE9c t\u00E0i tr\u1EE3.",
+        "EnglishMeaning": "To acknowledge the contribution, we could include your organisation\u0027s name in the materials and publicly disclose the amount of support.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.11a97784b0014066a8159713a7ccff4e",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "Please tell me whether a revised agreement on that basis would still be worth exploring from your team\u0027s perspective.",
+        "NormalizedHash": "e6ccf0f8c06a942966e04d2134a75c9c375212e8edb75c4baeee30b4f23d3f02"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.advanced.emails.04.f472651adf594b2d94bdc5b4be57ff86",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.38e8e43a78c34aa495ad354b2e3229ed",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "Ng\u01B0\u1EDDi tham d\u1EF1 c\u1EA7n tin r\u1EB1ng c\u00E1c ch\u1EE7 \u0111\u1EC1 kh\u00F3 v\u1EABn \u0111\u01B0\u1EE3c th\u1EA3o lu\u1EADn m\u00E0 kh\u00F4ng ch\u1ECBu s\u1EE9c \u00E9p t\u1EEB ngu\u1ED3n t\u00E0i tr\u1EE3.",
+        "EnglishMeaning": "Participants need confidence that difficult subjects can be discussed without the agenda being shaped by the source of financial support.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.6716eded241740eba7489b272ded4507",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Nh\u1EEFng s\u1EAFp x\u1EBFp n\u00E0y s\u1EBD kh\u00F4ng trao quy\u1EC1n l\u1EF1a ch\u1ECDn di\u1EC5n gi\u1EA3, lo\u1EA1i b\u1ECF c\u00E2u h\u1ECFi hay xem tr\u01B0\u1EDBc nh\u1EADn x\u00E9t c\u1EE7a kh\u00E1ch m\u1EDDi.",
+        "EnglishMeaning": "These arrangements would confer no right to select speakers, exclude questions or preview the comments made by invited guests.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.71b37e2858cc4b63aa08bde3ba77feca",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "K\u00EDnh g\u1EEDi b\u00E0 Trang, c\u1EA3m \u01A1n b\u00E0 \u0111\u00E3 c\u00E2n nh\u1EAFc t\u00E0i tr\u1EE3 cho chu\u1ED7i th\u1EA3o lu\u1EADn v\u1EC1 \u0111\u1EDDi s\u1ED1ng \u0111\u00F4 th\u1ECB c\u1EE7a ch\u00FAng t\u00F4i.",
+        "EnglishMeaning": "Dear Ms Trang, thank you for considering support for our discussion series on the changing conditions of urban life.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.a3e79e0768b54f749dd3f735c42b9c2a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "T\u00F4i hi\u1EC3u r\u1EB1ng gi\u1EDBi h\u1EA1n n\u00E0y c\u00F3 th\u1EC3 khi\u1EBFn \u0111\u1EC1 xu\u1EA5t kh\u00F4ng c\u00F2n ph\u00F9 h\u1EE3p v\u1EDBi ch\u00EDnh s\u00E1ch t\u00E0i tr\u1EE3 c\u1EE7a b\u00E0.",
+        "EnglishMeaning": "I appreciate that these limits may mean the proposal no longer fits the requirements of your organisation\u0027s sponsorship policy.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.a74c6d9a4b284a48a8a282186fff3cb7",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "N\u1EBFu v\u1EADy, ch\u00FAng t\u00F4i s\u1EBD ti\u1EBFp t\u1EE5c t\u00ECm ngu\u1ED3n kh\u00E1c m\u00E0 v\u1EABn tr\u00E2n tr\u1ECDng th\u1EDDi gian hai b\u00EAn \u0111\u00E3 d\u00E0nh cho cu\u1ED9c trao \u0111\u1ED5i.",
+        "EnglishMeaning": "In that case, we will seek alternative funding while remaining grateful for the time both teams have invested in this discussion.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.b688744ff98945a594227fcd7762782b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "Tuy nhi\u00EAn, \u0111i\u1EC1u kho\u1EA3n cho ph\u00E9p nh\u00E0 t\u00E0i tr\u1EE3 duy\u1EC7t tr\u01B0\u1EDBc c\u00E2u h\u1ECFi kh\u00F4ng ph\u00F9 h\u1EE3p v\u1EDBi cam k\u1EBFt \u0111\u1ED9c l\u1EADp bi\u00EAn t\u1EADp c\u1EE7a ch\u01B0\u01A1ng tr\u00ECnh.",
+        "EnglishMeaning": "However, the clause allowing the sponsor to approve questions in advance is incompatible with the programme\u0027s commitment to editorial independence.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.c6fb7df5569849b3ac1b321df4fc11ad",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "Tr\u00E2n tr\u1ECDng, Ph\u01B0\u01A1ng, t\u00F4i hy v\u1ECDng ch\u00FAng ta c\u00F3 th\u1EC3 gi\u1EEF li\u00EAn h\u1EC7 d\u00F9 k\u1EBFt qu\u1EA3 c\u1EE7a \u0111\u1EC1 xu\u1EA5t hi\u1EC7n t\u1EA1i nh\u01B0 th\u1EBF n\u00E0o.",
+        "EnglishMeaning": "Kind regards, Phuong; I hope we can remain in contact regardless of the outcome of this particular funding proposal.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.c77b1170ca504d51a6129cad5583ce4a",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Kho\u1EA3n \u0111\u00F3ng g\u00F3p \u0111\u01B0\u1EE3c \u0111\u1EC1 xu\u1EA5t s\u1EBD gi\u00FAp mi\u1EC5n ph\u00ED v\u00E9 cho nh\u1EEFng ng\u01B0\u1EDDi kh\u00F3 c\u00F3 kh\u1EA3 n\u0103ng tham d\u1EF1 n\u1EBFu ph\u1EA3i tr\u1EA3 ti\u1EC1n.",
+        "EnglishMeaning": "The proposed contribution would allow us to waive admission fees for people who might otherwise be unable to attend these events.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.e6a43c584f104fcdbaaf956fc4d17560",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "Ch\u00FAng t\u00F4i kh\u00F4ng th\u1EC3 ch\u1EA5p nh\u1EADn \u0111i\u1EC1u kho\u1EA3n \u0111\u00F3, ngay c\u1EA3 khi quy\u1EC1n duy\u1EC7t \u0111\u01B0\u1EE3c m\u00F4 t\u1EA3 l\u00E0 m\u1ED9t bi\u1EC7n ph\u00E1p ph\u00F2ng ng\u1EEBa hi\u1EBFm khi d\u00F9ng.",
+        "EnglishMeaning": "We cannot accept that condition, even if the approval power is described as a safeguard that would rarely be exercised.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.ec6f0a158ff3459ba84fce8b709f341f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Ch\u00FAng t\u00F4i c\u0169ng c\u00F3 th\u1EC3 s\u1EEDa th\u00F4ng tin th\u1EF1c t\u1EBF v\u1EC1 t\u1ED5 ch\u1EE9c n\u1EBFu b\u00E0 ch\u1EC9 ra sai s\u00F3t c\u00F3 b\u1EB1ng ch\u1EE9ng.",
+        "EnglishMeaning": "We could also correct factual information about your organisation if you identify a demonstrable error in the description we provide.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    },
+    {
+      "key": "team.writing.20261114.advanced.emails.04.f472651adf594b2d94bdc5b4be57ff86",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Xin b\u00E0 cho bi\u1EBFt li\u1EC7u m\u1ED9t th\u1ECFa thu\u1EADn s\u1EEDa \u0111\u1ED5i tr\u00EAn c\u01A1 s\u1EDF \u0111\u00F3 c\u00F3 c\u00F2n \u0111\u00E1ng \u0111\u1EC3 hai b\u00EAn xem x\u00E9t hay kh\u00F4ng.",
+        "EnglishMeaning": "Please let me know whether a revised agreement on that basis would still be worth exploring from your team\u0027s perspective.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.advanced.emails.04"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.advanced.emails.04"
+}

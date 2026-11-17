@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "team.writing.20261114.intermediate.stories.01",
+  "version": 1,
+  "dependsOn": [],
+  "records": [
+    {
+      "key": "team.writing.20261114.intermediate.stories.01",
+      "kind": "WritingExercise",
+      "values": {
+        "Title": "Cu\u1ED9n phim trong chi\u1EBFc m\u00E1y \u1EA3nh c\u0169",
+        "Level": "intermediate",
+        "ContentType": "stories",
+        "Topic": "K\u1EF7 ni\u1EC7m",
+        "SourceType": "original-20261114",
+        "PreviewText": "Truy\u1EC7n v\u1EC1 chi\u1EBFc m\u00E1y \u1EA3nh c\u0169, nh\u1EEFng b\u1EE9c \u1EA3nh ch\u01B0a r\u1EEDa v\u00E0 m\u1ED9t cu\u1ED9c h\u1ED9i ng\u1ED9.",
+        "IsPublished": true
+      },
+      "references": {}
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.291ffe9a52aa4e05ba4c855e94180742",
+      "kind": "WritingAcceptedAnswer",
+      "values": {
+        "AnswerText": "After reading the letter twice, her mother asked An to help her book a train ticket.",
+        "NormalizedHash": "85fcf0aeddc2367a3495dfe1e97d908f7c8772fd8e3abadfae061cdd95a80fa1"
+      },
+      "references": {
+        "WritingExerciseSentenceId": "team.writing.20261114.intermediate.stories.01.6f545a4bf6514afdb8079a483f76d3cc",
+        "ApprovedByUserId": "owner:system"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.2a9ebfa35e2549a883447a1f109456ac",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 4,
+        "VietnameseText": "M\u1EB9 c\u00F4 \u0111\u00E3 ghi r\u1EB1ng c\u1EA7n mang c\u1EA3 m\u00E1y \u0111\u1EBFn ti\u1EC7m tr\u01B0\u1EDBc khi l\u1EA5y phim ra.",
+        "EnglishMeaning": "Her mother had written that the whole camera should go to the shop before removing the film.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.38b0cbe05e2543e38ddd6a07a2fea8cb",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 2,
+        "VietnameseText": "Chi\u1EBFc t\u00FAi \u0111\u00E3 ph\u1EE7 b\u1EE5i, nh\u01B0ng b\u00EAn trong v\u1EABn c\u00F2n m\u1ED9t cu\u1ED9n phim.",
+        "EnglishMeaning": "The bag was dusty, but there was still a roll of film inside.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.3e44f38e3a4143bf8bccb9e41d0ad8a9",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 8,
+        "VietnameseText": "Sau khi h\u1ECFi m\u1EB9, c\u00F4 bi\u1EBFt h\u1ECD \u0111\u00E3 m\u1EA5t li\u00EAn l\u1EA1c khi gia \u0111\u00ECnh chuy\u1EC3n nh\u00E0.",
+        "EnglishMeaning": "After asking her mother, she learned they had lost touch when the family moved.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.6f545a4bf6514afdb8079a483f76d3cc",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 12,
+        "VietnameseText": "M\u1EB9 c\u00F4 \u0111\u1ECDc th\u01B0 hai l\u1EA7n r\u1ED3i nh\u1EDD An gi\u00FAp \u0111\u1EB7t v\u00E9 t\u00E0u.",
+        "EnglishMeaning": "Her mother read it twice and then asked An to help book a train ticket.",
+        "BreakAfter": true
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.741e5b0293ab4fb5a301c5127f86f387",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 5,
+        "VietnameseText": "M\u1ED9t tu\u1EA7n sau, ng\u01B0\u1EDDi th\u1EE3 g\u1ECDi \u0111i\u1EC7n b\u00E1o r\u1EB1ng v\u00E0i b\u1EE9c \u1EA3nh v\u1EABn r\u1EEDa \u0111\u01B0\u1EE3c.",
+        "EnglishMeaning": "A week later, the technician called to say that some photographs could still be developed.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.81a938cd94e04635afc77a184a175e82",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 10,
+        "VietnameseText": "C\u00F4 kh\u00F4ng mong nhi\u1EC1u, v\u00EC r\u1EA5t c\u00F3 th\u1EC3 ng\u01B0\u1EDDi b\u1EA1n \u0111\u00E3 chuy\u1EC3n \u0111i t\u1EEB l\u00E2u.",
+        "EnglishMeaning": "She expected little, since the friend might have moved away long ago.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.82dfd5ef05c8434f9f70290516e234ff",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 3,
+        "VietnameseText": "An \u0111\u1ECBnh m\u1EDF n\u1EAFp m\u00E1y th\u00EC nh\u00ECn th\u1EA5y l\u1EDDi nh\u1EAFc nh\u1ECF d\u00E1n ph\u00EDa sau.",
+        "EnglishMeaning": "An was about to open the camera when she noticed a small note on the back.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.840ed159f3a04d4f9b155a01a45bc4f4",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 11,
+        "VietnameseText": "Nh\u01B0ng \u0111\u1EBFn cu\u1ED1i th\u00E1ng, m\u1ED9t l\u00E1 th\u01B0 v\u1EDBi n\u00E9t ch\u1EEF quen thu\u1ED9c \u0111\u00E3 \u0111\u01B0\u1EE3c g\u1EEDi t\u1EDBi.",
+        "EnglishMeaning": "But by the end of the month, a letter in familiar handwriting had arrived.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.9e698020583245b0ad305279ce168d4f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 9,
+        "VietnameseText": "An g\u1EEDi m\u1ED9t b\u1EA3n sao \u0111\u1EBFn \u0111\u1ECBa ch\u1EC9 \u0111\u00F3 k\u00E8m l\u1EDDi nh\u1EAFn ng\u1EAFn.",
+        "EnglishMeaning": "An sent a copy to that address with a short message.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.b2ea2ba5045d4099a2ce7c46115b521b",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 6,
+        "VietnameseText": "An nh\u1EADn ra s\u00E2n tr\u01B0\u1EDDng c\u0169 trong \u1EA3nh, nh\u01B0ng kh\u00F4ng bi\u1EBFt ng\u01B0\u1EDDi ph\u1EE5 n\u1EEF \u0111\u1EE9ng c\u1EA1nh m\u1EB9.",
+        "EnglishMeaning": "An recognised the old schoolyard, but not the woman standing beside her mother.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.d2a752c1388e4120b39a515f26e0d0f1",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 1,
+        "VietnameseText": "Khi d\u1ECDn c\u0103n g\u00E1c, An t\u00ECm th\u1EA5y chi\u1EBFc m\u00E1y \u1EA3nh t\u1EEBng thu\u1ED9c v\u1EC1 m\u1EB9.",
+        "EnglishMeaning": "While clearing the attic, An found a camera that had belonged to her mother.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    },
+    {
+      "key": "team.writing.20261114.intermediate.stories.01.fa930b1f4e214c458de8b68469b9060f",
+      "kind": "WritingExerciseSentence",
+      "values": {
+        "SortOrder": 7,
+        "VietnameseText": "Ph\u00EDa sau m\u1ED9t b\u1EE9c \u1EA3nh c\u00F3 t\u00EAn v\u00E0 \u0111\u1ECBa ch\u1EC9 c\u1EE7a ng\u01B0\u1EDDi b\u1EA1n \u1EA5y.",
+        "EnglishMeaning": "On the back of one photograph were the friend\u0027s name and address.",
+        "BreakAfter": false
+      },
+      "references": {
+        "WritingExerciseId": "team.writing.20261114.intermediate.stories.01"
+      }
+    }
+  ],
+  "deleteKeys": [],
+  "assets": [],
+  "rootKey": "team.writing.20261114.intermediate.stories.01"
+}

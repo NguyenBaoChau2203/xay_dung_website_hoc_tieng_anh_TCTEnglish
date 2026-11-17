@@ -15,6 +15,11 @@ public class WritingExercise
     public string PreviewText { get; set; } = null!;
     public bool IsPublished { get; set; }
     public DateTime CreatedAt { get; set; }
+    public string? InputMode { get; set; }
+    public string? GenerationMethod { get; set; }
+    public string? TemplateKey { get; set; }
+    public int? TemplateVersion { get; set; }
+    public string? FallbackReason { get; set; }
 
     public User? User { get; set; }
     public ICollection<WritingExerciseSentence> WritingExerciseSentences { get; set; } = new List<WritingExerciseSentence>();

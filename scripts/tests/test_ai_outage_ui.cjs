@@ -303,7 +303,7 @@ test('NoSpeech does not commit progress or replace a stored score', async () => 
   assert.match(byId['spk-assessment-status'].textContent, /Chưa nhận được lời nói/);
 });
 
-test('failed AI writing creation keeps the source text and links to the filtered catalog', async () => {
+test('unknown writing creation result keeps the source and filtered catalog without retrying creation', async () => {
   const { document, body } = createDocument([]);
   const form = createElement('form');
   form.setAttribute('data-writing-create-form', '');
@@ -333,6 +333,9 @@ test('failed AI writing creation keeps the source text and links to the filtered
   const sandbox = {
     document,
     console,
+    AbortController,
+    setTimeout,
+    clearTimeout,
     window: { crypto: { randomUUID: () => 'idem-1' } },
     fetch: async (url) => {
       calls.push(String(url));
@@ -348,7 +351,8 @@ test('failed AI writing creation keeps the source text and links to the filtered
   await submit({ preventDefault() {} });
   assert.deepEqual(calls, ['/Study/WritingExercises/CreateFromAi']);
   assert.equal(textarea.value, 'Nội dung người học đã nhập');
-  assert.match(message.textContent, /Dịch vụ đánh giá đang gián đoạn/);
+  assert.match(message.textContent, /Chưa xác nhận được kết quả/);
+  assert.equal(label.textContent, 'Kiểm tra yêu cầu trước');
   const link = form.querySelector('[data-writing-catalog-link]');
   assert.equal(link.textContent, 'Chọn bài có sẵn');
   assert.equal(link.href, '/Study/WritingExercises?level=intermediate&contentType=articles&topic=travel#system-catalog-heading');
@@ -356,7 +360,7 @@ test('failed AI writing creation keeps the source text and links to the filtered
   assert.equal(button.disabled, false);
 });
 
-test('writing creation access failure is not relabelled as an outage', async () => {
+test('writing creation access failure hides personal content and reloads without claiming an outage', async () => {
   const { document, body } = createDocument([]);
   const form = createElement('form');
   form.setAttribute('data-writing-create-form', '');
@@ -368,7 +372,7 @@ test('writing creation access failure is not relabelled as an outage', async () 
   form.appendChild(token);
   const textarea = createElement('textarea');
   textarea.setAttribute('name', 'sourceText');
-  textarea.value = 'private draft';
+  textarea.value = 'private draft for an owned writing exercise';
   form.appendChild(textarea);
   const button = createElement('button');
   button.setAttribute('data-writing-create-submit', '');
@@ -380,24 +384,31 @@ test('writing creation access failure is not relabelled as an outage', async () 
   message.setAttribute('data-writing-create-message', '');
   form.appendChild(message);
   body.appendChild(form);
+  let reloads = 0;
+  let requests = 0;
   const sandbox = {
     document,
     console,
-    window: {},
-    fetch: async () => ({
+    AbortController,
+    setTimeout,
+    clearTimeout,
+    window: { location: { reload() { reloads++; } } },
+    fetch: async () => { requests++; return ({
       ok: false,
       status: 403,
       headers: { get: () => 'application/json' },
       json: async () => ({ error: 'Bạn không có quyền tạo bài này.', errorCode: 'forbidden' }),
-    }),
+    }); },
   };
   loadScript(WRITING_JS, sandbox);
   for (const fn of document._listeners.DOMContentLoaded || []) fn({ type: 'DOMContentLoaded' });
   await form._listeners.submit[0]({ preventDefault() {} });
-  assert.match(message.textContent, /không có quyền/);
+  assert.equal(requests, 1);
+  assert.equal(reloads, 1);
+  assert.equal(form.hidden, true);
   assert.doesNotMatch(message.textContent, /gián đoạn/);
-  assert.equal(textarea.value, 'private draft');
-  assert.equal(form.querySelector('[data-writing-catalog-link]').textContent, 'Chọn bài có sẵn');
+  assert.equal(textarea.value, 'private draft for an owned writing exercise');
+  assert.equal(form.querySelector('[data-writing-catalog-link]'), null);
 });
 
 function emitOn(document, type, event) {
