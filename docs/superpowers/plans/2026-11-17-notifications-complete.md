@@ -609,3 +609,31 @@ Record database evidence.
 **Differences from the mockup.** None (no UI).
 **Tests changed.** None edited; one new file.
 **Event keys of rows created.** None.
+
+### Gate record — T2 Service (2026-11-17) — `feat(notifications): add category filters, keyset slices, counts and per-user creation to the service`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `NotificationServicePagingTests` (37 new), `NotificationDisplayTests`, `NotificationLinksTests` and `NotificationReliabilityIntegrationTests` focused run: 152 passed, 0 failed |
+| G3 | pass (after one rerun) | **2511 total = 2476 passed, 35 skipped, 0 failed** (T1: 2474 → +37 new). The first full run had **1 failure**, `AiRagPhase5FixRound2Tests.StreamCompletion_UsesTheSameProjectionDeadline` (a wall-clock deadline test of the AI module: it waits `budget + 3 s`); it passed 3 of 3 times when run alone (8 s each) and passed in the rerun of the whole suite with no code change in between. Unrelated to notifications; recorded as a load-sensitive test. |
+| G4 | pass | node 405 total, 404 passed, 1 failed = the T0 speaking-catalog hash failure |
+| G5 | pass | route and JSON untouched in this phase; `has-pending-model-changes`: "No changes have been made to the model since the last migration." |
+| G6 | pass | no CSS, view or JS touched; `git diff --check` clean for the committed files |
+| G7 | pass | files: `Services/NotificationService.cs`, `Services/INotificationService.cs`, `ViewModels/NotificationViewModel.cs` (all additive), `Services/Notifications/NotificationDisplay.cs` (T1 file, helpers added), one new test file; no forbidden file |
+| G8–G12, G14 | n/a | no rendered surface |
+| G13 | pass | Goals completion/badge/streak generators still create notifications with the same event keys (new tests assert the keys); worker and reliability tests green and unedited |
+| G15 | pass | `CreateForUserAsync` rejects `//evil`, `https://…`, `javascript:`; a real write failure is a warning with type and user id only (test asserts the text is absent); no real user was notified |
+
+**Decisions.**
+- `GetNotificationsPageAsync` gained an optional `category` (existing named-argument callers compile unchanged); `MarkAllAsReadAsync(int)` stays and delegates to the new `MarkAllAsReadAsync(int, NotificationCategory?)` that returns `OperationResult<int>`.
+- Keyset slice: `GetNotificationsSliceAsync(userId, take, unreadOnly, beforeCreatedUtc, beforeId)` orders by `(CreatedAt, Id)` descending and reads `take + 1` rows; `NextCursor = (Before, BeforeId)` (the JSON names will match the `before` / `beforeId` query parameters). Take is clamped to 1–50.
+- `GetCategoryCountsAsync` returns an entry for every category (zeros included).
+- `TryCreateWithEventKeyAsync` now returns Created / Duplicate / Failed: only `RelationalUniqueConflict.IsUnique` is a duplicate (MySQL 1062/1022 and SQLite 19 UNIQUE tested); any other `DbUpdateException` detaches the entity, logs a warning with type and user id and returns Failed without throwing (generators ignore it, `CreateForUserAsync` reports a failure).
+- Item view models are built from `NotificationDisplay`; `RelatedUrl`/`IconClass` are always the safe/allowed values, `CreatedAt` carries `Kind = Utc`; the old private `BuildTimeAgo` was removed (F1 on the service side).
+- Generator copy follows plan 4.2 exactly; event keys are unchanged.
+- `PremiumActivated` is stored as an int (enum member added in T1, no migration).
+
+**Differences from the mockup.** None (no UI).
+**Tests changed.** None edited; one new file.
+**Event keys of rows created.** None in the dev database (all tests use disposable SQLite).

@@ -67,6 +67,10 @@ public static class NotificationDisplay
         _ => NotificationCategory.System
     };
 
+    /// <summary>Every defined notification type that belongs to a category (for database filters).</summary>
+    public static NotificationType[] TypesOf(NotificationCategory category)
+        => Enum.GetValues<NotificationType>().Where(type => CategoryOf(type) == category).ToArray();
+
     public static NotificationDisplayItem Build(Notification notification, DateTime nowUtc, TimeZoneInfo zone)
     {
         ArgumentNullException.ThrowIfNull(notification);
@@ -157,6 +161,12 @@ public static class NotificationDisplay
         return days <= 0 ? DayGroupToday : days == 1 ? DayGroupYesterday : DayGroupEarlier;
     }
 
+    /// <summary>True when the value is a Font Awesome class this app may render (and store, up to 100 characters).</summary>
+    public static bool IsAllowedIcon(string? iconClass)
+        => !string.IsNullOrWhiteSpace(iconClass)
+           && iconClass.Trim().Length <= 100
+           && AllowedIcon.IsMatch(iconClass.Trim());
+
     /// <summary>Parses a category name from a query string (case-insensitive); null when unknown.</summary>
     public static NotificationCategory? ParseCategory(string? value)
     {
@@ -197,10 +207,9 @@ public static class NotificationDisplay
 
     private static string IconOf(Notification notification)
     {
-        var stored = notification.IconClass?.Trim();
-        if (!string.IsNullOrEmpty(stored) && AllowedIcon.IsMatch(stored))
+        if (IsAllowedIcon(notification.IconClass))
         {
-            return stored;
+            return notification.IconClass!.Trim();
         }
 
         return notification.Type switch
