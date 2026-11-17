@@ -188,7 +188,8 @@ public static class NotificationDisplay
         return (today - createdDay).Days;
     }
 
-    private static DateTime AsUtc(DateTime value) => value.Kind switch
+    /// <summary>Reads a stored or parsed time as UTC (an unspecified kind is UTC, as stored).</summary>
+    public static DateTime AsUtc(DateTime value) => value.Kind switch
     {
         DateTimeKind.Utc => value,
         DateTimeKind.Local => value.ToUniversalTime(),

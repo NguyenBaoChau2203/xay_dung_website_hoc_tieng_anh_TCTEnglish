@@ -637,3 +637,31 @@ Record database evidence.
 **Differences from the mockup.** None (no UI).
 **Tests changed.** None edited; one new file.
 **Event keys of rows created.** None in the dev database (all tests use disposable SQLite).
+
+### Gate record — T3 Controller and API (2026-11-17) — `feat(notifications): serve /Notification, add the cursor, counts and category to the notification API`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild: 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `NotificationPageIntegrationTests` (30), `NotificationServicePagingTests`, `NotificationReliabilityIntegrationTests`: 74 passed, 0 failed in the focused run |
+| G3 | pass | **2541 total = 2506 passed, 35 skipped, 0 failed** (T2: 2511 → +30 new) |
+| G4 | pass | node 405 total, 404 passed, 1 failed = the T0 speaking-catalog hash failure |
+| G5 | pass | contracts of 2.4: `GET /Notification/Index` still answers (and now `GET /Notification` — F21); `unread-count` → `{ count }`; `api/notifications` keeps `{ success, data: { items, unreadCount, totalCount, currentPage, hasMore } }` and every old item field (`NotificationPageIntegrationTests.Api_List_KeepsTheOldFields_AndAddsTheNewOnes`); mark-read and mark-all keep `{ success }` and add counts; `has-pending-model-changes`: none |
+| G6 | pass | no CSS, view or JS touched; `git diff --check` clean for the committed files |
+| G7 | pass | `Controllers/NotificationController.cs`, `Services/NotificationService.cs`, `Services/INotificationService.cs`, `ViewModels/NotificationViewModel.cs`, `Services/Notifications/NotificationDisplay.cs` (one helper made public), one new test file; no forbidden file; no `Program.cs` change |
+| G8–G12, G14 | n/a | no rendered surface changed in this phase (the old page markup is untouched) |
+| G13 | pass | the full suite incl. Goals, worker, reliability, AI-guide tests is green; the old Index view renders for every filter |
+| G15 | pass | another user's id → 404 and nothing changes; missing antiforgery token → 400 on both POSTs; an unknown `category` on mark-all is a 400 (never widened to "everything"); a bad `before`/`beforeId`/`category` on the list is a 400 with a Vietnamese error; the cursor time is parsed as UTC (a `Z` string is not shifted to server local time); the raw `filter`/`category` query values are never put into a link; no real user was notified |
+
+**Decisions.**
+- `Index` carries `[HttpGet("Notification")]` and `[HttpGet("Notification/Index")]` (F21). The conventional route stays for every other controller.
+- An unknown page `filter`/`category` falls back to "all" / no category; the raw values are not echoed. A `page` beyond the last page answers **302** to the last page with the same `filter` and `category` (F18).
+- `GET api/notifications`: without `before` it pages by number as before and now also returns `nextCursor = { before, beforeId }` (null when there is no more); with `before` (ISO-8601, UTC) and `beforeId` it returns the keyset slice (`currentPage` is 0 there) and the same envelope. `category` works in both modes. `createdAt` now carries `Z`.
+- `POST mark-read` returns `{ success, unreadCount }`; `POST mark-all-read[?category=]` returns `{ success, updated, unreadCount }`.
+- The page still renders the old `NotificationListViewModel`; `ViewData` gained `Category` (the page view model comes with T6).
+- The shared `_CreateFolderDialog` partial puts the current URL (encoded) into a hidden `returnUrl` input, so a raw query value does appear in the HTML as an encoded value; the test asserts only that this page builds no link from it. Noted for the owner of that partial; not changed.
+- The test host answers an anonymous request with 401 (the real cookie scheme redirects to login); the test accepts either.
+
+**Differences from the mockup.** None (no UI change).
+**Tests changed.** None edited; one new file.
+**Event keys of rows created.** None in the dev database (the tests use their own disposable databases).

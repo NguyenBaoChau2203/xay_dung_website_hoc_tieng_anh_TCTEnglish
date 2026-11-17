@@ -43,6 +43,7 @@ public sealed class NotificationSliceViewModel
 {
     public List<NotificationViewModel> Items { get; set; } = new();
     public int UnreadCount { get; set; }
+    public int TotalCount { get; set; }   // matching rows before the cursor is applied
     public bool HasMore { get; set; }
     public NotificationCursor? NextCursor { get; set; }
 }

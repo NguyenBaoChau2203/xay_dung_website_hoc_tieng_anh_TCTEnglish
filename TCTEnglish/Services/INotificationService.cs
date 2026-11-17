@@ -25,7 +25,8 @@ public interface INotificationService
         int take,
         bool unreadOnly,
         DateTime? beforeCreatedUtc,
-        int? beforeId);
+        int? beforeId,
+        NotificationCategory? category = null);
 
     /// <summary>Unread and total counts per category plus the overall totals (one grouped query).</summary>
     Task<NotificationCategoryCounts> GetCategoryCountsAsync(int userId);

@@ -103,7 +103,8 @@ public class NotificationService : INotificationService
         int take,
         bool unreadOnly,
         DateTime? beforeCreatedUtc,
-        int? beforeId)
+        int? beforeId,
+        NotificationCategory? category = null)
     {
         take = Math.Clamp(take, 1, 50);
 
@@ -116,10 +117,18 @@ public class NotificationService : INotificationService
             query = query.Where(n => !n.IsRead);
         }
 
+        if (category is { } selected)
+        {
+            var types = NotificationDisplay.TypesOf(selected);
+            query = query.Where(n => types.Contains(n.Type));
+        }
+
+        var totalCount = await query.CountAsync();
+
         if (beforeCreatedUtc is { } before)
         {
             // Keyset on (CreatedAt, Id): equal timestamps are ordered by Id, so nothing repeats or is skipped.
-            var cursorTime = DateTime.SpecifyKind(before, DateTimeKind.Utc);
+            var cursorTime = NotificationDisplay.AsUtc(before);
             var cursorId = beforeId ?? int.MaxValue;
             query = query.Where(n => n.CreatedAt < cursorTime
                                      || (n.CreatedAt == cursorTime && n.Id < cursorId));
@@ -145,6 +154,7 @@ public class NotificationService : INotificationService
         {
             Items = items,
             UnreadCount = unreadCount,
+            TotalCount = totalCount,
             HasMore = hasMore,
             NextCursor = hasMore && rows.Count > 0
                 ? new NotificationCursor(items[^1].CreatedAtUtc, items[^1].Id)
