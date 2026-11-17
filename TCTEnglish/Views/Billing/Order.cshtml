@@ -1,0 +1,236 @@
+@model TCTEnglish.ViewModels.Billing.OrderPageViewModel
+@using TCTEnglish.Services.Billing
+@using TCTEnglish.ViewModels
+@using TCTEnglish.ViewModels.Billing
+@*
+    One page per order (plan 5.2): waiting, confirming, paid and not completed. Owner only (the action returns 404 otherwise).
+    The page follows the order by itself (billing-order.js): it polls /Billing/OrderStatus while waiting or confirming and
+    reloads once when the stage changes. Everything it says is readable without JavaScript.
+*@
+@{
+    var stage = Model.Stage;
+    var isWaiting = stage == PaymentOrderStages.Waiting;
+    var isConfirming = stage == PaymentOrderStages.Confirming;
+    var isPaid = stage == PaymentOrderStages.Paid;
+    var isNotCompleted = stage == PaymentOrderStages.NotCompleted;
+    var follows = isWaiting || isConfirming;
+    var momoWaiting = isWaiting && Model.IsMoMo;
+    var title = stage switch
+    {
+        PaymentOrderStages.Paid => "Thanh toán thành công",
+        PaymentOrderStages.Confirming => "Đang xác nhận thanh toán",
+        PaymentOrderStages.NotCompleted => "Thanh toán chưa hoàn tất",
+        _ => Model.IsMoMo ? "Thanh toán bằng MoMo" : "Đơn đang chờ thanh toán"
+    };
+    ViewData["Title"] = title;
+    var header = new PageHeaderViewModel
+    {
+        Title = title,
+        Breadcrumbs = new[]
+        {
+            new PageBreadcrumbItem("Nâng cấp Premium", "/Premium"),
+            new PageBreadcrumbItem("Thanh toán", null)
+        }
+    };
+    var checkError = TempData["CheckoutError"] as string;
+    var errorState = new StateMessageViewModel { Kind = StateMessageKind.Error, Title = "Chưa thể thực hiện", Message = checkError ?? string.Empty };
+    var sessionNotice = "Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại để tài khoản nhận quyền Premium.";
+    var builtAtClock = BillingTime.ToBusiness(Model.BuiltAtUtc).ToString("HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+    var orderUrl = "/Billing/Order/" + Uri.EscapeDataString(Model.OrderCode);
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/study-kit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/billing.css" asp-append-version="true" />
+}
+
+<div class="tct-theme tct-page tb-page tb-page--order tb-stage--@stage.Replace('_', '-')"
+     data-tb-order data-order-code="@Model.OrderCode" data-stage="@stage" data-provider="@Model.Provider"
+     data-follows="@(follows ? "true" : "false")" data-manual-review="@(Model.IsManualReview ? "true" : "false")"
+     data-expires-ms="@Model.ExpiresAtMs" data-now-ms="@Model.NowMs"
+     data-status-url="/Billing/OrderStatus?orderCode=@Uri.EscapeDataString(Model.OrderCode)">
+
+    @if (!string.IsNullOrWhiteSpace(checkError))
+    {
+        <div class="tb-error" tabindex="-1" data-tb-error>
+            <partial name="_StateMessage" model="errorState" />
+        </div>
+    }
+
+    @if (momoWaiting || (isWaiting && !Model.IsMoMo))
+    {
+        <partial name="_PageHeader" model="header" />
+
+        <div class="tb-grid">
+            <section class="k-panel tb-card tb-pay-card" aria-labelledby="tb-order-heading">
+                @if (momoWaiting)
+                {
+                    <h2 id="tb-order-heading" class="visually-hidden">Quét mã QR để thanh toán</h2>
+                    <div class="tb-qr">
+                        @if (!string.IsNullOrWhiteSpace(Model.QrPayload))
+                        {
+                            <div class="tb-qr__box">
+                                <div id="tb-qr" class="tb-qr__code" role="img" data-qr="@Model.QrPayload"
+                                     aria-label="Mã QR thanh toán MoMo cho đơn @Model.OrderCode"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="tb-notice tb-notice--warning" role="status">
+                                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                                <span>Không lấy được mã QR. Hãy bấm Mở ứng dụng MoMo hoặc tạo đơn mới.</span>
+                            </div>
+                        }
+                        <p class="tb-qr__timer">Mã hết hạn sau <strong class="tb-num" data-tb-countdown>@BillingTime.ToBusiness(Model.ExpiresAtUtc).ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture)</strong></p>
+                    </div>
+                    <ol class="tb-steps">
+                        <li><span class="tb-steps__n" aria-hidden="true">1</span>Mở ứng dụng MoMo trên điện thoại</li>
+                        <li><span class="tb-steps__n" aria-hidden="true">2</span>Chọn Quét mã và quét mã QR này</li>
+                        <li><span class="tb-steps__n" aria-hidden="true">3</span>Xác nhận thanh toán @Model.AmountText</li>
+                    </ol>
+                }
+                else
+                {
+                    <h2 id="tb-order-heading" class="tb-section-title">Tiếp tục thanh toán</h2>
+                    <p class="tb-lead">Bạn chưa hoàn tất thanh toán cho đơn này. Hãy tiếp tục trên trang của @Model.ProviderName.</p>
+                    @if (!string.IsNullOrWhiteSpace(Model.ResumeUrl))
+                    {
+                        <a class="btn btn-primary btn-lg tb-btn-wide" href="@Model.ResumeUrl">
+                            <i class="fa-solid fa-up-right-from-square me-2" aria-hidden="true"></i>Tiếp tục thanh toán trên @Model.ProviderName
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="tb-notice tb-notice--warning" role="status">
+                            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                            <span>Không mở lại được trang thanh toán của đơn này. Hãy tạo đơn mới.</span>
+                        </div>
+                    }
+                }
+
+                <p class="tb-live tb-live--waiting" role="status" aria-live="polite" data-tb-live>
+                    <span class="tb-spinner" aria-hidden="true"></span>
+                    <span data-tb-live-text>Đang chờ bạn thanh toán… trang sẽ tự cập nhật</span>
+                </p>
+
+                @if (Model.IsMockMode)
+                {
+                    <form method="post" asp-controller="Billing" asp-action="MoMoMockConfirm" class="tb-mock" data-tb-mock>
+                        <p class="tb-mock__text"><strong>Chế độ thử nghiệm (chỉ có ở máy phát triển).</strong> Không có tiền thật được chuyển.</p>
+                        <input type="hidden" name="orderCode" value="@Model.OrderCode" />
+                        <button type="submit" class="btn btn-primary">Giả lập thanh toán thành công</button>
+                    </form>
+                }
+            </section>
+
+            <aside class="tb-grid__side">
+                <section class="k-panel tb-card tb-side-card" aria-label="Đơn hàng">
+                    <h2 class="tb-section-title">Đơn hàng</h2>
+                    <partial name="_OrderSummary" model="Model.Summary" />
+                    @if (momoWaiting && (!string.IsNullOrWhiteSpace(Model.DeepLink) || !string.IsNullOrWhiteSpace(Model.PayUrl)))
+                    {
+                        <a class="btn btn-outline-primary tb-btn-wide" href="@(Model.PayUrl ?? Model.DeepLink)"
+                           data-tb-app-link data-deeplink="@Model.DeepLink" data-payurl="@Model.PayUrl">
+                            <i class="fa-solid fa-mobile-screen-button me-2" aria-hidden="true"></i>Mở ứng dụng MoMo
+                        </a>
+                    }
+                    <p class="tb-note tb-note--info">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        @sessionNotice
+                    </p>
+                    <a class="tb-link" href="/Premium">Hủy và chọn cách khác</a>
+                </section>
+            </aside>
+        </div>
+    }
+    else
+    {
+        <section class="k-panel tb-card tb-result tb-result--@stage.Replace('_', '-')" aria-labelledby="tb-result-title">
+            <span class="tb-result__icon" aria-hidden="true">
+                <i class="@(isPaid ? "fa-solid fa-check" : isConfirming ? "fa-solid fa-hourglass-half" : "fa-solid fa-xmark")"></i>
+            </span>
+            <h1 id="tb-result-title" class="tb-result__title">@title</h1>
+
+            @if (isPaid)
+            {
+                @if (Model.PremiumEndsAtUtc.HasValue)
+                {
+                    <p class="tb-result__text">Premium của bạn có hiệu lực đến <strong>@BillingTime.ToDisplayDate(Model.PremiumEndsAtUtc.Value)</strong>.</p>
+                }
+                else
+                {
+                    <p class="tb-result__text">Premium của bạn đã được kích hoạt.</p>
+                }
+
+                <partial name="_Receipt" model="Model.Receipt" />
+
+                <ul class="tb-unlocked" aria-label="Tính năng vừa mở khóa">
+                    @foreach (var highlight in PremiumBenefits.UnlockedHighlights)
+                    {
+                        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>@highlight</span></li>
+                    }
+                </ul>
+
+                <a class="btn btn-primary btn-lg tb-btn-wide" href="/Home/Index">Bắt đầu học</a>
+                <a class="tb-link" href="/Billing/History">Xem lịch sử thanh toán</a>
+            }
+            else if (isConfirming)
+            {
+                @if (Model.IsManualReview)
+                {
+                    <p class="tb-result__text">Đơn đang được kiểm tra thêm. Chúng tôi sẽ cập nhật trong thời gian sớm nhất.</p>
+                }
+                else
+                {
+                    <p class="tb-result__text">Chúng tôi đang chờ @Model.ProviderName xác nhận giao dịch. Việc này thường mất dưới một phút; trang sẽ tự cập nhật.</p>
+                    <p class="tb-live tb-live--waiting" role="status" aria-live="polite" data-tb-live>
+                        <span class="tb-spinner" aria-hidden="true"></span>
+                        <span data-tb-live-text>Đang kiểm tra… lần gần nhất @builtAtClock</span>
+                    </p>
+                }
+
+                <partial name="_Receipt" model="@(new ReceiptViewModel { Rows = new[] { Model.Receipt.Rows[0], Model.Receipt.Rows[1], Model.Receipt.Rows[2] } })" />
+
+                @if (!Model.IsManualReview)
+                {
+                    <form method="post" asp-controller="Billing" asp-action="RefreshOrder" asp-route-orderCode="@Model.OrderCode" data-tb-refresh-form>
+                        <button type="submit" class="btn btn-outline-primary btn-lg tb-btn-wide" data-tb-refresh>Kiểm tra lại ngay</button>
+                    </form>
+                }
+
+                <p class="tb-note tb-note--center">
+                    Đã bị trừ tiền nhưng quá 15 phút chưa được kích hoạt?
+                    <a href="/Home/Contact">Liên hệ hỗ trợ</a> kèm mã đơn ở trên.
+                </p>
+                <p class="tb-note tb-note--info">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    @sessionNotice
+                </p>
+            }
+            else
+            {
+                <p class="tb-result__text">@Model.NotCompletedReason Nếu tài khoản của bạn đã bị trừ tiền, hãy liên hệ hỗ trợ kèm mã đơn.</p>
+
+                <partial name="_Receipt" model="@(new ReceiptViewModel { Rows = new[] { Model.Receipt.Rows[0], Model.Receipt.Rows[1], Model.Receipt.Rows[2], new BillingRow("Trạng thái", Model.StatusView.Label) } })" />
+
+                @if (Model.CanPayAgain)
+                {
+                    <a class="btn btn-primary btn-lg tb-btn-wide" href="/Premium">
+                        <i class="fa-solid fa-rotate-right me-2" aria-hidden="true"></i>Thanh toán lại
+                    </a>
+                }
+
+                <a class="tb-link" href="/Billing/History">Xem lịch sử thanh toán</a>
+            }
+        </section>
+    }
+
+</div>
+
+@section Scripts {
+    @if (momoWaiting)
+    {
+        <script src="~/lib/pinned/qrcode-1.0.0.min.js"></script>
+    }
+    <script src="~/js/billing-core.js" asp-append-version="true"></script>
+    <script src="~/js/billing-order.js" asp-append-version="true"></script>
+}

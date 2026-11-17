@@ -168,10 +168,10 @@
                             </td>
                             <td class="text-end">@order.AmountVnd.ToString("N0") @order.Currency</td>
                             <td>
-                                <span class="@order.StatusBadgeClass">@order.Status</span>
+                                <span class="@order.StatusBadgeClass">@TCTEnglish.Services.Billing.PaymentOrderLabels.StatusLabel(order.Status)</span>
                             </td>
                             <td>
-                                <span class="text-muted small">@order.CreatedAtUtc.AddHours(7).ToString("dd/MM/yyyy HH:mm")</span>
+                                <span class="text-muted small">@TCTEnglish.Services.Billing.BillingTime.ToDisplay(order.CreatedAtUtc)</span>
                             </td>
                             <td class="text-end pe-4">
                                 <a asp-area="Admin"

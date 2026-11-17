@@ -30,6 +30,8 @@ namespace TCTEnglish.Controllers
         private readonly IPaymentProviderHealthService _healthService;
         private readonly MoMoOptions _moMoOptions;
         private readonly IWebHostEnvironment _environment;
+        private readonly IPaymentQueryService _queryService;
+        private readonly ISubscriptionService _subscriptionService;
         private readonly ILogger<BillingController> _logger;
 
         public BillingController(
@@ -40,6 +42,8 @@ namespace TCTEnglish.Controllers
             IPaymentProviderHealthService healthService,
             IOptions<MoMoOptions> moMoOptions,
             IWebHostEnvironment environment,
+            IPaymentQueryService queryService,
+            ISubscriptionService subscriptionService,
             ILogger<BillingController> logger)
         {
             _context = context;
@@ -49,6 +53,8 @@ namespace TCTEnglish.Controllers
             _healthService = healthService;
             _moMoOptions = moMoOptions.Value.Normalize();
             _environment = environment;
+            _queryService = queryService;
+            _subscriptionService = subscriptionService;
             _logger = logger;
         }
 
@@ -57,6 +63,7 @@ namespace TCTEnglish.Controllers
         public async Task<IActionResult> Pricing()
         {
             var userId = GetCurrentUserId();
+            await _subscriptionService.ExpireForUserAsync(userId);
             var plans = await _context.PremiumPlans
                 .AsNoTracking()
                 .Where(p => p.IsActive)
@@ -77,13 +84,13 @@ namespace TCTEnglish.Controllers
                 p => p.ProviderCode,
                 p => p.Enabled && p.Configured);
 
-            var model = new PricingViewModel
-            {
-                Plans = plans,
-                CurrentAccess = accessSnapshot,
-                ErrorMessage = TempData["CheckoutError"] as string,
-                ProviderReadiness = providerReadiness
-            };
+            var model = PricingPageBuilder.Build(
+                plans,
+                accessSnapshot,
+                providerReadiness,
+                IsMoMoMockModeEnabled(),
+                TempData["CheckoutError"] as string,
+                DateTime.UtcNow);
 
             return View(model);
         }
@@ -95,7 +102,7 @@ namespace TCTEnglish.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["CheckoutError"] = "Thong tin dang ky khong hop le.";
+                TempData["CheckoutError"] = "Thông tin đăng ký không hợp lệ.";
                 return RedirectToAction(nameof(Pricing));
             }
 
@@ -120,7 +127,7 @@ namespace TCTEnglish.Controllers
                     "Checkout succeeded but RedirectUrl is null for order {OrderCode}",
                     result.OrderCode);
 
-                TempData["CheckoutError"] = "Cong thanh toan hien khong kha dung.";
+                TempData["CheckoutError"] = "Cổng thanh toán hiện không khả dụng.";
                 return RedirectToAction(nameof(Pricing));
             }
 
@@ -129,54 +136,38 @@ namespace TCTEnglish.Controllers
 
         [Authorize]
         [HttpGet("/Billing/History")]
-        public async Task<IActionResult> History()
+        public async Task<IActionResult> History(int page = 1)
         {
             var userId = GetCurrentUserId();
-            var model = await _billingService.GetPaymentHistoryAsync(userId);
+            await _subscriptionService.ExpireForUserAsync(userId);
+            var model = await _billingService.GetPaymentHistoryAsync(userId, page);
+            var access = await _premiumAccessService.GetAccessSnapshotAsync(userId) ?? new PremiumAccessSnapshot();
+            model.Status = PremiumStatusViewModel.From(access, compact: true, model.ActivatedFromOrderCode);
             return View(model);
         }
 
+        /// <summary>
+        /// One page per order (plan 5.2): waiting, confirming, paid and not completed. Owner only; anyone else gets 404.
+        /// </summary>
+        [Authorize]
+        [HttpGet("/Billing/Order/{orderCode}")]
+        public async Task<IActionResult> Order(string orderCode)
+        {
+            var userId = GetCurrentUserId();
+            await _subscriptionService.ExpireForUserAsync(userId);
+
+            var model = await _billingService.GetOrderPageAsync(userId, orderCode, IsMoMoMockModeEnabled());
+            return model == null ? NotFound() : View("Order", model);
+        }
+
+        /// <summary>Old links and bookmarks: the QR page is now the order page.</summary>
         [Authorize]
         [HttpGet("/Billing/MoMoQr")]
-        public async Task<IActionResult> MoMoQr(string orderCode)
+        public IActionResult MoMoQr(string orderCode)
         {
-            if (string.IsNullOrWhiteSpace(orderCode))
-            {
-                return NotFound();
-            }
-
-            var userId = GetCurrentUserId();
-            var order = await _context.PaymentOrders
-                .AsNoTracking()
-                .Include(o => o.Plan)
-                .Where(o => o.UserId == userId && o.OrderCode == orderCode)
-                .FirstOrDefaultAsync();
-
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            if (!order.Provider.Equals(PaymentProviders.MoMo, StringComparison.OrdinalIgnoreCase))
-            {
-                return NotFound();
-            }
-
-            var model = new MoMoQrViewModel
-            {
-                OrderCode = order.OrderCode,
-                PlanName = order.Plan?.Name ?? "Premium",
-                AmountVnd = order.AmountVnd,
-                ExpiresAtUtc = order.ExpiresAtUtc,
-                ProviderPaymentUrl = order.ProviderPaymentUrl,
-                ProviderDeepLink = order.ProviderDeepLink,
-                ProviderQrCodePayload = order.ProviderQrCodePayload,
-                IsExpired = order.ExpiresAtUtc <= DateTime.UtcNow,
-                IsPaid = string.Equals(order.Status, PaymentOrderStatuses.Paid, StringComparison.OrdinalIgnoreCase),
-                IsMockMode = IsMoMoMockModeEnabled()
-            };
-
-            return View(model);
+            return string.IsNullOrWhiteSpace(orderCode)
+                ? NotFound()
+                : Redirect(OrderPageUrl(orderCode));
         }
 
         [Authorize]
@@ -207,8 +198,8 @@ namespace TCTEnglish.Controllers
 
             if (order.ExpiresAtUtc <= DateTime.UtcNow)
             {
-                TempData["CheckoutError"] = "Don hang da het han, vui long tao don moi.";
-                return RedirectToAction(nameof(MoMoQr), new { orderCode });
+                TempData["CheckoutError"] = "Đơn hàng đã hết hạn, vui lòng tạo đơn mới.";
+                return Redirect(OrderPageUrl(orderCode));
             }
 
             var requestId = string.IsNullOrWhiteSpace(order.ProviderRequestId)
@@ -247,7 +238,7 @@ namespace TCTEnglish.Controllers
 
             await _ipnService.ProcessMoMoIpnAsync(ipn);
 
-            return RedirectToAction(nameof(MoMoQr), new { orderCode });
+            return Redirect(OrderPageUrl(orderCode));
         }
 
         [Authorize]
@@ -259,29 +250,105 @@ namespace TCTEnglish.Controllers
                 return NotFound();
             }
 
+            var status = await BuildOrderStatusAsync(GetCurrentUserId(), orderCode, checkedWith: null);
+            return status == null ? NotFound() : Json(status);
+        }
+
+        /// <summary>
+        /// Asks the provider's own server about the buyer's order, at most once every 20 s (see
+        /// <see cref="IPaymentQueryService"/>). Used by the "Kiểm tra lại ngay" button and by the order page's
+        /// polling while it is waiting for confirmation. Owner only; anyone else gets 404.
+        /// </summary>
+        [Authorize]
+        [HttpPost("/Billing/Order/{orderCode}/Refresh")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RefreshOrder(string orderCode)
+        {
+            if (string.IsNullOrWhiteSpace(orderCode))
+            {
+                return NotFound();
+            }
+
             var userId = GetCurrentUserId();
+            var orderId = await _context.PaymentOrders
+                .AsNoTracking()
+                .Where(o => o.UserId == userId && o.OrderCode == orderCode)
+                .Select(o => (long?)o.Id)
+                .FirstOrDefaultAsync();
+
+            if (orderId == null)
+            {
+                return NotFound();
+            }
+
+            var attempt = await _queryService.QueryAndConfirmAsync(orderId.Value, PaymentQueryTrigger.Refresh);
+
+            if (!WantsJson())
+            {
+                return Redirect($"/Billing/Order/{Uri.EscapeDataString(orderCode)}");
+            }
+
+            var status = await BuildOrderStatusAsync(userId, orderCode, attempt.Status.ToString());
+            return status == null ? NotFound() : Json(status);
+        }
+
+        private bool WantsJson()
+        {
+            return Request.Headers.Accept.ToString().Contains("application/json", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(Request.Headers["X-Requested-With"], "XMLHttpRequest", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>The fields the order page polls: the original three plus <c>stage</c> and <c>premiumEndsAt</c>.</summary>
+        private async Task<object?> BuildOrderStatusAsync(int userId, string orderCode, string? checkedWith)
+        {
             var order = await _context.PaymentOrders
                 .AsNoTracking()
                 .Where(o => o.UserId == userId && o.OrderCode == orderCode)
                 .Select(o => new
                 {
+                    o.Id,
                     o.Status,
+                    o.Provider,
                     o.ExpiresAtUtc,
-                    Paid = o.Status == PaymentOrderStatuses.Paid
+                    o.ReturnPayloadJson
                 })
                 .FirstOrDefaultAsync();
 
             if (order == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return Json(new
+            var nowUtc = DateTime.UtcNow;
+            var paid = order.Status == PaymentOrderStatuses.Paid;
+            var stage = PaymentOrderPresentation.ResolveStage(
+                order.Status,
+                order.ExpiresAtUtc,
+                PaymentOrderPresentation.ReturnReportedSuccess(order.Provider, order.ReturnPayloadJson),
+                nowUtc);
+
+            string? premiumEndsAt = null;
+            if (paid)
+            {
+                var endsAtUtc = await _context.UserSubscriptions
+                    .AsNoTracking()
+                    .Where(s => s.ActivatedByPaymentOrderId == order.Id)
+                    .Select(s => (DateTime?)s.EndsAtUtc)
+                    .FirstOrDefaultAsync();
+                premiumEndsAt = endsAtUtc.HasValue
+                    ? DateTime.SpecifyKind(endsAtUtc.Value, DateTimeKind.Utc).ToString("O", CultureInfo.InvariantCulture)
+                    : null;
+            }
+
+            return new
             {
                 status = order.Status,
-                paid = order.Paid,
-                expired = order.ExpiresAtUtc <= DateTime.UtcNow
-            });
+                paid,
+                expired = order.ExpiresAtUtc <= nowUtc,
+                stage,
+                premiumEndsAt,
+                @checked = checkedWith
+            };
         }
 
         [AllowAnonymous]
@@ -305,8 +372,13 @@ namespace TCTEnglish.Controllers
         [HttpPost("/api/billing/momo/ipn")]
         public async Task<IActionResult> MoMoIpn()
         {
-            var parameters = await ReadBodyAsDictionaryAsync(Request.Body);
-            await _ipnService.ProcessMoMoIpnAsync(parameters);
+            var parameters = await TryReadMoMoIpnBodyAsync(Request.Body, HttpContext.RequestAborted);
+            if (parameters != null)
+            {
+                await _ipnService.ProcessMoMoIpnAsync(parameters);
+            }
+
+            // Always 204: a body we cannot use will not become usable by MoMo retrying it.
             return NoContent();
         }
 
@@ -319,15 +391,11 @@ namespace TCTEnglish.Controllers
             if (!queryParams.TryGetValue("vnp_TxnRef", out var orderCode)
                 || string.IsNullOrWhiteSpace(orderCode))
             {
-                return View("PaymentResult", new PaymentResultViewModel
-                {
-                    HasValidReturnSignature = false,
-                    CanShowOrderSummary = false
-                });
+                return View("InvalidReturn");
             }
 
             var model = await _billingService.GetVnPayReturnResultAsync(queryParams);
-            return await RenderPaymentResultForOwnerAsync(model, orderCode);
+            return RedirectReturnToOrderPage(model, orderCode);
         }
 
         [AllowAnonymous]
@@ -347,12 +415,14 @@ namespace TCTEnglish.Controllers
             }
 
             var model = await _billingService.GetMoMoReturnResultAsync(queryParams);
-            return await RenderPaymentResultForOwnerAsync(model, orderCode);
+            return RedirectReturnToOrderPage(model, orderCode);
         }
 
-        private async Task<IActionResult> RenderPaymentResultForOwnerAsync(
-            PaymentResultViewModel? model,
-            string orderCode)
+        /// <summary>
+        /// After a provider's return: an unverifiable return shows the generic page with no order data; a verified one
+        /// goes to the order page of its owner (the buyer signed out by the role change is sent to login and back).
+        /// </summary>
+        private IActionResult RedirectReturnToOrderPage(PaymentResultViewModel? model, string orderCode)
         {
             if (model == null)
             {
@@ -360,26 +430,32 @@ namespace TCTEnglish.Controllers
                 return NotFound();
             }
 
-            if (model.HasValidReturnSignature)
+            if (!model.HasValidReturnSignature)
             {
-                if (!TryGetCurrentUserId(out var currentUserId))
-                {
-                    return RedirectToAction("Login", "Account", new { returnUrl = "/Billing/History" });
-                }
-
-                if (model.OwnerUserId != currentUserId)
-                {
-                    _logger.LogWarning(
-                        "Payment return rejected due to ownership mismatch. OrderCode={OrderCode}, CurrentUserId={CurrentUserId}, OwnerUserId={OwnerUserId}",
-                        orderCode,
-                        currentUserId,
-                        model.OwnerUserId);
-                    return NotFound();
-                }
+                return View("InvalidReturn");
             }
 
-            return View("PaymentResult", model);
+            var orderUrl = OrderPageUrl(model.OrderCode);
+            if (!TryGetCurrentUserId(out var currentUserId))
+            {
+                return RedirectToAction("Login", "Account", new { returnUrl = orderUrl });
+            }
+
+            if (model.OwnerUserId != currentUserId)
+            {
+                _logger.LogWarning(
+                    "Payment return rejected due to ownership mismatch. OrderCode={OrderCode}, CurrentUserId={CurrentUserId}, OwnerUserId={OwnerUserId}",
+                    orderCode,
+                    currentUserId,
+                    model.OwnerUserId);
+                return NotFound();
+            }
+
+            return Redirect(orderUrl);
         }
+
+        private static string OrderPageUrl(string orderCode)
+            => $"/Billing/Order/{Uri.EscapeDataString(orderCode)}";
 
         private bool IsMoMoMockModeEnabled()
             => _environment.IsDevelopment() && _moMoOptions.Enabled && _moMoOptions.MockModeEnabled;
@@ -399,43 +475,68 @@ namespace TCTEnglish.Controllers
 
         private static string GetClientIp(HttpContext httpContext)
         {
-            var forwardedFor = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
-            if (!string.IsNullOrWhiteSpace(forwardedFor))
-            {
-                var firstIp = forwardedFor.Split(',')[0].Trim();
-                if (!string.IsNullOrWhiteSpace(firstIp))
-                {
-                    return firstIp;
-                }
-            }
-
-            return httpContext.Connection.RemoteIpAddress?.ToString() ?? "127.0.0.1";
+            return BillingClientIp.Resolve(
+                httpContext.Connection.RemoteIpAddress,
+                httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault());
         }
 
-        private static async Task<Dictionary<string, string>> ReadBodyAsDictionaryAsync(Stream body)
-        {
-            using var document = await JsonDocument.ParseAsync(body);
-            var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private const int MaxMoMoIpnBodyBytes = 64 * 1024;
 
-            if (document.RootElement.ValueKind != JsonValueKind.Object)
+        /// <summary>
+        /// Reads at most 64 KB and returns the JSON object as strings, or null (after one warning
+        /// line without the payload) when the body is too large, not JSON, or not an object.
+        /// </summary>
+        private async Task<Dictionary<string, string>?> TryReadMoMoIpnBodyAsync(Stream body, CancellationToken ct)
+        {
+            using var buffer = new MemoryStream();
+            var chunk = new byte[8192];
+            int read;
+            while ((read = await body.ReadAsync(chunk.AsMemory(), ct)) > 0)
             {
+                if (buffer.Length + read > MaxMoMoIpnBodyBytes)
+                {
+                    _logger.LogWarning("MoMo IPN ignored: body is larger than {LimitBytes} bytes.", MaxMoMoIpnBodyBytes);
+                    return null;
+                }
+
+                buffer.Write(chunk, 0, read);
+            }
+
+            JsonDocument document;
+            try
+            {
+                document = JsonDocument.Parse(buffer.ToArray());
+            }
+            catch (JsonException)
+            {
+                _logger.LogWarning("MoMo IPN ignored: body is not valid JSON ({Length} bytes).", buffer.Length);
+                return null;
+            }
+
+            using (document)
+            {
+                if (document.RootElement.ValueKind != JsonValueKind.Object)
+                {
+                    _logger.LogWarning("MoMo IPN ignored: body is not a JSON object.");
+                    return null;
+                }
+
+                var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var property in document.RootElement.EnumerateObject())
+                {
+                    result[property.Name] = property.Value.ValueKind switch
+                    {
+                        JsonValueKind.String => property.Value.GetString() ?? string.Empty,
+                        JsonValueKind.Number => property.Value.GetRawText(),
+                        JsonValueKind.True => "true",
+                        JsonValueKind.False => "false",
+                        JsonValueKind.Null => string.Empty,
+                        _ => property.Value.GetRawText()
+                    };
+                }
+
                 return result;
             }
-
-            foreach (var property in document.RootElement.EnumerateObject())
-            {
-                result[property.Name] = property.Value.ValueKind switch
-                {
-                    JsonValueKind.String => property.Value.GetString() ?? string.Empty,
-                    JsonValueKind.Number => property.Value.GetRawText(),
-                    JsonValueKind.True => "true",
-                    JsonValueKind.False => "false",
-                    JsonValueKind.Null => string.Empty,
-                    _ => property.Value.GetRawText()
-                };
-            }
-
-            return result;
         }
 
         private sealed record VnPayIpnResponse(

@@ -48,6 +48,7 @@ public class BillingManagementController : BaseController
     private readonly ISubscriptionService _subscriptionService;
     private readonly IPaymentProviderHealthService _healthService;
     private readonly IPaymentAuditService _auditService;
+    private readonly IPaymentConfirmationService _confirmationService;
     private readonly ILogger<BillingManagementController> _logger;
 
     public BillingManagementController(
@@ -55,12 +56,14 @@ public class BillingManagementController : BaseController
         ISubscriptionService subscriptionService,
         IPaymentProviderHealthService healthService,
         IPaymentAuditService auditService,
+        IPaymentConfirmationService confirmationService,
         ILogger<BillingManagementController> logger)
     {
         _context = context;
         _subscriptionService = subscriptionService;
         _healthService = healthService;
         _auditService = auditService;
+        _confirmationService = confirmationService;
         _logger = logger;
     }
 
@@ -581,8 +584,15 @@ public class BillingManagementController : BaseController
         if (order == null)
             return NotFound();
 
+        if (!PaymentOrderStateMachine.CanSendToManualReview(order.Status, PaymentTransitionSource.Admin))
+        {
+            TempData["Error"] = $"Không thể chuyển đơn đang ở trạng thái \"{PaymentOrderLabels.StatusLabel(order.Status)}\" sang kiểm tra thủ công.";
+            return RedirectToAction(nameof(Details), new { id = order.Id });
+        }
+
         var oldStatus = order.Status;
         order.Status = PaymentOrderStatuses.ManualReview;
+        order.UpdatedAtUtc = DateTime.UtcNow;
         await _context.SaveChangesAsync();
 
         var adminId = GetCurrentUserId();
@@ -600,7 +610,7 @@ public class BillingManagementController : BaseController
             ipAddress:      HttpContext.Connection.RemoteIpAddress?.ToString(),
             userAgent:      HttpContext.Request.Headers["User-Agent"].ToString());
 
-        TempData["Success"] = $"Order {order.OrderCode} đã được đánh dấu Manual Review.";
+        TempData["Success"] = $"Đơn {order.OrderCode} đã được chuyển sang kiểm tra thủ công.";
         return RedirectToAction(nameof(Details), new { id = order.Id });
     }
 
@@ -615,6 +625,7 @@ public class BillingManagementController : BaseController
         }
 
         var order = await _context.PaymentOrders
+            .AsNoTracking()
             .Include(o => o.Plan)
             .FirstOrDefaultAsync(o => o.Id == model.PaymentOrderId);
         if (order == null)
@@ -622,42 +633,39 @@ public class BillingManagementController : BaseController
 
         if (!string.Equals(order.Status, PaymentOrderStatuses.ManualReview, StringComparison.OrdinalIgnoreCase))
         {
-            TempData["Error"] = "Chi co the confirm paid cho order dang manual_review.";
+            TempData["Error"] = "Chỉ có thể xác nhận đã thanh toán cho đơn đang ở trạng thái kiểm tra thủ công.";
             return RedirectToAction(nameof(Details), new { id = order.Id });
         }
 
         if (order.AmountVnd <= 0 || order.PlanId <= 0 || order.Plan == null)
         {
-            TempData["Error"] = "Order thieu du lieu amount/plan, khong the confirm paid.";
+            TempData["Error"] = "Đơn thiếu dữ liệu số tiền hoặc gói, không thể xác nhận đã thanh toán.";
             return RedirectToAction(nameof(Details), new { id = order.Id });
         }
 
-        var oldStatus = order.Status;
-        var nowUtc = DateTime.UtcNow;
-        order.Status = PaymentOrderStatuses.Paid;
-        order.PaidAtUtc ??= nowUtc;
-        order.UpdatedAtUtc = nowUtc;
-        order.FailureMessage = null;
-
-        await _context.PaymentEvents.AddAsync(new PaymentEvent
-        {
-            Provider = order.Provider,
-            EventType = PaymentEventTypes.ManualConfirm,
-            EventKey = $"manual-confirm:{order.OrderCode}:{nowUtc.Ticks}",
-            PaymentOrderId = order.Id,
-            SignatureValid = true,
-            ResultCode = "admin_confirm_paid",
-            PayloadJson = "{}",
-            ProcessingStatus = PaymentEventProcessingStatuses.Processed,
-            ProcessingMessage = model.Reason,
-            ReceivedAtUtc = nowUtc,
-            ProcessedAtUtc = nowUtc
-        });
-
-        await _context.SaveChangesAsync();
-        await _subscriptionService.ActivateFromPaidOrderAsync(order.Id);
-
         var adminId = GetCurrentUserId();
+        var oldStatus = order.Status;
+
+        // One transaction in the confirmation service: paid, event, subscription and ActivatedAtUtc together,
+        // so a failure can no longer leave a paid order without Premium.
+        var confirmation = await _confirmationService.ConfirmPaidAsync(new PaymentConfirmation(
+            OrderId: order.Id,
+            Provider: order.Provider,
+            Source: PaymentTransitionSource.Admin,
+            VerifiedAmountVnd: null,
+            EventType: PaymentEventTypes.ManualConfirm,
+            EventKey: $"manual-confirm:{order.OrderCode}:{DateTime.UtcNow.Ticks}",
+            PayloadJson: "{}",
+            ResponseCode: "admin_confirm_paid",
+            AdminReason: model.Reason,
+            AdminUserId: adminId));
+
+        if (confirmation.Outcome is not (PaymentConfirmationOutcome.Activated or PaymentConfirmationOutcome.AlreadyPaid))
+        {
+            TempData["Error"] = "Không thể xác nhận đã thanh toán: đơn đã đổi trạng thái. Hãy tải lại trang chi tiết.";
+            return RedirectToAction(nameof(Details), new { id = order.Id });
+        }
+
         await _auditService.RecordAsync(
             adminUserId: adminId,
             actionType: AdminActionTypes.ResolveManualReview,
@@ -669,7 +677,7 @@ public class BillingManagementController : BaseController
             ipAddress: HttpContext.Connection.RemoteIpAddress?.ToString(),
             userAgent: HttpContext.Request.Headers["User-Agent"].ToString());
 
-        TempData["Success"] = $"Order {order.OrderCode} da duoc confirm paid va kich hoat subscription.";
+        TempData["Success"] = $"Đơn {order.OrderCode} đã được xác nhận đã thanh toán và kích hoạt gói.";
         return RedirectToAction(nameof(Details), new { id = order.Id });
     }
 
@@ -689,7 +697,13 @@ public class BillingManagementController : BaseController
 
         if (!string.Equals(order.Status, PaymentOrderStatuses.ManualReview, StringComparison.OrdinalIgnoreCase))
         {
-            TempData["Error"] = "Chi co the reject cho order dang manual_review.";
+            TempData["Error"] = "Chỉ có thể từ chối đơn đang ở trạng thái kiểm tra thủ công.";
+            return RedirectToAction(nameof(Details), new { id = order.Id });
+        }
+
+        if (!PaymentOrderStateMachine.CanMarkFailedOrCancelled(order.Status, PaymentTransitionSource.Admin))
+        {
+            TempData["Error"] = "Không thể từ chối đơn ở trạng thái hiện tại.";
             return RedirectToAction(nameof(Details), new { id = order.Id });
         }
 
@@ -728,7 +742,7 @@ public class BillingManagementController : BaseController
             ipAddress: HttpContext.Connection.RemoteIpAddress?.ToString(),
             userAgent: HttpContext.Request.Headers["User-Agent"].ToString());
 
-        TempData["Success"] = $"Order {order.OrderCode} da duoc reject.";
+        TempData["Success"] = $"Đơn {order.OrderCode} đã bị từ chối.";
         return RedirectToAction(nameof(Details), new { id = order.Id });
     }
 
@@ -743,14 +757,18 @@ public class BillingManagementController : BaseController
 
         if (expiredPendingOrders.Count == 0)
         {
-            TempData["Success"] = "Khong co don pending qua han de don.";
+            TempData["Success"] = "Không có đơn đang chờ quá hạn để dọn.";
             return RedirectToAction(nameof(Index));
         }
+
+        expiredPendingOrders = expiredPendingOrders
+            .Where(o => PaymentOrderStateMachine.CanExpire(o.Status))
+            .ToList();
 
         foreach (var order in expiredPendingOrders)
         {
             order.Status = PaymentOrderStatuses.Expired;
-            order.FailureMessage ??= "Don pending qua han duoc don boi admin.";
+            order.FailureMessage ??= "Đơn chờ quá hạn được dọn bởi quản trị viên.";
             order.UpdatedAtUtc = nowUtc;
         }
 
@@ -761,7 +779,7 @@ public class BillingManagementController : BaseController
             GetCurrentUserId(),
             expiredPendingOrders.Count);
 
-        TempData["Success"] = $"Da don {expiredPendingOrders.Count} don pending qua han (chuyen sang expired).";
+        TempData["Success"] = $"Đã dọn {expiredPendingOrders.Count} đơn đang chờ quá hạn (chuyển sang hết hạn).";
         return RedirectToAction(nameof(Index));
     }
 

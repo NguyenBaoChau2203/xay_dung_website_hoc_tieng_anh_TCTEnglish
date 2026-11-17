@@ -54,14 +54,14 @@ namespace TCTEnglish.Services.Billing.MoMo
             {
                 return ProviderCheckoutResult.Fail(
                     "NOT_CONFIGURED",
-                    "Cong thanh toan MoMo chua duoc cau hinh. Vui long lien he quan tri vien.");
+                    "Cổng thanh toán MoMo chưa sẵn sàng.");
             }
 
             if (amountVnd < 1000m || amountVnd > 50000000m)
             {
                 return ProviderCheckoutResult.Fail(
                     "INVALID_AMOUNT",
-                    "So tien thanh toan MoMo khong hop le.");
+                    "Số tiền thanh toán MoMo không hợp lệ.");
             }
 
             if (IsMockMode)
@@ -115,7 +115,7 @@ namespace TCTEnglish.Services.Billing.MoMo
                 _logger.LogError(ex, "MoMo create payment failed. OrderCode={OrderCode}", orderCode);
                 return ProviderCheckoutResult.Fail(
                     "MOMO_CREATE_FAILED",
-                    "Khong the ket noi cong MoMo luc nay.");
+                    "Không thể kết nối cổng MoMo lúc này.");
             }
 
             if (!response.IsSuccessStatusCode)
@@ -127,7 +127,7 @@ namespace TCTEnglish.Services.Billing.MoMo
 
                 return ProviderCheckoutResult.Fail(
                     "MOMO_CREATE_FAILED",
-                    "MoMo tu choi tao phien thanh toan.");
+                    "MoMo từ chối tạo phiên thanh toán.");
             }
 
             MoMoCreateResponse? payload;
@@ -140,23 +140,27 @@ namespace TCTEnglish.Services.Billing.MoMo
                 _logger.LogError(ex, "MoMo create response parse error. OrderCode={OrderCode}", orderCode);
                 return ProviderCheckoutResult.Fail(
                     "MOMO_RESPONSE_INVALID",
-                    "Phan hoi tu MoMo khong hop le.");
+                    "Phản hồi từ MoMo không hợp lệ.");
             }
 
             if (payload == null)
             {
                 return ProviderCheckoutResult.Fail(
                     "MOMO_RESPONSE_INVALID",
-                    "Khong nhan duoc du lieu tu MoMo.");
+                    "Phản hồi từ MoMo không hợp lệ.");
             }
 
             if (payload.ResultCode != 0)
             {
+                // MoMo's own wording is for the log, not for the learner.
+                _logger.LogWarning(
+                    "MoMo create rejected. OrderCode={OrderCode}, ResultCode={ResultCode}, Message={ProviderMessage}",
+                    orderCode,
+                    payload.ResultCode,
+                    payload.Message);
                 return ProviderCheckoutResult.Fail(
                     $"MOMO_{payload.ResultCode}",
-                    string.IsNullOrWhiteSpace(payload.Message)
-                        ? "MoMo khong the tao giao dich."
-                        : payload.Message);
+                    "MoMo không thể tạo giao dịch lúc này.");
             }
 
             if (string.IsNullOrWhiteSpace(payload.PayUrl)
@@ -165,7 +169,7 @@ namespace TCTEnglish.Services.Billing.MoMo
             {
                 return ProviderCheckoutResult.Fail(
                     "MOMO_RESPONSE_INVALID",
-                    "MoMo khong tra ve thong tin thanh toan hop le.");
+                    "MoMo không trả về thông tin thanh toán hợp lệ.");
             }
 
             var redirectUrl = $"/Billing/MoMoQr?orderCode={Uri.EscapeDataString(orderCode)}";

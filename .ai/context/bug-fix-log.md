@@ -4684,3 +4684,26 @@ pass. Final CI and staging evidence must be recorded in the release ledger/PR.
 **Verification**: Full .NET suite 1760 passed / 0 failed; node 369 of 370 (the one failure is the known Speaking package hash). Scripted browser runs at seven sizes, with the keyboard only, with reduced motion, in forced colours and without JavaScript; contrast, colour discipline and performance budgets recorded in `docs/superpowers/plans/2026-11-16-landing-night-and-bug-sweep.md` section 12.
 
 **Notes**: See LANDING-SCREENSHOTS-STALE, LANDING-DARK-THEME-D1 and LANDING-READING-LOGIN-RETURN in known-issues. `HomeController` was not changed.
+
+
+---
+
+### Payment (Premium): wrong confirmations, lost IPNs, sign-out after paying, broken icons, unusable order pages — 2026-11-17
+
+**Symptom**: (F1) the buyer is signed out on the request after an order is confirmed; (F2/F3) a paid VNPay order stays `pending` then `expired` when the IPN never arrives (always on localhost), and reconciliation marked in-progress or "not found yet" transactions `failed` without checking the amount; (F4/F8) a failure callback could overwrite `manual_review`/`refunded`/`expired` and a late success activated silently for MoMo; (F5) admin "confirm paid" left a paid order without Premium if activation failed; (F6/F7) a duplicate callback or event on MariaDB threw (VNPay `99`, MoMo 500); (F9) a non-JSON MoMo IPN body gave HTTP 500; (F10) a Premium buyer never saw the end date; (F11) every icon on the billing pages was missing (Bootstrap Icons are not loaded in the learner layout); (F12/F13/F20) four buttons per plan, no resume of an open order, an admin could buy, history had no paging or actions; (F14–F18) English/technical copy ("IPN", "Manual review"), undiacriticised messages, server-zone times, false feature claims, a CDN script without integrity.
+
+**Root Cause**: The "mark paid and activate" logic existed three times (IPN, reconciliation, admin) with different checks and no state machine; the provider return was display-only and nothing else confirmed an order; the VNPay query result had no amount and no "unknown"; the role change that grants Premium makes `AccountSessionValidator` reject the old cookie; unique-conflict detection looked for SQL Server codes; pages were written against the wrong icon family and time zone.
+
+**Solution**: One `PaymentConfirmationService` (the only place that assigns `paid`; transaction, state machine, amount check, 24 h late rule for every provider, a unique `grant:{OrderCode}` event as a concurrency guard, admin source) and a pure `PaymentOrderStateMachine`. IPN, a new throttled `PaymentQueryService` (VNPay three-way result with amount; new MoMo query client), the return handlers, an owner-only `POST /Billing/Order/{code}/Refresh`, the reconciliation (now both providers, pending and recently expired, no more "failed" on unknown) and the admin action all go through it. New `/Billing/Order/{code}` page (waiting / confirming / paid / not completed, self-updating), rebuilt `/Premium` (one form) and `/Billing/History` (paging, resume, receipt), Clay `billing.css`, Font Awesome, Vietnam time, a verified benefit list, pinned QR script. Sign-out (F1) is mitigated in the billing scope and written up as `BILLING-ROLE-CHANGE-SIGNS-OUT` for the account owner.
+
+**Files Changed**:
+- `Services/Billing/{PaymentOrderStateMachine,PaymentConfirmationService,IPaymentConfirmationService,PaymentQueryService,PaymentQueryModels,PaymentOrderPresentation,PaymentOrderLabels,PremiumBenefits,BillingTime,BillingClientIp,PricingPageBuilder,OrderPageBuilder}.cs`, `Services/Billing/MoMo/MoMoQueryClient.cs`; edited `IpnService`, `BillingService`, `PaymentReconciliationService`, `SubscriptionService`, `PremiumAccessService`, `VnPayQueryClient`, both gateways (messages)
+- `Controllers/BillingController.cs`, `Areas/Admin/Controllers/BillingManagementController.cs` (+ its views: copy and time only), `Views/Billing/*` (new `Order`, `InvalidReturn`, `_BenefitsTable`, four partials; rewritten `Pricing`, `History`; removed `MoMoQr`, `PaymentResult`), `Views/Shared/_Layout.cshtml` (one string), `Program.cs` (three DI lines)
+- `wwwroot/css/{billing,study-kit}.css` (kit scope lists only), `wwwroot/js/billing-{core,pricing,order}.js`, `wwwroot/lib/pinned/qrcode-1.0.0.min.js` (+ licence, provenance)
+- Tests: ~30 new test files/classes (state machine, confirmation, IPN matrix, queries, return/refresh/reconciliation, checkout, pages, admin, guards) and `scripts/tests/test_billing_core.cjs`
+
+**Verification**: Per-phase gate G1–G16 recorded in `docs/superpowers/plans/2026-11-17-billing-hardening-and-redesign.md` section 12 (full .NET suite, node suite, contract greps, scripted browser runs at seven sizes with keyboard, forced colours, reduced motion, no-JS checkout and scripted contrast; end-to-end mock-MoMo purchase against the local MariaDB). No real payment and no live provider call was made.
+
+**Commit**: `feat(billing)` / `fix(billing)` series on `feature/billing-complete` (11 commits); nothing pushed.
+
+**Notes**: Follow-ups in known-issues: `BILLING-ROLE-CHANGE-SIGNS-OUT`, `BILLING-MOMO-QUERY-UNVERIFIED`, `BILLING-RECONCILIATION-WORKER-OFF`, `BILLING-ROLE-CLAIM-PREMIUM-CHECKS`. Related: `LANDING-READING-LOGIN-RETURN` (the login page ignores `returnUrl`).

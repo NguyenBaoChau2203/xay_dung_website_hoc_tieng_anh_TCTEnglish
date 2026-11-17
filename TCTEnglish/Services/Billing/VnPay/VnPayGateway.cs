@@ -55,7 +55,7 @@ namespace TCTEnglish.Services.Billing.VnPay
                 // Intentionally vague — do not reveal which field is missing
                 return Task.FromResult(ProviderCheckoutResult.Fail(
                     "NOT_CONFIGURED",
-                    "Cổng thanh toán VNPay chưa được cấu hình. Vui lòng liên hệ quản trị viên."));
+                    "Cổng thanh toán VNPay chưa sẵn sàng."));
             }
 
             try
