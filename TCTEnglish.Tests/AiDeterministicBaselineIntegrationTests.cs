@@ -53,7 +53,9 @@ public sealed class AiDeterministicBaselineIntegrationTests
         var text = payload.RootElement.GetProperty("text").GetString();
 
         Assert.NotNull(text);
-        Assert.Contains("/Home/CreateClass", text);
+        Assert.Contains("mở mục này trên website", text);
+        var sources = payload.RootElement.GetProperty("grounding").GetProperty("sources").EnumerateArray().ToList();
+        Assert.Contains(sources, s => s.GetProperty("route").GetString() == "/Home/CreateClass");
     }
 
     [Fact]
@@ -129,14 +131,15 @@ public sealed class AiDeterministicBaselineIntegrationTests
     }
 
     [Fact]
-    public async Task Send_StudyRecommendation_WhenNoOwnedSet_ReturnsEmptyState()
+    public async Task Send_StudyRecommendation_WhenNoOwnedSet_ReturnsGeneralStarterChoices()
     {
         await using var factory = CreateDeterministicFactory();
         await factory.InitializeAsync();
 
         var text = await SendAndReadTextAsync(factory, TestDataIds.OutsiderUserId, "toi nen hoc gi tiep");
 
-        Assert.Contains("chưa có đủ dữ liệu học", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("gợi ý khởi đầu chung", text, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Dựa trên dữ liệu học của bạn", text);
     }
 
     [Fact]
@@ -188,9 +191,11 @@ public sealed class AiDeterministicBaselineIntegrationTests
         await using var factory = CreateDeterministicFactory();
         await factory.InitializeAsync();
 
-        var text = await SendAndReadTextAsync(factory, TestDataIds.UserId, message);
-
-        Assert.Contains(expectedRoute, text);
+        var payload = await SendAndReadPayloadAsync(factory, TestDataIds.UserId, message);
+        var text = payload.RootElement.GetProperty("text").GetString();
+        Assert.False(string.IsNullOrWhiteSpace(text));
+        var sources = payload.RootElement.GetProperty("grounding").GetProperty("sources").EnumerateArray().ToList();
+        Assert.Contains(sources, s => s.GetProperty("route").GetString() == expectedRoute);
     }
 
     [Theory]
@@ -246,7 +251,7 @@ public sealed class AiDeterministicBaselineIntegrationTests
         }
     }
 
-    private static async Task<string> SendAndReadTextAsync(TestWebApplicationFactory factory, int userId, string message)
+    private static async Task<JsonDocument> SendAndReadPayloadAsync(TestWebApplicationFactory factory, int userId, string message)
     {
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, userId, Roles.Standard);
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/AI/Chat");
@@ -256,7 +261,12 @@ public sealed class AiDeterministicBaselineIntegrationTests
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        return JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    }
+
+    private static async Task<string> SendAndReadTextAsync(TestWebApplicationFactory factory, int userId, string message)
+    {
+        var payload = await SendAndReadPayloadAsync(factory, userId, message);
         var text = payload.RootElement.GetProperty("text").GetString();
 
         Assert.False(string.IsNullOrWhiteSpace(text));

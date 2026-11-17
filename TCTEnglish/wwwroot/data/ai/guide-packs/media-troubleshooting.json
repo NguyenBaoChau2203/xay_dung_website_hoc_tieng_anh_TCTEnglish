@@ -1,0 +1,485 @@
+{
+  "_version": "1.0.0",
+  "_reviewed": "2026-11-18",
+  "_scope": "Reviewed user-facing troubleshooting; no secrets, uploads or paid transport execution.",
+  "guides": [
+    {
+      "id": "troubleshooting-microphone",
+      "title": "Khi trình duyệt chưa cho phép micro",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Nếu trang chưa dùng được micro, bạn có thể kiểm tra **quyền micro của website trong trình duyệt** và thiết bị đầu vào đang chọn 🎙️\n\nCho phép quyền nếu bạn muốn ghi âm, kiểm tra xem micro có bị tắt hoặc ứng dụng khác chiếm dụng, rồi thử một câu ngắn. Nếu không muốn cấp quyền, chỉ dùng các phần luyện không cần ghi âm đang có.\n\nKhông có bản ghi hoặc kết quả trả về thì mình không tự suy ra điểm. Nếu vẫn gặp lỗi, ghi lại thông báo không nhạy cảm và tên trình duyệt để liên hệ hỗ trợ; không gửi mật khẩu hay khóa dịch vụ vào chat.",
+      "questions": [
+        "Trình duyệt không cho dùng micro thì làm sao?",
+        "Mình lỡ chặn quyền micro khi luyện Speaking",
+        "Tại sao trang không thấy thiết bị micro?",
+        "Muốn cho phép website dùng micro thì kiểm tra gì?",
+        "Tôi không muốn ghi âm có thể dùng phần khác không?",
+        "Micro bị tắt có khiến lượt ghi không có tiếng không?",
+        "What should I check when microphone permission is blocked?",
+        "Tôi muốn thử ghi âm nhưng trình duyệt báo chưa có quyền"
+      ],
+      "keywords": [
+        "chặn quyền micro",
+        "không cho dùng micro",
+        "không thấy thiết bị micro",
+        "microphone permission"
+      ],
+      "matchPhrases": [
+        "chặn quyền micro",
+        "không cho dùng micro",
+        "không thấy thiết bị micro",
+        "microphone permission"
+      ],
+      "matchRules": [
+        [
+          "thu am",
+          "phep"
+        ],
+        [
+          "micro",
+          "tu choi"
+        ],
+        [
+          "micro",
+          "quyen"
+        ],
+        [
+          "microphone",
+          "permission"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-empty-recording",
+      "title": "Khi bản ghi không có tiếng hoặc quá ngắn",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Nếu bản ghi không có tiếng, hãy kiểm tra đầu vào micro, mức âm lượng và việc micro có bị tắt. Nói một câu ngắn rõ ràng, dừng ghi theo hướng dẫn rồi kiểm tra bản ghi khi giao diện hỗ trợ.\n\nĐoạn quá ngắn, không có tiếng hoặc không hợp lệ có thể không được chấm. Chỉ gửi lại khi bạn chủ động muốn thử một lượt mới và giao diện cho phép; chat không tự gửi audio hay tự chấm bù.\n\nNếu lỗi tiếp diễn, giữ lại thông báo không nhạy cảm để liên hệ hỗ trợ. Mình không khẳng định điểm hoặc trạng thái tính phí nếu chưa có kết quả xác nhận.",
+      "questions": [
+        "Ghi âm xong không có tiếng thì kiểm tra gì?",
+        "Bản ghi Speaking quá ngắn có chấm được không?",
+        "Mình nói mà bản ghi vẫn im lặng",
+        "Lượt thu âm không hợp lệ nên xử lý thế nào?",
+        "Tại sao không có điểm sau đoạn ghi rất ngắn?",
+        "Tôi muốn thử lại bản ghi có tiếng rõ hơn",
+        "Why is my speaking recording silent or too short?",
+        "Có cần kiểm tra âm lượng đầu vào trước khi gửi chấm không?"
+      ],
+      "keywords": [
+        "bản ghi không có tiếng",
+        "bản ghi im lặng",
+        "ghi âm không có tiếng",
+        "bản ghi quá ngắn",
+        "recording silent"
+      ],
+      "matchPhrases": [
+        "bản ghi không có tiếng",
+        "bản ghi im lặng",
+        "ghi âm không có tiếng",
+        "bản ghi quá ngắn",
+        "recording silent"
+      ],
+      "matchRules": [
+        [
+          "thu",
+          "im lang"
+        ],
+        [
+          "thu",
+          "chua du dai"
+        ],
+        [
+          "ghi am",
+          "khong co tieng"
+        ],
+        [
+          "recording",
+          "silent"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-no-audio",
+      "title": "Khi không nghe thấy bài hoặc video",
+      "route": "/Home/Listening",
+      "topic": "media-troubleshooting",
+      "body": "Nếu không nghe thấy âm thanh, bạn có thể kiểm tra **âm lượng thiết bị, tab có bị tắt tiếng và nút phát trong bài** 🎧\n\nThử thao tác phát theo giao diện và kiểm tra kết nối. Nếu bài/video không tải hoặc nguồn ngoài không còn dùng được, không nên coi đó là lỗi phát âm của bạn. Có thể chọn bài khác đang khả dụng để tiếp tục luyện.\n\nTranscript và câu hỏi không bảo đảm có ở mọi bài; hãy dùng phần thực sự đang hiển thị. Nếu lỗi chỉ xảy ra ở một nội dung, ghi lại tên bài và thông báo để liên hệ hỗ trợ, tránh chia sẻ thông tin nhạy cảm.",
+      "questions": [
+        "Không nghe thấy âm thanh bài Listening thì làm gì?",
+        "Video có hình mà không có tiếng",
+        "Tôi nên kiểm tra tab bị tắt tiếng như thế nào?",
+        "Bài nghe không phát có phải do tôi luyện sai không?",
+        "Không tải được âm thanh thì có thể chọn bài khác chứ?",
+        "Vì sao bấm phát mà chưa nghe được gì?",
+        "What can I check when a lesson has no audio?",
+        "Tôi muốn xử lý trường hợp bài nghe không có tiếng"
+      ],
+      "keywords": [
+        "không nghe thấy âm thanh",
+        "video không có tiếng",
+        "tab bị tắt tiếng",
+        "bài nghe không phát",
+        "lesson has no audio"
+      ],
+      "matchPhrases": [
+        "không nghe thấy âm thanh",
+        "video không có tiếng",
+        "tab bị tắt tiếng",
+        "bài nghe không phát",
+        "lesson has no audio"
+      ],
+      "matchRules": [
+        [
+          "play",
+          "khong nghe"
+        ],
+        [
+          "video",
+          "khong phat",
+          "am thanh"
+        ],
+        [
+          "tab",
+          "tat tieng"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-playback",
+      "title": "Nghe lại và dùng điều khiển phát đang có",
+      "route": "/Home/Listening",
+      "topic": "media-troubleshooting",
+      "body": "Khi muốn nghe chậm hoặc nghe lại, hãy dùng **các điều khiển mà bài hiện tại thực sự cung cấp**. Nếu có chọn câu/đoạn, phát lại đoạn đó; nếu có điều khiển tốc độ, chọn mức bạn theo kịp.\n\nKhông phải bài/video nào cũng có cùng nút điều khiển. Khi chưa theo được, bạn có thể chọn đoạn ngắn hơn hoặc nội dung dễ hơn, rồi đối chiếu transcript nếu có.\n\nMục tiêu là hiểu và luyện lại phần khó, không phải mở thật nhiều bài. Chat không tự đổi tốc độ phát hay bổ sung một nút không có trên trang.",
+      "questions": [
+        "Tôi muốn nghe chậm hơn thì dùng nút nào?",
+        "Có thể nghe lại từng đoạn bài Listening không?",
+        "Vì sao bài này không có cùng điều khiển phát với bài khác?",
+        "Nếu không có nút tốc độ thì nên luyện như nào?",
+        "Tôi muốn phát lại phần nghe chưa rõ",
+        "Mọi bài đều có nút nghe từng câu không?",
+        "How can I replay or slow down a lesson when controls are available?",
+        "Nghe lại đoạn khó có thể bắt đầu từ đâu?"
+      ],
+      "keywords": [
+        "nghe chậm hơn",
+        "nút tốc độ",
+        "điều khiển phát",
+        "phát lại phần nghe",
+        "replay or slow"
+      ],
+      "matchPhrases": [
+        "nghe chậm hơn",
+        "nút tốc độ",
+        "điều khiển phát",
+        "phát lại phần nghe",
+        "replay or slow"
+      ],
+      "matchRules": [
+        [
+          "toc do",
+          "chua theo kip"
+        ],
+        [
+          "nut",
+          "giam toc"
+        ],
+        [
+          "nghe",
+          "cham hon"
+        ],
+        [
+          "replay",
+          "slow"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-transcript",
+      "title": "Khi transcript hoặc phụ đề chưa xuất hiện",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Nếu chưa có transcript/phụ đề, hãy kiểm tra trạng thái của bài. Nội dung có thể đang xử lý, chưa được nhập hoặc không có transcript phù hợp.\n\nChỉ luyện theo câu khi bài có dữ liệu câu đang được phép xem. Nếu tính năng cho nhập phụ đề của bài cá nhân xuất hiện, làm theo định dạng và giới hạn trên biểu mẫu; đừng coi mọi link video đều tự có phụ đề.\n\nBạn có thể chọn một bài khác có transcript để demo phần luyện nói. Chat không tạo phụ đề mới, đọc được video riêng bị chặn hay khẳng định bước xử lý đã thành công khi trang chưa xác nhận.",
+      "questions": [
+        "Tại sao video chưa có transcript?",
+        "Bài Speaking không hiện câu để luyện thì làm sao?",
+        "Phụ đề đang xử lý có luyện theo câu ngay được không?",
+        "Mọi link video có tự lấy được phụ đề không?",
+        "Không thấy transcript thì nên chọn bài khác chứ?",
+        "Tôi muốn demo Speaking nhưng bài này chưa có phụ đề",
+        "What should I do when the transcript is missing?",
+        "Transcript chưa xuất hiện có nghĩa là đã nhập xong chưa?"
+      ],
+      "keywords": [
+        "chưa có transcript",
+        "không hiện câu để luyện",
+        "không thấy transcript",
+        "phụ đề đang xử lý",
+        "transcript is missing"
+      ],
+      "matchPhrases": [
+        "chưa có transcript",
+        "không hiện câu để luyện",
+        "không thấy transcript",
+        "phụ đề đang xử lý",
+        "transcript is missing"
+      ],
+      "matchRules": [
+        [
+          "video",
+          "danh sach cau"
+        ],
+        [
+          "video",
+          "phu de san"
+        ],
+        [
+          "transcript",
+          "khong thay"
+        ],
+        [
+          "transcript",
+          "missing"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-video-import",
+      "title": "Khi nhập link video chưa hoàn tất",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Khi nhập video, hãy kiểm tra link có hợp lệ, tính năng có được tài khoản phép dùng và trạng thái xử lý trên trang. **Gửi link chưa đồng nghĩa video đã sẵn sàng luyện**.\n\nNguồn ngoài có thể bị hạn chế, không có phụ đề phù hợp hoặc xử lý chưa thành công. Nếu trang cho phép bổ sung phụ đề, dùng đúng biểu mẫu và giới hạn; nếu không, chọn bài có sẵn đang khả dụng để tiếp tục.\n\nKhông gửi lại liên tục hoặc coi mọi lỗi là đã tạo bài mới. Chat không vượt quyền truy cập nguồn, không tự bật tính năng trả phí và không báo thành công thay cho kết quả thật.",
+      "questions": [
+        "Tôi dán link YouTube nhưng bài chưa sẵn sàng",
+        "Nhập video đang xử lý thì có luyện ngay được không?",
+        "Gửi link xong có phải đã có bài Speaking không?",
+        "Link video bị hạn chế thì website có vượt qua được không?",
+        "Vì sao nhập YouTube có thể không lấy được transcript?",
+        "Khi nhập video chưa xong nên làm gì để tiếp tục học?",
+        "What should I check when a video import is still processing?",
+        "Tôi muốn tránh gửi lại link liên tục khi chưa rõ kết quả"
+      ],
+      "keywords": [
+        "nhập video chưa xong",
+        "nhập video đang xử lý",
+        "dán link youtube nhưng",
+        "video import"
+      ],
+      "matchPhrases": [
+        "nhập video chưa xong",
+        "nhập video đang xử lý",
+        "dán link youtube nhưng",
+        "video import"
+      ],
+      "matchRules": [
+        [
+          "link",
+          "nhap lai"
+        ],
+        [
+          "video",
+          "han che",
+          "link"
+        ],
+        [
+          "nhap video",
+          "xu ly"
+        ],
+        [
+          "video",
+          "import"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-subtitle-file",
+      "title": "Kiểm tra tệp phụ đề trước khi nhập",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Nếu biểu mẫu cho nhập tệp phụ đề, hãy làm theo **định dạng, kích thước và điều kiện của biểu mẫu đó**. Với nội dung SRT, kiểm tra văn bản câu và mốc thời gian có phù hợp video trước khi gửi.\n\nTệp hỏng, sai cấu trúc hoặc không khớp nội dung có thể bị từ chối hay cho kết quả không mong muốn. Không đổi đuôi tùy ý để giả định đã chuyển đúng định dạng.\n\nChỉ nhập phụ đề cho nội dung/tài khoản bạn được phép dùng. Chat không sửa tệp, giải mã nội dung riêng hay bảo đảm mọi tệp đều được chấp nhận; hãy dựa vào thông báo thực tế của trang.",
+      "questions": [
+        "Tệp phụ đề bị từ chối thì cần kiểm tra gì?",
+        "Nhập SRT có phải chỉ đổi đuôi file là được không?",
+        "Tại sao câu phụ đề không khớp mốc video?",
+        "Trước khi tải phụ đề lên tôi nên xem điều kiện nào?",
+        "Mọi tệp văn bản đều nhập làm phụ đề được chứ?",
+        "Tôi muốn kiểm tra định dạng file phụ đề trước khi gửi",
+        "How should I check a subtitle file before importing it?",
+        "Phụ đề sai thời gian có ảnh hưởng việc luyện câu không?"
+      ],
+      "keywords": [
+        "tệp phụ đề bị từ chối",
+        "nhập srt",
+        "định dạng file phụ đề",
+        "subtitle file"
+      ],
+      "matchPhrases": [
+        "tệp phụ đề bị từ chối",
+        "nhập srt",
+        "định dạng file phụ đề",
+        "subtitle file"
+      ],
+      "matchRules": [
+        [
+          "srt",
+          "thoi gian"
+        ],
+        [
+          "file",
+          "phu de",
+          "hop le"
+        ],
+        [
+          "tep",
+          "phu de"
+        ],
+        [
+          "subtitle",
+          "file"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-scoring",
+      "title": "Khi dịch vụ chấm chưa trả kết quả",
+      "route": "/Speaking",
+      "topic": "media-troubleshooting",
+      "body": "Nếu lượt chấm chưa trả kết quả hoặc báo tạm thời không khả dụng, hãy đọc thông báo thật của trang và giữ lại nội dung cần thiết để kiểm tra lại.\n\nBạn có thể dùng phần tự luyện không cần chấm khi giao diện đề nghị, hoặc quay lại bài khác đang khả dụng. Chỉ gửi một lượt mới khi bạn chủ động muốn thử lại và trang cho phép; chat không tự gửi audio.\n\nMình không tự đoán điểm, không coi lỗi dịch vụ là phát âm kém và không khẳng định một lượt đã/không bị tính phí khi chưa có xác nhận. Không cần đưa khóa API, mật khẩu hoặc thông tin tài khoản dịch vụ vào chat.",
+      "questions": [
+        "Chấm Speaking báo tạm thời không khả dụng thì làm gì?",
+        "Dịch vụ chấm chưa trả điểm có phải tôi phát âm sai không?",
+        "Tôi muốn tự luyện khi chưa dùng được lượt chấm",
+        "Không có kết quả chấm thì chatbot có đoán điểm giúp được không?",
+        "Lỗi dịch vụ chấm có nên gửi audio liên tục không?",
+        "Mình chưa rõ kết quả lượt chấm nên kiểm tra gì?",
+        "What can I do when speaking assessment is unavailable?",
+        "Chat có tự gửi lại bản ghi khi dịch vụ đang lỗi không?"
+      ],
+      "keywords": [
+        "chấm speaking báo",
+        "dịch vụ chấm",
+        "không có kết quả chấm",
+        "assessment is unavailable"
+      ],
+      "matchPhrases": [
+        "chấm speaking báo",
+        "dịch vụ chấm",
+        "không có kết quả chấm",
+        "assessment is unavailable"
+      ],
+      "matchRules": [
+        [
+          "diem",
+          "luot gui"
+        ],
+        [
+          "dich vu",
+          "danh gia"
+        ],
+        [
+          "ket qua",
+          "cham"
+        ],
+        [
+          "assessment",
+          "unavailable"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-writing-job",
+      "title": "Khi tạo bài Writing hoặc phản hồi còn đang chờ",
+      "route": "/Home/Writing/Exercises",
+      "topic": "media-troubleshooting",
+      "body": "Nếu trang báo bài Writing hoặc phản hồi đang xử lý, hãy theo dõi trạng thái/kết quả mà giao diện cung cấp. **Một yêu cầu đang chờ chưa phải kết quả đã hoàn tất**.\n\nKhông gửi lại liên tục khi chưa rõ yêu cầu trước đã được nhận hay chưa. Dùng thao tác kiểm tra/phục hồi mà trang có; nếu chưa làm được, xem lại lịch sử hoặc quay lại bài đã có. Trường hợp giao diện đề nghị khung nội bộ thay cho tạo bằng AI, đọc đúng điều kiện trước khi chủ động chọn.\n\nChat không hứa mọi yêu cầu đều có phản hồi AI, không tự tạo thêm lượt trả phí và không biến khung nội bộ thành kết quả từ AI. Bài công khai đang được phép xem vẫn là lựa chọn để tiếp tục luyện.",
+      "questions": [
+        "Writing đang xử lý thì có nên bấm gửi lại không?",
+        "Tạo bài Writing chưa có kết quả nên làm gì?",
+        "Phản hồi bài viết đang chờ có nghĩa là đã xong chưa?",
+        "Khi chưa rõ yêu cầu tạo bài đã được nhận thì kiểm tra ra sao?",
+        "Khung nội bộ có phải lúc nào cũng là kết quả AI không?",
+        "Tôi muốn tiếp tục luyện khi lượt tạo bài chưa hoàn tất",
+        "What should I do when a Writing request is still pending?",
+        "Chat có tự gửi thêm một lượt tạo bài hộ tôi không?"
+      ],
+      "keywords": [
+        "writing đang xử lý",
+        "tạo bài writing chưa",
+        "phản hồi bài viết đang chờ",
+        "writing request is still pending"
+      ],
+      "matchPhrases": [
+        "writing đang xử lý",
+        "tạo bài writing chưa",
+        "phản hồi bài viết đang chờ",
+        "writing request is still pending"
+      ],
+      "matchRules": [
+        [
+          "tao bai",
+          "hoan tat"
+        ],
+        [
+          "khung noi bo",
+          "tao"
+        ],
+        [
+          "writing",
+          "dang xu ly"
+        ],
+        [
+          "writing",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "id": "troubleshooting-chat-result",
+      "title": "Khi câu trả lời chat chưa được xác nhận",
+      "route": "/AI/Chat",
+      "topic": "media-troubleshooting",
+      "body": "Nếu chat báo **chưa xác nhận được kết quả**, bạn hãy xem lại lịch sử hội thoại trước khi gửi lại cùng yêu cầu. Lỗi mạng không chứng minh yêu cầu trước chưa được xử lý.\n\nKhi bạn chủ động dừng một câu trả lời, đừng coi phần chưa được xác nhận là kết quả hoàn chỉnh. Nếu tải tin cũ, hãy chú ý cảnh báo nội dung đã thay đổi hoặc chưa được xác minh; nguồn không còn được phép xem sẽ không mở được như trước.\n\nBạn có thể giữ bản nháp và dùng thao tác thử lại khi giao diện cho phép. Chat không cam kết đã lưu một phản hồi nếu chưa có kết quả xác nhận.",
+      "questions": [
+        "Chat báo chưa xác nhận được kết quả thì làm gì?",
+        "Mất mạng khi gửi câu hỏi có nên gửi lại ngay không?",
+        "Dừng câu trả lời có nghĩa là đã nhận kết quả hoàn chỉnh chưa?",
+        "Tôi muốn kiểm tra câu trả lời đã lưu trước khi gửi lại",
+        "Cảnh báo chưa kiểm tra lại được trong lịch sử có nghĩa gì?",
+        "Tải tin nhắn cũ có thể thấy nguồn đã thay đổi không?",
+        "What should I do when a chat result is not confirmed?",
+        "Bản nháp còn đó nhưng chưa rõ câu hỏi đã được xử lý thì sao?"
+      ],
+      "keywords": [
+        "chưa xác nhận được kết quả",
+        "mất mạng khi gửi câu hỏi",
+        "chat result is not confirmed",
+        "câu trả lời đã lưu"
+      ],
+      "matchPhrases": [
+        "chưa xác nhận được kết quả",
+        "mất mạng khi gửi câu hỏi",
+        "chat result is not confirmed",
+        "câu trả lời đã lưu"
+      ],
+      "matchRules": [
+        [
+          "cau hoi",
+          "mang ngat"
+        ],
+        [
+          "tra loi",
+          "dung",
+          "luu"
+        ],
+        [
+          "chat",
+          "chua xac nhan"
+        ],
+        [
+          "chat result",
+          "confirmed"
+        ]
+      ]
+    }
+  ]
+}

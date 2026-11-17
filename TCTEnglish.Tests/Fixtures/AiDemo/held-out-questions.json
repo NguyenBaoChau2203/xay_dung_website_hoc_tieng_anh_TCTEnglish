@@ -1,0 +1,605 @@
+{
+  "_purpose": "Held-out paraphrases, excluded from runtime questions. Keep these independent when improving routing.",
+  "cases": [
+    {
+      "question": "Em đang phân vân giữa lên C1 và lấy 450 TOEIC, nhờ web hướng dẫn bước khởi động với.",
+      "expectedGuideId": "roadmap-overview",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Chưa có lịch sử học thì bạn có thể gợi ý kế hoạch tổng quát cho mình không?",
+      "expectedGuideId": "roadmap-overview",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Mình đang A1, cần luyện từng bước để hướng đến C1, đi theo các mục nào?",
+      "expectedGuideId": "roadmap-cefr",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Nếu đích xa là C1 thì em nên chia quá trình luyện ở web ra sao?",
+      "expectedGuideId": "roadmap-cefr",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Em ở mức A1 và muốn bắt đầu chặng A2 bằng các mục sẵn có thì làm gì?",
+      "expectedGuideId": "roadmap-a1-a2",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Nhờ gợi ý cách phối hợp bài học cho giai đoạn từ A1 đến A2.",
+      "expectedGuideId": "roadmap-a1-a2",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Đích tiếp theo của mình từ A2 là B1, nhờ chọn cách luyện theo từng buổi.",
+      "expectedGuideId": "roadmap-a2-b1",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Bạn hướng dẫn khung luyện từ A2 đến B1 bằng Listening và Writing được không?",
+      "expectedGuideId": "roadmap-a2-b1",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Em muốn đi từ B1 đến B2 nhưng chưa biết tăng độ khó như thế nào.",
+      "expectedGuideId": "roadmap-b1-b2",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Nhờ chọn nhịp nghe đọc và sửa lỗi cho giai đoạn B1 hướng B2.",
+      "expectedGuideId": "roadmap-b1-b2",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Nếu đang B2 và nhắm C1 thì mình nên thay đổi cách tự luyện thế nào?",
+      "expectedGuideId": "roadmap-b2-c1",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Từ B2 đến C1 có phải chỉ cần tích lũy thêm XP trên web không?",
+      "expectedGuideId": "limits-practice-scores",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "ban oi tu mat goc len TOEIC 450 thi sap lich hoc tren web nay sao nhi",
+      "expectedGuideId": "roadmap-toeic-450",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Chưa biết gì nhiều mà đích là 450 TOEIC thì bắt đầu nghe hay đọc trước?",
+      "expectedGuideId": "roadmap-toeic-450",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Mục tiêu xa hơn của mình là 650 TOEIC, nhờ gợi ý cách luyện nghe đọc trong web.",
+      "expectedGuideId": "roadmap-toeic-650",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Nhắm TOEIC 650 thì theo dõi lỗi qua các buổi thế nào cho hợp lý?",
+      "expectedGuideId": "roadmap-toeic-650",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Can this site help me work toward IELTS 4.5 from scratch?",
+      "expectedGuideId": "roadmap-ielts-4-5",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Em nhắm band 4,5 IELTS mà chưa biết nên phối hợp các phần trên web thế nào.",
+      "expectedGuideId": "roadmap-ielts-4-5",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Nếu đích là 6,5 IELTS thì em nên dùng website như một phần trong kế hoạch ra sao?",
+      "expectedGuideId": "roadmap-ielts-6-5",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Bạn gợi ý một khung học hướng band 6.5 mà không quy điểm luyện thành band được không?",
+      "expectedGuideId": "roadmap-ielts-6-5",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Em nhắm TOEIC 450, có thể cam kết sau ba mươi ngày học là đạt không?",
+      "expectedGuideId": "roadmap-time-expectations",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Muốn lên C1 thì liệu có mốc thời gian chắc chắn áp dụng cho mọi người?",
+      "expectedGuideId": "roadmap-time-expectations",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Em chưa làm đánh giá đầu vào, có cách chọn bài để thử sức trước không?",
+      "expectedGuideId": "roadmap-placement",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Bạn có thể khẳng định mình đang C1 chỉ dựa vào cuộc nói chuyện này chứ?",
+      "expectedGuideId": "roadmap-placement",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Tôi có 15 phút buổi trưa để học, sắp xếp hoạt động ở web thế nào?",
+      "expectedGuideId": "routine-15-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Nghỉ giữa giờ được mười lăm phút thì bạn chia giúp một lượt luyện nhẹ nhé.",
+      "expectedGuideId": "routine-15-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Buổi tối em dành được nửa tiếng, nhờ chia phần ôn và phần luyện.",
+      "expectedGuideId": "routine-30-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Nhờ xếp một lượt nghe đọc và nói viết gói gọn trong ba mươi phút.",
+      "expectedGuideId": "routine-30-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Em có một tiếng nhưng thường làm bài vội, nên chia thời gian sửa lỗi thế nào?",
+      "expectedGuideId": "routine-60-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Nhờ gợi ý nhịp luyện khi có trọn sáu mươi phút vào cuối ngày.",
+      "expectedGuideId": "routine-60-min",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Mình làm ca đổi giờ liên tục, bạn gợi ý cách giữ một nhịp học nhỏ được không?",
+      "expectedGuideId": "routine-busy-week",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Tuần này khá bận, có nên ôn ít nhưng đều hơn là dồn vào cuối tuần?",
+      "expectedGuideId": "routine-busy-week",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Tôi mất gốc, có cần tạo set mới học được Reading và Writing không?",
+      "expectedGuideId": "routine-no-owned-set",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Tài khoản của em chưa có thẻ nào, em vẫn muốn thử bài nghe công khai thì sao?",
+      "expectedGuideId": "routine-no-owned-set",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Em bỏ luyện mấy tuần rồi, nhờ chỉ cách trở lại mà không làm quá sức.",
+      "expectedGuideId": "routine-return-after-break",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Nếu quay lại sau kỳ nghỉ thì nên kiểm tra phần còn nhớ như nào?",
+      "expectedGuideId": "routine-return-after-break",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Em vừa học là quên, nên thử nhớ lại trước hay xem đáp án ngay?",
+      "expectedGuideId": "routine-remember-vocabulary",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Nhờ chỉ cách đem các từ trong bộ thẻ vào việc luyện nghe đọc.",
+      "expectedGuideId": "routine-remember-vocabulary",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em bật bài nghe nhưng không theo nổi, bạn chỉ giúp một cách luyện từng đoạn.",
+      "expectedGuideId": "routine-weak-listening",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Mình không muốn phụ thuộc transcript, nên dùng nó vào lúc nào khi tự luyện?",
+      "expectedGuideId": "routine-weak-listening",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Em rất ngại mở miệng, liệu có thể khởi đầu bằng một câu trong Speaking không?",
+      "expectedGuideId": "routine-shy-speaking",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Muốn tập nói riêng một mình thì nên ưu tiên điều gì trước điểm số?",
+      "expectedGuideId": "routine-shy-speaking",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em muốn tự viết nhưng cứ bí ngay câu đầu, nên dùng gợi ý của bài thế nào?",
+      "expectedGuideId": "routine-writing-stuck",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Chưa tự tin viết dài thì em có thể chọn dạng bài cơ bản trên web chứ?",
+      "expectedGuideId": "routine-writing-stuck",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Em muốn nhớ lại từ trước khi xem đáp án, nên bắt đầu với dạng nào trong Luyện tập?",
+      "expectedGuideId": "practice-method-choice",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Các kiểu học ở Practice phục vụ những việc khác nhau ra sao?",
+      "expectedGuideId": "practice-method-choice",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em chọn bộ rồi nhưng chưa biết bắt đầu một phiên Learn như nào.",
+      "expectedGuideId": "practice-method-learn",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Khi luyện Learn em có nên coi mọi phản hồi trình duyệt là tiến độ đã lưu không?",
+      "expectedGuideId": "practice-method-learn",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em muốn tự kiểm tra những từ trong bộ chứ không chỉ đọc lại, Test dùng được không?",
+      "expectedGuideId": "practice-method-test",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Kết quả một bài Test của Practice có thay điểm bài thi thật được chứ?",
+      "expectedGuideId": "practice-method-test",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em thích ghép từ với nghĩa, nên bắt đầu một phiên ở đâu?",
+      "expectedGuideId": "practice-method-match",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Nếu bộ thẻ nhỏ thì có phải lượt ghép cũng có ít cặp hơn không?",
+      "expectedGuideId": "practice-method-match",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em chỉ muốn tập gõ lại từng từ trong bộ, không phải viết cả câu, vào đâu?",
+      "expectedGuideId": "practice-method-typing",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Nếu muốn diễn đạt câu hoàn chỉnh thì Typing có đúng mục không?",
+      "expectedGuideId": "practice-method-typing",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em muốn nghe các từ của một bộ đang ôn, nên vào Listening nào?",
+      "expectedGuideId": "practice-method-listening",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Nếu muốn chọn một bài nghe theo chủ đề thì có cần mở chế độ nghe từ vựng không?",
+      "expectedGuideId": "practice-method-listening",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em thấy mục Cloze nhưng bộ đang chọn chưa có câu để làm, nên xử lý thế nào?",
+      "expectedGuideId": "practice-method-cloze",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Muốn thử dạng điền khuyết trong Luyện tập thì chọn cách nào?",
+      "expectedGuideId": "practice-method-cloze",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em chỉ đang thử chế độ mới, có cách không đưa lượt thử vào lịch ôn không?",
+      "expectedGuideId": "practice-method-progress",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Làm xong một game có đủ để kết luận là tiến độ server đã tăng chưa?",
+      "expectedGuideId": "practice-method-progress",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em hay bỏ qua từ sai để bấm tiếp, có cách ôn lại có mục đích hơn không?",
+      "expectedGuideId": "practice-method-review-mistakes",
+      "expectedRoute": "/Practice/HardWords"
+    },
+    {
+      "question": "Danh sách Hard Words rỗng có khẳng định em chưa từng sai câu nào chứ?",
+      "expectedGuideId": "practice-method-review-mistakes",
+      "expectedRoute": "/Practice/HardWords"
+    },
+    {
+      "question": "Em có bộ trong lớp nhưng giờ không mở luyện được, nên kiểm tra quyền hay dữ liệu trước?",
+      "expectedGuideId": "practice-method-eligible-set",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Một số dạng bài không sinh được câu từ bộ này thì có phải hệ thống luôn bị lỗi không?",
+      "expectedGuideId": "practice-method-eligible-set",
+      "expectedRoute": "/Practice"
+    },
+    {
+      "question": "Em bấm ghi mà trình duyệt báo chưa được phép thu âm, cần xem quyền ở đâu?",
+      "expectedGuideId": "troubleshooting-microphone",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Mình muốn từ chối micro và chỉ tự luyện phần không ghi âm được không?",
+      "expectedGuideId": "troubleshooting-microphone",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em nghe lại đoạn thu chỉ thấy im lặng, cần kiểm tra gì trước khi thử tiếp?",
+      "expectedGuideId": "troubleshooting-empty-recording",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Một đoạn thu chưa đủ dài có thể không sinh ra kết quả chấm chứ?",
+      "expectedGuideId": "troubleshooting-empty-recording",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em đã bấm play nhưng không nghe gì, nên kiểm tra thiết bị hay bài học trước?",
+      "expectedGuideId": "troubleshooting-no-audio",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Nếu chỉ một video không phát được âm thanh thì có thể chuyển bài khác để luyện tiếp không?",
+      "expectedGuideId": "troubleshooting-no-audio",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Em chưa theo kịp tốc độ, liệu nên dùng nút đang có hay chọn đoạn ngắn hơn?",
+      "expectedGuideId": "troubleshooting-playback",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Trong trường hợp không thấy nút giảm tốc thì web có tự bổ sung nó qua chat không?",
+      "expectedGuideId": "troubleshooting-playback",
+      "expectedRoute": "/Home/Listening"
+    },
+    {
+      "question": "Em mở video nhưng không có danh sách câu, nên chờ trạng thái hay chọn bài đã có transcript?",
+      "expectedGuideId": "troubleshooting-transcript",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Một video riêng không có phụ đề sẵn có được chat tự làm đầy nội dung không?",
+      "expectedGuideId": "troubleshooting-transcript",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em gửi link mà chưa có bài để mở, có nên xem trạng thái trước khi nhập lại không?",
+      "expectedGuideId": "troubleshooting-video-import",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Nếu nguồn video hạn chế truy cập thì việc dán link có bảo đảm tạo được bài luyện chứ?",
+      "expectedGuideId": "troubleshooting-video-import",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em có một tệp SRT nhưng không khớp đoạn video, nên kiểm tra thời gian trước đúng không?",
+      "expectedGuideId": "troubleshooting-subtitle-file",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Đổi phần đuôi của một file văn bản có đủ để web nhận nó là phụ đề hợp lệ không?",
+      "expectedGuideId": "troubleshooting-subtitle-file",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em chưa nhận được điểm sau lượt gửi, có thể chuyển qua tự luyện thay vì gửi liên tục không?",
+      "expectedGuideId": "troubleshooting-scoring",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Nếu dịch vụ đánh giá đang gián đoạn thì mình có nên coi đó là lỗi phát âm của mình?",
+      "expectedGuideId": "troubleshooting-scoring",
+      "expectedRoute": "/Speaking"
+    },
+    {
+      "question": "Em chưa rõ lượt tạo bài trước đã hoàn tất, có nên kiểm tra lại thay vì tạo lượt khác ngay?",
+      "expectedGuideId": "troubleshooting-writing-job",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Nếu được đề nghị khung nội bộ thì có được gọi đó là bài do AI tạo thành công không?",
+      "expectedGuideId": "troubleshooting-writing-job",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Em gửi câu hỏi đúng lúc mạng ngắt, kiểm tra lịch sử có nên làm trước khi gửi lại không?",
+      "expectedGuideId": "troubleshooting-chat-result",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Một đoạn trả lời bị dừng giữa chừng có nên coi là đã hoàn tất và được lưu chứ?",
+      "expectedGuideId": "troubleshooting-chat-result",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Em trước đây vào bằng Google, giờ bấm email mãi không đúng thì nên thử lại phương thức cũ chứ?",
+      "expectedGuideId": "help-login-social",
+      "expectedRoute": "/Account/Login"
+    },
+    {
+      "question": "Có thể nhờ chat tự gộp tài khoản mạng xã hội vào tài khoản khác không?",
+      "expectedGuideId": "help-login-social",
+      "expectedRoute": "/Account/Login"
+    },
+    {
+      "question": "Em muốn thay mật khẩu của mình, bạn chỉ đúng mục bảo mật chứ đừng thực hiện thay nhé.",
+      "expectedGuideId": "help-password-safe",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "How do I safely reset my own forgotten password using the site's login page?",
+      "expectedGuideId": "help-password-safe",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Em chưa thấy thư sau thao tác xác minh, có phải email đã được đổi rồi không?",
+      "expectedGuideId": "help-email-confirmation",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Nếu không tìm thấy thư trong hộp đến thì nên xem thông báo trên trang và thư rác trước chứ?",
+      "expectedGuideId": "help-email-confirmation",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Trước khi chọn gói em muốn biết nó có phải lời bảo đảm tăng band thi không.",
+      "expectedGuideId": "help-premium-truth",
+      "expectedRoute": "/Premium"
+    },
+    {
+      "question": "Nếu cần biết quyền lợi đang bán thật thì nên xem trang gói thay vì tin một tin chat cũ chứ?",
+      "expectedGuideId": "help-premium-truth",
+      "expectedRoute": "/Premium"
+    },
+    {
+      "question": "Em quay về từ bước thanh toán nhưng chưa biết đơn đã xong, có nên kiểm tra lịch sử trước?",
+      "expectedGuideId": "help-payment-pending",
+      "expectedRoute": "/Billing/History"
+    },
+    {
+      "question": "Nếu mạng ngắt ở bước mua gói thì chat có đủ căn cứ báo giao dịch thất bại không?",
+      "expectedGuideId": "help-payment-pending",
+      "expectedRoute": "/Billing/History"
+    },
+    {
+      "question": "Em vẫn giữ URL của một bài nhưng quyền chia sẻ đã bị gỡ, chat có thể mở thay không?",
+      "expectedGuideId": "help-private-content",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Nếu dùng nhầm tài khoản thì việc không thấy bài cá nhân có thể do quyền truy cập chứ?",
+      "expectedGuideId": "help-private-content",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Em nhấn một gợi ý cũ mà không còn bài, nên tìm nội dung đang mở trong danh sách đúng không?",
+      "expectedGuideId": "help-unavailable-content",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Khi chatbot cảnh báo nguồn đã đổi thì câu trả lời cũ có còn là tiến độ hiện tại không?",
+      "expectedGuideId": "help-unavailable-content",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Em bật nhắc học nhưng thiết bị vẫn im lặng, có cần xem quyền trình duyệt không?",
+      "expectedGuideId": "help-notification-preferences",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Một tùy chọn được lưu có đủ để khẳng định email định kỳ đã đến hộp thư chứ?",
+      "expectedGuideId": "help-notification-preferences",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Em muốn đọc điều kiện xóa trước khi quyết định, chatbot chỉ giúp vị trí chứ đừng thực hiện nhé.",
+      "expectedGuideId": "help-delete-account",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Chỉ muốn dừng email nhắc học thì liệu có cần dùng tới xóa tài khoản không?",
+      "expectedGuideId": "help-delete-account",
+      "expectedRoute": "/Account/Settings"
+    },
+    {
+      "question": "Điểm speaking trên web này có phải band thi IELTS của tôi không?",
+      "expectedGuideId": "limits-practice-scores",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Nếu làm nhiều bài và có XP cao thì mình đã được xác nhận CEFR chưa?",
+      "expectedGuideId": "limits-practice-scores",
+      "expectedRoute": "/Goals"
+    },
+    {
+      "question": "Mới đăng nhập xong, chỉ mình thử vài hoạt động trên TCT English đi",
+      "expectedGuideId": "demo-first-visit",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "I am new here; what can I try in my first session?",
+      "expectedGuideId": "demo-first-visit",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Mình đang ở dashboard, các khu vực học dùng để làm gì vậy?",
+      "expectedGuideId": "demo-dashboard-courses",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Where do I choose a skill from the dashboard?",
+      "expectedGuideId": "demo-dashboard-courses",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Mục em vừa mở chưa thấy bài nào, giờ thử phần nào được?",
+      "expectedGuideId": "demo-no-content",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "There are no lessons in this section; where can I go next?",
+      "expectedGuideId": "demo-no-content",
+      "expectedRoute": "/Home/Index"
+    },
+    {
+      "question": "Em muốn viết đoạn văn chứ không phải chép đáp án từ vựng",
+      "expectedGuideId": "demo-vocabulary-vs-writing",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "How is Typing different from Writing on this site?",
+      "expectedGuideId": "demo-vocabulary-vs-writing",
+      "expectedRoute": "/Home/Writing/Exercises"
+    },
+    {
+      "question": "Muốn đọc hiểu bài chứ không ôn thẻ thì mở mục nào?",
+      "expectedGuideId": "demo-reading-vs-read-mode",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "I cannot find a Read mode in the vocabulary mode switcher.",
+      "expectedGuideId": "demo-reading-vs-read-mode",
+      "expectedRoute": "/Home/Reading"
+    },
+    {
+      "question": "Mình nên hỏi chatbot thế nào khi chưa có dữ liệu học cá nhân?",
+      "expectedGuideId": "demo-ai-help-scope",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "What can this website assistant help me with?",
+      "expectedGuideId": "demo-ai-help-scope",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Câu trả lời ở chat cũ báo nguồn thay đổi, em nên xử lý sao?",
+      "expectedGuideId": "demo-save-chat",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Can I review my previous chat answers after reloading?",
+      "expectedGuideId": "demo-save-chat",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Em không hiểu chỗ này, chỉ thêm cho em với",
+      "expectedGuideId": "demo-ambiguous-request",
+      "expectedRoute": "/AI/Chat"
+    },
+    {
+      "question": "Can you help with this part of the page?",
+      "expectedGuideId": "demo-ambiguous-request",
+      "expectedRoute": "/AI/Chat"
+    }
+  ]
+}

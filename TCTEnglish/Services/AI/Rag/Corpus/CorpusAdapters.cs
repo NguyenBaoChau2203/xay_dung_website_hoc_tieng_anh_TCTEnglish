@@ -1,4 +1,4 @@
-using System.Text.Json;
+using TCTEnglish.Services.AI.Internal.Retrievers;
 using Microsoft.EntityFrameworkCore;
 using TCTVocabulary.Models;
 
@@ -6,11 +6,6 @@ namespace TCTEnglish.Services.AI.Rag.Corpus;
 
 public sealed class GuideCorpusAdapter
 {
-    private static readonly JsonSerializerOptions JsonOptions = new()
-    {
-        PropertyNameCaseInsensitive = true
-    };
-
     /// <summary>
     /// Reviewed against docs/feature-audits/hybrid-rag/phase-0/coverage-matrix.md.
     /// study-read claims a Read mode that is not in the study switcher.
@@ -63,7 +58,22 @@ public sealed class GuideCorpusAdapter
         "grammar-page",
         "privacy-terms",
         "admin-management-overview",
-        "contact-support"
+        "contact-support",
+        "starter-vocabulary", "starter-speaking", "starter-writing",
+        "speaking-youtube", "speaking-recent", "speaking-transcript",
+        "speaking-microphone", "speaking-scoring",
+        "writing-recent", "writing-level-format", "writing-ai-brief",
+        "writing-ai-paste", "writing-ai-fallback", "writing-feedback", "writing-personal",
+        "practice-hub", "practice-hard-words", "goals-badges", "profile-badges",
+        "account-avatar-name", "account-email", "account-delete",
+        "notification-preferences", "streak-troubleshooting", "assistant-scope",
+        // Reviewed static demo packs; retain explicit admission and authenticated visibility.
+        "roadmap-overview", "roadmap-cefr", "roadmap-a1-a2", "roadmap-a2-b1", "roadmap-b1-b2", "roadmap-b2-c1", "roadmap-toeic-450", "roadmap-toeic-650", "roadmap-ielts-4-5", "roadmap-ielts-6-5", "roadmap-time-expectations", "roadmap-placement",
+        "routine-15-min", "routine-30-min", "routine-60-min", "routine-busy-week", "routine-no-owned-set", "routine-return-after-break", "routine-remember-vocabulary", "routine-weak-listening", "routine-shy-speaking", "routine-writing-stuck",
+        "practice-method-choice", "practice-method-learn", "practice-method-test", "practice-method-match", "practice-method-typing", "practice-method-listening", "practice-method-cloze", "practice-method-progress", "practice-method-review-mistakes", "practice-method-eligible-set",
+        "troubleshooting-microphone", "troubleshooting-empty-recording", "troubleshooting-no-audio", "troubleshooting-playback", "troubleshooting-transcript", "troubleshooting-video-import", "troubleshooting-subtitle-file", "troubleshooting-scoring", "troubleshooting-writing-job", "troubleshooting-chat-result",
+        "help-login-social", "help-password-safe", "help-email-confirmation", "help-premium-truth", "help-payment-pending", "help-private-content", "help-unavailable-content", "help-notification-preferences", "help-delete-account", "limits-practice-scores",
+        "demo-first-visit", "demo-dashboard-courses", "demo-no-content", "demo-vocabulary-vs-writing", "demo-reading-vs-read-mode", "demo-ai-help-scope", "demo-save-chat", "demo-ambiguous-request"
     };
 
     private static readonly HashSet<string> PublicIds = new(StringComparer.Ordinal)
@@ -95,11 +105,11 @@ public sealed class GuideCorpusAdapter
             return collection;
         }
 
-        await using var stream = File.OpenRead(_guideFilePath);
-        var document = await JsonSerializer.DeserializeAsync<GuideFile>(stream, JsonOptions, ct);
-        var version = string.IsNullOrWhiteSpace(document?.Version) ? "unversioned" : document.Version;
-        foreach (var guide in document?.Guides ?? [])
+        var catalog = await WebsiteGuideCatalog.ReadAsync(_guideFilePath, ct);
+        foreach (var entry in catalog)
         {
+            var guide = entry.Guide;
+            var version = entry.Version;
             ct.ThrowIfCancellationRequested();
             var id = guide.Id?.Trim() ?? string.Empty;
             var key = string.IsNullOrEmpty(id) ? "guide:" : "guide:" + id;
@@ -135,7 +145,7 @@ public sealed class GuideCorpusAdapter
         return collection.Documents.FirstOrDefault(document => document.SourceKey == sourceKey);
     }
 
-    private static CorpusDocument? Build(GuideEntry guide, string fileVersion, string route)
+    private static CorpusDocument? Build(WebsiteGuideEntry guide, string fileVersion, string route)
     {
         var id = guide.Id!.Trim();
         var title = guide.Title ?? string.Empty;
@@ -145,7 +155,8 @@ public sealed class GuideCorpusAdapter
             return null;
         }
 
-        var keywords = guide.Keywords ?? [];
+        var keywords = (guide.Keywords ?? []).Concat(guide.Questions ?? [])
+            .Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         var visibility = PublicIds.Contains(id) ? "public" : "authenticated";
         var sourceKey = "guide:" + id;
         var hash = CorpusHash.Sha256(CorpusHash.Canonical(sourceKey, visibility, route, title, keywords, body));
@@ -162,23 +173,6 @@ public sealed class GuideCorpusAdapter
             fileVersion + ":" + id + ":" + hash);
     }
 
-    private sealed class GuideFile
-    {
-        [System.Text.Json.Serialization.JsonPropertyName("_version")]
-        public string? Version { get; set; }
-
-        public List<GuideEntry> Guides { get; set; } = [];
-    }
-
-    private sealed class GuideEntry
-    {
-        public string? Id { get; set; }
-        public string? Title { get; set; }
-        public List<string>? Keywords { get; set; }
-        public string? Body { get; set; }
-        public string? Route { get; set; }
-        public string? Topic { get; set; }
-    }
 }
 
 public sealed class LessonCorpusAdapter

@@ -1161,8 +1161,8 @@ public sealed class AiRagBoundaryAccessTests
 
         var reply = await service.SendAsync(1, null, "How do I change my password?", CancellationToken.None);
 
-        Assert.Contains("/Account/Settings", reply.Text);
         Assert.Contains("Để đổi mật khẩu", reply.Text);
+        Assert.Contains("mở mục này trên website", reply.Text);
     }
 
     [Fact]
@@ -1250,7 +1250,8 @@ public sealed class AiRagBoundaryAccessTests
                 null,
                 "How do I change my password?",
                 CancellationToken.None);
-            Assert.Contains("/Account/Settings", reply.Text);
+            Assert.NotNull(reply.Grounding);
+            Assert.Contains(reply.Grounding.Sources, s => s.Route == "/Account/Settings");
 
             var streaming = scope.ServiceProvider.GetRequiredService<IAiStreamingService>();
             var conversationId = Guid.NewGuid();

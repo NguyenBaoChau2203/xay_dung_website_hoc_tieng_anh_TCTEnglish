@@ -72,10 +72,10 @@ public sealed class WebsiteGuideRetrieverTests
 
     [Theory]
     [InlineData("hướng dẫn tạo set mới", "/Home/CreateSet")]
-    [InlineData("chỉnh sửa set ở đâu", "/Home/Folder")]
-    [InlineData("hướng dẫn học quiz", "/Home/Folder")]
-    [InlineData("hướng dẫn học matching", "/Home/Folder")]
-    [InlineData("xem streak ở đâu", "/Home/Index")]
+    [InlineData("chỉnh sửa set ở đâu", "/Sets")]
+    [InlineData("hướng dẫn học quiz", "/Practice")]
+    [InlineData("hướng dẫn học matching", "/Practice")]
+    [InlineData("xem streak ở đâu", "/Goals")]
     public async Task RetrieveAsync_UsesCurrentPostRefactorRoutes(string message, string expectedRoute)
     {
         var retriever = new WebsiteGuideRetriever(GetGuideFilePath());

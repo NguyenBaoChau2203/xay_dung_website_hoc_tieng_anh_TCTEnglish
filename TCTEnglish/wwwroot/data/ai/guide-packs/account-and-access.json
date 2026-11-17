@@ -1,0 +1,500 @@
+{
+  "_version": "1.0.0",
+  "_reviewed": "2026-11-18",
+  "_scope": "Reviewed account guidance; no credentials, transactions, private content or permission changes.",
+  "guides": [
+    {
+      "id": "help-login-social",
+      "title": "Chọn đúng cách đăng nhập đã dùng",
+      "route": "/Account/Login",
+      "topic": "account-access-safety",
+      "body": "Nếu bạn từng dùng Google/Facebook hoặc đăng nhập bằng email, hãy chọn **đúng cách đã dùng cho tài khoản đó** trên trang đăng nhập.\n\nNếu chưa vào được, kiểm tra thông báo trên trang và việc bạn đang chọn đúng tài khoản của nhà cung cấp. Khi cần đặt lại mật khẩu email, dùng chức năng Quên mật khẩu của website và làm theo bước xác minh; đừng gửi mật khẩu vào chat.\n\nMình không tự liên kết hai tài khoản, bỏ xác minh hay mở tài khoản đang bị khóa. Các chức năng liên kết/khôi phục chỉ được thực hiện qua giao diện và điều kiện bảo mật thực tế.",
+      "questions": [
+        "Tôi từng đăng nhập Google giờ nên chọn cách nào?",
+        "Đăng nhập email hay Google có cần chọn đúng tài khoản không?",
+        "Mình lỡ chọn nhầm tài khoản Google khi vào web",
+        "Tôi muốn biết cách quay lại tài khoản đã dùng trước đây",
+        "Đăng nhập Facebook chưa vào được thì kiểm tra gì?",
+        "Chat có tự gộp hai tài khoản giúp tôi không?",
+        "How do I return using the sign-in method I used before?",
+        "Tôi cần tìm đúng cách đăng nhập trước khi bắt đầu học"
+      ],
+      "keywords": [
+        "cách đăng nhập đã dùng",
+        "từng đăng nhập google",
+        "chọn nhầm tài khoản",
+        "sign in method"
+      ],
+      "matchPhrases": [
+        "cách đăng nhập đã dùng",
+        "từng đăng nhập google",
+        "chọn nhầm tài khoản",
+        "sign in method"
+      ],
+      "matchRules": [
+        [
+          "google",
+          "phuong thuc"
+        ],
+        [
+          "gop",
+          "tai khoan"
+        ],
+        [
+          "dang nhap",
+          "google"
+        ],
+        [
+          "sign in",
+          "method"
+        ]
+      ]
+    },
+    {
+      "id": "help-password-safe",
+      "title": "Đổi mật khẩu qua đúng bước xác minh",
+      "route": "/Account/Settings",
+      "topic": "account-access-safety",
+      "body": "Để đổi mật khẩu của mình, bạn mở **Cài đặt tài khoản**, tìm phần Bảo mật và làm theo các bước xác minh hiện có. Nếu quên mật khẩu, dùng luồng Quên mật khẩu tại trang đăng nhập.\n\nKhông gửi mật khẩu đang dùng, mã xác minh hoặc liên kết khôi phục vào chat. Mình chỉ hướng dẫn vị trí thao tác; không đọc lại mật khẩu, thay bạn xác nhận hay bỏ qua bước bảo mật.\n\nTài khoản đăng nhập xã hội có thể có điều kiện khác với tài khoản dùng mật khẩu email; hãy dựa vào phần đang hiển thị cho chính tài khoản của bạn.",
+      "questions": [
+        "Cách đổi mật khẩu của chính tôi qua các bước xác minh?",
+        "Tôi muốn đổi mật khẩu an toàn trong Cài đặt tài khoản",
+        "Quên mật khẩu của tôi thì nên dùng tính năng nào?",
+        "Làm sao đổi mật khẩu mà không gửi thông tin vào chat?",
+        "Hướng dẫn đổi mật khẩu cho tài khoản mình đang dùng",
+        "How can I change my own password safely on this site?",
+        "Tôi dùng đăng nhập xã hội muốn xem cách thiết lập mật khẩu ở đâu?",
+        "Khi đổi mật khẩu của tôi có thể bỏ xác minh không?"
+      ],
+      "keywords": [
+        "đổi mật khẩu an toàn",
+        "đổi mật khẩu của chính tôi",
+        "change my own password safely",
+        "bỏ xác minh khi đổi"
+      ],
+      "matchPhrases": [
+        "đổi mật khẩu an toàn",
+        "đổi mật khẩu của chính tôi",
+        "change my own password safely",
+        "bỏ xác minh khi đổi"
+      ],
+      "matchRules": [
+        [
+          "mat khau",
+          "cua minh"
+        ],
+        [
+          "reset",
+          "my own",
+          "password"
+        ],
+        [
+          "mat khau",
+          "quen"
+        ],
+        [
+          "doi",
+          "mat khau",
+          "an toan"
+        ]
+      ]
+    },
+    {
+      "id": "help-email-confirmation",
+      "title": "Xác minh và đổi email của tài khoản",
+      "route": "/Account/Settings",
+      "topic": "account-access-safety",
+      "body": "Bạn có thể mở **Cài đặt tài khoản**, tìm phần email và làm theo các bước đổi/xác minh hiện có. Kiểm tra đúng hộp thư của mình và trạng thái mà giao diện thông báo.\n\nChưa thấy thư không đồng nghĩa đã đổi email thành công. Kiểm tra thư rác, thời gian gửi và thông báo lỗi; chỉ dùng thao tác gửi lại khi trang cho phép. Nếu vẫn gặp vấn đề, liên hệ hỗ trợ với thông báo không nhạy cảm.\n\nChat không gửi email thay bạn, đọc thư trong hộp thư hay bỏ qua bước xác minh. Không đưa mã xác minh hoặc liên kết xác nhận vào cuộc trò chuyện.",
+      "questions": [
+        "Tôi chưa nhận được thư xác minh email nên kiểm tra gì?",
+        "Đổi email xong chưa xác nhận thì đã hoàn tất chưa?",
+        "Mình muốn tìm phần xác minh địa chỉ email",
+        "Email xác nhận nằm trong thư rác có thể kiểm tra không?",
+        "Chat có tự xác minh email hộ tài khoản của tôi không?",
+        "Tôi cần làm gì trước khi bấm gửi lại thư xác nhận?",
+        "What should I check when the confirmation email has not arrived?",
+        "Tôi muốn đổi địa chỉ nhận thư qua đúng biểu mẫu"
+      ],
+      "keywords": [
+        "chưa nhận được thư xác minh",
+        "chưa thấy thư xác nhận",
+        "đổi email xong",
+        "confirmation email"
+      ],
+      "matchPhrases": [
+        "chưa nhận được thư xác minh",
+        "chưa thấy thư xác nhận",
+        "đổi email xong",
+        "confirmation email"
+      ],
+      "matchRules": [
+        [
+          "thu",
+          "xac minh"
+        ],
+        [
+          "thu",
+          "thu rac"
+        ],
+        [
+          "doi email",
+          "xac nhan"
+        ],
+        [
+          "confirmation",
+          "email"
+        ]
+      ]
+    },
+    {
+      "id": "help-premium-truth",
+      "title": "Hiểu điều kiện sử dụng Premium",
+      "route": "/Premium",
+      "topic": "account-access-safety",
+      "body": "Bạn mở trang **Premium** để xem các gói và quyền lợi đang được niêm yết. Tính năng trả phí còn phụ thuộc gói, quyền tài khoản, dữ liệu và trạng thái dịch vụ thực tế.\n\nPremium không phải lời bảo đảm có đủ mọi nội dung, mọi chức năng luôn sẵn sàng hay đạt một điểm thi. Không suy giá/gói/quyền hiện tại từ một câu trả lời cũ; hãy kiểm tra trang Premium và trạng thái tài khoản của chính bạn.\n\nChat có thể hướng dẫn vị trí xem, không tự mua gói, tăng hạn mức hoặc kích hoạt Premium.",
+      "questions": [
+        "Premium có bảo đảm mọi chức năng luôn hoạt động không?",
+        "Mua gói có chắc đạt điểm TOEIC IELTS mong muốn không?",
+        "Tôi nên xem quyền lợi Premium đang có ở đâu?",
+        "Tôi muốn phân biệt quyền dùng tính năng và kết quả học",
+        "Chat có tự kích hoạt Premium cho tôi không?",
+        "Giá và quyền lợi gói có nên xem trực tiếp ở trang Premium không?",
+        "Does Premium guarantee an exam score or every feature's availability?",
+        "Premium có đồng nghĩa mọi nội dung đều mở khóa không?"
+      ],
+      "keywords": [
+        "premium có bảo đảm",
+        "premium có đồng nghĩa",
+        "quyền lợi premium đang có",
+        "premium guarantee",
+        "chat tự kích hoạt premium"
+      ],
+      "matchPhrases": [
+        "premium có bảo đảm",
+        "premium có đồng nghĩa",
+        "quyền lợi premium đang có",
+        "premium guarantee",
+        "chat tự kích hoạt premium"
+      ],
+      "matchRules": [
+        [
+          "goi",
+          "bao dam",
+          "band"
+        ],
+        [
+          "quyen loi",
+          "dang ban"
+        ],
+        [
+          "premium",
+          "bao dam"
+        ],
+        [
+          "premium",
+          "guarantee"
+        ]
+      ]
+    },
+    {
+      "id": "help-payment-pending",
+      "title": "Khi giao dịch còn chờ hoặc chưa rõ kết quả",
+      "route": "/Billing/History",
+      "topic": "account-access-safety",
+      "body": "Nếu giao dịch còn chờ hoặc chưa rõ kết quả, hãy mở **Lịch sử thanh toán** của tài khoản để xem trạng thái thật. Một thông báo chờ, lỗi mạng hoặc quay lại trang chưa chứng minh giao dịch đã thành công hay thất bại.\n\nTránh tạo lại một giao dịch giống nhau ngay khi chưa kiểm tra yêu cầu trước. Nếu cần hỗ trợ, dùng thông tin mà kênh hỗ trợ chính thức yêu cầu và không gửi thông tin thẻ/ngân hàng nhạy cảm vào chat.\n\nMình không tự xác nhận đã thanh toán, hoàn tiền, sửa trạng thái đơn hay mở Premium. Các hành động đó phụ thuộc quy trình và dữ liệu thực tế của hệ thống.",
+      "questions": [
+        "Đơn thanh toán đang chờ thì nên xem gì?",
+        "Thanh toán xong mất mạng có nên mua lại ngay không?",
+        "Tôi chưa rõ giao dịch thành công hay thất bại",
+        "Chat có xác nhận thanh toán hoặc hoàn tiền cho tôi không?",
+        "Trạng thái pending có đồng nghĩa đã được Premium không?",
+        "Mình muốn kiểm tra đơn trước khi thanh toán lại",
+        "What should I do when a payment result is still pending?",
+        "Tôi muốn xem trạng thái thật của đơn chưa rõ kết quả"
+      ],
+      "keywords": [
+        "đơn thanh toán đang chờ",
+        "giao dịch chưa rõ",
+        "thanh toán lại ngay",
+        "payment result is still pending",
+        "trạng thái pending"
+      ],
+      "matchPhrases": [
+        "đơn thanh toán đang chờ",
+        "giao dịch chưa rõ",
+        "thanh toán lại ngay",
+        "payment result is still pending",
+        "trạng thái pending"
+      ],
+      "matchRules": [
+        [
+          "thanh toan",
+          "chua biet"
+        ],
+        [
+          "mang ngat",
+          "mua goi"
+        ],
+        [
+          "giao dich",
+          "pending"
+        ],
+        [
+          "payment",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "id": "help-private-content",
+      "title": "Quyền xem bài cá nhân và nội dung được chia sẻ",
+      "route": "/Account/Settings",
+      "topic": "account-access-safety",
+      "body": "Bài cá nhân, bộ từ hoặc nội dung lớp chỉ được mở khi tài khoản có quyền tương ứng. **Biết đường dẫn hoặc tên bài không tự tạo quyền truy cập**.\n\nNếu một nội dung trước đây xem được nay không mở được, kiểm tra bạn đang dùng đúng tài khoản và nội dung có còn được chia sẻ không. Chủ sở hữu hoặc tư cách thành viên có thể thay đổi quyền xem.\n\nChat không lấy nội dung riêng của người khác, bỏ qua quyền hay phục hồi nguồn không còn được phép xem. Bạn có thể chọn nội dung công khai đang khả dụng hoặc liên hệ người quản lý qua kênh phù hợp.",
+      "questions": [
+        "Biết link bài cá nhân có tự xem được không?",
+        "Nội dung từng được chia sẻ giờ không mở được thì kiểm tra gì?",
+        "Tôi đăng nhập nhầm tài khoản có ảnh hưởng quyền xem bài không?",
+        "Tại sao đường dẫn bài không bảo đảm quyền truy cập?",
+        "Chat có thể bỏ qua quyền xem nội dung không?",
+        "Mất tư cách thành viên lớp có ảnh hưởng bài được chia sẻ không?",
+        "Does knowing a private lesson link grant access?",
+        "Tôi muốn hiểu quyền xem giữa bài công khai và bài cá nhân"
+      ],
+      "keywords": [
+        "biết link bài cá nhân",
+        "đường dẫn không bảo đảm quyền",
+        "từng được chia sẻ",
+        "private lesson link"
+      ],
+      "matchPhrases": [
+        "biết link bài cá nhân",
+        "đường dẫn không bảo đảm quyền",
+        "từng được chia sẻ",
+        "private lesson link"
+      ],
+      "matchRules": [
+        [
+          "url",
+          "chia se",
+          "go"
+        ],
+        [
+          "tai khoan",
+          "bai ca nhan"
+        ],
+        [
+          "private",
+          "lesson",
+          "link"
+        ]
+      ]
+    },
+    {
+      "id": "help-unavailable-content",
+      "title": "Khi bài đã ẩn, bị gỡ hoặc không còn được phép xem",
+      "route": "/Home/Index",
+      "topic": "account-access-safety",
+      "body": "Nếu bài đã bị gỡ, chưa xuất bản hoặc tài khoản không còn quyền xem, một đường dẫn trong lịch sử không bảo đảm bài vẫn mở được.\n\nBạn có thể quay về trang danh sách để chọn nội dung đang khả dụng. Với bài cá nhân/được chia sẻ, kiểm tra đúng tài khoản và liên hệ chủ sở hữu nếu cần. Cảnh báo nguồn thay đổi hoặc không còn xem được trong chat giúp bạn nhận ra kết quả cũ không phải dữ liệu hiện tại.\n\nMình không dùng đường dẫn cũ để vượt quyền, không khôi phục bài đã gỡ và không dựng lại nội dung riêng từ lịch sử chat.",
+      "questions": [
+        "Bài từng xem nay bị gỡ thì làm gì?",
+        "Tại sao link bài trong lịch sử không mở được nữa?",
+        "Bài chưa xuất bản có thể mở bằng link cũ không?",
+        "Chat báo nguồn không còn xem được nghĩa là sao?",
+        "Có thể chọn bài khác khi nguồn cũ không còn khả dụng không?",
+        "Mình muốn hiểu cảnh báo nội dung đã thay đổi trong chat",
+        "What should I do when a saved lesson is no longer available?",
+        "Đường dẫn cũ có thể dùng để mở nội dung đã ẩn không?"
+      ],
+      "keywords": [
+        "link bài trong lịch sử",
+        "nguồn không còn xem được",
+        "bài từng xem nay",
+        "lesson is no longer available",
+        "bài chưa xuất bản"
+      ],
+      "matchPhrases": [
+        "link bài trong lịch sử",
+        "nguồn không còn xem được",
+        "bài từng xem nay",
+        "lesson is no longer available",
+        "bài chưa xuất bản"
+      ],
+      "matchRules": [
+        [
+          "goi y cu",
+          "khong con bai"
+        ],
+        [
+          "nguon",
+          "thay doi",
+          "hien tai"
+        ],
+        [
+          "bai",
+          "khong con xem"
+        ],
+        [
+          "lesson",
+          "no longer available"
+        ],
+        [
+          "nguon",
+          "doi",
+          "hien tai"
+        ]
+      ]
+    },
+    {
+      "id": "help-notification-preferences",
+      "title": "Tùy chọn nhắc học, push và email",
+      "route": "/Account/Settings",
+      "topic": "account-access-safety",
+      "body": "Bạn mở **Cài đặt tài khoản**, phần thông báo để xem các tùy chọn nhắc học, push và email định kỳ đang có.\n\nPush còn phụ thuộc quyền trình duyệt và thiết bị đã đăng ký; bật một tùy chọn không chứng minh một thông báo đã được gửi hoặc đã đến thiết bị. Email cũng phụ thuộc lựa chọn của tài khoản và tình trạng gửi thực tế.\n\nChat không tự bật quyền trình duyệt, gửi thư hoặc đăng ký thiết bị thay bạn. Nếu chưa thấy nhắc học, kiểm tra các lựa chọn và quyền hiện tại trước khi kết luận dữ liệu bị mất.",
+      "questions": [
+        "Tại sao bật nhắc học mà chưa thấy thông báo?",
+        "Push có cần quyền trình duyệt không?",
+        "Tôi muốn xem tùy chọn email định kỳ của mình",
+        "Bật tùy chọn có đồng nghĩa thông báo đã gửi thành công không?",
+        "Chat có tự bật quyền push trên thiết bị được không?",
+        "Mình nên kiểm tra gì khi không thấy nhắc học?",
+        "Why might reminders not arrive after enabling a preference?",
+        "Tùy chọn nhận nhắc học được chỉnh ở đâu?"
+      ],
+      "keywords": [
+        "bật nhắc học",
+        "quyền push",
+        "email định kỳ",
+        "reminders not arrive",
+        "quyền trình duyệt cho thông báo"
+      ],
+      "matchPhrases": [
+        "bật nhắc học",
+        "quyền push",
+        "email định kỳ",
+        "reminders not arrive",
+        "quyền trình duyệt cho thông báo"
+      ],
+      "matchRules": [
+        [
+          "nhac hoc",
+          "quyen"
+        ],
+        [
+          "email dinh ky",
+          "hop thu"
+        ],
+        [
+          "quyen",
+          "thong bao"
+        ],
+        [
+          "reminders",
+          "not arrive"
+        ]
+      ]
+    },
+    {
+      "id": "help-delete-account",
+      "title": "Đọc kỹ xác nhận xóa tài khoản",
+      "route": "/Account/Settings",
+      "topic": "account-access-safety",
+      "body": "Nếu muốn xem tùy chọn xóa tài khoản, bạn mở **Cài đặt tài khoản**, tìm khu vực tương ứng và đọc kỹ cảnh báo, bước xác minh và xác nhận trên trang.\n\nĐây là thao tác có hệ quả với dữ liệu; hãy dựa vào nội dung thật của quy trình. Một số dữ liệu có thể cần được giữ theo chính sách/nghiệp vụ, nên chat không hứa xóa tuyệt đối mọi bản ghi hoặc khôi phục được mọi dữ liệu sau đó.\n\nMình không thực hiện xóa trong cuộc trò chuyện, không bỏ bước xác minh và không tạo nút xóa trực tiếp từ câu trả lời. Nếu chỉ cần ngừng nhắc học, hãy xem tùy chọn thông báo trước khi quyết định.",
+      "questions": [
+        "Tôi muốn xem cảnh báo trước khi xóa tài khoản",
+        "Xóa tài khoản có được làm trực tiếp trong chat không?",
+        "Tại sao xóa tài khoản cần xác minh và xác nhận?",
+        "Tôi chỉ muốn ngừng nhắc học có cần xóa tài khoản không?",
+        "Chat có bảo đảm xóa tuyệt đối mọi dữ liệu không?",
+        "Tôi nên mở khu vực nào để đọc quy trình xóa tài khoản?",
+        "Where can I review the account deletion process safely?",
+        "Có thể bỏ bước xác minh khi yêu cầu xóa tài khoản không?"
+      ],
+      "keywords": [
+        "cảnh báo trước khi xóa tài khoản",
+        "xóa tài khoản trực tiếp trong chat",
+        "quy trình xóa tài khoản",
+        "account deletion process"
+      ],
+      "matchPhrases": [
+        "cảnh báo trước khi xóa tài khoản",
+        "xóa tài khoản trực tiếp trong chat",
+        "quy trình xóa tài khoản",
+        "account deletion process"
+      ],
+      "matchRules": [
+        [
+          "dieu kien",
+          "xoa"
+        ],
+        [
+          "email nhac hoc",
+          "xoa tai khoan"
+        ],
+        [
+          "quy trinh",
+          "xoa tai khoan"
+        ],
+        [
+          "account",
+          "deletion"
+        ]
+      ]
+    },
+    {
+      "id": "limits-practice-scores",
+      "title": "Phân biệt điểm luyện, XP và điểm thi",
+      "route": "/Goals",
+      "topic": "account-access-safety",
+      "body": "**Điểm luyện trên website, XP, streak và số bài hoàn thành không tự trở thành band IELTS, điểm TOEIC hay chứng chỉ CEFR**.\n\nChúng phản ánh những hoạt động hoặc lượt đánh giá cụ thể mà hệ thống đã ghi nhận, với điều kiện và giới hạn riêng. Ví dụ, một lượt chấm Speaking không đủ để khẳng định trình độ toàn bộ bốn kỹ năng hoặc band IELTS của bạn.\n\nBạn có thể dùng Goals/tiến độ để theo dõi nhịp học và dùng phản hồi của bài để xem lại lỗi. Nếu cần điểm thi hay mức trình độ chính thức, hãy dùng đánh giá phù hợp; mình không quy đổi trực tiếp hoặc cam kết kết quả chỉ từ hoạt động luyện trên web.",
+      "questions": [
+        "Điểm Speaking có phải band IELTS không?",
+        "XP có quy đổi thành TOEIC được không?",
+        "Hoàn thành nhiều bài có được chứng chỉ C1 không?",
+        "Streak cao có chứng minh trình độ tiếng Anh không?",
+        "Điểm luyện trên website khác điểm thi như thế nào?",
+        "Một lượt chấm nói có đo đủ cả bốn kỹ năng không?",
+        "Can I convert practice scores or XP into an exam score?",
+        "Tôi muốn phân biệt điểm luyện và kết quả đánh giá chuẩn"
+      ],
+      "keywords": [
+        "điểm speaking",
+        "xp có quy đổi",
+        "chứng chỉ c1",
+        "điểm luyện trên website",
+        "practice scores",
+        "band thi ielts"
+      ],
+      "matchPhrases": [
+        "điểm speaking",
+        "xp có quy đổi",
+        "chứng chỉ c1",
+        "điểm luyện trên website",
+        "practice scores",
+        "band thi ielts"
+      ],
+      "matchRules": [
+        [
+          "diem speaking",
+          "ielts"
+        ],
+        [
+          "xp",
+          "cefr"
+        ],
+        [
+          "xp",
+          "c1"
+        ],
+        [
+          "diem luyen",
+          "chung chi"
+        ],
+        [
+          "practice",
+          "scores"
+        ]
+      ]
+    }
+  ]
+}

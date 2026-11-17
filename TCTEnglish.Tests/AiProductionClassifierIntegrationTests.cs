@@ -37,8 +37,11 @@ public sealed class AiProductionClassifierIntegrationTests
 
         foreach (var (message, route) in cases)
         {
-            var text = await SendAndReadTextAsync(factory, TestDataIds.UserId, message);
-            Assert.Contains(route, text);
+            var payload = await SendAndReadPayloadAsync(factory, TestDataIds.UserId, message);
+            var text = payload.RootElement.GetProperty("text").GetString();
+            Assert.False(string.IsNullOrWhiteSpace(text));
+            var sources = payload.RootElement.GetProperty("grounding").GetProperty("sources").EnumerateArray().ToList();
+            Assert.Contains(sources, s => s.GetProperty("route").GetString() == route);
         }
     }
 
@@ -140,7 +143,7 @@ public sealed class AiProductionClassifierIntegrationTests
         Assert.IsType<MlNetAiQueryClassifier>(classifier);
     }
 
-    private static async Task<string> SendAndReadTextAsync(TestWebApplicationFactory factory, int userId, string message)
+    private static async Task<JsonDocument> SendAndReadPayloadAsync(TestWebApplicationFactory factory, int userId, string message)
     {
         using var client = IntegrationTestClientHelper.CreateAuthenticatedClient(factory, userId, Roles.Standard);
         var antiForgeryToken = await IntegrationTestClientHelper.GetAntiForgeryTokenAsync(client, "/AI/Chat");
@@ -150,7 +153,12 @@ public sealed class AiProductionClassifierIntegrationTests
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        return JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    }
+
+    private static async Task<string> SendAndReadTextAsync(TestWebApplicationFactory factory, int userId, string message)
+    {
+        var payload = await SendAndReadPayloadAsync(factory, userId, message);
         var text = payload.RootElement.GetProperty("text").GetString();
 
         Assert.False(string.IsNullOrWhiteSpace(text));

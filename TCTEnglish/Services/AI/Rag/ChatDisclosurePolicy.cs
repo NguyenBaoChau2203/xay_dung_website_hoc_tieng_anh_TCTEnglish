@@ -19,6 +19,10 @@ public static class ChatDisclosurePolicy
             return true;
         }
 
+        if (AiTextNormalizer.ContainsAny(normalized, "otp", "ma xac minh", "verification code")
+            && AiTextNormalizer.ContainsAny(normalized, "cho xem", "hien", "in ra", "show me", "give me",
+                "nguoi khac", "tai khoan khac", "someone else", "another account")) return true;
+
         if (IsOwnPasswordHelp(normalized))
         {
             return false;
@@ -35,6 +39,7 @@ public static class ChatDisclosurePolicy
             "how",
             "change",
             "doi",
+            "thay mat khau",
             "reset",
             "forgot",
             "quen",
