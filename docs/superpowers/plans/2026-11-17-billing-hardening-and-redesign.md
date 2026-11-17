@@ -806,3 +806,29 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed (and why).** `AdminBillingManagementTests`: the controller constructor gained the confirmation service (the confirm-paid test builds the real `PaymentConfirmationService` over its mocked subscription service, so `ActivateFromPaidOrderAsync` is still verified once) and its in-memory context ignores the in-memory store's "transactions are not supported" warning because the confirmation now runs in a transaction. No assertion was weakened. New: `AdminBillingStateRulesTests` (32 rows incl. source guards), `PaymentSingleConfirmationPathTests` (4).
 
 **Mockup differences.** none (admin pages are not in the mockups). **Orders created.** none new; the fixture order `TCT-FIXTURE-REVIEW` was confirmed through the admin UI (it now has a subscription row for the fixture learner `billing-fx4`).
+
+
+### Gate record — B11 Docs (2026-11-17) — `docs(billing): update the payment documents, tracker, known issues and bug log`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; **57 warnings, below the B0 baseline of 58** (a full `--no-incremental` rebuild; this phase's first run showed 60 because three xUnit2013 warnings from my own integration tests were new, fixed by using `Assert.Single`) |
+| G2 | pass | area filter 648 total: 647 passed, 1 skipped, 0 failed |
+| G3 | pass | 2362 total = 2327 passed, 35 skipped, 0 failed (B0: 1867 total, 1831 passed). A first run of this phase had one failure, `OpenAiConsumerPipelineTests.LocalWriting_CloudFailureOrThreeSecondBudget…` — a wall-clock budget test of the same family as the B0 failure; it passes alone (22 of 22 with the Writing contract tests) and the whole suite was re-run clean |
+| G4 | pass | node 405 / 404 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | no source change in this phase except test warning fixes; signature helpers untouched |
+| G6 | pass | `git diff --check` clean for changed files |
+| G7 | pass | docs and a test file only; `Program.cs` unchanged since B3 (three DI lines in all), `_Layout.cshtml` unchanged since B10 (one line) |
+| G8–G14 | n/a | documentation only |
+| G15 | pass | no secret, key, hash or signed URL in any doc (grep over the diff and new text is empty); the docs give variable **names** only |
+| G16 | pass | unchanged from B10 (single assignment of `paid`; guard test) |
+
+**What changed.**
+- `docs/payment-operations-runbook.md`: how an order is confirmed (IPN, verified query, admin), the throttle, the event types, the state rules and the late rule, what the buyer sees, the atomic admin confirmation, the review form rules, local mock mode.
+- `docs/payment-configuration.md`: `MoMo__QueryPath`, `ReconciliationWorker__*` with the recommended setting, "how an order gets confirmed", local mock mode.
+- `docs/payment-go-live-checklist.md`: reconciliation setting, mock off, sandbox items for the return-query path, the MoMo query (marked unverified), VNPay QueryDR statuses, the 24 h late rule, sign-in-again behaviour, admin confirmation.
+- `docs/PAYMENT_GO_LIVE_PLAN_TCTEnglish.md`: a dated note that sections have been superseded and a corrected checklist line (the return URL).
+- `docs/design-system/team-ui-workflow.md`: tracker row for the Premium payment pages. `docs/project-structure.md`: billing controller, services, views and assets.
+- `.ai/context/known-issues.md`: `BILLING-ROLE-CHANGE-SIGNS-OUT` (the ready-to-apply proposal for Châu: renew instead of reject when only the role differs, plus honouring a local `returnUrl` on login), `BILLING-MOMO-QUERY-UNVERIFIED`, `BILLING-RECONCILIATION-WORKER-OFF` (recommended setting), `BILLING-ROLE-CLAIM-PREMIUM-CHECKS`. `.ai/context/bug-fix-log.md`: one entry for the whole change.
+
+**Mockup differences.** none. **Owned tests changed.** none (only three `Assert.Equal(1, …Count)` → `Assert.Single` in my own new test file). **Orders created.** none.

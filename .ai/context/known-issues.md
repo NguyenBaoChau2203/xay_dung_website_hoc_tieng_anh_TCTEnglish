@@ -27,6 +27,34 @@ proposing follow-up work so they do not optimize already-completed items.
 
 ## Known Bugs (Unresolved)
 
+### BILLING-ROLE-CHANGE-SIGNS-OUT — đề xuất cho Châu, confirmed 17/11/2026
+
+- **Triệu chứng (đã tái hiện bằng luồng giả lập MoMo):** ngay sau khi đơn được xác nhận, yêu cầu tiếp theo của người mua bị chuyển tới `/Account/Login`. Cùng lỗi khi Premium hết hạn (worker hoặc trang thanh toán hạ vai trò) và khi admin cấp hoặc thu hồi Premium.
+- **Nguyên nhân gốc:** `SubscriptionService` đổi `User.Role` (Standard ↔ Premium). `AccountSessionValidator.IsValidAsync` (gọi từ `OnValidatePrincipal` trong `Program.cs`) so vai trò trong cookie với vai trò trong DB; thấy khác thì từ chối cookie và đăng xuất. Thêm nữa, các nơi đọc **claim** vai trò (`SetController`, `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`) chỉ thấy Premium sau khi đăng nhập lại.
+- **Đã làm trong phạm vi thanh toán (D1 = TẠM):** trang Nâng cấp và trang đơn báo trước một lần "Sau khi thanh toán xong, bạn có thể được yêu cầu đăng nhập lại…"; script theo dõi đơn nhận ra phiên đã kết thúc (401 hoặc chuyển hướng tới trang đăng nhập) và đưa người dùng tới `/Account/Login?returnUrl=/Billing/Order/{mã}`; trang đơn và lịch sử luôn hiện đúng trạng thái sau khi đăng nhập lại; lịch sử và trang Premium hạ hạn ngay trên trang (`ExpireForUserAsync`) thay vì chờ worker mỗi giờ.
+- **Chưa giải quyết được ở đó:** trang đăng nhập **bỏ qua `returnUrl`** (`account-auth-ui.js` luôn chuyển tới `data-home-url`; `AccountController.Login` không xử lý `returnUrl`), nên người mua đăng nhập lại sẽ về trang chủ, không về trang đơn.
+- **Đề xuất sửa (mã của Châu, chưa áp dụng):**
+  1. Trong `OnValidatePrincipal`, khi mọi kiểm tra khác đều hợp lệ và **chỉ vai trò khác**, thay principal bằng cùng các claim nhưng vai trò lấy từ DB và đặt `context.ShouldRenew = true`, thay vì từ chối. Giữ nguyên: `SecurityVersion` đổi → vẫn từ chối; tài khoản bị ẩn danh hoặc bị khóa → vẫn từ chối. Test cần có: nâng vai trò → vẫn đăng nhập với claim mới; đổi `SecurityVersion` → bị từ chối; ẩn danh/khóa → bị từ chối.
+  2. Cho phép `returnUrl` cục bộ (`Url.IsLocalUrl`) sau khi đăng nhập thành công (truyền xuống `data-home-url` hoặc trả về trong JSON), để `LANDING-READING-LOGIN-RETURN` và luồng thanh toán cùng được sửa.
+  3. Sau khi áp dụng, xóa câu cảnh báo trong `Pricing.cshtml`/`Order.cshtml` và dòng xử lý "phiên kết thúc" trong `billing-order.js`.
+- Chọn D1 = SỬA LUÔN trong một lần chạy sau nếu muốn agent áp dụng đúng thay đổi tối thiểu ở mục 1.
+
+### BILLING-MOMO-QUERY-UNVERIFIED — confirmed 17/11/2026
+
+- `MoMoQueryClient` (xác nhận đơn MoMo mất IPN) dùng định dạng truy vấn công khai của MoMo v2 (`accessKey&orderId&partnerCode&requestId`, kết quả `resultCode`) và **chưa được thử với sandbox thật** (không có khóa trong repo, không gọi mạng). Nó chỉ chạy khi cổng được cấu hình đầy đủ; ở chế độ giả lập cục bộ luôn trả `Unknown`.
+- Cần làm trước khi bật MoMo production: chạy một giao dịch sandbox, kiểm tra truy vấn trả `resultCode=0` kèm đúng số tiền, ghi kết quả vào `docs/payment-go-live-checklist.md`.
+- Bảng trạng thái `vnp_TransactionStatus` của VNPay QueryDR không có trong repo: chỉ `00` (thành công) và `02` (lỗi/hủy) được tin; mọi giá trị khác là `Unknown` và không đổi đơn. Cần đối chiếu tài liệu VNPay khi có sandbox.
+
+### BILLING-RECONCILIATION-WORKER-OFF — cấu hình khuyến nghị 17/11/2026
+
+- `ReconciliationWorker__Enabled` mặc định `false` (và `start-local.ps1` ép `false` ở máy cá nhân). Khi IPN không tới được máy chủ (luôn xảy ra ở localhost, đôi khi ở staging/production), đơn chỉ được xác nhận khi người mua mở lại trang trả về hoặc bấm "Kiểm tra lại ngay".
+- **Khuyến nghị cho staging và production:** `ReconciliationWorker__Enabled=true`, `IntervalMinutes=5`, `MinPendingMinutes=5`. Worker hỏi nhà cung cấp về đơn `pending` và đơn `expired` trong 24 giờ gần nhất (cả VNPay và MoMo), tối đa 12 lần mỗi đơn và cách nhau ≥ 20 giây; không bao giờ đánh dấu thất bại khi nhà cung cấp chưa trả lời dứt khoát. Cần chủ dự án bật trong cấu hình môi trường (không sửa appsettings trong repo).
+
+### BILLING-ROLE-CLAIM-PREMIUM-CHECKS — confirmed 17/11/2026
+
+- Một số module quyết định Premium bằng **claim vai trò** thay vì `IPremiumAccessService`: `SetController` (`SuggestVocab`), `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`, `ListeningService`/`SpeakingService`/`WritingService` đọc vai trò từ DB. Người mới mua chỉ thấy tính năng ở nhóm đầu sau khi đăng nhập lại (liên quan BILLING-ROLE-CHANGE-SIGNS-OUT).
+- Đề xuất cho chủ từng module: dùng `IPremiumAccessService.HasFeatureAsync` (đọc DB, hết lỗi trễ claim). Các kiểm tra này không thuộc đợt sửa thanh toán và được giữ nguyên.
+
 ### LANDING-SCREENSHOTS-STALE — maintenance note 16/11/2026
 
 - Trang Landing dùng ảnh chụp thật của trang Từ vựng (`hero-home-*.webp`), của một câu hỏi trong bài học (`lesson-card-*.webp`) và ảnh chia sẻ `og-landing.png` (1200 × 630). Khi giao diện Từ vựng hoặc bài học đổi, các ảnh này sẽ cũ đi và cần chụp lại.

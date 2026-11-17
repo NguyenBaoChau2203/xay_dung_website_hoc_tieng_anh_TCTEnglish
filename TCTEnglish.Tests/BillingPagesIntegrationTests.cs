@@ -108,7 +108,7 @@ public class BillingPagesIntegrationTests
         Assert.Contains("Thanh toán một lần cho mỗi gói. Không tự động gia hạn.", text);
         Assert.Contains("Bạn đang dùng gói Miễn phí", text);
         Assert.Contains("Nâng cấp để mở các tính năng dùng AI và nội dung riêng của bạn.", text);
-        Assert.Equal(1, Regex.Matches(block, "<form\\b").Count);
+        Assert.Single(Regex.Matches(block, "<form\\b"));
         Assert.Contains("name=\"__RequestVerificationToken\"", block);
         Assert.Equal(2, Regex.Matches(block, "name=\"PlanCode\"").Count);
         Assert.Equal(2, Regex.Matches(block, "name=\"Provider\"").Count);
@@ -133,7 +133,7 @@ public class BillingPagesIntegrationTests
         Assert.Contains("Dùng trong 30 ngày", text);
         Assert.Contains($"Dùng trong 365 ngày · khoảng 33.250{Nbsp}₫/tháng", text);
         Assert.Contains("Tiết kiệm 32%", text);
-        Assert.Equal(1, Regex.Matches(text, "Tiết kiệm").Count);
+        Assert.Single(Regex.Matches(text, "Tiết kiệm"));
         var yearly = Regex.Match(html, "<input[^>]*name=\"PlanCode\"[^>]*value=\"premium_yearly\"[^>]*>");
         Assert.Contains("checked", yearly.Value);
         var monthly = Regex.Match(html, "<input[^>]*name=\"PlanCode\"[^>]*value=\"premium_monthly\"[^>]*>");
@@ -431,7 +431,7 @@ public class BillingPagesIntegrationTests
         var block = PageBlock(html);
 
         Assert.Contains("tb-stage--waiting", html);
-        Assert.Equal(1, Regex.Matches(block, "<h1\\b").Count);
+        Assert.Single(Regex.Matches(block, "<h1\\b"));
         Assert.Contains("Thanh toán bằng MoMo", text);
         Assert.Contains("Nâng cấp Premium", text);
         Assert.Contains("data-qr=\"00020101021238570010A000000727\"", html);

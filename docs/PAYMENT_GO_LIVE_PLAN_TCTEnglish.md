@@ -5,6 +5,8 @@
 
 ---
 
+> **Cập nhật 17/11/2026.** Tài liệu này là bản review tĩnh ban đầu. Nhiều mục bên dưới (xác nhận chỉ bằng IPN, trang trả về chỉ để hiển thị, đối soát chỉ cho VNPay và chỉ cho đơn `pending`, trang `MoMoQr`/`PaymentResult`) đã được thay bằng đợt làm lại ở `docs/superpowers/plans/2026-11-17-billing-hardening-and-redesign.md` (một `PaymentConfirmationService`, máy trạng thái, truy vấn nhà cung cấp khi mất IPN, trang đơn hàng tự cập nhật). Khi cần biết hiện trạng, đọc plan đó, `payment-operations-runbook.md`, `payment-configuration.md` và `payment-go-live-checklist.md`; phần dưới đây giữ làm lịch sử.
+
 ## 0. Bối cảnh review
 
 Dự án: **xây dựng website học từ vựng tiếng Anh - TCTEnglish**  
@@ -929,7 +931,7 @@ Checklist phase:
 - [ ] Amount mismatch -> reject/manual review
 - [ ] Extra unknown fields don't affect signature if not in recipe
 - [ ] Missing required signature field -> reject
-- [ ] Return URL display only
+- [ ] Return URL không tự xác nhận đơn (từ 17/11/2026 chỉ một truy vấn nhà cung cấp đã xác minh, đúng số tiền, mới xác nhận; trang trả về chuyển tới `/Billing/Order/{mã}`)
 - [ ] Mock mode disabled outside Development
 
 ## 6.3 Subscription
