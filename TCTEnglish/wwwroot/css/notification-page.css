@@ -54,8 +54,11 @@
 
 .tn-page .tn-filters { margin: 0 0 var(--tct-space-md); }
 
-/* One row that scrolls sideways on narrow screens; the padding leaves room for the focus ring. */
+/* One row that scrolls sideways on narrow screens; the padding leaves room for the focus ring.
+   It is positioned so the visually hidden labels inside the chips are clipped with the row
+   (otherwise they sit off-screen and widen the whole page). */
 .tn-page .tn-filters__list {
+    position: relative;
     display: flex;
     gap: var(--tct-space-sm);
     margin: 0;
@@ -277,6 +280,8 @@
     line-height: var(--tct-leading-tight);
     color: var(--tct-text);
 }
+
+.tn-page .tn-side-card .btn { min-height: 44px; }
 
 .tn-page .tn-settings { margin: 0 0 var(--tct-space-md); }
 

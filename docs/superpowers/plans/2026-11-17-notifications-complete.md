@@ -721,3 +721,41 @@ Record database evidence.
 **Differences from the mockup.** Tile hues as above (rule over mockup); the rest is built in T6.
 **Tests changed.** None edited; one new node test file.
 **Event keys of rows created.** None.
+
+### Gate record — T6 The /Notification page (2026-11-17) — `feat(notifications): rebuild the notification page with day groups, filters, real links and a reminder card`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full `--no-incremental` rebuild (Razor compiles): 0 errors, **57 warnings** (T0: 57) |
+| G2 | pass | `NotificationPageRenderTests` (13) + `NotificationPageIntegrationTests` (30): 43 passed |
+| G3 | pass | **2594 total = 2559 passed, 35 skipped, 0 failed** (T5: 2581 → +13 new) |
+| G4 | pass | node 421 total, 420 passed, 1 failed = the T0 speaking-catalog hash failure; `test_notification_behavior.cjs` (6) and `test_notification_core.cjs` (16) pass |
+| G5 | pass | `/Notification` and `/Notification/Index` answer; JSON untouched; `has-pending-model-changes`: none |
+| G6 | pass | `notification-page.css`: 0 hex/`rgb()`, 0 `:root`, 0 `!important`, 0 literal weight; no `style=` / inline `<script>` in `Index.cshtml` or the two partials (render test on the raw markup); no `innerHTML` in `notification-page.js` (only a comment); `git diff --check` clean |
+| G7 | pass | `NotificationController.cs` (constructor + `Index` + `BuildSidePanelAsync`), `Views/Notification/Index.cshtml` (rewrite), `Views/Shared/_NotificationDropdown.cshtml` (**one added line**: the `notification-core.js` script tag), `wwwroot/js/notification-page.js` (new), `notification-page.css` (fixes found below), tests; `test_notification_behavior.cjs` path update (below); no forbidden file, `Program.cs` untouched |
+| G8 | pass | headless Chrome on the local Release app, Standard learner with 12 unread items: 1440×900, 1366×768, 1024×768, 768×1024, 390×844, 320×640 and 200 % zoom (640 CSS px at DPR 2): `scrollWidth == clientWidth` at every size, **0** elements outside the viewport (the filter row scrolls inside its own box), **0** interactive targets under 44 px, **0** console errors / exceptions / failed requests on the page; screenshots in `.tmp/notifications/after/` |
+| G9 | pass | compared with mockups 1, 2 and 4; differences listed below |
+| G10 | pass | 19 scripted checks with real mouse and keyboard events, all PASS: card "Đánh dấu đã đọc" (summary, bell, sidebar, chip counts 12 → 11, bell name "Thông báo, 11 chưa đọc", `tct:notifications-changed` with the id, server `unread-count` 11); a 500 answer restores the card, the counts and the button and shows the failure toast; `Enter` on the focused read button marks it (10); clicking an unread link marks it read, then opens `/Goals#badges` (server count 9); the "Chưa đọc" chip filters to the 9 unread cards; a failed mark-all keeps everything and re-enables the button; mark-all shows "Đã đánh dấu 9 thông báo là đã đọc.", replaces the list with "Không còn thông báo chưa đọc", moves focus to that title, clears summary / bell / sidebar / chips and hides the button (server count 0); the reload renders the same all-read state |
+| G11 | pass | one `h1`, ordered `h2`/`h3`, `nav` with `aria-label`, `aria-current` on filters and pager, status live region for the toast, dot + hidden "Chưa đọc" + button (not colour alone), keyboard run: 22 tab stops in the page, **0** without a 2 px focus ring; forced-colours + reduced-motion screenshot taken (`page-forced-colors.png`) |
+| G12 | pass | scripted WCAG contrast over every visible text node (43 at desktop, 42 on phones) and the icons: **0 failures** at all seven sizes |
+| G13 | pass | full suite green; the old bell script and the sidebar badge still work (`test_notification_behavior.cjs`; the bell shows 12 on the page and follows the page's updates) |
+| G14 | pass | Clay tokens only; shared `_PageHeader` CSS classes reused (the header carries a POST button, which the partial cannot hold); no new palette, font, icon family or package |
+| G15 | pass | markup tests: unsafe `//host` link dropped, bad stored icon replaced, titles/messages HTML-encoded (`<script>` and `<img onerror>` seeds are not markup); the page script only follows links that pass `isSafeLocalUrl`; POSTs use the shell's antiforgery token; no real user was notified |
+
+**Findings fixed during the browser pass.**
+- At 390 px the page was 453 px wide: the visually hidden " chưa đọc" labels inside the scrolling filter chips are absolutely positioned and escaped the scroll box; the row is now `position: relative`. (`scrollWidth` 453 → 390.)
+- The side-card button was 40 px high; it is 44 px now.
+
+**Decisions.**
+- Filters: "Chưa đọc" is the filter axis, categories the category axis; both can be active (`aria-current` on each) and links keep the other axis. Counts (unread) are on "Chưa đọc" and on each category chip.
+- The header "mark all" is a real `<button>` (accessible name constant, icon only on phones); a link click on an unread card prevents the default, marks read (max 1.5 s) and navigates, a failed mark still navigates; Ctrl/Cmd/Shift/middle clicks mark read in the background and are not intercepted.
+- The page adds no antiforgery token: the shell's notification panel renders one for every signed-in user and the script reads it. `notification-core.js` is loaded from `_NotificationDropdown.cshtml` (an allowed file) so it is available before `notifications.js` at the end of the layout and before the page script.
+- The page script keeps the shell badges and the bell label in step itself and also dispatches `tct:notifications-changed` for the bell panel (T7).
+- Side card values: "Bật · HH:mm" / "Tắt", "Bật" / "Tắt", read through `INotificationPreferenceService.ReadAsync` with the existing `PushConfigured` option; a failed read keeps only the "Đổi cài đặt" button (test with a throwing service).
+- **`scripts/tests/test_notification_behavior.cjs` changed (plan 2.2):** the test that read the inline script out of `Index.cshtml` now reads `wwwroot/js/notification-page.js` (`readNotificationPageScript()`), additionally asserts that `Index.cshtml` carries no inline `<script>` and loads `notification-page.js`; the three regex assertions on the mark-read check, the rollback function name and the mark-all re-enable are **unchanged**.
+
+**Differences from the mockups.** Icon tile hues use tokens (streak = danger tint, payment = accent), not the mockup's orange / purple (rule over mockup); on phones the dot and the check button sit on their own row under the text instead of beside the title; category chips also carry unread counts (plan 8.4 asks for counts); the mockup's example data (Premium receipt, "Nhịp từ vựng" …) is not seeded, the run used the synthetic learner's own notifications.
+
+**Observed, not changed.** After the notification link opened `/Goals`, two `ReferenceError: jQuery is not defined` exceptions come from `/Goals` (it includes `_ValidationScriptsPartial` without jQuery; Goals is another owner's page, forbidden here); `/Notification` itself logged none.
+
+**Event keys / data.** No rows were created. The scripted run changed the read state of the synthetic Standard learner's 12 existing notifications (ids 2, 6, 10, 15–21, 28, 34); they were set back to unread by `UPDATE … WHERE UserId = 2 AND Id IN (…)` (12 of 12 unread again; the snapshot is `.tmp/notifications/snapshot-before-t6.txt`).

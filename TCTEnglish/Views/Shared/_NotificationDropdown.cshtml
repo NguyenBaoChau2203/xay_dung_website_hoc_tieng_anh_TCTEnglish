@@ -7,6 +7,10 @@
 @* CSRF token — đọc bởi notifications.js khi gọi POST *@
 @Html.AntiForgeryToken()
 
+@* Pure helpers (badge text, safe link, state reducer) used by notifications.js and the notification page.
+   Rendered here so it loads before notifications.js at the end of the layout. *@
+<script src="~/js/notification-core.js" asp-append-version="true"></script>
+
 <div class="notif-panel" id="notifPanel" role="dialog"
      aria-label="Thông báo" aria-modal="false">
 

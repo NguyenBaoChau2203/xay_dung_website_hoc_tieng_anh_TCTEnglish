@@ -1,6 +1,7 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using TCTEnglish.Services.Notifications;
 using TCTVocabulary.Services;
 using TCTVocabulary.ViewModels;
@@ -13,13 +14,19 @@ public class NotificationController : BaseController
     private const int PageSize = 20;
 
     private readonly INotificationService _notificationService;
+    private readonly INotificationPreferenceService _preferences;
+    private readonly IOptions<OutboundDeliveryOptions> _outbound;
     private readonly ILogger<NotificationController> _logger;
 
     public NotificationController(
         INotificationService notificationService,
+        INotificationPreferenceService preferences,
+        IOptions<OutboundDeliveryOptions> outbound,
         ILogger<NotificationController> logger)
     {
         _notificationService = notificationService;
+        _preferences = preferences;
+        _outbound = outbound;
         _logger = logger;
     }
 
@@ -52,11 +59,37 @@ public class NotificationController : BaseController
             });
         }
 
-        ViewData["Filter"] = unreadOnly ? "unread" : "all";
-        ViewData["Category"] = selectedCategory?.ToString().ToLowerInvariant();
-        ViewData["UnreadCount"] = viewModel.UnreadCount;
+        return View(new NotificationPageViewModel
+        {
+            List = viewModel,
+            Filter = unreadOnly ? "unread" : "all",
+            Category = selectedCategory?.ToString().ToLowerInvariant(),
+            Counts = await _notificationService.GetCategoryCountsAsync(userId),
+            Side = await BuildSidePanelAsync(userId)
+        });
+    }
 
-        return View(viewModel);
+    // Reminder settings are shown read-only beside the list; a failed read leaves only the "change settings" button.
+    private async Task<NotificationSidePanelViewModel> BuildSidePanelAsync(int userId)
+    {
+        try
+        {
+            var form = await _preferences.ReadAsync(userId, _outbound.Value.PushConfigured, HttpContext.RequestAborted);
+            return new NotificationSidePanelViewModel
+            {
+                HasSettings = true,
+                DailyReminder = form.DailyReminderEnabled
+                    ? $"Bật · {form.ReminderHour:00}:{form.ReminderMinute:00}"
+                    : "Tắt",
+                BrowserPush = form.PushOptIn ? "Bật" : "Tắt",
+                WeeklyEmail = form.WeeklyEmailOptIn ? "Bật" : "Tắt"
+            };
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _logger.LogWarning(ex, "Could not read reminder settings for the notification page, user {UserId}", userId);
+            return new NotificationSidePanelViewModel();
+        }
     }
 
     [HttpGet("api/notifications/unread-count")]

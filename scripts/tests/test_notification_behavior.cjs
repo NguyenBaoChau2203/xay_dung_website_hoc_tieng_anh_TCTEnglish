@@ -26,10 +26,22 @@ const NOTIFICATION_INDEX = path.join(
   'Index.cshtml'
 );
 
-function extractInlineNotificationScript(cshtml) {
-  const match = cshtml.match(/@section Scripts \{[\s\S]*?<script>([\s\S]*?)<\/script>/);
-  assert.ok(match, 'Notification Index must contain an inline script section');
-  return match[1];
+// The page script moved out of Index.cshtml into this file (plan 2026-11-17-notifications-complete, T6).
+const NOTIFICATION_PAGE_JS = path.join(
+  __dirname,
+  '..',
+  '..',
+  'TCTEnglish',
+  'wwwroot',
+  'js',
+  'notification-page.js'
+);
+
+function readNotificationPageScript() {
+  const cshtml = fs.readFileSync(NOTIFICATION_INDEX, 'utf8');
+  assert.doesNotMatch(cshtml, /<script(?![^>]*\bsrc=)/, 'Notification Index must not carry an inline script');
+  assert.match(cshtml, /notification-page\.js/, 'Notification Index must load notification-page.js');
+  return fs.readFileSync(NOTIFICATION_PAGE_JS, 'utf8');
 }
 
 function loadNotificationsModule({ markReadResponse, markAllResponse }) {
@@ -284,9 +296,8 @@ test('mark-all network failure restores disabled button', async () => {
   assert.equal(byId.notifMarkAllBtn.disabled, false);
 });
 
-test('Notification Index inline script must check mark-read success before clearing unread', () => {
-  const cshtml = fs.readFileSync(NOTIFICATION_INDEX, 'utf8');
-  const script = extractInlineNotificationScript(cshtml);
+test('Notification page script must check mark-read success before clearing unread', () => {
+  const script = readNotificationPageScript();
 
   // markAsRead must throw/reject when !res.ok (not fire-and-forget).
   assert.match(script, /async function markAsRead[\s\S]*if\s*\(\s*!res\.ok\s*\)/);
