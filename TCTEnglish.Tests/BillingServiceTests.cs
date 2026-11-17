@@ -35,6 +35,7 @@ namespace TCTEnglish.Tests
             return new BillingService(
                 ctx,
                 gateways,
+                TCTEnglish.Tests.TestHelpers.BillingTestFactories.SilentQueryService(ctx),
                 NullLogger<BillingService>.Instance);
         }
 

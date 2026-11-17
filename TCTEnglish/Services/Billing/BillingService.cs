@@ -22,15 +22,18 @@ namespace TCTEnglish.Services.Billing
 
         private readonly DbflashcardContext _context;
         private readonly IEnumerable<IPaymentGateway> _gateways;
+        private readonly IPaymentQueryService _queryService;
         private readonly ILogger<BillingService> _logger;
 
         public BillingService(
             DbflashcardContext context,
             IEnumerable<IPaymentGateway> gateways,
+            IPaymentQueryService queryService,
             ILogger<BillingService> logger)
         {
             _context = context;
             _gateways = gateways;
+            _queryService = queryService;
             _logger = logger;
         }
 
@@ -216,14 +219,21 @@ namespace TCTEnglish.Services.Billing
                 return 0;
             }
 
+            var expired = 0;
             foreach (var order in expiredOrders)
             {
+                if (!PaymentOrderStateMachine.CanExpire(order.Status))
+                {
+                    continue;
+                }
+
                 order.Status = PaymentOrderStatuses.Expired;
                 order.FailureMessage = "Đã quá hạn thanh toán.";
+                expired++;
             }
 
             await _context.SaveChangesAsync(ct);
-            return expiredOrders.Count;
+            return expired;
         }
 
         private async Task<PaymentResultViewModel?> GetProviderReturnResultAsync(
@@ -302,16 +312,35 @@ namespace TCTEnglish.Services.Billing
 
             await _context.SaveChangesAsync(ct);
 
+            // The browser's return never confirms anything by itself. When the provider says the buyer paid,
+            // ask the provider's own server once (throttled); only a verified answer with the right amount
+            // confirms the order, through the single confirmation service. This also works on localhost,
+            // where the provider cannot reach our IPN URL.
+            var returnReportedSuccess = callbackResult.IsPaid;
+            if (returnReportedSuccess)
+            {
+                var attempt = await _queryService.QueryAndConfirmAsync(order.Id, PaymentQueryTrigger.Return, ct);
+                _logger.LogInformation(
+                    "{Provider} return query for {OrderCode}: {Status}", provider, order.OrderCode, attempt.Status);
+            }
+
+            // Read the order again: the confirmation (if any) changed it in its own transaction.
+            var current = await _context.PaymentOrders
+                .AsNoTracking()
+                .Include(o => o.Plan)
+                .FirstAsync(o => o.Id == order.Id, ct);
+
             return new PaymentResultViewModel
             {
-                OwnerUserId = order.UserId,
-                OrderCode = order.OrderCode,
-                PlanName = order.Plan?.Name ?? "Premium",
-                AmountVnd = order.AmountVnd,
-                OrderStatus = NormalizeStatus(order.Status),
+                OwnerUserId = current.UserId,
+                OrderCode = current.OrderCode,
+                PlanName = current.Plan?.Name ?? "Premium",
+                AmountVnd = current.AmountVnd,
+                OrderStatus = NormalizeStatus(current.Status),
                 HasValidReturnSignature = true,
                 CanShowOrderSummary = true,
-                PaidAtUtc = order.PaidAtUtc
+                PaidAtUtc = current.PaidAtUtc,
+                ReturnReportedSuccess = returnReportedSuccess
             };
         }
 

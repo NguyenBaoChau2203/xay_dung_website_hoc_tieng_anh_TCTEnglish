@@ -48,6 +48,7 @@ namespace TCTEnglish.Tests
                 _mockHealthService.Object,
                 Options.Create(new MoMoOptions()),
                 new StubWebHostEnvironment { EnvironmentName = "Development" },
+                Moq.Mock.Of<TCTEnglish.Services.Billing.IPaymentQueryService>(),
                 NullLogger<BillingController>.Instance);
 
             var identity = userId.HasValue

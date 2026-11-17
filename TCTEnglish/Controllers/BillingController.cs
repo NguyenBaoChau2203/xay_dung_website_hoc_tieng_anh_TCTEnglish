@@ -30,6 +30,7 @@ namespace TCTEnglish.Controllers
         private readonly IPaymentProviderHealthService _healthService;
         private readonly MoMoOptions _moMoOptions;
         private readonly IWebHostEnvironment _environment;
+        private readonly IPaymentQueryService _queryService;
         private readonly ILogger<BillingController> _logger;
 
         public BillingController(
@@ -40,6 +41,7 @@ namespace TCTEnglish.Controllers
             IPaymentProviderHealthService healthService,
             IOptions<MoMoOptions> moMoOptions,
             IWebHostEnvironment environment,
+            IPaymentQueryService queryService,
             ILogger<BillingController> logger)
         {
             _context = context;
@@ -49,6 +51,7 @@ namespace TCTEnglish.Controllers
             _healthService = healthService;
             _moMoOptions = moMoOptions.Value.Normalize();
             _environment = environment;
+            _queryService = queryService;
             _logger = logger;
         }
 
@@ -259,29 +262,105 @@ namespace TCTEnglish.Controllers
                 return NotFound();
             }
 
+            var status = await BuildOrderStatusAsync(GetCurrentUserId(), orderCode, checkedWith: null);
+            return status == null ? NotFound() : Json(status);
+        }
+
+        /// <summary>
+        /// Asks the provider's own server about the buyer's order, at most once every 20 s (see
+        /// <see cref="IPaymentQueryService"/>). Used by the "Kiểm tra lại ngay" button and by the order page's
+        /// polling while it is waiting for confirmation. Owner only; anyone else gets 404.
+        /// </summary>
+        [Authorize]
+        [HttpPost("/Billing/Order/{orderCode}/Refresh")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RefreshOrder(string orderCode)
+        {
+            if (string.IsNullOrWhiteSpace(orderCode))
+            {
+                return NotFound();
+            }
+
             var userId = GetCurrentUserId();
+            var orderId = await _context.PaymentOrders
+                .AsNoTracking()
+                .Where(o => o.UserId == userId && o.OrderCode == orderCode)
+                .Select(o => (long?)o.Id)
+                .FirstOrDefaultAsync();
+
+            if (orderId == null)
+            {
+                return NotFound();
+            }
+
+            var attempt = await _queryService.QueryAndConfirmAsync(orderId.Value, PaymentQueryTrigger.Refresh);
+
+            if (!WantsJson())
+            {
+                return Redirect($"/Billing/Order/{Uri.EscapeDataString(orderCode)}");
+            }
+
+            var status = await BuildOrderStatusAsync(userId, orderCode, attempt.Status.ToString());
+            return status == null ? NotFound() : Json(status);
+        }
+
+        private bool WantsJson()
+        {
+            return Request.Headers.Accept.ToString().Contains("application/json", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(Request.Headers["X-Requested-With"], "XMLHttpRequest", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>The fields the order page polls: the original three plus <c>stage</c> and <c>premiumEndsAt</c>.</summary>
+        private async Task<object?> BuildOrderStatusAsync(int userId, string orderCode, string? checkedWith)
+        {
             var order = await _context.PaymentOrders
                 .AsNoTracking()
                 .Where(o => o.UserId == userId && o.OrderCode == orderCode)
                 .Select(o => new
                 {
+                    o.Id,
                     o.Status,
+                    o.Provider,
                     o.ExpiresAtUtc,
-                    Paid = o.Status == PaymentOrderStatuses.Paid
+                    o.ReturnPayloadJson
                 })
                 .FirstOrDefaultAsync();
 
             if (order == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return Json(new
+            var nowUtc = DateTime.UtcNow;
+            var paid = order.Status == PaymentOrderStatuses.Paid;
+            var stage = PaymentOrderPresentation.ResolveStage(
+                order.Status,
+                order.ExpiresAtUtc,
+                PaymentOrderPresentation.ReturnReportedSuccess(order.Provider, order.ReturnPayloadJson),
+                nowUtc);
+
+            string? premiumEndsAt = null;
+            if (paid)
+            {
+                var endsAtUtc = await _context.UserSubscriptions
+                    .AsNoTracking()
+                    .Where(s => s.ActivatedByPaymentOrderId == order.Id)
+                    .Select(s => (DateTime?)s.EndsAtUtc)
+                    .FirstOrDefaultAsync();
+                premiumEndsAt = endsAtUtc.HasValue
+                    ? DateTime.SpecifyKind(endsAtUtc.Value, DateTimeKind.Utc).ToString("O", CultureInfo.InvariantCulture)
+                    : null;
+            }
+
+            return new
             {
                 status = order.Status,
-                paid = order.Paid,
-                expired = order.ExpiresAtUtc <= DateTime.UtcNow
-            });
+                paid,
+                expired = order.ExpiresAtUtc <= nowUtc,
+                stage,
+                premiumEndsAt,
+                @checked = checkedWith
+            };
         }
 
         [AllowAnonymous]

@@ -39,6 +39,7 @@ namespace TCTEnglish.Tests
                 Mock.Of<IPaymentProviderHealthService>(),
                 Options.Create(new MoMoOptions()),
                 new StubWebHostEnvironment { EnvironmentName = "Development" },
+                Moq.Mock.Of<TCTEnglish.Services.Billing.IPaymentQueryService>(),
                 logger);
 
             var httpContext = new DefaultHttpContext();

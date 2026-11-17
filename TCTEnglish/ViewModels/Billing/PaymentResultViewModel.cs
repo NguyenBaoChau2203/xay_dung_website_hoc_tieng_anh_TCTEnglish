@@ -14,6 +14,9 @@ namespace TCTEnglish.ViewModels.Billing
         public bool CanShowOrderSummary { get; init; }
         public DateTime? PaidAtUtc { get; init; }
 
+        /// <summary>The provider's return page said the buyer paid. A hint for wording only; never a confirmation.</summary>
+        public bool ReturnReportedSuccess { get; init; }
+
         public string NormalizedStatus => (OrderStatus ?? string.Empty).Trim().ToLowerInvariant();
 
         public bool IsPaid => HasValidReturnSignature

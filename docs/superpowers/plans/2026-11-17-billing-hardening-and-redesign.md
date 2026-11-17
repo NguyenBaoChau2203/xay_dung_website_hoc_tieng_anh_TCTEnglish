@@ -580,3 +580,34 @@ No severity-A finding was disproved, so no design change is needed.
 **Owned tests changed.** none (`VnPayQueryClientTests` untouched and green). New: `ProviderQueryClientTests` (VNPay three-way table, MoMo client), `PaymentQueryServiceTests` (confirm, amount, eligibility, throttle, event content).
 
 **Mockup differences.** none. **Orders created.** none.
+
+
+### Gate record — B4 Return, refresh, reconciliation (2026-11-17) — `feat(billing): confirm a paid order from a verified provider query on return, refresh and reconciliation`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | 0 errors; no new warning |
+| G2 | pass | area filter 464 total: 463 passed, 1 skipped, 0 failed |
+| G3 | pass | 2164 total = 2129 passed, 35 skipped, 0 failed (B3's 2079 + 85 new tests) |
+| G4 | pass | node 391 / 390 passed; only the B0 speaking-catalog hash failure |
+| G5 | pass | signature helpers untouched; the four provider URLs, `OrderStatus`/`MoMoQr`/`History`/`Pricing` routes and the IPN responses are unchanged; `/Billing/OrderStatus` keeps `status`, `paid`, `expired` and adds `stage`, `premiumEndsAt` (plus `checked` on the refresh answer) |
+| G6 | pass | `git diff --check` clean for changed files; no CSS/view change |
+| G7 | pass | `Program.cs` untouched in this phase (services registered in B1/B3); no layout/shared file touched |
+| G8–G14 | n/a | backend only; the learner pages are replaced in B7–B9 (the return still renders the existing result page until B8) |
+| G15 | pass | `RefreshOrder` is `[Authorize]` + antiforgery + owner-only 404 (tests); a test pins that the only `[AllowAnonymous]` billing actions are the four provider callbacks; secret grep over the diff and new files is empty; the return handler only records a payload without `vnp_SecureHash`/`signature` (test) |
+| G16 | partial, expected | grep: `Status = Paid` now appears only in `PaymentConfirmationService` and the admin action (B10). The reconciliation copy is gone. Tests prove a return with an `Unknown`, no, failed, wrong-amount or missing-amount query answer never confirms (`BillingReturnConfirmationTests`) |
+
+**What changed.**
+- `BillingService`: on a valid return whose provider code says success (`IsPaid`), one throttled `IPaymentQueryService.QueryAndConfirmAsync(Return)`; the result is re-read from the database so the page shows the real status; `ReturnReportedSuccess` is added to `PaymentResultViewModel`. A cancelled or failed return does not query and leaves the order (the IPN or a later query decides). Cleanup goes through `CanExpire`.
+- `PaymentOrderPresentation` (pure): `ResolveStage` (waiting / confirming / paid / not_completed, plan 4.9) and `ReturnReportedSuccess` (reads the stored return parameters). Used by the status JSON now and by the order page and history later.
+- `BillingController`: `GET /Billing/OrderStatus` adds `stage` and `premiumEndsAt` (ISO UTC, from the subscription activated by the order); new `POST /Billing/Order/{orderCode}/Refresh` (JSON for `fetch`, otherwise a redirect to the order page that B8 adds). The constructor takes `IPaymentQueryService`.
+- `PaymentReconciliationService`: now `ReconcileOpenOrdersAsync` (the old method is kept as an alias): VNPay and MoMo, `pending` and `expired` within 24 h; success → confirmation service; `Unknown`/no answer → no change (F3 fixed: nothing is marked failed any more); `Failed` → cancelled/failed through the state machine (pending only); an order more than one hour past expiry whose return page reported success and that is still unconfirmed → manual review; a pending order more than 24 h past expiry → expired. The old private `MarkPaidAsync` copy of the confirmation is removed. The worker (still opt-in) calls the new method.
+
+**Decisions.**
+- `Failed` answers cancel a VNPay order (status `02` is what a cancelled payment reports; same as before) and cancel MoMo `1006` / fail the other MoMo failure codes.
+- A refresh while the order page is already waiting is the same throttled query as a return (20 s, 12 in all), so polling cannot hammer a provider.
+- The `/Billing/Order/{code}` page does not exist until B8; the non-JSON refresh redirect points at it, but nothing links to it yet.
+
+**Owned tests changed (and why).** `BillingServiceTests` (factory builds `BillingService` with a silent query service because the constructor gained a parameter), `BillingControllerTests`, `MoMoBillingControllerTests` (controller constructor gained `IPaymentQueryService`; no assertion changed). New: `BillingReturnConfirmationTests`, `PaymentReconciliationServiceTests`, `BillingOrderEndpointsTests`, `PaymentOrderPresentationTests`, and a shared `TestHelpers/BillingTestFactories`.
+
+**Mockup differences.** none. **Orders created.** none.
