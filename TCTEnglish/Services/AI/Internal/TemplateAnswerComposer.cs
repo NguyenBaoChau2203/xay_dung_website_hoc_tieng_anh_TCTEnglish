@@ -31,11 +31,12 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
     private static string ComposeGreeting()
     {
         return string.Join(Environment.NewLine, [
-            "Chào bạn! 👋 Mình là trợ lý TCT English. Mình có thể giúp bạn:",
-            "- Xem bộ từ vựng và tiến độ học",
-            "- Gợi ý bài speaking phù hợp",
-            "- Tra nghĩa từ trong bộ thẻ của bạn",
-            "- Hướng dẫn cách sử dụng website",
+            "Chào bạn! 👋 Mình là trợ lý TCT English. Hôm nay mình cùng luyện kỹ năng nào nhỉ?",
+            string.Empty,
+            "- Xem bộ từ vựng và tiến độ học 📚",
+            "- Gợi ý bài speaking phù hợp 🎙️",
+            "- Tra nghĩa từ trong bộ thẻ của bạn 🔎",
+            "- Hướng dẫn cách sử dụng website 🌱",
             string.Empty,
             "Bạn muốn hỏi về điều gì?"
         ]);
@@ -52,15 +53,15 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         if (totalCount <= 0 || setSnippets.Count == 0)
         {
             return string.Join(Environment.NewLine, [
-                "Hiện tại mình chưa tìm thấy bộ từ vựng nào trong tài khoản của bạn.",
+                "Hiện tại mình chưa tìm thấy bộ từ vựng nào trong tài khoản của bạn 🌱",
                 string.Empty,
-                "Bạn có thể tạo bộ từ đầu tiên tại trang **Bộ từ vựng** → **Tạo bộ từ mới**."
+                "Bạn có thể tạo bộ từ đầu tiên tại trang **Bộ từ vựng** → **Tạo bộ từ mới** để bắt đầu nhé!"
             ]);
         }
 
         var lines = new List<string>
         {
-            $"Bạn hiện có {totalCount} bộ từ vựng:"
+            $"Mình tìm thấy {totalCount} bộ từ vựng của bạn 📚"
         };
 
         foreach (var setSnippet in setSnippets)
@@ -98,7 +99,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         if (summary is null)
         {
             return string.Join(Environment.NewLine, [
-                "Mình chưa tìm thấy dữ liệu tiến độ học của bạn.",
+                "Mình chưa tìm thấy dữ liệu tiến độ học của bạn 🌱",
                 string.Empty,
                 "Hãy bắt đầu học một bộ từ vựng để hệ thống ghi nhận tiến độ nhé!"
             ]);
@@ -153,9 +154,9 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         {
             var safeTerm = string.IsNullOrWhiteSpace(userMessage) ? "đó" : userMessage.Trim();
             return string.Join(Environment.NewLine, [
-                $"Mình không tìm thấy từ \"{safeTerm}\" trong các bộ từ vựng của bạn.",
+                $"Mình chưa tìm thấy từ \"{safeTerm}\" trong các bộ từ vựng của bạn 🔎",
                 string.Empty,
-                "Bạn có thể thêm từ này vào bộ từ mới hoặc tìm kiếm với từ khác."
+                "Bạn có thể thêm từ này vào bộ từ mới hoặc tìm kiếm với từ khác nhé!"
             ]);
         }
 
@@ -169,7 +170,8 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
             var lines = new List<string>
             {
-                $"Mình tìm thấy từ \"{result.Title}\" trong bộ từ **{setName}**:",
+                $"Mình tìm thấy từ **{result.Title}** rồi nè 📖",
+                $"Trong bộ từ **{setName}**:",
                 string.Empty,
                 $"- **Từ:** {result.Title}",
                 $"- **Định nghĩa:** {definition}"
@@ -237,7 +239,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         {
             var lines = new List<string>
             {
-                "Mình chưa tìm thấy bài speaking phù hợp trong hệ thống lúc này."
+                "Mình chưa tìm thấy bài speaking phù hợp trong hệ thống lúc này 🎙️"
             };
             if (summary is not null)
             {
@@ -246,17 +248,17 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
             if (fallback == "upgrade")
             {
-                lines.Add("Vui lòng nâng cấp lên Premium để sử dụng tính năng này.");
+                lines.Add("Vui lòng nâng cấp lên Premium để sử dụng tính năng này nhé.");
             }
 
             lines.Add(string.Empty);
-            lines.Add("Bạn có thể vào trang **Speaking** để duyệt toàn bộ playlist và video theo trình độ.");
+            lines.Add("Bạn có thể vào trang **Speaking** để duyệt toàn bộ playlist và video theo trình độ nha.");
             return string.Join(Environment.NewLine, lines);
         }
 
         var answer = new List<string>
         {
-            "Một số bài speaking phù hợp với bạn:"
+            "Mình gợi ý vài bài luyện nói để bạn chọn nhé 🎙️"
         };
 
         foreach (var suggestion in suggestions)
@@ -277,7 +279,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         }
 
         answer.Add(string.Empty);
-        answer.Add("Vào trang **Speaking** để xem danh sách đầy đủ và bắt đầu luyện tập.");
+        answer.Add("Bạn có thể vào trang **Speaking** để chọn bài và bắt đầu luyện tập.");
         return string.Join(Environment.NewLine, answer);
     }
 
@@ -293,7 +295,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         if (totalCount <= 0 || classItems.Count == 0)
         {
             return string.Join(Environment.NewLine, [
-                "Bạn chưa tham gia lớp học nào.",
+                "Mình chưa thấy lớp học nào bạn đang tham gia 🌱",
                 string.Empty,
                 "Bạn có thể vào trang **Lớp học** để tạo lớp mới hoặc tham gia lớp học bằng mã mời."
             ]);
@@ -301,7 +303,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
         var lines = new List<string>
         {
-            $"Bạn đang tham gia {totalCount} lớp học:"
+            $"Mình tìm thấy {totalCount} lớp học bạn đang tham gia:"
         };
 
         foreach (var classItem in classItems)
@@ -354,10 +356,10 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         if (guide is null)
         {
             return string.Join(Environment.NewLine, [
-                "Mình chưa tìm thấy hướng dẫn phù hợp với câu hỏi của bạn.",
+                "Mình chưa tìm thấy hướng dẫn phù hợp với câu hỏi của bạn 🌱",
                 string.Empty,
                 "Các chủ đề mình có thể hỗ trợ bao gồm: tạo bộ từ, tạo lớp học, các chế độ học, luyện speaking và cài đặt tài khoản.",
-                "Bạn có thể hỏi lại theo một trong những chủ đề này."
+                "Bạn có thể hỏi lại theo một trong những chủ đề này nhé!"
             ]);
         }
 
@@ -369,7 +371,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         return string.Join(Environment.NewLine, [
             guide.Body.Trim(),
             string.Empty,
-            $"Bạn có thể truy cập ngay tại: {guide.Route}"
+            "Bạn có thể mở mục này trên website để bắt đầu 🌱"
         ]);
     }
 
@@ -384,10 +386,31 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         var recommendation = SelectStudyRecommendation(snippets);
         if (recommendation is null)
         {
+            var starters = snippets.Where(snippet => snippet.Source == KnowledgeSnippetSources.WebsiteGuide
+                && snippet.EntityKey is "guide:starter-vocabulary" or "guide:starter-speaking" or "guide:starter-writing")
+                .Take(3).ToList();
+            if (starters.Count > 0)
+            {
+                var choices = new List<string>
+                {
+                    "Mình gợi ý vài lựa chọn nhẹ nhàng để khởi đầu hôm nay nhé 🌱",
+                    string.Empty
+                };
+                choices.AddRange(starters.Select(starter => $"- **{starter.Title}**: {starter.Body}"));
+                choices.Add(string.Empty);
+                choices.Add("Đây là gợi ý khởi đầu chung để bạn làm quen nha. Bạn chọn kỹ năng muốn luyện để bắt đầu nhé!");
+                return string.Join(Environment.NewLine, choices);
+            }
+
+            if (snippets.Any(snippet => snippet.Source == KnowledgeSnippetSources.WebsiteGuide))
+            {
+                return ComposeWebsiteGuide(snippets);
+            }
+
             return string.Join(Environment.NewLine, [
-                "Mình chưa có đủ dữ liệu học để đưa ra gợi ý cụ thể.",
+                "Mình chưa có đủ dữ liệu để gợi ý riêng cho bạn 🌱",
                 string.Empty,
-                "Hãy tạo bộ từ đầu tiên và bắt đầu học để mình có thể theo dõi tiến độ và đề xuất phù hợp hơn."
+                "Bạn có thể tạo bộ từ đầu tiên rồi học thử một vài thẻ để mình có thêm dữ liệu gợi ý."
             ]);
         }
 
@@ -397,13 +420,13 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
         var lines = new List<string>
         {
-            "Dựa trên dữ liệu học của bạn, mình gợi ý:",
+            "Hôm nay mình cùng ôn lại những phần này nhé 🌱",
             $"- Ôn lại bộ **{recommendation.Title}** — còn {remainingCount} thẻ chưa thành thạo."
         };
 
         if (streakDays > 0)
         {
-            lines.Add($"- Streak hiện tại: {streakDays} ngày. Học hôm nay để duy trì chuỗi!");
+            lines.Add($"- Streak hiện tại: {streakDays} ngày. Bạn có thể học thêm một chút hôm nay để giữ nhịp.");
         }
 
         if (goalRemaining > 0)
@@ -507,7 +530,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         }
 
         lines.Add(string.Empty);
-        lines.Add("Bạn có thể xem chi tiết tại: /Goals");
+        lines.Add("Bạn có thể mở trang **Goals** để xem mục tiêu và danh hiệu 🎯");
         return string.Join(Environment.NewLine, lines);
     }
 
@@ -542,7 +565,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         }
 
         lines.Add(string.Empty);
-        lines.Add("Bạn có thể mở trang thông báo tại: /Notification/Index");
+        lines.Add("Bạn có thể mở mục **Thông báo** để xem chi tiết.");
         return string.Join(Environment.NewLine, lines);
     }
 
@@ -587,7 +610,7 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
 
         lines.Add(string.Empty);
         lines.Add("Để bảo mật, mình không hiển thị URL thanh toán, mã giao dịch gateway, token hoặc thông tin cấu hình thanh toán trong chat.");
-        lines.Add("Bạn có thể xem gói tại /Premium và lịch sử tại /Billing/History.");
+        lines.Add("Bạn có thể xem gói tại **Premium** và đơn của mình tại **Lịch sử thanh toán**.");
         return string.Join(Environment.NewLine, lines);
     }
 
@@ -605,13 +628,13 @@ public sealed class TemplateAnswerComposer : IAnswerComposer
         }
 
         return string.Join(Environment.NewLine, [
-            "Hiện tại mình chỉ hỗ trợ câu hỏi liên quan đến dữ liệu và tính năng của TCT English như bộ từ vựng, tiến độ học, lớp học, speaking và cách sử dụng website.",
+            "Hiện tại mình chỉ hỗ trợ câu hỏi liên quan đến dữ liệu và tính năng của TCT English như bộ từ vựng, tiến độ học, lớp học, speaking và cách sử dụng website 🌱",
             string.Empty,
             "Bạn có thể hỏi theo các dạng như:",
-            "- Tôi có những bộ từ vựng nào?",
-            "- Tiến độ học của tôi ra sao?",
-            "- Gợi ý bài speaking phù hợp",
-            "- Cách tạo lớp học hoặc tạo set"
+            "- Tôi có những bộ từ vựng nào? 📚",
+            "- Tiến độ học của tôi ra sao? 🎯",
+            "- Gợi ý bài speaking phù hợp 🎙️",
+            "- Cách tạo lớp học hoặc tạo set 🌱"
         ]);
     }
 

@@ -398,7 +398,7 @@
             }
         } catch {
             runtime.hubAvailable = false;
-            showStatus(elStatus, 'Không thể khởi tạo realtime. Hệ thống sẽ dùng AJAX.');
+            showStatus(elStatus, 'Mình chưa kết nối được chế độ trả lời trực tiếp. Bạn vẫn có thể gửi câu hỏi tại đây.');
         }
     }
 
@@ -859,75 +859,61 @@
             container.setAttribute('data-grounding-outcome', outcome);
         }
 
-        const label = learnerStateLabel(grounding, usage);
-        const showNotice = (status === 'changed' || status === 'snapshot')
-            && typeof grounding.notice === 'string'
-            && grounding.notice.trim();
+        const suppliedNotice = typeof grounding.notice === 'string' ? grounding.notice.trim() : '';
+        const notice = status === 'unverified' && !suppliedNotice
+            ? 'Mình chưa kiểm tra lại được thông tin của câu trả lời này. Bạn hỏi lại mình nhé.'
+            : suppliedNotice;
+        const showNotice = (status === 'unverified' || status === 'changed' || status === 'snapshot') && notice;
         const sources = Array.isArray(grounding.sources) ? grounding.sources : [];
-        if (!label && !showNotice && sources.length === 0) {
+        const visible = sources.filter((source) => source && typeof source.sourceKey === 'string' && source.sourceKey);
+
+        let actions = [];
+        if ((outcome === 'answered' || outcome === 'needs_clarification')
+            && (status === 'current' || status === 'changed' || status === 'snapshot')) {
+            const destinations = new Set();
+            actions = visible.filter((source) => {
+                if (source.freshness !== 'current' || !isSafeNavigationRoute(source.route)) return false;
+                const key = source.route.toLowerCase();
+                if (destinations.has(key)) return false;
+                destinations.add(key);
+                return true;
+            }).slice(0, 3);
+        }
+
+        if (!showNotice && actions.length === 0) {
             return;
         }
 
         const section = document.createElement('section');
         section.className = 'ai-chat-sources';
-        section.setAttribute('aria-label', 'Nguồn và trạng thái câu trả lời');
-
-        if (label) {
-            const state = document.createElement('p');
-            state.className = 'ai-chat-state';
-            state.setAttribute('data-answer-state', outcome || status);
-            state.textContent = label;
-            section.appendChild(state);
-        }
+        section.setAttribute('aria-label', 'Gợi ý học tập');
 
         if (showNotice) {
             const note = document.createElement('p');
             note.className = 'ai-chat-source-notice';
-            note.textContent = grounding.notice;
+            note.textContent = notice;
             section.appendChild(note);
         }
 
-        const visible = sources.filter((source) => source && typeof source.sourceKey === 'string' && source.sourceKey);
-        if (visible.length > 0) {
-            const heading = document.createElement('p');
-            heading.className = 'ai-chat-source-label';
-            heading.textContent = 'Nguồn';
-            const list = document.createElement('ul');
-            list.className = 'ai-chat-source-list';
-            list.setAttribute('aria-label', 'Nguồn');
-            visible.forEach((source) => {
-                const item = document.createElement('li');
-                item.setAttribute('data-source-key', source.sourceKey);
-                item.setAttribute('data-source-freshness', typeof source.freshness === 'string' ? source.freshness : '');
-                const title = typeof source.title === 'string' && source.title.trim()
-                    ? source.title.trim()
-                    : 'Nguồn đã lưu';
-                if (isSafeCitationRoute(source.route)) {
-                    const link = document.createElement('a');
-                    link.className = 'ai-chat-source-link';
-                    link.href = source.route;
-                    link.textContent = title;
-                    item.appendChild(link);
-                } else {
-                    const span = document.createElement('span');
-                    span.className = 'ai-chat-source-title';
-                    span.textContent = title;
-                    item.appendChild(span);
-                }
-
-                if (source.freshness === 'changed' || source.freshness === 'snapshot') {
-                    const fresh = document.createElement('span');
-                    fresh.className = 'ai-chat-source-freshness';
-                    fresh.textContent = source.freshness === 'changed'
-                        ? 'Nguồn đã thay đổi sau khi trả lời'
-                        : 'Số liệu tại thời điểm trả lời';
-                    item.appendChild(fresh);
-                }
-
-                list.appendChild(item);
+        if (actions.length > 0) {
+            const navigation = document.createElement('nav');
+            navigation.className = 'ai-chat-actions';
+            navigation.setAttribute('aria-label', 'Mở trang được gợi ý');
+            actions.forEach((source) => {
+                const link = document.createElement('a');
+                link.className = 'ai-chat-action';
+                link.href = source.route;
+                link.target = '_top';
+                link.setAttribute('data-source-key', source.sourceKey);
+                const label = navigationLabel(source.route, source.title);
+                link.textContent = label;
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'ai-chat-action-icon ' + actionIconClass(source.route);
+                iconSpan.setAttribute('aria-hidden', 'true');
+                link.insertBefore(iconSpan, link.firstChild);
+                navigation.appendChild(link);
             });
-            section.appendChild(heading);
-            section.appendChild(list);
+            section.appendChild(navigation);
         }
 
         bubble.appendChild(section);
@@ -986,6 +972,42 @@
         }
 
         return path.length > 1 && path.length <= 200 && /^[A-Za-z0-9/_-]+$/.test(path);
+    }
+
+    function isSafeNavigationRoute(route) {
+        if (!isSafeCitationRoute(route)) return false;
+        const path = route.split('?')[0];
+        if (route.includes('?') && path.toLowerCase() !== '/home/writing/practice') return false;
+        // Match LearnerSourceLink.NavigationPattern; never promote a mutation
+        // endpoint just because its text resembles a local citation URL.
+        return /^\/(?:Speaking(?:\/(?:Index|Practice\/[1-9]\d*))?|Practice(?:\/(?:HardWords|learn|test|match|flashcard|quiz|typing|listening|cloze))?|Sets(?:\/[1-9]\d*)?|Goals(?:\/Index)?|Account\/(?:Profile|Settings|Login)|Premium|Billing\/History|Notification\/Index|AI\/Chat|Reading\/(?:Study|Quiz)\/[1-9]\d*|Home\/(?:Index|CreateSet|Folder|CreateClass|Class|Contact|Grammar|Privacypolicy|Termsofuse|Search|Reading(?:\/(?:Study|Quiz|Practice)\/[1-9]\d*)?|Listening(?:\/Practice\/[1-9]\d*)?|Writing(?:\/Exercises|\/Practice)?|(?:Study|QuizMode|WriteMode|MatchingMode|ClassDetail)\/[1-9]\d*))$/i.test(path);
+    }
+
+    function navigationLabel(route, title) {
+        const path = route.toLowerCase();
+        if (path.startsWith('/speaking')) return 'Mở luyện nói';
+        if (path.startsWith('/home/writing')) return 'Mở luyện viết';
+        if (path.startsWith('/home/listening')) return 'Mở luyện nghe';
+        if (path.startsWith('/home/reading') || path.startsWith('/reading/')) return 'Mở luyện đọc';
+        if (path.startsWith('/practice/hardwords')) return 'Ôn từ khó';
+        if (path.startsWith('/practice')) return 'Luyện từ vựng';
+        if (path.startsWith('/goals')) return 'Xem Goals và danh hiệu';
+        if (path.startsWith('/account/profile')) return 'Mở hồ sơ cá nhân';
+        if (path.startsWith('/account/settings')) return 'Mở cài đặt tài khoản';
+        return typeof title === 'string' && title.trim() ? 'Mở ' + title.trim() : 'Mở trang liên quan';
+    }
+
+    function actionIconClass(route) {
+        const path = typeof route === 'string' ? route.toLowerCase() : '';
+        if (path.startsWith('/speaking')) return 'fa-solid fa-microphone';
+        if (path.startsWith('/home/writing')) return 'fa-solid fa-pen';
+        if (path.startsWith('/home/listening')) return 'fa-solid fa-headphones';
+        if (path.startsWith('/home/reading') || path.startsWith('/reading/')) return 'fa-solid fa-book-open';
+        if (path.startsWith('/practice')) return 'fa-solid fa-layer-group';
+        if (path.startsWith('/goals')) return 'fa-solid fa-bullseye';
+        if (path.startsWith('/account/profile')) return 'fa-solid fa-user';
+        if (path.startsWith('/account/settings')) return 'fa-solid fa-gear';
+        return 'fa-solid fa-arrow-right';
     }
 
     function streamEventCurrent(runtime, payload, requireStreamId) {

@@ -273,6 +273,65 @@ function sourceNodes(chatWindow) {
   return nodes;
 }
 
+test('accepted guidance exposes bounded safe actions that escape the embedded frame', async () => {
+  const { document, byId } = buildChatDom();
+  loadAiChat({ document, fetchImpl: async url => {
+    if (String(url).includes('Observability')) return observabilityResponse();
+    return {
+      ok: true, status: 200, headers: { get: () => 'application/json' },
+      json: async () => ({
+        text: 'General starter choices', conversationId: '33333333-3333-3333-3333-333333333333',
+        grounding: { outcome: 'answered', status: 'current', sources: [
+          { sourceKey: 'guide:speaking', title: HOSTILE, route: '/Speaking', freshness: 'current' },
+          { sourceKey: 'guide:duplicate', title: 'Duplicate', route: '/Speaking', freshness: 'current' },
+          { sourceKey: 'guide:writing', title: 'Writing', route: '/Home/Writing/Exercises', freshness: 'current' },
+          { sourceKey: 'guide:mutation', title: 'Delete', route: '/Account/Delete', freshness: 'current' },
+          { sourceKey: 'guide:stale', title: 'Stale', route: '/Home/Listening', freshness: 'changed' },
+          { sourceKey: 'guide:reading', title: 'Reading', route: '/Home/Reading', freshness: 'current' },
+          { sourceKey: 'guide:extra', title: 'Goals', route: '/Goals', freshness: 'current' },
+        ] },
+      }),
+    };
+  } });
+  await delay(20);
+  byId.messageInput.value = 'Where can I study?';
+  pressEnter(byId.messageInput);
+  await delay(40);
+  const actions = [];
+  walk(byId.chatWindow, node => {
+    if (node.classList?.contains('ai-chat-action')) actions.push(node);
+    assert.notEqual(node.tagName, 'IMG', 'hostile source title must stay text');
+  });
+  assert.deepEqual(actions.map(node => node.href), ['/Speaking', '/Home/Writing/Exercises', '/Home/Reading']);
+  assert.ok(actions.every(node => node.target === '_top'));
+  assert.deepEqual(actions.map(node => node.getAttribute('data-source-key')), ['guide:speaking', 'guide:writing', 'guide:reading']);
+  assert.ok(actions.every(node => node.children.some(child => child.classList.contains('fa-solid') && child.getAttribute('aria-hidden') === 'true')));
+  assert.ok(actions.some(node => node.textContent.includes('luyện nói')));
+});
+
+test('unavailable grounding never offers a stale navigation action', async () => {
+  const { document, byId } = buildChatDom();
+  loadAiChat({ document, fetchImpl: async url => {
+    if (String(url).includes('Observability')) return observabilityResponse();
+    return {
+      ok: true, status: 200, headers: { get: () => 'application/json' },
+      json: async () => ({
+        text: 'Source no longer available', conversationId: '33333333-3333-3333-3333-333333333333',
+        grounding: { outcome: 'answered', status: 'unavailable', sources: [
+          { sourceKey: 'guide:speaking', title: 'Speaking', route: '/Speaking', freshness: 'current' },
+        ] },
+      }),
+    };
+  } });
+  await delay(20);
+  byId.messageInput.value = 'Open my lesson';
+  pressEnter(byId.messageInput);
+  await delay(40);
+  const actions = [];
+  walk(byId.chatWindow, node => { if (node.classList?.contains('ai-chat-action')) actions.push(node); });
+  assert.equal(actions.length, 0);
+});
+
 test('older messages encode hostile titles and drop unsafe routes', async () => {
   const { document, body } = createDocument([]);
   const chatWindow = createElement('div', 'chatWindow');
@@ -344,13 +403,13 @@ test('older messages encode hostile titles and drop unsafe routes', async () => 
               content: 'older answer',
               createdAtUtc: '2026-01-01T00:00:00.000Z',
               grounding: {
-                outcome: 'insufficient_evidence',
+                outcome: 'answered',
                 status: 'current',
                 sources: [
-                  { sourceKey: 'card:1', title: HOSTILE, route: 'javascript:alert(1)' },
-                  { sourceKey: 'card:2', title: 'Remote', route: 'https://evil.example/phish' },
-                  { sourceKey: 'card:3', title: 'Admin', route: '/Admin/Index' },
-                  { sourceKey: 'card:4', title: '', route: '/Home/Study/301', freshness: 'changed' },
+                  { sourceKey: 'card:1', title: HOSTILE, route: 'javascript:alert(1)', freshness: 'current' },
+                  { sourceKey: 'card:2', title: 'Remote', route: 'https://evil.example/phish', freshness: 'current' },
+                  { sourceKey: 'card:3', title: 'Admin', route: '/Admin/Index', freshness: 'current' },
+                  { sourceKey: 'card:4', title: HOSTILE, route: '/Home/Study/301', freshness: 'current' },
                 ],
               },
             },
@@ -360,6 +419,15 @@ test('older messages encode hostile titles and drop unsafe routes', async () => 
               content: 'provider down',
               createdAtUtc: '2026-01-01T00:01:00.000Z',
               grounding: { outcome: 'provider_unavailable', status: 'current', sources: [] },
+            },
+            {
+              id: 'm2', role: 'assistant', content: 'retained unverified history',
+              createdAtUtc: '2026-01-01T00:02:00.000Z',
+              grounding: { status: 'unverified', sources: [] },
+            },
+            {
+              id: 'm3', role: 'assistant', content: 'legacy without metadata',
+              createdAtUtc: '2026-01-01T00:03:00.000Z', grounding: null,
             },
           ],
         };
@@ -374,6 +442,7 @@ test('older messages encode hostile titles and drop unsafe routes', async () => 
 
   const sources = sourceNodes(chatWindow);
   assert.equal(sources.length, 2);
+  assert.match(collectText(sources[1]), /Mình chưa kiểm tra lại được/);
   const links = [];
   const titles = [];
   walk(sources[0], (node) => {
@@ -385,17 +454,17 @@ test('older messages encode hostile titles and drop unsafe routes', async () => 
     if (node.textContent) titles.push(node.textContent);
   });
   assert.deepEqual(links, ['/Home/Study/301']);
+  const oldAction = [];
+  walk(sources[0], node => { if (node.tagName === 'A') oldAction.push(node); });
+  assert.equal(oldAction[0].getAttribute('data-source-key'), 'card:4');
   assert.ok(titles.some((title) => title.includes(HOSTILE)));
-  assert.ok(titles.some((title) => title === 'Nguồn đã lưu'));
-  assert.ok(titles.some((title) => title.includes('Chưa đủ căn cứ')));
-  assert.ok(titles.some((title) => title.includes('Nguồn đã thay đổi sau khi trả lời')));
   assert.equal(sources[0].textContent.includes('card:1'), false);
+  assert.equal(sources[0].textContent.includes('card:4'), false);
   const states = [];
   walk(chatWindow, (node) => {
     if (node.classList && node.classList.contains('ai-chat-state')) states.push(node.textContent);
   });
-  assert.ok(states.includes('Chưa đủ căn cứ'));
-  assert.ok(states.includes('Trợ lý tạm thời không trả lời được'));
+  assert.equal(states.length, 0);
 });
 
 test('stream buffers out-of-order chunks and renders sources only after completion', async () => {
@@ -443,18 +512,51 @@ test('stream buffers out-of-order chunks and renders sources only after completi
   assert.equal(visibleAssistantText(byId.chatWindow), 'FIRSTSECOND');
   assert.equal(row.getAttribute('data-accepted'), 'true');
   assert.equal(row.classList.contains('d-none'), false);
-  const links = [];
+  const actions = [];
   walk(sourceNodes(byId.chatWindow)[0], (node) => {
-    if (node.tagName === 'A') links.push(node.href);
+    if (node.classList?.contains('ai-chat-action')) actions.push(node);
   });
-  assert.deepEqual(links, ['/Home/Study/301']);
+  assert.deepEqual(actions.map(node => node.href), ['/Home/Study/301']);
+  assert.equal(actions[0].target, '_top');
+  assert.equal(actions[0].getAttribute('data-source-key'), 'card:401');
   const rendered = [];
   walk(sourceNodes(byId.chatWindow)[0], (node) => {
     if (node.textContent) rendered.push(node.textContent);
   });
-  assert.ok(rendered.includes('Đã trả lời từ nguồn được phép xem'));
-  assert.equal(rendered.includes('card:401'), false);
+  assert.doesNotMatch(rendered.join(' '), /Đã trả lời từ nguồn được phép xem/);
+  assert.equal(rendered.join(' ').includes('card:401'), false);
 });
+
+for (const transport of ['http', 'stream']) {
+  test(`${transport} explicit unverified retained content gets one caution without CTAs`, async () => {
+    const { document, byId } = buildChatDom();
+    const hub = transport === 'stream' ? createHub() : undefined;
+    const grounding = { status: 'unverified', sources: [{ sourceKey: 'guide:unsafe', route: '/Speaking', freshness: 'current' }] };
+    loadAiChat({ document, connection: hub, fetchImpl: async url => String(url).includes('Observability')
+      ? observabilityResponse() : { ok: true, status: 200, headers: { get: () => 'application/json' },
+        json: async () => ({ text: 'Previously retained answer', conversationId: 'c1', grounding }) } });
+    await delay(20);
+    byId.conversationIdInput.value = 'c1';
+    byId.messageInput.value = 'Please recheck';
+    pressEnter(byId.messageInput);
+    await delay(30);
+    if (hub) {
+      hub.emit('AiStreamStarted', { streamId: 'uncertain', conversationId: 'c1' });
+      hub.emit('AiStreamChunk', { streamId: 'uncertain', conversationId: 'c1', chunkIndex: 0, chunk: 'Previously retained answer' });
+      hub.emit('AiStreamCompleted', { streamId: 'uncertain', conversationId: 'c1', grounding });
+      await delay(20);
+    }
+    assert.match(visibleAssistantText(byId.chatWindow), /Previously retained answer/);
+    const notes = [], actions = [];
+    walk(byId.chatWindow, node => {
+      if (node.classList?.contains('ai-chat-source-notice')) notes.push(node.textContent);
+      if (node.classList?.contains('ai-chat-action')) actions.push(node);
+    });
+    assert.equal(notes.length, 1);
+    assert.match(notes[0], /Mình chưa kiểm tra lại được/);
+    assert.equal(actions.length, 0);
+  });
+}
 
 test('Stop drops an unaccepted stream and ignores a late completion', async () => {
   const { document, byId } = buildChatDom();
@@ -689,6 +791,6 @@ test('internal chat success is not labelled as a model call', async () => {
   await delay(40);
   const rendered = collectText(byId.chatWindow);
   assert.match(rendered, /The bell is red/);
-  assert.match(rendered, /Trả lời từ dữ liệu trong hệ thống/);
+  assert.doesNotMatch(rendered, /Trả lời từ dữ liệu trong hệ thống/);
   assert.doesNotMatch(rendered, /gpt-6-luna|GPT/);
 });
