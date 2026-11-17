@@ -55,6 +55,33 @@ proposing follow-up work so they do not optimize already-completed items.
 - Một số module quyết định Premium bằng **claim vai trò** thay vì `IPremiumAccessService`: `SetController` (`SuggestVocab`), `SetController.Personal`, `VocabApiController`, `AiController`, `_AiChatLauncher`, `ListeningService`/`SpeakingService`/`WritingService` đọc vai trò từ DB. Người mới mua chỉ thấy tính năng ở nhóm đầu sau khi đăng nhập lại (liên quan BILLING-ROLE-CHANGE-SIGNS-OUT).
 - Đề xuất cho chủ từng module: dùng `IPremiumAccessService.HasFeatureAsync` (đọc DB, hết lỗi trễ claim). Các kiểm tra này không thuộc đợt sửa thanh toán và được giữ nguyên.
 
+### NOTIFICATIONS-SHARED-FILES-FOR-CHAU — ghi chú bàn giao 17/11/2026
+
+- Đợt làm lại thông báo (plan `docs/superpowers/plans/2026-11-17-notifications-complete.md`) chạm **ít dòng** vào code dùng chung/của Châu, theo quyết định D1 và D4 của Trọng. Châu xem lại khi hợp vào `master`:
+  1. `Views/Shared/_Layout.cshtml` — **chỉ** nút chuông (`aria-haspopup="true"`, `aria-controls` chỉ khi đã đăng nhập, biểu tượng `aria-hidden`, huy hiệu dùng thuộc tính `hidden` thay cho `style="display:none"`) và huy hiệu ở menu bên (bỏ toàn bộ style nội dòng; kiểu nằm trong `notifications.css`). 5 dòng thêm / 5 dòng bỏ, không đổi gì khác.
+  2. `Workers/NotificationWorker.cs` — **chỉ bốn chuỗi** (Title/Message của cảnh báo mất chuỗi ngày học và của "sắp nhận huy hiệu"): bỏ chữ "Streak" và emoji. Không đổi logic, batch hay outbox.
+  3. `Models/NotificationType` — thêm thành viên `PremiumActivated = 8` (lưu dạng số nguyên, **không migration**; `has-pending-model-changes` rỗng).
+  4. `NotificationController.Index` đọc cài đặt nhắc học qua `INotificationPreferenceService.ReadAsync(userId, OutboundDeliveryOptions.PushConfigured)` — **chỉ đọc**, hiển thị ở cột phải; lỗi đọc chỉ làm mất khung giá trị (còn nút "Đổi cài đặt" tới `/Account/Profile#section-notifications`).
+  5. `Views/Shared/_NotificationDropdown.cshtml` nạp `notification-core.js` (một dòng) để có trước `notifications.js` ở cuối layout; `study-kit.css` chỉ thêm `.tn-page` vào các danh sách phạm vi.
+- Không đổi: `Program.cs`, `appsettings*`, `.csproj`, migration, `LearningBusinessClock`, `Services/Notifications/**` (chỉ `NotificationDisplay`/`NotificationLinks`/`AnnouncementModels` được thêm), Goals/Streak/Account.
+
+### NOTIFICATIONS-OLD-ROWS-KEEP-OLD-COPY — confirmed 17/11/2026
+
+- Thông báo đã lưu trước đợt này giữ nguyên chữ cũ ("Streak 1 ngày — kỷ lục mới của bạn!", "Còn 1 bước nữa để mở khóa huy hiệu 'Khởi động'!" …). `NotificationDisplay.CleanTitle` chỉ bỏ emoji/ký hiệu **đầu tiêu đề**; thân tin nhắn cũ không bị sửa. Hết hạn tự nhiên sau 30 ngày (đã đọc) — không viết lại dữ liệu cũ (quyết định D3 = GIỮ).
+
+### NOTIFICATIONS-ANNOUNCEMENT-NOT-SENT-LOCALLY — chưa kiểm chứng 17/11/2026
+
+- CSDL local có tài khoản thật (user 4, email của Trọng) nên **không gửi thông báo admin** khi thử (quy tắc mục 7 của plan). Gửi theo lô, chống gửi đôi, loại tài khoản đã ẩn danh/khóa, liên kết cục bộ và giao dịch theo lô 500 được kiểm bằng test (SQLite một lần dùng + host kiểm thử); trang Lịch sử đã chạy trên MariaDB Docker với dòng thử của tài khoản mẫu (đã xóa theo khóa). **Chưa** chạy một lần gửi thật trên MariaDB: nếu muốn, làm trên bản sao có chỉ tài khoản mẫu.
+- Số người nhận trong Lịch sử đếm các dòng còn lưu: sau 30 ngày bản đã đọc bị dọn nên con số giảm; nhóm cũ hơn 30 ngày được ghi "còn n bản lưu".
+
+### NOTIFICATIONS-GOALS-PAGE-JQUERY — quan sát 17/11/2026
+
+- Mở `/Goals` (từ liên kết "Xem huy hiệu" của thông báo) trong Chrome headless ghi hai lỗi console `ReferenceError: jQuery is not defined` (`jquery.validate.min.js`, `jquery.validate.unobtrusive.min.js`): `Views/Goals/Index.cshtml` include `_ValidationScriptsPartial` mà layout không nạp jQuery (cùng họ lỗi `SWEEP-ADMIN-LAYOUT-NO-JQUERY`). Trang Goals thuộc chủ khác nên **không sửa** ở đợt này; trang `/Notification` không có lỗi.
+
+### NOTIFICATIONS-ADMIN-VISUAL-BATCH — chờ đợt Admin 17/11/2026
+
+- Hai trang Admin thông báo (Gửi, Lịch sử) mới sửa logic và câu chữ (quyết định D2): nút và liên kết vẫn theo cỡ Bootstrap (nút "Gửi thông báo" cao 38 px, `btn-sm` nhỏ hơn 44 px), thẻ xem trước còn style nội dòng, layout Admin chưa nạp jQuery. Làm lại giao diện Clay cùng đợt Admin.
+
 ### LANDING-SCREENSHOTS-STALE — maintenance note 16/11/2026
 
 - Trang Landing dùng ảnh chụp thật của trang Từ vựng (`hero-home-*.webp`), của một câu hỏi trong bài học (`lesson-card-*.webp`) và ảnh chia sẻ `og-landing.png` (1200 × 630). Khi giao diện Từ vựng hoặc bài học đổi, các ảnh này sẽ cũ đi và cần chụp lại.

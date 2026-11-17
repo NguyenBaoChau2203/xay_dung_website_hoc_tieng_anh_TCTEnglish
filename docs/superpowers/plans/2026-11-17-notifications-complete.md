@@ -827,3 +827,19 @@ Record database evidence.
 **Not changed (Admin batch, not this plan).** Existing admin buttons use Bootstrap sizes (the full-width "Gửi thông báo" button is 38 px high, `btn-sm` buttons are smaller than 44 px); the admin preview card keeps its inline sizing styles; the admin layout still loads no jQuery (`SWEEP-ADMIN-LAYOUT-NO-JQUERY`).
 
 **Event keys of rows created.** `announce:1:t8verify0000000000000000000001` (3 rows, users 6–8) and 2 legacy rows titled "[Thử nghiệm] Dữ liệu cũ T8" (users 6–7); all five removed.
+
+### Gate record — T9 Docs (2026-11-17) — `docs(notifications): update the tracker, structure, known issues and bug log`
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| G1 | pass | full rebuild: 0 errors, **57 warnings** |
+| G2–G4 | pass | .NET **2601 total = 2566 passed, 35 skipped, 0 failed**; node 431 total, 430 passed, 1 failed = the T0 speaking-catalog hash failure (no code changed in this phase) |
+| G5 | pass | `has-pending-model-changes`: none |
+| G6, G7 | pass | docs only: `docs/design-system/team-ui-workflow.md` (tracker row "Thông báo"), `docs/project-structure.md` (one bullet), `.ai/context/known-issues.md` (five entries), `.ai/context/bug-fix-log.md` (one entry), this plan; `git diff --check` clean |
+| G8–G15 | n/a | no code, markup or style changed |
+
+**Written.**
+- Tracker: "Thông báo" is now "Đã chuyển Clay 2026-11-17" with the files, scripts and owner.
+- Structure: one bullet describing the controller, the display model, the service rules, the UI files and the event between the page and the bell.
+- Known issues: `NOTIFICATIONS-SHARED-FILES-FOR-CHAU` (the layout bell block and badge, the four worker literals, the enum member, the read-only preference read, the core script line and the kit scope), `NOTIFICATIONS-OLD-ROWS-KEEP-OLD-COPY`, `NOTIFICATIONS-ANNOUNCEMENT-NOT-SENT-LOCALLY`, `NOTIFICATIONS-GOALS-PAGE-JQUERY`, `NOTIFICATIONS-ADMIN-VISUAL-BATCH`.
+- Bug log: one entry with symptom, root cause, solution, files, verification and follow-ups.
